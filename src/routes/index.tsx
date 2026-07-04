@@ -8,6 +8,8 @@ import { FeatureCard } from "@/components/site/FeatureCard";
 import { ImageFeatureBlock } from "@/components/site/ImageFeatureBlock";
 import { PortraitFeature } from "@/components/site/PortraitFeature";
 import { NewsCard } from "@/components/site/NewsCard";
+import { TestimonialsSection } from "@/components/site/TestimonialsSection";
+import { usePublishedResources } from "@/hooks/use-cms";
 
 export const Route = createFileRoute("/")({
   head: () => ({
