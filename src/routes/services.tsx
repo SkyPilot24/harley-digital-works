@@ -141,9 +141,9 @@ function ServicesPage() {
       <section className="pb-20 md:pb-28">
         <Container>
           <div className="grid gap-6 md:grid-cols-3">
-            {PACKAGES.map((p) => (
+            {packages.map((p) => (
               <article
-                key={p.num}
+                key={p.title}
                 className={`flex h-full flex-col rounded-[20px] p-8 md:p-10 ${
                   p.surface === "sage"
                     ? "bg-surface-sage"
