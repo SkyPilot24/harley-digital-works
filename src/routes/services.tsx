@@ -95,7 +95,25 @@ const SUB_SERVICES = [
   },
 ];
 
+const SURFACES = ["sage", "stone", "mist"] as const;
+
 function ServicesPage() {
+  const { data: cms } = usePublishedServices();
+  const packages =
+    cms && cms.length > 0
+      ? cms.map((s, i) => ({
+          num: String(i + 1).padStart(2, "0"),
+          tag: s.tagline ?? "Package",
+          title: s.title,
+          price: s.price_label ?? "",
+          body: s.description ?? "",
+          bullets: Array.isArray(s.bullets)
+            ? (s.bullets as unknown as string[])
+            : [],
+          surface: SURFACES[i % SURFACES.length],
+        }))
+      : PACKAGES;
+
   return (
     <PageShell>
       <section className="pt-32 pb-16 md:pt-40 md:pb-24">
