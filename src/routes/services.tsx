@@ -4,6 +4,7 @@ import { PillButton } from "@/components/site/PillButton";
 import { TagChip } from "@/components/site/TagChip";
 import { SectionHeader } from "@/components/site/SectionHeader";
 import { FeatureCard } from "@/components/site/FeatureCard";
+import { usePublishedServices } from "@/hooks/use-cms";
 
 export const Route = createFileRoute("/services")({
   head: () => ({
@@ -94,7 +95,25 @@ const SUB_SERVICES = [
   },
 ];
 
+const SURFACES = ["sage", "stone", "mist"] as const;
+
 function ServicesPage() {
+  const { data: cms } = usePublishedServices();
+  const packages =
+    cms && cms.length > 0
+      ? cms.map((s, i) => ({
+          num: String(i + 1).padStart(2, "0"),
+          tag: s.tagline ?? "Package",
+          title: s.title,
+          price: s.price_label ?? "",
+          body: s.description ?? "",
+          bullets: Array.isArray(s.bullets)
+            ? (s.bullets as unknown as string[])
+            : [],
+          surface: SURFACES[i % SURFACES.length],
+        }))
+      : PACKAGES;
+
   return (
     <PageShell>
       <section className="pt-32 pb-16 md:pt-40 md:pb-24">
@@ -122,9 +141,9 @@ function ServicesPage() {
       <section className="pb-20 md:pb-28">
         <Container>
           <div className="grid gap-6 md:grid-cols-3">
-            {PACKAGES.map((p) => (
+            {packages.map((p) => (
               <article
-                key={p.num}
+                key={p.title}
                 className={`flex h-full flex-col rounded-[20px] p-8 md:p-10 ${
                   p.surface === "sage"
                     ? "bg-surface-sage"
