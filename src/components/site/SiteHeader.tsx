@@ -60,7 +60,15 @@ export function SiteHeader() {
           ))}
         </nav>
 
-        <div className="hidden md:block">
+        <div className="hidden items-center gap-3 md:flex">
+          {user && isAdmin && (
+            <Link
+              to="/admin"
+              className="text-[13px] font-medium text-ink/70 transition-colors hover:text-ink"
+            >
+              Admin
+            </Link>
+          )}
           <PillButton as="link" to="/contact" variant="dark" size="sm">
             Contact us
           </PillButton>
