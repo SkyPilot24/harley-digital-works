@@ -10,6 +10,7 @@ import {
   BookOpen,
   MessageSquareQuote,
   Settings,
+  Shield,
   LogOut,
 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
@@ -26,6 +27,7 @@ const NAV: { to: string; label: string; icon: typeof LayoutDashboard; exact?: bo
   { to: "/admin/services", label: "Services", icon: FileText },
   { to: "/admin/resources", label: "Resources", icon: BookOpen },
   { to: "/admin/testimonials", label: "Testimonials", icon: MessageSquareQuote },
+  { to: "/admin/users", label: "Users & roles", icon: Shield },
   { to: "/admin/settings", label: "Settings", icon: Settings },
 ];
 
