@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { PillButton } from "./PillButton";
 import { cn } from "@/lib/utils";
+import { useAuth, useIsAdmin } from "@/hooks/use-auth";
 
 const LINKS = [
   { to: "/services", label: "Services" },
