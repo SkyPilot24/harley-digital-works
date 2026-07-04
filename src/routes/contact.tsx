@@ -1,7 +1,13 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageShell, Container } from "@/components/site/PageShell";
-
+import { SectionHeader } from "@/components/site/SectionHeader";
 import { TagChip } from "@/components/site/TagChip";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 import { useState } from "react";
 import { z } from "zod";
 import { supabase } from "@/integrations/supabase/client";
