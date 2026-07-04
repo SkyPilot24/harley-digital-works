@@ -313,6 +313,21 @@ function Founder() {
 // ─── News grid ───────────────────────────────────────────────────────────
 
 function LatestThinking() {
+  const { data } = usePublishedResources();
+  const items =
+    data && data.length > 0
+      ? data.slice(0, 4).map((r) => ({
+          tag: r.category ?? "Article",
+          title: r.title,
+          excerpt: r.excerpt ?? "",
+          image:
+            r.cover_image_url ??
+            "https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=1200&q=80",
+          imageAlt: r.title,
+          to: "/resources",
+        }))
+      : NEWS;
+
   return (
     <section className="py-20 md:py-28">
       <Container>
@@ -329,7 +344,7 @@ function LatestThinking() {
           transition={{ duration: 0.6, delay: 0.1, ease: [0.23, 1, 0.32, 1] }}
           className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-4"
         >
-          {NEWS.map((n) => (
+          {items.map((n) => (
             <NewsCard key={n.title} {...n} />
           ))}
         </motion.div>
