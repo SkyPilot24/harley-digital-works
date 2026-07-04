@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { PillButton } from "./PillButton";
 import { cn } from "@/lib/utils";
+import { useAuth, useIsAdmin } from "@/hooks/use-auth";
 
 const LINKS = [
   { to: "/services", label: "Services" },
@@ -14,6 +15,8 @@ const LINKS = [
 export function SiteHeader() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const { user } = useAuth();
+  const { data: isAdmin } = useIsAdmin();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -57,7 +60,15 @@ export function SiteHeader() {
           ))}
         </nav>
 
-        <div className="hidden md:block">
+        <div className="hidden items-center gap-3 md:flex">
+          {user && isAdmin && (
+            <Link
+              to="/admin"
+              className="text-[13px] font-medium text-ink/70 transition-colors hover:text-ink"
+            >
+              Admin
+            </Link>
+          )}
           <PillButton as="link" to="/contact" variant="dark" size="sm">
             Contact us
           </PillButton>

@@ -1,7 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageShell, Container } from "@/components/site/PageShell";
-import { PillButton } from "@/components/site/PillButton";
+
 import { TagChip } from "@/components/site/TagChip";
+import { useState } from "react";
+import { z } from "zod";
+import { supabase } from "@/integrations/supabase/client";
+import { toast } from "sonner";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -18,7 +22,50 @@ export const Route = createFileRoute("/contact")({
   component: ContactPage,
 });
 
+const leadSchema = z.object({
+  name: z.string().trim().min(1, "Name is required").max(100),
+  email: z.string().trim().email("Enter a valid email").max(255),
+  company: z.string().trim().max(120).optional().or(z.literal("")),
+  package: z.string().trim().max(60).optional().or(z.literal("")),
+  message: z.string().trim().min(5, "Tell us a little more").max(2000),
+});
+
 function ContactPage() {
+  const [busy, setBusy] = useState(false);
+  const [sent, setSent] = useState(false);
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    const fd = new FormData(e.currentTarget);
+    const parsed = leadSchema.safeParse({
+      name: fd.get("name"),
+      email: fd.get("email"),
+      company: fd.get("company") ?? "",
+      package: fd.get("package") ?? "",
+      message: fd.get("message"),
+    });
+    if (!parsed.success) {
+      toast.error(parsed.error.issues[0]?.message ?? "Please check the form");
+      return;
+    }
+    setBusy(true);
+    const { error } = await supabase.from("leads").insert({
+      name: parsed.data.name,
+      email: parsed.data.email,
+      company: parsed.data.company || null,
+      package: parsed.data.package || null,
+      message: parsed.data.message,
+    });
+    setBusy(false);
+    if (error) {
+      toast.error("Couldn't send — please try again.");
+      return;
+    }
+    setSent(true);
+    (e.target as HTMLFormElement).reset();
+    toast.success("Message sent — we'll be in touch shortly.");
+  }
+
   return (
     <PageShell>
       <section className="pt-32 pb-16 md:pt-40 md:pb-24">
@@ -48,9 +95,14 @@ function ContactPage() {
           <div className="grid gap-8 md:grid-cols-12 md:gap-10">
             <form
               className="rounded-[20px] border border-ink/10 bg-background p-8 md:col-span-7 md:p-10"
-              onSubmit={(e) => e.preventDefault()}
+              onSubmit={handleSubmit}
             >
               <div className="grid gap-5">
+                {sent && (
+                  <div className="rounded-lg border border-emerald-200 bg-emerald-50 px-4 py-3 text-[13px] text-emerald-800">
+                    Thanks — your message was sent. We&rsquo;ll reply within one working day.
+                  </div>
+                )}
                 <Field label="Your name" name="name" placeholder="Jane Smith" />
                 <Field label="Email" name="email" type="email" placeholder="jane@example.com" />
                 <Field label="Company (optional)" name="company" placeholder="Local Brand Ltd" />
@@ -85,11 +137,15 @@ function ContactPage() {
                   />
                 </div>
                 <div className="pt-2">
-                  <PillButton variant="dark" size="md" arrow>
-                    Send message
-                  </PillButton>
+                  <button
+                    type="submit"
+                    disabled={busy}
+                    className="inline-flex items-center gap-2 rounded-full bg-ink px-6 py-3 text-[14px] font-medium text-white transition hover:bg-ink/90 disabled:opacity-50"
+                  >
+                    {busy ? "Sending…" : "Send message"}
+                  </button>
                   <p className="mt-3 text-[12px] text-ink-muted">
-                    Form is a UI preview — wiring to Cloud comes in a follow-up.
+                    We reply within one working day. No spam, ever.
                   </p>
                 </div>
               </div>
