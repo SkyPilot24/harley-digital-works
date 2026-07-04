@@ -1,7 +1,13 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageShell, Container } from "@/components/site/PageShell";
-
+import { SectionHeader } from "@/components/site/SectionHeader";
 import { TagChip } from "@/components/site/TagChip";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 import { useState } from "react";
 import { z } from "zod";
 import { supabase } from "@/integrations/supabase/client";
@@ -178,11 +184,98 @@ function ContactPage() {
                   </dt>
                   <dd className="mt-2 text-ink">15 minutes. No pitch. Bring your questions.</dd>
                 </div>
+                <div>
+                  <dt className="font-mono text-[10px] uppercase tracking-[0.22em] text-ink-muted">
+                    Based in
+                  </dt>
+                  <dd className="mt-2 text-ink">Manchester, UK — working with clients across the UK &amp; EU.</dd>
+                </div>
+                <div>
+                  <dt className="font-mono text-[10px] uppercase tracking-[0.22em] text-ink-muted">
+                    Hours
+                  </dt>
+                  <dd className="mt-2 text-ink">Monday – Friday, 9:00 – 17:00 UK.</dd>
+                </div>
               </dl>
             </aside>
           </div>
         </Container>
       </section>
+
+      <section className="pb-20 md:pb-28">
+        <Container>
+          <SectionHeader title="What happens next" align="stacked" />
+          <ol className="mt-12 divide-y divide-ink/10">
+            {[
+              { n: "01", t: "You send a note", d: "A short message is enough — we don't need a full brief to start." },
+              { n: "02", t: "We reply within a working day", d: "With a fixed quote, a call slot, or an honest 'not us — try…'." },
+              { n: "03", t: "We scope the work together", d: "No obligation, no theatre. If it's a fit, we start the following week." },
+            ].map((s) => (
+              <li
+                key={s.n}
+                className="grid grid-cols-[auto_1fr] items-baseline gap-6 py-6 md:grid-cols-[120px_1fr] md:gap-10"
+              >
+                <span className="font-mono text-[13px] tracking-[0.1em] text-ink-muted">
+                  {s.n}
+                </span>
+                <div>
+                  <p className="text-[17px] font-medium leading-snug text-ink">{s.t}</p>
+                  <p className="mt-1 text-[15px] leading-relaxed text-ink-muted">{s.d}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </Container>
+      </section>
+
+      <section className="pb-24 md:pb-32">
+        <Container>
+          <SectionHeader
+            title="Frequently asked"
+            intro="Short, plain answers to the questions we get most often."
+          />
+          <div className="mt-10 max-w-3xl">
+            <Accordion type="single" collapsible className="w-full">
+              {[
+                {
+                  q: "How fast can you start?",
+                  a: "Usually within a week of the first call. Bigger scopes queue behind whatever's in flight, but we'll always tell you a real date, not a hopeful one.",
+                },
+                {
+                  q: "Do you take on ongoing work?",
+                  a: "Yes — our Care Plans cover hosting, updates and small changes month-to-month, and we're happy to keep improving the site over time.",
+                },
+                {
+                  q: "What does a fixed price actually include?",
+                  a: "Everything in the written quote. If the scope changes, we quote the change first — no surprise line items at the end of the month.",
+                },
+                {
+                  q: "What if I'm not technical?",
+                  a: "That's the point. We handle the technical side and translate everything into plain English so you can make confident decisions.",
+                },
+                {
+                  q: "Do you work outside the UK?",
+                  a: "Yes. Most delivery is remote and asynchronous, and we work happily with clients across the UK and EU.",
+                },
+              ].map((item, i) => (
+                <AccordionItem
+                  key={item.q}
+                  value={`item-${i}`}
+                  className="border-ink/10"
+                >
+                  <AccordionTrigger className="py-5 text-left text-[17px] font-medium text-ink hover:no-underline">
+                    {item.q}
+                  </AccordionTrigger>
+                  <AccordionContent className="pb-5 text-[15px] leading-relaxed text-ink-muted">
+                    {item.a}
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+          </div>
+        </Container>
+      </section>
+
     </PageShell>
   );
 }

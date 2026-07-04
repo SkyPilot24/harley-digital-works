@@ -1,110 +1,39 @@
-# THG Redesign — twoday.com system, THG brand
+## Scope
 
-## Design principles borrowed from the reference
+Both routes already exist and are wired into the header — no 404 fix needed. This plan focuses on polishing and expanding them so they feel complete and match the editorial aesthetic of the rest of the site.
 
-- **Full-bleed photographic hero** with a small tag chip top-left, a three-line editorial headline, and one small pill CTA — no floating cards, no stat rows, no orbs.
-- **Generous whitespace** on a warm off-white canvas; sections separated by air, not by dark bands.
-- **Muted tinted cards** (soft sage, warm beige, pale stone) instead of white + shadow. Corners `rounded-2xl`, borders hairline or none, shadows almost invisible.
-- **Two-column asymmetric feature blocks**: large image on the left, a small caption card overlaid at the bottom-left inside the image, headline + intro on the right.
-- **Single warm accent** used sparingly on small pill buttons and hover states. THG keeps **teal `#1A7F7A`** (brand equity) as the sole accent — replacing twoday's mustard.
-- **Small pill CTAs** (`rounded-full`, compact padding, tiny arrow) — not big rectangular buttons.
-- **Left-aligned section headings** paired with a right-side intro paragraph on a 5/7 grid.
-- **Editorial type**: large humanist sans headlines (weight 500–600, not 800), tight tracking, generous line-height on body.
-- **Uniform 4-up news/card grids** with a tiny uppercase tag at the top of each card.
-- **Dark charcoal footer** with 4–5 link columns, small "Get in touch" pill on the left.
+## About page (`src/routes/about.tsx`)
 
-## Design system (new tokens)
+Keep the current hero, founder portrait, "How we work", milestones, and closing CTA. Add three new sections between them:
 
-Palette shifts from mostly-dark to mostly-light, warm neutrals:
+1. **"By the numbers" stat band** (after hero) — 4 stat tiles on a tinted surface: years in digital (20+), fixed‑price projects delivered (40+), average delivery time (1 week), typical reply time (< 1 working day). Big display numerals, small caption underneath.
+2. **"What you actually get" capability list** (after "How we work") — 6 short deliverables in a 2‑column grid on plain background: fixed quote in 24h, weekly progress notes, plain‑English handover, 30 days post‑launch support, source code and full ownership, care‑plan option after launch.
+3. **"Who we work with" client-type grid** (before milestones) — 3 `FeatureCard`s: community groups & CICs, solo founders & consultants, local & lifestyle brands. Each links to the matching service.
 
-| Token | Value | Use |
-|---|---|---|
-| `--background` | `#F6F4EE` warm off-white | Page canvas |
-| `--surface-sage` | `#E4E9DE` | Tinted feature cards |
-| `--surface-stone` | `#EDE7DB` | Warm feature cards (portraits) |
-| `--surface-mist` | `#E8EBEB` | Cool feature cards |
-| `--foreground` | `#1A1A1A` near-black | Body + headlines |
-| `--muted-foreground` | `#5B5B58` | Meta, captions |
-| `--primary` (accent) | `#1A7F7A` THG teal | Pill CTAs, links, hover |
-| `--footer-bg` | `#111111` | Footer only |
-| `--border` | `rgba(0,0,0,0.08)` | Hairlines |
+Section order becomes: Hero → Stat band → Founder → How we work → What you actually get → Who we work with → Milestones → CTA.
 
-Typography — keep **Syne + DM Sans + DM Mono** already loaded, but retune usage:
-- Headlines: DM Sans 500–600 (not Syne 800) for the editorial twoday feel; Syne reserved for the THG wordmark only.
-- Body: DM Sans 400, 17px, line-height 1.6.
-- Tiny uppercase tags: DM Mono 500, 11px, tracking `0.18em`.
+## Contact page (`src/routes/contact.tsx`)
 
-Radii: `--radius-card: 20px`, `--radius-pill: 999px`. Shadows: replaced by tinted surfaces; only a `0 1px 0 rgba(0,0,0,0.04)` on hover for cards.
+Keep the current form + sidebar (already CMS-connected to `leads`). Add:
 
-## Reusable components
+1. **"What happens next" 3‑step strip** below the form section — numbered steps: (01) You send a note, (02) We reply within a working day with a fixed quote or a call slot, (03) We scope the work together — no obligation. Mono numerals, thin dividers, matches the milestone rhythm on About.
+2. **FAQ accordion section** — 5 common questions using shadcn's `Accordion` component: how fast can you start, do you take on ongoing work, what does a fixed price actually include, what if I'm not technical, do you work outside the UK.
+3. **Sidebar enhancement** — add a "Based in" line and business hours (Mon–Fri, 9–5 UK) to the existing green info card. Keep it a single visual block.
 
-1. **`SiteHeader`** — light background, dark text, small logo + inline nav + right-side "Contact us" pill. Sticky, becomes subtle glass on scroll.
-2. **`PillButton`** — `variant: primary | ghost | dark`, always `rounded-full`, tiny `↗` arrow.
-3. **`TagChip`** — uppercase mono label with a background tint; used on hero and cards.
-4. **`SectionHeader`** — 5/7 grid: left heading, right intro paragraph.
-5. **`FeatureCard`** — tinted `rounded-2xl` container with tag, body, and small "See how" pill.
-6. **`ImageFeatureBlock`** — full-bleed image with overlaid `FeatureCard` at bottom-left.
-7. **`PortraitFeature`** — warm beige panel, oversized headline left, portrait right, quote top-right, dual arrow controls under CTA.
-8. **`NewsCard`** — image + tag + headline + 2-line intro; 4-up on desktop, 2-up tablet, 1-up mobile.
-9. **`FooterDark`** — 5 columns (Get in touch form, then 4 link groups), utility bar underneath.
+## Styling and consistency
 
-## Page-by-page redesign
+- Reuse existing primitives only: `Container`, `SectionHeader`, `TagChip`, `FeatureCard`, `PillButton`, surface tokens (`bg-surface-sage`, `bg-surface-stone`, `bg-surface-mist`, `bg-surface-cream`), `--font-display`, mono captions for eyebrow labels.
+- No new dependencies. Accordion is already available via shadcn (`@/components/ui/accordion`); if missing on inspection during build, I'll add it via the shadcn convention already used in the repo.
+- Section rhythm matches other pages: `py-20 md:py-28`, headings via `SectionHeader`, dividers `divide-ink/10`.
+- Head metadata unchanged.
 
-Existing routes to redesign (from the source repo): Home, About, Services, CarePlans, ContentEngine, AutomationServices, DigitalProducts, LaunchPlan, Domains, Resources, Contact. All share `SiteHeader` + `FooterDark`.
+## Out of scope
 
-### Home
-1. **Hero** — full-bleed photograph (studio/laptop or hands-on scene). Tag chip "Digital · Web · Content". Three-line headline: "Applied craft. / Fixed-price delivery. / Lasting impact." Single teal pill "Book a free call ↗".
-2. **Intro band** — one-sentence positioning statement + 4 tinted feature cards (Websites, Content, Automation, Domains) in a 4-up grid.
-3. **Lasting impact** — section header (left "Lasting impact", right intro). Two-column `ImageFeatureBlock` row (two case studies, image + overlaid caption card).
-4. **Portrait feature** — "Meet Dr Robbie Harley, Founder" in a stone/beige panel with pull-quote.
-5. **Latest thinking** — 4-up `NewsCard` grid.
-6. **Let's talk** — large left-aligned heading, short paragraph, teal pill.
-7. Footer.
+- No changes to routing, header, footer, or `routeTree.gen.ts`.
+- No changes to Supabase schema, `leads` submission logic, or admin.
+- No new assets beyond existing Unsplash URLs already used elsewhere.
 
-### Services (and sub-pages CarePlans / ContentEngine / AutomationServices / DigitalProducts / LaunchPlan)
-- Short hero: tag + single-line headline + 1-paragraph lead (no photo, ample white space).
-- 3-up tinted package cards with 01/02/03 mono numeral, price, tag, 5–6 bullet list, pill CTA.
-- Alternating `ImageFeatureBlock` rows explaining process/deliverables.
-- FAQ accordion (hairline dividers, no boxes).
-- CTA band → Contact.
+## Verification
 
-### Domains
-- Hero + filter chip bar (Category, Status, Price range).
-- Grid of domain cards: mono domain name (large), category tag, status pill, price, "Enquire ↗".
-- Right rail on desktop: "How buying works" tinted card.
-
-### About
-- Hero paragraph.
-- Portrait feature for founder.
-- Values as 3-up tinted cards.
-- Timeline / milestones as a simple two-column list.
-
-### Contact
-- Split layout: left `Get in touch` form (name, email, package select, message) on off-white; right sidebar with direct email, response-time promise, calendar embed placeholder, all inside a sage tinted card.
-
-### Resources
-- Magazine-style hero card (large tinted feature) + 2-column grid of resource cards below, uppercase tag per card.
-
-### Not Found
-- Editorial: giant "404", one-line explanation, teal pill back home.
-
-## Responsive behavior
-
-- Container: `max-w-[1240px]` with `px-6 md:px-10` gutters.
-- Grids: 4-col → 2-col at `md`, 1-col at `sm`. `ImageFeatureBlock` stacks image-then-card at `md`.
-- Headline scale uses `clamp()` so hero drops cleanly from 5.5rem → 2.75rem.
-- Nav collapses to a slide-down panel at `md`; the "Contact us" pill stays visible in the top bar.
-
-## Implementation notes (technical)
-
-- Update `src/styles.css`: replace THG palette section with the new tokens above (light canvas, tinted surfaces, teal accent), register `--radius-card`, keep the fonts already linked in `__root.tsx`.
-- Move `Navigation.tsx` / `Footer.tsx` into `src/components/site/` and rewrite in the new system. Extract new primitives into `src/components/site/`: `PillButton`, `TagChip`, `SectionHeader`, `FeatureCard`, `ImageFeatureBlock`, `PortraitFeature`, `NewsCard`.
-- Rebuild `src/routes/index.tsx` first against the new system; then create the remaining route files under `src/routes/` (`services.tsx`, `services.care-plans.tsx`, `services.content-engine.tsx`, `services.automation.tsx`, `services.digital-products.tsx`, `services.launch-plan.tsx`, `domains.tsx`, `about.tsx`, `contact.tsx`, `resources.tsx`), each with route-specific `head()` metadata.
-- Motion: subtle only — 400 ms fade-up on section entrance, 200 ms card lift on hover, no kinetic word-by-word headline (drop it — off-brand vs the reference).
-- Hero and feature images: source from Unsplash via Lovable Assets pointers to keep the repo light; replace with real THG photography later.
-
-## Out of scope for this pass
-
-- Wiring forms to Lovable Cloud (Contact, domain enquiries) — separate task.
-- Admin dashboard rebuild — separate task once public site lands.
-- Real photography — placeholder Unsplash pointers used, marked for later replacement.
+- Typecheck (`tsgo`).
+- Visit `/about` and `/contact` in the preview at desktop and mobile widths; confirm section rhythm, spacing, and that the contact form still submits.
