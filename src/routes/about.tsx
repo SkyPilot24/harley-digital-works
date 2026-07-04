@@ -112,6 +112,35 @@ function AboutPage() {
         </Container>
       </section>
 
+      <section className="pb-4 md:pb-8">
+        <Container>
+          <div className="rounded-[20px] bg-surface-cream p-8 md:p-12">
+            <dl className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+              {STATS.map((s) => (
+                <div key={s.label}>
+                  <dt
+                    className="text-ink"
+                    style={{
+                      fontFamily: "var(--font-display)",
+                      fontWeight: 500,
+                      letterSpacing: "-0.03em",
+                      lineHeight: 1,
+                      fontSize: "clamp(2.25rem, 4.5vw, 3.25rem)",
+                    }}
+                  >
+                    {s.value}
+                  </dt>
+                  <dd className="mt-3 font-mono text-[11px] uppercase tracking-[0.22em] text-ink-muted">
+                    {s.label}
+                  </dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+        </Container>
+      </section>
+
+
       <section className="pb-20 md:pb-28">
         <Container>
           <PortraitFeature
