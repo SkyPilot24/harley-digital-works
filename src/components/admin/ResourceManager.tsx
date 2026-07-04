@@ -75,7 +75,7 @@ export function ResourceManager({ title, table, fields, orderBy, emptyHint }: Re
 
   const shownFields = fields.filter((f) => !f.hideInTable).slice(0, 5);
   const open = creating || !!editing;
-  const record = editing ?? {};
+  const record: Record<string, any> = editing ?? {};
 
   return (
     <div>
