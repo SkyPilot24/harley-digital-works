@@ -23,6 +23,7 @@ import { Route as ServicesContentEngineRouteImport } from './routes/services.con
 import { Route as ServicesCarePlansRouteImport } from './routes/services.care-plans'
 import { Route as ServicesAutomationRouteImport } from './routes/services.automation'
 import { Route as AuthenticatedAdminIndexRouteImport } from './routes/_authenticated/admin.index'
+import { Route as AuthenticatedAdminLeadsRouteImport } from './routes/_authenticated/admin.leads'
 
 const ServicesRoute = ServicesRouteImport.update({
   id: '/services',
@@ -93,6 +94,11 @@ const AuthenticatedAdminIndexRoute = AuthenticatedAdminIndexRouteImport.update({
   path: '/admin/',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedAdminLeadsRoute = AuthenticatedAdminLeadsRouteImport.update({
+  id: '/admin/leads',
+  path: '/admin/leads',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -107,6 +113,7 @@ export interface FileRoutesByFullPath {
   '/services/content-engine': typeof ServicesContentEngineRoute
   '/services/digital-products': typeof ServicesDigitalProductsRoute
   '/services/launch-plan': typeof ServicesLaunchPlanRoute
+  '/admin/leads': typeof AuthenticatedAdminLeadsRoute
   '/admin/': typeof AuthenticatedAdminIndexRoute
 }
 export interface FileRoutesByTo {
@@ -122,6 +129,7 @@ export interface FileRoutesByTo {
   '/services/content-engine': typeof ServicesContentEngineRoute
   '/services/digital-products': typeof ServicesDigitalProductsRoute
   '/services/launch-plan': typeof ServicesLaunchPlanRoute
+  '/admin/leads': typeof AuthenticatedAdminLeadsRoute
   '/admin': typeof AuthenticatedAdminIndexRoute
 }
 export interface FileRoutesById {
@@ -139,6 +147,7 @@ export interface FileRoutesById {
   '/services/content-engine': typeof ServicesContentEngineRoute
   '/services/digital-products': typeof ServicesDigitalProductsRoute
   '/services/launch-plan': typeof ServicesLaunchPlanRoute
+  '/_authenticated/admin/leads': typeof AuthenticatedAdminLeadsRoute
   '/_authenticated/admin/': typeof AuthenticatedAdminIndexRoute
 }
 export interface FileRouteTypes {
@@ -156,6 +165,7 @@ export interface FileRouteTypes {
     | '/services/content-engine'
     | '/services/digital-products'
     | '/services/launch-plan'
+    | '/admin/leads'
     | '/admin/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -171,6 +181,7 @@ export interface FileRouteTypes {
     | '/services/content-engine'
     | '/services/digital-products'
     | '/services/launch-plan'
+    | '/admin/leads'
     | '/admin'
   id:
     | '__root__'
@@ -187,6 +198,7 @@ export interface FileRouteTypes {
     | '/services/content-engine'
     | '/services/digital-products'
     | '/services/launch-plan'
+    | '/_authenticated/admin/leads'
     | '/_authenticated/admin/'
   fileRoutesById: FileRoutesById
 }
@@ -301,14 +313,23 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAdminIndexRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/admin/leads': {
+      id: '/_authenticated/admin/leads'
+      path: '/admin/leads'
+      fullPath: '/admin/leads'
+      preLoaderRoute: typeof AuthenticatedAdminLeadsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
   }
 }
 
 interface AuthenticatedRouteRouteChildren {
+  AuthenticatedAdminLeadsRoute: typeof AuthenticatedAdminLeadsRoute
   AuthenticatedAdminIndexRoute: typeof AuthenticatedAdminIndexRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedAdminLeadsRoute: AuthenticatedAdminLeadsRoute,
   AuthenticatedAdminIndexRoute: AuthenticatedAdminIndexRoute,
 }
 
