@@ -4,6 +4,7 @@ import { TagChip } from "@/components/site/TagChip";
 import { SectionHeader } from "@/components/site/SectionHeader";
 import { NewsCard } from "@/components/site/NewsCard";
 import { ImageFeatureBlock } from "@/components/site/ImageFeatureBlock";
+import { usePublishedResources } from "@/hooks/use-cms";
 
 export const Route = createFileRoute("/resources")({
   head: () => ({
