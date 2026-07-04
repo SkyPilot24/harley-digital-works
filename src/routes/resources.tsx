@@ -95,6 +95,34 @@ const ARTICLES = [
 ];
 
 function ResourcesPage() {
+  const { data: cms } = usePublishedResources();
+  const hasCms = !!cms && cms.length > 0;
+
+  const featured = hasCms
+    ? {
+        image:
+          cms![0].cover_image_url ??
+          "https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&fit=crop&w=1800&q=80",
+        imageAlt: cms![0].title,
+        tag: cms![0].category ?? "Featured",
+        title: cms![0].title,
+        to: "/resources",
+      }
+    : FEATURED;
+
+  const articles = hasCms
+    ? cms!.slice(1).map((r) => ({
+        tag: r.category ?? "Article",
+        title: r.title,
+        excerpt: r.excerpt ?? "",
+        image:
+          r.cover_image_url ??
+          "https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=1200&q=80",
+        imageAlt: r.title,
+        to: "/resources",
+      }))
+    : ARTICLES;
+
   return (
     <PageShell>
       <section className="pt-32 pb-16 md:pt-40 md:pb-24">
@@ -121,20 +149,22 @@ function ResourcesPage() {
 
       <section className="pb-20 md:pb-24">
         <Container>
-          <ImageFeatureBlock {...FEATURED} />
+          <ImageFeatureBlock {...featured} />
         </Container>
       </section>
 
-      <section className="pb-24 md:pb-32">
-        <Container>
-          <SectionHeader title="Recent" align="stacked" />
-          <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-            {ARTICLES.map((a) => (
-              <NewsCard key={a.title} {...a} />
-            ))}
-          </div>
-        </Container>
-      </section>
+      {articles.length > 0 && (
+        <section className="pb-24 md:pb-32">
+          <Container>
+            <SectionHeader title="Recent" align="stacked" />
+            <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+              {articles.map((a) => (
+                <NewsCard key={a.title} {...a} />
+              ))}
+            </div>
+          </Container>
+        </section>
+      )}
     </PageShell>
   );
 }
