@@ -1,0 +1,1 @@
+REVOKE EXECUTE ON FUNCTION public.get_auth_user_triggers() FROM anon, PUBLIC;

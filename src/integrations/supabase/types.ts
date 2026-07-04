@@ -366,6 +366,16 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      get_auth_user_triggers: {
+        Args: never
+        Returns: {
+          enabled: boolean
+          event: string
+          function_name: string
+          timing: string
+          trigger_name: string
+        }[]
+      }
       has_role: {
         Args: {
           _role: Database["public"]["Enums"]["app_role"]
