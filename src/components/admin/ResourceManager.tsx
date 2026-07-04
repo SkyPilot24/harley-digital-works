@@ -37,7 +37,7 @@ export function ResourceManager({ title, table, fields, orderBy, emptyHint }: Re
       if (orderBy) q = q.order(orderBy.column, { ascending: orderBy.ascending ?? false });
       const { data, error } = await q;
       if (error) throw error;
-      return (data ?? []) as Row[];
+      return (data ?? []) as unknown as Row[];
     },
   });
 
