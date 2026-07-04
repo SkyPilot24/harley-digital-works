@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageShell, Container } from "@/components/site/PageShell";
-import { PillButton } from "@/components/site/PillButton";
+
 import { TagChip } from "@/components/site/TagChip";
 import { useState } from "react";
 import { z } from "zod";
