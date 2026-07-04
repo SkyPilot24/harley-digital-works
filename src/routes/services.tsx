@@ -4,6 +4,7 @@ import { PillButton } from "@/components/site/PillButton";
 import { TagChip } from "@/components/site/TagChip";
 import { SectionHeader } from "@/components/site/SectionHeader";
 import { FeatureCard } from "@/components/site/FeatureCard";
+import { usePublishedServices } from "@/hooks/use-cms";
 
 export const Route = createFileRoute("/services")({
   head: () => ({
