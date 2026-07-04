@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { PillButton } from "./PillButton";
 
-const YEAR = new Date().getFullYear();
+const YEAR = 2026;
 
 const COLUMNS = [
   {
