@@ -399,6 +399,7 @@ function HomePage() {
       <IntroBand />
       <LastingImpact />
       <Founder />
+      <TestimonialsSection />
       <LatestThinking />
       <LetsTalk />
     </PageShell>
