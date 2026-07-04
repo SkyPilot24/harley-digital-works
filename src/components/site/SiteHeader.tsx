@@ -15,6 +15,8 @@ const LINKS = [
 export function SiteHeader() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const { user } = useAuth();
+  const { data: isAdmin } = useIsAdmin();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
