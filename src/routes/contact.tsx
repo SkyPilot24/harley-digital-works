@@ -65,6 +65,8 @@ function ContactPage() {
     (e.target as HTMLFormElement).reset();
     toast.success("Message sent — we'll be in touch shortly.");
   }
+
+  return (
     <PageShell>
       <section className="pt-32 pb-16 md:pt-40 md:pb-24">
         <Container>
