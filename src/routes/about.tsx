@@ -171,6 +171,50 @@ function AboutPage() {
 
       <section className="py-20 md:py-28">
         <Container>
+          <SectionHeader
+            title="What you actually get"
+            intro="Every engagement — big or small — ships with the same standards baked in."
+          />
+          <ul className="mt-14 grid gap-x-10 gap-y-5 sm:grid-cols-2">
+            {DELIVERABLES.map((d) => (
+              <li
+                key={d}
+                className="flex items-start gap-3 border-t border-ink/10 pt-5 text-[16px] leading-snug text-ink"
+              >
+                <span
+                  aria-hidden
+                  className="mt-2.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-primary"
+                />
+                <span>{d}</span>
+              </li>
+            ))}
+          </ul>
+        </Container>
+      </section>
+
+      <section className="py-20 md:py-28">
+        <Container>
+          <SectionHeader
+            title="Who we work with"
+            intro="A short list on purpose — we do a few things well for a few types of client."
+          />
+          <div className="mt-14 grid gap-4 md:grid-cols-3">
+            {AUDIENCES.map((a) => (
+              <FeatureCard
+                key={a.tag}
+                tag={a.tag}
+                title={a.title}
+                ctaTo={a.to}
+                surface={a.surface}
+              />
+            ))}
+          </div>
+        </Container>
+      </section>
+
+      <section className="py-20 md:py-28">
+
+        <Container>
           <SectionHeader title="Milestones" align="stacked" />
           <ul className="mt-12 divide-y divide-ink/10">
             {MILESTONES.map((m) => (
