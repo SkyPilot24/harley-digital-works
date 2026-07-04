@@ -112,7 +112,7 @@ export function AdminShell({ children }: { children: ReactNode }) {
             return (
               <Link
                 key={item.to}
-                to={item.to}
+                to={item.to as "/admin"}
                 className={cn(
                   "flex items-center gap-3 rounded-lg px-3 py-2 text-[13px] font-medium transition-colors",
                   active
