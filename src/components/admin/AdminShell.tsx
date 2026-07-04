@@ -11,6 +11,7 @@ import {
   MessageSquareQuote,
   Settings,
   Shield,
+  Stethoscope,
   LogOut,
 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
@@ -28,6 +29,7 @@ const NAV: { to: string; label: string; icon: typeof LayoutDashboard; exact?: bo
   { to: "/admin/resources", label: "Resources", icon: BookOpen },
   { to: "/admin/testimonials", label: "Testimonials", icon: MessageSquareQuote },
   { to: "/admin/users", label: "Users & roles", icon: Shield },
+  { to: "/admin/diagnostics", label: "Diagnostics", icon: Stethoscope },
   { to: "/admin/settings", label: "Settings", icon: Settings },
 ];
 
