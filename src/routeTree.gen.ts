@@ -15,12 +15,14 @@ import { Route as DomainsRouteImport } from './routes/domains'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as AboutRouteImport } from './routes/about'
+import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ServicesLaunchPlanRouteImport } from './routes/services.launch-plan'
 import { Route as ServicesDigitalProductsRouteImport } from './routes/services.digital-products'
 import { Route as ServicesContentEngineRouteImport } from './routes/services.content-engine'
 import { Route as ServicesCarePlansRouteImport } from './routes/services.care-plans'
 import { Route as ServicesAutomationRouteImport } from './routes/services.automation'
+import { Route as AuthenticatedAdminIndexRouteImport } from './routes/_authenticated/admin.index'
 
 const ServicesRoute = ServicesRouteImport.update({
   id: '/services',
@@ -50,6 +52,10 @@ const AuthRoute = AuthRouteImport.update({
 const AboutRoute = AboutRouteImport.update({
   id: '/about',
   path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
+  id: '/_authenticated',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -82,6 +88,11 @@ const ServicesAutomationRoute = ServicesAutomationRouteImport.update({
   path: '/automation',
   getParentRoute: () => ServicesRoute,
 } as any)
+const AuthenticatedAdminIndexRoute = AuthenticatedAdminIndexRouteImport.update({
+  id: '/admin/',
+  path: '/admin/',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -96,6 +107,7 @@ export interface FileRoutesByFullPath {
   '/services/content-engine': typeof ServicesContentEngineRoute
   '/services/digital-products': typeof ServicesDigitalProductsRoute
   '/services/launch-plan': typeof ServicesLaunchPlanRoute
+  '/admin/': typeof AuthenticatedAdminIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -110,10 +122,12 @@ export interface FileRoutesByTo {
   '/services/content-engine': typeof ServicesContentEngineRoute
   '/services/digital-products': typeof ServicesDigitalProductsRoute
   '/services/launch-plan': typeof ServicesLaunchPlanRoute
+  '/admin': typeof AuthenticatedAdminIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/about': typeof AboutRoute
   '/auth': typeof AuthRoute
   '/contact': typeof ContactRoute
@@ -125,6 +139,7 @@ export interface FileRoutesById {
   '/services/content-engine': typeof ServicesContentEngineRoute
   '/services/digital-products': typeof ServicesDigitalProductsRoute
   '/services/launch-plan': typeof ServicesLaunchPlanRoute
+  '/_authenticated/admin/': typeof AuthenticatedAdminIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -141,6 +156,7 @@ export interface FileRouteTypes {
     | '/services/content-engine'
     | '/services/digital-products'
     | '/services/launch-plan'
+    | '/admin/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -155,9 +171,11 @@ export interface FileRouteTypes {
     | '/services/content-engine'
     | '/services/digital-products'
     | '/services/launch-plan'
+    | '/admin'
   id:
     | '__root__'
     | '/'
+    | '/_authenticated'
     | '/about'
     | '/auth'
     | '/contact'
@@ -169,10 +187,12 @@ export interface FileRouteTypes {
     | '/services/content-engine'
     | '/services/digital-products'
     | '/services/launch-plan'
+    | '/_authenticated/admin/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
   AboutRoute: typeof AboutRoute
   AuthRoute: typeof AuthRoute
   ContactRoute: typeof ContactRoute
@@ -225,6 +245,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AboutRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated': {
+      id: '/_authenticated'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthenticatedRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -267,8 +294,26 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ServicesAutomationRouteImport
       parentRoute: typeof ServicesRoute
     }
+    '/_authenticated/admin/': {
+      id: '/_authenticated/admin/'
+      path: '/admin'
+      fullPath: '/admin/'
+      preLoaderRoute: typeof AuthenticatedAdminIndexRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
   }
 }
+
+interface AuthenticatedRouteRouteChildren {
+  AuthenticatedAdminIndexRoute: typeof AuthenticatedAdminIndexRoute
+}
+
+const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedAdminIndexRoute: AuthenticatedAdminIndexRoute,
+}
+
+const AuthenticatedRouteRouteWithChildren =
+  AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren)
 
 interface ServicesRouteChildren {
   ServicesAutomationRoute: typeof ServicesAutomationRoute
@@ -292,6 +337,7 @@ const ServicesRouteWithChildren = ServicesRoute._addFileChildren(
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
   AboutRoute: AboutRoute,
   AuthRoute: AuthRoute,
   ContactRoute: ContactRoute,
