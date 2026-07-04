@@ -17,7 +17,7 @@ import { useAuth, useIsAdmin } from "@/hooks/use-auth";
 import { useQueryClient } from "@tanstack/react-query";
 import { cn } from "@/lib/utils";
 
-const NAV = [
+const NAV: { to: string; label: string; icon: typeof LayoutDashboard; exact?: boolean }[] = [
   { to: "/admin", label: "Dashboard", icon: LayoutDashboard, exact: true },
   { to: "/admin/leads", label: "Leads", icon: Inbox },
   { to: "/admin/clients", label: "Clients", icon: Users },
@@ -27,7 +27,7 @@ const NAV = [
   { to: "/admin/resources", label: "Resources", icon: BookOpen },
   { to: "/admin/testimonials", label: "Testimonials", icon: MessageSquareQuote },
   { to: "/admin/settings", label: "Settings", icon: Settings },
-] as const;
+];
 
 export function AdminShell({ children }: { children: ReactNode }) {
   const { user, loading } = useAuth();
