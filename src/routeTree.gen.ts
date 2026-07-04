@@ -23,6 +23,7 @@ import { Route as ServicesContentEngineRouteImport } from './routes/services.con
 import { Route as ServicesCarePlansRouteImport } from './routes/services.care-plans'
 import { Route as ServicesAutomationRouteImport } from './routes/services.automation'
 import { Route as AuthenticatedAdminIndexRouteImport } from './routes/_authenticated/admin.index'
+import { Route as AuthenticatedAdminProjectsRouteImport } from './routes/_authenticated/admin.projects'
 import { Route as AuthenticatedAdminLeadsRouteImport } from './routes/_authenticated/admin.leads'
 import { Route as AuthenticatedAdminClientsRouteImport } from './routes/_authenticated/admin.clients'
 
@@ -95,6 +96,12 @@ const AuthenticatedAdminIndexRoute = AuthenticatedAdminIndexRouteImport.update({
   path: '/admin/',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedAdminProjectsRoute =
+  AuthenticatedAdminProjectsRouteImport.update({
+    id: '/admin/projects',
+    path: '/admin/projects',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const AuthenticatedAdminLeadsRoute = AuthenticatedAdminLeadsRouteImport.update({
   id: '/admin/leads',
   path: '/admin/leads',
@@ -122,6 +129,7 @@ export interface FileRoutesByFullPath {
   '/services/launch-plan': typeof ServicesLaunchPlanRoute
   '/admin/clients': typeof AuthenticatedAdminClientsRoute
   '/admin/leads': typeof AuthenticatedAdminLeadsRoute
+  '/admin/projects': typeof AuthenticatedAdminProjectsRoute
   '/admin/': typeof AuthenticatedAdminIndexRoute
 }
 export interface FileRoutesByTo {
@@ -139,6 +147,7 @@ export interface FileRoutesByTo {
   '/services/launch-plan': typeof ServicesLaunchPlanRoute
   '/admin/clients': typeof AuthenticatedAdminClientsRoute
   '/admin/leads': typeof AuthenticatedAdminLeadsRoute
+  '/admin/projects': typeof AuthenticatedAdminProjectsRoute
   '/admin': typeof AuthenticatedAdminIndexRoute
 }
 export interface FileRoutesById {
@@ -158,6 +167,7 @@ export interface FileRoutesById {
   '/services/launch-plan': typeof ServicesLaunchPlanRoute
   '/_authenticated/admin/clients': typeof AuthenticatedAdminClientsRoute
   '/_authenticated/admin/leads': typeof AuthenticatedAdminLeadsRoute
+  '/_authenticated/admin/projects': typeof AuthenticatedAdminProjectsRoute
   '/_authenticated/admin/': typeof AuthenticatedAdminIndexRoute
 }
 export interface FileRouteTypes {
@@ -177,6 +187,7 @@ export interface FileRouteTypes {
     | '/services/launch-plan'
     | '/admin/clients'
     | '/admin/leads'
+    | '/admin/projects'
     | '/admin/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -194,6 +205,7 @@ export interface FileRouteTypes {
     | '/services/launch-plan'
     | '/admin/clients'
     | '/admin/leads'
+    | '/admin/projects'
     | '/admin'
   id:
     | '__root__'
@@ -212,6 +224,7 @@ export interface FileRouteTypes {
     | '/services/launch-plan'
     | '/_authenticated/admin/clients'
     | '/_authenticated/admin/leads'
+    | '/_authenticated/admin/projects'
     | '/_authenticated/admin/'
   fileRoutesById: FileRoutesById
 }
@@ -326,6 +339,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAdminIndexRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/admin/projects': {
+      id: '/_authenticated/admin/projects'
+      path: '/admin/projects'
+      fullPath: '/admin/projects'
+      preLoaderRoute: typeof AuthenticatedAdminProjectsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/admin/leads': {
       id: '/_authenticated/admin/leads'
       path: '/admin/leads'
@@ -346,12 +366,14 @@ declare module '@tanstack/react-router' {
 interface AuthenticatedRouteRouteChildren {
   AuthenticatedAdminClientsRoute: typeof AuthenticatedAdminClientsRoute
   AuthenticatedAdminLeadsRoute: typeof AuthenticatedAdminLeadsRoute
+  AuthenticatedAdminProjectsRoute: typeof AuthenticatedAdminProjectsRoute
   AuthenticatedAdminIndexRoute: typeof AuthenticatedAdminIndexRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedAdminClientsRoute: AuthenticatedAdminClientsRoute,
   AuthenticatedAdminLeadsRoute: AuthenticatedAdminLeadsRoute,
+  AuthenticatedAdminProjectsRoute: AuthenticatedAdminProjectsRoute,
   AuthenticatedAdminIndexRoute: AuthenticatedAdminIndexRoute,
 }
 
