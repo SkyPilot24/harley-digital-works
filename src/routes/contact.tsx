@@ -22,8 +22,49 @@ export const Route = createFileRoute("/contact")({
   component: ContactPage,
 });
 
+const leadSchema = z.object({
+  name: z.string().trim().min(1, "Name is required").max(100),
+  email: z.string().trim().email("Enter a valid email").max(255),
+  company: z.string().trim().max(120).optional().or(z.literal("")),
+  package: z.string().trim().max(60).optional().or(z.literal("")),
+  message: z.string().trim().min(5, "Tell us a little more").max(2000),
+});
+
 function ContactPage() {
-  return (
+  const [busy, setBusy] = useState(false);
+  const [sent, setSent] = useState(false);
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    const fd = new FormData(e.currentTarget);
+    const parsed = leadSchema.safeParse({
+      name: fd.get("name"),
+      email: fd.get("email"),
+      company: fd.get("company") ?? "",
+      package: fd.get("package") ?? "",
+      message: fd.get("message"),
+    });
+    if (!parsed.success) {
+      toast.error(parsed.error.issues[0]?.message ?? "Please check the form");
+      return;
+    }
+    setBusy(true);
+    const { error } = await supabase.from("leads").insert({
+      name: parsed.data.name,
+      email: parsed.data.email,
+      company: parsed.data.company || null,
+      package: parsed.data.package || null,
+      message: parsed.data.message,
+    });
+    setBusy(false);
+    if (error) {
+      toast.error("Couldn't send — please try again.");
+      return;
+    }
+    setSent(true);
+    (e.target as HTMLFormElement).reset();
+    toast.success("Message sent — we'll be in touch shortly.");
+  }
     <PageShell>
       <section className="pt-32 pb-16 md:pt-40 md:pb-24">
         <Container>
