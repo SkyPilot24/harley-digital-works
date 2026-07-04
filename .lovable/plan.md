@@ -1,39 +1,31 @@
-## Scope
+## Goal
+Verify that `/admin` (and its child routes) are gated so only users with the `admin` role can access them, and that non-admin authenticated users are denied (403 / access denied), while unauthenticated users are redirected to `/auth`.
 
-Both routes already exist and are wired into the header — no 404 fix needed. This plan focuses on polishing and expanding them so they feel complete and match the editorial aesthetic of the rest of the site.
+## Approach
 
-## About page (`src/routes/about.tsx`)
+### 1. Static review of the auth gate
+- Read `src/routes/_authenticated/route.tsx` to confirm the auth redirect for signed-out users.
+- Read `src/routes/_authenticated/admin.tsx` (or the admin layout) and confirm it performs an admin role check via `has_role` / `user_roles` lookup and renders a 403 / "Access denied" state for non-admins.
+- Read the admin server functions in `src/lib/admin-*.functions.ts` and confirm each one uses `requireSupabaseAuth` middleware plus an admin role check (defense in depth, so the API can't be called by a non-admin even if the UI is bypassed).
 
-Keep the current hero, founder portrait, "How we work", milestones, and closing CTA. Add three new sections between them:
+### 2. Runtime verification via Playwright
+Run three scripts against `http://localhost:8080/admin`:
 
-1. **"By the numbers" stat band** (after hero) — 4 stat tiles on a tinted surface: years in digital (20+), fixed‑price projects delivered (40+), average delivery time (1 week), typical reply time (< 1 working day). Big display numerals, small caption underneath.
-2. **"What you actually get" capability list** (after "How we work") — 6 short deliverables in a 2‑column grid on plain background: fixed quote in 24h, weekly progress notes, plain‑English handover, 30 days post‑launch support, source code and full ownership, care‑plan option after launch.
-3. **"Who we work with" client-type grid** (before milestones) — 3 `FeatureCard`s: community groups & CICs, solo founders & consultants, local & lifestyle brands. Each links to the matching service.
+1. **Unauthenticated** — no session restored. Expect redirect to `/auth`. Screenshot.
+2. **Non-admin user** — sign in (or seed) a throwaway user with no `user_roles` row, restore its session, hit `/admin`. Expect an "Access denied" / 403 state, not the admin dashboard. Screenshot + DOM assertion.
+3. **Admin user** — restore the injected Supabase session (current user is admin). Hit `/admin`. Expect the dashboard to render. Screenshot.
 
-Section order becomes: Hero → Stat band → Founder → How we work → What you actually get → Who we work with → Milestones → CTA.
+Also directly call one admin server function (e.g. `getAuthUserTriggers`) as the non-admin user to confirm it rejects with an error, proving the server-side check works independently of the UI.
 
-## Contact page (`src/routes/contact.tsx`)
+### 3. Report
+Summarise findings with:
+- Which layer(s) enforce the check (route guard, component, server function).
+- Screenshot evidence for each of the 3 cases.
+- Any gaps found (e.g. a server function missing the admin check) and a recommended fix.
 
-Keep the current form + sidebar (already CMS-connected to `leads`). Add:
+## Notes
+- No code changes are planned. This is a verification task. If a gap is found, I will surface it and propose a follow-up fix rather than editing in this pass.
+- Creating a temporary non-admin test user requires either an existing test account or seeding one via `supabaseAdmin`. If no test account exists, I'll ask before creating one.
 
-1. **"What happens next" 3‑step strip** below the form section — numbered steps: (01) You send a note, (02) We reply within a working day with a fixed quote or a call slot, (03) We scope the work together — no obligation. Mono numerals, thin dividers, matches the milestone rhythm on About.
-2. **FAQ accordion section** — 5 common questions using shadcn's `Accordion` component: how fast can you start, do you take on ongoing work, what does a fixed price actually include, what if I'm not technical, do you work outside the UK.
-3. **Sidebar enhancement** — add a "Based in" line and business hours (Mon–Fri, 9–5 UK) to the existing green info card. Keep it a single visual block.
-
-## Styling and consistency
-
-- Reuse existing primitives only: `Container`, `SectionHeader`, `TagChip`, `FeatureCard`, `PillButton`, surface tokens (`bg-surface-sage`, `bg-surface-stone`, `bg-surface-mist`, `bg-surface-cream`), `--font-display`, mono captions for eyebrow labels.
-- No new dependencies. Accordion is already available via shadcn (`@/components/ui/accordion`); if missing on inspection during build, I'll add it via the shadcn convention already used in the repo.
-- Section rhythm matches other pages: `py-20 md:py-28`, headings via `SectionHeader`, dividers `divide-ink/10`.
-- Head metadata unchanged.
-
-## Out of scope
-
-- No changes to routing, header, footer, or `routeTree.gen.ts`.
-- No changes to Supabase schema, `leads` submission logic, or admin.
-- No new assets beyond existing Unsplash URLs already used elsewhere.
-
-## Verification
-
-- Typecheck (`tsgo`).
-- Visit `/about` and `/contact` in the preview at desktop and mobile widths; confirm section rhythm, spacing, and that the contact form still submits.
+## Question before I start
+Do you have a non-admin test account I should use, or should I create a temporary one (e.g. `nonadmin-test@example.com`) via the admin API for the duration of the check and delete it after?
