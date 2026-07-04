@@ -137,11 +137,15 @@ function ContactPage() {
                   />
                 </div>
                 <div className="pt-2">
-                  <PillButton variant="dark" size="md" arrow>
-                    Send message
-                  </PillButton>
+                  <button
+                    type="submit"
+                    disabled={busy}
+                    className="inline-flex items-center gap-2 rounded-full bg-ink px-6 py-3 text-[14px] font-medium text-white transition hover:bg-ink/90 disabled:opacity-50"
+                  >
+                    {busy ? "Sending…" : "Send message"}
+                  </button>
                   <p className="mt-3 text-[12px] text-ink-muted">
-                    Form is a UI preview — wiring to Cloud comes in a follow-up.
+                    We reply within one working day. No spam, ever.
                   </p>
                 </div>
               </div>
