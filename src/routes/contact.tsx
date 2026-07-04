@@ -95,9 +95,14 @@ function ContactPage() {
           <div className="grid gap-8 md:grid-cols-12 md:gap-10">
             <form
               className="rounded-[20px] border border-ink/10 bg-background p-8 md:col-span-7 md:p-10"
-              onSubmit={(e) => e.preventDefault()}
+              onSubmit={handleSubmit}
             >
               <div className="grid gap-5">
+                {sent && (
+                  <div className="rounded-lg border border-emerald-200 bg-emerald-50 px-4 py-3 text-[13px] text-emerald-800">
+                    Thanks — your message was sent. We&rsquo;ll reply within one working day.
+                  </div>
+                )}
                 <Field label="Your name" name="name" placeholder="Jane Smith" />
                 <Field label="Email" name="email" type="email" placeholder="jane@example.com" />
                 <Field label="Company (optional)" name="company" placeholder="Local Brand Ltd" />
