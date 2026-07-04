@@ -79,13 +79,17 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "THG Digital Agency — Domains. Websites. Content. Built to convert." },
-      { name: "description", content: "The lean, AI-powered digital partner for community groups, solo founders and local brands. Fixed-price websites, content and automation — delivered in days, not months." },
+      { title: "THG Digital Agency — Applied craft. Fixed-price delivery. Lasting impact." },
+      { name: "description", content: "Websites, content and automation for community groups, solo founders and local brands. Fixed prices, one-week builds, plain-English throughout." },
       { name: "author", content: "THG Digital Agency" },
-      { property: "og:title", content: "THG Digital Agency — Domains. Websites. Content." },
-      { property: "og:description", content: "Fixed-price websites, content engines and automation for small operators who want big-brand results without the agency overhead." },
+      { property: "og:title", content: "THG Digital Agency — Applied craft. Fixed-price delivery. Lasting impact." },
+      { property: "og:description", content: "Websites, content and automation for community groups, solo founders and local brands. Fixed prices, one-week builds, plain-English throughout." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "THG Digital Agency — Applied craft. Fixed-price delivery. Lasting impact." },
+      { name: "twitter:description", content: "Websites, content and automation for community groups, solo founders and local brands. Fixed prices, one-week builds, plain-English throughout." },
+      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/877a0aa0-1373-4dce-a576-cf25a5928967" },
+      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/877a0aa0-1373-4dce-a576-cf25a5928967" },
     ],
     links: [
       {
