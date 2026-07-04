@@ -39,6 +39,43 @@ const VALUES = [
   },
 ];
 
+const STATS = [
+  { value: "20+", label: "Years in digital" },
+  { value: "40+", label: "Fixed-price projects delivered" },
+  { value: "1 wk", label: "Typical delivery time" },
+  { value: "<24h", label: "Reply to new enquiries" },
+];
+
+const DELIVERABLES = [
+  "Fixed quote within 24 hours",
+  "Weekly progress notes in plain English",
+  "Plain-English handover, not a jargon dump",
+  "30 days post-launch support included",
+  "Source code and full ownership, always",
+  "Optional Care Plan for peace of mind",
+];
+
+const AUDIENCES = [
+  {
+    tag: "Community",
+    title: "Community groups & CICs who need a professional home online without agency prices.",
+    to: "/services",
+    surface: "sage" as const,
+  },
+  {
+    tag: "Founders",
+    title: "Solo founders & consultants launching a first site or a second brand.",
+    to: "/services/launch-plan",
+    surface: "stone" as const,
+  },
+  {
+    tag: "Local brands",
+    title: "Local & lifestyle brands ready to look the part and stay consistent.",
+    to: "/services/content-engine",
+    surface: "mist" as const,
+  },
+];
+
 const MILESTONES = [
   { year: "2004", title: "First site shipped — a local charity in Manchester." },
   { year: "2015", title: "Ten years in enterprise digital transformation." },
