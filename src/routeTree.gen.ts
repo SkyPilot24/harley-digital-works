@@ -15,6 +15,11 @@ import { Route as DomainsRouteImport } from './routes/domains'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ServicesLaunchPlanRouteImport } from './routes/services.launch-plan'
+import { Route as ServicesDigitalProductsRouteImport } from './routes/services.digital-products'
+import { Route as ServicesContentEngineRouteImport } from './routes/services.content-engine'
+import { Route as ServicesCarePlansRouteImport } from './routes/services.care-plans'
+import { Route as ServicesAutomationRouteImport } from './routes/services.automation'
 
 const ServicesRoute = ServicesRouteImport.update({
   id: '/services',
@@ -46,6 +51,31 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ServicesLaunchPlanRoute = ServicesLaunchPlanRouteImport.update({
+  id: '/launch-plan',
+  path: '/launch-plan',
+  getParentRoute: () => ServicesRoute,
+} as any)
+const ServicesDigitalProductsRoute = ServicesDigitalProductsRouteImport.update({
+  id: '/digital-products',
+  path: '/digital-products',
+  getParentRoute: () => ServicesRoute,
+} as any)
+const ServicesContentEngineRoute = ServicesContentEngineRouteImport.update({
+  id: '/content-engine',
+  path: '/content-engine',
+  getParentRoute: () => ServicesRoute,
+} as any)
+const ServicesCarePlansRoute = ServicesCarePlansRouteImport.update({
+  id: '/care-plans',
+  path: '/care-plans',
+  getParentRoute: () => ServicesRoute,
+} as any)
+const ServicesAutomationRoute = ServicesAutomationRouteImport.update({
+  id: '/automation',
+  path: '/automation',
+  getParentRoute: () => ServicesRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -53,7 +83,12 @@ export interface FileRoutesByFullPath {
   '/contact': typeof ContactRoute
   '/domains': typeof DomainsRoute
   '/resources': typeof ResourcesRoute
-  '/services': typeof ServicesRoute
+  '/services': typeof ServicesRouteWithChildren
+  '/services/automation': typeof ServicesAutomationRoute
+  '/services/care-plans': typeof ServicesCarePlansRoute
+  '/services/content-engine': typeof ServicesContentEngineRoute
+  '/services/digital-products': typeof ServicesDigitalProductsRoute
+  '/services/launch-plan': typeof ServicesLaunchPlanRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -61,7 +96,12 @@ export interface FileRoutesByTo {
   '/contact': typeof ContactRoute
   '/domains': typeof DomainsRoute
   '/resources': typeof ResourcesRoute
-  '/services': typeof ServicesRoute
+  '/services': typeof ServicesRouteWithChildren
+  '/services/automation': typeof ServicesAutomationRoute
+  '/services/care-plans': typeof ServicesCarePlansRoute
+  '/services/content-engine': typeof ServicesContentEngineRoute
+  '/services/digital-products': typeof ServicesDigitalProductsRoute
+  '/services/launch-plan': typeof ServicesLaunchPlanRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -70,7 +110,12 @@ export interface FileRoutesById {
   '/contact': typeof ContactRoute
   '/domains': typeof DomainsRoute
   '/resources': typeof ResourcesRoute
-  '/services': typeof ServicesRoute
+  '/services': typeof ServicesRouteWithChildren
+  '/services/automation': typeof ServicesAutomationRoute
+  '/services/care-plans': typeof ServicesCarePlansRoute
+  '/services/content-engine': typeof ServicesContentEngineRoute
+  '/services/digital-products': typeof ServicesDigitalProductsRoute
+  '/services/launch-plan': typeof ServicesLaunchPlanRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -81,8 +126,24 @@ export interface FileRouteTypes {
     | '/domains'
     | '/resources'
     | '/services'
+    | '/services/automation'
+    | '/services/care-plans'
+    | '/services/content-engine'
+    | '/services/digital-products'
+    | '/services/launch-plan'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/contact' | '/domains' | '/resources' | '/services'
+  to:
+    | '/'
+    | '/about'
+    | '/contact'
+    | '/domains'
+    | '/resources'
+    | '/services'
+    | '/services/automation'
+    | '/services/care-plans'
+    | '/services/content-engine'
+    | '/services/digital-products'
+    | '/services/launch-plan'
   id:
     | '__root__'
     | '/'
@@ -91,6 +152,11 @@ export interface FileRouteTypes {
     | '/domains'
     | '/resources'
     | '/services'
+    | '/services/automation'
+    | '/services/care-plans'
+    | '/services/content-engine'
+    | '/services/digital-products'
+    | '/services/launch-plan'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -99,7 +165,7 @@ export interface RootRouteChildren {
   ContactRoute: typeof ContactRoute
   DomainsRoute: typeof DomainsRoute
   ResourcesRoute: typeof ResourcesRoute
-  ServicesRoute: typeof ServicesRoute
+  ServicesRoute: typeof ServicesRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
@@ -146,8 +212,63 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/services/launch-plan': {
+      id: '/services/launch-plan'
+      path: '/launch-plan'
+      fullPath: '/services/launch-plan'
+      preLoaderRoute: typeof ServicesLaunchPlanRouteImport
+      parentRoute: typeof ServicesRoute
+    }
+    '/services/digital-products': {
+      id: '/services/digital-products'
+      path: '/digital-products'
+      fullPath: '/services/digital-products'
+      preLoaderRoute: typeof ServicesDigitalProductsRouteImport
+      parentRoute: typeof ServicesRoute
+    }
+    '/services/content-engine': {
+      id: '/services/content-engine'
+      path: '/content-engine'
+      fullPath: '/services/content-engine'
+      preLoaderRoute: typeof ServicesContentEngineRouteImport
+      parentRoute: typeof ServicesRoute
+    }
+    '/services/care-plans': {
+      id: '/services/care-plans'
+      path: '/care-plans'
+      fullPath: '/services/care-plans'
+      preLoaderRoute: typeof ServicesCarePlansRouteImport
+      parentRoute: typeof ServicesRoute
+    }
+    '/services/automation': {
+      id: '/services/automation'
+      path: '/automation'
+      fullPath: '/services/automation'
+      preLoaderRoute: typeof ServicesAutomationRouteImport
+      parentRoute: typeof ServicesRoute
+    }
   }
 }
+
+interface ServicesRouteChildren {
+  ServicesAutomationRoute: typeof ServicesAutomationRoute
+  ServicesCarePlansRoute: typeof ServicesCarePlansRoute
+  ServicesContentEngineRoute: typeof ServicesContentEngineRoute
+  ServicesDigitalProductsRoute: typeof ServicesDigitalProductsRoute
+  ServicesLaunchPlanRoute: typeof ServicesLaunchPlanRoute
+}
+
+const ServicesRouteChildren: ServicesRouteChildren = {
+  ServicesAutomationRoute: ServicesAutomationRoute,
+  ServicesCarePlansRoute: ServicesCarePlansRoute,
+  ServicesContentEngineRoute: ServicesContentEngineRoute,
+  ServicesDigitalProductsRoute: ServicesDigitalProductsRoute,
+  ServicesLaunchPlanRoute: ServicesLaunchPlanRoute,
+}
+
+const ServicesRouteWithChildren = ServicesRoute._addFileChildren(
+  ServicesRouteChildren,
+)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
@@ -155,7 +276,7 @@ const rootRouteChildren: RootRouteChildren = {
   ContactRoute: ContactRoute,
   DomainsRoute: DomainsRoute,
   ResourcesRoute: ResourcesRoute,
-  ServicesRoute: ServicesRoute,
+  ServicesRoute: ServicesRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
