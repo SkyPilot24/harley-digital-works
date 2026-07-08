@@ -94,7 +94,7 @@ function RevenueOsPage() {
         .limit(12);
 
       if (error) return [] as RevenueTaskRow[];
-      return (data ?? []) as RevenueTaskRow[];
+      return (data ?? []) as unknown as RevenueTaskRow[];
     },
   });
 
