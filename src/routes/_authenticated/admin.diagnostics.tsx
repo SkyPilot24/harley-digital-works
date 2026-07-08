@@ -1,13 +1,14 @@
 ﻿import { createFileRoute, Link } from "@tanstack/react-router";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
-import { CheckCircle2, ExternalLink, RefreshCw, XCircle, AlertTriangle } from "lucide-react";
+import { AlertTriangle, CheckCircle2, ExternalLink, RefreshCw, Sparkles, XCircle } from "lucide-react";
 import {
   getAuthUserTriggers,
   getWebsiteDiagnostics,
   type AuthTrigger,
   type WebsiteDiagnostic,
 } from "@/lib/admin-diagnostics.functions";
+import { toast } from "sonner";
 import { PageHeader } from "./admin.index";
 
 const BOOTSTRAP_TRIGGER = "on_auth_user_created_bootstrap";
@@ -21,6 +22,7 @@ function DiagnosticsPage() {
   const queryClient = useQueryClient();
   const listTriggers = useServerFn(getAuthUserTriggers);
   const checkWebsite = useServerFn(getWebsiteDiagnostics);
+  const createDiagnosticTasks = useServerFn(createWebsiteDiagnosticTasks);
 
   const triggersQuery = useQuery({
     queryKey: ["admin", "auth-triggers"],
@@ -39,6 +41,17 @@ function DiagnosticsPage() {
   const bootstrapOk = !!bootstrap && bootstrap.enabled;
   const websiteChecks = websiteQuery.data ?? [];
   const websiteSummary = summarizeWebsiteChecks(websiteChecks);
+  const attentionCount = websiteSummary.warning + websiteSummary.error;
+
+  const taskMutation = useMutation({
+    mutationFn: () => createDiagnosticTasks(),
+    onSuccess: (result) => {
+      queryClient.invalidateQueries({ queryKey: ["revenue-os-tasks"] });
+      queryClient.invalidateQueries({ queryKey: ["admin", "website-diagnostics"] });
+      toast.success(result.message);
+    },
+    onError: (error: Error) => toast.error(error.message),
+  });
 
   function refreshAll() {
     queryClient.invalidateQueries({ queryKey: ["admin", "auth-triggers"] });
@@ -51,20 +64,30 @@ function DiagnosticsPage() {
         title="Diagnostics"
         subtitle="Verify admin plumbing, live website routes, metadata, and revenue capture surfaces."
         action={
-          <button
-            onClick={refreshAll}
-            className="inline-flex items-center gap-2 rounded-full border border-ink/15 px-3 py-1.5 text-[12px] font-medium text-ink hover:bg-ink/5"
-          >
-            <RefreshCw size={13} />
-            Refresh
-          </button>
+          <div className="flex flex-wrap gap-2">
+            <button
+              onClick={() => taskMutation.mutate()}
+              disabled={taskMutation.isPending || attentionCount === 0}
+              className="inline-flex items-center gap-2 rounded-full bg-ink px-3 py-1.5 text-[12px] font-medium text-white hover:bg-ink/90 disabled:cursor-not-allowed disabled:opacity-50"
+            >
+              <Sparkles size={13} />
+              {taskMutation.isPending ? "Creating tasks..." : "Create Revenue OS tasks"}
+            </button>
+            <button
+              onClick={refreshAll}
+              className="inline-flex items-center gap-2 rounded-full border border-ink/15 px-3 py-1.5 text-[12px] font-medium text-ink hover:bg-ink/5"
+            >
+              <RefreshCw size={13} />
+              Refresh
+            </button>
+          </div>
         }
       />
 
       <section className="mt-8 grid gap-4 md:grid-cols-3">
         <HealthCard label="Routes checked" value={websiteChecks.length || "--"} tone="neutral" />
         <HealthCard label="Healthy" value={websiteSummary.ok} tone="good" />
-        <HealthCard label="Needs attention" value={websiteSummary.warning + websiteSummary.error} tone={websiteSummary.warning + websiteSummary.error > 0 ? "warn" : "good"} />
+        <HealthCard label="Needs attention" value={attentionCount} tone={attentionCount > 0 ? "warn" : "good"} />
       </section>
 
       <section className="mt-8">
@@ -266,3 +289,5 @@ function HealthCard({ label, value, tone }: { label: string; value: React.ReactN
     </div>
   );
 }
+
+

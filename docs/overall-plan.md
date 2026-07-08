@@ -32,3 +32,10 @@ Build The Harley Group platform as a workflow-led operating system that connects
 - The Control Centre Diagnostics screen checks every mapped public route for HTTP status, page title, meta description, canonical tag, and legacy hello@thg.digital references.
 - Next diagnostics layer: contact form capture health, broken-link depth checks, sitemap coverage, and Revenue OS task generation from failed checks.
 
+
+## Diagnostic Tasks - Implemented
+
+- Warning and failed website diagnostics can now be converted into open Revenue OS tasks from the Diagnostics screen.
+- Duplicate open tasks are skipped so repeated checks do not flood daily execution.
+- Next layer: automatically suggest owners and group tasks by services, domains, resources, and lead capture.
+
