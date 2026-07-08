@@ -13,6 +13,7 @@ import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { AuthProvider } from "@/hooks/use-auth";
 import { Toaster } from "sonner";
+import { siteConfig } from "@/lib/site-config";
 
 function NotFoundComponent() {
   return (
@@ -79,14 +80,16 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "THG Digital Agency — Applied craft. Fixed-price delivery. Lasting impact." },
+      { title: "THG Digital Agency â€” Applied craft. Fixed-price delivery. Lasting impact." },
       { name: "description", content: "Websites, content and automation for community groups, solo founders and local brands. Fixed prices, one-week builds, plain-English throughout." },
       { name: "author", content: "THG Digital Agency" },
-      { property: "og:title", content: "THG Digital Agency — Applied craft. Fixed-price delivery. Lasting impact." },
+      { property: "og:title", content: "THG Digital Agency â€” Applied craft. Fixed-price delivery. Lasting impact." },
       { property: "og:description", content: "Websites, content and automation for community groups, solo founders and local brands. Fixed prices, one-week builds, plain-English throughout." },
+      { property: "og:url", content: siteConfig.canonicalUrl },
+      { property: "og:site_name", content: siteConfig.name },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "THG Digital Agency — Applied craft. Fixed-price delivery. Lasting impact." },
+      { name: "twitter:title", content: "THG Digital Agency â€” Applied craft. Fixed-price delivery. Lasting impact." },
       { name: "twitter:description", content: "Websites, content and automation for community groups, solo founders and local brands. Fixed prices, one-week builds, plain-English throughout." },
       { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/877a0aa0-1373-4dce-a576-cf25a5928967" },
       { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/877a0aa0-1373-4dce-a576-cf25a5928967" },
@@ -96,6 +99,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         rel: "stylesheet",
         href: appCss,
       },
+      { rel: "canonical", href: siteConfig.canonicalUrl },
       { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
