@@ -15,6 +15,9 @@ import { AuthProvider } from "@/hooks/use-auth";
 import { Toaster } from "sonner";
 import { siteConfig } from "@/lib/site-config";
 
+const siteTitle = "THG Digital Agency — Applied craft. Fixed-price delivery. Lasting impact.";
+const siteDescription = "Websites, content and automation for community groups, solo founders and local brands. Fixed prices, one-week builds, plain-English throughout.";
+
 function NotFoundComponent() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
@@ -80,27 +83,28 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "THG Digital Agency â€” Applied craft. Fixed-price delivery. Lasting impact." },
-      { name: "description", content: "Websites, content and automation for community groups, solo founders and local brands. Fixed prices, one-week builds, plain-English throughout." },
+      { title: siteTitle },
+      { name: "description", content: siteDescription },
       { name: "author", content: "THG Digital Agency" },
-      { property: "og:title", content: "THG Digital Agency â€” Applied craft. Fixed-price delivery. Lasting impact." },
-      { property: "og:description", content: "Websites, content and automation for community groups, solo founders and local brands. Fixed prices, one-week builds, plain-English throughout." },
+      { property: "og:title", content: siteTitle },
+      { property: "og:description", content: siteDescription },
       { property: "og:url", content: siteConfig.canonicalUrl },
       { property: "og:site_name", content: siteConfig.name },
       { property: "og:type", content: "website" },
+      { property: "og:image", content: siteConfig.ogImage },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "THG Digital Agency â€” Applied craft. Fixed-price delivery. Lasting impact." },
-      { name: "twitter:description", content: "Websites, content and automation for community groups, solo founders and local brands. Fixed prices, one-week builds, plain-English throughout." },
-      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/877a0aa0-1373-4dce-a576-cf25a5928967" },
-      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/877a0aa0-1373-4dce-a576-cf25a5928967" },
+      { name: "twitter:title", content: siteTitle },
+      { name: "twitter:description", content: siteDescription },
+      { name: "twitter:image", content: siteConfig.ogImage },
+      { name: "theme-color", content: "#173033" },
     ],
     links: [
-      {
-        rel: "stylesheet",
-        href: appCss,
-      },
+      { rel: "stylesheet", href: appCss },
       { rel: "canonical", href: siteConfig.canonicalUrl },
-      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+      { rel: "icon", href: "/favicon.ico", sizes: "any" },
+      { rel: "icon", href: "/favicon.svg", type: "image/svg+xml" },
+      { rel: "apple-touch-icon", href: "/apple-touch-icon.png" },
+      { rel: "manifest", href: "/site.webmanifest" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
@@ -135,7 +139,6 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
-        {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
         <Outlet />
         <Toaster position="top-right" richColors />
       </AuthProvider>

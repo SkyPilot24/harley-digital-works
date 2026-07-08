@@ -1,8 +1,11 @@
-﻿export const siteConfig = {
+export const siteConfig = {
   name: "The Harley Group",
   domain: "theharleygroup.org",
   url: "https://theharleygroup.org",
   canonicalUrl: "https://theharleygroup.org/",
+  ogImage: "https://theharleygroup.org/og-image.svg",
+  brandMark: "/brand/thg-mark.svg",
+  brandLogo: "/brand/thg-logo-horizontal.svg",
 };
 
 export type PublicWebsiteRoute = {

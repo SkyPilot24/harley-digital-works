@@ -52,3 +52,10 @@ Build The Harley Group platform as a workflow-led operating system that connects
 - Leads still save normally if Slack is not configured, keeping the integration safe for staged rollout.
 - Next Slack layer: Revenue OS daily task digest and diagnostic warning alerts.
 
+
+## Brand Pack - Implemented
+
+- Added a complete THG Digital Agency brand asset pack with logo, monogram, favicon set, app icons, social preview image, web manifest, and usage guide.
+- Root metadata now uses the canonical THG social image and browser icon set instead of external placeholder assets.
+- Local environment secrets are protected with .env ignored and a safe .env.example committed for setup guidance.
+

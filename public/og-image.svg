@@ -1,0 +1,24 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">THG Digital Agency social preview</title>
+  <desc id="desc">Brand preview for The Harley Group Digital Agency.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#F6F4EE"/>
+      <stop offset="0.55" stop-color="#E4E9DE"/>
+      <stop offset="1" stop-color="#E8EBEB"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <circle cx="1040" cy="90" r="180" fill="#7DA8A3" opacity="0.18"/>
+  <circle cx="110" cy="560" r="220" fill="#173033" opacity="0.08"/>
+  <g transform="translate(96 92)">
+    <rect width="132" height="132" rx="30" fill="#173033"/>
+    <path d="M33 38h66v16H74v61H58V54H33V38Z" fill="#F6F4EE"/>
+    <path d="M99 38h16v77H99V84H66V68h33V38Z" fill="#7DA8A3"/>
+    <circle cx="108" cy="106" r="9" fill="#7DA8A3"/>
+  </g>
+  <text x="96" y="300" font-family="Syne, Arial, sans-serif" font-size="78" font-weight="800" letter-spacing="-3" fill="#262624">THG Digital Agency</text>
+  <text x="100" y="366" font-family="DM Sans, Arial, sans-serif" font-size="32" fill="#565853">Workflow-led websites, automation and revenue systems.</text>
+  <text x="100" y="456" font-family="DM Mono, Consolas, monospace" font-size="18" letter-spacing="5" fill="#173033">THEHARLEYGROUP.ORG</text>
+  <rect x="100" y="500" width="410" height="6" rx="3" fill="#7DA8A3"/>
+</svg>

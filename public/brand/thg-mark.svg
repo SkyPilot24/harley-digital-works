@@ -1,0 +1,8 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-labelledby="title desc">
+  <title id="title">THG monogram</title>
+  <desc id="desc">Teal and ink THG Digital Agency monogram.</desc>
+  <rect width="256" height="256" rx="58" fill="#173033"/>
+  <path d="M54 64h119v30h-44v108H98V94H54V64Z" fill="#F6F4EE"/>
+  <path d="M173 64h30v138h-30v-55h-58v-30h58V64Z" fill="#7DA8A3"/>
+  <circle cx="194" cy="190" r="15" fill="#7DA8A3"/>
+</svg>

@@ -1,0 +1,16 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 200" role="img" aria-labelledby="title desc">
+  <title id="title">THG Digital Agency logo</title>
+  <desc id="desc">The Harley Group Digital Agency wordmark with teal monogram.</desc>
+  <rect width="720" height="200" rx="32" fill="#F6F4EE"/>
+  <g transform="translate(40 40)">
+    <rect width="120" height="120" rx="28" fill="#173033"/>
+    <path d="M31 37h58v14H67v55H53V51H31V37Z" fill="#F6F4EE"/>
+    <path d="M86 37h14v69H86V78H58V64h28V37Z" fill="#7DA8A3"/>
+    <circle cx="94" cy="94" r="8" fill="#7DA8A3"/>
+  </g>
+  <g fill="#262624">
+    <text x="190" y="88" font-family="Syne, Arial, sans-serif" font-size="46" font-weight="800" letter-spacing="-1.8">THG Digital</text>
+    <text x="193" y="126" font-family="DM Mono, Consolas, monospace" font-size="15" font-weight="500" letter-spacing="4" fill="#6F716D">THE HARLEY GROUP AGENCY</text>
+  </g>
+  <path d="M193 148h360" stroke="#7DA8A3" stroke-width="4" stroke-linecap="round"/>
+</svg>
