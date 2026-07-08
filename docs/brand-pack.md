@@ -7,7 +7,7 @@ THG Digital Agency is the practical, workflow-led digital partner for small oper
 ## Core Assets
 
 - Horizontal logo: `/brand/thg-logo-horizontal.svg`
-- Monogram mark: `/brand/thg-mark.svg`
+- Wordmark icon: `/brand/thg-mark.svg`
 - Social preview image: `/og-image.svg`
 - Favicon SVG: `/favicon.svg`
 - Favicon ICO: `/favicon.ico`
@@ -18,7 +18,7 @@ THG Digital Agency is the practical, workflow-led digital partner for small oper
 
 ## Colour System
 
-- Ink: `#173033` — use for monogram backgrounds and deep UI surfaces.
+- Ink: `#173033` — use for the lowercase wordmark and deep UI surfaces.
 - Teal: `#7DA8A3` — use as the single accent colour for highlights and action lines.
 - Warm cream: `#F6F4EE` — use as the main brand canvas.
 - Soft sage: `#E4E9DE` — use for calm supporting surfaces.
@@ -26,20 +26,21 @@ THG Digital Agency is the practical, workflow-led digital partner for small oper
 
 ## Typography
 
-- Wordmark: `Syne`, heavy weight.
+- Wordmark: lowercase `thg` in `Syne`, heavy weight, paired with a tiny `DM Mono` `digital` label.
 - UI and display text: `DM Sans`.
 - Operational labels: `DM Mono`.
 
 ## Usage Notes
 
 - Prefer the horizontal logo for presentations, documents, and landing-page brand areas.
-- Prefer the monogram mark for favicon, avatars, small cards, and compact admin surfaces.
+- Prefer the wordmark icon for favicon, avatars, small cards, and compact admin surfaces.
 - Keep the teal accent sparse so revenue and action states remain clear.
 - Use the social preview image for Open Graph and Twitter cards.
 
 ## Do Not
 
-- Do not stretch the mark outside its square ratio.
+- Do not stretch the wordmark icon outside its square ratio.
 - Do not introduce additional accent colours without adding them to the design system.
-- Do not place the teal mark on low-contrast green backgrounds.
+- Do not place the teal accent on low-contrast green backgrounds.
 - Do not commit local `.env` values or Slack webhook URLs.
+
