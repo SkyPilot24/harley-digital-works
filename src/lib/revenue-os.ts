@@ -1,4 +1,4 @@
-export type RevenueStream = "YouTube" | "Domains" | "Web Services" | "AI Automation" | "SaaS" | "Digital Products" | "Care Plans";
+﻿export type RevenueStream = "YouTube" | "Domains" | "Web Services" | "AI Automation" | "SaaS" | "Digital Products" | "Care Plans";
 
 export type PriorityScores = {
   revenuePotential: number;
@@ -45,6 +45,17 @@ export const emptyScores: PriorityScores = {
 };
 
 export const revenueAssets: RevenueAsset[] = [
+  {
+    id: "external-website-review",
+    name: "Fully review and improve the external website",
+    stream: "Web Services",
+    status: "Building",
+    owner: "Robbie",
+    nextAction: "Complete a full external website review, prioritise conversion fixes, and ship improvements that support lead capture and recurring revenue.",
+    targetRevenue: 2000,
+    mrrPotential: 750,
+    scores: { revenuePotential: 5, speedToRevenue: 5, easeOfImplementation: 4, automationPotential: 4, scalability: 4, strategicFit: 5, recurringRevenuePotential: 4 },
+  },
   {
     id: "youtube-ai-ops",
     name: "Launch first faceless YouTube channel",
@@ -124,3 +135,5 @@ export function generateExecutionTasks(assets: RevenueAsset[] = revenueAssets, l
     };
   });
 }
+
+

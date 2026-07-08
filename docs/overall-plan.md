@@ -39,3 +39,9 @@ Build The Harley Group platform as a workflow-led operating system that connects
 - Duplicate open tasks are skipped so repeated checks do not flood daily execution.
 - Next layer: automatically suggest owners and group tasks by services, domains, resources, and lead capture.
 
+
+## External Website Review - Added
+
+- Added a high-priority Revenue OS item to fully review https://theharleygroup.org/, prioritise conversion fixes, and ship improvements that support lead capture and recurring revenue.
+- This review should cover messaging clarity, route health, calls to action, service packaging, contact flow, metadata, and opportunities surfaced by Diagnostics.
+
