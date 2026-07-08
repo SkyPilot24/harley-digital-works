@@ -144,9 +144,10 @@ export const websiteAuditSuggestions: WebsiteAuditSuggestion[] = [
     action: "Keep services, domains, and contact routes mapped to a revenue asset, next action, and owner.",
   },
   {
-    title: "Add live diagnostics later",
+    title: "Use live diagnostics weekly",
     priority: "Medium",
     owner: "Control Centre",
-    action: "Add server-side checks for route status, metadata coverage, and lead-capture health in a future stage.",
+    action: "Use the Diagnostics screen to monitor route status, metadata coverage, and legacy contact details; add lead-capture checks next.",
   },
 ];
+

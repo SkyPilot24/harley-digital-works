@@ -1,10 +1,12 @@
-import { createFileRoute } from "@tanstack/react-router";
+﻿import { createFileRoute, Link } from "@tanstack/react-router";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
-import { CheckCircle2, XCircle, RefreshCw } from "lucide-react";
+import { CheckCircle2, ExternalLink, RefreshCw, XCircle, AlertTriangle } from "lucide-react";
 import {
   getAuthUserTriggers,
+  getWebsiteDiagnostics,
   type AuthTrigger,
+  type WebsiteDiagnostic,
 } from "@/lib/admin-diagnostics.functions";
 import { PageHeader } from "./admin.index";
 
@@ -16,27 +18,41 @@ export const Route = createFileRoute("/_authenticated/admin/diagnostics")({
 });
 
 function DiagnosticsPage() {
-  const qc = useQueryClient();
-  const listFn = useServerFn(getAuthUserTriggers);
-  const q = useQuery({
+  const queryClient = useQueryClient();
+  const listTriggers = useServerFn(getAuthUserTriggers);
+  const checkWebsite = useServerFn(getWebsiteDiagnostics);
+
+  const triggersQuery = useQuery({
     queryKey: ["admin", "auth-triggers"],
-    queryFn: () => listFn(),
+    queryFn: () => listTriggers(),
   });
 
-  const triggers = q.data ?? [];
+  const websiteQuery = useQuery({
+    queryKey: ["admin", "website-diagnostics"],
+    queryFn: () => checkWebsite(),
+  });
+
+  const triggers = triggersQuery.data ?? [];
   const bootstrap = triggers.find(
-    (t) => t.trigger_name === BOOTSTRAP_TRIGGER && t.function_name === BOOTSTRAP_FUNCTION,
+    (trigger) => trigger.trigger_name === BOOTSTRAP_TRIGGER && trigger.function_name === BOOTSTRAP_FUNCTION,
   );
   const bootstrapOk = !!bootstrap && bootstrap.enabled;
+  const websiteChecks = websiteQuery.data ?? [];
+  const websiteSummary = summarizeWebsiteChecks(websiteChecks);
+
+  function refreshAll() {
+    queryClient.invalidateQueries({ queryKey: ["admin", "auth-triggers"] });
+    queryClient.invalidateQueries({ queryKey: ["admin", "website-diagnostics"] });
+  }
 
   return (
     <div>
       <PageHeader
         title="Diagnostics"
-        subtitle="Verify database triggers powering auth and role bootstrapping."
+        subtitle="Verify admin plumbing, live website routes, metadata, and revenue capture surfaces."
         action={
           <button
-            onClick={() => qc.invalidateQueries({ queryKey: ["admin", "auth-triggers"] })}
+            onClick={refreshAll}
             className="inline-flex items-center gap-2 rounded-full border border-ink/15 px-3 py-1.5 text-[12px] font-medium text-ink hover:bg-ink/5"
           >
             <RefreshCw size={13} />
@@ -44,6 +60,83 @@ function DiagnosticsPage() {
           </button>
         }
       />
+
+      <section className="mt-8 grid gap-4 md:grid-cols-3">
+        <HealthCard label="Routes checked" value={websiteChecks.length || "--"} tone="neutral" />
+        <HealthCard label="Healthy" value={websiteSummary.ok} tone="good" />
+        <HealthCard label="Needs attention" value={websiteSummary.warning + websiteSummary.error} tone={websiteSummary.warning + websiteSummary.error > 0 ? "warn" : "good"} />
+      </section>
+
+      <section className="mt-8">
+        <div className="mb-3 flex flex-wrap items-baseline justify-between gap-3">
+          <div>
+            <h2 className="text-sm font-semibold uppercase tracking-wider text-ink-muted">Live website diagnostics</h2>
+            <p className="mt-1 text-sm text-ink-muted">Checks mapped public routes for HTTP status, title, description, canonical tags, and legacy contact email.</p>
+          </div>
+          {websiteChecks[0]?.checkedAt && (
+            <span className="text-xs text-ink-muted">Checked {new Date(websiteChecks[0].checkedAt).toLocaleString()}</span>
+          )}
+        </div>
+        <div className="overflow-hidden rounded-xl border border-ink/10 bg-white">
+          <table className="w-full text-sm">
+            <thead className="bg-ink/[0.03] text-left text-[12px] uppercase tracking-wider text-ink-muted">
+              <tr>
+                <th className="px-4 py-3">Route</th>
+                <th className="px-4 py-3">Health</th>
+                <th className="px-4 py-3">Metadata</th>
+                <th className="px-4 py-3">Message</th>
+                <th className="px-4 py-3 text-right">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {websiteQuery.isLoading && (
+                <tr>
+                  <td colSpan={5} className="px-4 py-8 text-center text-ink-muted">Checking live website...</td>
+                </tr>
+              )}
+              {websiteQuery.error && (
+                <tr>
+                  <td colSpan={5} className="px-4 py-8 text-center text-rose-600">{(websiteQuery.error as Error).message}</td>
+                </tr>
+              )}
+              {!websiteQuery.isLoading && websiteChecks.length === 0 && !websiteQuery.error && (
+                <tr>
+                  <td colSpan={5} className="px-4 py-8 text-center text-ink-muted">No website routes configured.</td>
+                </tr>
+              )}
+              {websiteChecks.map((check) => (
+                <tr key={check.path} className="border-t border-ink/5 align-top">
+                  <td className="px-4 py-3">
+                    <div className="font-medium text-ink">{check.label}</div>
+                    <div className="font-mono text-xs text-ink-muted">{check.path}</div>
+                  </td>
+                  <td className="px-4 py-3">
+                    <WebsiteStatusBadge check={check} />
+                    <div className="mt-1 text-xs text-ink-muted">HTTP {check.httpStatus ?? "--"}</div>
+                  </td>
+                  <td className="px-4 py-3 text-xs text-ink-muted">
+                    <div>Title: {check.title ? "Yes" : "No"}</div>
+                    <div>Description: {check.hasDescription ? "Yes" : "No"}</div>
+                    <div>Canonical: {check.hasCanonical ? "Yes" : "No"}</div>
+                    <div>Legacy email: {check.hasLegacyEmail ? "Found" : "Clear"}</div>
+                  </td>
+                  <td className="max-w-sm px-4 py-3 text-ink/70">{check.message}</td>
+                  <td className="px-4 py-3 text-right">
+                    <div className="flex justify-end gap-2">
+                      <a href={check.url} target="_blank" rel="noreferrer" className="rounded-full border border-ink/15 px-3 py-1 text-xs font-medium text-ink hover:bg-ink/5">
+                        View <ExternalLink className="inline" size={11} />
+                      </a>
+                      <Link to={check.adminPath as "/admin"} className="rounded-full bg-ink px-3 py-1 text-xs font-medium text-white hover:bg-ink/90">
+                        {check.adminLabel}
+                      </Link>
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </section>
 
       <section className="mt-8">
         <div
@@ -65,7 +158,7 @@ function DiagnosticsPage() {
                 ? "Enabled. The first user to sign up while no admin exists will be promoted to admin automatically."
                 : bootstrap
                 ? "Trigger exists but is disabled. New signups will not be promoted."
-                : "Not attached. New signups will not be promoted — an admin must grant the role manually."}
+                : "Not attached. New signups will not be promoted; an admin must grant the role manually."}
             </p>
             <dl className="mt-3 grid grid-cols-1 gap-1 text-[12px] text-ink-muted sm:grid-cols-2">
               <div>
@@ -105,39 +198,29 @@ function DiagnosticsPage() {
               </tr>
             </thead>
             <tbody>
-              {q.isLoading && (
+              {triggersQuery.isLoading && (
                 <tr>
-                  <td colSpan={5} className="px-4 py-8 text-center text-ink-muted">
-                    Loading…
-                  </td>
+                  <td colSpan={5} className="px-4 py-8 text-center text-ink-muted">Loading...</td>
                 </tr>
               )}
-              {q.error && (
+              {triggersQuery.error && (
                 <tr>
-                  <td colSpan={5} className="px-4 py-8 text-center text-rose-600">
-                    {(q.error as Error).message}
-                  </td>
+                  <td colSpan={5} className="px-4 py-8 text-center text-rose-600">{(triggersQuery.error as Error).message}</td>
                 </tr>
               )}
-              {!q.isLoading && triggers.length === 0 && !q.error && (
+              {!triggersQuery.isLoading && triggers.length === 0 && !triggersQuery.error && (
                 <tr>
-                  <td colSpan={5} className="px-4 py-8 text-center text-ink-muted">
-                    No user-defined triggers on auth.users.
-                  </td>
+                  <td colSpan={5} className="px-4 py-8 text-center text-ink-muted">No user-defined triggers on auth.users.</td>
                 </tr>
               )}
-              {triggers.map((t: AuthTrigger) => (
-                <tr key={t.trigger_name} className="border-t border-ink/5">
-                  <td className="px-4 py-3 font-mono text-[12px] text-ink">
-                    {t.trigger_name}
-                  </td>
-                  <td className="px-4 py-3 font-mono text-[12px] text-ink/70">
-                    {t.function_name}
-                  </td>
-                  <td className="px-4 py-3 text-ink/70">{t.timing}</td>
-                  <td className="px-4 py-3 text-ink/70">{t.event}</td>
+              {triggers.map((trigger: AuthTrigger) => (
+                <tr key={trigger.trigger_name} className="border-t border-ink/5">
+                  <td className="px-4 py-3 font-mono text-[12px] text-ink">{trigger.trigger_name}</td>
+                  <td className="px-4 py-3 font-mono text-[12px] text-ink/70">{trigger.function_name}</td>
+                  <td className="px-4 py-3 text-ink/70">{trigger.timing}</td>
+                  <td className="px-4 py-3 text-ink/70">{trigger.event}</td>
                   <td className="px-4 py-3">
-                    {t.enabled ? (
+                    {trigger.enabled ? (
                       <span className="inline-flex items-center gap-1 rounded-full bg-emerald-50 px-2 py-0.5 text-[11px] font-medium text-emerald-700">
                         <CheckCircle2 size={11} /> Enabled
                       </span>
@@ -153,6 +236,33 @@ function DiagnosticsPage() {
           </table>
         </div>
       </section>
+    </div>
+  );
+}
+
+function summarizeWebsiteChecks(checks: WebsiteDiagnostic[]) {
+  return checks.reduce(
+    (summary, check) => ({ ...summary, [check.status]: summary[check.status] + 1 }),
+    { ok: 0, warning: 0, error: 0 },
+  );
+}
+
+function WebsiteStatusBadge({ check }: { check: WebsiteDiagnostic }) {
+  if (check.status === "ok") {
+    return <span className="inline-flex items-center gap-1 rounded-full bg-emerald-50 px-2 py-0.5 text-[11px] font-medium text-emerald-700"><CheckCircle2 size={11} /> Healthy</span>;
+  }
+  if (check.status === "warning") {
+    return <span className="inline-flex items-center gap-1 rounded-full bg-amber-50 px-2 py-0.5 text-[11px] font-medium text-amber-700"><AlertTriangle size={11} /> Review</span>;
+  }
+  return <span className="inline-flex items-center gap-1 rounded-full bg-rose-50 px-2 py-0.5 text-[11px] font-medium text-rose-700"><XCircle size={11} /> Error</span>;
+}
+
+function HealthCard({ label, value, tone }: { label: string; value: React.ReactNode; tone: "good" | "warn" | "neutral" }) {
+  const toneClass = tone === "good" ? "text-emerald-700" : tone === "warn" ? "text-amber-700" : "text-ink";
+  return (
+    <div className="rounded-xl border border-ink/10 bg-white p-5">
+      <div className="text-[12px] uppercase tracking-wider text-ink-muted">{label}</div>
+      <div className={`mt-3 text-3xl font-semibold ${toneClass}`}>{value}</div>
     </div>
   );
 }

@@ -17,7 +17,7 @@ Build The Harley Group platform as a workflow-led operating system that connects
 2. Keep the `/admin` Control Centre as the command layer for every public website route.
 3. Map every money page to an admin owner, Revenue OS asset, next action, and lead-capture path.
 4. Prioritise care plans, automation audits, launch-plan enquiries, and domain monetisation because they connect fastest to revenue.
-5. Add live diagnostics next: route status, metadata coverage, contact form capture, and broken-link checks.
+5. Use live diagnostics for route status, metadata coverage, and legacy email checks; add contact form capture and broken-link depth checks next.
 
 ## Control Centre Operating Model
 
@@ -26,3 +26,9 @@ Build The Harley Group platform as a workflow-led operating system that connects
 - Revenue OS manages domains, SaaS ideas, automation opportunities, and execution tasks.
 - Resources manage SEO and authority content that supports the sales pipeline.
 - Leads, clients, and projects manage the path from enquiry to delivery.
+
+## Live Diagnostics - Implemented
+
+- The Control Centre Diagnostics screen checks every mapped public route for HTTP status, page title, meta description, canonical tag, and legacy hello@thg.digital references.
+- Next diagnostics layer: contact form capture health, broken-link depth checks, sitemap coverage, and Revenue OS task generation from failed checks.
+
