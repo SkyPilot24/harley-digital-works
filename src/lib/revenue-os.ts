@@ -1,4 +1,4 @@
-﻿export type RevenueStream = "YouTube" | "Domains" | "Web Services" | "AI Automation" | "SaaS" | "Digital Products" | "Care Plans";
+export type RevenueStream = "YouTube" | "Domains" | "Web Services" | "AI Automation" | "SaaS" | "Digital Products" | "Care Plans";
 
 export type PriorityScores = {
   revenuePotential: number;
@@ -22,6 +22,8 @@ export type RevenueAsset = {
   scores: PriorityScores;
 };
 
+export type RevenueAssetForm = Omit<RevenueAsset, "id"> & { id?: string };
+
 export type ExecutionTask = {
   id: string;
   title: string;
@@ -29,6 +31,17 @@ export type ExecutionTask = {
   priority: "High" | "Medium" | "Low";
   dueInDays: number;
   sourceAsset: string;
+  sourceAssetId?: string;
+};
+
+export const emptyScores: PriorityScores = {
+  revenuePotential: 3,
+  speedToRevenue: 3,
+  easeOfImplementation: 3,
+  automationPotential: 3,
+  scalability: 3,
+  strategicFit: 4,
+  recurringRevenuePotential: 3,
 };
 
 export const revenueAssets: RevenueAsset[] = [
@@ -93,12 +106,12 @@ export function priorityScore(scores: PriorityScores) {
   return Object.values(scores).reduce((total, score) => total + score, 0);
 }
 
-export function rankedRevenueAssets() {
-  return [...revenueAssets].sort((a, b) => priorityScore(b.scores) - priorityScore(a.scores));
+export function rankedRevenueAssets(assets: RevenueAsset[] = revenueAssets) {
+  return [...assets].sort((a, b) => priorityScore(b.scores) - priorityScore(a.scores));
 }
 
-export function generateExecutionTasks(limit = 8): ExecutionTask[] {
-  return rankedRevenueAssets().slice(0, limit).map((asset) => {
+export function generateExecutionTasks(assets: RevenueAsset[] = revenueAssets, limit = 8): ExecutionTask[] {
+  return rankedRevenueAssets(assets).slice(0, limit).map((asset) => {
     const score = priorityScore(asset.scores);
     return {
       id: `task-${asset.id}`,
@@ -107,6 +120,7 @@ export function generateExecutionTasks(limit = 8): ExecutionTask[] {
       priority: score >= 30 ? "High" : score >= 24 ? "Medium" : "Low",
       dueInDays: score >= 30 ? 1 : score >= 24 ? 3 : 7,
       sourceAsset: asset.name,
+      sourceAssetId: asset.id,
     };
   });
 }
