@@ -2,6 +2,7 @@ import { Link, useNavigate, useRouter } from "@tanstack/react-router";
 import { useEffect, type ReactNode } from "react";
 import {
   LayoutDashboard,
+  Rocket,
   Inbox,
   Users,
   Briefcase,
@@ -20,7 +21,8 @@ import { useQueryClient } from "@tanstack/react-query";
 import { cn } from "@/lib/utils";
 
 const NAV: { to: string; label: string; icon: typeof LayoutDashboard; exact?: boolean }[] = [
-  { to: "/admin", label: "Dashboard", icon: LayoutDashboard, exact: true },
+  { to: "/admin", label: "Control Centre", icon: LayoutDashboard, exact: true },
+  { to: "/admin/revenue-os", label: "Revenue OS", icon: Rocket },
   { to: "/admin/leads", label: "Leads", icon: Inbox },
   { to: "/admin/clients", label: "Clients", icon: Users },
   { to: "/admin/projects", label: "Projects", icon: Briefcase },
@@ -54,7 +56,7 @@ export function AdminShell({ children }: { children: ReactNode }) {
   if (loading || roleLoading) {
     return (
       <div className="flex min-h-screen items-center justify-center bg-background text-ink-muted">
-        Loading…
+        Loadingâ€¦
       </div>
     );
   }

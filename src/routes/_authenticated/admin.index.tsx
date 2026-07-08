@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { generateExecutionTasks, priorityScore, rankedRevenueAssets } from "@/lib/revenue-os";
 import { Inbox, Users, Briefcase, TrendingUp } from "lucide-react";
 
 export const Route = createFileRoute("/_authenticated/admin/")({
@@ -44,16 +45,37 @@ function DashboardPage() {
   });
 
   const s = stats.data;
+  const revenueAssets = rankedRevenueAssets();
+  const topAsset = revenueAssets[0];
+  const generatedTasks = generateExecutionTasks(5);
+  const pipelineTarget = revenueAssets.reduce((sum, asset) => sum + asset.targetRevenue, 0);
 
   return (
     <div>
-      <PageHeader title="Dashboard" subtitle="Overview of your agency activity." />
+      <PageHeader title="Control Centre" subtitle="The central operating dashboard for revenue, delivery, content, domains, and daily execution." />
 
+      <div className="mt-8 rounded-2xl border border-ink/10 bg-ink p-6 text-white">
+        <div className="flex flex-wrap items-start justify-between gap-4">
+          <div>
+            <div className="text-[12px] uppercase tracking-[0.22em] text-white/50">Revenue command centre</div>
+            <h2 className="mt-2 text-2xl font-semibold">{topAsset.name}</h2>
+            <p className="mt-2 max-w-2xl text-sm text-white/70">{topAsset.nextAction}</p>
+          </div>
+          <Link to="/admin/revenue-os" className="rounded-full bg-white px-4 py-2 text-sm font-semibold text-ink hover:bg-white/90">
+            Open Revenue OS
+          </Link>
+        </div>
+        <div className="mt-6 grid gap-3 sm:grid-cols-3">
+          <CommandMetric label="Priority score" value={`${priorityScore(topAsset.scores)}/35`} />
+          <CommandMetric label="Pipeline target" value={`£${pipelineTarget.toLocaleString()}`} />
+          <CommandMetric label="Generated tasks" value={generatedTasks.length} />
+        </div>
+      </div>
       <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        <StatCard icon={Inbox} label="New leads" value={s?.newLeads ?? "—"} sub={`${s?.leads ?? 0} total`} />
-        <StatCard icon={Users} label="Active clients" value={s?.activeClients ?? "—"} sub={`${s?.clients ?? 0} total`} />
-        <StatCard icon={Briefcase} label="Projects in progress" value={s?.inProgress ?? "—"} sub={`${s?.projects ?? 0} total`} />
-        <StatCard icon={TrendingUp} label="Conversion" value={s ? `${s.leads ? Math.round((s.activeClients / s.leads) * 100) : 0}%` : "—"} sub="leads → clients" />
+        <StatCard icon={Inbox} label="New leads" value={s?.newLeads ?? "â€”"} sub={`${s?.leads ?? 0} total`} />
+        <StatCard icon={Users} label="Active clients" value={s?.activeClients ?? "â€”"} sub={`${s?.clients ?? 0} total`} />
+        <StatCard icon={Briefcase} label="Projects in progress" value={s?.inProgress ?? "â€”"} sub={`${s?.projects ?? 0} total`} />
+        <StatCard icon={TrendingUp} label="Conversion" value={s ? `${s.leads ? Math.round((s.activeClients / s.leads) * 100) : 0}%` : "â€”"} sub="leads â†’ clients" />
       </div>
 
       <div className="mt-10">
@@ -78,7 +100,7 @@ function DashboardPage() {
               {recent.data?.length === 0 && (
                 <tr>
                   <td colSpan={5} className="px-4 py-8 text-center text-ink-muted">
-                    No leads yet. Your Contact form is wired up — submissions will appear here.
+                    No leads yet. Your Contact form is wired up â€” submissions will appear here.
                   </td>
                 </tr>
               )}
@@ -86,7 +108,7 @@ function DashboardPage() {
                 <tr key={l.id} className="border-t border-ink/5">
                   <td className="px-4 py-3 font-medium text-ink">{l.name}</td>
                   <td className="px-4 py-3 text-ink/70">{l.email}</td>
-                  <td className="px-4 py-3 text-ink/70">{l.package ?? "—"}</td>
+                  <td className="px-4 py-3 text-ink/70">{l.package ?? "â€”"}</td>
                   <td className="px-4 py-3"><StatusBadge status={l.status} /></td>
                   <td className="px-4 py-3 text-ink/60">{new Date(l.created_at).toLocaleDateString()}</td>
                 </tr>
@@ -111,6 +133,14 @@ export function PageHeader({ title, subtitle, action }: { title: string; subtitl
   );
 }
 
+function CommandMetric({ label, value }: { label: string; value: React.ReactNode }) {
+  return (
+    <div className="rounded-xl bg-white/10 p-4">
+      <div className="text-[11px] uppercase tracking-wider text-white/50">{label}</div>
+      <div className="mt-2 text-2xl font-semibold text-white">{value}</div>
+    </div>
+  );
+}
 function StatCard({ icon: Icon, label, value, sub }: { icon: typeof Inbox; label: string; value: React.ReactNode; sub?: string }) {
   return (
     <div className="rounded-xl border border-ink/10 bg-white p-5">
