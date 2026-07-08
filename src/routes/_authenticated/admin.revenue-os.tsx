@@ -206,8 +206,8 @@ function RevenueOsPage() {
 
       <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         <Metric label="Tracked assets" value={assets.length} />
-        <Metric label="Pipeline target" value={`Â£${pipeline.toLocaleString()}`} />
-        <Metric label="MRR potential" value={`Â£${mrr.toLocaleString()}`} />
+        <Metric label="Pipeline target" value={`£${pipeline.toLocaleString()}`} />
+        <Metric label="MRR potential" value={`£${mrr.toLocaleString()}`} />
         <Metric label="Top score" value={`${assets[0] ? priorityScore(assets[0].scores) : 0}/35`} />
       </div>
 
@@ -226,7 +226,7 @@ function RevenueOsPage() {
                       <h3 className="font-semibold text-ink">{asset.name}</h3>
                       <StatusBadge status={asset.status.toLowerCase()} />
                     </div>
-                    <p className="mt-1 text-sm text-ink-muted">{asset.stream} Â· Owner: {asset.owner}</p>
+                    <p className="mt-1 text-sm text-ink-muted">{asset.stream} · Owner: {asset.owner}</p>
                   </div>
                   <div className="flex items-center gap-2">
                     <div className="rounded-full bg-ink px-3 py-1 text-xs font-semibold text-white">
@@ -248,8 +248,8 @@ function RevenueOsPage() {
                 </div>
                 <p className="mt-3 text-sm text-ink/75">{asset.nextAction}</p>
                 <div className="mt-4 flex flex-wrap gap-2 text-xs text-ink-muted">
-                  <span className="rounded-full bg-emerald-50 px-3 py-1 text-emerald-700">Â£{asset.targetRevenue.toLocaleString()} target</span>
-                  <span className="rounded-full bg-blue-50 px-3 py-1 text-blue-700">Â£{asset.mrrPotential.toLocaleString()} MRR</span>
+                  <span className="rounded-full bg-emerald-50 px-3 py-1 text-emerald-700">£{asset.targetRevenue.toLocaleString()} target</span>
+                  <span className="rounded-full bg-blue-50 px-3 py-1 text-blue-700">£{asset.mrrPotential.toLocaleString()} MRR</span>
                 </div>
               </div>
             ))}
@@ -270,13 +270,13 @@ function RevenueOsPage() {
                     <button onClick={() => completeTask.mutate(task.id)} className="text-[11px] font-medium text-emerald-700 hover:text-emerald-900">Done</button>
                   </div>
                   <p className="mt-2 text-sm font-medium text-ink">{task.title}</p>
-                  <p className="mt-1 text-xs text-ink-muted">From: {task.source_asset_name || "Revenue OS"} Â· Due {task.due_date || "soon"}</p>
+                  <p className="mt-1 text-xs text-ink-muted">From: {task.source_asset_name || "Revenue OS"} · Due {task.due_date || "soon"}</p>
                 </div>
               ) : (
                 <div key={task.id} className="rounded-xl bg-ink/[0.03] p-4">
                   <div className="flex items-center justify-between gap-3">
                     <span className="rounded-full bg-white px-2 py-0.5 text-[11px] font-medium text-ink/70">{task.priority}</span>
-                    <span className="text-[11px] text-ink-muted">Preview Â· due in {task.dueInDays}d</span>
+                    <span className="text-[11px] text-ink-muted">Preview · due in {task.dueInDays}d</span>
                   </div>
                   <p className="mt-2 text-sm font-medium text-ink">{task.title}</p>
                   <p className="mt-1 text-xs text-ink-muted">From: {task.sourceAsset}</p>
