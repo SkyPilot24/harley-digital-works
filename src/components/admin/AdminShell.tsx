@@ -56,7 +56,7 @@ export function AdminShell({ children }: { children: ReactNode }) {
   if (loading || roleLoading) {
     return (
       <div className="flex min-h-screen items-center justify-center bg-background text-ink-muted">
-        Loadingâ€¦
+        Loading…
       </div>
     );
   }
