@@ -89,8 +89,17 @@ export const createWebsiteDiagnosticTasks = createServerFn({ method: "POST" })
     const candidateTasks = actionable.map(toDiagnosticTaskPayload);
     const sourceNames = candidateTasks.map((task) => task.source_asset_name);
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
-    const { data: existing, error: existingError } = await supabaseAdmin
-      .from("revenue_os_tasks")
+    const tasksTable = supabaseAdmin.from("revenue_os_tasks" as never) as unknown as {
+      select: (columns: string) => {
+        eq: (col: string, val: unknown) => {
+          eq: (col: string, val: unknown) => {
+            in: (col: string, vals: unknown[]) => Promise<{ data: Array<{ title: string; source_asset_name: string }> | null; error: { message: string } | null }>;
+          };
+        };
+      };
+      insert: (rows: DiagnosticTaskPayload[]) => Promise<{ error: { message: string } | null }>;
+    };
+    const { data: existing, error: existingError } = await tasksTable
       .select("title, source_asset_name")
       .eq("done", false)
       .eq("category", "Revenue OS")
@@ -100,7 +109,7 @@ export const createWebsiteDiagnosticTasks = createServerFn({ method: "POST" })
     const existingKeys = new Set((existing ?? []).map((task) => `${task.source_asset_name}::${task.title}`));
     const newTasks = candidateTasks.filter((task) => !existingKeys.has(`${task.source_asset_name}::${task.title}`));
     if (newTasks.length > 0) {
-      const { error } = await supabaseAdmin.from("revenue_os_tasks").insert(newTasks);
+      const { error } = await tasksTable.insert(newTasks);
       if (error) throw new Error(error.message);
     }
 
