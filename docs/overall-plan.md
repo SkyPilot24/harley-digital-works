@@ -45,3 +45,10 @@ Build The Harley Group platform as a workflow-led operating system that connects
 - Added a high-priority Revenue OS item to fully review https://theharleygroup.org/, prioritise conversion fixes, and ship improvements that support lead capture and recurring revenue.
 - This review should cover messaging clarity, route health, calls to action, service packaging, contact flow, metadata, and opportunities surfaced by Diagnostics.
 
+
+## Slack Lead Alerts - Implemented
+
+- Public contact submissions now route through a server-side lead intake function that can notify Slack when SLACK_WEBHOOK_URL is configured.
+- Leads still save normally if Slack is not configured, keeping the integration safe for staged rollout.
+- Next Slack layer: Revenue OS daily task digest and diagnostic warning alerts.
+

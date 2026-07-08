@@ -9,20 +9,21 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { useState } from "react";
+import { useServerFn } from "@tanstack/react-start";
 import { z } from "zod";
-import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
+import { submitLead } from "@/lib/lead-intake.functions";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: "Contact — THG Digital Agency" },
+      { title: "Contact â€” THG Digital Agency" },
       {
         name: "description",
         content:
           "Book a free 15-minute call, or send us a note. We reply within one working day.",
       },
-      { property: "og:title", content: "Contact — THG Digital Agency" },
+      { property: "og:title", content: "Contact â€” THG Digital Agency" },
     ],
   }),
   component: ContactPage,
@@ -37,6 +38,7 @@ const leadSchema = z.object({
 });
 
 function ContactPage() {
+  const submitLeadFn = useServerFn(submitLead);
   const [busy, setBusy] = useState(false);
   const [sent, setSent] = useState(false);
 
@@ -55,21 +57,17 @@ function ContactPage() {
       return;
     }
     setBusy(true);
-    const { error } = await supabase.from("leads").insert({
-      name: parsed.data.name,
-      email: parsed.data.email,
-      company: parsed.data.company || null,
-      package: parsed.data.package || null,
-      message: parsed.data.message,
-    });
-    setBusy(false);
-    if (error) {
+    try {
+      await submitLeadFn({ data: parsed.data });
+    } catch {
       toast.error("Couldn't send — please try again.");
+      setBusy(false);
       return;
     }
+    setBusy(false);
     setSent(true);
     (e.target as HTMLFormElement).reset();
-    toast.success("Message sent — we'll be in touch shortly.");
+    toast.success("Message sent â€” we'll be in touch shortly.");
   }
 
   return (
@@ -91,7 +89,7 @@ function ContactPage() {
           </h1>
           <p className="mt-6 max-w-2xl text-[17px] leading-relaxed text-ink-muted">
             Book a free 15-minute call, or send us a note below. We reply within
-            one working day — usually the same day.
+            one working day â€” usually the same day.
           </p>
         </Container>
       </section>
@@ -106,7 +104,7 @@ function ContactPage() {
               <div className="grid gap-5">
                 {sent && (
                   <div className="rounded-lg border border-emerald-200 bg-emerald-50 px-4 py-3 text-[13px] text-emerald-800">
-                    Thanks — your message was sent. We&rsquo;ll reply within one working day.
+                    Thanks â€” your message was sent. We&rsquo;ll reply within one working day.
                   </div>
                 )}
                 <Field label="Your name" name="name" placeholder="Jane Smith" />
@@ -138,7 +136,7 @@ function ContactPage() {
                     id="message"
                     name="message"
                     rows={5}
-                    placeholder="A short note about what you're trying to do…"
+                    placeholder="A short note about what you're trying to doâ€¦"
                     className="rounded-lg border border-ink/15 bg-background px-4 py-3 text-[15px] text-ink focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
                   />
                 </div>
@@ -148,7 +146,7 @@ function ContactPage() {
                     disabled={busy}
                     className="inline-flex items-center gap-2 rounded-full bg-ink px-6 py-3 text-[14px] font-medium text-white transition hover:bg-ink/90 disabled:opacity-50"
                   >
-                    {busy ? "Sending…" : "Send message"}
+                    {busy ? "Sendingâ€¦" : "Send message"}
                   </button>
                   <p className="mt-3 text-[12px] text-ink-muted">
                     We reply within one working day. No spam, ever.
@@ -188,13 +186,13 @@ function ContactPage() {
                   <dt className="font-mono text-[10px] uppercase tracking-[0.22em] text-ink-muted">
                     Based in
                   </dt>
-                  <dd className="mt-2 text-ink">Manchester, UK — working with clients across the UK &amp; EU.</dd>
+                  <dd className="mt-2 text-ink">Manchester, UK â€” working with clients across the UK &amp; EU.</dd>
                 </div>
                 <div>
                   <dt className="font-mono text-[10px] uppercase tracking-[0.22em] text-ink-muted">
                     Hours
                   </dt>
-                  <dd className="mt-2 text-ink">Monday – Friday, 9:00 – 17:00 UK.</dd>
+                  <dd className="mt-2 text-ink">Monday â€“ Friday, 9:00 â€“ 17:00 UK.</dd>
                 </div>
               </dl>
             </aside>
@@ -207,8 +205,8 @@ function ContactPage() {
           <SectionHeader title="What happens next" align="stacked" />
           <ol className="mt-12 divide-y divide-ink/10">
             {[
-              { n: "01", t: "You send a note", d: "A short message is enough — we don't need a full brief to start." },
-              { n: "02", t: "We reply within a working day", d: "With a fixed quote, a call slot, or an honest 'not us — try…'." },
+              { n: "01", t: "You send a note", d: "A short message is enough â€” we don't need a full brief to start." },
+              { n: "02", t: "We reply within a working day", d: "With a fixed quote, a call slot, or an honest 'not us â€” tryâ€¦'." },
               { n: "03", t: "We scope the work together", d: "No obligation, no theatre. If it's a fit, we start the following week." },
             ].map((s) => (
               <li
@@ -243,11 +241,11 @@ function ContactPage() {
                 },
                 {
                   q: "Do you take on ongoing work?",
-                  a: "Yes — our Care Plans cover hosting, updates and small changes month-to-month, and we're happy to keep improving the site over time.",
+                  a: "Yes â€” our Care Plans cover hosting, updates and small changes month-to-month, and we're happy to keep improving the site over time.",
                 },
                 {
                   q: "What does a fixed price actually include?",
-                  a: "Everything in the written quote. If the scope changes, we quote the change first — no surprise line items at the end of the month.",
+                  a: "Everything in the written quote. If the scope changes, we quote the change first â€” no surprise line items at the end of the month.",
                 },
                 {
                   q: "What if I'm not technical?",
@@ -306,3 +304,4 @@ function Field({
     </div>
   );
 }
+
