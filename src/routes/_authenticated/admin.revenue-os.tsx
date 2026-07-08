@@ -74,7 +74,7 @@ function RevenueOsPage() {
         return { assets: revenueAssets, usingFallback: true, message: error.message };
       }
 
-      const assets = ((data ?? []) as RevenueAssetRow[]).map(mapAssetRow);
+      const assets = ((data ?? []) as unknown as RevenueAssetRow[]).map(mapAssetRow);
       return {
         assets: assets.length > 0 ? assets : revenueAssets,
         usingFallback: assets.length === 0,
