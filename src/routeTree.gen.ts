@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as ResourcesRouteImport } from './routes/resources'
+import { Route as OnboardingRouteImport } from './routes/onboarding'
 import { Route as DomainsRouteImport } from './routes/domains'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as AuthRouteImport } from './routes/auth'
@@ -31,7 +32,9 @@ import { Route as AuthenticatedAdminServicesRouteImport } from './routes/_authen
 import { Route as AuthenticatedAdminRevenueOsRouteImport } from './routes/_authenticated/admin.revenue-os'
 import { Route as AuthenticatedAdminResourcesRouteImport } from './routes/_authenticated/admin.resources'
 import { Route as AuthenticatedAdminProjectsRouteImport } from './routes/_authenticated/admin.projects'
+import { Route as AuthenticatedAdminPlaybooksRouteImport } from './routes/_authenticated/admin.playbooks'
 import { Route as AuthenticatedAdminLeadsRouteImport } from './routes/_authenticated/admin.leads'
+import { Route as AuthenticatedAdminDomainOsRouteImport } from './routes/_authenticated/admin.domain-os'
 import { Route as AuthenticatedAdminDiagnosticsRouteImport } from './routes/_authenticated/admin.diagnostics'
 import { Route as AuthenticatedAdminClientsRouteImport } from './routes/_authenticated/admin.clients'
 
@@ -43,6 +46,11 @@ const ServicesRoute = ServicesRouteImport.update({
 const ResourcesRoute = ResourcesRouteImport.update({
   id: '/resources',
   path: '/resources',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OnboardingRoute = OnboardingRouteImport.update({
+  id: '/onboarding',
+  path: '/onboarding',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DomainsRoute = DomainsRouteImport.update({
@@ -150,11 +158,23 @@ const AuthenticatedAdminProjectsRoute =
     path: '/admin/projects',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
+const AuthenticatedAdminPlaybooksRoute =
+  AuthenticatedAdminPlaybooksRouteImport.update({
+    id: '/admin/playbooks',
+    path: '/admin/playbooks',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const AuthenticatedAdminLeadsRoute = AuthenticatedAdminLeadsRouteImport.update({
   id: '/admin/leads',
   path: '/admin/leads',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedAdminDomainOsRoute =
+  AuthenticatedAdminDomainOsRouteImport.update({
+    id: '/admin/domain-os',
+    path: '/admin/domain-os',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const AuthenticatedAdminDiagnosticsRoute =
   AuthenticatedAdminDiagnosticsRouteImport.update({
     id: '/admin/diagnostics',
@@ -174,6 +194,7 @@ export interface FileRoutesByFullPath {
   '/auth': typeof AuthRoute
   '/contact': typeof ContactRoute
   '/domains': typeof DomainsRoute
+  '/onboarding': typeof OnboardingRoute
   '/resources': typeof ResourcesRoute
   '/services': typeof ServicesRouteWithChildren
   '/services/automation': typeof ServicesAutomationRoute
@@ -183,7 +204,9 @@ export interface FileRoutesByFullPath {
   '/services/launch-plan': typeof ServicesLaunchPlanRoute
   '/admin/clients': typeof AuthenticatedAdminClientsRoute
   '/admin/diagnostics': typeof AuthenticatedAdminDiagnosticsRoute
+  '/admin/domain-os': typeof AuthenticatedAdminDomainOsRoute
   '/admin/leads': typeof AuthenticatedAdminLeadsRoute
+  '/admin/playbooks': typeof AuthenticatedAdminPlaybooksRoute
   '/admin/projects': typeof AuthenticatedAdminProjectsRoute
   '/admin/resources': typeof AuthenticatedAdminResourcesRoute
   '/admin/revenue-os': typeof AuthenticatedAdminRevenueOsRoute
@@ -200,6 +223,7 @@ export interface FileRoutesByTo {
   '/auth': typeof AuthRoute
   '/contact': typeof ContactRoute
   '/domains': typeof DomainsRoute
+  '/onboarding': typeof OnboardingRoute
   '/resources': typeof ResourcesRoute
   '/services': typeof ServicesRouteWithChildren
   '/services/automation': typeof ServicesAutomationRoute
@@ -209,7 +233,9 @@ export interface FileRoutesByTo {
   '/services/launch-plan': typeof ServicesLaunchPlanRoute
   '/admin/clients': typeof AuthenticatedAdminClientsRoute
   '/admin/diagnostics': typeof AuthenticatedAdminDiagnosticsRoute
+  '/admin/domain-os': typeof AuthenticatedAdminDomainOsRoute
   '/admin/leads': typeof AuthenticatedAdminLeadsRoute
+  '/admin/playbooks': typeof AuthenticatedAdminPlaybooksRoute
   '/admin/projects': typeof AuthenticatedAdminProjectsRoute
   '/admin/resources': typeof AuthenticatedAdminResourcesRoute
   '/admin/revenue-os': typeof AuthenticatedAdminRevenueOsRoute
@@ -228,6 +254,7 @@ export interface FileRoutesById {
   '/auth': typeof AuthRoute
   '/contact': typeof ContactRoute
   '/domains': typeof DomainsRoute
+  '/onboarding': typeof OnboardingRoute
   '/resources': typeof ResourcesRoute
   '/services': typeof ServicesRouteWithChildren
   '/services/automation': typeof ServicesAutomationRoute
@@ -237,7 +264,9 @@ export interface FileRoutesById {
   '/services/launch-plan': typeof ServicesLaunchPlanRoute
   '/_authenticated/admin/clients': typeof AuthenticatedAdminClientsRoute
   '/_authenticated/admin/diagnostics': typeof AuthenticatedAdminDiagnosticsRoute
+  '/_authenticated/admin/domain-os': typeof AuthenticatedAdminDomainOsRoute
   '/_authenticated/admin/leads': typeof AuthenticatedAdminLeadsRoute
+  '/_authenticated/admin/playbooks': typeof AuthenticatedAdminPlaybooksRoute
   '/_authenticated/admin/projects': typeof AuthenticatedAdminProjectsRoute
   '/_authenticated/admin/resources': typeof AuthenticatedAdminResourcesRoute
   '/_authenticated/admin/revenue-os': typeof AuthenticatedAdminRevenueOsRoute
@@ -256,6 +285,7 @@ export interface FileRouteTypes {
     | '/auth'
     | '/contact'
     | '/domains'
+    | '/onboarding'
     | '/resources'
     | '/services'
     | '/services/automation'
@@ -265,7 +295,9 @@ export interface FileRouteTypes {
     | '/services/launch-plan'
     | '/admin/clients'
     | '/admin/diagnostics'
+    | '/admin/domain-os'
     | '/admin/leads'
+    | '/admin/playbooks'
     | '/admin/projects'
     | '/admin/resources'
     | '/admin/revenue-os'
@@ -282,6 +314,7 @@ export interface FileRouteTypes {
     | '/auth'
     | '/contact'
     | '/domains'
+    | '/onboarding'
     | '/resources'
     | '/services'
     | '/services/automation'
@@ -291,7 +324,9 @@ export interface FileRouteTypes {
     | '/services/launch-plan'
     | '/admin/clients'
     | '/admin/diagnostics'
+    | '/admin/domain-os'
     | '/admin/leads'
+    | '/admin/playbooks'
     | '/admin/projects'
     | '/admin/resources'
     | '/admin/revenue-os'
@@ -309,6 +344,7 @@ export interface FileRouteTypes {
     | '/auth'
     | '/contact'
     | '/domains'
+    | '/onboarding'
     | '/resources'
     | '/services'
     | '/services/automation'
@@ -318,7 +354,9 @@ export interface FileRouteTypes {
     | '/services/launch-plan'
     | '/_authenticated/admin/clients'
     | '/_authenticated/admin/diagnostics'
+    | '/_authenticated/admin/domain-os'
     | '/_authenticated/admin/leads'
+    | '/_authenticated/admin/playbooks'
     | '/_authenticated/admin/projects'
     | '/_authenticated/admin/resources'
     | '/_authenticated/admin/revenue-os'
@@ -337,6 +375,7 @@ export interface RootRouteChildren {
   AuthRoute: typeof AuthRoute
   ContactRoute: typeof ContactRoute
   DomainsRoute: typeof DomainsRoute
+  OnboardingRoute: typeof OnboardingRoute
   ResourcesRoute: typeof ResourcesRoute
   ServicesRoute: typeof ServicesRouteWithChildren
 }
@@ -355,6 +394,13 @@ declare module '@tanstack/react-router' {
       path: '/resources'
       fullPath: '/resources'
       preLoaderRoute: typeof ResourcesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/onboarding': {
+      id: '/onboarding'
+      path: '/onboarding'
+      fullPath: '/onboarding'
+      preLoaderRoute: typeof OnboardingRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/domains': {
@@ -497,11 +543,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAdminProjectsRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/admin/playbooks': {
+      id: '/_authenticated/admin/playbooks'
+      path: '/admin/playbooks'
+      fullPath: '/admin/playbooks'
+      preLoaderRoute: typeof AuthenticatedAdminPlaybooksRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/admin/leads': {
       id: '/_authenticated/admin/leads'
       path: '/admin/leads'
       fullPath: '/admin/leads'
       preLoaderRoute: typeof AuthenticatedAdminLeadsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/admin/domain-os': {
+      id: '/_authenticated/admin/domain-os'
+      path: '/admin/domain-os'
+      fullPath: '/admin/domain-os'
+      preLoaderRoute: typeof AuthenticatedAdminDomainOsRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/admin/diagnostics': {
@@ -524,7 +584,9 @@ declare module '@tanstack/react-router' {
 interface AuthenticatedRouteRouteChildren {
   AuthenticatedAdminClientsRoute: typeof AuthenticatedAdminClientsRoute
   AuthenticatedAdminDiagnosticsRoute: typeof AuthenticatedAdminDiagnosticsRoute
+  AuthenticatedAdminDomainOsRoute: typeof AuthenticatedAdminDomainOsRoute
   AuthenticatedAdminLeadsRoute: typeof AuthenticatedAdminLeadsRoute
+  AuthenticatedAdminPlaybooksRoute: typeof AuthenticatedAdminPlaybooksRoute
   AuthenticatedAdminProjectsRoute: typeof AuthenticatedAdminProjectsRoute
   AuthenticatedAdminResourcesRoute: typeof AuthenticatedAdminResourcesRoute
   AuthenticatedAdminRevenueOsRoute: typeof AuthenticatedAdminRevenueOsRoute
@@ -539,7 +601,9 @@ interface AuthenticatedRouteRouteChildren {
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedAdminClientsRoute: AuthenticatedAdminClientsRoute,
   AuthenticatedAdminDiagnosticsRoute: AuthenticatedAdminDiagnosticsRoute,
+  AuthenticatedAdminDomainOsRoute: AuthenticatedAdminDomainOsRoute,
   AuthenticatedAdminLeadsRoute: AuthenticatedAdminLeadsRoute,
+  AuthenticatedAdminPlaybooksRoute: AuthenticatedAdminPlaybooksRoute,
   AuthenticatedAdminProjectsRoute: AuthenticatedAdminProjectsRoute,
   AuthenticatedAdminResourcesRoute: AuthenticatedAdminResourcesRoute,
   AuthenticatedAdminRevenueOsRoute: AuthenticatedAdminRevenueOsRoute,
@@ -581,9 +645,20 @@ const rootRouteChildren: RootRouteChildren = {
   AuthRoute: AuthRoute,
   ContactRoute: ContactRoute,
   DomainsRoute: DomainsRoute,
+  OnboardingRoute: OnboardingRoute,
   ResourcesRoute: ResourcesRoute,
   ServicesRoute: ServicesRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}

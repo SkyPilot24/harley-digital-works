@@ -10,6 +10,7 @@ import {
   priorityScore,
   rankedRevenueAssets,
   revenueAssets,
+  revenueStreamPlaybooks,
   type ExecutionTask,
   type PriorityScores,
   type RevenueAsset,
@@ -44,7 +45,7 @@ type RevenueTaskRow = {
   created_at: string;
 };
 
-const streams: RevenueStream[] = ["YouTube", "Domains", "Web Services", "AI Automation", "SaaS", "Digital Products", "Care Plans"];
+const streams: RevenueStream[] = ["YouTube", "Domains", "Web Services", "AI Automation", "SaaS", "Digital Products", "Care Plans", "Content Engine"];
 const statuses: RevenueAsset["status"][] = ["Idea", "Validating", "Building", "Live", "Monetising", "Paused"];
 
 const scoreFields: { key: keyof PriorityScores; label: string }[] = [
@@ -206,8 +207,8 @@ function RevenueOsPage() {
 
       <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         <Metric label="Tracked assets" value={assets.length} />
-        <Metric label="Pipeline target" value={`£${pipeline.toLocaleString()}`} />
-        <Metric label="MRR potential" value={`£${mrr.toLocaleString()}`} />
+        <Metric label="Pipeline target" value={`GBP ${pipeline.toLocaleString()}`} />
+        <Metric label="MRR potential" value={`GBP ${mrr.toLocaleString()}`} />
         <Metric label="Top score" value={`${assets[0] ? priorityScore(assets[0].scores) : 0}/35`} />
       </div>
 
@@ -226,7 +227,7 @@ function RevenueOsPage() {
                       <h3 className="font-semibold text-ink">{asset.name}</h3>
                       <StatusBadge status={asset.status.toLowerCase()} />
                     </div>
-                    <p className="mt-1 text-sm text-ink-muted">{asset.stream} · Owner: {asset.owner}</p>
+                    <p className="mt-1 text-sm text-ink-muted">{asset.stream} - Owner: {asset.owner}</p>
                   </div>
                   <div className="flex items-center gap-2">
                     <div className="rounded-full bg-ink px-3 py-1 text-xs font-semibold text-white">
@@ -248,8 +249,8 @@ function RevenueOsPage() {
                 </div>
                 <p className="mt-3 text-sm text-ink/75">{asset.nextAction}</p>
                 <div className="mt-4 flex flex-wrap gap-2 text-xs text-ink-muted">
-                  <span className="rounded-full bg-emerald-50 px-3 py-1 text-emerald-700">£{asset.targetRevenue.toLocaleString()} target</span>
-                  <span className="rounded-full bg-blue-50 px-3 py-1 text-blue-700">£{asset.mrrPotential.toLocaleString()} MRR</span>
+                  <span className="rounded-full bg-emerald-50 px-3 py-1 text-emerald-700">GBP {asset.targetRevenue.toLocaleString()} target</span>
+                  <span className="rounded-full bg-blue-50 px-3 py-1 text-blue-700">GBP {asset.mrrPotential.toLocaleString()} MRR</span>
                 </div>
               </div>
             ))}
@@ -270,13 +271,13 @@ function RevenueOsPage() {
                     <button onClick={() => completeTask.mutate(task.id)} className="text-[11px] font-medium text-emerald-700 hover:text-emerald-900">Done</button>
                   </div>
                   <p className="mt-2 text-sm font-medium text-ink">{task.title}</p>
-                  <p className="mt-1 text-xs text-ink-muted">From: {task.source_asset_name || "Revenue OS"} · Due {task.due_date || "soon"}</p>
+                  <p className="mt-1 text-xs text-ink-muted">From: {task.source_asset_name || "Revenue OS"} - Due {task.due_date || "soon"}</p>
                 </div>
               ) : (
                 <div key={task.id} className="rounded-xl bg-ink/[0.03] p-4">
                   <div className="flex items-center justify-between gap-3">
                     <span className="rounded-full bg-white px-2 py-0.5 text-[11px] font-medium text-ink/70">{task.priority}</span>
-                    <span className="text-[11px] text-ink-muted">Preview · due in {task.dueInDays}d</span>
+                    <span className="text-[11px] text-ink-muted">Preview - due in {task.dueInDays}d</span>
                   </div>
                   <p className="mt-2 text-sm font-medium text-ink">{task.title}</p>
                   <p className="mt-1 text-xs text-ink-muted">From: {task.sourceAsset}</p>
@@ -287,6 +288,33 @@ function RevenueOsPage() {
         </section>
       </div>
 
+
+      <section className="mt-10 rounded-2xl border border-ink/10 bg-white p-5">
+        <div className="mb-4 flex items-center gap-2">
+          <Rocket size={18} className="text-ink" />
+          <h2 className="text-lg font-semibold text-ink">Revenue stream playbooks</h2>
+        </div>
+        <div className="grid gap-3 lg:grid-cols-2">
+          {revenueStreamPlaybooks.map((playbook) => (
+            <article key={playbook.stream} className="rounded-xl border border-ink/10 p-4">
+              <div className="flex flex-wrap items-center justify-between gap-2">
+                <h3 className="font-semibold text-ink">{playbook.stream}</h3>
+                <StatusBadge status="medium" />
+              </div>
+              <p className="mt-2 text-sm text-ink/75">{playbook.goal}</p>
+              <div className="mt-3 rounded-lg bg-ink/[0.03] p-3 text-sm text-ink-muted">
+                <span className="font-medium text-ink">Daily step:</span> {playbook.dailyStep}
+              </div>
+              <p className="mt-3 text-xs text-ink-muted"><span className="font-medium text-ink/70">Tools:</span> {playbook.tools}</p>
+              <ul className="mt-3 space-y-1 text-xs text-ink-muted">
+                {playbook.nextMilestones.map((milestone) => (
+                  <li key={milestone}>- {milestone}</li>
+                ))}
+              </ul>
+            </article>
+          ))}
+        </div>
+      </section>
       {open && (
         <AssetDrawer
           asset={editing}

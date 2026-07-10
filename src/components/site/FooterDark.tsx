@@ -28,6 +28,7 @@ const COLUMNS = [
       { label: "About", to: "/about" },
       { label: "Resources", to: "/resources" },
       { label: "Contact", to: "/contact" },
+      { label: "Onboarding", to: "/onboarding" },
     ],
   },
 ] as const;
@@ -80,8 +81,8 @@ export function FooterDark() {
             <h4 className="text-[15px] font-medium text-background">Direct</h4>
             <ul className="mt-5 space-y-3 text-[14px] text-background/60">
               <li>
-                <a href="mailto:hello@thg.digital" className="hover:text-background">
-                  hello@thg.digital
+                <a href="mailto:hello@theharleygroup.org" className="hover:text-background">
+                  hello@theharleygroup.org
                 </a>
               </li>
             </ul>

@@ -1,4 +1,4 @@
-﻿# Overall Plan
+# Overall Plan
 
 ## North Star
 
@@ -9,7 +9,7 @@ Build The Harley Group platform as a workflow-led operating system that connects
 - `https://theharleygroup.org/` is live and returned `200`.
 - Public routes found: `/`, `/about`, `/services`, `/services/automation`, `/services/care-plans`, `/services/content-engine`, `/services/digital-products`, `/services/launch-plan`, `/domains`, `/resources`, and `/contact`.
 - The deployed home page still showed older metadata and did not yet expose the new canonical URL tags from the latest local build.
-- The deployed home page still linked to `mailto:hello@thg.digital`; update this to a `theharleygroup.org` address when the mailbox or alias is ready.
+- The deployed home page still linked to `mailto:hello@theharleygroup.org`; update this to a `theharleygroup.org` address when the mailbox or alias is ready.
 
 ## Revenue-First Recommendations
 
@@ -29,7 +29,7 @@ Build The Harley Group platform as a workflow-led operating system that connects
 
 ## Live Diagnostics - Implemented
 
-- The Control Centre Diagnostics screen checks every mapped public route for HTTP status, page title, meta description, canonical tag, and legacy hello@thg.digital references.
+- The Control Centre Diagnostics screen checks every mapped public route for HTTP status, page title, meta description, canonical tag, and legacy hello@theharleygroup.org references.
 - Next diagnostics layer: contact form capture health, broken-link depth checks, sitemap coverage, and Revenue OS task generation from failed checks.
 
 
@@ -37,7 +37,9 @@ Build The Harley Group platform as a workflow-led operating system that connects
 
 - Warning and failed website diagnostics can now be converted into open Revenue OS tasks from the Diagnostics screen.
 - Duplicate open tasks are skipped so repeated checks do not flood daily execution.
-- Next layer: automatically suggest owners and group tasks by services, domains, resources, and lead capture.
+- Owner and group context now appears in Diagnostics and generated Revenue OS tasks, covering services, domains, resources, brand, and lead capture.
+- Contact form capture health and sitemap coverage now appear in Diagnostics, with sitemap.xml and robots.txt added to the public build.
+- Next layer: add broken-link depth checks and turn repeated diagnostic warnings into Slack alerts.
 
 
 ## External Website Review - Added
@@ -58,4 +60,3 @@ Build The Harley Group platform as a workflow-led operating system that connects
 - Added a complete THG Digital Agency brand asset pack with logo, monogram, favicon set, app icons, social preview image, web manifest, and usage guide.
 - Root metadata now uses the canonical THG social image and browser icon set instead of external placeholder assets.
 - Local environment secrets are protected with .env ignored and a safe .env.example committed for setup guidance.
-

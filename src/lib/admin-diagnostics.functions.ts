@@ -1,4 +1,4 @@
-﻿import { createServerFn } from "@tanstack/react-start";
+import { createServerFn } from "@tanstack/react-start";
 import { requireSupabaseAuth } from "@/integrations/supabase/auth-middleware";
 import { publicWebsiteRoutes, siteConfig } from "@/lib/site-config";
 
@@ -16,6 +16,10 @@ export type WebsiteDiagnostic = {
   url: string;
   adminPath: string;
   adminLabel: string;
+  owner: string;
+  diagnosticGroup: string;
+  leadCapturePath: string;
+  routePriority: "High" | "Medium" | "Low";
   status: "ok" | "warning" | "error";
   httpStatus: number | null;
   title: string | null;
@@ -24,6 +28,9 @@ export type WebsiteDiagnostic = {
   hasCanonical: boolean;
   hasDescription: boolean;
   hasLegacyEmail: boolean;
+  hasLeadCaptureLink: boolean;
+  hasLeadForm: boolean | null;
+  hasSitemapEntry: boolean;
   checkedAt: string;
   message: string;
 };
@@ -124,9 +131,24 @@ export const createWebsiteDiagnosticTasks = createServerFn({ method: "POST" })
 
 async function runWebsiteDiagnostics(): Promise<WebsiteDiagnostic[]> {
   const checkedAt = new Date().toISOString();
+  const sitemapEntries = await fetchSitemapEntries();
+
   return Promise.all(
     publicWebsiteRoutes.map(async (route) => {
       const url = `${siteConfig.url}${route.path === "/" ? "" : route.path}`;
+      const baseDiagnostic = {
+        path: route.path,
+        label: route.label,
+        url,
+        adminPath: route.adminPath,
+        adminLabel: route.adminLabel,
+        owner: route.owner,
+        diagnosticGroup: route.diagnosticGroup,
+        leadCapturePath: route.leadCapturePath,
+        routePriority: route.priority,
+        checkedAt,
+      };
+
       try {
         const response = await fetch(url, {
           headers: { "user-agent": "THG-Control-Centre-Diagnostics/1.0" },
@@ -141,18 +163,17 @@ async function runWebsiteDiagnostics(): Promise<WebsiteDiagnostic[]> {
         const hasLegacyEmail = html.includes("hello@thg.digital");
         const hasCanonical = Boolean(canonical);
         const hasDescription = Boolean(description);
+        const hasLeadCaptureLink = route.path === route.leadCapturePath || hasRouteLink(html, route.leadCapturePath);
+        const hasLeadForm = route.path === route.leadCapturePath ? hasContactForm(html) : null;
+        const hasSitemapEntry = sitemapEntries.has(normalizeUrlForSitemap(url));
         const status = !response.ok
           ? "error"
-          : !hasCanonical || !hasDescription || hasLegacyEmail
+          : !hasCanonical || !hasDescription || hasLegacyEmail || !hasLeadCaptureLink || hasLeadForm === false || !hasSitemapEntry
             ? "warning"
             : "ok";
 
         return {
-          path: route.path,
-          label: route.label,
-          url,
-          adminPath: route.adminPath,
-          adminLabel: route.adminLabel,
+          ...baseDiagnostic,
           status,
           httpStatus: response.status,
           title,
@@ -161,16 +182,22 @@ async function runWebsiteDiagnostics(): Promise<WebsiteDiagnostic[]> {
           hasCanonical,
           hasDescription,
           hasLegacyEmail,
-          checkedAt,
-          message: diagnosticMessage(response.status, hasCanonical, hasDescription, hasLegacyEmail),
+          hasLeadCaptureLink,
+          hasLeadForm,
+          hasSitemapEntry,
+          message: diagnosticMessage({
+            httpStatus: response.status,
+            hasCanonical,
+            hasDescription,
+            hasLegacyEmail,
+            hasLeadCaptureLink,
+            hasLeadForm,
+            hasSitemapEntry,
+          }),
         };
       } catch (error) {
         return {
-          path: route.path,
-          label: route.label,
-          url,
-          adminPath: route.adminPath,
-          adminLabel: route.adminLabel,
+          ...baseDiagnostic,
           status: "error",
           httpStatus: null,
           title: null,
@@ -179,7 +206,9 @@ async function runWebsiteDiagnostics(): Promise<WebsiteDiagnostic[]> {
           hasCanonical: false,
           hasDescription: false,
           hasLegacyEmail: false,
-          checkedAt,
+          hasLeadCaptureLink: false,
+          hasLeadForm: route.path === route.leadCapturePath ? false : null,
+          hasSitemapEntry: sitemapEntries.has(normalizeUrlForSitemap(url)),
           message: error instanceof Error ? error.message : "Route check failed",
         };
       }
@@ -189,29 +218,81 @@ async function runWebsiteDiagnostics(): Promise<WebsiteDiagnostic[]> {
 
 function toDiagnosticTaskPayload(check: WebsiteDiagnostic): DiagnosticTaskPayload {
   const dueDate = new Date();
-  dueDate.setDate(dueDate.getDate() + (check.status === "error" ? 1 : 3));
+  dueDate.setDate(dueDate.getDate() + (check.status === "error" || check.routePriority === "High" ? 1 : 3));
 
   return {
-    title: `Fix ${check.label} website diagnostic: ${check.message}`,
+    title: `Fix ${check.label} website diagnostic (${check.owner}): ${check.message}`,
     category: "Revenue OS",
-    priority: check.status === "error" ? "High" : "Medium",
+    priority: check.status === "error" || check.routePriority === "High" ? "High" : "Medium",
     due_date: dueDate.toISOString().slice(0, 10),
     source_asset_id: null,
-    source_asset_name: `Website diagnostics: ${check.path}`,
+    source_asset_name: `Website diagnostics: ${check.diagnosticGroup} / ${check.path} -> ${check.leadCapturePath}`,
     done: false,
   };
+}
+
+async function fetchSitemapEntries() {
+  try {
+    const response = await fetch(`${siteConfig.url}/sitemap.xml`, {
+      headers: { "user-agent": "THG-Control-Centre-Diagnostics/1.0" },
+      signal: AbortSignal.timeout(8000),
+    });
+    if (!response.ok) return new Set<string>();
+    const xml = await response.text();
+    return new Set(
+      Array.from(xml.matchAll(/<loc>(.*?)<\/loc>/gi)).map((match) => normalizeUrlForSitemap(match[1] ?? "")),
+    );
+  } catch {
+    return new Set<string>();
+  }
+}
+
+function normalizeUrlForSitemap(value: string) {
+  return value.replace(/\/$/, "");
+}
+
+function hasRouteLink(html: string, path: string) {
+  const escapedPath = escapeRegExp(path);
+  return new RegExp(`href=["'](?:${escapeRegExp(siteConfig.url)})?${escapedPath}/?(?:[?#][^"']*)?["']`, "i").test(html);
+}
+
+function hasContactForm(html: string) {
+  return ["name", "email", "message"].every((field) => new RegExp(`name=["']${field}["']`, "i").test(html));
 }
 
 function matchContent(html: string, pattern: RegExp) {
   return pattern.exec(html)?.[1]?.replace(/\s+/g, " ").trim() || null;
 }
 
-function diagnosticMessage(httpStatus: number, hasCanonical: boolean, hasDescription: boolean, hasLegacyEmail: boolean) {
+function escapeRegExp(value: string) {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+function diagnosticMessage({
+  httpStatus,
+  hasCanonical,
+  hasDescription,
+  hasLegacyEmail,
+  hasLeadCaptureLink,
+  hasLeadForm,
+  hasSitemapEntry,
+}: {
+  httpStatus: number;
+  hasCanonical: boolean;
+  hasDescription: boolean;
+  hasLegacyEmail: boolean;
+  hasLeadCaptureLink: boolean;
+  hasLeadForm: boolean | null;
+  hasSitemapEntry: boolean;
+}) {
   if (httpStatus < 200 || httpStatus >= 400) return `HTTP ${httpStatus}`;
   const issues = [
     !hasCanonical ? "missing canonical" : null,
     !hasDescription ? "missing description" : null,
     hasLegacyEmail ? "legacy thg.digital email found" : null,
+    !hasLeadCaptureLink ? "missing lead-capture link" : null,
+    hasLeadForm === false ? "contact form fields missing" : null,
+    !hasSitemapEntry ? "missing sitemap entry" : null,
   ].filter(Boolean);
   return issues.length > 0 ? issues.join(", ") : "Healthy";
 }

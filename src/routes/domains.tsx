@@ -1,63 +1,62 @@
-import { createFileRoute } from "@tanstack/react-router";
+﻿import { createFileRoute } from "@tanstack/react-router";
+import { useState } from "react";
+import { useServerFn } from "@tanstack/react-start";
+import { toast } from "sonner";
 import { PageShell, Container } from "@/components/site/PageShell";
 import { PillButton } from "@/components/site/PillButton";
 import { TagChip } from "@/components/site/TagChip";
-import { SectionHeader } from "@/components/site/SectionHeader";
 import { FeatureCard } from "@/components/site/FeatureCard";
+import { createDomainCheckout } from "@/lib/domain-checkout.functions";
+import { domainBundles, formatGbp, getDomainBuyNowPrice, rankedDomains } from "@/lib/domain-portfolio";
 
 export const Route = createFileRoute("/domains")({
   head: () => ({
     meta: [
-      { title: "Domains — THG Digital Agency" },
+      { title: "Domains - The Harley Group" },
       {
         name: "description",
-        content:
-          "A curated portfolio of premium domain names for community groups, local brands, and solo founders.",
+        content: "A sale portfolio of owned domains across AI, autonomous driving, green transport, IoT, finance, and UK niche brands.",
       },
-      { property: "og:title", content: "Domains — THG Digital Agency" },
+      { property: "og:title", content: "Domains - The Harley Group" },
     ],
   }),
   component: DomainsPage,
 });
 
-const DOMAINS = [
-  { name: "communityhub.co", category: "Community", price: "£2,400", status: "Available" as const },
-  { name: "localbrand.studio", category: "Brand", price: "£1,800", status: "Available" as const },
-  { name: "makerscollective.co", category: "Community", price: "£1,200", status: "Under offer" as const },
-  { name: "solofounder.io", category: "Founder", price: "£3,600", status: "Available" as const },
-  { name: "everydaycraft.co", category: "Craft", price: "£950", status: "Available" as const },
-  { name: "northlaunch.co", category: "Regional", price: "£1,400", status: "Sold" as const },
-  { name: "commonground.studio", category: "Community", price: "£1,600", status: "Available" as const },
-  { name: "quietbrand.co", category: "Brand", price: "£1,100", status: "Available" as const },
-];
-
-const statusStyles: Record<string, string> = {
-  Available: "bg-primary/10 text-primary",
-  "Under offer": "bg-ink/10 text-ink",
-  Sold: "bg-ink/70 text-background",
+const priorityStyles = {
+  High: "bg-emerald-50 text-emerald-700",
+  Medium: "bg-blue-50 text-blue-700",
+  Low: "bg-ink/10 text-ink/70",
 };
 
 function DomainsPage() {
+  const domains = rankedDomains();
+
   return (
     <PageShell>
       <section className="pt-32 pb-16 md:pt-40 md:pb-24">
         <Container>
-          <TagChip>Domains</TagChip>
+          <TagChip>Domains for sale</TagChip>
           <h1
             className="mt-6 max-w-4xl text-ink"
             style={{
               fontFamily: "var(--font-display)",
               fontWeight: 500,
-              letterSpacing: "-0.03em",
               lineHeight: 1.02,
               fontSize: "clamp(2.5rem, 6vw, 4.5rem)",
             }}
           >
-            A curated portfolio of premium names.
+            Owned domains for AI, mobility, finance, smart tech, and UK niche projects.
           </h1>
           <p className="mt-6 max-w-2xl text-[17px] leading-relaxed text-ink-muted">
-            Names chosen for community groups, local brands and solo founders —
-            each one short, memorable, and easy to say out loud.
+            Buy selected domains instantly by card, or enquire about bundles and sensitive names that need manual handling.
+          </p>
+          <div className="mt-8 flex flex-wrap gap-3">
+            <PillButton as="link" to="/contact">Ask about a domain</PillButton>
+            <PillButton as="link" to="/contact" variant="ghost">Make a portfolio offer</PillButton>
+          </div>
+          <p className="mt-4 max-w-2xl text-sm text-ink-muted">
+            After checkout, we verify payment and arrange the domain transfer within one working day.
           </p>
         </Container>
       </section>
@@ -67,54 +66,64 @@ function DomainsPage() {
           <div className="grid gap-8 md:grid-cols-12 md:gap-10">
             <div className="md:col-span-8">
               <div className="grid gap-4 sm:grid-cols-2">
-                {DOMAINS.map((d) => (
-                  <article
-                    key={d.name}
-                    className="group flex flex-col justify-between rounded-[20px] border border-ink/10 bg-background p-6 transition-all duration-200 hover:-translate-y-0.5 hover:border-ink/25"
-                  >
-                    <div>
-                      <div className="flex items-center justify-between">
-                        <TagChip>{d.category}</TagChip>
-                        <span
-                          className={`rounded-full px-2.5 py-1 text-[10px] font-medium uppercase tracking-[0.15em] ${statusStyles[d.status]}`}
-                        >
-                          {d.status}
-                        </span>
+                {domains.map((domain) => {
+                  const buyNowPrice = getDomainBuyNowPrice(domain.name);
+                  return (
+                    <article key={domain.name} className="flex flex-col justify-between rounded-2xl border border-ink/10 bg-background p-5">
+                      <div>
+                        <div className="flex items-center justify-between gap-3">
+                          <TagChip>{domain.category}</TagChip>
+                          <span className={`rounded-full px-2.5 py-1 text-[10px] font-medium uppercase tracking-[0.14em] ${priorityStyles[domain.priority]}`}>
+                            {domain.priority}
+                          </span>
+                        </div>
+                        <p className="mt-5 font-mono text-[20px] font-medium text-ink">{domain.name}</p>
+                        <p className="mt-3 text-sm leading-relaxed text-ink-muted">{domain.useCase}</p>
+                        {domain.caution && <p className="mt-3 rounded-lg bg-amber-50 px-3 py-2 text-xs text-amber-800">Note: {domain.caution}</p>}
                       </div>
-                      <p
-                        className="mt-6 font-mono text-[22px] font-medium tracking-tight text-ink"
-                        style={{ fontFamily: "var(--font-mono)" }}
-                      >
-                        {d.name}
-                      </p>
-                    </div>
-                    <div className="mt-8 flex items-center justify-between border-t border-ink/10 pt-5">
-                      <span className="text-[17px] font-medium text-ink">
-                        {d.price}
-                      </span>
-                      <PillButton
-                        as="link"
-                        to="/contact"
-                        variant="ghost"
-                        size="sm"
-                      >
-                        Enquire
-                      </PillButton>
-                    </div>
-                  </article>
-                ))}
+                      <div className="mt-6 border-t border-ink/10 pt-4">
+                        <div className="flex items-center justify-between gap-3 text-sm">
+                          <span className="text-ink-muted">Valuation range</span>
+                          <span className="font-medium text-ink">{domain.suggestedAsk}</span>
+                        </div>
+                        <div className="mt-2 flex items-center justify-between gap-3 text-sm">
+                          <span className="text-ink-muted">Buy now</span>
+                          <span className="font-medium text-ink">{formatGbp(buyNowPrice)}</span>
+                        </div>
+                        <div className="mt-4 flex flex-wrap gap-2">
+                          {buyNowPrice ? <BuyNowButton domain={domain.name} /> : null}
+                          <PillButton as="link" to="/contact" variant="ghost" size="sm">
+                            Enquire
+                          </PillButton>
+                        </div>
+                      </div>
+                    </article>
+                  );
+                })}
               </div>
             </div>
 
-            <aside className="md:col-span-4">
+            <aside className="space-y-4 md:col-span-4">
               <FeatureCard
                 surface="sage"
                 tag="How it works"
-                title="Buying a domain — how our process runs."
-                body="Enquire on the name you want. We reply within one working day with a purchase agreement, escrow details, and a transfer timeline. Most transfers complete inside 72 hours."
+                title="Buy now, then transfer."
+                body="Stripe takes payment securely. After checkout, we verify payment, confirm buyer details, and arrange the transfer within one working day."
                 ctaLabel="Ask about a name"
                 ctaTo="/contact"
               />
+              <div className="rounded-2xl border border-ink/10 bg-white p-5">
+                <h2 className="font-semibold text-ink">Suggested bundles</h2>
+                <div className="mt-4 space-y-4">
+                  {domainBundles.map((bundle) => (
+                    <div key={bundle.name} className="rounded-xl bg-ink/[0.03] p-4">
+                      <h3 className="font-medium text-ink">{bundle.name}</h3>
+                      <p className="mt-2 text-xs leading-relaxed text-ink-muted">{bundle.domains.join(", ")}</p>
+                      <p className="mt-2 text-sm text-ink/75">{bundle.action}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </aside>
           </div>
         </Container>
@@ -122,3 +131,32 @@ function DomainsPage() {
     </PageShell>
   );
 }
+
+function BuyNowButton({ domain }: { domain: string }) {
+  const checkout = useServerFn(createDomainCheckout);
+  const [busy, setBusy] = useState(false);
+
+  async function buyNow() {
+    setBusy(true);
+    try {
+      const result = await checkout({ data: { domain } });
+      window.location.href = result.url;
+    } catch (error) {
+      toast.error(error instanceof Error ? error.message : "Could not start checkout.");
+      setBusy(false);
+    }
+  }
+
+  return (
+    <button
+      type="button"
+      onClick={buyNow}
+      disabled={busy}
+      className="inline-flex items-center rounded-full bg-ink px-4 py-2 text-[13px] font-medium text-white transition hover:bg-ink/90 disabled:opacity-50"
+    >
+      {busy ? "Opening..." : "Buy now"}
+    </button>
+  );
+}
+
+

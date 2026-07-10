@@ -8,3 +8,6 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+## Project Context Skill
+
+When working on strategy, copy, Control Centre, Revenue OS, diagnostics, services, resources, domains, social/content workflows, or prioritisation, use `$thg-project-context` when available to keep changes aligned with the THG north star and reduce drift.

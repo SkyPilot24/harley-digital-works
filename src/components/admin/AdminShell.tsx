@@ -9,10 +9,12 @@ import {
   UsersRound,
   FileText,
   BookOpen,
+  ClipboardList,
   MessageSquareQuote,
   Settings,
   Shield,
   Stethoscope,
+  Globe2,
   LogOut,
 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
@@ -23,12 +25,14 @@ import { cn } from "@/lib/utils";
 const NAV: { to: string; label: string; icon: typeof LayoutDashboard; exact?: boolean }[] = [
   { to: "/admin", label: "Control Centre", icon: LayoutDashboard, exact: true },
   { to: "/admin/revenue-os", label: "Revenue OS", icon: Rocket },
+  { to: "/admin/domain-os", label: "Domain OS", icon: Globe2 },
   { to: "/admin/leads", label: "Leads", icon: Inbox },
   { to: "/admin/clients", label: "Clients", icon: Users },
   { to: "/admin/projects", label: "Projects", icon: Briefcase },
   { to: "/admin/team", label: "Team", icon: UsersRound },
   { to: "/admin/services", label: "Services", icon: FileText },
   { to: "/admin/resources", label: "Resources", icon: BookOpen },
+  { to: "/admin/playbooks", label: "Playbooks", icon: ClipboardList },
   { to: "/admin/testimonials", label: "Testimonials", icon: MessageSquareQuote },
   { to: "/admin/users", label: "Users & roles", icon: Shield },
   { to: "/admin/diagnostics", label: "Diagnostics", icon: Stethoscope },
@@ -56,7 +60,7 @@ export function AdminShell({ children }: { children: ReactNode }) {
   if (loading || roleLoading) {
     return (
       <div className="flex min-h-screen items-center justify-center bg-background text-ink-muted">
-        Loading…
+        Loading...
       </div>
     );
   }
@@ -149,3 +153,5 @@ export function AdminShell({ children }: { children: ReactNode }) {
     </div>
   );
 }
+
+

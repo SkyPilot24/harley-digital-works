@@ -1,4 +1,4 @@
-﻿import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
 import { AlertTriangle, CheckCircle2, ExternalLink, RefreshCw, Sparkles, XCircle } from "lucide-react";
@@ -43,6 +43,7 @@ function DiagnosticsPage() {
   const websiteChecks = websiteQuery.data ?? [];
   const websiteSummary = summarizeWebsiteChecks(websiteChecks);
   const attentionCount = websiteSummary.warning + websiteSummary.error;
+  const groupSummary = summarizeWebsiteGroups(websiteChecks);
 
   const taskMutation = useMutation({
     mutationFn: () => createDiagnosticTasks(),
@@ -91,11 +92,23 @@ function DiagnosticsPage() {
         <HealthCard label="Needs attention" value={attentionCount} tone={attentionCount > 0 ? "warn" : "good"} />
       </section>
 
+      {groupSummary.length > 0 && (
+        <section className="mt-4 grid gap-3 md:grid-cols-5">
+          {groupSummary.map((group) => (
+            <div key={group.name} className="rounded-xl border border-ink/10 bg-white p-4">
+              <div className="text-[11px] uppercase tracking-wider text-ink-muted">{group.name}</div>
+              <div className="mt-2 text-2xl font-semibold text-ink">{group.attention}</div>
+              <div className="mt-1 text-xs text-ink-muted">{group.total} route{group.total === 1 ? "" : "s"} mapped</div>
+            </div>
+          ))}
+        </section>
+      )}
+
       <section className="mt-8">
         <div className="mb-3 flex flex-wrap items-baseline justify-between gap-3">
           <div>
             <h2 className="text-sm font-semibold uppercase tracking-wider text-ink-muted">Live website diagnostics</h2>
-            <p className="mt-1 text-sm text-ink-muted">Checks mapped public routes for HTTP status, title, description, canonical tags, and legacy contact email.</p>
+            <p className="mt-1 text-sm text-ink-muted">Checks mapped public routes for HTTP status, metadata, lead-capture links, contact form health, sitemap coverage, owner, and route priority.</p>
           </div>
           {websiteChecks[0]?.checkedAt && (
             <span className="text-xs text-ink-muted">Checked {new Date(websiteChecks[0].checkedAt).toLocaleString()}</span>
@@ -106,6 +119,7 @@ function DiagnosticsPage() {
             <thead className="bg-ink/[0.03] text-left text-[12px] uppercase tracking-wider text-ink-muted">
               <tr>
                 <th className="px-4 py-3">Route</th>
+                <th className="px-4 py-3">Owner</th>
                 <th className="px-4 py-3">Health</th>
                 <th className="px-4 py-3">Metadata</th>
                 <th className="px-4 py-3">Message</th>
@@ -115,17 +129,17 @@ function DiagnosticsPage() {
             <tbody>
               {websiteQuery.isLoading && (
                 <tr>
-                  <td colSpan={5} className="px-4 py-8 text-center text-ink-muted">Checking live website...</td>
+                  <td colSpan={7} className="px-4 py-8 text-center text-ink-muted">Checking live website...</td>
                 </tr>
               )}
               {websiteQuery.error && (
                 <tr>
-                  <td colSpan={5} className="px-4 py-8 text-center text-rose-600">{(websiteQuery.error as Error).message}</td>
+                  <td colSpan={7} className="px-4 py-8 text-center text-rose-600">{(websiteQuery.error as Error).message}</td>
                 </tr>
               )}
               {!websiteQuery.isLoading && websiteChecks.length === 0 && !websiteQuery.error && (
                 <tr>
-                  <td colSpan={5} className="px-4 py-8 text-center text-ink-muted">No website routes configured.</td>
+                  <td colSpan={7} className="px-4 py-8 text-center text-ink-muted">No website routes configured.</td>
                 </tr>
               )}
               {websiteChecks.map((check) => (
@@ -133,6 +147,11 @@ function DiagnosticsPage() {
                   <td className="px-4 py-3">
                     <div className="font-medium text-ink">{check.label}</div>
                     <div className="font-mono text-xs text-ink-muted">{check.path}</div>
+                  </td>
+                  <td className="px-4 py-3 text-xs text-ink-muted">
+                    <div className="font-medium text-ink">{check.owner}</div>
+                    <div>{check.diagnosticGroup}</div>
+                    <div>Lead path: {check.leadCapturePath}</div>
                   </td>
                   <td className="px-4 py-3">
                     <WebsiteStatusBadge check={check} />
@@ -143,6 +162,11 @@ function DiagnosticsPage() {
                     <div>Description: {check.hasDescription ? "Yes" : "No"}</div>
                     <div>Canonical: {check.hasCanonical ? "Yes" : "No"}</div>
                     <div>Legacy email: {check.hasLegacyEmail ? "Found" : "Clear"}</div>
+                  </td>
+                  <td className="px-4 py-3 text-xs text-ink-muted">
+                    <div>Lead link: {check.hasLeadCaptureLink ? "Yes" : "No"}</div>
+                    <div>Lead form: {check.hasLeadForm === null ? "N/A" : check.hasLeadForm ? "Ready" : "Missing"}</div>
+                    <div>Sitemap: {check.hasSitemapEntry ? "Listed" : "Missing"}</div>
                   </td>
                   <td className="max-w-sm px-4 py-3 text-ink/70">{check.message}</td>
                   <td className="px-4 py-3 text-right">
@@ -271,6 +295,17 @@ function summarizeWebsiteChecks(checks: WebsiteDiagnostic[]) {
   );
 }
 
+function summarizeWebsiteGroups(checks: WebsiteDiagnostic[]) {
+  const groups = new Map<string, { name: string; total: number; attention: number }>();
+  checks.forEach((check) => {
+    const group = groups.get(check.diagnosticGroup) ?? { name: check.diagnosticGroup, total: 0, attention: 0 };
+    group.total += 1;
+    if (check.status !== "ok") group.attention += 1;
+    groups.set(check.diagnosticGroup, group);
+  });
+  return Array.from(groups.values());
+}
+
 function WebsiteStatusBadge({ check }: { check: WebsiteDiagnostic }) {
   if (check.status === "ok") {
     return <span className="inline-flex items-center gap-1 rounded-full bg-emerald-50 px-2 py-0.5 text-[11px] font-medium text-emerald-700"><CheckCircle2 size={11} /> Healthy</span>;
@@ -290,5 +325,3 @@ function HealthCard({ label, value, tone }: { label: string; value: React.ReactN
     </div>
   );
 }
-
-
