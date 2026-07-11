@@ -69,10 +69,11 @@
   --color-ink: var(--ink);
   --color-ink-muted: var(--ink-muted);
   --color-footer: var(--footer);
-  --font-display: "DM Sans", ui-sans-serif, system-ui, sans-serif;
-  --font-sans: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Anton", sans-serif;
+  --font-sans: "Inter", sans-serif;
   --font-mono: "DM Mono", ui-monospace, "SFMono-Regular", monospace;
   --font-wordmark: "Syne", ui-sans-serif, system-ui, sans-serif;
+  --font-hand: "Caveat", cursive;
   --radius-card: 20px;
   --radius-pill: 999px;
 }
@@ -183,6 +184,19 @@
     background: var(--thg-teal);
     color: white;
   }
+}
+
+.display {
+  font-family: var(--font-display) !important;
+}
+
+.hand {
+  font-family: var(--font-hand) !important;
+}
+
+body.is-loading {
+  overflow: hidden !important;
+  height: 100vh !important;
 }
 
 

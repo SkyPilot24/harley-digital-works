@@ -1,397 +1,751 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { PageShell, Container } from "@/components/site/PageShell";
-import { PillButton } from "@/components/site/PillButton";
-import { TagChip } from "@/components/site/TagChip";
-import { SectionHeader } from "@/components/site/SectionHeader";
-import { FeatureCard } from "@/components/site/FeatureCard";
-import { agencyOffers, agencyProcess, agencyStats } from "@/lib/agency-content";
+import { useEffect, useRef, useState } from "react";
+import { useServerFn } from "@tanstack/react-start";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { LucideIcon, ArrowRight, Check, Sparkles, Stethoscope, Mail, ExternalLink, ShieldCheck, Cpu } from "lucide-react";
+import { submitLead } from "@/lib/lead-intake.functions";
+import { z } from "zod";
+import { toast } from "sonner";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      {
-        title: "The Harley Group - AI, web, content and digital workflows",
-      },
+      { title: "THG Digital — Applied craft. Fixed-price delivery." },
       {
         name: "description",
-        content:
-          "A digital creative and technical consultancy led by Robbie Harley, helping communities, small teams and purpose-led organisations build useful AI-assisted websites, content and workflows.",
-      },
-      {
-        property: "og:title",
-        content: "The Harley Group - Useful digital work for people doing real work",
-      },
-      {
-        property: "og:description",
-        content:
-          "AI-assisted web development, creative content production and practical technical consultancy with a human, service-led approach.",
+        content: "A scroll-driven, high-fidelity digital creative consultancy website for The Harley Group led by Dr Robbie Harley.",
       },
     ],
   }),
-  component: HomePage,
+  component: NoemaHomepage,
 });
 
-const serviceMap = [
-  {
-    source: "Applied AI",
-    title: "AI that speeds up the work, not the waffle.",
-    body: "For THG, applied AI means faster planning, sharper copy, prototype-to-build workflows and automation that helps people make better decisions.",
-  },
-  {
-    source: "Data",
-    title: "Useful signals from everyday activity.",
-    body: "We turn forms, content calendars, enquiries and community feedback into simple insight so teams know what to improve next.",
-  },
-  {
-    source: "Cloud",
-    title: "Solid platforms that keep running.",
-    body: "Hosting, integrations, access, backups and lightweight operational checks are treated as part of the service, not an afterthought.",
-  },
-  {
-    source: "Engineering",
-    title: "Maker energy with grown-up discipline.",
-    body: "The build style is hands-on and curious, shaped by ethical hacking, NHS IT reliability and a bias for shipping useful things.",
-  },
-] as const;
-
-const impactExamples = [
-  {
-    label: "Community content",
-    title: "One event can become a reusable content pack.",
-    body: "Record once, then shape clips, graphics, quotes and web updates so volunteer teams do not have to restart every week.",
-    metric: "5-10 assets from one source",
-  },
-  {
-    label: "Launch support",
-    title: "A clear idea can become a working page quickly.",
-    body: "Use AI-assisted planning, Figma, copy and build workflows to move from rough brief to credible page, form and follow-up path.",
-    metric: "Days, not months",
-  },
-  {
-    label: "Digital workflow",
-    title: "Small automations remove repeated admin.",
-    body: "Connect enquiries, checklists, notifications and handoff notes so people spend more time serving and less time chasing details.",
-    metric: "Less repeat work",
-  },
-] as const;
-
-const approachCards = [
-  [
-    "Reliable",
-    "NHS IT leadership brings calm habits: documentation, risk awareness, service continuity and respect for users.",
-  ],
-  [
-    "Practical",
-    "The work is explained in normal language. You will know what is being built, why it matters and what comes next.",
-  ],
-  [
-    "Service-led",
-    "Faith shows up as integrity, patience and a desire to build things that genuinely help people.",
-  ],
-  [
-    "Always learning",
-    "AI creation, ethical hacking and creative tooling keep the practice sharp without chasing novelty for its own sake.",
-  ],
-] as const;
-
-function HomePage() {
-  return (
-    <PageShell>
-      <Hero />
-      <Mapping />
-      <ServicesPreview />
-      <Impact />
-      <Why />
-      <HumanElement />
-      <Process />
-      <FinalCta />
-    </PageShell>
-  );
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
 }
 
-function Hero() {
+const leadSchema = z.object({
+  name: z.string().trim().min(1, "Name is required").max(100),
+  email: z.string().trim().email("Enter a valid email").max(255),
+  company: z.string().trim().max(120).optional().or(z.literal("")),
+  package: z.string().trim().max(60).optional().or(z.literal("")),
+  message: z.string().trim().min(5, "Tell us a little more").max(2000),
+});
+
+function NoemaHomepage() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [navOpen, setNavOpen] = useState(false);
+  const [busy, setBusy] = useState(false);
+  const [sent, setSent] = useState(false);
+  const submitLeadFn = useServerFn(submitLead);
+
+  async function handleContactSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    const fd = new FormData(e.currentTarget);
+    const parsed = leadSchema.safeParse({
+      name: fd.get("name"),
+      email: fd.get("email"),
+      company: fd.get("company") ?? "",
+      package: fd.get("package") ?? "Aura Style",
+      message: fd.get("message"),
+    });
+
+    if (!parsed.success) {
+      toast.error(parsed.error.issues[0]?.message ?? "Please verify your details.");
+      return;
+    }
+
+    setBusy(true);
+    try {
+      await submitLeadFn({ data: parsed.data });
+      toast.success("Enquiry received. Robbie will get back to you within 24 hours.");
+      setSent(true);
+      (e.target as HTMLFormElement).reset();
+    } catch {
+      toast.error("Could not send enquiry. Please try again.");
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  useEffect(() => {
+    // 1. Initial lock state
+    document.body.classList.add("is-loading");
+
+    const ctx = gsap.context(() => {
+      // LOADER SEQUENCE
+      const loaderTl = gsap.timeline({
+        onComplete: () => {
+          document.body.classList.remove("is-loading");
+          ScrollTrigger.refresh();
+        },
+      });
+
+      // SVG path drawing
+      loaderTl.fromTo(
+        ".wave-path-1",
+        { strokeDashoffset: 100 },
+        { strokeDashoffset: 0, duration: 1.2, ease: "power2.inOut" }
+      );
+      loaderTl.fromTo(
+        ".wave-path-2",
+        { strokeDashoffset: 100 },
+        { strokeDashoffset: 0, duration: 1.2, ease: "power2.inOut" },
+        "<0.2"
+      );
+
+      // Staggered text rise
+      loaderTl.fromTo(
+        ".loader-letter",
+        { yPercent: 100, opacity: 0 },
+        { yPercent: 0, opacity: 1, duration: 0.6, stagger: 0.05, ease: "back.out(1.7)" },
+        "-=0.6"
+      );
+
+      // Strips raise
+      loaderTl.to(".loader-strip", {
+        scaleY: 1,
+        duration: 0.5,
+        stagger: 0.08,
+        transformOrigin: "bottom",
+        ease: "power3.in",
+      });
+
+      // Loader slide up
+      loaderTl.to(".loader-overlay", {
+        yPercent: -100,
+        duration: 0.8,
+        ease: "power4.inOut",
+      });
+
+      // Fade in main site container
+      loaderTl.fromTo(
+        ".main-wrapper",
+        { opacity: 0, scale: 0.98 },
+        { opacity: 1, scale: 1, duration: 0.8, ease: "power3.out" },
+        "-=0.4"
+      );
+
+      // SECTION 1: HERO
+      const heroTl = gsap.timeline({
+        scrollTrigger: {
+          trigger: "#hero",
+          start: "top top",
+          end: "bottom+=150% top",
+          scrub: 1,
+          pin: true,
+          anticipatePin: 1,
+        },
+      });
+
+      // Split Card Animations
+      heroTl.to(".hero-card-1", {
+        xPercent: -90,
+        yPercent: 30,
+        rotation: -14,
+        ease: "power2.out",
+      });
+      heroTl.to(
+        ".hero-card-3",
+        {
+          xPercent: 90,
+          yPercent: -30,
+          rotation: 14,
+          ease: "power2.out",
+        },
+        "<"
+      );
+      heroTl.to(
+        ".hero-card-2",
+        {
+          scale: 1.08,
+          boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.5)",
+          ease: "power2.out",
+        },
+        "<"
+      );
+
+      // Card 2 Idle floating animation
+      gsap.to(".hero-card-2", {
+        y: "+=12",
+        yoyo: true,
+        repeat: -1,
+        duration: 2.2,
+        ease: "sine.inOut",
+      });
+
+      // SECTION 2: PILLARS
+      gsap.timeline({
+        scrollTrigger: {
+          trigger: "#pillars",
+          start: "top top",
+          end: "bottom+=120% top",
+          scrub: 1,
+          pin: true,
+          anticipatePin: 1,
+        },
+      })
+      .fromTo(".pillar-title", { scale: 0.8, opacity: 0 }, { scale: 1, opacity: 1, ease: "power2.out" })
+      .fromTo(".pillar-item", { y: 100, opacity: 0 }, { y: 0, opacity: 1, stagger: 0.15, ease: "power3.out" }, "-=0.3");
+
+      // SECTION 3: MANIFESTO (Scrambled snap)
+      const manifestoTl = gsap.timeline({
+        scrollTrigger: {
+          trigger: "#manifesto",
+          start: "top top",
+          end: "bottom+=150% top",
+          scrub: 1,
+          pin: true,
+          anticipatePin: 1,
+        },
+      });
+
+      // Set initial messy states
+      manifestoTl.to(".manifesto-word", {
+        x: 0,
+        y: 0,
+        rotation: 0,
+        opacity: 1,
+        stagger: {
+          each: 0.04,
+          from: "random",
+        },
+        ease: "power4.out",
+      });
+
+      // SECTION 4: WORK BOARD (Scattered Snap)
+      const boardTl = gsap.timeline({
+        scrollTrigger: {
+          trigger: "#board",
+          start: "top top",
+          end: "bottom+=150% top",
+          scrub: 1,
+          pin: true,
+          anticipatePin: 1,
+        },
+      });
+
+      boardTl.to(".board-card", {
+        x: 0,
+        y: 0,
+        rotation: 0,
+        opacity: 1,
+        stagger: 0.08,
+        ease: "back.out(1.2)",
+      });
+
+      // Dotted flying paths animation
+      gsap.to(".flying-dot-1", {
+        strokeDashoffset: -200,
+        repeat: -1,
+        duration: 8,
+        ease: "none",
+      });
+      gsap.to(".flying-dot-2", {
+        strokeDashoffset: 200,
+        repeat: -1,
+        duration: 10,
+        ease: "none",
+      });
+
+      // SECTION 5: CTA WIPES
+      const ctaTl = gsap.timeline({
+        scrollTrigger: {
+          trigger: "#cta",
+          start: "top top",
+          end: "bottom+=250% top",
+          scrub: 1,
+          pin: true,
+          anticipatePin: 1,
+        },
+      });
+
+      // Rose sweep
+      ctaTl.to(".wipe-rose", {
+        yPercent: 0,
+        ease: "power2.inOut",
+      });
+      ctaTl.fromTo(
+        ".sweep-title-rose",
+        { scale: 0.8, opacity: 0 },
+        { scale: 1, opacity: 1, ease: "back.out(1.5)" },
+        "-=0.2"
+      );
+
+      // Emerald sweep
+      ctaTl.to(".wipe-emerald", {
+        xPercent: 0,
+        ease: "power2.inOut",
+      });
+      ctaTl.fromTo(
+        ".sweep-title-emerald",
+        { scale: 0.8, opacity: 0 },
+        { scale: 1, opacity: 1, ease: "back.out(1.5)" },
+        "-=0.2"
+      );
+
+      // Black sweep & final content reveal
+      ctaTl.to(".wipe-black", {
+        yPercent: 0,
+        ease: "power2.inOut",
+      });
+      ctaTl.fromTo(
+        ".sweep-title-black",
+        { yPercent: 50, opacity: 0 },
+        { yPercent: 0, opacity: 1, ease: "power3.out" },
+        "-=0.3"
+      );
+      ctaTl.fromTo(
+        ".final-pane",
+        { opacity: 0, y: 50 },
+        { opacity: 1, y: 0, ease: "power3.out" }
+      );
+    }, containerRef);
+
+    return () => ctx.revert();
+  }, []);
+
+  // Scrambled manifesto words data
+  const manifestoSentence = [
+    { text: "We", x: -120, y: 150, r: -35 },
+    { text: "build", x: 220, y: -200, r: 45 },
+    { text: "useful", x: -300, y: 80, r: -20 },
+    { text: "websites,", x: 180, y: 300, r: 55 },
+    { text: "content,", x: -80, y: -280, r: -40 },
+    { text: "and", x: 250, y: 120, r: 30 },
+    { text: "automations", x: -400, y: -100, r: -60 },
+    { text: "for", x: 90, y: 240, r: 15 },
+    { text: "purpose-led", x: -280, y: -240, r: -50 },
+    { text: "teams", x: 340, y: 80, r: 40 },
+    { text: "with", x: -150, y: 180, r: -25 },
+    { text: "plain", x: 210, y: -150, r: 35 },
+    { text: "English", x: -90, y: 290, r: -15 },
+    { text: "and", x: 120, y: -300, r: 25 },
+    { text: "NHS-grade", x: -350, y: 190, r: -55 },
+    { text: "reliability.", x: 400, y: -80, r: 60 }
+  ];
+
+  // Community win/testimonial card data (Scattered snap)
+  const boardCards = [
+    {
+      type: "metric",
+      label: "5-10 Assets",
+      title: "From one source",
+      desc: "Record once, then shape clips, graphics, and updates to feed community channels.",
+      x: -250,
+      y: 200,
+      r: -25,
+      bg: "bg-surface-cream"
+    },
+    {
+      type: "testimonial",
+      label: "NHS Reliability",
+      title: "Integrity first",
+      desc: "Robbie's NHS IT leadership brings calm: docs, risk management, and service continuity.",
+      x: 300,
+      y: -180,
+      r: 18,
+      bg: "bg-white"
+    },
+    {
+      type: "metric",
+      label: "1 Week Build",
+      title: "Days, not months",
+      desc: "Move from rough brief to a fully functional page, capture form, and follow-up paths.",
+      x: -180,
+      y: -300,
+      r: -15,
+      bg: "bg-surface-stone"
+    },
+    {
+      type: "domain",
+      label: "Premium Portfolio",
+      title: "Active Monetisation",
+      desc: "Curated domain inventory with Stripe-backed buy-now checkouts for brand building.",
+      x: 220,
+      y: 280,
+      r: 22,
+      bg: "bg-surface-mist"
+    }
+  ];
+
   return (
-    <section className="pt-28 pb-16 md:pt-36 md:pb-24">
-      <Container>
-        <div className="grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
-          <div>
-            <TagChip>AI, web, content and community</TagChip>
-            <h1 className="mt-6 max-w-4xl text-[clamp(2.7rem,6vw,5.2rem)] leading-[0.98] tracking-tight text-ink">
-              Useful digital work for people doing real work.
-            </h1>
-            <p className="mt-6 max-w-2xl text-[18px] leading-relaxed text-ink-muted">
-              The Harley Group helps purpose-led teams turn ideas into websites, content and
-              workflows that are clear, reliable and easy to keep using.
-            </p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <PillButton as="link" to="/contact" variant="dark" size="md">
-                Talk through a project
-              </PillButton>
-              <PillButton as="link" to="/services" variant="ghost" size="md">
-                See what we do
-              </PillButton>
-            </div>
-            <p className="mt-4 text-[13px] text-ink-muted">
-              Led by Robbie Harley: NHS IT leader, Christian, AI creator and hands-on digital maker.
-            </p>
+    <div ref={containerRef} className="relative min-h-screen bg-[#050505] text-[#f4efe7] select-none overflow-x-hidden font-sans">
+      
+      {/* 0. LOADER OVERLAY (z-9999) */}
+      <div className="loader-overlay fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-[#050505]">
+        {/* Animated wave path */}
+        <div className="mb-8 h-20 w-44">
+          <svg viewBox="0 0 42 18" className="h-full w-full stroke-[#4F46E5] stroke-[1.5] fill-none">
+            <path className="wave-path-1" strokeDasharray="100" strokeDashoffset="100" d="M3 9C8 1.8 14 1.8 21 9C28 16.2 34 16.2 39 9" />
+            <path className="wave-path-2" strokeDasharray="100" strokeDashoffset="100" d="M3 9C8 16.2 14 16.2 21 9C28 1.8 34 1.8 39 9" />
+          </svg>
+        </div>
+        {/* Rise letters */}
+        <div className="flex overflow-hidden font-display text-4xl uppercase tracking-widest text-[#f4efe7] md:text-6xl">
+          {Array.from("THG DIGITAL").map((char, index) => (
+            <span key={index} className="loader-letter inline-block translate-y-full opacity-0">
+              {char === " " ? "\u00A0" : char}
+            </span>
+          ))}
+        </div>
+        {/* Staggered strips that scale in */}
+        <div className="absolute inset-0 z-10 flex pointer-events-none">
+          <div className="loader-strip flex-1 scale-y-0 bg-[#4F46E5]" />
+          <div className="loader-strip flex-1 scale-y-0 bg-[#F43F5E]" />
+          <div className="loader-strip flex-1 scale-y-0 bg-[#10B981]" />
+          <div className="loader-strip flex-1 scale-y-0 bg-[#f4efe7]" />
+        </div>
+      </div>
+
+      {/* FIXED DIVIDER GRID PATTERN */}
+      <div className="fixed inset-0 pointer-events-none z-30 opacity-[0.05]">
+        <div className="grid h-full w-full grid-cols-5 grid-rows-4 border-l border-t border-[#f4efe7]">
+          {Array.from({ length: 20 }).map((_, i) => (
+            <div key={i} className="border-r border-b border-[#f4efe7]" />
+          ))}
+        </div>
+      </div>
+
+      {/* FIXED NAVIGATION WITH BLEND MODE (z-60) */}
+      <nav className="fixed inset-x-0 top-0 z-50 flex h-16 items-center justify-between px-6 mix-blend-difference md:px-10">
+        <Link to="/" className="flex items-baseline gap-1">
+          <span className="font-display text-2xl uppercase tracking-tighter text-[#f4efe7]">thg</span>
+          <span className="font-mono text-[9px] uppercase tracking-[0.25em] text-[#f4efe7]/80">agency</span>
+        </Link>
+        
+        <div className="hidden items-center gap-8 md:flex">
+          <Link to="/services" className="text-xs font-semibold uppercase tracking-wider text-[#f4efe7] hover:opacity-85">Services</Link>
+          <Link to="/domains" className="text-xs font-semibold uppercase tracking-wider text-[#f4efe7] hover:opacity-85">Domains</Link>
+          <Link to="/about" className="text-xs font-semibold uppercase tracking-wider text-[#f4efe7] hover:opacity-85">About</Link>
+          <Link to="/resources" className="text-xs font-semibold uppercase tracking-wider text-[#f4efe7] hover:opacity-85">Resources</Link>
+        </div>
+
+        <div className="hidden items-center gap-3 md:flex">
+          <Link to="/admin" className="rounded-full border border-[#f4efe7]/30 bg-transparent px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-[#f4efe7] hover:bg-[#f4efe7]/10">
+            Admin
+          </Link>
+          <Link to="/contact" className="rounded-full bg-[#10B981] px-5 py-2 text-xs font-semibold uppercase tracking-wider text-black hover:opacity-90">
+            Contact
+          </Link>
+        </div>
+
+        <button 
+          onClick={() => setNavOpen(!navOpen)} 
+          className="flex h-10 w-10 items-center justify-center rounded-full bg-[#f4efe7] text-black md:hidden"
+          aria-label="Toggle Navigation"
+        >
+          <span className="text-xs font-bold font-mono">{navOpen ? "CLOSE" : "MENU"}</span>
+        </button>
+      </nav>
+
+      {/* MOBILE NAV OVERLAY */}
+      {navOpen && (
+        <div className="fixed inset-0 z-40 flex flex-col justify-between bg-[#050505] p-10 pt-24 text-[#f4efe7] md:hidden">
+          <div className="flex flex-col gap-6 text-5xl font-display uppercase tracking-tight">
+            <Link to="/services" onClick={() => setNavOpen(false)}>Services</Link>
+            <Link to="/domains" onClick={() => setNavOpen(false)}>Domains</Link>
+            <Link to="/about" onClick={() => setNavOpen(false)}>About</Link>
+            <Link to="/resources" onClick={() => setNavOpen(false)}>Resources</Link>
           </div>
-
-          <div className="rounded-[24px] bg-ink p-6 text-white md:p-8">
-            <div className="rounded-[18px] bg-white/8 p-5">
-              <div className="font-mono text-[11px] uppercase tracking-[0.22em] text-white/50">
-                Homepage plan
-              </div>
-              <h2 className="mt-4 text-3xl font-medium tracking-tight text-white">
-                Professional impact, warmer roots.
-              </h2>
-              <ul className="mt-6 space-y-4 text-[15px] leading-relaxed text-white/72">
-                <li>Lead with outcomes, not a long list of tools.</li>
-                <li>Map AI, data, cloud and engineering into plain THG services.</li>
-                <li>Show service values: reliability, integrity and community care.</li>
-                <li>Make Robbie visible as the expert, learner and builder behind the work.</li>
-              </ul>
-            </div>
-            <div className="mt-5 grid grid-cols-3 gap-3">
-              {agencyStats.map((stat) => (
-                <div key={stat.label} className="rounded-[14px] bg-white/8 p-4">
-                  <div className="text-2xl font-semibold text-white">{stat.value}</div>
-                  <div className="mt-1 text-[11px] uppercase tracking-wider text-white/45">
-                    {stat.label}
-                  </div>
-                </div>
-              ))}
-            </div>
+          <div className="flex flex-col gap-3">
+            <Link to="/admin" onClick={() => setNavOpen(false)} className="flex items-center justify-center rounded-full border border-[#f4efe7]/30 py-3 font-semibold uppercase tracking-widest text-xs">
+              Control Centre
+            </Link>
+            <Link to="/contact" onClick={() => setNavOpen(false)} className="flex items-center justify-center rounded-full bg-[#10B981] py-3 font-semibold uppercase tracking-widest text-black text-xs">
+              Contact Us
+            </Link>
           </div>
         </div>
-      </Container>
-    </section>
-  );
-}
+      )}
 
-function Mapping() {
-  return (
-    <section className="py-12 md:py-20">
-      <Container>
-        <SectionHeader
-          title="How the twoday-style pillars translate for THG."
-          intro="The structure is enterprise-grade: AI, data, cloud and engineering. The Harley Group version keeps the impact energy, then brings it down to practical work for communities, small teams and purpose-led organisations."
-        />
-        <div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-          {serviceMap.map((item) => (
-            <article key={item.source} className="rounded-[18px] border border-ink/10 bg-white p-6">
-              <TagChip>{item.source}</TagChip>
-              <h3 className="mt-5 text-xl font-medium text-ink">{item.title}</h3>
-              <p className="mt-3 text-[14px] leading-relaxed text-ink-muted">{item.body}</p>
-            </article>
-          ))}
-        </div>
-      </Container>
-    </section>
-  );
-}
+      {/* MAIN CONTENT WRAPPER */}
+      <div className="main-wrapper opacity-0">
 
-function ServicesPreview() {
-  return (
-    <section className="py-16 md:py-24">
-      <Container>
-        <SectionHeader
-          title="Three practical ways The Harley Group helps."
-          intro="Clear enough to understand in one read, flexible enough to fit a church, charity, small business, creator, consultant or local team."
-        />
-        <div className="mt-10 grid gap-5 md:grid-cols-3">
-          {agencyOffers.map((offer) => (
-            <FeatureCard
-              key={offer.slug}
-              tag={offer.eyebrow}
-              title={offer.title}
-              body={
-                <>
-                  <span className="block font-semibold text-ink">{offer.price}</span>
-                  <span className="mt-2 block">{offer.summary}</span>
-                </>
-              }
-              ctaLabel="Explore services"
-              ctaTo="/services"
-              surface={offer.surface}
-            />
-          ))}
-        </div>
-      </Container>
-    </section>
-  );
-}
-
-function Impact() {
-  return (
-    <section className="py-16 md:py-24">
-      <Container>
-        <SectionHeader
-          title="Impact should be visible, even when the work is small."
-          intro="Borrow the outcome-led proof style, then make it honest for THG: time saved, clearer communication, reusable assets and less repeated admin."
-        />
-        <div className="mt-10 grid gap-5 lg:grid-cols-3">
-          {impactExamples.map((item) => (
-            <article
-              key={item.title}
-              className="flex h-full flex-col rounded-[20px] bg-white p-7 shadow-sm shadow-ink/5"
-            >
-              <div className="flex flex-wrap items-center justify-between gap-3">
-                <TagChip>{item.label}</TagChip>
-                <span className="rounded-full bg-primary/10 px-3 py-1 text-[12px] font-semibold text-ink">
-                  {item.metric}
-                </span>
-              </div>
-              <h3 className="mt-6 text-2xl font-medium tracking-tight text-ink">{item.title}</h3>
-              <p className="mt-4 text-[15px] leading-relaxed text-ink-muted">{item.body}</p>
-            </article>
-          ))}
-        </div>
-      </Container>
-    </section>
-  );
-}
-
-function Why() {
-  return (
-    <section className="py-16 md:py-24">
-      <Container>
-        <div className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-stretch">
-          <div className="rounded-[22px] bg-surface-sage p-8 md:p-10">
-            <TagChip>The why</TagChip>
-            <h2 className="mt-5 text-3xl font-medium tracking-tight text-ink md:text-5xl">
-              Technology is at its best when people can trust it.
+        {/* SECTION 1: HERO (#hero) */}
+        <section id="hero" className="relative flex h-screen w-screen items-center justify-center bg-[#4F46E5] overflow-hidden">
+          {/* Huge background wordmark */}
+          <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 text-center pointer-events-none">
+            <h2 className="font-display text-[22vw] uppercase tracking-tighter text-[#050505] opacity-25 leading-none select-none">
+              THG.DIGITAL
             </h2>
-            <p className="mt-5 text-[16px] leading-relaxed text-ink-muted">
-              The Harley Group is not trying to be a faceless agency. It is a partner for teams who
-              need someone technical, creative and steady enough to understand the mission behind
-              the task.
-            </p>
           </div>
-          <div className="grid gap-4 sm:grid-cols-2">
-            {approachCards.map(([title, body]) => (
-              <div key={title} className="rounded-[18px] border border-ink/10 bg-white p-6">
-                <h3 className="text-xl font-medium text-ink">{title}</h3>
-                <p className="mt-3 text-[14px] leading-relaxed text-ink-muted">{body}</p>
+
+          {/* 3D Perspective container */}
+          <div className="relative z-10 flex h-[500px] w-full max-w-[1200px] items-center justify-center [perspective:1400px]">
+            
+            {/* Card 1 (Launch Plan) */}
+            <div className="hero-card-1 absolute left-1/2 top-1/2 h-[380px] w-[290px] -translate-x-[180px] -translate-y-[190px] -rotate-6 rounded-2xl border border-black/10 bg-[#F43F5E] p-6 text-black shadow-lg will-change-transform">
+              <div className="flex h-full flex-col justify-between">
+                <div>
+                  <span className="font-mono text-[9px] uppercase tracking-[0.2em] opacity-60">Package 01</span>
+                  <h3 className="mt-4 font-display text-4xl uppercase tracking-tighter leading-[0.9]">Launch Plan</h3>
+                  <p className="mt-3 text-xs leading-relaxed opacity-80">
+                    A complete responsive website delivered in a single week. AI-planning, copy matching, and intake forms configured.
+                  </p>
+                </div>
+                <div className="border-t border-black/10 pt-4">
+                  <div className="font-display text-2xl uppercase tracking-tighter">£800 - £1,200</div>
+                  <div className="text-[10px] font-mono uppercase tracking-wider opacity-60 mt-1">Outcome: Page + Booking</div>
+                </div>
+              </div>
+            </div>
+
+            {/* Card 2 (AI & Automation) - CENTRAL CARD WITH SHEEN & IDLE */}
+            <div className="hero-card-2 absolute left-1/2 top-1/2 z-10 h-[430px] w-[320px] -translate-x-1/2 -translate-y-[215px] rounded-2xl border border-[#f4efe7]/20 bg-[#050505] p-8 text-[#f4efe7] shadow-2xl will-change-transform">
+              {/* Soft sheen gradient screen */}
+              <div className="absolute inset-0 rounded-2xl bg-gradient-to-tr from-[#4F46E5]/10 via-[#F43F5E]/5 to-[#10B981]/15 opacity-40 mix-blend-screen pointer-events-none" />
+              
+              <div className="flex h-full flex-col justify-between relative z-10">
+                <div className="flex justify-between items-start">
+                  <div className="flex items-center gap-1.5 rounded-full bg-[#10B981]/10 px-2.5 py-0.5 text-[9px] font-mono uppercase tracking-wider text-[#10B981]">
+                    <Sparkles size={8} /> Primary Offer
+                  </div>
+                  <Cpu size={14} className="text-[#10B981]" />
+                </div>
+                
+                <div>
+                  <span className="font-mono text-[9px] uppercase tracking-[0.2em] text-[#f4efe7]/60">Pillar Offer</span>
+                  <h3 className="mt-4 font-display text-5xl uppercase tracking-tighter leading-[0.9] text-white">Applied AI & Automation</h3>
+                  <p className="mt-3 text-xs leading-relaxed text-[#f4efe7]/80">
+                    Lightweight integrations, customized GPT setups, form triggers, and operational checkpoints to eradicate administrative fatigue.
+                  </p>
+                </div>
+                
+                <div className="border-t border-[#f4efe7]/10 pt-4 flex justify-between items-end">
+                  <div>
+                    <div className="font-display text-2xl uppercase tracking-tighter text-[#10B981]">Audits & Retainers</div>
+                    <div className="text-[10px] font-mono uppercase tracking-wider text-[#f4efe7]/60 mt-1">Immediate time savings</div>
+                  </div>
+                  <ArrowRight size={20} className="text-[#10B981]" />
+                </div>
+              </div>
+            </div>
+
+            {/* Card 3 (Care Plans) */}
+            <div className="hero-card-3 absolute left-1/2 top-1/2 h-[380px] w-[290px] translate-x-[180px] -translate-y-[190px] rotate-6 rounded-2xl border border-black/10 bg-[#10B981] p-6 text-black shadow-lg will-change-transform">
+              <div className="flex h-full flex-col justify-between">
+                <div>
+                  <span className="font-mono text-[9px] uppercase tracking-[0.2em] opacity-60">Package 03</span>
+                  <h3 className="mt-4 font-display text-4xl uppercase tracking-tighter leading-[0.9]">Care Plans</h3>
+                  <p className="mt-3 text-xs leading-relaxed opacity-80">
+                    Hosting, performance checks, regular security updates, domain renewal, and technical support managed as a quiet service.
+                  </p>
+                </div>
+                <div className="border-t border-black/10 pt-4">
+                  <div className="font-display text-2xl uppercase tracking-tighter">£150 / mo</div>
+                  <div className="text-[10px] font-mono uppercase tracking-wider opacity-60 mt-1">Outcome: Continuous support</div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        {/* SECTION 2: PILLARS (#pillars) */}
+        <section id="pillars" className="relative flex h-screen w-screen flex-col justify-between bg-[#10B981] p-10 text-black">
+          <div>
+            <span className="font-mono text-[11px] uppercase tracking-[0.25em] opacity-70">Core Methodology</span>
+            <h2 className="pillar-title mt-6 font-display text-[7vw] uppercase tracking-tighter leading-none max-w-5xl">
+              TRANSLATING ENTERPRISE POWER FOR SMALL OPERATORS.
+            </h2>
+          </div>
+
+          <div className="grid gap-6 md:grid-cols-4 mt-auto">
+            {[
+              {
+                t: "Applied AI",
+                d: "AI that drives real work speed-ups. Shorter prototyping, faster content formatting, and decision engines.",
+              },
+              {
+                t: "Lightweight Data",
+                d: "We structure customer forms, contact pipelines, and domain records to yield clear action points.",
+              },
+              {
+                t: "Cloud Platforms",
+                d: "Lightweight, reliable hosting, backup tasks, and secure database connections that just work.",
+              },
+              {
+                t: "Engineering Craft",
+                d: "Hands-on maker capability shaped by NHS systems discipline and clean web architectures.",
+              },
+            ].map((p, idx) => (
+              <div key={idx} className="pillar-item rounded-xl border border-black/10 bg-white/40 p-6 backdrop-blur-md">
+                <span className="font-mono text-xs opacity-60">0{idx + 1}</span>
+                <h3 className="mt-4 font-display text-2xl uppercase tracking-tighter">{p.t}</h3>
+                <p className="mt-2 text-xs leading-relaxed opacity-80">{p.d}</p>
               </div>
             ))}
           </div>
-        </div>
-      </Container>
-    </section>
-  );
-}
+        </section>
 
-function HumanElement() {
-  return (
-    <section className="py-16 md:py-24">
-      <Container>
-        <div className="grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-start">
-          <div>
-            <TagChip>Meet the expert</TagChip>
-            <h2 className="mt-5 text-3xl font-medium tracking-tight text-ink md:text-5xl">
-              Less hierarchy. More craft, curiosity and care.
+        {/* SECTION 3: MANIFESTO (#manifesto) */}
+        <section id="manifesto" className="relative flex h-screen w-screen items-center justify-center bg-[#f4efe7] text-[#050505] p-10 overflow-hidden">
+          {/* Decorative gradients */}
+          <div className="absolute top-1/4 left-1/4 h-[350px] w-[350px] rounded-full bg-[#4F46E5]/10 filter blur-[80px]" />
+          <div className="absolute bottom-1/4 right-1/4 h-[350px] w-[350px] rounded-full bg-[#F43F5E]/10 filter blur-[80px]" />
+
+          <div className="relative z-10 w-full max-w-5xl text-center">
+            <span className="font-mono text-[11px] uppercase tracking-[0.25em] text-[#050505]/60 mb-8 block">THG Manifesto</span>
+            
+            {/* Scrambled snap container */}
+            <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 font-display text-[4vw] uppercase tracking-tighter leading-none text-black">
+              {manifestoSentence.map((w, idx) => (
+                <span
+                  key={idx}
+                  className="manifesto-word inline-block opacity-0 will-change-transform"
+                  style={{
+                    transform: `translate(${w.x}px, ${w.y}px) rotate(${w.r}deg)`,
+                  }}
+                >
+                  {w.text}
+                </span>
+              ))}
+            </div>
+            
+            {/* Hand-drawn arrow illustration */}
+            <div className="absolute left-[8%] bottom-[-160px] h-[100px] w-[130px] hidden lg:block opacity-65">
+              <svg viewBox="0 0 120 90" className="h-full w-full stroke-[#4F46E5] stroke-[2.5] fill-none">
+                <path d="M8 10 C 40 20, 70 40, 100 72" />
+                <path d="M86 68 L 102 74 L 96 56" />
+              </svg>
+              <span className="absolute right-[-100px] bottom-4 font-hand text-lg text-[#4F46E5]">Direct, capable, human</span>
+            </div>
+          </div>
+        </section>
+
+        {/* SECTION 4: WORK BOARD (#board) */}
+        <section id="board" className="relative flex h-screen w-screen flex-col justify-between bg-[#10B981] p-10 text-black overflow-hidden">
+          {/* Flying dots midground */}
+          <div className="absolute inset-0 z-0 pointer-events-none opacity-20">
+            <svg className="h-full w-full">
+              <path className="flying-dot-1" stroke="black" strokeWidth="2" strokeDasharray="6 10" d="M -100 200 C 400 300, 800 100, 1400 400" fill="none" />
+              <path className="flying-dot-2" stroke="black" strokeWidth="2" strokeDasharray="6 10" d="M -100 500 C 500 200, 700 600, 1400 300" fill="none" />
+            </svg>
+          </div>
+
+          <div className="relative z-10">
+            <span className="font-mono text-[11px] uppercase tracking-[0.25em] opacity-70">Agency Output</span>
+            <h2 className="font-display text-[7vw] uppercase tracking-tighter leading-none mt-4">
+              PROVEN RESULTS. EVERY TIME.
             </h2>
-            <p className="mt-5 text-[16px] leading-relaxed text-ink-muted">
-              Instead of a corporate leadership grid, make this section feel like meeting the person
-              behind the work: what Robbie is learning, what he builds, how he thinks and why
-              service matters.
-            </p>
           </div>
-          <div className="rounded-[24px] bg-ink p-6 text-white md:p-8">
-            <div className="grid gap-5 md:grid-cols-[0.8fr_1.2fr] md:items-center">
-              <div className="aspect-square rounded-[20px] bg-white/10 p-5">
-                <div className="flex h-full flex-col justify-between rounded-[16px] border border-white/10 p-5">
-                  <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-white/50">
-                    Robbie Harley
-                  </span>
-                  <span className="text-4xl font-medium tracking-tight text-white">THG</span>
-                </div>
-              </div>
-              <div>
-                <h3 className="text-3xl font-medium tracking-tight text-white">
-                  Builder, learner, servant-hearted technologist.
-                </h3>
-                <p className="mt-4 text-[15px] leading-relaxed text-white/70">
-                  The story to tell is not job title first. It is practice: NHS reliability,
-                  faith-shaped integrity, ethical hacking curiosity, AI experimentation and a
-                  genuine love for helping communities communicate better.
-                </p>
-                <div className="mt-6 flex flex-wrap gap-2">
-                  {[
-                    "NHS IT",
-                    "AI creator",
-                    "Ethical hacking",
-                    "Figma and Canva",
-                    "Community service",
-                  ].map((item) => (
-                    <span
-                      key={item}
-                      className="rounded-full bg-white/10 px-3 py-1 text-[12px] text-white/75"
-                    >
-                      {item}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </Container>
-    </section>
-  );
-}
 
-function Process() {
-  return (
-    <section className="py-16 md:py-24">
-      <Container>
-        <SectionHeader
-          title="A simple working rhythm."
-          intro="Every project should feel calm and understandable: listen properly, shape the scope, build the useful thing, then improve it from real feedback."
-        />
-        <div className="mt-10 grid gap-4 md:grid-cols-4">
-          {agencyProcess.map((step) => (
-            <article key={step.step} className="rounded-[18px] border border-ink/10 bg-white p-6">
-              <div className="font-mono text-[12px] text-ink-muted">{step.step}</div>
-              <h3 className="mt-4 text-xl font-medium text-ink">{step.title}</h3>
-              <p className="mt-3 text-[14px] leading-relaxed text-ink-muted">{step.body}</p>
-            </article>
-          ))}
-        </div>
-      </Container>
-    </section>
-  );
-}
-
-function FinalCta() {
-  return (
-    <section className="py-16 md:py-28">
-      <Container>
-        <div className="rounded-[24px] bg-ink p-8 text-white md:p-12">
-          <div className="grid gap-8 md:grid-cols-[1fr_auto] md:items-center">
-            <div>
-              <h2 className="max-w-2xl text-3xl font-medium tracking-tight text-white md:text-5xl">
-                Got a digital problem that needs a human answer?
-              </h2>
-              <p className="mt-5 max-w-xl text-[16px] leading-relaxed text-white/70">
-                Send a short note. We will talk through the goal, recommend the smallest useful next
-                step and keep the language plain.
-              </p>
-            </div>
-            <div className="flex flex-wrap gap-3 md:justify-end">
-              <PillButton as="link" to="/contact" variant="light" size="md">
-                Start a conversation
-              </PillButton>
-              <Link
-                to="/services"
-                className="inline-flex items-center text-sm font-medium text-white/70 underline underline-offset-4 hover:text-white"
+          {/* Snap Board Cards */}
+          <div className="relative z-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4 mt-auto">
+            {boardCards.map((c, idx) => (
+              <div
+                key={idx}
+                className={`board-card rounded-2xl border border-black/10 ${c.bg} p-6 shadow-md opacity-0 will-change-transform`}
+                style={{
+                  transform: `translate(${c.x}px, ${c.y}px) rotate(${c.r}deg)`,
+                }}
               >
-                Compare services
-              </Link>
+                <div className="flex flex-col justify-between h-full min-h-[180px]">
+                  <div>
+                    <span className="font-mono text-[10px] uppercase tracking-wider bg-black/5 px-2 py-0.5 rounded-full">{c.label}</span>
+                    <h3 className="mt-4 font-display text-2xl uppercase tracking-tighter leading-none">{c.title}</h3>
+                  </div>
+                  <p className="text-xs leading-relaxed opacity-75 mt-3">{c.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* SECTION 5: CTA WIPES (#cta) */}
+        <section id="cta" className="relative h-screen w-screen bg-black overflow-hidden">
+          
+          {/* Wipe 1: Rose (Bottom Swipe) */}
+          <div className="wipe-rose absolute inset-0 z-10 flex translate-y-full items-center justify-center bg-[#F43F5E]">
+            <h3 className="sweep-title-rose font-display text-[9vw] uppercase tracking-tighter text-black opacity-0 leading-none">
+              NO COMPLEX RETROFITS.
+            </h3>
+          </div>
+
+          {/* Wipe 2: Emerald (Left Swipe) */}
+          <div className="wipe-emerald absolute inset-0 z-20 flex -translate-x-full items-center justify-center bg-[#10B981]">
+            <h3 className="sweep-title-emerald font-display text-[9vw] uppercase tracking-tighter text-black opacity-0 leading-none">
+              JUST THE WORK.
+            </h3>
+          </div>
+
+          {/* Wipe 3: Black (Top Swipe) & Final Content Pane */}
+          <div className="wipe-black absolute inset-0 z-30 flex translate-y-full flex-col justify-between bg-[#050505] p-10 text-[#f4efe7]">
+            <div className="flex w-full items-center justify-between">
+              <span className="font-mono text-[11px] uppercase tracking-[0.25em] text-[#f4efe7]/60">Get in touch</span>
+              <span className="font-hand text-lg text-[#10B981]">Robbie Harley, Founder</span>
+            </div>
+
+            {/* Final Content Pane */}
+            <div className="final-pane grid gap-8 md:grid-cols-2 max-w-6xl mx-auto w-full items-center justify-center opacity-0 my-auto">
+              <div>
+                <h3 className="sweep-title-black font-display text-[5vw] uppercase tracking-tighter leading-none text-white">
+                  TALK THROUGH A PROJECT.
+                </h3>
+                <p className="mt-6 text-sm leading-relaxed text-[#f4efe7]/80 max-w-md">
+                  We reply within one working day. No jargon, no high-pressure pitch. Just direct, capable assistance to scope what you actually need.
+                </p>
+                <div className="mt-8 flex flex-wrap gap-3">
+                  <a href="mailto:hello@theharleygroup.org" className="flex items-center gap-2 rounded-full border border-[#f4efe7]/30 bg-transparent px-5 py-2.5 text-xs font-semibold uppercase tracking-widest text-[#f4efe7] hover:bg-[#f4efe7]/10">
+                    <Mail size={12} /> hello@theharleygroup.org
+                  </a>
+                  <Link to="/admin" className="flex items-center gap-1 text-xs font-semibold uppercase tracking-wider text-[#10B981] underline underline-offset-4 hover:opacity-80">
+                    Open Control Centre <ExternalLink size={12} />
+                  </Link>
+                </div>
+              </div>
+
+              {/* High Fidelity Lead Capture Form */}
+              <form onSubmit={handleContactSubmit} className="rounded-2xl border border-[#f4efe7]/10 bg-white/5 p-6 backdrop-blur-md">
+                {sent && (
+                  <div className="mb-4 rounded-lg bg-[#10B981]/10 border border-[#10B981]/20 p-3 text-xs text-[#10B981]">
+                    Thank you! Enquiry recorded. Robbie will respond within 24 hours.
+                  </div>
+                )}
+                
+                <div className="grid gap-4">
+                  <div>
+                    <label className="block text-[11px] font-mono uppercase tracking-wider text-[#f4efe7]/60" htmlFor="cta-name">Your Name</label>
+                    <input required id="cta-name" name="name" type="text" placeholder="Robbie" className="mt-1 w-full rounded-lg border border-[#f4efe7]/10 bg-[#050505] px-3 py-2 text-sm text-[#f4efe7] focus:border-[#10B981] focus:outline-none" />
+                  </div>
+                  
+                  <div>
+                    <label className="block text-[11px] font-mono uppercase tracking-wider text-[#f4efe7]/60" htmlFor="cta-email">Email</label>
+                    <input required id="cta-email" name="email" type="email" placeholder="robbie@theharleygroup.org" className="mt-1 w-full rounded-lg border border-[#f4efe7]/10 bg-[#050505] px-3 py-2 text-sm text-[#f4efe7] focus:border-[#10B981] focus:outline-none" />
+                  </div>
+                  
+                  <div>
+                    <label className="block text-[11px] font-mono uppercase tracking-wider text-[#f4efe7]/60" htmlFor="cta-company">Organisation (optional)</label>
+                    <input id="cta-company" name="company" type="text" placeholder="The Harley Group" className="mt-1 w-full rounded-lg border border-[#f4efe7]/10 bg-[#050505] px-3 py-2 text-sm text-[#f4efe7] focus:border-[#10B981] focus:outline-none" />
+                  </div>
+
+                  <div>
+                    <label className="block text-[11px] font-mono uppercase tracking-wider text-[#f4efe7]/60" htmlFor="cta-message">How can we help?</label>
+                    <textarea required id="cta-message" name="message" rows={3} placeholder="Tell us about the website, content workflow, or automation you want to build..." className="mt-1 w-full rounded-lg border border-[#f4efe7]/10 bg-[#050505] px-3 py-2 text-sm text-[#f4efe7] focus:border-[#10B981] focus:outline-none" />
+                  </div>
+
+                  <button type="submit" disabled={busy} className="mt-2 w-full rounded-full bg-[#10B981] py-3 text-xs font-semibold uppercase tracking-widest text-black hover:opacity-90 disabled:opacity-50 transition">
+                    {busy ? "SUBMITTING..." : "SUBMIT ENQUIRY"}
+                  </button>
+                </div>
+              </form>
+            </div>
+
+            <div className="flex w-full items-center justify-between text-[11px] text-[#f4efe7]/50 border-t border-[#f4efe7]/10 pt-4">
+              <span>© {new Date().getFullYear()} THG DIGITAL AGENCY</span>
+              <div className="flex gap-4">
+                <Link to="/about" className="hover:underline">About Robbie</Link>
+                <Link to="/services" className="hover:underline">Offer Packages</Link>
+              </div>
             </div>
           </div>
-        </div>
-      </Container>
-    </section>
+
+        </section>
+
+      </div>
+
+    </div>
   );
 }
