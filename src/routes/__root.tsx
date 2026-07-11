@@ -136,6 +136,43 @@ function RootShell({ children }: { children: ReactNode }) {
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
 
+  useEffect(() => {
+    if (typeof window !== "undefined" && "serviceWorker" in navigator) {
+      window.addEventListener("load", () => {
+        navigator.serviceWorker
+          .register("/sw.js")
+          .then((registration) => {
+            console.log("SW registered: ", registration);
+
+            // Handle updates found
+            registration.addEventListener("updatefound", () => {
+              const newWorker = registration.installing;
+              if (newWorker) {
+                newWorker.addEventListener("statechange", () => {
+                  if (newWorker.state === "activated") {
+                    console.log("New SW version activated. Reloading page...");
+                    window.location.reload();
+                  }
+                });
+              }
+            });
+          })
+          .catch((registrationError) => {
+            console.log("SW registration failed: ", registrationError);
+          });
+      });
+
+      // Reload client when new SW takes control
+      let refreshing = false;
+      navigator.serviceWorker.addEventListener("controllerchange", () => {
+        if (!refreshing) {
+          refreshing = true;
+          window.location.reload();
+        }
+      });
+    }
+  }, []);
+
   return (
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
