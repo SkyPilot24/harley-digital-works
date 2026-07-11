@@ -303,7 +303,10 @@ function NoemaHomepage() {
       );
     }, containerRef);
 
-    return () => ctx.revert();
+    return () => {
+      ctx.revert();
+      document.body.classList.remove("is-loading");
+    };
   }, []);
 
   // Scrambled manifesto words data
