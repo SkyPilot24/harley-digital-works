@@ -80,6 +80,7 @@ docs/
   design.md             Design system and animation rules
   brand-pack.md         Brand guidance
   slack-integration.md  Slack alert behavior
+  simple-runbooks.md    Cross-agent runbooks for daily execution
 ```
 
 ## How it works
@@ -186,6 +187,7 @@ The `docs/` folder contains the product, brand, and operating context behind the
 - `docs/overall-plan.md`
 - `docs/design.md`
 - `docs/brand-pack.md`
+- `docs/simple-runbooks.md`
 
 ## Good next questions
 
