@@ -52,6 +52,8 @@ type DiagnosticTaskPayload = {
   done: false;
 };
 
+const LEGACY_CONTACT_EMAILS = ["hello@thg.digital", "hello@theharleygroup.org"];
+
 async function requireAdmin(userId: string) {
   const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
   const { data: role, error: roleErr } = await supabaseAdmin
@@ -160,7 +162,7 @@ async function runWebsiteDiagnostics(): Promise<WebsiteDiagnostic[]> {
           ?? matchContent(html, /<meta\s+content=["']([^"']*)["']\s+name=["']description["']/i);
         const canonical = matchContent(html, /<link\s+rel=["']canonical["']\s+href=["']([^"']*)["']/i)
           ?? matchContent(html, /<link\s+href=["']([^"']*)["']\s+rel=["']canonical["']/i);
-        const hasLegacyEmail = html.includes("hello@thg.digital");
+        const hasLegacyEmail = LEGACY_CONTACT_EMAILS.some((email) => html.includes(email));
         const hasCanonical = Boolean(canonical);
         const hasDescription = Boolean(description);
         const hasLeadCaptureLink = route.path === route.leadCapturePath || hasRouteLink(html, route.leadCapturePath);
@@ -289,7 +291,7 @@ function diagnosticMessage({
   const issues = [
     !hasCanonical ? "missing canonical" : null,
     !hasDescription ? "missing description" : null,
-    hasLegacyEmail ? "legacy thg.digital email found" : null,
+    hasLegacyEmail ? "legacy contact email found" : null,
     !hasLeadCaptureLink ? "missing lead-capture link" : null,
     hasLeadForm === false ? "contact form fields missing" : null,
     !hasSitemapEntry ? "missing sitemap entry" : null,

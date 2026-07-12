@@ -78,6 +78,8 @@ export function SiteHeader() {
         <button
           type="button"
           aria-label="Toggle menu"
+          aria-expanded={open}
+          aria-controls="mobile-site-nav"
           onClick={() => setOpen((v) => !v)}
           className="rounded-md p-2 text-ink md:hidden"
         >
@@ -86,7 +88,7 @@ export function SiteHeader() {
       </div>
 
       {open && (
-        <div className="border-t border-ink/10 bg-background md:hidden">
+        <div id="mobile-site-nav" className="border-t border-ink/10 bg-background md:hidden">
           <div className="mx-auto flex max-w-[1240px] flex-col gap-1 px-6 py-4">
             {LINKS.map((l) => (
               <Link

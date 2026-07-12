@@ -62,7 +62,7 @@ const roleSchema = z.object({
 
 export const grantUserRole = createServerFn({ method: "POST" })
   .middleware([requireSupabaseAuth])
-  .inputValidator((data: unknown) => roleSchema.parse(data))
+  .validator((data: unknown) => roleSchema.parse(data))
   .handler(async ({ data, context }) => {
     await assertAdmin(context.userId);
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
@@ -75,7 +75,7 @@ export const grantUserRole = createServerFn({ method: "POST" })
 
 export const revokeUserRole = createServerFn({ method: "POST" })
   .middleware([requireSupabaseAuth])
-  .inputValidator((data: unknown) => roleSchema.parse(data))
+  .validator((data: unknown) => roleSchema.parse(data))
   .handler(async ({ data, context }) => {
     await assertAdmin(context.userId);
     if (data.role === "admin" && data.user_id === context.userId) {

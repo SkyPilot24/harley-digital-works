@@ -12,12 +12,12 @@ import { domainBundles, formatGbp, getDomainBuyNowPrice, rankedDomains } from "@
 export const Route = createFileRoute("/domains")({
   head: () => ({
     meta: [
-      { title: "Domains - The Harley Group" },
+      { title: "Domains - THG Digital Agency" },
       {
         name: "description",
         content: "A sale portfolio of owned domains across AI, autonomous driving, green transport, IoT, finance, and UK niche brands.",
       },
-      { property: "og:title", content: "Domains - The Harley Group" },
+      { property: "og:title", content: "Domains - THG Digital Agency" },
     ],
   }),
   component: DomainsPage,
@@ -158,5 +158,4 @@ function BuyNowButton({ domain }: { domain: string }) {
     </button>
   );
 }
-
 

@@ -1,12 +1,31 @@
+function normalizeSiteUrl(url: string) {
+  return url.trim().replace(/\/+$/, "");
+}
+
+const configuredSiteUrl =
+  import.meta.env.VITE_SITE_URL ||
+  process.env.VITE_SITE_URL ||
+  process.env.SITE_URL ||
+  "https://harleydigitalworks.com";
+
+const siteUrl = normalizeSiteUrl(configuredSiteUrl);
+const siteDomain = new URL(siteUrl).hostname;
+
 export const siteConfig = {
-  name: "The Harley Group",
-  domain: "theharleygroup.org",
-  url: "https://theharleygroup.org",
-  canonicalUrl: "https://theharleygroup.org/",
-  ogImage: "https://theharleygroup.org/og-image.svg",
+  name: "THG Digital Agency",
+  domain: siteDomain,
+  url: siteUrl,
+  canonicalUrl: `${siteUrl}/`,
+  ogImage: `${siteUrl}/og-image.svg`,
+  contactEmail: "hello@harleydigitalworks.com",
   brandMark: "/brand/thg-mark.svg",
   brandLogo: "/brand/thg-logo-horizontal.svg",
 };
+
+export function canonicalUrlForPath(pathname: string) {
+  const safePath = pathname.startsWith("/") ? pathname : `/${pathname}`;
+  return safePath === "/" ? siteConfig.canonicalUrl : `${siteConfig.url}${safePath}`;
+}
 
 export type PublicWebsiteRoute = {
   path: string;
@@ -151,7 +170,7 @@ export const publicWebsiteRoutes: PublicWebsiteRoute[] = [
     diagnosticGroup: "Lead capture",
     leadCapturePath: "/contact",
     revenueRole: "Lead capture and sales intake",
-    nextAction: "Replace legacy contact email once the theharleygroup.org mailbox or alias is ready.",
+    nextAction: "Keep contact details aligned with the current production domain and mailbox.",
     priority: "High",
   },
 ];
@@ -174,7 +193,7 @@ export const websiteAuditSuggestions: WebsiteAuditSuggestion[] = [
     title: "Replace legacy contact email",
     priority: "High",
     owner: "Sales intake",
-    action: "Move public contact links from hello@theharleygroup.org to a theharleygroup.org mailbox or alias when ready.",
+    action: "Keep all public contact links and placeholders aligned with the production mailbox.",
   },
   {
     title: "Connect money pages to Revenue OS",
