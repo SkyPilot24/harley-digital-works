@@ -13,6 +13,7 @@ import { useServerFn } from "@tanstack/react-start";
 import { z } from "zod";
 import { toast } from "sonner";
 import { submitLead } from "@/lib/lead-intake.functions";
+import { siteConfig } from "@/lib/site-config";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -166,8 +167,8 @@ function ContactPage() {
                     Email
                   </dt>
                   <dd className="mt-2">
-                    <a href="mailto:hello@theharleygroup.org" className="text-ink hover:text-primary">
-                      hello@theharleygroup.org
+                    <a href={`mailto:${siteConfig.contactEmail}`} className="text-ink hover:text-primary">
+                      {siteConfig.contactEmail}
                     </a>
                   </dd>
                 </div>

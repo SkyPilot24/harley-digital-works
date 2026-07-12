@@ -1,12 +1,11 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import { useServerFn } from "@tanstack/react-start";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { LucideIcon, ArrowRight, Check, Sparkles, Stethoscope, Mail, ExternalLink, ShieldCheck, Cpu } from "lucide-react";
 import { submitLead } from "@/lib/lead-intake.functions";
 import { z } from "zod";
 import { toast } from "sonner";
+import { siteConfig } from "@/lib/site-config";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -14,16 +13,12 @@ export const Route = createFileRoute("/")({
       { title: "THG Digital — Applied craft. Fixed-price delivery." },
       {
         name: "description",
-        content: "A scroll-driven, high-fidelity digital creative consultancy website for The Harley Group led by Dr Robbie Harley.",
+        content: "A scroll-driven, high-fidelity digital creative consultancy website for THG Digital Agency led by Dr Robbie Harley.",
       },
     ],
   }),
   component: NoemaHomepage,
 });
-
-if (typeof window !== "undefined") {
-  gsap.registerPlugin(ScrollTrigger);
-}
 
 const leadSchema = z.object({
   name: z.string().trim().min(1, "Name is required").max(100),
@@ -70,30 +65,42 @@ function NoemaHomepage() {
   }
 
   useEffect(() => {
-    // 1. Initial lock state
+    let cancelled = false;
+    let revert: (() => void) | null = null;
+
     document.body.classList.add("is-loading");
 
-    const ctx = gsap.context(() => {
-      // LOADER SEQUENCE
-      const loaderTl = gsap.timeline({
-        onComplete: () => {
-          document.body.classList.remove("is-loading");
-          ScrollTrigger.refresh();
-        },
-      });
+    async function initAnimations() {
+      try {
+        const [{ gsap }, { ScrollTrigger }] = await Promise.all([
+          import("gsap"),
+          import("gsap/ScrollTrigger"),
+        ]);
 
-      // SVG path drawing
-      loaderTl.fromTo(
-        ".wave-path-1",
-        { strokeDashoffset: 100 },
-        { strokeDashoffset: 0, duration: 1.2, ease: "power2.inOut" }
-      );
-      loaderTl.fromTo(
-        ".wave-path-2",
-        { strokeDashoffset: 100 },
-        { strokeDashoffset: 0, duration: 1.2, ease: "power2.inOut" },
-        "<0.2"
-      );
+        if (cancelled) return;
+        gsap.registerPlugin(ScrollTrigger);
+
+        const ctx = gsap.context(() => {
+          // LOADER SEQUENCE
+          const loaderTl = gsap.timeline({
+            onComplete: () => {
+              document.body.classList.remove("is-loading");
+              ScrollTrigger.refresh();
+            },
+          });
+
+          // SVG path drawing
+          loaderTl.fromTo(
+            ".wave-path-1",
+            { strokeDashoffset: 100 },
+            { strokeDashoffset: 0, duration: 1.2, ease: "power2.inOut" }
+          );
+          loaderTl.fromTo(
+            ".wave-path-2",
+            { strokeDashoffset: 100 },
+            { strokeDashoffset: 0, duration: 1.2, ease: "power2.inOut" },
+            "<0.2"
+          );
 
       // Staggered text rise
       loaderTl.fromTo(
@@ -296,15 +303,25 @@ function NoemaHomepage() {
         { yPercent: 0, opacity: 1, ease: "power3.out" },
         "-=0.3"
       );
-      ctaTl.fromTo(
-        ".final-pane",
-        { opacity: 0, y: 50 },
-        { opacity: 1, y: 0, ease: "power3.out" }
-      );
-    }, containerRef);
+          ctaTl.fromTo(
+            ".final-pane",
+            { opacity: 0, y: 50 },
+            { opacity: 1, y: 0, ease: "power3.out" }
+          );
+        }, containerRef);
+
+        revert = () => ctx.revert();
+      } catch (error) {
+        console.error(error);
+        document.body.classList.remove("is-loading");
+      }
+    }
+
+    void initAnimations();
 
     return () => {
-      ctx.revert();
+      cancelled = true;
+      revert?.();
       document.body.classList.remove("is-loading");
     };
   }, []);
@@ -438,6 +455,8 @@ function NoemaHomepage() {
           onClick={() => setNavOpen(!navOpen)} 
           className="flex h-10 w-10 items-center justify-center rounded-full bg-[#f4efe7] text-black md:hidden"
           aria-label="Toggle Navigation"
+          aria-expanded={navOpen}
+          aria-controls="mobile-main-nav"
         >
           <span className="text-xs font-bold font-mono">{navOpen ? "CLOSE" : "MENU"}</span>
         </button>
@@ -445,7 +464,7 @@ function NoemaHomepage() {
 
       {/* MOBILE NAV OVERLAY */}
       {navOpen && (
-        <div className="fixed inset-0 z-40 flex flex-col justify-between bg-[#050505] p-10 pt-24 text-[#f4efe7] md:hidden">
+        <div id="mobile-main-nav" className="fixed inset-0 z-40 flex flex-col justify-between bg-[#050505] p-10 pt-24 text-[#f4efe7] md:hidden">
           <div className="flex flex-col gap-6 text-5xl font-display uppercase tracking-tight">
             <Link to="/services" onClick={() => setNavOpen(false)}>Services</Link>
             <Link to="/domains" onClick={() => setNavOpen(false)}>Domains</Link>
@@ -691,8 +710,8 @@ function NoemaHomepage() {
                   We reply within one working day. No jargon, no high-pressure pitch. Just direct, capable assistance to scope what you actually need.
                 </p>
                 <div className="mt-8 flex flex-wrap gap-3">
-                  <a href="mailto:hello@theharleygroup.org" className="flex items-center gap-2 rounded-full border border-[#f4efe7]/30 bg-transparent px-5 py-2.5 text-xs font-semibold uppercase tracking-widest text-[#f4efe7] hover:bg-[#f4efe7]/10">
-                    <Mail size={12} /> hello@theharleygroup.org
+                  <a href={`mailto:${siteConfig.contactEmail}`} className="flex items-center gap-2 rounded-full border border-[#f4efe7]/30 bg-transparent px-5 py-2.5 text-xs font-semibold uppercase tracking-widest text-[#f4efe7] hover:bg-[#f4efe7]/10">
+                    <Mail size={12} /> {siteConfig.contactEmail}
                   </a>
                   <Link to="/admin" className="flex items-center gap-1 text-xs font-semibold uppercase tracking-wider text-[#10B981] underline underline-offset-4 hover:opacity-80">
                     Open Control Centre <ExternalLink size={12} />
@@ -716,12 +735,12 @@ function NoemaHomepage() {
                   
                   <div>
                     <label className="block text-[11px] font-mono uppercase tracking-wider text-[#f4efe7]/60" htmlFor="cta-email">Email</label>
-                    <input required id="cta-email" name="email" type="email" placeholder="robbie@theharleygroup.org" className="mt-1 w-full rounded-lg border border-[#f4efe7]/10 bg-[#050505] px-3 py-2 text-sm text-[#f4efe7] focus:border-[#10B981] focus:outline-none" />
+                    <input required id="cta-email" name="email" type="email" placeholder={`you@${siteConfig.domain}`} className="mt-1 w-full rounded-lg border border-[#f4efe7]/10 bg-[#050505] px-3 py-2 text-sm text-[#f4efe7] focus:border-[#10B981] focus:outline-none" />
                   </div>
                   
                   <div>
                     <label className="block text-[11px] font-mono uppercase tracking-wider text-[#f4efe7]/60" htmlFor="cta-company">Organisation (optional)</label>
-                    <input id="cta-company" name="company" type="text" placeholder="The Harley Group" className="mt-1 w-full rounded-lg border border-[#f4efe7]/10 bg-[#050505] px-3 py-2 text-sm text-[#f4efe7] focus:border-[#10B981] focus:outline-none" />
+                    <input id="cta-company" name="company" type="text" placeholder={siteConfig.name} className="mt-1 w-full rounded-lg border border-[#f4efe7]/10 bg-[#050505] px-3 py-2 text-sm text-[#f4efe7] focus:border-[#10B981] focus:outline-none" />
                   </div>
 
                   <div>
