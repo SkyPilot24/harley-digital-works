@@ -1,0 +1,60 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 1200 630"
+  role="img"
+  aria-labelledby="title desc"
+>
+  <title id="title">Harley Digital Works social preview</title>
+  <desc id="desc">
+    Black and gold Harley Digital Works social preview with the Better websites, smarter systems,
+    simpler growth tagline.
+  </desc>
+  <rect width="1200" height="630" fill="#0D0D0D" />
+  <rect x="56" y="56" width="1088" height="518" rx="34" fill="#1A1A1A" />
+  <path d="M138 132h50v86l84-49v-37h50v224h-50V229l-84 49v78h-50V132z" fill="#C89D3C" />
+  <path d="M188 220l84-49v58l-84 49v-58z" fill="#0D0D0D" opacity=".32" />
+  <line x1="392" y1="116" x2="392" y2="364" stroke="#FFFFFF" stroke-width="2" opacity=".78" />
+  <text
+    x="438"
+    y="214"
+    font-family="Manrope, Arial, sans-serif"
+    font-size="76"
+    font-weight="800"
+    letter-spacing="8"
+    fill="#FFFFFF"
+  >
+    HARLEY
+  </text>
+  <text
+    x="442"
+    y="284"
+    font-family="Manrope, Arial, sans-serif"
+    font-size="43"
+    font-weight="700"
+    letter-spacing="9"
+    fill="#C89D3C"
+  >
+    DIGITAL WORKS
+  </text>
+  <text
+    x="138"
+    y="462"
+    font-family="Manrope, Arial, sans-serif"
+    font-size="34"
+    font-weight="700"
+    fill="#FFFFFF"
+  >
+    Better websites. Smarter systems. Simpler growth.
+  </text>
+  <text
+    x="140"
+    y="524"
+    font-family="Manrope, Arial, sans-serif"
+    font-size="20"
+    font-weight="600"
+    letter-spacing="5"
+    fill="#C89D3C"
+  >
+    HARLEYDIGITALWORKS.COM
+  </text>
+</svg>

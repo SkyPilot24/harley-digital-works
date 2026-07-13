@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { PillButton } from "./PillButton";
 import { siteConfig } from "@/lib/site-config";
+import { BrandLogo } from "./BrandLogo";
 
 const YEAR = 2026;
 
@@ -50,16 +51,8 @@ export function FooterDark() {
               </PillButton>
             </div>
 
-            <div className="mt-14 flex items-baseline gap-1.5">
-              <span
-                className="text-[28px] font-extrabold leading-none tracking-tight text-background"
-                style={{ fontFamily: "var(--font-wordmark)" }}
-              >
-                thg
-              </span>
-              <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-background/50">
-                digital agency
-              </span>
+            <div className="mt-14 flex items-center">
+              <BrandLogo variant="light" imageClassName="h-6 w-auto" />
             </div>
           </div>
 

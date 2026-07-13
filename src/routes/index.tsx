@@ -10,10 +10,10 @@ import { siteConfig } from "@/lib/site-config";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "THG Digital — Applied craft. Fixed-price delivery." },
+      { title: "Harley Digital Works — Better websites. Smarter systems. Simpler growth." },
       {
         name: "description",
-        content: "A scroll-driven, high-fidelity digital creative consultancy website for THG Digital Agency led by Dr Robbie Harley.",
+        content: "Harley Digital Works helps businesses and organisations build better websites, automate repetitive work and create scalable digital systems.",
       },
     ],
   }),
@@ -404,7 +404,7 @@ function NoemaHomepage() {
         </div>
         {/* Rise letters */}
         <div className="flex overflow-hidden font-display text-4xl uppercase tracking-widest text-[#f4efe7] md:text-6xl">
-          {Array.from("THG DIGITAL").map((char, index) => (
+          {Array.from("HARLEY DIGITAL WORKS").map((char, index) => (
             <span key={index} className="loader-letter inline-block translate-y-full opacity-0">
               {char === " " ? "\u00A0" : char}
             </span>
@@ -431,8 +431,8 @@ function NoemaHomepage() {
       {/* FIXED NAVIGATION WITH BLEND MODE (z-60) */}
       <nav className="fixed inset-x-0 top-0 z-50 flex h-16 items-center justify-between px-6 mix-blend-difference md:px-10">
         <Link to="/" className="flex items-baseline gap-1">
-          <span className="font-display text-2xl uppercase tracking-tighter text-[#f4efe7]">thg</span>
-          <span className="font-mono text-[9px] uppercase tracking-[0.25em] text-[#f4efe7]/80">agency</span>
+          <span className="font-display text-2xl uppercase tracking-tighter text-[#f4efe7]">hdw</span>
+          <span className="font-mono text-[9px] uppercase tracking-[0.25em] text-[#f4efe7]/80">works</span>
         </Link>
         
         <div className="hidden items-center gap-8 md:flex">
@@ -490,7 +490,7 @@ function NoemaHomepage() {
           {/* Huge background wordmark */}
           <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 text-center pointer-events-none">
             <h2 className="font-display text-[22vw] uppercase tracking-tighter text-[#050505] opacity-25 leading-none select-none">
-              THG.DIGITAL
+              HARLEY.WORKS
             </h2>
           </div>
 
@@ -609,7 +609,7 @@ function NoemaHomepage() {
           <div className="absolute bottom-1/4 right-1/4 h-[350px] w-[350px] rounded-full bg-[#F43F5E]/10 filter blur-[80px]" />
 
           <div className="relative z-10 w-full max-w-5xl text-center">
-            <span className="font-mono text-[11px] uppercase tracking-[0.25em] text-[#050505]/60 mb-8 block">THG Manifesto</span>
+            <span className="font-mono text-[11px] uppercase tracking-[0.25em] text-[#050505]/60 mb-8 block">HDW Manifesto</span>
             
             {/* Scrambled snap container */}
             <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 font-display text-[4vw] uppercase tracking-tighter leading-none text-black">
@@ -756,7 +756,7 @@ function NoemaHomepage() {
             </div>
 
             <div className="flex w-full items-center justify-between text-[11px] text-[#f4efe7]/50 border-t border-[#f4efe7]/10 pt-4">
-              <span>© {new Date().getFullYear()} THG DIGITAL AGENCY</span>
+              <span>© {new Date().getFullYear()} HARLEY DIGITAL WORKS</span>
               <div className="flex gap-4">
                 <Link to="/about" className="hover:underline">About Robbie</Link>
                 <Link to="/services" className="hover:underline">Offer Packages</Link>

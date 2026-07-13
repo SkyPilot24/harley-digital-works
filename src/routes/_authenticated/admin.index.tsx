@@ -117,7 +117,7 @@ const profileSetup = [
   {
     title: "LinkedIn company page",
     guidance:
-      "Use a clear tagline, short about section, website link, Bristol location, THG logo, and invite relevant connections to follow.",
+      "Use a clear tagline, short about section, website link, Bristol location, HDW logo, and invite relevant connections to follow.",
   },
   {
     title: "Story Highlights",
@@ -127,7 +127,7 @@ const profileSetup = [
   {
     title: "Profile images",
     guidance:
-      "Use a professional headshot for Robbie's personal LinkedIn profile. Use the THG logo mark for company and Instagram profiles.",
+      "Use a professional headshot for Robbie's personal LinkedIn profile. Use the HDW logo mark for company and Instagram profiles.",
   },
 ] as const;
 

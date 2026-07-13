@@ -69,10 +69,10 @@
   --color-ink: var(--ink);
   --color-ink-muted: var(--ink-muted);
   --color-footer: var(--footer);
-  --font-display: "Anton", sans-serif;
-  --font-sans: "Inter", sans-serif;
+  --font-display: "Manrope", sans-serif;
+  --font-sans: "Manrope", sans-serif;
   --font-mono: "DM Mono", ui-monospace, "SFMono-Regular", monospace;
-  --font-wordmark: "Syne", ui-sans-serif, system-ui, sans-serif;
+  --font-wordmark: "Manrope", ui-sans-serif, system-ui, sans-serif;
   --font-hand: "Caveat", cursive;
   --radius-card: 20px;
   --radius-pill: 999px;
@@ -81,29 +81,35 @@
 :root {
   --radius: 0.625rem;
 
-  /* THG brand accent — teal, kept as sole accent color */
-  --thg-teal: oklch(0.55 0.07 187);
-  --thg-teal-light: oklch(0.63 0.08 187);
-  --thg-teal-dark: oklch(0.44 0.06 187);
+  /* Approved Harley Digital Works black-and-gold brand tokens. */
+  --hdw-black: oklch(0.14 0 0); /* #0D0D0D */
+  --works-charcoal: oklch(0.21 0 0); /* #1A1A1A */
+  --signature-gold: oklch(0.72 0.12 83); /* #C89D3C */
+  --signature-gold-light: oklch(0.82 0.12 86); /* #F2C45A */
+  --soft-silver: oklch(0.955 0 0); /* #F0F0F0 */
 
-  /* Warm neutral canvas + tinted surfaces (twoday.com inspired) */
-  --background: oklch(0.965 0.008 85);           /* #F6F4EE warm off-white */
-  --surface-sage: oklch(0.925 0.018 130);         /* #E4E9DE soft sage */
-  --surface-stone: oklch(0.915 0.022 75);         /* #EDE7DB warm beige */
-  --surface-mist: oklch(0.925 0.006 190);         /* #E8EBEB cool stone */
-  --surface-cream: oklch(0.955 0.014 85);         /* subtle cream */
+  /* Legacy token names retained for compatibility; they now map to Signature Gold. */
+  --thg-teal: var(--signature-gold);
+  --thg-teal-light: var(--signature-gold-light);
+  --thg-teal-dark: oklch(0.62 0.11 83);
 
-  --foreground: oklch(0.20 0.005 260);            /* near-black ink */
-  --ink: oklch(0.18 0.005 260);
-  --ink-muted: oklch(0.48 0.006 260);             /* meta text */
-  --footer: oklch(0.16 0.004 260);                /* footer bg */
+  --background: var(--soft-silver);
+  --surface-sage: oklch(0.93 0.006 95);
+  --surface-stone: oklch(0.9 0.008 85);
+  --surface-mist: oklch(0.93 0 0);
+  --surface-cream: oklch(1 0 0);
+
+  --foreground: var(--hdw-black);
+  --ink: var(--hdw-black);
+  --ink-muted: oklch(0.46 0 0);
+  --footer: var(--hdw-black);
 
   --card: oklch(1 0 0);
   --card-foreground: var(--ink);
   --popover: oklch(1 0 0);
   --popover-foreground: var(--ink);
-  --primary: var(--thg-teal);
-  --primary-foreground: oklch(1 0 0);
+  --primary: var(--signature-gold);
+  --primary-foreground: var(--hdw-black);
   --secondary: var(--surface-cream);
   --secondary-foreground: var(--ink);
   --muted: var(--surface-cream);
@@ -122,12 +128,12 @@
   --chart-5: oklch(0.769 0.188 70.08);
   --sidebar: oklch(0.984 0.003 247.858);
   --sidebar-foreground: var(--ink);
-  --sidebar-primary: var(--thg-teal);
-  --sidebar-primary-foreground: oklch(1 0 0);
+  --sidebar-primary: var(--signature-gold);
+  --sidebar-primary-foreground: var(--hdw-black);
   --sidebar-accent: var(--surface-cream);
   --sidebar-accent-foreground: var(--ink);
   --sidebar-border: oklch(0.20 0.005 260 / 0.10);
-  --sidebar-ring: var(--thg-teal);
+  --sidebar-ring: var(--signature-gold);
 }
 
 .dark {
@@ -139,8 +145,8 @@
   --card-foreground: oklch(0.97 0.005 85);
   --popover: oklch(0.22 0.006 260);
   --popover-foreground: oklch(0.97 0.005 85);
-  --primary: var(--thg-teal-light);
-  --primary-foreground: oklch(0.16 0.004 260);
+  --primary: var(--signature-gold-light);
+  --primary-foreground: var(--hdw-black);
   --secondary: oklch(0.26 0.006 260);
   --secondary-foreground: oklch(0.97 0.005 85);
   --muted: oklch(0.26 0.006 260);

@@ -18,13 +18,13 @@ import { siteConfig } from "@/lib/site-config";
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: "Contact - THG Digital Agency" },
+      { title: "Contact - Harley Digital Works" },
       {
         name: "description",
         content:
           "Book a free 15-minute call, or send us a note. We reply within one working day.",
       },
-      { property: "og:title", content: "Contact - THG Digital Agency" },
+      { property: "og:title", content: "Contact - Harley Digital Works" },
     ],
   }),
   component: ContactPage,

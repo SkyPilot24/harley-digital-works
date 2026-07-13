@@ -8,13 +8,13 @@ import { agencyOffers, agencyProcess } from "@/lib/agency-content";
 export const Route = createFileRoute("/services")({
   head: () => ({
     meta: [
-      { title: "Services - THG Digital Agency" },
+      { title: "Services - Harley Digital Works" },
       {
         name: "description",
         content:
           "Fixed-price launch websites, automation audits, and care plans for small operators who need a clear digital presence and lead capture.",
       },
-      { property: "og:title", content: "Services - THG Digital Agency" },
+      { property: "og:title", content: "Services - Harley Digital Works" },
       {
         property: "og:description",
         content:

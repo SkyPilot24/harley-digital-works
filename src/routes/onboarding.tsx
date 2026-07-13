@@ -8,12 +8,12 @@ import { agencyProcess, onboardingChecklist } from "@/lib/agency-content";
 export const Route = createFileRoute("/onboarding")({
   head: () => ({
     meta: [
-      { title: "Client onboarding - THG Digital Agency" },
+      { title: "Client onboarding - Harley Digital Works" },
       {
         name: "description",
-        content: "Simple onboarding for new THG Digital Agency clients: fit, assets, access, scope, and launch preparation.",
+        content: "Simple onboarding for new Harley Digital Works clients: fit, assets, access, scope, and launch preparation.",
       },
-      { property: "og:title", content: "Client onboarding - THG Digital Agency" },
+      { property: "og:title", content: "Client onboarding - Harley Digital Works" },
     ],
   }),
   component: OnboardingPage,

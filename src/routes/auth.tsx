@@ -17,7 +17,7 @@ export const Route = createFileRoute("/auth")({
   },
   head: () => ({
     meta: [
-      { title: "Sign in — THG Admin" },
+      { title: "Sign in — HDW Admin" },
       { name: "robots", content: "noindex, nofollow" },
     ],
   }),
@@ -96,7 +96,7 @@ function AuthPage() {
               {mode === "signin" ? "Sign in to admin" : "Create an admin account"}
             </h1>
             <p className="mt-2 text-sm text-ink-muted">
-              Access the THG agency dashboard.
+              Access the Harley Digital Works agency dashboard.
             </p>
 
             <button

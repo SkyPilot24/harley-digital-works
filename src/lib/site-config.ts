@@ -12,14 +12,18 @@ const siteUrl = normalizeSiteUrl(configuredSiteUrl);
 const siteDomain = new URL(siteUrl).hostname;
 
 export const siteConfig = {
-  name: "THG Digital Agency",
+  name: "Harley Digital Works",
   domain: siteDomain,
   url: siteUrl,
   canonicalUrl: `${siteUrl}/`,
   ogImage: `${siteUrl}/og-image.svg`,
   contactEmail: "hello@harleydigitalworks.com",
-  brandMark: "/brand/thg-mark.svg",
-  brandLogo: "/brand/thg-logo-horizontal.svg",
+  brandMark: "/brand/approved/logos/hdw-monogram-dark.svg",
+  brandLogo: "/brand/approved/logos/hdw-wordmark-dark.svg",
+  brandLogoDark: "/brand/approved/logos/hdw-wordmark-dark.svg",
+  brandLogoLight: "/brand/approved/logos/hdw-wordmark-light.svg",
+  brandMarkDark: "/brand/approved/logos/hdw-monogram-dark.svg",
+  brandMarkLight: "/brand/approved/logos/hdw-monogram-light.svg",
 };
 
 export function canonicalUrlForPath(pathname: string) {

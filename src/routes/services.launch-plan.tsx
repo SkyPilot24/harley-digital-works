@@ -4,7 +4,7 @@ import { ServiceDetailLayout } from "@/components/site/ServiceDetailLayout";
 export const Route = createFileRoute("/services/launch-plan")({
   head: () => ({
     meta: [
-      { title: "30-Day Launch Plan — THG Digital Agency" },
+      { title: "30-Day Launch Plan — Harley Digital Works" },
       {
         name: "description",
         content:

@@ -15,8 +15,8 @@ import { AuthProvider } from "@/hooks/use-auth";
 import { Toaster } from "sonner";
 import { canonicalUrlForPath, siteConfig } from "@/lib/site-config";
 
-const siteTitle = "THG Digital Agency — Applied craft. Fixed-price delivery. Lasting impact.";
-const siteDescription = "Websites, content and automation for community groups, solo founders and local brands. Fixed prices, one-week builds, plain-English throughout.";
+const siteTitle = "Harley Digital Works — Better websites. Smarter systems. Simpler growth.";
+const siteDescription = "Harley Digital Works helps businesses and organisations build better websites, automate repetitive work and create scalable digital systems.";
 
 function NotFoundComponent() {
   return (
@@ -79,15 +79,18 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
 }
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
-  head: ({ location }) => {
-    const canonical = canonicalUrlForPath(location.pathname);
+  head: (ctx: any) => {
+    const matches = ctx?.matches || [];
+    const leafMatch = matches[matches.length - 1];
+    const pathname = leafMatch?.pathname || "/";
+    const canonical = canonicalUrlForPath(pathname);
     return {
       meta: [
         { charSet: "utf-8" },
         { name: "viewport", content: "width=device-width, initial-scale=1" },
         { title: siteTitle },
         { name: "description", content: siteDescription },
-        { name: "author", content: "THG Digital Agency" },
+        { name: "author", content: "Harley Digital Works" },
         { property: "og:title", content: siteTitle },
         { property: "og:description", content: siteDescription },
         { property: "og:url", content: canonical },

@@ -1,4 +1,4 @@
-const CACHE_NAME = "thg-digital-cache-v2";
+const CACHE_NAME = "harley-digital-works-cache-v1";
 const OFFLINE_URL = "/offline.html";
 
 const PRECACHE_ASSETS = [

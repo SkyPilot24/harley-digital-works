@@ -1,4 +1,4 @@
-﻿import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { useServerFn } from "@tanstack/react-start";
 import { toast } from "sonner";
@@ -12,12 +12,12 @@ import { domainBundles, formatGbp, getDomainBuyNowPrice, rankedDomains } from "@
 export const Route = createFileRoute("/domains")({
   head: () => ({
     meta: [
-      { title: "Domains - THG Digital Agency" },
+      { title: "Domains - Harley Digital Works" },
       {
         name: "description",
         content: "A sale portfolio of owned domains across AI, autonomous driving, green transport, IoT, finance, and UK niche brands.",
       },
-      { property: "og:title", content: "Domains - THG Digital Agency" },
+      { property: "og:title", content: "Domains - Harley Digital Works" },
     ],
   }),
   component: DomainsPage,

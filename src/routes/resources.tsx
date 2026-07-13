@@ -7,12 +7,12 @@ import { FeatureCard } from "@/components/site/FeatureCard";
 export const Route = createFileRoute("/resources")({
   head: () => ({
     meta: [
-      { title: "Playbooks and resources - THG Digital Agency" },
+      { title: "Playbooks and resources - Harley Digital Works" },
       {
         name: "description",
         content: "Plain-English agency playbooks for daily sales, content, AI research, delivery, and client onboarding.",
       },
-      { property: "og:title", content: "Playbooks and resources - THG Digital Agency" },
+      { property: "og:title", content: "Playbooks and resources - Harley Digital Works" },
     ],
   }),
   component: ResourcesPage,

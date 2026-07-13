@@ -1,0 +1,784 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Harley Digital Works H-Led Open Aperture Addendum - Review Only</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        color-scheme: light;
+        --black: #0b0f10;
+        --green: #0e5f52;
+        --coral: #d95d39;
+        --paper: #fbf8f1;
+        --field: #e7ece6;
+        --text: #15191a;
+        --muted: #596564;
+        --line: rgba(11, 15, 16, 0.14);
+        --body: Manrope, Inter, ui-sans-serif, system-ui, sans-serif;
+        --display: Fraunces, Georgia, serif;
+        --mono: "IBM Plex Mono", "DM Mono", ui-monospace, monospace;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        background: var(--paper);
+        color: var(--text);
+        font-family: var(--body);
+      }
+
+      .page {
+        width: min(1480px, calc(100vw - 40px));
+        margin: 0 auto;
+        padding: 44px 0 80px;
+      }
+
+      .intro {
+        display: grid;
+        gap: 18px;
+        margin-bottom: 28px;
+      }
+
+      .eyebrow {
+        margin: 0;
+        color: var(--muted);
+        font: 500 12px/1.3 var(--mono);
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4,
+      p {
+        margin: 0;
+      }
+
+      h1 {
+        max-width: 940px;
+        font: 700 clamp(40px, 6vw, 86px) / 0.95 var(--display);
+        letter-spacing: 0;
+      }
+
+      .intro p {
+        max-width: 820px;
+        color: var(--muted);
+        font-size: 17px;
+        line-height: 1.65;
+      }
+
+      .notice {
+        width: fit-content;
+        max-width: 840px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.58);
+        padding: 10px 12px;
+        color: #475251;
+        font-size: 13px;
+        line-height: 1.45;
+      }
+
+      .palette {
+        display: grid;
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        gap: 10px;
+        margin: 28px 0;
+      }
+
+      .swatch {
+        min-height: 86px;
+        border-radius: 8px;
+        padding: 10px;
+        color: white;
+        font: 500 11px/1.3 var(--mono);
+      }
+
+      .swatch.light {
+        border: 1px solid var(--line);
+        color: var(--text);
+      }
+
+      .direction {
+        overflow: hidden;
+        margin-top: 24px;
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        background: rgba(255, 255, 255, 0.52);
+        box-shadow: 0 24px 80px rgba(11, 15, 16, 0.08);
+      }
+
+      .direction-head {
+        display: grid;
+        grid-template-columns: minmax(0, 1.05fr) minmax(340px, 0.95fr);
+        gap: 28px;
+        padding: 34px;
+        border-bottom: 1px solid var(--line);
+        background:
+          radial-gradient(circle at 82% 12%, rgba(217, 93, 57, 0.12), transparent 28%),
+          linear-gradient(135deg, rgba(231, 236, 230, 0.72), rgba(251, 248, 241, 0.76));
+      }
+
+      .direction h2 {
+        max-width: 680px;
+        font: 700 clamp(34px, 4vw, 58px) / 1 var(--display);
+        letter-spacing: 0;
+      }
+
+      .copy {
+        max-width: 720px;
+        margin-top: 14px;
+        color: var(--muted);
+        font-size: 16px;
+        line-height: 1.65;
+      }
+
+      .bullets {
+        display: grid;
+        gap: 8px;
+        margin: 20px 0 0;
+        padding: 0;
+        list-style: none;
+        color: #34413f;
+        font-size: 14px;
+        line-height: 1.45;
+      }
+
+      .bullets li {
+        display: flex;
+        gap: 8px;
+      }
+
+      .bullets li::before {
+        content: "";
+        flex: 0 0 auto;
+        width: 7px;
+        height: 7px;
+        margin-top: 7px;
+        border-radius: 999px;
+        background: var(--coral);
+      }
+
+      .logo-system {
+        display: grid;
+        gap: 14px;
+      }
+
+      .logo-card,
+      .dark-card,
+      .single-card {
+        min-height: 126px;
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        background: rgba(251, 248, 241, 0.86);
+        padding: 18px;
+      }
+
+      .dark-card {
+        background: var(--black);
+      }
+
+      .single-card {
+        background: var(--field);
+      }
+
+      .brand-lockup {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+      }
+
+      .brand-name {
+        color: var(--text);
+        font: 700 27px/1 var(--body);
+        letter-spacing: 0;
+      }
+
+      .brand-parent {
+        margin-top: 7px;
+        color: var(--muted);
+        font: 500 11px/1.25 var(--mono);
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+
+      .dark-card .brand-name,
+      .dark-card .brand-parent {
+        color: var(--paper);
+      }
+
+      .symbol {
+        width: 82px;
+        height: 82px;
+        flex: 0 0 82px;
+      }
+
+      .strip {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        align-items: center;
+        margin-top: 14px;
+      }
+
+      .mini {
+        display: grid;
+        width: 72px;
+        height: 72px;
+        place-items: center;
+        border-radius: 18px;
+        background: var(--black);
+      }
+
+      .mini.paper {
+        border: 1px solid var(--line);
+        background: var(--paper);
+      }
+
+      .label {
+        color: var(--muted);
+        font: 500 10px/1.2 var(--mono);
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      .mockups {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        gap: 14px;
+        padding: 18px;
+        background:
+          linear-gradient(rgba(11, 15, 16, 0.045) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(11, 15, 16, 0.045) 1px, transparent 1px);
+        background-size: 28px 28px;
+      }
+
+      .mock {
+        min-height: 150px;
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        background: rgba(251, 248, 241, 0.88);
+        padding: 16px;
+      }
+
+      .mock h3 {
+        color: var(--muted);
+        font: 500 10px/1.2 var(--mono);
+        letter-spacing: 0.13em;
+        text-transform: uppercase;
+      }
+
+      .nav {
+        grid-column: span 7;
+      }
+
+      .hero {
+        grid-column: span 5;
+        min-height: 270px;
+        background: var(--black);
+        color: var(--paper);
+      }
+
+      .favicon,
+      .pwa,
+      .avatar {
+        grid-column: span 2;
+      }
+
+      .business {
+        grid-column: span 3;
+      }
+
+      .proposal {
+        grid-column: span 3;
+        min-height: 240px;
+        background: var(--black);
+        color: var(--paper);
+      }
+
+      .social {
+        grid-column: span 5;
+      }
+
+      .email {
+        grid-column: span 4;
+      }
+
+      .dashboard {
+        grid-column: span 5;
+      }
+
+      .nav-frame {
+        margin-top: 14px;
+        border: 1px solid var(--line);
+        border-radius: 9px;
+        background: var(--paper);
+        padding: 12px;
+      }
+
+      .nav-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 18px;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 18px;
+        color: var(--muted);
+        font-size: 12px;
+        font-weight: 700;
+      }
+
+      .btn {
+        border-radius: 999px;
+        background: var(--black);
+        color: var(--paper);
+        padding: 8px 12px;
+        font-size: 12px;
+        font-weight: 700;
+      }
+
+      .hero h4,
+      .proposal h4,
+      .social h4 {
+        margin-top: 18px;
+        font: 700 34px/1 var(--display);
+        letter-spacing: 0;
+      }
+
+      .hero p,
+      .proposal p,
+      .email p,
+      .dashboard p,
+      .business p {
+        margin-top: 12px;
+        color: color-mix(in srgb, currentColor, transparent 28%);
+        font-size: 13px;
+        line-height: 1.5;
+      }
+
+      .rule {
+        width: 72%;
+        height: 6px;
+        margin-top: 22px;
+        border-radius: 999px;
+        background: var(--coral);
+      }
+
+      .browser-tab {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-top: 18px;
+        border-radius: 999px;
+        background: var(--field);
+        padding: 8px 10px;
+        color: var(--text);
+        font-size: 11px;
+      }
+
+      .iconbox {
+        display: grid;
+        width: 90px;
+        height: 90px;
+        place-items: center;
+        margin-top: 18px;
+        border-radius: 22px;
+        background: var(--black);
+      }
+
+      .avatar-circle {
+        display: grid;
+        width: 96px;
+        height: 96px;
+        place-items: center;
+        margin-top: 18px;
+        border-radius: 999px;
+        background: var(--black);
+      }
+
+      .social-header {
+        min-height: 126px;
+        margin-top: 16px;
+        border-radius: 10px;
+        background: linear-gradient(135deg, var(--black), var(--green));
+        color: var(--paper);
+        padding: 18px;
+      }
+
+      .email-head {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-top: 18px;
+        padding: 14px;
+        border-radius: 8px;
+        background: var(--field);
+      }
+
+      .dash-grid {
+        display: grid;
+        grid-template-columns: 0.8fr 1.2fr;
+        gap: 10px;
+        margin-top: 18px;
+      }
+
+      .dash-side,
+      .dash-main {
+        min-height: 120px;
+        border-radius: 8px;
+        background: var(--field);
+        padding: 10px;
+      }
+
+      .dash-pill {
+        height: 18px;
+        margin-bottom: 8px;
+        border-radius: 999px;
+        background: rgba(11, 15, 16, 0.16);
+      }
+
+      .dash-pill.active {
+        background: var(--black);
+      }
+
+      .dash-card {
+        height: 38px;
+        margin-bottom: 8px;
+        border-radius: 8px;
+        background: rgba(251, 248, 241, 0.78);
+      }
+
+      .comparison {
+        margin-top: 28px;
+        overflow-x: auto;
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        background: rgba(255, 255, 255, 0.58);
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        min-width: 820px;
+      }
+
+      th,
+      td {
+        border-bottom: 1px solid var(--line);
+        padding: 14px;
+        text-align: left;
+        vertical-align: top;
+        font-size: 14px;
+      }
+
+      th {
+        background: rgba(231, 236, 230, 0.62);
+        color: var(--text);
+        font-weight: 800;
+      }
+
+      tr:last-child td {
+        border-bottom: 0;
+      }
+
+      svg {
+        display: block;
+      }
+
+      @media (max-width: 980px) {
+        .direction-head {
+          grid-template-columns: 1fr;
+        }
+
+        .mockups {
+          grid-template-columns: 1fr;
+        }
+
+        .mock {
+          grid-column: 1 / -1;
+        }
+
+        .palette {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .nav-inner {
+          flex-wrap: wrap;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="page">
+      <section class="intro">
+        <p class="eyebrow">Draft addendum / Direction 3 refinement / not approved for production</p>
+        <h1>H-led Open Aperture logo directions</h1>
+        <p>
+          Three new symbol routes that keep the premium clarity-led world of Open Aperture while
+          making the Harley H central to the logo system.
+        </p>
+        <div class="notice">
+          Review-only concepts. These marks are not final vector artwork and must not replace live
+          logos, favicons, PWA icons, social previews, website branding, or dashboard branding before approval.
+        </div>
+      </section>
+
+      <section class="palette" aria-label="Shared colour palette">
+        <div class="swatch" style="background:#0b0f10">Aperture Black<br />#0B0F10</div>
+        <div class="swatch" style="background:#0e5f52">Deep Green<br />#0E5F52</div>
+        <div class="swatch" style="background:#d95d39">Signal Coral<br />#D95D39</div>
+        <div class="swatch light" style="background:#fbf8f1">Soft Paper<br />#FBF8F1</div>
+        <div class="swatch light" style="background:#e7ece6">Pale Field<br />#E7ECE6</div>
+      </section>
+
+      <section class="direction">
+        <div class="direction-head">
+          <div>
+            <p class="eyebrow">Direction 3A</p>
+            <h2>H Aperture</h2>
+            <p class="copy">
+              The closest continuation of Open Aperture. The H sits inside an open frame, giving the
+              mark a stronger Harley anchor while preserving the premium clarity-led character.
+            </p>
+            <ul class="bullets">
+              <li>Best for continuity with Direction 3 and a premium favicon.</li>
+              <li>H is central, but still framed by the clarity and focus idea.</li>
+              <li>Needs careful spacing so the H remains clear at the smallest sizes.</li>
+            </ul>
+          </div>
+          <div class="logo-system">
+            <div class="logo-card">
+              <div class="brand-lockup">
+                <svg class="symbol" viewBox="0 0 96 96" aria-label="H Aperture symbol">
+                  <rect width="96" height="96" rx="18" fill="#0B0F10" />
+                  <path d="M22 20H42M20 22V42M54 20H74M76 22V42M20 54V74M22 76H42M76 54V74M54 76H74" stroke="#FBF8F1" stroke-width="7" stroke-linecap="round" />
+                  <path d="M35 30V66M61 30V66M36 48H60" stroke="#FBF8F1" stroke-width="8" stroke-linecap="round" />
+                  <circle cx="48" cy="48" r="4.5" fill="#D95D39" />
+                </svg>
+                <div>
+                  <div class="brand-name">Harley Digital Works</div>
+                  <div class="brand-parent">The Harley Group</div>
+                </div>
+              </div>
+              <div class="strip">
+                <span class="label">Light</span>
+                <span class="mini paper">
+                  <svg width="48" height="48" viewBox="0 0 96 96" aria-hidden="true"><rect width="96" height="96" rx="18" fill="#FBF8F1"/><path d="M22 20H42M20 22V42M54 20H74M76 22V42M20 54V74M22 76H42M76 54V74M54 76H74" stroke="#0B0F10" stroke-width="7" stroke-linecap="round"/><path d="M35 30V66M61 30V66M36 48H60" stroke="#0B0F10" stroke-width="8" stroke-linecap="round"/><circle cx="48" cy="48" r="4.5" fill="#D95D39"/></svg>
+                </span>
+                <span class="label">Dark</span>
+                <span class="mini">
+                  <svg width="48" height="48" viewBox="0 0 96 96" aria-hidden="true"><rect width="96" height="96" rx="18" fill="#0B0F10"/><path d="M22 20H42M20 22V42M54 20H74M76 22V42M20 54V74M22 76H42M76 54V74M54 76H74" stroke="#FBF8F1" stroke-width="7" stroke-linecap="round"/><path d="M35 30V66M61 30V66M36 48H60" stroke="#FBF8F1" stroke-width="8" stroke-linecap="round"/><circle cx="48" cy="48" r="4.5" fill="#D95D39"/></svg>
+                </span>
+                <span class="label">Single colour</span>
+                <span class="mini paper">
+                  <svg width="48" height="48" viewBox="0 0 96 96" aria-hidden="true"><rect width="96" height="96" rx="18" fill="#FBF8F1"/><path d="M22 20H42M20 22V42M54 20H74M76 22V42M20 54V74M22 76H42M76 54V74M54 76H74" stroke="#0B0F10" stroke-width="7" stroke-linecap="round"/><path d="M35 30V66M61 30V66M36 48H60" stroke="#0B0F10" stroke-width="8" stroke-linecap="round"/></svg>
+                </span>
+              </div>
+            </div>
+            <div class="dark-card">
+              <div class="brand-lockup">
+                <svg class="symbol" viewBox="0 0 96 96" aria-hidden="true">
+                  <rect width="96" height="96" rx="18" fill="#FBF8F1" />
+                  <path d="M22 20H42M20 22V42M54 20H74M76 22V42M20 54V74M22 76H42M76 54V74M54 76H74" stroke="#0B0F10" stroke-width="7" stroke-linecap="round" />
+                  <path d="M35 30V66M61 30V66M36 48H60" stroke="#0B0F10" stroke-width="8" stroke-linecap="round" />
+                  <circle cx="48" cy="48" r="4.5" fill="#D95D39" />
+                </svg>
+                <div>
+                  <div class="brand-name">Harley Digital Works</div>
+                  <div class="brand-parent">Better websites. Smarter systems. Simpler growth.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="mockups">
+          <article class="mock nav"><h3>Website navigation</h3><div class="nav-frame"><div class="nav-inner"><div class="brand-lockup"><svg width="34" height="34" viewBox="0 0 96 96" aria-hidden="true"><rect width="96" height="96" rx="18" fill="#0B0F10"/><path d="M35 30V66M61 30V66M36 48H60" stroke="#FBF8F1" stroke-width="8" stroke-linecap="round"/><circle cx="48" cy="48" r="4.5" fill="#D95D39"/></svg><strong>Harley Digital Works</strong></div><div class="nav-links"><span>Services</span><span>Systems</span><span>Resources</span></div><span class="btn">Contact</span></div></div></article>
+          <article class="mock hero"><h3>Homepage hero</h3><h4>Clearer digital work. Simpler growth.</h4><p>Premium websites and digital systems shaped around the next useful action.</p><div class="rule"></div></article>
+          <article class="mock favicon"><h3>Favicon</h3><div class="browser-tab"><svg width="18" height="18" viewBox="0 0 96 96" aria-hidden="true"><rect width="96" height="96" rx="18" fill="#0B0F10"/><path d="M35 30V66M61 30V66M36 48H60" stroke="#FBF8F1" stroke-width="9" stroke-linecap="round"/></svg>Harley Digital...</div></article>
+          <article class="mock pwa"><h3>PWA icon</h3><div class="iconbox"><svg width="58" height="58" viewBox="0 0 96 96" aria-hidden="true"><rect width="96" height="96" rx="18" fill="#0B0F10"/><path d="M22 20H42M20 22V42M54 20H74M76 22V42M20 54V74M22 76H42M76 54V74M54 76H74" stroke="#FBF8F1" stroke-width="7" stroke-linecap="round"/><path d="M35 30V66M61 30V66M36 48H60" stroke="#FBF8F1" stroke-width="8" stroke-linecap="round"/><circle cx="48" cy="48" r="4.5" fill="#D95D39"/></svg></div></article>
+          <article class="mock business"><h3>Business card</h3><p style="margin-top:20px;color:var(--text);font-weight:800">Dr Robbie Harley</p><p>Founder<br />harleydigitalworks.com</p><div class="rule"></div></article>
+          <article class="mock avatar"><h3>Social avatar</h3><div class="avatar-circle"><svg width="60" height="60" viewBox="0 0 96 96" aria-hidden="true"><rect width="96" height="96" rx="18" fill="#FBF8F1"/><path d="M35 30V66M61 30V66M36 48H60" stroke="#0B0F10" stroke-width="8" stroke-linecap="round"/><circle cx="48" cy="48" r="4.5" fill="#D95D39"/></svg></div></article>
+          <article class="mock social"><h3>Social header</h3><div class="social-header"><strong>Harley Digital Works</strong><p>Better websites. Smarter systems. Simpler growth.</p></div></article>
+          <article class="mock proposal"><h3>Proposal cover</h3><h4>Digital clarity proposal</h4><p>Focused recommendations and a practical delivery plan.</p><div class="rule"></div></article>
+          <article class="mock email"><h3>Email header</h3><div class="email-head"><strong>Harley Digital Works</strong><span style="color:var(--muted)">Project note</span></div><p>Compact, premium client communication.</p></article>
+          <article class="mock dashboard"><h3>Admin dashboard</h3><div class="dash-grid"><div class="dash-side"><div class="dash-pill active"></div><div class="dash-pill"></div><div class="dash-pill"></div></div><div class="dash-main"><div class="dash-card"></div><div class="dash-card"></div><div class="dash-card"></div></div></div></article>
+        </div>
+      </section>
+
+      <section class="direction">
+        <div class="direction-head">
+          <div>
+            <p class="eyebrow">Direction 3B</p>
+            <h2>Harley Frame</h2>
+            <p class="copy">
+              A warmer, founder-led H built like a precise frame. It keeps the aperture language,
+              but puts immediate H recognition and practical trust first.
+            </p>
+            <ul class="bullets">
+              <li>Strongest H clarity and safest small-size performance.</li>
+              <li>Feels built, reliable, and personal without becoming informal.</li>
+              <li>Needs refinement so it does not feel like a generic letterform.</li>
+            </ul>
+          </div>
+          <div class="logo-system">
+            <div class="logo-card">
+              <div class="brand-lockup">
+                <svg class="symbol" viewBox="0 0 96 96" aria-label="Harley Frame symbol">
+                  <rect width="96" height="96" rx="18" fill="#FBF8F1" />
+                  <rect x="27" y="22" width="12" height="52" rx="6" fill="#0B0F10" />
+                  <rect x="57" y="22" width="12" height="52" rx="6" fill="#0B0F10" />
+                  <path d="M36 48H60" stroke="#D95D39" stroke-width="8" stroke-linecap="round" />
+                  <path d="M19 25V18H30M66 18H77V29M77 67V78H66M30 78H19V67" stroke="#0E5F52" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+                <div>
+                  <div class="brand-name">Harley Digital Works</div>
+                  <div class="brand-parent">The Harley Group</div>
+                </div>
+              </div>
+              <div class="strip">
+                <span class="label">Light</span>
+                <span class="mini paper"><svg width="48" height="48" viewBox="0 0 96 96" aria-hidden="true"><rect width="96" height="96" rx="18" fill="#FBF8F1"/><rect x="27" y="22" width="12" height="52" rx="6" fill="#0B0F10"/><rect x="57" y="22" width="12" height="52" rx="6" fill="#0B0F10"/><path d="M36 48H60" stroke="#D95D39" stroke-width="8" stroke-linecap="round"/></svg></span>
+                <span class="label">Dark</span>
+                <span class="mini"><svg width="48" height="48" viewBox="0 0 96 96" aria-hidden="true"><rect width="96" height="96" rx="18" fill="#0B0F10"/><rect x="27" y="22" width="12" height="52" rx="6" fill="#FBF8F1"/><rect x="57" y="22" width="12" height="52" rx="6" fill="#FBF8F1"/><path d="M36 48H60" stroke="#D95D39" stroke-width="8" stroke-linecap="round"/></svg></span>
+                <span class="label">Single colour</span>
+                <span class="mini paper"><svg width="48" height="48" viewBox="0 0 96 96" aria-hidden="true"><rect width="96" height="96" rx="18" fill="#FBF8F1"/><rect x="27" y="22" width="12" height="52" rx="6" fill="#0B0F10"/><rect x="57" y="22" width="12" height="52" rx="6" fill="#0B0F10"/><path d="M36 48H60" stroke="#0B0F10" stroke-width="8" stroke-linecap="round"/></svg></span>
+              </div>
+            </div>
+            <div class="dark-card">
+              <div class="brand-lockup">
+                <svg class="symbol" viewBox="0 0 96 96" aria-hidden="true">
+                  <rect width="96" height="96" rx="18" fill="#0B0F10" />
+                  <rect x="27" y="22" width="12" height="52" rx="6" fill="#FBF8F1" />
+                  <rect x="57" y="22" width="12" height="52" rx="6" fill="#FBF8F1" />
+                  <path d="M36 48H60" stroke="#D95D39" stroke-width="8" stroke-linecap="round" />
+                  <path d="M19 25V18H30M66 18H77V29M77 67V78H66M30 78H19V67" stroke="#E7ECE6" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+                <div>
+                  <div class="brand-name">Harley Digital Works</div>
+                  <div class="brand-parent">Better websites. Smarter systems. Simpler growth.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="mockups">
+          <article class="mock nav"><h3>Website navigation</h3><div class="nav-frame"><div class="nav-inner"><div class="brand-lockup"><svg width="34" height="34" viewBox="0 0 96 96" aria-hidden="true"><rect width="96" height="96" rx="18" fill="#FBF8F1"/><rect x="27" y="22" width="12" height="52" rx="6" fill="#0B0F10"/><rect x="57" y="22" width="12" height="52" rx="6" fill="#0B0F10"/><path d="M36 48H60" stroke="#D95D39" stroke-width="8" stroke-linecap="round"/></svg><strong>Harley Digital Works</strong></div><div class="nav-links"><span>Services</span><span>Care</span><span>Contact</span></div><span class="btn">Start</span></div></div></article>
+          <article class="mock hero"><h3>Homepage hero</h3><h4>Built clearly. Run calmly.</h4><p>Websites, care plans, automation, and digital systems from a practical partner.</p><div class="rule"></div></article>
+          <article class="mock favicon"><h3>Favicon</h3><div class="browser-tab"><svg width="18" height="18" viewBox="0 0 96 96" aria-hidden="true"><rect width="96" height="96" rx="18" fill="#0B0F10"/><rect x="27" y="22" width="12" height="52" rx="6" fill="#FBF8F1"/><rect x="57" y="22" width="12" height="52" rx="6" fill="#FBF8F1"/><path d="M36 48H60" stroke="#FBF8F1" stroke-width="8" stroke-linecap="round"/></svg>Harley Digital...</div></article>
+          <article class="mock pwa"><h3>PWA icon</h3><div class="iconbox"><svg width="58" height="58" viewBox="0 0 96 96" aria-hidden="true"><rect width="96" height="96" rx="18" fill="#0B0F10"/><rect x="27" y="22" width="12" height="52" rx="6" fill="#FBF8F1"/><rect x="57" y="22" width="12" height="52" rx="6" fill="#FBF8F1"/><path d="M36 48H60" stroke="#D95D39" stroke-width="8" stroke-linecap="round"/></svg></div></article>
+          <article class="mock business"><h3>Business card</h3><p style="margin-top:20px;color:var(--text);font-weight:800">Dr Robbie Harley</p><p>Founder<br />Better websites. Smarter systems.</p><div class="rule"></div></article>
+          <article class="mock avatar"><h3>Social avatar</h3><div class="avatar-circle"><svg width="60" height="60" viewBox="0 0 96 96" aria-hidden="true"><rect width="96" height="96" rx="18" fill="#FBF8F1"/><rect x="27" y="22" width="12" height="52" rx="6" fill="#0B0F10"/><rect x="57" y="22" width="12" height="52" rx="6" fill="#0B0F10"/><path d="M36 48H60" stroke="#D95D39" stroke-width="8" stroke-linecap="round"/></svg></div></article>
+          <article class="mock social"><h3>Social header</h3><div class="social-header"><strong>Harley Digital Works</strong><p>Practical websites, systems, and care.</p></div></article>
+          <article class="mock proposal"><h3>Proposal cover</h3><h4>Website and care proposal</h4><p>Clear scope, steady delivery, practical next steps.</p><div class="rule"></div></article>
+          <article class="mock email"><h3>Email header</h3><div class="email-head"><strong>Harley Digital Works</strong><span style="color:var(--muted)">Delivery update</span></div><p>Friendly, reliable client updates.</p></article>
+          <article class="mock dashboard"><h3>Admin dashboard</h3><div class="dash-grid"><div class="dash-side"><div class="dash-pill active"></div><div class="dash-pill"></div><div class="dash-pill"></div></div><div class="dash-main"><div class="dash-card"></div><div class="dash-card"></div><div class="dash-card"></div></div></div></article>
+        </div>
+      </section>
+
+      <section class="direction">
+        <div class="direction-head">
+          <div>
+            <p class="eyebrow">Direction 3C</p>
+            <h2>Signal H</h2>
+            <p class="copy">
+              The most digital and product-oriented route. A sturdy H carries one coral signal path,
+              suggesting progress, workflow, automation, and simpler systems.
+            </p>
+            <ul class="bullets">
+              <li>Strongest for motion, SaaS interfaces, and automation storytelling.</li>
+              <li>More active and distinctive than Harley Frame.</li>
+              <li>Signal stroke must stay bold enough for small-size clarity.</li>
+            </ul>
+          </div>
+          <div class="logo-system">
+            <div class="logo-card">
+              <div class="brand-lockup">
+                <svg class="symbol" viewBox="0 0 96 96" aria-label="Signal H symbol">
+                  <rect width="96" height="96" rx="18" fill="#0B0F10" />
+                  <path d="M30 24V72M66 24V72M31 48H65" stroke="#FBF8F1" stroke-width="9" stroke-linecap="round" />
+                  <path d="M29 64L43 50L53 50L67 34" stroke="#D95D39" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" />
+                  <circle cx="67" cy="34" r="4" fill="#D95D39" />
+                </svg>
+                <div>
+                  <div class="brand-name">Harley Digital Works</div>
+                  <div class="brand-parent">The Harley Group</div>
+                </div>
+              </div>
+              <div class="strip">
+                <span class="label">Light</span>
+                <span class="mini paper"><svg width="48" height="48" viewBox="0 0 96 96" aria-hidden="true"><rect width="96" height="96" rx="18" fill="#FBF8F1"/><path d="M30 24V72M66 24V72M31 48H65" stroke="#0B0F10" stroke-width="9" stroke-linecap="round"/><path d="M29 64L43 50L53 50L67 34" stroke="#D95D39" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                <span class="label">Dark</span>
+                <span class="mini"><svg width="48" height="48" viewBox="0 0 96 96" aria-hidden="true"><rect width="96" height="96" rx="18" fill="#0B0F10"/><path d="M30 24V72M66 24V72M31 48H65" stroke="#FBF8F1" stroke-width="9" stroke-linecap="round"/><path d="M29 64L43 50L53 50L67 34" stroke="#D95D39" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                <span class="label">Single colour</span>
+                <span class="mini paper"><svg width="48" height="48" viewBox="0 0 96 96" aria-hidden="true"><rect width="96" height="96" rx="18" fill="#FBF8F1"/><path d="M30 24V72M66 24V72M31 48H65" stroke="#0B0F10" stroke-width="9" stroke-linecap="round"/><path d="M29 64L43 50L53 50L67 34" stroke="#0B0F10" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </div>
+            </div>
+            <div class="dark-card">
+              <div class="brand-lockup">
+                <svg class="symbol" viewBox="0 0 96 96" aria-hidden="true">
+                  <rect width="96" height="96" rx="18" fill="#FBF8F1" />
+                  <path d="M30 24V72M66 24V72M31 48H65" stroke="#0B0F10" stroke-width="9" stroke-linecap="round" />
+                  <path d="M29 64L43 50L53 50L67 34" stroke="#D95D39" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" />
+                  <circle cx="67" cy="34" r="4" fill="#D95D39" />
+                </svg>
+                <div>
+                  <div class="brand-name">Harley Digital Works</div>
+                  <div class="brand-parent">Better websites. Smarter systems. Simpler growth.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="mockups">
+          <article class="mock nav"><h3>Website navigation</h3><div class="nav-frame"><div class="nav-inner"><div class="brand-lockup"><svg width="34" height="34" viewBox="0 0 96 96" aria-hidden="true"><rect width="96" height="96" rx="18" fill="#0B0F10"/><path d="M30 24V72M66 24V72M31 48H65" stroke="#FBF8F1" stroke-width="9" stroke-linecap="round"/><path d="M29 64L43 50L53 50L67 34" stroke="#D95D39" stroke-width="7" stroke-linecap="round"/></svg><strong>Harley Digital Works</strong></div><div class="nav-links"><span>Automation</span><span>Products</span><span>Growth</span></div><span class="btn">Contact</span></div></div></article>
+          <article class="mock hero"><h3>Homepage hero</h3><h4>Smarter systems with a clear route forward.</h4><p>Automation, content systems, SaaS products, and websites built to move work along.</p><div class="rule"></div></article>
+          <article class="mock favicon"><h3>Favicon</h3><div class="browser-tab"><svg width="18" height="18" viewBox="0 0 96 96" aria-hidden="true"><rect width="96" height="96" rx="18" fill="#0B0F10"/><path d="M30 24V72M66 24V72M31 48H65" stroke="#FBF8F1" stroke-width="10" stroke-linecap="round"/></svg>Harley Digital...</div></article>
+          <article class="mock pwa"><h3>PWA icon</h3><div class="iconbox"><svg width="58" height="58" viewBox="0 0 96 96" aria-hidden="true"><rect width="96" height="96" rx="18" fill="#0B0F10"/><path d="M30 24V72M66 24V72M31 48H65" stroke="#FBF8F1" stroke-width="9" stroke-linecap="round"/><path d="M29 64L43 50L53 50L67 34" stroke="#D95D39" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/></svg></div></article>
+          <article class="mock business"><h3>Business card</h3><p style="margin-top:20px;color:var(--text);font-weight:800">Harley Digital Works</p><p>Websites, automation, systems, products.</p><div class="rule"></div></article>
+          <article class="mock avatar"><h3>Social avatar</h3><div class="avatar-circle"><svg width="60" height="60" viewBox="0 0 96 96" aria-hidden="true"><rect width="96" height="96" rx="18" fill="#FBF8F1"/><path d="M30 24V72M66 24V72M31 48H65" stroke="#0B0F10" stroke-width="9" stroke-linecap="round"/><path d="M29 64L43 50L53 50L67 34" stroke="#D95D39" stroke-width="7" stroke-linecap="round"/></svg></div></article>
+          <article class="mock social"><h3>Social header</h3><div class="social-header"><strong>Harley Digital Works</strong><p>Systems that make useful work repeatable.</p></div></article>
+          <article class="mock proposal"><h3>Proposal cover</h3><h4>Automation roadmap</h4><p>One clear route from repetitive work to simpler systems.</p><div class="rule"></div></article>
+          <article class="mock email"><h3>Email header</h3><div class="email-head"><strong>HDW</strong><span style="color:var(--muted)">Automation note</span></div><p>Product-like update pattern for systems work.</p></article>
+          <article class="mock dashboard"><h3>Admin dashboard</h3><div class="dash-grid"><div class="dash-side"><div class="dash-pill active"></div><div class="dash-pill"></div><div class="dash-pill"></div></div><div class="dash-main"><div class="dash-card"></div><div class="dash-card"></div><div class="dash-card"></div></div></div></article>
+        </div>
+      </section>
+
+      <section class="comparison" aria-label="Side-by-side evaluation">
+        <table>
+          <thead>
+            <tr>
+              <th>Criteria</th>
+              <th>H Aperture</th>
+              <th>Harley Frame</th>
+              <th>Signal H</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Memorability</td><td>Very strong</td><td>Strong</td><td>Very strong</td></tr>
+            <tr><td>H clarity</td><td>Strong</td><td>Very strong</td><td>Strong</td></tr>
+            <tr><td>Premium feel</td><td>Very strong</td><td>Strong</td><td>Strong</td></tr>
+            <tr><td>Small-size performance</td><td>Strong</td><td>Very strong</td><td>Medium to strong</td></tr>
+            <tr><td>Sub-brand scalability</td><td>Strong</td><td>Medium</td><td>Very strong</td></tr>
+            <tr><td>Human/founder feel</td><td>Medium</td><td>Very strong</td><td>Medium</td></tr>
+            <tr><td>SaaS/product fit</td><td>Strong</td><td>Medium</td><td>Very strong</td></tr>
+            <tr><td>Risk</td><td>Medium: H spacing needs refinement.</td><td>Low: could become generic if over-simplified.</td><td>Medium: coral route can become too active.</td></tr>
+          </tbody>
+        </table>
+      </section>
+    </main>
+  </body>
+</html>

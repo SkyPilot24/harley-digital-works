@@ -5,6 +5,8 @@ import { PillButton } from "./PillButton";
 import { cn } from "@/lib/utils";
 import { useAuth, useIsAdmin } from "@/hooks/use-auth";
 
+import { BrandLogo } from "./BrandLogo";
+
 const LINKS = [
   { to: "/services", label: "Services" },
   { to: "/domains", label: "Domains" },
@@ -36,16 +38,8 @@ export function SiteHeader() {
       )}
     >
       <div className="mx-auto flex h-16 max-w-[1240px] items-center justify-between px-6 md:px-10">
-        <Link to="/" className="flex items-baseline gap-1.5">
-          <span
-            className="text-[22px] font-extrabold leading-none tracking-tight text-ink"
-            style={{ fontFamily: "var(--font-wordmark)" }}
-          >
-            thg
-          </span>
-          <span className="hidden text-[10px] font-mono uppercase tracking-[0.22em] text-ink-muted sm:inline">
-            digital
-          </span>
+        <Link to="/" className="flex items-center">
+          <BrandLogo variant="dark" imageClassName="h-6 w-auto" />
         </Link>
 
         <nav className="hidden items-center gap-8 md:flex">

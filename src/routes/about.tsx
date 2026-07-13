@@ -9,13 +9,13 @@ import { FeatureCard } from "@/components/site/FeatureCard";
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
-      { title: "About — THG Digital Agency" },
+      { title: "About — Harley Digital Works" },
       {
         name: "description",
         content:
-          "Founded by Dr Robbie Harley, MBA. THG is the lean, AI-powered digital partner for small operators who want big-brand results without the agency overhead.",
+          "Founded by Dr Robbie Harley, MBA. Harley Digital Works is the lean, AI-powered digital partner for small operators who want big-brand results without the agency overhead.",
       },
-      { property: "og:title", content: "About — THG Digital Agency" },
+      { property: "og:title", content: "About — Harley Digital Works" },
     ],
   }),
   component: AboutPage,
@@ -80,7 +80,7 @@ const MILESTONES = [
   { year: "2004", title: "First site shipped — a local charity in Manchester." },
   { year: "2015", title: "Ten years in enterprise digital transformation." },
   { year: "2022", title: "MBA completed. Focus shifts to small operators." },
-  { year: "2024", title: "THG Digital Agency launched under The Harley Group." },
+  { year: "2024", title: "Harley Digital Works launched under The Harley Group." },
   { year: "2026", title: "Forty-plus fixed-price projects delivered." },
 ];
 
@@ -104,7 +104,7 @@ function AboutPage() {
             big-brand results.
           </h1>
           <p className="mt-8 max-w-2xl text-[17px] leading-relaxed text-ink-muted">
-            THG Digital Agency was founded by Dr Robbie Harley, MBA — after
+            Harley Digital Works was founded by Dr Robbie Harley, MBA — after
             twenty years of watching small brands, community groups, and solo
             founders get quoted enterprise prices for work they didn&rsquo;t
             need. We do the opposite.

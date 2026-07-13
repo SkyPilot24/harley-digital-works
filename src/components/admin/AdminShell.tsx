@@ -106,7 +106,7 @@ export function AdminShell({ children }: { children: ReactNode }) {
               className="text-[20px] font-extrabold leading-none tracking-tight text-ink"
               style={{ fontFamily: "var(--font-wordmark)" }}
             >
-              thg
+              hdw
             </span>
             <span className="text-[10px] font-mono uppercase tracking-[0.22em] text-ink-muted">
               admin
