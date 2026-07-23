@@ -21,8 +21,7 @@ export const Route = createFileRoute("/contact")({
       { title: "Contact - Harley Digital Works" },
       {
         name: "description",
-        content:
-          "Book a free 15-minute call, or send us a note. We reply within one working day.",
+        content: "Book a free 15-minute call, or send us a note. We reply within one working day.",
       },
       { property: "og:title", content: "Contact - Harley Digital Works" },
     ],
@@ -75,8 +74,8 @@ function ContactPage() {
             Let&apos;s talk about what&apos;s next.
           </h1>
           <p className="mt-6 max-w-2xl text-[17px] leading-relaxed text-ink-muted">
-            Book a free 15-minute call, or send us a note below. We reply within
-            one working day, usually the same day.
+            Book a free 15-minute call, or send us a note below. We reply within one working day,
+            usually the same day.
           </p>
         </Container>
       </section>
@@ -107,7 +106,9 @@ function ContactPage() {
                     className="rounded-lg border border-ink/15 bg-background px-4 py-3 text-[15px] text-ink focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
                     defaultValue=""
                   >
-                    <option value="" disabled>Choose a package</option>
+                    <option value="" disabled>
+                      Choose a package
+                    </option>
                     <option>Launch Plan</option>
                     <option>Automation Audit</option>
                     <option>Care Plan</option>
@@ -153,7 +154,10 @@ function ContactPage() {
                     Email
                   </dt>
                   <dd className="mt-2">
-                    <a href={`mailto:${siteConfig.contactEmail}`} className="text-ink hover:text-primary">
+                    <a
+                      href={`mailto:${siteConfig.contactEmail}`}
+                      className="text-ink hover:text-primary"
+                    >
                       {siteConfig.contactEmail}
                     </a>
                   </dd>
@@ -174,7 +178,9 @@ function ContactPage() {
                   <dt className="font-mono text-[10px] uppercase tracking-[0.22em] text-ink-muted">
                     Based in
                   </dt>
-                  <dd className="mt-2 text-ink">Manchester, UK, working with clients across the UK and EU.</dd>
+                  <dd className="mt-2 text-ink">
+                    Manchester, UK, working with clients across the UK and EU.
+                  </dd>
                 </div>
                 <div>
                   <dt className="font-mono text-[10px] uppercase tracking-[0.22em] text-ink-muted">
@@ -193,17 +199,27 @@ function ContactPage() {
           <SectionHeader title="What happens next" align="stacked" />
           <ol className="mt-12 divide-y divide-ink/10">
             {[
-              { n: "01", t: "You send a note", d: "A short message is enough. We do not need a full brief to start." },
-              { n: "02", t: "We reply within a working day", d: "With a fixed quote, a call slot, or an honest pointer to a better route." },
-              { n: "03", t: "We scope the work together", d: "No obligation, no theatre. If it is a fit, we start the following week." },
+              {
+                n: "01",
+                t: "You send a note",
+                d: "A short message is enough. We do not need a full brief to start.",
+              },
+              {
+                n: "02",
+                t: "We reply within a working day",
+                d: "With a fixed quote, a call slot, or an honest pointer to a better route.",
+              },
+              {
+                n: "03",
+                t: "We scope the work together",
+                d: "No obligation, no theatre. If it is a fit, we start the following week.",
+              },
             ].map((s) => (
               <li
                 key={s.n}
                 className="grid grid-cols-[auto_1fr] items-baseline gap-6 py-6 md:grid-cols-[120px_1fr] md:gap-10"
               >
-                <span className="font-mono text-[13px] tracking-[0.1em] text-ink-muted">
-                  {s.n}
-                </span>
+                <span className="font-mono text-[13px] tracking-[0.1em] text-ink-muted">{s.n}</span>
                 <div>
                   <p className="text-[17px] font-medium leading-snug text-ink">{s.t}</p>
                   <p className="mt-1 text-[15px] leading-relaxed text-ink-muted">{s.d}</p>
@@ -244,11 +260,7 @@ function ContactPage() {
                   a: "Yes. Most delivery is remote and asynchronous, and we work happily with clients across the UK and EU.",
                 },
               ].map((item, i) => (
-                <AccordionItem
-                  key={item.q}
-                  value={`item-${i}`}
-                  className="border-ink/10"
-                >
+                <AccordionItem key={item.q} value={`item-${i}`} className="border-ink/10">
                   <AccordionTrigger className="py-5 text-left text-[17px] font-medium text-ink hover:no-underline">
                     {item.q}
                   </AccordionTrigger>

@@ -56,9 +56,7 @@ async function notifySlackOfLead(lead: {
         },
         {
           type: "context",
-          elements: [
-            { type: "mrkdwn", text: `Source: ${siteConfig.canonicalUrl}contact` },
-          ],
+          elements: [{ type: "mrkdwn", text: `Source: ${siteConfig.canonicalUrl}contact` }],
         },
       ],
     }),

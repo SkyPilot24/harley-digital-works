@@ -88,7 +88,12 @@ export const createWebsiteDiagnosticTasks = createServerFn({ method: "POST" })
     const diagnostics = await runWebsiteDiagnostics();
     const actionable = diagnostics.filter((check) => check.status !== "ok");
     if (actionable.length === 0) {
-      return { created: 0, skipped: 0, checked: diagnostics.length, message: "No website diagnostic tasks needed." };
+      return {
+        created: 0,
+        skipped: 0,
+        checked: diagnostics.length,
+        message: "No website diagnostic tasks needed.",
+      };
     }
 
     const candidateTasks = actionable.map(toDiagnosticTaskPayload);
@@ -102,8 +107,12 @@ export const createWebsiteDiagnosticTasks = createServerFn({ method: "POST" })
       .in("source_asset_name", sourceNames);
     if (existingError) throw new Error(existingError.message);
 
-    const existingKeys = new Set((existing ?? []).map((task) => `${task.source_asset_name}::${task.title}`));
-    const newTasks = candidateTasks.filter((task) => !existingKeys.has(`${task.source_asset_name}::${task.title}`));
+    const existingKeys = new Set(
+      (existing ?? []).map((task) => `${task.source_asset_name}::${task.title}`),
+    );
+    const newTasks = candidateTasks.filter(
+      (task) => !existingKeys.has(`${task.source_asset_name}::${task.title}`),
+    );
     if (newTasks.length > 0) {
       const { error } = await supabaseAdmin.from("revenue_os_tasks").insert(newTasks);
       if (error) throw new Error(error.message);
@@ -145,19 +154,27 @@ async function runWebsiteDiagnostics(): Promise<WebsiteDiagnostic[]> {
         });
         const html = await response.text();
         const title = matchContent(html, /<title[^>]*>(.*?)<\/title>/i);
-        const description = matchContent(html, /<meta\s+name=["']description["']\s+content=["']([^"']*)["']/i)
-          ?? matchContent(html, /<meta\s+content=["']([^"']*)["']\s+name=["']description["']/i);
-        const canonical = matchContent(html, /<link\s+rel=["']canonical["']\s+href=["']([^"']*)["']/i)
-          ?? matchContent(html, /<link\s+href=["']([^"']*)["']\s+rel=["']canonical["']/i);
+        const description =
+          matchContent(html, /<meta\s+name=["']description["']\s+content=["']([^"']*)["']/i) ??
+          matchContent(html, /<meta\s+content=["']([^"']*)["']\s+name=["']description["']/i);
+        const canonical =
+          matchContent(html, /<link\s+rel=["']canonical["']\s+href=["']([^"']*)["']/i) ??
+          matchContent(html, /<link\s+href=["']([^"']*)["']\s+rel=["']canonical["']/i);
         const hasLegacyEmail = LEGACY_CONTACT_EMAILS.some((email) => html.includes(email));
         const hasCanonical = Boolean(canonical);
         const hasDescription = Boolean(description);
-        const hasLeadCaptureLink = route.path === route.leadCapturePath || hasRouteLink(html, route.leadCapturePath);
+        const hasLeadCaptureLink =
+          route.path === route.leadCapturePath || hasRouteLink(html, route.leadCapturePath);
         const hasLeadForm = route.path === route.leadCapturePath ? hasContactForm(html) : null;
         const hasSitemapEntry = sitemapEntries.has(normalizeUrlForSitemap(url));
         const status = !response.ok
           ? "error"
-          : !hasCanonical || !hasDescription || hasLegacyEmail || !hasLeadCaptureLink || hasLeadForm === false || !hasSitemapEntry
+          : !hasCanonical ||
+              !hasDescription ||
+              hasLegacyEmail ||
+              !hasLeadCaptureLink ||
+              hasLeadForm === false ||
+              !hasSitemapEntry
             ? "warning"
             : "ok";
 
@@ -207,7 +224,9 @@ async function runWebsiteDiagnostics(): Promise<WebsiteDiagnostic[]> {
 
 function toDiagnosticTaskPayload(check: WebsiteDiagnostic): DiagnosticTaskPayload {
   const dueDate = new Date();
-  dueDate.setDate(dueDate.getDate() + (check.status === "error" || check.routePriority === "High" ? 1 : 3));
+  dueDate.setDate(
+    dueDate.getDate() + (check.status === "error" || check.routePriority === "High" ? 1 : 3),
+  );
 
   return {
     title: `Fix ${check.label} website diagnostic (${check.owner}): ${check.message}`,
@@ -229,7 +248,9 @@ async function fetchSitemapEntries() {
     if (!response.ok) return new Set<string>();
     const xml = await response.text();
     return new Set(
-      Array.from(xml.matchAll(/<loc>(.*?)<\/loc>/gi)).map((match) => normalizeUrlForSitemap(match[1] ?? "")),
+      Array.from(xml.matchAll(/<loc>(.*?)<\/loc>/gi)).map((match) =>
+        normalizeUrlForSitemap(match[1] ?? ""),
+      ),
     );
   } catch {
     return new Set<string>();
@@ -242,11 +263,16 @@ function normalizeUrlForSitemap(value: string) {
 
 function hasRouteLink(html: string, path: string) {
   const escapedPath = escapeRegExp(path);
-  return new RegExp(`href=["'](?:${escapeRegExp(siteConfig.url)})?${escapedPath}/?(?:[?#][^"']*)?["']`, "i").test(html);
+  return new RegExp(
+    `href=["'](?:${escapeRegExp(siteConfig.url)})?${escapedPath}/?(?:[?#][^"']*)?["']`,
+    "i",
+  ).test(html);
 }
 
 function hasContactForm(html: string) {
-  return ["name", "email", "message"].every((field) => new RegExp(`name=["']${field}["']`, "i").test(html));
+  return ["name", "email", "message"].every((field) =>
+    new RegExp(`name=["']${field}["']`, "i").test(html),
+  );
 }
 
 function matchContent(html: string, pattern: RegExp) {

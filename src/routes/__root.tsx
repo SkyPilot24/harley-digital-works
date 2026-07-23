@@ -16,7 +16,8 @@ import { Toaster } from "sonner";
 import { canonicalUrlForPath, siteConfig } from "@/lib/site-config";
 
 const siteTitle = "Harley Digital Works — Better websites. Smarter systems. Simpler growth.";
-const siteDescription = "Harley Digital Works helps businesses and organisations build better websites, automate repetitive work and create scalable digital systems.";
+const siteDescription =
+  "Harley Digital Works helps businesses and organisations build better websites, automate repetitive work and create scalable digital systems.";
 
 function NotFoundComponent() {
   return (
