@@ -79,8 +79,7 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
 }
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
-  head: (ctx: any) => {
-    const matches = ctx?.matches || [];
+  head: ({ matches }) => {
     const leafMatch = matches[matches.length - 1];
     const pathname = leafMatch?.pathname || "/";
     const canonical = canonicalUrlForPath(pathname);

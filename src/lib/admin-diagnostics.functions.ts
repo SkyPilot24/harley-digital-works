@@ -1,5 +1,6 @@
 import { createServerFn } from "@tanstack/react-start";
 import { requireSupabaseAuth } from "@/integrations/supabase/auth-middleware";
+import type { TablesInsert } from "@/integrations/supabase/types";
 import { publicWebsiteRoutes, siteConfig } from "@/lib/site-config";
 
 export type AuthTrigger = {
@@ -42,15 +43,10 @@ export type DiagnosticTaskResult = {
   message: string;
 };
 
-type DiagnosticTaskPayload = {
-  title: string;
-  category: "Revenue OS";
-  priority: "High" | "Medium";
-  due_date: string;
-  source_asset_id: null;
-  source_asset_name: string;
-  done: false;
-};
+type DiagnosticTaskPayload = Pick<
+  TablesInsert<"revenue_os_tasks">,
+  "title" | "category" | "priority" | "due_date" | "source_asset_id" | "source_asset_name" | "done"
+>;
 
 const LEGACY_CONTACT_EMAILS = ["hello@thg.digital", "hello@theharleygroup.org"];
 
@@ -98,17 +94,8 @@ export const createWebsiteDiagnosticTasks = createServerFn({ method: "POST" })
     const candidateTasks = actionable.map(toDiagnosticTaskPayload);
     const sourceNames = candidateTasks.map((task) => task.source_asset_name);
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
-    const tasksTable = supabaseAdmin.from("revenue_os_tasks" as never) as unknown as {
-      select: (columns: string) => {
-        eq: (col: string, val: unknown) => {
-          eq: (col: string, val: unknown) => {
-            in: (col: string, vals: unknown[]) => Promise<{ data: Array<{ title: string; source_asset_name: string }> | null; error: { message: string } | null }>;
-          };
-        };
-      };
-      insert: (rows: DiagnosticTaskPayload[]) => Promise<{ error: { message: string } | null }>;
-    };
-    const { data: existing, error: existingError } = await tasksTable
+    const { data: existing, error: existingError } = await supabaseAdmin
+      .from("revenue_os_tasks")
       .select("title, source_asset_name")
       .eq("done", false)
       .eq("category", "Revenue OS")
@@ -118,7 +105,7 @@ export const createWebsiteDiagnosticTasks = createServerFn({ method: "POST" })
     const existingKeys = new Set((existing ?? []).map((task) => `${task.source_asset_name}::${task.title}`));
     const newTasks = candidateTasks.filter((task) => !existingKeys.has(`${task.source_asset_name}::${task.title}`));
     if (newTasks.length > 0) {
-      const { error } = await tasksTable.insert(newTasks);
+      const { error } = await supabaseAdmin.from("revenue_os_tasks").insert(newTasks);
       if (error) throw new Error(error.message);
     }
 

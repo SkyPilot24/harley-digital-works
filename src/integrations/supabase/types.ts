@@ -254,6 +254,95 @@ export type Database = {
         }
         Relationships: []
       }
+      revenue_os_assets: {
+        Row: {
+          created_at: string
+          id: string
+          mrr_potential: number
+          name: string
+          next_action: string
+          owner: string
+          scores: Json
+          status: string
+          stream: string
+          target_revenue: number
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          mrr_potential?: number
+          name: string
+          next_action?: string
+          owner?: string
+          scores?: Json
+          status?: string
+          stream: string
+          target_revenue?: number
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          mrr_potential?: number
+          name?: string
+          next_action?: string
+          owner?: string
+          scores?: Json
+          status?: string
+          stream?: string
+          target_revenue?: number
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      revenue_os_tasks: {
+        Row: {
+          category: string
+          created_at: string
+          done: boolean
+          due_date: string | null
+          id: string
+          priority: string
+          source_asset_id: string | null
+          source_asset_name: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          category?: string
+          created_at?: string
+          done?: boolean
+          due_date?: string | null
+          id?: string
+          priority?: string
+          source_asset_id?: string | null
+          source_asset_name?: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          category?: string
+          created_at?: string
+          done?: boolean
+          due_date?: string | null
+          id?: string
+          priority?: string
+          source_asset_id?: string | null
+          source_asset_name?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "revenue_os_tasks_source_asset_id_fkey"
+            columns: ["source_asset_id"]
+            isOneToOne: false
+            referencedRelation: "revenue_os_assets"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       projects: {
         Row: {
           budget_cents: number | null

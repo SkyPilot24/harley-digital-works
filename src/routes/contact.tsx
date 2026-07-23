@@ -10,9 +10,9 @@ import {
 } from "@/components/ui/accordion";
 import { useState } from "react";
 import { useServerFn } from "@tanstack/react-start";
-import { z } from "zod";
 import { toast } from "sonner";
 import { submitLead } from "@/lib/lead-intake.functions";
+import { parseLeadFormData } from "@/lib/lead-schema";
 import { siteConfig } from "@/lib/site-config";
 
 export const Route = createFileRoute("/contact")({
@@ -30,14 +30,6 @@ export const Route = createFileRoute("/contact")({
   component: ContactPage,
 });
 
-const leadSchema = z.object({
-  name: z.string().trim().min(1, "Name is required").max(100),
-  email: z.string().trim().email("Enter a valid email").max(255),
-  company: z.string().trim().max(120).optional().or(z.literal("")),
-  package: z.string().trim().max(60).optional().or(z.literal("")),
-  message: z.string().trim().min(5, "Tell us a little more").max(2000),
-});
-
 function ContactPage() {
   const submitLeadFn = useServerFn(submitLead);
   const [busy, setBusy] = useState(false);
@@ -46,13 +38,7 @@ function ContactPage() {
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const fd = new FormData(e.currentTarget);
-    const parsed = leadSchema.safeParse({
-      name: fd.get("name"),
-      email: fd.get("email"),
-      company: fd.get("company") ?? "",
-      package: fd.get("package") ?? "",
-      message: fd.get("message"),
-    });
+    const parsed = parseLeadFormData(fd);
     if (!parsed.success) {
       toast.error(parsed.error.issues[0]?.message ?? "Please check the form");
       return;

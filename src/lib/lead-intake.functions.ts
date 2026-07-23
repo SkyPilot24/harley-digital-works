@@ -1,16 +1,6 @@
-﻿import { createServerFn } from "@tanstack/react-start";
-import { z } from "zod";
+import { createServerFn } from "@tanstack/react-start";
+import { leadInputSchema, type LeadInput } from "@/lib/lead-schema";
 import { siteConfig } from "@/lib/site-config";
-
-const leadInputSchema = z.object({
-  name: z.string().trim().min(1, "Name is required").max(100),
-  email: z.string().trim().email("Enter a valid email").max(255),
-  company: z.string().trim().max(120).optional().or(z.literal("")),
-  package: z.string().trim().max(60).optional().or(z.literal("")),
-  message: z.string().trim().min(5, "Tell us a little more").max(2000),
-});
-
-export type LeadInput = z.infer<typeof leadInputSchema>;
 
 export const submitLead = createServerFn({ method: "POST" })
   .validator((input: unknown) => leadInputSchema.parse(input))
