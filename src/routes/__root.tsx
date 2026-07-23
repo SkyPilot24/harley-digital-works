@@ -16,7 +16,8 @@ import { Toaster } from "sonner";
 import { canonicalUrlForPath, siteConfig } from "@/lib/site-config";
 
 const siteTitle = "Harley Digital Works — Better websites. Smarter systems. Simpler growth.";
-const siteDescription = "Harley Digital Works helps businesses and organisations build better websites, automate repetitive work and create scalable digital systems.";
+const siteDescription =
+  "Harley Digital Works helps businesses and organisations build better websites, automate repetitive work and create scalable digital systems.";
 
 function NotFoundComponent() {
   return (
@@ -79,8 +80,7 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
 }
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
-  head: (ctx: any) => {
-    const matches = ctx?.matches || [];
+  head: ({ matches }) => {
     const leafMatch = matches[matches.length - 1];
     const pathname = leafMatch?.pathname || "/";
     const canonical = canonicalUrlForPath(pathname);
