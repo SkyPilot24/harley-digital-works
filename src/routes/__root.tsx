@@ -106,9 +106,19 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       links: [
         { rel: "stylesheet", href: appCss },
         { rel: "canonical", href: canonical },
-        { rel: "icon", href: "/favicon.ico", sizes: "any" },
-        { rel: "icon", href: "/favicon.svg", type: "image/svg+xml" },
-        { rel: "apple-touch-icon", href: "/apple-touch-icon.png" },
+        {
+          rel: "icon",
+          href: "/brand/approved/icons/favicon-32.png",
+          sizes: "32x32",
+          type: "image/png",
+        },
+        {
+          rel: "icon",
+          href: "/brand/approved/icons/favicon-16.png",
+          sizes: "16x16",
+          type: "image/png",
+        },
+        { rel: "apple-touch-icon", href: "/brand/approved/icons/apple-touch-icon.png" },
         { rel: "manifest", href: "/site.webmanifest" },
         { rel: "preconnect", href: "https://fonts.googleapis.com" },
         { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
@@ -143,40 +153,21 @@ function RootComponent() {
   const { queryClient } = Route.useRouteContext();
 
   useEffect(() => {
-    if (typeof window !== "undefined" && "serviceWorker" in navigator) {
-      window.addEventListener("load", () => {
-        navigator.serviceWorker
-          .register("/sw.js")
-          .then((registration) => {
-            console.log("SW registered: ", registration);
+    if (typeof window === "undefined" || !("serviceWorker" in navigator)) return;
 
-            // Handle updates found
-            registration.addEventListener("updatefound", () => {
-              const newWorker = registration.installing;
-              if (newWorker) {
-                newWorker.addEventListener("statechange", () => {
-                  if (newWorker.state === "activated") {
-                    console.log("New SW version activated. Reloading page...");
-                    window.location.reload();
-                  }
-                });
-              }
-            });
-          })
-          .catch((registrationError) => {
-            console.log("SW registration failed: ", registrationError);
-          });
+    const registerServiceWorker = () => {
+      void navigator.serviceWorker.register("/sw.js").catch((registrationError) => {
+        console.warn("Service worker registration failed:", registrationError);
       });
+    };
 
-      // Reload client when new SW takes control
-      let refreshing = false;
-      navigator.serviceWorker.addEventListener("controllerchange", () => {
-        if (!refreshing) {
-          refreshing = true;
-          window.location.reload();
-        }
-      });
+    if (document.readyState === "complete") {
+      registerServiceWorker();
+      return;
     }
+
+    window.addEventListener("load", registerServiceWorker, { once: true });
+    return () => window.removeEventListener("load", registerServiceWorker);
   }, []);
 
   return (

@@ -13,7 +13,7 @@ import { useServerFn } from "@tanstack/react-start";
 import { toast } from "sonner";
 import { submitLead } from "@/lib/lead-intake.functions";
 import { parseLeadFormData } from "@/lib/lead-schema";
-import { siteConfig } from "@/lib/site-config";
+import { leadCaptureConfigured, siteConfig } from "@/lib/site-config";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -42,6 +42,25 @@ function ContactPage() {
       toast.error(parsed.error.issues[0]?.message ?? "Please check the form");
       return;
     }
+    if (!leadCaptureConfigured) {
+      const subject = encodeURIComponent(`Website enquiry from ${parsed.data.name}`);
+      const body = encodeURIComponent(
+        [
+          `Name: ${parsed.data.name}`,
+          `Email: ${parsed.data.email}`,
+          parsed.data.company ? `Company: ${parsed.data.company}` : "",
+          parsed.data.package ? `Interested in: ${parsed.data.package}` : "",
+          "",
+          parsed.data.message,
+        ]
+          .filter(Boolean)
+          .join("\n"),
+      );
+      window.location.href = `mailto:${siteConfig.contactEmail}?subject=${subject}&body=${body}`;
+      toast.info("Your email app is opening with the enquiry details ready to send.");
+      return;
+    }
+
     setBusy(true);
     try {
       await submitLeadFn({ data: parsed.data });
@@ -135,10 +154,12 @@ function ContactPage() {
                     disabled={busy}
                     className="inline-flex items-center gap-2 rounded-full bg-ink px-6 py-3 text-[14px] font-medium text-white transition hover:bg-ink/90 disabled:opacity-50"
                   >
-                    {busy ? "Sending..." : "Send message"}
+                    {busy ? "Sending..." : leadCaptureConfigured ? "Send message" : "Prepare email"}
                   </button>
                   <p className="mt-3 text-[12px] text-ink-muted">
-                    We reply within one working day. No spam, ever.
+                    {leadCaptureConfigured
+                      ? "We reply within one working day. No spam, ever."
+                      : "This opens a ready-to-send draft in your email app."}
                   </p>
                 </div>
               </div>
