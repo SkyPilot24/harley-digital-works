@@ -8,7 +8,7 @@ export function useHomepageAnimations(containerRef: RefObject<HTMLDivElement | n
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const compactLayout = window.matchMedia("(max-width: 767px)").matches;
 
-    if (prefersReducedMotion && containerRef.current) {
+    if ((prefersReducedMotion || compactLayout) && containerRef.current) {
       document.body.classList.remove("is-loading");
       const root = containerRef.current;
       root.querySelector<HTMLElement>(".loader-overlay")?.style.setProperty("display", "none");

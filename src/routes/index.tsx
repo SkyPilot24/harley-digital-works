@@ -134,7 +134,7 @@ function NoemaHomepage() {
       className="relative min-h-screen overflow-x-hidden bg-[#050505] font-sans text-[#f4efe7]"
     >
       {/* 0. LOADER OVERLAY (z-9999) */}
-      <div className="loader-overlay fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-[#050505]">
+      <div className="loader-overlay fixed inset-0 z-[9999] hidden flex-col md:flex items-center justify-center bg-[#050505]">
         {/* Animated wave path */}
         <div className="mb-8 h-20 w-44">
           <svg
@@ -285,7 +285,7 @@ function NoemaHomepage() {
       )}
 
       {/* MAIN CONTENT WRAPPER */}
-      <main className="main-wrapper opacity-0">
+      <main className="main-wrapper opacity-100 md:opacity-0">
         {/* SECTION 1: HERO (#hero) */}
         <section
           id="hero"
@@ -580,7 +580,7 @@ function NoemaHomepage() {
           </div>
 
           {/* Wipe 3: Black (Top Swipe) & Final Content Pane */}
-          <div className="wipe-black relative z-30 flex min-h-[100svh] translate-y-full flex-col justify-between bg-[#050505] px-6 py-24 text-[#f4efe7] md:absolute md:inset-0 md:p-10">
+          <div className="wipe-black relative z-30 flex min-h-[100svh] translate-y-0 flex-col md:translate-y-full justify-between bg-[#050505] px-6 py-24 text-[#f4efe7] md:absolute md:inset-0 md:p-10">
             <div className="flex w-full items-center justify-between">
               <span className="font-mono text-[11px] uppercase tracking-[0.25em] text-[#f4efe7]/60">
                 Get in touch
