@@ -16,7 +16,7 @@ import { submitLead } from "@/lib/lead-intake.functions";
 import { toast } from "sonner";
 import { useHomepageAnimations } from "@/hooks/use-homepage-animations";
 import { parseLeadFormData } from "@/lib/lead-schema";
-import { siteConfig } from "@/lib/site-config";
+import { leadCaptureConfigured, siteConfig } from "@/lib/site-config";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -48,6 +48,24 @@ function NoemaHomepage() {
 
     if (!parsed.success) {
       toast.error(parsed.error.issues[0]?.message ?? "Please verify your details.");
+      return;
+    }
+
+    if (!leadCaptureConfigured) {
+      const subject = encodeURIComponent(`Website enquiry from ${parsed.data.name}`);
+      const body = encodeURIComponent(
+        [
+          `Name: ${parsed.data.name}`,
+          `Email: ${parsed.data.email}`,
+          parsed.data.company ? `Organisation: ${parsed.data.company}` : "",
+          "",
+          parsed.data.message,
+        ]
+          .filter(Boolean)
+          .join("\n"),
+      );
+      window.location.href = `mailto:${siteConfig.contactEmail}?subject=${subject}&body=${body}`;
+      toast.info("Your email app is opening with the enquiry details ready to send.");
       return;
     }
 
@@ -698,7 +716,11 @@ function NoemaHomepage() {
                     disabled={busy}
                     className="mt-2 w-full rounded-full bg-[#10B981] py-3 text-xs font-semibold uppercase tracking-widest text-black hover:opacity-90 disabled:opacity-50 transition"
                   >
-                    {busy ? "SUBMITTING..." : "SUBMIT ENQUIRY"}
+                    {busy
+                      ? "SUBMITTING..."
+                      : leadCaptureConfigured
+                        ? "SUBMIT ENQUIRY"
+                        : "PREPARE EMAIL"}
                   </button>
                 </div>
               </form>

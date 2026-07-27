@@ -11,6 +11,10 @@ const configuredSiteUrl =
 const siteUrl = normalizeSiteUrl(configuredSiteUrl);
 const siteDomain = new URL(siteUrl).hostname;
 
+export const leadCaptureConfigured = Boolean(
+  import.meta.env.VITE_SUPABASE_URL && import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY,
+);
+
 export const siteConfig = {
   name: "Harley Digital Works",
   domain: siteDomain,
