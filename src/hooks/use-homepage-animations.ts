@@ -5,6 +5,26 @@ export function useHomepageAnimations(containerRef: RefObject<HTMLDivElement | n
     let cancelled = false;
     let revert: (() => void) | null = null;
 
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const compactLayout = window.matchMedia("(max-width: 767px)").matches;
+
+    if (prefersReducedMotion && containerRef.current) {
+      document.body.classList.remove("is-loading");
+      const root = containerRef.current;
+      root.querySelector<HTMLElement>(".loader-overlay")?.style.setProperty("display", "none");
+      root.querySelector<HTMLElement>(".main-wrapper")?.style.setProperty("opacity", "1");
+      root
+        .querySelectorAll<HTMLElement>(
+          ".manifesto-word, .board-card, .pillar-title, .pillar-item, .final-pane, .sweep-title-black",
+        )
+        .forEach((element) => {
+          element.style.opacity = "1";
+          element.style.transform = "none";
+        });
+      root.querySelector<HTMLElement>(".wipe-black")?.style.setProperty("transform", "none");
+      return;
+    }
+
     document.body.classList.add("is-loading");
 
     async function initAnimations() {
@@ -28,26 +48,26 @@ export function useHomepageAnimations(containerRef: RefObject<HTMLDivElement | n
           loaderTl.fromTo(
             ".wave-path-1",
             { strokeDashoffset: 100 },
-            { strokeDashoffset: 0, duration: 1.2, ease: "power2.inOut" },
+            { strokeDashoffset: 0, duration: 0.45, ease: "power2.inOut" },
           );
           loaderTl.fromTo(
             ".wave-path-2",
             { strokeDashoffset: 100 },
-            { strokeDashoffset: 0, duration: 1.2, ease: "power2.inOut" },
-            "<0.2",
+            { strokeDashoffset: 0, duration: 0.45, ease: "power2.inOut" },
+            "<0.08",
           );
 
           loaderTl.fromTo(
             ".loader-letter",
             { yPercent: 100, opacity: 0 },
-            { yPercent: 0, opacity: 1, duration: 0.6, stagger: 0.05, ease: "back.out(1.7)" },
-            "-=0.6",
+            { yPercent: 0, opacity: 1, duration: 0.3, stagger: 0.018, ease: "power2.out" },
+            "-=0.25",
           );
 
           loaderTl.to(".loader-strip", {
             scaleY: 1,
-            duration: 0.5,
-            stagger: 0.08,
+            duration: 0.22,
+            stagger: 0.04,
             transformOrigin: "bottom",
             ease: "power3.in",
           });
@@ -61,9 +81,18 @@ export function useHomepageAnimations(containerRef: RefObject<HTMLDivElement | n
           loaderTl.fromTo(
             ".main-wrapper",
             { opacity: 0, scale: 0.98 },
-            { opacity: 1, scale: 1, duration: 0.8, ease: "power3.out" },
-            "-=0.4",
+            { opacity: 1, scale: 1, duration: 0.35, ease: "power3.out" },
+            "-=0.2",
           );
+
+          if (compactLayout) {
+            gsap.set(
+              ".manifesto-word, .board-card, .pillar-title, .pillar-item, .final-pane, .sweep-title-black",
+              { x: 0, y: 0, rotation: 0, opacity: 1 },
+            );
+            gsap.set(".wipe-black", { yPercent: 0 });
+            return;
+          }
 
           const heroTl = gsap.timeline({
             scrollTrigger: {

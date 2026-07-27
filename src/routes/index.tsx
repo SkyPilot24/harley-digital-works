@@ -131,7 +131,7 @@ function NoemaHomepage() {
   return (
     <div
       ref={containerRef}
-      className="relative min-h-screen bg-[#050505] text-[#f4efe7] select-none overflow-x-hidden font-sans"
+      className="relative min-h-screen overflow-x-hidden bg-[#050505] font-sans text-[#f4efe7]"
     >
       {/* 0. LOADER OVERLAY (z-9999) */}
       <div className="loader-overlay fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-[#050505]">
@@ -156,7 +156,7 @@ function NoemaHomepage() {
           </svg>
         </div>
         {/* Rise letters */}
-        <div className="flex overflow-hidden font-display text-4xl uppercase tracking-widest text-[#f4efe7] md:text-6xl">
+        <div className="flex overflow-hidden font-display text-2xl uppercase tracking-widest text-[#f4efe7] sm:text-4xl md:text-6xl">
           {Array.from("HARLEY DIGITAL WORKS").map((char, index) => (
             <span key={index} className="loader-letter inline-block translate-y-full opacity-0">
               {char === " " ? "\u00A0" : char}
@@ -187,7 +187,7 @@ function NoemaHomepage() {
           <span className="font-display text-2xl uppercase tracking-tighter text-[#f4efe7]">
             hdw
           </span>
-          <span className="font-mono text-[9px] uppercase tracking-[0.25em] text-[#f4efe7]/80">
+          <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-white">
             works
           </span>
         </Link>
@@ -237,7 +237,7 @@ function NoemaHomepage() {
         <button
           onClick={() => setNavOpen(!navOpen)}
           className="flex h-10 w-10 items-center justify-center rounded-full bg-[#f4efe7] text-black md:hidden"
-          aria-label="Toggle Navigation"
+          aria-label={navOpen ? "Close navigation" : "Menu — open navigation"}
           aria-expanded={navOpen}
           aria-controls="mobile-main-nav"
         >
@@ -285,11 +285,11 @@ function NoemaHomepage() {
       )}
 
       {/* MAIN CONTENT WRAPPER */}
-      <div className="main-wrapper opacity-0">
+      <main className="main-wrapper opacity-0">
         {/* SECTION 1: HERO (#hero) */}
         <section
           id="hero"
-          className="relative flex h-screen w-screen items-center justify-center bg-[#4F46E5] overflow-hidden"
+          className="relative flex min-h-[100svh] w-full items-center justify-center overflow-hidden bg-[#4F46E5] md:h-screen"
         >
           {/* Huge background wordmark */}
           <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 text-center pointer-events-none">
@@ -301,7 +301,7 @@ function NoemaHomepage() {
           {/* 3D Perspective container */}
           <div className="relative z-10 flex h-[500px] w-full max-w-[1200px] items-center justify-center [perspective:1400px]">
             {/* Card 1 (Launch Plan) */}
-            <div className="hero-card-1 absolute left-1/2 top-1/2 h-[380px] w-[290px] -translate-x-[180px] -translate-y-[190px] -rotate-6 rounded-2xl border border-black/10 bg-[#F43F5E] p-6 text-black shadow-lg will-change-transform">
+            <div className="hero-card-1 absolute left-1/2 top-1/2 hidden h-[380px] w-[290px] -translate-x-[180px] -translate-y-[190px] -rotate-6 rounded-2xl border border-black/10 bg-[#F43F5E] p-6 text-black shadow-lg will-change-transform md:block">
               <div className="flex h-full flex-col justify-between">
                 <div>
                   <span className="font-mono text-[9px] uppercase tracking-[0.2em] opacity-60">
@@ -327,7 +327,7 @@ function NoemaHomepage() {
             </div>
 
             {/* Card 2 (AI & Automation) - CENTRAL CARD WITH SHEEN & IDLE */}
-            <div className="hero-card-2 absolute left-1/2 top-1/2 z-10 h-[430px] w-[320px] -translate-x-1/2 -translate-y-[215px] rounded-2xl border border-[#f4efe7]/20 bg-[#050505] p-8 text-[#f4efe7] shadow-2xl will-change-transform">
+            <div className="hero-card-2 absolute left-1/2 top-1/2 z-10 h-[400px] w-[calc(100vw-3rem)] max-w-[320px] -translate-x-1/2 -translate-y-[200px] rounded-2xl border border-[#f4efe7]/20 bg-[#050505] p-6 text-[#f4efe7] shadow-2xl will-change-transform md:h-[430px] md:w-[320px] md:-translate-y-[215px] md:p-8">
               {/* Soft sheen gradient screen */}
               <div className="absolute inset-0 rounded-2xl bg-gradient-to-tr from-[#4F46E5]/10 via-[#F43F5E]/5 to-[#10B981]/15 opacity-40 mix-blend-screen pointer-events-none" />
 
@@ -367,7 +367,7 @@ function NoemaHomepage() {
             </div>
 
             {/* Card 3 (Care Plans) */}
-            <div className="hero-card-3 absolute left-1/2 top-1/2 h-[380px] w-[290px] translate-x-[180px] -translate-y-[190px] rotate-6 rounded-2xl border border-black/10 bg-[#10B981] p-6 text-black shadow-lg will-change-transform">
+            <div className="hero-card-3 absolute left-1/2 top-1/2 hidden h-[380px] w-[290px] translate-x-[180px] -translate-y-[190px] rotate-6 rounded-2xl border border-black/10 bg-[#10B981] p-6 text-black shadow-lg will-change-transform md:block">
               <div className="flex h-full flex-col justify-between">
                 <div>
                   <span className="font-mono text-[9px] uppercase tracking-[0.2em] opacity-60">
@@ -390,18 +390,34 @@ function NoemaHomepage() {
               </div>
             </div>
           </div>
+
+          <div className="absolute inset-x-0 bottom-6 z-20 px-6 text-center md:bottom-8">
+            <h1 className="mx-auto max-w-4xl font-display text-[clamp(1.8rem,4.5vw,4rem)] uppercase leading-[0.95] tracking-tight text-[#f4efe7]">
+              Better websites. Smarter systems. Simpler growth.
+            </h1>
+            <p className="mx-auto mt-2 max-w-2xl text-sm text-white md:text-base">
+              Practical websites and automation for purpose-led teams, delivered with clear advice
+              and reliable support.
+            </p>
+            <Link
+              to="/contact"
+              className="mt-4 inline-flex rounded-full bg-[#10B981] px-5 py-2.5 text-xs font-semibold uppercase tracking-wider text-black transition hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+            >
+              Start a project
+            </Link>
+          </div>
         </section>
 
         {/* SECTION 2: PILLARS (#pillars) */}
         <section
           id="pillars"
-          className="relative flex h-screen w-screen flex-col justify-between bg-[#10B981] p-10 text-black"
+          className="relative flex min-h-[100svh] w-full flex-col gap-12 bg-[#10B981] px-6 py-24 text-black md:h-screen md:justify-between md:p-10"
         >
           <div>
             <span className="font-mono text-[11px] uppercase tracking-[0.25em] opacity-70">
               Core Methodology
             </span>
-            <h2 className="pillar-title mt-6 font-display text-[7vw] uppercase tracking-tighter leading-none max-w-5xl">
+            <h2 className="pillar-title mt-6 max-w-5xl font-display text-[clamp(2.5rem,7vw,6.5rem)] uppercase leading-none tracking-tighter">
               TRANSLATING ENTERPRISE POWER FOR SMALL OPERATORS.
             </h2>
           </div>
@@ -440,7 +456,7 @@ function NoemaHomepage() {
         {/* SECTION 3: MANIFESTO (#manifesto) */}
         <section
           id="manifesto"
-          className="relative flex h-screen w-screen items-center justify-center bg-[#f4efe7] text-[#050505] p-10 overflow-hidden"
+          className="relative flex min-h-[100svh] w-full items-center justify-center overflow-hidden bg-[#f4efe7] px-6 py-24 text-[#050505] md:h-screen md:p-10"
         >
           {/* Decorative gradients */}
           <div className="absolute top-1/4 left-1/4 h-[350px] w-[350px] rounded-full bg-[#4F46E5]/10 filter blur-[80px]" />
@@ -452,7 +468,7 @@ function NoemaHomepage() {
             </span>
 
             {/* Scrambled snap container */}
-            <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 font-display text-[4vw] uppercase tracking-tighter leading-none text-black">
+            <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 font-display text-[clamp(2rem,5vw,4.5rem)] uppercase leading-none tracking-tighter text-black">
               {manifestoSentence.map((w, idx) => (
                 <span
                   key={idx}
@@ -485,7 +501,7 @@ function NoemaHomepage() {
         {/* SECTION 4: WORK BOARD (#board) */}
         <section
           id="board"
-          className="relative flex h-screen w-screen flex-col justify-between bg-[#10B981] p-10 text-black overflow-hidden"
+          className="relative flex min-h-[100svh] w-full flex-col gap-12 overflow-hidden bg-[#10B981] px-6 py-24 text-black md:h-screen md:justify-between md:p-10"
         >
           {/* Flying dots midground */}
           <div className="absolute inset-0 z-0 pointer-events-none opacity-20">
@@ -513,7 +529,7 @@ function NoemaHomepage() {
             <span className="font-mono text-[11px] uppercase tracking-[0.25em] opacity-70">
               Agency Output
             </span>
-            <h2 className="font-display text-[7vw] uppercase tracking-tighter leading-none mt-4">
+            <h2 className="mt-4 font-display text-[clamp(2.5rem,7vw,6.5rem)] uppercase leading-none tracking-tighter">
               PROVEN RESULTS. EVERY TIME.
             </h2>
           </div>
@@ -545,23 +561,26 @@ function NoemaHomepage() {
         </section>
 
         {/* SECTION 5: CTA WIPES (#cta) */}
-        <section id="cta" className="relative h-screen w-screen bg-black overflow-hidden">
+        <section
+          id="cta"
+          className="relative min-h-[100svh] w-full overflow-hidden bg-black md:h-screen"
+        >
           {/* Wipe 1: Rose (Bottom Swipe) */}
-          <div className="wipe-rose absolute inset-0 z-10 flex translate-y-full items-center justify-center bg-[#F43F5E]">
+          <div className="wipe-rose absolute inset-0 z-10 hidden translate-y-full items-center justify-center bg-[#F43F5E] md:flex">
             <h3 className="sweep-title-rose font-display text-[9vw] uppercase tracking-tighter text-black opacity-0 leading-none">
               NO COMPLEX RETROFITS.
             </h3>
           </div>
 
           {/* Wipe 2: Emerald (Left Swipe) */}
-          <div className="wipe-emerald absolute inset-0 z-20 flex -translate-x-full items-center justify-center bg-[#10B981]">
+          <div className="wipe-emerald absolute inset-0 z-20 hidden -translate-x-full items-center justify-center bg-[#10B981] md:flex">
             <h3 className="sweep-title-emerald font-display text-[9vw] uppercase tracking-tighter text-black opacity-0 leading-none">
               JUST THE WORK.
             </h3>
           </div>
 
           {/* Wipe 3: Black (Top Swipe) & Final Content Pane */}
-          <div className="wipe-black absolute inset-0 z-30 flex translate-y-full flex-col justify-between bg-[#050505] p-10 text-[#f4efe7]">
+          <div className="wipe-black relative z-30 flex min-h-[100svh] translate-y-full flex-col justify-between bg-[#050505] px-6 py-24 text-[#f4efe7] md:absolute md:inset-0 md:p-10">
             <div className="flex w-full items-center justify-between">
               <span className="font-mono text-[11px] uppercase tracking-[0.25em] text-[#f4efe7]/60">
                 Get in touch
@@ -698,7 +717,7 @@ function NoemaHomepage() {
             </div>
           </div>
         </section>
-      </div>
+      </main>
     </div>
   );
 }

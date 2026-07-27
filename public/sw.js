@@ -1,10 +1,10 @@
-const CACHE_NAME = "harley-digital-works-cache-v1";
+const CACHE_NAME = "harley-digital-works-cache-v2";
 const OFFLINE_URL = "/offline.html";
 
 const PRECACHE_ASSETS = [
   "/",
-  "/favicon.ico",
-  "/favicon.svg",
+  "/brand/approved/icons/favicon-32.png",
+  "/brand/approved/icons/favicon-16.png",
   "/site.webmanifest",
   OFFLINE_URL,
 ];
@@ -41,7 +41,7 @@ self.addEventListener("install", (event) => {
     caches.open(CACHE_NAME).then((cache) => {
       // Warm up cache with essential shell assets
       return cache.addAll(PRECACHE_ASSETS);
-    })
+    }),
   );
   // Force the waiting service worker to become the active service worker
   self.skipWaiting();
@@ -57,9 +57,9 @@ self.addEventListener("activate", (event) => {
             console.log("[Service Worker] Deleting obsolete cache:", cacheName);
             return caches.delete(cacheName);
           }
-        })
+        }),
       );
-    })
+    }),
   );
   // Tell the active service worker to take control of all open clients immediately
   self.clients.claim();
@@ -111,6 +111,6 @@ self.addEventListener("fetch", (event) => {
             return caches.match(OFFLINE_URL);
           }
         });
-    })
+    }),
   );
 });

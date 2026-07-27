@@ -16,7 +16,7 @@ export const siteConfig = {
   domain: siteDomain,
   url: siteUrl,
   canonicalUrl: `${siteUrl}/`,
-  ogImage: `${siteUrl}/og-image.svg`,
+  ogImage: `${siteUrl}/brand/hdw-og-image.svg`,
   contactEmail: "hello@harleydigitalworks.com",
   brandMark: "/brand/approved/logos/hdw-monogram-dark.svg",
   brandLogo: "/brand/approved/logos/hdw-wordmark-dark.svg",
@@ -54,7 +54,8 @@ export const publicWebsiteRoutes: PublicWebsiteRoute[] = [
     diagnosticGroup: "Brand",
     leadCapturePath: "/contact",
     revenueRole: "Primary brand and conversion entry point",
-    nextAction: "Deploy the canonical metadata update and keep the hero offer aligned with the highest-priority Revenue OS item.",
+    nextAction:
+      "Deploy the canonical metadata update and keep the hero offer aligned with the highest-priority Revenue OS item.",
     priority: "High",
   },
   {
@@ -162,7 +163,8 @@ export const publicWebsiteRoutes: PublicWebsiteRoute[] = [
     diagnosticGroup: "Resources",
     leadCapturePath: "/contact",
     revenueRole: "SEO, proof, and nurture content",
-    nextAction: "Publish resources that support care plans, automation audits, and launch-plan enquiries.",
+    nextAction:
+      "Publish resources that support care plans, automation audits, and launch-plan enquiries.",
     priority: "Medium",
   },
   {
@@ -191,7 +193,8 @@ export const websiteAuditSuggestions: WebsiteAuditSuggestion[] = [
     title: "Deploy canonical metadata update",
     priority: "High",
     owner: "Website operations",
-    action: "Production is live, but it still showed older metadata during the audit. Deploy the latest build and re-check canonical and Open Graph tags.",
+    action:
+      "Production is live, but it still showed older metadata during the audit. Deploy the latest build and re-check canonical and Open Graph tags.",
   },
   {
     title: "Replace legacy contact email",
@@ -203,12 +206,14 @@ export const websiteAuditSuggestions: WebsiteAuditSuggestion[] = [
     title: "Connect money pages to Revenue OS",
     priority: "High",
     owner: "Revenue OS",
-    action: "Keep services, domains, and contact routes mapped to a revenue asset, next action, and owner.",
+    action:
+      "Keep services, domains, and contact routes mapped to a revenue asset, next action, and owner.",
   },
   {
     title: "Use live diagnostics weekly",
     priority: "Medium",
     owner: "Control Centre",
-    action: "Use the Diagnostics screen to monitor route status, metadata coverage, and legacy contact details; add lead-capture checks next.",
+    action:
+      "Use the Diagnostics screen to monitor route status, metadata coverage, and legacy contact details; add lead-capture checks next.",
   },
 ];
