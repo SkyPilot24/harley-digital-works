@@ -117,6 +117,34 @@ Important server-side workflows are implemented in `src/lib/*.functions.ts`, inc
 
 These functions use validated input and server-side Supabase access where privileged operations are required.
 
+## Deploying to Vercel
+
+This project is configured to deploy to Vercel via the included `vercel.json`.
+
+### Steps
+
+1. Push this repository to GitHub (or connect it in the Vercel dashboard).
+2. Import the project in [vercel.com/new](https://vercel.com/new).
+3. Vercel will pick up `vercel.json` automatically — no framework override is needed.
+4. Add the required environment variables in the Vercel project settings (see [Required environment variables](#required-environment-variables) below).
+5. Deploy.
+
+The build uses the nitro **vercel** preset (`NITRO_PRESET=vercel`), which generates a `.vercel/output` directory following Vercel's Build Output API v3. Static assets are served from the CDN and SSR is handled by a serverless function.
+
+### Required environment variables (Vercel project settings)
+
+| Variable | Description |
+|---|---|
+| `VITE_SUPABASE_URL` | Supabase project URL (public) |
+| `VITE_SUPABASE_PUBLISHABLE_KEY` | Supabase anon/public key (public) |
+| `SUPABASE_URL` | Supabase project URL (server-side) |
+| `SUPABASE_PUBLISHABLE_KEY` | Supabase anon key (server-side) |
+| `SUPABASE_SERVICE_ROLE_KEY` | Supabase service role key (server-side, keep secret) |
+| `SLACK_WEBHOOK_URL` | *(Optional)* Slack incoming webhook for lead alerts |
+| `STRIPE_SECRET_KEY` | *(Optional)* Stripe secret key for domain checkout |
+| `STRIPE_DOMAIN_SUCCESS_URL` | *(Optional)* Redirect URL after successful Stripe checkout |
+| `STRIPE_DOMAIN_CANCEL_URL` | *(Optional)* Redirect URL after cancelled Stripe checkout |
+
 ## Local development
 
 Install dependencies:
