@@ -90,11 +90,10 @@ function ContactPage() {
               fontSize: "clamp(2.5rem, 6vw, 4.5rem)",
             }}
           >
-            Let&apos;s talk about what&apos;s next.
+            Tell us what needs to work better.
           </h1>
           <p className="mt-6 max-w-2xl text-[17px] leading-relaxed text-ink-muted">
-            Book a free 15-minute call, or send us a note below. We reply within one working day,
-            usually the same day.
+            Share the website, workflow or customer journey you want to improve. A short note is enough; we reply within one working day.
           </p>
         </Container>
       </section>
