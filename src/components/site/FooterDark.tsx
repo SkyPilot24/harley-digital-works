@@ -63,7 +63,7 @@ export function FooterDark() {
             <h4 className="text-[15px] font-medium text-background">Direct</h4>
             <ul className="mt-5 space-y-3 text-[14px] text-background/60">
               <li>
-                <a href={`mailto:${siteConfig.contactEmail}`} className="hover:text-background">
+                <a href={`mailto:${siteConfig.contactEmail}`} className="break-all hover:text-background">
                   {siteConfig.contactEmail}
                 </a>
               </li>
@@ -73,7 +73,7 @@ export function FooterDark() {
       </div>
 
       <div className="border-t border-background/10">
-        <div className="mx-auto flex max-w-[1240px] flex-col gap-2 px-6 py-6 text-[12px] text-background/45 md:flex-row md:items-center md:justify-between md:px-10">
+        <div className="mx-auto flex max-w-[1240px] flex-col gap-2 px-6 py-6 text-[12px] text-background/65 md:flex-row md:items-center md:justify-between md:px-10">
           <p>&copy; {YEAR} {siteConfig.name}. All rights reserved.</p>
           <p className="font-mono uppercase tracking-[0.22em]">
             Strategy · Design · Engineering
