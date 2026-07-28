@@ -15,9 +15,8 @@ import { AuthProvider } from "@/hooks/use-auth";
 import { Toaster } from "sonner";
 import { canonicalUrlForPath, siteConfig } from "@/lib/site-config";
 
-const siteTitle = "Harley Digital Works — Better websites. Smarter systems. Simpler growth.";
-const siteDescription =
-  "Harley Digital Works helps businesses and organisations build better websites, automate repetitive work and create scalable digital systems.";
+const siteTitle = "Harley Digital Works | Websites, AI & Digital Transformation";
+const siteDescription =\n  "Harley Digital Works designs high-performing websites, automates repetitive work and modernises digital services for ambitious UK organisations.";
 
 function NotFoundComponent() {
   return (
@@ -101,7 +100,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         { name: "twitter:title", content: siteTitle },
         { name: "twitter:description", content: siteDescription },
         { name: "twitter:image", content: siteConfig.ogImage },
-        { name: "theme-color", content: "#173033" },
+        { name: "theme-color", content: "#0D0D0D" },
       ],
       links: [
         { rel: "stylesheet", href: appCss },
@@ -124,7 +123,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
         {
           rel: "stylesheet",
-          href: "https://fonts.googleapis.com/css2?family=Anton&family=Caveat:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Syne:wght@600;700;800&family=DM+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap",
+          href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap",
         },
       ],
     };
