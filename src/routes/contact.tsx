@@ -127,11 +127,9 @@ function ContactPage() {
                     <option value="" disabled>
                       Choose a package
                     </option>
-                    <option>Launch Plan</option>
-                    <option>Automation Audit</option>
-                    <option>Care Plan</option>
-                    <option>Content Engine</option>
-                    <option>Digital Product</option>
+                    <option>Web design & development</option>
+                    <option>AI & automation</option>
+                    <option>Digital transformation</option>
                     <option>Something else</option>
                   </select>
                 </div>
@@ -143,6 +141,8 @@ function ContactPage() {
                     id="message"
                     name="message"
                     rows={5}
+                    required
+                    minLength={5}
                     placeholder="A short note about what you are trying to do..."
                     className="rounded-lg border border-ink/15 bg-background px-4 py-3 text-[15px] text-ink focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
                   />
@@ -317,6 +317,7 @@ function Field({
         id={name}
         name={name}
         type={type}
+        required={name === "name" || name === "email"}
         placeholder={placeholder}
         className="rounded-lg border border-ink/15 bg-background px-4 py-3 text-[15px] text-ink placeholder:text-ink-muted/60 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
       />
