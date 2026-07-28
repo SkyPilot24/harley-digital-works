@@ -10,7 +10,6 @@ import { BrandLogo } from "./BrandLogo";
 const LINKS = [
   { to: "/services", label: "Services" },
   { to: "/about", label: "About" },
-  { to: "/resources", label: "Resources" },
   { to: "/work", label: "Work" },
 ] as const;
 
