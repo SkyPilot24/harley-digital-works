@@ -9,8 +9,10 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as WorkRouteImport } from './routes/work'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as ResourcesRouteImport } from './routes/resources'
+import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as OnboardingRouteImport } from './routes/onboarding'
 import { Route as DomainsRouteImport } from './routes/domains'
 import { Route as ContactRouteImport } from './routes/contact'
@@ -18,6 +20,9 @@ import { Route as AuthRouteImport } from './routes/auth'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ServicesWebDesignDevelopmentRouteImport } from './routes/services_.web-design-development'
+import { Route as ServicesDigitalTransformationRouteImport } from './routes/services_.digital-transformation'
+import { Route as ServicesAiAutomationRouteImport } from './routes/services_.ai-automation'
 import { Route as ServicesLaunchPlanRouteImport } from './routes/services.launch-plan'
 import { Route as ServicesDigitalProductsRouteImport } from './routes/services.digital-products'
 import { Route as ServicesContentEngineRouteImport } from './routes/services.content-engine'
@@ -38,6 +43,11 @@ import { Route as AuthenticatedAdminDomainOsRouteImport } from './routes/_authen
 import { Route as AuthenticatedAdminDiagnosticsRouteImport } from './routes/_authenticated/admin.diagnostics'
 import { Route as AuthenticatedAdminClientsRouteImport } from './routes/_authenticated/admin.clients'
 
+const WorkRoute = WorkRouteImport.update({
+  id: '/work',
+  path: '/work',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ServicesRoute = ServicesRouteImport.update({
   id: '/services',
   path: '/services',
@@ -46,6 +56,11 @@ const ServicesRoute = ServicesRouteImport.update({
 const ResourcesRoute = ResourcesRouteImport.update({
   id: '/resources',
   path: '/resources',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
   getParentRoute: () => rootRouteImport,
 } as any)
 const OnboardingRoute = OnboardingRouteImport.update({
@@ -80,6 +95,23 @@ const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ServicesWebDesignDevelopmentRoute =
+  ServicesWebDesignDevelopmentRouteImport.update({
+    id: '/services_/web-design-development',
+    path: '/services/web-design-development',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ServicesDigitalTransformationRoute =
+  ServicesDigitalTransformationRouteImport.update({
+    id: '/services_/digital-transformation',
+    path: '/services/digital-transformation',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ServicesAiAutomationRoute = ServicesAiAutomationRouteImport.update({
+  id: '/services_/ai-automation',
+  path: '/services/ai-automation',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ServicesLaunchPlanRoute = ServicesLaunchPlanRouteImport.update({
@@ -195,13 +227,18 @@ export interface FileRoutesByFullPath {
   '/contact': typeof ContactRoute
   '/domains': typeof DomainsRoute
   '/onboarding': typeof OnboardingRoute
+  '/privacy': typeof PrivacyRoute
   '/resources': typeof ResourcesRoute
   '/services': typeof ServicesRouteWithChildren
+  '/work': typeof WorkRoute
   '/services/automation': typeof ServicesAutomationRoute
   '/services/care-plans': typeof ServicesCarePlansRoute
   '/services/content-engine': typeof ServicesContentEngineRoute
   '/services/digital-products': typeof ServicesDigitalProductsRoute
   '/services/launch-plan': typeof ServicesLaunchPlanRoute
+  '/services/ai-automation': typeof ServicesAiAutomationRoute
+  '/services/digital-transformation': typeof ServicesDigitalTransformationRoute
+  '/services/web-design-development': typeof ServicesWebDesignDevelopmentRoute
   '/admin/clients': typeof AuthenticatedAdminClientsRoute
   '/admin/diagnostics': typeof AuthenticatedAdminDiagnosticsRoute
   '/admin/domain-os': typeof AuthenticatedAdminDomainOsRoute
@@ -224,13 +261,18 @@ export interface FileRoutesByTo {
   '/contact': typeof ContactRoute
   '/domains': typeof DomainsRoute
   '/onboarding': typeof OnboardingRoute
+  '/privacy': typeof PrivacyRoute
   '/resources': typeof ResourcesRoute
   '/services': typeof ServicesRouteWithChildren
+  '/work': typeof WorkRoute
   '/services/automation': typeof ServicesAutomationRoute
   '/services/care-plans': typeof ServicesCarePlansRoute
   '/services/content-engine': typeof ServicesContentEngineRoute
   '/services/digital-products': typeof ServicesDigitalProductsRoute
   '/services/launch-plan': typeof ServicesLaunchPlanRoute
+  '/services/ai-automation': typeof ServicesAiAutomationRoute
+  '/services/digital-transformation': typeof ServicesDigitalTransformationRoute
+  '/services/web-design-development': typeof ServicesWebDesignDevelopmentRoute
   '/admin/clients': typeof AuthenticatedAdminClientsRoute
   '/admin/diagnostics': typeof AuthenticatedAdminDiagnosticsRoute
   '/admin/domain-os': typeof AuthenticatedAdminDomainOsRoute
@@ -255,13 +297,18 @@ export interface FileRoutesById {
   '/contact': typeof ContactRoute
   '/domains': typeof DomainsRoute
   '/onboarding': typeof OnboardingRoute
+  '/privacy': typeof PrivacyRoute
   '/resources': typeof ResourcesRoute
   '/services': typeof ServicesRouteWithChildren
+  '/work': typeof WorkRoute
   '/services/automation': typeof ServicesAutomationRoute
   '/services/care-plans': typeof ServicesCarePlansRoute
   '/services/content-engine': typeof ServicesContentEngineRoute
   '/services/digital-products': typeof ServicesDigitalProductsRoute
   '/services/launch-plan': typeof ServicesLaunchPlanRoute
+  '/services_/ai-automation': typeof ServicesAiAutomationRoute
+  '/services_/digital-transformation': typeof ServicesDigitalTransformationRoute
+  '/services_/web-design-development': typeof ServicesWebDesignDevelopmentRoute
   '/_authenticated/admin/clients': typeof AuthenticatedAdminClientsRoute
   '/_authenticated/admin/diagnostics': typeof AuthenticatedAdminDiagnosticsRoute
   '/_authenticated/admin/domain-os': typeof AuthenticatedAdminDomainOsRoute
@@ -286,13 +333,18 @@ export interface FileRouteTypes {
     | '/contact'
     | '/domains'
     | '/onboarding'
+    | '/privacy'
     | '/resources'
     | '/services'
+    | '/work'
     | '/services/automation'
     | '/services/care-plans'
     | '/services/content-engine'
     | '/services/digital-products'
     | '/services/launch-plan'
+    | '/services/ai-automation'
+    | '/services/digital-transformation'
+    | '/services/web-design-development'
     | '/admin/clients'
     | '/admin/diagnostics'
     | '/admin/domain-os'
@@ -315,13 +367,18 @@ export interface FileRouteTypes {
     | '/contact'
     | '/domains'
     | '/onboarding'
+    | '/privacy'
     | '/resources'
     | '/services'
+    | '/work'
     | '/services/automation'
     | '/services/care-plans'
     | '/services/content-engine'
     | '/services/digital-products'
     | '/services/launch-plan'
+    | '/services/ai-automation'
+    | '/services/digital-transformation'
+    | '/services/web-design-development'
     | '/admin/clients'
     | '/admin/diagnostics'
     | '/admin/domain-os'
@@ -345,13 +402,18 @@ export interface FileRouteTypes {
     | '/contact'
     | '/domains'
     | '/onboarding'
+    | '/privacy'
     | '/resources'
     | '/services'
+    | '/work'
     | '/services/automation'
     | '/services/care-plans'
     | '/services/content-engine'
     | '/services/digital-products'
     | '/services/launch-plan'
+    | '/services_/ai-automation'
+    | '/services_/digital-transformation'
+    | '/services_/web-design-development'
     | '/_authenticated/admin/clients'
     | '/_authenticated/admin/diagnostics'
     | '/_authenticated/admin/domain-os'
@@ -376,12 +438,24 @@ export interface RootRouteChildren {
   ContactRoute: typeof ContactRoute
   DomainsRoute: typeof DomainsRoute
   OnboardingRoute: typeof OnboardingRoute
+  PrivacyRoute: typeof PrivacyRoute
   ResourcesRoute: typeof ResourcesRoute
   ServicesRoute: typeof ServicesRouteWithChildren
+  WorkRoute: typeof WorkRoute
+  ServicesAiAutomationRoute: typeof ServicesAiAutomationRoute
+  ServicesDigitalTransformationRoute: typeof ServicesDigitalTransformationRoute
+  ServicesWebDesignDevelopmentRoute: typeof ServicesWebDesignDevelopmentRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/work': {
+      id: '/work'
+      path: '/work'
+      fullPath: '/work'
+      preLoaderRoute: typeof WorkRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/services': {
       id: '/services'
       path: '/services'
@@ -394,6 +468,13 @@ declare module '@tanstack/react-router' {
       path: '/resources'
       fullPath: '/resources'
       preLoaderRoute: typeof ResourcesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/onboarding': {
@@ -443,6 +524,27 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services_/web-design-development': {
+      id: '/services_/web-design-development'
+      path: '/services/web-design-development'
+      fullPath: '/services/web-design-development'
+      preLoaderRoute: typeof ServicesWebDesignDevelopmentRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services_/digital-transformation': {
+      id: '/services_/digital-transformation'
+      path: '/services/digital-transformation'
+      fullPath: '/services/digital-transformation'
+      preLoaderRoute: typeof ServicesDigitalTransformationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services_/ai-automation': {
+      id: '/services_/ai-automation'
+      path: '/services/ai-automation'
+      fullPath: '/services/ai-automation'
+      preLoaderRoute: typeof ServicesAiAutomationRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/services/launch-plan': {
@@ -646,8 +748,13 @@ const rootRouteChildren: RootRouteChildren = {
   ContactRoute: ContactRoute,
   DomainsRoute: DomainsRoute,
   OnboardingRoute: OnboardingRoute,
+  PrivacyRoute: PrivacyRoute,
   ResourcesRoute: ResourcesRoute,
   ServicesRoute: ServicesRouteWithChildren,
+  WorkRoute: WorkRoute,
+  ServicesAiAutomationRoute: ServicesAiAutomationRoute,
+  ServicesDigitalTransformationRoute: ServicesDigitalTransformationRoute,
+  ServicesWebDesignDevelopmentRoute: ServicesWebDesignDevelopmentRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

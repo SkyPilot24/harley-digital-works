@@ -70,7 +70,7 @@
   --color-ink-muted: var(--ink-muted);
   --color-footer: var(--footer);
   --font-display: "Manrope", sans-serif;
-  --font-sans: "Manrope", sans-serif;
+  --font-sans: "Inter", sans-serif;
   --font-mono: "DM Mono", ui-monospace, "SFMono-Regular", monospace;
   --font-wordmark: "Manrope", ui-sans-serif, system-ui, sans-serif;
   --font-hand: "Caveat", cursive;
@@ -200,9 +200,9 @@
   font-family: var(--font-hand) !important;
 }
 
-body.is-loading {
-  overflow: hidden !important;
-  height: 100vh !important;
-}
-
-
+html { scroll-behavior: smooth; }
+body.is-loading { overflow: hidden !important; height: 100vh !important; }
+.eyebrow { font-family: var(--font-mono); font-size: .7rem; font-weight: 500; letter-spacing: .16em; line-height: 1.4; text-transform: uppercase; }
+.service-row { transition: padding 240ms ease, background-color 240ms ease; }
+@media (min-width: 640px) { .service-row:hover { background: color-mix(in oklab, var(--signature-gold) 7%, transparent); padding-inline: 1rem; } }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; } }

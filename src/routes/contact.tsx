@@ -90,11 +90,10 @@ function ContactPage() {
               fontSize: "clamp(2.5rem, 6vw, 4.5rem)",
             }}
           >
-            Let&apos;s talk about what&apos;s next.
+            Tell us what needs to work better.
           </h1>
           <p className="mt-6 max-w-2xl text-[17px] leading-relaxed text-ink-muted">
-            Book a free 15-minute call, or send us a note below. We reply within one working day,
-            usually the same day.
+            Share the website, workflow or customer journey you want to improve. A short note is enough; we reply within one working day.
           </p>
         </Container>
       </section>
@@ -128,11 +127,9 @@ function ContactPage() {
                     <option value="" disabled>
                       Choose a package
                     </option>
-                    <option>Launch Plan</option>
-                    <option>Automation Audit</option>
-                    <option>Care Plan</option>
-                    <option>Content Engine</option>
-                    <option>Digital Product</option>
+                    <option>Web design & development</option>
+                    <option>AI & automation</option>
+                    <option>Digital transformation</option>
                     <option>Something else</option>
                   </select>
                 </div>
@@ -144,6 +141,8 @@ function ContactPage() {
                     id="message"
                     name="message"
                     rows={5}
+                    required
+                    minLength={5}
                     placeholder="A short note about what you are trying to do..."
                     className="rounded-lg border border-ink/15 bg-background px-4 py-3 text-[15px] text-ink focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
                   />
@@ -318,6 +317,7 @@ function Field({
         id={name}
         name={name}
         type={type}
+        required={name === "name" || name === "email"}
         placeholder={placeholder}
         className="rounded-lg border border-ink/15 bg-background px-4 py-3 text-[15px] text-ink placeholder:text-ink-muted/60 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
       />
