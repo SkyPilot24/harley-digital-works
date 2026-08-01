@@ -10,7 +10,8 @@ export const Route = createFileRoute("/resources")({
       { title: "Playbooks and resources - Harley Digital Works" },
       {
         name: "description",
-        content: "Plain-English agency playbooks for daily sales, content, AI research, delivery, and client onboarding.",
+        content:
+          "Plain-English agency playbooks for daily sales, content, AI research, delivery, and client onboarding.",
       },
       { property: "og:title", content: "Playbooks and resources - Harley Digital Works" },
     ],
@@ -67,7 +68,8 @@ function ResourcesPage() {
             Simple steps for running the agency each day.
           </h1>
           <p className="mt-6 max-w-2xl text-[17px] leading-relaxed text-ink-muted">
-            Plain-English runbooks for using Manus, ChatGPT, Google AI Pro, and the Control Centre to find leads, create assets, and deliver work.
+            Plain-English runbooks for using Manus, ChatGPT, Google AI Pro, and the Control Centre
+            to find leads, create assets, and deliver work.
           </p>
         </Container>
       </section>
@@ -80,7 +82,13 @@ function ResourcesPage() {
           />
           <div className="mt-10 grid gap-5 md:grid-cols-3">
             {PLAYBOOKS.map((item) => (
-              <FeatureCard key={item.title} tag={item.tag} title={item.title} body={item.body} surface={item.surface} />
+              <FeatureCard
+                key={item.title}
+                tag={item.tag}
+                title={item.title}
+                body={item.body}
+                surface={item.surface}
+              />
             ))}
           </div>
         </Container>
@@ -89,9 +97,13 @@ function ResourcesPage() {
       <section className="pb-24 md:pb-32">
         <Container>
           <div className="rounded-[24px] bg-ink p-8 text-white md:p-12">
-            <h2 className="max-w-2xl text-3xl font-medium tracking-tight text-white md:text-5xl">Medium technical is enough.</h2>
+            <h2 className="max-w-2xl text-3xl font-medium tracking-tight text-white md:text-5xl">
+              Medium technical is enough.
+            </h2>
             <p className="mt-5 max-w-2xl text-[16px] leading-relaxed text-white/70">
-              Use the admin panel as the source of truth: Leads for enquiries, Revenue OS for priorities, Diagnostics for site health, Resources for useful content, and Playbooks for what to do next.
+              Use the admin panel as the source of truth: Leads for enquiries, Revenue OS for
+              priorities, Diagnostics for site health, Resources for useful content, and Playbooks
+              for what to do next.
             </p>
           </div>
         </Container>

@@ -73,8 +73,8 @@ export function AdminShell({ children }: { children: ReactNode }) {
         <div className="max-w-md rounded-2xl border border-ink/10 bg-white p-8 text-center">
           <h1 className="text-xl font-semibold text-ink">Access denied</h1>
           <p className="mt-2 text-sm text-ink-muted">
-            Your account ({user.email}) is signed in but doesn&rsquo;t have admin access.
-            Ask an existing admin to grant your account the admin role.
+            Your account ({user.email}) is signed in but doesn&rsquo;t have admin access. Ask an
+            existing admin to grant your account the admin role.
           </p>
           <div className="mt-6 flex justify-center gap-3">
             <button
@@ -115,9 +115,7 @@ export function AdminShell({ children }: { children: ReactNode }) {
         </div>
         <nav className="flex-1 space-y-0.5 p-3">
           {NAV.map((item) => {
-            const active = item.exact
-              ? currentPath === item.to
-              : currentPath.startsWith(item.to);
+            const active = item.exact ? currentPath === item.to : currentPath.startsWith(item.to);
             const Icon = item.icon;
             return (
               <Link
@@ -125,9 +123,7 @@ export function AdminShell({ children }: { children: ReactNode }) {
                 to={item.to as "/admin"}
                 className={cn(
                   "flex items-center gap-3 rounded-lg px-3 py-2 text-[13px] font-medium transition-colors",
-                  active
-                    ? "bg-ink text-white"
-                    : "text-ink/70 hover:bg-ink/[0.05] hover:text-ink",
+                  active ? "bg-ink text-white" : "text-ink/70 hover:bg-ink/[0.05] hover:text-ink",
                 )}
               >
                 <Icon size={16} />
@@ -153,5 +149,3 @@ export function AdminShell({ children }: { children: ReactNode }) {
     </div>
   );
 }
-
-

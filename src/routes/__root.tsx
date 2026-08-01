@@ -84,6 +84,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     const leafMatch = matches[matches.length - 1];
     const pathname = leafMatch?.pathname || "/";
     const canonical = canonicalUrlForPath(pathname);
+    const isPrivateRoute = pathname === "/auth" || pathname.startsWith("/admin");
+
     return {
       meta: [
         { charSet: "utf-8" },
@@ -91,21 +93,25 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         { title: siteTitle },
         { name: "description", content: siteDescription },
         { name: "author", content: "Harley Digital Works" },
-        { property: "og:title", content: siteTitle },
-        { property: "og:description", content: siteDescription },
-        { property: "og:url", content: canonical },
-        { property: "og:site_name", content: siteConfig.name },
-        { property: "og:type", content: "website" },
-        { property: "og:image", content: siteConfig.ogImage },
-        { name: "twitter:card", content: "summary_large_image" },
-        { name: "twitter:title", content: siteTitle },
-        { name: "twitter:description", content: siteDescription },
-        { name: "twitter:image", content: siteConfig.ogImage },
+        ...(isPrivateRoute
+          ? [{ name: "robots", content: "noindex, nofollow, noarchive" }]
+          : [
+              { property: "og:title", content: siteTitle },
+              { property: "og:description", content: siteDescription },
+              { property: "og:url", content: canonical },
+              { property: "og:site_name", content: siteConfig.name },
+              { property: "og:type", content: "website" },
+              { property: "og:image", content: siteConfig.ogImage },
+              { name: "twitter:card", content: "summary_large_image" },
+              { name: "twitter:title", content: siteTitle },
+              { name: "twitter:description", content: siteDescription },
+              { name: "twitter:image", content: siteConfig.ogImage },
+            ]),
         { name: "theme-color", content: "#0D0D0D" },
       ],
       links: [
         { rel: "stylesheet", href: appCss },
-        { rel: "canonical", href: canonical },
+        ...(!isPrivateRoute ? [{ rel: "canonical", href: canonical }] : []),
         {
           rel: "icon",
           href: "/brand/approved/icons/favicon-32.png",

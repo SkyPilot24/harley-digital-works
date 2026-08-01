@@ -6,7 +6,7 @@
 - Add `harleydigitalworks.com` and `www.harleydigitalworks.com` to hosting.
 - Confirm production environment variables are present.
 - Add Supabase Auth redirect URLs for `https://harleydigitalworks.com/auth` and required preview URLs.
-- Set Stripe success/cancel URLs for domain checkout.
+- Confirm public domain sales remain enquiry-only until the documented Payment Release Gate passes.
 - Verify email sender domain for `harleydigitalworks.com`.
 - Add analytics and Search Console properties for the new domain.
 - Configure OAuth callback URLs for the new domain.

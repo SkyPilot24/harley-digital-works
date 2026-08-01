@@ -48,18 +48,14 @@ export function ServiceDetailLayout({
           >
             {title}
           </h1>
-          <p className="mt-8 max-w-2xl text-[17px] leading-relaxed text-ink-muted">
-            {intro}
-          </p>
+          <p className="mt-8 max-w-2xl text-[17px] leading-relaxed text-ink-muted">{intro}</p>
 
           <div className="mt-10 flex flex-wrap items-baseline gap-6">
             <div>
               <div className="font-mono text-[11px] uppercase tracking-[0.2em] text-ink-muted">
                 {priceTag}
               </div>
-              <div className="mt-2 text-[28px] font-medium tracking-tight text-ink">
-                {price}
-              </div>
+              <div className="mt-2 text-[28px] font-medium tracking-tight text-ink">{price}</div>
             </div>
             <PillButton as="link" to="/contact" variant="dark" size="md">
               Enquire
@@ -76,12 +72,7 @@ export function ServiceDetailLayout({
           />
           <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {deliverables.map((d) => (
-              <FeatureCard
-                key={d.tag}
-                tag={d.tag}
-                title={d.title}
-                surface={d.surface}
-              />
+              <FeatureCard key={d.tag} tag={d.tag} title={d.title} surface={d.surface} />
             ))}
           </div>
         </Container>
@@ -92,17 +83,12 @@ export function ServiceDetailLayout({
           <SectionHeader title={processTitle} intro={processIntro} />
           <ol className="mt-12 divide-y divide-ink/10">
             {process.map((p) => (
-              <li
-                key={p.step}
-                className="grid gap-4 py-8 md:grid-cols-[120px_1fr] md:gap-10"
-              >
+              <li key={p.step} className="grid gap-4 py-8 md:grid-cols-[120px_1fr] md:gap-10">
                 <span className="font-mono text-[13px] tracking-[0.1em] text-ink-muted">
                   {p.step}
                 </span>
                 <div>
-                  <h3 className="text-[20px] font-medium tracking-tight text-ink">
-                    {p.title}
-                  </h3>
+                  <h3 className="text-[20px] font-medium tracking-tight text-ink">{p.title}</h3>
                   <p className="mt-3 max-w-2xl text-[16px] leading-relaxed text-ink-muted">
                     {p.body}
                   </p>
@@ -129,8 +115,7 @@ export function ServiceDetailLayout({
               {ctaTitle}
             </h2>
             <p className="mt-5 max-w-xl text-[16px] leading-relaxed text-ink-muted">
-              Book a free 15-minute call and we&rsquo;ll scope the work
-              together.
+              Book a free 15-minute call and we&rsquo;ll scope the work together.
             </p>
             <div className="mt-8">
               <PillButton as="link" to="/contact" variant="primary" size="md">

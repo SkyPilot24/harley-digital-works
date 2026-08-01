@@ -29,8 +29,10 @@ export const listAdminUsers = createServerFn({ method: "GET" })
     await assertAdmin(context.userId);
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
 
-    const { data: usersData, error: usersErr } =
-      await supabaseAdmin.auth.admin.listUsers({ page: 1, perPage: 200 });
+    const { data: usersData, error: usersErr } = await supabaseAdmin.auth.admin.listUsers({
+      page: 1,
+      perPage: 200,
+    });
     if (usersErr) throw new Error(usersErr.message);
 
     const { data: rolesData, error: rolesErr } = await supabaseAdmin

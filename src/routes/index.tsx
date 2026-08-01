@@ -4,46 +4,338 @@ import { PageShell, Container } from "@/components/site/PageShell";
 import { PillButton } from "@/components/site/PillButton";
 
 export const Route = createFileRoute("/")({
-  head: () => ({ meta: [
-    { title: "Harley Digital Works | Websites, AI & Digital Transformation" },
-    { name: "description", content: "Harley Digital Works designs high-performing websites, automates repetitive work and modernises digital services for ambitious UK organisations." },
-    { property: "og:title", content: "Harley Digital Works | Better digital, built to work" },
-    { property: "og:description", content: "Websites, AI automation and digital transformation focused on measurable business outcomes." },
-  ] }),
+  head: () => ({
+    meta: [
+      { title: "Harley Digital Works | Websites, AI & Digital Transformation" },
+      {
+        name: "description",
+        content:
+          "Harley Digital Works designs high-performing websites, automates repetitive work and modernises digital services for ambitious UK organisations.",
+      },
+      { property: "og:title", content: "Harley Digital Works | Better digital, built to work" },
+      {
+        property: "og:description",
+        content:
+          "Websites, AI automation and digital transformation focused on measurable business outcomes.",
+      },
+    ],
+  }),
   component: HomePage,
 });
 
 const services = [
-  { number: "01", icon: Code2, title: "Web design & development", copy: "Strategy, UX, content and engineering for websites that explain your value clearly and turn attention into action.", outcomes: ["Clearer positioning", "Faster experiences", "More qualified enquiries"], to: "/services/web-design-development" },
-  { number: "02", icon: Workflow, title: "AI & automation", copy: "Practical workflows that remove repetitive admin, connect the tools you already use and give your team time back.", outcomes: ["Less manual work", "Fewer hand-off errors", "More consistent delivery"], to: "/services/ai-automation" },
-  { number: "03", icon: Compass, title: "Digital transformation", copy: "Focused modernisation of outdated systems and customer journeys—without a costly, open-ended transformation programme.", outcomes: ["Simpler operations", "Better customer journeys", "A workable roadmap"], to: "/services/digital-transformation" },
+  {
+    number: "01",
+    icon: Code2,
+    title: "Web design & development",
+    copy: "Strategy, UX, content and engineering for websites that explain your value clearly and turn attention into action.",
+    outcomes: ["Clearer positioning", "Faster experiences", "More qualified enquiries"],
+    to: "/services/web-design-development",
+  },
+  {
+    number: "02",
+    icon: Workflow,
+    title: "AI & automation",
+    copy: "Practical workflows that remove repetitive admin, connect the tools you already use and give your team time back.",
+    outcomes: ["Less manual work", "Fewer hand-off errors", "More consistent delivery"],
+    to: "/services/ai-automation",
+  },
+  {
+    number: "03",
+    icon: Compass,
+    title: "Digital transformation",
+    copy: "Focused modernisation of outdated systems and customer journeys—without a costly, open-ended transformation programme.",
+    outcomes: ["Simpler operations", "Better customer journeys", "A workable roadmap"],
+    to: "/services/digital-transformation",
+  },
 ] as const;
 
 const process = [
-  ["01", "Understand", "We get close to the commercial goal, the people involved and the friction worth solving."],
-  ["02", "Prioritise", "We define the smallest valuable scope, the evidence of success and what can wait."],
-  ["03", "Design & build", "You see working progress early. Decisions are documented and delivery stays transparent."],
-  ["04", "Launch & improve", "We launch carefully, measure what matters and turn evidence into the next useful change."],
+  [
+    "01",
+    "Understand",
+    "We get close to the commercial goal, the people involved and the friction worth solving.",
+  ],
+  [
+    "02",
+    "Prioritise",
+    "We define the smallest valuable scope, the evidence of success and what can wait.",
+  ],
+  [
+    "03",
+    "Design & build",
+    "You see working progress early. Decisions are documented and delivery stays transparent.",
+  ],
+  [
+    "04",
+    "Launch & improve",
+    "We launch carefully, measure what matters and turn evidence into the next useful change.",
+  ],
 ] as const;
 
 function HomePage() {
-  return <PageShell>
-    <section className="relative overflow-hidden border-b border-ink/10 pt-28 md:pt-36">
-      <Container><div className="grid min-h-[680px] items-end gap-14 py-16 lg:grid-cols-12 lg:py-24">
-        <div className="lg:col-span-8"><p className="eyebrow">Digital consultancy · Manchester / UK-wide</p><h1 className="mt-7 max-w-5xl text-[clamp(3.6rem,8.8vw,8.2rem)] font-medium leading-[0.88] tracking-[-0.065em] text-ink">Better digital,<span className="block text-thg-teal-dark">built to work.</span></h1></div>
-        <div className="pb-2 lg:col-span-4"><p className="max-w-md text-lg leading-relaxed text-ink-muted">We help ambitious organisations build high-performing websites, automate repetitive work and modernise the digital journeys their customers rely on.</p><div className="mt-8 flex flex-wrap gap-3"><PillButton as="link" to="/contact" variant="dark">Start a project</PillButton><PillButton as="link" to="/work" variant="ghost">View our work</PillButton></div></div>
-      </div></Container>
-    </section>
-    <section className="border-b border-ink/10 py-7"><Container><div className="flex flex-col justify-between gap-3 text-sm sm:flex-row"><p className="font-medium text-ink">Strategy. Design. Engineering. Automation.</p><p className="text-ink-muted">Senior attention from first conversation to launch.</p></div></Container></section>
-    <section className="py-20 md:py-32"><Container><div className="grid gap-10 lg:grid-cols-12"><div className="lg:col-span-4"><p className="eyebrow">What we do</p><h2 className="mt-5 text-[clamp(2.3rem,4.5vw,4.2rem)] leading-[0.98] tracking-[-0.045em]">Technology shaped around the outcome.</h2></div><div className="lg:col-span-8">{services.map((service) => { const Icon = service.icon; return <Link key={service.number} to={service.to} className="service-row group grid gap-6 border-t border-ink/15 py-8 sm:grid-cols-[64px_1fr_auto] md:py-10"><span className="font-mono text-xs text-ink-muted">{service.number}</span><div><div className="flex items-center gap-3"><Icon size={22} strokeWidth={1.5} aria-hidden /><h3 className="text-2xl font-medium md:text-3xl">{service.title}</h3></div><p className="mt-4 max-w-2xl text-[15px] leading-relaxed text-ink-muted">{service.copy}</p><ul className="mt-5 flex flex-wrap gap-x-5 gap-y-2 text-xs text-ink/70">{service.outcomes.map((outcome) => <li key={outcome} className="flex items-center gap-2"><Check size={13} className="text-primary" aria-hidden />{outcome}</li>)}</ul></div><ArrowRight className="hidden transition-transform group-hover:translate-x-1 sm:block" aria-hidden /></Link>; })}</div></div></Container></section>
-    <section className="bg-ink py-20 text-background md:py-32"><Container><div className="grid gap-12 lg:grid-cols-12"><div className="lg:col-span-5"><p className="eyebrow text-background/55">Problems we solve</p><h2 className="mt-5 text-[clamp(2.5rem,5vw,4.8rem)] leading-[0.95] tracking-[-0.05em]">Digital should reduce friction, not add to it.</h2></div><div className="grid gap-px overflow-hidden rounded-2xl bg-background/15 sm:grid-cols-2 lg:col-span-7">{[[Gauge,"Your website looks dated, runs slowly or fails to create qualified enquiries."],[Bot,"Your team spends valuable time copying, chasing and reformatting information."],[Layers3,"Important customer journeys are split across tools that do not work together."],[Compass,"You know improvement is needed, but not what to prioritise or invest in first."]].map(([Icon, copy]) => { const ProblemIcon = Icon as typeof Gauge; return <article key={copy as string} className="bg-ink p-7 md:p-9"><ProblemIcon size={25} className="text-primary" strokeWidth={1.5} aria-hidden /><p className="mt-8 text-lg leading-relaxed text-background/85">{copy as string}</p></article>; })}</div></div></Container></section>
-    <section className="py-20 md:py-32"><Container><div className="flex flex-col justify-between gap-6 md:flex-row md:items-end"><div><p className="eyebrow">Selected work</p><h2 className="mt-5 text-[clamp(2.5rem,5vw,4.8rem)] leading-none tracking-[-0.05em]">Work that moves the work forward.</h2></div><Link to="/work" className="inline-flex items-center gap-2 text-sm font-medium">Explore all work <ArrowRight size={16} aria-hidden /></Link></div><div className="mt-14 grid gap-5 lg:grid-cols-2"><WorkCard tone="bg-surface-stone" label="Digital platform · Operations" title="A connected operating system for turning enquiries into delivery." tags={["Service design","Workflow automation","Product engineering"]} /><WorkCard tone="bg-primary" label="AI workflow · Content operations" title="One source transformed into a repeatable multi-channel content system." tags={["Applied AI","Automation","Editorial workflow"]} /></div><p className="mt-5 max-w-2xl text-sm leading-relaxed text-ink-muted">Some client work is confidential. These capability studies explain the challenge, approach and outcome without inventing client claims.</p></Container></section>
-    <section className="border-y border-ink/10 bg-white py-20 md:py-28"><Container><div className="grid gap-12 lg:grid-cols-12"><div className="lg:col-span-4"><p className="eyebrow">How we deliver</p><h2 className="mt-5 text-4xl leading-tight tracking-[-0.04em]">Clear decisions. Visible progress. No transformation theatre.</h2></div><ol className="lg:col-span-8">{process.map(([number,title,copy]) => <li key={number} className="grid gap-4 border-t border-ink/15 py-7 sm:grid-cols-[64px_180px_1fr]"><span className="font-mono text-xs text-ink-muted">{number}</span><h3 className="text-xl font-medium">{title}</h3><p className="text-[15px] leading-relaxed text-ink-muted">{copy}</p></li>)}</ol></div></Container></section>
-    <section className="py-20 md:py-32"><Container><div className="grid gap-14 lg:grid-cols-2"><div><p className="eyebrow">Why Harley Digital Works</p><h2 className="mt-5 max-w-xl text-[clamp(2.5rem,5vw,4.7rem)] leading-[0.96] tracking-[-0.05em]">Senior thinking, practical delivery.</h2></div><div className="grid gap-8 sm:grid-cols-2">{[["Commercial clarity","We connect design and technology decisions to a business result."],["One joined-up partner","Strategy, experience, content and engineering move together."],["Useful AI","We apply AI where it improves speed, quality or service—not for novelty."],["Built for ownership","Clear handover, reusable components and systems your team can run."]].map(([title,copy]) => <article key={title} className="border-t border-ink/15 pt-5"><h3 className="text-lg font-medium">{title}</h3><p className="mt-3 text-sm leading-relaxed text-ink-muted">{copy}</p></article>)}</div></div></Container></section>
-    <section className="pb-20 md:pb-28"><Container><div className="overflow-hidden rounded-3xl bg-primary px-7 py-14 md:px-14 md:py-20"><p className="eyebrow">Have a digital problem worth solving?</p><div className="mt-6 grid gap-10 lg:grid-cols-[1fr_auto] lg:items-end"><h2 className="max-w-4xl text-[clamp(2.8rem,6vw,6rem)] leading-[0.92] tracking-[-0.055em]">Let’s turn it into a clear next move.</h2><PillButton as="link" to="/contact" variant="dark">Discuss your idea</PillButton></div></div></Container></section>
-  </PageShell>;
+  return (
+    <PageShell>
+      <section className="relative overflow-hidden border-b border-ink/10 pt-28 md:pt-36">
+        <Container>
+          <div className="grid min-h-[680px] items-end gap-14 py-16 lg:grid-cols-12 lg:py-24">
+            <div className="lg:col-span-8">
+              <p className="eyebrow">Digital consultancy · Manchester / UK-wide</p>
+              <h1 className="mt-7 max-w-5xl text-[clamp(3.6rem,8.8vw,8.2rem)] font-medium leading-[0.88] tracking-[-0.065em] text-ink">
+                Better digital,<span className="block text-thg-teal-dark">built to work.</span>
+              </h1>
+            </div>
+            <div className="pb-2 lg:col-span-4">
+              <p className="max-w-md text-lg leading-relaxed text-ink-muted">
+                We help ambitious organisations build high-performing websites, automate repetitive
+                work and modernise the digital journeys their customers rely on.
+              </p>
+              <div className="mt-8 flex flex-wrap gap-3">
+                <PillButton as="link" to="/contact" variant="dark">
+                  Start a project
+                </PillButton>
+                <PillButton as="link" to="/work" variant="ghost">
+                  View our work
+                </PillButton>
+              </div>
+            </div>
+          </div>
+        </Container>
+      </section>
+      <section className="border-b border-ink/10 py-7">
+        <Container>
+          <div className="flex flex-col justify-between gap-3 text-sm sm:flex-row">
+            <p className="font-medium text-ink">Strategy. Design. Engineering. Automation.</p>
+            <p className="text-ink-muted">Senior attention from first conversation to launch.</p>
+          </div>
+        </Container>
+      </section>
+      <section className="py-20 md:py-32">
+        <Container>
+          <div className="grid gap-10 lg:grid-cols-12">
+            <div className="lg:col-span-4">
+              <p className="eyebrow">What we do</p>
+              <h2 className="mt-5 text-[clamp(2.3rem,4.5vw,4.2rem)] leading-[0.98] tracking-[-0.045em]">
+                Technology shaped around the outcome.
+              </h2>
+            </div>
+            <div className="lg:col-span-8">
+              {services.map((service) => {
+                const Icon = service.icon;
+                return (
+                  <Link
+                    key={service.number}
+                    to={service.to}
+                    className="service-row group grid gap-6 border-t border-ink/15 py-8 sm:grid-cols-[64px_1fr_auto] md:py-10"
+                  >
+                    <span className="font-mono text-xs text-ink-muted">{service.number}</span>
+                    <div>
+                      <div className="flex items-center gap-3">
+                        <Icon size={22} strokeWidth={1.5} aria-hidden />
+                        <h3 className="text-2xl font-medium md:text-3xl">{service.title}</h3>
+                      </div>
+                      <p className="mt-4 max-w-2xl text-[15px] leading-relaxed text-ink-muted">
+                        {service.copy}
+                      </p>
+                      <ul className="mt-5 flex flex-wrap gap-x-5 gap-y-2 text-xs text-ink/70">
+                        {service.outcomes.map((outcome) => (
+                          <li key={outcome} className="flex items-center gap-2">
+                            <Check size={13} className="text-primary" aria-hidden />
+                            {outcome}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    <ArrowRight
+                      className="hidden transition-transform group-hover:translate-x-1 sm:block"
+                      aria-hidden
+                    />
+                  </Link>
+                );
+              })}
+            </div>
+          </div>
+        </Container>
+      </section>
+      <section className="bg-ink py-20 text-background md:py-32">
+        <Container>
+          <div className="grid gap-12 lg:grid-cols-12">
+            <div className="lg:col-span-5">
+              <p className="eyebrow text-background/55">Problems we solve</p>
+              <h2 className="mt-5 text-[clamp(2.5rem,5vw,4.8rem)] leading-[0.95] tracking-[-0.05em]">
+                Digital should reduce friction, not add to it.
+              </h2>
+            </div>
+            <div className="grid gap-px overflow-hidden rounded-2xl bg-background/15 sm:grid-cols-2 lg:col-span-7">
+              {[
+                [
+                  Gauge,
+                  "Your website looks dated, runs slowly or fails to create qualified enquiries.",
+                ],
+                [
+                  Bot,
+                  "Your team spends valuable time copying, chasing and reformatting information.",
+                ],
+                [
+                  Layers3,
+                  "Important customer journeys are split across tools that do not work together.",
+                ],
+                [
+                  Compass,
+                  "You know improvement is needed, but not what to prioritise or invest in first.",
+                ],
+              ].map(([Icon, copy]) => {
+                const ProblemIcon = Icon as typeof Gauge;
+                return (
+                  <article key={copy as string} className="bg-ink p-7 md:p-9">
+                    <ProblemIcon size={25} className="text-primary" strokeWidth={1.5} aria-hidden />
+                    <p className="mt-8 text-lg leading-relaxed text-background/85">
+                      {copy as string}
+                    </p>
+                  </article>
+                );
+              })}
+            </div>
+          </div>
+        </Container>
+      </section>
+      <section className="py-20 md:py-32">
+        <Container>
+          <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
+            <div>
+              <p className="eyebrow">Selected work</p>
+              <h2 className="mt-5 text-[clamp(2.5rem,5vw,4.8rem)] leading-none tracking-[-0.05em]">
+                Work that moves the work forward.
+              </h2>
+            </div>
+            <Link to="/work" className="inline-flex items-center gap-2 text-sm font-medium">
+              Explore all work <ArrowRight size={16} aria-hidden />
+            </Link>
+          </div>
+          <div className="mt-14 grid gap-5 lg:grid-cols-2">
+            <WorkCard
+              tone="bg-surface-stone"
+              label="Digital platform · Operations"
+              title="A connected operating system for turning enquiries into delivery."
+              tags={["Service design", "Workflow automation", "Product engineering"]}
+            />
+            <WorkCard
+              tone="bg-primary"
+              label="AI workflow · Content operations"
+              title="One source transformed into a repeatable multi-channel content system."
+              tags={["Applied AI", "Automation", "Editorial workflow"]}
+            />
+          </div>
+          <p className="mt-5 max-w-2xl text-sm leading-relaxed text-ink-muted">
+            Some client work is confidential. These capability studies explain the challenge,
+            approach and outcome without inventing client claims.
+          </p>
+        </Container>
+      </section>
+      <section className="border-y border-ink/10 bg-white py-20 md:py-28">
+        <Container>
+          <div className="grid gap-12 lg:grid-cols-12">
+            <div className="lg:col-span-4">
+              <p className="eyebrow">How we deliver</p>
+              <h2 className="mt-5 text-4xl leading-tight tracking-[-0.04em]">
+                Clear decisions. Visible progress. No transformation theatre.
+              </h2>
+            </div>
+            <ol className="lg:col-span-8">
+              {process.map(([number, title, copy]) => (
+                <li
+                  key={number}
+                  className="grid gap-4 border-t border-ink/15 py-7 sm:grid-cols-[64px_180px_1fr]"
+                >
+                  <span className="font-mono text-xs text-ink-muted">{number}</span>
+                  <h3 className="text-xl font-medium">{title}</h3>
+                  <p className="text-[15px] leading-relaxed text-ink-muted">{copy}</p>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </Container>
+      </section>
+      <section className="py-20 md:py-32">
+        <Container>
+          <div className="grid gap-14 lg:grid-cols-2">
+            <div>
+              <p className="eyebrow">Why Harley Digital Works</p>
+              <h2 className="mt-5 max-w-xl text-[clamp(2.5rem,5vw,4.7rem)] leading-[0.96] tracking-[-0.05em]">
+                Senior thinking, practical delivery.
+              </h2>
+            </div>
+            <div className="grid gap-8 sm:grid-cols-2">
+              {[
+                [
+                  "Commercial clarity",
+                  "We connect design and technology decisions to a business result.",
+                ],
+                [
+                  "One joined-up partner",
+                  "Strategy, experience, content and engineering move together.",
+                ],
+                [
+                  "Useful AI",
+                  "We apply AI where it improves speed, quality or service—not for novelty.",
+                ],
+                [
+                  "Built for ownership",
+                  "Clear handover, reusable components and systems your team can run.",
+                ],
+              ].map(([title, copy]) => (
+                <article key={title} className="border-t border-ink/15 pt-5">
+                  <h3 className="text-lg font-medium">{title}</h3>
+                  <p className="mt-3 text-sm leading-relaxed text-ink-muted">{copy}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </Container>
+      </section>
+      <section className="pb-20 md:pb-28">
+        <Container>
+          <div className="overflow-hidden rounded-3xl bg-primary px-7 py-14 md:px-14 md:py-20">
+            <p className="eyebrow">Have a digital problem worth solving?</p>
+            <div className="mt-6 grid gap-10 lg:grid-cols-[1fr_auto] lg:items-end">
+              <h2 className="max-w-4xl text-[clamp(2.8rem,6vw,6rem)] leading-[0.92] tracking-[-0.055em]">
+                Let’s turn it into a clear next move.
+              </h2>
+              <PillButton as="link" to="/contact" variant="dark">
+                Discuss your idea
+              </PillButton>
+            </div>
+          </div>
+        </Container>
+      </section>
+    </PageShell>
+  );
 }
 
-function WorkCard({ tone, label, title, tags }: { tone: string; label: string; title: string; tags: string[] }) {
-  return <article className={`rounded-3xl p-8 md:p-12 ${tone}`}><p className="eyebrow">{label}</p><h3 className="mt-20 max-w-xl text-3xl font-medium leading-tight md:mt-36 md:text-5xl">{title}</h3><div className="mt-10 flex flex-wrap gap-2 text-xs">{tags.map((tag) => <span key={tag} className="rounded-full border border-ink/20 px-3 py-1.5">{tag}</span>)}</div></article>;
+function WorkCard({
+  tone,
+  label,
+  title,
+  tags,
+}: {
+  tone: string;
+  label: string;
+  title: string;
+  tags: string[];
+}) {
+  return (
+    <article className={`rounded-3xl p-8 md:p-12 ${tone}`}>
+      <p className="eyebrow">{label}</p>
+      <h3 className="mt-20 max-w-xl text-3xl font-medium leading-tight md:mt-36 md:text-5xl">
+        {title}
+      </h3>
+      <div className="mt-10 flex flex-wrap gap-2 text-xs">
+        {tags.map((tag) => (
+          <span key={tag} className="rounded-full border border-ink/20 px-3 py-1.5">
+            {tag}
+          </span>
+        ))}
+      </div>
+    </article>
+  );
 }

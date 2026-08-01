@@ -19,7 +19,8 @@ export const domainPortfolio: DomainAsset[] = [
     priority: "High",
     suggestedAsk: "GBP 2,500-7,500",
     quickSale: "GBP 750-1,500",
-    targetBuyer: "Fintech publisher, currency comparison site, newsletter, or financial education brand.",
+    targetBuyer:
+      "Fintech publisher, currency comparison site, newsletter, or financial education brand.",
     useCase: "A value-led currency education, FX insights, or alternative money publication.",
     nextAction: "List on Afternic/Sedo with buy-now pricing and prepare a fintech buyer list.",
   },
@@ -49,7 +50,8 @@ export const domainPortfolio: DomainAsset[] = [
     priority: "High",
     suggestedAsk: "GBP 1,000-3,000",
     quickSale: "GBP 350-800",
-    targetBuyer: "AI training provider, AI consultant, education brand, or consumer AI tool directory.",
+    targetBuyer:
+      "AI training provider, AI consultant, education brand, or consumer AI tool directory.",
     useCase: "Friendly UK-facing AI education, consultancy, or personal AI assistant brand.",
     nextAction: "Pitch to UK AI trainers and consultants with a simple landing-page concept.",
   },
@@ -71,7 +73,8 @@ export const domainPortfolio: DomainAsset[] = [
     quickSale: "GBP 350-800",
     targetBuyer: "Avatar SaaS, video tool, training platform, or digital identity startup.",
     useCase: "A UK brand for AI avatars, virtual presenters, or digital identity tools.",
-    nextAction: "Research avatar/video AI companies and list the domain with a clear use-case page.",
+    nextAction:
+      "Research avatar/video AI companies and list the domain with a clear use-case page.",
   },
   {
     name: "driveautonomous.org",
@@ -312,12 +315,23 @@ export const domainPortfolio: DomainAsset[] = [
 export const domainBundles = [
   {
     name: "AI names",
-    domains: ["aiwearables.co.uk", "myartificialintelligence.co.uk", "yourartificialintelligence.co.uk", "virtualavatars.co.uk"],
+    domains: [
+      "aiwearables.co.uk",
+      "myartificialintelligence.co.uk",
+      "yourartificialintelligence.co.uk",
+      "virtualavatars.co.uk",
+    ],
     action: "Pitch as a package to AI training, avatar, and wearable startups.",
   },
   {
     name: "Autonomous driving names",
-    domains: ["driveautonomous.org", "driveautonomously.co.uk", "drivingautonomous.org", "myselfdrivingcar.co.uk", "myselfdriving.co.uk"],
+    domains: [
+      "driveautonomous.org",
+      "driveautonomously.co.uk",
+      "drivingautonomous.org",
+      "myselfdrivingcar.co.uk",
+      "myselfdriving.co.uk",
+    ],
     action: "Pitch as one mobility education or autonomous-vehicle content package.",
   },
   {
@@ -339,7 +353,9 @@ export function priorityRank(priority: DomainPriority) {
 }
 
 export function rankedDomains(domains: DomainAsset[] = domainPortfolio) {
-  return [...domains].sort((a, b) => priorityRank(b.priority) - priorityRank(a.priority) || a.name.localeCompare(b.name));
+  return [...domains].sort(
+    (a, b) => priorityRank(b.priority) - priorityRank(a.priority) || a.name.localeCompare(b.name),
+  );
 }
 
 export const domainBuyNowPrices: Record<string, number | null> = {
@@ -371,7 +387,7 @@ export const domainBuyNowPrices: Record<string, number | null> = {
   "baggasm.co.uk": 195,
   "theolympics2020.co.uk": null,
   "disneynostalgia.co.uk": null,
-  "douladeliveryhobart": null,
+  douladeliveryhobart: null,
 };
 
 export function getDomainBuyNowPrice(domainName: string) {

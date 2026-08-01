@@ -1,13 +1,14 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
-import { useServerFn } from "@tanstack/react-start";
-import { toast } from "sonner";
 import { PageShell, Container } from "@/components/site/PageShell";
 import { PillButton } from "@/components/site/PillButton";
 import { TagChip } from "@/components/site/TagChip";
 import { FeatureCard } from "@/components/site/FeatureCard";
-import { createDomainCheckout } from "@/lib/domain-checkout.functions";
-import { domainBundles, formatGbp, getDomainBuyNowPrice, rankedDomains } from "@/lib/domain-portfolio";
+import {
+  domainBundles,
+  formatGbp,
+  getDomainBuyNowPrice,
+  rankedDomains,
+} from "@/lib/domain-portfolio";
 
 export const Route = createFileRoute("/domains")({
   head: () => ({
@@ -15,7 +16,8 @@ export const Route = createFileRoute("/domains")({
       { title: "Domains - Harley Digital Works" },
       {
         name: "description",
-        content: "A sale portfolio of owned domains across AI, autonomous driving, green transport, IoT, finance, and UK niche brands.",
+        content:
+          "A sale portfolio of owned domains across AI, autonomous driving, green transport, IoT, finance, and UK niche brands.",
       },
       { property: "og:title", content: "Domains - Harley Digital Works" },
     ],
@@ -49,14 +51,20 @@ function DomainsPage() {
             Owned domains for AI, mobility, finance, smart tech, and UK niche projects.
           </h1>
           <p className="mt-6 max-w-2xl text-[17px] leading-relaxed text-ink-muted">
-            Buy selected domains instantly by card, or enquire about bundles and sensitive names that need manual handling.
+            Enquire about individual domains, portfolio bundles, or names that need sensitive
+            handling. Guide prices help you assess fit before we confirm availability and terms.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
-            <PillButton as="link" to="/contact">Ask about a domain</PillButton>
-            <PillButton as="link" to="/contact" variant="ghost">Make a portfolio offer</PillButton>
+            <PillButton as="link" to="/contact">
+              Ask about a domain
+            </PillButton>
+            <PillButton as="link" to="/contact" variant="ghost">
+              Make a portfolio offer
+            </PillButton>
           </div>
           <p className="mt-4 max-w-2xl text-sm text-ink-muted">
-            After checkout, we verify payment and arrange the domain transfer within one working day.
+            Every sale is confirmed manually before payment so ownership, transfer requirements,
+            fees, and timing are clear to both parties.
           </p>
         </Container>
       </section>
@@ -69,17 +77,30 @@ function DomainsPage() {
                 {domains.map((domain) => {
                   const buyNowPrice = getDomainBuyNowPrice(domain.name);
                   return (
-                    <article key={domain.name} className="flex flex-col justify-between rounded-2xl border border-ink/10 bg-background p-5">
+                    <article
+                      key={domain.name}
+                      className="flex flex-col justify-between rounded-2xl border border-ink/10 bg-background p-5"
+                    >
                       <div>
                         <div className="flex items-center justify-between gap-3">
                           <TagChip>{domain.category}</TagChip>
-                          <span className={`rounded-full px-2.5 py-1 text-[10px] font-medium uppercase tracking-[0.14em] ${priorityStyles[domain.priority]}`}>
+                          <span
+                            className={`rounded-full px-2.5 py-1 text-[10px] font-medium uppercase tracking-[0.14em] ${priorityStyles[domain.priority]}`}
+                          >
                             {domain.priority}
                           </span>
                         </div>
-                        <p className="mt-5 font-mono text-[20px] font-medium text-ink">{domain.name}</p>
-                        <p className="mt-3 text-sm leading-relaxed text-ink-muted">{domain.useCase}</p>
-                        {domain.caution && <p className="mt-3 rounded-lg bg-amber-50 px-3 py-2 text-xs text-amber-800">Note: {domain.caution}</p>}
+                        <p className="mt-5 font-mono text-[20px] font-medium text-ink">
+                          {domain.name}
+                        </p>
+                        <p className="mt-3 text-sm leading-relaxed text-ink-muted">
+                          {domain.useCase}
+                        </p>
+                        {domain.caution && (
+                          <p className="mt-3 rounded-lg bg-amber-50 px-3 py-2 text-xs text-amber-800">
+                            Note: {domain.caution}
+                          </p>
+                        )}
                       </div>
                       <div className="mt-6 border-t border-ink/10 pt-4">
                         <div className="flex items-center justify-between gap-3 text-sm">
@@ -87,13 +108,12 @@ function DomainsPage() {
                           <span className="font-medium text-ink">{domain.suggestedAsk}</span>
                         </div>
                         <div className="mt-2 flex items-center justify-between gap-3 text-sm">
-                          <span className="text-ink-muted">Buy now</span>
+                          <span className="text-ink-muted">Guide price</span>
                           <span className="font-medium text-ink">{formatGbp(buyNowPrice)}</span>
                         </div>
-                        <div className="mt-4 flex flex-wrap gap-2">
-                          {buyNowPrice ? <BuyNowButton domain={domain.name} /> : null}
-                          <PillButton as="link" to="/contact" variant="ghost" size="sm">
-                            Enquire
+                        <div className="mt-4">
+                          <PillButton as="link" to="/contact" size="sm">
+                            Enquire about {domain.name}
                           </PillButton>
                         </div>
                       </div>
@@ -107,8 +127,8 @@ function DomainsPage() {
               <FeatureCard
                 surface="sage"
                 tag="How it works"
-                title="Buy now, then transfer."
-                body="Stripe takes payment securely. After checkout, we verify payment, confirm buyer details, and arrange the transfer within one working day."
+                title="Enquire, agree, then transfer."
+                body="Tell us which name you are considering. We confirm availability, price, transfer requirements, and payment terms before either party commits."
                 ctaLabel="Ask about a name"
                 ctaTo="/contact"
               />
@@ -118,7 +138,9 @@ function DomainsPage() {
                   {domainBundles.map((bundle) => (
                     <div key={bundle.name} className="rounded-xl bg-ink/[0.03] p-4">
                       <h3 className="font-medium text-ink">{bundle.name}</h3>
-                      <p className="mt-2 text-xs leading-relaxed text-ink-muted">{bundle.domains.join(", ")}</p>
+                      <p className="mt-2 text-xs leading-relaxed text-ink-muted">
+                        {bundle.domains.join(", ")}
+                      </p>
                       <p className="mt-2 text-sm text-ink/75">{bundle.action}</p>
                     </div>
                   ))}
@@ -131,31 +153,3 @@ function DomainsPage() {
     </PageShell>
   );
 }
-
-function BuyNowButton({ domain }: { domain: string }) {
-  const checkout = useServerFn(createDomainCheckout);
-  const [busy, setBusy] = useState(false);
-
-  async function buyNow() {
-    setBusy(true);
-    try {
-      const result = await checkout({ data: { domain } });
-      window.location.href = result.url;
-    } catch (error) {
-      toast.error(error instanceof Error ? error.message : "Could not start checkout.");
-      setBusy(false);
-    }
-  }
-
-  return (
-    <button
-      type="button"
-      onClick={buyNow}
-      disabled={busy}
-      className="inline-flex items-center rounded-full bg-ink px-4 py-2 text-[13px] font-medium text-white transition hover:bg-ink/90 disabled:opacity-50"
-    >
-      {busy ? "Opening..." : "Buy now"}
-    </button>
-  );
-}
-

@@ -43,10 +43,21 @@ export type DiagnosticTaskResult = {
   message: string;
 };
 
-type DiagnosticTaskPayload = Pick<
-  TablesInsert<"revenue_os_tasks">,
-  "title" | "category" | "priority" | "due_date" | "source_asset_id" | "source_asset_name" | "done"
->;
+type DiagnosticTaskPayload = Omit<
+  Pick<
+    TablesInsert<"revenue_os_tasks">,
+    | "title"
+    | "category"
+    | "priority"
+    | "due_date"
+    | "source_asset_id"
+    | "source_asset_name"
+    | "done"
+  >,
+  "source_asset_name"
+> & {
+  source_asset_name: string;
+};
 
 const LEGACY_CONTACT_EMAILS = ["hello@thg.digital", "hello@theharleygroup.org"];
 

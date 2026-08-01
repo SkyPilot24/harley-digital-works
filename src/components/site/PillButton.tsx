@@ -10,14 +10,10 @@ const base =
   "group inline-flex items-center gap-2 rounded-full font-medium transition-all duration-200 active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background";
 
 const variants: Record<Variant, string> = {
-  primary:
-    "bg-primary text-primary-foreground hover:bg-thg-teal-dark",
-  ghost:
-    "bg-transparent text-ink border border-ink/15 hover:border-ink/40 hover:bg-ink/[0.03]",
-  dark:
-    "bg-ink text-background hover:bg-ink/85",
-  light:
-    "bg-background text-ink hover:bg-background/85",
+  primary: "bg-primary text-primary-foreground hover:bg-thg-teal-dark",
+  ghost: "bg-transparent text-ink border border-ink/15 hover:border-ink/40 hover:bg-ink/[0.03]",
+  dark: "bg-ink text-background hover:bg-ink/85",
+  light: "bg-background text-ink hover:bg-background/85",
 };
 
 const sizes: Record<Size, string> = {
@@ -82,8 +78,15 @@ export function PillButton(props: PillButtonProps) {
       </a>
     );
   }
-  const { as: _as, variant: _v, size: _s, arrow: _a, children: _c, className: _cn, ...rest } =
-    props as ButtonProps;
+  const {
+    as: _as,
+    variant: _v,
+    size: _s,
+    arrow: _a,
+    children: _c,
+    className: _cn,
+    ...rest
+  } = props as ButtonProps;
   return (
     <button className={cls} {...rest}>
       {content}

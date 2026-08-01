@@ -16,7 +16,7 @@ export const Route = createFileRoute("/_authenticated/admin/projects")({
           label: "Status",
           type: "select",
           options: ["discovery", "in_progress", "review", "launched", "on_hold", "archived"],
-          render: (v) => <StatusBadge status={v} />,
+          render: (v) => <StatusBadge status={String(v ?? "")} />,
         },
         { name: "budget_cents", label: "Budget (cents)", type: "number", hideInTable: true },
         { name: "start_date", label: "Start date", type: "date" },

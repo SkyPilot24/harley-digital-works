@@ -5,6 +5,34 @@
 **Scope:** Resolution of HDW-001 through HDW-024, including previously unverified production areas  
 **Target:** Safe public launch in 10 working days; production maturity programme completed in 12 weeks
 
+## Implementation progress - 1 August 2026
+
+### Completed locally
+
+- **HDW-004 - type and release gates:** Corrected the diagnostic task payload invariant, removed unnecessary `any` casts from typed Revenue OS queries, narrowed generic admin values safely, added `npm run typecheck` and scoped `npm run format:check`, and added a GitHub Actions workflow for install, formatting, typecheck, lint, and build.
+- **HDW-003 - immediate payment containment:** Removed the public domain Buy Now controls and anonymous Stripe Checkout server function. Domain sales now use an enquiry-led flow with guide pricing and manual agreement before payment. Environment examples, README, launch notes, rebrand notes, and Domain OS operating copy now match that state.
+- **HDW-002 - implemented locally, preview verification pending:** Added an accessible honeypot, form timing signal, HMAC-derived request fingerprint, five-attempt/ten-minute database-backed limit, 15-minute exact duplicate suppression, generic client errors, and 24-hour attempt retention. The new ledger migration enables RLS and grants access only to `service_role`. Deployment must apply the migration before the application build.
+- **HDW-005 - indexability resolved locally; server gate pending:** Auth and admin SSR now emit robots exclusion, omit canonical links, and omit public Open Graph/X metadata. Anonymous admin HTML still returns `200` with a loading shell because Supabase sessions currently live in browser storage; true request-time authorization requires an SSR cookie-session migration and remains unresolved.
+- **Formatting baseline:** Applied the existing Prettier rules to application TypeScript so formatting can be enforced without platform-specific CRLF failures.
+
+### Validation evidence
+
+| Check                      | Result               | Evidence/limitation                                                                                                                                                                   |
+| -------------------------- | -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `npm run format:check`     | Pass                 | Application TypeScript and release configuration match Prettier.                                                                                                                      |
+| `npm run typecheck`        | Pass                 | `tsc --noEmit` exits 0.                                                                                                                                                               |
+| `npm run lint`             | Pass with 8 warnings | Zero errors; existing Fast Refresh export warnings remain.                                                                                                                            |
+| `npm run build`            | Pass                 | Production bundle generated; oversized entry chunk and Vite/Nitro warnings remain.                                                                                                    |
+| Checkout bundle search     | Pass                 | No `domain-checkout`, `createDomainCheckout`, or `api.stripe.com` reference exists in `.output`.                                                                                      |
+| Lead schema runtime check  | Pass                 | Valid submission, required timing field, and honeypot payload paths execute as expected.                                                                                              |
+| Client secret search       | Pass                 | Limiter secret names and ledger identifiers are absent from `.output/public`.                                                                                                         |
+| Lead limiter migration     | Unverified           | Migration was created with Supabase CLI 2.111.0 but has not been applied to a local/preview database; burst, replay, proxy-IP and cleanup tests remain required.                      |
+| Private route SSR metadata | Pass                 | `/admin` and `/auth` omit canonical/social metadata and emit `noindex, nofollow`; public `/` retains canonical/social metadata. Private routes are absent from sitemap/robots source. |
+| GitHub Actions             | Unverified           | Workflow is present locally but has not run on GitHub.                                                                                                                                |
+| Production                 | Unchanged/unverified | These changes have not been deployed; HDW-001 production drift remains Critical.                                                                                                      |
+
+**Release status remains: Launch blocked.** The next highest-value repository action is HDW-005 admin gating and indexability. Production promotion still requires HDW-001 deployment provenance and route validation, while HDW-002 needs migration and preview abuse testing and remaining launch-gate items are unresolved.
+
 ## 1. Outcome and delivery principles
 
 The programme is complete when Harley Digital Works has:
@@ -47,11 +75,11 @@ If engineering capacity is below this, preserve the order and extend dates. Neve
 
 ### Required environments
 
-| Environment | Purpose | Data/integrations | Rule |
-|---|---|---|---|
-| Local | Development/unit tests | Local or isolated Supabase; Stripe test | No production secrets/data |
-| Preview | Integration/E2E/acceptance | Non-production Supabase; test email/Stripe | One preview per change set |
-| Production | Customer traffic | Production services | Promotion only after signed gate |
+| Environment | Purpose                    | Data/integrations                          | Rule                             |
+| ----------- | -------------------------- | ------------------------------------------ | -------------------------------- |
+| Local       | Development/unit tests     | Local or isolated Supabase; Stripe test    | No production secrets/data       |
+| Preview     | Integration/E2E/acceptance | Non-production Supabase; test email/Stripe | One preview per change set       |
+| Production  | Customer traffic           | Production services                        | Promotion only after signed gate |
 
 ### Branch and change policy
 
@@ -91,13 +119,13 @@ Commands not currently configured are deliverables in Workstream B.
 
 ## 4. Prioritised programme
 
-| Phase | Timing | Release objective | Exit gate |
-|---|---|---|---|
-| 0. Freeze and baseline | Day 1 | Stop drift and capture production state | Target host/revision/env agreed |
-| A. Launch blockers | Days 1–10 | Safe public launch | Launch Gate passed |
-| B. Conversion and operations | Weeks 3–5 | Qualified leads and recurring attach | Lead lifecycle measured end-to-end |
-| C. Quality and compliance | Weeks 4–8 | WCAG/SEO/performance/legal maturity | Quality Gate passed |
-| D. Automation and growth | Weeks 7–12 | Lower admin load and scalable MRR | Operational Growth Gate passed |
+| Phase                        | Timing     | Release objective                       | Exit gate                          |
+| ---------------------------- | ---------- | --------------------------------------- | ---------------------------------- |
+| 0. Freeze and baseline       | Day 1      | Stop drift and capture production state | Target host/revision/env agreed    |
+| A. Launch blockers           | Days 1–10  | Safe public launch                      | Launch Gate passed                 |
+| B. Conversion and operations | Weeks 3–5  | Qualified leads and recurring attach    | Lead lifecycle measured end-to-end |
+| C. Quality and compliance    | Weeks 4–8  | WCAG/SEO/performance/legal maturity     | Quality Gate passed                |
+| D. Automation and growth     | Weeks 7–12 | Lower admin load and scalable MRR       | Operational Growth Gate passed     |
 
 Only one high-risk change should be in progress at once. Low-risk documentation, test and content tasks may run alongside it.
 
@@ -516,32 +544,32 @@ Only one high-risk change should be in progress at once. Low-risk documentation,
 
 ## 10. Finding-to-ticket coverage matrix
 
-| Finding | Resolution tickets | Completion evidence |
-|---|---|---|
-| HDW-001 Production drift | P0-01, A1-02 | Route crawl + deployment revision |
-| HDW-002 Lead abuse | A3-01 | Burst/replay/bot tests |
-| HDW-003 Payment lifecycle | P0-03, D1-01–03 | Payment Release Gate |
-| HDW-004 Type/CI | A1-01, B1-01 | Green required CI |
-| HDW-005 Admin gate/indexing | A2-01–02 | Role + robots tests |
-| HDW-006 Mobile admin | C1-01 | Viewport/keyboard tests |
-| HDW-007 Headers | A4-01 | Header/CSP scan |
-| HDW-008 Sitemap | A1-03, B4-01 | Generated validated sitemap |
-| HDW-009 Metadata | A2-02, C3-01–02 | Metadata/schema crawl |
-| HDW-010 Qualification/consent | A3-02, B2-01–02 | Form/model tests |
-| HDW-011 Email | B3-01–02 | Delivery/retry tests |
-| HDW-012 Analytics | B5-01–02 | PII-safe event/KPI validation |
-| HDW-013 Performance | C4-01–02 | Bundle/CWV budgets |
-| HDW-014 Pagination | C2-01–02 | 10k-record tests/query plans |
-| HDW-015 Dialog accessibility | C1-02–03 | WCAG evidence |
-| HDW-016 Legal | A3-02, C6-01 | Reviewed live policies |
-| HDW-017 Stale documentation | P0-01–02 | Updated runbooks/names |
-| HDW-018 `has_role` production | A2-03 | Remote RLS/advisor results |
-| HDW-019 Recurring lifecycle | B4-02, D2-03 | Attach/renewal KPIs |
-| HDW-020 Maskable icon | C5-01 | Manifest validation |
-| HDW-021 Offline page | C5-01–02 | Network-off test |
-| HDW-022 Vite plugin warning | C4-01 | Build comparison/no warning or documented retention |
-| HDW-023 Skip link | C1-03 | Keyboard test |
-| HDW-024 Labels/confirm | C1-02–03 | Accessible-name/dialog tests |
+| Finding                       | Resolution tickets | Completion evidence                                 |
+| ----------------------------- | ------------------ | --------------------------------------------------- |
+| HDW-001 Production drift      | P0-01, A1-02       | Route crawl + deployment revision                   |
+| HDW-002 Lead abuse            | A3-01              | Burst/replay/bot tests                              |
+| HDW-003 Payment lifecycle     | P0-03, D1-01–03    | Payment Release Gate                                |
+| HDW-004 Type/CI               | A1-01, B1-01       | Green required CI                                   |
+| HDW-005 Admin gate/indexing   | A2-01–02           | Role + robots tests                                 |
+| HDW-006 Mobile admin          | C1-01              | Viewport/keyboard tests                             |
+| HDW-007 Headers               | A4-01              | Header/CSP scan                                     |
+| HDW-008 Sitemap               | A1-03, B4-01       | Generated validated sitemap                         |
+| HDW-009 Metadata              | A2-02, C3-01–02    | Metadata/schema crawl                               |
+| HDW-010 Qualification/consent | A3-02, B2-01–02    | Form/model tests                                    |
+| HDW-011 Email                 | B3-01–02           | Delivery/retry tests                                |
+| HDW-012 Analytics             | B5-01–02           | PII-safe event/KPI validation                       |
+| HDW-013 Performance           | C4-01–02           | Bundle/CWV budgets                                  |
+| HDW-014 Pagination            | C2-01–02           | 10k-record tests/query plans                        |
+| HDW-015 Dialog accessibility  | C1-02–03           | WCAG evidence                                       |
+| HDW-016 Legal                 | A3-02, C6-01       | Reviewed live policies                              |
+| HDW-017 Stale documentation   | P0-01–02           | Updated runbooks/names                              |
+| HDW-018 `has_role` production | A2-03              | Remote RLS/advisor results                          |
+| HDW-019 Recurring lifecycle   | B4-02, D2-03       | Attach/renewal KPIs                                 |
+| HDW-020 Maskable icon         | C5-01              | Manifest validation                                 |
+| HDW-021 Offline page          | C5-01–02           | Network-off test                                    |
+| HDW-022 Vite plugin warning   | C4-01              | Build comparison/no warning or documented retention |
+| HDW-023 Skip link             | C1-03              | Keyboard test                                       |
+| HDW-024 Labels/confirm        | C1-02–03           | Accessible-name/dialog tests                        |
 
 ## 11. Decision register required from the product owner
 
@@ -569,17 +597,17 @@ These decisions block parts of the programme and should be resolved in Week 1:
 
 ## 13. Risk register
 
-| Risk | Probability/impact | Mitigation | Trigger/response |
-|---|---|---|---|
-| Wrong deployment target causes new drift | Medium/High | P0-01 and revision provenance | Freeze promotion; rollback exact deployment |
-| Auth change locks out admin | Medium/High | Seeded admin, preview role tests, recovery procedure | Roll back route gate; retain RLS |
-| RLS migration exposes data | Low/Critical | Policy tests and advisor before deploy | Revoke API grants/rollback with new migration |
-| Bot controls reject real leads | Medium/High | Layered accessible controls and monitoring | Fail to safe enquiry email only if abuse risk acceptable |
-| CSP breaks app/integrations | Medium/Medium | Report-only rollout | Revert enforcement, refine directive |
-| Email harms reputation | Medium/Medium | SPF/DKIM/DMARC, preview suppression | Pause sends, investigate provider logs |
-| Payment without fulfilment | High/Critical today | P0-03 and Payment Gate | Disable live checkout immediately |
-| Legal review delays launch | Medium/High | Accurate interim privacy + early reviewer booking | Keep optional tracking/payment disabled |
-| Scope expands into SaaS redesign | High/High | Phase gates and D3 go/no-go | Return work to current release objective |
+| Risk                                     | Probability/impact  | Mitigation                                           | Trigger/response                                         |
+| ---------------------------------------- | ------------------- | ---------------------------------------------------- | -------------------------------------------------------- |
+| Wrong deployment target causes new drift | Medium/High         | P0-01 and revision provenance                        | Freeze promotion; rollback exact deployment              |
+| Auth change locks out admin              | Medium/High         | Seeded admin, preview role tests, recovery procedure | Roll back route gate; retain RLS                         |
+| RLS migration exposes data               | Low/Critical        | Policy tests and advisor before deploy               | Revoke API grants/rollback with new migration            |
+| Bot controls reject real leads           | Medium/High         | Layered accessible controls and monitoring           | Fail to safe enquiry email only if abuse risk acceptable |
+| CSP breaks app/integrations              | Medium/Medium       | Report-only rollout                                  | Revert enforcement, refine directive                     |
+| Email harms reputation                   | Medium/Medium       | SPF/DKIM/DMARC, preview suppression                  | Pause sends, investigate provider logs                   |
+| Payment without fulfilment               | High/Critical today | P0-03 and Payment Gate                               | Disable live checkout immediately                        |
+| Legal review delays launch               | Medium/High         | Accurate interim privacy + early reviewer booking    | Keep optional tracking/payment disabled                  |
+| Scope expands into SaaS redesign         | High/High           | Phase gates and D3 go/no-go                          | Return work to current release objective                 |
 
 ## 14. Final completion criteria
 

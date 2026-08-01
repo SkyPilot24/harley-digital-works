@@ -19,9 +19,14 @@ export const Route = createFileRoute("/_authenticated/admin/clients")({
           label: "Status",
           type: "select",
           options: ["lead", "active", "paused", "archived"],
-          render: (v) => <StatusBadge status={v} />,
+          render: (v) => <StatusBadge status={String(v ?? "")} />,
         },
-        { name: "monthly_value_cents", label: "Monthly value (cents)", type: "number", hideInTable: true },
+        {
+          name: "monthly_value_cents",
+          label: "Monthly value (cents)",
+          type: "number",
+          hideInTable: true,
+        },
         { name: "notes", label: "Notes", type: "textarea", hideInTable: true },
       ]}
     />
