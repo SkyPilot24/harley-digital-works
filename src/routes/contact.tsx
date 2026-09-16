@@ -50,7 +50,10 @@ function ContactPage() {
           `Name: ${parsed.data.name}`,
           `Email: ${parsed.data.email}`,
           parsed.data.company ? `Company: ${parsed.data.company}` : "",
+          parsed.data.websiteUrl ? `Current Website: ${parsed.data.websiteUrl}` : "",
           parsed.data.package ? `Interested in: ${parsed.data.package}` : "",
+          parsed.data.budget ? `Estimated Budget: ${parsed.data.budget}` : "",
+          parsed.data.timeline ? `Target Timeline: ${parsed.data.timeline}` : "",
           "",
           parsed.data.message,
         ]
@@ -125,6 +128,11 @@ function ContactPage() {
                 <Field label="Your name" name="name" placeholder="Jane Smith" />
                 <Field label="Email" name="email" type="email" placeholder="jane@example.com" />
                 <Field label="Company (optional)" name="company" placeholder="Local Brand Ltd" />
+                <Field
+                  label="Current website (optional)"
+                  name="websiteUrl"
+                  placeholder="https://example.com"
+                />
                 <div className="grid gap-2">
                   <label className="text-[13px] font-medium text-ink" htmlFor="package">
                     Interested in
@@ -136,13 +144,53 @@ function ContactPage() {
                     defaultValue=""
                   >
                     <option value="" disabled>
-                      Choose a package
+                      Choose a service or package
                     </option>
                     <option>Web design & development</option>
-                    <option>AI & automation</option>
+                    <option>Website Care Plan & Managed Hosting</option>
+                    <option>30-Day Launch Plan</option>
+                    <option>AI & workflow automation</option>
+                    <option>Domain purchase / enquiry</option>
                     <option>Digital transformation</option>
                     <option>Something else</option>
                   </select>
+                </div>
+                <div className="grid gap-4 sm:grid-cols-2">
+                  <div className="grid gap-2">
+                    <label className="text-[13px] font-medium text-ink" htmlFor="budget">
+                      Estimated budget (optional)
+                    </label>
+                    <select
+                      id="budget"
+                      name="budget"
+                      className="rounded-lg border border-ink/15 bg-background px-4 py-3 text-[15px] text-ink focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
+                      defaultValue=""
+                    >
+                      <option value="">Select a range</option>
+                      <option>Under £1,500</option>
+                      <option>£1,500 – £3,000</option>
+                      <option>£3,000 – £5,000</option>
+                      <option>£5,000+</option>
+                      <option>Monthly retainer / Care plan</option>
+                    </select>
+                  </div>
+                  <div className="grid gap-2">
+                    <label className="text-[13px] font-medium text-ink" htmlFor="timeline">
+                      Target timeline (optional)
+                    </label>
+                    <select
+                      id="timeline"
+                      name="timeline"
+                      className="rounded-lg border border-ink/15 bg-background px-4 py-3 text-[15px] text-ink focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
+                      defaultValue=""
+                    >
+                      <option value="">Select a timeline</option>
+                      <option>Immediately (urgent)</option>
+                      <option>Within 30 days</option>
+                      <option>1 – 3 months</option>
+                      <option>Exploring / Planning</option>
+                    </select>
+                  </div>
                 </div>
                 <div className="grid gap-2">
                   <label className="text-[13px] font-medium text-ink" htmlFor="message">

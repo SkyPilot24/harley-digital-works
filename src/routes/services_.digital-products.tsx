@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ServiceDetailLayout } from "@/components/site/ServiceDetailLayout";
 
-export const Route = createFileRoute("/services/digital-products")({
+export const Route = createFileRoute("/services_/digital-products")({
   head: () => ({
     meta: [
       { title: "Digital Products — Harley Digital Works" },

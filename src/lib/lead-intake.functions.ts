@@ -28,12 +28,24 @@ export const submitLead = createServerFn({ method: "POST" })
     }
 
     const normalizedEmail = data.email.toLowerCase();
+
+    const metadataParts = [
+      data.websiteUrl ? `Current Website: ${data.websiteUrl}` : null,
+      data.budget ? `Budget: ${data.budget}` : null,
+      data.timeline ? `Timeline: ${data.timeline}` : null,
+    ].filter(Boolean);
+
+    const enrichedMessage =
+      metadataParts.length > 0
+        ? `${data.message}\n\n---\nQualification Context:\n${metadataParts.join("\n")}`
+        : data.message;
+
     const lead = {
       name: data.name,
       email: normalizedEmail,
       company: data.company || null,
       package: data.package || null,
-      message: data.message,
+      message: enrichedMessage,
     };
 
     const duplicateCutoff = new Date(now - DUPLICATE_WINDOW_MS).toISOString();
@@ -41,7 +53,7 @@ export const submitLead = createServerFn({ method: "POST" })
       .from("leads")
       .select("id")
       .eq("email", normalizedEmail)
-      .eq("message", data.message)
+      .eq("message", enrichedMessage)
       .gte("created_at", duplicateCutoff)
       .limit(1)
       .maybeSingle();
@@ -52,7 +64,12 @@ export const submitLead = createServerFn({ method: "POST" })
     const { error } = await supabaseAdmin.from("leads").insert(lead);
     if (error) throw new Error("Lead submission failed.");
 
-    await notifySlackOfLead(lead);
+    await notifySlackOfLead({
+      ...lead,
+      websiteUrl: data.websiteUrl || null,
+      budget: data.budget || null,
+      timeline: data.timeline || null,
+    });
     return { ok: true };
   });
 
@@ -119,9 +136,29 @@ async function notifySlackOfLead(lead: {
   company: string | null;
   package: string | null;
   message: string;
+  websiteUrl?: string | null;
+  budget?: string | null;
+  timeline?: string | null;
 }) {
   const webhookUrl = process.env.SLACK_WEBHOOK_URL;
   if (!webhookUrl) return;
+
+  const fields = [
+    { type: "mrkdwn", text: `*Name:*\n${lead.name}` },
+    { type: "mrkdwn", text: `*Email:*\n${lead.email}` },
+    { type: "mrkdwn", text: `*Company:*\n${lead.company || "—"}` },
+    { type: "mrkdwn", text: `*Interested in:*\n${lead.package || "Not specified"}` },
+  ];
+
+  if (lead.websiteUrl) {
+    fields.push({ type: "mrkdwn", text: `*Current Website:*\n${lead.websiteUrl}` });
+  }
+  if (lead.budget) {
+    fields.push({ type: "mrkdwn", text: `*Budget:*\n${lead.budget}` });
+  }
+  if (lead.timeline) {
+    fields.push({ type: "mrkdwn", text: `*Timeline:*\n${lead.timeline}` });
+  }
 
   const response = await fetch(webhookUrl, {
     method: "POST",
@@ -135,12 +172,7 @@ async function notifySlackOfLead(lead: {
         },
         {
           type: "section",
-          fields: [
-            { type: "mrkdwn", text: `*Name:*\n${lead.name}` },
-            { type: "mrkdwn", text: `*Email:*\n${lead.email}` },
-            { type: "mrkdwn", text: `*Company:*\n${lead.company || "—"}` },
-            { type: "mrkdwn", text: `*Interested in:*\n${lead.package || "Not specified"}` },
-          ],
+          fields,
         },
         {
           type: "section",
