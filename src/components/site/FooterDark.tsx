@@ -10,6 +10,7 @@ const COLUMNS = [
     heading: "Services",
     links: [
       { label: "Web design & development", to: "/services/web-design-development" },
+      { label: "Care Plans & Hosting", to: "/services/care-plans" },
       { label: "AI & automation", to: "/services/ai-automation" },
       { label: "Digital transformation", to: "/services/digital-transformation" },
       { label: "All services", to: "/services" },
@@ -18,6 +19,7 @@ const COLUMNS = [
   {
     heading: "Explore",
     links: [
+      { label: "Free Website Audit", to: "/audit" },
       { label: "Selected work", to: "/work" },
       { label: "Resources", to: "/resources" },
       { label: "Domains", to: "/domains" },

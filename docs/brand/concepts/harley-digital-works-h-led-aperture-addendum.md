@@ -158,15 +158,15 @@ The signal path should be at least as thick as the H stroke at favicon scale, or
 
 This addendum keeps the Direction 3 family rather than introducing a new palette.
 
-| Role | HEX | RGB | HSL | Usage |
-| --- | --- | --- | --- | --- |
-| Aperture Black | `#0B0F10` | 11 15 16 | 192 19% 5% | Primary mark, dark surfaces, strong text |
-| Deep Green | `#0E5F52` | 14 95 82 | 170 74% 21% | Secondary UI colour, accents, trust surfaces |
-| Signal Coral | `#D95D39` | 217 93 57 | 14 68% 54% | Route stroke, motion cue, sparing highlight |
-| Soft Paper | `#FBF8F1` | 251 248 241 | 42 56% 96% | Main warm background |
-| Pale Field | `#E7ECE6` | 231 236 230 | 110 14% 91% | Supporting surface and proposal panels |
-| Near Black | `#15191A` | 21 25 26 | 192 11% 9% | Body text on light backgrounds |
-| Muted Slate | `#596564` | 89 101 100 | 175 6% 37% | Secondary text |
+| Role           | HEX       | RGB         | HSL         | Usage                                        |
+| -------------- | --------- | ----------- | ----------- | -------------------------------------------- |
+| Aperture Black | `#0B0F10` | 11 15 16    | 192 19% 5%  | Primary mark, dark surfaces, strong text     |
+| Deep Green     | `#0E5F52` | 14 95 82    | 170 74% 21% | Secondary UI colour, accents, trust surfaces |
+| Signal Coral   | `#D95D39` | 217 93 57   | 14 68% 54%  | Route stroke, motion cue, sparing highlight  |
+| Soft Paper     | `#FBF8F1` | 251 248 241 | 42 56% 96%  | Main warm background                         |
+| Pale Field     | `#E7ECE6` | 231 236 230 | 110 14% 91% | Supporting surface and proposal panels       |
+| Near Black     | `#15191A` | 21 25 26    | 192 11% 9%  | Body text on light backgrounds               |
+| Muted Slate    | `#596564` | 89 101 100  | 175 6% 37%  | Secondary text                               |
 
 Recommended usage ratios:
 
@@ -188,16 +188,16 @@ Typography:
 
 ## Side-by-Side Evaluation
 
-| Criteria | H Aperture | Harley Frame | Signal H |
-| --- | --- | --- | --- |
-| Memorability | Very strong | Strong | Very strong |
-| H clarity | Strong | Very strong | Strong |
-| Premium feel | Very strong | Strong | Strong |
-| Small-size performance | Strong | Very strong | Medium to strong |
-| Sub-brand scalability | Strong | Medium | Very strong |
-| Human/founder feel | Medium | Very strong | Medium |
-| SaaS/product fit | Strong | Medium | Very strong |
-| Risk | Medium: H may need careful refinement | Low: could feel generic if not refined | Medium: coral path can become too active |
+| Criteria               | H Aperture                            | Harley Frame                           | Signal H                                 |
+| ---------------------- | ------------------------------------- | -------------------------------------- | ---------------------------------------- |
+| Memorability           | Very strong                           | Strong                                 | Very strong                              |
+| H clarity              | Strong                                | Very strong                            | Strong                                   |
+| Premium feel           | Very strong                           | Strong                                 | Strong                                   |
+| Small-size performance | Strong                                | Very strong                            | Medium to strong                         |
+| Sub-brand scalability  | Strong                                | Medium                                 | Very strong                              |
+| Human/founder feel     | Medium                                | Very strong                            | Medium                                   |
+| SaaS/product fit       | Strong                                | Medium                                 | Very strong                              |
+| Risk                   | Medium: H may need careful refinement | Low: could feel generic if not refined | Medium: coral path can become too active |
 
 ## Recommendation
 

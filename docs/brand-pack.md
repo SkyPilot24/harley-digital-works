@@ -43,4 +43,3 @@ THG Digital Agency is the practical, workflow-led digital partner for small oper
 - Do not introduce additional accent colours without adding them to the design system.
 - Do not place the teal accent on low-contrast green backgrounds.
 - Do not commit local `.env` values or Slack webhook URLs.
-

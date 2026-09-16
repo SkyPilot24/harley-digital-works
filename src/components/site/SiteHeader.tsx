@@ -9,8 +9,10 @@ import { BrandLogo } from "./BrandLogo";
 
 const LINKS = [
   { to: "/services", label: "Services" },
-  { to: "/about", label: "About" },
+  { to: "/services/care-plans", label: "Care Plans" },
+  { to: "/audit", label: "Free Website Check" },
   { to: "/work", label: "Work" },
+  { to: "/about", label: "About" },
 ] as const;
 
 export function SiteHeader() {

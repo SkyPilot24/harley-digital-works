@@ -1,5 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { CapabilityPage } from "@/components/site/CapabilityPage";
+import { WebsitePackagesSection } from "@/components/site/WebsitePackagesSection";
+
 export const Route = createFileRoute("/services_/web-design-development")({
   head: () => ({
     meta: [
@@ -13,6 +15,7 @@ export const Route = createFileRoute("/services_/web-design-development")({
   }),
   component: Page,
 });
+
 function Page() {
   return (
     <CapabilityPage
@@ -44,6 +47,8 @@ function Page() {
           { label: "View selected work", to: "/work" },
         ],
       }}
-    />
+    >
+      <WebsitePackagesSection />
+    </CapabilityPage>
   );
 }

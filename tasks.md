@@ -1,6 +1,7 @@
 # Website QA + optimization task list
 
 ## Objective
+
 Complete a full review of `https://harleydigitalworks.com`, fix critical/high issues in this codebase, retest, and report outcomes.
 
 ## Audit scope checklist

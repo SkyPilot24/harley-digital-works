@@ -32,7 +32,6 @@ Build The Harley Group platform as a workflow-led operating system that connects
 - The Control Centre Diagnostics screen checks every mapped public route for HTTP status, page title, meta description, canonical tag, and legacy hello@theharleygroup.org references.
 - Next diagnostics layer: contact form capture health, broken-link depth checks, sitemap coverage, and Revenue OS task generation from failed checks.
 
-
 ## Diagnostic Tasks - Implemented
 
 - Warning and failed website diagnostics can now be converted into open Revenue OS tasks from the Diagnostics screen.
@@ -41,19 +40,16 @@ Build The Harley Group platform as a workflow-led operating system that connects
 - Contact form capture health and sitemap coverage now appear in Diagnostics, with sitemap.xml and robots.txt added to the public build.
 - Next layer: add broken-link depth checks and turn repeated diagnostic warnings into Slack alerts.
 
-
 ## External Website Review - Added
 
 - Added a high-priority Revenue OS item to fully review https://theharleygroup.org/, prioritise conversion fixes, and ship improvements that support lead capture and recurring revenue.
 - This review should cover messaging clarity, route health, calls to action, service packaging, contact flow, metadata, and opportunities surfaced by Diagnostics.
-
 
 ## Slack Lead Alerts - Implemented
 
 - Public contact submissions now route through a server-side lead intake function that can notify Slack when SLACK_WEBHOOK_URL is configured.
 - Leads still save normally if Slack is not configured, keeping the integration safe for staged rollout.
 - Next Slack layer: Revenue OS daily task digest and diagnostic warning alerts.
-
 
 ## Brand Pack - Implemented
 

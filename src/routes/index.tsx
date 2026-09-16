@@ -1,22 +1,33 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, Bot, Check, Code2, Compass, Gauge, Layers3, Workflow } from "lucide-react";
+import {
+  ArrowRight,
+  Bot,
+  Check,
+  Code2,
+  Compass,
+  Gauge,
+  Layers3,
+  Workflow,
+  Sparkles,
+} from "lucide-react";
 import { PageShell, Container } from "@/components/site/PageShell";
 import { PillButton } from "@/components/site/PillButton";
+import { WebsitePackagesSection } from "@/components/site/WebsitePackagesSection";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Harley Digital Works | Websites, AI & Digital Transformation" },
+      { title: "Harley Digital Works | Websites, Automation & Digital Systems" },
       {
         name: "description",
         content:
-          "Harley Digital Works designs high-performing websites, automates repetitive work and modernises digital services for ambitious UK organisations.",
+          "Harley Digital Works builds high-performing websites, manages ongoing hosting & care, and automates repetitive workflows for UK businesses.",
       },
-      { property: "og:title", content: "Harley Digital Works | Better digital, built to work" },
+      { property: "og:title", content: "Harley Digital Works | Better websites. Smarter systems." },
       {
         property: "og:description",
         content:
-          "Websites, AI automation and digital transformation focused on measurable business outcomes.",
+          "We manage your digital presence so you can run your business. Websites, care plans, and practical automation.",
       },
     ],
   }),
@@ -90,12 +101,13 @@ function HomePage() {
                 We help ambitious organisations build high-performing websites, automate repetitive
                 work and modernise the digital journeys their customers rely on.
               </p>
-              <div className="mt-8 flex flex-wrap gap-3">
+              <div className="mt-8 flex flex-wrap items-center gap-3">
                 <PillButton as="link" to="/contact" variant="dark">
                   Start a project
                 </PillButton>
-                <PillButton as="link" to="/work" variant="ghost">
-                  View our work
+                <PillButton as="link" to="/audit" variant="ghost" className="gap-2">
+                  <Sparkles size={15} className="text-thg-teal-dark" />
+                  Free website audit
                 </PillButton>
               </div>
             </div>
@@ -256,6 +268,7 @@ function HomePage() {
           </div>
         </Container>
       </section>
+      <WebsitePackagesSection />
       <section className="py-20 md:py-32">
         <Container>
           <div className="grid gap-14 lg:grid-cols-2">

@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Code2, Workflow, Compass } from "lucide-react";
 import { PageShell, Container } from "@/components/site/PageShell";
 import { PillButton } from "@/components/site/PillButton";
+import { WebsitePackagesSection } from "@/components/site/WebsitePackagesSection";
 export const Route = createFileRoute("/services")({
   head: () => ({
     meta: [
@@ -102,6 +103,7 @@ function Page() {
           })}
         </Container>
       </section>
+      <WebsitePackagesSection />
       <section className="bg-ink py-20 text-background">
         <Container>
           <div className="grid gap-10 lg:grid-cols-[1fr_auto] lg:items-end">

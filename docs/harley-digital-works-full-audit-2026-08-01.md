@@ -42,26 +42,26 @@ Deployment configuration is inconsistent: `vercel.json` sets `NITRO_PRESET=verce
 
 ## 3. Audit scorecard
 
-| Area | Score | Status | Key reason |
-|---|---:|---|---|
-| Architecture | 7 | Good foundation | Clear boundaries, generated routes and shared config; deployment target ambiguity |
-| Code quality | 5 | Needs work | Type check fails; broad `any`; duplicate/legacy patterns and unused UI surface |
-| UI and UX | 7 | Good | Coherent design and journeys; several app states and admin controls remain weak |
-| Mobile | 5 | Partially verified | Responsive classes exist; admin sidebar disappears below `md` with no mobile replacement |
-| Accessibility | 5 | Partial | Labels, landmarks and reduced motion exist; dialogs/drawers and status announcements are incomplete |
-| SEO | 4 | High risk | Production 404s, incomplete sitemap, admin indexability and generic inherited social metadata |
-| Performance | 5 | Needs work | 633.16 kB entry chunk; external fonts; SSR pages marked no-cache |
-| Security | 5 | Significant gaps | RLS is thoughtful; no CSP/rate limiting/bot protection, public admin shells |
-| Database | 6 | Reasonable migrations | RLS and constraints exist; production drift/advisors/indexes not confirmed |
-| Authentication | 6 | Partial | Supabase session handling and server checks; full lifecycle untested |
-| Admin dashboard | 5 | Useful but incomplete | Broad CRUD and diagnostics; weak mobile UX, no pagination, client gate |
-| Forms and email | 4 | Incomplete | Validated lead storage/Slack; no spam controls, consent, confirmation email or retry queue |
-| PWA | 7 | Good static setup | Correct branding/cache exclusions; installation/update/offline interaction unverified |
-| Analytics | 1 | Absent | No analytics or conversion events found |
-| Legal readiness | 3 | Blocked | Privacy page local but 404 live; no terms, cookie or accessibility statement |
-| Conversion | 6 | Promising | Clear CTAs and proposition; qualification, proof and attribution are thin |
-| Recurring-revenue readiness | 4 | Underdeveloped | Care Plans exist; recurring adoption and lifecycle are not operationalized |
-| Production readiness | 4 | Launch blocked | Build passes, but production drift, failed typecheck and missing controls remain |
+| Area                        | Score | Status                | Key reason                                                                                          |
+| --------------------------- | ----: | --------------------- | --------------------------------------------------------------------------------------------------- |
+| Architecture                |     7 | Good foundation       | Clear boundaries, generated routes and shared config; deployment target ambiguity                   |
+| Code quality                |     5 | Needs work            | Type check fails; broad `any`; duplicate/legacy patterns and unused UI surface                      |
+| UI and UX                   |     7 | Good                  | Coherent design and journeys; several app states and admin controls remain weak                     |
+| Mobile                      |     5 | Partially verified    | Responsive classes exist; admin sidebar disappears below `md` with no mobile replacement            |
+| Accessibility               |     5 | Partial               | Labels, landmarks and reduced motion exist; dialogs/drawers and status announcements are incomplete |
+| SEO                         |     4 | High risk             | Production 404s, incomplete sitemap, admin indexability and generic inherited social metadata       |
+| Performance                 |     5 | Needs work            | 633.16 kB entry chunk; external fonts; SSR pages marked no-cache                                    |
+| Security                    |     5 | Significant gaps      | RLS is thoughtful; no CSP/rate limiting/bot protection, public admin shells                         |
+| Database                    |     6 | Reasonable migrations | RLS and constraints exist; production drift/advisors/indexes not confirmed                          |
+| Authentication              |     6 | Partial               | Supabase session handling and server checks; full lifecycle untested                                |
+| Admin dashboard             |     5 | Useful but incomplete | Broad CRUD and diagnostics; weak mobile UX, no pagination, client gate                              |
+| Forms and email             |     4 | Incomplete            | Validated lead storage/Slack; no spam controls, consent, confirmation email or retry queue          |
+| PWA                         |     7 | Good static setup     | Correct branding/cache exclusions; installation/update/offline interaction unverified               |
+| Analytics                   |     1 | Absent                | No analytics or conversion events found                                                             |
+| Legal readiness             |     3 | Blocked               | Privacy page local but 404 live; no terms, cookie or accessibility statement                        |
+| Conversion                  |     6 | Promising             | Clear CTAs and proposition; qualification, proof and attribution are thin                           |
+| Recurring-revenue readiness |     4 | Underdeveloped        | Care Plans exist; recurring adoption and lifecycle are not operationalized                          |
+| Production readiness        |     4 | Launch blocked        | Build passes, but production drift, failed typecheck and missing controls remain                    |
 
 ## 4. Prioritised findings
 
@@ -224,46 +224,46 @@ Deployment configuration is inconsistent: `vercel.json` sets `NITRO_PRESET=verce
 
 Production results were captured by direct HTTP requests on 1 August 2026. “Client gate” means HTTP 200 shell followed by client-side auth/admin evaluation; database access is separately controlled.
 
-| Route | Purpose | Access | Production | Linked/declared from | Canonical/indexation | Issue / recommendation |
-|---|---|---|---:|---|---|---|
-| `/` | Home/conversion | Public | 200 | Header, footer, sitemap | Canonical `/` | Healthy response; monitor CWV |
-| `/about` | Trust/founder | Public | 200 | Nav, sitemap | Canonical; indexable | Add verifiable proof |
-| `/work` | Capability studies | Public | **404** | Local homepage/nav | Missing live | Deploy before linking/indexing |
-| `/services` | Offer catalogue | Public | 200 | Nav, sitemap | Canonical; indexable | Clarify recurring path |
-| `/services/web-design-development` | Website service | Public | **404** | Local services/home; sitemap | Missing live | Launch blocker |
-| `/services/ai-automation` | Automation service | Public | **404** | Local services/home; sitemap | Missing live | Launch blocker |
-| `/services/digital-transformation` | Transformation | Public | **404** | Local services; sitemap | Missing live | Launch blocker |
-| `/services/automation` | Legacy/packaged automation | Public | 200 | Legacy site config/nav | Canonical; indexable | Decide relationship/redirect with AI page |
-| `/services/care-plans` | Hosting/maintenance MRR | Public | 200 | Nav/site config | Missing sitemap | Add to sitemap and core journey |
-| `/services/content-engine` | Content system | Public | 200 | Nav/site config | Missing sitemap | Add to sitemap; connect ContentFlow |
-| `/services/digital-products` | Product direction | Public | 200 | Nav/site config | Missing sitemap | Be explicit about availability |
-| `/services/launch-plan` | Productized build | Public | 200 | Nav/site config | Missing sitemap | Add to sitemap |
-| `/domains` | Domain portfolio/checkout | Public | 200 | Nav/site config | Missing sitemap | Gate payment until fulfilment exists |
-| `/resources` | Content/lead nurture | Public | 200 | Nav/site config | Missing sitemap | Add real resources and sitemap |
-| `/contact` | Lead capture | Public | 200 | Site-wide CTAs | Canonical; sitemap | Add abuse control/qualification |
-| `/onboarding` | Pre-client process | Public | 200 | Nav/footer | Missing sitemap | Consider noindex until client-ready |
-| `/privacy` | Privacy notice | Public | **404** | Local footer/sitemap | Missing live | Launch blocker for lead capture |
-| `/auth` | Sign in/up/reset | Public, noindex | 200 | Direct/admin redirect | `noindex,nofollow` | Canonical still emitted; remove canonical |
-| `/admin/` | Control Centre | Admin | 200 client gate | Direct/admin nav | Indexable canonical | Server-gate + noindex |
-| `/admin/leads` | Lead management | Admin | 200 client gate | Admin nav | Indexable canonical | Server-gate + noindex |
-| `/admin/clients` | Client management | Admin | 200 client gate | Admin nav | Indexable canonical | Server-gate + noindex |
-| `/admin/projects` | Project management | Admin | 200 client gate | Admin nav | Indexable canonical | Server-gate + noindex |
-| `/admin/team` | Team management | Admin | 200 client gate | Admin nav | Indexable canonical | Server-gate + noindex |
-| `/admin/services` | Service CMS | Admin | 200 client gate | Admin nav | Indexable canonical | Server-gate + noindex |
-| `/admin/resources` | Resource CMS | Admin | 200 client gate | Admin nav | Indexable canonical | Server-gate + noindex |
-| `/admin/testimonials` | Testimonial CMS | Admin | 200 client gate | Admin nav | Indexable canonical | Server-gate + noindex |
-| `/admin/users` | User/role admin | Admin | 200 client gate | Admin nav | Indexable canonical | Server-gate + noindex |
-| `/admin/settings` | Agency settings | Admin | 200 client gate | Admin nav | Indexable canonical | Server-gate + noindex |
-| `/admin/revenue-os` | Revenue portfolio/tasks | Admin | 200 client gate | Admin nav | Indexable canonical | Add pagination/validation |
-| `/admin/domain-os` | Domain operations | Admin | 200 client gate | Admin nav | Indexable canonical | Connect order lifecycle |
-| `/admin/diagnostics` | Website/auth diagnostics | Admin | 200 client gate | Admin nav | Indexable canonical | Fix type error/route registry |
-| `/admin/playbooks` | Operating playbooks | Admin | 200 client gate | Admin nav | Indexable canonical | Confirm persistence model |
-| Unknown path | 404 handling | Public | 404 | N/A | No canonical | Correct HTTP behavior confirmed |
-| `/robots.txt` | Crawl rules | Public | 200 | Standard | Allows all | Disallow is not security; noindex admin in HTML/header |
-| `/sitemap.xml` | Discovery | Public | 200 | Robots | Incomplete | Generate from registry |
-| `/site.webmanifest` | PWA | Public | 200 | Root head | N/A | Correct current app naming |
-| `/sw.js` | PWA cache | Public | 200 | Root effect | N/A | Install/update interaction unverified |
-| `/offline.html` | Offline fallback | Public | 200 | Service worker | N/A | Remove remote font dependency |
+| Route                              | Purpose                    | Access          |      Production | Linked/declared from         | Canonical/indexation | Issue / recommendation                                 |
+| ---------------------------------- | -------------------------- | --------------- | --------------: | ---------------------------- | -------------------- | ------------------------------------------------------ |
+| `/`                                | Home/conversion            | Public          |             200 | Header, footer, sitemap      | Canonical `/`        | Healthy response; monitor CWV                          |
+| `/about`                           | Trust/founder              | Public          |             200 | Nav, sitemap                 | Canonical; indexable | Add verifiable proof                                   |
+| `/work`                            | Capability studies         | Public          |         **404** | Local homepage/nav           | Missing live         | Deploy before linking/indexing                         |
+| `/services`                        | Offer catalogue            | Public          |             200 | Nav, sitemap                 | Canonical; indexable | Clarify recurring path                                 |
+| `/services/web-design-development` | Website service            | Public          |         **404** | Local services/home; sitemap | Missing live         | Launch blocker                                         |
+| `/services/ai-automation`          | Automation service         | Public          |         **404** | Local services/home; sitemap | Missing live         | Launch blocker                                         |
+| `/services/digital-transformation` | Transformation             | Public          |         **404** | Local services; sitemap      | Missing live         | Launch blocker                                         |
+| `/services/automation`             | Legacy/packaged automation | Public          |             200 | Legacy site config/nav       | Canonical; indexable | Decide relationship/redirect with AI page              |
+| `/services/care-plans`             | Hosting/maintenance MRR    | Public          |             200 | Nav/site config              | Missing sitemap      | Add to sitemap and core journey                        |
+| `/services/content-engine`         | Content system             | Public          |             200 | Nav/site config              | Missing sitemap      | Add to sitemap; connect ContentFlow                    |
+| `/services/digital-products`       | Product direction          | Public          |             200 | Nav/site config              | Missing sitemap      | Be explicit about availability                         |
+| `/services/launch-plan`            | Productized build          | Public          |             200 | Nav/site config              | Missing sitemap      | Add to sitemap                                         |
+| `/domains`                         | Domain portfolio/checkout  | Public          |             200 | Nav/site config              | Missing sitemap      | Gate payment until fulfilment exists                   |
+| `/resources`                       | Content/lead nurture       | Public          |             200 | Nav/site config              | Missing sitemap      | Add real resources and sitemap                         |
+| `/contact`                         | Lead capture               | Public          |             200 | Site-wide CTAs               | Canonical; sitemap   | Add abuse control/qualification                        |
+| `/onboarding`                      | Pre-client process         | Public          |             200 | Nav/footer                   | Missing sitemap      | Consider noindex until client-ready                    |
+| `/privacy`                         | Privacy notice             | Public          |         **404** | Local footer/sitemap         | Missing live         | Launch blocker for lead capture                        |
+| `/auth`                            | Sign in/up/reset           | Public, noindex |             200 | Direct/admin redirect        | `noindex,nofollow`   | Canonical still emitted; remove canonical              |
+| `/admin/`                          | Control Centre             | Admin           | 200 client gate | Direct/admin nav             | Indexable canonical  | Server-gate + noindex                                  |
+| `/admin/leads`                     | Lead management            | Admin           | 200 client gate | Admin nav                    | Indexable canonical  | Server-gate + noindex                                  |
+| `/admin/clients`                   | Client management          | Admin           | 200 client gate | Admin nav                    | Indexable canonical  | Server-gate + noindex                                  |
+| `/admin/projects`                  | Project management         | Admin           | 200 client gate | Admin nav                    | Indexable canonical  | Server-gate + noindex                                  |
+| `/admin/team`                      | Team management            | Admin           | 200 client gate | Admin nav                    | Indexable canonical  | Server-gate + noindex                                  |
+| `/admin/services`                  | Service CMS                | Admin           | 200 client gate | Admin nav                    | Indexable canonical  | Server-gate + noindex                                  |
+| `/admin/resources`                 | Resource CMS               | Admin           | 200 client gate | Admin nav                    | Indexable canonical  | Server-gate + noindex                                  |
+| `/admin/testimonials`              | Testimonial CMS            | Admin           | 200 client gate | Admin nav                    | Indexable canonical  | Server-gate + noindex                                  |
+| `/admin/users`                     | User/role admin            | Admin           | 200 client gate | Admin nav                    | Indexable canonical  | Server-gate + noindex                                  |
+| `/admin/settings`                  | Agency settings            | Admin           | 200 client gate | Admin nav                    | Indexable canonical  | Server-gate + noindex                                  |
+| `/admin/revenue-os`                | Revenue portfolio/tasks    | Admin           | 200 client gate | Admin nav                    | Indexable canonical  | Add pagination/validation                              |
+| `/admin/domain-os`                 | Domain operations          | Admin           | 200 client gate | Admin nav                    | Indexable canonical  | Connect order lifecycle                                |
+| `/admin/diagnostics`               | Website/auth diagnostics   | Admin           | 200 client gate | Admin nav                    | Indexable canonical  | Fix type error/route registry                          |
+| `/admin/playbooks`                 | Operating playbooks        | Admin           | 200 client gate | Admin nav                    | Indexable canonical  | Confirm persistence model                              |
+| Unknown path                       | 404 handling               | Public          |             404 | N/A                          | No canonical         | Correct HTTP behavior confirmed                        |
+| `/robots.txt`                      | Crawl rules                | Public          |             200 | Standard                     | Allows all           | Disallow is not security; noindex admin in HTML/header |
+| `/sitemap.xml`                     | Discovery                  | Public          |             200 | Robots                       | Incomplete           | Generate from registry                                 |
+| `/site.webmanifest`                | PWA                        | Public          |             200 | Root head                    | N/A                  | Correct current app naming                             |
+| `/sw.js`                           | PWA cache                  | Public          |             200 | Root effect                  | N/A                  | Install/update interaction unverified                  |
+| `/offline.html`                    | Offline fallback           | Public          |             200 | Service worker               | N/A                  | Remove remote font dependency                          |
 
 No dynamic content routes, API route files, explicit redirects, deprecated aliases or legal routes beyond `/privacy` were found. TanStack server functions are exposed through framework RPC endpoints rather than hand-authored API route files.
 
@@ -271,41 +271,41 @@ No dynamic content routes, API route files, explicit redirects, deprecated alias
 
 This matrix records only code-confirmed access. “RLS” means authorization is enforced by policies; “server assert” means authenticated middleware plus an explicit admin-role check.
 
-| Resource | Anonymous | Authenticated user | Client | Team member | Admin | Service role |
-|---|---|---|---|---|---|---|
-| Published services/resources/testimonials | Read published via RLS | Read published | Same as authenticated | Same unless admin role | Read/manage via RLS | Full |
-| Leads | Insert via legacy Data API policy; server lead intake also writes | Insert | No ownership read confirmed | No special access confirmed | Read/update/delete via RLS | Full |
-| Clients | None | None unless admin | No self-record policy confirmed | None unless admin | CRUD via RLS | Full |
-| Projects | None | Own projects where `client_id = auth.uid()` policy applies | Read own confirmed in migration | No special access confirmed | CRUD via RLS | Full |
-| Team base table | None | None unless admin | None | None unless admin | CRUD/select via RLS | Full |
-| Public team view | Read active safe columns | Read | Read | Read | Read | Read/full underlying |
-| Agency settings | Read | Read | Read | Read | Read/manage via RLS | Full |
-| User roles | None | Read own role | Read own role | Read own role | Read/manage all via RLS and protected server functions | Full |
-| Revenue OS assets/tasks | None | None unless admin | None | None unless admin | CRUD via `app_private.has_role` RLS | Full |
-| Auth users | None | None | None | None | List via authenticated + server admin assertion | Auth Admin API |
-| Domain checkout creation | Create session for allow-listed fixed-price domain | Same | Same | Same | Same | Not applicable |
-| Diagnostics | None | Denied unless admin | None | None unless admin | Auth middleware + server admin assertion | Uses service role internally |
+| Resource                                  | Anonymous                                                         | Authenticated user                                         | Client                          | Team member                 | Admin                                                  | Service role                 |
+| ----------------------------------------- | ----------------------------------------------------------------- | ---------------------------------------------------------- | ------------------------------- | --------------------------- | ------------------------------------------------------ | ---------------------------- |
+| Published services/resources/testimonials | Read published via RLS                                            | Read published                                             | Same as authenticated           | Same unless admin role      | Read/manage via RLS                                    | Full                         |
+| Leads                                     | Insert via legacy Data API policy; server lead intake also writes | Insert                                                     | No ownership read confirmed     | No special access confirmed | Read/update/delete via RLS                             | Full                         |
+| Clients                                   | None                                                              | None unless admin                                          | No self-record policy confirmed | None unless admin           | CRUD via RLS                                           | Full                         |
+| Projects                                  | None                                                              | Own projects where `client_id = auth.uid()` policy applies | Read own confirmed in migration | No special access confirmed | CRUD via RLS                                           | Full                         |
+| Team base table                           | None                                                              | None unless admin                                          | None                            | None unless admin           | CRUD/select via RLS                                    | Full                         |
+| Public team view                          | Read active safe columns                                          | Read                                                       | Read                            | Read                        | Read                                                   | Read/full underlying         |
+| Agency settings                           | Read                                                              | Read                                                       | Read                            | Read                        | Read/manage via RLS                                    | Full                         |
+| User roles                                | None                                                              | Read own role                                              | Read own role                   | Read own role               | Read/manage all via RLS and protected server functions | Full                         |
+| Revenue OS assets/tasks                   | None                                                              | None unless admin                                          | None                            | None unless admin           | CRUD via `app_private.has_role` RLS                    | Full                         |
+| Auth users                                | None                                                              | None                                                       | None                            | None                        | List via authenticated + server admin assertion        | Auth Admin API               |
+| Domain checkout creation                  | Create session for allow-listed fixed-price domain                | Same                                                       | Same                            | Same                        | Same                                                   | Not applicable               |
+| Diagnostics                               | None                                                              | Denied unless admin                                        | None                            | None unless admin           | Auth middleware + server admin assertion               | Uses service role internally |
 
 The migration-level `has_role` permission error is **resolved in source**: `app_private.has_role` is executable by authenticated/service roles, policies call it, and execute on `public.has_role` is revoked. Remote schema/migration parity was not available, so production resolution is not confirmed.
 
 ## 7. Build and test results
 
-| Check | Command | Result | Existing/new | Notes |
-|---|---|---|---|---|
-| Git state | `git status --short --branch` | Pass | Existing | Clean branch `codex/audit` |
-| Type check | `npx tsc --noEmit` | **Fail** | Existing | TS2345 at diagnostics line 107 |
-| Production build | `npm run build` | Pass | Current | Client + SSR/Nitro built in ~29s |
-| Bundle budget | Build output | **Warn** | Existing | 633.16 kB minified entry chunk |
-| Lint | `npm run lint` | Inconclusive | Existing | Exceeded 60s runner window with no output; earlier repo docs report broad formatting issues |
-| Formatting | Prettier check in combined run | Inconclusive | Existing | Combined command timed out before buffered output |
-| Unit tests | `npm test --if-present` / scripts | Not configured | Existing | No `test` script or test files found |
-| Integration/E2E | Repository inspection | Not configured | Existing | No Playwright/Cypress/Vitest config found |
-| Dependency audit | `npm audit` in combined run | Inconclusive | Existing | Combined command timed out; rerun in CI |
-| Local production smoke | `npx vite preview` | Not possible | Environment/config | Preview did not become reachable; project docs prescribe Wrangler preview |
-| Production route crawl | Direct HTTPS requests | Mixed | Production | 27 routes/assets verified; five intended public pages return 404 |
-| Accessibility automation | Browser tooling | Not possible | Environment | Browser runtime was blocked by Windows sandbox initialization |
-| Lighthouse/CWV | Browser tooling | Not possible | Environment | Bundle evidence only; no lab score claimed |
-| Supabase migration/advisors | Static migration review | Partial | Access limit | No remote CLI/MCP connection; no destructive database action taken |
+| Check                       | Command                           | Result         | Existing/new       | Notes                                                                                       |
+| --------------------------- | --------------------------------- | -------------- | ------------------ | ------------------------------------------------------------------------------------------- |
+| Git state                   | `git status --short --branch`     | Pass           | Existing           | Clean branch `codex/audit`                                                                  |
+| Type check                  | `npx tsc --noEmit`                | **Fail**       | Existing           | TS2345 at diagnostics line 107                                                              |
+| Production build            | `npm run build`                   | Pass           | Current            | Client + SSR/Nitro built in ~29s                                                            |
+| Bundle budget               | Build output                      | **Warn**       | Existing           | 633.16 kB minified entry chunk                                                              |
+| Lint                        | `npm run lint`                    | Inconclusive   | Existing           | Exceeded 60s runner window with no output; earlier repo docs report broad formatting issues |
+| Formatting                  | Prettier check in combined run    | Inconclusive   | Existing           | Combined command timed out before buffered output                                           |
+| Unit tests                  | `npm test --if-present` / scripts | Not configured | Existing           | No `test` script or test files found                                                        |
+| Integration/E2E             | Repository inspection             | Not configured | Existing           | No Playwright/Cypress/Vitest config found                                                   |
+| Dependency audit            | `npm audit` in combined run       | Inconclusive   | Existing           | Combined command timed out; rerun in CI                                                     |
+| Local production smoke      | `npx vite preview`                | Not possible   | Environment/config | Preview did not become reachable; project docs prescribe Wrangler preview                   |
+| Production route crawl      | Direct HTTPS requests             | Mixed          | Production         | 27 routes/assets verified; five intended public pages return 404                            |
+| Accessibility automation    | Browser tooling                   | Not possible   | Environment        | Browser runtime was blocked by Windows sandbox initialization                               |
+| Lighthouse/CWV              | Browser tooling                   | Not possible   | Environment        | Bundle evidence only; no lab score claimed                                                  |
+| Supabase migration/advisors | Static migration review           | Partial        | Access limit       | No remote CLI/MCP connection; no destructive database action taken                          |
 
 ## 8. Conversion and commercial audit
 
@@ -317,15 +317,15 @@ Trust is founder-led and avoids fabricated claims, which is preferable to fake l
 
 Scale: 1 low to 5 high; effort is inverse (5 = large effort).
 
-| Opportunity | Revenue | Recurring | Effort | Automation | Scalability | Priority |
-|---|---:|---:|---:|---:|---:|---|
-| Make Care Plan standard with every build | 5 | 5 | 2 | 4 | 4 | 1 |
-| Productized website/automation diagnostic | 4 | 3 | 2 | 4 | 4 | 2 |
-| Lead qualification + automated follow-up | 4 | 3 | 2 | 5 | 4 | 3 |
-| Domain management/renewal service | 3 | 5 | 3 | 5 | 4 | 4 |
-| ContentFlow AI waitlist then subscription | 4 | 5 | 5 | 5 | 5 | 5 |
-| SEO/content retainer tied to resources | 3 | 5 | 3 | 4 | 4 | 6 |
-| Self-service domain sale | 3 | 1 | 5 | 4 | 3 | Defer until controls exist |
+| Opportunity                               | Revenue | Recurring | Effort | Automation | Scalability | Priority                   |
+| ----------------------------------------- | ------: | --------: | -----: | ---------: | ----------: | -------------------------- |
+| Make Care Plan standard with every build  |       5 |         5 |      2 |          4 |           4 | 1                          |
+| Productized website/automation diagnostic |       4 |         3 |      2 |          4 |           4 | 2                          |
+| Lead qualification + automated follow-up  |       4 |         3 |      2 |          5 |           4 | 3                          |
+| Domain management/renewal service         |       3 |         5 |      3 |          5 |           4 | 4                          |
+| ContentFlow AI waitlist then subscription |       4 |         5 |      5 |          5 |           5 | 5                          |
+| SEO/content retainer tied to resources    |       3 |         5 |      3 |          4 |           4 | 6                          |
+| Self-service domain sale                  |       3 |         1 |      5 |          4 |           3 | Defer until controls exist |
 
 ### Minimal KPI framework
 
@@ -387,15 +387,15 @@ Scale: 1 low to 5 high; effort is inverse (5 = large effort).
 
 ## 12. 30-day improvement plan
 
-| Window | Focus | Deliverable | Validation |
-|---|---|---|---|
-| Days 1–3 | Stability | Fix TS, align target, preview/deploy missing routes | CI green; full route crawl |
-| Days 4–7 | Security | Server-gate admin, noindex, lead rate limit/bot controls, CSP report-only | Role tests, burst tests, header scan |
-| Days 8–12 | Conversion | Qualification/consent/attribution; Care Plan default; fix proof journey | Form E2E and funnel events |
-| Days 13–17 | Operations | Confirmation/admin emails, retry log, lead follow-up tasks | Provider delivery/retry tests |
-| Days 18–22 | Quality | Mobile admin, dialog/table accessibility, sitemap/schema, legal routes | WCAG keyboard/axe/manual checks |
-| Days 23–26 | Performance | Entry-graph split, fonts/images/cache review | Lighthouse + bundle budget |
-| Days 27–30 | Readiness | Supabase advisors, restore/runbook, incident/rollback drill, KPI dashboard | Signed launch checklist |
+| Window     | Focus       | Deliverable                                                                | Validation                           |
+| ---------- | ----------- | -------------------------------------------------------------------------- | ------------------------------------ |
+| Days 1–3   | Stability   | Fix TS, align target, preview/deploy missing routes                        | CI green; full route crawl           |
+| Days 4–7   | Security    | Server-gate admin, noindex, lead rate limit/bot controls, CSP report-only  | Role tests, burst tests, header scan |
+| Days 8–12  | Conversion  | Qualification/consent/attribution; Care Plan default; fix proof journey    | Form E2E and funnel events           |
+| Days 13–17 | Operations  | Confirmation/admin emails, retry log, lead follow-up tasks                 | Provider delivery/retry tests        |
+| Days 18–22 | Quality     | Mobile admin, dialog/table accessibility, sitemap/schema, legal routes     | WCAG keyboard/axe/manual checks      |
+| Days 23–26 | Performance | Entry-graph split, fonts/images/cache review                               | Lighthouse + bundle budget           |
+| Days 27–30 | Readiness   | Supabase advisors, restore/runbook, incident/rollback drill, KPI dashboard | Signed launch checklist              |
 
 ## 13. Controlled implementation sequence
 
@@ -433,18 +433,18 @@ Scale: 1 low to 5 high; effort is inverse (5 = large effort).
 
 ## 14. Files/directories requiring remediation
 
-| Purpose | Files/directories |
-|---|---|
-| Release/build | `package.json`, `vite.config.ts`, `vercel.json`, CI workflow (new), deployment runbook |
-| Routes/SEO | `src/routeTree.gen.ts` (generated only), `src/routes/__root.tsx`, public route heads, `public/sitemap.xml`, `public/robots.txt` |
-| Auth/admin | `src/routes/_authenticated/route.tsx`, `src/components/admin/AdminShell.tsx`, auth middleware/hooks |
-| Lead capture | `src/lib/lead-schema.ts`, `src/lib/lead-intake.functions.ts`, `src/routes/contact.tsx`, leads migration/admin screen |
-| Payments | `src/lib/domain-checkout.functions.ts`, domain route, new order/webhook migrations/functions |
-| Diagnostics | `src/lib/admin-diagnostics.functions.ts`, `src/lib/site-config.ts` |
-| Accessibility/UI | Custom admin editors, `ResourceManager.tsx`, shared header/footer/shell, `styles.css` |
-| PWA/performance | `public/sw.js`, `public/offline.html`, manifest/icons, homepage animation/bundle imports |
-| Legal/analytics | `src/routes/privacy.tsx`, new policy routes, root scripts/consent layer |
-| Documentation | `README.md`, `docs/project-domain.md`, launch checklist, incident/rollback/backup runbooks |
+| Purpose          | Files/directories                                                                                                               |
+| ---------------- | ------------------------------------------------------------------------------------------------------------------------------- |
+| Release/build    | `package.json`, `vite.config.ts`, `vercel.json`, CI workflow (new), deployment runbook                                          |
+| Routes/SEO       | `src/routeTree.gen.ts` (generated only), `src/routes/__root.tsx`, public route heads, `public/sitemap.xml`, `public/robots.txt` |
+| Auth/admin       | `src/routes/_authenticated/route.tsx`, `src/components/admin/AdminShell.tsx`, auth middleware/hooks                             |
+| Lead capture     | `src/lib/lead-schema.ts`, `src/lib/lead-intake.functions.ts`, `src/routes/contact.tsx`, leads migration/admin screen            |
+| Payments         | `src/lib/domain-checkout.functions.ts`, domain route, new order/webhook migrations/functions                                    |
+| Diagnostics      | `src/lib/admin-diagnostics.functions.ts`, `src/lib/site-config.ts`                                                              |
+| Accessibility/UI | Custom admin editors, `ResourceManager.tsx`, shared header/footer/shell, `styles.css`                                           |
+| PWA/performance  | `public/sw.js`, `public/offline.html`, manifest/icons, homepage animation/bundle imports                                        |
+| Legal/analytics  | `src/routes/privacy.tsx`, new policy routes, root scripts/consent layer                                                         |
+| Documentation    | `README.md`, `docs/project-domain.md`, launch checklist, incident/rollback/backup runbooks                                      |
 
 ## 15. Unverified areas and limitations
 
