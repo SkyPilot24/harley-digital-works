@@ -13,7 +13,7 @@ import { useServerFn } from "@tanstack/react-start";
 import { toast } from "sonner";
 import { submitLead } from "@/lib/lead-intake.functions";
 import { parseLeadFormData } from "@/lib/lead-schema";
-import { siteConfig } from "@/lib/site-config";
+import { leadCaptureConfigured, siteConfig } from "@/lib/site-config";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -33,6 +33,7 @@ function ContactPage() {
   const submitLeadFn = useServerFn(submitLead);
   const [busy, setBusy] = useState(false);
   const [sent, setSent] = useState(false);
+  const [startedAt, setStartedAt] = useState(() => Date.now());
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -42,6 +43,25 @@ function ContactPage() {
       toast.error(parsed.error.issues[0]?.message ?? "Please check the form");
       return;
     }
+    if (!leadCaptureConfigured) {
+      const subject = encodeURIComponent(`Website enquiry from ${parsed.data.name}`);
+      const body = encodeURIComponent(
+        [
+          `Name: ${parsed.data.name}`,
+          `Email: ${parsed.data.email}`,
+          parsed.data.company ? `Company: ${parsed.data.company}` : "",
+          parsed.data.package ? `Interested in: ${parsed.data.package}` : "",
+          "",
+          parsed.data.message,
+        ]
+          .filter(Boolean)
+          .join("\n"),
+      );
+      window.location.href = `mailto:${siteConfig.contactEmail}?subject=${subject}&body=${body}`;
+      toast.info("Your email app is opening with the enquiry details ready to send.");
+      return;
+    }
+
     setBusy(true);
     try {
       await submitLeadFn({ data: parsed.data });
@@ -53,6 +73,7 @@ function ContactPage() {
     setBusy(false);
     setSent(true);
     (e.target as HTMLFormElement).reset();
+    setStartedAt(Date.now());
     toast.success("Message sent. We will be in touch shortly.");
   }
 
@@ -71,11 +92,11 @@ function ContactPage() {
               fontSize: "clamp(2.5rem, 6vw, 4.5rem)",
             }}
           >
-            Let&apos;s talk about what&apos;s next.
+            Tell us what needs to work better.
           </h1>
           <p className="mt-6 max-w-2xl text-[17px] leading-relaxed text-ink-muted">
-            Book a free 15-minute call, or send us a note below. We reply within one working day,
-            usually the same day.
+            Share the website, workflow or customer journey you want to improve. A short note is
+            enough; we reply within one working day.
           </p>
         </Container>
       </section>
@@ -87,6 +108,14 @@ function ContactPage() {
               className="rounded-[20px] border border-ink/10 bg-background p-8 md:col-span-7 md:p-10"
               onSubmit={handleSubmit}
             >
+              <input type="hidden" name="startedAt" value={startedAt} />
+              <div
+                className="absolute left-[-10000px] top-auto h-px w-px overflow-hidden"
+                aria-hidden="true"
+              >
+                <label htmlFor="website">Leave this field empty</label>
+                <input id="website" name="website" type="text" tabIndex={-1} autoComplete="off" />
+              </div>
               <div className="grid gap-5">
                 {sent && (
                   <div className="rounded-lg border border-emerald-200 bg-emerald-50 px-4 py-3 text-[13px] text-emerald-800">
@@ -109,11 +138,9 @@ function ContactPage() {
                     <option value="" disabled>
                       Choose a package
                     </option>
-                    <option>Launch Plan</option>
-                    <option>Automation Audit</option>
-                    <option>Care Plan</option>
-                    <option>Content Engine</option>
-                    <option>Digital Product</option>
+                    <option>Web design & development</option>
+                    <option>AI & automation</option>
+                    <option>Digital transformation</option>
                     <option>Something else</option>
                   </select>
                 </div>
@@ -125,6 +152,8 @@ function ContactPage() {
                     id="message"
                     name="message"
                     rows={5}
+                    required
+                    minLength={5}
                     placeholder="A short note about what you are trying to do..."
                     className="rounded-lg border border-ink/15 bg-background px-4 py-3 text-[15px] text-ink focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
                   />
@@ -135,10 +164,12 @@ function ContactPage() {
                     disabled={busy}
                     className="inline-flex items-center gap-2 rounded-full bg-ink px-6 py-3 text-[14px] font-medium text-white transition hover:bg-ink/90 disabled:opacity-50"
                   >
-                    {busy ? "Sending..." : "Send message"}
+                    {busy ? "Sending..." : leadCaptureConfigured ? "Send message" : "Prepare email"}
                   </button>
                   <p className="mt-3 text-[12px] text-ink-muted">
-                    We reply within one working day. No spam, ever.
+                    {leadCaptureConfigured
+                      ? "We reply within one working day. No spam, ever."
+                      : "This opens a ready-to-send draft in your email app."}
                   </p>
                 </div>
               </div>
@@ -297,6 +328,7 @@ function Field({
         id={name}
         name={name}
         type={type}
+        required={name === "name" || name === "email"}
         placeholder={placeholder}
         className="rounded-lg border border-ink/15 bg-background px-4 py-3 text-[15px] text-ink placeholder:text-ink-muted/60 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
       />

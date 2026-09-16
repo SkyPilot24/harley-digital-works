@@ -9,28 +9,26 @@ const COLUMNS = [
   {
     heading: "Services",
     links: [
-      { label: "Websites", to: "/services" },
-      { label: "Content engine", to: "/services/content-engine" },
-      { label: "Automation", to: "/services/automation" },
-      { label: "Care plans", to: "/services/care-plans" },
-      { label: "Launch plan", to: "/services/launch-plan" },
+      { label: "Web design & development", to: "/services/web-design-development" },
+      { label: "AI & automation", to: "/services/ai-automation" },
+      { label: "Digital transformation", to: "/services/digital-transformation" },
+      { label: "All services", to: "/services" },
     ],
   },
   {
-    heading: "Portfolio",
+    heading: "Explore",
     links: [
+      { label: "Selected work", to: "/work" },
+      { label: "Resources", to: "/resources" },
       { label: "Domains", to: "/domains" },
-      { label: "Digital products", to: "/services/digital-products" },
-      { label: "Case studies", to: "/resources" },
     ],
   },
   {
     heading: "Company",
     links: [
       { label: "About", to: "/about" },
-      { label: "Resources", to: "/resources" },
       { label: "Contact", to: "/contact" },
-      { label: "Onboarding", to: "/onboarding" },
+      { label: "Privacy", to: "/privacy" },
     ],
   },
 ] as const;
@@ -42,12 +40,12 @@ export function FooterDark() {
         <div className="grid gap-12 md:grid-cols-12 md:gap-10">
           <div className="md:col-span-5">
             <p className="max-w-sm text-[15px] leading-relaxed text-background/70">
-              Want to work together? Send us a message and we&rsquo;ll come back
-              within one working day.
+              Have a website, workflow or digital service that needs to work harder? Tell us what is
+              getting in the way.
             </p>
             <div className="mt-6">
               <PillButton as="link" to="/contact" variant="light" size="md">
-                Get in touch
+                Start a project
               </PillButton>
             </div>
 
@@ -75,7 +73,10 @@ export function FooterDark() {
             <h4 className="text-[15px] font-medium text-background">Direct</h4>
             <ul className="mt-5 space-y-3 text-[14px] text-background/60">
               <li>
-                <a href={`mailto:${siteConfig.contactEmail}`} className="hover:text-background">
+                <a
+                  href={`mailto:${siteConfig.contactEmail}`}
+                  className="break-all hover:text-background"
+                >
                   {siteConfig.contactEmail}
                 </a>
               </li>
@@ -85,11 +86,11 @@ export function FooterDark() {
       </div>
 
       <div className="border-t border-background/10">
-        <div className="mx-auto flex max-w-[1240px] flex-col gap-2 px-6 py-6 text-[12px] text-background/45 md:flex-row md:items-center md:justify-between md:px-10">
-          <p>&copy; {YEAR} {siteConfig.name}. All rights reserved.</p>
-          <p className="font-mono uppercase tracking-[0.22em]">
-            Direct · Capable · Human
+        <div className="mx-auto flex max-w-[1240px] flex-col gap-2 px-6 py-6 text-[12px] text-background/65 md:flex-row md:items-center md:justify-between md:px-10">
+          <p>
+            &copy; {YEAR} {siteConfig.name}. All rights reserved.
           </p>
+          <p className="font-mono uppercase tracking-[0.22em]">Strategy · Design · Engineering</p>
         </div>
       </div>
     </footer>

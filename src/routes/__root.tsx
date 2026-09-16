@@ -15,9 +15,9 @@ import { AuthProvider } from "@/hooks/use-auth";
 import { Toaster } from "sonner";
 import { canonicalUrlForPath, siteConfig } from "@/lib/site-config";
 
-const siteTitle = "Harley Digital Works — Better websites. Smarter systems. Simpler growth.";
+const siteTitle = "Harley Digital Works | Websites, AI & Digital Transformation";
 const siteDescription =
-  "Harley Digital Works helps businesses and organisations build better websites, automate repetitive work and create scalable digital systems.";
+  "Harley Digital Works designs high-performing websites, automates repetitive work and modernises digital services for ambitious UK organisations.";
 
 function NotFoundComponent() {
   return (
@@ -84,6 +84,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     const leafMatch = matches[matches.length - 1];
     const pathname = leafMatch?.pathname || "/";
     const canonical = canonicalUrlForPath(pathname);
+    const isPrivateRoute = pathname === "/auth" || pathname.startsWith("/admin");
+
     return {
       meta: [
         { charSet: "utf-8" },
@@ -91,30 +93,44 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         { title: siteTitle },
         { name: "description", content: siteDescription },
         { name: "author", content: "Harley Digital Works" },
-        { property: "og:title", content: siteTitle },
-        { property: "og:description", content: siteDescription },
-        { property: "og:url", content: canonical },
-        { property: "og:site_name", content: siteConfig.name },
-        { property: "og:type", content: "website" },
-        { property: "og:image", content: siteConfig.ogImage },
-        { name: "twitter:card", content: "summary_large_image" },
-        { name: "twitter:title", content: siteTitle },
-        { name: "twitter:description", content: siteDescription },
-        { name: "twitter:image", content: siteConfig.ogImage },
-        { name: "theme-color", content: "#173033" },
+        ...(isPrivateRoute
+          ? [{ name: "robots", content: "noindex, nofollow, noarchive" }]
+          : [
+              { property: "og:title", content: siteTitle },
+              { property: "og:description", content: siteDescription },
+              { property: "og:url", content: canonical },
+              { property: "og:site_name", content: siteConfig.name },
+              { property: "og:type", content: "website" },
+              { property: "og:image", content: siteConfig.ogImage },
+              { name: "twitter:card", content: "summary_large_image" },
+              { name: "twitter:title", content: siteTitle },
+              { name: "twitter:description", content: siteDescription },
+              { name: "twitter:image", content: siteConfig.ogImage },
+            ]),
+        { name: "theme-color", content: "#0D0D0D" },
       ],
       links: [
         { rel: "stylesheet", href: appCss },
-        { rel: "canonical", href: canonical },
-        { rel: "icon", href: "/favicon.ico", sizes: "any" },
-        { rel: "icon", href: "/favicon.svg", type: "image/svg+xml" },
-        { rel: "apple-touch-icon", href: "/apple-touch-icon.png" },
+        ...(!isPrivateRoute ? [{ rel: "canonical", href: canonical }] : []),
+        {
+          rel: "icon",
+          href: "/brand/approved/icons/favicon-32.png",
+          sizes: "32x32",
+          type: "image/png",
+        },
+        {
+          rel: "icon",
+          href: "/brand/approved/icons/favicon-16.png",
+          sizes: "16x16",
+          type: "image/png",
+        },
+        { rel: "apple-touch-icon", href: "/brand/approved/icons/apple-touch-icon.png" },
         { rel: "manifest", href: "/site.webmanifest" },
         { rel: "preconnect", href: "https://fonts.googleapis.com" },
         { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
         {
           rel: "stylesheet",
-          href: "https://fonts.googleapis.com/css2?family=Anton&family=Caveat:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Syne:wght@600;700;800&family=DM+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap",
+          href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap",
         },
       ],
     };
@@ -143,40 +159,21 @@ function RootComponent() {
   const { queryClient } = Route.useRouteContext();
 
   useEffect(() => {
-    if (typeof window !== "undefined" && "serviceWorker" in navigator) {
-      window.addEventListener("load", () => {
-        navigator.serviceWorker
-          .register("/sw.js")
-          .then((registration) => {
-            console.log("SW registered: ", registration);
+    if (typeof window === "undefined" || !("serviceWorker" in navigator)) return;
 
-            // Handle updates found
-            registration.addEventListener("updatefound", () => {
-              const newWorker = registration.installing;
-              if (newWorker) {
-                newWorker.addEventListener("statechange", () => {
-                  if (newWorker.state === "activated") {
-                    console.log("New SW version activated. Reloading page...");
-                    window.location.reload();
-                  }
-                });
-              }
-            });
-          })
-          .catch((registrationError) => {
-            console.log("SW registration failed: ", registrationError);
-          });
+    const registerServiceWorker = () => {
+      void navigator.serviceWorker.register("/sw.js").catch((registrationError) => {
+        console.warn("Service worker registration failed:", registrationError);
       });
+    };
 
-      // Reload client when new SW takes control
-      let refreshing = false;
-      navigator.serviceWorker.addEventListener("controllerchange", () => {
-        if (!refreshing) {
-          refreshing = true;
-          window.location.reload();
-        }
-      });
+    if (document.readyState === "complete") {
+      registerServiceWorker();
+      return;
     }
+
+    window.addEventListener("load", registerServiceWorker, { once: true });
+    return () => window.removeEventListener("load", registerServiceWorker);
   }, []);
 
   return (

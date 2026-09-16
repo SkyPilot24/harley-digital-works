@@ -1,5 +1,10 @@
 ﻿import { createFileRoute } from "@tanstack/react-router";
-import { domainBundles, formatGbp, getDomainBuyNowPrice, rankedDomains } from "@/lib/domain-portfolio";
+import {
+  domainBundles,
+  formatGbp,
+  getDomainBuyNowPrice,
+  rankedDomains,
+} from "@/lib/domain-portfolio";
 import { PageHeader } from "./admin.index";
 
 export const Route = createFileRoute("/_authenticated/admin/domain-os")({
@@ -22,13 +27,21 @@ function DomainOsPage() {
     <div>
       <PageHeader
         title="Domain OS"
-        subtitle="A simple sales dashboard for owned domains: valuation, buy-now price, buyer, use case, next outreach step, and caution notes."
+        subtitle="A simple sales dashboard for owned domains: valuation, guide price, buyer, use case, next outreach step, and caution notes."
       />
 
       <section className="mt-8 grid gap-4 sm:grid-cols-3">
         <Metric label="High priority" value={highPriority.length} note="Actively sell first" />
-        <Metric label="Medium priority" value={mediumPriority.length} note="Bundle or targeted outreach" />
-        <Metric label="Low priority" value={lowPriority.length} note="Passive listing or renewal review" />
+        <Metric
+          label="Medium priority"
+          value={mediumPriority.length}
+          note="Bundle or targeted outreach"
+        />
+        <Metric
+          label="Low priority"
+          value={lowPriority.length}
+          note="Passive listing or renewal review"
+        />
       </section>
 
       <section className="mt-8 rounded-2xl border border-ink/10 bg-white p-6">
@@ -50,13 +63,14 @@ function DomainOsPage() {
         </div>
       </section>
 
-
       <section className="mt-8 rounded-2xl border border-ink/10 bg-surface-sage p-6">
-        <h2 className="text-lg font-semibold text-ink">After-payment handover checklist</h2>
-        <p className="mt-1 text-sm text-ink-muted">Use this every time Stripe confirms a domain payment.</p>
+        <h2 className="text-lg font-semibold text-ink">Agreed-sale handover checklist</h2>
+        <p className="mt-1 text-sm text-ink-muted">
+          Use this only after price, buyer identity, payment terms, and transfer steps are agreed.
+        </p>
         <div className="mt-5 grid gap-3 md:grid-cols-3">
           {[
-            "Payment received in Stripe",
+            "Signed sale terms and cleared payment confirmed",
             "Buyer email confirmed",
             "Registrar account or transfer destination confirmed",
             "Domain unlocked at registrar",
@@ -64,7 +78,9 @@ function DomainOsPage() {
             "Transfer complete and buyer notified",
           ].map((item, index) => (
             <div key={item} className="flex gap-3 rounded-xl bg-white/70 p-4 text-sm text-ink/80">
-              <span className="font-mono text-[11px] text-ink-muted">{String(index + 1).padStart(2, "0")}</span>
+              <span className="font-mono text-[11px] text-ink-muted">
+                {String(index + 1).padStart(2, "0")}
+              </span>
               <span>{item}</span>
             </div>
           ))}
@@ -80,24 +96,33 @@ function DomainOsPage() {
                   <h2 className="font-mono text-lg font-semibold text-ink">{domain.name}</h2>
                   <p className="mt-1 text-sm text-ink-muted">{domain.category}</p>
                 </div>
-                <span className={`rounded-full px-3 py-1 text-xs font-medium ${priorityStyles[domain.priority]}`}>
+                <span
+                  className={`rounded-full px-3 py-1 text-xs font-medium ${priorityStyles[domain.priority]}`}
+                >
                   {domain.priority}
                 </span>
               </div>
               <div className="mt-4 grid gap-3 text-sm sm:grid-cols-2">
                 <Info label="Valuation range" value={domain.suggestedAsk} />
-                <Info label="Buy now price" value={formatGbp(buyNowPrice)} />
+                <Info label="Guide price" value={formatGbp(buyNowPrice)} />
               </div>
               <div className="mt-4 grid gap-3 text-sm sm:grid-cols-2">
                 <Info label="Quick sale floor" value={domain.quickSale} />
-                <Info label="Checkout status" value={buyNowPrice ? "Stripe buy-now enabled" : "Manual enquiry only"} />
+                <Info
+                  label="Sales route"
+                  value={buyNowPrice ? "Enquiry with guide price" : "Enquiry and manual quote"}
+                />
               </div>
               <Info className="mt-4" label="Target buyer" value={domain.targetBuyer} />
               <Info className="mt-4" label="Use case" value={domain.useCase} />
               <div className="mt-4 rounded-xl bg-surface-sage p-4 text-sm text-ink/80">
                 <span className="font-semibold text-ink">Next action:</span> {domain.nextAction}
               </div>
-              {domain.caution && <div className="mt-3 rounded-xl bg-amber-50 p-4 text-sm text-amber-800">Caution: {domain.caution}</div>}
+              {domain.caution && (
+                <div className="mt-3 rounded-xl bg-amber-50 p-4 text-sm text-amber-800">
+                  Caution: {domain.caution}
+                </div>
+              )}
             </article>
           );
         })}
@@ -129,7 +154,15 @@ function Metric({ label, value, note }: { label: string; value: number; note: st
   );
 }
 
-function Info({ label, value, className = "" }: { label: string; value: string; className?: string }) {
+function Info({
+  label,
+  value,
+  className = "",
+}: {
+  label: string;
+  value: string;
+  className?: string;
+}) {
   return (
     <div className={className}>
       <div className="text-[12px] uppercase tracking-wider text-ink-muted">{label}</div>
@@ -137,4 +170,3 @@ function Info({ label, value, className = "" }: { label: string; value: string; 
     </div>
   );
 }
-

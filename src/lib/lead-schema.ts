@@ -6,6 +6,8 @@ export const leadInputSchema = z.object({
   company: z.string().trim().max(120).optional().or(z.literal("")),
   package: z.string().trim().max(60).optional().or(z.literal("")),
   message: z.string().trim().min(5, "Tell us a little more").max(2000),
+  website: z.string().trim().max(200).optional().or(z.literal("")),
+  startedAt: z.number().int().positive(),
 });
 
 export type LeadInput = z.infer<typeof leadInputSchema>;
@@ -20,5 +22,7 @@ export function parseLeadFormData(
     company: formData.get("company") ?? defaults.company ?? "",
     package: formData.get("package") ?? defaults.package ?? "",
     message: formData.get("message"),
+    website: formData.get("website") ?? "",
+    startedAt: Number(formData.get("startedAt")),
   });
 }

@@ -248,6 +248,24 @@ export type Database = {
         };
         Relationships: [];
       };
+      lead_submission_attempts: {
+        Row: {
+          created_at: string;
+          fingerprint: string;
+          id: number;
+        };
+        Insert: {
+          created_at?: string;
+          fingerprint: string;
+          id?: never;
+        };
+        Update: {
+          created_at?: string;
+          fingerprint?: string;
+          id?: never;
+        };
+        Relationships: [];
+      };
       revenue_os_assets: {
         Row: {
           created_at: string;

@@ -31,8 +31,7 @@ function UsersPage() {
   const invalidate = () => qc.invalidateQueries({ queryKey: ["admin", "users"] });
 
   const grant = useMutation({
-    mutationFn: (u: AdminUserRow) =>
-      grantFn({ data: { user_id: u.id, role: "admin" } }),
+    mutationFn: (u: AdminUserRow) => grantFn({ data: { user_id: u.id, role: "admin" } }),
     onSuccess: () => {
       toast.success("Admin role granted");
       invalidate();
@@ -41,8 +40,7 @@ function UsersPage() {
   });
 
   const revoke = useMutation({
-    mutationFn: (u: AdminUserRow) =>
-      revokeFn({ data: { user_id: u.id, role: "admin" } }),
+    mutationFn: (u: AdminUserRow) => revokeFn({ data: { user_id: u.id, role: "admin" } }),
     onSuccess: () => {
       toast.success("Admin role revoked");
       invalidate();
@@ -52,10 +50,7 @@ function UsersPage() {
 
   return (
     <div>
-      <PageHeader
-        title="Users"
-        subtitle="Manage who can sign in and who has admin access."
-      />
+      <PageHeader title="Users" subtitle="Manage who can sign in and who has admin access." />
 
       <div className="mt-8 overflow-hidden rounded-xl border border-ink/10 bg-white">
         <table className="w-full text-sm">
@@ -109,9 +104,7 @@ function UsersPage() {
                     </div>
                     <div className="text-[11px] text-ink-muted">{u.id}</div>
                   </td>
-                  <td className="px-4 py-3 text-ink/70 capitalize">
-                    {u.provider ?? "email"}
-                  </td>
+                  <td className="px-4 py-3 text-ink/70 capitalize">{u.provider ?? "email"}</td>
                   <td className="px-4 py-3">
                     {u.roles.length === 0 ? (
                       <span className="text-ink-muted">—</span>
@@ -133,9 +126,7 @@ function UsersPage() {
                     )}
                   </td>
                   <td className="px-4 py-3 text-ink/60">
-                    {u.last_sign_in_at
-                      ? new Date(u.last_sign_in_at).toLocaleString()
-                      : "Never"}
+                    {u.last_sign_in_at ? new Date(u.last_sign_in_at).toLocaleString() : "Never"}
                   </td>
                   <td className="px-4 py-3 text-right">
                     {isAdmin ? (
@@ -166,8 +157,8 @@ function UsersPage() {
       </div>
 
       <p className="mt-4 text-xs text-ink-muted">
-        New sign-ups appear here automatically. The first user to sign up when no
-        admin exists is promoted to admin automatically.
+        New sign-ups appear here automatically. The first user to sign up when no admin exists is
+        promoted to admin automatically.
       </p>
     </div>
   );

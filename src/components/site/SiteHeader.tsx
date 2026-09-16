@@ -9,10 +9,8 @@ import { BrandLogo } from "./BrandLogo";
 
 const LINKS = [
   { to: "/services", label: "Services" },
-  { to: "/domains", label: "Domains" },
   { to: "/about", label: "About" },
-  { to: "/onboarding", label: "Onboarding" },
-  { to: "/resources", label: "Resources" },
+  { to: "/work", label: "Work" },
 ] as const;
 
 export function SiteHeader() {
@@ -65,7 +63,7 @@ export function SiteHeader() {
             </Link>
           )}
           <PillButton as="link" to="/contact" variant="dark" size="sm">
-            Contact us
+            Start a project
           </PillButton>
         </div>
 
@@ -96,7 +94,7 @@ export function SiteHeader() {
             ))}
             <div className="mt-2 px-2">
               <PillButton as="link" to="/contact" variant="dark" size="sm">
-                Contact us
+                Start a project
               </PillButton>
             </div>
           </div>

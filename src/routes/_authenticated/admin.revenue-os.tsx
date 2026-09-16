@@ -45,8 +45,24 @@ type RevenueTaskRow = {
   created_at: string;
 };
 
-const streams: RevenueStream[] = ["YouTube", "Domains", "Web Services", "AI Automation", "SaaS", "Digital Products", "Care Plans", "Content Engine"];
-const statuses: RevenueAsset["status"][] = ["Idea", "Validating", "Building", "Live", "Monetising", "Paused"];
+const streams: RevenueStream[] = [
+  "YouTube",
+  "Domains",
+  "Web Services",
+  "AI Automation",
+  "SaaS",
+  "Digital Products",
+  "Care Plans",
+  "Content Engine",
+];
+const statuses: RevenueAsset["status"][] = [
+  "Idea",
+  "Validating",
+  "Building",
+  "Live",
+  "Monetising",
+  "Paused",
+];
 
 const scoreFields: { key: keyof PriorityScores; label: string }[] = [
   { key: "revenuePotential", label: "Revenue" },
@@ -67,7 +83,7 @@ function RevenueOsPage() {
     queryKey: ["revenue-os-assets"],
     queryFn: async () => {
       const { data, error } = await supabase
-        .from("revenue_os_assets" as any)
+        .from("revenue_os_assets")
         .select("id,name,stream,status,owner,next_action,target_revenue,mrr_potential,scores")
         .order("updated_at", { ascending: false });
 
@@ -79,7 +95,10 @@ function RevenueOsPage() {
       return {
         assets: assets.length > 0 ? assets : revenueAssets,
         usingFallback: assets.length === 0,
-        message: assets.length === 0 ? "Seed examples are shown until you save your first live asset." : null,
+        message:
+          assets.length === 0
+            ? "Seed examples are shown until you save your first live asset."
+            : null,
       };
     },
   });
@@ -88,7 +107,7 @@ function RevenueOsPage() {
     queryKey: ["revenue-os-tasks"],
     queryFn: async () => {
       const { data, error } = await supabase
-        .from("revenue_os_tasks" as any)
+        .from("revenue_os_tasks")
         .select("id,title,priority,due_date,source_asset_name,done,created_at")
         .eq("done", false)
         .order("due_date", { ascending: true })
@@ -99,7 +118,10 @@ function RevenueOsPage() {
     },
   });
 
-  const assets = useMemo(() => rankedRevenueAssets(assetsQuery.data?.assets ?? revenueAssets), [assetsQuery.data?.assets]);
+  const assets = useMemo(
+    () => rankedRevenueAssets(assetsQuery.data?.assets ?? revenueAssets),
+    [assetsQuery.data?.assets],
+  );
   const generatedTasks = useMemo(() => generateExecutionTasks(assets, 8), [assets]);
   const persistedTasks = tasksQuery.data ?? [];
   const pipeline = assets.reduce((sum, asset) => sum + asset.targetRevenue, 0);
@@ -109,12 +131,16 @@ function RevenueOsPage() {
   const saveAsset = useMutation({
     mutationFn: async (asset: RevenueAssetForm) => {
       const payload = toAssetPayload(asset);
-      if (isUuid(asset.id)) {
-        const { error } = await supabase.from("revenue_os_assets" as any).update(payload).eq("id", asset.id);
+      const assetId = asset.id;
+      if (isUuid(assetId)) {
+        const { error } = await supabase
+          .from("revenue_os_assets")
+          .update(payload)
+          .eq("id", assetId);
         if (error) throw error;
         return;
       }
-      const { error } = await supabase.from("revenue_os_assets" as any).insert(payload);
+      const { error } = await supabase.from("revenue_os_assets").insert(payload);
       if (error) throw error;
     },
     onSuccess: () => {
@@ -129,7 +155,7 @@ function RevenueOsPage() {
   const deleteAsset = useMutation({
     mutationFn: async (asset: RevenueAsset) => {
       if (!isUuid(asset.id)) throw new Error("Save this seed asset before deleting it.");
-      const { error } = await supabase.from("revenue_os_assets" as any).delete().eq("id", asset.id);
+      const { error } = await supabase.from("revenue_os_assets").delete().eq("id", asset.id);
       if (error) throw error;
     },
     onSuccess: () => {
@@ -156,7 +182,7 @@ function RevenueOsPage() {
         };
       });
 
-      const { error } = await supabase.from("revenue_os_tasks" as any).insert(payload);
+      const { error } = await supabase.from("revenue_os_tasks").insert(payload);
       if (error) throw error;
     },
     onSuccess: () => {
@@ -168,7 +194,7 @@ function RevenueOsPage() {
 
   const completeTask = useMutation({
     mutationFn: async (id: string) => {
-      const { error } = await supabase.from("revenue_os_tasks" as any).update({ done: true }).eq("id", id);
+      const { error } = await supabase.from("revenue_os_tasks").update({ done: true }).eq("id", id);
       if (error) throw error;
     },
     onSuccess: () => queryClient.invalidateQueries({ queryKey: ["revenue-os-tasks"] }),
@@ -227,13 +253,19 @@ function RevenueOsPage() {
                       <h3 className="font-semibold text-ink">{asset.name}</h3>
                       <StatusBadge status={asset.status.toLowerCase()} />
                     </div>
-                    <p className="mt-1 text-sm text-ink-muted">{asset.stream} - Owner: {asset.owner}</p>
+                    <p className="mt-1 text-sm text-ink-muted">
+                      {asset.stream} - Owner: {asset.owner}
+                    </p>
                   </div>
                   <div className="flex items-center gap-2">
                     <div className="rounded-full bg-ink px-3 py-1 text-xs font-semibold text-white">
                       Score {priorityScore(asset.scores)}/35
                     </div>
-                    <button onClick={() => setEditing(asset)} className="rounded-md p-1.5 text-ink/60 hover:bg-ink/[0.05] hover:text-ink" aria-label="Edit asset">
+                    <button
+                      onClick={() => setEditing(asset)}
+                      className="rounded-md p-1.5 text-ink/60 hover:bg-ink/[0.05] hover:text-ink"
+                      aria-label="Edit asset"
+                    >
                       <Pencil size={14} />
                     </button>
                     <button
@@ -249,8 +281,12 @@ function RevenueOsPage() {
                 </div>
                 <p className="mt-3 text-sm text-ink/75">{asset.nextAction}</p>
                 <div className="mt-4 flex flex-wrap gap-2 text-xs text-ink-muted">
-                  <span className="rounded-full bg-emerald-50 px-3 py-1 text-emerald-700">GBP {asset.targetRevenue.toLocaleString()} target</span>
-                  <span className="rounded-full bg-blue-50 px-3 py-1 text-blue-700">GBP {asset.mrrPotential.toLocaleString()} MRR</span>
+                  <span className="rounded-full bg-emerald-50 px-3 py-1 text-emerald-700">
+                    GBP {asset.targetRevenue.toLocaleString()} target
+                  </span>
+                  <span className="rounded-full bg-blue-50 px-3 py-1 text-blue-700">
+                    GBP {asset.mrrPotential.toLocaleString()} MRR
+                  </span>
                 </div>
               </div>
             ))}
@@ -263,31 +299,43 @@ function RevenueOsPage() {
             <h2 className="text-lg font-semibold text-ink">Generated daily tasks</h2>
           </div>
           <div className="space-y-3">
-            {(persistedTasks.length > 0 ? persistedTasks : generatedTasks).map((task) => (
+            {(persistedTasks.length > 0 ? persistedTasks : generatedTasks).map((task) =>
               "due_date" in task ? (
                 <div key={task.id} className="rounded-xl bg-ink/[0.03] p-4">
                   <div className="flex items-center justify-between gap-3">
-                    <span className="rounded-full bg-white px-2 py-0.5 text-[11px] font-medium text-ink/70">{task.priority}</span>
-                    <button onClick={() => completeTask.mutate(task.id)} className="text-[11px] font-medium text-emerald-700 hover:text-emerald-900">Done</button>
+                    <span className="rounded-full bg-white px-2 py-0.5 text-[11px] font-medium text-ink/70">
+                      {task.priority}
+                    </span>
+                    <button
+                      onClick={() => completeTask.mutate(task.id)}
+                      className="text-[11px] font-medium text-emerald-700 hover:text-emerald-900"
+                    >
+                      Done
+                    </button>
                   </div>
                   <p className="mt-2 text-sm font-medium text-ink">{task.title}</p>
-                  <p className="mt-1 text-xs text-ink-muted">From: {task.source_asset_name || "Revenue OS"} - Due {task.due_date || "soon"}</p>
+                  <p className="mt-1 text-xs text-ink-muted">
+                    From: {task.source_asset_name || "Revenue OS"} - Due {task.due_date || "soon"}
+                  </p>
                 </div>
               ) : (
                 <div key={task.id} className="rounded-xl bg-ink/[0.03] p-4">
                   <div className="flex items-center justify-between gap-3">
-                    <span className="rounded-full bg-white px-2 py-0.5 text-[11px] font-medium text-ink/70">{task.priority}</span>
-                    <span className="text-[11px] text-ink-muted">Preview - due in {task.dueInDays}d</span>
+                    <span className="rounded-full bg-white px-2 py-0.5 text-[11px] font-medium text-ink/70">
+                      {task.priority}
+                    </span>
+                    <span className="text-[11px] text-ink-muted">
+                      Preview - due in {task.dueInDays}d
+                    </span>
                   </div>
                   <p className="mt-2 text-sm font-medium text-ink">{task.title}</p>
                   <p className="mt-1 text-xs text-ink-muted">From: {task.sourceAsset}</p>
                 </div>
-              )
-            ))}
+              ),
+            )}
           </div>
         </section>
       </div>
-
 
       <section className="mt-10 rounded-2xl border border-ink/10 bg-white p-5">
         <div className="mb-4 flex items-center gap-2">
@@ -305,7 +353,9 @@ function RevenueOsPage() {
               <div className="mt-3 rounded-lg bg-ink/[0.03] p-3 text-sm text-ink-muted">
                 <span className="font-medium text-ink">Daily step:</span> {playbook.dailyStep}
               </div>
-              <p className="mt-3 text-xs text-ink-muted"><span className="font-medium text-ink/70">Tools:</span> {playbook.tools}</p>
+              <p className="mt-3 text-xs text-ink-muted">
+                <span className="font-medium text-ink/70">Tools:</span> {playbook.tools}
+              </p>
               <ul className="mt-3 space-y-1 text-xs text-ink-muted">
                 {playbook.nextMilestones.map((milestone) => (
                   <li key={milestone}>- {milestone}</li>
@@ -330,7 +380,17 @@ function RevenueOsPage() {
   );
 }
 
-function AssetDrawer({ asset, saving, onClose, onSave }: { asset: RevenueAsset | null; saving: boolean; onClose: () => void; onSave: (asset: RevenueAssetForm) => void }) {
+function AssetDrawer({
+  asset,
+  saving,
+  onClose,
+  onSave,
+}: {
+  asset: RevenueAsset | null;
+  saving: boolean;
+  onClose: () => void;
+  onSave: (asset: RevenueAssetForm) => void;
+}) {
   const record = asset ?? {
     name: "",
     stream: "AI Automation" as RevenueStream,
@@ -344,9 +404,14 @@ function AssetDrawer({ asset, saving, onClose, onSave }: { asset: RevenueAsset |
 
   return (
     <div className="fixed inset-0 z-50 flex justify-end bg-black/30" onClick={onClose}>
-      <div className="h-full w-full max-w-xl overflow-y-auto bg-white p-6 shadow-xl" onClick={(event) => event.stopPropagation()}>
+      <div
+        className="h-full w-full max-w-xl overflow-y-auto bg-white p-6 shadow-xl"
+        onClick={(event) => event.stopPropagation()}
+      >
         <div className="flex items-center justify-between">
-          <h2 className="text-lg font-semibold text-ink">{asset ? "Edit" : "New"} Revenue OS asset</h2>
+          <h2 className="text-lg font-semibold text-ink">
+            {asset ? "Edit" : "New"} Revenue OS asset
+          </h2>
           <button onClick={onClose} className="rounded-md p-2 text-ink/60 hover:bg-ink/[0.05]">
             <X size={16} />
           </button>
@@ -357,10 +422,13 @@ function AssetDrawer({ asset, saving, onClose, onSave }: { asset: RevenueAsset |
           onSubmit={(event) => {
             event.preventDefault();
             const formData = new FormData(event.currentTarget);
-            const scores = scoreFields.reduce((nextScores, field) => ({
-              ...nextScores,
-              [field.key]: clampScore(Number(formData.get(field.key) ?? emptyScores[field.key])),
-            }), {} as PriorityScores);
+            const scores = scoreFields.reduce(
+              (nextScores, field) => ({
+                ...nextScores,
+                [field.key]: clampScore(Number(formData.get(field.key) ?? emptyScores[field.key])),
+              }),
+              {} as PriorityScores,
+            );
 
             onSave({
               id: asset?.id,
@@ -377,31 +445,73 @@ function AssetDrawer({ asset, saving, onClose, onSave }: { asset: RevenueAsset |
         >
           <Field label="Asset name" name="name" defaultValue={record.name} required />
           <div className="grid gap-4 sm:grid-cols-2">
-            <SelectField label="Stream" name="stream" defaultValue={record.stream} options={streams} />
-            <SelectField label="Status" name="status" defaultValue={record.status} options={statuses} />
+            <SelectField
+              label="Stream"
+              name="stream"
+              defaultValue={record.stream}
+              options={streams}
+            />
+            <SelectField
+              label="Status"
+              name="status"
+              defaultValue={record.status}
+              options={statuses}
+            />
           </div>
           <Field label="Owner" name="owner" defaultValue={record.owner} required />
           <label className="block">
             <span className="text-[13px] font-medium text-ink">Next action</span>
-            <textarea name="nextAction" required defaultValue={record.nextAction} rows={4} className={inputClass} />
+            <textarea
+              name="nextAction"
+              required
+              defaultValue={record.nextAction}
+              rows={4}
+              className={inputClass}
+            />
           </label>
           <div className="grid gap-4 sm:grid-cols-2">
-            <Field label="Target revenue" name="targetRevenue" type="number" defaultValue={record.targetRevenue} />
-            <Field label="MRR potential" name="mrrPotential" type="number" defaultValue={record.mrrPotential} />
+            <Field
+              label="Target revenue"
+              name="targetRevenue"
+              type="number"
+              defaultValue={record.targetRevenue}
+            />
+            <Field
+              label="MRR potential"
+              name="mrrPotential"
+              type="number"
+              defaultValue={record.mrrPotential}
+            />
           </div>
           <div>
             <div className="text-[13px] font-medium text-ink">Priority scorecard</div>
             <div className="mt-2 grid gap-3 sm:grid-cols-2">
               {scoreFields.map((field) => (
-                <Field key={field.key} label={`${field.label} (1-5)`} name={field.key} type="number" min={1} max={5} defaultValue={record.scores[field.key]} />
+                <Field
+                  key={field.key}
+                  label={`${field.label} (1-5)`}
+                  name={field.key}
+                  type="number"
+                  min={1}
+                  max={5}
+                  defaultValue={record.scores[field.key]}
+                />
               ))}
             </div>
           </div>
           <div className="flex justify-end gap-2 pt-2">
-            <button type="button" onClick={onClose} className="rounded-full border border-ink/15 px-4 py-2 text-sm font-medium text-ink hover:bg-ink/5">
+            <button
+              type="button"
+              onClick={onClose}
+              className="rounded-full border border-ink/15 px-4 py-2 text-sm font-medium text-ink hover:bg-ink/5"
+            >
               Cancel
             </button>
-            <button type="submit" disabled={saving} className="rounded-full bg-ink px-4 py-2 text-sm font-medium text-white hover:bg-ink/90 disabled:opacity-50">
+            <button
+              type="submit"
+              disabled={saving}
+              className="rounded-full bg-ink px-4 py-2 text-sm font-medium text-white hover:bg-ink/90 disabled:opacity-50"
+            >
               {saving ? "Saving..." : "Save asset"}
             </button>
           </div>
@@ -411,23 +521,65 @@ function AssetDrawer({ asset, saving, onClose, onSave }: { asset: RevenueAsset |
   );
 }
 
-const inputClass = "mt-1.5 w-full rounded-lg border border-ink/15 bg-white px-3 py-2 text-sm text-ink outline-none focus:border-ink/40";
+const inputClass =
+  "mt-1.5 w-full rounded-lg border border-ink/15 bg-white px-3 py-2 text-sm text-ink outline-none focus:border-ink/40";
 
-function Field({ label, name, defaultValue, type = "text", required, min, max }: { label: string; name: string; defaultValue: string | number; type?: string; required?: boolean; min?: number; max?: number }) {
+function Field({
+  label,
+  name,
+  defaultValue,
+  type = "text",
+  required,
+  min,
+  max,
+}: {
+  label: string;
+  name: string;
+  defaultValue: string | number;
+  type?: string;
+  required?: boolean;
+  min?: number;
+  max?: number;
+}) {
   return (
     <label className="block">
-      <span className="text-[13px] font-medium text-ink">{label}{required && <span className="text-rose-500"> *</span>}</span>
-      <input name={name} type={type} required={required} min={min} max={max} defaultValue={defaultValue} className={inputClass} />
+      <span className="text-[13px] font-medium text-ink">
+        {label}
+        {required && <span className="text-rose-500"> *</span>}
+      </span>
+      <input
+        name={name}
+        type={type}
+        required={required}
+        min={min}
+        max={max}
+        defaultValue={defaultValue}
+        className={inputClass}
+      />
     </label>
   );
 }
 
-function SelectField({ label, name, defaultValue, options }: { label: string; name: string; defaultValue: string; options: string[] }) {
+function SelectField({
+  label,
+  name,
+  defaultValue,
+  options,
+}: {
+  label: string;
+  name: string;
+  defaultValue: string;
+  options: string[];
+}) {
   return (
     <label className="block">
       <span className="text-[13px] font-medium text-ink">{label}</span>
       <select name={name} defaultValue={defaultValue} className={inputClass}>
-        {options.map((option) => <option key={option} value={option}>{option}</option>)}
+        {options.map((option) => (
+          <option key={option} value={option}>
+            {option}
+          </option>
+        ))}
       </select>
     </label>
   );
@@ -474,7 +626,9 @@ function clampScore(value: number) {
   return Math.min(5, Math.max(1, value));
 }
 
-function isUuid(value?: string) {
-  return !!value && /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(value);
+function isUuid(value?: string): value is string {
+  return (
+    !!value &&
+    /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(value)
+  );
 }
-

@@ -1,0 +1,135 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { PageShell, Container } from "@/components/site/PageShell";
+import { PillButton } from "@/components/site/PillButton";
+export const Route = createFileRoute("/work")({
+  head: () => ({
+    meta: [
+      { title: "Selected Work | Harley Digital Works" },
+      {
+        name: "description",
+        content:
+          "Selected Harley Digital Works capability studies across digital platforms, AI workflows and service modernisation.",
+      },
+    ],
+  }),
+  component: Page,
+});
+const studies = [
+  {
+    type: "Digital platform · Operations",
+    title: "A connected operating system for turning enquiries into delivery.",
+    challenge:
+      "Public pages, diagnostics, leads, clients and delivery activity needed one coherent operating view.",
+    approach:
+      "We shaped a workflow-led Control Centre and Revenue OS, connecting public conversion paths to ownership, diagnostics and next actions.",
+    delivered: [
+      "Service architecture",
+      "Admin experience",
+      "Lead and client workflows",
+      "Operational diagnostics",
+    ],
+    outcome:
+      "A practical platform designed to reduce fragmented administration and make priorities visible.",
+  },
+  {
+    type: "Applied AI · Content operations",
+    title: "A repeatable system for turning one source into useful multi-channel content.",
+    challenge:
+      "Creating consistent content across channels was repetitive and difficult to sustain.",
+    approach:
+      "We designed an AI-assisted editorial workflow with reusable formats, review points and a clear publishing rhythm.",
+    delivered: [
+      "Workflow design",
+      "Prompt and template system",
+      "Human review controls",
+      "Reusable content formats",
+    ],
+    outcome:
+      "A documented content operation intended to shorten production while keeping editorial judgement with the team.",
+  },
+  {
+    type: "Web · Service modernisation",
+    title: "A clearer digital buying journey for a multi-service consultancy.",
+    challenge:
+      "A fragmented service catalogue made it difficult for buyers to understand where to begin.",
+    approach:
+      "We consolidated the offer around customer problems, three primary capabilities and direct conversion routes.",
+    delivered: ["Positioning", "Information architecture", "UX and copy", "Responsive development"],
+    outcome:
+      "A clearer, more credible public experience with an obvious next action on every core page.",
+  },
+];
+function Page() {
+  return (
+    <PageShell>
+      <section className="pt-32 pb-16 md:pt-40 md:pb-24">
+        <Container>
+          <p className="eyebrow">Selected work</p>
+          <h1 className="mt-6 max-w-5xl text-[clamp(3rem,7vw,6.5rem)] leading-[.94] tracking-[-.055em]">
+            Useful technology, applied to real operational problems.
+          </h1>
+          <p className="mt-8 max-w-2xl text-lg leading-relaxed text-ink-muted">
+            Some work is confidential. These capability studies describe the challenge, approach and
+            intended or observed outcome without inventing client claims.
+          </p>
+        </Container>
+      </section>
+      <section className="pb-24">
+        <Container>
+          {studies.map((s, i) => (
+            <article
+              key={s.title}
+              className="grid gap-10 border-t border-ink/15 py-12 lg:grid-cols-12 md:py-16"
+            >
+              <div className="lg:col-span-5">
+                <p className="eyebrow">
+                  {String(i + 1).padStart(2, "0")} · {s.type}
+                </p>
+                <h2 className="mt-5 text-3xl leading-tight tracking-[-.04em] md:text-5xl">
+                  {s.title}
+                </h2>
+              </div>
+              <div className="space-y-7 lg:col-span-7">
+                <Block label="Challenge" text={s.challenge} />
+                <Block label="Approach" text={s.approach} />
+                <div>
+                  <p className="eyebrow text-ink-muted">Delivered</p>
+                  <ul className="mt-3 flex flex-wrap gap-2">
+                    {s.delivered.map((x) => (
+                      <li key={x} className="rounded-full border border-ink/15 px-3 py-1.5 text-xs">
+                        {x}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <Block label="Outcome" text={s.outcome} />
+              </div>
+            </article>
+          ))}
+        </Container>
+      </section>
+      <section className="pb-24">
+        <Container>
+          <div className="rounded-3xl bg-primary p-8 md:p-14">
+            <h2 className="max-w-3xl text-4xl tracking-[-.04em] md:text-6xl">
+              Have a challenge we should look at?
+            </h2>
+            <div className="mt-8">
+              <PillButton as="link" to="/contact" variant="dark">
+                Discuss your idea
+              </PillButton>
+            </div>
+          </div>
+        </Container>
+      </section>
+    </PageShell>
+  );
+}
+function Block({ label, text }: { label: string; text: string }) {
+  return (
+    <div className="border-t border-ink/15 pt-5">
+      <p className="eyebrow text-ink-muted">{label}</p>
+      <p className="mt-3 leading-relaxed text-ink">{text}</p>
+    </div>
+  );
+}

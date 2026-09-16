@@ -32,12 +32,7 @@ export function ImageFeatureBlock({
   className?: string;
 }) {
   return (
-    <div
-      className={cn(
-        "group relative overflow-hidden rounded-[20px]",
-        className,
-      )}
-    >
+    <div className={cn("group relative overflow-hidden rounded-[20px]", className)}>
       <div className="aspect-[4/3] w-full overflow-hidden md:aspect-[5/4]">
         <img
           src={image}
@@ -57,9 +52,7 @@ export function ImageFeatureBlock({
           surfaces[overlaySurface],
         )}
       >
-        <p className="text-[15px] font-medium leading-snug tracking-tight text-ink">
-          {title}
-        </p>
+        <p className="text-[15px] font-medium leading-snug tracking-tight text-ink">{title}</p>
         {ctaTo && (
           <div className="mt-4">
             <PillButton as="link" to={ctaTo} variant="ghost" size="sm">
