@@ -133,6 +133,66 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap",
         },
       ],
+      scripts: [
+        ...(!isPrivateRoute
+          ? [
+              {
+                type: "application/ld+json",
+                children: JSON.stringify({
+                  "@context": "https://schema.org",
+                  "@type": "ProfessionalService",
+                  name: "Harley Digital Works",
+                  description: siteDescription,
+                  url: siteConfig.url,
+                  email: siteConfig.contactEmail,
+                  areaServed: {
+                    "@type": "Country",
+                    name: "United Kingdom",
+                  },
+                  priceRange: "££",
+                  hasOfferCatalog: {
+                    "@type": "OfferCatalog",
+                    name: "Commercial Web & Digital Services",
+                    itemListElement: [
+                      {
+                        "@type": "Offer",
+                        itemOffered: {
+                          "@type": "Service",
+                          name: "Launch Website",
+                          description: "5-page conversion-focused custom website for UK businesses",
+                        },
+                        price: "1495",
+                        priceCurrency: "GBP",
+                      },
+                      {
+                        "@type": "Offer",
+                        itemOffered: {
+                          "@type": "Service",
+                          name: "Growth Website",
+                          description:
+                            "10-page custom website with local SEO, reviews and automation",
+                        },
+                        price: "2995",
+                        priceCurrency: "GBP",
+                      },
+                      {
+                        "@type": "Offer",
+                        itemOffered: {
+                          "@type": "Service",
+                          name: "Website Care Plan & Managed Hosting",
+                          description:
+                            "Continuous cloud hosting, SSL, daily cloud backups, security patching and maintenance",
+                        },
+                        price: "95",
+                        priceCurrency: "GBP",
+                      },
+                    ],
+                  },
+                }),
+              },
+            ]
+          : []),
+      ],
     };
   },
   shellComponent: RootShell,

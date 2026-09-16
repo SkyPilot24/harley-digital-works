@@ -16,6 +16,12 @@ import { parseLeadFormData } from "@/lib/lead-schema";
 import { leadCaptureConfigured, siteConfig } from "@/lib/site-config";
 
 export const Route = createFileRoute("/contact")({
+  validateSearch: (search: Record<string, unknown>) => ({
+    service: typeof search.service === "string" ? search.service : undefined,
+    package: typeof search.package === "string" ? search.package : undefined,
+    domain: typeof search.domain === "string" ? search.domain : undefined,
+    websiteUrl: typeof search.websiteUrl === "string" ? search.websiteUrl : undefined,
+  }),
   head: () => ({
     meta: [
       { title: "Contact - Harley Digital Works" },
@@ -30,10 +36,16 @@ export const Route = createFileRoute("/contact")({
 });
 
 function ContactPage() {
+  const search = Route.useSearch();
   const submitLeadFn = useServerFn(submitLead);
   const [busy, setBusy] = useState(false);
   const [sent, setSent] = useState(false);
   const [startedAt, setStartedAt] = useState(() => Date.now());
+
+  const initialPackage = search.package || (search.domain ? "Domain purchase / enquiry" : "");
+  const initialMessage = search.domain
+    ? `Hi, I would like to enquire about acquiring the domain ${search.domain}.`
+    : "";
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -132,6 +144,7 @@ function ContactPage() {
                   label="Current website (optional)"
                   name="websiteUrl"
                   placeholder="https://example.com"
+                  defaultValue={search.websiteUrl ?? ""}
                 />
                 <div className="grid gap-2">
                   <label className="text-[13px] font-medium text-ink" htmlFor="package">
@@ -141,18 +154,26 @@ function ContactPage() {
                     id="package"
                     name="package"
                     className="rounded-lg border border-ink/15 bg-background px-4 py-3 text-[15px] text-ink focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
-                    defaultValue=""
+                    defaultValue={initialPackage}
                   >
                     <option value="" disabled>
                       Choose a service or package
                     </option>
-                    <option>Web design & development</option>
-                    <option>Website Care Plan & Managed Hosting</option>
-                    <option>30-Day Launch Plan</option>
-                    <option>AI & workflow automation</option>
-                    <option>Domain purchase / enquiry</option>
-                    <option>Digital transformation</option>
-                    <option>Something else</option>
+                    <option value="Launch Website (£1,495)">Launch Website (£1,495)</option>
+                    <option value="Growth Website (£2,995)">
+                      Growth Website (£2,995 - Most Popular)
+                    </option>
+                    <option value="Pro Platform (£4,995+)">Pro / Custom Platform (£4,995+)</option>
+                    <option value="Website Care Plan & Hosting (£95/mo)">
+                      Website Care Plan & Managed Hosting (£95/mo)
+                    </option>
+                    <option value="AI & workflow automation">AI & workflow automation</option>
+                    <option value="Domain purchase / enquiry">Domain purchase / enquiry</option>
+                    <option value="Digital transformation">Digital transformation</option>
+                    <option value="Free Website Health Check Followup">
+                      Free Website Health Check Consultation
+                    </option>
+                    <option value="Something else">Something else</option>
                   </select>
                 </div>
                 <div className="grid gap-4 sm:grid-cols-2">
@@ -202,6 +223,7 @@ function ContactPage() {
                     rows={5}
                     required
                     minLength={5}
+                    defaultValue={initialMessage}
                     placeholder="A short note about what you are trying to do..."
                     className="rounded-lg border border-ink/15 bg-background px-4 py-3 text-[15px] text-ink focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
                   />
@@ -361,11 +383,13 @@ function Field({
   name,
   type = "text",
   placeholder,
+  defaultValue,
 }: {
   label: string;
   name: string;
   type?: string;
   placeholder?: string;
+  defaultValue?: string;
 }) {
   return (
     <div className="grid gap-2">
@@ -378,6 +402,7 @@ function Field({
         type={type}
         required={name === "name" || name === "email"}
         placeholder={placeholder}
+        defaultValue={defaultValue}
         className="rounded-lg border border-ink/15 bg-background px-4 py-3 text-[15px] text-ink placeholder:text-ink-muted/60 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
       />
     </div>
