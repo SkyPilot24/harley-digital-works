@@ -1,6 +1,95 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { PageShell,Container } from "@/components/site/PageShell";
+import { PageShell, Container } from "@/components/site/PageShell";
 import { PillButton } from "@/components/site/PillButton";
-export const Route=createFileRoute("/about")({head:()=>({meta:[{title:"About | Harley Digital Works"},{name:"description",content:"A senior, practical digital consultancy combining strategy, design, engineering and applied AI."}]}),component:Page});
-const principles=[["Commercially clear","We connect the work to an outcome and make trade-offs visible."],["Technically grounded","Architecture, accessibility, performance and maintainability are part of the design."],["Human in practice","Plain language, direct access and useful documentation keep teams in control."],["AI with judgement","We use AI to improve the work while keeping accountability with people."]];
-function Page(){return <PageShell><section className="pt-32 pb-16 md:pt-40 md:pb-24"><Container><p className="eyebrow">About</p><h1 className="mt-6 max-w-5xl text-[clamp(3.2rem,7vw,6.5rem)] leading-[.94] tracking-[-.055em]">A practical digital partner for consequential work.</h1><p className="mt-8 max-w-2xl text-lg leading-relaxed text-ink-muted">Harley Digital Works combines strategy, design, engineering and applied AI to improve customer journeys and the systems behind them.</p></Container></section><section className="border-y border-ink/10 bg-white py-20 md:py-28"><Container><div className="grid gap-12 lg:grid-cols-2"><div><p className="eyebrow">Our point of view</p><h2 className="mt-5 text-4xl tracking-[-.04em] md:text-5xl">Transformation earns its name when the day-to-day work gets better.</h2></div><div className="space-y-6 text-lg leading-relaxed text-ink-muted"><p>We favour focused scopes, visible progress and systems that real teams can own. That means beginning with the business and service problem—not a fashionable tool.</p><p>The practice is led by Dr Robbie Harley, MBA, bringing senior digital and operational judgement directly into discovery, design and delivery.</p></div></div></Container></section><section className="py-20 md:py-28"><Container><p className="eyebrow">How we show up</p><div className="mt-10 grid gap-8 sm:grid-cols-2">{principles.map(([title,copy])=><article key={title} className="border-t border-ink/15 pt-5"><h2 className="text-2xl">{title}</h2><p className="mt-3 text-sm leading-relaxed text-ink-muted">{copy}</p></article>)}</div></Container></section><section className="pb-24"><Container><div className="rounded-3xl bg-primary p-8 md:p-14"><h2 className="max-w-3xl text-4xl tracking-[-.04em] md:text-6xl">Let’s make the next move clear.</h2><div className="mt-8"><PillButton as="link" to="/contact" variant="dark">Start a conversation</PillButton></div></div></Container></section></PageShell>}
+export const Route = createFileRoute("/about")({
+  head: () => ({
+    meta: [
+      { title: "About | Harley Digital Works" },
+      {
+        name: "description",
+        content:
+          "A senior, practical digital consultancy combining strategy, design, engineering and applied AI.",
+      },
+    ],
+  }),
+  component: Page,
+});
+const principles = [
+  ["Commercially clear", "We connect the work to an outcome and make trade-offs visible."],
+  [
+    "Technically grounded",
+    "Architecture, accessibility, performance and maintainability are part of the design.",
+  ],
+  [
+    "Human in practice",
+    "Plain language, direct access and useful documentation keep teams in control.",
+  ],
+  ["AI with judgement", "We use AI to improve the work while keeping accountability with people."],
+];
+function Page() {
+  return (
+    <PageShell>
+      <section className="pt-32 pb-16 md:pt-40 md:pb-24">
+        <Container>
+          <p className="eyebrow">About</p>
+          <h1 className="mt-6 max-w-5xl text-[clamp(3.2rem,7vw,6.5rem)] leading-[.94] tracking-[-.055em]">
+            A practical digital partner for consequential work.
+          </h1>
+          <p className="mt-8 max-w-2xl text-lg leading-relaxed text-ink-muted">
+            Harley Digital Works combines strategy, design, engineering and applied AI to improve
+            customer journeys and the systems behind them.
+          </p>
+        </Container>
+      </section>
+      <section className="border-y border-ink/10 bg-white py-20 md:py-28">
+        <Container>
+          <div className="grid gap-12 lg:grid-cols-2">
+            <div>
+              <p className="eyebrow">Our point of view</p>
+              <h2 className="mt-5 text-4xl tracking-[-.04em] md:text-5xl">
+                Transformation earns its name when the day-to-day work gets better.
+              </h2>
+            </div>
+            <div className="space-y-6 text-lg leading-relaxed text-ink-muted">
+              <p>
+                We favour focused scopes, visible progress and systems that real teams can own. That
+                means beginning with the business and service problem—not a fashionable tool.
+              </p>
+              <p>
+                The practice is led by Dr Robbie Harley, MBA, bringing senior digital and
+                operational judgement directly into discovery, design and delivery.
+              </p>
+            </div>
+          </div>
+        </Container>
+      </section>
+      <section className="py-20 md:py-28">
+        <Container>
+          <p className="eyebrow">How we show up</p>
+          <div className="mt-10 grid gap-8 sm:grid-cols-2">
+            {principles.map(([title, copy]) => (
+              <article key={title} className="border-t border-ink/15 pt-5">
+                <h2 className="text-2xl">{title}</h2>
+                <p className="mt-3 text-sm leading-relaxed text-ink-muted">{copy}</p>
+              </article>
+            ))}
+          </div>
+        </Container>
+      </section>
+      <section className="pb-24">
+        <Container>
+          <div className="rounded-3xl bg-primary p-8 md:p-14">
+            <h2 className="max-w-3xl text-4xl tracking-[-.04em] md:text-6xl">
+              Let’s make the next move clear.
+            </h2>
+            <div className="mt-8">
+              <PillButton as="link" to="/contact" variant="dark">
+                Start a conversation
+              </PillButton>
+            </div>
+          </div>
+        </Container>
+      </section>
+    </PageShell>
+  );
+}

@@ -33,6 +33,7 @@ function ContactPage() {
   const submitLeadFn = useServerFn(submitLead);
   const [busy, setBusy] = useState(false);
   const [sent, setSent] = useState(false);
+  const [startedAt, setStartedAt] = useState(() => Date.now());
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -72,6 +73,7 @@ function ContactPage() {
     setBusy(false);
     setSent(true);
     (e.target as HTMLFormElement).reset();
+    setStartedAt(Date.now());
     toast.success("Message sent. We will be in touch shortly.");
   }
 
@@ -93,7 +95,8 @@ function ContactPage() {
             Tell us what needs to work better.
           </h1>
           <p className="mt-6 max-w-2xl text-[17px] leading-relaxed text-ink-muted">
-            Share the website, workflow or customer journey you want to improve. A short note is enough; we reply within one working day.
+            Share the website, workflow or customer journey you want to improve. A short note is
+            enough; we reply within one working day.
           </p>
         </Container>
       </section>
@@ -105,6 +108,14 @@ function ContactPage() {
               className="rounded-[20px] border border-ink/10 bg-background p-8 md:col-span-7 md:p-10"
               onSubmit={handleSubmit}
             >
+              <input type="hidden" name="startedAt" value={startedAt} />
+              <div
+                className="absolute left-[-10000px] top-auto h-px w-px overflow-hidden"
+                aria-hidden="true"
+              >
+                <label htmlFor="website">Leave this field empty</label>
+                <input id="website" name="website" type="text" tabIndex={-1} autoComplete="off" />
+              </div>
               <div className="grid gap-5">
                 {sent && (
                   <div className="rounded-lg border border-emerald-200 bg-emerald-50 px-4 py-3 text-[13px] text-emerald-800">

@@ -17,10 +17,7 @@ export function NewsCard({
   to: string;
 }) {
   return (
-    <Link
-      to={to}
-      className="group flex h-full flex-col"
-    >
+    <Link to={to} className="group flex h-full flex-col">
       <div className="relative overflow-hidden rounded-[16px]">
         <img
           src={image}
@@ -32,12 +29,8 @@ export function NewsCard({
           <TagChip tone="on-image">{tag}</TagChip>
         </div>
       </div>
-      <h3 className="mt-5 text-[17px] font-medium leading-snug tracking-tight text-ink">
-        {title}
-      </h3>
-      <p className="mt-2 line-clamp-3 text-[14px] leading-relaxed text-ink-muted">
-        {excerpt}
-      </p>
+      <h3 className="mt-5 text-[17px] font-medium leading-snug tracking-tight text-ink">{title}</h3>
+      <p className="mt-2 line-clamp-3 text-[14px] leading-relaxed text-ink-muted">{excerpt}</p>
     </Link>
   );
 }

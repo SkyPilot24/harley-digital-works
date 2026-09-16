@@ -20,7 +20,7 @@ export const Route = createFileRoute("/_authenticated/admin/leads")({
           label: "Status",
           type: "select",
           options: ["new", "contacted", "qualified", "won", "lost"],
-          render: (v) => <StatusBadge status={v} />,
+          render: (v) => <StatusBadge status={String(v ?? "")} />,
         },
         { name: "notes", label: "Internal notes", type: "textarea", hideInTable: true },
       ]}

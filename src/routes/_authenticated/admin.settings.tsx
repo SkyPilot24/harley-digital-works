@@ -23,14 +23,20 @@ function SettingsPage() {
   const { data, isLoading } = useQuery({
     queryKey: ["agency_settings"],
     queryFn: async () => {
-      const { data, error } = await supabase.from("agency_settings").select("*").limit(1).maybeSingle();
+      const { data, error } = await supabase
+        .from("agency_settings")
+        .select("*")
+        .limit(1)
+        .maybeSingle();
       if (error) throw error;
       return data as Settings | null;
     },
   });
 
   const [form, setForm] = useState<Partial<Settings>>({});
-  useEffect(() => { if (data) setForm(data); }, [data]);
+  useEffect(() => {
+    if (data) setForm(data);
+  }, [data]);
 
   const save = useMutation({
     mutationFn: async () => {
@@ -57,13 +63,37 @@ function SettingsPage() {
       <PageHeader title="Agency settings" subtitle="Public info about your agency." />
       <form
         className="mt-8 max-w-2xl space-y-4 rounded-xl border border-ink/10 bg-white p-6"
-        onSubmit={(e) => { e.preventDefault(); save.mutate(); }}
+        onSubmit={(e) => {
+          e.preventDefault();
+          save.mutate();
+        }}
       >
-        <Field label="Agency name" value={form.agency_name ?? ""} onChange={(v) => setForm({ ...form, agency_name: v })} />
-        <Field label="Tagline" value={form.tagline ?? ""} onChange={(v) => setForm({ ...form, tagline: v })} />
-        <Field label="Contact email" type="email" value={form.contact_email ?? ""} onChange={(v) => setForm({ ...form, contact_email: v })} />
-        <Field label="Contact phone" value={form.contact_phone ?? ""} onChange={(v) => setForm({ ...form, contact_phone: v })} />
-        <Field label="Address" value={form.address ?? ""} onChange={(v) => setForm({ ...form, address: v })} />
+        <Field
+          label="Agency name"
+          value={form.agency_name ?? ""}
+          onChange={(v) => setForm({ ...form, agency_name: v })}
+        />
+        <Field
+          label="Tagline"
+          value={form.tagline ?? ""}
+          onChange={(v) => setForm({ ...form, tagline: v })}
+        />
+        <Field
+          label="Contact email"
+          type="email"
+          value={form.contact_email ?? ""}
+          onChange={(v) => setForm({ ...form, contact_email: v })}
+        />
+        <Field
+          label="Contact phone"
+          value={form.contact_phone ?? ""}
+          onChange={(v) => setForm({ ...form, contact_phone: v })}
+        />
+        <Field
+          label="Address"
+          value={form.address ?? ""}
+          onChange={(v) => setForm({ ...form, address: v })}
+        />
         <button
           type="submit"
           disabled={save.isPending}
@@ -76,7 +106,17 @@ function SettingsPage() {
   );
 }
 
-function Field({ label, value, onChange, type = "text" }: { label: string; value: string; onChange: (v: string) => void; type?: string }) {
+function Field({
+  label,
+  value,
+  onChange,
+  type = "text",
+}: {
+  label: string;
+  value: string;
+  onChange: (v: string) => void;
+  type?: string;
+}) {
   return (
     <label className="block">
       <span className="text-[13px] font-medium text-ink">{label}</span>

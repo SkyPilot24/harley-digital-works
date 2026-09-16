@@ -46,14 +46,8 @@ export function FeatureCard({
           <TagChip tone="light">{tag}</TagChip>
         </div>
       )}
-      <h3 className="text-[20px] font-medium leading-snug tracking-tight text-ink">
-        {title}
-      </h3>
-      {body && (
-        <p className="mt-3 flex-1 text-[15px] leading-relaxed text-ink-muted">
-          {body}
-        </p>
-      )}
+      <h3 className="text-[20px] font-medium leading-snug tracking-tight text-ink">{title}</h3>
+      {body && <p className="mt-3 flex-1 text-[15px] leading-relaxed text-ink-muted">{body}</p>}
       {ctaTo && (
         <div className="mt-6">
           <PillButton as="link" to={ctaTo} variant="ghost" size="sm">

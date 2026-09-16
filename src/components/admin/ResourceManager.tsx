@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
+import type { Database } from "@/integrations/supabase/types";
 import { toast } from "sonner";
 import { Pencil, Plus, Trash2, X } from "lucide-react";
 
@@ -12,7 +13,7 @@ export type FieldDef = {
   required?: boolean;
   placeholder?: string;
   hideInTable?: boolean;
-  render?: (value: any, row: any) => React.ReactNode;
+  render?: (value: unknown, row: Row) => React.ReactNode;
 };
 
 export type ResourceManagerProps = {
@@ -23,9 +24,17 @@ export type ResourceManagerProps = {
   emptyHint?: string;
 };
 
-type Row = Record<string, any> & { id: string };
+type PublicTableName = keyof Database["public"]["Tables"];
 
-export function ResourceManager({ title, table, fields, orderBy, emptyHint }: ResourceManagerProps) {
+type Row = Record<string, unknown> & { id: string };
+
+export function ResourceManager({
+  title,
+  table,
+  fields,
+  orderBy,
+  emptyHint,
+}: ResourceManagerProps) {
   const qc = useQueryClient();
   const [editing, setEditing] = useState<Row | null>(null);
   const [creating, setCreating] = useState(false);
@@ -33,7 +42,7 @@ export function ResourceManager({ title, table, fields, orderBy, emptyHint }: Re
   const query = useQuery({
     queryKey: [table],
     queryFn: async () => {
-      let q = supabase.from(table as any).select("*");
+      let q = supabase.from(table as PublicTableName).select("*");
       if (orderBy) q = q.order(orderBy.column, { ascending: orderBy.ascending ?? false });
       const { data, error } = await q;
       if (error) throw error;
@@ -45,10 +54,13 @@ export function ResourceManager({ title, table, fields, orderBy, emptyHint }: Re
     mutationFn: async (payload: Partial<Row>) => {
       if (payload.id) {
         const { id, ...rest } = payload;
-        const { error } = await supabase.from(table as any).update(rest).eq("id", id);
+        const { error } = await supabase
+          .from(table as PublicTableName)
+          .update(rest as never)
+          .eq("id", id);
         if (error) throw error;
       } else {
-        const { error } = await supabase.from(table as any).insert(payload);
+        const { error } = await supabase.from(table as PublicTableName).insert(payload as never);
         if (error) throw error;
       }
     },
@@ -63,7 +75,10 @@ export function ResourceManager({ title, table, fields, orderBy, emptyHint }: Re
 
   const deleteMutation = useMutation({
     mutationFn: async (id: string) => {
-      const { error } = await supabase.from(table as any).delete().eq("id", id);
+      const { error } = await supabase
+        .from(table as PublicTableName)
+        .delete()
+        .eq("id", id);
       if (error) throw error;
     },
     onSuccess: () => {
@@ -75,7 +90,7 @@ export function ResourceManager({ title, table, fields, orderBy, emptyHint }: Re
 
   const shownFields = fields.filter((f) => !f.hideInTable).slice(0, 5);
   const open = creating || !!editing;
-  const record: Record<string, any> = editing ?? {};
+  const record: Record<string, unknown> = editing ?? {};
 
   return (
     <div>
@@ -99,19 +114,33 @@ export function ResourceManager({ title, table, fields, orderBy, emptyHint }: Re
           <thead className="bg-ink/[0.03] text-left text-[12px] uppercase tracking-wider text-ink-muted">
             <tr>
               {shownFields.map((f) => (
-                <th key={f.name} className="px-4 py-3">{f.label}</th>
+                <th key={f.name} className="px-4 py-3">
+                  {f.label}
+                </th>
               ))}
               <th className="px-4 py-3 text-right">Actions</th>
             </tr>
           </thead>
           <tbody>
             {query.isLoading && (
-              <tr><td colSpan={shownFields.length + 1} className="px-4 py-10 text-center text-ink-muted">Loading…</td></tr>
+              <tr>
+                <td
+                  colSpan={shownFields.length + 1}
+                  className="px-4 py-10 text-center text-ink-muted"
+                >
+                  Loading…
+                </td>
+              </tr>
             )}
             {query.data?.length === 0 && (
-              <tr><td colSpan={shownFields.length + 1} className="px-4 py-10 text-center text-ink-muted">
-                {emptyHint ?? "No records yet. Click New to add one."}
-              </td></tr>
+              <tr>
+                <td
+                  colSpan={shownFields.length + 1}
+                  className="px-4 py-10 text-center text-ink-muted"
+                >
+                  {emptyHint ?? "No records yet. Click New to add one."}
+                </td>
+              </tr>
             )}
             {query.data?.map((row) => (
               <tr key={row.id} className="border-t border-ink/5 hover:bg-ink/[0.02]">
@@ -145,14 +174,26 @@ export function ResourceManager({ title, table, fields, orderBy, emptyHint }: Re
       </div>
 
       {open && (
-        <div className="fixed inset-0 z-50 flex justify-end bg-black/30" onClick={() => { setEditing(null); setCreating(false); }}>
+        <div
+          className="fixed inset-0 z-50 flex justify-end bg-black/30"
+          onClick={() => {
+            setEditing(null);
+            setCreating(false);
+          }}
+        >
           <div
             className="h-full w-full max-w-lg overflow-y-auto bg-white p-6 shadow-xl"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-center justify-between">
               <h2 className="text-lg font-semibold text-ink">{editing ? "Edit" : "New"} record</h2>
-              <button onClick={() => { setEditing(null); setCreating(false); }} className="rounded-md p-2 text-ink/60 hover:bg-ink/[0.05]">
+              <button
+                onClick={() => {
+                  setEditing(null);
+                  setCreating(false);
+                }}
+                className="rounded-md p-2 text-ink/60 hover:bg-ink/[0.05]"
+              >
                 <X size={16} />
               </button>
             </div>
@@ -183,7 +224,10 @@ export function ResourceManager({ title, table, fields, orderBy, emptyHint }: Re
               <div className="flex justify-end gap-2 pt-2">
                 <button
                   type="button"
-                  onClick={() => { setEditing(null); setCreating(false); }}
+                  onClick={() => {
+                    setEditing(null);
+                    setCreating(false);
+                  }}
                   className="rounded-full border border-ink/15 px-4 py-2 text-sm font-medium text-ink hover:bg-ink/5"
                 >
                   Cancel
@@ -204,18 +248,27 @@ export function ResourceManager({ title, table, fields, orderBy, emptyHint }: Re
   );
 }
 
-function FieldInput({ field, defaultValue }: { field: FieldDef; defaultValue: any }) {
-  const base = "mt-1.5 w-full rounded-lg border border-ink/15 bg-white px-3 py-2 text-sm text-ink outline-none focus:border-ink/40";
+function FieldInput({ field, defaultValue }: { field: FieldDef; defaultValue: unknown }) {
+  const base =
+    "mt-1.5 w-full rounded-lg border border-ink/15 bg-white px-3 py-2 text-sm text-ink outline-none focus:border-ink/40";
+  const inputDefaultValue = toInputDefaultValue(defaultValue);
   const label = (
     <span className="text-[13px] font-medium text-ink">
-      {field.label}{field.required && <span className="text-rose-500"> *</span>}
+      {field.label}
+      {field.required && <span className="text-rose-500"> *</span>}
     </span>
   );
   if (field.type === "textarea") {
     return (
       <label className="block">
         {label}
-        <textarea name={field.name} required={field.required} defaultValue={defaultValue ?? ""} rows={4} className={base} />
+        <textarea
+          name={field.name}
+          required={field.required}
+          defaultValue={inputDefaultValue}
+          rows={4}
+          className={base}
+        />
       </label>
     );
   }
@@ -223,9 +276,18 @@ function FieldInput({ field, defaultValue }: { field: FieldDef; defaultValue: an
     return (
       <label className="block">
         {label}
-        <select name={field.name} required={field.required} defaultValue={defaultValue ?? ""} className={base}>
+        <select
+          name={field.name}
+          required={field.required}
+          defaultValue={inputDefaultValue}
+          className={base}
+        >
           <option value="">— Select —</option>
-          {field.options?.map((o) => <option key={o} value={o}>{o.replace(/_/g, " ")}</option>)}
+          {field.options?.map((o) => (
+            <option key={o} value={o}>
+              {o.replace(/_/g, " ")}
+            </option>
+          ))}
         </select>
       </label>
     );
@@ -233,7 +295,12 @@ function FieldInput({ field, defaultValue }: { field: FieldDef; defaultValue: an
   if (field.type === "checkbox") {
     return (
       <label className="flex items-center gap-2">
-        <input type="checkbox" name={field.name} defaultChecked={!!defaultValue} className="h-4 w-4 rounded border-ink/30" />
+        <input
+          type="checkbox"
+          name={field.name}
+          defaultChecked={defaultValue === true}
+          className="h-4 w-4 rounded border-ink/30"
+        />
         <span className="text-[13px] font-medium text-ink">{field.label}</span>
       </label>
     );
@@ -242,7 +309,14 @@ function FieldInput({ field, defaultValue }: { field: FieldDef; defaultValue: an
     return (
       <label className="block">
         {label}
-        <input type="number" name={field.name} required={field.required} defaultValue={defaultValue ?? ""} placeholder={field.placeholder} className={base} />
+        <input
+          type="number"
+          name={field.name}
+          required={field.required}
+          defaultValue={inputDefaultValue}
+          placeholder={field.placeholder}
+          className={base}
+        />
       </label>
     );
   }
@@ -253,7 +327,7 @@ function FieldInput({ field, defaultValue }: { field: FieldDef; defaultValue: an
         type={field.type ?? "text"}
         name={field.name}
         required={field.required}
-        defaultValue={defaultValue ?? ""}
+        defaultValue={inputDefaultValue}
         placeholder={field.placeholder}
         className={base}
       />
@@ -261,7 +335,11 @@ function FieldInput({ field, defaultValue }: { field: FieldDef; defaultValue: an
   );
 }
 
-function formatCell(value: any, type?: string) {
+function toInputDefaultValue(value: unknown): string | number {
+  return typeof value === "string" || typeof value === "number" ? value : "";
+}
+
+function formatCell(value: unknown, type?: string) {
   if (value == null || value === "") return <span className="text-ink-muted">—</span>;
   if (type === "checkbox" || typeof value === "boolean") return value ? "Yes" : "No";
   if (typeof value === "string" && value.length > 60) return value.slice(0, 60) + "…";

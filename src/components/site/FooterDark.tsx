@@ -6,22 +6,31 @@ import { BrandLogo } from "./BrandLogo";
 const YEAR = 2026;
 
 const COLUMNS = [
-  { heading: "Services", links: [
-    { label: "Web design & development", to: "/services/web-design-development" },
-    { label: "AI & automation", to: "/services/ai-automation" },
-    { label: "Digital transformation", to: "/services/digital-transformation" },
-    { label: "All services", to: "/services" },
-  ]},
-  { heading: "Explore", links: [
-    { label: "Selected work", to: "/work" },
-    { label: "Resources", to: "/resources" },
-    { label: "Domains", to: "/domains" },
-  ]},
-  { heading: "Company", links: [
-    { label: "About", to: "/about" },
-    { label: "Contact", to: "/contact" },
-    { label: "Privacy", to: "/privacy" },
-  ]},
+  {
+    heading: "Services",
+    links: [
+      { label: "Web design & development", to: "/services/web-design-development" },
+      { label: "AI & automation", to: "/services/ai-automation" },
+      { label: "Digital transformation", to: "/services/digital-transformation" },
+      { label: "All services", to: "/services" },
+    ],
+  },
+  {
+    heading: "Explore",
+    links: [
+      { label: "Selected work", to: "/work" },
+      { label: "Resources", to: "/resources" },
+      { label: "Domains", to: "/domains" },
+    ],
+  },
+  {
+    heading: "Company",
+    links: [
+      { label: "About", to: "/about" },
+      { label: "Contact", to: "/contact" },
+      { label: "Privacy", to: "/privacy" },
+    ],
+  },
 ] as const;
 
 export function FooterDark() {
@@ -31,7 +40,8 @@ export function FooterDark() {
         <div className="grid gap-12 md:grid-cols-12 md:gap-10">
           <div className="md:col-span-5">
             <p className="max-w-sm text-[15px] leading-relaxed text-background/70">
-              Have a website, workflow or digital service that needs to work harder? Tell us what is getting in the way.
+              Have a website, workflow or digital service that needs to work harder? Tell us what is
+              getting in the way.
             </p>
             <div className="mt-6">
               <PillButton as="link" to="/contact" variant="light" size="md">
@@ -63,7 +73,10 @@ export function FooterDark() {
             <h4 className="text-[15px] font-medium text-background">Direct</h4>
             <ul className="mt-5 space-y-3 text-[14px] text-background/60">
               <li>
-                <a href={`mailto:${siteConfig.contactEmail}`} className="break-all hover:text-background">
+                <a
+                  href={`mailto:${siteConfig.contactEmail}`}
+                  className="break-all hover:text-background"
+                >
                   {siteConfig.contactEmail}
                 </a>
               </li>
@@ -74,10 +87,10 @@ export function FooterDark() {
 
       <div className="border-t border-background/10">
         <div className="mx-auto flex max-w-[1240px] flex-col gap-2 px-6 py-6 text-[12px] text-background/65 md:flex-row md:items-center md:justify-between md:px-10">
-          <p>&copy; {YEAR} {siteConfig.name}. All rights reserved.</p>
-          <p className="font-mono uppercase tracking-[0.22em]">
-            Strategy · Design · Engineering
+          <p>
+            &copy; {YEAR} {siteConfig.name}. All rights reserved.
           </p>
+          <p className="font-mono uppercase tracking-[0.22em]">Strategy · Design · Engineering</p>
         </div>
       </div>
     </footer>

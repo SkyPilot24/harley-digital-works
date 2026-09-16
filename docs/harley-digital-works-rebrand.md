@@ -4,7 +4,7 @@
 
 This rebrand moves the public agency identity from THG Digital / THG Digital Agency to Harley Digital Works across the website, application shell, admin-visible labels, PWA metadata, social preview assets, contact surfaces, diagnostics, and supporting documentation.
 
-The work preserves the existing TanStack Start application, Supabase integrations, lead capture flow, Stripe domain checkout pattern, admin Control Centre, Revenue OS, database schema, RLS policies, and Lovable-connected project structure.
+The work preserves the existing TanStack Start application, Supabase integrations, lead capture flow, enquiry-led domain portfolio, admin Control Centre, Revenue OS, database schema, RLS policies, and Lovable-connected project structure.
 
 ## Brand Architecture
 
@@ -68,17 +68,11 @@ Manual Supabase actions:
 
 Supabase changelog reviewed on 2026-07-11. No redirect-specific breaking change was identified for this repo change; recent Data API exposure and TypeScript deprecation notices do not require schema changes here.
 
-## Stripe URL Changes
+## Domain Payment Status
 
-The Stripe domain checkout code already supports environment-specific URLs:
+Public domain sales are enquiry-only. The previous anonymous Stripe Checkout endpoint was removed because it did not provide an order record, signed webhook processing, idempotency, reconciliation, refund handling, or fulfilment state.
 
-- `STRIPE_DOMAIN_SUCCESS_URL=https://harleydigitalworks.com/domains?checkout=success`
-- `STRIPE_DOMAIN_CANCEL_URL=https://harleydigitalworks.com/domains?checkout=cancelled`
-
-Manual Stripe actions:
-
-- Confirm webhook endpoint URLs, if any, use the new production domain.
-- Confirm receipt/business display names and support URLs use Harley Digital Works where appropriate.
+Do not enable domain payments until the Payment Release Gate in `docs/harley-digital-works-remediation-plan-2026-08-01.md` passes in test mode and the product owner approves fulfilment, refund, tax, and support decisions.
 
 ## Email-Domain Setup
 
@@ -148,7 +142,7 @@ Configure 301 redirects for at least:
 - Connect DNS and hosting domain.
 - Configure redirects from the old domain.
 - Update Supabase Auth redirect allow-list and any email templates.
-- Verify Stripe success/cancel URLs and any webhook endpoints.
+- Keep domain payments disabled until the Payment Release Gate passes.
 - Verify email sender domain and DNS records.
 - Update analytics property/domain settings.
 - Add and verify the new domain in Search Console.

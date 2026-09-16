@@ -18,9 +18,7 @@ export function SectionHeader({
         <h2 className="text-[clamp(1.75rem,3vw,2.5rem)] font-medium tracking-tight text-ink">
           {title}
         </h2>
-        {intro && (
-          <p className="mt-4 text-[17px] leading-relaxed text-ink-muted">{intro}</p>
-        )}
+        {intro && <p className="mt-4 text-[17px] leading-relaxed text-ink-muted">{intro}</p>}
       </div>
     );
   }
@@ -31,9 +29,7 @@ export function SectionHeader({
         {title}
       </h2>
       {intro && (
-        <p className="text-[17px] leading-relaxed text-ink-muted md:col-span-7 md:pt-2">
-          {intro}
-        </p>
+        <p className="text-[17px] leading-relaxed text-ink-muted md:col-span-7 md:pt-2">{intro}</p>
       )}
     </div>
   );
