@@ -18,9 +18,13 @@ import {
   Search,
   Plus,
   FileText,
+  Compass,
+  Zap,
 } from "lucide-react";
 import { PageHeader, StatusBadge } from "./admin.index";
 import { LeadProposalModal } from "@/components/admin/LeadProposalModal";
+import { LeadProspectorAuditDesk } from "@/components/admin/LeadProspectorAuditDesk";
+import { ContentFlowEngine } from "@/components/admin/ContentFlowEngine";
 
 type LeadRow = Database["public"]["Tables"]["leads"]["Row"];
 type LeadStatus = Database["public"]["Enums"]["lead_status"];
@@ -31,6 +35,7 @@ export const Route = createFileRoute("/_authenticated/admin/leads")({
 
 function LeadsPage() {
   const qc = useQueryClient();
+  const [moduleMode, setModuleMode] = useState<"crm" | "prospector" | "contentflow">("crm");
   const [activeTab, setActiveTab] = useState<string>("all");
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedLead, setSelectedLead] = useState<LeadRow | null>(null);
@@ -173,23 +178,115 @@ function LeadsPage() {
   return (
     <div>
       <PageHeader
-        title="Lead Intake & Pipeline"
-        subtitle="Manage inbound enquiries, qualify commercial fit, and convert leads into active clients."
+        title={
+          moduleMode === "crm"
+            ? "Lead Intake & CRM Pipeline"
+            : moduleMode === "prospector"
+              ? "Automated Prospector & Audit Engine"
+              : "ContentFlow AI Trade Copy Engine"
+        }
+        subtitle={
+          moduleMode === "crm"
+            ? "Manage inbound enquiries, qualify commercial fit, and convert leads into active clients."
+            : moduleMode === "prospector"
+              ? "Scan UK trade sectors by county, audit live websites for revenue leaks, and dispatch 1-click outreach."
+              : "Factory-grade 5-page conversion copywriting generator engineered for UK trade & contractor verticals."
+        }
         action={
-          <button
-            onClick={() => {
-              setEditingLead({ status: "new" });
-              setIsCreating(true);
-            }}
-            className="inline-flex items-center gap-2 rounded-full bg-ink px-4 py-2 text-sm font-medium text-white hover:bg-ink/90"
-          >
-            <Plus size={16} /> Add Lead
-          </button>
+          moduleMode === "crm" ? (
+            <button
+              onClick={() => {
+                setEditingLead({ status: "new" });
+                setIsCreating(true);
+              }}
+              className="inline-flex items-center gap-2 rounded-full bg-ink px-4 py-2 text-sm font-medium text-white hover:bg-ink/90"
+            >
+              <Plus size={16} /> Add Lead
+            </button>
+          ) : undefined
         }
       />
 
-      {/* Metrics Bar */}
-      <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      {/* Module Switcher Tabs */}
+      <div className="mt-6 flex flex-wrap items-center gap-2 border-b border-ink/10 pb-4">
+        <button
+          onClick={() => setModuleMode("crm")}
+          className={`inline-flex items-center gap-2 rounded-xl px-4 py-2 text-xs font-semibold transition-all ${
+            moduleMode === "crm"
+              ? "bg-ink text-white shadow-sm"
+              : "border border-ink/10 bg-white text-ink/70 hover:bg-ink/[0.04]"
+          }`}
+        >
+          <Inbox size={15} />
+          <span>Inbound CRM Pipeline</span>
+          <span className={`ml-1 rounded-full px-2 py-0.5 text-[10px] font-mono font-medium ${
+            moduleMode === "crm" ? "bg-white/20 text-white" : "bg-ink/10 text-ink"
+          }`}>
+            {totalLeads}
+          </span>
+        </button>
+
+        <button
+          onClick={() => setModuleMode("prospector")}
+          className={`inline-flex items-center gap-2 rounded-xl px-4 py-2 text-xs font-semibold transition-all ${
+            moduleMode === "prospector"
+              ? "bg-ink text-white shadow-sm"
+              : "border border-ink/10 bg-white text-ink/70 hover:bg-ink/[0.04]"
+          }`}
+        >
+          <Compass size={15} className={moduleMode === "prospector" ? "text-amber-300" : "text-amber-500"} />
+          <span>Automated Prospector & Audit Desk</span>
+          <span className="ml-1 rounded bg-amber-500/20 px-1.5 py-0.5 text-[10px] font-bold text-amber-600 dark:text-amber-400">
+            AUTO-AUDIT
+          </span>
+        </button>
+
+        <button
+          onClick={() => setModuleMode("contentflow")}
+          className={`inline-flex items-center gap-2 rounded-xl px-4 py-2 text-xs font-semibold transition-all ${
+            moduleMode === "contentflow"
+              ? "bg-ink text-white shadow-sm"
+              : "border border-ink/10 bg-white text-ink/70 hover:bg-ink/[0.04]"
+          }`}
+        >
+          <Zap size={15} className={moduleMode === "contentflow" ? "text-purple-300" : "text-purple-500"} />
+          <span>ContentFlow AI Copy Engine</span>
+          <span className="ml-1 rounded bg-purple-500/20 px-1.5 py-0.5 text-[10px] font-bold text-purple-600 dark:text-purple-400">
+            5-PAGE FACTORY
+          </span>
+        </button>
+      </div>
+
+      {moduleMode === "prospector" && (
+        <div className="mt-6">
+          <LeadProspectorAuditDesk
+            onImportLead={(prospect) => {
+              saveLeadMutation.mutate({
+                name: prospect.companyName,
+                company: prospect.companyName,
+                email: prospect.email,
+                package: "Growth Engine (£195/mo)",
+                status: "qualified",
+                source: "automated_prospector",
+                message: `Automated Prospector Discovery (${prospect.tradeSector} in ${prospect.location}). Website: ${prospect.websiteUrl} | Phone: ${prospect.phone} | Google: ${prospect.googleRating}★ (${prospect.reviewCount} reviews). Est Lost Rev: ${prospect.estimatedLostRevenueMonthly}.`,
+                notes: `Identified Audit Vulnerabilities:\n- ${prospect.identifiedIssues.join("\n- ")}`,
+              });
+              toast.success(`Prospect "${prospect.companyName}" imported into Inbound Leads!`);
+            }}
+          />
+        </div>
+      )}
+
+      {moduleMode === "contentflow" && (
+        <div className="mt-6">
+          <ContentFlowEngine />
+        </div>
+      )}
+
+      {moduleMode === "crm" && (
+        <>
+          {/* Metrics Bar */}
+          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         <div className="rounded-xl border border-ink/10 bg-white p-5">
           <div className="flex items-center gap-2 text-ink-muted">
             <Inbox size={14} />
@@ -539,6 +636,8 @@ function LeadsPage() {
             </div>
           </div>
         </div>
+      )}
+      </>
       )}
 
       {/* Edit / Create Lead Modal */}

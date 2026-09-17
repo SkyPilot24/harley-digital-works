@@ -320,6 +320,87 @@ export const KNOWLEDGE_ARTICLES: KnowledgeArticle[] = [
       },
     ],
   },
+  {
+    id: "automated-prospector-audit-engine",
+    category: "sales",
+    title: "Operating the Automated Prospector, Site Audit & 1-Click Outreach Engine",
+    summary:
+      "How to scan UK trade sectors by county, run algorithmic Core Web Vitals & revenue leak audits, and dispatch tailored WhatsApp/Email pitches.",
+    badge: "Automation Radar",
+    readTime: "4 min read",
+    quickAction: { label: "Open Prospector Desk", to: "/admin/leads" },
+    steps: [
+      {
+        title: "1. Select Target Trade Vertical & City Hub",
+        description:
+          "Open /admin/leads and switch to 'Automated Prospector & Audit Desk'. Filter by trade sector (e.g. Heating Engineers, Electricians, Builders) and UK location hub (e.g. Greater Manchester, West Midlands).",
+        tips: [
+          "Target trade businesses with Opportunity Scores > 85 for highest response rates.",
+          "Check the estimated monthly lost revenue to anchor your pricing justification.",
+        ],
+      },
+      {
+        title: "2. Review Audit Vulnerabilities & Revenue Leak Analysis",
+        description:
+          "Review the automated audit panel detailing mobile page speed deficits, missing Gas Safe / NICEIC credentials in headers, missing local schema markup, and lack of interactive quote calculators.",
+      },
+      {
+        title: "3. 1-Click Human-in-the-Loop Outreach Dispatch",
+        description:
+          "Select the preferred outreach channel (WhatsApp or Email). Review the auto-generated audit teardown message and click 'Dispatch via WhatsApp' or 'Launch Email Client' to initiate instant contact.",
+        tips: [
+          "Always verify the company director or contact name if available before hitting send.",
+        ],
+      },
+      {
+        title: "4. Push Prospect to Active CRM Pipeline",
+        description:
+          "Click 'Push to CRM Pipeline' to instantly convert the audited prospect into an inbound lead in the Supabase database with all audit notes preserved.",
+      },
+    ],
+    faq: [
+      {
+        q: "Why is human-in-the-loop dispatch preferred over unmonitored cold email spam?",
+        a: "Trade contractors heavily rely on WhatsApp and direct mobile contact. High-context, personalized audit messages approved by a human achieve 8x higher conversion and zero spam reputation penalties.",
+      },
+    ],
+  },
+  {
+    id: "contentflow-trade-copy-factory",
+    category: "onboarding",
+    title: "Using ContentFlow AI to Generate 5-Page Technical Trade Copy Packs",
+    summary:
+      "Factory-speed generation of conversion-engineered, Gas Safe / NICEIC / FMB accredited website copy for trade clients in under 10 seconds.",
+    badge: "AI Copywriting Factory",
+    readTime: "4 min read",
+    quickAction: { label: "Open ContentFlow Desk", to: "/admin/leads" },
+    steps: [
+      {
+        title: "1. Configure Contractor Profile & Accreditations",
+        description:
+          "Open /admin/leads and toggle 'ContentFlow AI Copy Engine'. Enter the contractor's trading name, trade sector, primary service location, years in business, and regulatory credentials.",
+      },
+      {
+        title: "2. Instant 5-Page Copy Pack Generation",
+        description:
+          "Click 'Generate 5-Page Trade Copy Pack'. The AI engine writes full, publication-ready copy for: 1) Homepage & Hero Hook, 2) Primary Trade Services, 3) About & Accreditations, 4) Case Studies & Social Proof, and 5) Contact & Emergency Quote Engine.",
+        tips: [
+          "Copy automatically embeds UK trade terminology, localized search keywords, and high-trust conversion triggers.",
+        ],
+      },
+      {
+        title: "3. Page-by-Page Review & 1-Click Export",
+        description:
+          "Use the tabbed viewer to inspect each page draft, copy individual pages or the full bundle to clipboard, and paste directly into the client's Vite / TanStack Start template.",
+      },
+    ],
+    faq: [
+      {
+        q: "Does ContentFlow AI replace client interview homework?",
+        a: "Yes. By generating authoritative, trade-accurate copy grounded in real industry standards, clients only need to approve or tweak rather than writing blank pages themselves.",
+      },
+    ],
+  },
 ];
 
 const CATEGORIES: { id: GuideCategory; label: string; icon: typeof BookOpen }[] = [
