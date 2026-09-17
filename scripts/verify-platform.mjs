@@ -47,6 +47,7 @@ const expectedRoutes = [
   "src/routes/track.tsx",
   "src/routes/work.tsx",
   "src/routes/about.tsx",
+  "src/routes/brand.tsx",
   "src/routes/locations.tsx",
   "src/routes/locations_.$slug.tsx",
   "src/routes/domains.tsx",

@@ -26,6 +26,7 @@ import { Route as DemosRouteImport } from './routes/demos'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CareDeskRouteImport } from './routes/care-desk'
 import { Route as CalculatorRouteImport } from './routes/calculator'
+import { Route as BrandRouteImport } from './routes/brand'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as AuditRouteImport } from './routes/audit'
 import { Route as AboutRouteImport } from './routes/about'
@@ -144,6 +145,11 @@ const CareDeskRoute = CareDeskRouteImport.update({
 const CalculatorRoute = CalculatorRouteImport.update({
   id: '/calculator',
   path: '/calculator',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BrandRoute = BrandRouteImport.update({
+  id: '/brand',
+  path: '/brand',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AuthRoute = AuthRouteImport.update({
@@ -335,6 +341,7 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/audit': typeof AuditRoute
   '/auth': typeof AuthRoute
+  '/brand': typeof BrandRoute
   '/calculator': typeof CalculatorRoute
   '/care-desk': typeof CareDeskRoute
   '/contact': typeof ContactRoute
@@ -387,6 +394,7 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/audit': typeof AuditRoute
   '/auth': typeof AuthRoute
+  '/brand': typeof BrandRoute
   '/calculator': typeof CalculatorRoute
   '/care-desk': typeof CareDeskRoute
   '/contact': typeof ContactRoute
@@ -441,6 +449,7 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/audit': typeof AuditRoute
   '/auth': typeof AuthRoute
+  '/brand': typeof BrandRoute
   '/calculator': typeof CalculatorRoute
   '/care-desk': typeof CareDeskRoute
   '/contact': typeof ContactRoute
@@ -495,6 +504,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/audit'
     | '/auth'
+    | '/brand'
     | '/calculator'
     | '/care-desk'
     | '/contact'
@@ -547,6 +557,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/audit'
     | '/auth'
+    | '/brand'
     | '/calculator'
     | '/care-desk'
     | '/contact'
@@ -600,6 +611,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/audit'
     | '/auth'
+    | '/brand'
     | '/calculator'
     | '/care-desk'
     | '/contact'
@@ -654,6 +666,7 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   AuditRoute: typeof AuditRoute
   AuthRoute: typeof AuthRoute
+  BrandRoute: typeof BrandRoute
   CalculatorRoute: typeof CalculatorRoute
   CareDeskRoute: typeof CareDeskRoute
   ContactRoute: typeof ContactRoute
@@ -805,6 +818,13 @@ declare module '@tanstack/react-router' {
       path: '/calculator'
       fullPath: '/calculator'
       preLoaderRoute: typeof CalculatorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/brand': {
+      id: '/brand'
+      path: '/brand'
+      fullPath: '/brand'
+      preLoaderRoute: typeof BrandRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/auth': {
@@ -1095,6 +1115,7 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   AuditRoute: AuditRoute,
   AuthRoute: AuthRoute,
+  BrandRoute: BrandRoute,
   CalculatorRoute: CalculatorRoute,
   CareDeskRoute: CareDeskRoute,
   ContactRoute: ContactRoute,

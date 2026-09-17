@@ -298,6 +298,28 @@ export const KNOWLEDGE_ARTICLES: KnowledgeArticle[] = [
       },
     ],
   },
+  {
+    id: "brand-assets-standards",
+    category: "group",
+    title: "Managing Group Brand Assets, Typography & Media Press Kit",
+    summary:
+      "Guidelines for utilizing official vector SVG logos, color tokens, and typography pairing standards for The Harley Group, Harley Digital Works, and Harley Labs.",
+    badge: "Brand Identity",
+    readTime: "3 min read",
+    quickAction: { label: "View Brand Kit", to: "/brand" },
+    steps: [
+      {
+        title: "1. Entity Identity Rules",
+        description:
+          "Harley Digital Works uses Harley Gold (#C89D3C) & Deep Charcoal; The Harley Group uses Emerald (#10B981) & Deep Forest; Harley Labs uses Cyber Indigo (#6366F1).",
+      },
+      {
+        title: "2. Vector Asset Location",
+        description:
+          "All official SVGs are maintained in public/brand/approved/logos/ with both light and dark versions. Use BrandLogo component with entity='hdw'|'group'|'labs'.",
+      },
+    ],
+  },
 ];
 
 const CATEGORIES: { id: GuideCategory; label: string; icon: typeof BookOpen }[] = [

@@ -43,6 +43,7 @@ const COLUMNS = [
     links: [
       { label: "The Harley Group (Parent)", to: "/the-harley-group" },
       { label: "Harley Labs (R&D)", to: "/labs" },
+      { label: "Brand Kit & Press", to: "/brand" },
       { label: "Trade Partner Network (£250)", to: "/partners" },
       { label: "About Harley Digital", to: "/about" },
       { label: "UK Regional Hubs", to: "/locations" },

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 300">
+<rect width="1200" height="300" fill="#FFFFFF"/>
+<g transform="translate(40 32) scale(.46)">
+<path d="M112 82h78v133l132-76V82h78v348h-78V232L190 308v122h-78V82z" fill="#4F46E5"/>
+</g>
+<line x1="270" y1="55" x2="270" y2="245" stroke="#0D0D0D" stroke-width="2" stroke-opacity="0.2"/>
+<text x="320" y="138" font-family="Manrope,Segoe UI,Arial,sans-serif" font-size="76" font-weight="800" letter-spacing="8" fill="#0F172A">HARLEY LABS</text>
+<text x="322" y="205" font-family="Manrope,Segoe UI,Arial,sans-serif" font-size="34" font-weight="600" letter-spacing="10" fill="#4F46E5">AUTONOMOUS SYSTEMS &amp; R&amp;D</text>
+</svg>

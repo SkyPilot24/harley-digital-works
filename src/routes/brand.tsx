@@ -1,0 +1,498 @@
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { useState } from "react";
+import { PageShell, Container } from "@/components/site/PageShell";
+import { PillButton } from "@/components/site/PillButton";
+import { BrandLogo, type BrandEntity } from "@/components/site/BrandLogo";
+import {
+  Palette,
+  Download,
+  Copy,
+  Check,
+  Sparkles,
+  Layers,
+  Type,
+  FileCheck2,
+  ExternalLink,
+  ShieldCheck,
+  Building2,
+  Globe2,
+  Cpu,
+} from "lucide-react";
+import { toast } from "sonner";
+
+export const Route = createFileRoute("/brand")({
+  head: () => ({
+    meta: [
+      { title: "Brand Assets & Design Standards | The Harley Group & Divisions" },
+      {
+        name: "description",
+        content:
+          "Official vector logos, color systems, typography standards, and brand identity guidelines for The Harley Group, Harley Digital Works, and Harley Labs.",
+      },
+    ],
+  }),
+  component: BrandAssetsPage,
+});
+
+interface BrandSpec {
+  id: BrandEntity;
+  name: string;
+  tagline: string;
+  role: string;
+  description: string;
+  colors: { name: string; hex: string; role: string; textClass: string }[];
+  logos: {
+    title: string;
+    variant: "dark" | "light" | "mark-dark" | "mark-light";
+    path: string;
+    description: string;
+  }[];
+  voiceGuidelines: string[];
+}
+
+const BRANDS_DATA: Record<BrandEntity, BrandSpec> = {
+  hdw: {
+    id: "hdw",
+    name: "Harley Digital Works",
+    tagline: "Turnkey Digital Infrastructure for UK Trades",
+    role: "Flagship Commercial Division",
+    description:
+      "Harley Digital Works delivers 100% done-for-you website design, commercial copywriting, and ongoing monthly care for UK trades and small businesses.",
+    colors: [
+      { name: "Harley Gold", hex: "#C89D3C", role: "Primary Accent & CTA", textClass: "text-amber-950" },
+      { name: "Deep Charcoal", hex: "#0D0D0D", role: "Primary Canvas & Typography", textClass: "text-white" },
+      { name: "Dark Slate", hex: "#173033", role: "Secondary Container", textClass: "text-white" },
+      { name: "Warm Canvas", hex: "#F7F5F0", role: "Background & Shell", textClass: "text-ink" },
+    ],
+    logos: [
+      {
+        title: "Full Wordmark (Dark Theme)",
+        variant: "dark",
+        path: "/brand/approved/logos/hdw-wordmark-dark.svg",
+        description: "Primary horizontal logo for dark containers and headers.",
+      },
+      {
+        title: "Full Wordmark (Light Theme)",
+        variant: "light",
+        path: "/brand/approved/logos/hdw-wordmark-light.svg",
+        description: "Standard horizontal logo for clean light documents and invoices.",
+      },
+      {
+        title: "Monogram Mark (Dark)",
+        variant: "mark-dark",
+        path: "/brand/approved/logos/hdw-monogram-dark.svg",
+        description: "Square app icon & social avatar for dark backgrounds.",
+      },
+      {
+        title: "Monogram Mark (Light)",
+        variant: "mark-light",
+        path: "/brand/approved/logos/hdw-monogram-light.svg",
+        description: "Clean square monogram for light surfaces and favicons.",
+      },
+    ],
+    voiceGuidelines: [
+      "Plain English first: Explain technical concepts in terms of revenue, booked jobs, and time saved.",
+      "No homework rule: Emphasize that we write 100% of the copy and configure all DNS records.",
+      "Concrete numbers over vague promises: Quote £1,495 / £2,995 pricing and 14-day SLA timelines.",
+    ],
+  },
+  group: {
+    id: "group",
+    name: "The Harley Group",
+    tagline: "Holding & Operating Company Governance",
+    role: "Parent Holding Entity",
+    description:
+      "The Harley Group oversees specialised technology and commercial operating ventures under the executive leadership of Dr Robbie Harley, MBA.",
+    colors: [
+      { name: "Emerald Accent", hex: "#10B981", role: "Primary Holding Mark", textClass: "text-emerald-950" },
+      { name: "Deep Forest", hex: "#0D5F48", role: "Institutional Dark Brand", textClass: "text-white" },
+      { name: "Midnight Obsidian", hex: "#0D0D0D", role: "Corporate Slate", textClass: "text-white" },
+      { name: "Pure Platinum", hex: "#F4F4F5", role: "Light Canvas", textClass: "text-slate-900" },
+    ],
+    logos: [
+      {
+        title: "Group Wordmark (Dark)",
+        variant: "dark",
+        path: "/brand/approved/logos/thg-wordmark-dark.svg",
+        description: "Authoritative holding company identity for dark investor & governance decks.",
+      },
+      {
+        title: "Group Wordmark (Light)",
+        variant: "light",
+        path: "/brand/approved/logos/thg-wordmark-light.svg",
+        description: "Official holding logo for corporate letterheads and legal MSA disclosures.",
+      },
+      {
+        title: "Group Monogram (Dark)",
+        variant: "mark-dark",
+        path: "/brand/approved/logos/thg-monogram-dark.svg",
+        description: "Square corporate holding icon on obsidian background.",
+      },
+      {
+        title: "Group Monogram (Light)",
+        variant: "mark-light",
+        path: "/brand/approved/logos/thg-monogram-light.svg",
+        description: "Light square monogram for official stationery and legal sheets.",
+      },
+    ],
+    voiceGuidelines: [
+      "Institutional discipline: Frame capabilities with operational rigour and compliance.",
+      "Executive commercial clarity: Emphasize measurable business value and transparent governance.",
+      "Direct senior accountability: Authentic leadership tone from Dr Robbie Harley, MBA.",
+    ],
+  },
+  labs: {
+    id: "labs",
+    name: "Harley Labs",
+    tagline: "Autonomous Systems, Multi-Agent AI & Edge R&D",
+    role: "Deep-Tech Product Division",
+    description:
+      "Harley Labs is the research incubator pioneering multi-agent orchestration, sub-50ms edge SSR architectures, and intelligent business tooling.",
+    colors: [
+      { name: "Indigo Core", hex: "#6366F1", role: "Primary Deep-Tech Accent", textClass: "text-indigo-950" },
+      { name: "Electric Lavender", hex: "#818CF8", role: "Terminal Glow", textClass: "text-slate-950" },
+      { name: "Cyber Obsidian", hex: "#0A0D14", role: "Deep Space Canvas", textClass: "text-white" },
+      { name: "Ice Violet", hex: "#EEF2FF", role: "Light Lab Background", textClass: "text-indigo-950" },
+    ],
+    logos: [
+      {
+        title: "Labs Wordmark (Dark)",
+        variant: "dark",
+        path: "/brand/approved/logos/labs-wordmark-dark.svg",
+        description: "High-tech vector wordmark for developer portals and live telemetry desks.",
+      },
+      {
+        title: "Labs Wordmark (Light)",
+        variant: "light",
+        path: "/brand/approved/logos/labs-wordmark-light.svg",
+        description: "Clean R&D identity for academic papers and research partnership decks.",
+      },
+      {
+        title: "Labs Monogram (Dark)",
+        variant: "mark-dark",
+        path: "/brand/approved/logos/labs-monogram-dark.svg",
+        description: "Cyber indigo icon for software packages and terminal consoles.",
+      },
+      {
+        title: "Labs Monogram (Light)",
+        variant: "mark-light",
+        path: "/brand/approved/logos/labs-monogram-light.svg",
+        description: "Light version for developer documentation and API reference.",
+      },
+    ],
+    voiceGuidelines: [
+      "Technical precision: Ground all claims in real architectural benchmarks (TTFB, isolates, agent graphs).",
+      "Futuristic yet pragmatic: Emphasize practical agentic tools that solve real operational bottlenecks.",
+      "High-velocity delivery: Highlight edge compilation, self-healing code, and streaming telemetry.",
+    ],
+  },
+};
+
+function BrandAssetsPage() {
+  const [selectedBrand, setSelectedBrand] = useState<BrandEntity>("hdw");
+  const [copiedHex, setCopiedHex] = useState<string | null>(null);
+
+  const brand = BRANDS_DATA[selectedBrand];
+
+  const handleCopyHex = (hex: string) => {
+    if (typeof window !== "undefined") {
+      navigator.clipboard.writeText(hex);
+      setCopiedHex(hex);
+      toast.success(`Copied ${hex} to clipboard!`);
+      setTimeout(() => setCopiedHex(null), 2000);
+    }
+  };
+
+  return (
+    <PageShell>
+      {/* Hero Section */}
+      <section className="relative overflow-hidden bg-slate-950 pt-32 pb-20 text-white md:pt-44 md:pb-28 border-b border-slate-800">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_-20%,rgba(200,157,60,0.18),rgba(255,255,255,0))]" />
+
+        <Container className="relative z-10">
+          <div className="inline-flex items-center gap-2 rounded-full border border-amber-500/30 bg-amber-950/60 px-3.5 py-1.5 text-xs font-semibold tracking-wide text-amber-300 backdrop-blur-md">
+            <Palette className="h-3.5 w-3.5" />
+            <span>Official Brand Identity & Design Systems</span>
+          </div>
+
+          <h1 className="mt-6 max-w-4xl text-[clamp(2.5rem,5.5vw,4.8rem)] font-bold tracking-tight text-white leading-[1.05]">
+            Unified Brand Assets For{" "}
+            <span className="text-amber-400">The Harley Group Ecosystem.</span>
+          </h1>
+
+          <p className="mt-6 max-w-2xl text-lg leading-relaxed text-slate-300">
+            Vector logos, precise color tokens, typography scales, and commercial voice guidelines
+            for The Harley Group holding company and its two operating arms.
+          </p>
+
+          <div className="mt-8 flex flex-wrap gap-4">
+            <a
+              href="/brand/approved/documents/Harley-Digital-Works-Brand-Pack.pdf"
+              download
+              className="inline-flex items-center gap-2 rounded-full bg-amber-500 px-5 py-2.5 text-sm font-bold text-slate-950 shadow-lg hover:bg-amber-400 transition-colors"
+            >
+              <Download className="h-4 w-4" />
+              <span>Download Brand Guidelines (PDF)</span>
+            </a>
+            <PillButton
+              as="link"
+              to="/the-harley-group"
+              variant="ghost"
+              size="md"
+              className="border-slate-700 text-white hover:bg-slate-900 hover:text-white"
+            >
+              Group Corporate Governance
+            </PillButton>
+          </div>
+        </Container>
+      </section>
+
+      {/* Brand Entity Switcher & Overview */}
+      <section className="py-20 bg-slate-900 text-white border-b border-slate-800">
+        <Container>
+          {/* Brand Switcher Tabs */}
+          <div className="flex flex-wrap gap-3 border-b border-slate-800 pb-6">
+            {(Object.keys(BRANDS_DATA) as BrandEntity[]).map((key) => {
+              const b = BRANDS_DATA[key];
+              const isSelected = selectedBrand === key;
+              return (
+                <button
+                  key={key}
+                  onClick={() => setSelectedBrand(key)}
+                  className={`inline-flex items-center gap-2 rounded-xl px-5 py-3 text-sm font-bold transition-all ${
+                    isSelected
+                      ? "bg-white text-slate-950 shadow-lg scale-[1.02]"
+                      : "bg-slate-950 text-slate-400 hover:text-white hover:bg-slate-800 border border-slate-800"
+                  }`}
+                >
+                  <BrandLogo entity={key} variant="mark-dark" imageClassName="h-4 w-4 rounded" />
+                  <span>{b.name}</span>
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Active Brand Header */}
+          <div className="mt-8 flex flex-col md:flex-row md:items-center justify-between gap-6">
+            <div>
+              <span className="rounded-full bg-slate-800 px-3 py-1 text-xs font-mono font-semibold text-amber-300">
+                {brand.role}
+              </span>
+              <h2 className="mt-3 text-3xl font-bold text-white">{brand.name}</h2>
+              <p className="mt-1 text-sm text-slate-400">{brand.tagline}</p>
+            </div>
+            <p className="max-w-md text-sm text-slate-300 leading-relaxed">
+              {brand.description}
+            </p>
+          </div>
+
+          {/* Vector Logos Grid */}
+          <div className="mt-12">
+            <h3 className="text-xs font-mono font-bold uppercase tracking-wider text-slate-400 mb-6">
+              Official Vector Logos & Monograms (SVG)
+            </h3>
+
+            <div className="grid gap-6 md:grid-cols-2">
+              {brand.logos.map((logo) => (
+                <div
+                  key={logo.title}
+                  className="rounded-2xl border border-slate-800 bg-slate-950 p-6 flex flex-col justify-between"
+                >
+                  <div>
+                    <div className="flex items-center justify-between text-xs text-slate-400">
+                      <span className="font-semibold text-white">{logo.title}</span>
+                      <a
+                        href={logo.path}
+                        download
+                        className="inline-flex items-center gap-1 text-amber-400 hover:text-amber-300"
+                      >
+                        <Download className="h-3.5 w-3.5" />
+                        <span>Download SVG</span>
+                      </a>
+                    </div>
+
+                    <div className="mt-4 rounded-xl bg-slate-900/80 p-6 border border-slate-800/80 flex items-center justify-center min-h-[140px]">
+                      <BrandLogo
+                        entity={brand.id}
+                        variant={logo.variant}
+                        imageClassName="h-10 sm:h-12 w-auto max-w-full"
+                      />
+                    </div>
+
+                    <p className="mt-4 text-xs text-slate-400 leading-relaxed">
+                      {logo.description}
+                    </p>
+                  </div>
+
+                  <div className="mt-4 pt-3 border-t border-slate-900 text-[11px] font-mono text-slate-500">
+                    Path: {logo.path}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Color Palette Tokens */}
+          <div className="mt-16">
+            <h3 className="text-xs font-mono font-bold uppercase tracking-wider text-slate-400 mb-6">
+              Primary Color Tokens & Hex Codes
+            </h3>
+
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              {brand.colors.map((c) => (
+                <div
+                  key={c.hex}
+                  className="rounded-xl border border-slate-800 bg-slate-950 p-4"
+                >
+                  <div
+                    className="h-20 w-full rounded-lg shadow-inner flex items-end p-2 justify-between"
+                    style={{ backgroundColor: c.hex }}
+                  >
+                    <span className={`text-[10px] font-mono font-bold ${c.textClass}`}>
+                      {c.name}
+                    </span>
+                  </div>
+
+                  <div className="mt-3 flex items-center justify-between">
+                    <div>
+                      <div className="text-xs font-bold text-white font-mono">{c.hex}</div>
+                      <div className="text-[11px] text-slate-400">{c.role}</div>
+                    </div>
+
+                    <button
+                      onClick={() => handleCopyHex(c.hex)}
+                      className="rounded-lg p-1.5 text-slate-400 hover:text-white hover:bg-slate-800 transition-colors"
+                      title="Copy Hex"
+                    >
+                      {copiedHex === c.hex ? (
+                        <Check className="h-4 w-4 text-emerald-400" />
+                      ) : (
+                        <Copy className="h-4 w-4" />
+                      )}
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Brand Voice Guidelines */}
+          <div className="mt-16 rounded-2xl border border-slate-800 bg-slate-950 p-8">
+            <span className="text-xs font-mono font-bold uppercase tracking-wider text-amber-400">
+              Tone of Voice & Editorial Principles
+            </span>
+            <h3 className="mt-2 text-xl font-bold text-white">
+              How We Communicate As {brand.name}
+            </h3>
+
+            <div className="mt-6 space-y-3">
+              {brand.voiceGuidelines.map((guide, idx) => (
+                <div key={guide} className="flex items-start gap-3 rounded-xl bg-slate-900/60 p-4 border border-slate-800">
+                  <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-amber-500 text-slate-950 text-xs font-bold font-mono">
+                    {idx + 1}
+                  </span>
+                  <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">{guide}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      {/* Typography System */}
+      <section className="py-20 bg-white border-b border-ink/10">
+        <Container>
+          <div className="max-w-2xl">
+            <p className="text-xs font-bold uppercase tracking-widest text-slate-600">
+              Typography Hierarchy
+            </p>
+            <h2 className="mt-2 text-3xl font-bold tracking-tight text-ink md:text-4xl">
+              Precision Type Pairing Standards
+            </h2>
+            <p className="mt-3 text-sm text-ink-muted">
+              Engineered for maximum legibility on mobile screens and authoritative desktop presentation.
+            </p>
+          </div>
+
+          <div className="mt-10 grid gap-6 md:grid-cols-3">
+            <div className="rounded-xl border border-ink/10 bg-slate-50 p-6">
+              <span className="text-[11px] font-mono text-emerald-700 font-bold uppercase">
+                Primary Headings
+              </span>
+              <h3 className="mt-2 text-2xl font-bold text-ink" style={{ fontFamily: "var(--font-heading)" }}>
+                Manrope Display
+              </h3>
+              <p className="mt-2 text-xs text-ink-muted leading-relaxed">
+                Weights: 600 SemiBold, 700 Bold, 800 ExtraBold. Used for hero titles, section headlines, and price numbers.
+              </p>
+            </div>
+
+            <div className="rounded-xl border border-ink/10 bg-slate-50 p-6">
+              <span className="text-[11px] font-mono text-emerald-700 font-bold uppercase">
+                Body & Copy
+              </span>
+              <h3 className="mt-2 text-2xl font-semibold text-ink">
+                Inter / Segoe UI
+              </h3>
+              <p className="mt-2 text-xs text-ink-muted leading-relaxed">
+                Weights: 400 Regular, 500 Medium. Line height: 1.6. Clean, open apertures for effortless reading on mobile.
+              </p>
+            </div>
+
+            <div className="rounded-xl border border-ink/10 bg-slate-50 p-6">
+              <span className="text-[11px] font-mono text-emerald-700 font-bold uppercase">
+                Technical Data & Code
+              </span>
+              <h3 className="mt-2 text-2xl font-mono font-bold text-ink">
+                JetBrains Mono
+              </h3>
+              <p className="mt-2 text-xs text-ink-muted leading-relaxed">
+                Weights: 500 Medium, 700 Bold. Used for SLA days, pricing tokens, invoice references, and telemetry streams.
+              </p>
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      {/* Brand Asset Download CTA */}
+      <section className="py-20 bg-slate-950 text-white">
+        <Container>
+          <div className="mx-auto max-w-3xl text-center">
+            <span className="inline-flex items-center gap-2 rounded-full border border-amber-500/30 bg-amber-950/60 px-3.5 py-1 text-xs font-semibold text-amber-300">
+              <Sparkles className="h-3.5 w-3.5" />
+              Press & Media Kit
+            </span>
+            <h2 className="mt-4 text-3xl font-bold tracking-tight text-white md:text-4xl">
+              Need Vector Assets for Publication?
+            </h2>
+            <p className="mt-3 text-sm text-slate-300 leading-relaxed">
+              All official SVG logos, monograms, and brand guidelines are free to use for press,
+              accreditation listings, and partner co-marketing.
+            </p>
+
+            <div className="mt-8 flex flex-wrap justify-center gap-4">
+              <a
+                href="/brand/approved/documents/Harley-Digital-Works-Brand-Pack.pdf"
+                download
+                className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-2.5 text-xs font-bold text-slate-950 hover:bg-slate-200 transition-colors shadow-lg"
+              >
+                <Download className="h-4 w-4" />
+                <span>Download Complete Brand Pack</span>
+              </a>
+              <PillButton
+                as="link"
+                to="/contact"
+                search={{ service: undefined, package: undefined, domain: undefined, websiteUrl: undefined }}
+                variant="ghost"
+                size="md"
+                className="border-slate-700 text-white hover:bg-slate-900 hover:text-white"
+              >
+                Contact Press & Brand Desk
+              </PillButton>
+            </div>
+          </div>
+        </Container>
+      </section>
+    </PageShell>
+  );
+}
