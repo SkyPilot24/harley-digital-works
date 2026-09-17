@@ -100,7 +100,7 @@ Would you like us to provision your build slot for this month?`;
               Proposal for {lead.company || lead.name}
             </h2>
             <p className="text-xs text-neutral-400 mt-0.5">
-              Client: {lead.name} • Contact: {lead.email || lead.phone || "Direct Lead"}
+              Client: {lead.name} • Contact: {lead.email || "Direct Lead"}
             </p>
           </div>
           <button
