@@ -15,9 +15,9 @@ import { AuthProvider } from "@/hooks/use-auth";
 import { Toaster } from "sonner";
 import { canonicalUrlForPath, siteConfig } from "@/lib/site-config";
 
-const siteTitle = "Harley Digital Works | Websites, AI & Digital Transformation";
+const siteTitle = "Harley Digital Works | Websites for Trades & Small Businesses";
 const siteDescription =
-  "Harley Digital Works designs high-performing websites, automates repetitive work and modernises digital services for ambitious UK organisations.";
+  "You run your business. We’ll handle your website. Done-for-you websites, professional copywriting, and managed monthly care for UK trades and small businesses.";
 
 function NotFoundComponent() {
   return (

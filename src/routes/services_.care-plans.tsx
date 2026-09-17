@@ -4,70 +4,70 @@ import { ServiceDetailLayout } from "@/components/site/ServiceDetailLayout";
 export const Route = createFileRoute("/services_/care-plans")({
   head: () => ({
     meta: [
-      { title: "Care Plans — Harley Digital Works" },
+      { title: "Website Care Plans & Managed Hosting — Harley Digital Works" },
       {
         name: "description",
         content:
-          "Hosting, updates, small changes and monitoring — bundled at one small monthly price. Post-launch peace of mind for small operators.",
+          "Ultra-fast UK cloud hosting, security, daily backups, and unlimited monthly edits via WhatsApp. Total peace of mind for trades and business owners.",
       },
     ],
   }),
   component: () => (
     <ServiceDetailLayout
-      eyebrow="Care Plans"
-      title="Post-launch peace of mind, priced fairly."
-      intro="Hosting, updates, small content changes and monitoring — bundled into one small monthly price. Cancel any time."
+      eyebrow="Care Plans & Hosting"
+      title="We manage your digital presence so you can run your business."
+      intro="Ultra-fast UK cloud hosting, daily off-site backups, SSL security, and unlimited text and photo updates every month. Whenever you need a change, just send a message on WhatsApp."
       priceTag="From"
       price="£95 / month"
       deliverables={[
         {
-          tag: "Hosting",
-          title: "Managed hosting on fast, green infrastructure with daily backups.",
+          tag: "Managed Hosting",
+          title: "Blazing-fast, green UK cloud hosting with 99.9% uptime and auto-scaling.",
           surface: "sage",
         },
         {
-          tag: "Updates",
-          title: "All core, plugin and dependency updates applied monthly, tested before go-live.",
+          tag: "Unlimited Edits",
+          title: "Monthly text, photo, pricing, and testimonial updates completed within 24 hours.",
           surface: "stone",
         },
         {
-          tag: "Small changes",
-          title: "Up to 60 minutes of content or design edits included every month.",
+          tag: "Security Shields",
+          title: "Enterprise SSL certificates, active firewall, and daily automated security scanning.",
           surface: "mist",
         },
         {
-          tag: "Monitoring",
-          title: "24/7 uptime monitoring with same-day response to any incidents.",
+          tag: "Daily Backups",
+          title: "Automated daily cloud backups stored in secure off-site locations.",
           surface: "cream",
         },
         {
-          tag: "Security",
-          title: "SSL, firewall and vulnerability scanning kept current at all times.",
+          tag: "WhatsApp Support",
+          title: "Direct UK team access via WhatsApp, email, or phone. No ticketing runarounds.",
           surface: "sage",
         },
         {
-          tag: "Reporting",
-          title: "Monthly digest — traffic, uptime, changes made, anything worth knowing.",
+          tag: "Monthly Digest",
+          title: "Plain-English monthly report showing your visitor traffic, uptime, and completed tasks.",
           surface: "stone",
         },
       ]}
-      processTitle="How it works"
-      processIntro="From onboarding to ongoing care — nothing hidden, nothing surprising."
+      processTitle="How Our Care Plans Work"
+      processIntro="Simple, straightforward, and zero contract lock-in. Cancel anytime with 30 days notice."
       process={[
         {
           step: "01",
-          title: "Onboard in 48 hours",
-          body: "We audit your site, set up hosting or migrate you across, and schedule the first backup.",
+          title: "Instant Onboarding",
+          body: "We set up your fast UK cloud hosting, configure your SSL security, and schedule daily cloud backups.",
         },
         {
           step: "02",
-          title: "Monthly maintenance",
-          body: "Updates applied on a fixed schedule, tested in staging, then rolled out with zero downtime.",
+          title: "Zero-Downtime Maintenance",
+          body: "We keep all framework files and security dependencies updated every month without interrupting your live site.",
         },
         {
           step: "03",
-          title: "Small changes on request",
-          body: "Email or Slack us any small edit; we bank the time and roll unused minutes into the next month.",
+          title: "Message Us on WhatsApp",
+          body: "Need a new project photo added, a price updated, or a new review published? Just send it over and we update it within 24 hours.",
         },
       ]}
     />

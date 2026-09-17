@@ -1,0 +1,175 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Harley Digital Works — Care Plan Agreement & Service Level Standard</title>
+  <style>
+    @page { size: A4 portrait; margin: 12mm; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+      color: #0D0D0D;
+      background: #FFFFFF;
+      font-size: 10pt;
+      line-height: 1.4;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+    .page { max-width: 190mm; margin: 0 auto; padding: 4mm; }
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      border-bottom: 2pt solid #C89D3C;
+      padding-bottom: 5mm;
+      margin-bottom: 5mm;
+    }
+    .brand-title { font-size: 18pt; font-weight: 700; color: #0D0D0D; }
+    .brand-tagline { font-size: 9pt; color: #71717A; margin-top: 1mm; }
+    .hero-banner {
+      background: #0D0D0D;
+      color: #FFFFFF;
+      padding: 4mm 5mm;
+      border-radius: 4pt;
+      margin-bottom: 5mm;
+    }
+    .hero-banner h1 { font-size: 13pt; font-weight: 600; color: #FFFFFF; }
+    .hero-banner p { font-size: 8.5pt; color: #D4D4D8; margin-top: 1mm; }
+    
+    .tiers-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4mm; margin-bottom: 5mm; }
+    .tier-box {
+      border: 1pt solid #E4E4E7;
+      border-radius: 4pt;
+      padding: 4mm;
+      background: #FAFAFA;
+    }
+    .tier-box.popular { border: 1.5pt solid #C89D3C; background: #FFFFFF; }
+    .tier-title { font-size: 12pt; font-weight: 700; color: #0D0D0D; }
+    .tier-price { font-size: 14pt; font-weight: 700; color: #0D0D0D; margin: 2mm 0; }
+    .tier-price span { font-size: 8pt; color: #71717A; font-weight: 400; }
+    .tier-features { list-style: none; font-size: 8pt; color: #3F3F46; }
+    .tier-features li { margin-bottom: 1.5mm; padding-left: 3.5mm; position: relative; }
+    .tier-features li::before { content: "✓"; color: #C89D3C; position: absolute; left: 0; font-weight: bold; }
+    
+    .sla-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 5mm;
+      font-size: 8pt;
+    }
+    .sla-table th { background: #F4F4F5; text-align: left; padding: 2.5mm; border: 1pt solid #E4E4E7; font-weight: 700; }
+    .sla-table td { padding: 2.5mm; border: 1pt solid #E4E4E7; color: #3F3F46; }
+    
+    .terms-box {
+      background: #FAFAFA;
+      border: 1pt solid #E4E4E7;
+      border-left: 3pt solid #0D0D0D;
+      padding: 3.5mm 4mm;
+      border-radius: 3pt;
+      margin-bottom: 4mm;
+      font-size: 7.5pt;
+      color: #52525B;
+    }
+    .terms-box h4 { font-size: 8.5pt; font-weight: 700; color: #0D0D0D; margin-bottom: 1mm; }
+    
+    .footer-bar {
+      border-top: 1pt solid #E4E4E7;
+      padding-top: 3mm;
+      display: flex;
+      justify-content: space-between;
+      font-size: 7.5pt;
+      color: #71717A;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="header">
+      <div>
+        <div class="brand-title">HARLEY DIGITAL WORKS</div>
+        <div class="brand-tagline">Website Care Plan Agreement & Service Level Standard</div>
+      </div>
+      <div style="text-align: right; font-size: 8.5pt; color: #52525B;">
+        <div><strong>Care Support:</strong> support@harleydigitalworks.com</div>
+        <div><strong>WhatsApp Line:</strong> 0161 706 1420</div>
+      </div>
+    </div>
+
+    <div class="hero-banner">
+      <h1>Managed Digital Peace of Mind</h1>
+      <p>We take 100% responsibility for your hosting, security, backups, and routine website updates so you never have to deal with technical headaches.</p>
+    </div>
+
+    <div class="tiers-grid">
+      <div class="tier-box popular">
+        <div class="tier-title">Launch & Growth Care</div>
+        <div class="tier-price">£95 <span>/ month + VAT</span></div>
+        <ul class="tier-features">
+          <li><strong>UK Cloud Hosting:</strong> 99.9% uptime green infrastructure</li>
+          <li><strong>Daily Backups:</strong> Cloud snapshots stored off-site</li>
+          <li><strong>SSL & Security:</strong> Active firewall & malware shields</li>
+          <li><strong>Monthly Edits:</strong> Text, photo, and pricing changes</li>
+          <li><strong>WhatsApp Support:</strong> Direct message change requests</li>
+          <li><strong>Turnaround:</strong> Within 24 business hours</li>
+        </ul>
+      </div>
+
+      <div class="tier-box">
+        <div class="tier-title">Priority Pro Care</div>
+        <div class="tier-price">£195 <span>/ month + VAT</span></div>
+        <ul class="tier-features">
+          <li><strong>Everything in Launch Care plus:</strong></li>
+          <li><strong>Priority VIP SLA:</strong> Same-day update turnaround</li>
+          <li><strong>Local SEO Monitoring:</strong> Quarterly keyword tracking</li>
+          <li><strong>Review Sync:</strong> Automatic Google Reviews refresh</li>
+          <li><strong>New Landing Pages:</strong> 1 new sub-service page per quarter</li>
+          <li><strong>Monthly Growth Digest:</strong> Traffic & lead summary report</li>
+        </ul>
+      </div>
+    </div>
+
+    <table class="sla-table">
+      <thead>
+        <tr>
+          <th>Request Type</th>
+          <th>Definition / Scope</th>
+          <th>Guaranteed Response</th>
+          <th>Channel</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Critical Outage</strong></td>
+          <td>Website down, contact form broken, or SSL error</td>
+          <td><strong>&lt; 2 Hours</strong> (Immediate Triage)</td>
+          <td>Phone / WhatsApp / Email</td>
+        </tr>
+        <tr>
+          <td><strong>Standard Content Edit</strong></td>
+          <td>Changing text, phone numbers, prices, new photos, reviews</td>
+          <td><strong>&lt; 24 Hours</strong></td>
+          <td>WhatsApp / Email</td>
+        </tr>
+        <tr>
+          <td><strong>Security Patching</strong></td>
+          <td>Framework, plugin, and server vulnerability fixes</td>
+          <td><strong>Monthly Scheduled</strong> (Zero Downtime)</td>
+          <td>Automated & Verified</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="terms-box">
+      <h4>Fair Service Terms & No-Lock-in Guarantee</h4>
+      <p>1. <strong>Rolling Monthly Agreement:</strong> You can cancel your Care Plan at any time with 30 days written notice. No long-term lock-in traps.</p>
+      <p>2. <strong>100% Asset Ownership:</strong> You own your domain name, website code, and creative assets at all times.</p>
+      <p>3. <strong>Fair-Use Edits:</strong> Standard care includes up to 60 minutes of developer updates per month (more than enough for routine changes, new photos, and price tweaks).</p>
+    </div>
+
+    <div class="footer-bar">
+      <span>Harley Digital Works • Part of The Harley Group</span>
+      <span>Registered in England & Wales</span>
+    </div>
+  </div>
+</body>
+</html>

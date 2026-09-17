@@ -94,33 +94,32 @@ function ContactPage() {
 
   return (
     <PageShell>
-      <section className="pt-32 pb-16 md:pt-40 md:pb-24">
+      <section className="pt-32 pb-16 md:pt-40 md:pb-24 bg-gradient-to-b from-background to-white/40 border-b border-ink/10">
         <Container>
-          <TagChip>Contact</TagChip>
+          <TagChip>Get a Free Quote</TagChip>
           <h1
             className="mt-6 max-w-4xl text-ink"
             style={{
               fontFamily: "var(--font-display)",
-              fontWeight: 500,
+              fontWeight: 600,
               letterSpacing: "-0.03em",
               lineHeight: 1.02,
               fontSize: "clamp(2.5rem, 6vw, 4.5rem)",
             }}
           >
-            Tell us what needs to work better.
+            Get your website sorted. <span className="text-primary block">Fast, simple, done-for-you.</span>
           </h1>
           <p className="mt-6 max-w-2xl text-[17px] leading-relaxed text-ink-muted">
-            Share the website, workflow or customer journey you want to improve. A short note is
-            enough; we reply within one working day.
+            Tell us about your trade or business. We’ll review your requirements and send a fixed-price proposal and plan within one working day. No obligations, no pushy sales calls.
           </p>
         </Container>
       </section>
 
-      <section className="pb-24 md:pb-32">
+      <section className="pb-24 md:pb-32 pt-12">
         <Container>
           <div className="grid gap-8 md:grid-cols-12 md:gap-10">
             <form
-              className="rounded-[20px] border border-ink/10 bg-background p-8 md:col-span-7 md:p-10"
+              className="rounded-[24px] border border-ink/10 bg-white p-8 md:col-span-7 md:p-10 shadow-sm"
               onSubmit={handleSubmit}
             >
               <input type="hidden" name="startedAt" value={startedAt} />
@@ -133,163 +132,181 @@ function ContactPage() {
               </div>
               <div className="grid gap-5">
                 {sent && (
-                  <div className="rounded-lg border border-emerald-200 bg-emerald-50 px-4 py-3 text-[13px] text-emerald-800">
-                    Thanks, your message was sent. We will reply within one working day.
+                  <div className="rounded-xl border border-emerald-200 bg-emerald-50 px-5 py-4 text-sm text-emerald-800 font-medium">
+                    ✓ Thanks! Your enquiry was received. Our team will review your business and reply with a custom plan within one working day.
                   </div>
                 )}
-                <Field label="Your name" name="name" placeholder="Jane Smith" />
-                <Field label="Email" name="email" type="email" placeholder="jane@example.com" />
-                <Field label="Company (optional)" name="company" placeholder="Local Brand Ltd" />
+
+                <div className="grid gap-4 sm:grid-cols-2">
+                  <Field label="Your Name" name="name" placeholder="Dave Miller" />
+                  <Field label="Phone Number (for WhatsApp preview)" name="phone" placeholder="07123 456789" />
+                </div>
+
+                <div className="grid gap-4 sm:grid-cols-2">
+                  <Field label="Email Address" name="email" type="email" placeholder="dave@example.co.uk" />
+                  <Field label="Business / Trade Name" name="company" placeholder="Miller Electrical & Solar" />
+                </div>
+
                 <Field
-                  label="Current website (optional)"
+                  label="Current Website (if you already have one)"
                   name="websiteUrl"
-                  placeholder="https://example.com"
+                  placeholder="https://example.co.uk (or leave blank if new)"
                   defaultValue={search.websiteUrl ?? ""}
                 />
+
                 <div className="grid gap-2">
-                  <label className="text-[13px] font-medium text-ink" htmlFor="package">
-                    Interested in
+                  <label className="text-[13px] font-semibold text-ink" htmlFor="package">
+                    What are you looking for?
                   </label>
                   <select
                     id="package"
                     name="package"
-                    className="rounded-lg border border-ink/15 bg-background px-4 py-3 text-[15px] text-ink focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
+                    className="rounded-xl border border-ink/15 bg-background px-4 py-3 text-[15px] text-ink focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
                     defaultValue={initialPackage}
                   >
                     <option value="" disabled>
-                      Choose a service or package
+                      Select a package or service
                     </option>
-                    <option value="Launch Website (£1,495)">Launch Website (£1,495)</option>
+                    <option value="Launch Website (£1,495)">Launch Website (£1,495 - 5 Pages, 14-Day Delivery)</option>
                     <option value="Growth Website (£2,995)">
-                      Growth Website (£2,995 - Most Popular)
+                      Growth Website (£2,995 - Most Popular for Trades)
                     </option>
-                    <option value="Pro Platform (£4,995+)">Pro / Custom Platform (£4,995+)</option>
+                    <option value="Pro Platform (£4,995+)">Pro Platform (£4,995+ - Multi-Location / Custom)</option>
                     <option value="Website Care Plan & Hosting (£95/mo)">
                       Website Care Plan & Managed Hosting (£95/mo)
                     </option>
-                    <option value="AI & workflow automation">AI & workflow automation</option>
-                    <option value="Domain purchase / enquiry">Domain purchase / enquiry</option>
-                    <option value="Digital transformation">Digital transformation</option>
-                    <option value="Free Website Health Check Followup">
-                      Free Website Health Check Consultation
+                    <option value="Redesign My Existing Website">Redesign My Existing Website</option>
+                    <option value="Free Website Health Check Consultation">
+                      Free 15-Minute Website Consultation
                     </option>
                     <option value="Something else">Something else</option>
                   </select>
                 </div>
+
                 <div className="grid gap-4 sm:grid-cols-2">
                   <div className="grid gap-2">
-                    <label className="text-[13px] font-medium text-ink" htmlFor="budget">
+                    <label className="text-[13px] font-semibold text-ink" htmlFor="budget">
                       Estimated budget (optional)
                     </label>
                     <select
                       id="budget"
                       name="budget"
-                      className="rounded-lg border border-ink/15 bg-background px-4 py-3 text-[15px] text-ink focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
+                      className="rounded-xl border border-ink/15 bg-background px-4 py-3 text-[15px] text-ink focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
                       defaultValue=""
                     >
                       <option value="">Select a range</option>
-                      <option>Under £1,500</option>
-                      <option>£1,500 – £3,000</option>
-                      <option>£3,000 – £5,000</option>
-                      <option>£5,000+</option>
-                      <option>Monthly retainer / Care plan</option>
+                      <option>£1,495 (Launch Package)</option>
+                      <option>£2,995 (Growth Package)</option>
+                      <option>£5,000+ (Pro Custom)</option>
+                      <option>Monthly Care Plan (£95–£195/mo)</option>
                     </select>
                   </div>
                   <div className="grid gap-2">
-                    <label className="text-[13px] font-medium text-ink" htmlFor="timeline">
-                      Target timeline (optional)
+                    <label className="text-[13px] font-semibold text-ink" htmlFor="timeline">
+                      Target timeline
                     </label>
                     <select
                       id="timeline"
                       name="timeline"
-                      className="rounded-lg border border-ink/15 bg-background px-4 py-3 text-[15px] text-ink focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
+                      className="rounded-xl border border-ink/15 bg-background px-4 py-3 text-[15px] text-ink focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
                       defaultValue=""
                     >
-                      <option value="">Select a timeline</option>
-                      <option>Immediately (urgent)</option>
-                      <option>Within 30 days</option>
-                      <option>1 – 3 months</option>
-                      <option>Exploring / Planning</option>
+                      <option value="">Select timeline</option>
+                      <option>Ready to start immediately</option>
+                      <option>Within next 14–30 days</option>
+                      <option>Exploring / Next 1–3 months</option>
                     </select>
                   </div>
                 </div>
+
                 <div className="grid gap-2">
-                  <label className="text-[13px] font-medium text-ink" htmlFor="message">
-                    What can we help with?
+                  <label className="text-[13px] font-semibold text-ink" htmlFor="message">
+                    Tell us a little about what you need
                   </label>
                   <textarea
                     id="message"
                     name="message"
-                    rows={5}
+                    rows={4}
                     required
                     minLength={5}
-                    defaultValue={initialMessage}
-                    placeholder="A short note about what you are trying to do..."
-                    className="rounded-lg border border-ink/15 bg-background px-4 py-3 text-[15px] text-ink focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
+                    defaultValue={initialMessage || "Hi, I would like to get a quote for a new website for my business."}
+                    placeholder="E.g. We are an electrical contracting firm based in Manchester and want to get more commercial solar jobs..."
+                    className="rounded-xl border border-ink/15 bg-background px-4 py-3 text-[15px] text-ink focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
                   />
                 </div>
+
                 <div className="pt-2">
                   <button
                     type="submit"
                     disabled={busy}
-                    className="inline-flex items-center gap-2 rounded-full bg-ink px-6 py-3 text-[14px] font-medium text-white transition hover:bg-ink/90 disabled:opacity-50"
+                    className="inline-flex items-center justify-center gap-2 rounded-full bg-ink px-8 py-3.5 text-[15px] font-semibold text-white transition hover:bg-ink/90 disabled:opacity-50 shadow-lg shadow-ink/10 w-full sm:w-auto"
                   >
-                    {busy ? "Sending..." : leadCaptureConfigured ? "Send message" : "Prepare email"}
+                    {busy ? "Sending Quote Request..." : leadCaptureConfigured ? "Get My Free Quote & Plan →" : "Prepare Email Draft"}
                   </button>
                   <p className="mt-3 text-[12px] text-ink-muted">
                     {leadCaptureConfigured
-                      ? "We reply within one working day. No spam, ever."
+                      ? "🔒 We reply within 1 working day. No spam, no pushy sales, ever."
                       : "This opens a ready-to-send draft in your email app."}
                   </p>
                 </div>
               </div>
             </form>
 
-            <aside className="rounded-[20px] bg-surface-sage p-8 md:col-span-5 md:p-10">
-              <h3 className="text-[20px] font-medium tracking-tight text-ink">
-                Talk to us directly
-              </h3>
-              <dl className="mt-8 space-y-6 text-[15px]">
-                <div>
-                  <dt className="font-mono text-[10px] uppercase tracking-[0.22em] text-ink-muted">
-                    Email
-                  </dt>
-                  <dd className="mt-2">
-                    <a
-                      href={`mailto:${siteConfig.contactEmail}`}
-                      className="text-ink hover:text-primary"
-                    >
-                      {siteConfig.contactEmail}
-                    </a>
-                  </dd>
-                </div>
-                <div>
-                  <dt className="font-mono text-[10px] uppercase tracking-[0.22em] text-ink-muted">
-                    Response time
-                  </dt>
-                  <dd className="mt-2 text-ink">Within one working day, usually the same day.</dd>
-                </div>
-                <div>
-                  <dt className="font-mono text-[10px] uppercase tracking-[0.22em] text-ink-muted">
-                    Free call
-                  </dt>
-                  <dd className="mt-2 text-ink">15 minutes. No pitch. Bring your questions.</dd>
-                </div>
-                <div>
-                  <dt className="font-mono text-[10px] uppercase tracking-[0.22em] text-ink-muted">
-                    Based in
-                  </dt>
-                  <dd className="mt-2 text-ink">
-                    Manchester, UK, working with clients across the UK and EU.
-                  </dd>
-                </div>
-                <div>
-                  <dt className="font-mono text-[10px] uppercase tracking-[0.22em] text-ink-muted">
-                    Hours
-                  </dt>
-                  <dd className="mt-2 text-ink">Monday to Friday, 9:00 to 17:00 UK.</dd>
-                </div>
-              </dl>
+            <aside className="rounded-[24px] bg-surface-sage p-8 md:col-span-5 md:p-10 border border-ink/10 flex flex-col justify-between">
+              <div>
+                <h3 className="text-[22px] font-semibold tracking-tight text-ink">
+                  Direct UK Support
+                </h3>
+                <p className="mt-2 text-sm text-ink-muted leading-relaxed">
+                  Prefer to talk right now? Call us or send a note directly.
+                </p>
+
+                <dl className="mt-8 space-y-6 text-[15px]">
+                  <div>
+                    <dt className="font-mono text-[10px] uppercase tracking-[0.22em] text-ink-muted font-semibold">
+                      Email
+                    </dt>
+                    <dd className="mt-1">
+                      <a
+                        href={`mailto:${siteConfig.contactEmail}`}
+                        className="text-ink font-medium hover:text-primary transition"
+                      >
+                        {siteConfig.contactEmail}
+                      </a>
+                    </dd>
+                  </div>
+                  <div>
+                    <dt className="font-mono text-[10px] uppercase tracking-[0.22em] text-ink-muted font-semibold">
+                      Response Guarantee
+                    </dt>
+                    <dd className="mt-1 text-ink font-medium">Within 1 working day (usually same day).</dd>
+                  </div>
+                  <div>
+                    <dt className="font-mono text-[10px] uppercase tracking-[0.22em] text-ink-muted font-semibold">
+                      Free 15-Min Call
+                    </dt>
+                    <dd className="mt-1 text-ink font-medium">No sales pressure. Just honest advice and a fixed quote.</dd>
+                  </div>
+                  <div>
+                    <dt className="font-mono text-[10px] uppercase tracking-[0.22em] text-ink-muted font-semibold">
+                      Location & Coverage
+                    </dt>
+                    <dd className="mt-1 text-ink font-medium">
+                      Based in Manchester, working with trades & businesses nationwide.
+                    </dd>
+                  </div>
+                </dl>
+              </div>
+
+              <div className="mt-10 rounded-xl bg-white p-4 border border-ink/10 text-xs text-ink/80">
+                <strong>Why trades choose Harley Digital Works:</strong>
+                <ul className="mt-2 space-y-1 text-ink-muted">
+                  <li>✓ 100% Done-For-You (We write the copy)</li>
+                  <li>✓ Fixed upfront pricing (No surprise bills)</li>
+                  <li>✓ 14-day turnaround to live Google launch</li>
+                  <li>✓ £95/mo care plans for total peace of mind</li>
+                </ul>
+              </div>
             </aside>
           </div>
         </Container>

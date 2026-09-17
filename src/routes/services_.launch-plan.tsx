@@ -4,75 +4,75 @@ import { ServiceDetailLayout } from "@/components/site/ServiceDetailLayout";
 export const Route = createFileRoute("/services_/launch-plan")({
   head: () => ({
     meta: [
-      { title: "30-Day Launch Plan — Harley Digital Works" },
+      { title: "14-Day Launch Website Plan — Harley Digital Works" },
       {
         name: "description",
         content:
-          "A structured 30-day programme to take you from brief to live and converting. Fixed price, fixed timeline, fully done-with-you.",
+          "From kickoff call to live Google launch in 14 days. 100% written and built for you at a fixed price of £1,495 + VAT.",
       },
     ],
   }),
   component: () => (
     <ServiceDetailLayout
-      eyebrow="Launch Plan"
-      title="From brief to live in thirty days."
-      intro="A structured, done-with-you programme that takes a new brand or offer from a blank page to a live, converting presence — in exactly thirty days."
-      priceTag="Fixed"
-      price="£3,500"
+      eyebrow="14-Day Launch Plan"
+      title="From kickoff call to live on Google in 14 days."
+      intro="Our fast-track, done-for-you package for trades and small businesses that need a clean, professional, high-converting digital presence without the long delays."
+      priceTag="Fixed Investment"
+      price="£1,495 + VAT"
       deliverables={[
         {
-          tag: "Positioning",
-          title: "Sharp positioning statement and one-line value proposition, written together.",
+          tag: "Full Copywriting",
+          title: "We write all 5 pages of sales copy tailored to your trade and local service area.",
           surface: "sage",
         },
         {
-          tag: "Website",
-          title: "5-page site — home, offer, about, proof, contact — designed and built.",
+          tag: "5 Custom Pages",
+          title: "Home, Services, About, Project Gallery, and High-Converting Contact/Quote Page.",
           surface: "stone",
         },
         {
-          tag: "Content",
-          title: "First 30-day content calendar plus 3 launch-week posts written for you.",
+          tag: "Mobile-First Build",
+          title: "Engineered for fast loading on iPhones and Androids with 1-tap calling & WhatsApp.",
           surface: "mist",
         },
         {
-          tag: "Automation",
-          title: "Contact form, lead routing and a simple follow-up sequence live day one.",
+          tag: "Local Google SEO",
+          title: "Google Business Profile mapping, local schema markup, and meta tag setup.",
           surface: "cream",
         },
         {
-          tag: "Launch kit",
-          title: "Announcement email, social post pack and a press-ready one-pager.",
+          tag: "Instant Lead Alerts",
+          title: "Enquiries routed straight to your phone and email the second a customer submits.",
           surface: "sage",
         },
         {
-          tag: "Handover",
-          title: "A 60-minute training session plus written docs — you own everything.",
+          tag: "30 Days Free Care",
+          title: "Includes your first month of managed hosting, daily backups, and free updates.",
           surface: "stone",
         },
       ]}
-      processTitle="Thirty days, four weeks"
-      processIntro="Predictable rhythm. Everything scheduled. No surprises."
+      processTitle="Our 14-Day Delivery Rhythm"
+      processIntro="Predictable, transparent, and requiring less than 45 minutes of your total time."
       process={[
         {
-          step: "Week 1",
-          title: "Positioning & discovery",
-          body: "Voice, audience, offer and positioning locked. First wireframes reviewed by day five.",
+          step: "Day 01–03",
+          title: "15-Min Intro & Copywriting",
+          body: "We learn about your services, target jobs, and service areas. Our team writes all sales copy.",
         },
         {
-          step: "Week 2",
-          title: "Design & build",
-          body: "Full design signed off. Development starts on day eight. Content drafts land by day fourteen.",
+          step: "Day 04–09",
+          title: "Design & Engineering",
+          body: "We build your mobile-optimised website, curate high-res imagery, and configure lead routing.",
         },
         {
-          step: "Week 3",
-          title: "Content & polish",
-          body: "Site content in place. Content calendar and launch kit drafted. QA and revisions.",
+          step: "Day 10–12",
+          title: "Preview & Tweaks",
+          body: "We share a private working link for your review. We apply any changes you want within 24 hours.",
         },
         {
-          step: "Week 4",
-          title: "Launch",
-          body: "Go live, monitor, announce. Training session on day twenty-nine. Handover day thirty.",
+          step: "Day 13–14",
+          title: "Live Launch to Google",
+          body: "We connect your domain, configure SSL security, map Google Business, and go live to the world.",
         },
       ]}
     />

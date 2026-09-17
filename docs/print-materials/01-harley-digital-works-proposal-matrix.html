@@ -1,0 +1,292 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Harley Digital Works — Client Proposal & Pricing Matrix</title>
+  <style>
+    @page { size: A4 portrait; margin: 12mm; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+      color: #0D0D0D;
+      background: #FFFFFF;
+      font-size: 10pt;
+      line-height: 1.4;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+    .page {
+      width: 100%;
+      max-width: 190mm;
+      margin: 0 auto;
+      padding: 4mm;
+    }
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      border-bottom: 2pt solid #C89D3C;
+      padding-bottom: 5mm;
+      margin-bottom: 5mm;
+    }
+    .brand-title {
+      font-size: 18pt;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: #0D0D0D;
+    }
+    .brand-tagline {
+      font-size: 9pt;
+      color: #71717A;
+      margin-top: 1mm;
+      font-weight: 500;
+    }
+    .meta-box {
+      text-align: right;
+      font-size: 8.5pt;
+      color: #52525B;
+    }
+    .meta-box strong { color: #0D0D0D; }
+    .hero-banner {
+      background: #0D0D0D;
+      color: #FFFFFF;
+      padding: 4mm 5mm;
+      border-radius: 4pt;
+      margin-bottom: 5mm;
+    }
+    .hero-banner h1 {
+      font-size: 13pt;
+      font-weight: 600;
+      color: #FFFFFF;
+    }
+    .hero-banner p {
+      font-size: 8.5pt;
+      color: #D4D4D8;
+      margin-top: 1mm;
+    }
+    .packages-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 3.5mm;
+      margin-bottom: 5mm;
+    }
+    .pkg-card {
+      border: 1pt solid #E4E4E7;
+      border-radius: 4pt;
+      padding: 3.5mm;
+      background: #FAFAFA;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .pkg-card.popular {
+      border: 1.5pt solid #C89D3C;
+      background: #FFFFFF;
+      position: relative;
+    }
+    .badge {
+      display: inline-block;
+      background: #C89D3C;
+      color: #0D0D0D;
+      font-size: 6.5pt;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 1pt 4pt;
+      border-radius: 2pt;
+      margin-bottom: 2mm;
+    }
+    .pkg-name {
+      font-size: 11pt;
+      font-weight: 700;
+      color: #0D0D0D;
+    }
+    .pkg-tagline {
+      font-size: 7.5pt;
+      color: #71717A;
+      margin-top: 1mm;
+      min-height: 8mm;
+    }
+    .pkg-price {
+      font-size: 14pt;
+      font-weight: 700;
+      color: #0D0D0D;
+      margin: 2.5mm 0;
+      border-top: 0.5pt solid #E4E4E7;
+      border-bottom: 0.5pt solid #E4E4E7;
+      padding: 1.5mm 0;
+    }
+    .pkg-price span {
+      font-size: 7.5pt;
+      font-weight: 400;
+      color: #71717A;
+    }
+    .feature-list {
+      list-style: none;
+      font-size: 7.5pt;
+      color: #27272A;
+      margin: 2mm 0;
+    }
+    .feature-list li {
+      margin-bottom: 1.5mm;
+      padding-left: 3.5mm;
+      position: relative;
+    }
+    .feature-list li::before {
+      content: "✓";
+      color: #C89D3C;
+      position: absolute;
+      left: 0;
+      font-weight: bold;
+    }
+    .care-banner {
+      background: #F4F4F5;
+      border: 1pt solid #E4E4E7;
+      border-left: 3pt solid #C89D3C;
+      padding: 3mm 4mm;
+      border-radius: 3pt;
+      margin-bottom: 4mm;
+    }
+    .care-banner h3 {
+      font-size: 9.5pt;
+      font-weight: 700;
+      color: #0D0D0D;
+    }
+    .care-banner p {
+      font-size: 8pt;
+      color: #52525B;
+      margin-top: 1mm;
+    }
+    .guarantee-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      gap: 2mm;
+      border-top: 1pt solid #E4E4E7;
+      padding-top: 3mm;
+      font-size: 7.5pt;
+      text-align: center;
+    }
+    .guarantee-item strong { display: block; color: #0D0D0D; font-size: 8pt; margin-bottom: 0.5mm; }
+    .footer-note {
+      margin-top: 4mm;
+      text-align: center;
+      font-size: 7.5pt;
+      color: #71717A;
+      border-top: 0.5pt solid #E4E4E7;
+      padding-top: 2mm;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="header">
+      <div>
+        <div class="brand-title">HARLEY DIGITAL WORKS</div>
+        <div class="brand-tagline">Better Websites. Smarter Systems. Simpler Growth.</div>
+      </div>
+      <div class="meta-box">
+        <div><strong>Web:</strong> harleydigitalworks.com</div>
+        <div><strong>Email:</strong> hello@harleydigitalworks.com</div>
+        <div><strong>Direct:</strong> 0161 706 1420</div>
+        <div><strong>Part of:</strong> The Harley Group</div>
+      </div>
+    </div>
+
+    <div class="hero-banner">
+      <h1>“You run your business. We’ll handle your website.”</h1>
+      <p>100% Done-For-You: We write all the copy, curate the photography, engineer the website, and launch in 14 days with zero technical hassle.</p>
+    </div>
+
+    <div class="packages-grid">
+      <!-- Launch -->
+      <div class="pkg-card">
+        <div>
+          <div class="pkg-name">Launch Website</div>
+          <div class="pkg-tagline">For trades & small businesses needing a clean, credible digital presence.</div>
+          <div class="pkg-price">£1,495 <span>+ VAT</span></div>
+          <ul class="feature-list">
+            <li>5 custom conversion pages</li>
+            <li>We write all copy & source images</li>
+            <li>Mobile-first & fast click-to-call</li>
+            <li>Enquiries routed to WhatsApp/Email</li>
+            <li>Local Google SEO & Business map</li>
+            <li>Ready to launch in 14 days</li>
+          </ul>
+        </div>
+        <div style="font-size:7pt; color:#71717A; border-top: 0.5pt solid #E4E4E7; pt: 1mm;">
+          Includes 30 days care · Then £95/mo
+        </div>
+      </div>
+
+      <!-- Growth -->
+      <div class="pkg-card popular">
+        <div>
+          <div class="badge">Most Popular for Trades</div>
+          <div class="pkg-name">Growth Website</div>
+          <div class="pkg-tagline">To dominate local search and increase high-value quote enquiries.</div>
+          <div class="pkg-price">£2,995 <span>+ VAT</span></div>
+          <ul class="feature-list">
+            <li>Up to 10 bespoke service pages</li>
+            <li>Full sales copywriting & positioning</li>
+            <li>Interactive quick-quote calculator</li>
+            <li>Local SEO schema & Google ranking</li>
+            <li>Google Reviews live badge sync</li>
+            <li>Instant SMS/Slack lead alerts</li>
+            <li>Ready to launch in 14–21 days</li>
+          </ul>
+        </div>
+        <div style="font-size:7pt; color:#C89D3C; font-weight: 600; border-top: 0.5pt solid #E4E4E7; pt: 1mm;">
+          Includes 30 days care · Then £195/mo
+        </div>
+      </div>
+
+      <!-- Pro -->
+      <div class="pkg-card">
+        <div>
+          <div class="pkg-name">Pro / Custom</div>
+          <div class="pkg-tagline">For commercial contractors requiring custom workflows & multi-locations.</div>
+          <div class="pkg-price">£4,995+ <span>+ VAT</span></div>
+          <ul class="feature-list">
+            <li>Multi-location / multi-division build</li>
+            <li>CRM & booking tool integrations</li>
+            <li>Tender-ready PDF case study system</li>
+            <li>Custom client intake portal</li>
+            <li>Dedicated senior strategy lead</li>
+            <li>Priority VIP build turnaround</li>
+          </ul>
+        </div>
+        <div style="font-size:7pt; color:#71717A; border-top: 0.5pt solid #E4E4E7; pt: 1mm;">
+          Includes 60 days care · Then £395/mo
+        </div>
+      </div>
+    </div>
+
+    <div class="care-banner">
+      <h3>The Peace-of-Mind Care Plan Guarantee (£95 / month)</h3>
+      <p>Every website is backed by our managed Care Plan. Ultra-fast UK cloud hosting, daily automated cloud backups, active SSL security shields, and unlimited monthly text & photo updates. Whenever you need a change, simply message us on WhatsApp and we update it within 24 hours.</p>
+    </div>
+
+    <div class="guarantee-grid">
+      <div class="guarantee-item">
+        <strong>14-Day Delivery</strong>
+        From kickoff to live Google launch
+      </div>
+      <div class="guarantee-item">
+        <strong>100% Written For You</strong>
+        No writing or homework for you
+      </div>
+      <div class="guarantee-item">
+        <strong>Fixed Pricing</strong>
+        No surprise bills or hourly traps
+      </div>
+      <div class="guarantee-item">
+        <strong>Direct UK Access</strong>
+        Phone, email & WhatsApp support
+      </div>
+    </div>
+
+    <div class="footer-note">
+      Harley Digital Works is a trading identity of The Harley Group. Registered in the UK. All quotes valid for 30 days.
+    </div>
+  </div>
+</body>
+</html>
