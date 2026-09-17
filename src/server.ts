@@ -47,6 +47,14 @@ function isH3SwallowedErrorBody(body: string): boolean {
 export default {
   async fetch(request: Request, env: unknown, ctx: unknown) {
     try {
+      const url = new URL(request.url);
+      const host = url.hostname.toLowerCase();
+
+      // Multi-Tenant Host Routing: If visiting theharleygroup.org/ -> redirect to /the-harley-group
+      if ((host.includes("theharleygroup.org") || host.includes("theharleygroup.co.uk")) && (url.pathname === "/" || url.pathname === "")) {
+        return Response.redirect(`${url.origin}/the-harley-group`, 302);
+      }
+
       const handler = await getServerEntry();
       const response = await handler.fetch(request, env, ctx);
       return await normalizeCatastrophicSsrResponse(response);
