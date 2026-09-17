@@ -3,6 +3,7 @@ import { ArrowRight, Layout, ShieldCheck, Zap, Phone, CheckCircle2 } from "lucid
 import { PageShell, Container } from "@/components/site/PageShell";
 import { PillButton } from "@/components/site/PillButton";
 import { WebsitePackagesSection } from "@/components/site/WebsitePackagesSection";
+import { TradeRoiCalculator } from "@/components/site/TradeRoiCalculator";
 
 export const Route = createFileRoute("/services")({
   head: () => ({
@@ -117,6 +118,13 @@ function Page() {
       </section>
 
       <WebsitePackagesSection />
+
+      {/* Interactive Trade ROI Section */}
+      <section className="py-16 md:py-24 bg-neutral-950 border-t border-neutral-800">
+        <Container>
+          <TradeRoiCalculator />
+        </Container>
+      </section>
 
       <section className="bg-ink py-20 text-background">
         <Container>

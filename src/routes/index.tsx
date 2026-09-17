@@ -16,6 +16,7 @@ import {
 import { PageShell, Container } from "@/components/site/PageShell";
 import { PillButton } from "@/components/site/PillButton";
 import { WebsitePackagesSection } from "@/components/site/WebsitePackagesSection";
+import { TradeRoiCalculator } from "@/components/site/TradeRoiCalculator";
 import {
   Accordion,
   AccordionContent,
@@ -495,6 +496,13 @@ function HomePage() {
 
       {/* Packages Section */}
       <WebsitePackagesSection />
+
+      {/* Trade ROI Calculator Section */}
+      <section className="py-16 md:py-24 bg-neutral-950 border-t border-neutral-800">
+        <Container>
+          <TradeRoiCalculator />
+        </Container>
+      </section>
 
       {/* FAQ Section */}
       <section className="py-20 md:py-28 bg-white border-t border-ink/10">
