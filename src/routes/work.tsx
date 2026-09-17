@@ -1,304 +1,267 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
-import { PageShell, Container } from "@/components/site/PageShell";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { ArrowDown, ArrowUpRight, Check, PenLine, ShieldCheck } from "lucide-react";
+import { PageShell } from "@/components/site/PageShell";
 import { PillButton } from "@/components/site/PillButton";
-import {
-  ArrowRight,
-  CheckCircle2,
-  Star,
-  TrendingUp,
-  ShieldCheck,
-  Zap,
-  ExternalLink,
-  Sparkles,
-  Award,
-} from "lucide-react";
-import { CASE_STUDY_PRESETS, type TradeCaseStudy } from "@/components/admin/CaseStudyFactoryDesk";
+import { ConceptScreen, ConceptShowcase } from "@/components/site/ConceptShowcase";
+import { WebsitePackagesSection } from "@/components/site/WebsitePackagesSection";
 
 export const Route = createFileRoute("/work")({
   head: () => ({
     meta: [
-      { title: "Selected Work | Harley Digital Works" },
+      { title: "Selected Work & Design Studies | Harley Digital Works" },
       {
         name: "description",
         content:
-          "Proven website builds and lead generation case studies for UK electrical contractors, roofing specialists, and commercial service businesses.",
+          "Explore our image-led website design studies and concept blueprints for ambitious UK trade and service businesses. Websites from £1,495.",
+      },
+      {
+        property: "og:title",
+        content: "Selected Work & Design Studies | Harley Digital Works",
+      },
+      {
+        property: "og:description",
+        content:
+          "Explore independent design studies crafted with commercial discipline, clear copywriting, and considered visual craft.",
       },
     ],
   }),
-  component: Page,
+  component: WorkPage,
 });
 
-const caseStudies = [
+const details = [
   {
-    category: "Electrical & Solar Contractors",
-    title: "Apex Electrical: From zero web presence to 12 commercial contract enquiries per month.",
-    client: "Apex Electrical & Renewable Energy Ltd",
-    challenge:
-      "Apex had relied solely on word-of-mouth and a broken 6-year-old DIY template. They were missing out on profitable commercial solar, EV charger, and industrial fit-out tenders in Greater Manchester.",
-    approach:
-      "We wrote complete sales copy, highlighted commercial accreditations (NICEIC, MCS, OZEV), built targeted local service pages, and engineered an instant quote estimator with direct WhatsApp routing.",
-    delivered: [
-      "Brand & Logo Modernisation",
-      "Full Sales Copywriting & Photography",
-      "Local Google SEO & Schema",
-      "Interactive Quote Estimator",
-      "WhatsApp & Direct Phone Routing",
-      "Managed Hosting & Monthly Care",
-    ],
-    outcome:
-      "Within 60 days of launch, inbound quote requests rose by +140%, with 3 commercial solar contracts won directly through the website.",
-    metric: "+140% Qualified Inbound Leads",
+    number: "01",
+    title: "Photography and visual identity that earn trust.",
+    copy: "High-resolution project photography, distinctive typography, and considered layouts that demonstrate your standard of workmanship before the client even calls.",
   },
   {
-    category: "Roofing & Construction",
-    title:
-      "Vanguard Roofing: Dominating local emergency repair search and securing high-value reroofs.",
-    client: "Vanguard Roofing Specialists",
-    challenge:
-      "Homeowners in storm season needed urgent emergency roof repairs, but Vanguard's old site was slow, not mobile-friendly, and lacked clear trust signals or verified reviews.",
-    approach:
-      "We built a mobile-optimised, lightning-fast website featuring 1-tap emergency calling, dynamic Google Reviews sync, before-and-after project sliders, and transparent pricing guides.",
-    delivered: [
-      "Emergency Click-to-Call Funnel",
-      "Google Reviews Live Integration",
-      "Before & After Project Showcase",
-      "Local Postcode SEO Pages",
-      "30-Day Managed Care Plan",
-    ],
-    outcome:
-      "Achieved #1 local Google Maps ranking for emergency roof repairs and generated 28 domestic reroof enquiries in their first quarter.",
-    metric: "#1 Google Maps Ranking & 28 Reroof Enquiries",
+    number: "02",
+    title: "Clear, commercial words written for you.",
+    copy: "We articulate what you do, who you serve, and why your expertise is worth your quote. No generic placeholder text or marketing jargon.",
   },
   {
-    category: "Commercial Facilities",
-    title:
-      "ProClean Group: Positioning an independent operator to win multi-site facilities tenders.",
-    client: "ProClean Commercial Facilities",
-    challenge:
-      "ProClean wanted to transition from domestic cleaning to lucrative corporate office and healthcare cleaning contracts, but their digital image did not look tender-ready.",
-    approach:
-      "We repositioned the brand with an authoritative corporate design, bespoke B2B sector pages (Healthcare, Education, Corporate), and downloadable tender-ready capability brochures.",
-    delivered: [
-      "Corporate Digital Positioning",
-      "B2B Compliance & Accreditation Badges",
-      "Multi-Location Service Pages",
-      "Automated Booking & Intake Workflows",
-      "Managed Security & Priority Support",
-    ],
-    outcome:
-      "Successfully secured 3 multi-site commercial cleaning contracts in their first 6 months, expanding their team by 8 cleaners.",
-    metric: "3 Multi-Site Corporate Contracts Won",
+    number: "03",
+    title: "A mobile journey that makes booking effortless.",
+    copy: "Fast-loading pages, clear service menus, verified accreditations, and 1-tap WhatsApp and phone triage engineered for customers on their phones.",
+  },
+  {
+    number: "04",
+    title: "Managed care so your site stays sharp.",
+    copy: "Daily offsite backups, UK cloud hosting, and unlimited minor copy, photo, and pricing updates whenever your business expands.",
   },
 ];
 
-function Page() {
+function WorkPage() {
   return (
-    <PageShell>
-      <section className="pt-32 pb-16 md:pt-40 md:pb-24 bg-gradient-to-b from-background to-white/40 border-b border-ink/10">
-        <Container>
-          <div className="max-w-4xl">
-            <p className="eyebrow">Our Portfolio</p>
-            <h1 className="mt-6 text-[clamp(2.8rem,6.5vw,5.5rem)] font-semibold leading-[0.96] tracking-[-0.05em] text-ink">
-              Websites built to win work.{" "}
-              <span className="block text-primary">Proven results for real businesses.</span>
-            </h1>
-            <p className="mt-6 max-w-2xl text-lg leading-relaxed text-ink-muted">
-              We help UK tradespeople and service businesses turn their online presence into their
-              hardest-working sales asset. Here is how we do it.
-            </p>
-          </div>
-        </Container>
-      </section>
-
-      {/* Verified Telemetry & ROI Case Studies */}
-      <section className="py-20 md:py-28 bg-slate-900 text-white border-b border-slate-800">
-        <Container>
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
-            <div>
-              <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-950/60 px-3.5 py-1 text-xs font-semibold text-emerald-300 font-mono">
-                <Sparkles className="h-3.5 w-3.5 text-emerald-400" />
-                <span>Verified Client Telemetry</span>
+    <PageShell quiet>
+      <div className="studio-home">
+        {/* Work Hero */}
+        <section className="studio-hero" aria-labelledby="work-page-heading">
+          <div className="studio-wrap hero-layout">
+            <div className="hero-copy">
+              <p className="studio-kicker">
+                <span className="studio-kicker-line" /> SELECTED WORK · DESIGN STUDIES
+              </p>
+              <h1 id="work-page-heading">
+                Websites crafted
+                <br />
+                with purpose.
+                <br />
+                <span>Built to be chosen.</span>
+              </h1>
+              <p className="hero-description">
+                Proof of craft before promises. Explore our independent design studies.
+              </p>
+              <p className="hero-support">
+                Every business has its own character. We design websites that feel authentic to your
+                work, communicate quality, and make the next step straightforward.
+              </p>
+              <div className="studio-actions">
+                <PillButton as="link" to="/contact" variant="dark" className="studio-button">
+                  Discuss your website
+                </PillButton>
+                <a href="#showcase" className="studio-text-link">
+                  Explore the studies <ArrowDown size={16} />
+                </a>
               </div>
-              <h2 className="mt-3 text-3xl font-bold tracking-tight text-white md:text-4xl">
-                Real UK Contractor Case Studies & Revenue Lift
-              </h2>
-              <p className="mt-2 text-sm text-slate-300 max-w-2xl leading-relaxed">
-                Audited performance benchmarks and monthly quote pipeline data from live UK trade clients powered by Harley Digital Works.
+            </div>
+
+            <div className="hero-art">
+              <div className="hero-art-note">
+                <span>INDEPENDENT DESIGN STUDIES</span>
+                <span>↘</span>
+              </div>
+              <a
+                href="#showcase"
+                className="hero-browser"
+                aria-label="Explore our image-led design studies"
+              >
+                <span className="browser-toolbar">
+                  <i />
+                  <i />
+                  <i />
+                  <span>apex electrical & renewable — design study</span>
+                </span>
+                <ConceptScreen concept="solar" priority />
+              </a>
+              <div className="hero-phone" aria-hidden="true">
+                <div className="phone-speaker" />
+                <ConceptScreen concept="architecture" />
+              </div>
+              <div className="hero-art-caption">
+                <span>
+                  High-craft trade design.
+                  <br />
+                  <strong>Zero generic templates.</strong>
+                </span>
+                <span className="hero-art-seal">
+                  CRAFTED
+                  <br />
+                  <span>for</span>
+                  <br />
+                  IMPACT
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div className="studio-wrap hero-footnote">
+            <span>DISCIPLINED DESIGN. CLEAR WORDS. CARE.</span>
+            <span>Concepts created to demonstrate commercial quality.</span>
+          </div>
+        </section>
+
+        {/* Selected Design Studies Section */}
+        <section className="studio-work studio-section" id="showcase" aria-labelledby="showcase-heading">
+          <div className="studio-wrap">
+            <div className="studio-section-heading">
+              <div>
+                <p className="studio-kicker">01 / THREE DISTINCT DIRECTIONS</p>
+                <h2 id="showcase-heading">
+                  Different trades.
+                  <br />
+                  <span className="studio-muted">Tailored digital craft.</span>
+                </h2>
+              </div>
+              <p>
+                Explore three original HTML design studies—
+                <br />
+                each demonstrating how architecture, typography,
+                <br className="desktop-break" />
+                and photography elevate different trade sectors.
               </p>
             </div>
-            <div className="flex items-center gap-2">
-              <span className="rounded-xl border border-emerald-500/40 bg-emerald-950/80 px-3.5 py-2 text-xs font-mono text-emerald-300 font-bold">
-                100% DONE-FOR-YOU DELIVERY
+
+            {/* Featured Showcase */}
+            <ConceptShowcase concept="solar" featured />
+
+            {/* Grid Showcases */}
+            <div className="studio-project-grid">
+              <ConceptShowcase concept="architecture" />
+              <ConceptShowcase concept="interior" />
+            </div>
+
+            <p className="studio-work-note">
+              Original design concepts by Harley Digital Works. Illustrative photography; not
+              commissioned client endorsements. Real client case studies published under permission.
+            </p>
+          </div>
+        </section>
+
+        {/* Craftsmanship & Detailing Section */}
+        <section className="studio-purpose studio-section" aria-labelledby="craft-heading">
+          <div className="studio-wrap purpose-layout">
+            <div className="purpose-visual">
+              <img
+                src="/images/home/architecture.jpg"
+                alt="Architectural structure illustrating clean lines and proportion"
+                width="1200"
+                height="800"
+                loading="lazy"
+              />
+              <span className="purpose-image-label">BUILT ON STRONG FOUNDATIONS.</span>
+              <div className="purpose-annotation">
+                <ArrowUpRight size={24} />
+                <p>
+                  Built to last.
+                  <br />
+                  Fast, clean, responsive.
+                </p>
+              </div>
+            </div>
+
+            <div className="purpose-copy">
+              <p className="studio-kicker">02 / THE HARLEY STANDARD</p>
+              <h2 id="craft-heading">
+                What goes into
+                <br />
+                <span className="studio-muted">every website we build.</span>
+              </h2>
+              <p className="studio-intro">
+                We combine visual distinction with commercial rigor. Every detail is considered
+                around how customers make decisions.
+              </p>
+
+              <div className="space-y-6 pt-2">
+                {details.map((item) => (
+                  <div className="purpose-point" key={item.number}>
+                    <span>{item.number}</span>
+                    <div>
+                      <h3>{item.title}</h3>
+                      <p>{item.copy}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Packages Integration */}
+        <div className="studio-pricing">
+          <WebsitePackagesSection
+            title="A clear scope. Transparent investment."
+            subtitle="Design, copywriting, and launch included. Choose a starting point; we’ll confirm the exact scope together."
+          />
+        </div>
+
+        {/* Final CTA */}
+        <section className="studio-final" aria-labelledby="work-final-heading">
+          <div className="studio-wrap">
+            <p className="studio-kicker">START YOUR PROJECT</p>
+            <div className="final-layout">
+              <h2 id="work-final-heading">
+                Your business deserves
+                <br />
+                <span>a website like this.</span>
+              </h2>
+              <div>
+                <p>
+                  Let’s build something you are proud to show your customers. Fixed investment, clear
+                  scope, and zero homework.
+                </p>
+                <PillButton as="link" to="/contact" variant="light" className="studio-button">
+                  Let’s talk about your website
+                </PillButton>
+                <span className="final-price">
+                  Websites from £1,495 + VAT · Care from £95/month + VAT
+                </span>
+              </div>
+            </div>
+            <div className="final-reassurance">
+              <span>
+                <PenLine size={16} /> Copywriting included
+              </span>
+              <span>
+                <Check size={16} /> 14-day delivery on Launch
+              </span>
+              <span>
+                <ShieldCheck size={16} /> Ongoing managed care
               </span>
             </div>
           </div>
-
-          <div className="mt-12 grid gap-8 md:grid-cols-3">
-            {CASE_STUDY_PRESETS.map((study) => (
-              <div
-                key={study.id}
-                className="rounded-3xl border border-slate-800 bg-slate-950 p-6 flex flex-col justify-between shadow-xl hover:border-slate-700 transition-colors"
-              >
-                <div className="space-y-4">
-                  <div className="flex items-center justify-between text-xs">
-                    <span className="font-mono text-emerald-400 font-bold uppercase text-[10px] bg-emerald-950/80 border border-emerald-800/60 px-2 py-0.5 rounded">
-                      {study.tradeLabel.split("&")[0]}
-                    </span>
-                    <span className="text-slate-400 text-[11px]">{study.city.split(",")[0]}</span>
-                  </div>
-
-                  <h3 className="text-lg font-bold text-white leading-snug">{study.clientName}</h3>
-                  <p className="text-xs text-slate-300 leading-relaxed italic">&ldquo;{study.tagline}&rdquo;</p>
-
-                  {/* Before vs After Telemetry Stats */}
-                  <div className="rounded-2xl border border-slate-800 bg-slate-900/70 p-4 space-y-3">
-                    <div className="flex justify-between items-center text-xs">
-                      <span className="text-slate-400 font-mono text-[11px]">Load Speed:</span>
-                      <div className="flex items-center gap-2 font-mono">
-                        <span className="text-rose-400 line-through text-[11px]">{study.beforeStats.loadTime}</span>
-                        <span className="text-emerald-400 font-bold">{study.afterStats.loadTime}</span>
-                      </div>
-                    </div>
-
-                    <div className="flex justify-between items-center text-xs">
-                      <span className="text-slate-400 font-mono text-[11px]">Monthly Quotes:</span>
-                      <div className="flex items-center gap-2 font-mono">
-                        <span className="text-rose-400 line-through text-[11px]">{study.beforeStats.monthlyQuotes}</span>
-                        <span className="text-emerald-400 font-bold">{study.afterStats.monthlyQuotes}</span>
-                      </div>
-                    </div>
-
-                    <div className="flex justify-between items-center text-xs">
-                      <span className="text-slate-400 font-mono text-[11px]">Google Map Pack:</span>
-                      <span className="text-emerald-400 font-mono font-bold">{study.afterStats.mapPackRank}</span>
-                    </div>
-                  </div>
-
-                  {/* Client Quote */}
-                  <div className="rounded-xl bg-slate-900/40 p-3 border border-slate-800/80 text-[11px] text-slate-300 italic">
-                    &ldquo;{study.clientQuote.quote}&rdquo;
-                    <div className="mt-1.5 not-italic text-[10px] font-mono text-emerald-400">
-                      — {study.clientQuote.author}, {study.clientQuote.role}
-                    </div>
-                  </div>
-                </div>
-
-                <div className="mt-6 pt-4 border-t border-slate-800 flex items-center justify-between text-xs">
-                  <span className="text-[11px] font-mono text-slate-400">{study.packageTier.split("(")[0]}</span>
-                  {study.liveUrl && (
-                    <a
-                      href={study.liveUrl}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="inline-flex items-center gap-1 font-bold text-amber-400 hover:text-amber-300"
-                    >
-                      <span>Live Staging Demo</span>
-                      <ExternalLink className="h-3 w-3" />
-                    </a>
-                  )}
-                </div>
-              </div>
-            ))}
-          </div>
-        </Container>
-      </section>
-
-      <section className="py-20 md:py-28">
-        <Container>
-          <div className="space-y-16">
-            {caseStudies.map((study, i) => (
-              <article
-                key={study.title}
-                className="grid gap-10 rounded-3xl border border-ink/10 bg-white p-8 shadow-sm lg:grid-cols-12 md:p-12"
-              >
-                <div className="lg:col-span-5 flex flex-col justify-between">
-                  <div>
-                    <span className="font-mono text-xs uppercase tracking-wider text-primary font-semibold">
-                      0{i + 1} · {study.category}
-                    </span>
-                    <h2 className="mt-4 text-2xl font-semibold leading-tight text-ink md:text-3xl">
-                      {study.title}
-                    </h2>
-                    <p className="mt-3 text-sm text-ink-muted font-medium">
-                      Client: {study.client}
-                    </p>
-                  </div>
-
-                  <div className="mt-8 rounded-2xl bg-surface-sage p-5 border border-ink/5">
-                    <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-ink/70">
-                      <TrendingUp size={16} className="text-primary" /> Key Commercial Result
-                    </div>
-                    <div className="mt-2 text-lg font-semibold text-ink">{study.metric}</div>
-                  </div>
-                </div>
-
-                <div className="space-y-6 lg:col-span-7">
-                  <div className="border-t border-ink/10 pt-5">
-                    <div className="text-xs font-mono uppercase tracking-wider text-ink-muted font-semibold">
-                      The Challenge
-                    </div>
-                    <p className="mt-2 text-sm leading-relaxed text-ink">{study.challenge}</p>
-                  </div>
-
-                  <div className="border-t border-ink/10 pt-5">
-                    <div className="text-xs font-mono uppercase tracking-wider text-ink-muted font-semibold">
-                      Our Approach
-                    </div>
-                    <p className="mt-2 text-sm leading-relaxed text-ink">{study.approach}</p>
-                  </div>
-
-                  <div className="border-t border-ink/10 pt-5">
-                    <div className="text-xs font-mono uppercase tracking-wider text-ink-muted font-semibold">
-                      What We Delivered
-                    </div>
-                    <ul className="mt-3 grid gap-2 sm:grid-cols-2">
-                      {study.delivered.map((item) => (
-                        <li
-                          key={item}
-                          className="flex items-center gap-2 text-xs text-ink/85 font-medium"
-                        >
-                          <CheckCircle2 size={15} className="text-primary shrink-0" />
-                          <span>{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  <div className="border-t border-ink/10 pt-5">
-                    <div className="text-xs font-mono uppercase tracking-wider text-ink-muted font-semibold">
-                      The Outcome
-                    </div>
-                    <p className="mt-2 text-sm leading-relaxed text-ink font-medium">
-                      {study.outcome}
-                    </p>
-                  </div>
-                </div>
-              </article>
-            ))}
-          </div>
-        </Container>
-      </section>
-
-      {/* CTA Box */}
-      <section className="pb-24">
-        <Container>
-          <div className="rounded-3xl bg-ink p-8 md:p-14 text-white shadow-2xl border border-white/10">
-            <h2 className="max-w-3xl text-3xl font-semibold tracking-tight md:text-5xl">
-              Ready to get your business looking this professional?
-            </h2>
-            <p className="mt-4 max-w-xl text-base text-white/70">
-              Get in touch today for a free 15-minute consultation. We’ll show you exactly what your
-              new website could look like.
-            </p>
-            <div className="mt-8 flex flex-wrap gap-4">
-              <PillButton as="link" to="/contact" variant="light" size="md">
-                Get a Free Website Quote
-              </PillButton>
-            </div>
-          </div>
-        </Container>
-      </section>
+        </section>
+      </div>
     </PageShell>
   );
 }

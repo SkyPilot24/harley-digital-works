@@ -1,7 +1,8 @@
 import { Link } from "@tanstack/react-router";
-import { Check, ArrowRight } from "lucide-react";
-import { PageShell, Container } from "./PageShell";
+import { Check, ArrowRight, ArrowUpRight, PenLine, ShieldCheck } from "lucide-react";
+import { PageShell } from "./PageShell";
 import { PillButton } from "./PillButton";
+import { ConceptScreen } from "./ConceptShowcase";
 
 export type Capability = {
   eyebrow: string;
@@ -20,91 +21,257 @@ export function CapabilityPage({
   data: Capability;
   children?: React.ReactNode;
 }) {
+  const conceptKey = data.eyebrow.toLowerCase().includes("care")
+    ? "interior"
+    : data.eyebrow.toLowerCase().includes("launch")
+    ? "solar"
+    : "architecture";
+
   return (
-    <PageShell>
-      <section className="border-b border-ink/10 pt-32 pb-16 md:pt-40 md:pb-24">
-        <Container>
-          <p className="eyebrow">{data.eyebrow}</p>
-          <h1 className="mt-6 max-w-5xl text-[clamp(3rem,7vw,6.5rem)] leading-[.94] tracking-[-.055em]">
-            {data.title}
-          </h1>
-          <p className="mt-8 max-w-2xl text-lg leading-relaxed text-ink-muted">{data.intro}</p>
-          <div className="mt-9">
-            <PillButton as="link" to="/contact" variant="dark">
-              Discuss your project
-            </PillButton>
-          </div>
-        </Container>
-      </section>
-      <section className="py-20 md:py-28">
-        <Container>
-          <div className="grid gap-12 lg:grid-cols-12">
-            <div className="lg:col-span-4">
-              <p className="eyebrow">When this helps</p>
-              <h2 className="mt-5 text-4xl tracking-[-.04em]">
-                Start with the friction, not the technology.
-              </h2>
+    <PageShell quiet>
+      <div className="studio-home">
+        {/* Studio Capability Hero */}
+        <section className="studio-hero" aria-labelledby="capability-heading">
+          <div className="studio-wrap hero-layout">
+            <div className="hero-copy">
+              <p className="studio-kicker">
+                <span className="studio-kicker-line" /> {data.eyebrow.toUpperCase()} · UK
+              </p>
+              <h1 id="capability-heading" className="text-balance">
+                {data.title}
+              </h1>
+              <p className="hero-description">{data.intro}</p>
+              <div className="studio-actions pt-2">
+                <PillButton as="link" to="/contact" variant="dark" className="studio-button">
+                  Discuss this service
+                </PillButton>
+                <a href="#deliverables" className="studio-text-link">
+                  See deliverables <ArrowRight size={16} />
+                </a>
+              </div>
             </div>
-            <ul className="lg:col-span-8">
-              {data.problems.map((item, i) => (
-                <li
-                  key={item}
-                  className="grid gap-4 border-t border-ink/15 py-7 sm:grid-cols-[64px_1fr]"
+
+            <div className="hero-art">
+              <div className="hero-art-note">
+                <span>CONSIDERED SPECIFICATION</span>
+                <span>↘</span>
+              </div>
+              <div className="hero-browser">
+                <span className="browser-toolbar">
+                  <i />
+                  <i />
+                  <i />
+                  <span>harley digital works — {data.eyebrow.toLowerCase()}</span>
+                </span>
+                <ConceptScreen concept={conceptKey} priority />
+              </div>
+              <div className="hero-art-caption">
+                <span>
+                  Fixed scope.
+                  <br />
+                  <strong>Zero tech jargon.</strong>
+                </span>
+                <span className="hero-art-seal">
+                  DONE
+                  <br />
+                  <span>for</span>
+                  <br />
+                  YOU
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div className="studio-wrap hero-footnote">
+            <span>STRATEGY. DESIGN. EXECUTION. CARE.</span>
+            <span>Tailored to ambitious trade and service businesses.</span>
+          </div>
+        </section>
+
+        {/* When This Helps / The Challenges */}
+        <section className="studio-purpose studio-section" aria-labelledby="challenges-heading">
+          <div className="studio-wrap purpose-layout">
+            <div className="purpose-visual">
+              <img
+                src={
+                  conceptKey === "interior"
+                    ? "/images/home/interior.jpg"
+                    : conceptKey === "solar"
+                    ? "/images/home/solar.jpg"
+                    : "/images/home/architecture.jpg"
+                }
+                alt="Craftsmanship detail illustrating structural quality"
+                width="1200"
+                height="800"
+                loading="lazy"
+              />
+              <span className="purpose-image-label">START WITH THE FRICTION.</span>
+              <div className="purpose-annotation">
+                <ArrowUpRight size={24} />
+                <p>
+                  Clear solutions.
+                  <br />
+                  Built around real problems.
+                </p>
+              </div>
+            </div>
+
+            <div className="purpose-copy">
+              <p className="studio-kicker">01 / WHY AMBITIOUS BUSINESSES NEED THIS</p>
+              <h2 id="challenges-heading">
+                Common obstacles.
+                <br />
+                <span className="studio-muted">Eliminated entirely.</span>
+              </h2>
+              <p className="studio-intro">
+                Most business owners lose profitable work not because of their trade skill, but
+                because of avoidable digital friction.
+              </p>
+
+              <div className="space-y-6 pt-2">
+                {data.problems.map((problem, i) => (
+                  <div className="purpose-point" key={i}>
+                    <span>0{i + 1}</span>
+                    <div>
+                      <h3>Problem solved:</h3>
+                      <p>{problem}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* What We Deliver */}
+        <section
+          className="studio-process studio-section"
+          id="deliverables"
+          aria-labelledby="deliverables-heading"
+        >
+          <div className="studio-wrap">
+            <div className="studio-section-heading">
+              <div>
+                <p className="studio-kicker">02 / WHAT WE DELIVER</p>
+                <h2 id="deliverables-heading">
+                  Everything agreed upfront.
+                  <br />
+                  <span className="studio-muted">No hidden exclusions.</span>
+                </h2>
+              </div>
+              <PillButton as="link" to="/contact" variant="dark" className="studio-button">
+                Start a conversation
+              </PillButton>
+            </div>
+
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {data.deliverables.map((item, i) => (
+                <div
+                  key={i}
+                  className="rounded-2xl border border-ink/10 bg-[#FAF9F6] p-7 transition hover:border-ink/20 shadow-xs flex flex-col justify-between"
                 >
-                  <span className="font-mono text-xs text-ink-muted">0{i + 1}</span>
-                  <p className="text-xl">{item}</p>
-                </li>
+                  <div className="flex items-center gap-2 mb-4">
+                    <span className="font-mono text-xs font-bold text-ink-muted">0{i + 1}</span>
+                    <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-primary bg-primary/10 px-2 py-0.5 rounded">
+                      Deliverable
+                    </span>
+                  </div>
+                  <h3 className="text-base font-bold text-ink leading-snug">{item}</h3>
+                  <div className="mt-6 pt-3 border-t border-ink/10 flex items-center gap-2 text-xs text-emerald-800 font-semibold">
+                    <Check size={15} /> Included in scope
+                  </div>
+                </div>
               ))}
-            </ul>
-          </div>
-        </Container>
-      </section>
-      <section className="bg-ink py-20 text-background md:py-28">
-        <Container>
-          <p className="eyebrow text-background/55">What we can deliver</p>
-          <div className="mt-10 grid gap-px overflow-hidden rounded-2xl bg-background/15 sm:grid-cols-2 lg:grid-cols-3">
-            {data.deliverables.map((item) => (
-              <article key={item} className="bg-ink p-7">
-                <Check className="text-primary" size={18} />
-                <h3 className="mt-12 text-xl">{item}</h3>
-              </article>
-            ))}
-          </div>
-        </Container>
-      </section>
-      {children}
-      <section className="py-20 md:py-28">
-        <Container>
-          <div className="grid gap-12 lg:grid-cols-2">
-            <div>
-              <p className="eyebrow">The outcome</p>
-              <h2 className="mt-5 text-[clamp(2.5rem,5vw,4.5rem)] leading-[.98] tracking-[-.05em]">
-                Change people can feel and teams can run.
-              </h2>
             </div>
-            <ul className="space-y-4">
-              {data.outcomes.map((item) => (
-                <li key={item} className="flex gap-3 border-t border-ink/15 pt-5 text-lg">
-                  <Check className="mt-1 shrink-0 text-primary" size={18} />
-                  {item}
-                </li>
+          </div>
+        </section>
+
+        {/* Children (e.g. WebsitePackagesSection) */}
+        {children && <div className="studio-pricing">{children}</div>}
+
+        {/* Outcomes & Related Navigation */}
+        <section className="studio-purpose studio-section" aria-labelledby="outcomes-heading">
+          <div className="studio-wrap">
+            <div className="studio-section-heading">
+              <div>
+                <p className="studio-kicker">03 / THE COMMERCIAL RESULT</p>
+                <h2 id="outcomes-heading">
+                  Tangible results you can feel.
+                  <br />
+                  <span className="studio-muted">Confidence you can rely on.</span>
+                </h2>
+              </div>
+            </div>
+
+            <div className="grid gap-6 md:grid-cols-3">
+              {data.outcomes.map((outcome, i) => (
+                <div
+                  key={i}
+                  className="rounded-2xl border border-ink/10 bg-white p-7 shadow-xs flex flex-col justify-between"
+                >
+                  <div>
+                    <div className="font-mono text-2xl font-bold text-primary">0{i + 1}</div>
+                    <h3 className="mt-4 text-base font-bold text-ink">{outcome}</h3>
+                  </div>
+                  <div className="mt-6 pt-4 border-t border-ink/10 text-xs font-mono text-emerald-800 font-semibold flex items-center gap-1.5">
+                    <Check size={14} /> Commercial outcome
+                  </div>
+                </div>
               ))}
-            </ul>
+            </div>
+
+            {data.related && data.related.length > 0 && (
+              <div className="mt-14 pt-8 border-t border-ink/10 flex flex-wrap items-center gap-6">
+                <span className="text-xs font-mono font-bold uppercase text-ink-muted tracking-wider">
+                  Related services:
+                </span>
+                {data.related.map((item) => (
+                  <Link key={item.to} to={item.to} className="studio-text-link text-sm">
+                    {item.label} <ArrowUpRight size={16} />
+                  </Link>
+                ))}
+              </div>
+            )}
           </div>
-          <div className="mt-20 flex flex-wrap gap-4 border-t border-ink/15 pt-8">
-            {data.related.map((item) => (
-              <Link
-                key={item.to}
-                to={item.to}
-                className="inline-flex items-center gap-2 text-sm font-medium"
-              >
-                {item.label}
-                <ArrowRight size={15} />
-              </Link>
-            ))}
+        </section>
+
+        {/* Final CTA */}
+        <section className="studio-final" aria-labelledby="capability-final-heading">
+          <div className="studio-wrap">
+            <p className="studio-kicker">GET IN TOUCH</p>
+            <div className="final-layout">
+              <h2 id="capability-final-heading">
+                Let’s talk about
+                <br />
+                <span>your website.</span>
+              </h2>
+              <div>
+                <p>
+                  Book a quick 15-minute consultation to discuss your requirements. We’ll show you
+                  exactly what we can create for your business.
+                </p>
+                <PillButton as="link" to="/contact" variant="light" className="studio-button">
+                  Book a consultation
+                </PillButton>
+                <span className="final-price">
+                  Websites from £1,495 + VAT · Managed care from £95/month + VAT
+                </span>
+              </div>
+            </div>
+            <div className="final-reassurance">
+              <span>
+                <PenLine size={16} /> Copywriting included
+              </span>
+              <span>
+                <Check size={16} /> Fixed scope agreed upfront
+              </span>
+              <span>
+                <ShieldCheck size={16} /> Ongoing managed care
+              </span>
+            </div>
           </div>
-        </Container>
-      </section>
+        </section>
+      </div>
     </PageShell>
   );
 }
