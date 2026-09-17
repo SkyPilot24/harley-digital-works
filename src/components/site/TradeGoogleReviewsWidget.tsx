@@ -1,4 +1,4 @@
-﻿import { useState } from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { Star, CheckCircle2, Quote, ArrowRight, ShieldCheck, MapPin, TrendingUp, Sparkles } from "lucide-react";
 import { Link } from "@tanstack/react-router";
@@ -161,6 +161,12 @@ export function TradeGoogleReviewsWidget({ title = "What UK Trades Say About Us"
             </Link>
             <Link
               to="/contact"
+              search={{
+                service: undefined,
+                package: undefined,
+                domain: undefined,
+                websiteUrl: undefined,
+              }}
               className="inline-flex items-center justify-center gap-2 rounded-full border border-neutral-700 bg-neutral-800 hover:bg-neutral-700 px-5 py-3 text-xs font-semibold text-white transition-all"
             >
               <span>Get Free Trade Quote</span>
