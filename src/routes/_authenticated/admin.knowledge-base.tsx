@@ -401,6 +401,63 @@ export const KNOWLEDGE_ARTICLES: KnowledgeArticle[] = [
       },
     ],
   },
+  {
+    id: "live-staging-generator-playbook",
+    category: "sales",
+    title: "Generating & Pitching Live Staging Previews (/demos)",
+    summary:
+      "How to spin up interactive prospect website mockups in real-time with responsive mobile/tablet viewports and personalized pitch links.",
+    badge: "Sales Velocity",
+    readTime: "3 min read",
+    quickAction: { label: "Open Staging Generator", to: "/demos" },
+    steps: [
+      {
+        title: "1. Configure Prospect Branding & Service Hub",
+        description:
+          "Open /demos. Enter the contractor's trading name, trade sector (e.g. Heating, Electrical, Roofing), town/city, and telephone number.",
+        tips: [
+          "The interactive blueprint automatically re-renders with the client's exact branding and accreditation ribbons.",
+        ],
+      },
+      {
+        title: "2. Generate Shareable Link & WhatsApp Pitch",
+        description:
+          "Click 'Send Demo via WhatsApp' or 'Copy Staging Link'. Dispatch a high-impact personalized link so the prospect can test their own site on their smartphone.",
+      },
+      {
+        title: "3. Direct Conversion to Interactive Proposal",
+        description:
+          "Click 'Convert to Proposal' to transfer all trade parameters straight into the Proposal Desk (/proposals) for 50% deposit intake.",
+      },
+    ],
+  },
+  {
+    id: "automated-care-desk-maintenance",
+    category: "care",
+    title: "Operating the 24/7 Automated Care Desk & Performance Radar",
+    summary:
+      "Protocol for managing £95/mo recurring Care subscribers, fulfilling 24-hour change requests, and automated monthly performance reports.",
+    badge: "MRR Retention",
+    readTime: "4 min read",
+    quickAction: { label: "Open Care Desk", to: "/admin/clients" },
+    steps: [
+      {
+        title: "1. Global Fleet Health Probe",
+        description:
+          "Open /admin/clients and toggle 'Automated Care Desk & Uptime Radar'. Click 'Run Global Health Check' to verify edge TTFB, SSL certificate validity, and automated backups.",
+      },
+      {
+        title: "2. 24-Hour Change Request Fulfillment",
+        description:
+          "Process inbound photo uploads, pricing updates, and emergency banner toggles submitted via /care-desk. Click 'Deploy & Close' upon verification.",
+      },
+      {
+        title: "3. Dispatch Monthly Care ROI Reports",
+        description:
+          "Use the 1-click report dispatcher to send subscribers their monthly uptime statistics, new 5-star Google review count, and speed scores to ensure 100% retention.",
+      },
+    ],
+  },
 ];
 
 const CATEGORIES: { id: GuideCategory; label: string; icon: typeof BookOpen }[] = [

@@ -24,10 +24,12 @@ import {
   Receipt,
   FileText,
   BarChart3,
+  ShieldCheck,
 } from "lucide-react";
 import { PageHeader, StatusBadge } from "./admin.index";
 import { ClientInvoiceModal } from "@/components/admin/ClientInvoiceModal";
 import { ClientMonthlyReportModal } from "@/components/admin/ClientMonthlyReportModal";
+import { CareDeskMonitor } from "@/components/admin/CareDeskMonitor";
 
 type ClientRow = Database["public"]["Tables"]["clients"]["Row"];
 type ClientStatus = Database["public"]["Enums"]["client_status"];
@@ -40,6 +42,7 @@ export const Route = createFileRoute("/_authenticated/admin/clients")({
 
 function ClientsPage() {
   const qc = useQueryClient();
+  const [clientViewMode, setClientViewMode] = useState<"clients" | "caredesk">("clients");
   const [activeTab, setActiveTab] = useState<string>("all");
   const [searchTerm, setSearchTerm] = useState("");
   const [client360, setClient360] = useState<ClientRow | null>(null);
@@ -199,23 +202,72 @@ function ClientsPage() {
   return (
     <div>
       <PageHeader
-        title="Client 360 & Accounts"
-        subtitle="Manage client relationships, active web development deliverables, care plan subscriptions, and recurring MRR."
+        title={clientViewMode === "clients" ? "Client 360 & Accounts" : "Automated Care Desk & Uptime Radar"}
+        subtitle={
+          clientViewMode === "clients"
+            ? "Manage client relationships, active web development deliverables, care plan subscriptions, and recurring MRR."
+            : "Zero-touch edge performance monitoring, SSL/DNS health radar, and 24-hour change request fulfillment."
+        }
         action={
-          <button
-            onClick={() => {
-              setEditingClient({ status: "active", monthly_value_cents: 9500 });
-              setIsCreatingClient(true);
-            }}
-            className="inline-flex items-center gap-2 rounded-full bg-ink px-4 py-2 text-sm font-medium text-white hover:bg-ink/90"
-          >
-            <Plus size={16} /> New Client
-          </button>
+          clientViewMode === "clients" ? (
+            <button
+              onClick={() => {
+                setEditingClient({ status: "active", monthly_value_cents: 9500 });
+                setIsCreatingClient(true);
+              }}
+              className="inline-flex items-center gap-2 rounded-full bg-ink px-4 py-2 text-sm font-medium text-white hover:bg-ink/90"
+            >
+              <Plus size={16} /> New Client
+            </button>
+          ) : undefined
         }
       />
 
-      {/* Metrics Bar */}
-      <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      {/* Module Switcher Tabs */}
+      <div className="mt-6 flex flex-wrap items-center gap-2 border-b border-ink/10 pb-4">
+        <button
+          onClick={() => setClientViewMode("clients")}
+          className={`inline-flex items-center gap-2 rounded-xl px-4 py-2 text-xs font-semibold transition-all ${
+            clientViewMode === "clients"
+              ? "bg-ink text-white shadow-sm"
+              : "border border-ink/10 bg-white text-ink/70 hover:bg-ink/[0.04]"
+          }`}
+        >
+          <Users size={15} />
+          <span>Client Roster & Projects</span>
+          <span className={`ml-1 rounded-full px-2 py-0.5 text-[10px] font-mono font-medium ${
+            clientViewMode === "clients" ? "bg-white/20 text-white" : "bg-ink/10 text-ink"
+          }`}>
+            {clients.length}
+          </span>
+        </button>
+
+        <button
+          onClick={() => setClientViewMode("caredesk")}
+          className={`inline-flex items-center gap-2 rounded-xl px-4 py-2 text-xs font-semibold transition-all ${
+            clientViewMode === "caredesk"
+              ? "bg-ink text-white shadow-sm"
+              : "border border-ink/10 bg-white text-ink/70 hover:bg-ink/[0.04]"
+          }`}
+        >
+          <ShieldCheck size={15} className={clientViewMode === "caredesk" ? "text-emerald-300" : "text-emerald-600"} />
+          <span>Automated Care Desk & Uptime Radar</span>
+          <span className="ml-1 rounded bg-emerald-500/20 px-1.5 py-0.5 text-[10px] font-bold text-emerald-600 dark:text-emerald-400">
+            24/7 ACTIVE
+          </span>
+        </button>
+      </div>
+
+      {clientViewMode === "caredesk" && (
+        <div className="mt-6">
+          <CareDeskMonitor clients={clients} />
+        </div>
+      )}
+
+      {clientViewMode === "clients" && (
+        <>
+          {/* Metrics Bar */}
+          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         <div className="rounded-xl border border-ink/10 bg-white p-5">
           <div className="flex items-center gap-2 text-ink-muted">
             <Users size={14} />
@@ -816,6 +868,8 @@ function ClientsPage() {
             </div>
           </div>
         </div>
+      )}
+      </>
       )}
 
       {/* Edit / Create Client Modal */}

@@ -1,10 +1,22 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { z } from "zod";
 import { PageShell, Container } from "@/components/site/PageShell";
 import { TagChip } from "@/components/site/TagChip";
 import { ContractorOnboardingWizard } from "@/components/portal/ContractorOnboardingWizard";
 import { CheckCircle2, ShieldCheck, Clock, Zap, MessageSquare } from "lucide-react";
 
+const onboardingSearchSchema = z.object({
+  company: z.string().optional(),
+  name: z.string().optional(),
+  email: z.string().optional(),
+  phone: z.string().optional(),
+  trade: z.string().optional(),
+  city: z.string().optional(),
+  token: z.string().optional(),
+});
+
 export const Route = createFileRoute("/onboarding")({
+  validateSearch: (search) => onboardingSearchSchema.parse(search),
   head: () => ({
     meta: [
       { title: "Fast-Track Client Onboarding (3 Mins) | Harley Digital Works" },
@@ -20,6 +32,7 @@ export const Route = createFileRoute("/onboarding")({
 });
 
 function OnboardingPage() {
+  const search = Route.useSearch();
   return (
     <PageShell>
       {/* Top Header */}
@@ -61,7 +74,16 @@ function OnboardingPage() {
       {/* Interactive Onboarding Form Section */}
       <section className="py-12 md:py-20 bg-neutral-950">
         <Container>
-          <ContractorOnboardingWizard />
+          <ContractorOnboardingWizard
+            initialData={{
+              companyName: search.company,
+              contactName: search.name,
+              email: search.email,
+              phone: search.phone,
+              trade: search.trade,
+              primaryCity: search.city,
+            }}
+          />
         </Container>
       </section>
     </PageShell>

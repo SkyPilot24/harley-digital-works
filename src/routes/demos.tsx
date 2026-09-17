@@ -3,28 +3,32 @@ import { z } from "zod";
 import { PageShell, Container } from "@/components/site/PageShell";
 import { PillButton } from "@/components/site/PillButton";
 import { TagChip } from "@/components/site/TagChip";
-import { TradeDemoViewer } from "@/components/demos/TradeDemoViewer";
+import { DynamicStagingGenerator } from "@/components/demos/DynamicStagingGenerator";
 import { TradeGoogleReviewsWidget } from "@/components/site/TradeGoogleReviewsWidget";
 import { WebsitePackagesSection } from "@/components/site/WebsitePackagesSection";
 import { CheckCircle2, ShieldCheck, Zap, Sparkles, Clock, PhoneCall } from "lucide-react";
 
 const demosSearchSchema = z.object({
-  trade: z.enum(["electrical", "roofing", "heating", "commercial"]).optional(),
+  trade: z.string().optional(),
+  company: z.string().optional(),
+  city: z.string().optional(),
+  phone: z.string().optional(),
+  palette: z.enum(["dark-gold", "navy-white", "emerald-slate", "crimson-black"]).optional(),
 });
 
 export const Route = createFileRoute("/demos")({
   validateSearch: (search) => demosSearchSchema.parse(search),
   head: () => ({
     meta: [
-      { title: "Live Interactive Trade Website Demos | Harley Digital Works" },
+      { title: "Live Interactive Trade Website Staging Demos | Harley Digital Works" },
       {
         name: "description",
         content:
-          "Test live interactive website demos built specifically for UK electricians, roofers, and heating engineers. Features instant price calculators, before/after sliders, and WhatsApp dispatch.",
+          "Test live interactive website staging mockups built specifically for UK trades. Features instant price calculators, before/after sliders, and live WhatsApp dispatch.",
       },
       {
         property: "og:title",
-        content: "Live Interactive Trade Website Demos | Harley Digital Works",
+        content: "Live Interactive Trade Website Staging Demos | Harley Digital Works",
       },
     ],
   }),
@@ -33,7 +37,6 @@ export const Route = createFileRoute("/demos")({
 
 function TradeDemosPage() {
   const search = Route.useSearch();
-  const initialTrade = search.trade || "electrical";
 
   return (
     <PageShell>
@@ -74,10 +77,18 @@ function TradeDemosPage() {
         </Container>
       </section>
 
-      {/* Interactive Demo Showcase Section */}
+      {/* Interactive Staging Generator & Demo Showcase Section */}
       <section className="py-8 md:py-12 bg-neutral-950">
         <Container>
-          <TradeDemoViewer initialTrade={initialTrade} />
+          <DynamicStagingGenerator
+            initialConfig={{
+              company: search.company,
+              trade: (search.trade as any),
+              city: search.city,
+              phone: search.phone,
+              palette: search.palette,
+            }}
+          />
         </Container>
       </section>
 

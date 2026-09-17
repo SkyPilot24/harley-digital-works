@@ -1,4 +1,4 @@
-﻿import { useState } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   CheckCircle2,
@@ -81,9 +81,16 @@ const ACCREDITATIONS_LIST = [
   "Vaillant / Worcester Accredited",
 ];
 
-export function ContractorOnboardingWizard() {
+interface ContractorOnboardingWizardProps {
+  initialData?: Partial<OnboardingData>;
+}
+
+export function ContractorOnboardingWizard({ initialData }: ContractorOnboardingWizardProps = {}) {
   const [step, setStep] = useState<number>(1);
-  const [data, setData] = useState<OnboardingData>(INITIAL_DATA);
+  const [data, setData] = useState<OnboardingData>(() => ({
+    ...INITIAL_DATA,
+    ...initialData,
+  }));
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [completedToken, setCompletedToken] = useState<string | null>(null);
 
