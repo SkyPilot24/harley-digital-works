@@ -1,8 +1,0 @@
-﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-labelledby="title desc">
-  <title id="title">THG wordmark icon</title>
-  <desc id="desc">Lowercase thg wordmark icon matching the live website navigation.</desc>
-  <rect width="256" height="256" rx="58" fill="#F6F4EE"/>
-  <text x="28" y="146" font-family="Syne, Arial Black, Arial, sans-serif" font-size="108" font-weight="800" letter-spacing="-8" fill="#173033">thg</text>
-  <rect x="34" y="174" width="188" height="6" rx="3" fill="#7DA8A3"/>
-  <text x="42" y="204" font-family="DM Mono, Consolas, monospace" font-size="14" font-weight="500" letter-spacing="5" fill="#6F716D">DIGITAL</text>
-</svg>

@@ -22,7 +22,7 @@ export function HarleyGroupFooter() {
                 <Lock size={14} className="text-[#C89D3C]" /> GDPR Compliant
               </span>
               <span className="flex items-center gap-1.5 bg-white/5 px-2.5 py-1 rounded border border-white/10">
-                <Globe size={14} className="text-[#C89D3C]" /> UK Headquarters
+                <Globe size={14} className="text-[#C89D3C]" /> Bristol, UK Headquarters
               </span>
             </div>
           </div>

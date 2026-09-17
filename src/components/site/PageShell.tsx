@@ -4,12 +4,22 @@ import { FooterDark } from "./FooterDark";
 import { FloatingWhatsAppDesk } from "./FloatingWhatsAppDesk";
 import { ExitIntentModal } from "./ExitIntentModal";
 
-export function PageShell({ children, quiet = false }: { children: ReactNode; quiet?: boolean }) {
+export function PageShell({
+  children,
+  quiet = false,
+  header,
+  footer,
+}: {
+  children: ReactNode;
+  quiet?: boolean;
+  header?: ReactNode | null;
+  footer?: ReactNode | null;
+}) {
   return (
     <div className="min-h-screen bg-background text-ink relative">
-      <SiteHeader />
+      {header !== undefined ? header : <SiteHeader />}
       <main>{children}</main>
-      <FooterDark />
+      {footer !== undefined ? footer : <FooterDark />}
       {!quiet && <FloatingWhatsAppDesk />}
       {!quiet && <ExitIntentModal />}
     </div>

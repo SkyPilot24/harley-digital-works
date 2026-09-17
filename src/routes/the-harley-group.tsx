@@ -26,20 +26,20 @@ import { useState } from "react";
 export const Route = createFileRoute("/the-harley-group")({
   head: () => ({
     meta: [
-      { title: "The Harley Group | Corporate Holding Company & Operating Portfolio" },
+      { title: "The Harley Group | Corporate Holding Company & Operating Portfolio — Bristol, UK" },
       {
         name: "description",
         content:
-          "The Harley Group is an independent UK corporate holding company overseeing specialized digital, technology, and operating ventures including Harley Digital Works and Harley Labs.",
+          "The Harley Group is an independent UK corporate holding company based in Bristol, overseeing specialized digital, technology, and operating ventures including Harley Digital Works and Harley Labs.",
       },
       {
         property: "og:title",
-        content: "The Harley Group | Corporate Holding Company & Operating Portfolio",
+        content: "The Harley Group | Corporate Holding Company & Operating Portfolio — Bristol, UK",
       },
       {
         property: "og:description",
         content:
-          "Institutional discipline, long-term capital allocation, and executive governance across specialized UK technology and digital operating companies.",
+          "Institutional discipline, long-term capital allocation, and executive governance across specialized UK technology and digital operating companies in Bristol, UK.",
       },
     ],
   }),
@@ -50,7 +50,7 @@ const STATS = [
   { label: "Operating Divisions", value: "02", detail: "Digital Works & Harley Labs" },
   { label: "Deployment Standard", value: "Sub-50ms", detail: "Zero-Cold-Start Edge Architecture" },
   { label: "Governance Compliance", value: "100%", detail: "ICO Registered & GDPR Compliant" },
-  { label: "Leadership Model", value: "Senior Led", detail: "Direct Executive Oversight" },
+  { label: "Base Location", value: "Bristol, UK", detail: "United Kingdom Headquarters" },
 ];
 
 const VENTURES = [
@@ -77,7 +77,7 @@ const VENTURES = [
     metrics: ["Sub-50ms Edge SSR", "Revenue OS Tooling", "Domain Infrastructure"],
     to: "/labs",
     ctaLabel: "Explore Harley Labs",
-    image: "/images/home/solar.jpg",
+    image: "/images/robbie/09-labs-thought-leadership.jpg",
     status: "Active R&D Division",
   },
   {
@@ -101,7 +101,7 @@ const OPERATIONAL_PILLARS = [
     title: "Commercial Digital Infrastructure",
     subtitle: "High-Converting Client Web Assets",
     description:
-      "Designing and deploying lead-generation websites, conversion copy, and brand assets for high-growth regional businesses across the UK.",
+      "Designing and deploying lead-generation websites, conversion copy, and brand assets for high-growth regional businesses across Bristol and the United Kingdom.",
   },
   {
     icon: Cpu,
@@ -145,7 +145,7 @@ const OPERATING_PRINCIPLES = [
 const GOVERNANCE_RECORDS = [
   { label: "Parent Entity", value: "The Harley Group Ltd" },
   { label: "Jurisdiction", value: "England & Wales (United Kingdom)" },
-  { label: "Corporate HQ", value: "Manchester, United Kingdom" },
+  { label: "Corporate HQ", value: "Bristol, United Kingdom (UK)" },
   { label: "Core Operating Divisions", value: "Harley Digital Works & Harley Labs" },
   { label: "Regulatory Compliance", value: "GDPR, Cyber Essentials Standards, ICO Registered" },
   { label: "Managing Director", value: "Dr Robbie Harley, MBA" },
@@ -172,13 +172,12 @@ const ANNOUNCEMENTS = [
     category: "COMMERCIAL GOVERNANCE",
     title: "Harley Digital Works Expands Managed Care SLA Coverage",
     summary:
-      "Introducing guaranteed 24-hour turnaround on priority content updates for Growth and Pro tier care clients across the UK.",
+      "Introducing guaranteed 24-hour turnaround on priority content updates for Growth and Pro tier care clients across Bristol and the UK.",
   },
 ];
 
 export function TheHarleyGroupPage() {
   const [enquirySubmitted, setEnquirySubmitted] = useState(false);
-  const [activeTab, setActiveTab] = useState<"overview" | "philosophy" | "governance">("overview");
 
   const handleSubmitEnquiry = (e: React.FormEvent) => {
     e.preventDefault();
@@ -186,13 +185,10 @@ export function TheHarleyGroupPage() {
   };
 
   return (
-    <PageShell quiet>
-      {/* Custom Corporate Header */}
-      <HarleyGroupHeader />
-
+    <PageShell quiet header={<HarleyGroupHeader />} footer={<HarleyGroupFooter />}>
       <div className="studio-home">
         {/* Hero Section */}
-        <section className="studio-hero border-b border-ink/10 pb-16 pt-8" id="overview" aria-labelledby="thg-heading">
+        <section className="studio-hero border-b border-ink/15 pb-16 pt-8 bg-background" id="overview" aria-labelledby="thg-heading">
           <div className="studio-wrap hero-layout">
             <div className="hero-copy space-y-6">
               <div className="inline-flex items-center gap-2 rounded-full bg-[#0D0D0D] px-3.5 py-1 text-xs font-mono font-semibold uppercase tracking-wider text-[#C89D3C]">
@@ -207,8 +203,8 @@ export function TheHarleyGroupPage() {
                 <span className="text-[#C89D3C]">Long-term value.</span>
               </h1>
 
-              <p className="hero-description text-lg text-ink/80 leading-relaxed font-sans max-w-xl">
-                The Harley Group is an independent UK corporate holding company overseeing specialized digital, technology, and operating ventures.
+              <p className="hero-description text-lg text-ink font-medium leading-relaxed font-sans max-w-xl">
+                The Harley Group is an independent UK corporate holding company based in <strong className="text-ink">Bristol, UK</strong>, overseeing specialized digital, technology, and operating ventures.
               </p>
 
               <p className="hero-support text-sm text-ink-muted leading-relaxed font-sans max-w-xl">
@@ -219,18 +215,20 @@ export function TheHarleyGroupPage() {
                 <PillButton as="link" to="/services" variant="dark" className="studio-button">
                   Explore Operating Portfolio
                 </PillButton>
-                <a href="#divisions" className="studio-text-link font-mono text-xs uppercase tracking-wider">
+                <a href="#divisions" className="studio-text-link font-mono text-xs uppercase tracking-wider font-bold text-ink hover:text-[#C89D3C]">
                   Operating Divisions <ArrowUpRight size={16} />
                 </a>
               </div>
             </div>
 
             <div className="hero-art space-y-4">
-              <div className="hero-art-note flex items-center justify-between text-xs font-mono text-ink-muted">
-                <span>EXECUTIVE GOVERNANCE</span>
-                <span>↘</span>
+              <div className="hero-art-note flex items-center justify-between text-xs font-mono font-bold text-ink-muted uppercase tracking-wider">
+                <span>EXECUTIVE LEADERSHIP</span>
+                <span>BRISTOL, UK ↘</span>
               </div>
-              <div className="founder-photo shadow-xl rounded-2xl overflow-hidden border border-ink/10 relative group">
+
+              {/* Clean Executive Photo Box */}
+              <div className="founder-photo shadow-2xl rounded-2xl overflow-hidden border border-ink/20 relative group bg-black">
                 <img
                   src="/images/robbie/03-thg-cinematic-portrait.jpg"
                   alt="Dr Robbie Harley, Managing Director of The Harley Group"
@@ -239,44 +237,40 @@ export function TheHarleyGroupPage() {
                   loading="eager"
                   className="w-full h-auto object-cover max-h-[440px] transition-transform duration-500 group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-5 text-white">
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent flex flex-col justify-end p-6 text-white">
                   <span className="font-mono text-[11px] font-bold uppercase tracking-wider text-[#C89D3C]">
-                    EXECUTIVE LEADERSHIP
+                    EXECUTIVE GOVERNANCE
                   </span>
-                  <span className="text-lg font-bold font-display">DR ROBBIE HARLEY, MBA</span>
-                  <span className="text-xs text-white/70">Managing Director & Founder</span>
+                  <span className="text-xl font-bold font-display text-white">DR ROBBIE HARLEY, MBA</span>
+                  <span className="text-xs text-white/80 font-mono">Managing Director & Founder · Bristol, UK</span>
                 </div>
               </div>
 
-              <div className="hero-art-caption p-4 bg-[#FAF9F6] rounded-xl border border-ink/10 flex items-center justify-between text-xs text-ink/80 font-mono">
-                <span>
-                  Disciplined delivery.
+              <div className="p-4 bg-white rounded-xl border border-ink/15 flex items-center justify-between text-xs text-ink font-mono shadow-xs">
+                <div>
+                  <span className="font-bold text-ink">The Harley Group Ltd</span>
                   <br />
-                  <strong>Senior executive oversight.</strong>
-                </span>
-                <span className="hero-art-seal bg-[#0D0D0D] text-[#C89D3C] px-3 py-1.5 rounded text-center text-[10px] font-bold leading-tight uppercase">
-                  HARLEY
-                  <br />
-                  <span className="text-white">GROUP</span>
-                  <br />
-                  UK
+                  <span className="text-ink-muted">Bristol, United Kingdom</span>
+                </div>
+                <span className="bg-[#0D0D0D] text-[#C89D3C] px-3 py-1.5 rounded text-center text-[10px] font-bold uppercase tracking-wider">
+                  BRISTOL · UK
                 </span>
               </div>
             </div>
           </div>
 
           {/* Key Group Metrics */}
-          <div className="studio-wrap mt-16 pt-8 border-t border-ink/10">
+          <div className="studio-wrap mt-16 pt-8 border-t border-ink/15">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
               {STATS.map((stat, i) => (
-                <div key={i} className="p-4 rounded-xl bg-white border border-ink/10 shadow-2xs">
+                <div key={i} className="p-5 rounded-xl bg-white border border-ink/15 shadow-xs">
                   <div className="text-xs font-mono font-bold text-ink-muted uppercase tracking-wider">
                     {stat.label}
                   </div>
                   <div className="text-2xl sm:text-3xl font-bold font-display text-ink mt-1">
                     {stat.value}
                   </div>
-                  <div className="text-xs text-ink/70 mt-1 font-sans">
+                  <div className="text-xs font-semibold text-ink/80 mt-1 font-sans">
                     {stat.detail}
                   </div>
                 </div>
@@ -286,7 +280,7 @@ export function TheHarleyGroupPage() {
         </section>
 
         {/* Executive Overview & Mandate */}
-        <section className="studio-section bg-[#FAF9F6] py-20 border-b border-ink/10">
+        <section className="studio-section bg-[#FAF9F6] py-20 border-b border-ink/15">
           <div className="studio-wrap space-y-12">
             <div className="max-w-3xl space-y-4">
               <p className="studio-kicker font-mono text-xs font-bold uppercase tracking-wider text-[#C89D3C]">
@@ -295,8 +289,8 @@ export function TheHarleyGroupPage() {
               <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-ink font-display">
                 Building & governing enduring operating ventures.
               </h2>
-              <p className="text-base text-ink/80 leading-relaxed font-sans">
-                The Harley Group operates at the intersection of commercial execution and technical innovation. We do not build speculative ventures; we create focused, resilient business units designed to deliver measurable commercial value to clients and long-term stability to stakeholders.
+              <p className="text-base text-ink leading-relaxed font-sans">
+                Headquartered in Bristol, UK, The Harley Group operates at the intersection of commercial execution and technical innovation. We do not build speculative ventures; we create focused, resilient business units designed to deliver measurable commercial value to clients and long-term stability to stakeholders.
               </p>
             </div>
 
@@ -304,16 +298,16 @@ export function TheHarleyGroupPage() {
               {OPERATIONAL_PILLARS.map((pillar, idx) => {
                 const Icon = pillar.icon;
                 return (
-                  <div key={idx} className="bg-white p-8 rounded-2xl border border-ink/10 shadow-xs space-y-4 flex flex-col justify-between">
+                  <div key={idx} className="bg-white p-8 rounded-2xl border border-ink/15 shadow-xs space-y-4 flex flex-col justify-between">
                     <div className="space-y-3">
                       <div className="w-12 h-12 rounded-xl bg-[#0D0D0D] text-[#C89D3C] flex items-center justify-center">
                         <Icon size={24} />
                       </div>
                       <h3 className="text-xl font-bold text-ink font-display">{pillar.title}</h3>
                       <p className="text-xs font-mono text-[#C89D3C] font-semibold uppercase">{pillar.subtitle}</p>
-                      <p className="text-sm text-ink/70 leading-relaxed">{pillar.description}</p>
+                      <p className="text-sm text-ink/85 leading-relaxed font-sans">{pillar.description}</p>
                     </div>
-                    <div className="pt-4 border-t border-ink/10 flex items-center justify-between text-xs font-mono text-ink-muted">
+                    <div className="pt-4 border-t border-ink/10 flex items-center justify-between text-xs font-mono text-ink-muted font-bold">
                       <span>PILLAR 0{idx + 1}</span>
                       <CheckCircle2 size={16} className="text-[#C89D3C]" />
                     </div>
@@ -325,7 +319,7 @@ export function TheHarleyGroupPage() {
         </section>
 
         {/* Operating Divisions & Portfolio */}
-        <section className="studio-work studio-section py-20" id="divisions" aria-labelledby="divisions-heading">
+        <section className="studio-work studio-section py-20 bg-background" id="divisions" aria-labelledby="divisions-heading">
           <div className="studio-wrap space-y-12">
             <div className="studio-section-heading">
               <div>
@@ -338,8 +332,8 @@ export function TheHarleyGroupPage() {
                   <span className="studio-muted text-ink-muted">operating companies.</span>
                 </h2>
               </div>
-              <p className="text-sm text-ink-muted font-sans max-w-md">
-                Uniting commercial client delivery with high-performance software engineering and structured R&D capabilities.
+              <p className="text-sm text-ink font-medium font-sans max-w-md">
+                Uniting commercial client delivery with high-performance software engineering and structured R&D capabilities based out of Bristol, UK.
               </p>
             </div>
 
@@ -347,7 +341,7 @@ export function TheHarleyGroupPage() {
               {VENTURES.map((venture) => (
                 <article
                   key={venture.number}
-                  className="rounded-3xl border border-ink/10 bg-white p-6 sm:p-10 shadow-xs transition-shadow hover:shadow-md"
+                  className="rounded-3xl border border-ink/15 bg-white p-6 sm:p-10 shadow-xs transition-shadow hover:shadow-md"
                 >
                   <div className="grid gap-8 lg:grid-cols-12 lg:items-center">
                     <div className="lg:col-span-6 space-y-5">
@@ -355,7 +349,7 @@ export function TheHarleyGroupPage() {
                         <span className="rounded-full bg-[#0D0D0D] px-3 py-1 font-mono text-[11px] font-bold uppercase tracking-wider text-[#C89D3C]">
                           {venture.number} / {venture.kicker}
                         </span>
-                        <span className="rounded-full bg-ink/5 px-2.5 py-0.5 font-mono text-[11px] text-ink-muted border border-ink/10">
+                        <span className="rounded-full bg-ink/5 px-2.5 py-0.5 font-mono text-[11px] text-ink font-semibold border border-ink/10">
                           {venture.status}
                         </span>
                       </div>
@@ -364,15 +358,15 @@ export function TheHarleyGroupPage() {
                         {venture.name}
                       </h3>
 
-                      <p className="text-base text-ink-muted leading-relaxed font-semibold">{venture.tagline}</p>
+                      <p className="text-base text-ink font-semibold leading-relaxed">{venture.tagline}</p>
 
-                      <p className="text-sm text-ink/80 leading-relaxed font-sans">{venture.description}</p>
+                      <p className="text-sm text-ink/90 leading-relaxed font-sans">{venture.description}</p>
 
                       <div className="flex flex-wrap gap-2 pt-2">
                         {venture.metrics.map((metric, i) => (
                           <span
                             key={i}
-                            className="bg-[#FAF9F6] border border-ink/10 px-3 py-1 rounded-lg text-xs font-mono font-semibold text-ink/80"
+                            className="bg-[#FAF9F6] border border-ink/15 px-3 py-1 rounded-lg text-xs font-mono font-bold text-ink"
                           >
                             ✓ {metric}
                           </span>
@@ -380,14 +374,14 @@ export function TheHarleyGroupPage() {
                       </div>
 
                       <div className="pt-3">
-                        <Link to={venture.to} className="studio-text-link inline-flex items-center gap-2 font-mono text-xs uppercase tracking-wider font-bold">
+                        <Link to={venture.to} className="studio-text-link inline-flex items-center gap-2 font-mono text-xs uppercase tracking-wider font-bold text-ink hover:text-[#C89D3C]">
                           {venture.ctaLabel} <ArrowUpRight size={17} />
                         </Link>
                       </div>
                     </div>
 
                     <div className="lg:col-span-6">
-                      <div className="relative rounded-2xl overflow-hidden border border-ink/10 shadow-md group">
+                      <div className="relative rounded-2xl overflow-hidden border border-ink/15 shadow-md group bg-black">
                         <img
                           src={venture.image}
                           alt={venture.name}
@@ -418,7 +412,7 @@ export function TheHarleyGroupPage() {
               <h2 id="philosophy-heading" className="text-3xl sm:text-4xl font-bold tracking-tight text-white font-display">
                 Long-term capital discipline & operational autonomy.
               </h2>
-              <p className="text-base text-white/70 leading-relaxed font-sans">
+              <p className="text-base text-white/80 leading-relaxed font-sans">
                 The Harley Group allocates capital with a multi-decade orientation. We prioritize sustainable unit economics, organic growth, and zero debt reliance over short-term expansion metrics.
               </p>
             </div>
@@ -429,7 +423,7 @@ export function TheHarleyGroupPage() {
                   01
                 </div>
                 <h3 className="text-xl font-bold font-display text-white">Self-Funded Organic Growth</h3>
-                <p className="text-sm text-white/70 leading-relaxed">
+                <p className="text-sm text-white/80 leading-relaxed">
                   Every operating venture is structured to achieve independent profitability, ensuring financial resilience and freedom from external venture capital pressures.
                 </p>
               </div>
@@ -439,7 +433,7 @@ export function TheHarleyGroupPage() {
                   02
                 </div>
                 <h3 className="text-xl font-bold font-display text-white">Continuous R&D Reinvestment</h3>
-                <p className="text-sm text-white/70 leading-relaxed">
+                <p className="text-sm text-white/80 leading-relaxed">
                   Group profits are systematically reinvested into proprietary software tools (Revenue OS, Domain OS) and edge infrastructure that improve client execution velocity.
                 </p>
               </div>
@@ -449,7 +443,7 @@ export function TheHarleyGroupPage() {
                   03
                 </div>
                 <h3 className="text-xl font-bold font-display text-white">Unified Group Governance</h3>
-                <p className="text-sm text-white/70 leading-relaxed">
+                <p className="text-sm text-white/80 leading-relaxed">
                   While operating divisions retain complete tactical autonomy, all entities adhere to strict group-wide standards for security, data privacy, and executive oversight.
                 </p>
               </div>
@@ -458,7 +452,7 @@ export function TheHarleyGroupPage() {
         </section>
 
         {/* Operating Principles / Core Values */}
-        <section className="studio-process studio-section py-20" id="operations" aria-labelledby="group-principles-heading">
+        <section className="studio-process studio-section py-20 bg-background" id="operations" aria-labelledby="group-principles-heading">
           <div className="studio-wrap space-y-12">
             <div className="studio-section-heading">
               <div>
@@ -475,15 +469,15 @@ export function TheHarleyGroupPage() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {OPERATING_PRINCIPLES.map((item) => (
-                <div key={item.number} className="p-8 rounded-2xl border border-ink/10 bg-[#FAF9F6] space-y-3">
+                <div key={item.number} className="p-8 rounded-2xl border border-ink/15 bg-white space-y-3 shadow-xs">
                   <div className="flex items-center justify-between">
                     <span className="font-mono text-xs font-bold text-[#C89D3C] uppercase tracking-wider">
                       PILLAR {item.number}
                     </span>
-                    <span className="font-mono text-xs text-ink-muted">HARLEY GROUP STANDARD</span>
+                    <span className="font-mono text-xs text-ink-muted font-semibold">HARLEY GROUP STANDARD</span>
                   </div>
                   <h3 className="text-2xl font-bold text-ink font-display">{item.title}</h3>
-                  <p className="text-sm text-ink/80 leading-relaxed font-sans">{item.copy}</p>
+                  <p className="text-sm text-ink/90 leading-relaxed font-sans">{item.copy}</p>
                 </div>
               ))}
             </div>
@@ -491,10 +485,10 @@ export function TheHarleyGroupPage() {
         </section>
 
         {/* Corporate Governance & Registration Table */}
-        <section className="studio-purpose studio-section bg-[#FAF9F6] py-20 border-y border-ink/10" id="governance" aria-labelledby="gov-heading">
+        <section className="studio-purpose studio-section bg-[#FAF9F6] py-20 border-y border-ink/15" id="governance" aria-labelledby="gov-heading">
           <div className="studio-wrap grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             <div className="lg:col-span-5 space-y-6">
-              <div className="rounded-2xl overflow-hidden border border-ink/10 shadow-md">
+              <div className="rounded-2xl overflow-hidden border border-ink/15 shadow-md">
                 <img
                   src="/images/home/interior.jpg"
                   alt="Structured architectural governance representation"
@@ -504,8 +498,8 @@ export function TheHarleyGroupPage() {
                   className="w-full h-auto object-cover max-h-[380px]"
                 />
               </div>
-              <div className="p-4 bg-white rounded-xl border border-ink/10 flex items-center justify-between text-xs font-mono text-ink-muted">
-                <span>STRUCTURED GOVERNANCE RECORD</span>
+              <div className="p-4 bg-white rounded-xl border border-ink/15 flex items-center justify-between text-xs font-mono text-ink shadow-xs">
+                <span className="font-bold">STRUCTURED GOVERNANCE RECORD</span>
                 <ShieldCheck size={18} className="text-[#C89D3C]" />
               </div>
             </div>
@@ -522,7 +516,7 @@ export function TheHarleyGroupPage() {
                 </h2>
               </div>
 
-              <div className="bg-white rounded-2xl border border-ink/10 p-6 space-y-1 shadow-xs divide-y divide-ink/10">
+              <div className="bg-white rounded-2xl border border-ink/15 p-6 space-y-1 shadow-xs divide-y divide-ink/10">
                 {GOVERNANCE_RECORDS.map((rec) => (
                   <div key={rec.label} className="py-3 flex flex-col sm:flex-row sm:justify-between sm:items-center text-sm gap-1">
                     <span className="font-mono text-xs font-bold text-ink-muted uppercase tracking-wider">
@@ -537,7 +531,7 @@ export function TheHarleyGroupPage() {
         </section>
 
         {/* Group Announcements / Latest Updates */}
-        <section className="studio-section py-20" id="news" aria-labelledby="news-heading">
+        <section className="studio-section py-20 bg-background" id="news" aria-labelledby="news-heading">
           <div className="studio-wrap space-y-12">
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
               <div>
@@ -548,21 +542,21 @@ export function TheHarleyGroupPage() {
                   Latest group developments.
                 </h2>
               </div>
-              <span className="font-mono text-xs text-ink-muted">OFFICIAL ANNOUNCEMENTS</span>
+              <span className="font-mono text-xs text-ink-muted font-bold">OFFICIAL ANNOUNCEMENTS</span>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {ANNOUNCEMENTS.map((item, idx) => (
-                <article key={idx} className="p-6 rounded-2xl bg-[#FAF9F6] border border-ink/10 space-y-3 flex flex-col justify-between">
+                <article key={idx} className="p-6 rounded-2xl bg-white border border-ink/15 shadow-xs space-y-3 flex flex-col justify-between">
                   <div className="space-y-3">
                     <div className="flex items-center justify-between text-[11px] font-mono font-bold text-[#C89D3C]">
                       <span>{item.category}</span>
                       <span className="text-ink-muted">{item.date}</span>
                     </div>
                     <h3 className="text-lg font-bold text-ink font-display leading-snug">{item.title}</h3>
-                    <p className="text-xs text-ink/70 leading-relaxed font-sans">{item.summary}</p>
+                    <p className="text-xs text-ink/80 leading-relaxed font-sans">{item.summary}</p>
                   </div>
-                  <div className="pt-4 border-t border-ink/10 flex items-center text-xs font-mono text-ink font-semibold">
+                  <div className="pt-4 border-t border-ink/10 flex items-center text-xs font-mono text-ink font-bold">
                     <span>Group Release</span>
                   </div>
                 </article>
@@ -583,10 +577,10 @@ export function TheHarleyGroupPage() {
                 <br />
                 <span className="text-[#C89D3C]">partnership or brief.</span>
               </h2>
-              <p className="text-sm text-white/70 leading-relaxed">
-                Direct enquiries regarding corporate governance, commercial services across Harley Digital Works, or technology R&D partnerships with Harley Labs.
+              <p className="text-sm text-white/80 leading-relaxed">
+                Direct enquiries regarding corporate governance, commercial services across Harley Digital Works, or technology R&D partnerships with Harley Labs in Bristol, UK.
               </p>
-              <div className="space-y-3 text-xs font-mono text-white/60">
+              <div className="space-y-3 text-xs font-mono text-white/70">
                 <div className="flex items-center gap-2">
                   <CheckCircle2 size={16} className="text-[#C89D3C]" /> Direct access to executive management
                 </div>
@@ -686,9 +680,6 @@ export function TheHarleyGroupPage() {
             </div>
           </div>
         </section>
-
-        {/* Custom Corporate Footer */}
-        <HarleyGroupFooter />
       </div>
     </PageShell>
   );
