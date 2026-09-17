@@ -9,29 +9,39 @@ const COLUMNS = [
   {
     heading: "Websites & Care",
     links: [
-      { label: "Launch Website (£1,495)", to: "/services/launch-plan" },
+      { label: "14-Day Launch (£1,495)", to: "/services/launch-plan" },
       { label: "Growth Website (£2,995)", to: "/services/web-design-development" },
-      { label: "Pro Custom Platforms", to: "/services/digital-products" },
-      { label: "Managed Care Plans", to: "/services/care-plans" },
-      { label: "All Packages", to: "/services" },
+      { label: "Pro Platforms (£4,995)", to: "/services/digital-products" },
+      { label: "Managed Care (£95/mo)", to: "/services/care-plans" },
+      { label: "All Pricing Packages", to: "/services" },
     ],
   },
   {
-    heading: "Popular Trades",
+    heading: "Demos & Free Tools",
     links: [
       { label: "Live Trade Demos", to: "/demos" },
-      { label: "Electricians & Solar", to: "/work" },
-      { label: "Plumbers & Heating", to: "/work" },
-      { label: "Roofers & Builders", to: "/work" },
-      { label: "Free Website Check", to: "/audit" },
+      { label: "Trade ROI Calculator", to: "/calculator" },
+      { label: "Local SEO Inspector", to: "/tools/seo-inspector" },
+      { label: "Google Review Booster", to: "/tools/review-booster" },
+      { label: "Free Website Audit", to: "/audit" },
     ],
   },
   {
-    heading: "Company",
+    heading: "Client Portals",
+    links: [
+      { label: "Fast-Track Onboarding", to: "/onboarding" },
+      { label: "14-Day Build Tracker", to: "/track" },
+      { label: "Care Plan Update Desk", to: "/care-desk" },
+      { label: "Selected Work & Results", to: "/work" },
+      { label: "Free Trade Resources", to: "/resources" },
+    ],
+  },
+  {
+    heading: "Company & Regions",
     links: [
       { label: "About Us", to: "/about" },
-      { label: "Our Work", to: "/work" },
-      { label: "Track Your Build", to: "/track" },
+      { label: "UK Regional Hubs", to: "/locations" },
+      { label: "Trade Domains Store", to: "/domains" },
       { label: "Get a Free Quote", to: "/contact" },
       { label: "Privacy Policy", to: "/privacy" },
     ],
@@ -42,9 +52,9 @@ export function FooterDark() {
   return (
     <footer className="bg-footer text-background">
       <div className="mx-auto max-w-[1240px] px-6 py-16 md:px-10 md:py-24">
-        <div className="grid gap-12 md:grid-cols-12 md:gap-10">
-          <div className="md:col-span-5">
-            <p className="max-w-sm text-[16px] leading-relaxed text-background/80">
+        <div className="grid gap-8 lg:grid-cols-12 md:gap-8">
+          <div className="lg:col-span-4">
+            <p className="max-w-sm text-[15px] leading-relaxed text-background/80">
               <strong className="text-white">
                 You run your business. We’ll handle your website.
               </strong>
@@ -58,15 +68,15 @@ export function FooterDark() {
               </PillButton>
             </div>
 
-            <div className="mt-12 flex items-center">
+            <div className="mt-8 flex items-center">
               <BrandLogo variant="light" imageClassName="h-6 w-auto" />
             </div>
           </div>
 
           {COLUMNS.map((col) => (
-            <div key={col.heading} className="md:col-span-2">
-              <h4 className="text-[15px] font-medium text-background">{col.heading}</h4>
-              <ul className="mt-5 space-y-3 text-[14px] text-background/60">
+            <div key={col.heading} className="lg:col-span-2 sm:col-span-6">
+              <h4 className="text-[14px] font-semibold text-background">{col.heading}</h4>
+              <ul className="mt-4 space-y-2.5 text-[13px] text-background/60">
                 {col.links.map((l) => (
                   <li key={l.label}>
                     <Link to={l.to} className="transition-colors hover:text-background">
@@ -77,21 +87,6 @@ export function FooterDark() {
               </ul>
             </div>
           ))}
-
-          <div className="md:col-span-1">
-            <h4 className="text-[15px] font-medium text-background">Direct</h4>
-            <ul className="mt-5 space-y-3 text-[14px] text-background/60">
-              <li>
-                <a
-                  href={`mailto:${siteConfig.contactEmail}`}
-                  className="break-all hover:text-background"
-                >
-                  {siteConfig.contactEmail}
-                </a>
-              </li>
-              <li className="text-xs text-background/40">UK Support (Mon–Fri)</li>
-            </ul>
-          </div>
         </div>
       </div>
 
