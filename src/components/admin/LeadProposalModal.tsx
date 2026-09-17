@@ -1,6 +1,8 @@
 import { useState, useMemo } from "react";
-import { X, Printer, Copy, Check, FileText, Send, Sparkles, ShieldCheck } from "lucide-react";
+import { X, Printer, Copy, Check, FileText, Send, Sparkles, ShieldCheck, Mail, Loader2 } from "lucide-react";
+import { useServerFn } from "@tanstack/react-start";
 import { toast } from "sonner";
+import { dispatchTransactionalEmail } from "@/lib/email-dispatch.functions";
 import type { Database } from "@/integrations/supabase/types";
 
 type LeadRow = Database["public"]["Tables"]["leads"]["Row"];
@@ -11,9 +13,11 @@ interface LeadProposalModalProps {
 }
 
 export function LeadProposalModal({ lead, onClose }: LeadProposalModalProps) {
+  const dispatchEmailFn = useServerFn(dispatchTransactionalEmail);
   const [selectedTier, setSelectedTier] = useState<"launch" | "growth" | "pro">("launch");
   const [carePlan, setCarePlan] = useState<"standard" | "priority" | "none">("standard");
   const [copied, setCopied] = useState(false);
+  const [isSendingEmail, setIsSendingEmail] = useState(false);
 
   const tierDetails = {
     launch: {
@@ -82,6 +86,39 @@ Would you like us to provision your build slot for this month?`;
     setTimeout(() => setCopied(false), 2500);
   };
 
+  const handleSendEmail = async () => {
+    if (!lead.email) {
+      toast.error("No email address found for this lead.");
+      return;
+    }
+
+    setIsSendingEmail(true);
+    try {
+      const res = await dispatchEmailFn({
+        data: {
+          recipientEmail: lead.email,
+          recipientName: lead.name,
+          companyName: lead.company || lead.name,
+          subject: `Website Proposal for ${lead.company || lead.name} - Harley Digital Works`,
+          templateType: "proposal",
+          plainTextBody: whatsappMessage,
+          referenceId: lead.id,
+        },
+      });
+
+      if (res.delivered) {
+        toast.success(`Proposal email sent directly to ${lead.email}`);
+      } else {
+        toast.info("Opening email client draft with pre-formatted proposal...");
+        window.location.href = res.mailtoUrl;
+      }
+    } catch (err: any) {
+      toast.error(err.message || "Failed to dispatch email");
+    } finally {
+      setIsSendingEmail(false);
+    }
+  };
+
   const handlePrint = () => {
     window.print();
   };
@@ -119,74 +156,95 @@ Would you like us to provision your build slot for this month?`;
               Website Package Tier:
             </label>
             <div className="grid grid-cols-3 gap-2">
-              {(["launch", "growth", "pro"] as const).map((tier) => (
-                <button
-                  key={tier}
-                  type="button"
-                  onClick={() => setSelectedTier(tier)}
-                  className={`py-2 px-3 rounded-xl text-xs font-semibold capitalize transition-all ${
-                    selectedTier === tier
-                      ? "bg-gold-500 text-neutral-950 shadow-md font-bold"
-                      : "bg-neutral-950 border border-neutral-800 text-neutral-400 hover:text-white"
-                  }`}
-                >
-                  {tier}
-                </button>
-              ))}
+              <button
+                type="button"
+                onClick={() => setSelectedTier("launch")}
+                className={`p-2.5 rounded-xl text-xs font-medium transition-all ${
+                  selectedTier === "launch"
+                    ? "bg-gold-500 text-neutral-950 font-bold shadow-sm"
+                    : "bg-neutral-950 border border-neutral-800 text-neutral-400 hover:text-white"
+                }`}
+              >
+                Launch (£1,495)
+              </button>
+              <button
+                type="button"
+                onClick={() => setSelectedTier("growth")}
+                className={`p-2.5 rounded-xl text-xs font-medium transition-all ${
+                  selectedTier === "growth"
+                    ? "bg-gold-500 text-neutral-950 font-bold shadow-sm"
+                    : "bg-neutral-950 border border-neutral-800 text-neutral-400 hover:text-white"
+                }`}
+              >
+                Growth (£2,995)
+              </button>
+              <button
+                type="button"
+                onClick={() => setSelectedTier("pro")}
+                className={`p-2.5 rounded-xl text-xs font-medium transition-all ${
+                  selectedTier === "pro"
+                    ? "bg-gold-500 text-neutral-950 font-bold shadow-sm"
+                    : "bg-neutral-950 border border-neutral-800 text-neutral-400 hover:text-white"
+                }`}
+              >
+                Pro (£4,995)
+              </button>
             </div>
           </div>
 
           {/* Care Plan Selection */}
           <div>
             <label className="block text-xs font-semibold text-neutral-300 uppercase tracking-wider mb-2">
-              Ongoing Care Plan:
+              Monthly Managed Care Plan:
             </label>
             <div className="grid grid-cols-3 gap-2">
               <button
                 type="button"
                 onClick={() => setCarePlan("standard")}
-                className={`py-2 px-2 rounded-xl text-xs font-medium transition-all ${
+                className={`p-2.5 rounded-xl text-xs font-medium transition-all ${
                   carePlan === "standard"
-                    ? "bg-gold-500 text-neutral-950 font-bold"
+                    ? "bg-gold-500 text-neutral-950 font-bold shadow-sm"
                     : "bg-neutral-950 border border-neutral-800 text-neutral-400 hover:text-white"
                 }`}
               >
-                Standard (£95/mo)
+                Launch (£95/mo)
               </button>
               <button
                 type="button"
                 onClick={() => setCarePlan("priority")}
-                className={`py-2 px-2 rounded-xl text-xs font-medium transition-all ${
+                className={`p-2.5 rounded-xl text-xs font-medium transition-all ${
                   carePlan === "priority"
-                    ? "bg-gold-500 text-neutral-950 font-bold"
+                    ? "bg-gold-500 text-neutral-950 font-bold shadow-sm"
                     : "bg-neutral-950 border border-neutral-800 text-neutral-400 hover:text-white"
                 }`}
               >
-                Priority (£195/mo)
+                Growth (£195/mo)
               </button>
               <button
                 type="button"
                 onClick={() => setCarePlan("none")}
-                className={`py-2 px-2 rounded-xl text-xs font-medium transition-all ${
+                className={`p-2.5 rounded-xl text-xs font-medium transition-all ${
                   carePlan === "none"
-                    ? "bg-neutral-800 text-white font-bold"
-                    : "bg-neutral-950 border border-neutral-800 text-neutral-500 hover:text-white"
+                    ? "bg-gold-500 text-neutral-950 font-bold shadow-sm"
+                    : "bg-neutral-950 border border-neutral-800 text-neutral-400 hover:text-white"
                 }`}
               >
-                None
+                None (£0)
               </button>
             </div>
           </div>
         </div>
 
-        {/* Live Proposal Summary Card */}
-        <div className="rounded-2xl border border-gold-500/30 bg-neutral-950/80 p-5 md:p-6 mb-6">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-neutral-800 pb-4 mb-4">
+        {/* Printable/Formatted Proposal Document */}
+        <div className="rounded-2xl border border-neutral-800 bg-neutral-950 p-6 mb-6 shadow-inner font-sans">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-neutral-800 pb-4 mb-4">
             <div>
-              <div className="text-xs text-gold-400 font-semibold uppercase">Proposed Package</div>
-              <div className="text-xl font-bold text-white">{tierDetails.name}</div>
+              <div className="text-xs text-gold-400 font-semibold tracking-wider uppercase">
+                Fixed-Scope Investment
+              </div>
+              <h3 className="text-lg font-bold text-white mt-0.5">{tierDetails.name}</h3>
             </div>
-            <div className="text-right">
+            <div className="sm:text-right">
               <div className="text-2xl font-extrabold text-white">
                 £{tierDetails.price.toLocaleString()}
                 <span className="text-xs text-neutral-400 font-normal"> + VAT</span>
@@ -227,22 +285,37 @@ Would you like us to provision your build slot for this month?`;
             className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl border border-neutral-700 bg-neutral-800 hover:bg-neutral-700 px-4 py-2.5 text-xs font-semibold text-white transition-all"
           >
             <Printer className="h-4 w-4" />
-            <span>Print / Save PDF</span>
+            <span>Print / PDF</span>
           </button>
 
-          <div className="flex items-center gap-2 w-full sm:w-auto">
+          <div className="flex flex-wrap items-center gap-2 w-full sm:w-auto">
+            <button
+              type="button"
+              onClick={handleSendEmail}
+              disabled={isSendingEmail}
+              className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 rounded-xl bg-blue-600 hover:bg-blue-500 disabled:opacity-50 px-4 py-2.5 text-xs font-bold text-white transition-all shadow-md"
+            >
+              {isSendingEmail ? (
+                <Loader2 className="h-4 w-4 animate-spin" />
+              ) : (
+                <Mail className="h-4 w-4" />
+              )}
+              <span>{isSendingEmail ? "Sending…" : "Email Proposal"}</span>
+            </button>
+
             <button
               type="button"
               onClick={handleCopyWhatsApp}
-              className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 px-5 py-2.5 text-xs font-bold text-white transition-all shadow-md"
+              className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 px-4 py-2.5 text-xs font-bold text-white transition-all shadow-md"
             >
               {copied ? <Check className="h-4 w-4" /> : <Send className="h-4 w-4" />}
-              <span>{copied ? "Copied!" : "Copy WhatsApp Pitch"}</span>
+              <span>{copied ? "Copied!" : "WhatsApp Pitch"}</span>
             </button>
+
             <button
               type="button"
               onClick={onClose}
-              className="rounded-xl border border-neutral-800 px-4 py-2.5 text-xs font-medium text-neutral-400 hover:text-white"
+              className="rounded-xl border border-neutral-800 px-3.5 py-2.5 text-xs font-medium text-neutral-400 hover:text-white"
             >
               Close
             </button>

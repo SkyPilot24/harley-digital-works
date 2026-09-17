@@ -4,6 +4,8 @@ import { PageShell, Container } from "@/components/site/PageShell";
 import { PillButton } from "@/components/site/PillButton";
 import { TagChip } from "@/components/site/TagChip";
 import { TradeDemoViewer } from "@/components/demos/TradeDemoViewer";
+import { TradeGoogleReviewsWidget } from "@/components/site/TradeGoogleReviewsWidget";
+import { WebsitePackagesSection } from "@/components/site/WebsitePackagesSection";
 import { CheckCircle2, ShieldCheck, Zap, Sparkles, Clock, PhoneCall } from "lucide-react";
 
 const demosSearchSchema = z.object({
@@ -122,6 +124,12 @@ function TradeDemosPage() {
           </div>
         </Container>
       </section>
+
+      {/* Verified Trade Reviews */}
+      <TradeGoogleReviewsWidget
+        title="Verified Reviews from UK Contractors"
+        subtitle="See how real trade businesses across Manchester, Birmingham, Leeds, and London grow their monthly revenue."
+      />
     </PageShell>
   );
 }

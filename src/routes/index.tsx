@@ -17,6 +17,7 @@ import { PageShell, Container } from "@/components/site/PageShell";
 import { PillButton } from "@/components/site/PillButton";
 import { WebsitePackagesSection } from "@/components/site/WebsitePackagesSection";
 import { TradeRoiCalculator } from "@/components/site/TradeRoiCalculator";
+import { TradeGoogleReviewsWidget } from "@/components/site/TradeGoogleReviewsWidget";
 import {
   Accordion,
   AccordionContent,
@@ -503,6 +504,9 @@ function HomePage() {
           <TradeRoiCalculator />
         </Container>
       </section>
+
+      {/* Verified Google Trade Reviews & Social Proof */}
+      <TradeGoogleReviewsWidget />
 
       {/* FAQ Section */}
       <section className="py-20 md:py-28 bg-white border-t border-ink/10">

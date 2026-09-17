@@ -21,8 +21,10 @@ import {
   Sparkles,
   Search,
   CheckCircle2,
+  Receipt,
 } from "lucide-react";
 import { PageHeader, StatusBadge } from "./admin.index";
+import { ClientInvoiceModal } from "@/components/admin/ClientInvoiceModal";
 
 type ClientRow = Database["public"]["Tables"]["clients"]["Row"];
 type ClientStatus = Database["public"]["Enums"]["client_status"];
@@ -39,6 +41,7 @@ function ClientsPage() {
   const [searchTerm, setSearchTerm] = useState("");
   const [client360, setClient360] = useState<ClientRow | null>(null);
   const [editingClient, setEditingClient] = useState<Partial<ClientRow> | null>(null);
+  const [invoicingClient, setInvoicingClient] = useState<ClientRow | null>(null);
   const [isCreatingClient, setIsCreatingClient] = useState(false);
   const [isAddingProject, setIsAddingProject] = useState(false);
 
@@ -400,6 +403,17 @@ function ClientsPage() {
                         )}
                       </button>
                       <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setInvoicingClient(client);
+                        }}
+                        className="inline-flex items-center gap-1 rounded-md bg-emerald-50 px-2 py-1 text-xs font-medium text-emerald-700 hover:bg-emerald-100"
+                        title="Create VAT Invoice or Deposit Receipt"
+                      >
+                        <Receipt size={13} />
+                        <span>Invoice</span>
+                      </button>
+                      <button
                         onClick={() => setEditingClient(client)}
                         className="rounded-md p-1.5 text-ink/60 hover:bg-ink/[0.05] hover:text-ink"
                         title="Edit Client"
@@ -462,15 +476,24 @@ function ClientsPage() {
                   </a>
                 )}
               </div>
-              <button
-                onClick={() => {
-                  setClient360(null);
-                  setIsAddingProject(false);
-                }}
-                className="rounded-md p-2 text-ink/60 hover:bg-ink/[0.05]"
-              >
-                <X size={18} />
-              </button>
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={() => setInvoicingClient(client360)}
+                  className="inline-flex items-center gap-1.5 rounded-lg border border-emerald-300 bg-emerald-50 px-3 py-1.5 text-xs font-semibold text-emerald-800 hover:bg-emerald-100"
+                >
+                  <Receipt size={14} />
+                  <span>VAT Invoice</span>
+                </button>
+                <button
+                  onClick={() => {
+                    setClient360(null);
+                    setIsAddingProject(false);
+                  }}
+                  className="rounded-md p-2 text-ink/60 hover:bg-ink/[0.05]"
+                >
+                  <X size={18} />
+                </button>
+              </div>
             </div>
 
             <div className="mt-6 space-y-6">
@@ -949,6 +972,14 @@ function ClientsPage() {
             </form>
           </div>
         </div>
+      )}
+
+      {/* Client VAT Invoice Modal */}
+      {invoicingClient && (
+        <ClientInvoiceModal
+          client={invoicingClient}
+          onClose={() => setInvoicingClient(null)}
+        />
       )}
     </div>
   );

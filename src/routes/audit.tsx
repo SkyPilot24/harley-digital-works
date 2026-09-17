@@ -303,15 +303,45 @@ function WebsiteHealthCheckPage() {
                   </p>
                 </div>
 
-                <div className="flex items-center gap-4 rounded-2xl bg-ink p-6 text-white">
-                  <div className="text-center">
-                    <div className="text-4xl font-bold tracking-tight text-primary">
-                      {auditResult.overallScore}
-                      <span className="text-lg font-normal text-white/50">/100</span>
+                <div className="flex flex-col sm:flex-row items-center gap-3">
+                  <div className="flex items-center gap-4 rounded-2xl bg-ink p-6 text-white w-full sm:w-auto">
+                    <div className="text-center">
+                      <div className="text-4xl font-bold tracking-tight text-primary">
+                        {auditResult.overallScore}
+                        <span className="text-lg font-normal text-white/50">/100</span>
+                      </div>
+                      <div className="mt-1 font-mono text-[11px] uppercase tracking-wider text-white/70">
+                        Overall Health
+                      </div>
                     </div>
-                    <div className="mt-1 font-mono text-[11px] uppercase tracking-wider text-white/70">
-                      Overall Health
-                    </div>
+                  </div>
+
+                  <div className="flex flex-col gap-2 w-full sm:w-auto">
+                    <button
+                      type="button"
+                      onClick={() => window.print()}
+                      className="inline-flex items-center justify-center gap-2 rounded-xl bg-ink hover:bg-ink/90 text-white font-semibold text-xs px-4 py-2.5 transition-all shadow-sm"
+                    >
+                      <span>🖨️ Print / Save PDF Report</span>
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        const summary = `*Website Health Audit for ${auditResult.url}:*
+• Overall Score: *${auditResult.overallScore}/100*
+• Mobile Speed: ${auditResult.categories[0].score}%
+• Local SEO & Schema: ${auditResult.categories[2].score}% (Missing Schema.org LocalBusiness markup)
+• Conversion Friction: Missing instant click-to-WhatsApp quote tool
+
+Harley Digital Works fixes all 4 areas with our 14-Day Done-For-You website build (£1,495).
+Full breakdown: https://harleydigitalworks.com/audit`;
+                        navigator.clipboard.writeText(summary);
+                        toast.success("Audit WhatsApp summary copied to clipboard!");
+                      }}
+                      className="inline-flex items-center justify-center gap-2 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-semibold text-xs px-4 py-2.5 transition-all shadow-sm"
+                    >
+                      <span>📲 Copy WhatsApp Summary</span>
+                    </button>
                   </div>
                 </div>
               </div>

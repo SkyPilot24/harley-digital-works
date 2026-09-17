@@ -4,6 +4,7 @@ import { PageShell, Container } from "@/components/site/PageShell";
 import { PillButton } from "@/components/site/PillButton";
 import { WebsitePackagesSection } from "@/components/site/WebsitePackagesSection";
 import { TradeRoiCalculator } from "@/components/site/TradeRoiCalculator";
+import { TradeGoogleReviewsWidget } from "@/components/site/TradeGoogleReviewsWidget";
 
 export const Route = createFileRoute("/services")({
   head: () => ({
@@ -125,6 +126,9 @@ function Page() {
           <TradeRoiCalculator />
         </Container>
       </section>
+
+      {/* Verified Trade Reviews */}
+      <TradeGoogleReviewsWidget />
 
       <section className="bg-ink py-20 text-background">
         <Container>

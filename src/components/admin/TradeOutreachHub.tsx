@@ -1,8 +1,10 @@
 import { useState } from "react";
-import { Send, Copy, Check, ExternalLink, Sparkles, UserPlus, Phone, MapPin, Zap, Building } from "lucide-react";
+import { Send, Copy, Check, ExternalLink, Sparkles, UserPlus, Phone, MapPin, Zap, Building, Mail, Loader2 } from "lucide-react";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 import { useQueryClient } from "@tanstack/react-query";
+import { useServerFn } from "@tanstack/react-start";
+import { dispatchTransactionalEmail } from "@/lib/email-dispatch.functions";
 
 interface Prospect {
   id: string;
@@ -152,6 +154,40 @@ Lead Web Producer | Harley Digital Works
     setCopiedType(type);
     toast.success(`Copied ${type} to clipboard!`);
     setTimeout(() => setCopiedType(null), 2500);
+  };
+
+  const dispatchEmailFn = useServerFn(dispatchTransactionalEmail);
+  const [isSendingEmail, setIsSendingEmail] = useState(false);
+
+  const handleSendOutreachEmail = async (p: Prospect) => {
+    setIsSendingEmail(true);
+    try {
+      const emailSubject = `New trade website prototype built for ${p.company}`;
+      const emailBody = generateEmailScript(p);
+
+      const res = await dispatchEmailFn({
+        data: {
+          recipientEmail: p.email,
+          recipientName: p.contact,
+          companyName: p.company,
+          subject: emailSubject,
+          templateType: "outreach",
+          plainTextBody: emailBody,
+          referenceId: p.id,
+        },
+      });
+
+      if (res.delivered) {
+        toast.success(`Outreach pitch sent to ${p.email}!`);
+      } else {
+        toast.info("Opening email client draft with trade demo pitch...");
+        window.location.href = res.mailtoUrl;
+      }
+    } catch (err: any) {
+      toast.error(err.message || "Failed to dispatch outreach email");
+    } finally {
+      setIsSendingEmail(false);
+    }
   };
 
   const handlePushToLeads = async (p: Prospect) => {
@@ -322,12 +358,23 @@ Lead Web Producer | Harley Digital Works
 
           <div className="mt-3 flex items-center justify-between text-[11px] text-ink-muted pt-2 border-t border-ink/10">
             <span>To: {selectedProspect.email}</span>
-            <a
-              href={`mailto:${selectedProspect.email}?subject=${encodeURIComponent(`New website demo prototype for ${selectedProspect.company}`)}&body=${encodeURIComponent(generateEmailScript(selectedProspect))}`}
-              className="font-bold text-ink underline hover:text-primary inline-flex items-center gap-1"
-            >
-              Open in Mail App <ExternalLink size={10} />
-            </a>
+            <div className="flex items-center gap-2">
+              <button
+                type="button"
+                onClick={() => handleSendOutreachEmail(selectedProspect)}
+                disabled={isSendingEmail}
+                className="font-semibold text-xs text-blue-600 hover:text-blue-700 bg-blue-50 hover:bg-blue-100 px-2.5 py-1 rounded-lg inline-flex items-center gap-1.5 transition-colors disabled:opacity-50"
+              >
+                {isSendingEmail ? <Loader2 size={12} className="animate-spin" /> : <Mail size={12} />}
+                <span>{isSendingEmail ? "Sending…" : "Send Pitch Email"}</span>
+              </button>
+              <a
+                href={`mailto:${selectedProspect.email}?subject=${encodeURIComponent(`New website demo prototype for ${selectedProspect.company}`)}&body=${encodeURIComponent(generateEmailScript(selectedProspect))}`}
+                className="font-bold text-ink underline hover:text-primary inline-flex items-center gap-1"
+              >
+                Draft in Mail <ExternalLink size={10} />
+              </a>
+            </div>
           </div>
         </div>
       </div>
