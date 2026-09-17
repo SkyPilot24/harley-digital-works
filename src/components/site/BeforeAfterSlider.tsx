@@ -123,9 +123,79 @@ export function BeforeAfterSlider() {
         onTouchMove={handleTouchMove}
       >
         {/* ============================================================ */}
-        {/* AFTER: THE HARLEY STANDARD (Full-Bleed Image & Studio Typography) */}
+        {/* BEFORE: DATED DIY TEMPLATE (Base Layer) */}
         {/* ============================================================ */}
-        <div className="absolute inset-0 flex flex-col justify-between overflow-hidden">
+        <div className="absolute inset-0 bg-[#0c1829] flex flex-col justify-between overflow-hidden text-slate-300">
+          {/* Outdated DIY Browser Bar */}
+          <div className="p-4 sm:p-5 bg-[#08101a] border-b border-slate-700/80 flex items-center justify-between text-xs font-sans">
+            <div className="flex items-center gap-2">
+              <span className="w-2.5 h-2.5 rounded-full bg-red-500" />
+              <span className="font-bold text-red-400 font-mono text-[11px]">
+                ⚠ HTTP://MY-FREE-WIX-SITE.COM/{current.name.toLowerCase().replace(/\s+/g, "-")}
+              </span>
+            </div>
+            <span className="text-[10px] font-mono text-amber-300 bg-amber-950/80 px-2 py-0.5 rounded border border-amber-700">
+              TEMPLATE EXPIRED
+            </span>
+          </div>
+
+          {/* Dated Cluttered Header */}
+          <div className="bg-[#132238] px-4 sm:px-8 py-2 border-b border-slate-700 text-[11px] flex flex-wrap justify-between items-center text-slate-400 font-mono">
+            <span>HOME | ABOUT | SERVICES | GALLERY | REVIEWS | CONTACT</span>
+            <span className="text-yellow-400 font-bold">CALL NOW: 07890 123456</span>
+          </div>
+
+          {/* Body with Cluttered DIY Aesthetics */}
+          <div className="p-6 sm:p-12 max-w-2xl space-y-4 my-auto">
+            <div className="inline-block bg-red-600 text-white font-black text-xs px-3 py-1 uppercase tracking-wider rounded-none shadow-md">
+              ★★★ 100% QUALITY GUARANTEED - NO JOB TOO SMALL ★★★
+            </div>
+
+            <h4 className="text-2xl sm:text-4xl font-black text-white uppercase tracking-tight font-sans">
+              {current.diyTitle}
+            </h4>
+
+            <div className="bg-yellow-400 text-black font-bold text-xs sm:text-sm p-3 border-2 border-dashed border-red-600">
+              {current.diyPitch}
+            </div>
+
+            <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-sans">
+              Welcome to our website! We have over 15 years experience in the local area. Please download
+              our 8-page PDF brochure or fill out the 14-field enquiry questionnaire below and our office
+              will call you back within 3-5 business days.
+            </p>
+
+            <div className="pt-2 flex flex-wrap gap-2">
+              <button
+                type="button"
+                className="bg-gradient-to-r from-orange-500 to-amber-500 text-white font-extrabold text-xs px-5 py-2.5 uppercase border-2 border-white shadow-lg cursor-pointer"
+              >
+                👉 CLICK HERE TO ENQUIRE NOW 👈
+              </button>
+              <div className="text-[11px] text-red-400 font-mono flex items-center gap-1">
+                <AlertTriangle size={13} /> High mobile bounce rate (80%+)
+              </div>
+            </div>
+          </div>
+
+          {/* Outdated Footer Bar */}
+          <div className="p-4 sm:p-6 bg-[#08101a] border-t border-slate-700 flex items-center justify-between text-xs font-mono text-red-400">
+            <span className="font-bold tracking-wider">
+              BEFORE: DATED DIY BUILD · LOSS OF COMMERCIAL CLIENTS
+            </span>
+            <span className="hidden sm:inline text-slate-500">
+              CLUTTERED · NO ACCREDITATIONS · AMATEUR FINISH
+            </span>
+          </div>
+        </div>
+
+        {/* ============================================================ */}
+        {/* AFTER: THE HARLEY STANDARD (Top Layer Clipped by Slider) */}
+        {/* ============================================================ */}
+        <div
+          className="absolute inset-0 flex flex-col justify-between overflow-hidden"
+          style={{ clipPath: `polygon(0 0, ${sliderPosition}% 0, ${sliderPosition}% 100%, 0 100%)` }}
+        >
           {/* Background Photography with Subtle Gradient Scrim */}
           <img
             src={current.image}
@@ -195,76 +265,6 @@ export function BeforeAfterSlider() {
         </div>
 
         {/* ============================================================ */}
-        {/* BEFORE: DATED DIY TEMPLATE (Clipped by Slider) */}
-        {/* ============================================================ */}
-        <div
-          className="absolute inset-0 bg-[#0c1829] flex flex-col justify-between overflow-hidden text-slate-300"
-          style={{ clipPath: `polygon(0 0, ${sliderPosition}% 0, ${sliderPosition}% 100%, 0 100%)` }}
-        >
-          {/* Outdated DIY Browser Bar */}
-          <div className="p-4 sm:p-5 bg-[#08101a] border-b border-slate-700/80 flex items-center justify-between text-xs font-sans">
-            <div className="flex items-center gap-2">
-              <span className="w-2.5 h-2.5 rounded-full bg-red-500" />
-              <span className="font-bold text-red-400 font-mono text-[11px]">
-                ⚠ HTTP://MY-FREE-WIX-SITE.COM/{current.name.toLowerCase().replace(/\s+/g, "-")}
-              </span>
-            </div>
-            <span className="text-[10px] font-mono text-amber-300 bg-amber-950/80 px-2 py-0.5 rounded border border-amber-700">
-              TEMPLATE EXPIRED
-            </span>
-          </div>
-
-          {/* Dated Cluttered Header */}
-          <div className="bg-[#132238] px-4 sm:px-8 py-2 border-b border-slate-700 text-[11px] flex flex-wrap justify-between items-center text-slate-400 font-mono">
-            <span>HOME | ABOUT | SERVICES | GALLERY | REVIEWS | CONTACT</span>
-            <span className="text-yellow-400 font-bold">CALL NOW: 07890 123456</span>
-          </div>
-
-          {/* Body with Cluttered DIY Aesthetics */}
-          <div className="p-6 sm:p-12 max-w-2xl space-y-4 my-auto">
-            <div className="inline-block bg-red-600 text-white font-black text-xs px-3 py-1 uppercase tracking-wider rounded-none shadow-md">
-              ★★★ 100% QUALITY GUARANTEED - NO JOB TOO SMALL ★★★
-            </div>
-
-            <h4 className="text-2xl sm:text-4xl font-black text-white uppercase tracking-tight font-sans">
-              {current.diyTitle}
-            </h4>
-
-            <div className="bg-yellow-400 text-black font-bold text-xs sm:text-sm p-3 border-2 border-dashed border-red-600">
-              {current.diyPitch}
-            </div>
-
-            <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-sans">
-              Welcome to our website! We have over 15 years experience in the local area. Please download
-              our 8-page PDF brochure or fill out the 14-field enquiry questionnaire below and our office
-              will call you back within 3-5 business days.
-            </p>
-
-            <div className="pt-2 flex flex-wrap gap-2">
-              <button
-                type="button"
-                className="bg-gradient-to-r from-orange-500 to-amber-500 text-white font-extrabold text-xs px-5 py-2.5 uppercase border-2 border-white shadow-lg cursor-pointer"
-              >
-                👉 CLICK HERE TO ENQUIRE NOW 👈
-              </button>
-              <div className="text-[11px] text-red-400 font-mono flex items-center gap-1">
-                <AlertTriangle size={13} /> High mobile bounce rate (80%+)
-              </div>
-            </div>
-          </div>
-
-          {/* Outdated Footer Bar */}
-          <div className="p-4 sm:p-6 bg-[#08101a] border-t border-slate-700 flex items-center justify-between text-xs font-mono text-red-400">
-            <span className="font-bold tracking-wider">
-              BEFORE: DATED DIY BUILD · LOSS OF COMMERCIAL CLIENTS
-            </span>
-            <span className="hidden sm:inline text-slate-500">
-              CLUTTERED · NO ACCREDITATIONS · AMATEUR FINISH
-            </span>
-          </div>
-        </div>
-
-        {/* ============================================================ */}
         {/* DRAGGABLE DIVIDER HANDLE */}
         {/* ============================================================ */}
         <div
@@ -281,7 +281,7 @@ export function BeforeAfterSlider() {
       <div className="flex items-center justify-between text-xs text-ink-muted mt-3 font-mono">
         <span>⟵ Drag slider left or right to inspect the contrast</span>
         <span className="font-bold text-ink">
-          Comparison: {Math.round(sliderPosition)}% DIY / {100 - Math.round(sliderPosition)}% Harley Standard
+          Comparison: {Math.round(sliderPosition)}% Harley Standard / {100 - Math.round(sliderPosition)}% Dated DIY Build
         </span>
       </div>
     </div>
