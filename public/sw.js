@@ -1,8 +1,7 @@
-const CACHE_NAME = "harley-digital-works-cache-v2";
+const CACHE_NAME = "harley-digital-works-cache-v3";
 const OFFLINE_URL = "/offline.html";
 
 const PRECACHE_ASSETS = [
-  "/",
   "/brand/approved/icons/favicon-32.png",
   "/brand/approved/icons/favicon-16.png",
   "/site.webmanifest",
@@ -53,7 +52,7 @@ self.addEventListener("activate", (event) => {
       return Promise.all(
         cacheNames.map((cacheName) => {
           // Delete old versions of caches
-          if (cacheName !== CACHE_NAME) {
+          if (cacheName.startsWith("harley-digital-works-cache-") && cacheName !== CACHE_NAME) {
             console.log("[Service Worker] Deleting obsolete cache:", cacheName);
             return caches.delete(cacheName);
           }
@@ -67,6 +66,19 @@ self.addEventListener("activate", (event) => {
 
 self.addEventListener("fetch", (event) => {
   if (shouldBypassCache(event.request)) {
+    return;
+  }
+
+  // Always fetch current SSR HTML. A cached homepage can otherwise pin visitors
+  // to an obsolete release and hydrate it with a different version of the app.
+  if (event.request.mode === "navigate") {
+    event.respondWith(
+      fetch(event.request).catch(async () => {
+        return (
+          (await caches.match(OFFLINE_URL)) || new Response("You are offline.", { status: 503 })
+        );
+      }),
+    );
     return;
   }
 

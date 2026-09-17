@@ -1,5 +1,4 @@
-import { Link } from "@tanstack/react-router";
-import { Check, ArrowRight, ShieldCheck, Zap, Sparkles } from "lucide-react";
+import { Check, ShieldCheck, Zap, Sparkles } from "lucide-react";
 import { Container } from "./PageShell";
 import { PillButton } from "./PillButton";
 
@@ -38,16 +37,16 @@ const WEBSITE_PACKAGES: WebsitePackage[] = [
     id: "growth",
     name: "Growth Website",
     tagline:
-      "For established trades looking to dominate local search & increase high-value quotes.",
+      "For established businesses with more services to show and a more tailored enquiry journey.",
     price: "£2,995",
-    badge: "Most Popular",
+    badge: "Room to grow",
     popular: true,
     features: [
       "Up to 10 bespoke pages & dedicated service areas",
       "Full sales copywriting & positioning for your trade",
       "Interactive quick-quote / enquiry calculator",
-      "Local SEO schema markup & Google Maps ranking setup",
-      "Google Reviews integration & verified trust badges",
+      "Local SEO foundations & structured service information",
+      "Integration of your genuine reviews & credentials",
       "Instant lead alerts straight to your phone & email",
       "Ready to launch in 14–21 days",
     ],
@@ -85,7 +84,7 @@ export function WebsitePackagesSection({
     <section className="py-20 md:py-28" id="packages">
       <Container>
         <div className="max-w-3xl">
-          <p className="eyebrow">Productised Packages</p>
+          <p className="eyebrow">04 / YOUR INVESTMENT</p>
           <h2 className="mt-5 text-[clamp(2.4rem,5vw,4.2rem)] leading-[0.98] tracking-[-0.045em] text-ink">
             {title}
           </h2>
@@ -162,6 +161,7 @@ export function WebsitePackagesSection({
                   <PillButton
                     as="link"
                     to="/contact"
+                    search={{ package: pkg.packageCode }}
                     variant={pkg.popular ? "light" : "dark"}
                     className="w-full justify-center"
                   >
@@ -181,17 +181,17 @@ export function WebsitePackagesSection({
                 The Harley Digital Works Difference
               </div>
               <h3 className="mt-2 text-2xl font-medium tracking-tight text-ink md:text-3xl">
-                We manage your digital presence so you can run your business.
+                Your website is live. We’re still here.
               </h3>
               <p className="mt-2 max-w-2xl text-[15px] leading-relaxed text-ink-muted">
-                Every website we deliver is backed by our managed Care Plans. From fast green
-                hosting, SSL certificates, and daily cloud backups to ongoing content updates and
-                security monitoring — you get a dedicated digital department without hiring staff.
+                New project photos? A change to your services? Our managed care plans cover hosting,
+                maintenance and updates within your agreed scope, so your website keeps up with your
+                business. Care starts at £95/month + VAT after the included care period.
               </p>
             </div>
             <div className="shrink-0">
               <PillButton as="link" to="/services/care-plans" variant="dark">
-                Explore Care Plans <ArrowRight size={16} />
+                Explore Care Plans
               </PillButton>
             </div>
           </div>

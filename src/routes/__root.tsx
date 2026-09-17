@@ -219,6 +219,7 @@ function RootComponent() {
   const { queryClient } = Route.useRouteContext();
 
   useEffect(() => {
+    if (import.meta.env.DEV) return;
     if (typeof window === "undefined" || !("serviceWorker" in navigator)) return;
 
     const registerServiceWorker = () => {
