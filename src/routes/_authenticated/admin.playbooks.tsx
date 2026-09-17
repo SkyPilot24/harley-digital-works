@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageHeader } from "./admin.index";
+import { TradeOutreachHub } from "@/components/admin/TradeOutreachHub";
 
 export const Route = createFileRoute("/_authenticated/admin/playbooks")({
   component: PlaybooksPage,
@@ -60,13 +61,16 @@ const RUNBOOKS = [
 
 function PlaybooksPage() {
   return (
-    <div>
+    <div className="space-y-8">
       <PageHeader
-        title="Playbooks"
-        subtitle="Plain-English operating steps for selling, delivery, content, and daily execution."
+        title="Playbooks & Outbound Engine"
+        subtitle="Plain-English operating steps for outreach campaigns, selling, delivery, content, and daily execution."
       />
 
-      <section className="mt-8 rounded-2xl border border-ink/10 bg-white p-6">
+      {/* Interactive Trade Outbound Campaign Hub */}
+      <TradeOutreachHub />
+
+      <section className="rounded-2xl border border-ink/10 bg-white p-6">
         <h2 className="text-lg font-semibold text-ink">Daily agency rhythm</h2>
         <p className="mt-1 text-sm text-ink-muted">
           Do these in order. Stop when the highest-value work is done.
