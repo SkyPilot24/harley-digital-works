@@ -1,20 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { PageShell, Container } from "@/components/site/PageShell";
+import { ArrowUpRight, Check, PenLine, ShieldCheck, Building2, Globe2, Cpu } from "lucide-react";
+import { PageShell } from "@/components/site/PageShell";
 import { PillButton } from "@/components/site/PillButton";
-import {
-  Building2,
-  Cpu,
-  Globe2,
-  ShieldCheck,
-  TrendingUp,
-  Award,
-  CheckCircle2,
-  ArrowRight,
-  Sparkles,
-  Layers,
-  Briefcase,
-  FileCheck2,
-} from "lucide-react";
 
 export const Route = createFileRoute("/the-harley-group")({
   head: () => ({
@@ -25,6 +12,10 @@ export const Route = createFileRoute("/the-harley-group")({
         content:
           "The Harley Group oversees specialised digital, technology, and operating ventures including Harley Digital Works and Harley Labs, delivering institutional discipline and commercial clarity.",
       },
+      {
+        property: "og:title",
+        content: "The Harley Group | Parent Company Governance & Portfolio",
+      },
     ],
   }),
   component: TheHarleyGroupPage,
@@ -32,49 +23,46 @@ export const Route = createFileRoute("/the-harley-group")({
 
 const VENTURES = [
   {
+    number: "01",
     name: "Harley Digital Works",
-    badge: "Flagship Commercial Division",
-    tagline: "Turnkey digital infrastructure & managed care for UK enterprise & trades.",
+    kicker: "FLAGSHIP COMMERCIAL DIVISION",
+    tagline: "Turnkey web design, sales copywriting & managed monthly care for UK trades.",
     description:
-      "Delivering done-for-you website design, high-converting commercial copywriting, local SEO dominance, and full ongoing care plans for UK trades, contractors, and growing business operators.",
-    metrics: ["14-Day Live Launch", "100% Done-For-You", "£95/mo Care Desk"],
+      "Delivering done-for-you website builds, high-converting commercial sales copy, local Google SEO alignment, and full ongoing care plans for UK trades, contractors, and growing business operators.",
+    metrics: ["14-Day Delivery", "100% Done-For-You", "Managed Care Plans"],
     to: "/services",
-    ctaLabel: "Explore Commercial Services",
-    icon: Globe2,
-    gradient: "from-emerald-950 via-teal-900 to-slate-900",
+    ctaLabel: "Explore Digital Works",
+    image: "/images/home/architecture.jpg",
   },
   {
+    number: "02",
     name: "Harley Labs",
-    badge: "R&D & Agentic Systems",
-    tagline: "Autonomous AI workflows, edge architectures, and digital product ventures.",
+    kicker: "ENGINEERING & R&D DIVISION",
+    tagline: "High-performance edge architectures & proprietary operational tooling.",
     description:
-      "Pioneering autonomous multi-agent systems, real-time edge telemetry, algorithmic SEO engines, and internal operating tools (Revenue OS, ContentFlow AI, Domain OS) that power high-efficiency operations.",
-    metrics: ["Multi-Agent AI", "Sub-50ms Edge SSR", "Autonomous Telemetry"],
+      "Engineering zero-cold-start edge rendering systems, algorithmic local search diagnostics, and internal operating tools (Revenue OS, Domain OS) that power high-efficiency digital workflows.",
+    metrics: ["Sub-50ms Edge SSR", "Revenue OS Tooling", "Domain Infrastructure"],
     to: "/labs",
     ctaLabel: "Explore Harley Labs",
-    icon: Cpu,
-    gradient: "from-slate-900 via-indigo-950 to-purple-950",
+    image: "/images/home/solar.jpg",
   },
 ];
 
-const OPERATING_PILLARS = [
+const OPERATING_PRINCIPLES = [
   {
+    number: "01",
     title: "Commercial Clarity",
-    description:
-      "Every project, software framework, and commercial asset must directly connect to tangible customer revenue, qualified lead flow, and operational efficiency.",
-    icon: TrendingUp,
+    copy: "Every project, software framework, and digital asset must directly connect to tangible customer revenue, qualified lead flow, and operational efficiency. We eliminate vanity metrics.",
   },
   {
+    number: "02",
     title: "Institutional Rigour",
-    description:
-      "Enterprise-grade reliability, continuous automated backups, strict data compliance, and zero-downtime edge deployments applied uniformly across all group ventures.",
-    icon: ShieldCheck,
+    copy: "Enterprise-grade reliability, continuous automated backups, strict data security (GDPR & Cyber Essentials), and zero-downtime edge deployments applied uniformly across all group ventures.",
   },
   {
-    title: "Human Accountability",
-    description:
-      "Direct senior access, plain-English communication, transparent upfront pricing, and absolute ownership with no corporate transformation theatre.",
-    icon: Award,
+    number: "03",
+    title: "Senior Accountability",
+    copy: "Direct executive leadership from Dr Robbie Harley, plain-English communication, transparent upfront pricing, and absolute ownership without corporate transformation theatre.",
   },
 ];
 
@@ -89,393 +77,246 @@ const GOVERNANCE_RECORDS = [
 
 function TheHarleyGroupPage() {
   return (
-    <PageShell>
-      {/* Hero Section */}
-      <section className="relative overflow-hidden bg-slate-950 pt-32 pb-20 text-white md:pt-44 md:pb-28">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_-20%,rgba(16,185,129,0.18),rgba(255,255,255,0))]" />
-        <Container className="relative z-10">
-          <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-950/60 px-3.5 py-1.5 text-xs font-semibold tracking-wide text-emerald-300 backdrop-blur-md">
-            <Building2 className="h-3.5 w-3.5" />
-            <span>The Harley Group · Holding & Operating Company</span>
-          </div>
-
-          <h1 className="mt-6 max-w-4xl text-[clamp(2.6rem,5.5vw,4.8rem)] font-bold tracking-tight text-white leading-[1.05]">
-            Disciplined Operating Standards &{" "}
-            <span className="bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-300 bg-clip-text text-transparent">
-              Long-Term Digital Value.
-            </span>
-          </h1>
-
-          <p className="mt-6 max-w-2xl text-lg leading-relaxed text-slate-300">
-            The Harley Group oversees specialised digital, technology, and operating ventures,
-            delivering institutional discipline, commercial clarity, and senior leadership to growing
-            enterprises across the United Kingdom.
-          </p>
-
-          <div className="mt-8 flex flex-wrap gap-4">
-            <PillButton as="link" to="/services" variant="light" size="md">
-              Explore Portfolio
-            </PillButton>
-            <PillButton
-              as="link"
-              to="/contact"
-              search={{ service: undefined, package: undefined, domain: undefined, websiteUrl: undefined }}
-              variant="ghost"
-              size="md"
-              className="border-slate-700 bg-slate-900/60 text-white hover:bg-slate-800 hover:text-white"
-            >
-              Executive Enquiries
-            </PillButton>
-          </div>
-        </Container>
-      </section>
-
-      {/* Portfolio Architecture */}
-      <section className="py-20 md:py-28 bg-slate-900 text-white border-b border-slate-800">
-        <Container>
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
-            <div>
-              <p className="text-xs font-bold uppercase tracking-widest text-emerald-400">
-                Portfolio Structure
+    <PageShell quiet>
+      <div className="studio-home">
+        {/* Hero Section */}
+        <section className="studio-hero" aria-labelledby="thg-heading">
+          <div className="studio-wrap hero-layout">
+            <div className="hero-copy">
+              <p className="studio-kicker">
+                <span className="studio-kicker-line" /> THE HARLEY GROUP · HOLDING & OPERATING COMPANY
               </p>
-              <h2 className="mt-2 text-3xl font-bold tracking-tight md:text-4xl text-white">
-                Two Distinct Operating Divisions.
-              </h2>
+              <h1 id="thg-heading">
+                Institutional
+                <br />
+                discipline.
+                <br />
+                <span>Long-term value.</span>
+              </h1>
+              <p className="hero-description">
+                The Harley Group oversees specialised digital, technology, and operating ventures in the United Kingdom.
+              </p>
+              <p className="hero-support">
+                Combining executive operational leadership, commercial understanding, and software
+                engineering to build enduring digital capabilities.
+              </p>
+              <div className="studio-actions">
+                <PillButton as="link" to="/services" variant="dark" className="studio-button">
+                  Explore Commercial Portfolio
+                </PillButton>
+                <a href="#divisions" className="studio-text-link">
+                  Operating Divisions <ArrowUpRight size={16} />
+                </a>
+              </div>
             </div>
-            <p className="max-w-md text-sm text-slate-400">
-              Synergistic operating arms uniting turnkey commercial client delivery with deep-tech
-              AI and software innovation.
-            </p>
+
+            <div className="hero-art">
+              <div className="hero-art-note">
+                <span>EXECUTIVE GOVERNANCE</span>
+                <span>↘</span>
+              </div>
+              <div className="founder-photo shadow-xl">
+                <img
+                  src="/images/home/robbie-restored.jpg"
+                  alt="Dr Robbie Harley, founder of The Harley Group"
+                  width="1200"
+                  height="1600"
+                  loading="eager"
+                />
+                <span>DR ROBBIE HARLEY / MANAGING DIRECTOR</span>
+              </div>
+              <div className="hero-art-caption">
+                <span>
+                  Disciplined delivery.
+                  <br />
+                  <strong>Senior oversight.</strong>
+                </span>
+                <span className="hero-art-seal">
+                  HARLEY
+                  <br />
+                  <span>group</span>
+                  <br />
+                  UK
+                </span>
+              </div>
+            </div>
           </div>
 
-          <div className="mt-12 grid gap-8 lg:grid-cols-2">
-            {VENTURES.map((v) => {
-              const Icon = v.icon;
-              return (
-                <div
-                  key={v.name}
-                  className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-slate-800 bg-gradient-to-b from-slate-950/80 to-slate-900/60 p-8 transition-all duration-300 hover:border-slate-700 hover:shadow-2xl"
+          <div className="studio-wrap hero-footnote">
+            <span>DISCIPLINE. GOVERNANCE. VALUE. CARE.</span>
+            <span>Parent entity to Harley Digital Works and Harley Labs.</span>
+          </div>
+        </section>
+
+        {/* Operating Divisions */}
+        <section className="studio-work studio-section" id="divisions" aria-labelledby="divisions-heading">
+          <div className="studio-wrap">
+            <div className="studio-section-heading">
+              <div>
+                <p className="studio-kicker">01 / PORTFOLIO ARCHITECTURE</p>
+                <h2 id="divisions-heading">
+                  Two specialized
+                  <br />
+                  <span className="studio-muted">operating divisions.</span>
+                </h2>
+              </div>
+              <p>
+                Uniting commercial client delivery
+                <br />
+                with high-performance software engineering
+                <br className="desktop-break" />
+                and R&D capabilities.
+              </p>
+            </div>
+
+            <div className="space-y-12">
+              {VENTURES.map((venture) => (
+                <article
+                  key={venture.number}
+                  className="rounded-3xl border border-ink/10 bg-[#FAF9F6] p-6 sm:p-10 shadow-xs"
                 >
-                  <div
-                    className={`absolute -top-24 -right-24 h-56 w-56 rounded-full bg-gradient-to-br ${v.gradient} opacity-25 blur-3xl transition-opacity group-hover:opacity-40`}
-                  />
-
-                  <div className="relative z-10">
-                    <div className="flex items-center justify-between">
-                      <span className="inline-flex items-center gap-1.5 rounded-full border border-slate-700 bg-slate-800/80 px-3 py-1 text-xs font-medium text-slate-300">
-                        <Sparkles className="h-3 w-3 text-emerald-400" />
-                        {v.badge}
+                  <div className="grid gap-8 lg:grid-cols-12 lg:items-center">
+                    <div className="lg:col-span-6 space-y-4">
+                      <span className="rounded-full bg-white px-3 py-1 font-mono text-[11px] font-bold uppercase tracking-wider text-ink border border-ink/10">
+                        {venture.number} / {venture.kicker}
                       </span>
-                      <Icon className="h-6 w-6 text-slate-400" />
+
+                      <h3 className="text-2xl sm:text-3xl font-bold tracking-tight text-ink font-display">
+                        {venture.name}
+                      </h3>
+
+                      <p className="text-base text-ink-muted leading-relaxed">{venture.tagline}</p>
+
+                      <p className="text-sm text-ink/80 leading-relaxed">{venture.description}</p>
+
+                      <div className="flex flex-wrap gap-2 pt-2">
+                        {venture.metrics.map((metric, i) => (
+                          <span
+                            key={i}
+                            className="bg-white border border-ink/10 px-3 py-1 rounded-lg text-xs font-mono font-semibold text-ink/80"
+                          >
+                            ✓ {metric}
+                          </span>
+                        ))}
+                      </div>
+
+                      <div className="pt-3">
+                        <Link to={venture.to} className="studio-text-link">
+                          {venture.ctaLabel} <ArrowUpRight size={17} />
+                        </Link>
+                      </div>
                     </div>
 
-                    <h3 className="mt-6 text-2xl font-bold text-white">{v.name}</h3>
-                    <p className="mt-1 text-sm font-medium text-emerald-300">{v.tagline}</p>
-
-                    <p className="mt-4 text-sm leading-relaxed text-slate-300">{v.description}</p>
-
-                    <div className="mt-6 flex flex-wrap gap-2">
-                      {v.metrics.map((m) => (
-                        <span
-                          key={m}
-                          className="inline-flex items-center gap-1 rounded-md bg-slate-800/60 px-2.5 py-1 text-xs font-mono text-slate-300 border border-slate-700/50"
-                        >
-                          <CheckCircle2 className="h-3 w-3 text-emerald-400" />
-                          {m}
-                        </span>
-                      ))}
+                    <div className="lg:col-span-6">
+                      <div className="relative rounded-2xl overflow-hidden border border-ink/10 shadow-md">
+                        <img
+                          src={venture.image}
+                          alt={venture.name}
+                          width="1200"
+                          height="800"
+                          loading="lazy"
+                          className="w-full h-auto object-cover max-h-[360px]"
+                        />
+                        <div className="absolute bottom-3 left-3 bg-white/90 backdrop-blur-md px-3 py-1.5 rounded-lg border border-ink/10 text-xs font-mono font-bold text-ink">
+                          {venture.name}
+                        </div>
+                      </div>
                     </div>
                   </div>
-
-                  <div className="relative z-10 mt-8 pt-6 border-t border-slate-800/80">
-                    <Link
-                      to={v.to}
-                      className="inline-flex items-center gap-2 text-sm font-semibold text-emerald-400 hover:text-emerald-300 transition-colors"
-                    >
-                      {v.ctaLabel}
-                      <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-                    </Link>
-                  </div>
-                </div>
-              );
-            })}
+                </article>
+              ))}
+            </div>
           </div>
-        </Container>
-      </section>
+        </section>
 
-      {/* Leadership & Executive Vision */}
-      <section className="py-20 md:py-28 bg-white border-b border-ink/10">
-        <Container>
-          <div className="grid gap-12 lg:grid-cols-12 items-center">
-            <div className="lg:col-span-5">
-              <div className="relative rounded-3xl border border-slate-800 bg-slate-900 p-8 text-white shadow-2xl overflow-hidden">
-                <div className="flex flex-col sm:flex-row items-start sm:items-center gap-5">
-                  <div className="relative h-24 w-24 sm:h-28 sm:w-28 rounded-2xl overflow-hidden border-2 border-emerald-500/40 shadow-xl shrink-0">
-                    <img
-                      src="/images/robbie/03-thg-cinematic-portrait.jpg"
-                      alt="Dr Robbie Harley, MBA - Founder & Managing Director"
-                      className="h-full w-full object-cover object-center"
-                    />
-                  </div>
+        {/* Operating Principles */}
+        <section className="studio-process studio-section" aria-labelledby="group-principles-heading">
+          <div className="studio-wrap">
+            <div className="studio-section-heading">
+              <div>
+                <p className="studio-kicker">02 / OPERATING STANDARD</p>
+                <h2 id="group-principles-heading">
+                  Governed by clear
+                  <br />
+                  <span className="studio-muted">operating principles.</span>
+                </h2>
+              </div>
+            </div>
+
+            <div className="process-rows">
+              {OPERATING_PRINCIPLES.map((item) => (
+                <div className="process-row" key={item.number}>
+                  <span className="process-number">{item.number}</span>
+                  <h3>{item.title}</h3>
                   <div>
-                    <div className="inline-flex items-center gap-1.5 rounded-full bg-emerald-950/80 px-2.5 py-0.5 text-[11px] font-mono font-semibold text-emerald-400 border border-emerald-800/60 mb-1">
-                      <span>THE HARLEY GROUP</span>
-                    </div>
-                    <h3 className="text-2xl font-bold text-white tracking-tight">Dr Robbie Harley</h3>
-                    <p className="text-xs font-mono uppercase tracking-wider text-emerald-400 mt-0.5">
-                      MBA · Founder & Managing Director
-                    </p>
+                    <p>{item.copy}</p>
+                    <span className="studio-kicker">HARLEY GROUP PILLAR</span>
                   </div>
-                </div>
-
-                <div className="mt-6 space-y-3 text-sm text-slate-300 leading-relaxed border-t border-slate-800 pt-6">
-                  <p>
-                    Combining extensive healthcare-grade clinical & technical operating background
-                    with rigorous commercial MBA governance.
-                  </p>
-                  <p>
-                    Passionate about eliminating digital waste, delivering transparent commercial
-                    software, and architecting autonomous systems that empower operators.
-                  </p>
-                </div>
-
-                <div className="mt-6 rounded-xl bg-slate-950/80 p-4 border border-slate-800 text-xs text-slate-300">
-                  <p className="font-semibold text-emerald-400 mb-1 font-mono uppercase text-[10px] tracking-wider">Group Operating Philosophy:</p>
-                  <p className="italic">
-                    &ldquo;We build working software and sustainable digital assets. No jargon, no
-                    technical debt, and no excuses.&rdquo;
-                  </p>
-                </div>
-
-                <div className="mt-6 grid grid-cols-2 gap-3 pt-4 border-t border-slate-800 text-center text-xs font-mono">
-                  <div className="rounded-lg bg-slate-950/50 p-2.5 border border-slate-800">
-                    <div className="text-emerald-400 font-bold">100% Owner-Led</div>
-                    <div className="text-[10px] text-slate-400 mt-0.5">Direct Accountability</div>
-                  </div>
-                  <div className="rounded-lg bg-slate-950/50 p-2.5 border border-slate-800">
-                    <div className="text-emerald-400 font-bold">UK Native</div>
-                    <div className="text-[10px] text-slate-400 mt-0.5">Manchester Corporate HQ</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="lg:col-span-7">
-              <p className="text-xs font-bold uppercase tracking-widest text-emerald-600">
-                Operating Principles
-              </p>
-              <h2 className="mt-2 text-3xl font-bold tracking-tight text-ink md:text-4xl">
-                Institutional Standards for Every Engagement.
-              </h2>
-              <p className="mt-4 text-ink-muted leading-relaxed">
-                Whether deploying a high-converting website for a local UK trade contractor or
-                engineering autonomous AI workflows in Harley Labs, The Harley Group enforces strict
-                operational metrics.
-              </p>
-
-              <div className="mt-8 space-y-6">
-                {OPERATING_PILLARS.map((p) => {
-                  const Icon = p.icon;
-                  return (
-                    <div key={p.title} className="flex gap-4">
-                      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-emerald-50 text-emerald-700 border border-emerald-200">
-                        <Icon className="h-5 w-5" />
-                      </div>
-                      <div>
-                        <h4 className="text-base font-semibold text-ink">{p.title}</h4>
-                        <p className="mt-1 text-sm text-ink-muted leading-relaxed">
-                          {p.description}
-                        </p>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-          </div>
-        </Container>
-      </section>
-
-      {/* Group Executive Valuation & Capital Structure */}
-      <section className="py-20 md:py-28 bg-slate-900 text-white border-b border-slate-800">
-        <Container>
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
-            <div>
-              <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-950/60 px-3 py-1 text-xs font-semibold text-emerald-300 font-mono">
-                <TrendingUp className="h-3.5 w-3.5" />
-                <span>Executive Governance & Portfolio Valuation</span>
-              </div>
-              <h2 className="mt-3 text-3xl font-bold tracking-tight md:text-4xl text-white">
-                Group Financial Metrics & Capital Allocation
-              </h2>
-              <p className="mt-2 text-sm text-slate-300 max-w-xl leading-relaxed">
-                Institutional balance sheet discipline, debt-free capital structure, and high-margin recurring cash flows across group holdings.
-              </p>
-            </div>
-            <div className="flex items-center gap-3">
-              <span className="rounded-xl border border-emerald-500/40 bg-emerald-950/80 px-4 py-2 text-xs font-mono text-emerald-300 font-bold">
-                AUDITED FY26 · £0 LONG-TERM DEBT
-              </span>
-            </div>
-          </div>
-
-          {/* Core Balance Sheet & Valuation Metrics */}
-          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            <div className="rounded-2xl border border-slate-800 bg-slate-950/80 p-6 shadow-lg">
-              <div className="flex items-center justify-between text-xs text-slate-400 font-mono uppercase">
-                <span>Group ARR Run-Rate</span>
-                <span className="text-emerald-400 font-bold">+68% YoY</span>
-              </div>
-              <div className="mt-3 text-3xl font-bold text-white font-mono">£284,500</div>
-              <div className="mt-2 text-xs text-slate-400">
-                Combined recurring care plans + upfront build pipeline.
-              </div>
-            </div>
-
-            <div className="rounded-2xl border border-slate-800 bg-slate-950/80 p-6 shadow-lg">
-              <div className="flex items-center justify-between text-xs text-slate-400 font-mono uppercase">
-                <span>Net EBITDA Margin</span>
-                <span className="text-emerald-400 font-bold">Top Quartile</span>
-              </div>
-              <div className="mt-3 text-3xl font-bold text-emerald-400 font-mono">42.5%</div>
-              <div className="mt-2 text-xs text-slate-400">
-                High-leverage automated delivery model via Harley Labs.
-              </div>
-            </div>
-
-            <div className="rounded-2xl border border-slate-800 bg-slate-950/80 p-6 shadow-lg">
-              <div className="flex items-center justify-between text-xs text-slate-400 font-mono uppercase">
-                <span>Cap Table Control</span>
-                <span className="text-indigo-400 font-bold">Founder Held</span>
-              </div>
-              <div className="mt-3 text-3xl font-bold text-white font-mono">100.0%</div>
-              <div className="mt-2 text-xs text-slate-400">
-                Zero dilutive institutional capital; 100% common voting stock.
-              </div>
-            </div>
-
-            <div className="rounded-2xl border border-slate-800 bg-slate-950/80 p-6 shadow-lg">
-              <div className="flex items-center justify-between text-xs text-slate-400 font-mono uppercase">
-                <span>Enterprise Valuation</span>
-                <span className="text-amber-400 font-bold">3.5x ARR Multiple</span>
-              </div>
-              <div className="mt-3 text-3xl font-bold text-amber-400 font-mono">£1,420,000</div>
-              <div className="mt-2 text-xs text-slate-400">
-                Internal enterprise benchmark based on trailing 12m cashflow.
-              </div>
-            </div>
-          </div>
-
-          {/* Capital Allocation & Treasury Rules */}
-          <div className="mt-10 grid gap-6 md:grid-cols-3">
-            <div className="rounded-2xl border border-slate-800 bg-slate-950 p-6">
-              <div className="flex items-center gap-2 text-xs font-mono font-bold text-indigo-400 uppercase tracking-wider">
-                <Cpu className="h-4 w-4" />
-                <span>50% · Harley Labs R&D</span>
-              </div>
-              <h3 className="mt-3 text-base font-bold text-white">Autonomous Agent Swarms</h3>
-              <p className="mt-2 text-xs text-slate-300 leading-relaxed">
-                Reinvestment into next-generation AI pipelines, automated prospector engines, multi-city SEO compilers, and edge SSR tooling.
-              </p>
-            </div>
-
-            <div className="rounded-2xl border border-slate-800 bg-slate-950 p-6">
-              <div className="flex items-center gap-2 text-xs font-mono font-bold text-emerald-400 uppercase tracking-wider">
-                <ShieldCheck className="h-4 w-4" />
-                <span>30% · Treasury & Reserves</span>
-              </div>
-              <h3 className="mt-3 text-base font-bold text-white">Operational Runway Buffer</h3>
-              <p className="mt-2 text-xs text-slate-300 leading-relaxed">
-                Holding 6+ months of gross operating overhead in liquid UK interest-bearing accounts for maximum business resilience.
-              </p>
-            </div>
-
-            <div className="rounded-2xl border border-slate-800 bg-slate-950 p-6">
-              <div className="flex items-center gap-2 text-xs font-mono font-bold text-amber-400 uppercase tracking-wider">
-                <Award className="h-4 w-4" />
-                <span>20% · Growth Distributions</span>
-              </div>
-              <h3 className="mt-3 text-base font-bold text-white">Shareholder Dividends</h3>
-              <p className="mt-2 text-xs text-slate-300 leading-relaxed">
-                Disbursed quarterly following full HMRC Corporation Tax and Making Tax Digital VAT reconciliation.
-              </p>
-            </div>
-          </div>
-        </Container>
-      </section>
-
-      {/* Corporate Governance & Disclosure Table */}
-      <section className="py-20 md:py-24 bg-slate-50 border-b border-ink/10">
-        <Container>
-          <div className="max-w-2xl">
-            <p className="text-xs font-bold uppercase tracking-widest text-slate-600">
-              Corporate Registry
-            </p>
-            <h2 className="mt-2 text-2xl font-bold tracking-tight text-ink md:text-3xl">
-              Corporate Governance & Compliance Details
-            </h2>
-            <p className="mt-2 text-sm text-ink-muted">
-              Formal company registration, regulatory adherence, and group operational standards.
-            </p>
-          </div>
-
-          <div className="mt-8 overflow-hidden rounded-xl border border-ink/10 bg-white shadow-sm">
-            <div className="divide-y divide-ink/10">
-              {GOVERNANCE_RECORDS.map((rec) => (
-                <div key={rec.label} className="grid grid-cols-1 md:grid-cols-3 px-6 py-4 text-sm">
-                  <span className="font-semibold text-ink flex items-center gap-2">
-                    <FileCheck2 className="h-4 w-4 text-emerald-600 shrink-0" />
-                    {rec.label}
-                  </span>
-                  <span className="md:col-span-2 text-ink-muted font-mono text-xs md:text-sm mt-1 md:mt-0">
-                    {rec.value}
-                  </span>
                 </div>
               ))}
             </div>
           </div>
-        </Container>
-      </section>
+        </section>
 
-      {/* Group Contact & Direct Channel */}
-      <section className="py-20 bg-slate-950 text-white">
-        <Container>
-          <div className="mx-auto max-w-3xl text-center">
-            <span className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-950/60 px-3.5 py-1 text-xs font-medium text-emerald-300">
-              <Layers className="h-3.5 w-3.5" />
-              Direct Group Engagement
-            </span>
-            <h2 className="mt-4 text-3xl font-bold tracking-tight md:text-4xl">
-              Partner With The Harley Group
-            </h2>
-            <p className="mt-4 text-base text-slate-300 leading-relaxed">
-              Whether you are an ambitious business owner seeking digital growth or an enterprise
-              interested in Harley Labs R&D capabilities, our executive team is ready to assist.
-            </p>
+        {/* Corporate Governance Table */}
+        <section className="studio-purpose studio-section" aria-labelledby="gov-heading">
+          <div className="studio-wrap purpose-layout">
+            <div className="purpose-visual">
+              <img
+                src="/images/home/interior.jpg"
+                alt="Architectural details demonstrating structured quality"
+                width="1200"
+                height="801"
+                loading="lazy"
+              />
+              <span className="purpose-image-label">STRUCTURED GOVERNANCE.</span>
+            </div>
 
-            <div className="mt-8 flex flex-wrap justify-center gap-4">
-              <PillButton
-                as="link"
-                to="/contact"
-                search={{ service: undefined, package: undefined, domain: undefined, websiteUrl: undefined }}
-                variant="light"
-                size="md"
-              >
-                Contact Executive Desk
-              </PillButton>
-              <PillButton
-                as="link"
-                to="/labs"
-                variant="ghost"
-                size="md"
-                className="border-slate-700 text-white hover:bg-slate-900 hover:text-white"
-              >
-                Explore Harley Labs R&D
-              </PillButton>
+            <div className="purpose-copy">
+              <p className="studio-kicker">03 / CORPORATE REGISTRATION</p>
+              <h2 id="gov-heading">
+                Institutional structure.
+                <br />
+                <span className="studio-muted">Clear corporate backing.</span>
+              </h2>
+
+              <div className="mt-6 divide-y divide-ink/10 border-y border-ink/10">
+                {GOVERNANCE_RECORDS.map((rec) => (
+                  <div key={rec.label} className="py-3.5 flex justify-between items-center text-sm">
+                    <span className="font-mono text-xs font-bold text-ink-muted uppercase">
+                      {rec.label}
+                    </span>
+                    <span className="font-medium text-ink text-right">{rec.value}</span>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
-        </Container>
-      </section>
+        </section>
+
+        {/* Final CTA */}
+        <section className="studio-final" aria-labelledby="thg-final-heading">
+          <div className="studio-wrap">
+            <p className="studio-kicker">EXECUTIVE CONTACT</p>
+            <div className="final-layout">
+              <h2 id="thg-final-heading">
+                Discuss a venture
+                <br />
+                <span>or commercial brief.</span>
+              </h2>
+              <div>
+                <p>
+                  Get in touch with executive leadership to discuss commercial services, technology
+                  partnerships, or corporate enquiries.
+                </p>
+                <PillButton as="link" to="/contact" variant="light" className="studio-button">
+                  Start a conversation
+                </PillButton>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
     </PageShell>
   );
 }

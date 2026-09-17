@@ -18,6 +18,8 @@ import {
   Sparkles,
   Building2,
   RefreshCw,
+  Server,
+  Compass,
 } from "lucide-react";
 import { ClientSiteCodeExporter } from "@/components/admin/ClientSiteCodeExporter";
 import { LocalMapPackMatrixDesk } from "@/components/admin/LocalMapPackMatrixDesk";
@@ -25,11 +27,11 @@ import { LocalMapPackMatrixDesk } from "@/components/admin/LocalMapPackMatrixDes
 export const Route = createFileRoute("/labs")({
   head: () => ({
     meta: [
-      { title: "Harley Labs | R&D, Autonomous AI & Digital Engineering" },
+      { title: "Harley Labs | Systems Architecture, Edge Infrastructure & Digital R&D" },
       {
         name: "description",
         content:
-          "Harley Labs is the research, AI agentic systems, and digital product division of The Harley Group, engineering multi-agent workflows, edge architectures, and automated tooling.",
+          "Harley Labs is the digital product and software engineering division of The Harley Group, building high-speed edge rendering engines, automated revenue platforms, and local search telemetry.",
       },
     ],
   }),
@@ -38,29 +40,16 @@ export const Route = createFileRoute("/labs")({
 
 const RESEARCH_VECTORS = [
   {
-    icon: Bot,
-    title: "Autonomous Multi-Agent Orchestration",
-    badge: "Active R&D",
-    description:
-      "Engineering coordinated agent swarms (specialised in research, architectural validation, code synthesis, and continuous deployment) that automate complex digital operations.",
-    specs: [
-      "Dynamic prompt graph routing",
-      "Self-healing validation loops",
-      "Antigravity & Gemini API SDK integration",
-      "Persistent memory & workspace state sync",
-    ],
-  },
-  {
     icon: Zap,
-    title: "Sub-50ms Edge SSR & Headless Architectures",
-    badge: "Production Ready",
+    title: "Sub-50ms Edge SSR & Headless Architecture",
+    badge: "Production Standard",
     description:
-      "Developing zero-cold-start edge rendering engines using Nitro and TanStack Start, compiled into global Cloudflare V8 isolates for instant worldwide delivery.",
+      "Zero-cold-start edge rendering engines compiled into global V8 isolates. Delivering sub-30ms Time to First Byte with zero layout shift.",
     specs: [
-      "Sub-30ms Time to First Byte (TTFB)",
+      "Sub-30ms TTFB across UK edge nodes",
       "Zero hydration layout shift (CLS 0.00)",
       "Streaming server components & partial prerendering",
-      "Automated edge caching & stale-while-revalidate",
+      "Nitro V8 engine with automated cache revalidation",
     ],
   },
   {
@@ -68,20 +57,20 @@ const RESEARCH_VECTORS = [
     title: "Algorithmic Local Search & Geo-Grid Radar",
     badge: "Field Tested",
     description:
-      "Precision crawling engines that sample Google Local Map Pack proximity grids, extracting competitor ranking matrices and automated NAP citation gaps.",
+      "Precision crawling engines sampling Google Local Map Pack proximity grids, extracting competitor ranking matrices and automated NAP citation gaps.",
     specs: [
       "5x5 km high-density pin sampling",
       "Competitor review velocity tracking",
-      "Automated schema & microdata validation",
+      "Automated microdata & schema auditing",
       "Organic rank volatility alerts",
     ],
   },
   {
     icon: Database,
-    title: "Contractor Revenue OS & Intelligent Dispatch",
+    title: "Contractor Revenue OS & Instant Quoting",
     badge: "Commercial Venture",
     description:
-      "Algorithmic quoting engines and automated client onboarding pipelines designed specifically for trade operators, eliminating manual lead leakage.",
+      "Algorithmic quoting engines and automated client intake pipelines built for high-ticket trade operators to eliminate manual lead leakage.",
     specs: [
       "1-Click WhatsApp customer dispatch",
       "Instant trade ROI & project cost modelling",
@@ -89,25 +78,38 @@ const RESEARCH_VECTORS = [
       "Client Care Plan live sync desk",
     ],
   },
+  {
+    icon: Bot,
+    title: "Autonomous Agent Orchestration & Workflow Tools",
+    badge: "Active R&D",
+    description:
+      "Coordinated software tools specialized in research, architectural validation, code synthesis, and continuous deployment for trade digital platforms.",
+    specs: [
+      "Dynamic prompt graph routing",
+      "Self-healing validation loops",
+      "Antigravity & Gemini API SDK integration",
+      "Persistent state & workspace synchronization",
+    ],
+  },
 ];
 
 const VENTURE_PRODUCTS = [
   {
     name: "Revenue OS",
-    status: "Integrated in Client Sites",
+    status: "Active in Client Sites",
     description: "Automated instant trade quoting, lead qualification, and dynamic pricing models.",
     tag: "Commercial Tooling",
   },
   {
-    name: "ContentFlow AI",
-    status: "Proprietary Pipeline",
-    description: "Deep-domain technical copywriting generator calibrated for UK construction & trades.",
-    tag: "NLP Engine",
+    name: "ContentFlow",
+    status: "Internal Pipeline",
+    description: "Technical copywriting generator calibrated for UK construction, engineering, and luxury home improvement.",
+    tag: "Content Engine",
   },
   {
     name: "Domain OS",
     status: "Live Portfolio Management",
-    description: "Automated appraisal, DNS orchestration, and landing page deployment for premium UK domains.",
+    description: "Automated DNS orchestration, appraisal, and landing page deployment for premium UK domains.",
     tag: "Infrastructure",
   },
 ];
@@ -115,7 +117,7 @@ const VENTURE_PRODUCTS = [
 const SIMULATION_MODES = [
   { id: "agents", label: "Agent Swarm Telemetry", icon: Bot },
   { id: "benchmarks", label: "Edge SSR Benchmarks", icon: Zap },
-  { id: "contentflow", label: "ContentFlow AI Stream", icon: Terminal },
+  { id: "contentflow", label: "ContentFlow Pipeline", icon: Terminal },
 ] as const;
 
 type SimMode = (typeof SIMULATION_MODES)[number]["id"];
@@ -132,38 +134,28 @@ function HarleyLabsPage() {
   return (
     <PageShell>
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-[#0A0D14] pt-32 pb-20 text-white md:pt-44 md:pb-28 border-b border-indigo-950/60">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_-20%,rgba(99,102,241,0.22),rgba(255,255,255,0))]" />
-        
-        {/* Subtle grid pattern background */}
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#1f293d15_1px,transparent_1px),linear-gradient(to_bottom,#1f293d15_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
-
+      <section className="relative overflow-hidden bg-[#f7f5ef] pt-32 pb-20 text-[#252720] md:pt-40 md:pb-28 border-b border-[#e2dec9]">
         <Container className="relative z-10">
           <div className="flex flex-wrap items-center gap-3">
-            <div className="inline-flex items-center gap-2 rounded-full border border-indigo-500/30 bg-indigo-950/60 px-3.5 py-1.5 text-xs font-semibold tracking-wide text-indigo-300 backdrop-blur-md">
-              <Cpu className="h-3.5 w-3.5 text-indigo-400" />
-              <span>Harley Labs · Advanced R&D & Autonomous Systems</span>
+            <div className="inline-flex items-center gap-2 rounded-full border border-[#252720]/15 bg-white/80 px-3.5 py-1.5 text-xs font-semibold tracking-wide text-[#252720] shadow-sm backdrop-blur-md">
+              <Cpu className="h-3.5 w-3.5 text-[#5a5d4e]" />
+              <span>Harley Labs · Software Research & Systems Architecture</span>
             </div>
             <Link
               to="/the-harley-group"
-              className="inline-flex items-center gap-1.5 rounded-full border border-slate-800 bg-slate-900/60 px-3 py-1.5 text-xs font-medium text-slate-400 hover:text-white hover:border-slate-700 transition-colors"
+              className="inline-flex items-center gap-1.5 rounded-full border border-[#252720]/10 bg-white/50 px-3 py-1.5 text-xs font-medium text-[#5a5d4e] hover:text-[#252720] hover:border-[#252720]/30 transition-colors"
             >
-              <Building2 className="h-3 w-3 text-emerald-400" />
+              <Building2 className="h-3 w-3 text-[#4a7c59]" />
               <span>A Division of The Harley Group</span>
             </Link>
           </div>
 
-          <h1 className="mt-6 max-w-4xl text-[clamp(2.6rem,5.8vw,5rem)] font-bold tracking-tight text-white leading-[1.03]">
-            Engineering Autonomous Workflows &{" "}
-            <span className="bg-gradient-to-r from-indigo-400 via-purple-300 to-cyan-300 bg-clip-text text-transparent">
-              High-Velocity Edge Architectures.
-            </span>
+          <h1 className="mt-6 max-w-4xl text-[clamp(2.5rem,5.5vw,4.5rem)] font-bold tracking-tight text-[#252720] leading-[1.05]">
+            Engineering Edge Infrastructure & High-Velocity Digital Tooling.
           </h1>
 
-          <p className="mt-6 max-w-2xl text-lg leading-relaxed text-slate-300">
-            Harley Labs is the research, engineering, and artificial intelligence incubator of The
-            Harley Group. We build the autonomous agents, internal software engines, and edge-native
-            frameworks that power modern digital commerce.
+          <p className="mt-6 max-w-2xl text-lg leading-relaxed text-[#5a5d4e]">
+            Harley Labs is the digital product and systems incubator of The Harley Group. We engineer high-speed edge rendering, automated commercial platforms, and precision local search telemetry.
           </p>
 
           <div className="mt-8 flex flex-wrap gap-4">
@@ -173,7 +165,7 @@ function HarleyLabsPage() {
                 const el = document.getElementById("labs-sandbox");
                 el?.scrollIntoView({ behavior: "smooth" });
               }}
-              variant="light"
+              variant="dark"
               size="md"
             >
               Open Interactive Sandbox
@@ -184,33 +176,32 @@ function HarleyLabsPage() {
               search={{ service: undefined, package: undefined, domain: undefined, websiteUrl: undefined }}
               variant="ghost"
               size="md"
-              className="border-indigo-900/80 bg-indigo-950/40 text-indigo-200 hover:bg-indigo-900/60 hover:text-white"
             >
-              R&D Collaboration Desk
+              R&D Collaboration Inquiry
             </PillButton>
           </div>
         </Container>
       </section>
 
       {/* Interactive Labs Terminal & Sandbox */}
-      <section id="labs-sandbox" className="py-20 md:py-28 bg-[#0D111C] text-white border-b border-slate-800">
+      <section id="labs-sandbox" className="py-16 md:py-24 bg-[#1e232a] text-white border-b border-slate-800">
         <Container>
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
             <div>
-              <p className="text-xs font-mono font-bold uppercase tracking-widest text-indigo-400">
-                // Interactive Sandbox
+              <p className="text-xs font-mono font-bold uppercase tracking-widest text-[#a3b899]">
+                // Systems Telemetry
               </p>
-              <h2 className="mt-2 text-3xl font-bold tracking-tight text-white md:text-4xl">
+              <h2 className="mt-2 text-2xl font-bold tracking-tight text-white md:text-3xl">
                 Harley Labs Live Telemetry Desk
               </h2>
             </div>
             <button
               onClick={triggerSimulation}
               disabled={isSimulating}
-              className="inline-flex items-center gap-2 rounded-lg border border-indigo-500/40 bg-indigo-950/60 px-4 py-2 text-xs font-mono font-medium text-indigo-300 hover:bg-indigo-900/60 transition-colors"
+              className="inline-flex items-center gap-2 rounded-lg border border-slate-700 bg-slate-800/80 px-4 py-2 text-xs font-mono font-medium text-slate-200 hover:bg-slate-700 transition-colors"
             >
-              <RefreshCw className={`h-3.5 w-3.5 ${isSimulating ? "animate-spin text-indigo-400" : ""}`} />
-              {isSimulating ? "Streaming Telemetry..." : "Re-run Diagnostics"}
+              <RefreshCw className={`h-3.5 w-3.5 ${isSimulating ? "animate-spin text-[#a3b899]" : ""}`} />
+              {isSimulating ? "Re-evaluating Telemetry..." : "Re-run Diagnostics"}
             </button>
           </div>
 
@@ -225,11 +216,11 @@ function HarleyLabsPage() {
                   onClick={() => setActiveTab(tab.id)}
                   className={`inline-flex items-center gap-2 rounded-t-lg px-4 py-2.5 text-xs font-mono font-semibold transition-colors ${
                     isActive
-                      ? "bg-slate-900 text-indigo-300 border-t-2 border-indigo-500"
+                      ? "bg-slate-900 text-[#a3b899] border-t-2 border-[#a3b899]"
                       : "text-slate-400 hover:text-slate-200 hover:bg-slate-900/50"
                   }`}
                 >
-                  <Icon className="h-4 w-4 text-indigo-400" />
+                  <Icon className="h-4 w-4 text-[#a3b899]" />
                   {tab.label}
                 </button>
               );
@@ -243,23 +234,23 @@ function HarleyLabsPage() {
                 <div className="flex items-center justify-between border-b border-slate-800 pb-3 text-xs text-slate-400">
                   <span className="flex items-center gap-2">
                     <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
-                    STATUS: 4 AGENTS ACTIVE & SYNCHRONISED
+                    STATUS: 4 AGENT MODULES ACTIVE & SYNCHRONISED
                   </span>
                   <span>LATENCY: 12ms · MEMORY: 42MB</span>
                 </div>
 
                 <div className="grid gap-4 md:grid-cols-2">
                   <div className="rounded-lg border border-slate-800 bg-slate-900/70 p-4">
-                    <div className="flex items-center justify-between text-xs text-indigo-400">
+                    <div className="flex items-center justify-between text-xs text-[#a3b899]">
                       <span className="font-bold flex items-center gap-1.5">
-                        <Bot className="h-3.5 w-3.5" /> Agent #1: Lead Intelligence Synthesizer
+                        <Bot className="h-3.5 w-3.5" /> Module #1: Lead Intelligence Synthesizer
                       </span>
                       <span className="rounded bg-emerald-950/80 px-2 py-0.5 text-emerald-300 border border-emerald-800/40">
                         ONLINE
                       </span>
                     </div>
                     <p className="mt-2 text-xs text-slate-300 font-sans">
-                      Autonomously enriches inbound quote requests, verifies UK company registration numbers, and calculates estimated project value.
+                      Enriches inbound quote requests, verifies UK company registration data, and calculates estimated trade project scope.
                     </p>
                     <div className="mt-3 text-[11px] text-slate-400">
                       Task Queue: <span className="text-white">0 pending (Realtime Stream)</span>
@@ -267,16 +258,16 @@ function HarleyLabsPage() {
                   </div>
 
                   <div className="rounded-lg border border-slate-800 bg-slate-900/70 p-4">
-                    <div className="flex items-center justify-between text-xs text-indigo-400">
+                    <div className="flex items-center justify-between text-xs text-[#a3b899]">
                       <span className="font-bold flex items-center gap-1.5">
-                        <Code2 className="h-3.5 w-3.5" /> Agent #2: Autonomous Code Integrity Bot
+                        <Code2 className="h-3.5 w-3.5" /> Module #2: Code Integrity Auditor
                       </span>
                       <span className="rounded bg-emerald-950/80 px-2 py-0.5 text-emerald-300 border border-emerald-800/40">
                         ONLINE
                       </span>
                     </div>
                     <p className="mt-2 text-xs text-slate-300 font-sans">
-                      Performs real-time TypeScript compilation checks, Nitro SSR route validations, and automated accessibility auditing.
+                      Performs TypeScript compilation checks, Nitro SSR route validations, and automated WCAG accessibility auditing.
                     </p>
                     <div className="mt-3 text-[11px] text-slate-400">
                       Audit Score: <span className="text-emerald-400">100/100 Perfect Pass</span>
@@ -284,16 +275,16 @@ function HarleyLabsPage() {
                   </div>
 
                   <div className="rounded-lg border border-slate-800 bg-slate-900/70 p-4">
-                    <div className="flex items-center justify-between text-xs text-indigo-400">
+                    <div className="flex items-center justify-between text-xs text-[#a3b899]">
                       <span className="font-bold flex items-center gap-1.5">
-                        <Search className="h-3.5 w-3.5" /> Agent #3: Local Map Pack Radar
+                        <Search className="h-3.5 w-3.5" /> Module #3: Local Map Pack Radar
                       </span>
-                      <span className="rounded bg-indigo-950/80 px-2 py-0.5 text-indigo-300 border border-indigo-800/40">
+                      <span className="rounded bg-slate-800 px-2 py-0.5 text-slate-300 border border-slate-700">
                         SCANNING
                       </span>
                     </div>
                     <p className="mt-2 text-xs text-slate-300 font-sans">
-                      Monitors 25-point geo-grid rankings for client target trade keywords across Manchester, Cheshire, and London.
+                      Monitors 25-point geo-grid rankings for target trade keywords across Manchester, Cheshire, and London.
                     </p>
                     <div className="mt-3 text-[11px] text-slate-400">
                       Coverage: <span className="text-white">Top 3 Map Pack in 94% of tested nodes</span>
@@ -301,16 +292,16 @@ function HarleyLabsPage() {
                   </div>
 
                   <div className="rounded-lg border border-slate-800 bg-slate-900/70 p-4">
-                    <div className="flex items-center justify-between text-xs text-indigo-400">
+                    <div className="flex items-center justify-between text-xs text-[#a3b899]">
                       <span className="font-bold flex items-center gap-1.5">
-                        <Activity className="h-3.5 w-3.5" /> Agent #4: Edge Uptime & Cache Sentinel
+                        <Activity className="h-3.5 w-3.5" /> Module #4: Edge Uptime Sentinel
                       </span>
                       <span className="rounded bg-emerald-950/80 px-2 py-0.5 text-emerald-300 border border-emerald-800/40">
                         ACTIVE
                       </span>
                     </div>
                     <p className="mt-2 text-xs text-slate-300 font-sans">
-                      Monitors global Cloudflare edge node response times and triggers automatic cache warming on newly published case studies.
+                      Monitors Cloudflare edge node response times and triggers automated cache revalidation on content updates.
                     </p>
                     <div className="mt-3 text-[11px] text-slate-400">
                       Global Edge Availability: <span className="text-emerald-400">99.99%</span>
@@ -323,7 +314,7 @@ function HarleyLabsPage() {
             {activeTab === "benchmarks" && (
               <div className="space-y-6">
                 <div className="flex items-center justify-between border-b border-slate-800 pb-3 text-xs text-slate-400">
-                  <span>EDGE COMPILED SSR BENCHMARKS (NITRO + TANSTACK ROUTER)</span>
+                  <span>EDGE SSR COMPILED BENCHMARKS (NITRO + TANSTACK START)</span>
                   <span className="text-emerald-400">A+ GRADE PERFORMANCE</span>
                 </div>
 
@@ -333,15 +324,15 @@ function HarleyLabsPage() {
                     <div className="text-[11px] text-slate-400 mt-1">Time to First Byte (TTFB)</div>
                   </div>
                   <div className="rounded-lg bg-slate-900/80 p-4 border border-slate-800 text-center">
-                    <div className="text-2xl font-bold text-indigo-400">0.38s</div>
+                    <div className="text-2xl font-bold text-white">0.38s</div>
                     <div className="text-[11px] text-slate-400 mt-1">First Contentful Paint</div>
                   </div>
                   <div className="rounded-lg bg-slate-900/80 p-4 border border-slate-800 text-center">
-                    <div className="text-2xl font-bold text-cyan-400">0.00</div>
+                    <div className="text-2xl font-bold text-emerald-400">0.00</div>
                     <div className="text-[11px] text-slate-400 mt-1">Cumulative Layout Shift</div>
                   </div>
                   <div className="rounded-lg bg-slate-900/80 p-4 border border-slate-800 text-center">
-                    <div className="text-2xl font-bold text-purple-400">100</div>
+                    <div className="text-2xl font-bold text-[#a3b899]">100</div>
                     <div className="text-[11px] text-slate-400 mt-1">Lighthouse Core Web Vitals</div>
                   </div>
                 </div>
@@ -349,8 +340,8 @@ function HarleyLabsPage() {
                 <div className="rounded-lg bg-slate-900/50 p-4 border border-slate-800 text-xs text-slate-300 font-mono space-y-1">
                   <div className="text-slate-500">// Edge SSR Build Artifact:</div>
                   <div>Output: <span className="text-emerald-300">.output/server/index.mjs</span> (Cloudflare Module Preset)</div>
-                  <div>Compression: <span className="text-indigo-300">Brotli 11x level with edge streaming</span></div>
-                  <div>Cold Start Penalty: <span className="text-cyan-300">0.00ms (Isolate warm pool)</span></div>
+                  <div>Compression: <span className="text-slate-200">Brotli level 11 with edge streaming</span></div>
+                  <div>Cold Start Penalty: <span className="text-emerald-300">0.00ms (Isolate warm pool)</span></div>
                 </div>
               </div>
             )}
@@ -358,17 +349,17 @@ function HarleyLabsPage() {
             {activeTab === "contentflow" && (
               <div className="space-y-4">
                 <div className="flex items-center justify-between border-b border-slate-800 pb-3 text-xs text-slate-400">
-                  <span>CONTENTFLOW AI · REAL-TIME TECHNICAL COPY ENGINE</span>
-                  <span className="text-cyan-400">GEMINI PRO EMBEDDINGS</span>
+                  <span>CONTENTFLOW PIPELINE · TECHNICAL COPYWRITING GENERATOR</span>
+                  <span className="text-[#a3b899]">CALIBRATED FOR UK TRADES</span>
                 </div>
 
                 <div className="rounded-lg bg-black/70 p-4 border border-slate-800 text-xs text-slate-300 leading-relaxed font-mono">
-                  <p className="text-slate-500">// Generating bespoke commercial trade copy for NIC EIC Electrical Contractor:</p>
-                  <p className="mt-2 text-indigo-300">
-                    &gt; [PROMPT INPUT]: Target: Commercial EV Charger Installation & 3-Phase Distribution Upgrades. Location: Manchester / Cheshire. Tone: Authoritative, compliance-led, high-ticket contractor.
+                  <p className="text-slate-500">// Commercial trade copy synthesis:</p>
+                  <p className="mt-2 text-slate-300">
+                    &gt; [INPUT SCOPE]: Target: Commercial EV Charger Infrastructure & 3-Phase Distribution. Location: Manchester & Cheshire. Tone: Authoritative, compliance-led contractor.
                   </p>
                   <p className="mt-2 text-emerald-300">
-                    &gt; [OUTPUT STREAM]: &quot;Commercial electrical infrastructure built for uninterrupted operational uptime. From 3-phase board distribution to workplace EV charging hubs, our fully accredited NICEIC Approved Contractors deliver turnkey compliance and £10M public liability protection.&quot;
+                    &gt; [OUTPUT STREAM]: &quot;Commercial electrical infrastructure engineered for uninterrupted operational uptime. From 3-phase board distribution to workplace EV charging hubs, our fully accredited NICEIC Approved Contractors deliver turnkey compliance and £10M public liability protection.&quot;
                   </p>
                 </div>
               </div>
@@ -378,17 +369,17 @@ function HarleyLabsPage() {
       </section>
 
       {/* Code Blueprint & Static Site Exporter Section */}
-      <section id="code-exporter" className="py-20 md:py-28 bg-[#090C15] text-white border-b border-slate-800">
+      <section id="code-exporter" className="py-16 md:py-24 bg-[#f7f5ef] text-[#252720] border-b border-[#e2dec9]">
         <Container>
           <div className="max-w-3xl">
-            <p className="text-xs font-mono font-bold uppercase tracking-widest text-indigo-400">
-              // Turnkey Code Synthesis
+            <p className="text-xs font-mono font-bold uppercase tracking-widest text-[#5a5d4e]">
+              // Turnkey Site Compiler
             </p>
-            <h2 className="mt-2 text-3xl font-bold tracking-tight text-white md:text-4xl">
+            <h2 className="mt-2 text-3xl font-bold tracking-tight text-[#252720] md:text-4xl">
               1-Click Standalone Trade Website Blueprint Compiler
             </h2>
-            <p className="mt-3 text-slate-300 leading-relaxed">
-              Export complete, production-grade React + Tailwind + Lucide trade website repository blueprints ready for instant V8 edge deployment on Cloudflare Pages, Netlify, or Vercel.
+            <p className="mt-3 text-[#5a5d4e] leading-relaxed">
+              Export complete, production-grade React + Tailwind + Lucide trade website blueprints ready for instant V8 edge deployment on Cloudflare Workers, Netlify, or Vercel.
             </p>
           </div>
 
@@ -399,25 +390,24 @@ function HarleyLabsPage() {
       </section>
 
       {/* Local Map-Pack Matrix Sub-Town Factory */}
-      <section id="map-pack-matrix" className="py-20 bg-[#070A11] text-white border-b border-slate-800">
+      <section id="map-pack-matrix" className="py-16 bg-[#eef0e5] text-[#252720] border-b border-[#e2dec9]">
         <Container>
           <LocalMapPackMatrixDesk />
         </Container>
       </section>
 
       {/* 4 Core Research Vectors */}
-      <section className="py-20 md:py-28 bg-[#0A0D14] text-white border-b border-slate-800">
+      <section className="py-16 md:py-24 bg-[#f7f5ef] text-[#252720] border-b border-[#e2dec9]">
         <Container>
           <div className="max-w-2xl">
-            <p className="text-xs font-mono font-bold uppercase tracking-widest text-indigo-400">
+            <p className="text-xs font-mono font-bold uppercase tracking-widest text-[#5a5d4e]">
               Core R&D Initiatives
             </p>
-            <h2 className="mt-2 text-3xl font-bold tracking-tight md:text-4xl text-white">
+            <h2 className="mt-2 text-3xl font-bold tracking-tight md:text-4xl text-[#252720]">
               Pioneering Technologies Engineered at Harley Labs.
             </h2>
-            <p className="mt-3 text-slate-300">
-              We focus on practical, high-leverage software architectures that deliver immediate
-              commercial advantages.
+            <p className="mt-3 text-[#5a5d4e]">
+              We focus on practical, high-leverage software architectures that deliver immediate commercial advantage.
             </p>
           </div>
 
@@ -427,28 +417,28 @@ function HarleyLabsPage() {
               return (
                 <div
                   key={v.title}
-                  className="rounded-2xl border border-slate-800 bg-slate-900/50 p-8 hover:border-slate-700 transition-colors"
+                  className="rounded-2xl border border-[#e2dec9] bg-white p-8 shadow-sm hover:shadow-md transition-shadow"
                 >
                   <div className="flex items-center justify-between">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-indigo-950 border border-indigo-800/50 text-indigo-400">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#eef0e5] border border-[#e2dec9] text-[#252720]">
                       <Icon className="h-6 w-6" />
                     </div>
-                    <span className="rounded-full border border-indigo-500/30 bg-indigo-950/80 px-3 py-1 text-xs font-mono text-indigo-300">
+                    <span className="rounded-full border border-[#252720]/15 bg-[#eef0e5] px-3 py-1 text-xs font-mono text-[#252720]">
                       {v.badge}
                     </span>
                   </div>
 
-                  <h3 className="mt-6 text-xl font-bold text-white">{v.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-slate-300">{v.description}</p>
+                  <h3 className="mt-6 text-xl font-bold text-[#252720]">{v.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-[#5a5d4e]">{v.description}</p>
 
-                  <div className="mt-6 border-t border-slate-800/80 pt-4">
-                    <h4 className="text-xs font-mono uppercase tracking-wider text-slate-400 mb-3">
+                  <div className="mt-6 border-t border-[#e2dec9] pt-4">
+                    <h4 className="text-xs font-mono uppercase tracking-wider text-[#5a5d4e] mb-3">
                       Architectural Specs
                     </h4>
                     <ul className="space-y-2">
                       {v.specs.map((s) => (
-                        <li key={s} className="flex items-center gap-2 text-xs text-slate-300 font-mono">
-                          <CheckCircle2 className="h-3.5 w-3.5 text-indigo-400 shrink-0" />
+                        <li key={s} className="flex items-center gap-2 text-xs text-[#252720] font-mono">
+                          <CheckCircle2 className="h-3.5 w-3.5 text-[#4a7c59] shrink-0" />
                           {s}
                         </li>
                       ))}
@@ -462,17 +452,17 @@ function HarleyLabsPage() {
       </section>
 
       {/* Internal Software Ventures */}
-      <section className="py-20 bg-slate-900 text-white border-b border-slate-800">
+      <section className="py-16 bg-[#eef0e5] text-[#252720] border-b border-[#e2dec9]">
         <Container>
           <div className="max-w-2xl">
-            <p className="text-xs font-mono font-bold uppercase tracking-widest text-indigo-400">
+            <p className="text-xs font-mono font-bold uppercase tracking-widest text-[#5a5d4e]">
               Internal Operating Systems
             </p>
-            <h2 className="mt-2 text-2xl font-bold tracking-tight text-white md:text-3xl">
+            <h2 className="mt-2 text-2xl font-bold tracking-tight text-[#252720] md:text-3xl">
               Proprietary Venture Products
             </h2>
-            <p className="mt-2 text-sm text-slate-400">
-              Software engines built inside Harley Labs to power client platforms and operational delivery.
+            <p className="mt-2 text-sm text-[#5a5d4e]">
+              Software engines engineered inside Harley Labs to power client platforms and operational delivery.
             </p>
           </div>
 
@@ -480,20 +470,20 @@ function HarleyLabsPage() {
             {VENTURE_PRODUCTS.map((prod) => (
               <div
                 key={prod.name}
-                className="rounded-xl border border-slate-800 bg-slate-950 p-6 flex flex-col justify-between"
+                className="rounded-xl border border-[#e2dec9] bg-white p-6 flex flex-col justify-between shadow-sm"
               >
                 <div>
                   <div className="flex items-center justify-between text-xs">
-                    <span className="font-mono text-indigo-400 font-semibold">{prod.name}</span>
-                    <span className="rounded bg-slate-800 px-2 py-0.5 text-slate-300 text-[10px] font-mono">
+                    <span className="font-mono text-[#252720] font-bold">{prod.name}</span>
+                    <span className="rounded bg-[#eef0e5] px-2 py-0.5 text-[#5a5d4e] text-[10px] font-mono">
                       {prod.tag}
                     </span>
                   </div>
-                  <p className="mt-3 text-xs text-slate-300 leading-relaxed">{prod.description}</p>
+                  <p className="mt-3 text-xs text-[#5a5d4e] leading-relaxed">{prod.description}</p>
                 </div>
-                <div className="mt-6 border-t border-slate-800 pt-3 flex items-center justify-between text-[11px] text-slate-400 font-mono">
+                <div className="mt-6 border-t border-[#e2dec9] pt-3 flex items-center justify-between text-[11px] text-[#5a5d4e] font-mono">
                   <span>Status:</span>
-                  <span className="text-emerald-400">{prod.status}</span>
+                  <span className="text-[#4a7c59] font-semibold">{prod.status}</span>
                 </div>
               </div>
             ))}
@@ -502,23 +492,23 @@ function HarleyLabsPage() {
       </section>
 
       {/* R&D Leadership & Systems Architecture */}
-      <section className="py-20 md:py-28 bg-[#0B0E18] text-white border-b border-slate-800">
+      <section className="py-16 md:py-24 bg-[#f7f5ef] text-[#252720] border-b border-[#e2dec9]">
         <Container>
           <div className="grid gap-12 lg:grid-cols-12 items-center">
             <div className="lg:col-span-5 space-y-4">
-              <div className="relative rounded-3xl border border-indigo-500/30 bg-slate-950 p-3 shadow-2xl overflow-hidden group">
+              <div className="relative rounded-3xl border border-[#e2dec9] bg-white p-3 shadow-xl overflow-hidden group">
                 <img
                   src="/images/robbie/04-labs-bw-editorial.jpg"
                   alt="Dr Robbie Harley - Harley Labs Systems Architecture & AI Direction"
                   className="w-full h-auto rounded-2xl object-cover"
                 />
-                <div className="absolute bottom-6 left-6 right-6 rounded-2xl bg-slate-950/90 backdrop-blur-md p-4 border border-indigo-500/30">
+                <div className="absolute bottom-6 left-6 right-6 rounded-2xl bg-[#252720]/90 backdrop-blur-md p-4 text-white border border-[#252720]">
                   <div className="flex items-center justify-between">
                     <div>
                       <h4 className="text-sm font-bold text-white">Dr Robbie Harley, MBA</h4>
-                      <p className="text-[11px] font-mono text-indigo-400">Head of Systems & AI Architecture</p>
+                      <p className="text-[11px] font-mono text-slate-300">Head of Systems Architecture</p>
                     </div>
-                    <span className="text-[10px] font-mono font-bold bg-indigo-950 text-indigo-300 border border-indigo-800 px-2.5 py-1 rounded-full">
+                    <span className="text-[10px] font-mono font-bold bg-[#1e232a] text-[#a3b899] border border-slate-700 px-2.5 py-1 rounded-full">
                       HARLEY LABS
                     </span>
                   </div>
@@ -527,27 +517,27 @@ function HarleyLabsPage() {
             </div>
 
             <div className="lg:col-span-7 space-y-6">
-              <div className="inline-flex items-center gap-2 rounded-full border border-indigo-500/30 bg-indigo-950/60 px-3 py-1 text-xs font-mono font-medium text-indigo-300">
-                <Cpu className="h-3.5 w-3.5 text-indigo-400" />
+              <div className="inline-flex items-center gap-2 rounded-full border border-[#252720]/15 bg-white px-3 py-1 text-xs font-mono font-medium text-[#252720]">
+                <Cpu className="h-3.5 w-3.5 text-[#5a5d4e]" />
                 <span>R&D Philosophy & Systems Direction</span>
               </div>
-              <h2 className="text-3xl font-bold tracking-tight md:text-4xl text-white">
-                Bridging Deep Research with Practical Commercial Utility.
+              <h2 className="text-3xl font-bold tracking-tight md:text-4xl text-[#252720]">
+                Bridging Deep Software Research with Practical Commercial Utility.
               </h2>
-              <p className="text-base text-slate-300 leading-relaxed">
-                Harley Labs was created to engineer real, measurable software leverage. Rather than producing speculative proof-of-concepts, our research vectors solve concrete operating bottlenecks in distributed cloud infrastructure, autonomous agent orchestration, and real-time local search analytics.
+              <p className="text-base text-[#5a5d4e] leading-relaxed">
+                Harley Labs was created to engineer real, measurable software leverage. Rather than producing speculative proof-of-concepts, our research vectors solve concrete operating bottlenecks in edge infrastructure, high-velocity digital commerce, and real-time search analytics.
               </p>
-              <div className="rounded-2xl border border-slate-800 bg-slate-900/60 p-6 space-y-3 font-mono text-xs">
-                <div className="text-indigo-400 font-bold flex items-center gap-2">
-                  <Terminal className="h-4 w-4" />
+              <div className="rounded-2xl border border-[#e2dec9] bg-white p-6 space-y-3 font-mono text-xs">
+                <div className="text-[#252720] font-bold flex items-center gap-2">
+                  <Terminal className="h-4 w-4 text-[#5a5d4e]" />
                   <span>// CORE LABS THESIS:</span>
                 </div>
-                <p className="text-slate-300 leading-relaxed italic">
-                  &ldquo;Autonomous multi-agent swarms and edge compilation are only as good as the commercial value they unlock. We test, build, and deploy software that eliminates operational friction.&rdquo;
+                <p className="text-[#5a5d4e] leading-relaxed italic">
+                  &ldquo;Software architecture and edge compilation are only as valuable as the real commercial efficiency they unlock. We build systems that eliminate operational friction and deliver immediate speed.&rdquo;
                 </p>
-                <div className="pt-2 text-[11px] text-slate-400 flex items-center justify-between border-t border-slate-800">
-                  <span>Stack: Nitro V8 + TanStack + Antigravity Agents</span>
-                  <span className="text-emerald-400 font-bold">100% Production Tested</span>
+                <div className="pt-2 text-[11px] text-[#5a5d4e] flex items-center justify-between border-t border-[#e2dec9]">
+                  <span>Stack: Nitro V8 + TanStack Start + Edge Cloud</span>
+                  <span className="text-[#4a7c59] font-bold">100% Production Tested</span>
                 </div>
               </div>
             </div>
@@ -556,19 +546,18 @@ function HarleyLabsPage() {
       </section>
 
       {/* Labs Collaboration CTA */}
-      <section className="py-20 bg-[#0A0D14] text-white">
+      <section className="py-16 md:py-24 bg-[#eef0e5] text-[#252720]">
         <Container>
           <div className="mx-auto max-w-3xl text-center">
-            <span className="inline-flex items-center gap-2 rounded-full border border-indigo-500/30 bg-indigo-950/60 px-3.5 py-1 text-xs font-medium text-indigo-300 font-mono">
-              <Sparkles className="h-3.5 w-3.5 text-indigo-400" />
-              R&D Partnerships & Licensing
+            <span className="inline-flex items-center gap-2 rounded-full border border-[#252720]/15 bg-white px-3.5 py-1 text-xs font-medium text-[#252720] font-mono">
+              <Sparkles className="h-3.5 w-3.5 text-[#5a5d4e]" />
+              R&D Partnerships & Systems Licensing
             </span>
             <h2 className="mt-4 text-3xl font-bold tracking-tight md:text-4xl">
               Collaborate With Harley Labs
             </h2>
-            <p className="mt-4 text-base text-slate-300 leading-relaxed">
-              We partner with forward-thinking enterprises, trade organizations, and technology
-              teams seeking agentic automation, edge architectures, or bespoke venture software.
+            <p className="mt-4 text-base text-[#5a5d4e] leading-relaxed">
+              We partner with forward-thinking trade enterprises, commercial organizations, and technical teams seeking edge-native digital architecture and bespoke venture software.
             </p>
 
             <div className="mt-8 flex flex-wrap justify-center gap-4">
@@ -576,17 +565,16 @@ function HarleyLabsPage() {
                 as="link"
                 to="/contact"
                 search={{ service: undefined, package: undefined, domain: undefined, websiteUrl: undefined }}
-                variant="light"
+                variant="dark"
                 size="md"
               >
-                Submit Research Inquiry
+                Submit R&D Inquiry
               </PillButton>
               <PillButton
                 as="link"
                 to="/the-harley-group"
                 variant="ghost"
                 size="md"
-                className="border-slate-700 text-white hover:bg-slate-900 hover:text-white"
               >
                 The Harley Group Governance
               </PillButton>
