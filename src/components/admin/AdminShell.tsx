@@ -18,6 +18,7 @@ import {
   LogOut,
   Menu,
   X,
+  Radar,
 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth, useIsAdmin } from "@/hooks/use-auth";
@@ -28,6 +29,7 @@ const NAV: { to: string; label: string; icon: typeof LayoutDashboard; exact?: bo
   { to: "/admin", label: "Control Centre", icon: LayoutDashboard, exact: true },
   { to: "/admin/revenue-os", label: "Revenue OS", icon: Rocket },
   { to: "/admin/domain-os", label: "Domain OS", icon: Globe2 },
+  { to: "/admin/radar", label: "Lead Radar", icon: Radar },
   { to: "/admin/leads", label: "Leads", icon: Inbox },
   { to: "/admin/clients", label: "Clients", icon: Users },
   { to: "/admin/projects", label: "Projects", icon: Briefcase },

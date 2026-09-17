@@ -18,6 +18,7 @@ import {
   type RevenueStream,
 } from "@/lib/revenue-os";
 import { PageHeader, StatusBadge } from "./admin.index";
+import { StagingAutoProvisionerDesk } from "@/components/admin/StagingAutoProvisionerDesk";
 
 export const Route = createFileRoute("/_authenticated/admin/revenue-os")({
   component: RevenueOsPage,
@@ -236,6 +237,11 @@ function RevenueOsPage() {
         <Metric label="Pipeline target" value={`GBP ${pipeline.toLocaleString()}`} />
         <Metric label="MRR potential" value={`GBP ${mrr.toLocaleString()}`} />
         <Metric label="Top score" value={`${assets[0] ? priorityScore(assets[0].scores) : 0}/35`} />
+      </div>
+
+      {/* Stripe & GoCardless Webhook Ingestion & Auto-Provisioning Pipeline */}
+      <div className="mt-10">
+        <StagingAutoProvisionerDesk />
       </div>
 
       <div className="mt-10 grid gap-6 lg:grid-cols-[1.4fr_1fr]">

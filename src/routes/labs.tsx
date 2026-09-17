@@ -20,6 +20,7 @@ import {
   RefreshCw,
 } from "lucide-react";
 import { ClientSiteCodeExporter } from "@/components/admin/ClientSiteCodeExporter";
+import { LocalMapPackMatrixDesk } from "@/components/admin/LocalMapPackMatrixDesk";
 
 export const Route = createFileRoute("/labs")({
   head: () => ({
@@ -394,6 +395,13 @@ function HarleyLabsPage() {
           <div className="mt-10">
             <ClientSiteCodeExporter />
           </div>
+        </Container>
+      </section>
+
+      {/* Local Map-Pack Matrix Sub-Town Factory */}
+      <section id="map-pack-matrix" className="py-20 bg-[#070A11] text-white border-b border-slate-800">
+        <Container>
+          <LocalMapPackMatrixDesk />
         </Container>
       </section>
 

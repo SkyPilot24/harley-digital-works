@@ -53,6 +53,7 @@ import { Route as AuthenticatedAdminSettingsRouteImport } from './routes/_authen
 import { Route as AuthenticatedAdminServicesRouteImport } from './routes/_authenticated/admin.services'
 import { Route as AuthenticatedAdminRevenueOsRouteImport } from './routes/_authenticated/admin.revenue-os'
 import { Route as AuthenticatedAdminResourcesRouteImport } from './routes/_authenticated/admin.resources'
+import { Route as AuthenticatedAdminRadarRouteImport } from './routes/_authenticated/admin.radar'
 import { Route as AuthenticatedAdminProjectsRouteImport } from './routes/_authenticated/admin.projects'
 import { Route as AuthenticatedAdminPlaybooksRouteImport } from './routes/_authenticated/admin.playbooks'
 import { Route as AuthenticatedAdminLeadsRouteImport } from './routes/_authenticated/admin.leads'
@@ -288,6 +289,11 @@ const AuthenticatedAdminResourcesRoute =
     path: '/admin/resources',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
+const AuthenticatedAdminRadarRoute = AuthenticatedAdminRadarRouteImport.update({
+  id: '/admin/radar',
+  path: '/admin/radar',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const AuthenticatedAdminProjectsRoute =
   AuthenticatedAdminProjectsRouteImport.update({
     id: '/admin/projects',
@@ -380,6 +386,7 @@ export interface FileRoutesByFullPath {
   '/admin/leads': typeof AuthenticatedAdminLeadsRoute
   '/admin/playbooks': typeof AuthenticatedAdminPlaybooksRoute
   '/admin/projects': typeof AuthenticatedAdminProjectsRoute
+  '/admin/radar': typeof AuthenticatedAdminRadarRoute
   '/admin/resources': typeof AuthenticatedAdminResourcesRoute
   '/admin/revenue-os': typeof AuthenticatedAdminRevenueOsRoute
   '/admin/services': typeof AuthenticatedAdminServicesRoute
@@ -433,6 +440,7 @@ export interface FileRoutesByTo {
   '/admin/leads': typeof AuthenticatedAdminLeadsRoute
   '/admin/playbooks': typeof AuthenticatedAdminPlaybooksRoute
   '/admin/projects': typeof AuthenticatedAdminProjectsRoute
+  '/admin/radar': typeof AuthenticatedAdminRadarRoute
   '/admin/resources': typeof AuthenticatedAdminResourcesRoute
   '/admin/revenue-os': typeof AuthenticatedAdminRevenueOsRoute
   '/admin/services': typeof AuthenticatedAdminServicesRoute
@@ -488,6 +496,7 @@ export interface FileRoutesById {
   '/_authenticated/admin/leads': typeof AuthenticatedAdminLeadsRoute
   '/_authenticated/admin/playbooks': typeof AuthenticatedAdminPlaybooksRoute
   '/_authenticated/admin/projects': typeof AuthenticatedAdminProjectsRoute
+  '/_authenticated/admin/radar': typeof AuthenticatedAdminRadarRoute
   '/_authenticated/admin/resources': typeof AuthenticatedAdminResourcesRoute
   '/_authenticated/admin/revenue-os': typeof AuthenticatedAdminRevenueOsRoute
   '/_authenticated/admin/services': typeof AuthenticatedAdminServicesRoute
@@ -543,6 +552,7 @@ export interface FileRouteTypes {
     | '/admin/leads'
     | '/admin/playbooks'
     | '/admin/projects'
+    | '/admin/radar'
     | '/admin/resources'
     | '/admin/revenue-os'
     | '/admin/services'
@@ -596,6 +606,7 @@ export interface FileRouteTypes {
     | '/admin/leads'
     | '/admin/playbooks'
     | '/admin/projects'
+    | '/admin/radar'
     | '/admin/resources'
     | '/admin/revenue-os'
     | '/admin/services'
@@ -650,6 +661,7 @@ export interface FileRouteTypes {
     | '/_authenticated/admin/leads'
     | '/_authenticated/admin/playbooks'
     | '/_authenticated/admin/projects'
+    | '/_authenticated/admin/radar'
     | '/_authenticated/admin/resources'
     | '/_authenticated/admin/revenue-os'
     | '/_authenticated/admin/services'
@@ -1009,6 +1021,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAdminResourcesRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/admin/radar': {
+      id: '/_authenticated/admin/radar'
+      path: '/admin/radar'
+      fullPath: '/admin/radar'
+      preLoaderRoute: typeof AuthenticatedAdminRadarRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/admin/projects': {
       id: '/_authenticated/admin/projects'
       path: '/admin/projects'
@@ -1077,6 +1096,7 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedAdminLeadsRoute: typeof AuthenticatedAdminLeadsRoute
   AuthenticatedAdminPlaybooksRoute: typeof AuthenticatedAdminPlaybooksRoute
   AuthenticatedAdminProjectsRoute: typeof AuthenticatedAdminProjectsRoute
+  AuthenticatedAdminRadarRoute: typeof AuthenticatedAdminRadarRoute
   AuthenticatedAdminResourcesRoute: typeof AuthenticatedAdminResourcesRoute
   AuthenticatedAdminRevenueOsRoute: typeof AuthenticatedAdminRevenueOsRoute
   AuthenticatedAdminServicesRoute: typeof AuthenticatedAdminServicesRoute
@@ -1096,6 +1116,7 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedAdminLeadsRoute: AuthenticatedAdminLeadsRoute,
   AuthenticatedAdminPlaybooksRoute: AuthenticatedAdminPlaybooksRoute,
   AuthenticatedAdminProjectsRoute: AuthenticatedAdminProjectsRoute,
+  AuthenticatedAdminRadarRoute: AuthenticatedAdminRadarRoute,
   AuthenticatedAdminResourcesRoute: AuthenticatedAdminResourcesRoute,
   AuthenticatedAdminRevenueOsRoute: AuthenticatedAdminRevenueOsRoute,
   AuthenticatedAdminServicesRoute: AuthenticatedAdminServicesRoute,

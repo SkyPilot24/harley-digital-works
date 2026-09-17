@@ -31,6 +31,7 @@ import { ContentFlowEngine } from "@/components/admin/ContentFlowEngine";
 import { LocalSeoFactoryDesk } from "@/components/admin/LocalSeoFactoryDesk";
 import { WhatsAppIntakeDesk } from "@/components/admin/WhatsAppIntakeDesk";
 import { OutreachSequenceEngine } from "@/components/admin/OutreachSequenceEngine";
+import { AuditPitchDeckGenerator } from "@/components/admin/AuditPitchDeckGenerator";
 
 type LeadRow = Database["public"]["Tables"]["leads"]["Row"];
 type LeadStatus = Database["public"]["Enums"]["lead_status"];
@@ -41,7 +42,7 @@ export const Route = createFileRoute("/_authenticated/admin/leads")({
 
 function LeadsPage() {
   const qc = useQueryClient();
-  const [moduleMode, setModuleMode] = useState<"crm" | "prospector" | "contentflow" | "seofactory" | "whatsapp" | "outreach">("crm");
+  const [moduleMode, setModuleMode] = useState<"crm" | "prospector" | "contentflow" | "seofactory" | "whatsapp" | "outreach" | "pitchdeck">("crm");
   const [activeTab, setActiveTab] = useState<string>("all");
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedLead, setSelectedLead] = useState<LeadRow | null>(null);
@@ -245,6 +246,21 @@ function LeadsPage() {
         </button>
 
         <button
+          onClick={() => setModuleMode("pitchdeck")}
+          className={`inline-flex items-center gap-2 rounded-xl px-4 py-2 text-xs font-semibold transition-all ${
+            moduleMode === "pitchdeck"
+              ? "bg-ink text-white shadow-sm"
+              : "border border-ink/10 bg-white text-ink/70 hover:bg-ink/[0.04]"
+          }`}
+        >
+          <FileText size={15} className={moduleMode === "pitchdeck" ? "text-amber-300" : "text-amber-600"} />
+          <span>Audit Pitch Deck & Loom</span>
+          <span className="ml-1 rounded bg-amber-500/20 px-1.5 py-0.5 text-[10px] font-bold text-amber-600 dark:text-amber-400">
+            4-SLIDE DECK
+          </span>
+        </button>
+
+        <button
           onClick={() => setModuleMode("outreach")}
           className={`inline-flex items-center gap-2 rounded-xl px-4 py-2 text-xs font-semibold transition-all ${
             moduleMode === "outreach"
@@ -319,6 +335,12 @@ function LeadsPage() {
           </span>
         </button>
       </div>
+
+      {moduleMode === "pitchdeck" && (
+        <div className="mt-6">
+          <AuditPitchDeckGenerator />
+        </div>
+      )}
 
       {moduleMode === "outreach" && (
         <div className="mt-6">

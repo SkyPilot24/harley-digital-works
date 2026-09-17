@@ -59,6 +59,7 @@ const expectedRoutes = [
   "src/routes/_authenticated/admin.leads.tsx",
   "src/routes/_authenticated/admin.revenue-os.tsx",
   "src/routes/_authenticated/admin.domain-os.tsx",
+  "src/routes/_authenticated/admin.radar.tsx",
   "src/routes/_authenticated/admin.playbooks.tsx",
   "src/routes/_authenticated/admin.diagnostics.tsx",
 ];

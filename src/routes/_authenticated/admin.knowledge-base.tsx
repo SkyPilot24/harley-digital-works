@@ -765,6 +765,114 @@ export const KNOWLEDGE_ARTICLES: KnowledgeArticle[] = [
       },
     ],
   },
+  {
+    id: "suburb-matrix-engine-sop",
+    category: "tools",
+    title: "SOP 27: Bulk Sub-Town Geo Landing Page & Schema Generation (/labs#map-pack-matrix)",
+    summary:
+      "Standard operating procedure for generating 10–25 geo-targeted trade landing pages with local landmark anchors, Postcode sector tags, and Schema.org LocalBusiness JSON-LD markup.",
+    badge: "Map-Pack Matrix",
+    readTime: "3 min read",
+    quickAction: { label: "Open Suburb Matrix", to: "/labs" },
+    steps: [
+      {
+        title: "1. Configure Contractor Trade & Hub City",
+        description:
+          "Open /labs -> 'Automated Sub-Town Landing Page Factory'. Input the contractor's business name, trade category, and primary hub.",
+      },
+      {
+        title: "2. Review Suburb List & Landmark Anchors",
+        description:
+          "Inspect generated sub-town pages across Cheshire & Greater Manchester (e.g. Wilmslow, Alderley Edge, Knutsford, Altrincham, Hale, Prestbury, Macclesfield).",
+      },
+      {
+        title: "3. Export JSON & React Component Blueprint",
+        description:
+          "Export all 10 pages in single-click JSON or copy ready-to-deploy TSX code into the client's repository build tree.",
+      },
+    ],
+  },
+  {
+    id: "audit-pitch-deck-loom-sop",
+    category: "sales",
+    title: "SOP 28: 1-Click Client Audit Pitch Deck & 60-Second Video Script Workflow (/admin/leads)",
+    summary:
+      "Procedure for generating bespoke 4-slide PDF audit pitch decks and high-converting Loom video recording scripts to close hesitant trade prospects.",
+    badge: "Pitch Deck OS",
+    readTime: "3 min read",
+    quickAction: { label: "Open Pitch Deck Desk", to: "/admin/leads" },
+    steps: [
+      {
+        title: "1. Input Prospect Domain & Speed Telemetry",
+        description:
+          "Navigate to /admin/leads -> 'Audit Pitch Deck & Loom'. Enter the prospect's website URL, director name, and measured loading speed (e.g. 5.4s).",
+      },
+      {
+        title: "2. Generate 4-Slide Empirical Presentation",
+        description:
+          "Review Slide 1 (Lost Revenue Breakdown), Slide 2 (Core Web Vitals Comparison), Slide 3 (Conversion Modules), and Slide 4 (Commercial Proposal).",
+      },
+      {
+        title: "3. Record Personalized 60-Second Video Audit",
+        description:
+          "Use the auto-generated conversational script for Robbie Harley to record a 60-second Loom audit and dispatch via 1-click WhatsApp.",
+      },
+    ],
+  },
+  {
+    id: "payment-webhook-auto-provisioning-sop",
+    category: "tech",
+    title: "SOP 29: Automated Stripe/GoCardless Webhook Handling & Staging Auto-Provisioning (/admin/revenue-os)",
+    summary:
+      "Protocol for zero-touch client onboarding: webhook event signature validation, project tracking token assignment (HDW-XXXX), and staging isolate deployment.",
+    badge: "Auto-Provisioning",
+    readTime: "3 min read",
+    quickAction: { label: "Open Revenue OS", to: "/admin/revenue-os" },
+    steps: [
+      {
+        title: "1. Inbound Webhook Event Verification",
+        description:
+          "Verify inbound `checkout.session.completed` from Stripe or `mandate.created` from GoCardless with HMAC-SHA256 signature.",
+      },
+      {
+        title: "2. Token Assignment & Supabase Registry Creation",
+        description:
+          "System assigns tracking token HDW-XXXX, initializes the 14-day SLA delivery countdown, and registers client credentials.",
+      },
+      {
+        title: "3. Automated Staging Subdomain Deployment & Welcome Message",
+        description:
+          "Provisions client preview environment and triggers automated WhatsApp onboarding prompt with 3-minute intake link.",
+      },
+    ],
+  },
+  {
+    id: "trade-lead-radar-prospecting-sop",
+    category: "sales",
+    title: "SOP 30: UK Trade Lead Radar & Slow-Site Prospecting Execution (/admin/radar)",
+    summary:
+      "Standard operating workflow for scanning regional contractor geo-grids, detecting slow mobile load times (>3.5s), and prioritizing high-leak targets.",
+    badge: "Lead Radar",
+    readTime: "3 min read",
+    quickAction: { label: "Open Lead Radar", to: "/admin/radar" },
+    steps: [
+      {
+        title: "1. Select Trade Sector & Regional Hub",
+        description:
+          "Open /admin/radar. Filter by trade (Heating, Solar, Electrical, Roofing, AC) and target postcode area.",
+      },
+      {
+        title: "2. Analyze Speed Scores & Conversion Gaps",
+        description:
+          "Filter targets showing critical speed status (&gt;4.5s) and absence of mobile WhatsApp lead capture.",
+      },
+      {
+        title: "3. 1-Click Outbound Dispatch & CSV Export",
+        description:
+          "Dispatch 1-click personalized WhatsApp audits or export the full matrix to CSV for automated campaign loaders.",
+      },
+    ],
+  },
 ];
 
 const CATEGORIES: { id: GuideCategory; label: string; icon: typeof BookOpen }[] = [
