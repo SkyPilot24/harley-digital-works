@@ -228,24 +228,73 @@ export const KNOWLEDGE_ARTICLES: KnowledgeArticle[] = [
     ],
   },
   {
-    id: "the-harley-group-governance",
-    category: "group",
-    title: "The Harley Group Holding Governance & Harley Labs Protocol",
+    id: "trade-vertical-campaigns",
+    category: "sales",
+    title: "Managing Trade Sector Landing Hubs & Ad Campaigns",
     summary:
-      "Corporate brand architecture, executive operating standards, and research vector guidelines for group entities.",
-    badge: "Governance",
-    readTime: "4 min read",
-    quickAction: { label: "Group Portal", to: "/the-harley-group" },
+      "How to deploy and manage industry-specific landing pages for Gas Safe heating engineers, electrical contractors, and master builders.",
+    badge: "Campaign Ops",
+    readTime: "3 min read",
+    quickAction: { label: "View Trade Hubs", to: "/trades" },
     steps: [
       {
-        title: "1. Group Entity Structure",
+        title: "1. Sector Alignment & Accreditation Verification",
         description:
-          "The Harley Group Ltd oversees Harley Digital Works (commercial agency) and Harley Labs (R&D / Agentic Systems) under the executive direction of Dr Robbie Harley, MBA.",
+          "Ensure the client's accreditation badges (Gas Safe, NICEIC, CHAS, FMB) are prominently displayed in the hero section.",
       },
       {
-        title: "2. Brand Compliance & Tone",
+        title: "2. Dedicated Quote Calculator Integration",
         description:
-          "All public communications must maintain commercial clarity, zero jargon, and rigorous accountability.",
+          "Attach the appropriate trade calculator (Boiler Replacement, EV Charge Point, or Extension Estimator) to drive high conversion rates.",
+      },
+    ],
+  },
+  {
+    id: "vat-invoicing-protocol",
+    category: "group",
+    title: "Generating & Issuing VAT Invoices & Receipts (The Harley Group Ltd)",
+    summary:
+      "Operating the HMRC-compliant 20% VAT invoice desk for 50% project deposits, completion balances, and £95/mo Care Plan billing.",
+    badge: "Finance & Accounting",
+    readTime: "3 min read",
+    quickAction: { label: "Open Invoicing Desk", to: "/admin/invoices" },
+    steps: [
+      {
+        title: "1. 1-Click Template Loading",
+        description:
+          "Open /admin/invoices. Select preset template: Launch Deposit (£747.50 ex-VAT), Growth Deposit (£1,497.50 ex-VAT), or Monthly Care (£95 ex-VAT).",
+      },
+      {
+        title: "2. Client Details & Tax Computation",
+        description:
+          "Fill in customer business name and address. System automatically calculates 20% UK VAT (VAT Reg: GB 948 2018 39) and generates remittance details.",
+      },
+      {
+        title: "3. Issue & Payment Reconciliation",
+        description:
+          "Click 'Print Official Tax Invoice' or save as PDF. Upon receipt of bank transfer, toggle 'PAID IN FULL' to issue the official VAT receipt.",
+      },
+    ],
+  },
+  {
+    id: "regional-seo-expansion",
+    category: "tools",
+    title: "Expanding UK Regional SEO Hubs & Geo-Targeting",
+    summary:
+      "Managing the 25+ UK metropolitan trade hubs (/locations) and optimizing local Google search visibility for regional contractors.",
+    badge: "SEO Strategy",
+    readTime: "4 min read",
+    quickAction: { label: "View Regional Hubs", to: "/locations" },
+    steps: [
+      {
+        title: "1. Location Data Structure",
+        description:
+          "Each city hub in src/lib/location-data.ts contains verified local telephone codes, borough coverage lists, and localized trade case studies.",
+      },
+      {
+        title: "2. Structured Schema Microdata",
+        description:
+          "Every /locations/$slug page outputs automated ProfessionalService Schema.org JSON-LD to power Google Map Pack rankings.",
       },
     ],
   },

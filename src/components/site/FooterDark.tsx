@@ -13,6 +13,7 @@ const COLUMNS = [
       { label: "Growth Website (£2,995)", to: "/services/web-design-development" },
       { label: "Pro Platforms (£4,995)", to: "/services/digital-products" },
       { label: "Managed Care (£95/mo)", to: "/services/care-plans" },
+      { label: "Specialist Trades Hub", to: "/trades" },
       { label: "All Pricing Packages", to: "/services" },
     ],
   },

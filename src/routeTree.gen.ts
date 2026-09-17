@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as WorkRouteImport } from './routes/work'
+import { Route as TradesRouteImport } from './routes/trades'
 import { Route as TrackRouteImport } from './routes/track'
 import { Route as TheHarleyGroupRouteImport } from './routes/the-harley-group'
 import { Route as ServicesRouteImport } from './routes/services'
@@ -30,6 +31,7 @@ import { Route as AuditRouteImport } from './routes/audit'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as TradesSlugRouteImport } from './routes/trades_.$slug'
 import { Route as TrackTokenRouteImport } from './routes/track_.$token'
 import { Route as ToolsSeoInspectorRouteImport } from './routes/tools.seo-inspector'
 import { Route as ToolsReviewBoosterRouteImport } from './routes/tools.review-booster'
@@ -54,6 +56,7 @@ import { Route as AuthenticatedAdminProjectsRouteImport } from './routes/_authen
 import { Route as AuthenticatedAdminPlaybooksRouteImport } from './routes/_authenticated/admin.playbooks'
 import { Route as AuthenticatedAdminLeadsRouteImport } from './routes/_authenticated/admin.leads'
 import { Route as AuthenticatedAdminKnowledgeBaseRouteImport } from './routes/_authenticated/admin.knowledge-base'
+import { Route as AuthenticatedAdminInvoicesRouteImport } from './routes/_authenticated/admin.invoices'
 import { Route as AuthenticatedAdminDomainOsRouteImport } from './routes/_authenticated/admin.domain-os'
 import { Route as AuthenticatedAdminDiagnosticsRouteImport } from './routes/_authenticated/admin.diagnostics'
 import { Route as AuthenticatedAdminClientsRouteImport } from './routes/_authenticated/admin.clients'
@@ -61,6 +64,11 @@ import { Route as AuthenticatedAdminClientsRouteImport } from './routes/_authent
 const WorkRoute = WorkRouteImport.update({
   id: '/work',
   path: '/work',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TradesRoute = TradesRouteImport.update({
+  id: '/trades',
+  path: '/trades',
   getParentRoute: () => rootRouteImport,
 } as any)
 const TrackRoute = TrackRouteImport.update({
@@ -160,6 +168,11 @@ const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TradesSlugRoute = TradesSlugRouteImport.update({
+  id: '/trades_/$slug',
+  path: '/trades/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
 const TrackTokenRoute = TrackTokenRouteImport.update({
@@ -292,6 +305,12 @@ const AuthenticatedAdminKnowledgeBaseRoute =
     path: '/admin/knowledge-base',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
+const AuthenticatedAdminInvoicesRoute =
+  AuthenticatedAdminInvoicesRouteImport.update({
+    id: '/admin/invoices',
+    path: '/admin/invoices',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const AuthenticatedAdminDomainOsRoute =
   AuthenticatedAdminDomainOsRouteImport.update({
     id: '/admin/domain-os',
@@ -331,6 +350,7 @@ export interface FileRoutesByFullPath {
   '/services': typeof ServicesRoute
   '/the-harley-group': typeof TheHarleyGroupRoute
   '/track': typeof TrackRoute
+  '/trades': typeof TradesRoute
   '/work': typeof WorkRoute
   '/locations/$slug': typeof LocationsSlugRoute
   '/services/ai-automation': typeof ServicesAiAutomationRoute
@@ -344,9 +364,11 @@ export interface FileRoutesByFullPath {
   '/tools/review-booster': typeof ToolsReviewBoosterRoute
   '/tools/seo-inspector': typeof ToolsSeoInspectorRoute
   '/track/$token': typeof TrackTokenRoute
+  '/trades/$slug': typeof TradesSlugRoute
   '/admin/clients': typeof AuthenticatedAdminClientsRoute
   '/admin/diagnostics': typeof AuthenticatedAdminDiagnosticsRoute
   '/admin/domain-os': typeof AuthenticatedAdminDomainOsRoute
+  '/admin/invoices': typeof AuthenticatedAdminInvoicesRoute
   '/admin/knowledge-base': typeof AuthenticatedAdminKnowledgeBaseRoute
   '/admin/leads': typeof AuthenticatedAdminLeadsRoute
   '/admin/playbooks': typeof AuthenticatedAdminPlaybooksRoute
@@ -380,6 +402,7 @@ export interface FileRoutesByTo {
   '/services': typeof ServicesRoute
   '/the-harley-group': typeof TheHarleyGroupRoute
   '/track': typeof TrackRoute
+  '/trades': typeof TradesRoute
   '/work': typeof WorkRoute
   '/locations/$slug': typeof LocationsSlugRoute
   '/services/ai-automation': typeof ServicesAiAutomationRoute
@@ -393,9 +416,11 @@ export interface FileRoutesByTo {
   '/tools/review-booster': typeof ToolsReviewBoosterRoute
   '/tools/seo-inspector': typeof ToolsSeoInspectorRoute
   '/track/$token': typeof TrackTokenRoute
+  '/trades/$slug': typeof TradesSlugRoute
   '/admin/clients': typeof AuthenticatedAdminClientsRoute
   '/admin/diagnostics': typeof AuthenticatedAdminDiagnosticsRoute
   '/admin/domain-os': typeof AuthenticatedAdminDomainOsRoute
+  '/admin/invoices': typeof AuthenticatedAdminInvoicesRoute
   '/admin/knowledge-base': typeof AuthenticatedAdminKnowledgeBaseRoute
   '/admin/leads': typeof AuthenticatedAdminLeadsRoute
   '/admin/playbooks': typeof AuthenticatedAdminPlaybooksRoute
@@ -431,6 +456,7 @@ export interface FileRoutesById {
   '/services': typeof ServicesRoute
   '/the-harley-group': typeof TheHarleyGroupRoute
   '/track': typeof TrackRoute
+  '/trades': typeof TradesRoute
   '/work': typeof WorkRoute
   '/locations_/$slug': typeof LocationsSlugRoute
   '/services_/ai-automation': typeof ServicesAiAutomationRoute
@@ -444,9 +470,11 @@ export interface FileRoutesById {
   '/tools/review-booster': typeof ToolsReviewBoosterRoute
   '/tools/seo-inspector': typeof ToolsSeoInspectorRoute
   '/track_/$token': typeof TrackTokenRoute
+  '/trades_/$slug': typeof TradesSlugRoute
   '/_authenticated/admin/clients': typeof AuthenticatedAdminClientsRoute
   '/_authenticated/admin/diagnostics': typeof AuthenticatedAdminDiagnosticsRoute
   '/_authenticated/admin/domain-os': typeof AuthenticatedAdminDomainOsRoute
+  '/_authenticated/admin/invoices': typeof AuthenticatedAdminInvoicesRoute
   '/_authenticated/admin/knowledge-base': typeof AuthenticatedAdminKnowledgeBaseRoute
   '/_authenticated/admin/leads': typeof AuthenticatedAdminLeadsRoute
   '/_authenticated/admin/playbooks': typeof AuthenticatedAdminPlaybooksRoute
@@ -482,6 +510,7 @@ export interface FileRouteTypes {
     | '/services'
     | '/the-harley-group'
     | '/track'
+    | '/trades'
     | '/work'
     | '/locations/$slug'
     | '/services/ai-automation'
@@ -495,9 +524,11 @@ export interface FileRouteTypes {
     | '/tools/review-booster'
     | '/tools/seo-inspector'
     | '/track/$token'
+    | '/trades/$slug'
     | '/admin/clients'
     | '/admin/diagnostics'
     | '/admin/domain-os'
+    | '/admin/invoices'
     | '/admin/knowledge-base'
     | '/admin/leads'
     | '/admin/playbooks'
@@ -531,6 +562,7 @@ export interface FileRouteTypes {
     | '/services'
     | '/the-harley-group'
     | '/track'
+    | '/trades'
     | '/work'
     | '/locations/$slug'
     | '/services/ai-automation'
@@ -544,9 +576,11 @@ export interface FileRouteTypes {
     | '/tools/review-booster'
     | '/tools/seo-inspector'
     | '/track/$token'
+    | '/trades/$slug'
     | '/admin/clients'
     | '/admin/diagnostics'
     | '/admin/domain-os'
+    | '/admin/invoices'
     | '/admin/knowledge-base'
     | '/admin/leads'
     | '/admin/playbooks'
@@ -581,6 +615,7 @@ export interface FileRouteTypes {
     | '/services'
     | '/the-harley-group'
     | '/track'
+    | '/trades'
     | '/work'
     | '/locations_/$slug'
     | '/services_/ai-automation'
@@ -594,9 +629,11 @@ export interface FileRouteTypes {
     | '/tools/review-booster'
     | '/tools/seo-inspector'
     | '/track_/$token'
+    | '/trades_/$slug'
     | '/_authenticated/admin/clients'
     | '/_authenticated/admin/diagnostics'
     | '/_authenticated/admin/domain-os'
+    | '/_authenticated/admin/invoices'
     | '/_authenticated/admin/knowledge-base'
     | '/_authenticated/admin/leads'
     | '/_authenticated/admin/playbooks'
@@ -632,6 +669,7 @@ export interface RootRouteChildren {
   ServicesRoute: typeof ServicesRoute
   TheHarleyGroupRoute: typeof TheHarleyGroupRoute
   TrackRoute: typeof TrackRoute
+  TradesRoute: typeof TradesRoute
   WorkRoute: typeof WorkRoute
   LocationsSlugRoute: typeof LocationsSlugRoute
   ServicesAiAutomationRoute: typeof ServicesAiAutomationRoute
@@ -645,6 +683,7 @@ export interface RootRouteChildren {
   ToolsReviewBoosterRoute: typeof ToolsReviewBoosterRoute
   ToolsSeoInspectorRoute: typeof ToolsSeoInspectorRoute
   TrackTokenRoute: typeof TrackTokenRoute
+  TradesSlugRoute: typeof TradesSlugRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -654,6 +693,13 @@ declare module '@tanstack/react-router' {
       path: '/work'
       fullPath: '/work'
       preLoaderRoute: typeof WorkRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/trades': {
+      id: '/trades'
+      path: '/trades'
+      fullPath: '/trades'
+      preLoaderRoute: typeof TradesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/track': {
@@ -794,6 +840,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/trades_/$slug': {
+      id: '/trades_/$slug'
+      path: '/trades/$slug'
+      fullPath: '/trades/$slug'
+      preLoaderRoute: typeof TradesSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/track_/$token': {
@@ -964,6 +1017,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAdminKnowledgeBaseRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/admin/invoices': {
+      id: '/_authenticated/admin/invoices'
+      path: '/admin/invoices'
+      fullPath: '/admin/invoices'
+      preLoaderRoute: typeof AuthenticatedAdminInvoicesRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/admin/domain-os': {
       id: '/_authenticated/admin/domain-os'
       path: '/admin/domain-os'
@@ -992,6 +1052,7 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedAdminClientsRoute: typeof AuthenticatedAdminClientsRoute
   AuthenticatedAdminDiagnosticsRoute: typeof AuthenticatedAdminDiagnosticsRoute
   AuthenticatedAdminDomainOsRoute: typeof AuthenticatedAdminDomainOsRoute
+  AuthenticatedAdminInvoicesRoute: typeof AuthenticatedAdminInvoicesRoute
   AuthenticatedAdminKnowledgeBaseRoute: typeof AuthenticatedAdminKnowledgeBaseRoute
   AuthenticatedAdminLeadsRoute: typeof AuthenticatedAdminLeadsRoute
   AuthenticatedAdminPlaybooksRoute: typeof AuthenticatedAdminPlaybooksRoute
@@ -1010,6 +1071,7 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedAdminClientsRoute: AuthenticatedAdminClientsRoute,
   AuthenticatedAdminDiagnosticsRoute: AuthenticatedAdminDiagnosticsRoute,
   AuthenticatedAdminDomainOsRoute: AuthenticatedAdminDomainOsRoute,
+  AuthenticatedAdminInvoicesRoute: AuthenticatedAdminInvoicesRoute,
   AuthenticatedAdminKnowledgeBaseRoute: AuthenticatedAdminKnowledgeBaseRoute,
   AuthenticatedAdminLeadsRoute: AuthenticatedAdminLeadsRoute,
   AuthenticatedAdminPlaybooksRoute: AuthenticatedAdminPlaybooksRoute,
@@ -1048,6 +1110,7 @@ const rootRouteChildren: RootRouteChildren = {
   ServicesRoute: ServicesRoute,
   TheHarleyGroupRoute: TheHarleyGroupRoute,
   TrackRoute: TrackRoute,
+  TradesRoute: TradesRoute,
   WorkRoute: WorkRoute,
   LocationsSlugRoute: LocationsSlugRoute,
   ServicesAiAutomationRoute: ServicesAiAutomationRoute,
@@ -1061,6 +1124,7 @@ const rootRouteChildren: RootRouteChildren = {
   ToolsReviewBoosterRoute: ToolsReviewBoosterRoute,
   ToolsSeoInspectorRoute: ToolsSeoInspectorRoute,
   TrackTokenRoute: TrackTokenRoute,
+  TradesSlugRoute: TradesSlugRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

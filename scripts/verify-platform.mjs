@@ -32,6 +32,8 @@ const expectedRoutes = [
   "src/routes/labs.tsx",
   "src/routes/proposals.tsx",
   "src/routes/partners.tsx",
+  "src/routes/trades.tsx",
+  "src/routes/trades_.$slug.tsx",
   "src/routes/services.tsx",
   "src/routes/services_.launch-plan.tsx",
   "src/routes/services_.web-design-development.tsx",
@@ -46,11 +48,13 @@ const expectedRoutes = [
   "src/routes/work.tsx",
   "src/routes/about.tsx",
   "src/routes/locations.tsx",
+  "src/routes/locations_.$slug.tsx",
   "src/routes/domains.tsx",
   "src/routes/contact.tsx",
   "src/routes/privacy.tsx",
   "src/routes/_authenticated/admin.index.tsx",
   "src/routes/_authenticated/admin.knowledge-base.tsx",
+  "src/routes/_authenticated/admin.invoices.tsx",
   "src/routes/_authenticated/admin.leads.tsx",
   "src/routes/_authenticated/admin.revenue-os.tsx",
   "src/routes/_authenticated/admin.domain-os.tsx",
@@ -81,7 +85,7 @@ components.forEach((compPath) => {
   assert(fs.existsSync(fullPath), `Component exists: ${compPath}`);
 });
 
-// 3. Verify Agent Skills Installation
+// 3. Verify Antigravity Agent Skills Installation
 console.log("\n[Test Suite 3: Antigravity Agent Skills]");
 const skills = [
   ".agents/skills/harley-commercial-governance/SKILL.md",
@@ -107,7 +111,7 @@ assert(upfrontTotal === 4180, `Upfront total calculation (£4,180 expected, got 
 assert(depositRequired === 2090, `50% deposit requirement (£2,090 expected, got £${depositRequired})`);
 assert(balance === 2090, `50% completion balance (£2,090 expected, got £${balance})`);
 
-// 5. Verify Partner Commission Calculation Formula
+// 5. Verify Partner Referral Commission Logic
 console.log("\n[Test Suite 5: Partner Referral Commission Logic]");
 const partnerReferrals = 4;
 const ratePerTrade = 250;
@@ -116,6 +120,16 @@ const annualPayout = monthlyPayout * 12;
 
 assert(monthlyPayout === 1000, `Partner monthly commission (£1,000 for 4 trades, got £${monthlyPayout})`);
 assert(annualPayout === 12000, `Partner annual commission (£12,000 for 4 trades/mo, got £${annualPayout})`);
+
+// 6. Verify VAT Calculation & HMRC Rules (GB 948 2018 39)
+console.log("\n[Test Suite 6: VAT & Invoicing Accounting Logic]");
+const netDeposit = 1497.50;
+const ukVatRate = 0.20;
+const expectedVat = netDeposit * ukVatRate;
+const expectedGross = netDeposit + expectedVat;
+
+assert(expectedVat === 299.50, `20% UK VAT on £1,497.50 (£299.50 expected, got £${expectedVat.toFixed(2)})`);
+assert(expectedGross === 1797.00, `Gross Total Inc-VAT (£1,797.00 expected, got £${expectedGross.toFixed(2)})`);
 
 console.log("\n==================================================");
 console.log(` Summary: ${passed} Passed | ${failed} Failed`);

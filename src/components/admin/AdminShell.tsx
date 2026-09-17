@@ -31,6 +31,7 @@ const NAV: { to: string; label: string; icon: typeof LayoutDashboard; exact?: bo
   { to: "/admin/leads", label: "Leads", icon: Inbox },
   { to: "/admin/clients", label: "Clients", icon: Users },
   { to: "/admin/projects", label: "Projects", icon: Briefcase },
+  { to: "/admin/invoices", label: "Invoices & VAT", icon: FileText },
   { to: "/admin/team", label: "Team", icon: UsersRound },
   { to: "/admin/services", label: "Services", icon: FileText },
   { to: "/admin/resources", label: "Resources", icon: BookOpen },
