@@ -20,11 +20,11 @@ import { TradeQuoteCalculator } from "./TradeQuoteCalculator";
 import { BeforeAfterSlider } from "./BeforeAfterSlider";
 
 interface TradeDemoViewerProps {
-  initialTrade?: "electrical" | "roofing" | "heating";
+  initialTrade?: "electrical" | "roofing" | "heating" | "commercial";
 }
 
 export function TradeDemoViewer({ initialTrade = "electrical" }: TradeDemoViewerProps) {
-  const [activeTradeKey, setActiveTradeKey] = useState<"electrical" | "roofing" | "heating">(initialTrade);
+  const [activeTradeKey, setActiveTradeKey] = useState<"electrical" | "roofing" | "heating" | "commercial">(initialTrade);
   const [deviceMode, setDeviceMode] = useState<"desktop" | "tablet" | "mobile">("desktop");
 
   const business: TradeDemoBusiness = TRADE_DEMOS[activeTradeKey] || TRADE_DEMOS.electrical;
@@ -70,6 +70,17 @@ export function TradeDemoViewer({ initialTrade = "electrical" }: TradeDemoViewer
             }`}
           >
             <span>🔥 Heating & Gas</span>
+          </button>
+          <button
+            type="button"
+            onClick={() => setActiveTradeKey("commercial")}
+            className={`px-3.5 py-2 rounded-xl text-xs font-semibold transition-all flex items-center gap-1.5 ${
+              activeTradeKey === "commercial"
+                ? "bg-gold-500 text-neutral-950 shadow-md ring-2 ring-gold-400/50"
+                : "bg-neutral-800/80 text-neutral-300 hover:bg-neutral-800 hover:text-white"
+            }`}
+          >
+            <span>🏢 Commercial Fleet (£4.9k)</span>
           </button>
         </div>
 

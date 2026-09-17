@@ -19,6 +19,7 @@ import { Route as LocationsRouteImport } from './routes/locations'
 import { Route as DomainsRouteImport } from './routes/domains'
 import { Route as DemosRouteImport } from './routes/demos'
 import { Route as ContactRouteImport } from './routes/contact'
+import { Route as CareDeskRouteImport } from './routes/care-desk'
 import { Route as CalculatorRouteImport } from './routes/calculator'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as AuditRouteImport } from './routes/audit'
@@ -26,6 +27,8 @@ import { Route as AboutRouteImport } from './routes/about'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as TrackTokenRouteImport } from './routes/track_.$token'
+import { Route as ToolsSeoInspectorRouteImport } from './routes/tools.seo-inspector'
+import { Route as ToolsReviewBoosterRouteImport } from './routes/tools.review-booster'
 import { Route as ServicesWebDesignDevelopmentRouteImport } from './routes/services_.web-design-development'
 import { Route as ServicesLaunchPlanRouteImport } from './routes/services_.launch-plan'
 import { Route as ServicesDigitalTransformationRouteImport } from './routes/services_.digital-transformation'
@@ -100,6 +103,11 @@ const ContactRoute = ContactRouteImport.update({
   path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CareDeskRoute = CareDeskRouteImport.update({
+  id: '/care-desk',
+  path: '/care-desk',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CalculatorRoute = CalculatorRouteImport.update({
   id: '/calculator',
   path: '/calculator',
@@ -132,6 +140,16 @@ const IndexRoute = IndexRouteImport.update({
 const TrackTokenRoute = TrackTokenRouteImport.update({
   id: '/track_/$token',
   path: '/track/$token',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ToolsSeoInspectorRoute = ToolsSeoInspectorRouteImport.update({
+  id: '/tools/seo-inspector',
+  path: '/tools/seo-inspector',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ToolsReviewBoosterRoute = ToolsReviewBoosterRouteImport.update({
+  id: '/tools/review-booster',
+  path: '/tools/review-booster',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ServicesWebDesignDevelopmentRoute =
@@ -268,6 +286,7 @@ export interface FileRoutesByFullPath {
   '/audit': typeof AuditRoute
   '/auth': typeof AuthRoute
   '/calculator': typeof CalculatorRoute
+  '/care-desk': typeof CareDeskRoute
   '/contact': typeof ContactRoute
   '/demos': typeof DemosRoute
   '/domains': typeof DomainsRoute
@@ -287,6 +306,8 @@ export interface FileRoutesByFullPath {
   '/services/digital-transformation': typeof ServicesDigitalTransformationRoute
   '/services/launch-plan': typeof ServicesLaunchPlanRoute
   '/services/web-design-development': typeof ServicesWebDesignDevelopmentRoute
+  '/tools/review-booster': typeof ToolsReviewBoosterRoute
+  '/tools/seo-inspector': typeof ToolsSeoInspectorRoute
   '/track/$token': typeof TrackTokenRoute
   '/admin/clients': typeof AuthenticatedAdminClientsRoute
   '/admin/diagnostics': typeof AuthenticatedAdminDiagnosticsRoute
@@ -309,6 +330,7 @@ export interface FileRoutesByTo {
   '/audit': typeof AuditRoute
   '/auth': typeof AuthRoute
   '/calculator': typeof CalculatorRoute
+  '/care-desk': typeof CareDeskRoute
   '/contact': typeof ContactRoute
   '/demos': typeof DemosRoute
   '/domains': typeof DomainsRoute
@@ -328,6 +350,8 @@ export interface FileRoutesByTo {
   '/services/digital-transformation': typeof ServicesDigitalTransformationRoute
   '/services/launch-plan': typeof ServicesLaunchPlanRoute
   '/services/web-design-development': typeof ServicesWebDesignDevelopmentRoute
+  '/tools/review-booster': typeof ToolsReviewBoosterRoute
+  '/tools/seo-inspector': typeof ToolsSeoInspectorRoute
   '/track/$token': typeof TrackTokenRoute
   '/admin/clients': typeof AuthenticatedAdminClientsRoute
   '/admin/diagnostics': typeof AuthenticatedAdminDiagnosticsRoute
@@ -352,6 +376,7 @@ export interface FileRoutesById {
   '/audit': typeof AuditRoute
   '/auth': typeof AuthRoute
   '/calculator': typeof CalculatorRoute
+  '/care-desk': typeof CareDeskRoute
   '/contact': typeof ContactRoute
   '/demos': typeof DemosRoute
   '/domains': typeof DomainsRoute
@@ -371,6 +396,8 @@ export interface FileRoutesById {
   '/services_/digital-transformation': typeof ServicesDigitalTransformationRoute
   '/services_/launch-plan': typeof ServicesLaunchPlanRoute
   '/services_/web-design-development': typeof ServicesWebDesignDevelopmentRoute
+  '/tools/review-booster': typeof ToolsReviewBoosterRoute
+  '/tools/seo-inspector': typeof ToolsSeoInspectorRoute
   '/track_/$token': typeof TrackTokenRoute
   '/_authenticated/admin/clients': typeof AuthenticatedAdminClientsRoute
   '/_authenticated/admin/diagnostics': typeof AuthenticatedAdminDiagnosticsRoute
@@ -395,6 +422,7 @@ export interface FileRouteTypes {
     | '/audit'
     | '/auth'
     | '/calculator'
+    | '/care-desk'
     | '/contact'
     | '/demos'
     | '/domains'
@@ -414,6 +442,8 @@ export interface FileRouteTypes {
     | '/services/digital-transformation'
     | '/services/launch-plan'
     | '/services/web-design-development'
+    | '/tools/review-booster'
+    | '/tools/seo-inspector'
     | '/track/$token'
     | '/admin/clients'
     | '/admin/diagnostics'
@@ -436,6 +466,7 @@ export interface FileRouteTypes {
     | '/audit'
     | '/auth'
     | '/calculator'
+    | '/care-desk'
     | '/contact'
     | '/demos'
     | '/domains'
@@ -455,6 +486,8 @@ export interface FileRouteTypes {
     | '/services/digital-transformation'
     | '/services/launch-plan'
     | '/services/web-design-development'
+    | '/tools/review-booster'
+    | '/tools/seo-inspector'
     | '/track/$token'
     | '/admin/clients'
     | '/admin/diagnostics'
@@ -478,6 +511,7 @@ export interface FileRouteTypes {
     | '/audit'
     | '/auth'
     | '/calculator'
+    | '/care-desk'
     | '/contact'
     | '/demos'
     | '/domains'
@@ -497,6 +531,8 @@ export interface FileRouteTypes {
     | '/services_/digital-transformation'
     | '/services_/launch-plan'
     | '/services_/web-design-development'
+    | '/tools/review-booster'
+    | '/tools/seo-inspector'
     | '/track_/$token'
     | '/_authenticated/admin/clients'
     | '/_authenticated/admin/diagnostics'
@@ -521,6 +557,7 @@ export interface RootRouteChildren {
   AuditRoute: typeof AuditRoute
   AuthRoute: typeof AuthRoute
   CalculatorRoute: typeof CalculatorRoute
+  CareDeskRoute: typeof CareDeskRoute
   ContactRoute: typeof ContactRoute
   DemosRoute: typeof DemosRoute
   DomainsRoute: typeof DomainsRoute
@@ -540,6 +577,8 @@ export interface RootRouteChildren {
   ServicesDigitalTransformationRoute: typeof ServicesDigitalTransformationRoute
   ServicesLaunchPlanRoute: typeof ServicesLaunchPlanRoute
   ServicesWebDesignDevelopmentRoute: typeof ServicesWebDesignDevelopmentRoute
+  ToolsReviewBoosterRoute: typeof ToolsReviewBoosterRoute
+  ToolsSeoInspectorRoute: typeof ToolsSeoInspectorRoute
   TrackTokenRoute: typeof TrackTokenRoute
 }
 
@@ -615,6 +654,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/care-desk': {
+      id: '/care-desk'
+      path: '/care-desk'
+      fullPath: '/care-desk'
+      preLoaderRoute: typeof CareDeskRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/calculator': {
       id: '/calculator'
       path: '/calculator'
@@ -662,6 +708,20 @@ declare module '@tanstack/react-router' {
       path: '/track/$token'
       fullPath: '/track/$token'
       preLoaderRoute: typeof TrackTokenRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tools/seo-inspector': {
+      id: '/tools/seo-inspector'
+      path: '/tools/seo-inspector'
+      fullPath: '/tools/seo-inspector'
+      preLoaderRoute: typeof ToolsSeoInspectorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tools/review-booster': {
+      id: '/tools/review-booster'
+      path: '/tools/review-booster'
+      fullPath: '/tools/review-booster'
+      preLoaderRoute: typeof ToolsReviewBoosterRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/services_/web-design-development': {
@@ -872,6 +932,7 @@ const rootRouteChildren: RootRouteChildren = {
   AuditRoute: AuditRoute,
   AuthRoute: AuthRoute,
   CalculatorRoute: CalculatorRoute,
+  CareDeskRoute: CareDeskRoute,
   ContactRoute: ContactRoute,
   DemosRoute: DemosRoute,
   DomainsRoute: DomainsRoute,
@@ -891,6 +952,8 @@ const rootRouteChildren: RootRouteChildren = {
   ServicesDigitalTransformationRoute: ServicesDigitalTransformationRoute,
   ServicesLaunchPlanRoute: ServicesLaunchPlanRoute,
   ServicesWebDesignDevelopmentRoute: ServicesWebDesignDevelopmentRoute,
+  ToolsReviewBoosterRoute: ToolsReviewBoosterRoute,
+  ToolsSeoInspectorRoute: ToolsSeoInspectorRoute,
   TrackTokenRoute: TrackTokenRoute,
 }
 export const routeTree = rootRouteImport

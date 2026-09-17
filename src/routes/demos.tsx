@@ -9,7 +9,7 @@ import { WebsitePackagesSection } from "@/components/site/WebsitePackagesSection
 import { CheckCircle2, ShieldCheck, Zap, Sparkles, Clock, PhoneCall } from "lucide-react";
 
 const demosSearchSchema = z.object({
-  trade: z.enum(["electrical", "roofing", "heating"]).optional(),
+  trade: z.enum(["electrical", "roofing", "heating", "commercial"]).optional(),
 });
 
 export const Route = createFileRoute("/demos")({

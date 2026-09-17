@@ -7,7 +7,7 @@ export interface TradeServiceOption {
 }
 
 export interface TradeDemoBusiness {
-  id: "electrical" | "roofing" | "heating";
+  id: "electrical" | "roofing" | "heating" | "commercial";
   name: string;
   badge: string;
   tagline: string;
@@ -319,6 +319,96 @@ export const TRADE_DEMOS: Record<string, TradeDemoBusiness> = {
         location: "Leeds (Roundhay)",
         text: "So refreshing to deal with tradesmen who turn up on time, put dust sheets everywhere, and explain the controls clearly. The 12-year guarantee gives total peace of mind.",
         service: "Combi Conversion & Power Flush",
+        rating: 5,
+      },
+    ],
+  },
+  commercial: {
+    id: "commercial",
+    name: "Vanguard Commercial Fleet & Facilities",
+    badge: "CHAS Elite & SafeContractor Verified",
+    tagline: "Commercial HVAC, Multi-Trade Facilities Maintenance & Planned PPM Contracts across the UK",
+    phone: "020 8191 7840",
+    whatsapp: "07700 900882",
+    coverageArea: "London & Home Counties, Birmingham, Manchester & Nationwide Fleet",
+    accreditations: [
+      { name: "CHAS Elite & SafeContractor Accredited", idNumber: "CHAS-88192", iconText: "🛡️" },
+      { name: "BESA Building Engineering Services", iconText: "🏢" },
+      { name: "Refcom Elite F-Gas Certified", idNumber: "REF-4420", iconText: "❄️" },
+      { name: "£10,000,000 Public & Employer Liability", iconText: "📋" },
+    ],
+    rating: { score: "4.97", reviewsCount: 89, platform: "B2B Facilities & Trustpilot" },
+    heroHeadline: "Commercial Facilities Maintenance & Rapid Multi-Van Dispatch.",
+    heroSubheadline:
+      "Full mechanical, electrical and building fabric support for facility managers, logistics depots, and multi-site retail. Live customer portal, SLA response tracking, and scheduled PPM contracts.",
+    emergencyBanner: "🟢 14 Commercial Response Vans Active on Network • 2-Hour Emergency SLA Active",
+    popularServices: [
+      {
+        title: "Commercial HVAC & Chiller Maintenance",
+        description: "VRV/VRF heating and cooling servicing, F-Gas compliance logging, and filter replacements.",
+        turnaround: "Contract / 24/7 SLA",
+        priceGuide: "From £380/visit",
+      },
+      {
+        title: "Planned Preventative Maintenance (PPM)",
+        description: "Tailored monthly/quarterly scheduled maintenance across fire, lighting, emergency exits & plumbing.",
+        turnaround: "Scheduled rolling plan",
+        priceGuide: "From £495/mo per site",
+      },
+      {
+        title: "Commercial Electrical & Emergency Lighting",
+        description: "3-phase power distribution, emergency light testing, thermal imaging inspections & 5-year EICR.",
+        turnaround: "Out-of-hours available",
+        priceGuide: "From £550 per inspection",
+      },
+      {
+        title: "24/7 Commercial Emergency Make-Safe",
+        description: "Burst commercial mains, power outages, roof leaks, and glass boarding with 2-hour SLA response.",
+        turnaround: "2-Hour Response Time",
+        priceGuide: "Fixed commercial callout rates",
+      },
+    ],
+    calculator: {
+      title: "Commercial PPM & Fleet Contract Estimator",
+      subtitle: "Configure your site requirements for an immediate ballpark maintenance estimate.",
+      jobTypes: [
+        { id: "ppm-hvac", name: "HVAC & Air Handling PPM (Quarterly)", basePrice: 1450, unit: "per annum", description: "Quarterly servicing + F-Gas compliance" },
+        { id: "ppm-all", name: "Full Fabric, Electrical & M&E PPM", basePrice: 3800, unit: "per annum", description: "Comprehensive compliance & planned visits" },
+        { id: "eicr-comm", name: "Commercial 3-Phase EICR & Thermal Scan", basePrice: 850, unit: "per facility", description: "Full digital asset testing & infrared report" },
+        { id: "emergency-sla", name: "24/7 Emergency Priority SLA Retainer", basePrice: 2200, unit: "annual coverage", description: "Guaranteed 2-hour response + dedicated dispatch" },
+      ],
+      propertySizes: [
+        { id: "single", name: "Single Facility (< 10,000 sq ft)", multiplier: 1.0 },
+        { id: "medium", name: "Mid-Size Hub (10,000 – 40,000 sq ft)", multiplier: 1.6 },
+        { id: "multi", name: "Multi-Site Portfolio / Logistics Depot (40,000+ sq ft)", multiplier: 2.5 },
+      ],
+      urgencyOptions: [
+        { id: "standard", name: "Standard Working Hours (8am - 6pm)", surcharge: 0 },
+        { id: "out-of-hours", name: "Out of Hours / Night Shifts (Zero Disruption)", surcharge: 250 },
+        { id: "critical", name: "Critical Infrastructure / 24/7 Live Monitoring", surcharge: 600 },
+      ],
+    },
+    beforeAfter: {
+      title: "Full M&E Modernization for 35,000 sq ft Distribution Hub",
+      location: "Trafford Park, Manchester",
+      jobSummary: "Upgraded legacy R22 chillers and obsolete metal halide high-bay lighting to modern Daikin VRV heat pumps and smart motion-activated LED arrays with central building management system.",
+      beforeDesc: "Aging cooling system with high power draw and frequent refrigerant faults causing warehouse downtime.",
+      afterDesc: "Fully compliant energy-efficient HVAC network saving £14,200 annually in power consumption with 24/7 telemetry monitoring.",
+      badge: "42% Energy Reduction • Zero Operational Downtime",
+    },
+    reviews: [
+      {
+        author: "David R.",
+        location: "London (Canary Wharf)",
+        text: "Managing 8 commercial properties used to be a nightmare of scattered invoices. Vanguard's dedicated client portal and reliable 2-hour SLA response have streamlined our entire facilities workflow.",
+        service: "Multi-Site Planned Maintenance",
+        rating: 5,
+      },
+      {
+        author: "Marcus S.",
+        location: "Birmingham Logistics Park",
+        text: "Their engineers turned up on night shift to complete our 3-phase inspection without disrupting our 24/7 warehouse operations. Professional, clean, and top-tier compliance reporting.",
+        service: "Commercial M&E Testing",
         rating: 5,
       },
     ],
