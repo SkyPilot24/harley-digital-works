@@ -3,6 +3,7 @@ import { ArrowDown, ArrowUpRight, Check, PenLine, ShieldCheck } from "lucide-rea
 import { PageShell } from "@/components/site/PageShell";
 import { PillButton } from "@/components/site/PillButton";
 import { ConceptScreen, ConceptShowcase } from "@/components/site/ConceptShowcase";
+import { BeforeAfterSlider } from "@/components/site/BeforeAfterSlider";
 import { WebsitePackagesSection } from "@/components/site/WebsitePackagesSection";
 import {
   Accordion,
@@ -179,6 +180,13 @@ function HomePage() {
               Original design concepts by Harley Digital Works. Illustrative photography; not
               commissioned client projects.
             </p>
+          </div>
+        </section>
+
+                {/* Before & After Transformation Slider */}
+        <section className="studio-section py-16 border-t border-ink/10" aria-label="Before and After Transformation">
+          <div className="studio-wrap">
+            <BeforeAfterSlider />
           </div>
         </section>
 
