@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
@@ -8,6 +9,8 @@ import {
   RefreshCw,
   Sparkles,
   XCircle,
+  Code2,
+  Layers,
 } from "lucide-react";
 import {
   createWebsiteDiagnosticTasks,
@@ -18,6 +21,7 @@ import {
 } from "@/lib/admin-diagnostics.functions";
 import { toast } from "sonner";
 import { PageHeader } from "./admin.index";
+import { ClientSiteCodeExporter } from "@/components/admin/ClientSiteCodeExporter";
 
 const BOOTSTRAP_TRIGGER = "on_auth_user_created_bootstrap";
 const BOOTSTRAP_FUNCTION = "public.handle_new_user_bootstrap";
@@ -27,6 +31,7 @@ export const Route = createFileRoute("/_authenticated/admin/diagnostics")({
 });
 
 function DiagnosticsPage() {
+  const [activeView, setActiveView] = useState<"diagnostics" | "exporter">("diagnostics");
   const queryClient = useQueryClient();
   const listTriggers = useServerFn(getAuthUserTriggers);
   const checkWebsite = useServerFn(getWebsiteDiagnostics);
@@ -71,38 +76,79 @@ function DiagnosticsPage() {
   return (
     <div>
       <PageHeader
-        title="Diagnostics"
-        subtitle="Verify admin plumbing, live website routes, metadata, and revenue capture surfaces."
+        title={activeView === "diagnostics" ? "Diagnostics" : "1-Click Client Site Code Exporter"}
+        subtitle={
+          activeView === "diagnostics"
+            ? "Verify admin plumbing, live website routes, metadata, and revenue capture surfaces."
+            : "Generate full production React & Tailwind standalone repository blueprints for instant trade client launch."
+        }
         action={
-          <div className="flex flex-wrap gap-2">
-            <button
-              onClick={() => taskMutation.mutate()}
-              disabled={taskMutation.isPending || attentionCount === 0}
-              className="inline-flex items-center gap-2 rounded-full bg-ink px-3 py-1.5 text-[12px] font-medium text-white hover:bg-ink/90 disabled:cursor-not-allowed disabled:opacity-50"
-            >
-              <Sparkles size={13} />
-              {taskMutation.isPending ? "Creating tasks..." : "Create Revenue OS tasks"}
-            </button>
-            <button
-              onClick={refreshAll}
-              className="inline-flex items-center gap-2 rounded-full border border-ink/15 px-3 py-1.5 text-[12px] font-medium text-ink hover:bg-ink/5"
-            >
-              <RefreshCw size={13} />
-              Refresh
-            </button>
-          </div>
+          activeView === "diagnostics" ? (
+            <div className="flex flex-wrap gap-2">
+              <button
+                onClick={() => taskMutation.mutate()}
+                disabled={taskMutation.isPending || attentionCount === 0}
+                className="inline-flex items-center gap-2 rounded-full bg-ink px-3 py-1.5 text-[12px] font-medium text-white hover:bg-ink/90 disabled:cursor-not-allowed disabled:opacity-50"
+              >
+                <Sparkles size={13} />
+                {taskMutation.isPending ? "Creating tasks..." : "Create Revenue OS tasks"}
+              </button>
+              <button
+                onClick={refreshAll}
+                className="inline-flex items-center gap-2 rounded-full border border-ink/15 px-3 py-1.5 text-[12px] font-medium text-ink hover:bg-ink/5"
+              >
+                <RefreshCw size={13} />
+                Refresh
+              </button>
+            </div>
+          ) : undefined
         }
       />
 
-      <section className="mt-8 grid gap-4 md:grid-cols-3">
-        <HealthCard label="Routes checked" value={websiteChecks.length || "--"} tone="neutral" />
-        <HealthCard label="Healthy" value={websiteSummary.ok} tone="good" />
-        <HealthCard
-          label="Needs attention"
-          value={attentionCount}
-          tone={attentionCount > 0 ? "warn" : "good"}
-        />
-      </section>
+      {/* View Switcher Tabs */}
+      <div className="mt-6 flex flex-wrap items-center gap-2 border-b border-ink/10 pb-4">
+        <button
+          onClick={() => setActiveView("diagnostics")}
+          className={`inline-flex items-center gap-2 rounded-xl px-4 py-2 text-xs font-semibold transition-all ${
+            activeView === "diagnostics"
+              ? "bg-ink text-white shadow-sm"
+              : "border border-ink/10 bg-white text-ink/70 hover:bg-ink/[0.04]"
+          }`}
+        >
+          <RefreshCw size={15} />
+          <span>System & Route Diagnostics</span>
+        </button>
+        <button
+          onClick={() => setActiveView("exporter")}
+          className={`inline-flex items-center gap-2 rounded-xl px-4 py-2 text-xs font-semibold transition-all ${
+            activeView === "exporter"
+              ? "bg-ink text-white shadow-sm"
+              : "border border-ink/10 bg-white text-ink/70 hover:bg-ink/[0.04]"
+          }`}
+        >
+          <Code2 size={15} className={activeView === "exporter" ? "text-indigo-300" : "text-indigo-600"} />
+          <span>1-Click Code Blueprint Exporter</span>
+          <span className="ml-1 rounded bg-indigo-500/20 px-1.5 py-0.5 text-[10px] font-bold text-indigo-600 dark:text-indigo-400">
+            VITE/REACT COMPILER
+          </span>
+        </button>
+      </div>
+
+      {activeView === "exporter" ? (
+        <div className="mt-6">
+          <ClientSiteCodeExporter />
+        </div>
+      ) : (
+        <>
+          <section className="mt-8 grid gap-4 md:grid-cols-3">
+            <HealthCard label="Routes checked" value={websiteChecks.length || "--"} tone="neutral" />
+            <HealthCard label="Healthy" value={websiteSummary.ok} tone="good" />
+            <HealthCard
+              label="Needs attention"
+              value={attentionCount}
+              tone={attentionCount > 0 ? "warn" : "good"}
+            />
+          </section>
 
       {groupSummary.length > 0 && (
         <section className="mt-4 grid gap-3 md:grid-cols-5">
@@ -334,6 +380,8 @@ function DiagnosticsPage() {
           </table>
         </div>
       </section>
+        </>
+      )}
     </div>
   );
 }

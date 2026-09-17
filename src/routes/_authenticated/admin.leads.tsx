@@ -21,12 +21,14 @@ import {
   Compass,
   Zap,
   Globe,
+  MessageSquare,
 } from "lucide-react";
 import { PageHeader, StatusBadge } from "./admin.index";
 import { LeadProposalModal } from "@/components/admin/LeadProposalModal";
 import { LeadProspectorAuditDesk } from "@/components/admin/LeadProspectorAuditDesk";
 import { ContentFlowEngine } from "@/components/admin/ContentFlowEngine";
 import { LocalSeoFactoryDesk } from "@/components/admin/LocalSeoFactoryDesk";
+import { WhatsAppIntakeDesk } from "@/components/admin/WhatsAppIntakeDesk";
 
 type LeadRow = Database["public"]["Tables"]["leads"]["Row"];
 type LeadStatus = Database["public"]["Enums"]["lead_status"];
@@ -37,7 +39,7 @@ export const Route = createFileRoute("/_authenticated/admin/leads")({
 
 function LeadsPage() {
   const qc = useQueryClient();
-  const [moduleMode, setModuleMode] = useState<"crm" | "prospector" | "contentflow" | "seofactory">("crm");
+  const [moduleMode, setModuleMode] = useState<"crm" | "prospector" | "contentflow" | "seofactory" | "whatsapp">("crm");
   const [activeTab, setActiveTab] = useState<string>("all");
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedLead, setSelectedLead] = useState<LeadRow | null>(null);
@@ -185,14 +187,22 @@ function LeadsPage() {
             ? "Lead Intake & CRM Pipeline"
             : moduleMode === "prospector"
               ? "Automated Prospector & Audit Engine"
-              : "ContentFlow AI Trade Copy Engine"
+              : moduleMode === "contentflow"
+                ? "ContentFlow AI Trade Copy Engine"
+                : moduleMode === "seofactory"
+                  ? "Multi-City Local SEO Factory"
+                  : "AI WhatsApp & SMS Inbound Intake Desk"
         }
         subtitle={
           moduleMode === "crm"
             ? "Manage inbound enquiries, qualify commercial fit, and convert leads into active clients."
             : moduleMode === "prospector"
               ? "Scan UK trade sectors by county, audit live websites for revenue leaks, and dispatch 1-click outreach."
-              : "Factory-grade 5-page conversion copywriting generator engineered for UK trade & contractor verticals."
+              : moduleMode === "contentflow"
+                ? "Factory-grade 5-page conversion copywriting generator engineered for UK trade & contractor verticals."
+                : moduleMode === "seofactory"
+                  ? "Multi-borough JSON-LD schema builder and high-intent local search clustering across UK counties."
+                  : "Live WhatsApp Business automation, instant staging demo dispatch, and contractor intake conversations."
         }
         action={
           moduleMode === "crm" ? (
@@ -225,6 +235,21 @@ function LeadsPage() {
             moduleMode === "crm" ? "bg-white/20 text-white" : "bg-ink/10 text-ink"
           }`}>
             {totalLeads}
+          </span>
+        </button>
+
+        <button
+          onClick={() => setModuleMode("whatsapp")}
+          className={`inline-flex items-center gap-2 rounded-xl px-4 py-2 text-xs font-semibold transition-all ${
+            moduleMode === "whatsapp"
+              ? "bg-ink text-white shadow-sm"
+              : "border border-ink/10 bg-white text-ink/70 hover:bg-ink/[0.04]"
+          }`}
+        >
+          <MessageSquare size={15} className={moduleMode === "whatsapp" ? "text-emerald-300" : "text-emerald-600"} />
+          <span>AI WhatsApp Intake Desk</span>
+          <span className="ml-1 rounded bg-emerald-500/20 px-1.5 py-0.5 text-[10px] font-bold text-emerald-600 dark:text-emerald-400">
+            LIVE DESK
           </span>
         </button>
 
@@ -273,6 +298,26 @@ function LeadsPage() {
           </span>
         </button>
       </div>
+
+      {moduleMode === "whatsapp" && (
+        <div className="mt-6">
+          <WhatsAppIntakeDesk
+            onImportLead={(lead) => {
+              saveLeadMutation.mutate({
+                name: lead.name,
+                company: lead.company,
+                email: `${lead.company.toLowerCase().replace(/[^a-z0-9]/g, "")}@inbound-lead.local`,
+                package: "Growth Engine (£195/mo)",
+                status: "qualified",
+                source: "whatsapp_intake",
+                message: `WhatsApp Inbound Intake: ${lead.trade} in ${lead.city}. Phone: ${lead.phone}`,
+                notes: lead.notes,
+              });
+              toast.success(`WhatsApp lead "${lead.company}" synced into CRM!`);
+            }}
+          />
+        </div>
+      )}
 
       {moduleMode === "prospector" && (
         <div className="mt-6">

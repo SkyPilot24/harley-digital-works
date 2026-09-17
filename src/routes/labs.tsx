@@ -19,6 +19,7 @@ import {
   Building2,
   RefreshCw,
 } from "lucide-react";
+import { ClientSiteCodeExporter } from "@/components/admin/ClientSiteCodeExporter";
 
 export const Route = createFileRoute("/labs")({
   head: () => ({
@@ -371,6 +372,27 @@ function HarleyLabsPage() {
                 </div>
               </div>
             )}
+          </div>
+        </Container>
+      </section>
+
+      {/* Code Blueprint & Static Site Exporter Section */}
+      <section id="code-exporter" className="py-20 md:py-28 bg-[#090C15] text-white border-b border-slate-800">
+        <Container>
+          <div className="max-w-3xl">
+            <p className="text-xs font-mono font-bold uppercase tracking-widest text-indigo-400">
+              // Turnkey Code Synthesis
+            </p>
+            <h2 className="mt-2 text-3xl font-bold tracking-tight text-white md:text-4xl">
+              1-Click Standalone Trade Website Blueprint Compiler
+            </h2>
+            <p className="mt-3 text-slate-300 leading-relaxed">
+              Export complete, production-grade React + Tailwind + Lucide trade website repository blueprints ready for instant V8 edge deployment on Cloudflare Pages, Netlify, or Vercel.
+            </p>
+          </div>
+
+          <div className="mt-10">
+            <ClientSiteCodeExporter />
           </div>
         </Container>
       </section>

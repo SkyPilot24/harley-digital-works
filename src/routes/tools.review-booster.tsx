@@ -1,4 +1,4 @@
-﻿import { useState } from "react";
+import { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { PageShell, Container } from "@/components/site/PageShell";
 import { TagChip } from "@/components/site/TagChip";
@@ -17,7 +17,20 @@ import {
 } from "lucide-react";
 import { toast } from "sonner";
 
+interface ReviewBoosterSearch {
+  biz?: string;
+  customer?: string;
+  phone?: string;
+  placeUrl?: string;
+}
+
 export const Route = createFileRoute("/tools/review-booster")({
+  validateSearch: (search: Record<string, unknown>): ReviewBoosterSearch => ({
+    biz: typeof search.biz === "string" ? search.biz : undefined,
+    customer: typeof search.customer === "string" ? search.customer : undefined,
+    phone: typeof search.phone === "string" ? search.phone : undefined,
+    placeUrl: typeof search.placeUrl === "string" ? search.placeUrl : undefined,
+  }),
   head: () => ({
     meta: [
       { title: "5-Star Google Review Booster for Trade Contractors | Harley Digital Works" },
@@ -33,10 +46,11 @@ export const Route = createFileRoute("/tools/review-booster")({
 });
 
 function ReviewBoosterPage() {
-  const [businessName, setBusinessName] = useState("Apex Electrical Contractors");
-  const [googlePlaceUrl, setGooglePlaceUrl] = useState("https://g.page/r/your-google-review-link/review");
-  const [customerName, setCustomerName] = useState("John");
-  const [customerPhone, setCustomerPhone] = useState("07700 900123");
+  const search = Route.useSearch();
+  const [businessName, setBusinessName] = useState(search.biz || "Apex Electrical Contractors");
+  const [googlePlaceUrl, setGooglePlaceUrl] = useState(search.placeUrl || "https://g.page/r/your-google-review-link/review");
+  const [customerName, setCustomerName] = useState(search.customer || "John");
+  const [customerPhone, setCustomerPhone] = useState(search.phone || "07700 900123");
   const [copiedText, setCopiedText] = useState(false);
 
   // Interactive Live Simulator State

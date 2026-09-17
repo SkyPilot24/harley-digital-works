@@ -539,6 +539,114 @@ export const KNOWLEDGE_ARTICLES: KnowledgeArticle[] = [
       },
     ],
   },
+  {
+    id: "whatsapp-intake-os-playbook",
+    category: "sales",
+    title: "Operating the AI WhatsApp & SMS Inbound Intake Desk (/admin/leads)",
+    summary:
+      "Automated contractor qualification, instant staging demo generation, and human-in-the-loop WhatsApp closing console.",
+    badge: "WhatsApp Automation",
+    readTime: "3 min read",
+    quickAction: { label: "Open WhatsApp Desk", to: "/admin/leads" },
+    steps: [
+      {
+        title: "1. Review Real-Time WhatsApp Threads",
+        description:
+          "Open /admin/leads -> 'AI WhatsApp Intake Desk'. Inbound messages from trade contractors are automatically ingested, parsed for trade sector and city, and assigned priority status.",
+      },
+      {
+        title: "2. Dispatch Instant 60-Second Staging Demos",
+        description:
+          "Click the 'Generate & Send Live Staging Demo' quick template chip to dynamically formulate an interactive preview URL for their specific company name and trade specialty.",
+      },
+      {
+        title: "3. 1-Click Convert to CRM Pipeline",
+        description:
+          "Tap 'Mark as Converted' to automatically sync the trade lead into Supabase CRM leads and generate a 14-day production onboarding token.",
+      },
+    ],
+  },
+  {
+    id: "client-site-code-exporter-playbook",
+    category: "tech",
+    title: "1-Click Standalone Trade Website Code Blueprint & Vite Exporter (/labs)",
+    summary:
+      "Synthesizing production React + Tailwind standalone repositories ready for instant deployment on Cloudflare Pages, Netlify, or Vercel.",
+    badge: "Code Synthesis",
+    readTime: "3 min read",
+    quickAction: { label: "Open Code Exporter", to: "/labs" },
+    steps: [
+      {
+        title: "1. Configure Contractor Blueprint Parameters",
+        description:
+          "Navigate to /labs -> '1-Click Code Blueprint Exporter' (or /admin/diagnostics). Specify the company name, trade vertical, city hub, and phone number.",
+      },
+      {
+        title: "2. Inspect Multi-File React Tree",
+        description:
+          "Review App.tsx, Hero.tsx, Calculator.tsx, and package.json with syntax highlighting and instant clipboard copying.",
+      },
+      {
+        title: "3. Export JSON / ZIP Repository Blueprint",
+        description:
+          "Click 'Download Full Project (JSON Blueprint)' to export a turnkey repository artifact ready for automated CI/CD deployment or git import.",
+      },
+    ],
+  },
+  {
+    id: "review-booster-referral-playbook",
+    category: "tools",
+    title: "Post-Job 5-Star Review Booster & Direct WhatsApp Dispatch (/tools/review-booster)",
+    summary:
+      "Reputation shield protocol: routing happy homeowners straight to Google Review 5-star modals while intercepting negative feedback privately.",
+    badge: "Reputation OS",
+    readTime: "2 min read",
+    quickAction: { label: "Open Review Booster", to: "/tools/review-booster" },
+    steps: [
+      {
+        title: "1. Pre-Populate Customer Job Details",
+        description:
+          "Generate personalized dispatch links using URL query parameters (?biz=...&customer=...&phone=...) directly from the mobile care desk.",
+      },
+      {
+        title: "2. 1-Tap Direct WhatsApp / SMS Dispatch",
+        description:
+          "Tap 'Send via WhatsApp' to open a pre-filled conversational prompt to the homeowner immediately upon job completion.",
+      },
+      {
+        title: "3. Smart Sentiment Routing",
+        description:
+          "Homeowners selecting 4-5 stars are routed immediately to the contractor's Google Review page; 1-3 stars trigger a private feedback modal with instant SMS alert to the contractor.",
+      },
+    ],
+  },
+  {
+    id: "group-executive-valuation-governance-playbook",
+    category: "group",
+    title: "The Harley Group Executive Governance, Cap Table & Valuation Framework (/the-harley-group)",
+    summary:
+      "Parent company governance, 100% founder-controlled equity structure, 50/30/20 capital allocation protocol, and statutory board oversight.",
+    badge: "Executive Governance",
+    readTime: "4 min read",
+    quickAction: { label: "Open Group Governance", to: "/the-harley-group" },
+    steps: [
+      {
+        title: "1. Debt-Free Balance Sheet Oversight",
+        description:
+          "Enforce zero long-term debt across all operating subsidiaries with 6+ months operational cash reserves held in UK liquid treasury accounts.",
+      },
+      {
+        title: "2. 50/30/20 Capital Allocation Protocol",
+        description:
+          "Mandate allocation of operating cashflow: 50% Harley Labs R&D reinvestment, 30% treasury reserve buffer, 20% quarterly shareholder distributions.",
+      },
+      {
+        title: "3. Annual Statutory & HMRC Compliance",
+        description:
+          "Execute automated Making Tax Digital VAT returns quarterly and Companies House statutory confirmation statements under English law.",
+      },
+    ],
+  },
 ];
 
 const CATEGORIES: { id: GuideCategory; label: string; icon: typeof BookOpen }[] = [
