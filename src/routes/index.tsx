@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowDown, ArrowUpRight, Check, PenLine, ShieldCheck } from "lucide-react";
 import { PageShell } from "@/components/site/PageShell";
@@ -5,6 +6,7 @@ import { PillButton } from "@/components/site/PillButton";
 import { ConceptScreen, ConceptShowcase } from "@/components/site/ConceptShowcase";
 import { BeforeAfterSlider } from "@/components/site/BeforeAfterSlider";
 import { WebsitePackagesSection } from "@/components/site/WebsitePackagesSection";
+import { TheHarleyGroupPage } from "./the-harley-group";
 import {
   Accordion,
   AccordionContent,
@@ -63,6 +65,18 @@ const faqs = [
 ];
 
 function HomePage() {
+  const [isGroupDomain, setIsGroupDomain] = useState(false);
+
+  useEffect(() => {
+    if (typeof window !== "undefined" && window.location.hostname.includes("theharleygroup")) {
+      setIsGroupDomain(true);
+    }
+  }, []);
+
+  if (isGroupDomain) {
+    return <TheHarleyGroupPage />;
+  }
+
   return (
     <PageShell quiet>
       <div className="studio-home">
