@@ -34,6 +34,7 @@ const NAV: { to: string; label: string; icon: typeof LayoutDashboard; exact?: bo
   { to: "/admin/team", label: "Team", icon: UsersRound },
   { to: "/admin/services", label: "Services", icon: FileText },
   { to: "/admin/resources", label: "Resources", icon: BookOpen },
+  { to: "/admin/knowledge-base", label: "Knowledge Base", icon: BookOpen },
   { to: "/admin/playbooks", label: "Playbooks", icon: ClipboardList },
   { to: "/admin/testimonials", label: "Testimonials", icon: MessageSquareQuote },
   { to: "/admin/users", label: "Users & roles", icon: Shield },

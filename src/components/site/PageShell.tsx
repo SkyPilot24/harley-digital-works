@@ -1,13 +1,17 @@
 import type { ReactNode } from "react";
 import { SiteHeader } from "./SiteHeader";
 import { FooterDark } from "./FooterDark";
+import { FloatingWhatsAppDesk } from "./FloatingWhatsAppDesk";
+import { ExitIntentModal } from "./ExitIntentModal";
 
 export function PageShell({ children }: { children: ReactNode }) {
   return (
-    <div className="min-h-screen bg-background text-ink">
+    <div className="min-h-screen bg-background text-ink relative">
       <SiteHeader />
       <main>{children}</main>
       <FooterDark />
+      <FloatingWhatsAppDesk />
+      <ExitIntentModal />
     </div>
   );
 }

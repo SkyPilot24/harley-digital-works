@@ -14,7 +14,9 @@ import { Route as TrackRouteImport } from './routes/track'
 import { Route as TheHarleyGroupRouteImport } from './routes/the-harley-group'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as ResourcesRouteImport } from './routes/resources'
+import { Route as ProposalsRouteImport } from './routes/proposals'
 import { Route as PrivacyRouteImport } from './routes/privacy'
+import { Route as PartnersRouteImport } from './routes/partners'
 import { Route as OnboardingRouteImport } from './routes/onboarding'
 import { Route as LocationsRouteImport } from './routes/locations'
 import { Route as LabsRouteImport } from './routes/labs'
@@ -51,6 +53,7 @@ import { Route as AuthenticatedAdminResourcesRouteImport } from './routes/_authe
 import { Route as AuthenticatedAdminProjectsRouteImport } from './routes/_authenticated/admin.projects'
 import { Route as AuthenticatedAdminPlaybooksRouteImport } from './routes/_authenticated/admin.playbooks'
 import { Route as AuthenticatedAdminLeadsRouteImport } from './routes/_authenticated/admin.leads'
+import { Route as AuthenticatedAdminKnowledgeBaseRouteImport } from './routes/_authenticated/admin.knowledge-base'
 import { Route as AuthenticatedAdminDomainOsRouteImport } from './routes/_authenticated/admin.domain-os'
 import { Route as AuthenticatedAdminDiagnosticsRouteImport } from './routes/_authenticated/admin.diagnostics'
 import { Route as AuthenticatedAdminClientsRouteImport } from './routes/_authenticated/admin.clients'
@@ -80,9 +83,19 @@ const ResourcesRoute = ResourcesRouteImport.update({
   path: '/resources',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ProposalsRoute = ProposalsRouteImport.update({
+  id: '/proposals',
+  path: '/proposals',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PrivacyRoute = PrivacyRouteImport.update({
   id: '/privacy',
   path: '/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PartnersRoute = PartnersRouteImport.update({
+  id: '/partners',
+  path: '/partners',
   getParentRoute: () => rootRouteImport,
 } as any)
 const OnboardingRoute = OnboardingRouteImport.update({
@@ -273,6 +286,12 @@ const AuthenticatedAdminLeadsRoute = AuthenticatedAdminLeadsRouteImport.update({
   path: '/admin/leads',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedAdminKnowledgeBaseRoute =
+  AuthenticatedAdminKnowledgeBaseRouteImport.update({
+    id: '/admin/knowledge-base',
+    path: '/admin/knowledge-base',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const AuthenticatedAdminDomainOsRoute =
   AuthenticatedAdminDomainOsRouteImport.update({
     id: '/admin/domain-os',
@@ -305,7 +324,9 @@ export interface FileRoutesByFullPath {
   '/labs': typeof LabsRoute
   '/locations': typeof LocationsRoute
   '/onboarding': typeof OnboardingRoute
+  '/partners': typeof PartnersRoute
   '/privacy': typeof PrivacyRoute
+  '/proposals': typeof ProposalsRoute
   '/resources': typeof ResourcesRoute
   '/services': typeof ServicesRoute
   '/the-harley-group': typeof TheHarleyGroupRoute
@@ -326,6 +347,7 @@ export interface FileRoutesByFullPath {
   '/admin/clients': typeof AuthenticatedAdminClientsRoute
   '/admin/diagnostics': typeof AuthenticatedAdminDiagnosticsRoute
   '/admin/domain-os': typeof AuthenticatedAdminDomainOsRoute
+  '/admin/knowledge-base': typeof AuthenticatedAdminKnowledgeBaseRoute
   '/admin/leads': typeof AuthenticatedAdminLeadsRoute
   '/admin/playbooks': typeof AuthenticatedAdminPlaybooksRoute
   '/admin/projects': typeof AuthenticatedAdminProjectsRoute
@@ -351,7 +373,9 @@ export interface FileRoutesByTo {
   '/labs': typeof LabsRoute
   '/locations': typeof LocationsRoute
   '/onboarding': typeof OnboardingRoute
+  '/partners': typeof PartnersRoute
   '/privacy': typeof PrivacyRoute
+  '/proposals': typeof ProposalsRoute
   '/resources': typeof ResourcesRoute
   '/services': typeof ServicesRoute
   '/the-harley-group': typeof TheHarleyGroupRoute
@@ -372,6 +396,7 @@ export interface FileRoutesByTo {
   '/admin/clients': typeof AuthenticatedAdminClientsRoute
   '/admin/diagnostics': typeof AuthenticatedAdminDiagnosticsRoute
   '/admin/domain-os': typeof AuthenticatedAdminDomainOsRoute
+  '/admin/knowledge-base': typeof AuthenticatedAdminKnowledgeBaseRoute
   '/admin/leads': typeof AuthenticatedAdminLeadsRoute
   '/admin/playbooks': typeof AuthenticatedAdminPlaybooksRoute
   '/admin/projects': typeof AuthenticatedAdminProjectsRoute
@@ -399,7 +424,9 @@ export interface FileRoutesById {
   '/labs': typeof LabsRoute
   '/locations': typeof LocationsRoute
   '/onboarding': typeof OnboardingRoute
+  '/partners': typeof PartnersRoute
   '/privacy': typeof PrivacyRoute
+  '/proposals': typeof ProposalsRoute
   '/resources': typeof ResourcesRoute
   '/services': typeof ServicesRoute
   '/the-harley-group': typeof TheHarleyGroupRoute
@@ -420,6 +447,7 @@ export interface FileRoutesById {
   '/_authenticated/admin/clients': typeof AuthenticatedAdminClientsRoute
   '/_authenticated/admin/diagnostics': typeof AuthenticatedAdminDiagnosticsRoute
   '/_authenticated/admin/domain-os': typeof AuthenticatedAdminDomainOsRoute
+  '/_authenticated/admin/knowledge-base': typeof AuthenticatedAdminKnowledgeBaseRoute
   '/_authenticated/admin/leads': typeof AuthenticatedAdminLeadsRoute
   '/_authenticated/admin/playbooks': typeof AuthenticatedAdminPlaybooksRoute
   '/_authenticated/admin/projects': typeof AuthenticatedAdminProjectsRoute
@@ -447,7 +475,9 @@ export interface FileRouteTypes {
     | '/labs'
     | '/locations'
     | '/onboarding'
+    | '/partners'
     | '/privacy'
+    | '/proposals'
     | '/resources'
     | '/services'
     | '/the-harley-group'
@@ -468,6 +498,7 @@ export interface FileRouteTypes {
     | '/admin/clients'
     | '/admin/diagnostics'
     | '/admin/domain-os'
+    | '/admin/knowledge-base'
     | '/admin/leads'
     | '/admin/playbooks'
     | '/admin/projects'
@@ -493,7 +524,9 @@ export interface FileRouteTypes {
     | '/labs'
     | '/locations'
     | '/onboarding'
+    | '/partners'
     | '/privacy'
+    | '/proposals'
     | '/resources'
     | '/services'
     | '/the-harley-group'
@@ -514,6 +547,7 @@ export interface FileRouteTypes {
     | '/admin/clients'
     | '/admin/diagnostics'
     | '/admin/domain-os'
+    | '/admin/knowledge-base'
     | '/admin/leads'
     | '/admin/playbooks'
     | '/admin/projects'
@@ -540,7 +574,9 @@ export interface FileRouteTypes {
     | '/labs'
     | '/locations'
     | '/onboarding'
+    | '/partners'
     | '/privacy'
+    | '/proposals'
     | '/resources'
     | '/services'
     | '/the-harley-group'
@@ -561,6 +597,7 @@ export interface FileRouteTypes {
     | '/_authenticated/admin/clients'
     | '/_authenticated/admin/diagnostics'
     | '/_authenticated/admin/domain-os'
+    | '/_authenticated/admin/knowledge-base'
     | '/_authenticated/admin/leads'
     | '/_authenticated/admin/playbooks'
     | '/_authenticated/admin/projects'
@@ -588,7 +625,9 @@ export interface RootRouteChildren {
   LabsRoute: typeof LabsRoute
   LocationsRoute: typeof LocationsRoute
   OnboardingRoute: typeof OnboardingRoute
+  PartnersRoute: typeof PartnersRoute
   PrivacyRoute: typeof PrivacyRoute
+  ProposalsRoute: typeof ProposalsRoute
   ResourcesRoute: typeof ResourcesRoute
   ServicesRoute: typeof ServicesRoute
   TheHarleyGroupRoute: typeof TheHarleyGroupRoute
@@ -645,11 +684,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ResourcesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/proposals': {
+      id: '/proposals'
+      path: '/proposals'
+      fullPath: '/proposals'
+      preLoaderRoute: typeof ProposalsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/privacy': {
       id: '/privacy'
       path: '/privacy'
       fullPath: '/privacy'
       preLoaderRoute: typeof PrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/partners': {
+      id: '/partners'
+      path: '/partners'
+      fullPath: '/partners'
+      preLoaderRoute: typeof PartnersRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/onboarding': {
@@ -904,6 +957,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAdminLeadsRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/admin/knowledge-base': {
+      id: '/_authenticated/admin/knowledge-base'
+      path: '/admin/knowledge-base'
+      fullPath: '/admin/knowledge-base'
+      preLoaderRoute: typeof AuthenticatedAdminKnowledgeBaseRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/admin/domain-os': {
       id: '/_authenticated/admin/domain-os'
       path: '/admin/domain-os'
@@ -932,6 +992,7 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedAdminClientsRoute: typeof AuthenticatedAdminClientsRoute
   AuthenticatedAdminDiagnosticsRoute: typeof AuthenticatedAdminDiagnosticsRoute
   AuthenticatedAdminDomainOsRoute: typeof AuthenticatedAdminDomainOsRoute
+  AuthenticatedAdminKnowledgeBaseRoute: typeof AuthenticatedAdminKnowledgeBaseRoute
   AuthenticatedAdminLeadsRoute: typeof AuthenticatedAdminLeadsRoute
   AuthenticatedAdminPlaybooksRoute: typeof AuthenticatedAdminPlaybooksRoute
   AuthenticatedAdminProjectsRoute: typeof AuthenticatedAdminProjectsRoute
@@ -949,6 +1010,7 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedAdminClientsRoute: AuthenticatedAdminClientsRoute,
   AuthenticatedAdminDiagnosticsRoute: AuthenticatedAdminDiagnosticsRoute,
   AuthenticatedAdminDomainOsRoute: AuthenticatedAdminDomainOsRoute,
+  AuthenticatedAdminKnowledgeBaseRoute: AuthenticatedAdminKnowledgeBaseRoute,
   AuthenticatedAdminLeadsRoute: AuthenticatedAdminLeadsRoute,
   AuthenticatedAdminPlaybooksRoute: AuthenticatedAdminPlaybooksRoute,
   AuthenticatedAdminProjectsRoute: AuthenticatedAdminProjectsRoute,
@@ -979,7 +1041,9 @@ const rootRouteChildren: RootRouteChildren = {
   LabsRoute: LabsRoute,
   LocationsRoute: LocationsRoute,
   OnboardingRoute: OnboardingRoute,
+  PartnersRoute: PartnersRoute,
   PrivacyRoute: PrivacyRoute,
+  ProposalsRoute: ProposalsRoute,
   ResourcesRoute: ResourcesRoute,
   ServicesRoute: ServicesRoute,
   TheHarleyGroupRoute: TheHarleyGroupRoute,

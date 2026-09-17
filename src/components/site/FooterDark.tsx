@@ -29,6 +29,7 @@ const COLUMNS = [
   {
     heading: "Client Portals",
     links: [
+      { label: "Interactive Proposals", to: "/proposals" },
       { label: "Fast-Track Onboarding", to: "/onboarding" },
       { label: "14-Day Build Tracker", to: "/track" },
       { label: "Care Plan Update Desk", to: "/care-desk" },
@@ -41,6 +42,7 @@ const COLUMNS = [
     links: [
       { label: "The Harley Group (Parent)", to: "/the-harley-group" },
       { label: "Harley Labs (R&D)", to: "/labs" },
+      { label: "Trade Partner Network (£250)", to: "/partners" },
       { label: "About Harley Digital", to: "/about" },
       { label: "UK Regional Hubs", to: "/locations" },
       { label: "Trade Domains Store", to: "/domains" },
