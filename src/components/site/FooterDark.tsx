@@ -37,12 +37,13 @@ const COLUMNS = [
     ],
   },
   {
-    heading: "Company & Regions",
+    heading: "Company & Group",
     links: [
-      { label: "About Us", to: "/about" },
+      { label: "The Harley Group (Parent)", to: "/the-harley-group" },
+      { label: "Harley Labs (R&D)", to: "/labs" },
+      { label: "About Harley Digital", to: "/about" },
       { label: "UK Regional Hubs", to: "/locations" },
       { label: "Trade Domains Store", to: "/domains" },
-      { label: "Get a Free Quote", to: "/contact" },
       { label: "Privacy Policy", to: "/privacy" },
     ],
   },
@@ -68,7 +69,7 @@ export function FooterDark() {
               </PillButton>
             </div>
 
-            <div className="mt-8 flex items-center">
+            <div className="mt-8 flex items-center gap-3">
               <BrandLogo variant="light" imageClassName="h-6 w-auto" />
             </div>
           </div>
@@ -93,7 +94,11 @@ export function FooterDark() {
       <div className="border-t border-background/10">
         <div className="mx-auto flex max-w-[1240px] flex-col gap-2 px-6 py-6 text-[12px] text-background/65 md:flex-row md:items-center md:justify-between md:px-10">
           <p>
-            &copy; {YEAR} {siteConfig.name} (Part of The Harley Group). All rights reserved.
+            &copy; {YEAR} {siteConfig.name} · Part of{" "}
+            <Link to="/the-harley-group" className="text-background underline decoration-background/40 hover:decoration-background">
+              The Harley Group
+            </Link>
+            . All rights reserved.
           </p>
           <p className="font-mono uppercase tracking-[0.22em]">
             Websites · Copywriting · Managed Care

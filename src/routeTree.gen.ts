@@ -11,11 +11,13 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as WorkRouteImport } from './routes/work'
 import { Route as TrackRouteImport } from './routes/track'
+import { Route as TheHarleyGroupRouteImport } from './routes/the-harley-group'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as ResourcesRouteImport } from './routes/resources'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as OnboardingRouteImport } from './routes/onboarding'
 import { Route as LocationsRouteImport } from './routes/locations'
+import { Route as LabsRouteImport } from './routes/labs'
 import { Route as DomainsRouteImport } from './routes/domains'
 import { Route as DemosRouteImport } from './routes/demos'
 import { Route as ContactRouteImport } from './routes/contact'
@@ -63,6 +65,11 @@ const TrackRoute = TrackRouteImport.update({
   path: '/track',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TheHarleyGroupRoute = TheHarleyGroupRouteImport.update({
+  id: '/the-harley-group',
+  path: '/the-harley-group',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ServicesRoute = ServicesRouteImport.update({
   id: '/services',
   path: '/services',
@@ -86,6 +93,11 @@ const OnboardingRoute = OnboardingRouteImport.update({
 const LocationsRoute = LocationsRouteImport.update({
   id: '/locations',
   path: '/locations',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LabsRoute = LabsRouteImport.update({
+  id: '/labs',
+  path: '/labs',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DomainsRoute = DomainsRouteImport.update({
@@ -290,11 +302,13 @@ export interface FileRoutesByFullPath {
   '/contact': typeof ContactRoute
   '/demos': typeof DemosRoute
   '/domains': typeof DomainsRoute
+  '/labs': typeof LabsRoute
   '/locations': typeof LocationsRoute
   '/onboarding': typeof OnboardingRoute
   '/privacy': typeof PrivacyRoute
   '/resources': typeof ResourcesRoute
   '/services': typeof ServicesRoute
+  '/the-harley-group': typeof TheHarleyGroupRoute
   '/track': typeof TrackRoute
   '/work': typeof WorkRoute
   '/locations/$slug': typeof LocationsSlugRoute
@@ -334,11 +348,13 @@ export interface FileRoutesByTo {
   '/contact': typeof ContactRoute
   '/demos': typeof DemosRoute
   '/domains': typeof DomainsRoute
+  '/labs': typeof LabsRoute
   '/locations': typeof LocationsRoute
   '/onboarding': typeof OnboardingRoute
   '/privacy': typeof PrivacyRoute
   '/resources': typeof ResourcesRoute
   '/services': typeof ServicesRoute
+  '/the-harley-group': typeof TheHarleyGroupRoute
   '/track': typeof TrackRoute
   '/work': typeof WorkRoute
   '/locations/$slug': typeof LocationsSlugRoute
@@ -380,11 +396,13 @@ export interface FileRoutesById {
   '/contact': typeof ContactRoute
   '/demos': typeof DemosRoute
   '/domains': typeof DomainsRoute
+  '/labs': typeof LabsRoute
   '/locations': typeof LocationsRoute
   '/onboarding': typeof OnboardingRoute
   '/privacy': typeof PrivacyRoute
   '/resources': typeof ResourcesRoute
   '/services': typeof ServicesRoute
+  '/the-harley-group': typeof TheHarleyGroupRoute
   '/track': typeof TrackRoute
   '/work': typeof WorkRoute
   '/locations_/$slug': typeof LocationsSlugRoute
@@ -426,11 +444,13 @@ export interface FileRouteTypes {
     | '/contact'
     | '/demos'
     | '/domains'
+    | '/labs'
     | '/locations'
     | '/onboarding'
     | '/privacy'
     | '/resources'
     | '/services'
+    | '/the-harley-group'
     | '/track'
     | '/work'
     | '/locations/$slug'
@@ -470,11 +490,13 @@ export interface FileRouteTypes {
     | '/contact'
     | '/demos'
     | '/domains'
+    | '/labs'
     | '/locations'
     | '/onboarding'
     | '/privacy'
     | '/resources'
     | '/services'
+    | '/the-harley-group'
     | '/track'
     | '/work'
     | '/locations/$slug'
@@ -515,11 +537,13 @@ export interface FileRouteTypes {
     | '/contact'
     | '/demos'
     | '/domains'
+    | '/labs'
     | '/locations'
     | '/onboarding'
     | '/privacy'
     | '/resources'
     | '/services'
+    | '/the-harley-group'
     | '/track'
     | '/work'
     | '/locations_/$slug'
@@ -561,11 +585,13 @@ export interface RootRouteChildren {
   ContactRoute: typeof ContactRoute
   DemosRoute: typeof DemosRoute
   DomainsRoute: typeof DomainsRoute
+  LabsRoute: typeof LabsRoute
   LocationsRoute: typeof LocationsRoute
   OnboardingRoute: typeof OnboardingRoute
   PrivacyRoute: typeof PrivacyRoute
   ResourcesRoute: typeof ResourcesRoute
   ServicesRoute: typeof ServicesRoute
+  TheHarleyGroupRoute: typeof TheHarleyGroupRoute
   TrackRoute: typeof TrackRoute
   WorkRoute: typeof WorkRoute
   LocationsSlugRoute: typeof LocationsSlugRoute
@@ -596,6 +622,13 @@ declare module '@tanstack/react-router' {
       path: '/track'
       fullPath: '/track'
       preLoaderRoute: typeof TrackRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/the-harley-group': {
+      id: '/the-harley-group'
+      path: '/the-harley-group'
+      fullPath: '/the-harley-group'
+      preLoaderRoute: typeof TheHarleyGroupRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/services': {
@@ -631,6 +664,13 @@ declare module '@tanstack/react-router' {
       path: '/locations'
       fullPath: '/locations'
       preLoaderRoute: typeof LocationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/labs': {
+      id: '/labs'
+      path: '/labs'
+      fullPath: '/labs'
+      preLoaderRoute: typeof LabsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/domains': {
@@ -936,11 +976,13 @@ const rootRouteChildren: RootRouteChildren = {
   ContactRoute: ContactRoute,
   DemosRoute: DemosRoute,
   DomainsRoute: DomainsRoute,
+  LabsRoute: LabsRoute,
   LocationsRoute: LocationsRoute,
   OnboardingRoute: OnboardingRoute,
   PrivacyRoute: PrivacyRoute,
   ResourcesRoute: ResourcesRoute,
   ServicesRoute: ServicesRoute,
+  TheHarleyGroupRoute: TheHarleyGroupRoute,
   TrackRoute: TrackRoute,
   WorkRoute: WorkRoute,
   LocationsSlugRoute: LocationsSlugRoute,

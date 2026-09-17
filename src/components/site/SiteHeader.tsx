@@ -12,7 +12,8 @@ const LINKS = [
   { to: "/demos", label: "Live Demos" },
   { to: "/services/care-plans", label: "Care Plans" },
   { to: "/work", label: "Our Work" },
-  { to: "/services", label: "Pricing" },
+  { to: "/the-harley-group", label: "The Group" },
+  { to: "/labs", label: "Labs" },
   { to: "/about", label: "About" },
 ] as const;
 
