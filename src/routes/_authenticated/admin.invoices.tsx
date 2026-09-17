@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState, useMemo } from "react";
 import { PageHeader } from "./admin.index";
+import { GroupFinancialDesk } from "@/components/admin/GroupFinancialDesk";
 import {
   FileText,
   Printer,
@@ -14,6 +15,7 @@ import {
   ShieldCheck,
   Receipt,
   Share2,
+  PieChart,
 } from "lucide-react";
 import { toast } from "sonner";
 
@@ -76,6 +78,7 @@ const DEFAULT_INVOICE_TEMPLATES = {
 };
 
 function InvoicesAdminPage() {
+  const [invoiceMode, setInvoiceMode] = useState<"invoices" | "consolidation">("invoices");
   const [invoiceNumber, setInvoiceNumber] = useState("HDW-INV-2026-084");
   const [issueDate, setIssueDate] = useState(new Date().toISOString().split("T")[0]);
   const [dueDate, setDueDate] = useState(
@@ -106,13 +109,17 @@ function InvoicesAdminPage() {
 
   const loadTemplate = (templateKey: keyof typeof DEFAULT_INVOICE_TEMPLATES) => {
     const tpl = DEFAULT_INVOICE_TEMPLATES[templateKey];
-    setLineItems(
-      tpl.items.map((it, idx) => ({
-        ...it,
-        id: String(idx + 1),
-      }))
-    );
-    toast.success(`Loaded template: ${tpl.title}`);
+    if (tpl) {
+      setLineItems(
+        tpl.items.map((it, idx) => ({
+          id: String(idx + 1),
+          description: it.description,
+          quantity: it.quantity,
+          unitPrice: it.unitPrice,
+        }))
+      );
+      toast.success(`Loaded "${tpl.title}" invoice template.`);
+    }
   };
 
   const addItem = () => {
@@ -168,23 +175,76 @@ function InvoicesAdminPage() {
     <div className="space-y-6">
       <div className="print:hidden">
         <PageHeader
-          title="Automated VAT Invoices & Receipts"
-          subtitle="Generate, issue, and print HMRC-compliant 20% VAT invoices for client project deposits, completion balances, and monthly care retainers."
+          title={
+            invoiceMode === "invoices"
+              ? "Automated VAT Invoices & Receipts"
+              : "Group Financial Consolidation & HMRC Tax Desk"
+          }
+          subtitle={
+            invoiceMode === "invoices"
+              ? "Generate, issue, and print HMRC-compliant 20% VAT invoices for client project deposits, completion balances, and monthly care retainers."
+              : "Consolidated P&L, quarterly HMRC MTD VAT return computation, and Group financial performance across Harley Digital Works & Harley Labs."
+          }
           action={
-            <div className="flex items-center gap-2">
-              <button
-                onClick={handlePrint}
-                className="inline-flex items-center gap-1.5 rounded-lg bg-ink px-4 py-2 text-xs font-semibold text-white hover:bg-ink/85 shadow-sm transition-colors"
-              >
-                <Printer className="h-4 w-4" />
-                <span>Print Official Tax Invoice / Save PDF</span>
-              </button>
-            </div>
+            invoiceMode === "invoices" ? (
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={handlePrint}
+                  className="inline-flex items-center gap-1.5 rounded-lg bg-ink px-4 py-2 text-xs font-semibold text-white hover:bg-ink/85 shadow-sm transition-colors"
+                >
+                  <Printer className="h-4 w-4" />
+                  <span>Print Official Tax Invoice / Save PDF</span>
+                </button>
+              </div>
+            ) : undefined
           }
         />
+
+        {/* Module Switcher Tabs */}
+        <div className="mt-4 flex flex-wrap items-center gap-2 border-b border-ink/10 pb-4">
+          <button
+            onClick={() => setInvoiceMode("invoices")}
+            className={`inline-flex items-center gap-2 rounded-xl px-4 py-2 text-xs font-semibold transition-all ${
+              invoiceMode === "invoices"
+                ? "bg-ink text-white shadow-sm"
+                : "border border-ink/10 bg-white text-ink/70 hover:bg-ink/[0.04]"
+            }`}
+          >
+            <Receipt size={15} />
+            <span>VAT Invoicing & Receipts</span>
+            <span className={`ml-1 rounded-full px-2 py-0.5 text-[10px] font-mono font-medium ${
+              invoiceMode === "invoices" ? "bg-white/20 text-white" : "bg-ink/10 text-ink"
+            }`}>
+              20% VAT
+            </span>
+          </button>
+
+          <button
+            onClick={() => setInvoiceMode("consolidation")}
+            className={`inline-flex items-center gap-2 rounded-xl px-4 py-2 text-xs font-semibold transition-all ${
+              invoiceMode === "consolidation"
+                ? "bg-ink text-white shadow-sm"
+                : "border border-ink/10 bg-white text-ink/70 hover:bg-ink/[0.04]"
+            }`}
+          >
+            <Building2 size={15} className={invoiceMode === "consolidation" ? "text-emerald-300" : "text-emerald-600"} />
+            <span>Group Financial Consolidation & HMRC Tax Desk</span>
+            <span className="ml-1 rounded bg-emerald-500/20 px-1.5 py-0.5 text-[10px] font-mono font-bold text-emerald-600 dark:text-emerald-400">
+              GB 948 2018 39
+            </span>
+          </button>
+        </div>
       </div>
 
-      {/* Quick Template Switcher & Invoice Config (Screen Only) */}
+      {invoiceMode === "consolidation" && (
+        <div className="print:hidden">
+          <GroupFinancialDesk />
+        </div>
+      )}
+
+      {invoiceMode === "invoices" && (
+        <>
+          {/* Quick Template Switcher & Invoice Config (Screen Only) */}
       <div className="rounded-2xl border border-ink/10 bg-white p-6 shadow-sm print:hidden">
         <div className="flex flex-wrap items-center justify-between gap-4 border-b border-ink/10 pb-4">
           <div>
@@ -445,6 +505,8 @@ function InvoicesAdminPage() {
           <div>Harley Digital Works is a trading name of The Harley Group Ltd</div>
         </div>
       </div>
+      </>
+      )}
     </div>
   );
 }

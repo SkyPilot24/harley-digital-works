@@ -20,11 +20,13 @@ import {
   FileText,
   Compass,
   Zap,
+  Globe,
 } from "lucide-react";
 import { PageHeader, StatusBadge } from "./admin.index";
 import { LeadProposalModal } from "@/components/admin/LeadProposalModal";
 import { LeadProspectorAuditDesk } from "@/components/admin/LeadProspectorAuditDesk";
 import { ContentFlowEngine } from "@/components/admin/ContentFlowEngine";
+import { LocalSeoFactoryDesk } from "@/components/admin/LocalSeoFactoryDesk";
 
 type LeadRow = Database["public"]["Tables"]["leads"]["Row"];
 type LeadStatus = Database["public"]["Enums"]["lead_status"];
@@ -35,7 +37,7 @@ export const Route = createFileRoute("/_authenticated/admin/leads")({
 
 function LeadsPage() {
   const qc = useQueryClient();
-  const [moduleMode, setModuleMode] = useState<"crm" | "prospector" | "contentflow">("crm");
+  const [moduleMode, setModuleMode] = useState<"crm" | "prospector" | "contentflow" | "seofactory">("crm");
   const [activeTab, setActiveTab] = useState<string>("all");
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedLead, setSelectedLead] = useState<LeadRow | null>(null);
@@ -255,6 +257,21 @@ function LeadsPage() {
             5-PAGE FACTORY
           </span>
         </button>
+
+        <button
+          onClick={() => setModuleMode("seofactory")}
+          className={`inline-flex items-center gap-2 rounded-xl px-4 py-2 text-xs font-semibold transition-all ${
+            moduleMode === "seofactory"
+              ? "bg-ink text-white shadow-sm"
+              : "border border-ink/10 bg-white text-ink/70 hover:bg-ink/[0.04]"
+          }`}
+        >
+          <Globe size={15} className={moduleMode === "seofactory" ? "text-cyan-300" : "text-cyan-600"} />
+          <span>Multi-City Local SEO Factory</span>
+          <span className="ml-1 rounded bg-cyan-500/20 px-1.5 py-0.5 text-[10px] font-bold text-cyan-600 dark:text-cyan-400">
+            SCHEMA & BOROUGHS
+          </span>
+        </button>
       </div>
 
       {moduleMode === "prospector" && (
@@ -280,6 +297,12 @@ function LeadsPage() {
       {moduleMode === "contentflow" && (
         <div className="mt-6">
           <ContentFlowEngine />
+        </div>
+      )}
+
+      {moduleMode === "seofactory" && (
+        <div className="mt-6">
+          <LocalSeoFactoryDesk />
         </div>
       )}
 

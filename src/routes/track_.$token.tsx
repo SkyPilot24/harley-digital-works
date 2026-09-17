@@ -5,6 +5,7 @@ import { SAMPLE_PROJECTS, type ClientTrackProject } from "@/lib/project-tracker-
 import { MilestoneTimeline } from "@/components/portal/MilestoneTimeline";
 import { MobileAssetDropzone } from "@/components/portal/MobileAssetDropzone";
 import { DnsConnectGuide } from "@/components/portal/DnsConnectGuide";
+import { ClientMilestoneSignOffDesk } from "@/components/portal/ClientMilestoneSignOffDesk";
 import { PhoneCall, Send, ShieldCheck } from "lucide-react";
 
 export const Route = createFileRoute("/track_/$token")({
@@ -106,6 +107,11 @@ function DynamicTrackPage() {
                 </div>
               </div>
             </div>
+          </div>
+
+          {/* Interactive Staging Review & Milestone 4 Approval Desk */}
+          <div className="mb-8">
+            <ClientMilestoneSignOffDesk project={project} />
           </div>
 
           {/* Grid Layout: Timeline + Dropzone & DNS */}

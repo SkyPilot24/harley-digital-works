@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { PageShell, Container } from "@/components/site/PageShell";
 import { PillButton } from "@/components/site/PillButton";
+import { PartnerPortalDesk } from "@/components/partners/PartnerPortalDesk";
 import {
   Users,
   PoundSterling,
@@ -15,6 +16,7 @@ import {
   Calculator,
   PhoneCall,
   FileCheck2,
+  QrCode,
 } from "lucide-react";
 import { toast } from "sonner";
 
@@ -74,6 +76,7 @@ const TARGET_PARTNER_TYPES = [
 ];
 
 function PartnersPage() {
+  const [viewMode, setViewMode] = useState<"overview" | "portal">("overview");
   const [referralsPerMonth, setReferralsPerMonth] = useState(4);
   const [partnerName, setPartnerName] = useState("");
   const [companyName, setCompanyName] = useState("");
@@ -99,50 +102,97 @@ function PartnersPage() {
   return (
     <PageShell>
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-slate-950 pt-32 pb-20 text-white md:pt-44 md:pb-28 border-b border-emerald-950/40">
+      <section className="relative overflow-hidden bg-slate-950 pt-32 pb-12 text-white md:pt-40 md:pb-16 border-b border-emerald-950/40">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_-20%,rgba(16,185,129,0.18),rgba(255,255,255,0))]" />
         
         <Container className="relative z-10">
-          <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-950/60 px-3.5 py-1.5 text-xs font-semibold tracking-wide text-emerald-300 backdrop-blur-md">
-            <Users className="h-3.5 w-3.5" />
-            <span>UK Trade Merchant & Accountant Partner Program</span>
+          {/* Top Switcher Tabs */}
+          <div className="flex flex-wrap items-center gap-2 mb-6">
+            <button
+              onClick={() => setViewMode("overview")}
+              className={`inline-flex items-center gap-2 rounded-xl px-4 py-2 text-xs font-semibold transition-all ${
+                viewMode === "overview"
+                  ? "bg-emerald-500 text-neutral-950 shadow-md"
+                  : "bg-slate-900/80 text-slate-300 hover:text-white border border-slate-800"
+              }`}
+            >
+              <Users className="h-3.5 w-3.5" />
+              <span>Partner Program Overview</span>
+            </button>
+
+            <button
+              onClick={() => setViewMode("portal")}
+              className={`inline-flex items-center gap-2 rounded-xl px-4 py-2 text-xs font-semibold transition-all ${
+                viewMode === "portal"
+                  ? "bg-emerald-500 text-neutral-950 shadow-md"
+                  : "bg-slate-900/80 text-slate-300 hover:text-white border border-slate-800"
+              }`}
+            >
+              <QrCode className="h-3.5 w-3.5" />
+              <span>Live Partner Affiliate Desk</span>
+              <span className="ml-1 rounded bg-emerald-400/20 px-1.5 py-0.5 text-[10px] font-mono font-bold text-emerald-300">
+                ACTIVE PORTAL
+              </span>
+            </button>
           </div>
 
-          <h1 className="mt-6 max-w-4xl text-[clamp(2.5rem,5.5vw,4.8rem)] font-bold tracking-tight text-white leading-[1.05]">
-            Earn <span className="text-emerald-400">£250 for Every UK Trade Contractor</span> You Introduce.
-          </h1>
+          {viewMode === "portal" ? (
+            <div className="pt-4">
+              <PartnerPortalDesk />
+            </div>
+          ) : (
+            <>
+              <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-950/60 px-3.5 py-1.5 text-xs font-semibold tracking-wide text-emerald-300 backdrop-blur-md">
+                <Users className="h-3.5 w-3.5" />
+                <span>UK Trade Merchant & Accountant Partner Program</span>
+              </div>
 
-          <p className="mt-6 max-w-2xl text-lg leading-relaxed text-slate-300">
-            Join the official Harley Digital Works Partner Network. Whether you manage a trade
-            counter, run an accounting practice, or supply construction tools, earn recurring
-            commission while helping your contractors scale.
-          </p>
+              <h1 className="mt-6 max-w-4xl text-[clamp(2.5rem,5.5vw,4.8rem)] font-bold tracking-tight text-white leading-[1.05]">
+                Earn <span className="text-emerald-400">£250 for Every UK Trade Contractor</span> You Introduce.
+              </h1>
 
-          <div className="mt-8 flex flex-wrap gap-4">
-            <PillButton
-              as="button"
-              onClick={() => {
-                const el = document.getElementById("partner-form");
-                el?.scrollIntoView({ behavior: "smooth" });
-              }}
-              variant="light"
-              size="md"
-            >
-              Apply to Partner Network
-            </PillButton>
-            <PillButton
-              as="button"
-              onClick={() => {
-                const el = document.getElementById("commission-calculator");
-                el?.scrollIntoView({ behavior: "smooth" });
-              }}
-              variant="ghost"
-              size="md"
-              className="border-slate-700 text-white hover:bg-slate-900 hover:text-white"
-            >
-              Calculate Earnings
-            </PillButton>
-          </div>
+              <p className="mt-6 max-w-2xl text-lg leading-relaxed text-slate-300">
+                Join the official Harley Digital Works Partner Network. Whether you manage a trade
+                counter, run an accounting practice, or supply construction tools, earn recurring
+                commission while helping your contractors scale.
+              </p>
+
+              <div className="mt-8 flex flex-wrap gap-4">
+                <PillButton
+                  as="button"
+                  onClick={() => {
+                    const el = document.getElementById("partner-form");
+                    el?.scrollIntoView({ behavior: "smooth" });
+                  }}
+                  variant="light"
+                  size="md"
+                >
+                  Apply to Partner Network
+                </PillButton>
+                <PillButton
+                  as="button"
+                  onClick={() => setViewMode("portal")}
+                  variant="ghost"
+                  size="md"
+                  className="border-emerald-500/40 text-emerald-300 hover:bg-emerald-950/60"
+                >
+                  Open Live Affiliate Desk
+                </PillButton>
+                <PillButton
+                  as="button"
+                  onClick={() => {
+                    const el = document.getElementById("commission-calculator");
+                    el?.scrollIntoView({ behavior: "smooth" });
+                  }}
+                  variant="ghost"
+                  size="md"
+                  className="border-slate-700 text-white hover:bg-slate-900 hover:text-white"
+                >
+                  Calculate Earnings
+                </PillButton>
+              </div>
+            </>
+          )}
         </Container>
       </section>
 

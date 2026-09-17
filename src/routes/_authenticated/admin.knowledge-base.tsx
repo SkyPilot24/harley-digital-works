@@ -458,6 +458,87 @@ export const KNOWLEDGE_ARTICLES: KnowledgeArticle[] = [
       },
     ],
   },
+  {
+    id: "trade-affiliate-portal-playbook",
+    category: "partners",
+    title: "Operating the Trade Partner Affiliate & Payout Portal (/partners)",
+    summary:
+      "Managing wholesale branch partnerships, counter QR display collateral, £250 upfront commission, and 20% recurring care revenue sharing.",
+    badge: "Affiliate Ops",
+    readTime: "3 min read",
+    quickAction: { label: "Open Partner Portal", to: "/partners" },
+    steps: [
+      {
+        title: "1. Create Unique Branch Partner Code",
+        description:
+          "Generate unique tracking codes (e.g. CEF-MCR-SALFORD, WOLSELEY-LEEDS) for electrical and plumbing merchant trade counters.",
+      },
+      {
+        title: "2. Issue A4 Counter Display QR Flyers",
+        description:
+          "Print the official branded A4 counter display with embedded QR code giving trade contractors an exclusive £150 discount voucher.",
+      },
+      {
+        title: "3. Monthly BACS Commission Settlement",
+        description:
+          "On the 1st of every month, generate automated remittance statements to disburse £250 upfront bounties and £19/mo ongoing Care Plan cuts.",
+      },
+    ],
+  },
+  {
+    id: "multi-city-local-seo-playbook",
+    category: "tools",
+    title: "Deploying Multi-City Local SEO Borough Schema (/admin/leads)",
+    summary:
+      "Automating JSON-LD microdata generation, borough keyword clustering, and Google Map Pack top-3 proximity domination across 25+ UK hubs.",
+    badge: "SEO Strategy",
+    readTime: "4 min read",
+    quickAction: { label: "Open SEO Factory", to: "/admin/leads" },
+    steps: [
+      {
+        title: "1. Select City Hub & Trade Vertical",
+        description:
+          "Open /admin/leads -> 'Multi-City Local SEO Factory'. Pick the contractor's target county and trade specialization.",
+      },
+      {
+        title: "2. Generate Schema.org JSON-LD Microdata",
+        description:
+          "System automatically maps local dialling codes, opening hours, geo-coordinates, and borough coverage arrays into 100% valid HomeAndConstructionBusiness schema.",
+      },
+      {
+        title: "3. Copy & Deploy to Client Blueprint",
+        description:
+          "Paste the generated JSON-LD script into the client's HTML document head for instant search indexing and local proximity authority.",
+      },
+    ],
+  },
+  {
+    id: "group-financial-hmrc-tax-playbook",
+    category: "group",
+    title: "Operating The Harley Group Consolidated P&L & HMRC MTD VAT Desk",
+    summary:
+      "Consolidated financial oversight across Harley Digital Works and Harley Labs, Corporation Tax reserves, and automated 9-box VAT returns.",
+    badge: "Financial Governance",
+    readTime: "4 min read",
+    quickAction: { label: "Open Tax Desk", to: "/admin/invoices" },
+    steps: [
+      {
+        title: "1. Quarterly Financial Roll-Up",
+        description:
+          "Open /admin/invoices -> 'Group Financial Consolidation'. Review net revenue contributions from Harley Digital Works (75%) and Harley Labs (25%).",
+      },
+      {
+        title: "2. HMRC 9-Box VAT Schedule Computation",
+        description:
+          "System automatically calculates Box 1 output VAT, Box 4 input VAT reclaimed, and Box 5 net remittance for VAT Registration GB 948 2018 39.",
+      },
+      {
+        title: "3. 1-Click HMRC CSV Export",
+        description:
+          "Click 'Export HMRC Return CSV' to generate audit-ready Making Tax Digital files for submission to HMRC or statutory accountants.",
+      },
+    ],
+  },
 ];
 
 const CATEGORIES: { id: GuideCategory; label: string; icon: typeof BookOpen }[] = [
