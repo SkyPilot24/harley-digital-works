@@ -1,20 +1,19 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageShell, Container } from "@/components/site/PageShell";
-import { PillButton } from "@/components/site/PillButton";
 import { TagChip } from "@/components/site/TagChip";
-import { SectionHeader } from "@/components/site/SectionHeader";
-import { agencyProcess, onboardingChecklist } from "@/lib/agency-content";
+import { ContractorOnboardingWizard } from "@/components/portal/ContractorOnboardingWizard";
+import { CheckCircle2, ShieldCheck, Clock, Zap, MessageSquare } from "lucide-react";
 
 export const Route = createFileRoute("/onboarding")({
   head: () => ({
     meta: [
-      { title: "Client onboarding - Harley Digital Works" },
+      { title: "Fast-Track Client Onboarding (3 Mins) | Harley Digital Works" },
       {
         name: "description",
         content:
-          "Simple onboarding for new Harley Digital Works clients: fit, assets, access, scope, and launch preparation.",
+          "Fast 3-minute onboarding intake for new trade clients. Pick your services, select accreditations, drop your logo or van photos, and start your 14-day build sprint.",
       },
-      { property: "og:title", content: "Client onboarding - Harley Digital Works" },
+      { property: "og:title", content: "Fast-Track Client Onboarding | Harley Digital Works" },
     ],
   }),
   component: OnboardingPage,
@@ -23,90 +22,46 @@ export const Route = createFileRoute("/onboarding")({
 function OnboardingPage() {
   return (
     <PageShell>
-      <section className="pt-32 pb-16 md:pt-40 md:pb-24">
+      {/* Top Header */}
+      <section className="pt-28 pb-8 md:pt-36 md:pb-12 bg-neutral-950 border-b border-neutral-800 text-white">
         <Container>
-          <TagChip>Client onboarding</TagChip>
-          <h1 className="mt-6 max-w-4xl text-[clamp(2.6rem,6vw,4.8rem)] leading-[1] tracking-tight text-ink">
-            A simple start path for new client projects.
-          </h1>
-          <p className="mt-6 max-w-2xl text-[17px] leading-relaxed text-ink-muted">
-            After an enquiry, this page explains what happens next and what we need before delivery
-            starts.
-          </p>
-          <div className="mt-8 flex flex-wrap gap-3">
-            <PillButton as="link" to="/contact" variant="dark" size="md">
-              Start with an enquiry
-            </PillButton>
-            <PillButton as="link" to="/services" variant="ghost" size="md">
-              Compare packages
-            </PillButton>
-          </div>
-        </Container>
-      </section>
-
-      <section className="pb-16 md:pb-24">
-        <Container>
-          <SectionHeader
-            title="From first note to project start."
-            intro="A visible onboarding path keeps the sale moving and reduces back-and-forth."
-          />
-          <div className="mt-10 grid gap-4 md:grid-cols-4">
-            {agencyProcess.map((step) => (
-              <article key={step.step} className="rounded-[18px] border border-ink/10 bg-white p-6">
-                <div className="font-mono text-[12px] text-ink-muted">{step.step}</div>
-                <h2 className="mt-4 text-xl font-medium text-ink">{step.title}</h2>
-                <p className="mt-3 text-[14px] leading-relaxed text-ink-muted">{step.body}</p>
-              </article>
-            ))}
-          </div>
-        </Container>
-      </section>
-
-      <section className="py-16 md:py-24">
-        <Container>
-          <div className="grid gap-8 lg:grid-cols-[0.85fr_1.15fr]">
-            <div>
-              <TagChip>Start pack</TagChip>
-              <h2 className="mt-5 text-3xl font-medium tracking-tight text-ink">
-                What clients should prepare.
-              </h2>
-              <p className="mt-4 text-[16px] leading-relaxed text-ink-muted">
-                This checklist keeps the first paid week focused on decisions and delivery.
-              </p>
+          <div className="max-w-2xl mx-auto text-center">
+            <div className="inline-flex items-center gap-2 mb-3">
+              <TagChip tone="dark">14-Day Delivery Sprint</TagChip>
+              <span className="text-xs text-neutral-400">Zero Homework Required</span>
             </div>
-            <div className="rounded-[22px] bg-surface-sage p-6 md:p-8">
-              <ul className="space-y-4">
-                {onboardingChecklist.map((item) => (
-                  <li key={item} className="flex gap-3 text-[15px] leading-relaxed text-ink">
-                    <span
-                      aria-hidden
-                      className="mt-2 h-2 w-2 flex-shrink-0 rounded-full bg-primary"
-                    />
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </Container>
-      </section>
-
-      <section className="py-16 md:py-28">
-        <Container>
-          <div className="rounded-[24px] bg-ink p-8 text-white md:p-12">
-            <h2 className="max-w-2xl text-3xl font-medium tracking-tight text-white md:text-5xl">
-              Ready to become a client?
-            </h2>
-            <p className="mt-5 max-w-xl text-[16px] leading-relaxed text-white/70">
-              Send the first note. The reply will confirm fit, package, timeline, and the exact
-              assets needed to begin.
+            <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-white leading-tight">
+              Fast-Track Client <br />
+              <span className="text-gold-400">Project Onboarding.</span>
+            </h1>
+            <p className="mt-3 text-sm sm:text-base text-neutral-300 leading-relaxed max-w-lg mx-auto">
+              Take 3 minutes to tell us about your coverage areas, accreditations, and key services. We handle 100% of the copywriting and code.
             </p>
-            <div className="mt-8">
-              <PillButton as="link" to="/contact" variant="light" size="md">
-                Submit an enquiry
-              </PillButton>
+
+            <div className="mt-6 flex flex-wrap items-center justify-center gap-4 text-xs text-neutral-400">
+              <div className="flex items-center gap-1.5">
+                <CheckCircle2 className="h-4 w-4 text-emerald-400" />
+                <span>14-Day Guaranteed Launch</span>
+              </div>
+              <span>•</span>
+              <div className="flex items-center gap-1.5">
+                <ShieldCheck className="h-4 w-4 text-emerald-400" />
+                <span>50% Deposit / 50% on Launch</span>
+              </div>
+              <span>•</span>
+              <div className="flex items-center gap-1.5">
+                <Zap className="h-4 w-4 text-gold-400" />
+                <span>£95/mo Managed Care</span>
+              </div>
             </div>
           </div>
+        </Container>
+      </section>
+
+      {/* Interactive Onboarding Form Section */}
+      <section className="py-12 md:py-20 bg-neutral-950">
+        <Container>
+          <ContractorOnboardingWizard />
         </Container>
       </section>
     </PageShell>

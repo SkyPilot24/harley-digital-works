@@ -22,9 +22,12 @@ import {
   Search,
   CheckCircle2,
   Receipt,
+  FileText,
+  BarChart3,
 } from "lucide-react";
 import { PageHeader, StatusBadge } from "./admin.index";
 import { ClientInvoiceModal } from "@/components/admin/ClientInvoiceModal";
+import { ClientMonthlyReportModal } from "@/components/admin/ClientMonthlyReportModal";
 
 type ClientRow = Database["public"]["Tables"]["clients"]["Row"];
 type ClientStatus = Database["public"]["Enums"]["client_status"];
@@ -42,6 +45,7 @@ function ClientsPage() {
   const [client360, setClient360] = useState<ClientRow | null>(null);
   const [editingClient, setEditingClient] = useState<Partial<ClientRow> | null>(null);
   const [invoicingClient, setInvoicingClient] = useState<ClientRow | null>(null);
+  const [reportingClient, setReportingClient] = useState<ClientRow | null>(null);
   const [isCreatingClient, setIsCreatingClient] = useState(false);
   const [isAddingProject, setIsAddingProject] = useState(false);
 
@@ -414,6 +418,17 @@ function ClientsPage() {
                         <span>Invoice</span>
                       </button>
                       <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setReportingClient(client);
+                        }}
+                        className="inline-flex items-center gap-1 rounded-md bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 hover:bg-blue-100"
+                        title="Monthly Care Plan ROI & Performance Report"
+                      >
+                        <BarChart3 size={13} />
+                        <span>Report</span>
+                      </button>
+                      <button
                         onClick={() => setEditingClient(client)}
                         className="rounded-md p-1.5 text-ink/60 hover:bg-ink/[0.05] hover:text-ink"
                         title="Edit Client"
@@ -477,6 +492,13 @@ function ClientsPage() {
                 )}
               </div>
               <div className="flex items-center gap-2">
+                <button
+                  onClick={() => setReportingClient(client360)}
+                  className="inline-flex items-center gap-1.5 rounded-lg border border-blue-300 bg-blue-50 px-3 py-1.5 text-xs font-semibold text-blue-800 hover:bg-blue-100"
+                >
+                  <BarChart3 size={14} />
+                  <span>Monthly Report</span>
+                </button>
                 <button
                   onClick={() => setInvoicingClient(client360)}
                   className="inline-flex items-center gap-1.5 rounded-lg border border-emerald-300 bg-emerald-50 px-3 py-1.5 text-xs font-semibold text-emerald-800 hover:bg-emerald-100"
@@ -979,6 +1001,14 @@ function ClientsPage() {
         <ClientInvoiceModal
           client={invoicingClient}
           onClose={() => setInvoicingClient(null)}
+        />
+      )}
+
+      {/* Client Monthly Performance & ROI Report Modal */}
+      {reportingClient && (
+        <ClientMonthlyReportModal
+          client={reportingClient}
+          onClose={() => setReportingClient(null)}
         />
       )}
     </div>
