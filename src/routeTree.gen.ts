@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as WorkRouteImport } from './routes/work'
+import { Route as TrackRouteImport } from './routes/track'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as ResourcesRouteImport } from './routes/resources'
 import { Route as PrivacyRouteImport } from './routes/privacy'
@@ -18,11 +19,13 @@ import { Route as LocationsRouteImport } from './routes/locations'
 import { Route as DomainsRouteImport } from './routes/domains'
 import { Route as DemosRouteImport } from './routes/demos'
 import { Route as ContactRouteImport } from './routes/contact'
+import { Route as CalculatorRouteImport } from './routes/calculator'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as AuditRouteImport } from './routes/audit'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as TrackTokenRouteImport } from './routes/track_.$token'
 import { Route as ServicesWebDesignDevelopmentRouteImport } from './routes/services_.web-design-development'
 import { Route as ServicesLaunchPlanRouteImport } from './routes/services_.launch-plan'
 import { Route as ServicesDigitalTransformationRouteImport } from './routes/services_.digital-transformation'
@@ -50,6 +53,11 @@ import { Route as AuthenticatedAdminClientsRouteImport } from './routes/_authent
 const WorkRoute = WorkRouteImport.update({
   id: '/work',
   path: '/work',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TrackRoute = TrackRouteImport.update({
+  id: '/track',
+  path: '/track',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ServicesRoute = ServicesRouteImport.update({
@@ -92,6 +100,11 @@ const ContactRoute = ContactRouteImport.update({
   path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CalculatorRoute = CalculatorRouteImport.update({
+  id: '/calculator',
+  path: '/calculator',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AuthRoute = AuthRouteImport.update({
   id: '/auth',
   path: '/auth',
@@ -114,6 +127,11 @@ const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TrackTokenRoute = TrackTokenRouteImport.update({
+  id: '/track_/$token',
+  path: '/track/$token',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ServicesWebDesignDevelopmentRoute =
@@ -249,6 +267,7 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/audit': typeof AuditRoute
   '/auth': typeof AuthRoute
+  '/calculator': typeof CalculatorRoute
   '/contact': typeof ContactRoute
   '/demos': typeof DemosRoute
   '/domains': typeof DomainsRoute
@@ -257,6 +276,7 @@ export interface FileRoutesByFullPath {
   '/privacy': typeof PrivacyRoute
   '/resources': typeof ResourcesRoute
   '/services': typeof ServicesRoute
+  '/track': typeof TrackRoute
   '/work': typeof WorkRoute
   '/locations/$slug': typeof LocationsSlugRoute
   '/services/ai-automation': typeof ServicesAiAutomationRoute
@@ -267,6 +287,7 @@ export interface FileRoutesByFullPath {
   '/services/digital-transformation': typeof ServicesDigitalTransformationRoute
   '/services/launch-plan': typeof ServicesLaunchPlanRoute
   '/services/web-design-development': typeof ServicesWebDesignDevelopmentRoute
+  '/track/$token': typeof TrackTokenRoute
   '/admin/clients': typeof AuthenticatedAdminClientsRoute
   '/admin/diagnostics': typeof AuthenticatedAdminDiagnosticsRoute
   '/admin/domain-os': typeof AuthenticatedAdminDomainOsRoute
@@ -287,6 +308,7 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/audit': typeof AuditRoute
   '/auth': typeof AuthRoute
+  '/calculator': typeof CalculatorRoute
   '/contact': typeof ContactRoute
   '/demos': typeof DemosRoute
   '/domains': typeof DomainsRoute
@@ -295,6 +317,7 @@ export interface FileRoutesByTo {
   '/privacy': typeof PrivacyRoute
   '/resources': typeof ResourcesRoute
   '/services': typeof ServicesRoute
+  '/track': typeof TrackRoute
   '/work': typeof WorkRoute
   '/locations/$slug': typeof LocationsSlugRoute
   '/services/ai-automation': typeof ServicesAiAutomationRoute
@@ -305,6 +328,7 @@ export interface FileRoutesByTo {
   '/services/digital-transformation': typeof ServicesDigitalTransformationRoute
   '/services/launch-plan': typeof ServicesLaunchPlanRoute
   '/services/web-design-development': typeof ServicesWebDesignDevelopmentRoute
+  '/track/$token': typeof TrackTokenRoute
   '/admin/clients': typeof AuthenticatedAdminClientsRoute
   '/admin/diagnostics': typeof AuthenticatedAdminDiagnosticsRoute
   '/admin/domain-os': typeof AuthenticatedAdminDomainOsRoute
@@ -327,6 +351,7 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/audit': typeof AuditRoute
   '/auth': typeof AuthRoute
+  '/calculator': typeof CalculatorRoute
   '/contact': typeof ContactRoute
   '/demos': typeof DemosRoute
   '/domains': typeof DomainsRoute
@@ -335,6 +360,7 @@ export interface FileRoutesById {
   '/privacy': typeof PrivacyRoute
   '/resources': typeof ResourcesRoute
   '/services': typeof ServicesRoute
+  '/track': typeof TrackRoute
   '/work': typeof WorkRoute
   '/locations_/$slug': typeof LocationsSlugRoute
   '/services_/ai-automation': typeof ServicesAiAutomationRoute
@@ -345,6 +371,7 @@ export interface FileRoutesById {
   '/services_/digital-transformation': typeof ServicesDigitalTransformationRoute
   '/services_/launch-plan': typeof ServicesLaunchPlanRoute
   '/services_/web-design-development': typeof ServicesWebDesignDevelopmentRoute
+  '/track_/$token': typeof TrackTokenRoute
   '/_authenticated/admin/clients': typeof AuthenticatedAdminClientsRoute
   '/_authenticated/admin/diagnostics': typeof AuthenticatedAdminDiagnosticsRoute
   '/_authenticated/admin/domain-os': typeof AuthenticatedAdminDomainOsRoute
@@ -367,6 +394,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/audit'
     | '/auth'
+    | '/calculator'
     | '/contact'
     | '/demos'
     | '/domains'
@@ -375,6 +403,7 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/resources'
     | '/services'
+    | '/track'
     | '/work'
     | '/locations/$slug'
     | '/services/ai-automation'
@@ -385,6 +414,7 @@ export interface FileRouteTypes {
     | '/services/digital-transformation'
     | '/services/launch-plan'
     | '/services/web-design-development'
+    | '/track/$token'
     | '/admin/clients'
     | '/admin/diagnostics'
     | '/admin/domain-os'
@@ -405,6 +435,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/audit'
     | '/auth'
+    | '/calculator'
     | '/contact'
     | '/demos'
     | '/domains'
@@ -413,6 +444,7 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/resources'
     | '/services'
+    | '/track'
     | '/work'
     | '/locations/$slug'
     | '/services/ai-automation'
@@ -423,6 +455,7 @@ export interface FileRouteTypes {
     | '/services/digital-transformation'
     | '/services/launch-plan'
     | '/services/web-design-development'
+    | '/track/$token'
     | '/admin/clients'
     | '/admin/diagnostics'
     | '/admin/domain-os'
@@ -444,6 +477,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/audit'
     | '/auth'
+    | '/calculator'
     | '/contact'
     | '/demos'
     | '/domains'
@@ -452,6 +486,7 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/resources'
     | '/services'
+    | '/track'
     | '/work'
     | '/locations_/$slug'
     | '/services_/ai-automation'
@@ -462,6 +497,7 @@ export interface FileRouteTypes {
     | '/services_/digital-transformation'
     | '/services_/launch-plan'
     | '/services_/web-design-development'
+    | '/track_/$token'
     | '/_authenticated/admin/clients'
     | '/_authenticated/admin/diagnostics'
     | '/_authenticated/admin/domain-os'
@@ -484,6 +520,7 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   AuditRoute: typeof AuditRoute
   AuthRoute: typeof AuthRoute
+  CalculatorRoute: typeof CalculatorRoute
   ContactRoute: typeof ContactRoute
   DemosRoute: typeof DemosRoute
   DomainsRoute: typeof DomainsRoute
@@ -492,6 +529,7 @@ export interface RootRouteChildren {
   PrivacyRoute: typeof PrivacyRoute
   ResourcesRoute: typeof ResourcesRoute
   ServicesRoute: typeof ServicesRoute
+  TrackRoute: typeof TrackRoute
   WorkRoute: typeof WorkRoute
   LocationsSlugRoute: typeof LocationsSlugRoute
   ServicesAiAutomationRoute: typeof ServicesAiAutomationRoute
@@ -502,6 +540,7 @@ export interface RootRouteChildren {
   ServicesDigitalTransformationRoute: typeof ServicesDigitalTransformationRoute
   ServicesLaunchPlanRoute: typeof ServicesLaunchPlanRoute
   ServicesWebDesignDevelopmentRoute: typeof ServicesWebDesignDevelopmentRoute
+  TrackTokenRoute: typeof TrackTokenRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -511,6 +550,13 @@ declare module '@tanstack/react-router' {
       path: '/work'
       fullPath: '/work'
       preLoaderRoute: typeof WorkRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/track': {
+      id: '/track'
+      path: '/track'
+      fullPath: '/track'
+      preLoaderRoute: typeof TrackRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/services': {
@@ -569,6 +615,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/calculator': {
+      id: '/calculator'
+      path: '/calculator'
+      fullPath: '/calculator'
+      preLoaderRoute: typeof CalculatorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/auth': {
       id: '/auth'
       path: '/auth'
@@ -602,6 +655,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/track_/$token': {
+      id: '/track_/$token'
+      path: '/track/$token'
+      fullPath: '/track/$token'
+      preLoaderRoute: typeof TrackTokenRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/services_/web-design-development': {
@@ -811,6 +871,7 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   AuditRoute: AuditRoute,
   AuthRoute: AuthRoute,
+  CalculatorRoute: CalculatorRoute,
   ContactRoute: ContactRoute,
   DemosRoute: DemosRoute,
   DomainsRoute: DomainsRoute,
@@ -819,6 +880,7 @@ const rootRouteChildren: RootRouteChildren = {
   PrivacyRoute: PrivacyRoute,
   ResourcesRoute: ResourcesRoute,
   ServicesRoute: ServicesRoute,
+  TrackRoute: TrackRoute,
   WorkRoute: WorkRoute,
   LocationsSlugRoute: LocationsSlugRoute,
   ServicesAiAutomationRoute: ServicesAiAutomationRoute,
@@ -829,6 +891,7 @@ const rootRouteChildren: RootRouteChildren = {
   ServicesDigitalTransformationRoute: ServicesDigitalTransformationRoute,
   ServicesLaunchPlanRoute: ServicesLaunchPlanRoute,
   ServicesWebDesignDevelopmentRoute: ServicesWebDesignDevelopmentRoute,
+  TrackTokenRoute: TrackTokenRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

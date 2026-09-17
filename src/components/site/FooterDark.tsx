@@ -31,6 +31,7 @@ const COLUMNS = [
     links: [
       { label: "About Us", to: "/about" },
       { label: "Our Work", to: "/work" },
+      { label: "Track Your Build", to: "/track" },
       { label: "Get a Free Quote", to: "/contact" },
       { label: "Privacy Policy", to: "/privacy" },
     ],
