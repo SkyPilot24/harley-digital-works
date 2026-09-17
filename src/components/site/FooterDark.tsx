@@ -60,16 +60,16 @@ export function FooterDark() {
         <div className="grid gap-8 lg:grid-cols-12 md:gap-8">
           <div className="lg:col-span-4">
             <p className="max-w-sm text-[15px] leading-relaxed text-background/80">
-              <strong className="text-white">
-                You run your business. We’ll handle your website.
+              <strong className="text-white font-semibold">
+                Your work deserves a better website.
               </strong>
               <br />
-              100% done-for-you website builds, professional copywriting, and managed monthly care
-              for UK trades and small businesses.
+              Done-for-you websites, professional sales copywriting, and managed UK monthly care for
+              ambitious trade and service businesses.
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
               <PillButton as="link" to="/contact" variant="light" size="md">
-                Get a Free Quote
+                Get a website quote
               </PillButton>
             </div>
 

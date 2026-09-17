@@ -15,24 +15,16 @@ export function ExitIntentModal() {
     const dismissed = sessionStorage.getItem("hdw_exit_intent_dismissed");
     if (dismissed) return;
 
-    // Trigger on mouse leave near top of viewport (exit intent)
+    // Trigger only on genuine mouse leave near top of viewport (exit intent)
     const handleMouseLeave = (e: MouseEvent) => {
       if (e.clientY <= 10 && !sessionStorage.getItem("hdw_exit_intent_dismissed")) {
         setIsOpen(true);
       }
     };
 
-    // Also trigger as fallback after 60s of active browsing
-    const timer = setTimeout(() => {
-      if (!sessionStorage.getItem("hdw_exit_intent_dismissed")) {
-        setIsOpen(true);
-      }
-    }, 60000);
-
     document.addEventListener("mouseleave", handleMouseLeave);
     return () => {
       document.removeEventListener("mouseleave", handleMouseLeave);
-      clearTimeout(timer);
     };
   }, []);
 
