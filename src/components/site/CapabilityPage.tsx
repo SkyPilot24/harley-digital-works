@@ -13,7 +13,13 @@ export type Capability = {
   related: { label: string; to: string }[];
 };
 
-export function CapabilityPage({ data }: { data: Capability }) {
+export function CapabilityPage({
+  data,
+  children,
+}: {
+  data: Capability;
+  children?: React.ReactNode;
+}) {
   return (
     <PageShell>
       <section className="border-b border-ink/10 pt-32 pb-16 md:pt-40 md:pb-24">
@@ -66,6 +72,7 @@ export function CapabilityPage({ data }: { data: Capability }) {
           </div>
         </Container>
       </section>
+      {children}
       <section className="py-20 md:py-28">
         <Container>
           <div className="grid gap-12 lg:grid-cols-2">

@@ -8,9 +8,11 @@ import { useAuth, useIsAdmin } from "@/hooks/use-auth";
 import { BrandLogo } from "./BrandLogo";
 
 const LINKS = [
-  { to: "/services", label: "Services" },
+  { to: "/services/web-design-development", label: "Websites" },
+  { to: "/services/care-plans", label: "Care Plans" },
+  { to: "/work", label: "Our Work" },
+  { to: "/services", label: "Pricing" },
   { to: "/about", label: "About" },
-  { to: "/work", label: "Work" },
 ] as const;
 
 export function SiteHeader() {
@@ -53,7 +55,7 @@ export function SiteHeader() {
           ))}
         </nav>
 
-        <div className="hidden items-center gap-3 md:flex">
+        <div className="hidden items-center gap-4 md:flex">
           {user && isAdmin && (
             <Link
               to="/admin"
@@ -63,7 +65,7 @@ export function SiteHeader() {
             </Link>
           )}
           <PillButton as="link" to="/contact" variant="dark" size="sm">
-            Start a project
+            Get a Free Quote
           </PillButton>
         </div>
 
@@ -93,8 +95,14 @@ export function SiteHeader() {
               </Link>
             ))}
             <div className="mt-2 px-2">
-              <PillButton as="link" to="/contact" variant="dark" size="sm">
-                Start a project
+              <PillButton
+                as="link"
+                to="/contact"
+                variant="dark"
+                size="sm"
+                className="w-full justify-center"
+              >
+                Get a Free Quote
               </PillButton>
             </div>
           </div>

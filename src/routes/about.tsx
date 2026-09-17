@@ -1,90 +1,114 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageShell, Container } from "@/components/site/PageShell";
 import { PillButton } from "@/components/site/PillButton";
+
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
-      { title: "About | Harley Digital Works" },
+      { title: "About Us | Harley Digital Works" },
       {
         name: "description",
         content:
-          "A senior, practical digital consultancy combining strategy, design, engineering and applied AI.",
+          "The dependable digital partner for UK trades and small businesses. We build, write, and manage your website so you can run your business.",
       },
     ],
   }),
   component: Page,
 });
+
 const principles = [
-  ["Commercially clear", "We connect the work to an outcome and make trade-offs visible."],
   [
-    "Technically grounded",
-    "Architecture, accessibility, performance and maintainability are part of the design.",
+    "100% Done-For-You",
+    "We write the sales copy, curate professional images, and build your site. No homework or technical tasks for you.",
   ],
   [
-    "Human in practice",
-    "Plain language, direct access and useful documentation keep teams in control.",
+    "Zero Tech Jargon",
+    "We explain everything in plain English. You never have to worry about DNS records, servers, or confusing software.",
   ],
-  ["AI with judgement", "We use AI to improve the work while keeping accountability with people."],
+  [
+    "Fixed Upfront Pricing",
+    "Clear, transparent packages (£1,495 / £2,995) with no surprise hourly bills or unexpected extras.",
+  ],
+  [
+    "Ongoing Peace of Mind",
+    "Our Care Plans cover fast UK hosting, security, backups, and monthly updates. Message us on WhatsApp whenever you need a change.",
+  ],
 ];
+
 function Page() {
   return (
     <PageShell>
-      <section className="pt-32 pb-16 md:pt-40 md:pb-24">
+      <section className="pt-32 pb-16 md:pt-40 md:pb-24 bg-gradient-to-b from-background to-white/40 border-b border-ink/10">
         <Container>
-          <p className="eyebrow">About</p>
-          <h1 className="mt-6 max-w-5xl text-[clamp(3.2rem,7vw,6.5rem)] leading-[.94] tracking-[-.055em]">
-            A practical digital partner for consequential work.
+          <p className="eyebrow">About Us</p>
+          <h1 className="mt-6 max-w-5xl text-[clamp(2.8rem,6.5vw,5.5rem)] font-semibold leading-[0.96] tracking-[-0.05em] text-ink">
+            The dependable digital partner for{" "}
+            <span className="text-primary block">hard-working UK businesses.</span>
           </h1>
-          <p className="mt-8 max-w-2xl text-lg leading-relaxed text-ink-muted">
-            Harley Digital Works combines strategy, design, engineering and applied AI to improve
-            customer journeys and the systems behind them.
+          <p className="mt-6 max-w-2xl text-lg leading-relaxed text-ink-muted">
+            Harley Digital Works was founded to solve a simple problem: most small business owners
+            and tradespeople just want their website sorted without getting bogged down in
+            technology.
           </p>
         </Container>
       </section>
+
       <section className="border-y border-ink/10 bg-white py-20 md:py-28">
         <Container>
           <div className="grid gap-12 lg:grid-cols-2">
             <div>
-              <p className="eyebrow">Our point of view</p>
-              <h2 className="mt-5 text-4xl tracking-[-.04em] md:text-5xl">
-                Transformation earns its name when the day-to-day work gets better.
+              <p className="eyebrow">Our Philosophy</p>
+              <h2 className="mt-5 text-3xl font-semibold tracking-[-0.04em] md:text-4xl text-ink">
+                You run your business. We’ll take care of the website.
               </h2>
             </div>
-            <div className="space-y-6 text-lg leading-relaxed text-ink-muted">
+            <div className="space-y-6 text-base leading-relaxed text-ink-muted">
               <p>
-                We favour focused scopes, visible progress and systems that real teams can own. That
-                means beginning with the business and service problem—not a fashionable tool.
+                We believe getting a website shouldn't feel like a second job. You shouldn't have to
+                spend your evenings fighting with DIY templates, writing sales text, or chasing
+                unreliable freelancers.
               </p>
               <p>
-                The practice is led by Dr Robbie Harley, MBA, bringing senior digital and
-                operational judgement directly into discovery, design and delivery.
+                Led by <strong>Dr Robbie Harley, MBA</strong> (part of The Harley Group), our team
+                combines disciplined delivery, commercial copywriting, and high-performance design
+                to give trades and local businesses a world-class digital presence that genuinely
+                wins new customers.
               </p>
             </div>
           </div>
         </Container>
       </section>
+
       <section className="py-20 md:py-28">
         <Container>
-          <p className="eyebrow">How we show up</p>
+          <p className="eyebrow">How We Work</p>
           <div className="mt-10 grid gap-8 sm:grid-cols-2">
             {principles.map(([title, copy]) => (
-              <article key={title} className="border-t border-ink/15 pt-5">
-                <h2 className="text-2xl">{title}</h2>
+              <article
+                key={title}
+                className="rounded-2xl border border-ink/10 bg-white p-7 shadow-sm"
+              >
+                <h2 className="text-xl font-semibold text-ink">{title}</h2>
                 <p className="mt-3 text-sm leading-relaxed text-ink-muted">{copy}</p>
               </article>
             ))}
           </div>
         </Container>
       </section>
+
       <section className="pb-24">
         <Container>
-          <div className="rounded-3xl bg-primary p-8 md:p-14">
-            <h2 className="max-w-3xl text-4xl tracking-[-.04em] md:text-6xl">
-              Let’s make the next move clear.
+          <div className="rounded-3xl bg-ink p-8 md:p-14 text-white shadow-2xl border border-white/10">
+            <h2 className="max-w-3xl text-3xl font-semibold tracking-tight md:text-5xl">
+              Ready to get your digital presence sorted?
             </h2>
+            <p className="mt-4 max-w-xl text-base text-white/70">
+              Get in touch today for a free 15-minute consultation. We’ll show you exactly how we
+              can help your business look world-class.
+            </p>
             <div className="mt-8">
-              <PillButton as="link" to="/contact" variant="dark">
-                Start a conversation
+              <PillButton as="link" to="/contact" variant="light" size="md">
+                Get a Free Website Quote
               </PillButton>
             </div>
           </div>

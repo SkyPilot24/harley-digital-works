@@ -3,6 +3,7 @@
 Use the supplied Harley Digital Works brand pack and assets as the single source of truth for the digital build.
 
 ## Brand
+
 - Name: Harley Digital Works
 - Domain: https://harleydigitalworks.com
 - Parent company: The Harley Group
@@ -10,7 +11,9 @@ Use the supplied Harley Digital Works brand pack and assets as the single source
 - Positioning: Premium websites, practical automation and scalable digital systems for businesses and organisations.
 
 ## Visual direction
+
 Use the approved Concept 3: Bold & Premium.
+
 - Dark-first premium interface
 - Geometric gold H monogram
 - Manrope typography
@@ -19,6 +22,7 @@ Use the approved Concept 3: Bold & Premium.
 - Avoid generic AI imagery, neon overload and stock corporate visuals
 
 ## Design tokens
+
 - Harley Black: #0D0D0D
 - Works Charcoal: #1A1A1A
 - Signature Gold: #C89D3C
@@ -27,6 +31,7 @@ Use the approved Concept 3: Bold & Premium.
 - Font: Manrope, Inter, ui-sans-serif, system-ui, sans-serif
 
 ## Implementation rules
+
 1. Use the supplied SVG logos rather than tracing the concept image.
 2. Use the full wordmark in headers, proposals and formal brand placements.
 3. Use the H monogram for app icons, favicons, social avatars and compact UI.
@@ -39,6 +44,7 @@ Use the approved Concept 3: Bold & Premium.
 10. Meet WCAG 2.2 AA and test at 375px, 768px, 1024px and 1440px.
 
 ## Primary homepage copy
+
 Headline: Better websites. Smarter systems. Simpler growth.
 
 Supporting copy:
@@ -48,6 +54,7 @@ Primary CTA: Start a Project
 Secondary CTA: Explore Our Services
 
 ## Service architecture
+
 - Website Works
 - Automation Works
 - Growth Works

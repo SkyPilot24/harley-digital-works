@@ -1,144 +1,184 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Offline — Harley Digital Works</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --font-display: 'Manrope', sans-serif;
-      --font-sans: 'Manrope', sans-serif;
-      --color-bg: #050505;
-      --color-text: #f4efe7;
-      --color-muted: rgba(244, 239, 231, 0.6);
-      --color-accent: #C89D3C; /* Signature Gold */
-    }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Offline — Harley Digital Works</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --font-display: "Manrope", sans-serif;
+        --font-sans: "Manrope", sans-serif;
+        --color-bg: #050505;
+        --color-text: #f4efe7;
+        --color-muted: rgba(244, 239, 231, 0.6);
+        --color-accent: #c89d3c; /* Signature Gold */
+      }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
 
-    body {
-      background-color: var(--color-bg);
-      color: var(--color-text);
-      font-family: var(--font-sans);
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 24px;
-      overflow: hidden;
-      position: relative;
-    }
+      body {
+        background-color: var(--color-bg);
+        color: var(--color-text);
+        font-family: var(--font-sans);
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 24px;
+        overflow: hidden;
+        position: relative;
+      }
 
-    /* Subtle grid divider overlay matching the NOEMA Poster OS aesthetic */
-    .grid-bg {
-      position: absolute;
-      inset: 0;
-      display: grid;
-      grid-template-columns: repeat(5, 20vw);
-      grid-template-rows: repeat(4, 25vh);
-      pointer-events: none;
-      opacity: 0.05;
-      z-index: 1;
-    }
-    .grid-cell {
-      border-right: 1px solid var(--color-text);
-      border-bottom: 1px solid var(--color-text);
-    }
+      /* Subtle grid divider overlay matching the NOEMA Poster OS aesthetic */
+      .grid-bg {
+        position: absolute;
+        inset: 0;
+        display: grid;
+        grid-template-columns: repeat(5, 20vw);
+        grid-template-rows: repeat(4, 25vh);
+        pointer-events: none;
+        opacity: 0.05;
+        z-index: 1;
+      }
+      .grid-cell {
+        border-right: 1px solid var(--color-text);
+        border-bottom: 1px solid var(--color-text);
+      }
 
-    .container {
-      position: relative;
-      z-index: 2;
-      max-width: 480px;
-      text-align: center;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
+      .container {
+        position: relative;
+        z-index: 2;
+        max-width: 480px;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
 
-    .icon-wrapper {
-      margin-bottom: 32px;
-      position: relative;
-    }
+      .icon-wrapper {
+        margin-bottom: 32px;
+        position: relative;
+      }
 
-    .icon-wrapper svg {
-      width: 64px;
-      height: 64px;
-      color: var(--color-accent);
-      animation: pulse 2s infinite ease-in-out;
-    }
+      .icon-wrapper svg {
+        width: 64px;
+        height: 64px;
+        color: var(--color-accent);
+        animation: pulse 2s infinite ease-in-out;
+      }
 
-    @keyframes pulse {
-      0%, 100% { opacity: 0.6; transform: scale(0.98); }
-      50% { opacity: 1; transform: scale(1.02); }
-    }
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 0.6;
+          transform: scale(0.98);
+        }
+        50% {
+          opacity: 1;
+          transform: scale(1.02);
+        }
+      }
 
-    h1 {
-      font-family: var(--font-display);
-      font-size: clamp(3rem, 10vw, 4.5rem);
-      line-height: 0.95;
-      letter-spacing: -0.03em;
-      text-transform: uppercase;
-      margin-bottom: 16px;
-    }
+      h1 {
+        font-family: var(--font-display);
+        font-size: clamp(3rem, 10vw, 4.5rem);
+        line-height: 0.95;
+        letter-spacing: -0.03em;
+        text-transform: uppercase;
+        margin-bottom: 16px;
+      }
 
-    p {
-      font-size: 16px;
-      line-height: 1.6;
-      color: var(--color-muted);
-      margin-bottom: 32px;
-      max-width: 380px;
-    }
+      p {
+        font-size: 16px;
+        line-height: 1.6;
+        color: var(--color-muted);
+        margin-bottom: 32px;
+        max-width: 380px;
+      }
 
-    .btn {
-      background-color: var(--color-text);
-      color: var(--color-bg);
-      border: none;
-      font-family: var(--font-sans);
-      font-weight: 600;
-      font-size: 14px;
-      padding: 12px 28px;
-      border-radius: 9999px;
-      cursor: pointer;
-      transition: transform 0.2s, background-color 0.2s;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
+      .btn {
+        background-color: var(--color-text);
+        color: var(--color-bg);
+        border: none;
+        font-family: var(--font-sans);
+        font-weight: 600;
+        font-size: 14px;
+        padding: 12px 28px;
+        border-radius: 9999px;
+        cursor: pointer;
+        transition:
+          transform 0.2s,
+          background-color 0.2s;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
 
-    .btn:hover {
-      background-color: #ffffff;
-      transform: scale(1.03);
-    }
+      .btn:hover {
+        background-color: #ffffff;
+        transform: scale(1.03);
+      }
 
-    .btn:active {
-      transform: scale(0.97);
-    }
-  </style>
-</head>
-<body>
-  <div class="grid-bg">
-    <div class="grid-cell"></div><div class="grid-cell"></div><div class="grid-cell"></div><div class="grid-cell"></div><div class="grid-cell"></div>
-    <div class="grid-cell"></div><div class="grid-cell"></div><div class="grid-cell"></div><div class="grid-cell"></div><div class="grid-cell"></div>
-    <div class="grid-cell"></div><div class="grid-cell"></div><div class="grid-cell"></div><div class="grid-cell"></div><div class="grid-cell"></div>
-    <div class="grid-cell"></div><div class="grid-cell"></div><div class="grid-cell"></div><div class="grid-cell"></div><div class="grid-cell"></div>
-  </div>
-
-  <div class="container">
-    <div class="icon-wrapper">
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 21v-4.875c0-.621.504-1.125 1.125-1.125h5.25c.621 0 1.125.504 1.125 1.125V21m0 0h4.5V3.545M12.75 21h7.5V10.75M2.25 21h1.5m18 0h-18M2.25 9l4.5-1.636M18.75 3l-1.5.545m0 6.205l3 1M18.75 3v10.75M2.25 9v12m0-12l3-1m3-1l4.5-1.636M12.75 3.545L4.5 6.545m8.25-3v6.205m0-6.205l7.5 2.727M12.75 10.75v10.25M3.75 21h1.5m15 0h-1.5" />
-      </svg>
+      .btn:active {
+        transform: scale(0.97);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="grid-bg">
+      <div class="grid-cell"></div>
+      <div class="grid-cell"></div>
+      <div class="grid-cell"></div>
+      <div class="grid-cell"></div>
+      <div class="grid-cell"></div>
+      <div class="grid-cell"></div>
+      <div class="grid-cell"></div>
+      <div class="grid-cell"></div>
+      <div class="grid-cell"></div>
+      <div class="grid-cell"></div>
+      <div class="grid-cell"></div>
+      <div class="grid-cell"></div>
+      <div class="grid-cell"></div>
+      <div class="grid-cell"></div>
+      <div class="grid-cell"></div>
+      <div class="grid-cell"></div>
+      <div class="grid-cell"></div>
+      <div class="grid-cell"></div>
+      <div class="grid-cell"></div>
+      <div class="grid-cell"></div>
     </div>
-    <h1>You're Offline</h1>
-    <p>We couldn't connect to Harley Digital Works. Check your internet connection and try again.</p>
-    <button class="btn" onclick="window.location.reload()">Retry Connection</button>
-  </div>
-</body>
+
+    <div class="container">
+      <div class="icon-wrapper">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M8.25 21v-4.875c0-.621.504-1.125 1.125-1.125h5.25c.621 0 1.125.504 1.125 1.125V21m0 0h4.5V3.545M12.75 21h7.5V10.75M2.25 21h1.5m18 0h-18M2.25 9l4.5-1.636M18.75 3l-1.5.545m0 6.205l3 1M18.75 3v10.75M2.25 9v12m0-12l3-1m3-1l4.5-1.636M12.75 3.545L4.5 6.545m8.25-3v6.205m0-6.205l7.5 2.727M12.75 10.75v10.25M3.75 21h1.5m15 0h-1.5"
+          />
+        </svg>
+      </div>
+      <h1>You're Offline</h1>
+      <p>
+        We couldn't connect to Harley Digital Works. Check your internet connection and try again.
+      </p>
+      <button class="btn" onclick="window.location.reload()">Retry Connection</button>
+    </div>
+  </body>
 </html>

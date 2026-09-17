@@ -112,7 +112,15 @@ function DomainsPage() {
                           <span className="font-medium text-ink">{formatGbp(buyNowPrice)}</span>
                         </div>
                         <div className="mt-4">
-                          <PillButton as="link" to="/contact" size="sm">
+                          <PillButton
+                            as="link"
+                            to="/contact"
+                            search={{
+                              domain: domain.name,
+                              package: "Domain purchase / enquiry",
+                            }}
+                            size="sm"
+                          >
                             Enquire about {domain.name}
                           </PillButton>
                         </div>

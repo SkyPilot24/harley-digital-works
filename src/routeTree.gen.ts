@@ -17,17 +17,18 @@ import { Route as OnboardingRouteImport } from './routes/onboarding'
 import { Route as DomainsRouteImport } from './routes/domains'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as AuthRouteImport } from './routes/auth'
+import { Route as AuditRouteImport } from './routes/audit'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ServicesWebDesignDevelopmentRouteImport } from './routes/services_.web-design-development'
+import { Route as ServicesLaunchPlanRouteImport } from './routes/services_.launch-plan'
 import { Route as ServicesDigitalTransformationRouteImport } from './routes/services_.digital-transformation'
+import { Route as ServicesDigitalProductsRouteImport } from './routes/services_.digital-products'
+import { Route as ServicesContentEngineRouteImport } from './routes/services_.content-engine'
+import { Route as ServicesCarePlansRouteImport } from './routes/services_.care-plans'
+import { Route as ServicesAutomationRouteImport } from './routes/services_.automation'
 import { Route as ServicesAiAutomationRouteImport } from './routes/services_.ai-automation'
-import { Route as ServicesLaunchPlanRouteImport } from './routes/services.launch-plan'
-import { Route as ServicesDigitalProductsRouteImport } from './routes/services.digital-products'
-import { Route as ServicesContentEngineRouteImport } from './routes/services.content-engine'
-import { Route as ServicesCarePlansRouteImport } from './routes/services.care-plans'
-import { Route as ServicesAutomationRouteImport } from './routes/services.automation'
 import { Route as AuthenticatedAdminIndexRouteImport } from './routes/_authenticated/admin.index'
 import { Route as AuthenticatedAdminUsersRouteImport } from './routes/_authenticated/admin.users'
 import { Route as AuthenticatedAdminTestimonialsRouteImport } from './routes/_authenticated/admin.testimonials'
@@ -83,6 +84,11 @@ const AuthRoute = AuthRouteImport.update({
   path: '/auth',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuditRoute = AuditRouteImport.update({
+  id: '/audit',
+  path: '/audit',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AboutRoute = AboutRouteImport.update({
   id: '/about',
   path: '/about',
@@ -103,41 +109,41 @@ const ServicesWebDesignDevelopmentRoute =
     path: '/services/web-design-development',
     getParentRoute: () => rootRouteImport,
   } as any)
+const ServicesLaunchPlanRoute = ServicesLaunchPlanRouteImport.update({
+  id: '/services_/launch-plan',
+  path: '/services/launch-plan',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ServicesDigitalTransformationRoute =
   ServicesDigitalTransformationRouteImport.update({
     id: '/services_/digital-transformation',
     path: '/services/digital-transformation',
     getParentRoute: () => rootRouteImport,
   } as any)
+const ServicesDigitalProductsRoute = ServicesDigitalProductsRouteImport.update({
+  id: '/services_/digital-products',
+  path: '/services/digital-products',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ServicesContentEngineRoute = ServicesContentEngineRouteImport.update({
+  id: '/services_/content-engine',
+  path: '/services/content-engine',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ServicesCarePlansRoute = ServicesCarePlansRouteImport.update({
+  id: '/services_/care-plans',
+  path: '/services/care-plans',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ServicesAutomationRoute = ServicesAutomationRouteImport.update({
+  id: '/services_/automation',
+  path: '/services/automation',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ServicesAiAutomationRoute = ServicesAiAutomationRouteImport.update({
   id: '/services_/ai-automation',
   path: '/services/ai-automation',
   getParentRoute: () => rootRouteImport,
-} as any)
-const ServicesLaunchPlanRoute = ServicesLaunchPlanRouteImport.update({
-  id: '/launch-plan',
-  path: '/launch-plan',
-  getParentRoute: () => ServicesRoute,
-} as any)
-const ServicesDigitalProductsRoute = ServicesDigitalProductsRouteImport.update({
-  id: '/digital-products',
-  path: '/digital-products',
-  getParentRoute: () => ServicesRoute,
-} as any)
-const ServicesContentEngineRoute = ServicesContentEngineRouteImport.update({
-  id: '/content-engine',
-  path: '/content-engine',
-  getParentRoute: () => ServicesRoute,
-} as any)
-const ServicesCarePlansRoute = ServicesCarePlansRouteImport.update({
-  id: '/care-plans',
-  path: '/care-plans',
-  getParentRoute: () => ServicesRoute,
-} as any)
-const ServicesAutomationRoute = ServicesAutomationRouteImport.update({
-  id: '/automation',
-  path: '/automation',
-  getParentRoute: () => ServicesRoute,
 } as any)
 const AuthenticatedAdminIndexRoute = AuthenticatedAdminIndexRouteImport.update({
   id: '/admin/',
@@ -223,21 +229,22 @@ const AuthenticatedAdminClientsRoute =
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/audit': typeof AuditRoute
   '/auth': typeof AuthRoute
   '/contact': typeof ContactRoute
   '/domains': typeof DomainsRoute
   '/onboarding': typeof OnboardingRoute
   '/privacy': typeof PrivacyRoute
   '/resources': typeof ResourcesRoute
-  '/services': typeof ServicesRouteWithChildren
+  '/services': typeof ServicesRoute
   '/work': typeof WorkRoute
+  '/services/ai-automation': typeof ServicesAiAutomationRoute
   '/services/automation': typeof ServicesAutomationRoute
   '/services/care-plans': typeof ServicesCarePlansRoute
   '/services/content-engine': typeof ServicesContentEngineRoute
   '/services/digital-products': typeof ServicesDigitalProductsRoute
-  '/services/launch-plan': typeof ServicesLaunchPlanRoute
-  '/services/ai-automation': typeof ServicesAiAutomationRoute
   '/services/digital-transformation': typeof ServicesDigitalTransformationRoute
+  '/services/launch-plan': typeof ServicesLaunchPlanRoute
   '/services/web-design-development': typeof ServicesWebDesignDevelopmentRoute
   '/admin/clients': typeof AuthenticatedAdminClientsRoute
   '/admin/diagnostics': typeof AuthenticatedAdminDiagnosticsRoute
@@ -257,21 +264,22 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/audit': typeof AuditRoute
   '/auth': typeof AuthRoute
   '/contact': typeof ContactRoute
   '/domains': typeof DomainsRoute
   '/onboarding': typeof OnboardingRoute
   '/privacy': typeof PrivacyRoute
   '/resources': typeof ResourcesRoute
-  '/services': typeof ServicesRouteWithChildren
+  '/services': typeof ServicesRoute
   '/work': typeof WorkRoute
+  '/services/ai-automation': typeof ServicesAiAutomationRoute
   '/services/automation': typeof ServicesAutomationRoute
   '/services/care-plans': typeof ServicesCarePlansRoute
   '/services/content-engine': typeof ServicesContentEngineRoute
   '/services/digital-products': typeof ServicesDigitalProductsRoute
-  '/services/launch-plan': typeof ServicesLaunchPlanRoute
-  '/services/ai-automation': typeof ServicesAiAutomationRoute
   '/services/digital-transformation': typeof ServicesDigitalTransformationRoute
+  '/services/launch-plan': typeof ServicesLaunchPlanRoute
   '/services/web-design-development': typeof ServicesWebDesignDevelopmentRoute
   '/admin/clients': typeof AuthenticatedAdminClientsRoute
   '/admin/diagnostics': typeof AuthenticatedAdminDiagnosticsRoute
@@ -293,21 +301,22 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/about': typeof AboutRoute
+  '/audit': typeof AuditRoute
   '/auth': typeof AuthRoute
   '/contact': typeof ContactRoute
   '/domains': typeof DomainsRoute
   '/onboarding': typeof OnboardingRoute
   '/privacy': typeof PrivacyRoute
   '/resources': typeof ResourcesRoute
-  '/services': typeof ServicesRouteWithChildren
+  '/services': typeof ServicesRoute
   '/work': typeof WorkRoute
-  '/services/automation': typeof ServicesAutomationRoute
-  '/services/care-plans': typeof ServicesCarePlansRoute
-  '/services/content-engine': typeof ServicesContentEngineRoute
-  '/services/digital-products': typeof ServicesDigitalProductsRoute
-  '/services/launch-plan': typeof ServicesLaunchPlanRoute
   '/services_/ai-automation': typeof ServicesAiAutomationRoute
+  '/services_/automation': typeof ServicesAutomationRoute
+  '/services_/care-plans': typeof ServicesCarePlansRoute
+  '/services_/content-engine': typeof ServicesContentEngineRoute
+  '/services_/digital-products': typeof ServicesDigitalProductsRoute
   '/services_/digital-transformation': typeof ServicesDigitalTransformationRoute
+  '/services_/launch-plan': typeof ServicesLaunchPlanRoute
   '/services_/web-design-development': typeof ServicesWebDesignDevelopmentRoute
   '/_authenticated/admin/clients': typeof AuthenticatedAdminClientsRoute
   '/_authenticated/admin/diagnostics': typeof AuthenticatedAdminDiagnosticsRoute
@@ -329,6 +338,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/about'
+    | '/audit'
     | '/auth'
     | '/contact'
     | '/domains'
@@ -337,13 +347,13 @@ export interface FileRouteTypes {
     | '/resources'
     | '/services'
     | '/work'
+    | '/services/ai-automation'
     | '/services/automation'
     | '/services/care-plans'
     | '/services/content-engine'
     | '/services/digital-products'
-    | '/services/launch-plan'
-    | '/services/ai-automation'
     | '/services/digital-transformation'
+    | '/services/launch-plan'
     | '/services/web-design-development'
     | '/admin/clients'
     | '/admin/diagnostics'
@@ -363,6 +373,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/about'
+    | '/audit'
     | '/auth'
     | '/contact'
     | '/domains'
@@ -371,13 +382,13 @@ export interface FileRouteTypes {
     | '/resources'
     | '/services'
     | '/work'
+    | '/services/ai-automation'
     | '/services/automation'
     | '/services/care-plans'
     | '/services/content-engine'
     | '/services/digital-products'
-    | '/services/launch-plan'
-    | '/services/ai-automation'
     | '/services/digital-transformation'
+    | '/services/launch-plan'
     | '/services/web-design-development'
     | '/admin/clients'
     | '/admin/diagnostics'
@@ -398,6 +409,7 @@ export interface FileRouteTypes {
     | '/'
     | '/_authenticated'
     | '/about'
+    | '/audit'
     | '/auth'
     | '/contact'
     | '/domains'
@@ -406,13 +418,13 @@ export interface FileRouteTypes {
     | '/resources'
     | '/services'
     | '/work'
-    | '/services/automation'
-    | '/services/care-plans'
-    | '/services/content-engine'
-    | '/services/digital-products'
-    | '/services/launch-plan'
     | '/services_/ai-automation'
+    | '/services_/automation'
+    | '/services_/care-plans'
+    | '/services_/content-engine'
+    | '/services_/digital-products'
     | '/services_/digital-transformation'
+    | '/services_/launch-plan'
     | '/services_/web-design-development'
     | '/_authenticated/admin/clients'
     | '/_authenticated/admin/diagnostics'
@@ -434,16 +446,22 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
   AboutRoute: typeof AboutRoute
+  AuditRoute: typeof AuditRoute
   AuthRoute: typeof AuthRoute
   ContactRoute: typeof ContactRoute
   DomainsRoute: typeof DomainsRoute
   OnboardingRoute: typeof OnboardingRoute
   PrivacyRoute: typeof PrivacyRoute
   ResourcesRoute: typeof ResourcesRoute
-  ServicesRoute: typeof ServicesRouteWithChildren
+  ServicesRoute: typeof ServicesRoute
   WorkRoute: typeof WorkRoute
   ServicesAiAutomationRoute: typeof ServicesAiAutomationRoute
+  ServicesAutomationRoute: typeof ServicesAutomationRoute
+  ServicesCarePlansRoute: typeof ServicesCarePlansRoute
+  ServicesContentEngineRoute: typeof ServicesContentEngineRoute
+  ServicesDigitalProductsRoute: typeof ServicesDigitalProductsRoute
   ServicesDigitalTransformationRoute: typeof ServicesDigitalTransformationRoute
+  ServicesLaunchPlanRoute: typeof ServicesLaunchPlanRoute
   ServicesWebDesignDevelopmentRoute: typeof ServicesWebDesignDevelopmentRoute
 }
 
@@ -505,6 +523,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/audit': {
+      id: '/audit'
+      path: '/audit'
+      fullPath: '/audit'
+      preLoaderRoute: typeof AuditRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/about': {
       id: '/about'
       path: '/about'
@@ -533,11 +558,46 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ServicesWebDesignDevelopmentRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/services_/launch-plan': {
+      id: '/services_/launch-plan'
+      path: '/services/launch-plan'
+      fullPath: '/services/launch-plan'
+      preLoaderRoute: typeof ServicesLaunchPlanRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/services_/digital-transformation': {
       id: '/services_/digital-transformation'
       path: '/services/digital-transformation'
       fullPath: '/services/digital-transformation'
       preLoaderRoute: typeof ServicesDigitalTransformationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services_/digital-products': {
+      id: '/services_/digital-products'
+      path: '/services/digital-products'
+      fullPath: '/services/digital-products'
+      preLoaderRoute: typeof ServicesDigitalProductsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services_/content-engine': {
+      id: '/services_/content-engine'
+      path: '/services/content-engine'
+      fullPath: '/services/content-engine'
+      preLoaderRoute: typeof ServicesContentEngineRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services_/care-plans': {
+      id: '/services_/care-plans'
+      path: '/services/care-plans'
+      fullPath: '/services/care-plans'
+      preLoaderRoute: typeof ServicesCarePlansRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services_/automation': {
+      id: '/services_/automation'
+      path: '/services/automation'
+      fullPath: '/services/automation'
+      preLoaderRoute: typeof ServicesAutomationRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/services_/ai-automation': {
@@ -546,41 +606,6 @@ declare module '@tanstack/react-router' {
       fullPath: '/services/ai-automation'
       preLoaderRoute: typeof ServicesAiAutomationRouteImport
       parentRoute: typeof rootRouteImport
-    }
-    '/services/launch-plan': {
-      id: '/services/launch-plan'
-      path: '/launch-plan'
-      fullPath: '/services/launch-plan'
-      preLoaderRoute: typeof ServicesLaunchPlanRouteImport
-      parentRoute: typeof ServicesRoute
-    }
-    '/services/digital-products': {
-      id: '/services/digital-products'
-      path: '/digital-products'
-      fullPath: '/services/digital-products'
-      preLoaderRoute: typeof ServicesDigitalProductsRouteImport
-      parentRoute: typeof ServicesRoute
-    }
-    '/services/content-engine': {
-      id: '/services/content-engine'
-      path: '/content-engine'
-      fullPath: '/services/content-engine'
-      preLoaderRoute: typeof ServicesContentEngineRouteImport
-      parentRoute: typeof ServicesRoute
-    }
-    '/services/care-plans': {
-      id: '/services/care-plans'
-      path: '/care-plans'
-      fullPath: '/services/care-plans'
-      preLoaderRoute: typeof ServicesCarePlansRouteImport
-      parentRoute: typeof ServicesRoute
-    }
-    '/services/automation': {
-      id: '/services/automation'
-      path: '/automation'
-      fullPath: '/services/automation'
-      preLoaderRoute: typeof ServicesAutomationRouteImport
-      parentRoute: typeof ServicesRoute
     }
     '/_authenticated/admin/': {
       id: '/_authenticated/admin/'
@@ -720,40 +745,26 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
 const AuthenticatedRouteRouteWithChildren =
   AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren)
 
-interface ServicesRouteChildren {
-  ServicesAutomationRoute: typeof ServicesAutomationRoute
-  ServicesCarePlansRoute: typeof ServicesCarePlansRoute
-  ServicesContentEngineRoute: typeof ServicesContentEngineRoute
-  ServicesDigitalProductsRoute: typeof ServicesDigitalProductsRoute
-  ServicesLaunchPlanRoute: typeof ServicesLaunchPlanRoute
-}
-
-const ServicesRouteChildren: ServicesRouteChildren = {
-  ServicesAutomationRoute: ServicesAutomationRoute,
-  ServicesCarePlansRoute: ServicesCarePlansRoute,
-  ServicesContentEngineRoute: ServicesContentEngineRoute,
-  ServicesDigitalProductsRoute: ServicesDigitalProductsRoute,
-  ServicesLaunchPlanRoute: ServicesLaunchPlanRoute,
-}
-
-const ServicesRouteWithChildren = ServicesRoute._addFileChildren(
-  ServicesRouteChildren,
-)
-
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
   AboutRoute: AboutRoute,
+  AuditRoute: AuditRoute,
   AuthRoute: AuthRoute,
   ContactRoute: ContactRoute,
   DomainsRoute: DomainsRoute,
   OnboardingRoute: OnboardingRoute,
   PrivacyRoute: PrivacyRoute,
   ResourcesRoute: ResourcesRoute,
-  ServicesRoute: ServicesRouteWithChildren,
+  ServicesRoute: ServicesRoute,
   WorkRoute: WorkRoute,
   ServicesAiAutomationRoute: ServicesAiAutomationRoute,
+  ServicesAutomationRoute: ServicesAutomationRoute,
+  ServicesCarePlansRoute: ServicesCarePlansRoute,
+  ServicesContentEngineRoute: ServicesContentEngineRoute,
+  ServicesDigitalProductsRoute: ServicesDigitalProductsRoute,
   ServicesDigitalTransformationRoute: ServicesDigitalTransformationRoute,
+  ServicesLaunchPlanRoute: ServicesLaunchPlanRoute,
   ServicesWebDesignDevelopmentRoute: ServicesWebDesignDevelopmentRoute,
 }
 export const routeTree = rootRouteImport

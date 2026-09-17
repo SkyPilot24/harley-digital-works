@@ -118,8 +118,8 @@
   --accent-foreground: var(--ink);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(0.20 0.005 260 / 0.10);
-  --input: oklch(0.20 0.005 260 / 0.14);
+  --border: oklch(0.2 0.005 260 / 0.1);
+  --input: oklch(0.2 0.005 260 / 0.14);
   --ring: var(--thg-teal);
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
@@ -132,7 +132,7 @@
   --sidebar-primary-foreground: var(--hdw-black);
   --sidebar-accent: var(--surface-cream);
   --sidebar-accent-foreground: var(--ink);
-  --sidebar-border: oklch(0.20 0.005 260 / 0.10);
+  --sidebar-border: oklch(0.2 0.005 260 / 0.1);
   --sidebar-ring: var(--signature-gold);
 }
 
@@ -179,7 +179,10 @@
     text-rendering: optimizeLegibility;
   }
 
-  h1, h2, h3, h4 {
+  h1,
+  h2,
+  h3,
+  h4 {
     font-family: var(--font-display);
     letter-spacing: -0.025em;
     font-weight: 500;
@@ -200,9 +203,41 @@
   font-family: var(--font-hand) !important;
 }
 
-html { scroll-behavior: smooth; }
-body.is-loading { overflow: hidden !important; height: 100vh !important; }
-.eyebrow { font-family: var(--font-mono); font-size: .7rem; font-weight: 500; letter-spacing: .16em; line-height: 1.4; text-transform: uppercase; }
-.service-row { transition: padding 240ms ease, background-color 240ms ease; }
-@media (min-width: 640px) { .service-row:hover { background: color-mix(in oklab, var(--signature-gold) 7%, transparent); padding-inline: 1rem; } }
-@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; } }
+html {
+  scroll-behavior: smooth;
+}
+body.is-loading {
+  overflow: hidden !important;
+  height: 100vh !important;
+}
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+.service-row {
+  transition:
+    padding 240ms ease,
+    background-color 240ms ease;
+}
+@media (min-width: 640px) {
+  .service-row:hover {
+    background: color-mix(in oklab, var(--signature-gold) 7%, transparent);
+    padding-inline: 1rem;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

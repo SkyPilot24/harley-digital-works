@@ -19,6 +19,7 @@ Use this as the simple operating rhythm for THG Digital Agency.
 ## Rule
 
 If an action does not help get leads, close clients, deliver projects, or improve trust, leave it for later.
+
 ## Revenue stream checklist
 
 - Web Services: one targeted website improvement note per day.

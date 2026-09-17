@@ -120,17 +120,20 @@ All directions avoid motorcycle, wings, shields, flames, gears, generic circuits
 Foundry Line treats Harley Digital Works as a calm digital workshop: precise, practical, and quietly premium. The central visual idea is a confident wordmark supported by a simple "workline" symbol, a horizontal stroke that represents connection, delivery, and steady operational progress.
 
 Why it fits:
+
 - It extends the current warm ink/teal/cream direction instead of discarding the rebrand work.
 - It feels human and service-led, with enough polish for premium website and automation work.
 - It can support agency services, care plans, ContentFlow AI, and future SaaS without feeling tied to one product.
 
 Advantages:
+
 - Lowest implementation risk.
 - Strong continuity with current assets and docs.
 - Calm, trustworthy, easy to reproduce.
 - Works well in documents and admin UI.
 
 Possible weaknesses:
+
 - Less instantly ownable than a more distinctive symbol-led identity.
 - The line motif must be handled carefully so it does not feel too plain.
 
@@ -161,6 +164,7 @@ Possible weaknesses:
 - Information: `#2C6684`, RGB 44 102 132, HSL 200 50% 35%.
 
 Recommended usage ratios:
+
 - 68% warm cream and white surfaces.
 - 18% ink text and structural elements.
 - 8% mist/sage supporting surfaces.
@@ -168,6 +172,7 @@ Recommended usage ratios:
 - 2% copper highlights for premium emphasis, never primary CTA overuse.
 
 Accessibility:
+
 - Ink on cream and white is strong for body text.
 - White on ink is strong for dark surfaces.
 - Teal should be used mainly for rules, focus states, badges, and icons, not small body text on light backgrounds unless contrast is verified.
@@ -213,16 +218,19 @@ Accessibility:
 Modular Works positions Harley Digital Works as a builder of digital systems. The central idea is a modular tile symbol: parts that connect cleanly, rearrange, and scale. It speaks to websites, automation, SaaS, hosting, workflows, and repeatable digital products.
 
 Why it fits:
+
 - It directly supports the business model of productised services, recurring systems, and SaaS products.
 - It feels more product-company than freelance agency.
 - It gives future sub-brands a flexible visual grammar.
 
 Advantages:
+
 - Strongest fit for SaaS and automation credibility.
 - Clear extension system for icons, diagrams, templates, and dashboards.
 - Distinct without using generic circuit or robot motifs.
 
 Possible weaknesses:
+
 - Slightly more technical and less warm than Foundry Line.
 - Needs careful voice and photography to stay human and approachable.
 
@@ -254,6 +262,7 @@ Possible weaknesses:
 - Information: `#2563EB`, RGB 37 99 235, HSL 221 83% 53%.
 
 Recommended usage ratios:
+
 - 60% porcelain/white surfaces.
 - 18% graphite structure.
 - 10% soft grid surfaces.
@@ -262,6 +271,7 @@ Recommended usage ratios:
 - 2% burnt orange for conversion moments and alerts.
 
 Accessibility:
+
 - Graphite on porcelain is strong.
 - White on graphite is strong.
 - Sand gold should not carry small text on light backgrounds.
@@ -308,16 +318,19 @@ Accessibility:
 Open Aperture presents Harley Digital Works as a clear lens on digital complexity. The central idea is an open frame with a precise path through it: simplifying the route from messy operations to better websites, smarter systems, and simpler growth.
 
 Why it fits:
+
 - It is distinctive and premium without becoming cold or corporate.
 - It suggests clarity, focus, and making systems easier to understand.
 - It can work across strategy, web builds, automation, SaaS, proposals, and social content.
 
 Advantages:
+
 - Most memorable symbol.
 - Strongest premium presentation and proposal presence.
 - Avoids literal tech imagery while still feeling technically credible.
 
 Possible weaknesses:
+
 - Requires more design discipline to avoid becoming too editorial.
 - Less continuity with the existing temporary assets.
 - The symbol needs careful small-size testing so the open frame stays clear.
@@ -349,6 +362,7 @@ Possible weaknesses:
 - Information: `#245A75`, RGB 36 90 117, HSL 200 53% 30%.
 
 Recommended usage ratios:
+
 - 58% soft paper and white.
 - 20% black/near-black structure.
 - 10% pale field surfaces.
@@ -356,6 +370,7 @@ Recommended usage ratios:
 - 5% coral accent for highlights, motion paths, and campaign moments.
 
 Accessibility:
+
 - Near black on soft paper is strong.
 - Soft paper on aperture black is strong.
 - Coral should not be the sole indicator of state.
@@ -396,17 +411,17 @@ Accessibility:
 
 ## Comparison Against Business Goals
 
-| Goal | Foundry Line | Modular Works | Open Aperture |
-| --- | --- | --- | --- |
-| Premium services credibility | Strong | Strong | Very strong |
-| SaaS/product support | Good | Very strong | Good |
-| Small-business approachability | Very strong | Good | Medium |
-| Practical/operational feel | Very strong | Very strong | Strong |
-| Distinctiveness | Medium | Strong | Very strong |
-| Implementation continuity | Very strong | Medium | Medium |
-| Long-term sub-brand scalability | Good | Very strong | Strong |
-| Light/dark flexibility | Strong | Strong | Strong |
-| Favicon clarity | Strong | Very strong | Needs testing |
+| Goal                            | Foundry Line | Modular Works | Open Aperture |
+| ------------------------------- | ------------ | ------------- | ------------- |
+| Premium services credibility    | Strong       | Strong        | Very strong   |
+| SaaS/product support            | Good         | Very strong   | Good          |
+| Small-business approachability  | Very strong  | Good          | Medium        |
+| Practical/operational feel      | Very strong  | Very strong   | Strong        |
+| Distinctiveness                 | Medium       | Strong        | Very strong   |
+| Implementation continuity       | Very strong  | Medium        | Medium        |
+| Long-term sub-brand scalability | Good         | Very strong   | Strong        |
+| Light/dark flexibility          | Strong       | Strong        | Strong        |
+| Favicon clarity                 | Strong       | Very strong   | Needs testing |
 
 ## Recommendation
 

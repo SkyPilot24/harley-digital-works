@@ -7,28 +7,32 @@ const YEAR = 2026;
 
 const COLUMNS = [
   {
-    heading: "Services",
+    heading: "Websites & Care",
     links: [
-      { label: "Web design & development", to: "/services/web-design-development" },
-      { label: "AI & automation", to: "/services/ai-automation" },
-      { label: "Digital transformation", to: "/services/digital-transformation" },
-      { label: "All services", to: "/services" },
+      { label: "Launch Website (£1,495)", to: "/services/launch-plan" },
+      { label: "Growth Website (£2,995)", to: "/services/web-design-development" },
+      { label: "Pro Custom Platforms", to: "/services/digital-products" },
+      { label: "Managed Care Plans", to: "/services/care-plans" },
+      { label: "All Packages", to: "/services" },
     ],
   },
   {
-    heading: "Explore",
+    heading: "Popular Trades",
     links: [
-      { label: "Selected work", to: "/work" },
-      { label: "Resources", to: "/resources" },
-      { label: "Domains", to: "/domains" },
+      { label: "Electricians & Solar", to: "/work" },
+      { label: "Plumbers & Heating", to: "/work" },
+      { label: "Roofers & Builders", to: "/work" },
+      { label: "Commercial Services", to: "/work" },
+      { label: "Free Website Check", to: "/audit" },
     ],
   },
   {
     heading: "Company",
     links: [
-      { label: "About", to: "/about" },
-      { label: "Contact", to: "/contact" },
-      { label: "Privacy", to: "/privacy" },
+      { label: "About Us", to: "/about" },
+      { label: "Our Work", to: "/work" },
+      { label: "Get a Free Quote", to: "/contact" },
+      { label: "Privacy Policy", to: "/privacy" },
     ],
   },
 ] as const;
@@ -39,17 +43,21 @@ export function FooterDark() {
       <div className="mx-auto max-w-[1240px] px-6 py-16 md:px-10 md:py-24">
         <div className="grid gap-12 md:grid-cols-12 md:gap-10">
           <div className="md:col-span-5">
-            <p className="max-w-sm text-[15px] leading-relaxed text-background/70">
-              Have a website, workflow or digital service that needs to work harder? Tell us what is
-              getting in the way.
+            <p className="max-w-sm text-[16px] leading-relaxed text-background/80">
+              <strong className="text-white">
+                You run your business. We’ll handle your website.
+              </strong>
+              <br />
+              100% done-for-you website builds, professional copywriting, and managed monthly care
+              for UK trades and small businesses.
             </p>
-            <div className="mt-6">
+            <div className="mt-6 flex flex-wrap gap-3">
               <PillButton as="link" to="/contact" variant="light" size="md">
-                Start a project
+                Get a Free Quote
               </PillButton>
             </div>
 
-            <div className="mt-14 flex items-center">
+            <div className="mt-12 flex items-center">
               <BrandLogo variant="light" imageClassName="h-6 w-auto" />
             </div>
           </div>
@@ -80,6 +88,7 @@ export function FooterDark() {
                   {siteConfig.contactEmail}
                 </a>
               </li>
+              <li className="text-xs text-background/40">UK Support (Mon–Fri)</li>
             </ul>
           </div>
         </div>
@@ -88,9 +97,11 @@ export function FooterDark() {
       <div className="border-t border-background/10">
         <div className="mx-auto flex max-w-[1240px] flex-col gap-2 px-6 py-6 text-[12px] text-background/65 md:flex-row md:items-center md:justify-between md:px-10">
           <p>
-            &copy; {YEAR} {siteConfig.name}. All rights reserved.
+            &copy; {YEAR} {siteConfig.name} (Part of The Harley Group). All rights reserved.
           </p>
-          <p className="font-mono uppercase tracking-[0.22em]">Strategy · Design · Engineering</p>
+          <p className="font-mono uppercase tracking-[0.22em]">
+            Websites · Copywriting · Managed Care
+          </p>
         </div>
       </div>
     </footer>

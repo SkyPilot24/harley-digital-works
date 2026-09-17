@@ -1,22 +1,22 @@
-# THG Digital
+# Harley Digital Works
 
-THG Digital is a TanStack Start + Supabase platform for running both the public THG Digital website and the internal admin control centre.
+Harley Digital Works (part of The Harley Group) is a TanStack Start + Supabase platform for running both the public Harley Digital Works website and the internal agency operating system (Control Centre).
 
 It combines:
 
-- a public marketing site for THG Digital services
-- lead capture and contact workflows
-- an authenticated admin area for content, operations, and delivery
+- a public marketing site for Harley Digital Works services and packages
+- protected lead capture and qualification workflows
+- an authenticated admin Control Centre for CRM, content, and operations
 - Supabase-backed data models for leads, clients, projects, services, team, and operational planning
-- internal operating tools such as Revenue OS, diagnostics, and playbooks
+- internal operating tools including Revenue OS, Domain OS, diagnostics, and playbooks
 
 ## What this app does
 
-This repo supports two main surfaces:
+This repository supports two main surfaces:
 
 ### 1. Public website
 
-The public site presents THG Digital’s offer, pages such as `/about`, `/services`, `/domains`, `/resources`, and `/contact`, and a high-design landing experience with scroll-driven animation.
+The public site presents Harley Digital Works’ offers, including `/about`, `/services`, `/domains`, `/resources`, `/onboarding`, `/work`, and `/contact`.
 
 ### 2. Admin control centre
 

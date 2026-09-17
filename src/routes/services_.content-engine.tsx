@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ServiceDetailLayout } from "@/components/site/ServiceDetailLayout";
 
-export const Route = createFileRoute("/services/content-engine")({
+export const Route = createFileRoute("/services_/content-engine")({
   head: () => ({
     meta: [
       { title: "Content Engine — Harley Digital Works" },

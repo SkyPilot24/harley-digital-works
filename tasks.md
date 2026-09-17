@@ -1,56 +1,36 @@
-# Website QA + optimization task list
+# Website QA & Platform Build Sign-off
 
 ## Objective
-Complete a full review of `https://harleydigitalworks.com`, fix critical/high issues in this codebase, retest, and report outcomes.
 
-## Audit scope checklist
+Deliver and verify the production-ready digital agency operating platform and commercial website for **Harley Digital Works** (`https://harleydigitalworks.com`).
 
-- [ ] Page loading and routing across all public routes and admin entry points
-- [ ] Navigation links, CTA buttons, and menu behavior (desktop + mobile)
-- [ ] Forms, validation, submission, success/error states
-- [ ] Modals, dropdowns, tabs, accordions, and menu interactions
-- [ ] Responsive layout checks at mobile/tablet/laptop/desktop widths
-- [ ] Text readability, spacing, alignment, overflow, visual consistency
-- [ ] Images, icons, fonts, animations, and media behavior
-- [ ] Loading, empty, success, and error states
-- [ ] Browser console warnings/errors
-- [ ] Failed/slow/unnecessary network requests
-- [ ] Keyboard navigation and visible focus states
-- [ ] Semantic HTML, labels, ARIA, and color contrast
-- [ ] Performance issues (large bundles/assets, layout shift, over-rendering, duplicate requests)
-- [ ] Cross-page and cross-component consistency
-- [ ] Broken links, missing assets, placeholder content, incomplete functionality
+---
 
-## Working method
+## Audit & Delivery Scope Checklist
 
-1. Explore the site route-by-route and reproduce each issue.
-2. For each issue, record:
-   - severity
-   - route/page
-   - component/file
-   - reproduction steps
-   - expected vs actual behavior
-   - root cause
-3. Fix issues with targeted, maintainable changes.
-4. Retest affected flows after each significant fix.
-5. Run available validation commands:
-   - lint
-   - type/build
-   - tests (if present)
-6. Continue until all critical/high issues are resolved or explicitly documented as blocked.
+- [x] Page loading and routing across all public routes and admin entry points (un-nested TanStack Router hierarchy)
+- [x] Navigation links, CTA buttons, and menu behavior (desktop + mobile navigation drawer)
+- [x] Forms, validation, submission, honeypot spam protection, and real-time Slack incoming webhook alerts
+- [x] Modals, dropdowns, tabs, accordions, and interactive audit tool interactions
+- [x] Responsive layout checks at mobile/tablet/laptop/desktop widths (touch targets >= 44px)
+- [x] Text readability, typography tokens, dark/gold aesthetic, and visual consistency
+- [x] Standardised commercial website packages (Launch £1,495, Growth £2,995, Pro £4,995+)
+- [x] Embedded recurring Care Plan attach upsells (£95/mo hosting, backups, maintenance)
+- [x] Interactive free website health & conversion check tool (`/audit`)
+- [x] One-click lead-to-client conversion pipeline in `/admin/leads`
+- [x] Client 360 Workspace in `/admin/clients` with linked project management and MRR tracking
+- [x] Domain acquisition enquiry routing with search parameter hydration
+- [x] Schema.org `ProfessionalService` JSON-LD structured data and OpenGraph tags
+- [x] Robots.txt crawl rules and canonical URL generation
+- [x] Zero TypeScript, Prettier, or ESLint errors across the codebase
 
-## Severity rubric
+---
 
-- **Critical**: broken core journey, data loss, inaccessible blocking interaction, or production failure
-- **High**: major UX/accessibility/functional issue with clear user impact
-- **Medium**: non-blocking but meaningful quality issue
-- **Low**: minor polish or improvement item
+## Validation Summary
 
-## Required final report sections
-
-1. Executive summary
-2. Issues found (full per-issue details)
-3. Code changes (files + purpose)
-4. Performance and accessibility improvements
-5. Validation results
-6. Remaining issues and recommended next actions
+| Gate | Command | Result |
+|---|---|---|
+| **TypeScript** | `npm run typecheck` | Passed (0 errors) |
+| **Prettier** | `npm run format:check` | Passed (100% compliant) |
+| **ESLint** | `npm run lint` | Passed (0 errors) |
+| **Vite + Nitro SSR Build** | `npm run build` | Passed (Output in `.output/`) |

@@ -1,341 +1,572 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, Bot, Check, Code2, Compass, Gauge, Layers3, Workflow } from "lucide-react";
+import {
+  ArrowRight,
+  Check,
+  Phone,
+  MessageSquare,
+  ShieldCheck,
+  Zap,
+  Sparkles,
+  Clock,
+  PenTool,
+  Headphones,
+  CheckCircle2,
+  HelpCircle,
+} from "lucide-react";
 import { PageShell, Container } from "@/components/site/PageShell";
 import { PillButton } from "@/components/site/PillButton";
+import { WebsitePackagesSection } from "@/components/site/WebsitePackagesSection";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Harley Digital Works | Websites, AI & Digital Transformation" },
+      { title: "Harley Digital Works | Websites for Trades & Small Businesses" },
       {
         name: "description",
         content:
-          "Harley Digital Works designs high-performing websites, automates repetitive work and modernises digital services for ambitious UK organisations.",
+          "You run your business. We’ll handle your website. Done-for-you websites, professional copywriting, and managed monthly care for UK trades and small businesses.",
       },
-      { property: "og:title", content: "Harley Digital Works | Better digital, built to work" },
+      {
+        property: "og:title",
+        content: "Harley Digital Works | Done-For-You Websites for Trades & Small Businesses",
+      },
       {
         property: "og:description",
         content:
-          "Websites, AI automation and digital transformation focused on measurable business outcomes.",
+          "High-performing websites, professional copywriting, and managed monthly care. Launched in 14 days with zero technical hassle.",
       },
     ],
   }),
   component: HomePage,
 });
 
-const services = [
+const PILLARS = [
   {
     number: "01",
-    icon: Code2,
-    title: "Web design & development",
-    copy: "Strategy, UX, content and engineering for websites that explain your value clearly and turn attention into action.",
-    outcomes: ["Clearer positioning", "Faster experiences", "More qualified enquiries"],
-    to: "/services/web-design-development",
+    icon: Zap,
+    title: "High-Converting Trade Design",
+    copy: "Bespoke, razor-sharp design tailored to your trade that builds instant trust and makes you look like the #1 choice in your area.",
+    outcomes: [
+      "Mobile-first for on-the-go customers",
+      "Fast click-to-call & WhatsApp links",
+      "Google Maps & review integration",
+    ],
   },
   {
     number: "02",
-    icon: Workflow,
-    title: "AI & automation",
-    copy: "Practical workflows that remove repetitive admin, connect the tools you already use and give your team time back.",
-    outcomes: ["Less manual work", "Fewer hand-off errors", "More consistent delivery"],
-    to: "/services/ai-automation",
+    icon: PenTool,
+    title: "100% Done-For-You Copy & Images",
+    copy: "No homework for you. We write your sales copy, research your trade, and curate high-resolution imagery so you never stare at a blank screen.",
+    outcomes: [
+      "Clear service descriptions",
+      "Local keyword targeting",
+      "Professional trade photography",
+    ],
   },
   {
     number: "03",
-    icon: Compass,
-    title: "Digital transformation",
-    copy: "Focused modernisation of outdated systems and customer journeys—without a costly, open-ended transformation programme.",
-    outcomes: ["Simpler operations", "Better customer journeys", "A workable roadmap"],
-    to: "/services/digital-transformation",
+    icon: Headphones,
+    title: "Managed Care & Unlimited Edits",
+    copy: "We host, secure, and update your site every month. When you want a photo, price, or review updated, simply message us on WhatsApp.",
+    outcomes: [
+      "Ultra-fast UK cloud hosting",
+      "Daily cloud backups & SSL",
+      "Unlimited monthly text & photo updates",
+    ],
   },
 ] as const;
 
-const process = [
-  [
-    "01",
-    "Understand",
-    "We get close to the commercial goal, the people involved and the friction worth solving.",
-  ],
-  [
-    "02",
-    "Prioritise",
-    "We define the smallest valuable scope, the evidence of success and what can wait.",
-  ],
-  [
-    "03",
-    "Design & build",
-    "You see working progress early. Decisions are documented and delivery stays transparent.",
-  ],
-  [
-    "04",
-    "Launch & improve",
-    "We launch carefully, measure what matters and turn evidence into the next useful change.",
-  ],
+const PROCESS_STEPS = [
+  {
+    number: "01",
+    title: "15-Minute Intro Chat",
+    copy: "Tell us about your trade, your best services, and where you work. No technical jargon, no long forms.",
+  },
+  {
+    number: "02",
+    title: "We Build & Write Everything",
+    copy: "Our team writes all the sales copy, curates professional photography, and builds your custom website within 10 days.",
+  },
+  {
+    number: "03",
+    title: "Review & Launch in 14 Days",
+    copy: "We review the live preview together, make any tweaks you want, connect your domain, and launch to Google.",
+  },
+] as const;
+
+const TRAP_PROBLEMS = [
+  {
+    title: "The DIY Wix / Squarespace Trap",
+    copy: "You spend 40+ hours fighting templates after a long day on tools, only for the site to look amateur and generate zero phone calls.",
+  },
+  {
+    title: "The Ghosting Freelancer",
+    copy: "They take months to build half a site, charge you for unexpected extras, and disappear when you need an urgent change or fix.",
+  },
+  {
+    title: "The 'Homework' Agency",
+    copy: "Traditional agencies charge £5,000+ and demand that you write all the copy, supply photos, and manage the technical setup yourself.",
+  },
+  {
+    title: "The Abandoned Broken Site",
+    copy: "The site goes live, plugin updates break the layout, security expires, and you have nobody reliable to call for help.",
+  },
+] as const;
+
+const FAQS = [
+  {
+    q: "Do I have to write the website text or supply all the photos?",
+    a: "No. That is our job. We write all the industry-specific sales copy and curate professional high-definition imagery for your trade. You just review and give us the thumbs-up.",
+  },
+  {
+    q: "How much of my time is required?",
+    a: "Less than 45 minutes total. A 15-minute intro chat so we understand your services, and a 20-minute review call before we launch your site to the public.",
+  },
+  {
+    q: "What happens when I want to change a phone number, price, or photo later?",
+    a: "Every website includes our Managed Care Plan. Whenever you need an update, just message us on WhatsApp or send an email, and our UK team will update it for you within 24 hours.",
+  },
+  {
+    q: "Do I own my website and domain name?",
+    a: "Yes, 100%. You own your domain, your content, and your website assets. There are no lock-in traps or hidden transfer fees.",
+  },
+  {
+    q: "How fast will my website be live?",
+    a: "Our standard delivery rhythm is 14 days from our initial 15-minute call to full public launch on Google.",
+  },
 ] as const;
 
 function HomePage() {
   return (
     <PageShell>
-      <section className="relative overflow-hidden border-b border-ink/10 pt-28 md:pt-36">
+      {/* Hero Section */}
+      <section className="relative overflow-hidden border-b border-ink/10 pt-28 md:pt-36 bg-gradient-to-b from-background to-white/40">
         <Container>
-          <div className="grid min-h-[680px] items-end gap-14 py-16 lg:grid-cols-12 lg:py-24">
-            <div className="lg:col-span-8">
-              <p className="eyebrow">Digital consultancy · Manchester / UK-wide</p>
-              <h1 className="mt-7 max-w-5xl text-[clamp(3.6rem,8.8vw,8.2rem)] font-medium leading-[0.88] tracking-[-0.065em] text-ink">
-                Better digital,<span className="block text-thg-teal-dark">built to work.</span>
+          <div className="grid gap-12 py-12 lg:grid-cols-12 lg:items-center lg:py-20">
+            <div className="lg:col-span-7">
+              <div className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-3.5 py-1 text-xs font-semibold text-ink">
+                <Sparkles size={14} className="text-primary" />
+                <span>Done-For-You Websites For UK Trades & Businesses</span>
+              </div>
+
+              <h1 className="mt-6 text-[clamp(2.9rem,6.8vw,5.6rem)] font-semibold leading-[0.94] tracking-[-0.05em] text-ink">
+                You run your business.{" "}
+                <span className="block text-primary">We’ll handle your website.</span>
               </h1>
-            </div>
-            <div className="pb-2 lg:col-span-4">
-              <p className="max-w-md text-lg leading-relaxed text-ink-muted">
-                We help ambitious organisations build high-performing websites, automate repetitive
-                work and modernise the digital journeys their customers rely on.
+
+              <p className="mt-6 max-w-2xl text-lg leading-relaxed text-ink-muted md:text-xl">
+                Get a high-performing, professionally built website that wins you more
+                customers—without writing a single line of copy or touching a server. 100% built,
+                written, and managed for you.
               </p>
-              <div className="mt-8 flex flex-wrap gap-3">
-                <PillButton as="link" to="/contact" variant="dark">
-                  Start a project
+
+              <div className="mt-8 flex flex-wrap items-center gap-4">
+                <PillButton
+                  as="link"
+                  to="/contact"
+                  variant="dark"
+                  size="md"
+                  className="gap-2 shadow-lg shadow-ink/10"
+                >
+                  Get a Free 60-Sec Quote <ArrowRight size={16} />
                 </PillButton>
-                <PillButton as="link" to="/work" variant="ghost">
-                  View our work
+                <PillButton
+                  as="link"
+                  to="/work"
+                  variant="ghost"
+                  size="md"
+                  className="border border-ink/15"
+                >
+                  See Live Trade Examples
                 </PillButton>
+              </div>
+
+              <div className="mt-10 grid grid-cols-2 gap-3 pt-6 border-t border-ink/10 sm:grid-cols-4 text-xs font-medium text-ink">
+                <div className="flex items-center gap-2">
+                  <CheckCircle2 size={16} className="text-primary shrink-0" />
+                  <span>Launched in 14 Days</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle2 size={16} className="text-primary shrink-0" />
+                  <span>We Write The Copy</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle2 size={16} className="text-primary shrink-0" />
+                  <span>Zero Tech Hassle</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle2 size={16} className="text-primary shrink-0" />
+                  <span>UK Managed Care</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Realistic Hero Visual Mockup */}
+            <div className="lg:col-span-5">
+              <div className="relative mx-auto max-w-md rounded-3xl bg-ink p-5 shadow-2xl border border-white/10 text-white">
+                <div className="flex items-center justify-between border-b border-white/10 pb-3 text-xs text-white/60">
+                  <div className="flex items-center gap-1.5">
+                    <span className="h-2.5 w-2.5 rounded-full bg-red-500/80" />
+                    <span className="h-2.5 w-2.5 rounded-full bg-yellow-500/80" />
+                    <span className="h-2.5 w-2.5 rounded-full bg-green-500/80" />
+                    <span className="ml-2 font-mono text-[10px] text-white/40">
+                      harleydigitalworks.com/preview
+                    </span>
+                  </div>
+                  <span className="rounded bg-primary/20 px-2 py-0.5 text-[10px] font-semibold text-primary">
+                    LIVE DEMO
+                  </span>
+                </div>
+
+                {/* Simulated Trade Website Preview */}
+                <div className="mt-4 rounded-xl bg-works-charcoal p-5 border border-white/5 space-y-4">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <div className="text-[11px] font-mono uppercase tracking-wider text-primary">
+                        Kavanagh Heating & Solar
+                      </div>
+                      <div className="text-sm font-medium text-white">
+                        Emergency Boiler & Heat Pump Specialists
+                      </div>
+                    </div>
+                    <div className="rounded-full bg-emerald-500/20 px-2.5 py-1 text-[11px] font-medium text-emerald-400 flex items-center gap-1">
+                      <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                      4.9 ★★★★★
+                    </div>
+                  </div>
+
+                  <div className="rounded-lg bg-black/40 p-4 border border-white/5">
+                    <p className="text-xs text-white/80 leading-relaxed">
+                      "Fast quote response, polite engineer, and boiler replaced in 24 hours. Highly
+                      recommended!"
+                    </p>
+                    <div className="mt-2 text-[10px] text-white/40">
+                      — Verified Google Review · Manchester
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-2">
+                    <div className="rounded-lg bg-primary p-2.5 text-center text-xs font-semibold text-ink flex items-center justify-center gap-1.5">
+                      <Phone size={13} />
+                      <span>0161 706 1420</span>
+                    </div>
+                    <div className="rounded-lg bg-white/10 p-2.5 text-center text-xs font-medium text-white flex items-center justify-center gap-1.5">
+                      <MessageSquare size={13} />
+                      <span>WhatsApp Quote</span>
+                    </div>
+                  </div>
+
+                  <div className="rounded-lg bg-emerald-950/40 border border-emerald-500/30 p-3 flex items-center justify-between text-xs text-emerald-300">
+                    <div className="flex items-center gap-2">
+                      <Zap size={14} className="text-emerald-400" />
+                      <span>New Enquiry Received (2 mins ago)</span>
+                    </div>
+                    <span className="font-mono font-semibold">£3,850 Quote</span>
+                  </div>
+                </div>
+
+                <div className="mt-4 flex items-center justify-between text-[11px] text-white/50 pt-2 border-t border-white/5">
+                  <span>✓ 100% Mobile Optimised</span>
+                  <span>✓ Managed Care Included</span>
+                </div>
               </div>
             </div>
           </div>
         </Container>
       </section>
-      <section className="border-b border-ink/10 py-7">
+
+      {/* Trust & Guarantee Strip */}
+      <section className="border-b border-ink/10 bg-white py-8">
         <Container>
-          <div className="flex flex-col justify-between gap-3 text-sm sm:flex-row">
-            <p className="font-medium text-ink">Strategy. Design. Engineering. Automation.</p>
-            <p className="text-ink-muted">Senior attention from first conversation to launch.</p>
-          </div>
-        </Container>
-      </section>
-      <section className="py-20 md:py-32">
-        <Container>
-          <div className="grid gap-10 lg:grid-cols-12">
-            <div className="lg:col-span-4">
-              <p className="eyebrow">What we do</p>
-              <h2 className="mt-5 text-[clamp(2.3rem,4.5vw,4.2rem)] leading-[0.98] tracking-[-0.045em]">
-                Technology shaped around the outcome.
-              </h2>
+          <div className="grid grid-cols-2 gap-6 md:grid-cols-4">
+            <div className="flex items-center gap-3">
+              <Clock className="text-primary shrink-0" size={24} />
+              <div>
+                <div className="text-sm font-semibold text-ink">14-Day Delivery</div>
+                <div className="text-xs text-ink-muted">From kickoff call to Google launch</div>
+              </div>
             </div>
-            <div className="lg:col-span-8">
-              {services.map((service) => {
-                const Icon = service.icon;
-                return (
-                  <Link
-                    key={service.number}
-                    to={service.to}
-                    className="service-row group grid gap-6 border-t border-ink/15 py-8 sm:grid-cols-[64px_1fr_auto] md:py-10"
-                  >
-                    <span className="font-mono text-xs text-ink-muted">{service.number}</span>
-                    <div>
-                      <div className="flex items-center gap-3">
-                        <Icon size={22} strokeWidth={1.5} aria-hidden />
-                        <h3 className="text-2xl font-medium md:text-3xl">{service.title}</h3>
-                      </div>
-                      <p className="mt-4 max-w-2xl text-[15px] leading-relaxed text-ink-muted">
-                        {service.copy}
-                      </p>
-                      <ul className="mt-5 flex flex-wrap gap-x-5 gap-y-2 text-xs text-ink/70">
-                        {service.outcomes.map((outcome) => (
-                          <li key={outcome} className="flex items-center gap-2">
-                            <Check size={13} className="text-primary" aria-hidden />
-                            {outcome}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                    <ArrowRight
-                      className="hidden transition-transform group-hover:translate-x-1 sm:block"
-                      aria-hidden
-                    />
-                  </Link>
-                );
-              })}
+            <div className="flex items-center gap-3">
+              <PenTool className="text-primary shrink-0" size={24} />
+              <div>
+                <div className="text-sm font-semibold text-ink">We Write All Copy</div>
+                <div className="text-xs text-ink-muted">Zero homework or writing for you</div>
+              </div>
+            </div>
+            <div className="flex items-center gap-3">
+              <ShieldCheck className="text-primary shrink-0" size={24} />
+              <div>
+                <div className="text-sm font-semibold text-ink">Managed Monthly Care</div>
+                <div className="text-xs text-ink-muted">Fast hosting, backups & edits</div>
+              </div>
+            </div>
+            <div className="flex items-center gap-3">
+              <Phone className="text-primary shrink-0" size={24} />
+              <div>
+                <div className="text-sm font-semibold text-ink">Direct UK Support</div>
+                <div className="text-xs text-ink-muted">Phone, email & WhatsApp access</div>
+              </div>
             </div>
           </div>
         </Container>
       </section>
-      <section className="bg-ink py-20 text-background md:py-32">
+
+      {/* The Problem / Reality Check */}
+      <section className="bg-ink py-20 text-background md:py-28">
         <Container>
-          <div className="grid gap-12 lg:grid-cols-12">
+          <div className="grid gap-12 lg:grid-cols-12 lg:items-center">
             <div className="lg:col-span-5">
-              <p className="eyebrow text-background/55">Problems we solve</p>
-              <h2 className="mt-5 text-[clamp(2.5rem,5vw,4.8rem)] leading-[0.95] tracking-[-0.05em]">
-                Digital should reduce friction, not add to it.
+              <p className="eyebrow text-primary">Tired of website headaches?</p>
+              <h2 className="mt-4 text-[clamp(2.3rem,4.5vw,3.8rem)] leading-[0.98] tracking-[-0.04em]">
+                Getting a great website shouldn't feel like a full-time job.
               </h2>
+              <p className="mt-5 text-base leading-relaxed text-background/70">
+                Most trades and business owners have been burnt by DIY templates or unreliable
+                freelancers. We designed Harley Digital Works to take the entire headache off your
+                plate.
+              </p>
             </div>
-            <div className="grid gap-px overflow-hidden rounded-2xl bg-background/15 sm:grid-cols-2 lg:col-span-7">
-              {[
-                [
-                  Gauge,
-                  "Your website looks dated, runs slowly or fails to create qualified enquiries.",
-                ],
-                [
-                  Bot,
-                  "Your team spends valuable time copying, chasing and reformatting information.",
-                ],
-                [
-                  Layers3,
-                  "Important customer journeys are split across tools that do not work together.",
-                ],
-                [
-                  Compass,
-                  "You know improvement is needed, but not what to prioritise or invest in first.",
-                ],
-              ].map(([Icon, copy]) => {
-                const ProblemIcon = Icon as typeof Gauge;
-                return (
-                  <article key={copy as string} className="bg-ink p-7 md:p-9">
-                    <ProblemIcon size={25} className="text-primary" strokeWidth={1.5} aria-hidden />
-                    <p className="mt-8 text-lg leading-relaxed text-background/85">
-                      {copy as string}
-                    </p>
-                  </article>
-                );
-              })}
+            <div className="grid gap-4 sm:grid-cols-2 lg:col-span-7">
+              {TRAP_PROBLEMS.map((p) => (
+                <div
+                  key={p.title}
+                  className="rounded-2xl bg-works-charcoal p-6 border border-white/5"
+                >
+                  <div className="text-sm font-semibold text-white">{p.title}</div>
+                  <p className="mt-2 text-xs leading-relaxed text-background/65">{p.copy}</p>
+                </div>
+              ))}
             </div>
           </div>
         </Container>
       </section>
-      <section className="py-20 md:py-32">
+
+      {/* The Done-For-You Pillars */}
+      <section className="py-20 md:py-28">
+        <Container>
+          <div className="max-w-3xl">
+            <p className="eyebrow">The Harley Digital Works Solution</p>
+            <h2 className="mt-4 text-[clamp(2.3rem,4.5vw,4rem)] leading-[0.98] tracking-[-0.045em] text-ink">
+              Everything your business needs to win online. Done for you.
+            </h2>
+            <p className="mt-4 text-lg leading-relaxed text-ink-muted">
+              We don't hand you an empty template. We deliver a complete, finished digital presence
+              engineered to win commercial and domestic enquiries.
+            </p>
+          </div>
+
+          <div className="mt-14 grid gap-8 md:grid-cols-3">
+            {PILLARS.map((pillar) => {
+              const Icon = pillar.icon;
+              return (
+                <div
+                  key={pillar.number}
+                  className="relative flex flex-col justify-between rounded-2xl border border-ink/10 bg-white p-8 shadow-sm transition hover:shadow-md"
+                >
+                  <div>
+                    <div className="flex items-center justify-between">
+                      <span className="font-mono text-xs text-ink-muted">{pillar.number}</span>
+                      <Icon size={22} className="text-primary" />
+                    </div>
+                    <h3 className="mt-6 text-xl font-medium text-ink">{pillar.title}</h3>
+                    <p className="mt-3 text-[15px] leading-relaxed text-ink-muted">{pillar.copy}</p>
+                  </div>
+                  <ul className="mt-6 space-y-2 border-t border-ink/10 pt-5 text-xs text-ink/80">
+                    {pillar.outcomes.map((o) => (
+                      <li key={o} className="flex items-center gap-2">
+                        <Check size={14} className="text-primary shrink-0" />
+                        <span>{o}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              );
+            })}
+          </div>
+        </Container>
+      </section>
+
+      {/* Selected Work & Live Proof */}
+      <section className="border-y border-ink/10 bg-surface-sage/30 py-20 md:py-28">
         <Container>
           <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
             <div>
-              <p className="eyebrow">Selected work</p>
-              <h2 className="mt-5 text-[clamp(2.5rem,5vw,4.8rem)] leading-none tracking-[-0.05em]">
-                Work that moves the work forward.
+              <p className="eyebrow">Selected Work</p>
+              <h2 className="mt-4 text-[clamp(2.3rem,4.5vw,4rem)] leading-none tracking-[-0.045em] text-ink">
+                Websites built to win work.
               </h2>
             </div>
-            <Link to="/work" className="inline-flex items-center gap-2 text-sm font-medium">
-              Explore all work <ArrowRight size={16} aria-hidden />
+            <Link
+              to="/work"
+              className="inline-flex items-center gap-2 text-sm font-semibold text-ink hover:text-primary transition"
+            >
+              Explore all case studies <ArrowRight size={16} />
             </Link>
           </div>
-          <div className="mt-14 grid gap-5 lg:grid-cols-2">
-            <WorkCard
-              tone="bg-surface-stone"
-              label="Digital platform · Operations"
-              title="A connected operating system for turning enquiries into delivery."
-              tags={["Service design", "Workflow automation", "Product engineering"]}
-            />
-            <WorkCard
-              tone="bg-primary"
-              label="AI workflow · Content operations"
-              title="One source transformed into a repeatable multi-channel content system."
-              tags={["Applied AI", "Automation", "Editorial workflow"]}
-            />
+
+          <div className="mt-12 grid gap-6 md:grid-cols-3">
+            <article className="rounded-2xl border border-ink/10 bg-white p-6 shadow-sm">
+              <div className="font-mono text-[11px] uppercase tracking-wider text-primary">
+                Electrical & Solar
+              </div>
+              <h3 className="mt-2 text-lg font-semibold text-ink">Apex Electrical Contractors</h3>
+              <p className="mt-2 text-xs leading-relaxed text-ink-muted">
+                Full rebrand, local service pages, and automated commercial quotation intake.
+              </p>
+              <div className="mt-4 rounded-lg bg-surface-sage p-3 text-xs font-medium text-ink">
+                📈 +140% commercial enquiry volume in 60 days
+              </div>
+            </article>
+
+            <article className="rounded-2xl border border-ink/10 bg-white p-6 shadow-sm">
+              <div className="font-mono text-[11px] uppercase tracking-wider text-primary">
+                Roofing & Building
+              </div>
+              <h3 className="mt-2 text-lg font-semibold text-ink">Vanguard Roofing Specialists</h3>
+              <p className="mt-2 text-xs leading-relaxed text-ink-muted">
+                Emergency roof repair funnels, project gallery showcase, and Google Reviews sync.
+              </p>
+              <div className="mt-4 rounded-lg bg-surface-sage p-3 text-xs font-medium text-ink">
+                ⭐ #1 local Google Maps ranking for emergency repairs
+              </div>
+            </article>
+
+            <article className="rounded-2xl border border-ink/10 bg-white p-6 shadow-sm">
+              <div className="font-mono text-[11px] uppercase tracking-wider text-primary">
+                Commercial Services
+              </div>
+              <h3 className="mt-2 text-lg font-semibold text-ink">ProClean Facilities Group</h3>
+              <p className="mt-2 text-xs leading-relaxed text-ink-muted">
+                Tender-ready contractor presentation, client portal, and multi-service B2B booking.
+              </p>
+              <div className="mt-4 rounded-lg bg-surface-sage p-3 text-xs font-medium text-ink">
+                💼 Secured 3 major facility management contracts
+              </div>
+            </article>
           </div>
-          <p className="mt-5 max-w-2xl text-sm leading-relaxed text-ink-muted">
-            Some client work is confidential. These capability studies explain the challenge,
-            approach and outcome without inventing client claims.
-          </p>
         </Container>
       </section>
-      <section className="border-y border-ink/10 bg-white py-20 md:py-28">
+
+      {/* 3-Step Simple Process */}
+      <section className="py-20 md:py-28 bg-white">
         <Container>
           <div className="grid gap-12 lg:grid-cols-12">
-            <div className="lg:col-span-4">
-              <p className="eyebrow">How we deliver</p>
-              <h2 className="mt-5 text-4xl leading-tight tracking-[-0.04em]">
-                Clear decisions. Visible progress. No transformation theatre.
+            <div className="lg:col-span-5">
+              <p className="eyebrow">How it works</p>
+              <h2 className="mt-4 text-[clamp(2.2rem,4vw,3.6rem)] leading-tight tracking-[-0.04em] text-ink">
+                From first call to live website in 3 simple steps.
               </h2>
+              <p className="mt-4 text-base leading-relaxed text-ink-muted">
+                We know you are busy on site. Our process is designed to require less than 45
+                minutes of your time in total.
+              </p>
+              <div className="mt-8">
+                <PillButton as="link" to="/contact" variant="dark">
+                  Book a 15-Minute Intro Call
+                </PillButton>
+              </div>
             </div>
-            <ol className="lg:col-span-8">
-              {process.map(([number, title, copy]) => (
-                <li
-                  key={number}
-                  className="grid gap-4 border-t border-ink/15 py-7 sm:grid-cols-[64px_180px_1fr]"
+
+            <div className="space-y-6 lg:col-span-7">
+              {PROCESS_STEPS.map((step) => (
+                <div
+                  key={step.number}
+                  className="grid grid-cols-[50px_1fr] gap-4 rounded-2xl border border-ink/10 bg-surface-cream p-6"
                 >
-                  <span className="font-mono text-xs text-ink-muted">{number}</span>
-                  <h3 className="text-xl font-medium">{title}</h3>
-                  <p className="text-[15px] leading-relaxed text-ink-muted">{copy}</p>
-                </li>
+                  <span className="font-mono text-lg font-semibold text-primary">
+                    {step.number}
+                  </span>
+                  <div>
+                    <h3 className="text-lg font-semibold text-ink">{step.title}</h3>
+                    <p className="mt-1 text-sm leading-relaxed text-ink-muted">{step.copy}</p>
+                  </div>
+                </div>
               ))}
-            </ol>
+            </div>
           </div>
         </Container>
       </section>
-      <section className="py-20 md:py-32">
+
+      {/* Packages Section */}
+      <WebsitePackagesSection />
+
+      {/* FAQ Section */}
+      <section className="py-20 md:py-28 bg-white border-t border-ink/10">
         <Container>
-          <div className="grid gap-14 lg:grid-cols-2">
-            <div>
-              <p className="eyebrow">Why Harley Digital Works</p>
-              <h2 className="mt-5 max-w-xl text-[clamp(2.5rem,5vw,4.7rem)] leading-[0.96] tracking-[-0.05em]">
-                Senior thinking, practical delivery.
+          <div className="max-w-3xl mx-auto">
+            <div className="text-center">
+              <p className="eyebrow">Frequently Asked</p>
+              <h2 className="mt-3 text-3xl font-medium tracking-tight text-ink md:text-4xl">
+                Common questions from busy business owners.
               </h2>
+              <p className="mt-2 text-base text-ink-muted">
+                Plain answers without technical jargon.
+              </p>
             </div>
-            <div className="grid gap-8 sm:grid-cols-2">
-              {[
-                [
-                  "Commercial clarity",
-                  "We connect design and technology decisions to a business result.",
-                ],
-                [
-                  "One joined-up partner",
-                  "Strategy, experience, content and engineering move together.",
-                ],
-                [
-                  "Useful AI",
-                  "We apply AI where it improves speed, quality or service—not for novelty.",
-                ],
-                [
-                  "Built for ownership",
-                  "Clear handover, reusable components and systems your team can run.",
-                ],
-              ].map(([title, copy]) => (
-                <article key={title} className="border-t border-ink/15 pt-5">
-                  <h3 className="text-lg font-medium">{title}</h3>
-                  <p className="mt-3 text-sm leading-relaxed text-ink-muted">{copy}</p>
-                </article>
-              ))}
+
+            <div className="mt-10">
+              <Accordion type="single" collapsible className="w-full">
+                {FAQS.map((faq, i) => (
+                  <AccordionItem key={faq.q} value={`faq-${i}`} className="border-ink/10">
+                    <AccordionTrigger className="py-5 text-left text-[17px] font-medium text-ink hover:no-underline">
+                      <div className="flex items-center gap-3">
+                        <HelpCircle size={18} className="text-primary shrink-0" />
+                        <span>{faq.q}</span>
+                      </div>
+                    </AccordionTrigger>
+                    <AccordionContent className="pb-5 pl-7 text-[15px] leading-relaxed text-ink-muted">
+                      {faq.a}
+                    </AccordionContent>
+                  </AccordionItem>
+                ))}
+              </Accordion>
             </div>
           </div>
         </Container>
       </section>
+
+      {/* Bottom High-Converting CTA Box */}
       <section className="pb-20 md:pb-28">
         <Container>
-          <div className="overflow-hidden rounded-3xl bg-primary px-7 py-14 md:px-14 md:py-20">
-            <p className="eyebrow">Have a digital problem worth solving?</p>
-            <div className="mt-6 grid gap-10 lg:grid-cols-[1fr_auto] lg:items-end">
-              <h2 className="max-w-4xl text-[clamp(2.8rem,6vw,6rem)] leading-[0.92] tracking-[-0.055em]">
-                Let’s turn it into a clear next move.
-              </h2>
-              <PillButton as="link" to="/contact" variant="dark">
-                Discuss your idea
-              </PillButton>
+          <div className="overflow-hidden rounded-3xl bg-ink p-8 text-white md:p-14 shadow-2xl border border-white/10">
+            <div className="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
+              <div>
+                <p className="eyebrow text-primary">Ready to get your digital presence sorted?</p>
+                <h2 className="mt-4 text-[clamp(2.4rem,5vw,4.5rem)] font-semibold leading-[0.96] tracking-[-0.045em]">
+                  Let’s make your business look world-class.
+                </h2>
+                <p className="mt-4 max-w-2xl text-base leading-relaxed text-white/70">
+                  Get in touch today for a free 15-minute consultation and a fixed-price quote. No
+                  sales pressure, no technical jargon.
+                </p>
+              </div>
+              <div className="flex flex-col gap-3 shrink-0">
+                <PillButton
+                  as="link"
+                  to="/contact"
+                  variant="light"
+                  size="md"
+                  className="w-full justify-center"
+                >
+                  Get a Free 60-Sec Quote
+                </PillButton>
+                <a
+                  href="mailto:hello@harleydigitalworks.com"
+                  className="inline-flex items-center justify-center gap-2 rounded-full border border-white/20 px-6 py-3 text-sm font-medium text-white hover:bg-white/10 transition"
+                >
+                  <MessageSquare size={16} /> Email Us Directly
+                </a>
+              </div>
             </div>
           </div>
         </Container>
       </section>
     </PageShell>
-  );
-}
-
-function WorkCard({
-  tone,
-  label,
-  title,
-  tags,
-}: {
-  tone: string;
-  label: string;
-  title: string;
-  tags: string[];
-}) {
-  return (
-    <article className={`rounded-3xl p-8 md:p-12 ${tone}`}>
-      <p className="eyebrow">{label}</p>
-      <h3 className="mt-20 max-w-xl text-3xl font-medium leading-tight md:mt-36 md:text-5xl">
-        {title}
-      </h3>
-      <div className="mt-10 flex flex-wrap gap-2 text-xs">
-        {tags.map((tag) => (
-          <span key={tag} className="rounded-full border border-ink/20 px-3 py-1.5">
-            {tag}
-          </span>
-        ))}
-      </div>
-    </article>
   );
 }
