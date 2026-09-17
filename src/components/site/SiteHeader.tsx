@@ -8,12 +8,10 @@ import { useAuth, useIsAdmin } from "@/hooks/use-auth";
 import { BrandLogo } from "./BrandLogo";
 
 const LINKS = [
+  { to: "/work", label: "Work" },
   { to: "/services/web-design-development", label: "Websites" },
-  { to: "/demos", label: "Live Demos" },
   { to: "/services/care-plans", label: "Care Plans" },
-  { to: "/work", label: "Our Work" },
-  { to: "/the-harley-group", label: "The Group" },
-  { to: "/labs", label: "Labs" },
+  { to: "/demos", label: "Live Demos" },
   { to: "/about", label: "About" },
 ] as const;
 
@@ -35,7 +33,7 @@ export function SiteHeader() {
       className={cn(
         "fixed inset-x-0 top-0 z-50 transition-all duration-300",
         scrolled
-          ? "border-b border-ink/[0.08] bg-background/85 backdrop-blur-md"
+          ? "border-b border-ink/[0.08] bg-background/90 backdrop-blur-md shadow-xs"
           : "bg-transparent",
       )}
     >
@@ -50,11 +48,17 @@ export function SiteHeader() {
               key={l.to}
               to={l.to}
               className="text-[13px] font-medium text-ink/70 transition-colors hover:text-ink"
-              activeProps={{ className: "text-ink" }}
+              activeProps={{ className: "text-ink font-semibold" }}
             >
               {l.label}
             </Link>
           ))}
+          <a
+            href="/#packages"
+            className="text-[13px] font-medium text-ink/70 transition-colors hover:text-ink"
+          >
+            Pricing
+          </a>
         </nav>
 
         <div className="hidden items-center gap-4 md:flex">
@@ -67,7 +71,7 @@ export function SiteHeader() {
             </Link>
           )}
           <PillButton as="link" to="/contact" variant="dark" size="sm">
-            Get a Free Quote
+            Get a website quote
           </PillButton>
         </div>
 
@@ -96,6 +100,13 @@ export function SiteHeader() {
                 {l.label}
               </Link>
             ))}
+            <a
+              href="/#packages"
+              onClick={() => setOpen(false)}
+              className="rounded-md px-2 py-3 text-[15px] font-medium text-ink/80 hover:bg-ink/[0.04] hover:text-ink"
+            >
+              Pricing
+            </a>
             <div className="mt-2 px-2">
               <PillButton
                 as="link"
@@ -104,7 +115,7 @@ export function SiteHeader() {
                 size="sm"
                 className="w-full justify-center"
               >
-                Get a Free Quote
+                Get a website quote
               </PillButton>
             </div>
           </div>
