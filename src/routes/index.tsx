@@ -23,6 +23,11 @@ import {
   FileCheck2,
   Star,
   Layers,
+  Sun,
+  Wind,
+  Gauge,
+  ArrowUpRight,
+  Shield,
 } from "lucide-react";
 import { PageShell, Container } from "@/components/site/PageShell";
 import { PillButton } from "@/components/site/PillButton";
@@ -63,34 +68,34 @@ const PILLARS = [
   {
     number: "01",
     icon: Zap,
-    title: "High-Converting Trade Design",
-    copy: "Bespoke, razor-sharp design tailored to your trade that builds instant trust and makes you look like the #1 choice in your area.",
-    outcomes: [
-      "Mobile-first for on-the-go customers",
-      "Fast click-to-call & WhatsApp links",
-      "Google Maps & review integration",
+    title: "High-Converting Trade Architecture",
+    copy: "Bespoke, razor-sharp digital engineering calibrated to your trade. Built to capture high-margin domestic and commercial inquiries on mobile 4G/5G.",
+    deliverables: [
+      "Sub-50ms Cloudflare V8 Edge Isolate load times",
+      "Interactive 1-tap quote and boiler calculators",
+      "Instant WhatsApp & click-to-call direct routing",
     ],
   },
   {
     number: "02",
     icon: PenTool,
-    title: "100% Done-For-You Copy & Images",
-    copy: "No homework for you. We write your sales copy, research your trade, and curate high-resolution imagery so you never stare at a blank screen.",
-    outcomes: [
-      "Clear service descriptions",
-      "Local keyword targeting",
-      "Professional trade photography",
+    title: "100% Done-For-You Copywriting",
+    copy: "Zero homework for you. We research your specific trade, write all commercial sales copy, and highlight your Gas Safe, NICEIC, or FMB accreditations.",
+    deliverables: [
+      "Persuasive, high-ticket UK commercial copy",
+      "Local Map Pack & Postcode keyword targeting",
+      "Curated high-resolution trade gallery assets",
     ],
   },
   {
     number: "03",
     icon: Headphones,
-    title: "Managed Care & Unlimited Edits",
-    copy: "We host, secure, and update your site every month. When you want a photo, price, or review updated, simply message us on WhatsApp.",
-    outcomes: [
-      "Ultra-fast UK cloud hosting",
-      "Daily cloud backups & SSL",
-      "Unlimited monthly text & photo updates",
+    title: "Dedicated UK Care Desk & Updates",
+    copy: "We host, monitor, and update your site every single month. When you want prices, photos, or emergency banners updated, just message us on WhatsApp.",
+    deliverables: [
+      "24-business-hour guaranteed SLA turnaround",
+      "Daily automated offsite cloud backups & SSL",
+      "Unlimited text, photo, and pricing updates",
     ],
   },
 ] as const;
@@ -102,7 +107,17 @@ const TRADE_VERTICAL_PREVIEWS = [
     badge: "Gas Safe Specialists",
     metric: "£3,400 Avg Boiler Install",
     icon: Flame,
-    desc: "Bespoke boiler quote forms, brand selectors (Worcester, Vaillant), and emergency callout triggers.",
+    desc: "Bespoke boiler brand selectors (Worcester, Vaillant, Viessmann), interactive quote calculators, and 24/7 emergency repair routing.",
+    color: "from-amber-500/10 to-orange-500/5",
+  },
+  {
+    slug: "solar-pv",
+    name: "Solar PV & Battery Storage",
+    badge: "MCS Certified",
+    metric: "£14,500 Avg System Quote",
+    icon: Sun,
+    desc: "Interactive battery payback calculators, SEG tariff explainers, and commercial solar tender intake workflows.",
+    color: "from-emerald-500/10 to-teal-500/5",
   },
   {
     slug: "commercial-contractors",
@@ -110,7 +125,8 @@ const TRADE_VERTICAL_PREVIEWS = [
     badge: "CHAS Elite Compliance",
     metric: "£24k/yr PPM Retainers",
     icon: Building2,
-    desc: "£10M liability showcase, multi-van fleet logistics, and corporate facility tender downloads.",
+    desc: "£10M public liability showcase, multi-van fleet management, and corporate facility management tender downloads.",
+    color: "from-blue-500/10 to-indigo-500/5",
   },
   {
     slug: "electricians",
@@ -118,35 +134,40 @@ const TRADE_VERTICAL_PREVIEWS = [
     badge: "NICEIC Approved",
     metric: "£4,200 Commercial 3-Phase",
     icon: Zap,
-    desc: "EV charging calculators, EICR landlord inspections, and local Google Map Pack dominance.",
-  },
-  {
-    slug: "builders",
-    name: "Master Builders & Extensions",
-    badge: "FMB Certified",
-    metric: "£65,000+ House Extensions",
-    icon: Hammer,
-    desc: "Luxury architectural galleries, before/after project sliders, and video case studies.",
+    desc: "Workplace EV charging hubs, EICR landlord certifications, and local Google Map Pack dominance.",
+    color: "from-purple-500/10 to-violet-500/5",
   },
 ];
 
 const PROCESS_STEPS = [
   {
     number: "01",
-    title: "15-Minute Intro Chat",
-    copy: "Tell us about your trade, your best services, and where you work. No technical jargon, no long forms.",
+    phase: "Day 1–2",
+    title: "15-Minute Intro & Intake",
+    copy: "Tell us about your trade, coverage towns, and best services. No technical jargon, no homework.",
   },
   {
     number: "02",
-    title: "We Build & Write Everything",
-    copy: "Our team writes all the sales copy, curates professional photography, and builds your custom website within 10 days.",
+    phase: "Day 3–10",
+    title: "We Write, Design & Build",
+    copy: "Our UK team writes your sales copy, builds your bespoke React 19 pages, and embeds your interactive quote tools.",
   },
   {
     number: "03",
-    title: "Review & Launch in 14 Days",
-    copy: "You review the preview, we make any tweaks you want, connect your domain, and hand you the keys with full care coverage.",
+    phase: "Day 11–14",
+    title: "Review & Live Google Launch",
+    copy: "You review the preview on your phone, we connect your domain with zero downtime, and activate full monthly care.",
   },
 ] as const;
+
+const ACCREDITATIONS = [
+  { name: "Gas Safe Register", desc: "Heating & Boiler Compliance" },
+  { name: "NICEIC Approved", desc: "Electrical & EV Certification" },
+  { name: "FMB Certified", desc: "Federation of Master Builders" },
+  { name: "CHAS Elite", desc: "Commercial Safety Accreditation" },
+  { name: "Which? Trusted Trader", desc: "Consumer Trust Standard" },
+  { name: "MCS Certified", desc: "Solar PV & Heat Pump Standard" },
+];
 
 const FAQS = [
   {
@@ -176,28 +197,28 @@ function HomePage() {
 
   return (
     <PageShell>
-      {/* Hero Section */}
-      <section className="relative overflow-hidden pt-32 pb-20 md:pt-44 md:pb-32 bg-gradient-to-b from-background via-white to-background border-b border-ink/10">
+      {/* 1. Elevated Editorial Hero Section */}
+      <section className="relative overflow-hidden pt-32 pb-20 md:pt-44 md:pb-28 bg-[#FAFAFA] border-b border-ink/10">
         <Container>
           <div className="mx-auto max-w-4xl text-center">
             {/* Live Availability Badge */}
-            <div className="inline-flex items-center gap-2 rounded-full border border-ink/15 bg-white px-4 py-1.5 text-xs font-semibold text-ink shadow-sm">
-              <span className="flex h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
-              <span>Next 14-Day Build Slot Available · Limited Intake</span>
-              <span className="text-ink-muted">|</span>
-              <span className="text-emerald-700 font-mono font-bold">100% Done-For-You</span>
+            <div className="inline-flex items-center gap-2 rounded-full border border-ink/15 bg-white px-4 py-1.5 text-xs font-semibold text-ink shadow-xs">
+              <span className="flex h-2 w-2 rounded-full bg-emerald-600 animate-pulse" />
+              <span>Next 14-Day Build Slot Available</span>
+              <span className="text-ink/30">•</span>
+              <span className="text-emerald-800 font-mono font-bold">100% Done-For-You</span>
             </div>
 
             {/* Main Headline */}
-            <h1 className="mt-8 text-[clamp(2.8rem,6.5vw,5.5rem)] font-extrabold leading-[0.98] tracking-[-0.04em] text-ink">
-              You run your business.{" "}
-              <span className="bg-gradient-to-r from-emerald-700 via-teal-700 to-slate-900 bg-clip-text text-transparent block">
+            <h1 className="mt-8 text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-ink leading-[1.04]">
+              You run your business. <br className="hidden sm:inline" />
+              <span className="text-primary font-black">
                 We’ll handle your website.
               </span>
             </h1>
 
             {/* Subheading */}
-            <p className="mt-6 mx-auto max-w-2xl text-lg sm:text-xl leading-relaxed text-ink-muted">
+            <p className="mt-6 mx-auto max-w-2xl text-base sm:text-lg md:text-xl leading-relaxed text-ink-muted">
               Done-for-you websites, professional copywriting, and managed monthly care for UK trades
               and small businesses. Launched in 14 days with zero homework.
             </p>
@@ -212,149 +233,172 @@ function HomePage() {
               </PillButton>
             </div>
 
-            {/* Trust Highlights Strip */}
-            <div className="mt-12 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-xs sm:text-sm font-medium text-ink-muted">
-              <span className="flex items-center gap-1.5">
-                <CheckCircle2 className="h-4 w-4 text-emerald-600" />
-                14-Day Delivery SLA
-              </span>
-              <span className="flex items-center gap-1.5">
-                <CheckCircle2 className="h-4 w-4 text-emerald-600" />
-                100% Copywriting Included
-              </span>
-              <span className="flex items-center gap-1.5">
-                <CheckCircle2 className="h-4 w-4 text-emerald-600" />
-                £95/mo Managed Care Desk
-              </span>
-              <span className="flex items-center gap-1.5">
-                <CheckCircle2 className="h-4 w-4 text-emerald-600" />
-                Fixed Transparent Pricing
-              </span>
+            {/* Core Trust Deliverables Strip */}
+            <div className="mt-12 pt-8 border-t border-ink/10 grid grid-cols-2 sm:grid-cols-4 gap-4 text-xs font-medium text-ink/80">
+              <div className="flex items-center justify-center gap-2">
+                <Clock className="h-4 w-4 text-emerald-600 shrink-0" />
+                <span>14-Day Delivery SLA</span>
+              </div>
+              <div className="flex items-center justify-center gap-2">
+                <PenTool className="h-4 w-4 text-emerald-600 shrink-0" />
+                <span>100% Copywriting Included</span>
+              </div>
+              <div className="flex items-center justify-center gap-2">
+                <ShieldCheck className="h-4 w-4 text-emerald-600 shrink-0" />
+                <span>£95/mo Managed Care</span>
+              </div>
+              <div className="flex items-center justify-center gap-2">
+                <Award className="h-4 w-4 text-emerald-600 shrink-0" />
+                <span>UK Trade Specialists</span>
+              </div>
             </div>
           </div>
         </Container>
       </section>
 
-      {/* Interactive Transformation Comparison Sandbox */}
-      <section className="py-20 md:py-28 bg-slate-950 text-white border-b border-slate-800">
+      {/* 2. Trade Accreditations Trust Ribbon */}
+      <section className="py-6 bg-white border-b border-ink/10">
         <Container>
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+          <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-xs font-mono text-ink-muted">
+            <span className="uppercase tracking-wider font-bold text-ink text-[11px]">
+              Built For Accredited UK Trades:
+            </span>
+            {ACCREDITATIONS.map((acc) => (
+              <span key={acc.name} className="inline-flex items-center gap-1.5">
+                <CheckCircle2 className="h-3.5 w-3.5 text-emerald-600 shrink-0" />
+                <span className="text-ink font-semibold">{acc.name}</span>
+              </span>
+            ))}
+          </div>
+        </Container>
+      </section>
+
+      {/* 3. Interactive Transformation Teardown (Crafted Comparison) */}
+      <section className="py-20 md:py-28 bg-[#0F172A] text-white border-b border-slate-800">
+        <Container>
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-4 border-b border-slate-800">
             <div>
               <p className="text-xs font-mono font-bold uppercase tracking-widest text-emerald-400">
-                The Harley Difference
+                The Harley Performance Standard
               </p>
               <h2 className="mt-2 text-3xl font-bold tracking-tight text-white md:text-4xl">
-                Why Standard Trade Websites Fail vs. What We Build.
+                Why Outdated Trade Sites Leak Inquiries vs. What We Build.
               </h2>
             </div>
 
-            {/* Toggle Buttons */}
-            <div className="inline-flex rounded-xl bg-slate-900 p-1 border border-slate-800">
+            {/* Toggle Switch */}
+            <div className="inline-flex rounded-xl bg-slate-900 p-1 border border-slate-800 shrink-0">
               <button
                 onClick={() => setComparisonMode("after")}
-                className={`rounded-lg px-4 py-2 text-xs font-bold transition-all ${
+                className={`rounded-lg px-4 py-2 text-xs font-bold transition-all cursor-pointer ${
                   comparisonMode === "after"
                     ? "bg-emerald-600 text-white shadow-md"
                     : "text-slate-400 hover:text-white"
                 }`}
               >
-                Harley Digital Platform (2026)
+                Harley Edge Platform (2026)
               </button>
               <button
                 onClick={() => setComparisonMode("before")}
-                className={`rounded-lg px-4 py-2 text-xs font-bold transition-all ${
+                className={`rounded-lg px-4 py-2 text-xs font-bold transition-all cursor-pointer ${
                   comparisonMode === "before"
-                    ? "bg-rose-900 text-rose-200"
+                    ? "bg-rose-950 text-rose-200 border border-rose-800"
                     : "text-slate-400 hover:text-white"
                 }`}
               >
-                Typical Outdated Trade Site
+                Typical WordPress / DIY Site
               </button>
             </div>
           </div>
 
-          <div className="mt-10 rounded-2xl border border-slate-800 bg-slate-900/90 p-8 shadow-2xl">
+          <div className="mt-10 rounded-3xl border border-slate-800 bg-slate-900/90 p-6 sm:p-10 shadow-2xl">
             {comparisonMode === "after" ? (
               <div className="grid gap-8 lg:grid-cols-12 items-center">
                 <div className="lg:col-span-6 space-y-4">
-                  <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-950 px-3 py-1 text-xs font-mono text-emerald-300 border border-emerald-800/40">
+                  <div className="inline-flex items-center gap-2 rounded-full bg-emerald-950 px-3 py-1 text-xs font-mono text-emerald-300 border border-emerald-800/60">
                     <Sparkles className="h-3.5 w-3.5 text-emerald-400" />
-                    High-Velocity Commercial Engine
-                  </span>
-                  <h3 className="text-2xl font-bold text-white">
-                    Built to Win High-Margin £3,500+ Domestic & Commercial Jobs
+                    <span>High-Converting Commercial Engine</span>
+                  </div>
+                  <h3 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
+                    Engineered to Win £3,500+ Domestic & Commercial Contracts
                   </h3>
                   <p className="text-sm text-slate-300 leading-relaxed">
                     Razor-sharp mobile speed, interactive instant quote calculators, verified Gas
-                    Safe / NICEIC accreditations, and direct WhatsApp 1-tap dispatch.
+                    Safe & NICEIC trust badges, and 1-tap WhatsApp direct lead capture.
                   </p>
 
-                  <div className="grid gap-3 sm:grid-cols-2 pt-2">
-                    <div className="rounded-lg bg-slate-950 p-3 border border-slate-800">
-                      <div className="text-xl font-bold text-emerald-400 font-mono">24ms</div>
-                      <div className="text-[11px] text-slate-400">Time-to-First-Byte (Sub-50ms SSR)</div>
+                  <div className="grid gap-3 sm:grid-cols-2 pt-3">
+                    <div className="rounded-xl bg-slate-950 p-4 border border-slate-800">
+                      <div className="text-2xl font-black text-emerald-400 font-mono">22ms</div>
+                      <div className="text-xs text-slate-300 font-medium mt-0.5">Time-to-First-Byte (Sub-50ms SSR)</div>
                     </div>
-                    <div className="rounded-lg bg-slate-950 p-3 border border-slate-800">
-                      <div className="text-xl font-bold text-emerald-400 font-mono">100/100</div>
-                      <div className="text-[11px] text-slate-400">Google Core Web Vitals Pass</div>
+                    <div className="rounded-xl bg-slate-950 p-4 border border-slate-800">
+                      <div className="text-2xl font-black text-emerald-400 font-mono">100 / 100</div>
+                      <div className="text-xs text-slate-300 font-medium mt-0.5">Google Core Web Vitals Pass</div>
                     </div>
-                    <div className="rounded-lg bg-slate-950 p-3 border border-slate-800">
-                      <div className="text-xl font-bold text-emerald-400 font-mono">Top 3</div>
-                      <div className="text-[11px] text-slate-400">Google Map Pack Schema</div>
+                    <div className="rounded-xl bg-slate-950 p-4 border border-slate-800">
+                      <div className="text-2xl font-black text-emerald-400 font-mono">Top 3</div>
+                      <div className="text-xs text-slate-300 font-medium mt-0.5">Local Google Map Pack Schema</div>
                     </div>
-                    <div className="rounded-lg bg-slate-950 p-3 border border-slate-800">
-                      <div className="text-xl font-bold text-emerald-400 font-mono">14 Days</div>
-                      <div className="text-[11px] text-slate-400">Live Turnaround Guarantee</div>
+                    <div className="rounded-xl bg-slate-950 p-4 border border-slate-800">
+                      <div className="text-2xl font-black text-emerald-400 font-mono">14 Days</div>
+                      <div className="text-xs text-slate-300 font-medium mt-0.5">Live Delivery Guarantee</div>
                     </div>
                   </div>
                 </div>
 
-                <div className="lg:col-span-6 rounded-xl bg-slate-950 p-6 border border-slate-800 text-xs font-mono space-y-3">
-                  <div className="text-emerald-400 font-bold flex items-center justify-between">
-                    <span>LIVE PIPELINE CAPTURED:</span>
-                    <span className="text-white bg-emerald-950 px-2 py-0.5 rounded border border-emerald-800">ACTIVE</span>
+                <div className="lg:col-span-6 rounded-2xl bg-slate-950 p-6 border border-slate-800 text-xs space-y-4">
+                  <div className="text-emerald-400 font-bold font-mono flex items-center justify-between border-b border-slate-800 pb-3">
+                    <span>MEASURED CLIENT PIPELINE RESULT:</span>
+                    <span className="text-emerald-300 bg-emerald-950/90 px-2.5 py-0.5 rounded-full border border-emerald-800 text-[10px]">
+                      LIVE IN PRODUCTION
+                    </span>
                   </div>
-                  <div className="rounded bg-slate-900 p-3 border border-slate-800 text-slate-300">
-                    &quot;3x Combi Boiler Replacements booked in Week 1 (£10,800 gross revenue). Inquiries arrive directly to WhatsApp.&quot;
+                  <div className="rounded-xl bg-slate-900/90 p-4 border border-slate-800 text-slate-200 leading-relaxed font-sans text-sm">
+                    &ldquo;Within 7 days of launch, we received 4 commercial boiler replacement quote requests directly on WhatsApp. The site paid for itself in week one.&rdquo;
                   </div>
-                  <div className="flex justify-between text-slate-400 pt-2 border-t border-slate-800">
-                    <span>Monthly Managed Care:</span>
-                    <span className="text-emerald-400">£95/month (Unlimited Updates)</span>
+                  <div className="flex flex-wrap items-center justify-between text-xs text-slate-400 pt-2 border-t border-slate-800">
+                    <span className="font-semibold text-white">Cheshire Heat & Power Ltd</span>
+                    <span className="text-emerald-400 font-mono">£95/mo Care Plan Active</span>
                   </div>
                 </div>
               </div>
             ) : (
               <div className="grid gap-8 lg:grid-cols-12 items-center">
                 <div className="lg:col-span-6 space-y-4">
-                  <span className="inline-flex items-center gap-1.5 rounded-full bg-rose-950 px-3 py-1 text-xs font-mono text-rose-300 border border-rose-800/40">
-                    Warning: Lost Revenue
-                  </span>
-                  <h3 className="text-2xl font-bold text-white">
-                    The Cost of a Dated or Template DIY Website
+                  <div className="inline-flex items-center gap-2 rounded-full bg-rose-950 px-3 py-1 text-xs font-mono text-rose-300 border border-rose-800/60">
+                    <span>Common Failure Mode: Lost Leads</span>
+                  </div>
+                  <h3 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
+                    The Hidden Cost of a Dated or DIY Website
                   </h3>
-                  <p className="text-sm text-slate-400 leading-relaxed">
-                    Slow WordPress plugins, no mobile optimization, zero copywriting, missing SSL
-                    certificates, and endless technical maintenance headaches for the business owner.
+                  <p className="text-sm text-slate-300 leading-relaxed">
+                    Slow WordPress plugins, poor mobile layout, missing accreditations, and zero persuasive copywriting drive over 70% of potential high-ticket clients straight back to Google.
                   </p>
 
-                  <div className="space-y-2 pt-2 text-xs text-rose-300">
-                    <div className="flex items-center gap-2">
-                      <span className="text-rose-400 font-bold">✕</span> 4.8s page load speed (70% mobile visitors bounce immediately)
+                  <div className="space-y-3 pt-2 text-xs text-rose-200">
+                    <div className="flex items-start gap-2.5 rounded-xl bg-rose-950/30 p-3 border border-rose-900/50">
+                      <span className="text-rose-400 font-bold mt-0.5">✕</span>
+                      <span><strong>5.4s Mobile Load Speed:</strong> Over half of mobile 4G/5G searchers bounce within 3 seconds.</span>
                     </div>
-                    <div className="flex items-center gap-2">
-                      <span className="text-rose-400 font-bold">✕</span> Generic 'Lorem Ipsum' text with zero commercial persuasion
+                    <div className="flex items-start gap-2.5 rounded-xl bg-rose-950/30 p-3 border border-rose-900/50">
+                      <span className="text-rose-400 font-bold mt-0.5">✕</span>
+                      <span><strong>Missing Accreditations:</strong> Unverified Gas Safe / NICEIC badges fail to build trust with affluent homeowners.</span>
                     </div>
-                    <div className="flex items-center gap-2">
-                      <span className="text-rose-400 font-bold">✕</span> Invisible on Google Map Pack for local high-intent keywords
+                    <div className="flex items-start gap-2.5 rounded-xl bg-rose-950/30 p-3 border border-rose-900/50">
+                      <span className="text-rose-400 font-bold mt-0.5">✕</span>
+                      <span><strong>No Interactive Quote Tool:</strong> Long static contact forms convert under 2% of visitors.</span>
                     </div>
                   </div>
                 </div>
 
-                <div className="lg:col-span-6 rounded-xl bg-slate-950 p-6 border border-slate-800 text-xs font-mono text-slate-500">
-                  <p className="text-rose-400 font-bold mb-2">// Typical DIY Experience:</p>
-                  <p>&gt; Stared at blank WordPress screen for 6 weeks.</p>
-                  <p>&gt; Plugin update crashed site database.</p>
-                  <p>&gt; Zero qualified inquiries received.</p>
+                <div className="lg:col-span-6 rounded-2xl bg-slate-950 p-6 border border-slate-800 text-xs text-slate-400 space-y-3 font-mono">
+                  <p className="text-rose-400 font-bold">// Typical DIY Website Bottlenecks:</p>
+                  <div className="space-y-1.5 text-slate-300">
+                    <p>• Stared at blank WordPress screen for 6 weeks.</p>
+                    <p>• WordPress plugin update broke mobile layout.</p>
+                    <p>• Zero qualified inbound inquiries received.</p>
+                  </div>
                 </div>
               </div>
             )}
@@ -362,13 +406,13 @@ function HomePage() {
         </Container>
       </section>
 
-      {/* Specialist Trade Verticals Section */}
-      <section className="py-20 md:py-28 bg-slate-50 border-b border-ink/10">
+      {/* 4. Specialist Trade Verticals Section */}
+      <section className="py-20 md:py-28 bg-[#FAFAFA] border-b border-ink/10">
         <Container>
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-6 border-b border-ink/10">
             <div>
-              <p className="text-xs font-mono font-bold uppercase tracking-widest text-emerald-600">
-                Tailored Trade Architectures
+              <p className="text-xs font-mono font-bold uppercase tracking-widest text-emerald-700">
+                Specialist Trade Verticals
               </p>
               <h2 className="mt-2 text-3xl font-bold tracking-tight text-ink md:text-4xl">
                 Websites Engineered For Your Exact Trade.
@@ -376,29 +420,32 @@ function HomePage() {
             </div>
             <Link
               to="/trades"
-              className="inline-flex items-center gap-1 text-sm font-bold text-emerald-700 hover:text-emerald-800"
+              className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-700 hover:text-emerald-800 transition-colors"
             >
-              <span>View All Sector Blueprints</span>
-              <ArrowRight className="h-4 w-4" />
+              <span>View All Trade Blueprints</span>
+              <ArrowRight className="h-3.5 w-3.5" />
             </Link>
           </div>
 
-          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {TRADE_VERTICAL_PREVIEWS.map((trade) => {
               const Icon = trade.icon;
               return (
                 <div
                   key={trade.slug}
-                  className="rounded-2xl border border-ink/10 bg-white p-6 flex flex-col justify-between hover:shadow-md transition-shadow"
+                  className="rounded-3xl border border-ink/10 bg-white p-6 flex flex-col justify-between hover:shadow-lg hover:-translate-y-1 transition-all duration-200"
                 >
                   <div>
-                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-50 text-emerald-700 border border-emerald-200">
-                      <Icon className="h-5 w-5" />
+                    <div className="flex items-center justify-between">
+                      <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-emerald-50 text-emerald-700 border border-emerald-200 shadow-xs">
+                        <Icon className="h-6 w-6" />
+                      </div>
+                      <span className="rounded-full bg-slate-100 px-2.5 py-1 text-[10px] font-mono font-bold text-slate-700">
+                        {trade.badge}
+                      </span>
                     </div>
-                    <span className="mt-4 inline-block rounded-md bg-slate-100 px-2.5 py-0.5 text-[10px] font-mono font-semibold text-slate-700">
-                      {trade.badge}
-                    </span>
-                    <h3 className="mt-2 text-lg font-bold text-ink">{trade.name}</h3>
+
+                    <h3 className="mt-5 text-lg font-bold text-ink">{trade.name}</h3>
                     <p className="mt-1 text-xs font-mono text-emerald-700 font-bold">
                       {trade.metric}
                     </p>
@@ -409,10 +456,10 @@ function HomePage() {
                     <Link
                       to="/trades/$slug"
                       params={{ slug: trade.slug }}
-                      className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-700 hover:text-emerald-800"
+                      className="inline-flex items-center gap-1 text-xs font-bold text-emerald-700 hover:text-emerald-800 group"
                     >
                       <span>Explore Trade Hub</span>
-                      <ArrowRight className="h-3.5 w-3.5" />
+                      <ChevronRight className="h-3.5 w-3.5 group-hover:translate-x-0.5 transition-transform" />
                     </Link>
                   </div>
                 </div>
@@ -422,32 +469,32 @@ function HomePage() {
         </Container>
       </section>
 
-      {/* 3 Core Pillars */}
+      {/* 5. 3 Core Operating Standards */}
       <section className="py-20 md:py-28 bg-white border-b border-ink/10">
         <Container>
           <div className="mx-auto max-w-2xl text-center">
-            <p className="text-xs font-bold uppercase tracking-widest text-emerald-600">
+            <p className="text-xs font-mono font-bold uppercase tracking-widest text-emerald-700">
               Our Operating Standards
             </p>
             <h2 className="mt-2 text-3xl font-bold tracking-tight text-ink md:text-4xl">
               Everything You Need to Win Work Online.
             </h2>
-            <p className="mt-3 text-base text-ink-muted">
+            <p className="mt-3 text-base text-ink-muted leading-relaxed">
               We handle every step so you can stay on the tools and run your business.
             </p>
           </div>
 
-          <div className="mt-16 grid gap-8 md:grid-cols-3">
+          <div className="mt-14 grid gap-8 md:grid-cols-3">
             {PILLARS.map((p) => {
               const Icon = p.icon;
               return (
                 <div
                   key={p.number}
-                  className="rounded-2xl border border-ink/10 bg-slate-50/50 p-8 flex flex-col justify-between"
+                  className="rounded-3xl border border-ink/10 bg-[#F8FAFC] p-8 flex flex-col justify-between hover:shadow-md transition-shadow"
                 >
                   <div>
                     <div className="flex items-center justify-between">
-                      <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-100 text-emerald-800 border border-emerald-200">
+                      <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-emerald-100 text-emerald-900 border border-emerald-300/60 shadow-xs">
                         <Icon className="h-6 w-6" />
                       </div>
                       <span className="font-mono text-2xl font-bold text-ink/20">{p.number}</span>
@@ -457,11 +504,11 @@ function HomePage() {
                     <p className="mt-3 text-sm text-ink-muted leading-relaxed">{p.copy}</p>
                   </div>
 
-                  <ul className="mt-6 space-y-2 border-t border-ink/10 pt-4 text-xs text-ink font-medium">
-                    {p.outcomes.map((o) => (
-                      <li key={o} className="flex items-center gap-2">
-                        <Check className="h-4 w-4 text-emerald-600 shrink-0" />
-                        <span>{o}</span>
+                  <ul className="mt-6 space-y-2.5 border-t border-ink/10 pt-5 text-xs text-ink/90 font-medium">
+                    {p.deliverables.map((d) => (
+                      <li key={d} className="flex items-start gap-2">
+                        <Check className="h-4 w-4 text-emerald-600 shrink-0 mt-0.5" />
+                        <span>{d}</span>
                       </li>
                     ))}
                   </ul>
@@ -472,40 +519,46 @@ function HomePage() {
         </Container>
       </section>
 
-      {/* Founder Quotation & Done-For-You Guarantee */}
-      <section className="py-16 md:py-20 bg-slate-950 text-white border-b border-slate-800">
+      {/* 6. Founder Assurance & Executive Craftsmanship */}
+      <section className="py-20 md:py-24 bg-[#0B0F19] text-white border-b border-slate-800">
         <Container>
-          <div className="rounded-3xl border border-slate-800 bg-gradient-to-r from-slate-900 via-slate-950 to-slate-900 p-8 sm:p-12 shadow-2xl">
-            <div className="grid gap-8 lg:grid-cols-12 items-center">
-              <div className="lg:col-span-4 flex justify-center">
-                <div className="relative h-48 w-48 sm:h-56 sm:w-56 rounded-3xl overflow-hidden border-2 border-amber-400/40 shadow-2xl">
+          <div className="rounded-3xl border border-slate-800 bg-gradient-to-br from-slate-900 via-slate-950 to-slate-900 p-8 sm:p-12 shadow-2xl">
+            <div className="grid gap-10 lg:grid-cols-12 items-center">
+              <div className="lg:col-span-5 flex justify-center">
+                <div className="relative rounded-3xl overflow-hidden border border-amber-500/30 shadow-2xl max-w-sm group">
                   <img
                     src="/images/robbie/02-hdw-modern-professional.jpg"
-                    alt="Dr Robbie Harley - Founder, Harley Digital Works"
-                    className="h-full w-full object-cover object-center"
+                    alt="Dr Robbie Harley - Founder & Managing Director, The Harley Group"
+                    className="w-full h-auto object-cover object-center group-hover:scale-102 transition-transform duration-300"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-3">
-                    <span className="text-[10px] font-mono font-bold text-amber-300 bg-black/60 px-2 py-0.5 rounded backdrop-blur-xs">
-                      DR ROBBIE HARLEY, MBA
-                    </span>
+                  <div className="absolute bottom-4 left-4 right-4 rounded-2xl bg-slate-950/90 backdrop-blur-md p-3.5 border border-amber-500/30">
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <h4 className="text-xs font-bold text-white">Dr Robbie Harley, MBA</h4>
+                        <p className="text-[10px] font-mono text-amber-400">Founder & Managing Director</p>
+                      </div>
+                      <span className="text-[10px] font-mono font-bold bg-amber-500/20 text-amber-300 border border-amber-500/40 px-2 py-0.5 rounded-full">
+                        THE HARLEY GROUP
+                      </span>
+                    </div>
                   </div>
                 </div>
               </div>
 
-              <div className="lg:col-span-8 space-y-4">
-                <div className="inline-flex items-center gap-2 rounded-full border border-amber-400/30 bg-amber-950/50 px-3 py-1 text-xs font-semibold text-amber-300">
+              <div className="lg:col-span-7 space-y-6">
+                <div className="inline-flex items-center gap-2 rounded-full border border-amber-400/30 bg-amber-950/50 px-3.5 py-1 text-xs font-semibold text-amber-300">
                   <ShieldCheck className="h-3.5 w-3.5 text-amber-400" />
                   <span>The Harley Digital Works Founder Promise</span>
                 </div>
-                <blockquote className="text-xl sm:text-2xl font-medium tracking-tight text-white leading-snug">
-                  &ldquo;Great websites don&apos;t just look good, they give you more time. We write 100% of the sales copy and configure your Gas Safe or NICEIC trust badges so you never have to do homework in the evening.&rdquo;
+                <blockquote className="text-xl sm:text-2xl font-medium tracking-tight text-white leading-relaxed">
+                  &ldquo;A great trade website shouldn’t create extra work for you. We write 100% of your sales copy, structure your local service areas, and configure your Gas Safe or NICEIC trust badges so you never have to do homework in the evening.&rdquo;
                 </blockquote>
-                <div className="pt-2 flex flex-wrap items-center gap-4 text-xs font-mono text-slate-400">
+                <div className="pt-2 flex flex-wrap items-center gap-4 text-xs font-mono text-slate-400 border-t border-slate-800">
                   <span className="text-white font-bold">Robbie Harley</span>
                   <span>•</span>
                   <span>Managing Director, The Harley Group</span>
                   <span>•</span>
-                  <span className="text-emerald-400">Direct WhatsApp Onboarding</span>
+                  <span className="text-emerald-400">14-Day Delivery SLA Guaranteed</span>
                 </div>
               </div>
             </div>
@@ -513,22 +566,22 @@ function HomePage() {
         </Container>
       </section>
 
-      {/* Interactive ROI Calculator Embed */}
+      {/* 7. Interactive ROI Calculator */}
       <TradeRoiCalculator />
 
-      {/* 14-Day Delivery SLA Roadmap */}
-      <section className="py-20 md:py-28 bg-slate-900 text-white border-b border-slate-800">
+      {/* 8. 14-Day Delivery SLA Roadmap */}
+      <section className="py-20 md:py-28 bg-[#0F172A] text-white border-b border-slate-800">
         <Container>
           <div className="mx-auto max-w-2xl text-center">
             <span className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-950/60 px-3.5 py-1 text-xs font-semibold text-emerald-300 font-mono">
               <Clock className="h-3.5 w-3.5" />
-              14-Day Live Google Launch
+              14-Day Turnaround Rhythm
             </span>
             <h2 className="mt-4 text-3xl font-bold tracking-tight text-white md:text-4xl">
               Simple 3-Step Process. Live in 14 Days.
             </h2>
             <p className="mt-3 text-sm text-slate-300 leading-relaxed">
-              Strict delivery rhythms with daily milestone updates via your dedicated build tracker.
+              Strict delivery calendar with real-time milestone tracking via your dedicated client portal.
             </p>
           </div>
 
@@ -536,13 +589,18 @@ function HomePage() {
             {PROCESS_STEPS.map((step) => (
               <div
                 key={step.number}
-                className="relative rounded-2xl border border-slate-800 bg-slate-950 p-8 flex flex-col justify-between"
+                className="relative rounded-3xl border border-slate-800 bg-slate-950 p-8 flex flex-col justify-between shadow-xl"
               >
                 <div>
-                  <span className="font-mono text-3xl font-extrabold text-emerald-500">
-                    {step.number}
-                  </span>
-                  <h3 className="mt-4 text-xl font-bold text-white">{step.title}</h3>
+                  <div className="flex items-center justify-between">
+                    <span className="font-mono text-3xl font-extrabold text-emerald-500">
+                      {step.number}
+                    </span>
+                    <span className="rounded-full bg-emerald-950 px-2.5 py-0.5 text-[10px] font-mono text-emerald-400 border border-emerald-800">
+                      {step.phase}
+                    </span>
+                  </div>
+                  <h3 className="mt-5 text-xl font-bold text-white">{step.title}</h3>
                   <p className="mt-3 text-sm text-slate-300 leading-relaxed">{step.copy}</p>
                 </div>
               </div>
@@ -557,18 +615,18 @@ function HomePage() {
         </Container>
       </section>
 
-      {/* Transparent Packages & Pricing */}
+      {/* 9. Transparent Packages & Pricing */}
       <WebsitePackagesSection />
 
-      {/* Google Reviews & Social Proof */}
+      {/* 10. Google Reviews & Social Proof */}
       <TradeGoogleReviewsWidget />
 
-      {/* FAQ Accordion */}
-      <section className="py-20 md:py-28 bg-white border-b border-ink/10">
+      {/* 11. FAQ Accordion */}
+      <section className="py-20 md:py-28 bg-[#FAFAFA] border-b border-ink/10">
         <Container>
           <div className="mx-auto max-w-3xl">
             <div className="text-center">
-              <p className="text-xs font-bold uppercase tracking-widest text-emerald-600">
+              <p className="text-xs font-mono font-bold uppercase tracking-widest text-emerald-700">
                 Common Questions
               </p>
               <h2 className="mt-2 text-3xl font-bold tracking-tight text-ink md:text-4xl">
@@ -582,7 +640,7 @@ function HomePage() {
                   <AccordionItem
                     key={idx}
                     value={`faq-${idx}`}
-                    className="rounded-xl border border-ink/10 bg-slate-50/50 px-6 py-2"
+                    className="rounded-2xl border border-ink/10 bg-white px-6 py-2 shadow-xs"
                   >
                     <AccordionTrigger className="text-left font-bold text-ink hover:no-underline text-base">
                       {faq.q}
@@ -598,8 +656,8 @@ function HomePage() {
         </Container>
       </section>
 
-      {/* Bottom Conversion CTA */}
-      <section className="py-20 md:py-28 bg-slate-950 text-white">
+      {/* 12. Bottom Conversion CTA */}
+      <section className="py-20 md:py-28 bg-[#0B0F19] text-white">
         <Container>
           <div className="mx-auto max-w-3xl text-center">
             <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-950/60 px-3.5 py-1 text-xs font-semibold text-emerald-300">
