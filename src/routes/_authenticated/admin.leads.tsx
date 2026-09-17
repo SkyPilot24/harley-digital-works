@@ -17,8 +17,10 @@ import {
   Sparkles,
   Search,
   Plus,
+  FileText,
 } from "lucide-react";
 import { PageHeader, StatusBadge } from "./admin.index";
+import { LeadProposalModal } from "@/components/admin/LeadProposalModal";
 
 type LeadRow = Database["public"]["Tables"]["leads"]["Row"];
 type LeadStatus = Database["public"]["Enums"]["lead_status"];
@@ -33,6 +35,7 @@ function LeadsPage() {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedLead, setSelectedLead] = useState<LeadRow | null>(null);
   const [editingLead, setEditingLead] = useState<Partial<LeadRow> | null>(null);
+  const [proposingLead, setProposingLead] = useState<LeadRow | null>(null);
   const [isCreating, setIsCreating] = useState(false);
 
   const leadsQuery = useQuery({
@@ -341,7 +344,21 @@ function LeadsPage() {
                       </button>
                     )}
                     <button
-                      onClick={() => setEditingLead(lead)}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setProposingLead(lead);
+                      }}
+                      className="inline-flex items-center gap-1 rounded-md bg-gold-500/10 border border-gold-500/30 px-2 py-1 text-xs font-semibold text-gold-700 hover:bg-gold-500/20"
+                      title="Generate Client Proposal"
+                    >
+                      <FileText size={13} />
+                      <span>Proposal</span>
+                    </button>
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setEditingLead(lead);
+                      }}
                       className="rounded-md p-1.5 text-ink/60 hover:bg-ink/[0.05] hover:text-ink"
                       title="Edit"
                     >
@@ -408,13 +425,22 @@ function LeadsPage() {
                         management.
                       </p>
                     </div>
-                    <button
-                      onClick={() => convertToClientMutation.mutate(selectedLead)}
-                      disabled={convertToClientMutation.isPending}
-                      className="shrink-0 rounded-full bg-emerald-700 px-4 py-2 text-xs font-semibold text-white shadow-xs hover:bg-emerald-800 disabled:opacity-50"
-                    >
-                      {convertToClientMutation.isPending ? "Converting…" : "Convert to Client"}
-                    </button>
+                    <div className="flex items-center gap-2">
+                      <button
+                        onClick={() => setProposingLead(selectedLead)}
+                        className="shrink-0 inline-flex items-center gap-1 rounded-full bg-gold-500/20 border border-gold-500/40 px-3.5 py-2 text-xs font-semibold text-neutral-900 hover:bg-gold-500/30"
+                      >
+                        <FileText size={13} />
+                        <span>Proposal</span>
+                      </button>
+                      <button
+                        onClick={() => convertToClientMutation.mutate(selectedLead)}
+                        disabled={convertToClientMutation.isPending}
+                        className="shrink-0 rounded-full bg-emerald-700 px-4 py-2 text-xs font-semibold text-white shadow-xs hover:bg-emerald-800 disabled:opacity-50"
+                      >
+                        {convertToClientMutation.isPending ? "Converting…" : "Convert to Client"}
+                      </button>
+                    </div>
                   </div>
                 </div>
               ) : (
@@ -673,6 +699,13 @@ function LeadsPage() {
             </form>
           </div>
         </div>
+      )}
+      {/* Proposal Generator Modal */}
+      {proposingLead && (
+        <LeadProposalModal
+          lead={proposingLead}
+          onClose={() => setProposingLead(null)}
+        />
       )}
     </div>
   );

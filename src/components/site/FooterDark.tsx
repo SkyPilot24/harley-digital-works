@@ -19,10 +19,10 @@ const COLUMNS = [
   {
     heading: "Popular Trades",
     links: [
+      { label: "Live Trade Demos", to: "/demos" },
       { label: "Electricians & Solar", to: "/work" },
       { label: "Plumbers & Heating", to: "/work" },
       { label: "Roofers & Builders", to: "/work" },
-      { label: "Commercial Services", to: "/work" },
       { label: "Free Website Check", to: "/audit" },
     ],
   },

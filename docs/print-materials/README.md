@@ -1,4 +1,4 @@
-﻿# Print Materials & Sales Collateral Suite
+# Print Materials & Sales Collateral Suite
 
 This directory contains print-ready, high-resolution HTML/CSS collateral templates for **Harley Digital Works** and **The Harley Group**.
 
@@ -35,6 +35,12 @@ All documents are pre-formatted for standard **A4 portrait printing** (`@page { 
   - Group brand architecture (The Harley Group, Harley Digital Works, Harley Labs).
   - Executive leadership under Dr Robbie Harley, MBA.
   - Institutional operating discipline and core values.
+
+### 5. [05-the-harley-group-master-services-agreement.html](./05-the-harley-group-master-services-agreement.html)
+- **Use Case**: Parent group standard Master Services Agreement (MSA), IP assignment, SLA warranties, and signature authorization.
+
+### 6. [06-thg-digital-enterprise-capabilities-deck.html](./06-thg-digital-enterprise-capabilities-deck.html)
+- **Use Case**: Enterprise engineering and digital systems division capability one-pager for custom web apps, workflow automation, and edge cloud architecture.
 
 ---
 

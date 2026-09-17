@@ -14,7 +14,9 @@ import { Route as ServicesRouteImport } from './routes/services'
 import { Route as ResourcesRouteImport } from './routes/resources'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as OnboardingRouteImport } from './routes/onboarding'
+import { Route as LocationsRouteImport } from './routes/locations'
 import { Route as DomainsRouteImport } from './routes/domains'
+import { Route as DemosRouteImport } from './routes/demos'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as AuditRouteImport } from './routes/audit'
@@ -29,6 +31,7 @@ import { Route as ServicesContentEngineRouteImport } from './routes/services_.co
 import { Route as ServicesCarePlansRouteImport } from './routes/services_.care-plans'
 import { Route as ServicesAutomationRouteImport } from './routes/services_.automation'
 import { Route as ServicesAiAutomationRouteImport } from './routes/services_.ai-automation'
+import { Route as LocationsSlugRouteImport } from './routes/locations_.$slug'
 import { Route as AuthenticatedAdminIndexRouteImport } from './routes/_authenticated/admin.index'
 import { Route as AuthenticatedAdminUsersRouteImport } from './routes/_authenticated/admin.users'
 import { Route as AuthenticatedAdminTestimonialsRouteImport } from './routes/_authenticated/admin.testimonials'
@@ -69,9 +72,19 @@ const OnboardingRoute = OnboardingRouteImport.update({
   path: '/onboarding',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LocationsRoute = LocationsRouteImport.update({
+  id: '/locations',
+  path: '/locations',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const DomainsRoute = DomainsRouteImport.update({
   id: '/domains',
   path: '/domains',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DemosRoute = DemosRouteImport.update({
+  id: '/demos',
+  path: '/demos',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactRoute = ContactRouteImport.update({
@@ -143,6 +156,11 @@ const ServicesAutomationRoute = ServicesAutomationRouteImport.update({
 const ServicesAiAutomationRoute = ServicesAiAutomationRouteImport.update({
   id: '/services_/ai-automation',
   path: '/services/ai-automation',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LocationsSlugRoute = LocationsSlugRouteImport.update({
+  id: '/locations_/$slug',
+  path: '/locations/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AuthenticatedAdminIndexRoute = AuthenticatedAdminIndexRouteImport.update({
@@ -232,12 +250,15 @@ export interface FileRoutesByFullPath {
   '/audit': typeof AuditRoute
   '/auth': typeof AuthRoute
   '/contact': typeof ContactRoute
+  '/demos': typeof DemosRoute
   '/domains': typeof DomainsRoute
+  '/locations': typeof LocationsRoute
   '/onboarding': typeof OnboardingRoute
   '/privacy': typeof PrivacyRoute
   '/resources': typeof ResourcesRoute
   '/services': typeof ServicesRoute
   '/work': typeof WorkRoute
+  '/locations/$slug': typeof LocationsSlugRoute
   '/services/ai-automation': typeof ServicesAiAutomationRoute
   '/services/automation': typeof ServicesAutomationRoute
   '/services/care-plans': typeof ServicesCarePlansRoute
@@ -267,12 +288,15 @@ export interface FileRoutesByTo {
   '/audit': typeof AuditRoute
   '/auth': typeof AuthRoute
   '/contact': typeof ContactRoute
+  '/demos': typeof DemosRoute
   '/domains': typeof DomainsRoute
+  '/locations': typeof LocationsRoute
   '/onboarding': typeof OnboardingRoute
   '/privacy': typeof PrivacyRoute
   '/resources': typeof ResourcesRoute
   '/services': typeof ServicesRoute
   '/work': typeof WorkRoute
+  '/locations/$slug': typeof LocationsSlugRoute
   '/services/ai-automation': typeof ServicesAiAutomationRoute
   '/services/automation': typeof ServicesAutomationRoute
   '/services/care-plans': typeof ServicesCarePlansRoute
@@ -304,12 +328,15 @@ export interface FileRoutesById {
   '/audit': typeof AuditRoute
   '/auth': typeof AuthRoute
   '/contact': typeof ContactRoute
+  '/demos': typeof DemosRoute
   '/domains': typeof DomainsRoute
+  '/locations': typeof LocationsRoute
   '/onboarding': typeof OnboardingRoute
   '/privacy': typeof PrivacyRoute
   '/resources': typeof ResourcesRoute
   '/services': typeof ServicesRoute
   '/work': typeof WorkRoute
+  '/locations_/$slug': typeof LocationsSlugRoute
   '/services_/ai-automation': typeof ServicesAiAutomationRoute
   '/services_/automation': typeof ServicesAutomationRoute
   '/services_/care-plans': typeof ServicesCarePlansRoute
@@ -341,12 +368,15 @@ export interface FileRouteTypes {
     | '/audit'
     | '/auth'
     | '/contact'
+    | '/demos'
     | '/domains'
+    | '/locations'
     | '/onboarding'
     | '/privacy'
     | '/resources'
     | '/services'
     | '/work'
+    | '/locations/$slug'
     | '/services/ai-automation'
     | '/services/automation'
     | '/services/care-plans'
@@ -376,12 +406,15 @@ export interface FileRouteTypes {
     | '/audit'
     | '/auth'
     | '/contact'
+    | '/demos'
     | '/domains'
+    | '/locations'
     | '/onboarding'
     | '/privacy'
     | '/resources'
     | '/services'
     | '/work'
+    | '/locations/$slug'
     | '/services/ai-automation'
     | '/services/automation'
     | '/services/care-plans'
@@ -412,12 +445,15 @@ export interface FileRouteTypes {
     | '/audit'
     | '/auth'
     | '/contact'
+    | '/demos'
     | '/domains'
+    | '/locations'
     | '/onboarding'
     | '/privacy'
     | '/resources'
     | '/services'
     | '/work'
+    | '/locations_/$slug'
     | '/services_/ai-automation'
     | '/services_/automation'
     | '/services_/care-plans'
@@ -449,12 +485,15 @@ export interface RootRouteChildren {
   AuditRoute: typeof AuditRoute
   AuthRoute: typeof AuthRoute
   ContactRoute: typeof ContactRoute
+  DemosRoute: typeof DemosRoute
   DomainsRoute: typeof DomainsRoute
+  LocationsRoute: typeof LocationsRoute
   OnboardingRoute: typeof OnboardingRoute
   PrivacyRoute: typeof PrivacyRoute
   ResourcesRoute: typeof ResourcesRoute
   ServicesRoute: typeof ServicesRoute
   WorkRoute: typeof WorkRoute
+  LocationsSlugRoute: typeof LocationsSlugRoute
   ServicesAiAutomationRoute: typeof ServicesAiAutomationRoute
   ServicesAutomationRoute: typeof ServicesAutomationRoute
   ServicesCarePlansRoute: typeof ServicesCarePlansRoute
@@ -502,11 +541,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof OnboardingRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/locations': {
+      id: '/locations'
+      path: '/locations'
+      fullPath: '/locations'
+      preLoaderRoute: typeof LocationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/domains': {
       id: '/domains'
       path: '/domains'
       fullPath: '/domains'
       preLoaderRoute: typeof DomainsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/demos': {
+      id: '/demos'
+      path: '/demos'
+      fullPath: '/demos'
+      preLoaderRoute: typeof DemosRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contact': {
@@ -605,6 +658,13 @@ declare module '@tanstack/react-router' {
       path: '/services/ai-automation'
       fullPath: '/services/ai-automation'
       preLoaderRoute: typeof ServicesAiAutomationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/locations_/$slug': {
+      id: '/locations_/$slug'
+      path: '/locations/$slug'
+      fullPath: '/locations/$slug'
+      preLoaderRoute: typeof LocationsSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_authenticated/admin/': {
@@ -752,12 +812,15 @@ const rootRouteChildren: RootRouteChildren = {
   AuditRoute: AuditRoute,
   AuthRoute: AuthRoute,
   ContactRoute: ContactRoute,
+  DemosRoute: DemosRoute,
   DomainsRoute: DomainsRoute,
+  LocationsRoute: LocationsRoute,
   OnboardingRoute: OnboardingRoute,
   PrivacyRoute: PrivacyRoute,
   ResourcesRoute: ResourcesRoute,
   ServicesRoute: ServicesRoute,
   WorkRoute: WorkRoute,
+  LocationsSlugRoute: LocationsSlugRoute,
   ServicesAiAutomationRoute: ServicesAiAutomationRoute,
   ServicesAutomationRoute: ServicesAutomationRoute,
   ServicesCarePlansRoute: ServicesCarePlansRoute,

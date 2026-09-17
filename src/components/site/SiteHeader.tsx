@@ -9,6 +9,7 @@ import { BrandLogo } from "./BrandLogo";
 
 const LINKS = [
   { to: "/services/web-design-development", label: "Websites" },
+  { to: "/demos", label: "Live Demos" },
   { to: "/services/care-plans", label: "Care Plans" },
   { to: "/work", label: "Our Work" },
   { to: "/services", label: "Pricing" },
