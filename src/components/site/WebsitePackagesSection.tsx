@@ -58,8 +58,7 @@ const WEBSITE_PACKAGES: WebsitePackage[] = [
   {
     id: "pro",
     name: "Pro / Multi-Location",
-    tagline:
-      "For commercial contractors & growing service businesses requiring custom workflows.",
+    tagline: "For commercial contractors & growing service businesses requiring custom workflows.",
     price: "£4,995+",
     features: [
       "Multi-location, multi-division, or franchise architecture",

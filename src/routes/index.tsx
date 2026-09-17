@@ -52,21 +52,33 @@ const PILLARS = [
     icon: Zap,
     title: "High-Converting Trade Design",
     copy: "Bespoke, razor-sharp design tailored to your trade that builds instant trust and makes you look like the #1 choice in your area.",
-    outcomes: ["Mobile-first for on-the-go customers", "Fast click-to-call & WhatsApp links", "Google Maps & review integration"],
+    outcomes: [
+      "Mobile-first for on-the-go customers",
+      "Fast click-to-call & WhatsApp links",
+      "Google Maps & review integration",
+    ],
   },
   {
     number: "02",
     icon: PenTool,
     title: "100% Done-For-You Copy & Images",
     copy: "No homework for you. We write your sales copy, research your trade, and curate high-resolution imagery so you never stare at a blank screen.",
-    outcomes: ["Clear service descriptions", "Local keyword targeting", "Professional trade photography"],
+    outcomes: [
+      "Clear service descriptions",
+      "Local keyword targeting",
+      "Professional trade photography",
+    ],
   },
   {
     number: "03",
     icon: Headphones,
     title: "Managed Care & Unlimited Edits",
     copy: "We host, secure, and update your site every month. When you want a photo, price, or review updated, simply message us on WhatsApp.",
-    outcomes: ["Ultra-fast UK cloud hosting", "Daily cloud backups & SSL", "Unlimited monthly text & photo updates"],
+    outcomes: [
+      "Ultra-fast UK cloud hosting",
+      "Daily cloud backups & SSL",
+      "Unlimited monthly text & photo updates",
+    ],
   },
 ] as const;
 
@@ -144,18 +156,33 @@ function HomePage() {
               </div>
 
               <h1 className="mt-6 text-[clamp(2.9rem,6.8vw,5.6rem)] font-semibold leading-[0.94] tracking-[-0.05em] text-ink">
-                You run your business. <span className="block text-primary">We’ll handle your website.</span>
+                You run your business.{" "}
+                <span className="block text-primary">We’ll handle your website.</span>
               </h1>
 
               <p className="mt-6 max-w-2xl text-lg leading-relaxed text-ink-muted md:text-xl">
-                Get a high-performing, professionally built website that wins you more customers—without writing a single line of copy or touching a server. 100% built, written, and managed for you.
+                Get a high-performing, professionally built website that wins you more
+                customers—without writing a single line of copy or touching a server. 100% built,
+                written, and managed for you.
               </p>
 
               <div className="mt-8 flex flex-wrap items-center gap-4">
-                <PillButton as="link" to="/contact" variant="dark" size="md" className="gap-2 shadow-lg shadow-ink/10">
+                <PillButton
+                  as="link"
+                  to="/contact"
+                  variant="dark"
+                  size="md"
+                  className="gap-2 shadow-lg shadow-ink/10"
+                >
                   Get a Free 60-Sec Quote <ArrowRight size={16} />
                 </PillButton>
-                <PillButton as="link" to="/work" variant="ghost" size="md" className="border border-ink/15">
+                <PillButton
+                  as="link"
+                  to="/work"
+                  variant="ghost"
+                  size="md"
+                  className="border border-ink/15"
+                >
                   See Live Trade Examples
                 </PillButton>
               </div>
@@ -188,17 +215,25 @@ function HomePage() {
                     <span className="h-2.5 w-2.5 rounded-full bg-red-500/80" />
                     <span className="h-2.5 w-2.5 rounded-full bg-yellow-500/80" />
                     <span className="h-2.5 w-2.5 rounded-full bg-green-500/80" />
-                    <span className="ml-2 font-mono text-[10px] text-white/40">harleydigitalworks.com/preview</span>
+                    <span className="ml-2 font-mono text-[10px] text-white/40">
+                      harleydigitalworks.com/preview
+                    </span>
                   </div>
-                  <span className="rounded bg-primary/20 px-2 py-0.5 text-[10px] font-semibold text-primary">LIVE DEMO</span>
+                  <span className="rounded bg-primary/20 px-2 py-0.5 text-[10px] font-semibold text-primary">
+                    LIVE DEMO
+                  </span>
                 </div>
 
                 {/* Simulated Trade Website Preview */}
                 <div className="mt-4 rounded-xl bg-works-charcoal p-5 border border-white/5 space-y-4">
                   <div className="flex items-center justify-between">
                     <div>
-                      <div className="text-[11px] font-mono uppercase tracking-wider text-primary">Kavanagh Heating & Solar</div>
-                      <div className="text-sm font-medium text-white">Emergency Boiler & Heat Pump Specialists</div>
+                      <div className="text-[11px] font-mono uppercase tracking-wider text-primary">
+                        Kavanagh Heating & Solar
+                      </div>
+                      <div className="text-sm font-medium text-white">
+                        Emergency Boiler & Heat Pump Specialists
+                      </div>
                     </div>
                     <div className="rounded-full bg-emerald-500/20 px-2.5 py-1 text-[11px] font-medium text-emerald-400 flex items-center gap-1">
                       <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
@@ -208,9 +243,12 @@ function HomePage() {
 
                   <div className="rounded-lg bg-black/40 p-4 border border-white/5">
                     <p className="text-xs text-white/80 leading-relaxed">
-                      "Fast quote response, polite engineer, and boiler replaced in 24 hours. Highly recommended!"
+                      "Fast quote response, polite engineer, and boiler replaced in 24 hours. Highly
+                      recommended!"
                     </p>
-                    <div className="mt-2 text-[10px] text-white/40">— Verified Google Review · Manchester</div>
+                    <div className="mt-2 text-[10px] text-white/40">
+                      — Verified Google Review · Manchester
+                    </div>
                   </div>
 
                   <div className="grid grid-cols-2 gap-2">
@@ -289,12 +327,17 @@ function HomePage() {
                 Getting a great website shouldn't feel like a full-time job.
               </h2>
               <p className="mt-5 text-base leading-relaxed text-background/70">
-                Most trades and business owners have been burnt by DIY templates or unreliable freelancers. We designed Harley Digital Works to take the entire headache off your plate.
+                Most trades and business owners have been burnt by DIY templates or unreliable
+                freelancers. We designed Harley Digital Works to take the entire headache off your
+                plate.
               </p>
             </div>
             <div className="grid gap-4 sm:grid-cols-2 lg:col-span-7">
               {TRAP_PROBLEMS.map((p) => (
-                <div key={p.title} className="rounded-2xl bg-works-charcoal p-6 border border-white/5">
+                <div
+                  key={p.title}
+                  className="rounded-2xl bg-works-charcoal p-6 border border-white/5"
+                >
                   <div className="text-sm font-semibold text-white">{p.title}</div>
                   <p className="mt-2 text-xs leading-relaxed text-background/65">{p.copy}</p>
                 </div>
@@ -313,7 +356,8 @@ function HomePage() {
               Everything your business needs to win online. Done for you.
             </h2>
             <p className="mt-4 text-lg leading-relaxed text-ink-muted">
-              We don't hand you an empty template. We deliver a complete, finished digital presence engineered to win commercial and domestic enquiries.
+              We don't hand you an empty template. We deliver a complete, finished digital presence
+              engineered to win commercial and domestic enquiries.
             </p>
           </div>
 
@@ -358,14 +402,19 @@ function HomePage() {
                 Websites built to win work.
               </h2>
             </div>
-            <Link to="/work" className="inline-flex items-center gap-2 text-sm font-semibold text-ink hover:text-primary transition">
+            <Link
+              to="/work"
+              className="inline-flex items-center gap-2 text-sm font-semibold text-ink hover:text-primary transition"
+            >
               Explore all case studies <ArrowRight size={16} />
             </Link>
           </div>
 
           <div className="mt-12 grid gap-6 md:grid-cols-3">
             <article className="rounded-2xl border border-ink/10 bg-white p-6 shadow-sm">
-              <div className="font-mono text-[11px] uppercase tracking-wider text-primary">Electrical & Solar</div>
+              <div className="font-mono text-[11px] uppercase tracking-wider text-primary">
+                Electrical & Solar
+              </div>
               <h3 className="mt-2 text-lg font-semibold text-ink">Apex Electrical Contractors</h3>
               <p className="mt-2 text-xs leading-relaxed text-ink-muted">
                 Full rebrand, local service pages, and automated commercial quotation intake.
@@ -376,7 +425,9 @@ function HomePage() {
             </article>
 
             <article className="rounded-2xl border border-ink/10 bg-white p-6 shadow-sm">
-              <div className="font-mono text-[11px] uppercase tracking-wider text-primary">Roofing & Building</div>
+              <div className="font-mono text-[11px] uppercase tracking-wider text-primary">
+                Roofing & Building
+              </div>
               <h3 className="mt-2 text-lg font-semibold text-ink">Vanguard Roofing Specialists</h3>
               <p className="mt-2 text-xs leading-relaxed text-ink-muted">
                 Emergency roof repair funnels, project gallery showcase, and Google Reviews sync.
@@ -387,7 +438,9 @@ function HomePage() {
             </article>
 
             <article className="rounded-2xl border border-ink/10 bg-white p-6 shadow-sm">
-              <div className="font-mono text-[11px] uppercase tracking-wider text-primary">Commercial Services</div>
+              <div className="font-mono text-[11px] uppercase tracking-wider text-primary">
+                Commercial Services
+              </div>
               <h3 className="mt-2 text-lg font-semibold text-ink">ProClean Facilities Group</h3>
               <p className="mt-2 text-xs leading-relaxed text-ink-muted">
                 Tender-ready contractor presentation, client portal, and multi-service B2B booking.
@@ -410,7 +463,8 @@ function HomePage() {
                 From first call to live website in 3 simple steps.
               </h2>
               <p className="mt-4 text-base leading-relaxed text-ink-muted">
-                We know you are busy on site. Our process is designed to require less than 45 minutes of your time in total.
+                We know you are busy on site. Our process is designed to require less than 45
+                minutes of your time in total.
               </p>
               <div className="mt-8">
                 <PillButton as="link" to="/contact" variant="dark">
@@ -421,8 +475,13 @@ function HomePage() {
 
             <div className="space-y-6 lg:col-span-7">
               {PROCESS_STEPS.map((step) => (
-                <div key={step.number} className="grid grid-cols-[50px_1fr] gap-4 rounded-2xl border border-ink/10 bg-surface-cream p-6">
-                  <span className="font-mono text-lg font-semibold text-primary">{step.number}</span>
+                <div
+                  key={step.number}
+                  className="grid grid-cols-[50px_1fr] gap-4 rounded-2xl border border-ink/10 bg-surface-cream p-6"
+                >
+                  <span className="font-mono text-lg font-semibold text-primary">
+                    {step.number}
+                  </span>
                   <div>
                     <h3 className="text-lg font-semibold text-ink">{step.title}</h3>
                     <p className="mt-1 text-sm leading-relaxed text-ink-muted">{step.copy}</p>
@@ -483,11 +542,18 @@ function HomePage() {
                   Let’s make your business look world-class.
                 </h2>
                 <p className="mt-4 max-w-2xl text-base leading-relaxed text-white/70">
-                  Get in touch today for a free 15-minute consultation and a fixed-price quote. No sales pressure, no technical jargon.
+                  Get in touch today for a free 15-minute consultation and a fixed-price quote. No
+                  sales pressure, no technical jargon.
                 </p>
               </div>
               <div className="flex flex-col gap-3 shrink-0">
-                <PillButton as="link" to="/contact" variant="light" size="md" className="w-full justify-center">
+                <PillButton
+                  as="link"
+                  to="/contact"
+                  variant="light"
+                  size="md"
+                  className="w-full justify-center"
+                >
                   Get a Free 60-Sec Quote
                 </PillButton>
                 <a

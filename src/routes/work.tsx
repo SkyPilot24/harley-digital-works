@@ -40,7 +40,8 @@ const caseStudies = [
   },
   {
     category: "Roofing & Construction",
-    title: "Vanguard Roofing: Dominating local emergency repair search and securing high-value reroofs.",
+    title:
+      "Vanguard Roofing: Dominating local emergency repair search and securing high-value reroofs.",
     client: "Vanguard Roofing Specialists",
     challenge:
       "Homeowners in storm season needed urgent emergency roof repairs, but Vanguard's old site was slow, not mobile-friendly, and lacked clear trust signals or verified reviews.",
@@ -59,7 +60,8 @@ const caseStudies = [
   },
   {
     category: "Commercial Facilities",
-    title: "ProClean Group: Positioning an independent operator to win multi-site facilities tenders.",
+    title:
+      "ProClean Group: Positioning an independent operator to win multi-site facilities tenders.",
     client: "ProClean Commercial Facilities",
     challenge:
       "ProClean wanted to transition from domestic cleaning to lucrative corporate office and healthcare cleaning contracts, but their digital image did not look tender-ready.",
@@ -86,10 +88,12 @@ function Page() {
           <div className="max-w-4xl">
             <p className="eyebrow">Our Portfolio</p>
             <h1 className="mt-6 text-[clamp(2.8rem,6.5vw,5.5rem)] font-semibold leading-[0.96] tracking-[-0.05em] text-ink">
-              Websites built to win work. <span className="block text-primary">Proven results for real businesses.</span>
+              Websites built to win work.{" "}
+              <span className="block text-primary">Proven results for real businesses.</span>
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-relaxed text-ink-muted">
-              We help UK tradespeople and service businesses turn their online presence into their hardest-working sales asset. Here is how we do it.
+              We help UK tradespeople and service businesses turn their online presence into their
+              hardest-working sales asset. Here is how we do it.
             </p>
           </div>
         </Container>
@@ -111,7 +115,9 @@ function Page() {
                     <h2 className="mt-4 text-2xl font-semibold leading-tight text-ink md:text-3xl">
                       {study.title}
                     </h2>
-                    <p className="mt-3 text-sm text-ink-muted font-medium">Client: {study.client}</p>
+                    <p className="mt-3 text-sm text-ink-muted font-medium">
+                      Client: {study.client}
+                    </p>
                   </div>
 
                   <div className="mt-8 rounded-2xl bg-surface-sage p-5 border border-ink/5">
@@ -124,20 +130,29 @@ function Page() {
 
                 <div className="space-y-6 lg:col-span-7">
                   <div className="border-t border-ink/10 pt-5">
-                    <div className="text-xs font-mono uppercase tracking-wider text-ink-muted font-semibold">The Challenge</div>
+                    <div className="text-xs font-mono uppercase tracking-wider text-ink-muted font-semibold">
+                      The Challenge
+                    </div>
                     <p className="mt-2 text-sm leading-relaxed text-ink">{study.challenge}</p>
                   </div>
 
                   <div className="border-t border-ink/10 pt-5">
-                    <div className="text-xs font-mono uppercase tracking-wider text-ink-muted font-semibold">Our Approach</div>
+                    <div className="text-xs font-mono uppercase tracking-wider text-ink-muted font-semibold">
+                      Our Approach
+                    </div>
                     <p className="mt-2 text-sm leading-relaxed text-ink">{study.approach}</p>
                   </div>
 
                   <div className="border-t border-ink/10 pt-5">
-                    <div className="text-xs font-mono uppercase tracking-wider text-ink-muted font-semibold">What We Delivered</div>
+                    <div className="text-xs font-mono uppercase tracking-wider text-ink-muted font-semibold">
+                      What We Delivered
+                    </div>
                     <ul className="mt-3 grid gap-2 sm:grid-cols-2">
                       {study.delivered.map((item) => (
-                        <li key={item} className="flex items-center gap-2 text-xs text-ink/85 font-medium">
+                        <li
+                          key={item}
+                          className="flex items-center gap-2 text-xs text-ink/85 font-medium"
+                        >
                           <CheckCircle2 size={15} className="text-primary shrink-0" />
                           <span>{item}</span>
                         </li>
@@ -146,8 +161,12 @@ function Page() {
                   </div>
 
                   <div className="border-t border-ink/10 pt-5">
-                    <div className="text-xs font-mono uppercase tracking-wider text-ink-muted font-semibold">The Outcome</div>
-                    <p className="mt-2 text-sm leading-relaxed text-ink font-medium">{study.outcome}</p>
+                    <div className="text-xs font-mono uppercase tracking-wider text-ink-muted font-semibold">
+                      The Outcome
+                    </div>
+                    <p className="mt-2 text-sm leading-relaxed text-ink font-medium">
+                      {study.outcome}
+                    </p>
                   </div>
                 </div>
               </article>
@@ -164,7 +183,8 @@ function Page() {
               Ready to get your business looking this professional?
             </h2>
             <p className="mt-4 max-w-xl text-base text-white/70">
-              Get in touch today for a free 15-minute consultation. We’ll show you exactly what your new website could look like.
+              Get in touch today for a free 15-minute consultation. We’ll show you exactly what your
+              new website could look like.
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
               <PillButton as="link" to="/contact" variant="light" size="md">

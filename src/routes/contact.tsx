@@ -107,10 +107,13 @@ function ContactPage() {
               fontSize: "clamp(2.5rem, 6vw, 4.5rem)",
             }}
           >
-            Get your website sorted. <span className="text-primary block">Fast, simple, done-for-you.</span>
+            Get your website sorted.{" "}
+            <span className="text-primary block">Fast, simple, done-for-you.</span>
           </h1>
           <p className="mt-6 max-w-2xl text-[17px] leading-relaxed text-ink-muted">
-            Tell us about your trade or business. We’ll review your requirements and send a fixed-price proposal and plan within one working day. No obligations, no pushy sales calls.
+            Tell us about your trade or business. We’ll review your requirements and send a
+            fixed-price proposal and plan within one working day. No obligations, no pushy sales
+            calls.
           </p>
         </Container>
       </section>
@@ -133,18 +136,32 @@ function ContactPage() {
               <div className="grid gap-5">
                 {sent && (
                   <div className="rounded-xl border border-emerald-200 bg-emerald-50 px-5 py-4 text-sm text-emerald-800 font-medium">
-                    ✓ Thanks! Your enquiry was received. Our team will review your business and reply with a custom plan within one working day.
+                    ✓ Thanks! Your enquiry was received. Our team will review your business and
+                    reply with a custom plan within one working day.
                   </div>
                 )}
 
                 <div className="grid gap-4 sm:grid-cols-2">
                   <Field label="Your Name" name="name" placeholder="Dave Miller" />
-                  <Field label="Phone Number (for WhatsApp preview)" name="phone" placeholder="07123 456789" />
+                  <Field
+                    label="Phone Number (for WhatsApp preview)"
+                    name="phone"
+                    placeholder="07123 456789"
+                  />
                 </div>
 
                 <div className="grid gap-4 sm:grid-cols-2">
-                  <Field label="Email Address" name="email" type="email" placeholder="dave@example.co.uk" />
-                  <Field label="Business / Trade Name" name="company" placeholder="Miller Electrical & Solar" />
+                  <Field
+                    label="Email Address"
+                    name="email"
+                    type="email"
+                    placeholder="dave@example.co.uk"
+                  />
+                  <Field
+                    label="Business / Trade Name"
+                    name="company"
+                    placeholder="Miller Electrical & Solar"
+                  />
                 </div>
 
                 <Field
@@ -167,15 +184,21 @@ function ContactPage() {
                     <option value="" disabled>
                       Select a package or service
                     </option>
-                    <option value="Launch Website (£1,495)">Launch Website (£1,495 - 5 Pages, 14-Day Delivery)</option>
+                    <option value="Launch Website (£1,495)">
+                      Launch Website (£1,495 - 5 Pages, 14-Day Delivery)
+                    </option>
                     <option value="Growth Website (£2,995)">
                       Growth Website (£2,995 - Most Popular for Trades)
                     </option>
-                    <option value="Pro Platform (£4,995+)">Pro Platform (£4,995+ - Multi-Location / Custom)</option>
+                    <option value="Pro Platform (£4,995+)">
+                      Pro Platform (£4,995+ - Multi-Location / Custom)
+                    </option>
                     <option value="Website Care Plan & Hosting (£95/mo)">
                       Website Care Plan & Managed Hosting (£95/mo)
                     </option>
-                    <option value="Redesign My Existing Website">Redesign My Existing Website</option>
+                    <option value="Redesign My Existing Website">
+                      Redesign My Existing Website
+                    </option>
                     <option value="Free Website Health Check Consultation">
                       Free 15-Minute Website Consultation
                     </option>
@@ -229,7 +252,10 @@ function ContactPage() {
                     rows={4}
                     required
                     minLength={5}
-                    defaultValue={initialMessage || "Hi, I would like to get a quote for a new website for my business."}
+                    defaultValue={
+                      initialMessage ||
+                      "Hi, I would like to get a quote for a new website for my business."
+                    }
                     placeholder="E.g. We are an electrical contracting firm based in Manchester and want to get more commercial solar jobs..."
                     className="rounded-xl border border-ink/15 bg-background px-4 py-3 text-[15px] text-ink focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
                   />
@@ -241,7 +267,11 @@ function ContactPage() {
                     disabled={busy}
                     className="inline-flex items-center justify-center gap-2 rounded-full bg-ink px-8 py-3.5 text-[15px] font-semibold text-white transition hover:bg-ink/90 disabled:opacity-50 shadow-lg shadow-ink/10 w-full sm:w-auto"
                   >
-                    {busy ? "Sending Quote Request..." : leadCaptureConfigured ? "Get My Free Quote & Plan →" : "Prepare Email Draft"}
+                    {busy
+                      ? "Sending Quote Request..."
+                      : leadCaptureConfigured
+                        ? "Get My Free Quote & Plan →"
+                        : "Prepare Email Draft"}
                   </button>
                   <p className="mt-3 text-[12px] text-ink-muted">
                     {leadCaptureConfigured
@@ -279,13 +309,17 @@ function ContactPage() {
                     <dt className="font-mono text-[10px] uppercase tracking-[0.22em] text-ink-muted font-semibold">
                       Response Guarantee
                     </dt>
-                    <dd className="mt-1 text-ink font-medium">Within 1 working day (usually same day).</dd>
+                    <dd className="mt-1 text-ink font-medium">
+                      Within 1 working day (usually same day).
+                    </dd>
                   </div>
                   <div>
                     <dt className="font-mono text-[10px] uppercase tracking-[0.22em] text-ink-muted font-semibold">
                       Free 15-Min Call
                     </dt>
-                    <dd className="mt-1 text-ink font-medium">No sales pressure. Just honest advice and a fixed quote.</dd>
+                    <dd className="mt-1 text-ink font-medium">
+                      No sales pressure. Just honest advice and a fixed quote.
+                    </dd>
                   </div>
                   <div>
                     <dt className="font-mono text-[10px] uppercase tracking-[0.22em] text-ink-muted font-semibold">

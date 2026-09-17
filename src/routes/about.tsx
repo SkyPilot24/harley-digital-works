@@ -42,10 +42,13 @@ function Page() {
         <Container>
           <p className="eyebrow">About Us</p>
           <h1 className="mt-6 max-w-5xl text-[clamp(2.8rem,6.5vw,5.5rem)] font-semibold leading-[0.96] tracking-[-0.05em] text-ink">
-            The dependable digital partner for <span className="text-primary block">hard-working UK businesses.</span>
+            The dependable digital partner for{" "}
+            <span className="text-primary block">hard-working UK businesses.</span>
           </h1>
           <p className="mt-6 max-w-2xl text-lg leading-relaxed text-ink-muted">
-            Harley Digital Works was founded to solve a simple problem: most small business owners and tradespeople just want their website sorted without getting bogged down in technology.
+            Harley Digital Works was founded to solve a simple problem: most small business owners
+            and tradespeople just want their website sorted without getting bogged down in
+            technology.
           </p>
         </Container>
       </section>
@@ -61,10 +64,15 @@ function Page() {
             </div>
             <div className="space-y-6 text-base leading-relaxed text-ink-muted">
               <p>
-                We believe getting a website shouldn't feel like a second job. You shouldn't have to spend your evenings fighting with DIY templates, writing sales text, or chasing unreliable freelancers.
+                We believe getting a website shouldn't feel like a second job. You shouldn't have to
+                spend your evenings fighting with DIY templates, writing sales text, or chasing
+                unreliable freelancers.
               </p>
               <p>
-                Led by <strong>Dr Robbie Harley, MBA</strong> (part of The Harley Group), our team combines disciplined delivery, commercial copywriting, and high-performance design to give trades and local businesses a world-class digital presence that genuinely wins new customers.
+                Led by <strong>Dr Robbie Harley, MBA</strong> (part of The Harley Group), our team
+                combines disciplined delivery, commercial copywriting, and high-performance design
+                to give trades and local businesses a world-class digital presence that genuinely
+                wins new customers.
               </p>
             </div>
           </div>
@@ -76,7 +84,10 @@ function Page() {
           <p className="eyebrow">How We Work</p>
           <div className="mt-10 grid gap-8 sm:grid-cols-2">
             {principles.map(([title, copy]) => (
-              <article key={title} className="rounded-2xl border border-ink/10 bg-white p-7 shadow-sm">
+              <article
+                key={title}
+                className="rounded-2xl border border-ink/10 bg-white p-7 shadow-sm"
+              >
                 <h2 className="text-xl font-semibold text-ink">{title}</h2>
                 <p className="mt-3 text-sm leading-relaxed text-ink-muted">{copy}</p>
               </article>
@@ -92,7 +103,8 @@ function Page() {
               Ready to get your digital presence sorted?
             </h2>
             <p className="mt-4 max-w-xl text-base text-white/70">
-              Get in touch today for a free 15-minute consultation. We’ll show you exactly how we can help your business look world-class.
+              Get in touch today for a free 15-minute consultation. We’ll show you exactly how we
+              can help your business look world-class.
             </p>
             <div className="mt-8">
               <PillButton as="link" to="/contact" variant="light" size="md">

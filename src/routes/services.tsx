@@ -64,10 +64,12 @@ function Page() {
         <Container>
           <p className="eyebrow">Our Services</p>
           <h1 className="mt-6 max-w-5xl text-[clamp(2.8rem,6.5vw,5.5rem)] font-semibold leading-[0.96] tracking-[-0.05em] text-ink">
-            Websites and ongoing care. <span className="block text-primary">Handled so you don’t have to.</span>
+            Websites and ongoing care.{" "}
+            <span className="block text-primary">Handled so you don’t have to.</span>
           </h1>
           <p className="mt-6 max-w-2xl text-lg leading-relaxed text-ink-muted">
-            We give tradespeople and owner-operated businesses a world-class digital presence with zero technical jargon, fixed upfront pricing, and complete ongoing management.
+            We give tradespeople and owner-operated businesses a world-class digital presence with
+            zero technical jargon, fixed upfront pricing, and complete ongoing management.
           </p>
           <div className="mt-8 flex flex-wrap gap-4">
             <PillButton as="link" to="/contact" variant="dark" size="md">
@@ -125,7 +127,8 @@ function Page() {
                 Book a 15-minute call or request a quote today.
               </h2>
               <p className="mt-3 text-base text-white/70">
-                No technical jargon, no pushy sales tactics. Just honest advice and a clear fixed price.
+                No technical jargon, no pushy sales tactics. Just honest advice and a clear fixed
+                price.
               </p>
             </div>
             <PillButton as="link" to="/contact" variant="light" size="md">

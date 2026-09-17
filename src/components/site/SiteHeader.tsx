@@ -95,7 +95,13 @@ export function SiteHeader() {
               </Link>
             ))}
             <div className="mt-2 px-2">
-              <PillButton as="link" to="/contact" variant="dark" size="sm" className="w-full justify-center">
+              <PillButton
+                as="link"
+                to="/contact"
+                variant="dark"
+                size="sm"
+                className="w-full justify-center"
+              >
                 Get a Free Quote
               </PillButton>
             </div>

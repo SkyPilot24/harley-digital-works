@@ -22,7 +22,8 @@ export const Route = createFileRoute("/services_/launch-plan")({
       deliverables={[
         {
           tag: "Full Copywriting",
-          title: "We write all 5 pages of sales copy tailored to your trade and local service area.",
+          title:
+            "We write all 5 pages of sales copy tailored to your trade and local service area.",
           surface: "sage",
         },
         {
@@ -32,7 +33,8 @@ export const Route = createFileRoute("/services_/launch-plan")({
         },
         {
           tag: "Mobile-First Build",
-          title: "Engineered for fast loading on iPhones and Androids with 1-tap calling & WhatsApp.",
+          title:
+            "Engineered for fast loading on iPhones and Androids with 1-tap calling & WhatsApp.",
           surface: "mist",
         },
         {

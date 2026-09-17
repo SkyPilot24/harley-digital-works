@@ -44,9 +44,12 @@ export function FooterDark() {
         <div className="grid gap-12 md:grid-cols-12 md:gap-10">
           <div className="md:col-span-5">
             <p className="max-w-sm text-[16px] leading-relaxed text-background/80">
-              <strong className="text-white">You run your business. We’ll handle your website.</strong>
+              <strong className="text-white">
+                You run your business. We’ll handle your website.
+              </strong>
               <br />
-              100% done-for-you website builds, professional copywriting, and managed monthly care for UK trades and small businesses.
+              100% done-for-you website builds, professional copywriting, and managed monthly care
+              for UK trades and small businesses.
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
               <PillButton as="link" to="/contact" variant="light" size="md">
@@ -85,9 +88,7 @@ export function FooterDark() {
                   {siteConfig.contactEmail}
                 </a>
               </li>
-              <li className="text-xs text-background/40">
-                UK Support (Mon–Fri)
-              </li>
+              <li className="text-xs text-background/40">UK Support (Mon–Fri)</li>
             </ul>
           </div>
         </div>
@@ -98,7 +99,9 @@ export function FooterDark() {
           <p>
             &copy; {YEAR} {siteConfig.name} (Part of The Harley Group). All rights reserved.
           </p>
-          <p className="font-mono uppercase tracking-[0.22em]">Websites · Copywriting · Managed Care</p>
+          <p className="font-mono uppercase tracking-[0.22em]">
+            Websites · Copywriting · Managed Care
+          </p>
         </div>
       </div>
     </footer>

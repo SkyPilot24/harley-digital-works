@@ -32,7 +32,8 @@ export const Route = createFileRoute("/services_/care-plans")({
         },
         {
           tag: "Security Shields",
-          title: "Enterprise SSL certificates, active firewall, and daily automated security scanning.",
+          title:
+            "Enterprise SSL certificates, active firewall, and daily automated security scanning.",
           surface: "mist",
         },
         {
@@ -47,7 +48,8 @@ export const Route = createFileRoute("/services_/care-plans")({
         },
         {
           tag: "Monthly Digest",
-          title: "Plain-English monthly report showing your visitor traffic, uptime, and completed tasks.",
+          title:
+            "Plain-English monthly report showing your visitor traffic, uptime, and completed tasks.",
           surface: "stone",
         },
       ]}
