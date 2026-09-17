@@ -454,6 +454,161 @@ function BrandAssetsPage() {
         </Container>
       </section>
 
+      {/* Founder Photography & Executive Media Kit */}
+      <section className="py-20 md:py-28 bg-slate-900 text-white border-b border-slate-800">
+        <Container>
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+            <div>
+              <div className="inline-flex items-center gap-2 rounded-full border border-amber-400/30 bg-amber-950/60 px-3.5 py-1 text-xs font-semibold text-amber-300 font-mono">
+                <Sparkles className="h-3.5 w-3.5" />
+                <span>Executive Imagery & Press Media</span>
+              </div>
+              <h2 className="mt-3 text-3xl font-bold tracking-tight text-white md:text-4xl">
+                Dr Robbie Harley · Official Media Asset Collection
+              </h2>
+              <p className="mt-2 text-sm text-slate-300 max-w-2xl leading-relaxed">
+                Approved editorial and commercial portraits for press releases, partnership announcements, keynotes, and cross-division digital publications.
+              </p>
+            </div>
+            <a
+              href="/images/robbie/robbie-harley-master-board.jpg"
+              download="Robbie-Harley-Master-Media-Board.jpg"
+              className="inline-flex items-center gap-2 rounded-xl bg-amber-400 hover:bg-amber-300 px-4 py-2.5 text-xs font-bold text-slate-950 transition-colors shadow-md shrink-0"
+            >
+              <Download className="h-4 w-4" />
+              <span>Download Master Contact Sheet</span>
+            </a>
+          </div>
+
+          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {[
+              {
+                num: "01",
+                name: "Headshot",
+                tag: "Strategy. Solutions. Growth.",
+                division: "The Harley Group",
+                src: "/images/robbie/01-thg-headshot.jpg",
+              },
+              {
+                num: "02",
+                name: "Modern Professional",
+                tag: "Websites For Busy Trades.",
+                division: "Harley Digital Works",
+                src: "/images/robbie/02-hdw-modern-professional.jpg",
+              },
+              {
+                num: "03",
+                name: "Cinematic Portrait",
+                tag: "Bigger Thinking. Real Results.",
+                division: "The Harley Group",
+                src: "/images/robbie/03-thg-cinematic-portrait.jpg",
+              },
+              {
+                num: "04",
+                name: "Black & White Editorial",
+                tag: "Ideas today. Solutions tomorrow.",
+                division: "Harley Labs",
+                src: "/images/robbie/04-labs-bw-editorial.jpg",
+              },
+              {
+                num: "05",
+                name: "Creative Leader",
+                tag: "Design. Automation. Freedom.",
+                division: "Harley Digital Works",
+                src: "/images/robbie/05-hdw-creative-leader.jpg",
+              },
+              {
+                num: "06",
+                name: "At Work (Laptop)",
+                tag: "Plan. Build. Support. Scale.",
+                division: "The Harley Group",
+                src: "/images/robbie/06-thg-at-work.jpg",
+              },
+              {
+                num: "07",
+                name: "Relaxed Portrait",
+                tag: "Take Websites Off Your Plate.",
+                division: "Harley Digital Works",
+                src: "/images/robbie/07-hdw-relaxed-portrait.jpg",
+              },
+              {
+                num: "08",
+                name: "Natural Smile",
+                tag: "Good Partnerships. Greater Possibilities.",
+                division: "The Harley Group",
+                src: "/images/robbie/08-thg-natural-smile.jpg",
+              },
+              {
+                num: "09",
+                name: "Thought Leadership",
+                tag: "Curious. Practical. Forward-Thinking.",
+                division: "Harley Labs",
+                src: "/images/robbie/09-labs-thought-leadership.jpg",
+              },
+              {
+                num: "10",
+                name: "Website Hero",
+                tag: "Digital Solutions For Real Businesses.",
+                division: "The Harley Group",
+                src: "/images/robbie/10-thg-website-hero.jpg",
+              },
+              {
+                num: "11",
+                name: "Environment Shot",
+                tag: "More Time For What You Do Best.",
+                division: "Harley Digital Works",
+                src: "/images/robbie/11-hdw-environment-shot.jpg",
+              },
+              {
+                num: "12",
+                name: "Quotation Portrait",
+                tag: "Great websites don't just look good, they give you more time.",
+                division: "The Harley Group & HDW",
+                src: "/images/robbie/12-quotation-portrait.jpg",
+              },
+            ].map((p) => (
+              <div
+                key={p.num}
+                className="group rounded-2xl border border-slate-800 bg-slate-950 p-4 shadow-xl flex flex-col justify-between hover:border-slate-700 transition-all"
+              >
+                <div>
+                  <div className="relative aspect-4/3 rounded-xl overflow-hidden bg-slate-900 border border-slate-800">
+                    <img
+                      src={p.src}
+                      alt={`Dr Robbie Harley - ${p.name}`}
+                      className="h-full w-full object-cover object-center group-hover:scale-105 transition-transform duration-300"
+                    />
+                    <div className="absolute top-2 left-2 rounded-md bg-black/70 backdrop-blur-xs px-2 py-0.5 text-[10px] font-mono font-bold text-amber-300">
+                      {p.num}
+                    </div>
+                  </div>
+
+                  <div className="mt-4">
+                    <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-emerald-400">
+                      {p.division}
+                    </span>
+                    <h4 className="mt-1 text-sm font-bold text-white">{p.name}</h4>
+                    <p className="mt-1 text-xs text-slate-400 italic">&ldquo;{p.tag}&rdquo;</p>
+                  </div>
+                </div>
+
+                <div className="mt-4 pt-3 border-t border-slate-800 flex items-center justify-between">
+                  <span className="text-[10px] font-mono text-slate-500">JPG · High-Res</span>
+                  <a
+                    href={p.src}
+                    download={`Robbie-Harley-${p.num}-${p.name.replace(/\s+/g, "-")}.jpg`}
+                    className="inline-flex items-center gap-1 text-xs font-semibold text-amber-400 hover:text-amber-300"
+                  >
+                    <Download className="h-3.5 w-3.5" />
+                    <span>Download</span>
+                  </a>
+                </div>
+              </div>
+            ))}
+          </div>
+        </Container>
+      </section>
+
       {/* Brand Asset Download CTA */}
       <section className="py-20 bg-slate-950 text-white">
         <Container>

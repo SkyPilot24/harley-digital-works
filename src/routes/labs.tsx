@@ -493,6 +493,60 @@ function HarleyLabsPage() {
         </Container>
       </section>
 
+      {/* R&D Leadership & Systems Architecture */}
+      <section className="py-20 md:py-28 bg-[#0B0E18] text-white border-b border-slate-800">
+        <Container>
+          <div className="grid gap-12 lg:grid-cols-12 items-center">
+            <div className="lg:col-span-5 space-y-4">
+              <div className="relative rounded-3xl border border-indigo-500/30 bg-slate-950 p-3 shadow-2xl overflow-hidden group">
+                <img
+                  src="/images/robbie/04-labs-bw-editorial.jpg"
+                  alt="Dr Robbie Harley - Harley Labs Systems Architecture & AI Direction"
+                  className="w-full h-auto rounded-2xl object-cover"
+                />
+                <div className="absolute bottom-6 left-6 right-6 rounded-2xl bg-slate-950/90 backdrop-blur-md p-4 border border-indigo-500/30">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <h4 className="text-sm font-bold text-white">Dr Robbie Harley, MBA</h4>
+                      <p className="text-[11px] font-mono text-indigo-400">Head of Systems & AI Architecture</p>
+                    </div>
+                    <span className="text-[10px] font-mono font-bold bg-indigo-950 text-indigo-300 border border-indigo-800 px-2.5 py-1 rounded-full">
+                      HARLEY LABS
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="lg:col-span-7 space-y-6">
+              <div className="inline-flex items-center gap-2 rounded-full border border-indigo-500/30 bg-indigo-950/60 px-3 py-1 text-xs font-mono font-medium text-indigo-300">
+                <Cpu className="h-3.5 w-3.5 text-indigo-400" />
+                <span>R&D Philosophy & Systems Direction</span>
+              </div>
+              <h2 className="text-3xl font-bold tracking-tight md:text-4xl text-white">
+                Bridging Deep Research with Practical Commercial Utility.
+              </h2>
+              <p className="text-base text-slate-300 leading-relaxed">
+                Harley Labs was created to engineer real, measurable software leverage. Rather than producing speculative proof-of-concepts, our research vectors solve concrete operating bottlenecks in distributed cloud infrastructure, autonomous agent orchestration, and real-time local search analytics.
+              </p>
+              <div className="rounded-2xl border border-slate-800 bg-slate-900/60 p-6 space-y-3 font-mono text-xs">
+                <div className="text-indigo-400 font-bold flex items-center gap-2">
+                  <Terminal className="h-4 w-4" />
+                  <span>// CORE LABS THESIS:</span>
+                </div>
+                <p className="text-slate-300 leading-relaxed italic">
+                  &ldquo;Autonomous multi-agent swarms and edge compilation are only as good as the commercial value they unlock. We test, build, and deploy software that eliminates operational friction.&rdquo;
+                </p>
+                <div className="pt-2 text-[11px] text-slate-400 flex items-center justify-between border-t border-slate-800">
+                  <span>Stack: Nitro V8 + TanStack + Antigravity Agents</span>
+                  <span className="text-emerald-400 font-bold">100% Production Tested</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </Container>
+      </section>
+
       {/* Labs Collaboration CTA */}
       <section className="py-20 bg-[#0A0D14] text-white">
         <Container>

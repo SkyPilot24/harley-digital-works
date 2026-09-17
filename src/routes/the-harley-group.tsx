@@ -208,14 +208,21 @@ function TheHarleyGroupPage() {
         <Container>
           <div className="grid gap-12 lg:grid-cols-12 items-center">
             <div className="lg:col-span-5">
-              <div className="relative rounded-2xl border border-ink/10 bg-slate-900 p-8 text-white shadow-xl">
-                <div className="flex items-center gap-4">
-                  <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-emerald-500/20 border border-emerald-500/30 text-emerald-400">
-                    <Briefcase className="h-7 w-7" />
+              <div className="relative rounded-3xl border border-slate-800 bg-slate-900 p-8 text-white shadow-2xl overflow-hidden">
+                <div className="flex flex-col sm:flex-row items-start sm:items-center gap-5">
+                  <div className="relative h-24 w-24 sm:h-28 sm:w-28 rounded-2xl overflow-hidden border-2 border-emerald-500/40 shadow-xl shrink-0">
+                    <img
+                      src="/images/robbie/03-thg-cinematic-portrait.jpg"
+                      alt="Dr Robbie Harley, MBA - Founder & Managing Director"
+                      className="h-full w-full object-cover object-center"
+                    />
                   </div>
                   <div>
-                    <h3 className="text-xl font-bold text-white">Dr Robbie Harley</h3>
-                    <p className="text-xs font-mono uppercase tracking-wider text-emerald-400">
+                    <div className="inline-flex items-center gap-1.5 rounded-full bg-emerald-950/80 px-2.5 py-0.5 text-[11px] font-mono font-semibold text-emerald-400 border border-emerald-800/60 mb-1">
+                      <span>THE HARLEY GROUP</span>
+                    </div>
+                    <h3 className="text-2xl font-bold text-white tracking-tight">Dr Robbie Harley</h3>
+                    <p className="text-xs font-mono uppercase tracking-wider text-emerald-400 mt-0.5">
                       MBA · Founder & Managing Director
                     </p>
                   </div>
@@ -232,12 +239,23 @@ function TheHarleyGroupPage() {
                   </p>
                 </div>
 
-                <div className="mt-6 rounded-lg bg-slate-950/70 p-4 border border-slate-800 text-xs text-slate-400">
-                  <p className="font-semibold text-slate-200 mb-1">Group Operating Philosophy:</p>
+                <div className="mt-6 rounded-xl bg-slate-950/80 p-4 border border-slate-800 text-xs text-slate-300">
+                  <p className="font-semibold text-emerald-400 mb-1 font-mono uppercase text-[10px] tracking-wider">Group Operating Philosophy:</p>
                   <p className="italic">
                     &ldquo;We build working software and sustainable digital assets. No jargon, no
                     technical debt, and no excuses.&rdquo;
                   </p>
+                </div>
+
+                <div className="mt-6 grid grid-cols-2 gap-3 pt-4 border-t border-slate-800 text-center text-xs font-mono">
+                  <div className="rounded-lg bg-slate-950/50 p-2.5 border border-slate-800">
+                    <div className="text-emerald-400 font-bold">100% Owner-Led</div>
+                    <div className="text-[10px] text-slate-400 mt-0.5">Direct Accountability</div>
+                  </div>
+                  <div className="rounded-lg bg-slate-950/50 p-2.5 border border-slate-800">
+                    <div className="text-emerald-400 font-bold">UK Native</div>
+                    <div className="text-[10px] text-slate-400 mt-0.5">Manchester Corporate HQ</div>
+                  </div>
                 </div>
               </div>
             </div>

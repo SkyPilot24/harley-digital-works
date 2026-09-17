@@ -79,6 +79,69 @@ function Page() {
         </Container>
       </section>
 
+      {/* Founder & Leadership Spotlight */}
+      <section className="py-20 md:py-28 bg-slate-900 text-white border-b border-slate-800">
+        <Container>
+          <div className="grid gap-12 lg:grid-cols-12 items-center">
+            <div className="lg:col-span-5 space-y-4">
+              <div className="relative rounded-3xl border border-slate-800 bg-slate-950 p-3 shadow-2xl overflow-hidden group">
+                <img
+                  src="/images/robbie/07-hdw-relaxed-portrait.jpg"
+                  alt="Dr Robbie Harley, MBA - Founder"
+                  className="w-full h-auto rounded-2xl object-cover"
+                />
+                <div className="absolute bottom-6 left-6 right-6 rounded-2xl bg-slate-950/90 backdrop-blur-md p-4 border border-slate-800/80">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <h4 className="text-sm font-bold text-white">Dr Robbie Harley, MBA</h4>
+                      <p className="text-[11px] font-mono text-emerald-400">Founder & Managing Director</p>
+                    </div>
+                    <span className="text-[10px] font-mono font-bold bg-emerald-950 text-emerald-300 border border-emerald-800 px-2.5 py-1 rounded-full">
+                      THE HARLEY GROUP
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="rounded-2xl border border-slate-800 bg-slate-950/60 p-5 text-xs text-slate-300 space-y-2">
+                <div className="flex items-center gap-2 text-gold-400 font-mono font-bold">
+                  <span>★ 100% DONE-FOR-YOU COMMITMENT</span>
+                </div>
+                <p className="leading-relaxed">
+                  &ldquo;Great websites don&apos;t just look good, they give you more time. We take the entire digital burden off your plate so you can focus on winning work.&rdquo;
+                </p>
+              </div>
+            </div>
+
+            <div className="lg:col-span-7 space-y-6">
+              <p className="eyebrow text-emerald-400">Leadership & Vision</p>
+              <h2 className="text-3xl font-bold tracking-tight text-white md:text-4xl">
+                Built by Operators, for Real UK Business Owners.
+              </h2>
+              <p className="text-base leading-relaxed text-slate-300">
+                Dr Robbie Harley founded Harley Digital Works with a singular mission: to eliminate the friction, wasted budgets, and confusing tech jargon that prevent UK trades and small businesses from thriving online.
+              </p>
+              <p className="text-base leading-relaxed text-slate-300">
+                With a background combining clinical operational discipline and commercial MBA governance, Robbie leads a dedicated team that delivers complete, turnkey digital infrastructure — from persuasive copywriting and bespoke trade web design to managed Care Plans.
+              </p>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
+                <div className="rounded-2xl border border-slate-800 bg-slate-950 p-5">
+                  <div className="text-xl font-bold text-emerald-400 font-mono">14 Days</div>
+                  <div className="text-sm font-semibold text-white mt-1">Guaranteed Delivery</div>
+                  <div className="text-xs text-slate-400 mt-1">From initial brief to live launch with zero client writing required.</div>
+                </div>
+                <div className="rounded-2xl border border-slate-800 bg-slate-950 p-5">
+                  <div className="text-xl font-bold text-emerald-400 font-mono">100% Direct</div>
+                  <div className="text-sm font-semibold text-white mt-1">Senior Ownership</div>
+                  <div className="text-xs text-slate-400 mt-1">Direct access via WhatsApp without middle-management runarounds.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </Container>
+      </section>
+
       <section className="py-20 md:py-28">
         <Container>
           <p className="eyebrow">How We Work</p>

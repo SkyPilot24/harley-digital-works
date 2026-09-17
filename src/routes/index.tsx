@@ -472,6 +472,47 @@ function HomePage() {
         </Container>
       </section>
 
+      {/* Founder Quotation & Done-For-You Guarantee */}
+      <section className="py-16 md:py-20 bg-slate-950 text-white border-b border-slate-800">
+        <Container>
+          <div className="rounded-3xl border border-slate-800 bg-gradient-to-r from-slate-900 via-slate-950 to-slate-900 p-8 sm:p-12 shadow-2xl">
+            <div className="grid gap-8 lg:grid-cols-12 items-center">
+              <div className="lg:col-span-4 flex justify-center">
+                <div className="relative h-48 w-48 sm:h-56 sm:w-56 rounded-3xl overflow-hidden border-2 border-amber-400/40 shadow-2xl">
+                  <img
+                    src="/images/robbie/02-hdw-modern-professional.jpg"
+                    alt="Dr Robbie Harley - Founder, Harley Digital Works"
+                    className="h-full w-full object-cover object-center"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-3">
+                    <span className="text-[10px] font-mono font-bold text-amber-300 bg-black/60 px-2 py-0.5 rounded backdrop-blur-xs">
+                      DR ROBBIE HARLEY, MBA
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="lg:col-span-8 space-y-4">
+                <div className="inline-flex items-center gap-2 rounded-full border border-amber-400/30 bg-amber-950/50 px-3 py-1 text-xs font-semibold text-amber-300">
+                  <ShieldCheck className="h-3.5 w-3.5 text-amber-400" />
+                  <span>The Harley Digital Works Founder Promise</span>
+                </div>
+                <blockquote className="text-xl sm:text-2xl font-medium tracking-tight text-white leading-snug">
+                  &ldquo;Great websites don&apos;t just look good, they give you more time. We write 100% of the sales copy and configure your Gas Safe or NICEIC trust badges so you never have to do homework in the evening.&rdquo;
+                </blockquote>
+                <div className="pt-2 flex flex-wrap items-center gap-4 text-xs font-mono text-slate-400">
+                  <span className="text-white font-bold">Robbie Harley</span>
+                  <span>•</span>
+                  <span>Managing Director, The Harley Group</span>
+                  <span>•</span>
+                  <span className="text-emerald-400">Direct WhatsApp Onboarding</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </Container>
+      </section>
+
       {/* Interactive ROI Calculator Embed */}
       <TradeRoiCalculator />
 
