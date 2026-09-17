@@ -22,6 +22,7 @@ import {
   Zap,
   Globe,
   MessageSquare,
+  Send,
 } from "lucide-react";
 import { PageHeader, StatusBadge } from "./admin.index";
 import { LeadProposalModal } from "@/components/admin/LeadProposalModal";
@@ -29,6 +30,7 @@ import { LeadProspectorAuditDesk } from "@/components/admin/LeadProspectorAuditD
 import { ContentFlowEngine } from "@/components/admin/ContentFlowEngine";
 import { LocalSeoFactoryDesk } from "@/components/admin/LocalSeoFactoryDesk";
 import { WhatsAppIntakeDesk } from "@/components/admin/WhatsAppIntakeDesk";
+import { OutreachSequenceEngine } from "@/components/admin/OutreachSequenceEngine";
 
 type LeadRow = Database["public"]["Tables"]["leads"]["Row"];
 type LeadStatus = Database["public"]["Enums"]["lead_status"];
@@ -39,7 +41,7 @@ export const Route = createFileRoute("/_authenticated/admin/leads")({
 
 function LeadsPage() {
   const qc = useQueryClient();
-  const [moduleMode, setModuleMode] = useState<"crm" | "prospector" | "contentflow" | "seofactory" | "whatsapp">("crm");
+  const [moduleMode, setModuleMode] = useState<"crm" | "prospector" | "contentflow" | "seofactory" | "whatsapp" | "outreach">("crm");
   const [activeTab, setActiveTab] = useState<string>("all");
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedLead, setSelectedLead] = useState<LeadRow | null>(null);
@@ -191,7 +193,9 @@ function LeadsPage() {
                 ? "ContentFlow AI Trade Copy Engine"
                 : moduleMode === "seofactory"
                   ? "Multi-City Local SEO Factory"
-                  : "AI WhatsApp & SMS Inbound Intake Desk"
+                  : moduleMode === "whatsapp"
+                    ? "AI WhatsApp & SMS Inbound Intake Desk"
+                    : "Automated Multi-Channel Outreach Sequence Engine"
         }
         subtitle={
           moduleMode === "crm"
@@ -202,7 +206,9 @@ function LeadsPage() {
                 ? "Factory-grade 5-page conversion copywriting generator engineered for UK trade & contractor verticals."
                 : moduleMode === "seofactory"
                   ? "Multi-borough JSON-LD schema builder and high-intent local search clustering across UK counties."
-                  : "Live WhatsApp Business automation, instant staging demo dispatch, and contractor intake conversations."
+                  : moduleMode === "whatsapp"
+                    ? "Live WhatsApp Business automation, instant staging demo dispatch, and contractor intake conversations."
+                    : "Generate bespoke 3-step Cold Email, WhatsApp & SMS conversion sequences with live staging demos and local search gap audits."
         }
         action={
           moduleMode === "crm" ? (
@@ -235,6 +241,21 @@ function LeadsPage() {
             moduleMode === "crm" ? "bg-white/20 text-white" : "bg-ink/10 text-ink"
           }`}>
             {totalLeads}
+          </span>
+        </button>
+
+        <button
+          onClick={() => setModuleMode("outreach")}
+          className={`inline-flex items-center gap-2 rounded-xl px-4 py-2 text-xs font-semibold transition-all ${
+            moduleMode === "outreach"
+              ? "bg-ink text-white shadow-sm"
+              : "border border-ink/10 bg-white text-ink/70 hover:bg-ink/[0.04]"
+          }`}
+        >
+          <Send size={15} className={moduleMode === "outreach" ? "text-purple-300" : "text-purple-600"} />
+          <span>Outreach Sequence OS</span>
+          <span className="ml-1 rounded bg-purple-500/20 px-1.5 py-0.5 text-[10px] font-bold text-purple-600 dark:text-purple-400">
+            3-STEP ENGINE
           </span>
         </button>
 
@@ -298,6 +319,12 @@ function LeadsPage() {
           </span>
         </button>
       </div>
+
+      {moduleMode === "outreach" && (
+        <div className="mt-6">
+          <OutreachSequenceEngine />
+        </div>
+      )}
 
       {moduleMode === "whatsapp" && (
         <div className="mt-6">

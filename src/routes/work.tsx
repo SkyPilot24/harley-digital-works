@@ -1,7 +1,19 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useState } from "react";
 import { PageShell, Container } from "@/components/site/PageShell";
 import { PillButton } from "@/components/site/PillButton";
-import { ArrowRight, CheckCircle2, Star, TrendingUp, ShieldCheck } from "lucide-react";
+import {
+  ArrowRight,
+  CheckCircle2,
+  Star,
+  TrendingUp,
+  ShieldCheck,
+  Zap,
+  ExternalLink,
+  Sparkles,
+  Award,
+} from "lucide-react";
+import { CASE_STUDY_PRESETS, type TradeCaseStudy } from "@/components/admin/CaseStudyFactoryDesk";
 
 export const Route = createFileRoute("/work")({
   head: () => ({
@@ -95,6 +107,99 @@ function Page() {
               We help UK tradespeople and service businesses turn their online presence into their
               hardest-working sales asset. Here is how we do it.
             </p>
+          </div>
+        </Container>
+      </section>
+
+      {/* Verified Telemetry & ROI Case Studies */}
+      <section className="py-20 md:py-28 bg-slate-900 text-white border-b border-slate-800">
+        <Container>
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+            <div>
+              <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-950/60 px-3.5 py-1 text-xs font-semibold text-emerald-300 font-mono">
+                <Sparkles className="h-3.5 w-3.5 text-emerald-400" />
+                <span>Verified Client Telemetry</span>
+              </div>
+              <h2 className="mt-3 text-3xl font-bold tracking-tight text-white md:text-4xl">
+                Real UK Contractor Case Studies & Revenue Lift
+              </h2>
+              <p className="mt-2 text-sm text-slate-300 max-w-2xl leading-relaxed">
+                Audited performance benchmarks and monthly quote pipeline data from live UK trade clients powered by Harley Digital Works.
+              </p>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="rounded-xl border border-emerald-500/40 bg-emerald-950/80 px-3.5 py-2 text-xs font-mono text-emerald-300 font-bold">
+                100% DONE-FOR-YOU DELIVERY
+              </span>
+            </div>
+          </div>
+
+          <div className="mt-12 grid gap-8 md:grid-cols-3">
+            {CASE_STUDY_PRESETS.map((study) => (
+              <div
+                key={study.id}
+                className="rounded-3xl border border-slate-800 bg-slate-950 p-6 flex flex-col justify-between shadow-xl hover:border-slate-700 transition-colors"
+              >
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between text-xs">
+                    <span className="font-mono text-emerald-400 font-bold uppercase text-[10px] bg-emerald-950/80 border border-emerald-800/60 px-2 py-0.5 rounded">
+                      {study.tradeLabel.split("&")[0]}
+                    </span>
+                    <span className="text-slate-400 text-[11px]">{study.city.split(",")[0]}</span>
+                  </div>
+
+                  <h3 className="text-lg font-bold text-white leading-snug">{study.clientName}</h3>
+                  <p className="text-xs text-slate-300 leading-relaxed italic">&ldquo;{study.tagline}&rdquo;</p>
+
+                  {/* Before vs After Telemetry Stats */}
+                  <div className="rounded-2xl border border-slate-800 bg-slate-900/70 p-4 space-y-3">
+                    <div className="flex justify-between items-center text-xs">
+                      <span className="text-slate-400 font-mono text-[11px]">Load Speed:</span>
+                      <div className="flex items-center gap-2 font-mono">
+                        <span className="text-rose-400 line-through text-[11px]">{study.beforeStats.loadTime}</span>
+                        <span className="text-emerald-400 font-bold">{study.afterStats.loadTime}</span>
+                      </div>
+                    </div>
+
+                    <div className="flex justify-between items-center text-xs">
+                      <span className="text-slate-400 font-mono text-[11px]">Monthly Quotes:</span>
+                      <div className="flex items-center gap-2 font-mono">
+                        <span className="text-rose-400 line-through text-[11px]">{study.beforeStats.monthlyQuotes}</span>
+                        <span className="text-emerald-400 font-bold">{study.afterStats.monthlyQuotes}</span>
+                      </div>
+                    </div>
+
+                    <div className="flex justify-between items-center text-xs">
+                      <span className="text-slate-400 font-mono text-[11px]">Google Map Pack:</span>
+                      <span className="text-emerald-400 font-mono font-bold">{study.afterStats.mapPackRank}</span>
+                    </div>
+                  </div>
+
+                  {/* Client Quote */}
+                  <div className="rounded-xl bg-slate-900/40 p-3 border border-slate-800/80 text-[11px] text-slate-300 italic">
+                    &ldquo;{study.clientQuote.quote}&rdquo;
+                    <div className="mt-1.5 not-italic text-[10px] font-mono text-emerald-400">
+                      — {study.clientQuote.author}, {study.clientQuote.role}
+                    </div>
+                  </div>
+                </div>
+
+                <div className="mt-6 pt-4 border-t border-slate-800 flex items-center justify-between text-xs">
+                  <span className="text-[11px] font-mono text-slate-400">{study.packageTier.split("(")[0]}</span>
+                  {study.liveUrl && (
+                    <a
+                      href={study.liveUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-flex items-center gap-1 font-bold text-amber-400 hover:text-amber-300"
+                    >
+                      <span>Live Staging Demo</span>
+                      <ExternalLink className="h-3 w-3" />
+                    </a>
+                  )}
+                </div>
+              </div>
+            ))}
           </div>
         </Container>
       </section>

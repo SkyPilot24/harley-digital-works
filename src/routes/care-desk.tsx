@@ -1,4 +1,4 @@
-﻿import { useState } from "react";
+import { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { PageShell, Container } from "@/components/site/PageShell";
 import { TagChip } from "@/components/site/TagChip";
@@ -15,21 +15,23 @@ import {
   Upload,
   CheckCircle2,
   FileCheck,
+  CreditCard,
   PhoneCall
 } from "lucide-react";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
+import { CareBillingPortalDesk } from "@/components/portal/CareBillingPortalDesk";
 
 export const Route = createFileRoute("/care-desk")({
   head: () => ({
     meta: [
-      { title: "Client Care Plan Update Desk | Harley Digital Works" },
+      { title: "Client Care Plan Desk & Direct Debit Portal | Harley Digital Works" },
       {
         name: "description",
         content:
-          "Fast-track 1-tap website change requests for Harley Digital Works Care Plan clients. 24-hour turnaround guaranteed on photos, prices, text, and emergency banners.",
+          "Fast-track 1-tap website change requests, BACS Direct Debit management, VAT receipts, and 24-hour turnaround support for Harley Digital Works Care Plan clients.",
       },
-      { property: "og:title", content: "Care Plan Update Desk | Harley Digital Works" },
+      { property: "og:title", content: "Care Plan Desk & Direct Debit Portal | Harley Digital Works" },
     ],
   }),
   component: CareDeskPage,
@@ -44,6 +46,7 @@ const REQUEST_TYPES = [
 ];
 
 function CareDeskPage() {
+  const [activeTab, setActiveTab] = useState<"tickets" | "billing">("tickets");
   const [businessName, setBusinessName] = useState("");
   const [contactName, setContactName] = useState("");
   const [contactPhone, setContactPhone] = useState("");
@@ -98,32 +101,50 @@ Files Attached: ${uploadedFiles.join(", ") || "None"}`;
               <span className="text-xs text-neutral-400">24-Hour SLA Guaranteed</span>
             </div>
             <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-white leading-tight">
-              1-Tap Client Website <br />
-              <span className="text-gold-400">Update & Support Desk.</span>
+              1-Tap Client Care & <br />
+              <span className="text-gold-400">Direct Debit Portal.</span>
             </h1>
             <p className="mt-3 text-sm sm:text-base text-neutral-300 leading-relaxed max-w-xl mx-auto">
-              Need new project photos added, prices updated, or an emergency banner turned on? Submit below or send a quick WhatsApp to our UK desk.
+              Need website updates deployed or want to manage your recurring £95/mo or £195/mo Care Plan, VAT invoices, and BACS Direct Debit? Everything is self-service below.
             </p>
 
-            <div className="mt-6 flex flex-wrap items-center justify-center gap-4 text-xs text-neutral-400">
-              <div className="flex items-center gap-1.5">
-                <Clock className="h-4 w-4 text-emerald-400" />
-                <span>24-Hour Business Day Turnaround</span>
-              </div>
-              <span>•</span>
-              <div className="flex items-center gap-1.5">
-                <ShieldCheck className="h-4 w-4 text-emerald-400" />
-                <span>Included in £95/mo & £195/mo Plans</span>
-              </div>
+            {/* Tab Buttons */}
+            <div className="mt-8 inline-flex p-1.5 rounded-full bg-neutral-900 border border-neutral-800 gap-2">
+              <button
+                type="button"
+                onClick={() => setActiveTab("tickets")}
+                className={`inline-flex items-center gap-2 rounded-full px-5 py-2 text-xs font-bold transition-all cursor-pointer ${
+                  activeTab === "tickets"
+                    ? "bg-gold-500 text-neutral-950 shadow-md"
+                    : "text-neutral-400 hover:text-white"
+                }`}
+              >
+                <Sparkles className="h-3.5 w-3.5" />
+                <span>1-Tap Change Requests</span>
+              </button>
+              <button
+                type="button"
+                onClick={() => setActiveTab("billing")}
+                className={`inline-flex items-center gap-2 rounded-full px-5 py-2 text-xs font-bold transition-all cursor-pointer ${
+                  activeTab === "billing"
+                    ? "bg-gold-500 text-neutral-950 shadow-md"
+                    : "text-neutral-400 hover:text-white"
+                }`}
+              >
+                <CreditCard className="h-3.5 w-3.5" />
+                <span>Subscription, Direct Debit & VAT</span>
+              </button>
             </div>
           </div>
         </Container>
       </section>
 
-      {/* Main Support Form Section */}
+      {/* Main Content Section */}
       <section className="py-12 md:py-20 bg-neutral-950 text-white">
         <Container>
-          {isSubmitted ? (
+          {activeTab === "billing" ? (
+            <CareBillingPortalDesk defaultCompany={businessName || "Cheshire Heat & Power Ltd"} />
+          ) : isSubmitted ? (
             <div className="max-w-lg mx-auto rounded-3xl border border-emerald-500/30 bg-neutral-900 p-8 text-center shadow-2xl">
               <div className="inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-emerald-500/20 text-emerald-400 mb-6">
                 <CheckCircle2 className="h-8 w-8" />

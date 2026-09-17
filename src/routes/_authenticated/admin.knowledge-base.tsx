@@ -647,6 +647,124 @@ export const KNOWLEDGE_ARTICLES: KnowledgeArticle[] = [
       },
     ],
   },
+  {
+    id: "outreach-sequence-engine-sop",
+    category: "sales",
+    title: "SOP 23: Multi-Channel Cold Email, WhatsApp & SMS Outreach Execution (/admin/leads)",
+    summary:
+      "Operational standard for configuring, customizing, and dispatching high-converting 3-touch trade outreach campaigns across Cold Email, WhatsApp Direct, and SMS.",
+    badge: "Outreach OS",
+    readTime: "3 min read",
+    quickAction: { label: "Open Outreach OS", to: "/admin/leads" },
+    steps: [
+      {
+        title: "1. Select Contractor Lead & Channel Matrix",
+        description:
+          "Open /admin/leads and toggle the 'Outreach OS' mode. Select your target lead or populate dynamic tokens (Trade, First Name, Company, City Hub, Loss Metric).",
+        tips: [
+          "Select the exact sequence archetype: 'The 3-Second Speed Teardown', 'Google Map Pack Missed Calls', or 'Emergency Out-of-Hours Dominance'.",
+          "Review the preview on mobile view before triggering the first touch.",
+        ],
+      },
+      {
+        title: "2. Dispatch Step 1 Initial Icebreaker",
+        description:
+          "Use 1-click 'Send via WhatsApp Web' or 'Send via Default Mail' to dispatch the highly personalized audit findings directly to the company director.",
+      },
+      {
+        title: "3. Follow-Up Touchpoints & CSV Sequence Export",
+        description:
+          "Step 2 (Day +2 Value Hook) and Step 3 (Day +4 Breakup Note) keep reply rates above 28%. Export all contacts to CSV for automated bulk campaign loaders (Instantly / Lemlist / Smartlead).",
+      },
+    ],
+    faq: [
+      {
+        q: "What is the recommended delay between cold email and WhatsApp outreach?",
+        a: "Send the email audit on Day 1, followed by a polite 30-second WhatsApp confirmation ping on Day 2 if no reply is received.",
+      },
+    ],
+  },
+  {
+    id: "case-study-roi-generator-sop",
+    category: "tools",
+    title: "SOP 24: Generating Dynamic Trade ROI & Speed Telemetry Case Studies (/work)",
+    summary:
+      "Standard operating workflow for generating empirical before/after Lighthouse speed metrics, quote pipeline growth stats, and trade case studies to close hesitant prospects.",
+    badge: "Social Proof Engine",
+    readTime: "3 min read",
+    quickAction: { label: "View Case Studies", to: "/work" },
+    steps: [
+      {
+        title: "1. Audit Existing Client Benchmark Metrics",
+        description:
+          "Record the client's pre-Harley page speed index (usually 3.8s–6.2s on legacy WordPress/Wix) and quote inquiry capture rate.",
+      },
+      {
+        title: "2. Input Post-Launch Edge Telemetry",
+        description:
+          "Measure the deployed Cloudflare V8 isolate speed (typically 0.45s–0.8s) and calculate monthly quote volume uplift (average 3.2x–4.1x).",
+      },
+      {
+        title: "3. Share Turnkey Visual Case Study with Prospects",
+        description:
+          "Send the prospect to /work with the matching trade filter (Heating, Electrical, Solar, Roofing, Air Conditioning) to demonstrate undeniable proof of return on investment.",
+      },
+    ],
+  },
+  {
+    id: "domain-os-dns-provisioning-sop",
+    category: "tech",
+    title: "SOP 25: 1-Click Registrar DNS Provisioning & SSL Zero-Downtime Migration (/admin/domain-os)",
+    summary:
+      "Automated procedure for provisioning root A records, www CNAME aliases, and TXT ownership tokens across UK registrars (123 Reg, GoDaddy, Cloudflare, IONOS, Namecheap).",
+    badge: "Domain OS",
+    readTime: "3 min read",
+    quickAction: { label: "Open Domain OS", to: "/admin/domain-os" },
+    steps: [
+      {
+        title: "1. Select Client Registrar & Enter Domain Name",
+        description:
+          "Open /admin/domain-os. Enter the client's primary domain (e.g. cheshireheat.co.uk) and select their registrar from the dropdown.",
+      },
+      {
+        title: "2. Copy Pre-Formatted A, CNAME & TXT Records",
+        description:
+          "Click 'Copy Value' on the root A record (76.76.21.21) and www CNAME (cname.harleydigitalworks.com). Use 'Copy Full DNS Config' for instant bulk pasting.",
+      },
+      {
+        title: "3. Run Automated DNS Propagation Health Check",
+        description:
+          "Click 'Verify Live DNS Propagation'. The engine queries global edge resolvers to confirm active routing and greenlights instant SSL issuance.",
+      },
+    ],
+  },
+  {
+    id: "care-billing-direct-debit-sop",
+    category: "care",
+    title: "SOP 26: Client Care Plan Management, BACS Direct Debit & HMRC VAT Invoicing (/care-desk)",
+    summary:
+      "Self-service protocol for managing client recurring subscriptions (£95/mo Essentials, £195/mo Growth), BACS direct debit mandates, add-on modules, and HMRC-compliant VAT receipts.",
+    badge: "Care Desk Billing",
+    readTime: "3 min read",
+    quickAction: { label: "Open Care Desk", to: "/care-desk" },
+    steps: [
+      {
+        title: "1. Access Care Desk Self-Service Portal",
+        description:
+          "Navigate to /care-desk and click the 'Subscription, Direct Debit & VAT' tab.",
+      },
+      {
+        title: "2. Toggle Plan Tiers & High-ROI Monthly Add-Ons",
+        description:
+          "Clients can upgrade between £95/mo Essentials and £195/mo Growth Care, or toggle the Google Map Pack Booster (£95/mo) and Review Engine (£49/mo) with 1 click.",
+      },
+      {
+        title: "3. Download HMRC MTD Compliant Invoices & Update BACS Mandates",
+        description:
+          "Instantly download itemized PDF VAT receipts with registered UK VAT number GB 439 2019 44, or dispatch a 1-click BACS mandate update link.",
+      },
+    ],
+  },
 ];
 
 const CATEGORIES: { id: GuideCategory; label: string; icon: typeof BookOpen }[] = [

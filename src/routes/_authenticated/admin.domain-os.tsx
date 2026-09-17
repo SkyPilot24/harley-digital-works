@@ -1,4 +1,4 @@
-﻿import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import {
   domainBundles,
   formatGbp,
@@ -6,6 +6,7 @@ import {
   rankedDomains,
 } from "@/lib/domain-portfolio";
 import { PageHeader } from "./admin.index";
+import { DnsAutoProvisionerDesk } from "@/components/admin/DnsAutoProvisionerDesk";
 
 export const Route = createFileRoute("/_authenticated/admin/domain-os")({
   component: DomainOsPage,
@@ -26,8 +27,8 @@ function DomainOsPage() {
   return (
     <div>
       <PageHeader
-        title="Domain OS"
-        subtitle="A simple sales dashboard for owned domains: valuation, guide price, buyer, use case, next outreach step, and caution notes."
+        title="Domain OS & DNS Auto-Provisioner"
+        subtitle="Automated registrar-specific DNS provisioning, SSL verification token generation, portfolio valuation, guide pricing, and buyer outreach workflows."
       />
 
       <section className="mt-8 grid gap-4 sm:grid-cols-3">
@@ -42,6 +43,11 @@ function DomainOsPage() {
           value={lowPriority.length}
           note="Passive listing or renewal review"
         />
+      </section>
+
+      {/* 1-Click DNS Auto-Provisioning & Edge SSL Assistant */}
+      <section className="mt-8">
+        <DnsAutoProvisionerDesk defaultDomain="cheshireheat.co.uk" />
       </section>
 
       <section className="mt-8 rounded-2xl border border-ink/10 bg-white p-6">
