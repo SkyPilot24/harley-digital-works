@@ -1,5 +1,16 @@
 import { useState, useMemo } from "react";
-import { X, Printer, Copy, Check, FileText, Send, Sparkles, ShieldCheck, Mail, Loader2 } from "lucide-react";
+import {
+  X,
+  Printer,
+  Copy,
+  Check,
+  FileText,
+  Send,
+  Sparkles,
+  ShieldCheck,
+  Mail,
+  Loader2,
+} from "lucide-react";
 import { useServerFn } from "@tanstack/react-start";
 import { toast } from "sonner";
 import { dispatchTransactionalEmail } from "@/lib/email-dispatch.functions";
@@ -106,8 +117,8 @@ Would you like us to provision your build slot for this month?`;
         },
       });
 
-      if (res.delivered) {
-        toast.success(`Proposal email sent directly to ${lead.email}`);
+      if (res.accepted) {
+        toast.success(res.message);
       } else {
         toast.info("Opening email client draft with pre-formatted proposal...");
         window.location.href = res.mailtoUrl;
@@ -271,7 +282,8 @@ Would you like us to provision your build slot for this month?`;
             <div className="flex items-center gap-2 text-xs text-gold-400 bg-gold-500/10 border border-gold-500/20 p-2.5 rounded-xl">
               <ShieldCheck className="h-4 w-4 shrink-0" />
               <span>
-                Includes <strong>£{carePlanRate}/mo Managed Care</strong> (UK hosting, daily backups, 30 min updates/mo, rolling 30-day term).
+                Includes <strong>£{carePlanRate}/mo Managed Care</strong> (UK hosting, daily
+                backups, 30 min updates/mo, rolling 30-day term).
               </span>
             </div>
           )}

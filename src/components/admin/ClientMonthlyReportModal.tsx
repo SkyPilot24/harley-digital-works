@@ -1,5 +1,19 @@
 ﻿import { useState, useMemo } from "react";
-import { X, Printer, Copy, Check, TrendingUp, ShieldCheck, Phone, MessageSquare, Calculator, Send, Mail, Loader2, Sparkles } from "lucide-react";
+import {
+  X,
+  Printer,
+  Copy,
+  Check,
+  TrendingUp,
+  ShieldCheck,
+  Phone,
+  MessageSquare,
+  Calculator,
+  Send,
+  Mail,
+  Loader2,
+  Sparkles,
+} from "lucide-react";
 import { toast } from "sonner";
 import { useServerFn } from "@tanstack/react-start";
 import { dispatchTransactionalEmail } from "@/lib/email-dispatch.functions";
@@ -18,7 +32,10 @@ export function ClientMonthlyReportModal({ client, onClose }: ClientMonthlyRepor
   const [isSendingEmail, setIsSendingEmail] = useState(false);
 
   // Month selector
-  const currentMonthName = new Date().toLocaleDateString("en-GB", { month: "long", year: "numeric" });
+  const currentMonthName = new Date().toLocaleDateString("en-GB", {
+    month: "long",
+    year: "numeric",
+  });
   const reportRef = `HDW-REP-${new Date().getFullYear()}-${client.id.substring(0, 4).toUpperCase()}`;
 
   // Calculated metrics
@@ -89,8 +106,8 @@ Harley Digital Works (The Harley Group)`;
         },
       });
 
-      if (res.delivered) {
-        toast.success(`Monthly performance report sent to ${targetEmail}`);
+      if (res.accepted) {
+        toast.success(res.message);
       } else {
         toast.info("Opening email client draft with performance report...");
         window.location.href = res.mailtoUrl;
@@ -116,7 +133,8 @@ Harley Digital Works (The Harley Group)`;
               {client.name} — {metrics.month}
             </h2>
             <p className="text-xs text-neutral-400 mt-0.5">
-              Ref: <span className="font-mono text-gold-300">{reportRef}</span> • Tier: {metrics.carePlanTier}
+              Ref: <span className="font-mono text-gold-300">{reportRef}</span> • Tier:{" "}
+              {metrics.carePlanTier}
             </p>
           </div>
           <button
@@ -132,8 +150,12 @@ Harley Digital Works (The Harley Group)`;
           {/* Top Brand Header */}
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-neutral-200 pb-5 mb-5">
             <div>
-              <div className="text-xl font-extrabold tracking-tight text-neutral-950">HARLEY DIGITAL WORKS</div>
-              <div className="text-xs text-neutral-500 font-mono">Monthly Client Care & Performance Report</div>
+              <div className="text-xl font-extrabold tracking-tight text-neutral-950">
+                HARLEY DIGITAL WORKS
+              </div>
+              <div className="text-xs text-neutral-500 font-mono">
+                Monthly Client Care & Performance Report
+              </div>
             </div>
             <div className="sm:text-right">
               <div className="text-base font-bold text-neutral-950">{client.name}</div>
@@ -148,7 +170,9 @@ Harley Digital Works (The Harley Group)`;
                 <Phone className="h-3 w-3 text-blue-600" />
                 <span>Phone Taps</span>
               </div>
-              <div className="text-2xl font-extrabold text-neutral-950 mt-1">{metrics.phoneClicks}</div>
+              <div className="text-2xl font-extrabold text-neutral-950 mt-1">
+                {metrics.phoneClicks}
+              </div>
               <div className="text-[10px] text-emerald-600 font-semibold">+18% vs last mo</div>
             </div>
 
@@ -157,7 +181,9 @@ Harley Digital Works (The Harley Group)`;
                 <MessageSquare className="h-3 w-3 text-emerald-600" />
                 <span>WhatsApp Chats</span>
               </div>
-              <div className="text-2xl font-extrabold text-neutral-950 mt-1">{metrics.whatsappChats}</div>
+              <div className="text-2xl font-extrabold text-neutral-950 mt-1">
+                {metrics.whatsappChats}
+              </div>
               <div className="text-[10px] text-emerald-600 font-semibold">Direct Enquiries</div>
             </div>
 
@@ -166,7 +192,9 @@ Harley Digital Works (The Harley Group)`;
                 <Calculator className="h-3 w-3 text-amber-600" />
                 <span>Estimator Uses</span>
               </div>
-              <div className="text-2xl font-extrabold text-neutral-950 mt-1">{metrics.calculatorRuns}</div>
+              <div className="text-2xl font-extrabold text-neutral-950 mt-1">
+                {metrics.calculatorRuns}
+              </div>
               <div className="text-[10px] text-neutral-500">Cost Calculator</div>
             </div>
 
@@ -175,7 +203,9 @@ Harley Digital Works (The Harley Group)`;
                 <TrendingUp className="h-3 w-3 text-purple-600" />
                 <span>Est. Pipeline</span>
               </div>
-              <div className="text-xl font-extrabold text-emerald-700 mt-1">{metrics.estimatedPipeline}</div>
+              <div className="text-xl font-extrabold text-emerald-700 mt-1">
+                {metrics.estimatedPipeline}
+              </div>
               <div className="text-[10px] text-emerald-600 font-semibold">Job Opportunities</div>
             </div>
           </div>
@@ -204,7 +234,9 @@ Harley Digital Works (The Harley Group)`;
 
           {/* Note from Web Team */}
           <div className="text-xs text-neutral-600 bg-amber-50/50 border border-amber-200 p-3 rounded-lg leading-relaxed">
-            <strong>Producer Summary:</strong> Your website is performing strongly on Google Local search for your core towns. All security patches, SSL renewals, and cloud speed caches are up to date.
+            <strong>Producer Summary:</strong> Your website is performing strongly on Google Local
+            search for your core towns. All security patches, SSL renewals, and cloud speed caches
+            are up to date.
           </div>
         </div>
 

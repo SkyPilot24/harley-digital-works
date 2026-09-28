@@ -1,5 +1,18 @@
 import { useState } from "react";
-import { Send, Copy, Check, ExternalLink, Sparkles, UserPlus, Phone, MapPin, Zap, Building, Mail, Loader2 } from "lucide-react";
+import {
+  Send,
+  Copy,
+  Check,
+  ExternalLink,
+  Sparkles,
+  UserPlus,
+  Phone,
+  MapPin,
+  Zap,
+  Building,
+  Mail,
+  Loader2,
+} from "lucide-react";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 import { useQueryClient } from "@tanstack/react-query";
@@ -177,8 +190,8 @@ Lead Web Producer | Harley Digital Works
         },
       });
 
-      if (res.delivered) {
-        toast.success(`Outreach pitch sent to ${p.email}!`);
+      if (res.accepted) {
+        toast.success(res.message);
       } else {
         toast.info("Opening email client draft with trade demo pitch...");
         window.location.href = res.mailtoUrl;
@@ -222,7 +235,8 @@ Lead Web Producer | Harley Digital Works
           </div>
           <h2 className="text-xl font-bold text-ink">Trade Outbound Pitch & Campaign Hub</h2>
           <p className="text-xs text-ink-muted mt-0.5">
-            1-click customized WhatsApp pitches, cold email templates, and CRM integration for UK trades.
+            1-click customized WhatsApp pitches, cold email templates, and CRM integration for UK
+            trades.
           </p>
         </div>
 
@@ -273,24 +287,36 @@ Lead Web Producer | Harley Digital Works
       <div className="rounded-xl border border-ink/10 bg-ink/[0.02] p-4 mb-6">
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 text-xs">
           <div>
-            <span className="text-[10px] uppercase font-semibold text-ink-muted">Director / Contact</span>
+            <span className="text-[10px] uppercase font-semibold text-ink-muted">
+              Director / Contact
+            </span>
             <div className="font-bold text-ink mt-0.5">{selectedProspect.contact}</div>
             <div className="text-ink-muted text-[11px]">{selectedProspect.email}</div>
           </div>
           <div>
-            <span className="text-[10px] uppercase font-semibold text-ink-muted">Trade Specialism</span>
+            <span className="text-[10px] uppercase font-semibold text-ink-muted">
+              Trade Specialism
+            </span>
             <div className="font-bold text-ink mt-0.5">{selectedProspect.tradeTitle}</div>
             <div className="text-primary text-[11px] font-medium">{selectedProspect.keyCert}</div>
           </div>
           <div>
-            <span className="text-[10px] uppercase font-semibold text-ink-muted">Operating Radius</span>
+            <span className="text-[10px] uppercase font-semibold text-ink-muted">
+              Operating Radius
+            </span>
             <div className="font-bold text-ink mt-0.5">{selectedProspect.city}</div>
             <div className="text-ink-muted text-[11px]">{selectedProspect.region}</div>
           </div>
           <div>
-            <span className="text-[10px] uppercase font-semibold text-ink-muted">Recommended Offer</span>
-            <div className="font-bold text-emerald-800 mt-0.5">{selectedProspect.recommendedPackage}</div>
-            <div className="text-ink-muted text-[11px]">Avg Win: {selectedProspect.estimatedJobValue}</div>
+            <span className="text-[10px] uppercase font-semibold text-ink-muted">
+              Recommended Offer
+            </span>
+            <div className="font-bold text-emerald-800 mt-0.5">
+              {selectedProspect.recommendedPackage}
+            </div>
+            <div className="text-ink-muted text-[11px]">
+              Avg Win: {selectedProspect.estimatedJobValue}
+            </div>
           </div>
         </div>
       </div>
@@ -365,7 +391,11 @@ Lead Web Producer | Harley Digital Works
                 disabled={isSendingEmail}
                 className="font-semibold text-xs text-blue-600 hover:text-blue-700 bg-blue-50 hover:bg-blue-100 px-2.5 py-1 rounded-lg inline-flex items-center gap-1.5 transition-colors disabled:opacity-50"
               >
-                {isSendingEmail ? <Loader2 size={12} className="animate-spin" /> : <Mail size={12} />}
+                {isSendingEmail ? (
+                  <Loader2 size={12} className="animate-spin" />
+                ) : (
+                  <Mail size={12} />
+                )}
                 <span>{isSendingEmail ? "Sending…" : "Send Pitch Email"}</span>
               </button>
               <a

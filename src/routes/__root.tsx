@@ -6,6 +6,7 @@ import {
   useRouter,
   HeadContent,
   Scripts,
+  redirect,
 } from "@tanstack/react-router";
 import { useEffect, type ReactNode } from "react";
 
@@ -14,6 +15,7 @@ import { reportLovableError } from "../lib/lovable-error-reporting";
 import { AuthProvider } from "@/hooks/use-auth";
 import { Toaster } from "sonner";
 import { canonicalUrlForPath, siteConfig } from "@/lib/site-config";
+import { deferredServiceForPath } from "@/lib/launch-scope";
 
 const siteTitle = "Harley Digital Works | Websites for Trades & Small Businesses";
 const siteDescription =
@@ -80,6 +82,15 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
 }
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
+  beforeLoad: ({ location }) => {
+    const service = deferredServiceForPath(location.pathname);
+    if (service)
+      throw redirect({
+        to: "/contact",
+        search: { service, package: undefined, domain: undefined, websiteUrl: undefined },
+        replace: true,
+      });
+  },
   head: ({ matches }) => {
     const leafMatch = matches[matches.length - 1];
     const pathname = leafMatch?.pathname || "/";

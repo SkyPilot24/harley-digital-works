@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite dev",
     "typecheck": "tsc --noEmit",
-    "test": "node scripts/verify-platform.mjs",
+    "test": "node scripts/verify-platform.mjs && node --experimental-strip-types --test scripts/revenue-readiness.test.mjs",
     "format:check": "prettier --check \"src/**/*.{ts,tsx}\" package.json .prettierrc \".github/**/*.{yml,yaml}\"",
     "build": "vite build",
     "build:dev": "vite build --mode development",

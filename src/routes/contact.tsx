@@ -11,6 +11,7 @@ import { useServerFn } from "@tanstack/react-start";
 import { toast } from "sonner";
 import { submitLead } from "@/lib/lead-intake.functions";
 import { parseLeadFormData } from "@/lib/lead-schema";
+import { buildLeadMailto, resolveEnquiryInterest } from "@/lib/lead-details";
 import { leadCaptureConfigured, siteConfig } from "@/lib/site-config";
 import { Check, Mail, Phone, ShieldCheck, Clock, ArrowDown } from "lucide-react";
 
@@ -47,10 +48,12 @@ function ContactPage() {
   const [sent, setSent] = useState(false);
   const [startedAt, setStartedAt] = useState(() => Date.now());
 
-  const initialPackage = search.package || (search.domain ? "Domain purchase / enquiry" : "");
+  const initialPackage = resolveEnquiryInterest(search);
   const initialMessage = search.domain
     ? `Hi, I would like to enquire about acquiring the domain ${search.domain}.`
-    : "";
+    : search.service
+      ? `I would like to discuss ${search.service}.`
+      : "";
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -61,23 +64,7 @@ function ContactPage() {
       return;
     }
     if (!leadCaptureConfigured) {
-      const subject = encodeURIComponent(`Website enquiry from ${parsed.data.name}`);
-      const body = encodeURIComponent(
-        [
-          `Name: ${parsed.data.name}`,
-          `Email: ${parsed.data.email}`,
-          parsed.data.company ? `Company: ${parsed.data.company}` : "",
-          parsed.data.websiteUrl ? `Current Website: ${parsed.data.websiteUrl}` : "",
-          parsed.data.package ? `Interested in: ${parsed.data.package}` : "",
-          parsed.data.budget ? `Estimated Budget: ${parsed.data.budget}` : "",
-          parsed.data.timeline ? `Target Timeline: ${parsed.data.timeline}` : "",
-          "",
-          parsed.data.message,
-        ]
-          .filter(Boolean)
-          .join("\n"),
-      );
-      window.location.href = `mailto:${siteConfig.contactEmail}?subject=${subject}&body=${body}`;
+      window.location.href = buildLeadMailto(parsed.data, siteConfig.contactEmail);
       toast.info("Your email app is opening with the enquiry details ready to send.");
       return;
     }
@@ -199,7 +186,10 @@ function ContactPage() {
                     </div>
 
                     {sent && (
-                      <div className="rounded-xl border border-emerald-200 bg-emerald-50 px-5 py-4 text-sm text-emerald-800 font-medium">
+                      <div
+                        role="status"
+                        className="rounded-xl border border-emerald-200 bg-emerald-50 px-5 py-4 text-sm text-emerald-800 font-medium"
+                      >
                         ✓ Thanks! Your enquiry was received. We’ll review your business and reply
                         with a custom proposal within one working day.
                       </div>
@@ -208,7 +198,8 @@ function ContactPage() {
                     <div className="grid gap-4 sm:grid-cols-2">
                       <Field label="Your Name" name="name" placeholder="E.g. David Miller" />
                       <Field
-                        label="Phone Number (for WhatsApp preview)"
+                        label="Phone number"
+                        type="tel"
                         name="phone"
                         placeholder="07123 456789"
                       />
@@ -266,6 +257,7 @@ function ContactPage() {
                         <option value="Free Website Health Check Consultation">
                           Free 15-Minute Website Consultation
                         </option>
+                        <option value="Domain purchase / enquiry">Domain purchase / enquiry</option>
                         <option value="Something else">Something else</option>
                       </select>
                     </div>
@@ -334,8 +326,8 @@ function ContactPage() {
                         {busy
                           ? "Sending Enquiry..."
                           : leadCaptureConfigured
-                          ? "Send My Website Enquiry →"
-                          : "Prepare Email Draft"}
+                            ? "Send My Website Enquiry →"
+                            : "Prepare Email Draft"}
                       </button>
                       <p className="mt-3 text-[12px] text-ink-muted">
                         🔒 We reply within 1 working day. No spam, no pushy sales, ever.
