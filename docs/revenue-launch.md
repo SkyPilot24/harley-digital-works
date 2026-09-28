@@ -58,6 +58,16 @@ No prospect messages have been sent. Drafting prospect lists or outreach can fol
 
 ## Next increments
 
+### Second implementation increment — sales records
+
+- Creating a workspace now preserves prospect status and starts at zero recorded recurring value. Package text is never interpreted as an agreed price; the lead is not automatically marked won.
+- The lead UUID is used as the new workspace's stable primary key. Duplicate-key races recover the existing workspace, without overwriting manually edited client values. Unexpected existing records are rejected for reconciliation. Legacy conversions created with unrelated IDs still require an account-level review once database access is restored.
+- Client monthly totals include only active records with valid positive amounts and are explicitly labelled manually recorded, not collected revenue. New manual clients default to prospect/zero rather than active/£95.
+- Dashboard win rate counts leads marked won rather than dividing unrelated active-client counts by enquiries. Database count failures propagate instead of becoming fabricated zeros; enquiry/client lists show retrieval failures with retry controls.
+- Six additional behavioural checks cover package-price contamination, concurrent retries, preservation of existing client data, conflicting records, failed inserts and active-only monthly totals. All 75 checks/tests and typechecking passed; the updated production build passed. Live database/RLS concurrency testing remains pending, and no payment has been recorded or collected.
+
+### Remaining execution sequence
+
 1. Restore existing backend access and prove enquiry capture/admin retrieval.
 2. Resolve offer/entity facts; remove unsupported proof and consolidate the retained public pages.
 3. Fix CRM conversion and connect a real proposal/invoice/payment process using the existing provider if suitable.

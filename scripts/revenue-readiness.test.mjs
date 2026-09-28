@@ -1,5 +1,108 @@
 import test from "node:test";
+import {
+  clientWorkspaceForLead,
+  ensureClientWorkspace,
+  recordedActiveMonthlyValue,
+} from "../src/lib/client-workspace.ts";
 import assert from "node:assert/strict";
+
+const prospect = {
+  id: "d0c2f206-bca7-4bb0-8b3c-cd9eb80b9e39",
+  name: "Test Prospect",
+  email: "prospect@example.com",
+  company: "Test Business",
+  package: "Launch Website (£1,495)",
+  message: "Please discuss my website",
+  status: "new",
+};
+test("package interest never creates an active client or assumed recurring revenue", () => {
+  for (const offer of [
+    "Launch Website (£1,495)",
+    "Growth Website (£2,995)",
+    "Pro Platform (£4,995+)",
+    "Care £195/mo",
+  ]) {
+    const result = clientWorkspaceForLead({ ...prospect, package: offer });
+    assert.equal(result.monthly_value_cents, 0);
+    assert.equal(result.status, "lead");
+    assert.equal(result.id, prospect.id);
+  }
+  assert.equal(prospect.status, "new");
+});
+test("concurrent workspace requests converge on one record", async () => {
+  const records = new Map();
+  let inserts = 0;
+  const storage = {
+    find: async (id) => records.get(id) || null,
+    insert: async (payload) => {
+      if (records.has(payload.id)) throw { code: "23505" };
+      inserts++;
+      records.set(payload.id, payload);
+      return payload;
+    },
+  };
+  const [first, second] = await Promise.all([
+    ensureClientWorkspace(prospect, storage),
+    ensureClientWorkspace(prospect, storage),
+  ]);
+  assert.equal(first.id, second.id);
+  assert.equal(inserts, 1);
+  assert.equal(records.size, 1);
+});
+test("retry preserves an existing client's manually recorded agreement values", async () => {
+  const existing = {
+    ...clientWorkspaceForLead(prospect),
+    status: "active",
+    monthly_value_cents: 12750,
+  };
+  const result = await ensureClientWorkspace(prospect, {
+    find: async () => existing,
+    insert: async () => {
+      throw Error("Must not overwrite");
+    },
+  });
+  assert.equal(result.monthly_value_cents, 12750);
+  assert.equal(result.status, "active");
+});
+test("unexpected conflicting records require reconciliation, not overwrite", async () => {
+  await assert.rejects(
+    () =>
+      ensureClientWorkspace(prospect, {
+        find: async () => ({ id: prospect.id, notes: "Unrelated existing record" }),
+        insert: async () => {
+          throw Error("Must not overwrite");
+        },
+      }),
+    /reconciliation/,
+  );
+});
+test("database failures propagate instead of claiming workspace creation", async () => {
+  await assert.rejects(
+    () =>
+      ensureClientWorkspace(prospect, {
+        find: async () => null,
+        insert: async () => {
+          throw Error("Database unavailable");
+        },
+      }),
+    /Database unavailable/,
+  );
+});
+test("recorded monthly totals exclude inactive prospects, paused, archived and invalid values", () => {
+  assert.equal(
+    recordedActiveMonthlyValue([
+      { status: "active", monthly_value_cents: 9500 },
+      { status: "active", monthly_value_cents: 19500 },
+      { status: "lead", monthly_value_cents: 499500 },
+      { status: "paused", monthly_value_cents: 19500 },
+      { status: "archived", monthly_value_cents: 9500 },
+      { status: "active", monthly_value_cents: -100 },
+      { status: "active", monthly_value_cents: null },
+      { status: "active", monthly_value_cents: NaN },
+    ]),
+    29000,
+  );
+});
 import { parseLeadFormData, leadInputSchema } from "../src/lib/lead-schema.ts";
 import {
   buildLeadMailto,

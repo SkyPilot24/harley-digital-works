@@ -27,20 +27,33 @@ function DashboardPage() {
   const stats = useQuery({
     queryKey: ["admin", "stats"],
     queryFn: async () => {
-      const [leads, newLeads, clients, activeClients, projects, inProgress] = await Promise.all([
-        supabase.from("leads").select("id", { count: "exact", head: true }),
-        supabase.from("leads").select("id", { count: "exact", head: true }).eq("status", "new"),
-        supabase.from("clients").select("id", { count: "exact", head: true }),
-        supabase
-          .from("clients")
-          .select("id", { count: "exact", head: true })
-          .eq("status", "active"),
-        supabase.from("projects").select("id", { count: "exact", head: true }),
-        supabase
-          .from("projects")
-          .select("id", { count: "exact", head: true })
-          .eq("status", "in_progress"),
-      ]);
+      const [leads, newLeads, clients, activeClients, projects, inProgress, wonLeads] =
+        await Promise.all([
+          supabase.from("leads").select("id", { count: "exact", head: true }),
+          supabase.from("leads").select("id", { count: "exact", head: true }).eq("status", "new"),
+          supabase.from("clients").select("id", { count: "exact", head: true }),
+          supabase
+            .from("clients")
+            .select("id", { count: "exact", head: true })
+            .eq("status", "active"),
+          supabase.from("projects").select("id", { count: "exact", head: true }),
+          supabase
+            .from("projects")
+            .select("id", { count: "exact", head: true })
+            .eq("status", "in_progress"),
+          supabase.from("leads").select("id", { count: "exact", head: true }).eq("status", "won"),
+        ]);
+      for (const result of [
+        leads,
+        newLeads,
+        clients,
+        activeClients,
+        projects,
+        inProgress,
+        wonLeads,
+      ]) {
+        if (result.error) throw result.error;
+      }
       return {
         leads: leads.count ?? 0,
         newLeads: newLeads.count ?? 0,
@@ -48,6 +61,7 @@ function DashboardPage() {
         activeClients: activeClients.count ?? 0,
         projects: projects.count ?? 0,
         inProgress: inProgress.count ?? 0,
+        wonLeads: wonLeads.count ?? 0,
       };
     },
   });
@@ -157,9 +171,9 @@ function DashboardPage() {
         />
         <StatCard
           icon={TrendingUp}
-          label="Conversion"
-          value={s ? `${s.leads ? Math.round((s.activeClients / s.leads) * 100) : 0}%` : "—"}
-          sub="leads to clients"
+          label="Recorded lead win rate"
+          value={s ? `${s.leads ? Math.round((s.wonLeads / s.leads) * 100) : 0}%` : "—"}
+          sub="manually marked won; not payment confirmation"
         />
       </div>
 
