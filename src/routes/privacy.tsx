@@ -16,46 +16,50 @@ export const Route = createFileRoute("/privacy")({
 });
 const sections = [
   [
+    "Data controller & trading identity",
+    "Harley Digital Works operates as a digital service brand under The Harley Group. Personal information submitted via this website is controlled by The Harley Group for the purpose of communicating about website design, digital care, and related business services.",
+  ],
+  [
     "Information we collect",
-    "When you contact us, we may collect your name, email address, organisation, project interest and the information you include in your message. For abuse prevention, the form also processes a short-lived HMAC fingerprint derived from the request network address; the raw address is not stored in the lead record.",
+    "When you submit an enquiry form, we collect your name, email address, phone number, organisation/trade, geographic location, and message details. For abuse prevention and rate limiting, form submissions generate a temporary, hashed fingerprint derived from your network connection; raw IP addresses are not stored in database records.",
   ],
   [
-    "How we use it",
-    "We use this information to respond to enquiries, assess potential projects, deliver requested services, maintain records and protect the website. We do not sell personal information.",
+    "How we use your information",
+    "We use your information solely to respond to your enquiries, evaluate project fit, deliver agreed website build or care services, issue requested quotes, and maintain legitimate business records. We never sell, rent, or trade your personal data to third parties.",
   ],
   [
-    "Processors and sharing",
-    "Information may be processed by service providers that support hosting, forms, databases, communications and security. We share only what is reasonably necessary for those services or where law requires it.",
+    "Subprocessors & infrastructure",
+    "Data processed through this website is stored and transmitted using established cloud providers: Cloudflare (hosting, SSL, edge security), Supabase (database & CRM persistence), Resend (transactional notification email dispatch), and Slack (internal operational alerts). Each provider processes data under strict security and privacy standards.",
   ],
   [
-    "Retention",
-    "We keep enquiry and client information only for as long as it is reasonably needed for the purpose collected, legitimate record-keeping and legal obligations. Form-abuse attempt fingerprints are deleted after 24 hours during normal submission processing.",
+    "Retention & data security",
+    "Enquiry records and client project information are retained only for as long as necessary to fulfil service agreements, maintain accounting records, or comply with legal requirements. Temporary abuse prevention tokens expire and are purged within 24 hours.",
   ],
   [
-    "Your rights",
-    "Depending on applicable law, you may ask to access, correct, delete or restrict use of your personal information, or object to certain processing. Contact us to make a request.",
+    "Your rights under UK GDPR",
+    "Under UK GDPR, you have the right to request access to, correction of, or deletion of your personal data, as well as the right to object to or restrict processing. To exercise any of these rights, please contact us directly.",
   ],
   [
-    "Cookies and analytics",
-    "The website may use essential storage and privacy-conscious analytics. If optional tracking is introduced, this notice and any required consent controls should be updated before use.",
+    "Cookies & local storage",
+    "This website uses essential session storage and functional cookies required for form submission and site navigation. We do not place third-party advertising tracking cookies.",
   ],
   [
-    "Contact",
-    "Questions or privacy requests can be sent to " +
+    "Contact for privacy enquiries",
+    "Questions regarding this policy or data protection requests should be sent to " +
       siteConfig.contactEmail +
-      ". We may need to verify your identity before completing a request.",
+      ". We aim to respond to all valid requests within 5 business days.",
   ],
 ];
+
 function Page() {
   return (
     <PageShell>
       <section className="pt-32 pb-16 md:pt-40 md:pb-24">
         <Container>
-          <p className="eyebrow">Privacy</p>
+          <p className="eyebrow">Privacy & Data Protection</p>
           <h1 className="mt-6 text-[clamp(3rem,7vw,6rem)] tracking-[-.05em]">Privacy policy</h1>
           <p className="mt-6 max-w-2xl text-lg text-ink-muted">
-            Last reviewed: 1 August 2026. This page explains in plain English how information
-            submitted through this website is handled.
+            Last updated: 28 September 2026. This notice outlines how Harley Digital Works and The Harley Group collect, use, and protect your information.
           </p>
         </Container>
       </section>
@@ -69,9 +73,7 @@ function Page() {
               </section>
             ))}
             <p className="mt-8 rounded-2xl bg-surface-stone p-5 text-sm text-ink-muted">
-              This policy is a practical website notice and should be reviewed against final
-              business details, processors and legal requirements before relying on it as legal
-              advice.
+              Harley Digital Works · The Harley Group. Operating in compliance with the UK General Data Protection Regulation (UK GDPR) and Data Protection Act 2018.
             </p>
           </div>
         </Container>

@@ -17,10 +17,10 @@ export function PageShell({
 }) {
   return (
     <div className="min-h-screen bg-background text-ink relative">
-      {header !== undefined ? header : <SiteHeader />}
       <a className="site-skip-link" href="#main-content">
         Skip to content
       </a>
+      {header !== undefined ? header : <SiteHeader />}
       <main id="main-content">{children}</main>
       {footer !== undefined ? footer : <FooterDark />}
       {!quiet && <FloatingWhatsAppDesk />}
