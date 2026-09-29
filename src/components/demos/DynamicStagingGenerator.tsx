@@ -47,49 +47,109 @@ const TRADE_METADATA = {
     label: "Electrical & Solar",
     icon: Zap,
     tagline: "NICEIC Approved Electrical & Commercial Solar Contractors",
-    badges: ["NICEIC Approved Contractor", "OZEV EV Installer", "MCS Solar Certified", "£5M Insured"],
+    badges: [
+      "NICEIC Approved Contractor",
+      "OZEV EV Installer",
+      "MCS Solar Certified",
+      "£5M Insured",
+    ],
     emergency: "24/7 Emergency Electrician On-Call",
-    sampleServices: ["Workplace & Home EV Chargers", "Commercial 3-Phase Upgrades", "EICR Landlord Certificates", "Full House Rewires"],
+    sampleServices: [
+      "Workplace & Home EV Chargers",
+      "Commercial 3-Phase Upgrades",
+      "EICR Landlord Certificates",
+      "Full House Rewires",
+    ],
   },
   heating: {
     label: "Heating & Gas",
     icon: Flame,
     tagline: "Gas Safe Registered Boiler & Heat Pump Specialists",
-    badges: ["Gas Safe #629104", "Worcester Bosch Accredited", "Which? Trusted Trader", "12-Yr Warranty"],
+    badges: [
+      "Gas Safe #629104",
+      "Worcester Bosch Accredited",
+      "Which? Trusted Trader",
+      "12-Yr Warranty",
+    ],
     emergency: "Emergency Boiler Breakdown Fast-Response",
-    sampleServices: ["A-Rated Boiler Replacement", "Air Source Heat Pumps", "Emergency Leak Repair", "Power Flushing & MagnaClean"],
+    sampleServices: [
+      "A-Rated Boiler Replacement",
+      "Air Source Heat Pumps",
+      "Emergency Leak Repair",
+      "Power Flushing & MagnaClean",
+    ],
   },
   roofing: {
     label: "Roofing & Flat Roofs",
     icon: ShieldCheck,
     tagline: "Master Federation Roofing & Specialist GRP Fibreglass",
-    badges: ["CORC Certified", "25-Year GRP Guarantee", "Confederation of Roofing", "£5M Public Liability"],
+    badges: [
+      "CORC Certified",
+      "25-Year GRP Guarantee",
+      "Confederation of Roofing",
+      "£5M Public Liability",
+    ],
     emergency: "Storm Damage & Emergency Tarping Service",
-    sampleServices: ["GRP Fibreglass Flat Roofs", "Complete Slate & Tile Reroofs", "Dry Ridge & Verge Systems", "Chimney Stack Repairs"],
+    sampleServices: [
+      "GRP Fibreglass Flat Roofs",
+      "Complete Slate & Tile Reroofs",
+      "Dry Ridge & Verge Systems",
+      "Chimney Stack Repairs",
+    ],
   },
   commercial: {
     label: "Commercial & Facilities",
     icon: Building,
     tagline: "Commercial Building Maintenance & 24/7 Planned Facilities",
-    badges: ["CHAS Premier Accredited", "SafeContractor Approved", "ISO 9001 Certified", "£10M Commercial Cover"],
+    badges: [
+      "CHAS Premier Accredited",
+      "SafeContractor Approved",
+      "ISO 9001 Certified",
+      "£10M Commercial Cover",
+    ],
     emergency: "4-Hour Critical SLA Facility Dispatch",
-    sampleServices: ["HVAC & Commercial Plant Rooms", "Planned Preventative Maintenance", "Fit-Out & Dilapidations", "Commercial Compliance"],
+    sampleServices: [
+      "HVAC & Commercial Plant Rooms",
+      "Planned Preventative Maintenance",
+      "Fit-Out & Dilapidations",
+      "Commercial Compliance",
+    ],
   },
   builder: {
     label: "Building & Extensions",
     icon: Hammer,
     tagline: "Master Builder Extensions, Structural Steel & Renovations",
-    badges: ["Federation of Master Builders", "TrustMark Government Endorsed", "Structural Warranty", "NHBC Registered"],
+    badges: [
+      "Federation of Master Builders",
+      "TrustMark Government Endorsed",
+      "Structural Warranty",
+      "NHBC Registered",
+    ],
     emergency: "Structural Emergency Shoring & Securing",
-    sampleServices: ["Wrap-Around Home Extensions", "RSJ Steel Beam Installations", "Full Property Renovations", "Architectural Joinery"],
+    sampleServices: [
+      "Wrap-Around Home Extensions",
+      "RSJ Steel Beam Installations",
+      "Full Property Renovations",
+      "Architectural Joinery",
+    ],
   },
   plumbing: {
     label: "Plumbing & Drainage",
     icon: ShieldCheck,
     tagline: "Emergency Plumbing, Blocked Drains & Bathroom Fitting",
-    badges: ["CIPHE Registered", "WaterSafe Approved", "Zero Call-Out Fee", "Fixed Price Guarantee"],
+    badges: [
+      "CIPHE Registered",
+      "WaterSafe Approved",
+      "Zero Call-Out Fee",
+      "Fixed Price Guarantee",
+    ],
     emergency: "60-Minute Rapid Drain & Burst Pipe Response",
-    sampleServices: ["Emergency Burst Pipe Repair", "CCTV Drain Surveys & Unblocking", "Luxury Bathroom Installs", "Commercial Washrooms"],
+    sampleServices: [
+      "Emergency Burst Pipe Repair",
+      "CCTV Drain Surveys & Unblocking",
+      "Luxury Bathroom Installs",
+      "Commercial Washrooms",
+    ],
   },
 };
 
@@ -108,9 +168,10 @@ export function DynamicStagingGenerator({ initialConfig }: DynamicStagingGenerat
   const activeMeta = TRADE_METADATA[config.trade] || TRADE_METADATA.heating;
 
   // Build Shareable URL
-  const stagingUrl = typeof window !== "undefined"
-    ? `${window.location.origin}/demos?company=${encodeURIComponent(config.company)}&trade=${config.trade}&city=${encodeURIComponent(config.city)}&phone=${encodeURIComponent(config.phone)}&palette=${config.palette}`
-    : `https://harleydigitalworks.com/demos?company=${encodeURIComponent(config.company)}`;
+  const stagingUrl =
+    typeof window !== "undefined"
+      ? `${window.location.origin}/demos?company=${encodeURIComponent(config.company)}&trade=${config.trade}&city=${encodeURIComponent(config.city)}&phone=${encodeURIComponent(config.phone)}&palette=${config.palette}`
+      : `https://harleydigitalworks.com/demos?company=${encodeURIComponent(config.company)}`;
 
   const handleCopyLink = () => {
     navigator.clipboard.writeText(stagingUrl);
@@ -123,7 +184,10 @@ export function DynamicStagingGenerator({ initialConfig }: DynamicStagingGenerat
     const text = `Hi, I put together a live interactive staging concept for ${config.company} so you can see how we turn local searchers in ${config.city} into high-ticket quotes: ${stagingUrl}`;
     const cleanPhone = config.phone.replace(/[^0-9]/g, "");
     const formattedPhone = cleanPhone.startsWith("0") ? "44" + cleanPhone.slice(1) : cleanPhone;
-    window.open(`https://api.whatsapp.com/send?phone=${formattedPhone}&text=${encodeURIComponent(text)}`, "_blank");
+    window.open(
+      `https://api.whatsapp.com/send?phone=${formattedPhone}&text=${encodeURIComponent(text)}`,
+      "_blank",
+    );
   };
 
   return (
@@ -143,7 +207,8 @@ export function DynamicStagingGenerator({ initialConfig }: DynamicStagingGenerat
                 </span>
               </div>
               <p className="text-xs text-neutral-400">
-                Customise prospect branding and share an interactive live demo before deposit sign-off.
+                Customise prospect branding and share an interactive live demo before deposit
+                sign-off.
               </p>
             </div>
           </div>
@@ -208,7 +273,9 @@ export function DynamicStagingGenerator({ initialConfig }: DynamicStagingGenerat
               </label>
               <select
                 value={config.trade}
-                onChange={(e) => setConfig({ ...config, trade: e.target.value as StagingConfig["trade"] })}
+                onChange={(e) =>
+                  setConfig({ ...config, trade: e.target.value as StagingConfig["trade"] })
+                }
                 className="mt-1 w-full rounded-lg border border-neutral-700 bg-neutral-950 px-3 py-2 text-xs text-white focus:border-gold-400 focus:outline-none"
               >
                 <option value="heating">🔥 Heating & Gas Safe</option>
@@ -255,7 +322,9 @@ export function DynamicStagingGenerator({ initialConfig }: DynamicStagingGenerat
             <button
               onClick={() => setDeviceMode("desktop")}
               className={`px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-all ${
-                deviceMode === "desktop" ? "bg-neutral-800 text-gold-400 shadow" : "text-neutral-400 hover:text-white"
+                deviceMode === "desktop"
+                  ? "bg-neutral-800 text-gold-400 shadow"
+                  : "text-neutral-400 hover:text-white"
               }`}
             >
               <Monitor className="h-3.5 w-3.5" />
@@ -264,7 +333,9 @@ export function DynamicStagingGenerator({ initialConfig }: DynamicStagingGenerat
             <button
               onClick={() => setDeviceMode("tablet")}
               className={`px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-all ${
-                deviceMode === "tablet" ? "bg-neutral-800 text-gold-400 shadow" : "text-neutral-400 hover:text-white"
+                deviceMode === "tablet"
+                  ? "bg-neutral-800 text-gold-400 shadow"
+                  : "text-neutral-400 hover:text-white"
               }`}
             >
               <Tablet className="h-3.5 w-3.5" />
@@ -273,7 +344,9 @@ export function DynamicStagingGenerator({ initialConfig }: DynamicStagingGenerat
             <button
               onClick={() => setDeviceMode("mobile")}
               className={`px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-all ${
-                deviceMode === "mobile" ? "bg-neutral-800 text-gold-400 shadow" : "text-neutral-400 hover:text-white"
+                deviceMode === "mobile"
+                  ? "bg-neutral-800 text-gold-400 shadow"
+                  : "text-neutral-400 hover:text-white"
               }`}
             >
               <Smartphone className="h-3.5 w-3.5" />
@@ -283,7 +356,10 @@ export function DynamicStagingGenerator({ initialConfig }: DynamicStagingGenerat
         </div>
 
         <div className="text-xs font-mono text-neutral-500 hidden sm:block">
-          Staging DNS: <span className="text-neutral-300">staging.{config.company.toLowerCase().replace(/[^a-z0-9]/g, "")}.harleydigitalworks.com</span>
+          Staging DNS:{" "}
+          <span className="text-neutral-300">
+            staging.{config.company.toLowerCase().replace(/[^a-z0-9]/g, "")}.harleydigitalworks.com
+          </span>
         </div>
       </div>
 
@@ -311,9 +387,7 @@ export function DynamicStagingGenerator({ initialConfig }: DynamicStagingGenerat
                 <span className="text-emerald-400 font-bold">🔒 https://</span>
                 <span>{config.company.toLowerCase().replace(/[^a-z0-9]/g, "")}-example.co.uk</span>
               </div>
-              <div className="text-[11px] font-bold text-gold-400">
-                14-DAY BUILD SLA
-              </div>
+              <div className="text-[11px] font-bold text-gold-400">14-DAY BUILD SLA</div>
             </div>
 
             {/* LIVE CLIENT MOCKUP WEBSITE */}
@@ -321,8 +395,12 @@ export function DynamicStagingGenerator({ initialConfig }: DynamicStagingGenerat
               {/* Emergency Banner */}
               <div className="bg-red-950/80 border-b border-red-800/60 px-4 py-2 text-center text-xs font-semibold text-red-200 flex items-center justify-center gap-2">
                 <span className="flex h-2 w-2 rounded-full bg-red-500 animate-pulse" />
-                <span>{activeMeta.emergency} across {config.city}</span>
-                <span className="font-mono text-red-300 underline font-bold ml-1">{config.phone}</span>
+                <span>
+                  {activeMeta.emergency} across {config.city}
+                </span>
+                <span className="font-mono text-red-300 underline font-bold ml-1">
+                  {config.phone}
+                </span>
               </div>
 
               {/* Header Navigation */}
@@ -332,8 +410,12 @@ export function DynamicStagingGenerator({ initialConfig }: DynamicStagingGenerat
                     {config.company.charAt(0)}
                   </div>
                   <div>
-                    <div className="text-sm font-bold text-white tracking-tight leading-none">{config.company}</div>
-                    <div className="text-[10px] text-neutral-400 font-mono mt-0.5">{config.city}</div>
+                    <div className="text-sm font-bold text-white tracking-tight leading-none">
+                      {config.company}
+                    </div>
+                    <div className="text-[10px] text-neutral-400 font-mono mt-0.5">
+                      {config.city}
+                    </div>
                   </div>
                 </div>
 
@@ -361,7 +443,8 @@ export function DynamicStagingGenerator({ initialConfig }: DynamicStagingGenerat
                   </h1>
 
                   <p className="mt-3 text-xs sm:text-sm text-neutral-300 leading-relaxed">
-                    Local, certified specialists providing turnkey installations, emergency repairs, and free upfront fixed quotes throughout {config.city}.
+                    Local, certified specialists providing turnkey installations, emergency repairs,
+                    and free upfront fixed quotes throughout {config.city}.
                   </p>
 
                   {/* Accreditations Ribbon */}
@@ -416,7 +499,8 @@ export function DynamicStagingGenerator({ initialConfig }: DynamicStagingGenerat
                         <CheckCircle2 className="h-4 w-4 text-emerald-400" />
                       </div>
                       <p className="mt-1 text-[11px] text-neutral-400">
-                        Fixed upfront pricing, full safety compliance, and zero mess guarantee in {config.city}.
+                        Fixed upfront pricing, full safety compliance, and zero mess guarantee in{" "}
+                        {config.city}.
                       </p>
                     </div>
                   ))}
@@ -452,10 +536,18 @@ export function DynamicStagingGenerator({ initialConfig }: DynamicStagingGenerat
                   Serving Homeowners & Commercial Clients Throughout:
                 </div>
                 <div className="flex flex-wrap items-center justify-center gap-2 text-xs text-neutral-300">
-                  <span className="rounded-full bg-neutral-900 border border-neutral-800 px-3 py-1">{config.city}</span>
-                  <span className="rounded-full bg-neutral-900 border border-neutral-800 px-3 py-1">Town Centre</span>
-                  <span className="rounded-full bg-neutral-900 border border-neutral-800 px-3 py-1">North & South Suburbs</span>
-                  <span className="rounded-full bg-neutral-900 border border-neutral-800 px-3 py-1">Surrounding 25-Mile Radius</span>
+                  <span className="rounded-full bg-neutral-900 border border-neutral-800 px-3 py-1">
+                    {config.city}
+                  </span>
+                  <span className="rounded-full bg-neutral-900 border border-neutral-800 px-3 py-1">
+                    Town Centre
+                  </span>
+                  <span className="rounded-full bg-neutral-900 border border-neutral-800 px-3 py-1">
+                    North & South Suburbs
+                  </span>
+                  <span className="rounded-full bg-neutral-900 border border-neutral-800 px-3 py-1">
+                    Surrounding 25-Mile Radius
+                  </span>
                 </div>
               </div>
 

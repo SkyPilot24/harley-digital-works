@@ -8,10 +8,10 @@ The Admin API lives under `https://api.anthropic.com/v1/organizations/*`. It man
 
 Two credential types, both read automatically by the default SDK client and the CLI:
 
-| Credential | Env var | HTTP header | Covers |
-| --- | --- | --- | --- |
-| Admin API key (`sk-ant-admin...`) | `ANTHROPIC_API_KEY` | `x-api-key` | Most endpoints |
-| `org:admin` OAuth token | `ANTHROPIC_AUTH_TOKEN` | `authorization: Bearer` | Everything, including the OAuth-only endpoints |
+| Credential                        | Env var                | HTTP header             | Covers                                         |
+| --------------------------------- | ---------------------- | ----------------------- | ---------------------------------------------- |
+| Admin API key (`sk-ant-admin...`) | `ANTHROPIC_API_KEY`    | `x-api-key`             | Most endpoints                                 |
+| `org:admin` OAuth token           | `ANTHROPIC_AUTH_TOKEN` | `authorization: Bearer` | Everything, including the OAuth-only endpoints |
 
 - **OAuth-only endpoints:** service accounts, federation issuers, and federation rules reject API keys - they require an `org:admin` OAuth token.
 - **Precedence gotcha:** when both env vars are set, some clients prefer the API key. When using a bearer token, leave `ANTHROPIC_API_KEY` unset in that shell.
@@ -42,20 +42,20 @@ export ANTHROPIC_IDENTITY_TOKEN_FILE=/path/to/jwt  # or ANTHROPIC_IDENTITY_TOKEN
 
 SDK accessor shown in Python spelling; see the per-language table below for naming conventions.
 
-| Resource | REST path | SDK accessor (`client.beta.organization` +) | CLI (`ant beta:organization` +) |
-| --- | --- | --- | --- |
-| Organization info | `GET /v1/organizations/me` | `.retrieve()` | `retrieve` |
-| Members | `/v1/organizations/users` | `.users` - `list`, `update`, `remove` | `:users list\|update\|remove` |
-| Invites | `/v1/organizations/invites` | `.invites` - `create`, `list`, `delete` | `:invites create\|list\|delete` |
-| Workspaces | `/v1/organizations/workspaces` | `.workspaces` - `create`, `retrieve`, `list`, `update`, `archive` | `:workspaces create\|list\|update\|archive` |
-| Workspace members | `/v1/organizations/workspaces/{id}/members` | `.workspaces.members` - `add`, `list`, `update`, `remove` | `:workspaces:members add\|list\|update\|remove` |
-| API keys | `/v1/organizations/api_keys` | `.api_keys` - `list`, `update` | `:api-keys list\|update` |
-| Org rate limits | `GET /v1/organizations/rate_limits` | `.rate_limits.list(model=..., group_type=...)` | `:rate-limits list` |
-| Workspace rate limits | `GET /v1/organizations/workspaces/{id}/rate_limits` | `.workspaces.rate_limits.list(workspace_id)` | `:workspaces:rate-limits list` |
-| Service accounts (*) | `/v1/organizations/service_accounts` | `.service_accounts` - `create`, `list`, `archive` | `:service-accounts create\|list\|archive` |
-| Federation issuers (*) | `/v1/organizations/federation_issuers` | `.federation.issuers` - `create`, `list`, `archive` | `:federation:issuers create\|list\|archive` |
-| Federation rules (*) | `/v1/organizations/federation_rules` | `.federation.rules` - `create`, `list`, `archive` | `:federation:rules create\|list\|archive` |
-| CMEK external keys | `/v1/organizations/external_keys` | `.external_keys` - `create`, `validate` | - |
+| Resource               | REST path                                           | SDK accessor (`client.beta.organization` +)                       | CLI (`ant beta:organization` +)                 |
+| ---------------------- | --------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------- |
+| Organization info      | `GET /v1/organizations/me`                          | `.retrieve()`                                                     | `retrieve`                                      |
+| Members                | `/v1/organizations/users`                           | `.users` - `list`, `update`, `remove`                             | `:users list\|update\|remove`                   |
+| Invites                | `/v1/organizations/invites`                         | `.invites` - `create`, `list`, `delete`                           | `:invites create\|list\|delete`                 |
+| Workspaces             | `/v1/organizations/workspaces`                      | `.workspaces` - `create`, `retrieve`, `list`, `update`, `archive` | `:workspaces create\|list\|update\|archive`     |
+| Workspace members      | `/v1/organizations/workspaces/{id}/members`         | `.workspaces.members` - `add`, `list`, `update`, `remove`         | `:workspaces:members add\|list\|update\|remove` |
+| API keys               | `/v1/organizations/api_keys`                        | `.api_keys` - `list`, `update`                                    | `:api-keys list\|update`                        |
+| Org rate limits        | `GET /v1/organizations/rate_limits`                 | `.rate_limits.list(model=..., group_type=...)`                    | `:rate-limits list`                             |
+| Workspace rate limits  | `GET /v1/organizations/workspaces/{id}/rate_limits` | `.workspaces.rate_limits.list(workspace_id)`                      | `:workspaces:rate-limits list`                  |
+| Service accounts (*)   | `/v1/organizations/service_accounts`                | `.service_accounts` - `create`, `list`, `archive`                 | `:service-accounts create\|list\|archive`       |
+| Federation issuers (*) | `/v1/organizations/federation_issuers`              | `.federation.issuers` - `create`, `list`, `archive`               | `:federation:issuers create\|list\|archive`     |
+| Federation rules (*)   | `/v1/organizations/federation_rules`                | `.federation.rules` - `create`, `list`, `archive`                 | `:federation:rules create\|list\|archive`       |
+| CMEK external keys     | `/v1/organizations/external_keys`                   | `.external_keys` - `create`, `validate`                           | -                                               |
 
 (*) OAuth-only: requires an `org:admin` bearer token, not an API key.
 
@@ -63,17 +63,17 @@ Attaching a CMEK external key to a workspace is a workspace update: `client.beta
 
 ## Per-Language Naming & Pagination
 
-| Language | Accessor style (list members example) | List behavior |
-| --- | --- | --- |
-| Python | `client.beta.organization.users.list(limit=10)` | Iterator auto-fetches more pages; `limit` = page size, not total |
-| TypeScript | `client.beta.organization.users.list({ limit: 10 })` - camelCase sub-resources: `apiKeys`, `rateLimits`, `serviceAccounts`, `externalKeys` | `for await` auto-pages |
-| C# | `client.Beta.Organization.Users.List(new() { Limit = 10 })` | `await foreach (var u in page.Paginate())` auto-pages |
-| Go | `client.Beta.Organization.Users.ListAutoPaging(ctx, params)`; org info is `Organization.Get(ctx)` | `.Next()` / `.Current()` auto-pages |
-| Java | `client.beta().organization().users().list(params)` with builder params (`UserListParams.builder().limit(10).build()`) | `.autoPager()` auto-pages |
-| PHP | `$client->beta->organization->users->list(limit: 10)` | Raw single-page data call - iterate `->getItems()`; the SDK's auto-pagination helpers aren't wired up for these endpoints yet |
-| Ruby | `client.beta.organization.users.list(limit: 10)` | Raw single-page data call - iterate `.data`; the SDK's auto-pagination helpers aren't wired up for these endpoints yet |
-| CLI | `ant beta:organization:users list --limit 10` | On the member, invite, workspace, workspace-member, and API-key lists, `--limit` caps the results (unlike most `ant` list commands, where `--limit` sets the page size and `--max-items` caps - see `shared/anthropic-cli.md`) |
-| curl | `GET /v1/organizations/users?limit=10` | One page per request; cursor pagination per the Admin API reference |
+| Language   | Accessor style (list members example)                                                                                                      | List behavior                                                                                                                                                                                                                  |
+| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Python     | `client.beta.organization.users.list(limit=10)`                                                                                            | Iterator auto-fetches more pages; `limit` = page size, not total                                                                                                                                                               |
+| TypeScript | `client.beta.organization.users.list({ limit: 10 })` - camelCase sub-resources: `apiKeys`, `rateLimits`, `serviceAccounts`, `externalKeys` | `for await` auto-pages                                                                                                                                                                                                         |
+| C#         | `client.Beta.Organization.Users.List(new() { Limit = 10 })`                                                                                | `await foreach (var u in page.Paginate())` auto-pages                                                                                                                                                                          |
+| Go         | `client.Beta.Organization.Users.ListAutoPaging(ctx, params)`; org info is `Organization.Get(ctx)`                                          | `.Next()` / `.Current()` auto-pages                                                                                                                                                                                            |
+| Java       | `client.beta().organization().users().list(params)` with builder params (`UserListParams.builder().limit(10).build()`)                     | `.autoPager()` auto-pages                                                                                                                                                                                                      |
+| PHP        | `$client->beta->organization->users->list(limit: 10)`                                                                                      | Raw single-page data call - iterate `->getItems()`; the SDK's auto-pagination helpers aren't wired up for these endpoints yet                                                                                                  |
+| Ruby       | `client.beta.organization.users.list(limit: 10)`                                                                                           | Raw single-page data call - iterate `.data`; the SDK's auto-pagination helpers aren't wired up for these endpoints yet                                                                                                         |
+| CLI        | `ant beta:organization:users list --limit 10`                                                                                              | On the member, invite, workspace, workspace-member, and API-key lists, `--limit` caps the results (unlike most `ant` list commands, where `--limit` sets the page size and `--max-items` caps - see `shared/anthropic-cli.md`) |
+| curl       | `GET /v1/organizations/users?limit=10`                                                                                                     | One page per request; cursor pagination per the Admin API reference                                                                                                                                                            |
 
 The rate-limit lists (`rate_limits`, `workspaces.rate_limits`) also support pagination as of launch - page them like the other list endpoints rather than assuming a single response.
 
@@ -152,13 +152,13 @@ client.beta.organization.workspaces.update("wrkspc_...", external_key_id=key.id)
 
 ## Organization Roles
 
-| Role | Permissions |
-| --- | --- |
-| `user` | Playground |
-| `claude_code_user` | Playground + Claude Code |
-| `developer` | Playground + manage API keys |
-| `billing` | Playground + manage billing |
-| `admin` | All of the above + manage users |
+| Role               | Permissions                     |
+| ------------------ | ------------------------------- |
+| `user`             | Playground                      |
+| `claude_code_user` | Playground + Claude Code        |
+| `developer`        | Playground + manage API keys    |
+| `billing`          | Playground + manage billing     |
+| `admin`            | All of the above + manage users |
 
 Owners and primary owners have all admin permissions and can also manage admins. Workspace roles are `workspace_user`, `workspace_developer`, `workspace_admin`, and `workspace_billing`.
 
@@ -169,11 +169,11 @@ Owners and primary owners have all admin permissions and can also manage admins.
 
 ## Live Docs
 
-| Topic | URL |
-| --- | --- |
-| Admin API guide | `https://platform.claude.com/docs/en/manage-claude/admin-api.md` |
-| Admin API reference | `https://platform.claude.com/docs/en/api/admin.md` |
-| Workspaces | `https://platform.claude.com/docs/en/manage-claude/workspaces.md` |
-| Rate limits API | `https://platform.claude.com/docs/en/manage-claude/rate-limits-api.md` |
-| WIF admin | `https://platform.claude.com/docs/en/manage-claude/wif-admin-api.md` |
-| Usage & cost reports (curl-only) | `https://platform.claude.com/docs/en/manage-claude/usage-cost-api.md` |
+| Topic                            | URL                                                                    |
+| -------------------------------- | ---------------------------------------------------------------------- |
+| Admin API guide                  | `https://platform.claude.com/docs/en/manage-claude/admin-api.md`       |
+| Admin API reference              | `https://platform.claude.com/docs/en/api/admin.md`                     |
+| Workspaces                       | `https://platform.claude.com/docs/en/manage-claude/workspaces.md`      |
+| Rate limits API                  | `https://platform.claude.com/docs/en/manage-claude/rate-limits-api.md` |
+| WIF admin                        | `https://platform.claude.com/docs/en/manage-claude/wif-admin-api.md`   |
+| Usage & cost reports (curl-only) | `https://platform.claude.com/docs/en/manage-claude/usage-cost-api.md`  |

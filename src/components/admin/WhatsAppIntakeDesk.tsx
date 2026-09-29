@@ -59,23 +59,27 @@ const SAMPLE_THREADS: WhatsAppThread[] = [
         id: "m-1",
         sender: "contractor",
         senderName: "Dave Harrison",
-        message: "Hi mate, saw your trade websites. I'm a Gas Safe heating engineer in Stockport. Need more high-margin boiler install quotes instead of cheap radiator bleeds. How fast can you get a site up?",
+        message:
+          "Hi mate, saw your trade websites. I'm a Gas Safe heating engineer in Stockport. Need more high-margin boiler install quotes instead of cheap radiator bleeds. How fast can you get a site up?",
         timestamp: "10:40 AM",
       },
       {
         id: "m-2",
         sender: "bot",
         senderName: "Harley AI Dispatch",
-        message: "Hi Dave! We specialize in Gas Safe heating engineers across Stockport & Manchester. We guarantee full live launch in 14 days with zero writing required from you.",
+        message:
+          "Hi Dave! We specialize in Gas Safe heating engineers across Stockport & Manchester. We guarantee full live launch in 14 days with zero writing required from you.",
         timestamp: "10:41 AM",
       },
       {
         id: "m-3",
         sender: "bot",
         senderName: "Harley AI Dispatch",
-        message: "I've just generated a live interactive staging concept tailored for Cheshire Heat & Boiler Co Ltd including a live Boiler Replacement Calculator and Gas Safe trust badges: https://harleydigitalworks.com/demos?company=Cheshire+Heat+%26+Boiler+Co+Ltd&trade=heating&city=Stockport",
+        message:
+          "I've just generated a live interactive staging concept tailored for Cheshire Heat & Boiler Co Ltd including a live Boiler Replacement Calculator and Gas Safe trust badges: https://harleydigitalworks.com/demos?company=Cheshire+Heat+%26+Boiler+Co+Ltd&trade=heating&city=Stockport",
         timestamp: "10:42 AM",
-        stagingUrl: "https://harleydigitalworks.com/demos?company=Cheshire+Heat+%26+Boiler+Co+Ltd&trade=heating&city=Stockport",
+        stagingUrl:
+          "https://harleydigitalworks.com/demos?company=Cheshire+Heat+%26+Boiler+Co+Ltd&trade=heating&city=Stockport",
       },
     ],
   },
@@ -94,7 +98,8 @@ const SAMPLE_THREADS: WhatsAppThread[] = [
         id: "m-4",
         sender: "contractor",
         senderName: "Craig Robinson",
-        message: "Morning, CEF Birmingham recommended you guys. Looking to launch a commercial 3-phase and workplace EV charging site. Can you send pricing?",
+        message:
+          "Morning, CEF Birmingham recommended you guys. Looking to launch a commercial 3-phase and workplace EV charging site. Can you send pricing?",
         timestamp: "09:15 AM",
       },
     ],
@@ -114,7 +119,8 @@ const SAMPLE_THREADS: WhatsAppThread[] = [
         id: "m-5",
         sender: "contractor",
         senderName: "Liam Walker",
-        message: "Loved the staging demo. Send over the formal proposal and we'll pay the 50% deposit to lock the build slot.",
+        message:
+          "Loved the staging demo. Send over the formal proposal and we'll pay the 50% deposit to lock the build slot.",
         timestamp: "Yesterday, 16:30",
       },
     ],
@@ -171,8 +177,8 @@ export function WhatsAppIntakeDesk({ onImportLead }: WhatsAppIntakeDeskProps = {
       prev.map((t) =>
         t.id === activeThreadId
           ? { ...t, messages: [...t.messages, newMsg], lastMessageTime: "Just now" }
-          : t
-      )
+          : t,
+      ),
     );
     setReplyText("");
     toast.success("Message dispatched to contractor via WhatsApp Business API!");
@@ -200,7 +206,7 @@ export function WhatsAppIntakeDesk({ onImportLead }: WhatsAppIntakeDeskProps = {
     }
 
     setThreads((prev) =>
-      prev.map((t) => (t.id === activeThread.id ? { ...t, status: "converted" } : t))
+      prev.map((t) => (t.id === activeThread.id ? { ...t, status: "converted" } : t)),
     );
 
     toast.success(`Contractor "${activeThread.companyName}" marked as Converted!`, {
@@ -219,13 +225,16 @@ export function WhatsAppIntakeDesk({ onImportLead }: WhatsAppIntakeDeskProps = {
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <h3 className="text-base font-bold text-ink">AI WhatsApp & SMS Inbound Intake Desk</h3>
+                <h3 className="text-base font-bold text-ink">
+                  AI WhatsApp & SMS Inbound Intake Desk
+                </h3>
                 <span className="rounded bg-emerald-100 px-2 py-0.5 text-[10px] font-bold text-emerald-800">
                   24/7 AUTO-DISPATCH ACTIVE
                 </span>
               </div>
               <p className="text-xs text-ink-muted">
-                Automated qualification, 60-second staging demo generation, and human-in-the-loop WhatsApp closing console.
+                Automated qualification, 60-second staging demo generation, and human-in-the-loop
+                WhatsApp closing console.
               </p>
             </div>
           </div>
@@ -276,7 +285,9 @@ export function WhatsAppIntakeDesk({ onImportLead }: WhatsAppIntakeDeskProps = {
                   {t.companyName}
                 </div>
                 <div className="mt-1 flex items-center justify-between text-[10px] text-ink-muted">
-                  <span>{t.trade} • {t.city.split(",")[0]}</span>
+                  <span>
+                    {t.trade} • {t.city.split(",")[0]}
+                  </span>
                   <span
                     className={`px-1.5 py-0.5 rounded font-bold uppercase ${
                       t.status === "converted"
@@ -306,7 +317,13 @@ export function WhatsAppIntakeDesk({ onImportLead }: WhatsAppIntakeDeskProps = {
                 <div>
                   <div className="text-sm font-bold text-ink">{activeThread.contractorName}</div>
                   <div className="text-xs text-ink-muted">
-                    {activeThread.companyName} • <a href={`tel:${activeThread.phone}`} className="hover:underline text-emerald-700 font-mono">{activeThread.phone}</a>
+                    {activeThread.companyName} •{" "}
+                    <a
+                      href={`tel:${activeThread.phone}`}
+                      className="hover:underline text-emerald-700 font-mono"
+                    >
+                      {activeThread.phone}
+                    </a>
                   </div>
                 </div>
               </div>

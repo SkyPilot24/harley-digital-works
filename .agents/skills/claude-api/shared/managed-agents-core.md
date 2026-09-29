@@ -4,12 +4,12 @@
 
 Managed Agents is built around four core concepts:
 
-| Concept | Endpoint | What it is |
-|---|---|---|
-| **Agent** | `/v1/agents` | A persisted, versioned object defining the agent's capabilities and persona: model, system prompt, tools, MCP servers, skills. **Must be created before starting a session.** See the Agents section below. |
-| **Session** | `/v1/sessions` | A stateful interaction with an agent. References a pre-created agent by ID + an environment + initial instructions. Produces an event stream. |
-| **Environment** | `/v1/environments` | A template defining the configuration for container provisioning. |
-| **Container** | N/A | An isolated compute instance where the agent's **tools** execute (bash, file ops, code). The agent loop does not run here - it runs on Anthropic's orchestration layer and acts on the container via tool calls. |
+| Concept         | Endpoint           | What it is                                                                                                                                                                                                       |
+| --------------- | ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Agent**       | `/v1/agents`       | A persisted, versioned object defining the agent's capabilities and persona: model, system prompt, tools, MCP servers, skills. **Must be created before starting a session.** See the Agents section below.      |
+| **Session**     | `/v1/sessions`     | A stateful interaction with an agent. References a pre-created agent by ID + an environment + initial instructions. Produces an event stream.                                                                    |
+| **Environment** | `/v1/environments` | A template defining the configuration for container provisioning.                                                                                                                                                |
+| **Container**   | N/A                | An isolated compute instance where the agent's **tools** execute (bash, file ops, code). The agent loop does not run here - it runs on Anthropic's orchestration layer and acts on the container via tool calls. |
 
 ```
                        +-------------------------------------+
@@ -36,12 +36,12 @@ Environment (template) --> Container (tool execution workspace)
 rescheduling -> running <-> idle -> terminated
 ```
 
-| Status         | Description                                                        |
-| -------------- | ------------------------------------------------------------------ |
-| `idle` | Agent has finished the current task, and is awaiting input. It's either waiting for input to continue working via a `user.message`, blocked awaiting a `user.custom_tool_result` or `user.tool_confirmation`, or paused because the session budget cap was reached. The `stop_reason` attached contains more information about why the Agent has stopped working. |
-| `running` | Session has starting running, and the Agent is actively doing work. |
-| `rescheduling` | Session is (re)scheduling after a retryable error has occurred, ready to be picked up by the orchestration system. |
-| `terminated` | Session has ended and is in an irreversible, unusable state - **either on completion or because of an unrecoverable error**. Terminated does not by itself mean failure; fetch the session to tell the two apart. |
+| Status         | Description                                                                                                                                                                                                                                                                                                                                                       |
+| -------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `idle`         | Agent has finished the current task, and is awaiting input. It's either waiting for input to continue working via a `user.message`, blocked awaiting a `user.custom_tool_result` or `user.tool_confirmation`, or paused because the session budget cap was reached. The `stop_reason` attached contains more information about why the Agent has stopped working. |
+| `running`      | Session has starting running, and the Agent is actively doing work.                                                                                                                                                                                                                                                                                               |
+| `rescheduling` | Session is (re)scheduling after a retryable error has occurred, ready to be picked up by the orchestration system.                                                                                                                                                                                                                                                |
+| `terminated`   | Session has ended and is in an irreversible, unusable state - **either on completion or because of an unrecoverable error**. Terminated does not by itself mean failure; fetch the session to tell the two apart.                                                                                                                                                 |
 
 - Events can be sent when the session is `running` or `idle`. Messages are queued and processed in order. Exception: a session paused at its budget (`stop_reason: budget_reached`) accepts only **settle events** - events that resolve work already in progress (`user.tool_confirmation`, `user.tool_result`, `user.custom_tool_result`, `user.interrupt`) rather than starting new work - see § Session budgets.
 - The agent transitions `idle -> running` when it receives a new event, then back to `idle` when done.
@@ -57,12 +57,12 @@ Every session has a live trace view in the Anthropic Console at `https://platfor
 
 ### Session operations
 
-| Operation | Notes |
-|---|---|
-| List / fetch | Paginated list or single resource by ID |
-| Update | `title`, `metadata`, and the session-local `agent.tools`/`agent.mcp_servers` can be overridden (see § Updating the agent configuration mid-session). `budget` can only be changed or removed (see § Session budgets). `vault_ids` is create-only - update requests setting it are rejected. |
-| Archive | Session becomes **read-only**. Not reversible. |
-| Delete | Permanently deletes session, event history, container, and checkpoints. |
+| Operation    | Notes                                                                                                                                                                                                                                                                                       |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| List / fetch | Paginated list or single resource by ID                                                                                                                                                                                                                                                     |
+| Update       | `title`, `metadata`, and the session-local `agent.tools`/`agent.mcp_servers` can be overridden (see § Updating the agent configuration mid-session). `budget` can only be changed or removed (see § Session budgets). `vault_ids` is create-only - update requests setting it are rejected. |
+| Archive      | Session becomes **read-only**. Not reversible.                                                                                                                                                                                                                                              |
+| Delete       | Permanently deletes session, event history, container, and checkpoints.                                                                                                                                                                                                                     |
 
 These are ops/inspection calls - typically made from a terminal, not application code. From the shell (see `shared/anthropic-cli.md`):
 
@@ -84,22 +84,22 @@ A session is a running agent instance inside an environment.
 
 Key fields returned by the API:
 
-| Field           | Type     | Description                                         |
-| --------------- | -------- | --------------------------------------------------- |
-| `type` | string | Always `"session"` |
-| `id` | string | Unique session ID |
-| `title` | string | Human-readable title |
-| `status` | string | `idle`, `running`, `rescheduling`, `terminated` |
-| `created_at` | string | ISO 8601 timestamp |
-| `updated_at` | string | ISO 8601 timestamp |
-| `archived_at` | string | ISO 8601 timestamp (nullable) |
-| `environment_id` | string | Environment ID |
-| `agent` | object | Agent configuration |
-| `resources` | array | Attached files, repos, and memory stores |
-| `metadata` | object | User-provided key-value pairs (max 8 keys) |
-| `usage` | object | Cumulative usage: token counts, `server_tool_use` (web search/fetch request counts), `list_cost` (consumption priced at public list rates, as `{amount, currency}` with the amount an integer string in minor units - cents), and `active_seconds` (time with >=1 thread running; concurrent-thread overlap counted once - unlike `stats.active_seconds`, which sums per-thread time) |
-| `budget` | object | The session's spend cap, when one was set at creation - see § Session budgets |
-| `stats` | object | Timing statistics - `stats.active_seconds` sums per-thread time, unlike `usage.active_seconds` |
+| Field            | Type   | Description                                                                                                                                                                                                                                                                                                                                                                           |
+| ---------------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `type`           | string | Always `"session"`                                                                                                                                                                                                                                                                                                                                                                    |
+| `id`             | string | Unique session ID                                                                                                                                                                                                                                                                                                                                                                     |
+| `title`          | string | Human-readable title                                                                                                                                                                                                                                                                                                                                                                  |
+| `status`         | string | `idle`, `running`, `rescheduling`, `terminated`                                                                                                                                                                                                                                                                                                                                       |
+| `created_at`     | string | ISO 8601 timestamp                                                                                                                                                                                                                                                                                                                                                                    |
+| `updated_at`     | string | ISO 8601 timestamp                                                                                                                                                                                                                                                                                                                                                                    |
+| `archived_at`    | string | ISO 8601 timestamp (nullable)                                                                                                                                                                                                                                                                                                                                                         |
+| `environment_id` | string | Environment ID                                                                                                                                                                                                                                                                                                                                                                        |
+| `agent`          | object | Agent configuration                                                                                                                                                                                                                                                                                                                                                                   |
+| `resources`      | array  | Attached files, repos, and memory stores                                                                                                                                                                                                                                                                                                                                              |
+| `metadata`       | object | User-provided key-value pairs (max 8 keys)                                                                                                                                                                                                                                                                                                                                            |
+| `usage`          | object | Cumulative usage: token counts, `server_tool_use` (web search/fetch request counts), `list_cost` (consumption priced at public list rates, as `{amount, currency}` with the amount an integer string in minor units - cents), and `active_seconds` (time with >=1 thread running; concurrent-thread overlap counted once - unlike `stats.active_seconds`, which sums per-thread time) |
+| `budget`         | object | The session's spend cap, when one was set at creation - see § Session budgets                                                                                                                                                                                                                                                                                                         |
+| `stats`          | object | Timing statistics - `stats.active_seconds` sums per-thread time, unlike `usage.active_seconds`                                                                                                                                                                                                                                                                                        |
 
 ### Creating a session
 
@@ -107,39 +107,35 @@ Key fields returned by the API:
 
 ```ts
 // 1. Create the agent (reusable, versioned)
-const agent = await client.beta.agents.create(
-  {
-    name: "Coding Assistant",
-    model: "claude-opus-5",
-    system: "You are a helpful coding agent.",
-    tools: [{ type: "agent_toolset_20260401"}],
-  },
-);
+const agent = await client.beta.agents.create({
+  name: "Coding Assistant",
+  model: "claude-opus-5",
+  system: "You are a helpful coding agent.",
+  tools: [{ type: "agent_toolset_20260401" }],
+});
 
 // 2. Start a session that references it
-const session = await client.beta.sessions.create(
-  {
-    agent: agent.id,  // string shorthand -> latest version. Or: { type: "agent", id: agent.id, version: agent.version }
-    environment_id: environmentId,
-    title: "Hello World Session",
-  },
-);
+const session = await client.beta.sessions.create({
+  agent: agent.id, // string shorthand -> latest version. Or: { type: "agent", id: agent.id, version: agent.version }
+  environment_id: environmentId,
+  title: "Hello World Session",
+});
 ```
 
 > Tip: **Watch it live in Console.** While developing, print a link so you can click through to the session UI instead of parsing the event stream: `https://platform.claude.com/workspaces/{workspace}/sessions/{session.id}`. Use `default` for `{workspace}` only when the API key belongs to the org's Default workspace; otherwise substitute the workspace's ID (the session response does not carry it - read it from the Console URL bar or make it a config value). Include this `print`/`console.log` in code you generate for users who are iterating locally.
 
 **Session creation parameters:**
 
-| Field           | Type     | Required | Description                                    |
-| --------------- | -------- | -------- | ---------------------------------------------- |
-| `agent`         | string or object | **Yes** | Three forms: string shorthand `"agent_abc123"` (latest version); pinned `{type: "agent", id, version}`; or `{type: "agent_with_overrides", id, version?, ...}` to override `model`/`system`/`tools`/`mcp_servers`/`skills` for this session only - see § Override agent configuration for a session |
-| `environment_id`| string   | **Yes**  | Environment ID                                 |
-| `title`         | string   | No       | Human-readable name (appears in logs/dashboards) |
-| `resources`     | array    | No       | Files, GitHub repos, or memory stores, attached to the container at startup. Memory stores are session-create-only (not addable via `resources.add()`). |
-| `initial_events`| array    | No       | Events to send at creation, processed in order - collapses create + first send into one call. See § Seeding a session with `initial_events` below. |
-| `vault_ids`     | array    | No       | Vault IDs (`vlt_*`) - MCP credentials with auto-refresh + `environment_variable` secrets substituted at egress. See `shared/managed-agents-tools.md` -> Vaults. |
-| `budget`        | object   | No       | Hard dollar cap on the session's spend: `{type: "limit", max_list_cost: {amount, currency}}`. **Create-only** - can be changed or removed later, never added. See § Session budgets. |
-| `metadata`      | object   | No       | User-provided key-value pairs                  |
+| Field            | Type             | Required | Description                                                                                                                                                                                                                                                                                         |
+| ---------------- | ---------------- | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `agent`          | string or object | **Yes**  | Three forms: string shorthand `"agent_abc123"` (latest version); pinned `{type: "agent", id, version}`; or `{type: "agent_with_overrides", id, version?, ...}` to override `model`/`system`/`tools`/`mcp_servers`/`skills` for this session only - see § Override agent configuration for a session |
+| `environment_id` | string           | **Yes**  | Environment ID                                                                                                                                                                                                                                                                                      |
+| `title`          | string           | No       | Human-readable name (appears in logs/dashboards)                                                                                                                                                                                                                                                    |
+| `resources`      | array            | No       | Files, GitHub repos, or memory stores, attached to the container at startup. Memory stores are session-create-only (not addable via `resources.add()`).                                                                                                                                             |
+| `initial_events` | array            | No       | Events to send at creation, processed in order - collapses create + first send into one call. See § Seeding a session with `initial_events` below.                                                                                                                                                  |
+| `vault_ids`      | array            | No       | Vault IDs (`vlt_*`) - MCP credentials with auto-refresh + `environment_variable` secrets substituted at egress. See `shared/managed-agents-tools.md` -> Vaults.                                                                                                                                     |
+| `budget`         | object           | No       | Hard dollar cap on the session's spend: `{type: "limit", max_list_cost: {amount, currency}}`. **Create-only** - can be changed or removed later, never added. See § Session budgets.                                                                                                                |
+| `metadata`       | object           | No       | User-provided key-value pairs                                                                                                                                                                                                                                                                       |
 
 #### Seeding a session with `initial_events`
 
@@ -165,17 +161,17 @@ An outcome-driven session is therefore a single call - pass one `user.define_out
 
 **Agent configuration fields** (passed to `agents.create()`, not `sessions.create()`):
 
-| Field         | Type     | Required | Description                                    |
-| ------------- | -------- | -------- | ---------------------------------------------- |
-| `name`        | string   | **Yes**  | Human-readable name (1-256 chars)              |
-| `model`       | string or object | **Yes** | Claude model ID (bare string, or an object taking `id`, `speed`, `effort`, and `inference_geo`). All Claude 4.5+ models supported. See § Effort on the agent model and § Pinning inference geography below. |
-| `system`      | string   | No       | System prompt - defines the agent's behavior (up to 100K chars) |
-| `tools`       | array    | No       | Encompasses three kinds: (1) pre-built Claude Agent tools (`agent_toolset_20260401`), (2) MCP tools (`mcp_toolset`), and (3) custom client-side tools. Max 128. |
-| `mcp_servers` | array    | No       | MCP server connections - standardized third-party capabilities (e.g. GitHub, Asana). Max 20, unique names. See `shared/managed-agents-tools.md` -> MCP Servers. |
-| `skills`      | array    | No       | Customized "best-practices" context with progressive disclosure. Max 20. See `shared/managed-agents-tools.md` -> Skills. |
-| `description` | string   | No       | Description of the agent (up to 2048 chars)    |
-| `multiagent`  | object   | No       | `{type: "coordinator", agents: [...]}` - roster this agent may delegate to. See `shared/managed-agents-multiagent.md`. |
-| `metadata`    | object   | No       | Arbitrary key-value pairs (max 16, keys <=64 chars, values <=512 chars) |
+| Field         | Type             | Required | Description                                                                                                                                                                                                 |
+| ------------- | ---------------- | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `name`        | string           | **Yes**  | Human-readable name (1-256 chars)                                                                                                                                                                           |
+| `model`       | string or object | **Yes**  | Claude model ID (bare string, or an object taking `id`, `speed`, `effort`, and `inference_geo`). All Claude 4.5+ models supported. See § Effort on the agent model and § Pinning inference geography below. |
+| `system`      | string           | No       | System prompt - defines the agent's behavior (up to 100K chars)                                                                                                                                             |
+| `tools`       | array            | No       | Encompasses three kinds: (1) pre-built Claude Agent tools (`agent_toolset_20260401`), (2) MCP tools (`mcp_toolset`), and (3) custom client-side tools. Max 128.                                             |
+| `mcp_servers` | array            | No       | MCP server connections - standardized third-party capabilities (e.g. GitHub, Asana). Max 20, unique names. See `shared/managed-agents-tools.md` -> MCP Servers.                                             |
+| `skills`      | array            | No       | Customized "best-practices" context with progressive disclosure. Max 20. See `shared/managed-agents-tools.md` -> Skills.                                                                                    |
+| `description` | string           | No       | Description of the agent (up to 2048 chars)                                                                                                                                                                 |
+| `multiagent`  | object           | No       | `{type: "coordinator", agents: [...]}` - roster this agent may delegate to. See `shared/managed-agents-multiagent.md`.                                                                                      |
+| `metadata`    | object           | No       | Arbitrary key-value pairs (max 16, keys <=64 chars, values <=512 chars)                                                                                                                                     |
 
 ### Session budgets
 
@@ -193,7 +189,7 @@ session = client.beta.sessions.create(
 ```
 
 - `type` is always `"limit"`. `max_list_cost.amount` is the amount in **minor units of the currency (cents), as an integer string** with no leading zeros, > 0 - `"2500"` is $25.00, `"50"` is fifty cents. A string rather than a number so no float rounding is ever applied; decimal forms such as `"25.00"` are rejected. `max_list_cost.currency` is uppercase ISO-4217; **`USD` is the only supported currency.**
-- **What counts toward list cost:** model tokens at each served model's list price, web searches at $10 per 1,000, and session running time at $0.08/hour. List cost is *not* your contracted price - with negotiated discounts, the session hits the cap when the list-price total does, and billed spend may be lower.
+- **What counts toward list cost:** model tokens at each served model's list price, web searches at $10 per 1,000, and session running time at $0.08/hour. List cost is _not_ your contracted price - with negotiated discounts, the session hits the cap when the list-price total does, and billed spend may be lower.
 - **Enforcement is a pre-request gate:** before every model request the platform checks whether consumed list cost has reached the cap and pauses the thread if it has; the request that crosses the cap completes, so the final figure can exceed the cap by at most one model request per running thread. Treat the budget as a bound on new work, not an exact stop.
 - The reported `list_cost` is **rounded to the nearest cent** while enforcement compares exact amounts - rounding can move the reported figure up to half a cent in either direction from the exact amount, so a session whose reported `list_cost` equals its cap may not yet be paused. Treat `stop_reason: budget_reached` (or the 400 on `user.message`), not the reported figure, as the signal that the cap was reached.
 - **Create-only.** Adding a budget to a session created without one is a 400. Updates accept exactly two changes: **change the cap** (the new value can be higher or lower than the old cap, but must be strictly greater than the consumed list cost, else 400: `budget.max_list_cost must be greater than the session's consumed list cost`) or **remove** (`budget: null` - the `session.updated` event carries `budget: null` rather than a separate flag). Because the consumed cost usually sits a fraction past the old cap when the session pauses, base the new value on the session's reported `usage.list_cost`, not the old `max_list_cost`. **Removal is one-way**: a removed budget can never be re-added; to keep a cap, change it instead.
@@ -215,17 +211,17 @@ session = client.beta.sessions.create(
 
 The API is **flat** - `model`, `system`, `tools` etc. are top-level fields, not wrapped in an `agent:{}` sub-object.
 
-| Field              | Type     | Required | Description                                        |
-| ------------------ | -------- | -------- | -------------------------------------------------- |
-| `name`             | string   | Yes      | Human-readable name                                |
-| `model`            | string or object | Yes | Claude model ID - bare string, or `{id, speed?, effort?, inference_geo?}` |
-| `system`           | string   | No       | System prompt                                      |
-| `tools`            | array    | No       | Agent toolset / MCP toolset / custom tools         |
-| `mcp_servers`      | array    | No       | MCP server connections                             |
-| `skills`           | array    | No       | Skill references (max 20)                          |
-| `description`      | string   | No       | Description of the agent                           |
-| `multiagent`       | object   | No       | Coordinator roster - see `shared/managed-agents-multiagent.md` |
-| `metadata`         | object   | No       | Arbitrary key-value pairs                          |
+| Field         | Type             | Required | Description                                                               |
+| ------------- | ---------------- | -------- | ------------------------------------------------------------------------- |
+| `name`        | string           | Yes      | Human-readable name                                                       |
+| `model`       | string or object | Yes      | Claude model ID - bare string, or `{id, speed?, effort?, inference_geo?}` |
+| `system`      | string           | No       | System prompt                                                             |
+| `tools`       | array            | No       | Agent toolset / MCP toolset / custom tools                                |
+| `mcp_servers` | array            | No       | MCP server connections                                                    |
+| `skills`      | array            | No       | Skill references (max 20)                                                 |
+| `description` | string           | No       | Description of the agent                                                  |
+| `multiagent`  | object           | No       | Coordinator roster - see `shared/managed-agents-multiagent.md`            |
+| `metadata`    | object           | No       | Arbitrary key-value pairs                                                 |
 
 ### Lifecycle: create once, run many, update in place
 
@@ -241,7 +237,7 @@ The agent is a **persistent resource**, not a per-run parameter. The intended pa
 
 **Anti-pattern:** calling `agents.create()` at the top of every script run. This accumulates orphaned agent objects, pays create latency on every invocation, and defeats the versioning model. If you see `agents.create()` in a function that's called per-request or per-cron-tick, that's wrong - hoist it to one-time setup and persist the ID.
 
-> **Recommended - define agents and environments as YAML + apply via the `ant` CLI.** The split is **CLI for the control plane, SDK for the data plane**: agents and environments are relatively static resources you manage with `ant` (version-controlled YAML, applied from CI); sessions are dynamic and driven by your application through the SDK. See `shared/anthropic-cli.md` -> *Version-controlled Managed Agents resources* for the `ant beta:agents create < agent.yaml` / `update --version N` flow. The SDK `agents.create()` call shown elsewhere in this doc is the in-code equivalent - use it when you need to provision programmatically, but prefer the YAML flow for anything a human maintains.
+> **Recommended - define agents and environments as YAML + apply via the `ant` CLI.** The split is **CLI for the control plane, SDK for the data plane**: agents and environments are relatively static resources you manage with `ant` (version-controlled YAML, applied from CI); sessions are dynamic and driven by your application through the SDK. See `shared/anthropic-cli.md` -> _Version-controlled Managed Agents resources_ for the `ant beta:agents create < agent.yaml` / `update --version N` flow. The SDK `agents.create()` call shown elsewhere in this doc is the in-code equivalent - use it when you need to provision programmatically, but prefer the YAML flow for anything a human maintains.
 
 ### Effort on the agent model
 
@@ -259,7 +255,7 @@ The `model` object also takes `inference_geo` to pin the geography that serves t
 - Setting `inference_geo` on a model that doesn't support geographic inference pinning returns a 400.
 - **Fixed for a session's lifetime** - the pin can't change mid-session. Set it on the agent, or set/clear it for one session with a `model` override at session create (see § Override agent configuration for a session).
 - **Multiagent rosters must be geo-uniform:** the coordinator's pin and every roster member's must all be the same value or all be unset - see `shared/managed-agents-multiagent.md`.
-- Unlike `effort`, an `inference_geo` inside a per-session `model` override **is applied** - and because overrides replace the `model` object in full, an override that *omits* `inference_geo` clears the agent's pin for that session.
+- Unlike `effort`, an `inference_geo` inside a per-session `model` override **is applied** - and because overrides replace the `model` object in full, an override that _omits_ `inference_geo` clears the agent's pin for that session.
 
 ### Versioning
 
@@ -267,14 +263,15 @@ Each `POST /v1/agents/{id}` (update) creates a new immutable version - a sequent
 
 **`version` on update is optional.** Supply it for optimistic concurrency, or omit it to apply the update unconditionally:
 
-| `version` | Behavior | Fits |
-|---|---|---|
-| Supplied (must be >= 1) | 409 if it doesn't match the agent's current version - **even when the fields you send already equal the stored values**. Re-read and retry. | Interactive callers; the recommended default |
-| Omitted | Applies unconditionally. The most recent update silently replaces any concurrent one, with no error to either caller. | Declarative apply loops - e.g. a CI job syncing checked-in agent definitions, where the loop owns the agent |
+| `version`               | Behavior                                                                                                                                    | Fits                                                                                                        |
+| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
+| Supplied (must be >= 1) | 409 if it doesn't match the agent's current version - **even when the fields you send already equal the stored values**. Re-read and retry. | Interactive callers; the recommended default                                                                |
+| Omitted                 | Applies unconditionally. The most recent update silently replaces any concurrent one, with no error to either caller.                       | Declarative apply loops - e.g. a CI job syncing checked-in agent definitions, where the loop owns the agent |
 
 **Update semantics.** Omitted fields are preserved. Scalar fields (`model`, `system`, `name`, `description`) are replaced; `system` and `description` can be cleared with `null`, while `model` and `name` cannot. Array fields (`tools`, `mcp_servers`, `skills`) are replaced wholesale - `null` or `[]` clears them. **`effort` is the sole exception inside a `model` object you supply:** if the model `id` is unchanged, omitting `effort` leaves the stored level alone; if you change the `id`, an omitted `effort` resets to the new model's default. Other `model` fields are replaced along with the object - **supplying `model` without `inference_geo` clears the agent's inference geo pin.**
 
 **Why version:**
+
 - **Reproducibility** - pin a session to a known-good config: `{type: "agent", id, version: 3}`
 - **Safe iteration** - update the agent without breaking sessions already running on the old version
 - **Rollback** - if a new system prompt regresses, pin new sessions back to the prior version while you debug
@@ -287,13 +284,13 @@ Each `POST /v1/agents/{id}` (update) creates a new immutable version - a sequent
 
 ### Agent Endpoints
 
-| Operation        | Method   | Path                                  |
-| ---------------- | -------- | ------------------------------------- |
-| Create           | `POST`   | `/v1/agents`                          |
-| List             | `GET`    | `/v1/agents`                          |
-| Get              | `GET`    | `/v1/agents/{id}`                     |
-| Update           | `POST`   | `/v1/agents/{id}`                     |
-| Archive          | `POST`   | `/v1/agents/{id}/archive`             |
+| Operation | Method | Path                      |
+| --------- | ------ | ------------------------- |
+| Create    | `POST` | `/v1/agents`              |
+| List      | `GET`  | `/v1/agents`              |
+| Get       | `GET`  | `/v1/agents/{id}`         |
+| Update    | `POST` | `/v1/agents/{id}`         |
+| Archive   | `POST` | `/v1/agents/{id}/archive` |
 
 > Warning: **Archive is permanent.** Archiving makes the agent read-only: existing sessions continue to run, but **new sessions cannot reference it**, and there is no unarchive. Since agents have no `delete`, this is the terminal lifecycle state. Never archive a production agent as routine cleanup - confirm with the user first.
 
@@ -332,6 +329,7 @@ session = client.beta.sessions.create(
 ```
 
 Each overridable field follows tri-state rules:
+
 - **Omit** -> the session inherits the value from the referenced agent version.
 - **`null` (or `[]` for list fields)** -> the session runs with that field cleared. Applies in full to `system` and `skills`. Three exceptions: `model` is never clearable (`model: null` -> 400 `agent_model_required`); clearing `tools` returns 400 when the session's effective `skills` is non-empty (skills require the `read` tool); and clearing `mcp_servers` returns 400 when the effective `tools` still contains an `mcp_toolset` referencing one of the agent's servers - override `tools` in the same request to drop those entries, then clear `mcp_servers`.
 - **A value** -> replaces the agent's value **in full**. Overrides never merge - a `tools` override must list every tool the session should have. One exception: an `effort` level inside a `model` override is **not applied** (set it on the agent instead - see § Effort on the agent model). An `inference_geo` inside a `model` override **is** applied - and because the object is replaced in full, an override that omits it clears the agent's pin, so the session follows the workspace's default inference geo. The overridden value is validated against the workspace's `allowed_inference_geos` at session create.
@@ -356,4 +354,3 @@ client.beta.sessions.update(
     },
 )
 ```
-

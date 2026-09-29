@@ -8,11 +8,11 @@ license: Proprietary. LICENSE.txt has complete terms
 
 A `.docx` is a ZIP archive of XML files. Choose your approach by task:
 
-| Task | Approach |
-|---|---|
-| **Create** a new document | Write a `docx` (npm) script — see gotchas below |
+| Task                          | Approach                                                                        |
+| ----------------------------- | ------------------------------------------------------------------------------- |
+| **Create** a new document     | Write a `docx` (npm) script — see gotchas below                                 |
 | **Edit** an existing document | `unzip` → edit `word/document.xml` → `zip` (docx-js cannot open existing files) |
-| **Read** content | `pandoc -t markdown file.docx` |
+| **Read** content              | `pandoc -t markdown file.docx`                                                  |
 
 > Script paths below are relative to this skill's directory.
 
@@ -64,7 +64,7 @@ Word splits text across many `<w:r>` runs (revision ids, spell-check markers), s
 
 To produce a clean copy with all tracked changes accepted: `python scripts/accept_changes.py in.docx out.docx`.
 
-Accepting a deleted paragraph mark should join that paragraph to the one below it, so a paragraph whose runs are *all* deleted vanishes. Word does this; `accept_changes.py` and `pandoc --track-changes=accept` don't always. Both fail the same way — they strip the deleted text but leave the emptied paragraph behind, which reads as a stray empty bullet when it was auto-numbered:
+Accepting a deleted paragraph mark should join that paragraph to the one below it, so a paragraph whose runs are _all_ deleted vanishes. Word does this; `accept_changes.py` and `pandoc --track-changes=accept` don't always. Both fail the same way — they strip the deleted text but leave the emptied paragraph behind, which reads as a stray empty bullet when it was auto-numbered:
 
 - `pandoc --track-changes=accept` never joins the paragraphs.
 - `accept_changes.py` (LibreOffice) joins them correctly, except when the deleted paragraph is followed by an empty spacer paragraph.

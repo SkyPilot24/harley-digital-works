@@ -62,7 +62,8 @@ const DEFAULT_STEPS: SequenceStep[] = [
     stepNumber: 1,
     dayDelay: "Day 1 (Instant)",
     title: "The 60-Second Live Staging Demo Teaser",
-    objective: "Establish immediate trust by showing working software built specifically for their company before asking for a penny.",
+    objective:
+      "Establish immediate trust by showing working software built specifically for their company before asking for a penny.",
     emailSubject: "Quick question regarding {{companyName}} in {{city}}",
     emailBody: `Hi {{contactName}},
 
@@ -97,7 +98,8 @@ Includes an instant quote estimator and 1-tap WhatsApp booking. Takes 14 days to
     stepNumber: 2,
     dayDelay: "Day 3 (+48 Hours)",
     title: "Local Competitor & Map Pack Proximity Benchmark",
-    objective: "Provide concrete local search data showing where local competitors are capturing search traffic in their borough.",
+    objective:
+      "Provide concrete local search data showing where local competitors are capturing search traffic in their borough.",
     emailSubject: "Local Google Map Pack audit for {{companyName}} (vs {{competitorName}})",
     emailBody: `Hi {{contactName}},
 
@@ -125,7 +127,8 @@ Harley Digital Works`,
     stepNumber: 3,
     dayDelay: "Day 7 (+4 Days)",
     title: "The 14-Day Delivery SLA & Zero Homework Breakup",
-    objective: "Create final urgency around the 14-day SLA, fixed £1,495 / £2,995 pricing, and lock their regional sector exclusivity.",
+    objective:
+      "Create final urgency around the 14-day SLA, fixed £1,495 / £2,995 pricing, and lock their regional sector exclusivity.",
     emailSubject: "Closing your staging demo for {{companyName}}",
     emailBody: `Hi {{contactName}},
 
@@ -155,9 +158,9 @@ export function OutreachSequenceEngine() {
   const [copiedField, setCopiedField] = useState<string | null>(null);
 
   const stagingUrl = `https://harleydigitalworks.com/demos?company=${encodeURIComponent(
-    prospect.companyName
+    prospect.companyName,
   )}&trade=${encodeURIComponent(
-    prospect.tradeSector.toLowerCase().includes("heat") ? "heating" : "electrical"
+    prospect.tradeSector.toLowerCase().includes("heat") ? "heating" : "electrical",
   )}&city=${encodeURIComponent(prospect.city.split(",")[0])}`;
 
   const replaceTokens = (text: string) => {
@@ -244,7 +247,7 @@ export function OutreachSequenceEngine() {
     link.setAttribute("href", encodedUri);
     link.setAttribute(
       "download",
-      `Outreach-Sequence-${prospect.companyName.replace(/[^a-z0-9]/gi, "-")}.csv`
+      `Outreach-Sequence-${prospect.companyName.replace(/[^a-z0-9]/gi, "-")}.csv`,
     );
     document.body.appendChild(link);
     link.click();
@@ -271,7 +274,8 @@ export function OutreachSequenceEngine() {
                 </span>
               </div>
               <p className="text-xs text-ink-muted">
-                Conversion-engineered 3-step sequences for UK trade contractors with dynamic staging demo formulation and competitor gap benchmarks.
+                Conversion-engineered 3-step sequences for UK trade contractors with dynamic staging
+                demo formulation and competitor gap benchmarks.
               </p>
             </div>
           </div>
@@ -520,7 +524,11 @@ export function OutreachSequenceEngine() {
                     onClick={() => handleCopy(renderedSubject, "subject")}
                     className="text-xs text-purple-700 hover:text-purple-900 font-semibold inline-flex items-center gap-1"
                   >
-                    {copiedField === "subject" ? <Check className="h-3.5 w-3.5 text-emerald-600" /> : <Copy className="h-3.5 w-3.5" />}
+                    {copiedField === "subject" ? (
+                      <Check className="h-3.5 w-3.5 text-emerald-600" />
+                    ) : (
+                      <Copy className="h-3.5 w-3.5" />
+                    )}
                     <span>{copiedField === "subject" ? "Copied" : "Copy"}</span>
                   </button>
                 </div>
@@ -533,7 +541,11 @@ export function OutreachSequenceEngine() {
                     onClick={() => handleCopy(renderedEmail, "emailBody")}
                     className="absolute top-3 right-3 rounded-lg bg-slate-100 hover:bg-slate-200 px-2.5 py-1 text-xs font-semibold text-ink inline-flex items-center gap-1 border border-ink/10"
                   >
-                    {copiedField === "emailBody" ? <Check className="h-3.5 w-3.5 text-emerald-600" /> : <Copy className="h-3.5 w-3.5" />}
+                    {copiedField === "emailBody" ? (
+                      <Check className="h-3.5 w-3.5 text-emerald-600" />
+                    ) : (
+                      <Copy className="h-3.5 w-3.5" />
+                    )}
                     <span>{copiedField === "emailBody" ? "Copied Body" : "Copy Body"}</span>
                   </button>
                 </div>
@@ -551,7 +563,11 @@ export function OutreachSequenceEngine() {
                     onClick={() => handleCopy(renderedWhatsApp, "whatsappBody")}
                     className="absolute top-3 right-3 rounded-lg bg-white hover:bg-slate-100 px-2.5 py-1 text-xs font-semibold text-ink inline-flex items-center gap-1 border border-emerald-300"
                   >
-                    {copiedField === "whatsappBody" ? <Check className="h-3.5 w-3.5 text-emerald-600" /> : <Copy className="h-3.5 w-3.5" />}
+                    {copiedField === "whatsappBody" ? (
+                      <Check className="h-3.5 w-3.5 text-emerald-600" />
+                    ) : (
+                      <Copy className="h-3.5 w-3.5" />
+                    )}
                     <span>{copiedField === "whatsappBody" ? "Copied" : "Copy WhatsApp"}</span>
                   </button>
                 </div>
@@ -569,7 +585,11 @@ export function OutreachSequenceEngine() {
                     onClick={() => handleCopy(renderedSms, "smsBody")}
                     className="absolute top-3 right-3 rounded-lg bg-white hover:bg-slate-100 px-2.5 py-1 text-xs font-semibold text-ink inline-flex items-center gap-1 border border-amber-300"
                   >
-                    {copiedField === "smsBody" ? <Check className="h-3.5 w-3.5 text-emerald-600" /> : <Copy className="h-3.5 w-3.5" />}
+                    {copiedField === "smsBody" ? (
+                      <Check className="h-3.5 w-3.5 text-emerald-600" />
+                    ) : (
+                      <Copy className="h-3.5 w-3.5" />
+                    )}
                     <span>{copiedField === "smsBody" ? "Copied" : "Copy SMS"}</span>
                   </button>
                 </div>
@@ -605,9 +625,9 @@ export function OutreachSequenceEngine() {
                   activeChannel === "email"
                     ? `Subject: ${renderedSubject}\n\n${renderedEmail}`
                     : activeChannel === "whatsapp"
-                    ? renderedWhatsApp
-                    : renderedSms,
-                  "allActive"
+                      ? renderedWhatsApp
+                      : renderedSms,
+                  "allActive",
                 );
               }}
               className="inline-flex items-center gap-1.5 rounded-xl border border-ink/15 px-4 py-2 text-xs font-semibold text-ink hover:bg-slate-50 transition-colors"

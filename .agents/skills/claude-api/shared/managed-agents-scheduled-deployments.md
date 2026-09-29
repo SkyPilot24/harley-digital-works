@@ -137,17 +137,17 @@ The outcome of each **scheduled** run (started/succeeded/failed) and each deploy
 
 ## Lifecycle: pause / unpause / archive
 
-| Operation | SDK | Effect |
-|---|---|---|
-| Pause | `client.beta.deployments.pause(id)` | Suppresses scheduled triggers go-forward. Sessions already running continue. **Manual runs are still permitted while paused.** Sets `paused_reason: {"type": "manual"}`. |
-| Unpause | `client.beta.deployments.unpause(id)` | Resumes from the next scheduled occurrence. **Missed triggers are not backfilled.** Clears `paused_reason`. |
-| Archive | `client.beta.deployments.archive(id)` | **Terminal** - the schedule stops and the deployment can no longer be modified. Use pause for anything reversible. |
+| Operation | SDK                                   | Effect                                                                                                                                                                   |
+| --------- | ------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Pause     | `client.beta.deployments.pause(id)`   | Suppresses scheduled triggers go-forward. Sessions already running continue. **Manual runs are still permitted while paused.** Sets `paused_reason: {"type": "manual"}`. |
+| Unpause   | `client.beta.deployments.unpause(id)` | Resumes from the next scheduled occurrence. **Missed triggers are not backfilled.** Clears `paused_reason`.                                                              |
+| Archive   | `client.beta.deployments.archive(id)` | **Terminal** - the schedule stops and the deployment can no longer be modified. Use pause for anything reversible.                                                       |
 
 Raw HTTP: `POST /v1/deployments/{deployment_id}/pause` (likewise `/unpause`, `/archive`).
 
 ### Failure behavior
 
-- **Rate-limited:** recorded immediately as a `session_rate_limited` run, **no retry** - the schedule simply tries again at the next occurrence. (Rate limits on API calls *inside* a session are handled by the session itself.)
+- **Rate-limited:** recorded immediately as a `session_rate_limited` run, **no retry** - the schedule simply tries again at the next occurrence. (Rate limits on API calls _inside_ a session are handled by the session itself.)
 - **Other failed runs** (e.g. `environment_archived`, `vault_not_found`, `service_unavailable`): the run records the `error.type` - monitor runs and fix the referenced resource, or pause the deployment.
 - **Agent archived:** the deployment is automatically **archived** (terminal) in the same operation. **Agent deleted:** the next scheduled trigger detects the missing agent and archives the deployment then. Either way no deployment run is recorded, and no further sessions are created.
 

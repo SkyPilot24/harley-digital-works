@@ -135,9 +135,11 @@ export function LeadProspectorAuditDesk({
   const [isScanning, setIsScanning] = useState(false);
   const [prospects, setProspects] = useState<SourcedLead[]>(SAMPLE_PROSPECT_POOL);
   const [selectedProspect, setSelectedProspect] = useState<SourcedLead | null>(
-    SAMPLE_PROSPECT_POOL[0]
+    SAMPLE_PROSPECT_POOL[0],
   );
-  const [outreachChannel, setOutreachChannel] = useState<"whatsapp" | "email" | "linkedin">("whatsapp");
+  const [outreachChannel, setOutreachChannel] = useState<"whatsapp" | "email" | "linkedin">(
+    "whatsapp",
+  );
 
   const runProspectScan = () => {
     setIsScanning(true);
@@ -220,7 +222,9 @@ At The Harley Group, we deliver turnkey edge websites for UK contractors in 14 d
     const tradeInfo = TRADE_VERTICALS[selectedProspect.tradeSector] || { name: "Trade Business" };
     const subject = `Quick question regarding ${selectedProspect.companyName} website & local Google rank`;
     const body = generateOutreach(selectedProspect);
-    window.open(`mailto:${selectedProspect.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`);
+    window.open(
+      `mailto:${selectedProspect.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`,
+    );
   };
 
   return (
@@ -236,7 +240,8 @@ At The Harley Group, we deliver turnkey edge websites for UK contractors in 14 d
             </h3>
           </div>
           <p className="mt-1 text-xs text-ink-muted">
-            Ingest local UK trade businesses, automatically identify PageSpeed & ranking deficits, and generate human-approved outreach.
+            Ingest local UK trade businesses, automatically identify PageSpeed & ranking deficits,
+            and generate human-approved outreach.
           </p>
         </div>
 
@@ -245,7 +250,9 @@ At The Harley Group, we deliver turnkey edge websites for UK contractors in 14 d
           disabled={isScanning}
           className="inline-flex items-center gap-2 rounded-xl bg-ink px-4 py-2.5 text-xs font-bold text-white shadow-sm hover:bg-ink/85 transition-colors"
         >
-          <RefreshCw className={`h-3.5 w-3.5 ${isScanning ? "animate-spin text-emerald-400" : ""}`} />
+          <RefreshCw
+            className={`h-3.5 w-3.5 ${isScanning ? "animate-spin text-emerald-400" : ""}`}
+          />
           <span>{isScanning ? "Scanning UK Trade Registries..." : "Run Live Prospect Scan"}</span>
         </button>
       </div>
@@ -268,7 +275,9 @@ At The Harley Group, we deliver turnkey edge websites for UK contractors in 14 d
         </div>
 
         <div>
-          <label className="block text-[11px] font-semibold text-ink mb-1">Target Metro Region</label>
+          <label className="block text-[11px] font-semibold text-ink mb-1">
+            Target Metro Region
+          </label>
           <select
             value={selectedCity}
             onChange={(e) => setSelectedCity(e.target.value)}

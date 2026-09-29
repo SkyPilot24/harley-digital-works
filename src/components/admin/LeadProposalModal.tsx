@@ -123,8 +123,9 @@ Would you like us to provision your build slot for this month?`;
         toast.info("Opening email client draft with pre-formatted proposal...");
         window.location.href = res.mailtoUrl;
       }
-    } catch (err: any) {
-      toast.error(err.message || "Failed to dispatch email");
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : "Failed to dispatch email";
+      toast.error(msg);
     } finally {
       setIsSendingEmail(false);
     }

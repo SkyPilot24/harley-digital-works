@@ -196,8 +196,9 @@ Lead Web Producer | Harley Digital Works
         toast.info("Opening email client draft with trade demo pitch...");
         window.location.href = res.mailtoUrl;
       }
-    } catch (err: any) {
-      toast.error(err.message || "Failed to dispatch outreach email");
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : "Failed to dispatch outreach email";
+      toast.error(msg);
     } finally {
       setIsSendingEmail(false);
     }
@@ -218,8 +219,9 @@ Lead Web Producer | Harley Digital Works
       if (error) throw error;
       toast.success(`Pushed ${p.company} to Leads CRM!`);
       qc.invalidateQueries({ queryKey: ["leads"] });
-    } catch (err: any) {
-      toast.error(err.message || "Failed to push lead");
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : "Failed to push lead";
+      toast.error(msg);
     } finally {
       setIsPushing(false);
     }

@@ -167,7 +167,7 @@ Conversion functions raise `UnsupportedMCPValueError` if an MCP value cannot be 
 
 ## Manual Agentic Loop
 
-Prefer the tool runner above. Drop to a manual loop only when you need control the runner does not expose (e.g., a custom transport, request shapes the SDK cannot build, or avoiding a beta dependency - the runner is beta). Human-in-the-loop approval does *not* require a manual loop - gate inside the tool function (return a "user declined" result) or inspect pending `tool_use` blocks in the `for message in runner:` body and call `runner.set_messages_params()`.
+Prefer the tool runner above. Drop to a manual loop only when you need control the runner does not expose (e.g., a custom transport, request shapes the SDK cannot build, or avoiding a beta dependency - the runner is beta). Human-in-the-loop approval does _not_ require a manual loop - gate inside the tool function (return a "user declined" result) or inspect pending `tool_use` blocks in the `for message in runner:` body and call `runner.set_messages_params()`.
 
 If you do need a manual loop:
 

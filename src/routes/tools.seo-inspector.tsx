@@ -14,7 +14,7 @@ import {
   ExternalLink,
   Zap,
   Globe,
-  Award
+  Award,
 } from "lucide-react";
 import { toast } from "sonner";
 
@@ -66,25 +66,97 @@ function SeoInspectorPage() {
     const capitalizedTown = town.charAt(0).toUpperCase() + town.slice(1);
     if (trade === "electrician") {
       return [
-        { keyword: `Emergency Electrician ${capitalizedTown}`, monthlySearches: 480, cpcValue: "£16.50", intent: "Emergency", difficulty: "Low" },
-        { keyword: `EV Charger Installation ${capitalizedTown}`, monthlySearches: 720, cpcValue: "£24.00", intent: "High Commercial", difficulty: "Medium" },
-        { keyword: `Fuse Board Replacement ${capitalizedTown}`, monthlySearches: 390, cpcValue: "£18.20", intent: "High Commercial", difficulty: "Low" },
-        { keyword: `Landlord EICR Certificate ${capitalizedTown}`, monthlySearches: 560, cpcValue: "£12.50", intent: "Routine", difficulty: "Low" },
+        {
+          keyword: `Emergency Electrician ${capitalizedTown}`,
+          monthlySearches: 480,
+          cpcValue: "£16.50",
+          intent: "Emergency",
+          difficulty: "Low",
+        },
+        {
+          keyword: `EV Charger Installation ${capitalizedTown}`,
+          monthlySearches: 720,
+          cpcValue: "£24.00",
+          intent: "High Commercial",
+          difficulty: "Medium",
+        },
+        {
+          keyword: `Fuse Board Replacement ${capitalizedTown}`,
+          monthlySearches: 390,
+          cpcValue: "£18.20",
+          intent: "High Commercial",
+          difficulty: "Low",
+        },
+        {
+          keyword: `Landlord EICR Certificate ${capitalizedTown}`,
+          monthlySearches: 560,
+          cpcValue: "£12.50",
+          intent: "Routine",
+          difficulty: "Low",
+        },
       ];
     }
     if (trade === "roofing") {
       return [
-        { keyword: `Emergency Roof Repairs ${capitalizedTown}`, monthlySearches: 620, cpcValue: "£28.00", intent: "Emergency", difficulty: "Low" },
-        { keyword: `GRP Flat Roof Specialists ${capitalizedTown}`, monthlySearches: 510, cpcValue: "£32.50", intent: "High Commercial", difficulty: "Medium" },
-        { keyword: `Chimney Repointing & Repair ${capitalizedTown}`, monthlySearches: 340, cpcValue: "£15.00", intent: "Routine", difficulty: "Low" },
-        { keyword: `Fascias & Soffits Replacement ${capitalizedTown}`, monthlySearches: 410, cpcValue: "£19.80", intent: "High Commercial", difficulty: "Low" },
+        {
+          keyword: `Emergency Roof Repairs ${capitalizedTown}`,
+          monthlySearches: 620,
+          cpcValue: "£28.00",
+          intent: "Emergency",
+          difficulty: "Low",
+        },
+        {
+          keyword: `GRP Flat Roof Specialists ${capitalizedTown}`,
+          monthlySearches: 510,
+          cpcValue: "£32.50",
+          intent: "High Commercial",
+          difficulty: "Medium",
+        },
+        {
+          keyword: `Chimney Repointing & Repair ${capitalizedTown}`,
+          monthlySearches: 340,
+          cpcValue: "£15.00",
+          intent: "Routine",
+          difficulty: "Low",
+        },
+        {
+          keyword: `Fascias & Soffits Replacement ${capitalizedTown}`,
+          monthlySearches: 410,
+          cpcValue: "£19.80",
+          intent: "High Commercial",
+          difficulty: "Low",
+        },
       ];
     }
     return [
-      { keyword: `Emergency Boiler Repair ${capitalizedTown}`, monthlySearches: 850, cpcValue: "£34.00", intent: "Emergency", difficulty: "Medium" },
-      { keyword: `New Boiler Installation ${capitalizedTown}`, monthlySearches: 1100, cpcValue: "£42.00", intent: "High Commercial", difficulty: "High" },
-      { keyword: `Gas Safe Engineer ${capitalizedTown}`, monthlySearches: 740, cpcValue: "£19.50", intent: "High Commercial", difficulty: "Low" },
-      { keyword: `Power Flushing Service ${capitalizedTown}`, monthlySearches: 290, cpcValue: "£14.20", intent: "Routine", difficulty: "Low" },
+      {
+        keyword: `Emergency Boiler Repair ${capitalizedTown}`,
+        monthlySearches: 850,
+        cpcValue: "£34.00",
+        intent: "Emergency",
+        difficulty: "Medium",
+      },
+      {
+        keyword: `New Boiler Installation ${capitalizedTown}`,
+        monthlySearches: 1100,
+        cpcValue: "£42.00",
+        intent: "High Commercial",
+        difficulty: "High",
+      },
+      {
+        keyword: `Gas Safe Engineer ${capitalizedTown}`,
+        monthlySearches: 740,
+        cpcValue: "£19.50",
+        intent: "High Commercial",
+        difficulty: "Low",
+      },
+      {
+        keyword: `Power Flushing Service ${capitalizedTown}`,
+        monthlySearches: 290,
+        cpcValue: "£14.20",
+        intent: "Routine",
+        difficulty: "Low",
+      },
     ];
   };
 
@@ -103,7 +175,8 @@ function SeoInspectorPage() {
               <span className="text-gold-400">Map Pack Inspector.</span>
             </h1>
             <p className="mt-3 text-sm sm:text-base text-neutral-300 leading-relaxed max-w-xl mx-auto">
-              See who is currently dominating the Google Top 3 Map Pack in your town, and discover high-value local search keywords that can bring high-paying jobs to your phone.
+              See who is currently dominating the Google Top 3 Map Pack in your town, and discover
+              high-value local search keywords that can bring high-paying jobs to your phone.
             </p>
           </div>
         </Container>
@@ -112,7 +185,10 @@ function SeoInspectorPage() {
       {/* Main Search Bar */}
       <section className="py-8 bg-neutral-900 border-b border-neutral-800 text-white">
         <Container>
-          <form onSubmit={handleScan} className="max-w-3xl mx-auto flex flex-col sm:flex-row items-center gap-3">
+          <form
+            onSubmit={handleScan}
+            className="max-w-3xl mx-auto flex flex-col sm:flex-row items-center gap-3"
+          >
             <div className="w-full sm:w-1/3">
               <label className="block text-[11px] font-semibold text-neutral-400 uppercase tracking-wider mb-1">
                 Your Trade:
@@ -170,10 +246,12 @@ function SeoInspectorPage() {
                     <span>Local Search Opportunity for {town}</span>
                   </div>
                   <h2 className="text-2xl font-extrabold text-white">
-                    Estimated Monthly Search Value: <span className="text-emerald-400">£18,200+</span>
+                    Estimated Monthly Search Value:{" "}
+                    <span className="text-emerald-400">£18,200+</span>
                   </h2>
                   <p className="text-xs text-neutral-300 mt-1 max-w-xl leading-relaxed">
-                    Over 2,100 local homeowners and businesses search for certified {trade} services in {town} and surrounding suburbs each month.
+                    Over 2,100 local homeowners and businesses search for certified {trade} services
+                    in {town} and surrounding suburbs each month.
                   </p>
                 </div>
 
@@ -194,7 +272,9 @@ function SeoInspectorPage() {
 
               {/* High-Volume Keyword Opportunity Table */}
               <div className="rounded-3xl border border-neutral-800 bg-neutral-900 p-6 sm:p-8 shadow-xl">
-                <h3 className="font-bold text-lg text-white mb-2">High-Intent Keywords in {town}</h3>
+                <h3 className="font-bold text-lg text-white mb-2">
+                  High-Intent Keywords in {town}
+                </h3>
                 <p className="text-xs text-neutral-400 mb-6">
                   These keywords have immediate buying intent from homeowners ready to hire.
                 </p>
@@ -217,8 +297,12 @@ function SeoInspectorPage() {
                             <MapPin className="h-3.5 w-3.5 text-gold-400 shrink-0" />
                             <span>{kw.keyword}</span>
                           </td>
-                          <td className="py-3.5 text-center font-mono text-neutral-300">{kw.monthlySearches}/mo</td>
-                          <td className="py-3.5 text-center font-mono text-emerald-400 font-bold">{kw.cpcValue}</td>
+                          <td className="py-3.5 text-center font-mono text-neutral-300">
+                            {kw.monthlySearches}/mo
+                          </td>
+                          <td className="py-3.5 text-center font-mono text-emerald-400 font-bold">
+                            {kw.cpcValue}
+                          </td>
                           <td className="py-3.5 text-center">
                             <span className="inline-block rounded-md bg-neutral-800 px-2 py-0.5 text-[10px] font-semibold text-gold-300">
                               {kw.intent}
@@ -245,7 +329,8 @@ function SeoInspectorPage() {
                   </div>
                   <h4 className="font-bold text-sm text-white mb-1">Local Schema.org Markup</h4>
                   <p className="text-xs text-neutral-400 leading-relaxed">
-                    Most trade websites lack geo-tagged coordinates. Every Harley Digital Works site includes automated Schema.org JSON-LD markup.
+                    Most trade websites lack geo-tagged coordinates. Every Harley Digital Works site
+                    includes automated Schema.org JSON-LD markup.
                   </p>
                 </div>
 
@@ -256,7 +341,8 @@ function SeoInspectorPage() {
                   </div>
                   <h4 className="font-bold text-sm text-white mb-1">Regional Suburb Pages</h4>
                   <p className="text-xs text-neutral-400 leading-relaxed">
-                    Don't just target {town}. Target surrounding postcodes with programmatic landing pages to dominate peripheral searches.
+                    Don't just target {town}. Target surrounding postcodes with programmatic landing
+                    pages to dominate peripheral searches.
                   </p>
                 </div>
 
@@ -267,7 +353,8 @@ function SeoInspectorPage() {
                   </div>
                   <h4 className="font-bold text-sm text-white mb-1">Instant WhatsApp Taps</h4>
                   <p className="text-xs text-neutral-400 leading-relaxed">
-                    Mobile visitors convert 3.8x faster when given a 1-tap WhatsApp button instead of a cumbersome 10-field contact form.
+                    Mobile visitors convert 3.8x faster when given a 1-tap WhatsApp button instead
+                    of a cumbersome 10-field contact form.
                   </p>
                 </div>
               </div>
@@ -277,7 +364,8 @@ function SeoInspectorPage() {
               <Search className="h-10 w-10 text-neutral-600 mx-auto mb-3" />
               <h3 className="font-bold text-base text-white">Enter Your Town Above to Run Audit</h3>
               <p className="text-xs text-neutral-400 mt-1">
-                We'll scan Google search volumes, analyze local competition, and generate your custom keyword report.
+                We'll scan Google search volumes, analyze local competition, and generate your
+                custom keyword report.
               </p>
             </div>
           )}

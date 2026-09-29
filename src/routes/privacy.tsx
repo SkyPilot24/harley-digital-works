@@ -59,7 +59,8 @@ function Page() {
           <p className="eyebrow">Privacy & Data Protection</p>
           <h1 className="mt-6 text-[clamp(3rem,7vw,6rem)] tracking-[-.05em]">Privacy policy</h1>
           <p className="mt-6 max-w-2xl text-lg text-ink-muted">
-            Last updated: 28 September 2026. This notice outlines how Harley Digital Works and The Harley Group collect, use, and protect your information.
+            Last updated: 28 September 2026. This notice outlines how Harley Digital Works and The
+            Harley Group collect, use, and protect your information.
           </p>
         </Container>
       </section>
@@ -73,7 +74,8 @@ function Page() {
               </section>
             ))}
             <p className="mt-8 rounded-2xl bg-surface-stone p-5 text-sm text-ink-muted">
-              Harley Digital Works · The Harley Group. Operating in compliance with the UK General Data Protection Regulation (UK GDPR) and Data Protection Act 2018.
+              Harley Digital Works · The Harley Group. Operating in compliance with the UK General
+              Data Protection Regulation (UK GDPR) and Data Protection Act 2018.
             </p>
           </div>
         </Container>

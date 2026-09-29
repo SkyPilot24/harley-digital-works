@@ -28,9 +28,9 @@ Deliver and verify the production-ready digital agency operating platform and co
 
 ## Validation Summary
 
-| Gate | Command | Result |
-|---|---|---|
-| **TypeScript** | `npm run typecheck` | Passed (0 errors) |
-| **Prettier** | `npm run format:check` | Passed (100% compliant) |
-| **ESLint** | `npm run lint` | Passed (0 errors) |
-| **Vite + Nitro SSR Build** | `npm run build` | Passed (Output in `.output/`) |
+| Gate                       | Command                | Result                        |
+| -------------------------- | ---------------------- | ----------------------------- |
+| **TypeScript**             | `npm run typecheck`    | Passed (0 errors)             |
+| **Prettier**               | `npm run format:check` | Passed (100% compliant)       |
+| **ESLint**                 | `npm run lint`         | Passed (0 errors)             |
+| **Vite + Nitro SSR Build** | `npm run build`        | Passed (Output in `.output/`) |

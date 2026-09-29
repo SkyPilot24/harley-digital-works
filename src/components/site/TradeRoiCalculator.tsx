@@ -1,5 +1,13 @@
 import { useState, useMemo } from "react";
-import { Calculator, TrendingUp, Sparkles, CheckCircle2, ArrowRight, PoundSterling, ShieldCheck } from "lucide-react";
+import {
+  Calculator,
+  TrendingUp,
+  Sparkles,
+  CheckCircle2,
+  ArrowRight,
+  PoundSterling,
+  ShieldCheck,
+} from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import { PillButton } from "./PillButton";
 
@@ -12,11 +20,41 @@ interface TradePreset {
 }
 
 const TRADE_PRESETS: TradePreset[] = [
-  { id: "heating", name: "🔥 Boiler & Heating Engineer", avgJobValue: 2200, typicalMonthlyWins: 3, recommendedPackage: "Launch Website (£1,495)" },
-  { id: "roofing", name: "🏠 Roofer & GRP Specialist", avgJobValue: 3500, typicalMonthlyWins: 2, recommendedPackage: "Growth Website (£2,995)" },
-  { id: "electrical", name: "⚡ Electrician & Solar Installer", avgJobValue: 1200, typicalMonthlyWins: 4, recommendedPackage: "Launch Website (£1,495)" },
-  { id: "builder", name: "🔨 Builder & Home Renovations", avgJobValue: 18000, typicalMonthlyWins: 1, recommendedPackage: "Growth Website (£2,995)" },
-  { id: "cleaning", name: "✨ Commercial Cleaning & FM", avgJobValue: 650, typicalMonthlyWins: 6, recommendedPackage: "Launch Website (£1,495)" },
+  {
+    id: "heating",
+    name: "🔥 Boiler & Heating Engineer",
+    avgJobValue: 2200,
+    typicalMonthlyWins: 3,
+    recommendedPackage: "Launch Website (£1,495)",
+  },
+  {
+    id: "roofing",
+    name: "🏠 Roofer & GRP Specialist",
+    avgJobValue: 3500,
+    typicalMonthlyWins: 2,
+    recommendedPackage: "Growth Website (£2,995)",
+  },
+  {
+    id: "electrical",
+    name: "⚡ Electrician & Solar Installer",
+    avgJobValue: 1200,
+    typicalMonthlyWins: 4,
+    recommendedPackage: "Launch Website (£1,495)",
+  },
+  {
+    id: "builder",
+    name: "🔨 Builder & Home Renovations",
+    avgJobValue: 18000,
+    typicalMonthlyWins: 1,
+    recommendedPackage: "Growth Website (£2,995)",
+  },
+  {
+    id: "cleaning",
+    name: "✨ Commercial Cleaning & FM",
+    avgJobValue: 650,
+    typicalMonthlyWins: 6,
+    recommendedPackage: "Launch Website (£1,495)",
+  },
 ];
 
 export function TradeRoiCalculator() {
@@ -38,8 +76,12 @@ export function TradeRoiCalculator() {
     const annualCarePlanCost = 95 * 12; // £1,140
     const totalYear1Investment = websiteCost + annualCarePlanCost;
     const netYear1Profit = annualExtraRevenue - totalYear1Investment;
-    const roiMultiple = totalYear1Investment > 0 ? (annualExtraRevenue / totalYear1Investment).toFixed(1) : "0";
-    const daysToBreakEven = Math.max(1, Math.round((totalYear1Investment / (monthlyExtraRevenue / 30))));
+    const roiMultiple =
+      totalYear1Investment > 0 ? (annualExtraRevenue / totalYear1Investment).toFixed(1) : "0";
+    const daysToBreakEven = Math.max(
+      1,
+      Math.round(totalYear1Investment / (monthlyExtraRevenue / 30)),
+    );
 
     return {
       monthlyExtraRevenue,
@@ -165,7 +207,9 @@ export function TradeRoiCalculator() {
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 text-center sm:text-left">
           {/* Metric 1 */}
           <div className="border-b sm:border-b-0 sm:border-r border-neutral-800 pb-4 sm:pb-0 sm:pr-4">
-            <div className="text-xs font-semibold text-gold-400 uppercase tracking-wider">New Annual Revenue</div>
+            <div className="text-xs font-semibold text-gold-400 uppercase tracking-wider">
+              New Annual Revenue
+            </div>
             <div className="text-3xl md:text-4xl font-extrabold text-white tracking-tight mt-1 font-mono">
               +£{calculations.annualExtraRevenue.toLocaleString()}
             </div>
@@ -176,7 +220,9 @@ export function TradeRoiCalculator() {
 
           {/* Metric 2 */}
           <div className="border-b sm:border-b-0 sm:border-r border-neutral-800 pb-4 sm:pb-0 sm:pr-4">
-            <div className="text-xs font-semibold text-emerald-400 uppercase tracking-wider">Year 1 Net ROI</div>
+            <div className="text-xs font-semibold text-emerald-400 uppercase tracking-wider">
+              Year 1 Net ROI
+            </div>
             <div className="text-3xl md:text-4xl font-extrabold text-emerald-400 tracking-tight mt-1 font-mono">
               {calculations.roiMultiple}x Return
             </div>
@@ -187,7 +233,9 @@ export function TradeRoiCalculator() {
 
           {/* Metric 3 */}
           <div>
-            <div className="text-xs font-semibold text-amber-400 uppercase tracking-wider">Break-Even Speed</div>
+            <div className="text-xs font-semibold text-amber-400 uppercase tracking-wider">
+              Break-Even Speed
+            </div>
             <div className="text-3xl md:text-4xl font-extrabold text-amber-300 tracking-tight mt-1 font-mono">
               {calculations.daysToBreakEven} Days
             </div>
@@ -202,7 +250,9 @@ export function TradeRoiCalculator() {
       <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-2">
         <div className="flex items-center gap-2 text-xs text-neutral-300">
           <ShieldCheck className="h-4 w-4 text-gold-400 shrink-0" />
-          <span>100% Done-For-You: Copywriting, Mobile Layout, and WhatsApp lead flow included.</span>
+          <span>
+            100% Done-For-You: Copywriting, Mobile Layout, and WhatsApp lead flow included.
+          </span>
         </div>
 
         <Link

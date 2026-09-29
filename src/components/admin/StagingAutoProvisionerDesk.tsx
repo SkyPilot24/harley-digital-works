@@ -71,7 +71,9 @@ export function StagingAutoProvisionerDesk() {
   const [testDirector, setTestDirector] = useState("Liam Fletcher");
   const [testEmail, setTestEmail] = useState("liam@vanguardroofing.co.uk");
   const [testPhone, setTestPhone] = useState("07700900888");
-  const [testPackage, setTestPackage] = useState<"Launch (£1,495)" | "Growth (£2,995)">("Growth (£2,995)");
+  const [testPackage, setTestPackage] = useState<"Launch (£1,495)" | "Growth (£2,995)">(
+    "Growth (£2,995)",
+  );
   const [copiedKey, setCopiedKey] = useState<string | null>(null);
 
   const handleSimulateWebhook = async () => {
@@ -79,7 +81,9 @@ export function StagingAutoProvisionerDesk() {
     const token = `HDW-${Math.floor(1000 + Math.random() * 9000)}`;
     const slug = testCompany.toLowerCase().replace(/[^a-z0-9]/g, "");
     const staging = `https://${slug}.preview.harleydigitalworks.com`;
-    const deposit = testPackage.includes("Growth") ? "£1,497.50 (50% Deposit)" : "£747.50 (50% Deposit)";
+    const deposit = testPackage.includes("Growth")
+      ? "£1,497.50 (50% Deposit)"
+      : "£747.50 (50% Deposit)";
 
     try {
       // Create Lead/Client record in Supabase
@@ -108,8 +112,9 @@ export function StagingAutoProvisionerDesk() {
 
       setEvents((prev) => [newEvt, ...prev]);
       toast.success(`Webhook ingested & Project ${token} provisioned live!`);
-    } catch (err: any) {
-      toast.error(err.message || "Simulation failed");
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : "Simulation failed";
+      toast.error(msg);
     } finally {
       setIsSimulating(false);
     }
@@ -136,7 +141,9 @@ export function StagingAutoProvisionerDesk() {
               Zero-Touch Deposit Intake & Client Staging Deployment
             </h2>
             <p className="mt-1 text-xs text-ink-muted max-w-2xl">
-              Listens for Stripe & GoCardless payment webhooks, instantly provisions the client's V8 edge preview environment, assigns a token (HDW-XXXX), and triggers the 14-day SLA clock.
+              Listens for Stripe & GoCardless payment webhooks, instantly provisions the client's V8
+              edge preview environment, assigns a token (HDW-XXXX), and triggers the 14-day SLA
+              clock.
             </p>
           </div>
 
@@ -198,7 +205,9 @@ export function StagingAutoProvisionerDesk() {
             <Play className="h-4 w-4 text-primary" />
             <h3 className="text-base font-bold text-ink">Simulate Inbound Deposit Webhook</h3>
           </div>
-          <span className="text-xs text-ink-muted">Tests end-to-end auto-provisioning pipeline</span>
+          <span className="text-xs text-ink-muted">
+            Tests end-to-end auto-provisioning pipeline
+          </span>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-xs">
@@ -232,7 +241,7 @@ export function StagingAutoProvisionerDesk() {
             </label>
             <select
               value={testPackage}
-              onChange={(e) => setTestPackage(e.target.value as any)}
+              onChange={(e) => setTestPackage(e.target.value)}
               className="w-full rounded-xl border border-ink/15 bg-background/50 px-3 py-2 text-ink font-medium"
             >
               <option value="Launch (£1,495)">Launch Plan (£1,495) — £747.50 Deposit</option>
@@ -259,7 +268,11 @@ export function StagingAutoProvisionerDesk() {
             disabled={isSimulating}
             className="inline-flex items-center gap-2 rounded-full bg-ink hover:bg-ink/90 text-white px-6 py-2.5 text-xs font-bold transition-all shadow-md cursor-pointer disabled:opacity-50"
           >
-            {isSimulating ? <RefreshCw className="h-4 w-4 animate-spin" /> : <Zap className="h-4 w-4 text-gold-400" />}
+            {isSimulating ? (
+              <RefreshCw className="h-4 w-4 animate-spin" />
+            ) : (
+              <Zap className="h-4 w-4 text-gold-400" />
+            )}
             <span>{isSimulating ? "Executing Pipeline…" : "Simulate Stripe Deposit ($50%)"}</span>
           </button>
         </div>
@@ -270,7 +283,9 @@ export function StagingAutoProvisionerDesk() {
         <div className="flex items-center justify-between pb-4 border-b border-ink/10 mb-6">
           <div className="flex items-center gap-2">
             <Layers className="h-4 w-4 text-primary" />
-            <h3 className="text-base font-bold text-ink">Active Provisioned Projects & Live Staging</h3>
+            <h3 className="text-base font-bold text-ink">
+              Active Provisioned Projects & Live Staging
+            </h3>
           </div>
           <span className="text-xs font-mono text-ink-muted">{events.length} Events Ingested</span>
         </div>
@@ -315,7 +330,7 @@ export function StagingAutoProvisionerDesk() {
 
                   <a
                     href={`https://wa.me/?text=${encodeURIComponent(
-                      `Hi ${evt.customerName}, Robbie Harley here! We just received your deposit for ${evt.companyName}. Your 14-day delivery clock is running! Track live progress here: https://harleydigitalworks.com/track/${evt.trackingToken}`
+                      `Hi ${evt.customerName}, Robbie Harley here! We just received your deposit for ${evt.companyName}. Your 14-day delivery clock is running! Track live progress here: https://harleydigitalworks.com/track/${evt.trackingToken}`,
                     )}`}
                     target="_blank"
                     rel="noreferrer"

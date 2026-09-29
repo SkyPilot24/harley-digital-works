@@ -33,52 +33,52 @@ export function LocalSeoFactoryDesk() {
   const generatedSchema = {
     "@context": "https://schema.org",
     "@type": "HomeAndConstructionBusiness",
-    "name": `${contractorName}`,
-    "image": "https://harleydigitalworks.com/brand/approved/logos/hdw-wordmark-dark.svg",
-    "telephone": city.localPhone,
-    "email": `enquiries@${contractorName.toLowerCase().replace(/[^a-z0-9]/g, "")}.co.uk`,
-    "priceRange": "££",
-    "address": {
+    name: `${contractorName}`,
+    image: "https://harleydigitalworks.com/brand/approved/logos/hdw-wordmark-dark.svg",
+    telephone: city.localPhone,
+    email: `enquiries@${contractorName.toLowerCase().replace(/[^a-z0-9]/g, "")}.co.uk`,
+    priceRange: "££",
+    address: {
       "@type": "PostalAddress",
-      "addressLocality": city.cityName,
-      "addressRegion": city.county,
-      "postalCode": city.nearbyPostcodes[0] || "M1 1AD",
-      "addressCountry": "GB"
+      addressLocality: city.cityName,
+      addressRegion: city.county,
+      postalCode: city.nearbyPostcodes[0] || "M1 1AD",
+      addressCountry: "GB",
     },
-    "geo": {
+    geo: {
       "@type": "GeoCoordinates",
-      "latitude": 53.4808,
-      "longitude": -2.2426
+      latitude: 53.4808,
+      longitude: -2.2426,
     },
-    "areaServed": city.boroughs.map((b) => ({
+    areaServed: city.boroughs.map((b) => ({
       "@type": "AdministrativeArea",
-      "name": `${b}, ${city.cityName}`
+      name: `${b}, ${city.cityName}`,
     })),
-    "openingHoursSpecification": [
+    openingHoursSpecification: [
       {
         "@type": "OpeningHoursSpecification",
-        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-        "opens": "07:30",
-        "closes": "18:00"
+        dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        opens: "07:30",
+        closes: "18:00",
       },
       {
         "@type": "OpeningHoursSpecification",
-        "dayOfWeek": ["Saturday", "Sunday"],
-        "opens": "08:00",
-        "closes": "16:00"
-      }
+        dayOfWeek: ["Saturday", "Sunday"],
+        opens: "08:00",
+        closes: "16:00",
+      },
     ],
-    "hasOfferCatalog": {
+    hasOfferCatalog: {
       "@type": "OfferCatalog",
-      "name": `${trade.name} Services in ${city.cityName}`,
-      "itemListElement": trade.targetEnquiries.map((srv: string) => ({
+      name: `${trade.name} Services in ${city.cityName}`,
+      itemListElement: trade.targetEnquiries.map((srv: string) => ({
         "@type": "Offer",
-        "itemOffered": {
+        itemOffered: {
           "@type": "Service",
-          "name": `${srv} in ${city.cityName}`
-        }
-      }))
-    }
+          name: `${srv} in ${city.cityName}`,
+        },
+      })),
+    },
   };
 
   const schemaString = JSON.stringify(generatedSchema, null, 2);
@@ -101,13 +101,16 @@ export function LocalSeoFactoryDesk() {
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <h3 className="text-base font-bold text-ink">Automated Local SEO & Multi-City Page Engine</h3>
+                <h3 className="text-base font-bold text-ink">
+                  Automated Local SEO & Multi-City Page Engine
+                </h3>
                 <span className="rounded bg-purple-100 px-2 py-0.5 text-[10px] font-bold text-purple-800">
                   MAP-PACK RADAR
                 </span>
               </div>
               <p className="text-xs text-ink-muted">
-                Programmatically generate localized schema microdata, borough keyword clusters, and proximity signals for UK trades.
+                Programmatically generate localized schema microdata, borough keyword clusters, and
+                proximity signals for UK trades.
               </p>
             </div>
           </div>
@@ -195,7 +198,9 @@ export function LocalSeoFactoryDesk() {
                   key={idx}
                   className="rounded-lg border border-ink/10 bg-slate-50 px-3 py-1.5 text-xs text-ink/90 flex items-center justify-between gap-2"
                 >
-                  <span className="font-semibold">{trade.name} {borough}</span>
+                  <span className="font-semibold">
+                    {trade.name} {borough}
+                  </span>
                   <span className="text-[10px] text-emerald-700 font-mono font-bold bg-emerald-100 px-1.5 py-0.5 rounded">
                     Rank #1 Target
                   </span>
@@ -204,8 +209,13 @@ export function LocalSeoFactoryDesk() {
             </div>
 
             <div className="mt-4 pt-4 border-t border-ink/10 flex items-center justify-between text-xs text-ink-muted">
-              <span>Local Search Dialling Code: <strong className="text-ink">{city.localPhone}</strong></span>
-              <span>Estimated Search Volume: <strong className="text-emerald-700 font-bold">1,840/mo</strong></span>
+              <span>
+                Local Search Dialling Code: <strong className="text-ink">{city.localPhone}</strong>
+              </span>
+              <span>
+                Estimated Search Volume:{" "}
+                <strong className="text-emerald-700 font-bold">1,840/mo</strong>
+              </span>
             </div>
           </div>
 
@@ -215,8 +225,12 @@ export function LocalSeoFactoryDesk() {
               <Sparkles className="h-4 w-4 text-purple-600" />
               <span>Localized Social Proof Auto-Injection</span>
             </div>
-            <h4 className="text-sm font-bold text-purple-950">{city.localCaseStudy.name} ({city.localCaseStudy.trade})</h4>
-            <div className="mt-1 text-xs text-purple-800 font-medium">{city.localCaseStudy.result}</div>
+            <h4 className="text-sm font-bold text-purple-950">
+              {city.localCaseStudy.name} ({city.localCaseStudy.trade})
+            </h4>
+            <div className="mt-1 text-xs text-purple-800 font-medium">
+              {city.localCaseStudy.result}
+            </div>
             <blockquote className="mt-2 text-xs text-purple-900/80 italic bg-white/70 p-3 rounded-xl border border-purple-200/60">
               "{city.localCaseStudy.quote}"
             </blockquote>

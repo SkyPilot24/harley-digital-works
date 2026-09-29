@@ -15,7 +15,9 @@ export function MilestoneTimeline({ milestones, currentDay, totalDays }: Milesto
       {/* Progress Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-neutral-800 pb-6 mb-8">
         <div>
-          <span className="text-xs font-semibold uppercase tracking-wider text-gold-400">14-Day Delivery Rhythm</span>
+          <span className="text-xs font-semibold uppercase tracking-wider text-gold-400">
+            14-Day Delivery Rhythm
+          </span>
           <h3 className="text-xl md:text-2xl font-bold text-white tracking-tight mt-0.5">
             Build Progress: Day {currentDay} of {totalDays}
           </h3>
@@ -77,7 +79,9 @@ export function MilestoneTimeline({ milestones, currentDay, totalDays }: Milesto
                   <div className="flex items-center gap-2">
                     <span className="text-xs font-bold text-gold-400">{m.dayRange}</span>
                     <span className="text-xs text-neutral-600">•</span>
-                    <h4 className="text-sm md:text-base font-bold text-white tracking-tight">{m.title}</h4>
+                    <h4 className="text-sm md:text-base font-bold text-white tracking-tight">
+                      {m.title}
+                    </h4>
                   </div>
                   {isCompleted && m.completedDate && (
                     <span className="text-[11px] font-medium text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-md border border-emerald-500/20">
@@ -91,7 +95,9 @@ export function MilestoneTimeline({ milestones, currentDay, totalDays }: Milesto
                   )}
                 </div>
 
-                <p className="text-xs md:text-sm text-neutral-300 leading-relaxed">{m.description}</p>
+                <p className="text-xs md:text-sm text-neutral-300 leading-relaxed">
+                  {m.description}
+                </p>
 
                 {m.actionRequired && (
                   <div className="mt-3 flex items-start gap-2 text-xs text-amber-300 bg-amber-950/40 border border-amber-800/40 p-2.5 rounded-xl">

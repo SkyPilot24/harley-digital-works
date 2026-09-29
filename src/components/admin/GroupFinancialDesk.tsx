@@ -92,13 +92,16 @@ Box 7 (Total purchases ex-VAT),£${vatPurchasesNet.toLocaleString()}
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <h3 className="text-base font-bold text-ink">The Harley Group Ltd — Group Financial Consolidation</h3>
+                <h3 className="text-base font-bold text-ink">
+                  The Harley Group Ltd — Group Financial Consolidation
+                </h3>
                 <span className="rounded bg-emerald-100 px-2 py-0.5 text-[10px] font-bold text-emerald-800">
                   HMRC MTD COMPLIANT
                 </span>
               </div>
               <p className="text-xs text-ink-muted">
-                Company No: 14820194 • VAT Reg: GB 948 2018 39 • Consolidated financial roll-up across Harley Digital Works & Harley Labs.
+                Company No: 14820194 • VAT Reg: GB 948 2018 39 • Consolidated financial roll-up
+                across Harley Digital Works & Harley Labs.
               </p>
             </div>
           </div>
@@ -106,7 +109,7 @@ Box 7 (Total purchases ex-VAT),£${vatPurchasesNet.toLocaleString()}
           <div className="flex items-center gap-2">
             <select
               value={selectedQuarter}
-              onChange={(e) => setSelectedQuarter(e.target.value as any)}
+              onChange={(e) => setSelectedQuarter(e.target.value as "Q1" | "Q2" | "Q3" | "Q4")}
               className="rounded-xl border border-ink/15 bg-white px-3 py-2 text-xs font-semibold text-ink focus:outline-none"
             >
               <option value="Q1">Q1 (Jan–Mar 2026)</option>
@@ -128,27 +131,47 @@ Box 7 (Total purchases ex-VAT),£${vatPurchasesNet.toLocaleString()}
         {/* Top Financial Roll-up Metrics */}
         <div className="mt-5 grid grid-cols-2 lg:grid-cols-4 gap-3">
           <div className="rounded-xl border border-ink/10 bg-slate-50/60 p-4">
-            <div className="text-[11px] uppercase font-mono text-ink-muted">Total Group Revenue</div>
-            <div className="mt-2 text-2xl font-bold text-ink">£{totalGroupRevenue.toLocaleString()}</div>
-            <div className="mt-0.5 text-[11px] text-emerald-700 font-medium">+34% vs prior quarter</div>
+            <div className="text-[11px] uppercase font-mono text-ink-muted">
+              Total Group Revenue
+            </div>
+            <div className="mt-2 text-2xl font-bold text-ink">
+              £{totalGroupRevenue.toLocaleString()}
+            </div>
+            <div className="mt-0.5 text-[11px] text-emerald-700 font-medium">
+              +34% vs prior quarter
+            </div>
           </div>
 
           <div className="rounded-xl border border-ink/10 bg-slate-50/60 p-4">
-            <div className="text-[11px] uppercase font-mono text-ink-muted">Contracted Group MRR</div>
-            <div className="mt-2 text-2xl font-bold text-ink">£{totalMonthlyMRR.toLocaleString()}/mo</div>
+            <div className="text-[11px] uppercase font-mono text-ink-muted">
+              Contracted Group MRR
+            </div>
+            <div className="mt-2 text-2xl font-bold text-ink">
+              £{totalMonthlyMRR.toLocaleString()}/mo
+            </div>
             <div className="mt-0.5 text-[11px] text-ink-muted">Harley Care + Labs SaaS</div>
           </div>
 
           <div className="rounded-xl border border-ink/10 bg-slate-50/60 p-4">
-            <div className="text-[11px] uppercase font-mono text-ink-muted">Net Profit (Post-Tax)</div>
-            <div className="mt-2 text-2xl font-bold text-emerald-700">£{netProfitAfterTax.toLocaleString()}</div>
-            <div className="mt-0.5 text-[11px] text-emerald-700 font-medium">After 25% Corp Tax buffer</div>
+            <div className="text-[11px] uppercase font-mono text-ink-muted">
+              Net Profit (Post-Tax)
+            </div>
+            <div className="mt-2 text-2xl font-bold text-emerald-700">
+              £{netProfitAfterTax.toLocaleString()}
+            </div>
+            <div className="mt-0.5 text-[11px] text-emerald-700 font-medium">
+              After 25% Corp Tax buffer
+            </div>
           </div>
 
           <div className="rounded-xl border border-amber-200 bg-amber-50/50 p-4">
             <div className="text-[11px] uppercase font-mono text-amber-800">Net HMRC VAT Due</div>
-            <div className="mt-2 text-2xl font-bold text-amber-950">£{netVatPayableBox5.toLocaleString()}</div>
-            <div className="mt-0.5 text-[11px] text-amber-800 font-medium">Box 5 remittance for {selectedQuarter}</div>
+            <div className="mt-2 text-2xl font-bold text-amber-950">
+              £{netVatPayableBox5.toLocaleString()}
+            </div>
+            <div className="mt-0.5 text-[11px] text-amber-800 font-medium">
+              Box 5 remittance for {selectedQuarter}
+            </div>
           </div>
         </div>
       </div>
@@ -171,15 +194,21 @@ Box 7 (Total purchases ex-VAT),£${vatPurchasesNet.toLocaleString()}
             <div className="mt-3 grid grid-cols-3 gap-2 text-center text-xs">
               <div className="bg-white/80 p-2 rounded-lg border border-gold-200">
                 <div className="text-[10px] text-ink-muted">Net Revenue</div>
-                <div className="font-bold text-ink">£{financialData.hdw.revenueNet.toLocaleString()}</div>
+                <div className="font-bold text-ink">
+                  £{financialData.hdw.revenueNet.toLocaleString()}
+                </div>
               </div>
               <div className="bg-white/80 p-2 rounded-lg border border-gold-200">
                 <div className="text-[10px] text-ink-muted">Care MRR</div>
-                <div className="font-bold text-emerald-700">£{financialData.hdw.mrr.toLocaleString()}/mo</div>
+                <div className="font-bold text-emerald-700">
+                  £{financialData.hdw.mrr.toLocaleString()}/mo
+                </div>
               </div>
               <div className="bg-white/80 p-2 rounded-lg border border-gold-200">
                 <div className="text-[10px] text-ink-muted">Gross Profit</div>
-                <div className="font-bold text-ink">£{financialData.hdw.grossProfit.toLocaleString()}</div>
+                <div className="font-bold text-ink">
+                  £{financialData.hdw.grossProfit.toLocaleString()}
+                </div>
               </div>
             </div>
           </div>
@@ -193,15 +222,21 @@ Box 7 (Total purchases ex-VAT),£${vatPurchasesNet.toLocaleString()}
             <div className="mt-3 grid grid-cols-3 gap-2 text-center text-xs">
               <div className="bg-white/80 p-2 rounded-lg border border-indigo-200">
                 <div className="text-[10px] text-ink-muted">Net Revenue</div>
-                <div className="font-bold text-ink">£{financialData.labs.revenueNet.toLocaleString()}</div>
+                <div className="font-bold text-ink">
+                  £{financialData.labs.revenueNet.toLocaleString()}
+                </div>
               </div>
               <div className="bg-white/80 p-2 rounded-lg border border-indigo-200">
                 <div className="text-[10px] text-ink-muted">SaaS MRR</div>
-                <div className="font-bold text-emerald-700">£{financialData.labs.mrr.toLocaleString()}/mo</div>
+                <div className="font-bold text-emerald-700">
+                  £{financialData.labs.mrr.toLocaleString()}/mo
+                </div>
               </div>
               <div className="bg-white/80 p-2 rounded-lg border border-indigo-200">
                 <div className="text-[10px] text-ink-muted">Gross Profit</div>
-                <div className="font-bold text-ink">£{financialData.labs.grossProfit.toLocaleString()}</div>
+                <div className="font-bold text-ink">
+                  £{financialData.labs.grossProfit.toLocaleString()}
+                </div>
               </div>
             </div>
           </div>
@@ -212,7 +247,9 @@ Box 7 (Total purchases ex-VAT),£${vatPurchasesNet.toLocaleString()}
           <div>
             <div className="flex items-center justify-between border-b border-slate-800 pb-3 mb-4">
               <div>
-                <span className="text-xs font-mono font-bold text-emerald-400">HMRC Making Tax Digital Schedule</span>
+                <span className="text-xs font-mono font-bold text-emerald-400">
+                  HMRC Making Tax Digital Schedule
+                </span>
                 <h4 className="text-sm font-bold text-white">VAT Return 9-Box Breakdown</h4>
               </div>
               <span className="rounded bg-emerald-500/20 text-emerald-400 text-[10px] font-mono font-bold px-2 py-1 border border-emerald-500/30">
@@ -234,12 +271,18 @@ Box 7 (Total purchases ex-VAT),£${vatPurchasesNet.toLocaleString()}
                 <span className="text-white font-bold">£{vatDueBox1.toLocaleString()}.00</span>
               </div>
               <div className="flex justify-between border-b border-slate-800/80 pb-1.5">
-                <span className="text-slate-400">Box 4 (VAT reclaimed on purchases & expenses):</span>
+                <span className="text-slate-400">
+                  Box 4 (VAT reclaimed on purchases & expenses):
+                </span>
                 <span className="text-emerald-400">£{vatReclaimedBox4.toLocaleString()}.00</span>
               </div>
               <div className="flex justify-between border-b border-slate-800/80 pb-1.5 bg-emerald-950/40 p-2 rounded-lg">
-                <span className="text-emerald-300 font-bold">Box 5 (Net VAT payable to HMRC [Box 3 - Box 4]):</span>
-                <span className="text-emerald-400 font-black text-sm">£{netVatPayableBox5.toLocaleString()}.00</span>
+                <span className="text-emerald-300 font-bold">
+                  Box 5 (Net VAT payable to HMRC [Box 3 - Box 4]):
+                </span>
+                <span className="text-emerald-400 font-black text-sm">
+                  £{netVatPayableBox5.toLocaleString()}.00
+                </span>
               </div>
               <div className="flex justify-between border-b border-slate-800/80 pb-1.5">
                 <span className="text-slate-400">Box 6 (Total value of sales ex-VAT):</span>

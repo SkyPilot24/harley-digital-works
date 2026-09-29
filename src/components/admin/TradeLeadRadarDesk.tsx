@@ -173,7 +173,9 @@ export function TradeLeadRadarDesk({
 
   const filtered = prospects.filter((p) => {
     const matchTrade = selectedTrade === "All Trade Sectors" || p.trade === selectedTrade;
-    const matchRegion = selectedRegion === "All UK Hubs" || selectedRegion.toLowerCase().includes(p.city.toLowerCase());
+    const matchRegion =
+      selectedRegion === "All UK Hubs" ||
+      selectedRegion.toLowerCase().includes(p.city.toLowerCase());
     const matchSearch =
       !searchTerm ||
       p.companyName.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -187,11 +189,12 @@ export function TradeLeadRadarDesk({
   const criticalCount = filtered.filter((p) => p.speedStatus === "critical").length;
 
   const exportCsv = () => {
-    const header = "Director,Company,Trade,City,Postcode,Website,Phone,Speed,GoogleRating,ReviewCount,EstMonthlyLeak,Angle\n";
+    const header =
+      "Director,Company,Trade,City,Postcode,Website,Phone,Speed,GoogleRating,ReviewCount,EstMonthlyLeak,Angle\n";
     const rows = filtered
       .map(
         (p) =>
-          `"${p.director}","${p.companyName}","${p.trade}","${p.city}","${p.postcode}","${p.websiteUrl}","${p.phone}","${p.mobileSpeed}","${p.googleRating}★","${p.reviewCount}","£${p.monthlyRevenueLeakGbp}","${p.primaryAngle}"`
+          `"${p.director}","${p.companyName}","${p.trade}","${p.city}","${p.postcode}","${p.websiteUrl}","${p.phone}","${p.mobileSpeed}","${p.googleRating}★","${p.reviewCount}","£${p.monthlyRevenueLeakGbp}","${p.primaryAngle}"`,
       )
       .join("\n");
 
@@ -218,7 +221,9 @@ export function TradeLeadRadarDesk({
               High-Ticket Contractor Opportunity Matrix
             </h2>
             <p className="mt-1 text-xs text-ink-muted max-w-2xl">
-              Continuously scans UK trade contractors across Cheshire & Greater Manchester, benchmarks mobile loading latency, flags missing conversion triggers, and models estimated lost revenue.
+              Continuously scans UK trade contractors across Cheshire & Greater Manchester,
+              benchmarks mobile loading latency, flags missing conversion triggers, and models
+              estimated lost revenue.
             </p>
           </div>
 
@@ -234,7 +239,9 @@ export function TradeLeadRadarDesk({
         {/* Telemetry Metrics */}
         <div className="mt-6 grid grid-cols-1 sm:grid-cols-4 gap-4">
           <div className="rounded-2xl bg-surface-sage p-4 border border-ink/5">
-            <div className="text-[11px] font-mono uppercase tracking-wider text-ink-muted">Total Scanned Targets</div>
+            <div className="text-[11px] font-mono uppercase tracking-wider text-ink-muted">
+              Total Scanned Targets
+            </div>
             <div className="mt-1 text-2xl font-bold text-ink">{filtered.length} Prospects</div>
             <div className="mt-0.5 text-xs text-ink-muted">Active UK Geo-Grid</div>
           </div>
@@ -259,7 +266,9 @@ export function TradeLeadRadarDesk({
             <div className="text-[11px] font-mono uppercase tracking-wider text-emerald-700 font-semibold">
               Total Monthly Revenue Leak
             </div>
-            <div className="mt-1 text-2xl font-bold text-emerald-800">£{totalLeak.toLocaleString()}/mo</div>
+            <div className="mt-1 text-2xl font-bold text-emerald-800">
+              £{totalLeak.toLocaleString()}/mo
+            </div>
             <div className="mt-0.5 text-xs text-emerald-700/80">Recoverable by Harley Edge</div>
           </div>
         </div>
@@ -333,7 +342,9 @@ export function TradeLeadRadarDesk({
                     <div className="text-[11px] text-ink-muted flex items-center gap-1.5 mt-0.5">
                       <span>{p.director}</span>
                       <span>•</span>
-                      <span className="font-mono">{p.city} ({p.postcode})</span>
+                      <span className="font-mono">
+                        {p.city} ({p.postcode})
+                      </span>
                     </div>
                     <a
                       href={`https://${p.websiteUrl}`}
@@ -404,7 +415,7 @@ export function TradeLeadRadarDesk({
                     <div className="inline-flex items-center gap-1.5">
                       <a
                         href={`https://wa.me/${p.phone.replace(/[^0-9]/g, "")}?text=${encodeURIComponent(
-                          `Hi ${p.director}, Robbie Harley here from Harley Digital Works in Wilmslow. I ran a quick mobile speed test on ${p.websiteUrl} (${p.mobileSpeed} load time). We put together a 60-second teardown showing how to capture ~£${p.monthlyRevenueLeakGbp}/mo in lost local quote requests. Would love to share the 4-slide audit with you.`
+                          `Hi ${p.director}, Robbie Harley here from Harley Digital Works in Wilmslow. I ran a quick mobile speed test on ${p.websiteUrl} (${p.mobileSpeed} load time). We put together a 60-second teardown showing how to capture ~£${p.monthlyRevenueLeakGbp}/mo in lost local quote requests. Would love to share the 4-slide audit with you.`,
                         )}`}
                         target="_blank"
                         rel="noreferrer"

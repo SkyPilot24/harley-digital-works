@@ -1,4 +1,4 @@
-﻿import { useState, useMemo } from "react";
+import { useState, useMemo } from "react";
 import {
   X,
   Printer,
@@ -112,8 +112,9 @@ Harley Digital Works (The Harley Group)`;
         toast.info("Opening email client draft with performance report...");
         window.location.href = res.mailtoUrl;
       }
-    } catch (err: any) {
-      toast.error(err.message || "Failed to dispatch report");
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : "Failed to dispatch report";
+      toast.error(msg);
     } finally {
       setIsSendingEmail(false);
     }

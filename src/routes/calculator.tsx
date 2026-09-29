@@ -40,7 +40,9 @@ function CalculatorPage() {
             </h1>
 
             <p className="text-base sm:text-lg text-neutral-300 leading-relaxed mb-6">
-              When a website looks outdated or hard to navigate on mobile, homeowners and commercial clients move on to the next contractor on Google. Use our calculator below to see the commercial impact of a high-converting trade website.
+              When a website looks outdated or hard to navigate on mobile, homeowners and commercial
+              clients move on to the next contractor on Google. Use our calculator below to see the
+              commercial impact of a high-converting trade website.
             </p>
 
             <div className="flex flex-wrap items-center gap-4 text-xs sm:text-sm text-neutral-300">

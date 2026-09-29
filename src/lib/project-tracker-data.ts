@@ -67,7 +67,8 @@ export const SAMPLE_PROJECTS: Record<string, ClientTrackProject> = {
         stageNumber: 1,
         dayRange: "Days 1–3",
         title: "Trade Discovery & Onboarding",
-        description: "Services verified, coverage postcodes mapped, NICEIC & EV accreditation numbers logged.",
+        description:
+          "Services verified, coverage postcodes mapped, NICEIC & EV accreditation numbers logged.",
         status: "completed",
         completedDate: "12 Sept 2026",
       },
@@ -76,7 +77,8 @@ export const SAMPLE_PROJECTS: Record<string, ClientTrackProject> = {
         stageNumber: 2,
         dayRange: "Days 4–6",
         title: "Bespoke Copywriting & Content Creation",
-        description: "Full professional copywriting completed for all service pages, local SEO titles, and trade guarantees.",
+        description:
+          "Full professional copywriting completed for all service pages, local SEO titles, and trade guarantees.",
         status: "completed",
         completedDate: "15 Sept 2026",
       },
@@ -85,7 +87,8 @@ export const SAMPLE_PROJECTS: Record<string, ClientTrackProject> = {
         stageNumber: 3,
         dayRange: "Days 7–10",
         title: "Interactive Web Build & Lead Flow Wiring",
-        description: "Building responsive mobile layout, instant electrical quote calculator, and WhatsApp lead dispatch integration.",
+        description:
+          "Building responsive mobile layout, instant electrical quote calculator, and WhatsApp lead dispatch integration.",
         status: "in_progress",
         actionRequired: "Build actively underway. Live preview link ready on Day 11.",
       },
@@ -94,7 +97,8 @@ export const SAMPLE_PROJECTS: Record<string, ClientTrackProject> = {
         stageNumber: 4,
         dayRange: "Days 11–12",
         title: "Client Review & 1-Click Polish",
-        description: "Client tests live staging link on mobile, requests any final text tweaks, and approves for launch.",
+        description:
+          "Client tests live staging link on mobile, requests any final text tweaks, and approves for launch.",
         status: "pending",
       },
       {
@@ -102,7 +106,8 @@ export const SAMPLE_PROJECTS: Record<string, ClientTrackProject> = {
         stageNumber: 5,
         dayRange: "Days 13–14",
         title: "Domain Cutover & Public Launch",
-        description: "SSL certificate deployment, Google Business Profile indexation, Schema.org verification, and live rollout.",
+        description:
+          "SSL certificate deployment, Google Business Profile indexation, Schema.org verification, and live rollout.",
         status: "pending",
       },
     ],
@@ -146,7 +151,8 @@ export const SAMPLE_PROJECTS: Record<string, ClientTrackProject> = {
         stageNumber: 2,
         dayRange: "Days 4–6",
         title: "Copywriting & Drone Asset Setup",
-        description: "Persuasive service copy written for GRP flat roofing, dry ridge systems, and emergency storm repairs.",
+        description:
+          "Persuasive service copy written for GRP flat roofing, dry ridge systems, and emergency storm repairs.",
         status: "completed",
         completedDate: "10 Sept 2026",
       },
@@ -155,7 +161,8 @@ export const SAMPLE_PROJECTS: Record<string, ClientTrackProject> = {
         stageNumber: 3,
         dayRange: "Days 7–10",
         title: "Mobile Build & Quote Form Setup",
-        description: "Full site built with click-to-call, WhatsApp quote estimator, and 20-year warranty badges.",
+        description:
+          "Full site built with click-to-call, WhatsApp quote estimator, and 20-year warranty badges.",
         status: "completed",
         completedDate: "14 Sept 2026",
       },

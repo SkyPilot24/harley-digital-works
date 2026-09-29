@@ -16,7 +16,7 @@ import {
   CheckCircle2,
   FileCheck,
   CreditCard,
-  PhoneCall
+  PhoneCall,
 } from "lucide-react";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
@@ -31,18 +31,46 @@ export const Route = createFileRoute("/care-desk")({
         content:
           "Fast-track 1-tap website change requests, BACS Direct Debit management, VAT receipts, and 24-hour turnaround support for Harley Digital Works Care Plan clients.",
       },
-      { property: "og:title", content: "Care Plan Desk & Direct Debit Portal | Harley Digital Works" },
+      {
+        property: "og:title",
+        content: "Care Plan Desk & Direct Debit Portal | Harley Digital Works",
+      },
     ],
   }),
   component: CareDeskPage,
 });
 
 const REQUEST_TYPES = [
-  { id: "photos", label: "Upload New Job Photos", icon: Camera, desc: "Add before/after photos of recently completed work." },
-  { id: "pricing", label: "Update Prices / Text", icon: Pencil, desc: "Change service prices, phone number or coverage towns." },
-  { id: "reviews", label: "Add New Reviews", icon: Star, desc: "Post new 5-star Google or Checkatrade testimonials." },
-  { id: "emergency", label: "Toggle Emergency Banner", icon: Zap, desc: "Turn on/off on-call emergency status alert." },
-  { id: "team", label: "Add Van or Team Member", icon: Users, desc: "Add new vehicle branding, staff bio or apprentice." },
+  {
+    id: "photos",
+    label: "Upload New Job Photos",
+    icon: Camera,
+    desc: "Add before/after photos of recently completed work.",
+  },
+  {
+    id: "pricing",
+    label: "Update Prices / Text",
+    icon: Pencil,
+    desc: "Change service prices, phone number or coverage towns.",
+  },
+  {
+    id: "reviews",
+    label: "Add New Reviews",
+    icon: Star,
+    desc: "Post new 5-star Google or Checkatrade testimonials.",
+  },
+  {
+    id: "emergency",
+    label: "Toggle Emergency Banner",
+    icon: Zap,
+    desc: "Turn on/off on-call emergency status alert.",
+  },
+  {
+    id: "team",
+    label: "Add Van or Team Member",
+    icon: Users,
+    desc: "Add new vehicle branding, staff bio or apprentice.",
+  },
 ];
 
 function CareDeskPage() {
@@ -83,8 +111,9 @@ Files Attached: ${uploadedFiles.join(", ") || "None"}`;
 
       setIsSubmitted(true);
       toast.success("Care Plan update ticket submitted!");
-    } catch (err: any) {
-      toast.error(err.message || "Failed to submit request");
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : "Failed to submit request";
+      toast.error(msg);
     } finally {
       setIsSubmitting(false);
     }
@@ -105,7 +134,8 @@ Files Attached: ${uploadedFiles.join(", ") || "None"}`;
               <span className="text-gold-400">Direct Debit Portal.</span>
             </h1>
             <p className="mt-3 text-sm sm:text-base text-neutral-300 leading-relaxed max-w-xl mx-auto">
-              Need website updates deployed or want to manage your recurring £95/mo or £195/mo Care Plan, VAT invoices, and BACS Direct Debit? Everything is self-service below.
+              Need website updates deployed or want to manage your recurring £95/mo or £195/mo Care
+              Plan, VAT invoices, and BACS Direct Debit? Everything is self-service below.
             </p>
 
             {/* Tab Buttons */}
@@ -151,7 +181,8 @@ Files Attached: ${uploadedFiles.join(", ") || "None"}`;
               </div>
               <h2 className="text-2xl font-bold text-white">Ticket Received for {businessName}!</h2>
               <p className="mt-2 text-xs text-neutral-300 leading-relaxed">
-                Your assigned Web Producer is on it. Changes will be deployed live to your website within 24 business hours.
+                Your assigned Web Producer is on it. Changes will be deployed live to your website
+                within 24 business hours.
               </p>
 
               <div className="mt-6 pt-6 border-t border-neutral-800 flex flex-col sm:flex-row gap-3 justify-center">
@@ -178,7 +209,10 @@ Files Attached: ${uploadedFiles.join(", ") || "None"}`;
               </div>
             </div>
           ) : (
-            <form onSubmit={handleSubmit} className="max-w-2xl mx-auto rounded-3xl border border-neutral-800 bg-neutral-900 p-6 sm:p-10 shadow-2xl space-y-6">
+            <form
+              onSubmit={handleSubmit}
+              className="max-w-2xl mx-auto rounded-3xl border border-neutral-800 bg-neutral-900 p-6 sm:p-10 shadow-2xl space-y-6"
+            >
               <div className="flex items-center gap-2 text-xs font-bold text-gold-400 uppercase tracking-wider mb-2">
                 <Sparkles className="h-4 w-4" />
                 <span>Submit Website Change Request</span>
@@ -207,7 +241,9 @@ Files Attached: ${uploadedFiles.join(", ") || "None"}`;
                         <Icon className="h-5 w-5 shrink-0 mt-0.5" />
                         <div>
                           <div className="text-xs font-bold">{t.label}</div>
-                          <div className={`text-[11px] mt-0.5 ${active ? "text-neutral-900 font-normal" : "text-neutral-500"}`}>
+                          <div
+                            className={`text-[11px] mt-0.5 ${active ? "text-neutral-900 font-normal" : "text-neutral-500"}`}
+                          >
                             {t.desc}
                           </div>
                         </div>
@@ -297,7 +333,10 @@ Files Attached: ${uploadedFiles.join(", ") || "None"}`;
                 {uploadedFiles.length > 0 && (
                   <div className="mt-3 flex flex-wrap justify-center gap-2">
                     {uploadedFiles.map((fn, idx) => (
-                      <span key={idx} className="inline-flex items-center gap-1.5 rounded-lg bg-neutral-800 px-3 py-1 text-xs text-emerald-400 border border-neutral-700">
+                      <span
+                        key={idx}
+                        className="inline-flex items-center gap-1.5 rounded-lg bg-neutral-800 px-3 py-1 text-xs text-emerald-400 border border-neutral-700"
+                      >
                         <FileCheck className="h-3.5 w-3.5" />
                         <span>{fn}</span>
                       </span>

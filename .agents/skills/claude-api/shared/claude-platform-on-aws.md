@@ -8,15 +8,15 @@
 
 ## Client & install
 
-| Language | Install | Client |
-|---|---|---|
-| Python | `pip install -U "anthropic[aws]"` | `from anthropic import AnthropicAWS` -> `AnthropicAWS()` |
-| TypeScript | `npm install @anthropic-ai/aws-sdk` | `import AnthropicAws from "@anthropic-ai/aws-sdk"` -> `new AnthropicAws()` |
-| Go | `go get github.com/anthropics/anthropic-sdk-go` | `import anthropicaws "github.com/anthropics/anthropic-sdk-go/aws"` -> `anthropicaws.NewClient(ctx, anthropicaws.ClientConfig{})` |
-| C# | `dotnet add package Anthropic.Aws` | `new AnthropicAwsClient()` |
-| Java | See SDK repo in `shared/live-sources.md` | See SDK repo in `shared/live-sources.md` |
-| Ruby | `gem install anthropic aws-sdk-core` | See SDK repo in `shared/live-sources.md` |
-| PHP | `composer require anthropic-ai/sdk aws/aws-sdk-php` | See SDK repo in `shared/live-sources.md` |
+| Language   | Install                                             | Client                                                                                                                           |
+| ---------- | --------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
+| Python     | `pip install -U "anthropic[aws]"`                   | `from anthropic import AnthropicAWS` -> `AnthropicAWS()`                                                                         |
+| TypeScript | `npm install @anthropic-ai/aws-sdk`                 | `import AnthropicAws from "@anthropic-ai/aws-sdk"` -> `new AnthropicAws()`                                                       |
+| Go         | `go get github.com/anthropics/anthropic-sdk-go`     | `import anthropicaws "github.com/anthropics/anthropic-sdk-go/aws"` -> `anthropicaws.NewClient(ctx, anthropicaws.ClientConfig{})` |
+| C#         | `dotnet add package Anthropic.Aws`                  | `new AnthropicAwsClient()`                                                                                                       |
+| Java       | See SDK repo in `shared/live-sources.md`            | See SDK repo in `shared/live-sources.md`                                                                                         |
+| Ruby       | `gem install anthropic aws-sdk-core`                | See SDK repo in `shared/live-sources.md`                                                                                         |
+| PHP        | `composer require anthropic-ai/sdk aws/aws-sdk-php` | See SDK repo in `shared/live-sources.md`                                                                                         |
 
 After construction, **use the client exactly as you would `Anthropic()`** - `client.messages.create(...)`, `client.beta.sessions.*`, etc., with bare model IDs.
 
@@ -37,10 +37,10 @@ client.messages.create(
 
 Two values must be available (constructor args or environment) - **there is no default fallback** for either:
 
-| Value | Env var | Notes |
-|---|---|---|
-| AWS region | `AWS_REGION` | Required. Unlike `AnthropicBedrock`, there is no `us-east-1` fallback. |
-| Workspace ID | `ANTHROPIC_AWS_WORKSPACE_ID` | Required. Routes requests to your Claude workspace. |
+| Value        | Env var                      | Notes                                                                  |
+| ------------ | ---------------------------- | ---------------------------------------------------------------------- |
+| AWS region   | `AWS_REGION`                 | Required. Unlike `AnthropicBedrock`, there is no `us-east-1` fallback. |
+| Workspace ID | `ANTHROPIC_AWS_WORKSPACE_ID` | Required. Routes requests to your Claude workspace.                    |
 
 Endpoint pattern: `https://aws-external-anthropic.{region}.api.aws/v1/...`. Requests are SigV4-signed with service name `aws-external-anthropic`.
 

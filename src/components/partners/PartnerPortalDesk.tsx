@@ -69,18 +69,23 @@ export function PartnerPortalDesk() {
   const [referrals, setReferrals] = useState<ReferralRecord[]>(SAMPLE_PARTNER_REFERRALS);
   const [showQrModal, setShowQrModal] = useState(false);
 
-  const referralUrl = typeof window !== "undefined"
-    ? `${window.location.origin}/proposals?ref=${encodeURIComponent(partnerCode)}`
-    : `https://harleydigitalworks.com/proposals?ref=${encodeURIComponent(partnerCode)}`;
+  const referralUrl =
+    typeof window !== "undefined"
+      ? `${window.location.origin}/proposals?ref=${encodeURIComponent(partnerCode)}`
+      : `https://harleydigitalworks.com/proposals?ref=${encodeURIComponent(partnerCode)}`;
 
   const totalEarned = referrals.reduce((acc, r) => acc + r.upfrontCommission, 0);
-  const totalMonthlyMRREarned = referrals.filter((r) => r.status === "live").reduce((acc, r) => acc + r.recurringCommission, 0);
-  const readyForPayout = referrals.filter((r) => r.status === "payout_ready" || r.status === "live").length * 250;
+  const totalMonthlyMRREarned = referrals
+    .filter((r) => r.status === "live")
+    .reduce((acc, r) => acc + r.recurringCommission, 0);
+  const readyForPayout =
+    referrals.filter((r) => r.status === "payout_ready" || r.status === "live").length * 250;
 
   const handleCopyLink = () => {
     navigator.clipboard.writeText(referralUrl);
     toast.success("Affiliate Partner Link copied to clipboard!", {
-      description: "Any trade contractor submitting a proposal via this link tracks to your account.",
+      description:
+        "Any trade contractor submitting a proposal via this link tracks to your account.",
     });
   };
 
@@ -108,7 +113,8 @@ export function PartnerPortalDesk() {
               {partnerName}
             </h3>
             <p className="text-xs sm:text-sm text-neutral-300 mt-1">
-              Partner Code: <strong className="font-mono text-gold-400">{partnerCode}</strong> • £250 upfront commission + 20% recurring monthly care commission per trade client.
+              Partner Code: <strong className="font-mono text-gold-400">{partnerCode}</strong> •
+              £250 upfront commission + 20% recurring monthly care commission per trade client.
             </p>
           </div>
 
@@ -134,27 +140,43 @@ export function PartnerPortalDesk() {
         {/* Live Metrics Strip */}
         <div className="mt-6 grid grid-cols-2 lg:grid-cols-4 gap-4">
           <div className="rounded-2xl border border-neutral-800 bg-neutral-950/80 p-4">
-            <div className="text-[11px] font-mono uppercase text-neutral-400">Total Referred Trades</div>
+            <div className="text-[11px] font-mono uppercase text-neutral-400">
+              Total Referred Trades
+            </div>
             <div className="mt-2 text-3xl font-extrabold text-white">{referrals.length}</div>
-            <div className="mt-1 text-[11px] text-emerald-400 font-medium">100% Qualification Rate</div>
+            <div className="mt-1 text-[11px] text-emerald-400 font-medium">
+              100% Qualification Rate
+            </div>
           </div>
 
           <div className="rounded-2xl border border-neutral-800 bg-neutral-950/80 p-4">
-            <div className="text-[11px] font-mono uppercase text-neutral-400">All-Time Commission</div>
-            <div className="mt-2 text-3xl font-extrabold text-gold-400">£{totalEarned.toLocaleString()}</div>
+            <div className="text-[11px] font-mono uppercase text-neutral-400">
+              All-Time Commission
+            </div>
+            <div className="mt-2 text-3xl font-extrabold text-gold-400">
+              £{totalEarned.toLocaleString()}
+            </div>
             <div className="mt-1 text-[11px] text-neutral-400">£250 per live launch</div>
           </div>
 
           <div className="rounded-2xl border border-neutral-800 bg-neutral-950/80 p-4">
-            <div className="text-[11px] font-mono uppercase text-neutral-400">Monthly Recurring Care</div>
-            <div className="mt-2 text-3xl font-extrabold text-emerald-400">£{totalMonthlyMRREarned}/mo</div>
+            <div className="text-[11px] font-mono uppercase text-neutral-400">
+              Monthly Recurring Care
+            </div>
+            <div className="mt-2 text-3xl font-extrabold text-emerald-400">
+              £{totalMonthlyMRREarned}/mo
+            </div>
             <div className="mt-1 text-[11px] text-emerald-400">Passive monthly affiliate cut</div>
           </div>
 
           <div className="rounded-2xl border border-emerald-900/40 bg-emerald-950/40 p-4 flex flex-col justify-between">
             <div>
-              <div className="text-[11px] font-mono uppercase text-emerald-300">Ready for BACS Payout</div>
-              <div className="mt-1 text-2xl font-black text-white">£{readyForPayout.toLocaleString()}</div>
+              <div className="text-[11px] font-mono uppercase text-emerald-300">
+                Ready for BACS Payout
+              </div>
+              <div className="mt-1 text-2xl font-black text-white">
+                £{readyForPayout.toLocaleString()}
+              </div>
             </div>
             <button
               onClick={handleClaimPayout}
@@ -170,8 +192,12 @@ export function PartnerPortalDesk() {
       <div className="rounded-3xl border border-neutral-800 bg-neutral-900/90 p-6 md:p-8 backdrop-blur-xl shadow-xl">
         <div className="flex items-center justify-between border-b border-neutral-800 pb-4 mb-4">
           <div>
-            <h4 className="text-base font-bold text-white">Referred Contractors & Commission Status</h4>
-            <p className="text-xs text-neutral-400">Real-time tracking of referred trade clients and automated commission disbursements.</p>
+            <h4 className="text-base font-bold text-white">
+              Referred Contractors & Commission Status
+            </h4>
+            <p className="text-xs text-neutral-400">
+              Real-time tracking of referred trade clients and automated commission disbursements.
+            </p>
           </div>
           <span className="rounded-full bg-gold-500/20 text-gold-400 text-xs font-bold px-3 py-1 border border-gold-500/30">
             £250 + £19/mo Care
@@ -199,8 +225,12 @@ export function PartnerPortalDesk() {
                   </td>
                   <td className="py-3.5 pr-4 text-neutral-300 font-mono">{ref.date}</td>
                   <td className="py-3.5 pr-4 text-neutral-200">{ref.package}</td>
-                  <td className="py-3.5 pr-4 font-mono font-bold text-gold-400">£{ref.upfrontCommission}</td>
-                  <td className="py-3.5 pr-4 font-mono font-bold text-emerald-400">£{ref.recurringCommission}/mo</td>
+                  <td className="py-3.5 pr-4 font-mono font-bold text-gold-400">
+                    £{ref.upfrontCommission}
+                  </td>
+                  <td className="py-3.5 pr-4 font-mono font-bold text-emerald-400">
+                    £{ref.recurringCommission}/mo
+                  </td>
                   <td className="py-3.5">
                     <span
                       className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-bold ${
@@ -238,14 +268,17 @@ export function PartnerPortalDesk() {
 
             <h3 className="text-xl font-bold text-white">Trade Counter QR Display</h3>
             <p className="text-xs text-neutral-300 mt-1">
-              Print and place on your counter. Contractors scan to get £150 off their website and earn your branch £250 per launch.
+              Print and place on your counter. Contractors scan to get £150 off their website and
+              earn your branch £250 per launch.
             </p>
 
             {/* Simulated QR Code Card */}
             <div className="my-6 rounded-2xl bg-white p-6 text-neutral-950 inline-block shadow-xl border-4 border-gold-400">
               <div className="h-44 w-44 mx-auto bg-neutral-900 rounded-xl flex flex-col items-center justify-center text-gold-400 p-4 text-center">
                 <QrCode className="h-28 w-28 text-white" />
-                <span className="text-[10px] font-mono font-bold text-gold-400 mt-2">SCAN FOR £150 OFF</span>
+                <span className="text-[10px] font-mono font-bold text-gold-400 mt-2">
+                  SCAN FOR £150 OFF
+                </span>
               </div>
               <div className="mt-3 text-xs font-bold text-neutral-950 uppercase tracking-wider">
                 {partnerName}

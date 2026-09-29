@@ -6,7 +6,6 @@
 
 The SDK repository's `MIGRATION.md` is the authoritative change list - WebFetch it (URL in `shared/live-sources.md` -> SDK major-version upgrade guides) when you can, and if it disagrees with this file, follow `MIGRATION.md` and say so in your report. The other Python files in this skill may still show 0.x-era details; for a project on 1.x, this file takes precedence.
 
-
 ---
 
 ## Step 0: Confirm scope, current version, and target
@@ -23,24 +22,24 @@ If the scope is under git, check `git status` before editing - unexpected modifi
 
 Search the scope for each signal below (`rg -n -F` for the literal strings; exclude virtualenvs, `.git`, build output and vendored code) and keep the hit list - it is your checklist and, re-run at the end, your verification.
 
-| Signal | What it finds | Section |
-|---|---|---|
-| `requires-python`, `python_requires`, `python-version`, `py39`, `3.9` in manifests, CI config, `tox.ini`, `noxfile.py`, `.python-version`, `Dockerfile` | a Python 3.9 floor | Step 2 |
-| `anthropic` entries in manifests / lockfiles; `httpx-aiohttp`, `httpx_aiohttp` | the pins to change | Step 2 |
-| `import httpx`, `from httpx` | modules that may hand `httpx` objects to the SDK | Step 3 |
-| `respx`, `pytest_httpx` / `httpx_mock`, `vcr`, `MockTransport`; `HTTPXClientInstrumentor` / `opentelemetry.instrumentation.httpx`, `HttpxIntegration` (Sentry) | HTTP mocking and tracing / APM instrumentation that patch `httpx` and silently stop seeing SDK traffic | Step 3 |
-| `with_raw_response` | raw-response call sites | Step 4 |
-| `LegacyAPIResponse`, `_legacy_response` | annotations / imports of the removed class | Step 4 |
-| `completions.create`, `HUMAN_PROMPT`, `AI_PROMPT`, `max_tokens_to_sample` | the removed Text Completions API | Step 5 |
-| `temperature`, `top_p`, `top_k` (keyword arguments and quoted dict keys) | removed sampling parameters - only hits that feed Anthropic SDK calls count | Step 6 |
-| `output_format` | raw `output_format={...}` dicts vs the unchanged `output_format=Model` helper argument | Step 6 |
-| `BetaBase64PDFBlockParam`, `READ_MAX_BYTES`, `ProxiesTypes` / `Transport` imported from `anthropic`, `AsyncTransport` / `ProxiesDict` imported from `anthropic._types` | renamed / removed exports | Step 7 |
-| `.parse(` calls that pass `stream=` | `messages.parse(stream=...)` | Step 8 |
-| `compaction_control` | client-side tool-runner compaction | Step 8 |
-| `body=` on `client.get` / `post` / `put` / `patch` / `delete` calls whose value is `bytes` (`b"..."`, `.encode()`, a bytes variable) | raw bytes passed as `body=` | Step 8 |
-| `isinstance(` checks against `Stream` / `AsyncStream` | checks aimed at message streams | Step 8 |
-| `default_headers`, `extra_headers`, `ANTHROPIC_CUSTOM_HEADERS` | header maps to check for duplicate casings / `bytes` values | Step 9 |
-| `AnthropicBedrock(`, `AsyncAnthropicBedrock(` | Bedrock clients that may rely on the old region fallback | Step 10 |
+| Signal                                                                                                                                                                 | What it finds                                                                                          | Section |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ | ------- |
+| `requires-python`, `python_requires`, `python-version`, `py39`, `3.9` in manifests, CI config, `tox.ini`, `noxfile.py`, `.python-version`, `Dockerfile`                | a Python 3.9 floor                                                                                     | Step 2  |
+| `anthropic` entries in manifests / lockfiles; `httpx-aiohttp`, `httpx_aiohttp`                                                                                         | the pins to change                                                                                     | Step 2  |
+| `import httpx`, `from httpx`                                                                                                                                           | modules that may hand `httpx` objects to the SDK                                                       | Step 3  |
+| `respx`, `pytest_httpx` / `httpx_mock`, `vcr`, `MockTransport`; `HTTPXClientInstrumentor` / `opentelemetry.instrumentation.httpx`, `HttpxIntegration` (Sentry)         | HTTP mocking and tracing / APM instrumentation that patch `httpx` and silently stop seeing SDK traffic | Step 3  |
+| `with_raw_response`                                                                                                                                                    | raw-response call sites                                                                                | Step 4  |
+| `LegacyAPIResponse`, `_legacy_response`                                                                                                                                | annotations / imports of the removed class                                                             | Step 4  |
+| `completions.create`, `HUMAN_PROMPT`, `AI_PROMPT`, `max_tokens_to_sample`                                                                                              | the removed Text Completions API                                                                       | Step 5  |
+| `temperature`, `top_p`, `top_k` (keyword arguments and quoted dict keys)                                                                                               | removed sampling parameters - only hits that feed Anthropic SDK calls count                            | Step 6  |
+| `output_format`                                                                                                                                                        | raw `output_format={...}` dicts vs the unchanged `output_format=Model` helper argument                 | Step 6  |
+| `BetaBase64PDFBlockParam`, `READ_MAX_BYTES`, `ProxiesTypes` / `Transport` imported from `anthropic`, `AsyncTransport` / `ProxiesDict` imported from `anthropic._types` | renamed / removed exports                                                                              | Step 7  |
+| `.parse(` calls that pass `stream=`                                                                                                                                    | `messages.parse(stream=...)`                                                                           | Step 8  |
+| `compaction_control`                                                                                                                                                   | client-side tool-runner compaction                                                                     | Step 8  |
+| `body=` on `client.get` / `post` / `put` / `patch` / `delete` calls whose value is `bytes` (`b"..."`, `.encode()`, a bytes variable)                                   | raw bytes passed as `body=`                                                                            | Step 8  |
+| `isinstance(` checks against `Stream` / `AsyncStream`                                                                                                                  | checks aimed at message streams                                                                        | Step 8  |
+| `default_headers`, `extra_headers`, `ANTHROPIC_CUSTOM_HEADERS`                                                                                                         | header maps to check for duplicate casings / `bytes` values                                            | Step 9  |
+| `AnthropicBedrock(`, `AsyncAnthropicBedrock(`                                                                                                                          | Bedrock clients that may rely on the old region fallback                                               | Step 10 |
 
 Classify each hit before editing: **SDK call site** (edit), **unrelated use of the same name** (leave - e.g. `httpx` calls to other services, `urllib.parse`, a pydantic `.parse_obj`, a `temperature` variable for a thermostat), **test** (edit, and keep the test meaningful), **docs / README snippet or notebook inside the scope** (edit - for `.ipynb`, the greps match inside the JSON cell sources; edit the source strings, `%pip install` lines included, and keep the JSON valid). Never touch installed packages or vendored third-party code.
 
@@ -117,14 +116,14 @@ Pydantic v1 and v2 both remain supported; nothing else about the environment cha
 - **[BREAKS] On async clients, reading the body is awaited** - `parse()`, `json()`, `text()`, `read()` are coroutines. Decide sync vs async from the client the accessor hangs off (`AsyncAnthropic` and the other `Async*` platform clients) or an `await` on the `.with_raw_response...(...)` call itself - not from the enclosing function alone.
 - **[BREAKS] `.text` and `.content` are methods now, on the sync client too:** `.text` -> `.text()`, `.content` -> `.read()`. The new classes also expose `json()` and the `iter_bytes()` / `iter_text()` / `iter_lines()` iterators directly; 0.x code reached those through `r.http_response`, which still works and need not be rewritten.
 
-| 0.x (`LegacyAPIResponse`) | 1.x sync (`APIResponse`) | 1.x async (`AsyncAPIResponse`) |
-|---|---|---|
-| `r.parse()` | `r.parse()` | `await r.parse()` |
-| `r.text` | `r.text()` | `await r.text()` |
-| `r.content` | `r.read()` | `await r.read()` |
-| - (only `r.http_response.json()`) | `r.json()` | `await r.json()` |
-| - (only `r.http_response.iter_bytes()` ...) | `r.iter_bytes()` / `.iter_text()` / `.iter_lines()` | `async for chunk in r.iter_bytes():` ... |
-| `.headers`, `.status_code`, `.url`, `.request_id`, `.retries_taken`, `.http_response`, `.elapsed` | unchanged | unchanged (plain attributes - never awaited) |
+| 0.x (`LegacyAPIResponse`)                                                                         | 1.x sync (`APIResponse`)                            | 1.x async (`AsyncAPIResponse`)               |
+| ------------------------------------------------------------------------------------------------- | --------------------------------------------------- | -------------------------------------------- |
+| `r.parse()`                                                                                       | `r.parse()`                                         | `await r.parse()`                            |
+| `r.text`                                                                                          | `r.text()`                                          | `await r.text()`                             |
+| `r.content`                                                                                       | `r.read()`                                          | `await r.read()`                             |
+| - (only `r.http_response.json()`)                                                                 | `r.json()`                                          | `await r.json()`                             |
+| - (only `r.http_response.iter_bytes()` ...)                                                       | `r.iter_bytes()` / `.iter_text()` / `.iter_lines()` | `async for chunk in r.iter_bytes():` ...     |
+| `.headers`, `.status_code`, `.url`, `.request_id`, `.retries_taken`, `.http_response`, `.elapsed` | unchanged                                           | unchanged (plain attributes - never awaited) |
 
 ```python
 # Before (async client)
@@ -183,7 +182,7 @@ print("".join(block.text for block in message.content if block.type == "text"))
   client.messages.create(..., model="claude-sonnet-4-6", extra_body={"temperature": 0.2})
   ```
 
-- **[BREAKS] `output_format={...}` as a raw dict/TypedDict** - on `beta.messages.create()`, `beta.messages.count_tokens()` and batch params (where the parameter is gone) and on the `messages.stream()` / `messages.count_tokens()` / `beta.messages.stream()` helpers (which used to accept a dict as well and now raise `TypeError` for one) -> `output_config={"format": {...}}` (merge into an existing `output_config` if one is already passed, e.g. alongside `effort`). **Leave `output_format=SomeModel` alone** when the value is a *type* (a Pydantic model / class passed to the `parse()`, `stream()` or `tool_runner()` helpers, or to the non-beta `messages.count_tokens()`) - that is the one form the helpers still take (`beta.messages.count_tokens()` only ever took the dict form, and has no `output_format` at all now). Tell them apart by the value: dict literal / `{"type": "json_schema", ...}` -> migrate; a class name -> keep.
+- **[BREAKS] `output_format={...}` as a raw dict/TypedDict** - on `beta.messages.create()`, `beta.messages.count_tokens()` and batch params (where the parameter is gone) and on the `messages.stream()` / `messages.count_tokens()` / `beta.messages.stream()` helpers (which used to accept a dict as well and now raise `TypeError` for one) -> `output_config={"format": {...}}` (merge into an existing `output_config` if one is already passed, e.g. alongside `effort`). **Leave `output_format=SomeModel` alone** when the value is a _type_ (a Pydantic model / class passed to the `parse()`, `stream()` or `tool_runner()` helpers, or to the non-beta `messages.count_tokens()`) - that is the one form the helpers still take (`beta.messages.count_tokens()` only ever took the dict form, and has no `output_format` at all now). Tell them apart by the value: dict literal / `{"type": "json_schema", ...}` -> migrate; a class name -> keep.
 
   ```python
   # Before
@@ -198,12 +197,12 @@ print("".join(block.text for block in message.content if block.type == "text"))
 
 **[BREAKS]** Replace imports and every reference; the replacement types are identical.
 
-| Removed | Replacement |
-|---|---|
-| `anthropic.types.beta.BetaBase64PDFBlockParam` | `anthropic.types.beta.BetaRequestDocumentBlockParam` |
+| Removed                                                                                                  | Replacement                                                           |
+| -------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| `anthropic.types.beta.BetaBase64PDFBlockParam`                                                           | `anthropic.types.beta.BetaRequestDocumentBlockParam`                  |
 | `anthropic.Transport` / `anthropic.ProxiesTypes` (and `anthropic._types.AsyncTransport` / `ProxiesDict`) | `httpx2.BaseTransport` / `httpx2.Proxy` (`httpx2.AsyncBaseTransport`) |
-| `anthropic.HUMAN_PROMPT` / `anthropic.AI_PROMPT` | none - Step 5 |
-| `anthropic.lib.tools.agent_toolset.READ_MAX_BYTES` | `anthropic.lib.tools.agent_toolset.DEFAULT_MAX_FILE_BYTES` |
+| `anthropic.HUMAN_PROMPT` / `anthropic.AI_PROMPT`                                                         | none - Step 5                                                         |
+| `anthropic.lib.tools.agent_toolset.READ_MAX_BYTES`                                                       | `anthropic.lib.tools.agent_toolset.DEFAULT_MAX_FILE_BYTES`            |
 
 ## Step 8: Removed helper arguments and behaviour
 
@@ -219,6 +218,7 @@ print("".join(block.text for block in message.content if block.type == "text"))
   ```
 
   A `parse(..., stream=False)` just loses the argument.
+
 - **[BREAKS] `tool_runner(compaction_control=...)`** - client-side compaction is removed in favour of server-side compaction. Carry the old `context_token_threshold` over as the trigger value (the API minimum is 50,000; raise smaller values to that and mention it):
 
   ```python
@@ -234,6 +234,7 @@ print("".join(block.text for block in message.content if block.type == "text"))
   ```
 
   If the loop around the runner rebuilds `messages` itself, make sure it appends the full `message.content` (compaction blocks included) - see the Compaction section of `python/claude-api/README.md`.
+
 - **[BREAKS] Raw `bytes` as `body=`** on `client.get/post/put/patch/delete`: `body=` is always JSON-serialised now; raw payloads (and iterators, for streaming uploads) go through `content=`:
 
   ```python
@@ -254,7 +255,7 @@ Usually nothing to edit. The SDK now merges `default_headers`, `extra_headers`, 
 
 **[DECIDE]** `AnthropicBedrock()` / `AsyncAnthropicBedrock()` used to warn and fall back to `us-east-1` when no region was configured; they now raise `ValueError` at construction. Resolution order: `aws_region=` -> `AWS_REGION` / `AWS_DEFAULT_REGION` -> the region configured for the boto3 session / `aws_profile` (the profile is now honoured for region lookup). For each construction without `aws_region=`, check whether the deployment provides a region (env files, Dockerfiles, deployment manifests, AWS profile config in the repo). If it demonstrably does, nothing to do; if you cannot tell, do **not** invent a region - list the call site in the report as needing `aws_region=` or `AWS_REGION`, and only hardcode `"us-east-1"` if the user confirms that the old implicit default is what they were actually using.
 
-Streaming from Bedrock also changes: event types the SDK does not know are now skipped instead of yielded - the only known case is the `amazon-bedrock-invocationMetrics` frame. Code that filtered those frames out can be deleted; code that *consumed* invocation metrics loses them on 1.x - **[DECIDE]** list it in the report (the SDK asks such users to open an issue).
+Streaming from Bedrock also changes: event types the SDK does not know are now skipped instead of yielded - the only known case is the `amazon-bedrock-invocationMetrics` frame. Code that filtered those frames out can be deleted; code that _consumed_ invocation metrics loses them on 1.x - **[DECIDE]** list it in the report (the SDK asks such users to open an issue).
 
 ## Step 11: Verify
 
@@ -278,7 +279,7 @@ Lead with the outcome, then:
 - [ ] **[BREAKS]** `httpx` objects passed to / received from the SDK (custom transports, auth flows and event hooks included) come from `httpx2` - or **[DECIDE]** `httpx2.alias_httpx()` at the top of an application entry point; `httpx`-patching instrumentation / mocking (`respx`, `pytest-httpx`, `vcrpy`, OpenTelemetry, Sentry) covered by the alias; `httpx-aiohttp` dropped; `httpx2>=2.0` declared if imported
 - [ ] **[BREAKS]** async `.with_raw_response`: `await` on `parse()/json()/text()/read()`; `.text` -> `.text()`, `.content` -> `.read()` everywhere; `LegacyAPIResponse` annotations replaced
 - [ ] **[BREAKS]** `completions.create` / `HUMAN_PROMPT` / `AI_PROMPT` ported to Messages; **[DECIDE]** model choice surfaced
-- [ ] **[BREAKS]** `temperature` / `top_p` / `top_k` removed from SDK calls - or, **[DECIDE]**, moved to `extra_body` only where the call pins an older model *and* visibly depends on the setting; raw `output_format={...}` -> `output_config={"format": ...}` everywhere (helpers included); helper `output_format=Model` untouched
+- [ ] **[BREAKS]** `temperature` / `top_p` / `top_k` removed from SDK calls - or, **[DECIDE]**, moved to `extra_body` only where the call pins an older model _and_ visibly depends on the setting; raw `output_format={...}` -> `output_config={"format": ...}` everywhere (helpers included); helper `output_format=Model` untouched
 - [ ] **[BREAKS]** `BetaBase64PDFBlockParam` -> `BetaRequestDocumentBlockParam`; `Transport`/`AsyncTransport`/`ProxiesTypes` -> `httpx2` names; `READ_MAX_BYTES` -> `DEFAULT_MAX_FILE_BYTES`
 - [ ] **[BREAKS]** `parse(stream=)` -> `messages.stream()`; `compaction_control` -> server-side compaction; `body=bytes` -> `content=`; `Stream` isinstance checks retargeted
 - [ ] **[DECIDE]** duplicate-casing headers joined; **[BREAKS]** `bytes` header values decoded

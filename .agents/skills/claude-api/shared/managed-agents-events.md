@@ -6,13 +6,13 @@
 
 Send events to a session via `POST /v1/sessions/{id}/events`.
 
-| Event Type                | When to Send                                        |
-| ------------------------- | --------------------------------------------------- |
-| `user.message`            | Send a user message |
-| `user.interrupt`          | Interrupt the agent while it's running |
-| `user.tool_confirmation`  | Approve/deny a tool call that paused for approval (`always_ask`, or `auto` when the server reached no determination) |
-| `user.custom_tool_result` | Provide result for a custom tool call |
-| `user.define_outcome`     | Start a rubric-graded iterate loop - see `shared/managed-agents-outcomes.md` |
+| Event Type                | When to Send                                                                                                          |
+| ------------------------- | --------------------------------------------------------------------------------------------------------------------- |
+| `user.message`            | Send a user message                                                                                                   |
+| `user.interrupt`          | Interrupt the agent while it's running                                                                                |
+| `user.tool_confirmation`  | Approve/deny a tool call that paused for approval (`always_ask`, or `auto` when the server reached no determination)  |
+| `user.custom_tool_result` | Provide result for a custom tool call                                                                                 |
+| `user.define_outcome`     | Start a rubric-graded iterate loop - see `shared/managed-agents-outcomes.md`                                          |
 | `system.message`          | Append privileged system-level context for this turn and every turn after it; see § Adding system context mid-session |
 
 #### Adding system context mid-session (`system.message`)
@@ -59,29 +59,29 @@ All **persisted** events carry `id`, `type`, and `processed_at` (ISO 8601), set 
 
 Event types use dot notation, grouped by namespace:
 
-| Event Type | Description |
-| --- | --- |
-| `agent.message` | Agent text output |
-| `agent.thinking` | Progress signal that the agent is thinking - it does **not** carry the thinking content |
-| `agent.tool_use` | Agent used a built-in tool (`agent_toolset_20260401`). Carries `evaluated_permission` (`allow`/`ask`/`deny`) and usually `evaluation` - see `shared/managed-agents-tools.md` § `evaluated_permission` and `evaluation` |
-| `agent.tool_result` | Result from a built-in tool |
-| `agent.mcp_tool_use` | Agent used an MCP tool. Carries `evaluated_permission` and usually `evaluation`, same as `agent.tool_use` |
-| `agent.mcp_tool_result` | Result from an MCP tool |
-| `agent.custom_tool_use` | Agent invoked a custom tool - session goes idle, you respond with `user.custom_tool_result` |
-| `agent.thread_context_compacted` | Conversation context was compacted |
-| `session.status_idle` | Agent has finished the current task, and is awaiting input. It's either waiting for input to continue working via a `user.message`, blocked awaiting a `user.custom_tool_result` or `user.tool_confirmation`, or paused because the session budget cap was reached. The `stop_reason` attached contains more information about why the Agent has stopped working. |
-| `session.status_running` | Session has starting running, and the Agent is actively doing work. |
-| `session.status_rescheduled` | Session is (re)scheduling after a retryable error has occurred, ready to be picked up by the orchestration system. |
-| `session.status_terminated` | Session ended and is irreversibly unusable - **on completion or on error**, not error-only. |
-| `session.updated` | A session update changed at least one field - carries only the changed fields (a budget removal carries `budget: null`) |
-| `session.usage` | Snapshot of the session's cumulative usage and tracked list cost - see § Reaching a session budget below |
-| `session.error` | Error occurred during processing |
-| `span.model_request_start` | Model inference started |
-| `span.model_request_end` | Model inference completed |
-| `span.outcome_evaluation_start` / `_ongoing` / `_end` | Grader progress for outcome-oriented sessions - see `shared/managed-agents-outcomes.md` |
-| `session.thread_created` | Subagent thread spawned (multiagent), or an advisor consultation started (thread name `anthropic.advisor`) - see `shared/managed-agents-multiagent.md` |
-| `session.thread_status_running` / `_idle` / `_rescheduled` / `_terminated` | Thread status transitions - mostly seen in multiagent sessions, but a single-agent session's primary thread also emits `_idle` when pausing at a session budget (§ Reaching a session budget). `_idle` carries `stop_reason`. |
-| `agent.thread_message_sent` / `_received` | Cross-thread message, carries `to_session_thread_id` / `from_session_thread_id` (multiagent) |
+| Event Type                                                                 | Description                                                                                                                                                                                                                                                                                                                                                       |
+| -------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `agent.message`                                                            | Agent text output                                                                                                                                                                                                                                                                                                                                                 |
+| `agent.thinking`                                                           | Progress signal that the agent is thinking - it does **not** carry the thinking content                                                                                                                                                                                                                                                                           |
+| `agent.tool_use`                                                           | Agent used a built-in tool (`agent_toolset_20260401`). Carries `evaluated_permission` (`allow`/`ask`/`deny`) and usually `evaluation` - see `shared/managed-agents-tools.md` § `evaluated_permission` and `evaluation`                                                                                                                                            |
+| `agent.tool_result`                                                        | Result from a built-in tool                                                                                                                                                                                                                                                                                                                                       |
+| `agent.mcp_tool_use`                                                       | Agent used an MCP tool. Carries `evaluated_permission` and usually `evaluation`, same as `agent.tool_use`                                                                                                                                                                                                                                                         |
+| `agent.mcp_tool_result`                                                    | Result from an MCP tool                                                                                                                                                                                                                                                                                                                                           |
+| `agent.custom_tool_use`                                                    | Agent invoked a custom tool - session goes idle, you respond with `user.custom_tool_result`                                                                                                                                                                                                                                                                       |
+| `agent.thread_context_compacted`                                           | Conversation context was compacted                                                                                                                                                                                                                                                                                                                                |
+| `session.status_idle`                                                      | Agent has finished the current task, and is awaiting input. It's either waiting for input to continue working via a `user.message`, blocked awaiting a `user.custom_tool_result` or `user.tool_confirmation`, or paused because the session budget cap was reached. The `stop_reason` attached contains more information about why the Agent has stopped working. |
+| `session.status_running`                                                   | Session has starting running, and the Agent is actively doing work.                                                                                                                                                                                                                                                                                               |
+| `session.status_rescheduled`                                               | Session is (re)scheduling after a retryable error has occurred, ready to be picked up by the orchestration system.                                                                                                                                                                                                                                                |
+| `session.status_terminated`                                                | Session ended and is irreversibly unusable - **on completion or on error**, not error-only.                                                                                                                                                                                                                                                                       |
+| `session.updated`                                                          | A session update changed at least one field - carries only the changed fields (a budget removal carries `budget: null`)                                                                                                                                                                                                                                           |
+| `session.usage`                                                            | Snapshot of the session's cumulative usage and tracked list cost - see § Reaching a session budget below                                                                                                                                                                                                                                                          |
+| `session.error`                                                            | Error occurred during processing                                                                                                                                                                                                                                                                                                                                  |
+| `span.model_request_start`                                                 | Model inference started                                                                                                                                                                                                                                                                                                                                           |
+| `span.model_request_end`                                                   | Model inference completed                                                                                                                                                                                                                                                                                                                                         |
+| `span.outcome_evaluation_start` / `_ongoing` / `_end`                      | Grader progress for outcome-oriented sessions - see `shared/managed-agents-outcomes.md`                                                                                                                                                                                                                                                                           |
+| `session.thread_created`                                                   | Subagent thread spawned (multiagent), or an advisor consultation started (thread name `anthropic.advisor`) - see `shared/managed-agents-multiagent.md`                                                                                                                                                                                                            |
+| `session.thread_status_running` / `_idle` / `_rescheduled` / `_terminated` | Thread status transitions - mostly seen in multiagent sessions, but a single-agent session's primary thread also emits `_idle` when pausing at a session budget (§ Reaching a session budget). `_idle` carries `stop_reason`.                                                                                                                                     |
+| `agent.thread_message_sent` / `_received`                                  | Cross-thread message, carries `to_session_thread_id` / `from_session_thread_id` (multiagent)                                                                                                                                                                                                                                                                      |
 
 The stream also echoes back user-sent events (`user.message`, `user.interrupt`, `user.tool_confirmation`, `user.tool_result`, `user.custom_tool_result`, `user.define_outcome`) - except a `user.interrupt` sent while the session is paused at its budget, which is accepted and ignored and never appears (§ Reaching a session budget).
 
@@ -95,7 +95,7 @@ By default, assistant text reaches the stream as buffered `agent.message` events
 
 **Opt in per stream connection** by adding the `event_deltas[]` query parameter, repeated once per event type to preview. Accepted values: `agent.message`, `agent.thinking` - any other value returns a 400, as does a request with more than 100 values. **Both stream endpoints accept it:** the session-level stream (`GET /v1/sessions/{id}/events/stream`) and each session thread's own stream (`GET /v1/sessions/{sid}/threads/{tid}/stream`). In a shell, quote the URL or percent-encode the brackets as `%5B%5D` - bare `[]` is a glob pattern.
 
-**Previews are thread-scoped.** A connection previews only the thread it is reading. A child thread's previews are delivered on that child's stream and are *never* cross-posted to the session-level stream, whose previews stay scoped to the primary thread. To watch a subagent's text as the model generates it, open that subagent's thread stream - see `shared/managed-agents-multiagent.md`. Run one accumulator instance per connection.
+**Previews are thread-scoped.** A connection previews only the thread it is reading. A child thread's previews are delivered on that child's stream and are _never_ cross-posted to the session-level stream, whose previews stay scoped to the primary thread. To watch a subagent's text as the model generates it, open that subagent's thread stream - see `shared/managed-agents-multiagent.md`. Run one accumulator instance per connection.
 
 ```python
 stream = client.beta.sessions.events.stream(
@@ -115,21 +115,22 @@ When a previewed event begins, the stream emits an `event_start` carrying the up
 
 **Accumulate-and-reconcile pattern.** Treat the preview as a scratch buffer keyed by `(event_id, index)`. On `event_start`, create an empty entry for the announced `id`. On each `event_delta`, append `delta.content.text` to `(event_id, delta.index)` and render the running text. When the buffered `agent.message` arrives, match it by `id`, **discard the accumulated preview**, and render the message's content instead. The identifiers always line up: `event_start.event.id`, every `event_delta.event_id`, and the buffered event's `id` are the same value. On a normal turn the order is fixed: `session.status_running` -> `span.model_request_start` -> `event_start` -> `event_delta`* -> buffered `agent.message` -> `span.model_request_end`. If the turn errors or is interrupted the buffered event may never arrive, but `span.model_request_end` still does - close any unreconciled preview when you see it. Python/TypeScript/Go SDKs ship an accumulator helper that implements this; in other SDKs apply the manual pattern to the generated event types.
 
-**Two guarantees the pattern relies on:** concatenating a preview's deltas in arrival order, keyed by `(event_id, index)`, yields a *prefix* of `content[index].text` in the buffered event (a prefix, not necessarily the whole text - deltas may be shed under load); and a connection emits at most one `event_start` per `event_id`, with the buffered event as the last thing that connection delivers for that `id`.
+**Two guarantees the pattern relies on:** concatenating a preview's deltas in arrival order, keyed by `(event_id, index)`, yields a _prefix_ of `content[index].text` in the buffered event (a prefix, not necessarily the whole text - deltas may be shed under load); and a connection emits at most one `event_start` per `event_id`, with the buffered event as the last thing that connection delivers for that `id`.
 
 **Limitations:**
+
 - **Best effort** - under load the server may shed deltas for an event; you receive a contiguous prefix and then no further deltas for that event. The buffered `agent.message` still arrives complete. Never treat an accumulated preview as final.
 - **No replay on reconnect** - deltas are delivered only to the connection that opted in, while it's open; this holds for the session-level stream and each thread stream alike. A connection opened after a model request started receives no deltas for that in-flight event. After a drop, follow the consolidation pattern in § Reconnecting after a dropped stream - the history fetch returns any buffered events emitted during the gap; missed deltas cannot be re-requested.
-- **One thread, text only** - previews cover assistant text on the thread the connection is reading. Tool use, tool results, MCP results, and activity on any *other* thread are never previewed on that connection.
+- **One thread, text only** - previews cover assistant text on the thread the connection is reading. Tool use, tool results, MCP results, and activity on any _other_ thread are never previewed on that connection.
 - **Never persisted** - `event_start` / `event_delta` exist only on the live SSE stream, never in `GET /v1/sessions/{id}/events` or any thread's event history.
 
 **Troubleshooting:**
 
-| You see | What it means |
-| --- | --- |
-| Buffered events but no `event_start` / `event_delta` | This connection didn't opt in (`event_deltas[]` is per connection, not per session), or the turn ran on a different thread. List `GET /v1/sessions/{sid}/threads` to find which one ran. |
-| 404 on the stream URL | Wrong path or ID, or the request carries no managed-agents beta header - the thread endpoints are beta-gated, so without it they don't exist. The thread path is `/threads/{tid}/stream`, **not** `/threads/{tid}/events/stream` (which doesn't exist) and not `/events/stream` (session level only). |
-| 400 naming `event_deltas` | Only `agent.message` and `agent.thinking` are accepted, max 100 values. |
+| You see                                              | What it means                                                                                                                                                                                                                                                                                         |
+| ---------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Buffered events but no `event_start` / `event_delta` | This connection didn't opt in (`event_deltas[]` is per connection, not per session), or the turn ran on a different thread. List `GET /v1/sessions/{sid}/threads` to find which one ran.                                                                                                              |
+| 404 on the stream URL                                | Wrong path or ID, or the request carries no managed-agents beta header - the thread endpoints are beta-gated, so without it they don't exist. The thread path is `/threads/{tid}/stream`, **not** `/threads/{tid}/events/stream` (which doesn't exist) and not `/events/stream` (session level only). |
+| 400 naming `event_deltas`                            | Only `agent.message` and `agent.thinking` are accepted, max 100 values.                                                                                                                                                                                                                               |
 
 ---
 
@@ -139,12 +140,12 @@ Practical patterns for driving a session via the events surface.
 
 ### Stream-first ordering
 
-**Open the stream before sending events.** The stream only delivers events that occur *after* it's opened - it does not replay current state or historical events. If you send a message first and open the stream second, early events (including fast status transitions) arrive buffered in a single batch and you lose the ability to react to them in real time.
+**Open the stream before sending events.** The stream only delivers events that occur _after_ it's opened - it does not replay current state or historical events. If you send a message first and open the stream second, early events (including fast status transitions) arrive buffered in a single batch and you lose the ability to react to them in real time.
 
 ```ts
 // Correct - stream and send concurrently
 const [response] = await Promise.all([
-  streamEvents(sessionId),   // opens SSE connection
+  streamEvents(sessionId), // opens SSE connection
   sendMessage(sessionId, text),
 ]);
 
@@ -157,7 +158,7 @@ const response = await streamEvents(sessionId);
 
 ### Reconnecting after a dropped stream
 
-**The SSE stream has no replay.** If your connection drops (httpx read timeout, network blip) and you reconnect, you only get events emitted *after* reconnection. Any events emitted during the gap are lost from the stream.
+**The SSE stream has no replay.** If your connection drops (httpx read timeout, network blip) and you reconnect, you only get events emitted _after_ reconnection. Any events emitted during the gap are lost from the stream.
 
 **The consolidation pattern:** on every (re)connect, overlap the stream with a history fetch and dedupe by event ID:
 
@@ -202,7 +203,7 @@ A `user.interrupt` event **jumps the queue** (ahead of any pending user messages
 
 ```ts
 await client.beta.sessions.events.send(sessionId, {
-  events: [{ type: 'user.interrupt' }],
+  events: [{ type: "user.interrupt" }],
 });
 ```
 
@@ -235,14 +236,13 @@ While at the cap the session accepts **only settle events** (`user.tool_confirma
 some events carry useful metadata beyond the status change itself:
 
 `session.status_idle` - includes a `stop_reason` field which elaborates on why the session stopped and what type of further action is required by the user.
+
 ```json
 {
   "id": "sevt_456",
   "processed_at": "2026-04-07T04:27:43.197Z",
   "stop_reason": {
-    "event_ids": [
-      "sevt_123"
-    ],
+    "event_ids": ["sevt_123"],
     "type": "requires_action"
   },
   "type": "status_idle"
@@ -286,5 +286,3 @@ await client.beta.sessions.archive(sessionId);
 ```
 
 > Archiving a **session** is routine cleanup - sessions are per-run and disposable. **Do not generalize this to agents or environments**: those are persistent, reusable resources, and archiving them is permanent (no unarchive; new sessions cannot reference them). See `shared/managed-agents-overview.md` -> Common Pitfalls.
-
-

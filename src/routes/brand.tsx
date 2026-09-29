@@ -59,8 +59,18 @@ const BRANDS_DATA: Record<BrandEntity, BrandSpec> = {
     description:
       "Harley Digital Works delivers 100% done-for-you website design, commercial copywriting, and ongoing monthly care for UK trades and small businesses.",
     colors: [
-      { name: "Harley Gold", hex: "#C89D3C", role: "Primary Accent & CTA", textClass: "text-amber-950" },
-      { name: "Deep Charcoal", hex: "#0D0D0D", role: "Primary Canvas & Typography", textClass: "text-white" },
+      {
+        name: "Harley Gold",
+        hex: "#C89D3C",
+        role: "Primary Accent & CTA",
+        textClass: "text-amber-950",
+      },
+      {
+        name: "Deep Charcoal",
+        hex: "#0D0D0D",
+        role: "Primary Canvas & Typography",
+        textClass: "text-white",
+      },
       { name: "Dark Slate", hex: "#173033", role: "Secondary Container", textClass: "text-white" },
       { name: "Warm Canvas", hex: "#F7F5F0", role: "Background & Shell", textClass: "text-ink" },
     ],
@@ -104,9 +114,24 @@ const BRANDS_DATA: Record<BrandEntity, BrandSpec> = {
     description:
       "The Harley Group oversees specialised technology and commercial operating ventures under the executive leadership of Dr Robbie Harley, MBA.",
     colors: [
-      { name: "Emerald Accent", hex: "#10B981", role: "Primary Holding Mark", textClass: "text-emerald-950" },
-      { name: "Deep Forest", hex: "#0D5F48", role: "Institutional Dark Brand", textClass: "text-white" },
-      { name: "Midnight Obsidian", hex: "#0D0D0D", role: "Corporate Slate", textClass: "text-white" },
+      {
+        name: "Emerald Accent",
+        hex: "#10B981",
+        role: "Primary Holding Mark",
+        textClass: "text-emerald-950",
+      },
+      {
+        name: "Deep Forest",
+        hex: "#0D5F48",
+        role: "Institutional Dark Brand",
+        textClass: "text-white",
+      },
+      {
+        name: "Midnight Obsidian",
+        hex: "#0D0D0D",
+        role: "Corporate Slate",
+        textClass: "text-white",
+      },
       { name: "Pure Platinum", hex: "#F4F4F5", role: "Light Canvas", textClass: "text-slate-900" },
     ],
     logos: [
@@ -149,10 +174,30 @@ const BRANDS_DATA: Record<BrandEntity, BrandSpec> = {
     description:
       "Harley Labs is the research incubator pioneering multi-agent orchestration, sub-50ms edge SSR architectures, and intelligent business tooling.",
     colors: [
-      { name: "Indigo Core", hex: "#6366F1", role: "Primary Deep-Tech Accent", textClass: "text-indigo-950" },
-      { name: "Electric Lavender", hex: "#818CF8", role: "Terminal Glow", textClass: "text-slate-950" },
-      { name: "Cyber Obsidian", hex: "#0A0D14", role: "Deep Space Canvas", textClass: "text-white" },
-      { name: "Ice Violet", hex: "#EEF2FF", role: "Light Lab Background", textClass: "text-indigo-950" },
+      {
+        name: "Indigo Core",
+        hex: "#6366F1",
+        role: "Primary Deep-Tech Accent",
+        textClass: "text-indigo-950",
+      },
+      {
+        name: "Electric Lavender",
+        hex: "#818CF8",
+        role: "Terminal Glow",
+        textClass: "text-slate-950",
+      },
+      {
+        name: "Cyber Obsidian",
+        hex: "#0A0D14",
+        role: "Deep Space Canvas",
+        textClass: "text-white",
+      },
+      {
+        name: "Ice Violet",
+        hex: "#EEF2FF",
+        role: "Light Lab Background",
+        textClass: "text-indigo-950",
+      },
     ],
     logos: [
       {
@@ -281,9 +326,7 @@ function BrandAssetsPage() {
               <h2 className="mt-3 text-3xl font-bold text-white">{brand.name}</h2>
               <p className="mt-1 text-sm text-slate-400">{brand.tagline}</p>
             </div>
-            <p className="max-w-md text-sm text-slate-300 leading-relaxed">
-              {brand.description}
-            </p>
+            <p className="max-w-md text-sm text-slate-300 leading-relaxed">{brand.description}</p>
           </div>
 
           {/* Vector Logos Grid */}
@@ -340,10 +383,7 @@ function BrandAssetsPage() {
 
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
               {brand.colors.map((c) => (
-                <div
-                  key={c.hex}
-                  className="rounded-xl border border-slate-800 bg-slate-950 p-4"
-                >
+                <div key={c.hex} className="rounded-xl border border-slate-800 bg-slate-950 p-4">
                   <div
                     className="h-20 w-full rounded-lg shadow-inner flex items-end p-2 justify-between"
                     style={{ backgroundColor: c.hex }}
@@ -387,7 +427,10 @@ function BrandAssetsPage() {
 
             <div className="mt-6 space-y-3">
               {brand.voiceGuidelines.map((guide, idx) => (
-                <div key={guide} className="flex items-start gap-3 rounded-xl bg-slate-900/60 p-4 border border-slate-800">
+                <div
+                  key={guide}
+                  className="flex items-start gap-3 rounded-xl bg-slate-900/60 p-4 border border-slate-800"
+                >
                   <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-amber-500 text-slate-950 text-xs font-bold font-mono">
                     {idx + 1}
                   </span>
@@ -410,7 +453,8 @@ function BrandAssetsPage() {
               Precision Type Pairing Standards
             </h2>
             <p className="mt-3 text-sm text-ink-muted">
-              Engineered for maximum legibility on mobile screens and authoritative desktop presentation.
+              Engineered for maximum legibility on mobile screens and authoritative desktop
+              presentation.
             </p>
           </div>
 
@@ -419,11 +463,15 @@ function BrandAssetsPage() {
               <span className="text-[11px] font-mono text-emerald-700 font-bold uppercase">
                 Primary Headings
               </span>
-              <h3 className="mt-2 text-2xl font-bold text-ink" style={{ fontFamily: "var(--font-heading)" }}>
+              <h3
+                className="mt-2 text-2xl font-bold text-ink"
+                style={{ fontFamily: "var(--font-heading)" }}
+              >
                 Manrope Display
               </h3>
               <p className="mt-2 text-xs text-ink-muted leading-relaxed">
-                Weights: 600 SemiBold, 700 Bold, 800 ExtraBold. Used for hero titles, section headlines, and price numbers.
+                Weights: 600 SemiBold, 700 Bold, 800 ExtraBold. Used for hero titles, section
+                headlines, and price numbers.
               </p>
             </div>
 
@@ -431,11 +479,10 @@ function BrandAssetsPage() {
               <span className="text-[11px] font-mono text-emerald-700 font-bold uppercase">
                 Body & Copy
               </span>
-              <h3 className="mt-2 text-2xl font-semibold text-ink">
-                Inter / Segoe UI
-              </h3>
+              <h3 className="mt-2 text-2xl font-semibold text-ink">Inter / Segoe UI</h3>
               <p className="mt-2 text-xs text-ink-muted leading-relaxed">
-                Weights: 400 Regular, 500 Medium. Line height: 1.6. Clean, open apertures for effortless reading on mobile.
+                Weights: 400 Regular, 500 Medium. Line height: 1.6. Clean, open apertures for
+                effortless reading on mobile.
               </p>
             </div>
 
@@ -443,11 +490,10 @@ function BrandAssetsPage() {
               <span className="text-[11px] font-mono text-emerald-700 font-bold uppercase">
                 Technical Data & Code
               </span>
-              <h3 className="mt-2 text-2xl font-mono font-bold text-ink">
-                JetBrains Mono
-              </h3>
+              <h3 className="mt-2 text-2xl font-mono font-bold text-ink">JetBrains Mono</h3>
               <p className="mt-2 text-xs text-ink-muted leading-relaxed">
-                Weights: 500 Medium, 700 Bold. Used for SLA days, pricing tokens, invoice references, and telemetry streams.
+                Weights: 500 Medium, 700 Bold. Used for SLA days, pricing tokens, invoice
+                references, and telemetry streams.
               </p>
             </div>
           </div>
@@ -467,7 +513,8 @@ function BrandAssetsPage() {
                 Dr Robbie Harley · Official Media Asset Collection
               </h2>
               <p className="mt-2 text-sm text-slate-300 max-w-2xl leading-relaxed">
-                Approved editorial and commercial portraits for press releases, partnership announcements, keynotes, and cross-division digital publications.
+                Approved editorial and commercial portraits for press releases, partnership
+                announcements, keynotes, and cross-division digital publications.
               </p>
             </div>
             <a
@@ -637,7 +684,12 @@ function BrandAssetsPage() {
               <PillButton
                 as="link"
                 to="/contact"
-                search={{ service: undefined, package: undefined, domain: undefined, websiteUrl: undefined }}
+                search={{
+                  service: undefined,
+                  package: undefined,
+                  domain: undefined,
+                  websiteUrl: undefined,
+                }}
                 variant="ghost"
                 size="md"
                 className="border-slate-700 text-white hover:bg-slate-900 hover:text-white"

@@ -30,6 +30,7 @@ gantt
 ```
 
 ### Day-by-Day Milestone Execution:
+
 - **Day 1–2 (Discovery & Setup)**: Collect business name, trade certifications, coverage postcodes, and deposit invoice (£747.50 + VAT). Create client record in `/admin/clients` and provision token on `/track/$token`.
 - **Day 3–5 (Copywriting & Architecture)**: Write all landing page copy, FAQs, regional landing pages, and select high-res trade photography.
 - **Day 6–10 (Technical Build & Interactive Tools)**: Build responsive views (Mobile, Tablet, Desktop), connect click-to-WhatsApp, before/after slider, and trade quote calculator.
@@ -42,12 +43,13 @@ gantt
 
 Instruct the client or manage their DNS records using these standard parameters:
 
-| Record Type | Host / Name | Target / Value | TTL |
-|---|---|---|---|
-| **A Record** | `@` (or apex domain) | `172.67.182.20` | Auto / 300 |
-| **CNAME** | `www` | `cname.harleydigitalworks.com` | Auto / 300 |
+| Record Type  | Host / Name          | Target / Value                 | TTL        |
+| ------------ | -------------------- | ------------------------------ | ---------- |
+| **A Record** | `@` (or apex domain) | `172.67.182.20`                | Auto / 300 |
+| **CNAME**    | `www`                | `cname.harleydigitalworks.com` | Auto / 300 |
 
 ### Common Registrar Instructions:
+
 - **GoDaddy**: DNS Management → Add Record → Select `A` / `CNAME`.
 - **123-Reg**: Manage Domain → Advanced DNS → Add Record.
 - **Namecheap**: Advanced DNS → Host Records → Add New Record.

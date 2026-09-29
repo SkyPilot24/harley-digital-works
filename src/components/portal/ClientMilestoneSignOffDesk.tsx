@@ -102,7 +102,8 @@ export function ClientMilestoneSignOffDesk({ project }: ClientMilestoneSignOffDe
               Interactive Staging Review & 1-Click Approval
             </h3>
             <p className="text-xs sm:text-sm text-neutral-300 mt-1">
-              Test your bespoke website on your smartphone or desktop before we point your official live domain.
+              Test your bespoke website on your smartphone or desktop before we point your official
+              live domain.
             </p>
           </div>
 
@@ -144,7 +145,8 @@ export function ClientMilestoneSignOffDesk({ project }: ClientMilestoneSignOffDe
               <div>
                 <div className="text-sm font-bold text-white">Staging Approved by {signerName}</div>
                 <div className="text-xs text-emerald-300">
-                  Signed on {new Date().toLocaleDateString("en-GB")} • 50% Completion Balance Unlocked • DNS Cutover Underway
+                  Signed on {new Date().toLocaleDateString("en-GB")} • 50% Completion Balance
+                  Unlocked • DNS Cutover Underway
                 </div>
               </div>
             </div>
@@ -168,7 +170,8 @@ export function ClientMilestoneSignOffDesk({ project }: ClientMilestoneSignOffDe
               <h4 className="text-sm font-bold text-white">Request a Tweak or Change</h4>
             </div>
             <p className="text-xs text-neutral-400 mb-4 leading-relaxed">
-              Notice anything you'd like changed? Drop your request below. We include unlimited minor revisions before go-live.
+              Notice anything you'd like changed? Drop your request below. We include unlimited
+              minor revisions before go-live.
             </p>
 
             <form onSubmit={handleSubmitFeedback} className="space-y-3">
@@ -285,7 +288,9 @@ export function ClientMilestoneSignOffDesk({ project }: ClientMilestoneSignOffDe
 
             <div className="mt-5 space-y-4 text-xs text-neutral-300">
               <p className="leading-relaxed">
-                By approving this staging build, you authorize Harley Digital Works to initiate DNS cutover to make <strong className="text-white">{project.domain.url}</strong> live to the public.
+                By approving this staging build, you authorize Harley Digital Works to initiate DNS
+                cutover to make <strong className="text-white">{project.domain.url}</strong> live to
+                the public.
               </p>
 
               <div className="rounded-xl border border-neutral-800 bg-neutral-950 p-4 space-y-2 text-[11px]">

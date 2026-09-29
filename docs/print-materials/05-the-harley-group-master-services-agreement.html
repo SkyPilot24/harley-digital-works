@@ -1,83 +1,210 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en-GB">
-<head>
-  <meta charset="UTF-8">
-  <title>The Harley Group — Master Services Agreement & Terms of Engagement</title>
-  <style>
-    @page { size: A4 portrait; margin: 15mm 15mm 15mm 15mm; }
-    * { box-sizing: border-box; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; color: #111; margin: 0; padding: 0; background: #fff; font-size: 9.5pt; line-height: 1.5; }
-    .header { border-bottom: 2px solid #C5A869; padding-bottom: 12px; margin-bottom: 16px; display: flex; justify-content: space-between; align-items: flex-end; }
-    .brand-title { font-size: 14pt; font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; color: #0a0a0a; margin: 0; }
-    .brand-sub { font-size: 8pt; color: #666; margin-top: 2px; text-transform: uppercase; letter-spacing: 0.1em; }
-    .doc-type { font-size: 9pt; font-weight: 700; color: #9A7B38; text-transform: uppercase; letter-spacing: 0.08em; text-align: right; }
-    h2 { font-size: 11pt; font-weight: 700; margin: 12px 0 6px 0; color: #0a0a0a; border-bottom: 1px solid #e5e5e5; padding-bottom: 4px; }
-    p { margin: 0 0 6px 0; color: #333; }
-    .clause { margin-bottom: 10px; }
-    .clause-num { font-weight: 700; color: #0a0a0a; }
-    .sig-table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-    .sig-table td { width: 50%; vertical-align: top; padding: 10px; border: 1px solid #ddd; background: #fafafa; }
-    .sig-line { border-bottom: 1px solid #333; height: 35px; margin-top: 15px; margin-bottom: 5px; }
-    .footer { position: fixed; bottom: 0; width: 100%; text-align: center; font-size: 7.5pt; color: #888; border-top: 1px solid #e5e5e5; padding-top: 5px; }
-  </style>
-</head>
-<body>
-  <div class="header">
-    <div>
-      <h1 class="brand-title">THE HARLEY GROUP</h1>
-      <div class="brand-sub">Operating Entities: Harley Digital Works · THG Digital</div>
+  <head>
+    <meta charset="UTF-8" />
+    <title>The Harley Group — Master Services Agreement & Terms of Engagement</title>
+    <style>
+      @page {
+        size: A4 portrait;
+        margin: 15mm 15mm 15mm 15mm;
+      }
+      * {
+        box-sizing: border-box;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+      body {
+        font-family:
+          -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        color: #111;
+        margin: 0;
+        padding: 0;
+        background: #fff;
+        font-size: 9.5pt;
+        line-height: 1.5;
+      }
+      .header {
+        border-bottom: 2px solid #c5a869;
+        padding-bottom: 12px;
+        margin-bottom: 16px;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+      }
+      .brand-title {
+        font-size: 14pt;
+        font-weight: 800;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        color: #0a0a0a;
+        margin: 0;
+      }
+      .brand-sub {
+        font-size: 8pt;
+        color: #666;
+        margin-top: 2px;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+      }
+      .doc-type {
+        font-size: 9pt;
+        font-weight: 700;
+        color: #9a7b38;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        text-align: right;
+      }
+      h2 {
+        font-size: 11pt;
+        font-weight: 700;
+        margin: 12px 0 6px 0;
+        color: #0a0a0a;
+        border-bottom: 1px solid #e5e5e5;
+        padding-bottom: 4px;
+      }
+      p {
+        margin: 0 0 6px 0;
+        color: #333;
+      }
+      .clause {
+        margin-bottom: 10px;
+      }
+      .clause-num {
+        font-weight: 700;
+        color: #0a0a0a;
+      }
+      .sig-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+      }
+      .sig-table td {
+        width: 50%;
+        vertical-align: top;
+        padding: 10px;
+        border: 1px solid #ddd;
+        background: #fafafa;
+      }
+      .sig-line {
+        border-bottom: 1px solid #333;
+        height: 35px;
+        margin-top: 15px;
+        margin-bottom: 5px;
+      }
+      .footer {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        text-align: center;
+        font-size: 7.5pt;
+        color: #888;
+        border-top: 1px solid #e5e5e5;
+        padding-top: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <div>
+        <h1 class="brand-title">THE HARLEY GROUP</h1>
+        <div class="brand-sub">Operating Entities: Harley Digital Works · THG Digital</div>
+      </div>
+      <div class="doc-type">
+        Master Services Agreement (MSA)<br />
+        <span style="font-size: 7.5pt; color: #666; font-weight: normal">Ref: THG-MSA-2026-UK</span>
+      </div>
     </div>
-    <div class="doc-type">
-      Master Services Agreement (MSA)<br>
-      <span style="font-size: 7.5pt; color: #666; font-weight: normal;">Ref: THG-MSA-2026-UK</span>
+
+    <h2>1. Engagement & Scope of Delivery</h2>
+    <div class="clause">
+      <p>
+        <span class="clause-num">1.1 Services:</span> The Harley Group, operating through its
+        specialised operating subsidiaries including Harley Digital Works and THG Digital (the
+        "Company"), agrees to deliver website design, digital infrastructure, copywriting, managed
+        hosting, and technical operations as specified in the agreed Order Form or Proposal Matrix.
+      </p>
+      <p>
+        <span class="clause-num">1.2 14-Day Delivery Commitment:</span> For standard Launch Website
+        projects, the Company commits to completing development and presenting the pre-launch
+        preview within fourteen (14) calendar days following receipt of deposit and onboarding
+        information.
+      </p>
     </div>
-  </div>
 
-  <h2>1. Engagement & Scope of Delivery</h2>
-  <div class="clause">
-    <p><span class="clause-num">1.1 Services:</span> The Harley Group, operating through its specialised operating subsidiaries including Harley Digital Works and THG Digital (the "Company"), agrees to deliver website design, digital infrastructure, copywriting, managed hosting, and technical operations as specified in the agreed Order Form or Proposal Matrix.</p>
-    <p><span class="clause-num">1.2 14-Day Delivery Commitment:</span> For standard Launch Website projects, the Company commits to completing development and presenting the pre-launch preview within fourteen (14) calendar days following receipt of deposit and onboarding information.</p>
-  </div>
+    <h2>2. Intellectual Property & Ownership</h2>
+    <div class="clause">
+      <p>
+        <span class="clause-num">2.1 Complete Client Ownership:</span> Upon receipt of full and
+        final payment for website build packages, all intellectual property rights in bespoke
+        graphics, website copy, layouts, and brand assets developed specifically for the Client
+        shall transfer 100% and unencumbered to the Client.
+      </p>
+      <p>
+        <span class="clause-num">2.2 Proprietary Frameworks:</span> General reusable toolkits,
+        hosting configurations, CMS boilerplates, and deployment scripts remain the operational IP
+        of The Harley Group, licensed to the Client on a perpetual, non-exclusive basis for the
+        lifespan of the deployed website.
+      </p>
+    </div>
 
-  <h2>2. Intellectual Property & Ownership</h2>
-  <div class="clause">
-    <p><span class="clause-num">2.1 Complete Client Ownership:</span> Upon receipt of full and final payment for website build packages, all intellectual property rights in bespoke graphics, website copy, layouts, and brand assets developed specifically for the Client shall transfer 100% and unencumbered to the Client.</p>
-    <p><span class="clause-num">2.2 Proprietary Frameworks:</span> General reusable toolkits, hosting configurations, CMS boilerplates, and deployment scripts remain the operational IP of The Harley Group, licensed to the Client on a perpetual, non-exclusive basis for the lifespan of the deployed website.</p>
-  </div>
+    <h2>3. Managed Care & Service Level Agreements (SLA)</h2>
+    <div class="clause">
+      <p>
+        <span class="clause-num">3.1 Monthly Care Plans:</span> Managed care plans (£95/mo standard
+        rate unless otherwise agreed) cover high-speed UK cloud hosting, continuous SSL certificate
+        renewals, daily encrypted off-site backups, and up to 30 minutes of priority content/photo
+        updates each calendar month.
+      </p>
+      <p>
+        <span class="clause-num">3.2 Response Times:</span> Critical incidents (website
+        unavailability or form failure) receive a target response time under two (2) hours during UK
+        business hours (08:30–18:00 Mon–Fri). Routine maintenance updates are implemented within one
+        (1) working day.
+      </p>
+      <p>
+        <span class="clause-num">3.3 Rolling Terms:</span> Care plans operate on a flexible 30-day
+        rolling term with zero multi-year lock-ins. Cancellation requires 30 days' written notice.
+      </p>
+    </div>
 
-  <h2>3. Managed Care & Service Level Agreements (SLA)</h2>
-  <div class="clause">
-    <p><span class="clause-num">3.1 Monthly Care Plans:</span> Managed care plans (£95/mo standard rate unless otherwise agreed) cover high-speed UK cloud hosting, continuous SSL certificate renewals, daily encrypted off-site backups, and up to 30 minutes of priority content/photo updates each calendar month.</p>
-    <p><span class="clause-num">3.2 Response Times:</span> Critical incidents (website unavailability or form failure) receive a target response time under two (2) hours during UK business hours (08:30–18:00 Mon–Fri). Routine maintenance updates are implemented within one (1) working day.</p>
-    <p><span class="clause-num">3.3 Rolling Terms:</span> Care plans operate on a flexible 30-day rolling term with zero multi-year lock-ins. Cancellation requires 30 days' written notice.</p>
-  </div>
+    <h2>4. Commercial Terms & Payment Schedule</h2>
+    <div class="clause">
+      <p>
+        <span class="clause-num">4.1 Turnkey Websites:</span> Commercial website builds are invoiced
+        on a 50% upfront commencement deposit and 50% upon final sign-off prior to public domain DNS
+        cutover.
+      </p>
+      <p>
+        <span class="clause-num">4.2 Taxes:</span> All commercial rates quoted are in GBP and
+        subject to UK VAT at the prevailing statutory rate.
+      </p>
+    </div>
 
-  <h2>4. Commercial Terms & Payment Schedule</h2>
-  <div class="clause">
-    <p><span class="clause-num">4.1 Turnkey Websites:</span> Commercial website builds are invoiced on a 50% upfront commencement deposit and 50% upon final sign-off prior to public domain DNS cutover.</p>
-    <p><span class="clause-num">4.2 Taxes:</span> All commercial rates quoted are in GBP and subject to UK VAT at the prevailing statutory rate.</p>
-  </div>
+    <h2>5. Execution & Authorisation</h2>
+    <table class="sig-table">
+      <tr>
+        <td>
+          <strong style="color: #0a0a0a">SIGNED FOR THE HARLEY GROUP:</strong>
+          <div class="sig-line"></div>
+          <div>Authorised Signatory / Director</div>
+          <div style="font-size: 8pt; color: #666; margin-top: 4px">
+            Date: ________________________
+          </div>
+        </td>
+        <td>
+          <strong style="color: #0a0a0a">SIGNED FOR THE CLIENT:</strong>
+          <div class="sig-line"></div>
+          <div>Authorised Client Representative / Director</div>
+          <div style="font-size: 8pt; color: #666; margin-top: 4px">
+            Date: ________________________
+          </div>
+        </td>
+      </tr>
+    </table>
 
-  <h2>5. Execution & Authorisation</h2>
-  <table class="sig-table">
-    <tr>
-      <td>
-        <strong style="color: #0a0a0a;">SIGNED FOR THE HARLEY GROUP:</strong>
-        <div class="sig-line"></div>
-        <div>Authorised Signatory / Director</div>
-        <div style="font-size: 8pt; color: #666; margin-top: 4px;">Date: ________________________</div>
-      </td>
-      <td>
-        <strong style="color: #0a0a0a;">SIGNED FOR THE CLIENT:</strong>
-        <div class="sig-line"></div>
-        <div>Authorised Client Representative / Director</div>
-        <div style="font-size: 8pt; color: #666; margin-top: 4px;">Date: ________________________</div>
-      </td>
-    </tr>
-  </table>
-
-  <div class="footer">
-    The Harley Group · Company Registration: England & Wales · Registered Office: Greater Manchester, UK · www.harleydigitalworks.com
-  </div>
-</body>
+    <div class="footer">
+      The Harley Group · Company Registration: England & Wales · Registered Office: Greater
+      Manchester, UK · www.harleydigitalworks.com
+    </div>
+  </body>
 </html>

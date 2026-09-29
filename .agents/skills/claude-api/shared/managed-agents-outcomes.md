@@ -1,6 +1,6 @@
 # Managed Agents - Outcomes
 
-An **outcome** elevates a session from *conversation* to *work*: you state what "done" looks like, and the harness runs an iterate -> grade -> revise loop until the artifact meets the rubric, hits `max_iterations`, or is interrupted. A separate **grader** (independent context window) scores each iteration against your rubric and feeds per-criterion gaps back to the agent.
+An **outcome** elevates a session from _conversation_ to _work_: you state what "done" looks like, and the harness runs an iterate -> grade -> revise loop until the artifact meets the rubric, hits `max_iterations`, or is interrupted. A separate **grader** (independent context window) scores each iteration against your rubric and feeds per-criterion gaps back to the agent.
 
 The SDK sets the `managed-agents-2026-04-01` beta header automatically on all `client.beta.sessions.*` calls; no additional header is required for outcomes.
 
@@ -33,12 +33,12 @@ client.beta.sessions.events.send(
 )
 ```
 
-| Field | Type | Notes |
-|---|---|---|
-| `type` | `"user.define_outcome"` | |
-| `description` | string | The task. This is what the agent works toward - no separate `user.message` needed. |
-| `rubric` | `{type: "text", content}` \| `{type: "file", file_id}` | **Required.** Markdown with explicit, independently gradeable criteria. Upload once via `client.beta.files.upload(...)` (beta `files-api-2025-04-14`) to reuse across sessions. |
-| `max_iterations` | int | Optional. Default **3**, max **20**. |
+| Field            | Type                                                   | Notes                                                                                                                                                                           |
+| ---------------- | ------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `type`           | `"user.define_outcome"`                                |                                                                                                                                                                                 |
+| `description`    | string                                                 | The task. This is what the agent works toward - no separate `user.message` needed.                                                                                              |
+| `rubric`         | `{type: "text", content}` \| `{type: "file", file_id}` | **Required.** Markdown with explicit, independently gradeable criteria. Upload once via `client.beta.files.upload(...)` (beta `files-api-2025-04-14`) to reuse across sessions. |
+| `max_iterations` | int                                                    | Optional. Default **3**, max **20**.                                                                                                                                            |
 
 The event is echoed back on the stream with a server-assigned `outcome_id` and `processed_at`.
 
@@ -50,21 +50,21 @@ The event is echoed back on the stream with a server-assigned `outcome_id` and `
 
 These appear on the standard event stream (`sessions.events.stream` / `.list`) alongside the usual `agent.*` / `session.*` events.
 
-| Event | Payload highlights | Meaning |
-|---|---|---|
-| `span.outcome_evaluation_start` | `outcome_id`, `iteration` (0-indexed) | Grader began scoring iteration *N*. |
-| `span.outcome_evaluation_ongoing` | `outcome_id` | Heartbeat while the grader runs. Grader reasoning is opaque - you see *that* it's working, not *what* it's thinking. |
-| `span.outcome_evaluation_end` | `outcome_evaluation_start_id`, `outcome_id`, `iteration`, `result`, `explanation`, `usage` | Grader finished one iteration. `result` drives what happens next (table below). |
+| Event                             | Payload highlights                                                                         | Meaning                                                                                                              |
+| --------------------------------- | ------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------- |
+| `span.outcome_evaluation_start`   | `outcome_id`, `iteration` (0-indexed)                                                      | Grader began scoring iteration _N_.                                                                                  |
+| `span.outcome_evaluation_ongoing` | `outcome_id`                                                                               | Heartbeat while the grader runs. Grader reasoning is opaque - you see _that_ it's working, not _what_ it's thinking. |
+| `span.outcome_evaluation_end`     | `outcome_evaluation_start_id`, `outcome_id`, `iteration`, `result`, `explanation`, `usage` | Grader finished one iteration. `result` drives what happens next (table below).                                      |
 
 ### `span.outcome_evaluation_end.result`
 
-| `result` | Next |
-|---|---|
-| `satisfied` | Session -> `idle`. Terminal for this outcome. |
-| `needs_revision` | Agent starts another iteration. |
-| `max_iterations_reached` | No further grader cycles. Agent may run one final revision, then session -> `idle`. |
-| `failed` | Session -> `idle`. Rubric fundamentally doesn't match the task (e.g. description and rubric contradict). |
-| `interrupted` | Emitted whenever a `user.interrupt` arrives while an outcome is active - **even if evaluation hadn't started**. In that case `outcome_evaluation_start_id` is an empty string rather than an event ID, so don't use it as a lookup key without checking. (Except an interrupt sent while paused at the session budget, which is accepted and ignored - see `shared/managed-agents-events.md` § Reaching a session budget.) |
+| `result`                 | Next                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| ------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `satisfied`              | Session -> `idle`. Terminal for this outcome.                                                                                                                                                                                                                                                                                                                                                                              |
+| `needs_revision`         | Agent starts another iteration.                                                                                                                                                                                                                                                                                                                                                                                            |
+| `max_iterations_reached` | No further grader cycles. Agent may run one final revision, then session -> `idle`.                                                                                                                                                                                                                                                                                                                                        |
+| `failed`                 | Session -> `idle`. Rubric fundamentally doesn't match the task (e.g. description and rubric contradict).                                                                                                                                                                                                                                                                                                                   |
+| `interrupted`            | Emitted whenever a `user.interrupt` arrives while an outcome is active - **even if evaluation hadn't started**. In that case `outcome_evaluation_start_id` is an empty string rather than an event ID, so don't use it as a lookup key without checking. (Except an interrupt sent while paused at the session budget, which is accepted and ignored - see `shared/managed-agents-events.md` § Reaching a session budget.) |
 
 ```json
 {
@@ -75,7 +75,12 @@ These appear on the standard event stream (`sessions.events.stream` / `.list`) a
   "result": "satisfied",
   "explanation": "All 12 criteria met: revenue projections use 5 years of historical data, ...",
   "iteration": 0,
-  "usage": { "input_tokens": 2400, "output_tokens": 350, "cache_creation_input_tokens": 0, "cache_read_input_tokens": 1800 },
+  "usage": {
+    "input_tokens": 2400,
+    "output_tokens": 350,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 1800
+  },
   "processed_at": "2026-03-25T14:03:00Z"
 }
 ```
@@ -99,7 +104,7 @@ for ev in session.outcome_evaluations:
 ## Interaction rules & pitfalls
 
 - **One outcome at a time.** Chain by sending the next `user.define_outcome` only after the previous one's terminal `span.outcome_evaluation_end` (`satisfied` / `max_iterations_reached` / `failed` / `interrupted`). The session retains history across chained outcomes.
-- **Steering is allowed but optional.** You *may* send `user.message` events mid-outcome to nudge direction, but the agent already knows to keep working until terminal - don't send "keep going" prompts. (Exception: a session paused at its budget (`stop_reason: budget_reached`) accepts only settle events - a steering `user.message`, or a chained `user.define_outcome`, is a 400 there; see `shared/managed-agents-events.md` § Reaching a session budget.)
+- **Steering is allowed but optional.** You _may_ send `user.message` events mid-outcome to nudge direction, but the agent already knows to keep working until terminal - don't send "keep going" prompts. (Exception: a session paused at its budget (`stop_reason: budget_reached`) accepts only settle events - a steering `user.message`, or a chained `user.define_outcome`, is a 400 there; see `shared/managed-agents-events.md` § Reaching a session budget.)
 - **`user.interrupt` pauses the current outcome** - it marks `result: "interrupted"` and leaves the session `idle`, ready for a new outcome or conversational turn. (Exception: sent while paused at the session budget, the interrupt is accepted and ignored and the outcome stays active - see `shared/managed-agents-events.md` § Reaching a session budget.)
 - **After terminal, the session is reusable** - continue conversationally or define a new outcome.
 - **Outcome != session-create field.** Don't put `outcome`, `rubric`, or `description` on `sessions.create()` - outcomes are always sent as a `user.define_outcome` event.

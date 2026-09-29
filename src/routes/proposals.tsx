@@ -92,37 +92,61 @@ const AVAILABLE_ADDONS: AddonOption[] = [
     category: "Ongoing Care",
     price: 0,
     monthly: 95,
-    description: "Ultra-fast UK cloud hosting, automated daily backups, security monitoring, and unlimited monthly content updates.",
+    description:
+      "Ultra-fast UK cloud hosting, automated daily backups, security monitoring, and unlimited monthly content updates.",
   },
   {
     id: "seo-pack",
     name: "Local Map-Pack Domination Pack",
     category: "Search Engine Optimization",
     price: 495,
-    description: "In-depth competitor geo-grid audit, 25 high-authority UK trade directory citations, and Google Business Profile optimization.",
+    description:
+      "In-depth competitor geo-grid audit, 25 high-authority UK trade directory citations, and Google Business Profile optimization.",
   },
   {
     id: "review-booster",
     name: "Contractor 5-Star Review Booster Engine",
     category: "Lead Conversion",
     price: 295,
-    description: "Automated 1-tap SMS & WhatsApp review request dispatcher to turn happy customers into 5-star Google ratings.",
+    description:
+      "Automated 1-tap SMS & WhatsApp review request dispatcher to turn happy customers into 5-star Google ratings.",
   },
   {
     id: "fleet-pack",
     name: "Commercial Fleet & Accreditation Pack",
     category: "Commercial Authority",
     price: 395,
-    description: "CHAS Elite, SafeContractor, and £10M commercial compliance portal for landing high-ticket commercial contracts.",
+    description:
+      "CHAS Elite, SafeContractor, and £10M commercial compliance portal for landing high-ticket commercial contracts.",
   },
 ];
 
 const SLA_SCHEDULE = [
-  { day: "Days 1–2", title: "Project Kick-Off & Architecture", desc: "Fast-track onboarding, DNS setup, and trade scope lock." },
-  { day: "Days 3–5", title: "Commercial Copywriting", desc: "100% done-for-you technical copy tailored to your exact accreditations." },
-  { day: "Days 6–9", title: "Web Design & Interactive Systems", desc: "High-speed frontend build, quote calculators, and mobile responsiveness." },
-  { day: "Days 10–12", title: "Client Staging Review", desc: "1-click review link issued for final approval and adjustments." },
-  { day: "Days 13–14", title: "Live Launch & Google Verification", desc: "DNS switch, SSL certificate deployment, and Google Search Console indexing." },
+  {
+    day: "Days 1–2",
+    title: "Project Kick-Off & Architecture",
+    desc: "Fast-track onboarding, DNS setup, and trade scope lock.",
+  },
+  {
+    day: "Days 3–5",
+    title: "Commercial Copywriting",
+    desc: "100% done-for-you technical copy tailored to your exact accreditations.",
+  },
+  {
+    day: "Days 6–9",
+    title: "Web Design & Interactive Systems",
+    desc: "High-speed frontend build, quote calculators, and mobile responsiveness.",
+  },
+  {
+    day: "Days 10–12",
+    title: "Client Staging Review",
+    desc: "1-click review link issued for final approval and adjustments.",
+  },
+  {
+    day: "Days 13–14",
+    title: "Live Launch & Google Verification",
+    desc: "DNS switch, SSL certificate deployment, and Google Search Console indexing.",
+  },
 ];
 
 function ProposalsPage() {
@@ -131,7 +155,11 @@ function ProposalsPage() {
   const [clientSector, setClientSector] = useState("Commercial & Domestic Gas Engineering");
   const [clientLocation, setClientLocation] = useState("Greater Manchester & Cheshire");
   const [selectedPackageKey, setSelectedPackageKey] = useState<keyof typeof PACKAGES>("growth");
-  const [selectedAddons, setSelectedAddons] = useState<string[]>(["care-plus", "seo-pack", "review-booster"]);
+  const [selectedAddons, setSelectedAddons] = useState<string[]>([
+    "care-plus",
+    "seo-pack",
+    "review-booster",
+  ]);
   const [signatoryName, setSignatoryName] = useState("");
   const [signatoryEmail, setSignatoryEmail] = useState("");
   const [hasAccepted, setHasAccepted] = useState(false);
@@ -141,7 +169,7 @@ function ProposalsPage() {
 
   const toggleAddon = (addonId: string) => {
     setSelectedAddons((prev) =>
-      prev.includes(addonId) ? prev.filter((id) => id !== addonId) : [...prev, addonId]
+      prev.includes(addonId) ? prev.filter((id) => id !== addonId) : [...prev, addonId],
     );
   };
 
@@ -233,11 +261,18 @@ function ProposalsPage() {
               {clientName}
             </h1>
             <div className="mt-3 flex flex-wrap gap-4 text-sm text-slate-300 font-mono">
-              <span>Sector: <strong className="text-white">{clientSector}</strong></span>
+              <span>
+                Sector: <strong className="text-white">{clientSector}</strong>
+              </span>
               <span>•</span>
-              <span>Region: <strong className="text-white">{clientLocation}</strong></span>
+              <span>
+                Region: <strong className="text-white">{clientLocation}</strong>
+              </span>
               <span>•</span>
-              <span>Prepared by: <strong className="text-white">Harley Digital Works (The Harley Group)</strong></span>
+              <span>
+                Prepared by:{" "}
+                <strong className="text-white">Harley Digital Works (The Harley Group)</strong>
+              </span>
             </div>
           </div>
         </Container>
@@ -259,7 +294,9 @@ function ProposalsPage() {
                     <h2 className="text-xl font-bold text-ink mt-1">{currentPkg.name}</h2>
                   </div>
                   <div className="text-right">
-                    <span className="text-2xl font-bold text-ink">£{currentPkg.price.toLocaleString()}</span>
+                    <span className="text-2xl font-bold text-ink">
+                      £{currentPkg.price.toLocaleString()}
+                    </span>
                     <span className="text-xs text-ink-muted block">Fixed upfront price</span>
                   </div>
                 </div>
@@ -290,7 +327,10 @@ function ProposalsPage() {
                   </h3>
                   <div className="grid gap-3 sm:grid-cols-2">
                     {currentPkg.deliverables.map((item) => (
-                      <div key={item} className="flex items-start gap-2.5 rounded-xl bg-slate-50 p-3.5 border border-ink/5">
+                      <div
+                        key={item}
+                        className="flex items-start gap-2.5 rounded-xl bg-slate-50 p-3.5 border border-ink/5"
+                      >
                         <CheckCircle2 className="h-4 w-4 text-emerald-600 shrink-0 mt-0.5" />
                         <span className="text-xs text-ink leading-relaxed font-medium">{item}</span>
                       </div>
@@ -306,7 +346,9 @@ function ProposalsPage() {
                     <span className="text-xs font-mono font-bold uppercase tracking-wider text-indigo-600">
                       Modular Enhancements
                     </span>
-                    <h3 className="text-lg font-bold text-ink mt-0.5">Customise Your Growth Modules</h3>
+                    <h3 className="text-lg font-bold text-ink mt-0.5">
+                      Customise Your Growth Modules
+                    </h3>
                   </div>
                   <span className="text-xs text-ink-muted font-mono">Toggle to add/remove</span>
                 </div>
@@ -347,9 +389,7 @@ function ProposalsPage() {
 
                           <div className="text-right shrink-0">
                             {addon.price > 0 && (
-                              <span className="text-sm font-bold text-ink">
-                                +£{addon.price}
-                              </span>
+                              <span className="text-sm font-bold text-ink">+£{addon.price}</span>
                             )}
                             {addon.monthly && (
                               <span className="block text-xs font-bold text-emerald-700">
@@ -371,7 +411,8 @@ function ProposalsPage() {
                 </span>
                 <h3 className="text-lg font-bold text-ink mt-0.5">14-Day Delivery Schedule</h3>
                 <p className="mt-1 text-xs text-ink-muted">
-                  Strict milestone progression with daily transparency via your dedicated build tracker.
+                  Strict milestone progression with daily transparency via your dedicated build
+                  tracker.
                 </p>
 
                 <div className="mt-6 space-y-4">
@@ -402,7 +443,9 @@ function ProposalsPage() {
                   <div className="mt-4 space-y-3 text-sm">
                     <div className="flex justify-between text-ink-muted">
                       <span>{currentPkg.name}</span>
-                      <span className="font-semibold text-ink">£{currentPkg.price.toLocaleString()}</span>
+                      <span className="font-semibold text-ink">
+                        £{currentPkg.price.toLocaleString()}
+                      </span>
                     </div>
 
                     {selectedAddons.map((id) => {
@@ -432,7 +475,9 @@ function ProposalsPage() {
                   <div className="mt-6 rounded-xl bg-slate-900 p-4 text-white text-xs space-y-2">
                     <div className="flex justify-between text-slate-300">
                       <span>50% Deposit to Start:</span>
-                      <span className="font-bold text-white text-sm">£{calculatedTotals.depositRequired.toLocaleString()}</span>
+                      <span className="font-bold text-white text-sm">
+                        £{calculatedTotals.depositRequired.toLocaleString()}
+                      </span>
                     </div>
                     <div className="flex justify-between text-slate-400 text-[11px]">
                       <span>50% Balance on Live Launch:</span>
@@ -473,7 +518,10 @@ function ProposalsPage() {
 
                       <div className="text-[11px] text-ink-muted flex items-start gap-1.5">
                         <Lock className="h-3.5 w-3.5 text-slate-400 shrink-0 mt-0.5" />
-                        <span>By accepting, you agree to Harley Digital Works 14-Day Delivery Terms and 50% start deposit.</span>
+                        <span>
+                          By accepting, you agree to Harley Digital Works 14-Day Delivery Terms and
+                          50% start deposit.
+                        </span>
                       </div>
 
                       <button
@@ -496,9 +544,12 @@ function ProposalsPage() {
                       <div className="flex h-10 w-10 mx-auto items-center justify-center rounded-full bg-emerald-600 text-white mb-2">
                         <CheckCircle2 className="h-5 w-5" />
                       </div>
-                      <h4 className="text-sm font-bold text-emerald-950">Proposal Accepted & Signed</h4>
+                      <h4 className="text-sm font-bold text-emerald-950">
+                        Proposal Accepted & Signed
+                      </h4>
                       <p className="mt-1 text-xs text-emerald-800">
-                        Signed by <strong>{signatoryName}</strong> ({signatoryEmail}). Tracking token <strong>HDW-PROP-9821</strong> generated.
+                        Signed by <strong>{signatoryName}</strong> ({signatoryEmail}). Tracking
+                        token <strong>HDW-PROP-9821</strong> generated.
                       </p>
                       <div className="mt-4">
                         <Link

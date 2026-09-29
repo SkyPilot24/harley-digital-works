@@ -22,18 +22,18 @@ Security-first development practices for web applications. Treat every external 
 
 Controls bolted on without a threat model are guesses. Before hardening, spend five minutes thinking like an attacker:
 
-1. **Map the trust boundaries.** Where does untrusted data cross into your system? HTTP requests, form fields, file uploads, webhooks, third-party APIs, message queues, and **LLM output** — plus the local values that look internal because the OS handed them to you: another process's command line or environment, filenames on a shared volume, a path in a job payload. Trust follows who *wrote* a value, not which channel delivered it. Every boundary is attack surface.
+1. **Map the trust boundaries.** Where does untrusted data cross into your system? HTTP requests, form fields, file uploads, webhooks, third-party APIs, message queues, and **LLM output** — plus the local values that look internal because the OS handed them to you: another process's command line or environment, filenames on a shared volume, a path in a job payload. Trust follows who _wrote_ a value, not which channel delivered it. Every boundary is attack surface.
 2. **Name the assets.** What's worth stealing or breaking? Credentials, PII, payment data, admin actions, money movement.
 3. **Run STRIDE over each boundary** — a quick lens, not a ceremony:
 
-| Threat | Ask | Typical mitigation |
-|---|---|---|
-| **S**poofing | Can someone impersonate a user/service? | Authentication, signature verification |
-| **T**ampering | Can data be altered in transit or at rest? | Integrity checks, parameterized queries, HTTPS |
-| **R**epudiation | Can an action be denied later? | Audit logging of security events |
-| **I**nformation disclosure | Can data leak? | Encryption, field allowlists, generic errors |
-| **D**enial of service | Can it be overwhelmed? | Rate limiting, input size caps, timeouts |
-| **E**levation of privilege | Can a user gain rights they shouldn't? | Authorization checks, least privilege |
+| Threat                     | Ask                                        | Typical mitigation                             |
+| -------------------------- | ------------------------------------------ | ---------------------------------------------- |
+| **S**poofing               | Can someone impersonate a user/service?    | Authentication, signature verification         |
+| **T**ampering              | Can data be altered in transit or at rest? | Integrity checks, parameterized queries, HTTPS |
+| **R**epudiation            | Can an action be denied later?             | Audit logging of security events               |
+| **I**nformation disclosure | Can data leak?                             | Encryption, field allowlists, generic errors   |
+| **D**enial of service      | Can it be overwhelmed?                     | Rate limiting, input size caps, timeouts       |
+| **E**levation of privilege | Can a user gain rights they shouldn't?     | Authorization checks, least privilege          |
 
 4. **Write abuse cases next to use cases.** For each feature, ask "how would I misuse this?" — then make that your first test.
 
@@ -83,7 +83,7 @@ These are prevention patterns, not a ranking. For the 2021 ordering, see the qui
 const query = `SELECT * FROM users WHERE id = '${userId}'`;
 
 // GOOD: Parameterized query
-const user = await db.query('SELECT * FROM users WHERE id = $1', [userId]);
+const user = await db.query("SELECT * FROM users WHERE id = $1", [userId]);
 
 // GOOD: ORM with parameterized input
 const user = await prisma.user.findUnique({ where: { id: userId } });
@@ -93,24 +93,26 @@ const user = await prisma.user.findUnique({ where: { id: userId } });
 
 ```typescript
 // Password hashing
-import { hash, compare } from 'bcrypt';
+import { hash, compare } from "bcrypt";
 
 const SALT_ROUNDS = 12;
 const hashedPassword = await hash(plaintext, SALT_ROUNDS);
 const isValid = await compare(plaintext, hashedPassword);
 
 // Session management
-app.use(session({
-  secret: process.env.SESSION_SECRET,  // From environment, not code
-  resave: false,
-  saveUninitialized: false,
-  cookie: {
-    httpOnly: true,     // Not accessible via JavaScript
-    secure: true,       // HTTPS only
-    sameSite: 'lax',    // CSRF protection
-    maxAge: 24 * 60 * 60 * 1000,  // 24 hours
-  },
-}));
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET, // From environment, not code
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+      httpOnly: true, // Not accessible via JavaScript
+      secure: true, // HTTPS only
+      sameSite: "lax", // CSRF protection
+      maxAge: 24 * 60 * 60 * 1000, // 24 hours
+    },
+  }),
+);
 ```
 
 ### Cross-Site Scripting (XSS)
@@ -131,13 +133,13 @@ const clean = DOMPurify.sanitize(userInput);
 
 ```typescript
 // Always check authorization, not just authentication
-app.patch('/api/tasks/:id', authenticate, async (req, res) => {
+app.patch("/api/tasks/:id", authenticate, async (req, res) => {
   const task = await taskService.findById(req.params.id);
 
   // Check that the authenticated user owns this resource
   if (task.ownerId !== req.user.id) {
     return res.status(403).json({
-      error: { code: 'FORBIDDEN', message: 'Not authorized to modify this task' }
+      error: { code: "FORBIDDEN", message: "Not authorized to modify this task" },
     });
   }
 
@@ -151,25 +153,29 @@ app.patch('/api/tasks/:id', authenticate, async (req, res) => {
 
 ```typescript
 // Security headers (use helmet for Express)
-import helmet from 'helmet';
+import helmet from "helmet";
 app.use(helmet());
 
 // Content Security Policy
-app.use(helmet.contentSecurityPolicy({
-  directives: {
-    defaultSrc: ["'self'"],
-    scriptSrc: ["'self'"],
-    styleSrc: ["'self'", "'unsafe-inline'"],  // Tighten if possible
-    imgSrc: ["'self'", 'data:', 'https:'],
-    connectSrc: ["'self'"],
-  },
-}));
+app.use(
+  helmet.contentSecurityPolicy({
+    directives: {
+      defaultSrc: ["'self'"],
+      scriptSrc: ["'self'"],
+      styleSrc: ["'self'", "'unsafe-inline'"], // Tighten if possible
+      imgSrc: ["'self'", "data:", "https:"],
+      connectSrc: ["'self'"],
+    },
+  }),
+);
 
 // CORS — restrict to known origins
-app.use(cors({
-  origin: process.env.ALLOWED_ORIGINS?.split(',') || 'http://localhost:3000',
-  credentials: true,
-}));
+app.use(
+  cors({
+    origin: process.env.ALLOWED_ORIGINS?.split(",") || "http://localhost:3000",
+    credentials: true,
+  }),
+);
 ```
 
 ### Sensitive Data Exposure
@@ -183,7 +189,7 @@ function sanitizeUser(user: UserRecord): PublicUser {
 
 // Use environment variables for secrets
 const API_KEY = process.env.STRIPE_API_KEY;
-if (!API_KEY) throw new Error('STRIPE_API_KEY not configured');
+if (!API_KEY) throw new Error("STRIPE_API_KEY not configured");
 ```
 
 ### Server-Side Request Forgery (SSRF)
@@ -195,24 +201,24 @@ Any time the server fetches a URL the user influenced — webhooks, "import from
 await fetch(req.body.webhookUrl);
 
 // GOOD: allowlist scheme + host, reject if ANY resolved IP is private, forbid redirects
-import { lookup } from 'node:dns/promises';
-import ipaddr from 'ipaddr.js';
+import { lookup } from "node:dns/promises";
+import ipaddr from "ipaddr.js";
 
-const ALLOWED_HOSTS = new Set(['hooks.example.com']);
+const ALLOWED_HOSTS = new Set(["hooks.example.com"]);
 
 async function assertSafeUrl(raw: string): Promise<URL> {
   const url = new URL(raw);
-  if (url.protocol !== 'https:') throw new Error('https only');
-  if (!ALLOWED_HOSTS.has(url.hostname)) throw new Error('host not allowed');
+  if (url.protocol !== "https:") throw new Error("https only");
+  if (!ALLOWED_HOSTS.has(url.hostname)) throw new Error("host not allowed");
   // Resolve ALL records; a single private/reserved address fails the check.
   const addrs = await lookup(url.hostname, { all: true });
-  if (addrs.some((a) => ipaddr.parse(a.address).range() !== 'unicast')) {
-    throw new Error('private/reserved IP');
+  if (addrs.some((a) => ipaddr.parse(a.address).range() !== "unicast")) {
+    throw new Error("private/reserved IP");
   }
   return url;
 }
 
-await fetch(await assertSafeUrl(req.body.webhookUrl), { redirect: 'error' });
+await fetch(await assertSafeUrl(req.body.webhookUrl), { redirect: "error" });
 ```
 
 The `range() !== 'unicast'` check covers loopback, link-local `169.254.169.254` (cloud metadata, the #1 SSRF target), private, and unique-local ranges across IPv4 and IPv6.
@@ -224,23 +230,23 @@ The `range() !== 'unicast'` check covers loopback, link-local `169.254.169.254` 
 ### Schema Validation at Boundaries
 
 ```typescript
-import { z } from 'zod';
+import { z } from "zod";
 
 const CreateTaskSchema = z.object({
   title: z.string().min(1).max(200).trim(),
   description: z.string().max(2000).optional(),
-  priority: z.enum(['low', 'medium', 'high']).default('medium'),
+  priority: z.enum(["low", "medium", "high"]).default("medium"),
   dueDate: z.string().datetime().optional(),
 });
 
 // Validate at the route handler
-app.post('/api/tasks', async (req, res) => {
+app.post("/api/tasks", async (req, res) => {
   const result = CreateTaskSchema.safeParse(req.body);
   if (!result.success) {
     return res.status(422).json({
       error: {
-        code: 'VALIDATION_ERROR',
-        message: 'Invalid input',
+        code: "VALIDATION_ERROR",
+        message: "Invalid input",
         details: result.error.flatten(),
       },
     });
@@ -255,15 +261,15 @@ app.post('/api/tasks', async (req, res) => {
 
 ```typescript
 // Restrict file types and sizes
-const ALLOWED_TYPES = ['image/jpeg', 'image/png', 'image/webp'];
+const ALLOWED_TYPES = ["image/jpeg", "image/png", "image/webp"];
 const MAX_SIZE = 5 * 1024 * 1024; // 5MB
 
 function validateUpload(file: UploadedFile) {
   if (!ALLOWED_TYPES.includes(file.mimetype)) {
-    throw new ValidationError('File type not allowed');
+    throw new ValidationError("File type not allowed");
   }
   if (file.size > MAX_SIZE) {
-    throw new ValidationError('File too large (max 5MB)');
+    throw new ValidationError("File too large (max 5MB)");
   }
   // Don't trust the file extension — check magic bytes if critical
 }
@@ -271,11 +277,11 @@ function validateUpload(file: UploadedFile) {
 
 ### Destructive Operations on Derived Paths
 
-A delete, move, or overwrite is only as safe as the value that names its target. Reading that value from the kernel, a job payload, or a sibling service proves where it *arrived from*, not who *wrote* it — another process's command line is as attacker-controlled as a form field. A shape check ("absolute path, at least one directory deep") proves well-formedness and gets mistaken for authorization; that is how a cleanup routine deletes the root instead of the leaf.
+A delete, move, or overwrite is only as safe as the value that names its target. Reading that value from the kernel, a job payload, or a sibling service proves where it _arrived from_, not who _wrote_ it — another process's command line is as attacker-controlled as a form field. A shape check ("absolute path, at least one directory deep") proves well-formedness and gets mistaken for authorization; that is how a cleanup routine deletes the root instead of the leaf.
 
-Before a destructive call, require all three: the resolved target sits under an **allowlisted root** (compare after resolving symlinks, never on the raw string); it is at least one level **below** that root, so a root is never itself the target; and it carries **evidence that it is yours**, read *before* the operation and before any teardown that removes it — otherwise "absent" and "not mine" are indistinguishable. On refusal, log the rejected target and stop: a cleanup that falls back to a broader default path is the failure this guards against. Worked example in `../../references/security-checklist.md`.
+Before a destructive call, require all three: the resolved target sits under an **allowlisted root** (compare after resolving symlinks, never on the raw string); it is at least one level **below** that root, so a root is never itself the target; and it carries **evidence that it is yours**, read _before_ the operation and before any teardown that removes it — otherwise "absent" and "not mine" are indistinguishable. On refusal, log the rejected target and stop: a cleanup that falls back to a broader default path is the failure this guards against. Worked example in `../../references/security-checklist.md`.
 
-Two limits, because the check reads stronger than it is. A marker inside the tree is self-attestation — anything that can write there can write the marker — so the expected owner has to come from authenticated state, and the marker needs integrity protection (restrictive ownership, or a MAC) before it counts as authorization. And resolving a path and then operating on the *name* is a check/use race wherever an untrusted process can swap an ancestor: on a shared volume, hold the target by descriptor and use no-follow, beneath-the-root operations, or make sure the hierarchy cannot change for the duration.
+Two limits, because the check reads stronger than it is. A marker inside the tree is self-attestation — anything that can write there can write the marker — so the expected owner has to come from authenticated state, and the marker needs integrity protection (restrictive ownership, or a MAC) before it counts as authorization. And resolving a path and then operating on the _name_ is a check/use race wherever an untrusted process can swap an ancestor: on a shared volume, hold the target by descriptor and use no-follow, beneath-the-root operations, or make sure the hierarchy cannot change for the duration.
 
 ## Triaging Dependency Audit Results
 
@@ -298,6 +304,7 @@ The native package-manager audit reports a vulnerability
 ```
 
 **Key questions:**
+
 - Is the vulnerable function actually called in your code path?
 - Is the dependency a runtime dependency or dev-only?
 - Is the vulnerability exploitable given your deployment context (e.g., a server-side vulnerability in a client-only app)?
@@ -320,32 +327,38 @@ Audits only find known advisories; they do not catch a newly malicious or typosq
 ## Rate Limiting
 
 ```typescript
-import rateLimit from 'express-rate-limit';
+import rateLimit from "express-rate-limit";
 
 // General API rate limit
-app.use('/api/', rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 100,                   // 100 requests per window
-  standardHeaders: true,
-  legacyHeaders: false,
-}));
+app.use(
+  "/api/",
+  rateLimit({
+    windowMs: 15 * 60 * 1000, // 15 minutes
+    max: 100, // 100 requests per window
+    standardHeaders: true,
+    legacyHeaders: false,
+  }),
+);
 
 // Stricter limit for auth endpoints
-app.use('/api/auth/', rateLimit({
-  windowMs: 15 * 60 * 1000,
-  max: 10,  // 10 attempts per 15 minutes
-}));
+app.use(
+  "/api/auth/",
+  rateLimit({
+    windowMs: 15 * 60 * 1000,
+    max: 10, // 10 attempts per 15 minutes
+  }),
+);
 ```
 
 **Count in a shared store once there is more than one process.** `express-rate-limit` keeps its counters in process memory by default. Behind a load balancer each instance holds its own count, so the effective limit is `max × instances`; on serverless or edge runtimes a fresh invocation starts from zero, so the auth limit above may never fire. Pass a shared `store` (Redis via `rate-limit-redis`), or use an HTTP-based limiter that works where a long-lived TCP connection does not (for example `@upstash/ratelimit`):
 
 ```typescript
-import { Ratelimit } from '@upstash/ratelimit';
-import { Redis } from '@upstash/redis';
+import { Ratelimit } from "@upstash/ratelimit";
+import { Redis } from "@upstash/redis";
 
 const authLimiter = new Ratelimit({
-  redis: Redis.fromEnv(),                       // UPSTASH_REDIS_REST_URL + _TOKEN
-  limiter: Ratelimit.slidingWindow(10, '15 m'), // 10 attempts per 15 minutes, across all instances
+  redis: Redis.fromEnv(), // UPSTASH_REDIS_REST_URL + _TOKEN
+  limiter: Ratelimit.slidingWindow(10, "15 m"), // 10 attempts per 15 minutes, across all instances
 });
 const { success } = await authLimiter.limit(`login:${req.ip}`);
 if (!success) return res.status(429).end();
@@ -368,6 +381,7 @@ if (!success) return res.status(429).end();
 ```
 
 **Always check before committing:**
+
 ```bash
 # Check for accidentally staged secrets
 git diff --cached | grep -i "password\|secret\|api_key\|token"
@@ -377,20 +391,21 @@ git diff --cached | grep -i "password\|secret\|api_key\|token"
 
 ## Data Privacy & Compliance
 
-Securing data is "can an attacker read it?" Privacy is "should *we* even hold it, and for how long?" — a separate question that hardening doesn't answer. The cheapest data to protect, breach, and comply over is the data you never collected. Treat personal data as a liability to minimize, not an asset to hoard.
+Securing data is "can an attacker read it?" Privacy is "should _we_ even hold it, and for how long?" — a separate question that hardening doesn't answer. The cheapest data to protect, breach, and comply over is the data you never collected. Treat personal data as a liability to minimize, not an asset to hoard.
 
 **Know what you hold.** You can't protect or honor a deletion request for data you can't find. Classify fields as you add them:
 
-| Class | Examples | Handling |
-|---|---|---|
-| **Non-personal** | Aggregates, anonymized counts | Normal handling |
-| **Personal (PII)** | Name, email, IP, device/user IDs | Minimize, access-control, include in export/delete |
-| **Sensitive** | Health, finance, location, biometrics, gov IDs, anything about minors | Extra basis to collect, stricter access, often encryption + audit logging |
+| Class              | Examples                                                              | Handling                                                                  |
+| ------------------ | --------------------------------------------------------------------- | ------------------------------------------------------------------------- |
+| **Non-personal**   | Aggregates, anonymized counts                                         | Normal handling                                                           |
+| **Personal (PII)** | Name, email, IP, device/user IDs                                      | Minimize, access-control, include in export/delete                        |
+| **Sensitive**      | Health, finance, location, biometrics, gov IDs, anything about minors | Extra basis to collect, stricter access, often encryption + audit logging |
 
 **Operating rules:**
+
 - **Minimize and set a purpose.** Collect a field only against a stated use. "It might be useful later" is not a purpose — it's latent breach scope. Don't log PII into telemetry (the `observability-and-instrumentation` skill makes the same point from the ops side).
 - **Set retention up front, then actually delete.** Every personal-data store needs a TTL and a working deletion path — including backups, caches, search indexes, and analytics copies. Data with no expiry is a breach scheduled for later.
-- **Support the data-subject rights your jurisdiction requires** (GDPR/CCPA and kin): export, correct, and delete on request. These are engineering features — design the schema so a user's data is *findable* and *erasable*, not smeared irreversibly across systems.
+- **Support the data-subject rights your jurisdiction requires** (GDPR/CCPA and kin): export, correct, and delete on request. These are engineering features — design the schema so a user's data is _findable_ and _erasable_, not smeared irreversibly across systems.
 - **Get consent before collection or third-party sharing**, and make it auditable. Sending PII to an analytics/ad/LLM vendor is "sharing" — the user's choice gates it, and the vendor needs a data-processing agreement.
 - **Localize defaults, don't hardcode one region's law.** Data-residency and rules differ by user location; make the policy a configurable boundary, not an assumption.
 
@@ -410,15 +425,15 @@ If your app calls an LLM — chatbots, summarizers, agents, RAG — it inherits 
 ```typescript
 // BAD: trusting model output as a command or as markup
 const sql = await llm.generate(`Write SQL for: ${userQuestion}`);
-await db.query(sql);                                   // arbitrary query execution
-container.innerHTML = await llm.reply(userMessage);   // stored XSS, via the model
+await db.query(sql); // arbitrary query execution
+container.innerHTML = await llm.reply(userMessage); // stored XSS, via the model
 
 // GOOD: model output is data — parse defensively, then validate, then encode
 let intent;
 try {
   intent = CommandSchema.parse(JSON.parse(await llm.replyJson(userMessage)));
 } catch {
-  throw new ValidationError('unexpected model output'); // JSON.parse or schema failed
+  throw new ValidationError("unexpected model output"); // JSON.parse or schema failed
 }
 await runAllowlistedAction(intent.action, intent.params);
 container.textContent = await llm.reply(userMessage);
@@ -428,17 +443,20 @@ container.textContent = await llm.reply(userMessage);
 
 ```markdown
 ### Authentication
+
 - [ ] Passwords hashed with bcrypt/scrypt/argon2 (salt rounds ≥ 12)
 - [ ] Session tokens are httpOnly, secure, sameSite
 - [ ] Login has rate limiting
 - [ ] Password reset tokens expire
 
 ### Authorization
+
 - [ ] Every endpoint checks user permissions
 - [ ] Users can only access their own resources
 - [ ] Admin actions require admin role verification
 
 ### Input
+
 - [ ] All user input validated at the boundary
 - [ ] SQL queries are parameterized
 - [ ] HTML output is encoded/escaped
@@ -446,6 +464,7 @@ container.textContent = await llm.reply(userMessage);
 - [ ] Delete/move/overwrite targets built from data are checked against an allowlisted root, a minimum depth, and ownership evidence read before the operation
 
 ### Data
+
 - [ ] No secrets in code or version control
 - [ ] Sensitive fields excluded from API responses
 - [ ] PII encrypted at rest (if applicable)
@@ -454,40 +473,44 @@ container.textContent = await llm.reply(userMessage);
 - [ ] Export/delete (data-subject) requests are supported where required; sharing with third parties has consent
 
 ### Infrastructure
+
 - [ ] Security headers configured (CSP, HSTS, etc.)
 - [ ] CORS restricted to known origins
 - [ ] Dependencies audited for vulnerabilities
 - [ ] Error messages don't expose internals
 
 ### Supply Chain
+
 - [ ] One authoritative lockfile committed; CI uses that manager's frozen/immutable install
 - [ ] Native audit triaged by reachability and fix risk; dependency install scripts blocked unless explicitly approved
 - [ ] New dependencies reviewed (ownership, provenance, release age, transitive graph)
 
 ### AI / LLM (if used)
+
 - [ ] Model output treated as untrusted (no eval/SQL/innerHTML/shell)
 - [ ] Secrets and other users' data kept out of prompts
 - [ ] Tool/agent permissions scoped; destructive actions require confirmation
 ```
+
 ## See Also
 
 For detailed security checklists and pre-commit verification steps, see `../../references/security-checklist.md`.
 
 ## Common Rationalizations
 
-| Rationalization | Reality |
-|---|---|
-| "This is an internal tool, security doesn't matter" | Internal tools get compromised. Attackers target the weakest link. |
-| "We'll add security later" | Security retrofitting is 10x harder than building it in. Add it now. |
-| "No one would try to exploit this" | Automated scanners will find it. Security by obscurity is not security. |
-| "The framework handles security" | Frameworks provide tools, not guarantees. You still need to use them correctly. |
-| "It's just a prototype" | Prototypes become production. Security habits from day one. |
-| "Threat modeling is overkill here" | Five minutes of "how would I attack this?" prevents the design flaws no control can patch later. |
-| "It's just LLM output, it's only text" | That "text" can be a SQL statement, a script tag, or a shell command. Treat it like any untrusted input. |
-| "The audit passed, so the dependency is safe" | Audits match known advisories. They do not detect a newly malicious package or make unreviewed install scripts safe to execute. |
-| "Collect it now, we might need it later" | Data you don't hold can't be breached, subpoenaed, or mis-deleted. "Might need it" is breach scope, not a purpose. |
-| "We'll handle deletion requests manually" | Manual erasure misses backups, caches, and analytics copies. If the schema can't find a user's data, you can't honor the request — design for it. |
-| "Compliance is legal's problem, not ours" | Export, deletion, retention, and consent are schema and code. Legal can't bolt them on after you've smeared PII across ten systems. |
+| Rationalization                                     | Reality                                                                                                                                           |
+| --------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| "This is an internal tool, security doesn't matter" | Internal tools get compromised. Attackers target the weakest link.                                                                                |
+| "We'll add security later"                          | Security retrofitting is 10x harder than building it in. Add it now.                                                                              |
+| "No one would try to exploit this"                  | Automated scanners will find it. Security by obscurity is not security.                                                                           |
+| "The framework handles security"                    | Frameworks provide tools, not guarantees. You still need to use them correctly.                                                                   |
+| "It's just a prototype"                             | Prototypes become production. Security habits from day one.                                                                                       |
+| "Threat modeling is overkill here"                  | Five minutes of "how would I attack this?" prevents the design flaws no control can patch later.                                                  |
+| "It's just LLM output, it's only text"              | That "text" can be a SQL statement, a script tag, or a shell command. Treat it like any untrusted input.                                          |
+| "The audit passed, so the dependency is safe"       | Audits match known advisories. They do not detect a newly malicious package or make unreviewed install scripts safe to execute.                   |
+| "Collect it now, we might need it later"            | Data you don't hold can't be breached, subpoenaed, or mis-deleted. "Might need it" is breach scope, not a purpose.                                |
+| "We'll handle deletion requests manually"           | Manual erasure misses backups, caches, and analytics copies. If the schema can't find a user's data, you can't honor the request — design for it. |
+| "Compliance is legal's problem, not ours"           | Export, deletion, retention, and consent are schema and code. Legal can't bolt them on after you've smeared PII across ten systems.               |
 
 ## Red Flags
 

@@ -6,17 +6,17 @@
 
 Types are organized by namespace. If a type you need isn't shown in an example below, locate it via this table first - don't block on fetching SDK source over the network.
 
-| `using` | Contains |
-|---|---|
-| `Anthropic` | `AnthropicClient`, top-level options |
-| `Anthropic.Models.Messages` | non-beta request/response types - `MessageCreateParams`, `Model`, `Role`, `ContentBlock`, `TextBlock`, `ToolUseBlock`, `ToolResultBlockParam`, `Tool*` (tool definition classes) |
-| `Anthropic.Models.Beta.Messages` | beta-endpoint equivalents - `MessageCreateParams`, `BetaMessage`, `BetaTool*`, `Speed`, `BetaRequestMcpServerUrlDefinition`, context-editing/compaction configs |
-| `Anthropic.Models.Beta` | shared beta constants |
-| `Anthropic.Models.Beta.Files` | Files API types |
-| `Anthropic.Models.Messages.Batches` | Batch API types |
-| `Anthropic.Helpers.Beta` | `BetaToolRunner`, beta helper utilities |
-| `Anthropic.Exceptions` | `AnthropicApiException`, `AnthropicRateLimitException`, `Anthropic5xxException`, etc. - see `shared/error-codes.md` |
-| `Anthropic.Bedrock` / `Anthropic.Vertex` / `Anthropic.Foundry` / `Anthropic.Aws` | platform clients (separate NuGet packages): `AnthropicBedrockMantleClient`, `AnthropicFoundryClient`, `AnthropicAwsClient` |
+| `using`                                                                          | Contains                                                                                                                                                                         |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Anthropic`                                                                      | `AnthropicClient`, top-level options                                                                                                                                             |
+| `Anthropic.Models.Messages`                                                      | non-beta request/response types - `MessageCreateParams`, `Model`, `Role`, `ContentBlock`, `TextBlock`, `ToolUseBlock`, `ToolResultBlockParam`, `Tool*` (tool definition classes) |
+| `Anthropic.Models.Beta.Messages`                                                 | beta-endpoint equivalents - `MessageCreateParams`, `BetaMessage`, `BetaTool*`, `Speed`, `BetaRequestMcpServerUrlDefinition`, context-editing/compaction configs                  |
+| `Anthropic.Models.Beta`                                                          | shared beta constants                                                                                                                                                            |
+| `Anthropic.Models.Beta.Files`                                                    | Files API types                                                                                                                                                                  |
+| `Anthropic.Models.Messages.Batches`                                              | Batch API types                                                                                                                                                                  |
+| `Anthropic.Helpers.Beta`                                                         | `BetaToolRunner`, beta helper utilities                                                                                                                                          |
+| `Anthropic.Exceptions`                                                           | `AnthropicApiException`, `AnthropicRateLimitException`, `Anthropic5xxException`, etc. - see `shared/error-codes.md`                                                              |
+| `Anthropic.Bedrock` / `Anthropic.Vertex` / `Anthropic.Foundry` / `Anthropic.Aws` | platform clients (separate NuGet packages): `AnthropicBedrockMantleClient`, `AnthropicFoundryClient`, `AnthropicAwsClient`                                                       |
 
 `client.Messages.*` uses non-beta types; `client.Beta.Messages.*` uses the `Anthropic.Models.Beta.Messages` types. Both namespaces define a `MessageCreateParams` - pick the one matching the client path you call.
 
@@ -24,18 +24,18 @@ Types are organized by namespace. If a type you need isn't shown in an example b
 
 Write from this table instead of reflecting the SDK assembly. Endpoint column tells you whether to use `client.Messages.*` or `client.Beta.Messages.*`.
 
-| Feature | Endpoint | Key C# types (namespace per table above) |
-|---|---|---|
-| User profiles | beta | `client.Beta.UserProfiles.Create(...)` / `.Retrieve(id)` / `.List()`. Pass the returned profile id on the beta messages call. Requires a beta header - check the SDK's beta-headers reference for the current flag. |
-| Agent Skills | beta | `BetaContainerParams` (with `Skills = [new BetaSkillParams { ... }]`), `BetaCodeExecutionTool20250825`. `Betas = ["code-execution-2025-08-25"]` (Skills is out of beta - no `skills-2025-10-02`). Download the output via `client.Beta.Files.Download(fileId)`. |
-| Advisor tool | beta | `BetaAdvisorTool20260301` - may not be in all SDK releases yet |
-| Cache diagnostics | beta | `Diagnostics = new() { PreviousMessageID = ... }`, `BetaCacheControlEphemeral`, `BetaContentBlockParam` |
-| Context editing | beta | `ContextManagement = new BetaContextManagementConfig { Edits = [new BetaClearToolUses20250919Edit()] }`. `Betas = ["context-management-2025-06-27"]` (not `compact-2026-01-12` - that's for `BetaCompact20260112Edit`). |
-| Memory tool | non-beta | `Tools = [new ToolUnion(new MemoryTool20250818())]` |
-| Programmatic tool calling | non-beta | `CodeExecutionTool20260120`, `ToolResultBlockParam`, `ContentBlockParam` |
-| Task budgets | beta | `BetaOutputConfig` with `TaskBudget = new BetaTokenTaskBudget { ... }` |
-| Tool search | non-beta | `new ToolUnion(new ToolSearchToolRegex20251119 { Type = ToolSearchToolRegex20251119Type.ToolSearchToolRegex20251119 })` - `Type` must be set explicitly. |
-| Web search | non-beta | `new ToolUnion(new WebSearchTool20260209())` - the latest variant with dynamic filtering (Claude Fable 5.1 + Claude Opus 5 + Opus 4.8/4.7/4.6 + Claude Sonnet 5 + Sonnet 4.6). For older models or Vertex, use `WebSearchTool20250305()` |
+| Feature                   | Endpoint | Key C# types (namespace per table above)                                                                                                                                                                                                                        |
+| ------------------------- | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| User profiles             | beta     | `client.Beta.UserProfiles.Create(...)` / `.Retrieve(id)` / `.List()`. Pass the returned profile id on the beta messages call. Requires a beta header - check the SDK's beta-headers reference for the current flag.                                             |
+| Agent Skills              | beta     | `BetaContainerParams` (with `Skills = [new BetaSkillParams { ... }]`), `BetaCodeExecutionTool20250825`. `Betas = ["code-execution-2025-08-25"]` (Skills is out of beta - no `skills-2025-10-02`). Download the output via `client.Beta.Files.Download(fileId)`. |
+| Advisor tool              | beta     | `BetaAdvisorTool20260301` - may not be in all SDK releases yet                                                                                                                                                                                                  |
+| Cache diagnostics         | beta     | `Diagnostics = new() { PreviousMessageID = ... }`, `BetaCacheControlEphemeral`, `BetaContentBlockParam`                                                                                                                                                         |
+| Context editing           | beta     | `ContextManagement = new BetaContextManagementConfig { Edits = [new BetaClearToolUses20250919Edit()] }`. `Betas = ["context-management-2025-06-27"]` (not `compact-2026-01-12` - that's for `BetaCompact20260112Edit`).                                         |
+| Memory tool               | non-beta | `Tools = [new ToolUnion(new MemoryTool20250818())]`                                                                                                                                                                                                             |
+| Programmatic tool calling | non-beta | `CodeExecutionTool20260120`, `ToolResultBlockParam`, `ContentBlockParam`                                                                                                                                                                                        |
+| Task budgets              | beta     | `BetaOutputConfig` with `TaskBudget = new BetaTokenTaskBudget { ... }`                                                                                                                                                                                          |
+| Tool search               | non-beta | `new ToolUnion(new ToolSearchToolRegex20251119 { Type = ToolSearchToolRegex20251119Type.ToolSearchToolRegex20251119 })` - `Type` must be set explicitly.                                                                                                        |
+| Web search                | non-beta | `new ToolUnion(new WebSearchTool20260209())` - the latest variant with dynamic filtering (Claude Fable 5.1 + Claude Opus 5 + Opus 4.8/4.7/4.6 + Claude Sonnet 5 + Sonnet 4.6). For older models or Vertex, use `WebSearchTool20250305()`                        |
 
 ### Discovering type and member names
 
@@ -192,7 +192,6 @@ using Anthropic.Models.Beta.Messages;
 using NonBeta = Anthropic.Models.Messages;  // only if you also need non-beta types
 // Now: MessageCreateParams, BetaMessageParam, Role (beta's), NonBeta.Role (if needed)
 ```
-
 
 `BetaMessage.Content` is `IReadOnlyList<BetaContentBlock>` - a 15-variant discriminated union. Narrow with `TryPick*`. **Response `BetaContentBlock` is NOT assignable to param `BetaContentBlockParam`** - there's no `.ToParam()` in C#. Round-trip by converting each block:
 

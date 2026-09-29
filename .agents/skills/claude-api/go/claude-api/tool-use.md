@@ -171,15 +171,15 @@ func main() {
 
 **Key API surface:**
 
-| Symbol | Purpose |
-|---|---|
-| `resp.ToParam()` | Convert `Message` response -> `MessageParam` for history |
-| `block.AsAny().(type)` | Type-switch on `ContentBlockUnion` variants |
-| `variant.JSON.Input.Raw()` | Raw JSON string of tool input (for `json.Unmarshal`) |
-| `anthropic.NewToolResultBlock(id, content, isError)` | Build `tool_result` block |
-| `anthropic.NewUserMessage(blocks...)` | Wrap tool results as a user turn |
-| `anthropic.StopReasonToolUse` | `StopReason` constant to check loop termination |
-| `anthropic.ToolUnionParam{OfTool: &t}` | Wrap `ToolParam` in the union for `Tools:` |
+| Symbol                                               | Purpose                                                  |
+| ---------------------------------------------------- | -------------------------------------------------------- |
+| `resp.ToParam()`                                     | Convert `Message` response -> `MessageParam` for history |
+| `block.AsAny().(type)`                               | Type-switch on `ContentBlockUnion` variants              |
+| `variant.JSON.Input.Raw()`                           | Raw JSON string of tool input (for `json.Unmarshal`)     |
+| `anthropic.NewToolResultBlock(id, content, isError)` | Build `tool_result` block                                |
+| `anthropic.NewUserMessage(blocks...)`                | Wrap tool results as a user turn                         |
+| `anthropic.StopReasonToolUse`                        | `StopReason` constant to check loop termination          |
+| `anthropic.ToolUnionParam{OfTool: &t}`               | Wrap `ToolParam` in the union for `Tools:`               |
 
 ---
 
@@ -217,4 +217,3 @@ response, err := client.Beta.Messages.New(ctx, anthropic.BetaMessageNewParams{
 ```
 
 ---
-

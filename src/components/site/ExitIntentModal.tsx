@@ -1,6 +1,14 @@
 import { useState, useEffect } from "react";
 import { Link } from "@tanstack/react-router";
-import { X, Sparkles, Download, CheckCircle2, ShieldCheck, ArrowRight, BookOpen } from "lucide-react";
+import {
+  X,
+  Sparkles,
+  Download,
+  CheckCircle2,
+  ShieldCheck,
+  ArrowRight,
+  BookOpen,
+} from "lucide-react";
 import { toast } from "sonner";
 
 export function ExitIntentModal() {
@@ -75,7 +83,8 @@ export function ExitIntentModal() {
             </h3>
 
             <p className="mt-2 text-xs md:text-sm text-slate-300 leading-relaxed">
-              Discover the exact 10-point framework UK plumbers, electricians, and builders use to rank in Google’s Top 3 Map Pack and win high-margin £3,000+ jobs.
+              Discover the exact 10-point framework UK plumbers, electricians, and builders use to
+              rank in Google’s Top 3 Map Pack and win high-margin £3,000+ jobs.
             </p>
 
             <div className="mt-4 rounded-xl bg-slate-900 p-3.5 border border-slate-800 space-y-2 text-xs text-slate-300">

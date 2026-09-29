@@ -24,7 +24,9 @@ interface TradeDemoViewerProps {
 }
 
 export function TradeDemoViewer({ initialTrade = "electrical" }: TradeDemoViewerProps) {
-  const [activeTradeKey, setActiveTradeKey] = useState<"electrical" | "roofing" | "heating" | "commercial">(initialTrade);
+  const [activeTradeKey, setActiveTradeKey] = useState<
+    "electrical" | "roofing" | "heating" | "commercial"
+  >(initialTrade);
   const [deviceMode, setDeviceMode] = useState<"desktop" | "tablet" | "mobile">("desktop");
 
   const business: TradeDemoBusiness = TRADE_DEMOS[activeTradeKey] || TRADE_DEMOS.electrical;
@@ -90,7 +92,9 @@ export function TradeDemoViewer({ initialTrade = "electrical" }: TradeDemoViewer
             type="button"
             onClick={() => setDeviceMode("mobile")}
             className={`p-2 rounded-lg text-xs transition-all flex items-center gap-1.5 ${
-              deviceMode === "mobile" ? "bg-neutral-800 text-gold-400 shadow-sm" : "text-neutral-400 hover:text-white"
+              deviceMode === "mobile"
+                ? "bg-neutral-800 text-gold-400 shadow-sm"
+                : "text-neutral-400 hover:text-white"
             }`}
             title="Preview Mobile Device (375px)"
           >
@@ -101,7 +105,9 @@ export function TradeDemoViewer({ initialTrade = "electrical" }: TradeDemoViewer
             type="button"
             onClick={() => setDeviceMode("tablet")}
             className={`p-2 rounded-lg text-xs transition-all flex items-center gap-1.5 ${
-              deviceMode === "tablet" ? "bg-neutral-800 text-gold-400 shadow-sm" : "text-neutral-400 hover:text-white"
+              deviceMode === "tablet"
+                ? "bg-neutral-800 text-gold-400 shadow-sm"
+                : "text-neutral-400 hover:text-white"
             }`}
             title="Preview Tablet Device (768px)"
           >
@@ -112,7 +118,9 @@ export function TradeDemoViewer({ initialTrade = "electrical" }: TradeDemoViewer
             type="button"
             onClick={() => setDeviceMode("desktop")}
             className={`p-2 rounded-lg text-xs transition-all flex items-center gap-1.5 ${
-              deviceMode === "desktop" ? "bg-neutral-800 text-gold-400 shadow-sm" : "text-neutral-400 hover:text-white"
+              deviceMode === "desktop"
+                ? "bg-neutral-800 text-gold-400 shadow-sm"
+                : "text-neutral-400 hover:text-white"
             }`}
             title="Preview Full Desktop"
           >
@@ -145,7 +153,9 @@ export function TradeDemoViewer({ initialTrade = "electrical" }: TradeDemoViewer
                 <span className="text-emerald-400 font-bold">🔒</span>
                 <span>https://www.{business.id}-solutions-demo.co.uk</span>
               </div>
-              <div className="text-[11px] text-gold-400 font-medium hidden sm:block">HDW Live Trade Demo</div>
+              <div className="text-[11px] text-gold-400 font-medium hidden sm:block">
+                HDW Live Trade Demo
+              </div>
             </div>
           )}
 
@@ -192,13 +202,16 @@ export function TradeDemoViewer({ initialTrade = "electrical" }: TradeDemoViewer
                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gold-500/10 border border-gold-500/30 text-gold-400 text-xs font-semibold mb-4">
                   <Star className="h-3.5 w-3.5 fill-gold-400 text-gold-400" />
                   <span>
-                    Rated {business.rating.score}/5.0 from {business.rating.reviewsCount}+ Verified Customers
+                    Rated {business.rating.score}/5.0 from {business.rating.reviewsCount}+ Verified
+                    Customers
                   </span>
                 </div>
                 <h1 className="text-2xl sm:text-4xl font-extrabold text-white tracking-tight leading-tight mb-4">
                   {business.heroHeadline}
                 </h1>
-                <p className="text-sm sm:text-base text-neutral-300 leading-relaxed mb-6">{business.heroSubheadline}</p>
+                <p className="text-sm sm:text-base text-neutral-300 leading-relaxed mb-6">
+                  {business.heroSubheadline}
+                </p>
 
                 {/* Accreditations Trust Strip */}
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 pt-2">
@@ -209,8 +222,12 @@ export function TradeDemoViewer({ initialTrade = "electrical" }: TradeDemoViewer
                     >
                       <span className="text-base">{acc.iconText}</span>
                       <div className="overflow-hidden">
-                        <div className="text-[11px] font-semibold text-white truncate">{acc.name}</div>
-                        {acc.idNumber && <div className="text-[10px] text-neutral-400">{acc.idNumber}</div>}
+                        <div className="text-[11px] font-semibold text-white truncate">
+                          {acc.name}
+                        </div>
+                        {acc.idNumber && (
+                          <div className="text-[10px] text-neutral-400">{acc.idNumber}</div>
+                        )}
                       </div>
                     </div>
                   ))}
@@ -221,7 +238,9 @@ export function TradeDemoViewer({ initialTrade = "electrical" }: TradeDemoViewer
             {/* Popular Services Grid */}
             <section className="px-4 sm:px-8 py-8 sm:py-10 border-b border-neutral-800/60">
               <div className="mb-6">
-                <h2 className="text-xl sm:text-2xl font-bold text-white tracking-tight">Our Core Services & Fixed Guide Pricing</h2>
+                <h2 className="text-xl sm:text-2xl font-bold text-white tracking-tight">
+                  Our Core Services & Fixed Guide Pricing
+                </h2>
                 <p className="text-xs sm:text-sm text-neutral-400 mt-1">
                   Covering {business.coverageArea} with written fixed quotes.
                 </p>
@@ -229,7 +248,10 @@ export function TradeDemoViewer({ initialTrade = "electrical" }: TradeDemoViewer
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {business.popularServices.map((svc, i) => (
-                  <div key={i} className="bg-neutral-900/60 border border-neutral-800 p-5 rounded-2xl flex flex-col justify-between">
+                  <div
+                    key={i}
+                    className="bg-neutral-900/60 border border-neutral-800 p-5 rounded-2xl flex flex-col justify-between"
+                  >
                     <div>
                       <div className="flex items-center justify-between gap-2 mb-2">
                         <h3 className="font-bold text-sm sm:text-base text-white">{svc.title}</h3>
@@ -263,10 +285,15 @@ export function TradeDemoViewer({ initialTrade = "electrical" }: TradeDemoViewer
 
             {/* Client Reviews */}
             <section className="px-4 sm:px-8 py-8 sm:py-10 border-b border-neutral-800/60 bg-neutral-900/20">
-              <h3 className="text-lg sm:text-xl font-bold text-white mb-4">What Local Customers Say</h3>
+              <h3 className="text-lg sm:text-xl font-bold text-white mb-4">
+                What Local Customers Say
+              </h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {business.reviews.map((rev, i) => (
-                  <div key={i} className="bg-neutral-900/80 border border-neutral-800 p-4 rounded-2xl">
+                  <div
+                    key={i}
+                    className="bg-neutral-900/80 border border-neutral-800 p-4 rounded-2xl"
+                  >
                     <div className="flex items-center gap-1 text-gold-400 mb-2">
                       {[...Array(rev.rating)].map((_, idx) => (
                         <Star key={idx} className="h-3.5 w-3.5 fill-gold-400 text-gold-400" />
@@ -274,7 +301,9 @@ export function TradeDemoViewer({ initialTrade = "electrical" }: TradeDemoViewer
                     </div>
                     <p className="text-xs sm:text-sm text-neutral-300 italic mb-3">"{rev.text}"</p>
                     <div className="flex items-center justify-between text-xs text-neutral-400 border-t border-neutral-800 pt-2">
-                      <span className="font-semibold text-white">{rev.author} ({rev.location})</span>
+                      <span className="font-semibold text-white">
+                        {rev.author} ({rev.location})
+                      </span>
                       <span className="text-gold-400/90">{rev.service}</span>
                     </div>
                   </div>
@@ -311,7 +340,8 @@ export function TradeDemoViewer({ initialTrade = "electrical" }: TradeDemoViewer
             Get this complete, high-converting website built for your trade in 14 days.
           </h4>
           <p className="text-xs text-neutral-400 mt-1">
-            100% Done-For-You: We write all the copy, add your accreditations, and set up your WhatsApp instant quote lead flow.
+            100% Done-For-You: We write all the copy, add your accreditations, and set up your
+            WhatsApp instant quote lead flow.
           </p>
         </div>
 
