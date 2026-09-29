@@ -12,7 +12,7 @@ export const Route = createFileRoute("/work")({
       {
         name: "description",
         content:
-          "Explore our image-led website design studies and concept blueprints for ambitious UK trade and service businesses. Websites from £1,495.",
+          "Explore our image-led website design studies and concept blueprints for ambitious UK trade and service businesses. An initial build fee and ongoing monthly care.",
       },
       {
         property: "og:title",
@@ -47,7 +47,7 @@ const details = [
   {
     number: "04",
     title: "Managed care so your site stays sharp.",
-    copy: "Daily offsite backups, UK cloud hosting, and unlimited minor copy, photo, and pricing updates whenever your business expands.",
+    copy: "Managed hosting, routine maintenance and content changes within an agreed monthly allowance.",
   },
 ];
 
@@ -132,7 +132,11 @@ function WorkPage() {
         </section>
 
         {/* Selected Design Studies Section */}
-        <section className="studio-work studio-section" id="showcase" aria-labelledby="showcase-heading">
+        <section
+          className="studio-work studio-section"
+          id="showcase"
+          aria-labelledby="showcase-heading"
+        >
           <div className="studio-wrap">
             <div className="studio-section-heading">
               <div>
@@ -237,14 +241,14 @@ function WorkPage() {
               </h2>
               <div>
                 <p>
-                  Let’s build something you are proud to show your customers. Fixed investment, clear
-                  scope, and zero homework.
+                  Let’s build something you are proud to show your customers. Fixed investment,
+                  clear scope, and zero homework.
                 </p>
                 <PillButton as="link" to="/contact" variant="light" className="studio-button">
                   Let’s talk about your website
                 </PillButton>
                 <span className="final-price">
-                  Websites from £1,495 + VAT · Care from £95/month + VAT
+                  Initial build + monthly care · Scope agreed before you commit
                 </span>
               </div>
             </div>
@@ -253,7 +257,7 @@ function WorkPage() {
                 <PenLine size={16} /> Copywriting included
               </span>
               <span>
-                <Check size={16} /> 14-day delivery on Launch
+                <Check size={16} /> Launch schedule agreed with you
               </span>
               <span>
                 <ShieldCheck size={16} /> Ongoing managed care

@@ -21,7 +21,7 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Your work deserves a better website. Bespoke website design, copywriting and managed care for ambitious UK trade and service businesses. Websites from £1,495.",
+          "Your work deserves a better website. Website design, copywriting and ongoing digital care for UK trades. An initial build fee, a monthly service, and one team to look after your website.",
       },
       {
         property: "og:title",
@@ -44,7 +44,7 @@ const faqs = [
   ],
   [
     "How quickly can my website launch?",
-    "The Launch package is planned around 14 days from onboarding sign-off. Growth takes 14–21 days, and Pro projects follow an agreed schedule. We confirm the timetable, required access and approval stages before work begins.",
+    "We agree your launch schedule after reviewing the scope, content and access needed. You see the website before launch, with time set aside for your feedback and approval.",
   ],
   [
     "Are the websites above real client projects?",
@@ -56,27 +56,15 @@ const faqs = [
   ],
   [
     "What happens after launch?",
-    "Your package includes an initial care period, followed by its monthly care plan. Care covers hosting, maintenance and ongoing updates within the agreed scope. Launch care is £95/month, Growth £195/month and Pro £395/month, plus VAT.",
+    "Your monthly service covers hosting, routine maintenance and content changes within an agreed allowance. We also check enquiry routes and identify useful improvements. Your proposal confirms the support and reporting included.",
   ],
   [
     "What is included in the price?",
-    "Each package includes website design and copywriting, with the page count and features shown below. Your written proposal confirms the full scope, revision allowance, payment schedule, ownership and care terms before you commit.",
+    "There is an initial setup/build fee and an ongoing monthly subscription. We quote both together, with the page count, revisions, payment schedule, ownership and cancellation terms in writing before you commit.",
   ],
 ];
 
 function HomePage() {
-  const [isGroupDomain, setIsGroupDomain] = useState(false);
-
-  useEffect(() => {
-    if (typeof window !== "undefined" && window.location.hostname.includes("theharleygroup")) {
-      setIsGroupDomain(true);
-    }
-  }, []);
-
-  if (isGroupDomain) {
-    return <TheHarleyGroupPage />;
-  }
-
   return (
     <PageShell quiet>
       <div className="studio-home">
@@ -84,7 +72,7 @@ function HomePage() {
           <div className="studio-wrap hero-layout">
             <div className="hero-copy">
               <p className="studio-kicker">
-                <span className="studio-kicker-line" /> INDEPENDENT WEB STUDIO · UK
+                <span className="studio-kicker-line" /> WEBSITES & DIGITAL CARE FOR UK TRADES
               </p>
               <h1 id="hero-heading">
                 Your work.
@@ -102,17 +90,15 @@ function HomePage() {
               </p>
               <div className="studio-actions">
                 <PillButton as="link" to="/contact" variant="dark" className="studio-button">
-                  Discuss your website
+                  Get your website plan
                 </PillButton>
                 <a href="#selected-work" className="studio-text-link">
-                  Explore the work <ArrowDown size={16} />
+                  See the design studies <ArrowDown size={16} />
                 </a>
               </div>
               <div className="hero-price">
-                <span>
-                  From £1,495 <small>+ VAT</small>
-                </span>
-                <span>Copywriting included</span>
+                <span>Built for your trade</span>
+                <span>Setup + monthly care</span>
               </div>
             </div>
             <div className="hero-art">
@@ -194,13 +180,6 @@ function HomePage() {
               Original design concepts by Harley Digital Works. Illustrative photography; not
               commissioned client projects.
             </p>
-          </div>
-        </section>
-
-                {/* Before & After Transformation Slider */}
-        <section className="studio-section py-16 border-t border-ink/10" aria-label="Before and After Transformation">
-          <div className="studio-wrap">
-            <BeforeAfterSlider />
           </div>
         </section>
 
@@ -325,7 +304,7 @@ function HomePage() {
         <div className="studio-pricing">
           <WebsitePackagesSection
             title="A clear investment. A better website."
-            subtitle="Design and copywriting included. Choose a starting point; we’ll confirm the right scope together."
+            subtitle="An initial build fee. Ongoing monthly care. One clear proposal covering both."
           />
         </div>
 
@@ -422,10 +401,10 @@ function HomePage() {
                   And works for your business.
                 </p>
                 <PillButton as="link" to="/contact" variant="light" className="studio-button">
-                  Let’s talk about your website
+                  Get your website plan
                 </PillButton>
                 <span className="final-price">
-                  Websites from £1,495 + VAT · Care from £95/month + VAT
+                  Initial build + monthly care · Scope agreed before you commit
                 </span>
               </div>
             </div>

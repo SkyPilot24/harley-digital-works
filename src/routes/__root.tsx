@@ -95,6 +95,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     const leafMatch = matches[matches.length - 1];
     const pathname = leafMatch?.pathname || "/";
     const canonical = canonicalUrlForPath(pathname);
+    const isGroupPage = pathname === "/the-harley-group";
     const isPrivateRoute = pathname === "/auth" || pathname.startsWith("/admin");
 
     return {
@@ -110,12 +111,23 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
               { property: "og:title", content: siteTitle },
               { property: "og:description", content: siteDescription },
               { property: "og:url", content: canonical },
-              { property: "og:site_name", content: siteConfig.name },
+              {
+                property: "og:site_name",
+                content: isGroupPage ? "The Harley Group" : siteConfig.name,
+              },
               { property: "og:type", content: "website" },
               { property: "og:image", content: siteConfig.ogImage },
               { name: "twitter:card", content: "summary_large_image" },
-              { name: "twitter:title", content: siteTitle },
-              { name: "twitter:description", content: siteDescription },
+              {
+                name: "twitter:title",
+                content: isGroupPage ? "The Harley Group | Practical digital services" : siteTitle,
+              },
+              {
+                name: "twitter:description",
+                content: isGroupPage
+                  ? "Practical digital services for independent businesses. Discover Harley Digital Works."
+                  : siteDescription,
+              },
               { name: "twitter:image", content: siteConfig.ogImage },
             ]),
         { name: "theme-color", content: "#0D0D0D" },
@@ -149,57 +161,33 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           ? [
               {
                 type: "application/ld+json",
-                children: JSON.stringify({
-                  "@context": "https://schema.org",
-                  "@type": "ProfessionalService",
-                  name: "Harley Digital Works",
-                  description: siteDescription,
-                  url: siteConfig.url,
-                  email: siteConfig.contactEmail,
-                  areaServed: {
-                    "@type": "Country",
-                    name: "United Kingdom",
-                  },
-                  priceRange: "££",
-                  hasOfferCatalog: {
-                    "@type": "OfferCatalog",
-                    name: "Commercial Web & Digital Services",
-                    itemListElement: [
-                      {
-                        "@type": "Offer",
-                        itemOffered: {
-                          "@type": "Service",
-                          name: "Launch Website",
-                          description: "5-page conversion-focused custom website for UK businesses",
+                children: JSON.stringify(
+                  isGroupPage
+                    ? {
+                        "@context": "https://schema.org",
+                        "@type": "Organization",
+                        name: "The Harley Group",
+                        url: "https://theharleygroup.org/the-harley-group",
+                        description: "Practical digital services for independent businesses.",
+                      }
+                    : {
+                        "@context": "https://schema.org",
+                        "@type": "ProfessionalService",
+                        name: siteConfig.name,
+                        url: siteConfig.url,
+                        description: siteDescription,
+                        email: siteConfig.contactEmail,
+                        areaServed: { "@type": "Country", name: "United Kingdom" },
+                        hasOfferCatalog: {
+                          "@type": "OfferCatalog",
+                          name: "Website build and monthly care",
+                          itemListElement: [
+                            { "@type": "Service", name: "Managed website design and build" },
+                            { "@type": "Service", name: "Monthly website care" },
+                          ],
                         },
-                        price: "1495",
-                        priceCurrency: "GBP",
                       },
-                      {
-                        "@type": "Offer",
-                        itemOffered: {
-                          "@type": "Service",
-                          name: "Growth Website",
-                          description:
-                            "10-page custom website with local SEO, reviews and automation",
-                        },
-                        price: "2995",
-                        priceCurrency: "GBP",
-                      },
-                      {
-                        "@type": "Offer",
-                        itemOffered: {
-                          "@type": "Service",
-                          name: "Website Care Plan & Managed Hosting",
-                          description:
-                            "Continuous cloud hosting, SSL, daily cloud backups, security patching and maintenance",
-                        },
-                        price: "95",
-                        priceCurrency: "GBP",
-                      },
-                    ],
-                  },
-                }),
+                ),
               },
             ]
           : []),

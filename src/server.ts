@@ -51,7 +51,15 @@ export default {
       const host = url.hostname.toLowerCase();
 
       // Multi-Tenant Host Routing: If visiting theharleygroup.org/ -> redirect to /the-harley-group
-      if ((host.includes("theharleygroup.org") || host.includes("theharleygroup.co.uk")) && (url.pathname === "/" || url.pathname === "")) {
+      if (
+        [
+          "theharleygroup.org",
+          "www.theharleygroup.org",
+          "theharleygroup.co.uk",
+          "www.theharleygroup.co.uk",
+        ].includes(host) &&
+        (url.pathname === "/" || url.pathname === "")
+      ) {
         return Response.redirect(`${url.origin}/the-harley-group`, 302);
       }
 

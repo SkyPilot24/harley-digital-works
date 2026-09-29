@@ -1,202 +1,92 @@
-import { Check, ShieldCheck, Zap, Sparkles } from "lucide-react";
-import { Container } from "./PageShell";
+import { Check, ArrowUpRight } from "lucide-react";
 import { PillButton } from "./PillButton";
 
-type WebsitePackage = {
-  id: string;
-  name: string;
-  tagline: string;
-  price: string;
-  badge?: string;
-  popular?: boolean;
-  features: string[];
-  carePlanNote: string;
-  ctaText: string;
-  packageCode: string;
-};
-
-const WEBSITE_PACKAGES: WebsitePackage[] = [
-  {
-    id: "launch",
-    name: "Launch Website",
-    tagline: "For trades & small businesses needing a clean, fast, credible digital presence.",
-    price: "£1,495",
-    features: [
-      "5 custom conversion-focused pages",
-      "We write all the copy & curate high-res trade images",
-      "Mobile-first responsive build & fast click-to-call",
-      "Direct enquiry routing to your email & WhatsApp",
-      "Basic local Google SEO & Google Business mapping",
-      "Ready to launch live in 14 days",
-    ],
-    carePlanNote: "Includes 30 days of care · Then £95/mo hosting & maintenance",
-    ctaText: "Choose Launch",
-    packageCode: "Launch Website (£1,495)",
-  },
-  {
-    id: "growth",
-    name: "Growth Website",
-    tagline:
-      "For established businesses with more services to show and a more tailored enquiry journey.",
-    price: "£2,995",
-    badge: "Room to grow",
-    popular: true,
-    features: [
-      "Up to 10 bespoke pages & dedicated service areas",
-      "Full sales copywriting & positioning for your trade",
-      "Interactive quick-quote / enquiry calculator",
-      "Local SEO foundations & structured service information",
-      "Integration of your genuine reviews & credentials",
-      "Instant lead alerts straight to your phone & email",
-      "Ready to launch in 14–21 days",
-    ],
-    carePlanNote: "Includes 30 days of care · Then £195/mo priority care & updates",
-    ctaText: "Choose Growth",
-    packageCode: "Growth Website (£2,995)",
-  },
-  {
-    id: "pro",
-    name: "Pro / Multi-Location",
-    tagline: "For commercial contractors & growing service businesses requiring custom workflows.",
-    price: "£4,995+",
-    features: [
-      "Multi-location, multi-division, or franchise architecture",
-      "CRM, scheduling & booking integrations (HubSpot/Make)",
-      "Automated quotation intake & tender-ready PDF case studies",
-      "Advanced conversion rate tracking & Google Analytics 4",
-      "Dedicated senior strategy & priority VIP turnaround",
-      "Custom client portal or digital intake systems",
-    ],
-    carePlanNote: "Includes 60 days of care · Then £395/mo growth & automation care",
-    ctaText: "Discuss Pro Scope",
-    packageCode: "Pro / Custom (£4,995+)",
-  },
-];
-
 export function WebsitePackagesSection({
-  title = "Simple, transparent website packages.",
-  subtitle = "Fixed upfront pricing. 100% done-for-you copywriting and design. Zero technical hassle.",
+  title = "One website. Looked after.",
+  subtitle = "An initial build fee gets you live. A monthly subscription keeps your digital presence working.",
 }: {
   title?: string;
   subtitle?: string;
 }) {
   return (
-    <section className="py-20 md:py-28" id="packages">
-      <Container>
-        <div className="max-w-3xl">
-          <p className="eyebrow">04 / YOUR INVESTMENT</p>
-          <h2 className="mt-5 text-[clamp(2.4rem,5vw,4.2rem)] leading-[0.98] tracking-[-0.045em] text-ink">
-            {title}
-          </h2>
-          <p className="mt-5 text-lg leading-relaxed text-ink-muted">{subtitle}</p>
+    <section className="managed-offer studio-section" id="packages" aria-labelledby="offer-heading">
+      <div className="studio-wrap">
+        <div className="studio-section-heading">
+          <div>
+            <p className="studio-kicker">04 / A CLEAR WAY TO WORK TOGETHER</p>
+            <h2 id="offer-heading">{title}</h2>
+          </div>
+          <p>{subtitle}</p>
         </div>
-
-        <div className="mt-14 grid gap-8 lg:grid-cols-3">
-          {WEBSITE_PACKAGES.map((pkg) => (
-            <article
-              key={pkg.id}
-              className={`relative flex flex-col justify-between rounded-2xl border p-8 transition-all ${
-                pkg.popular
-                  ? "border-primary/50 bg-ink text-white shadow-xl lg:-translate-y-2"
-                  : "border-ink/10 bg-white text-ink"
-              }`}
+        <div className="managed-offer-grid">
+          <div className="managed-offer-intro">
+            <p className="studio-kicker">YOUR DIGITAL SIDE, TAKEN CARE OF</p>
+            <h3>
+              Managed websites
+              <br />
+              for busy trades.
+            </h3>
+            <p>
+              A considered website and a practical ongoing service. Built around your business, with
+              a clear scope before you commit.
+            </p>
+            <PillButton
+              as="link"
+              to="/contact"
+              search={{ service: "Managed website and ongoing care" }}
+              variant="light"
             >
-              {pkg.badge && (
-                <div className="absolute -top-3.5 right-6 rounded-full bg-primary px-3 py-1 font-mono text-[11px] font-semibold uppercase tracking-wider text-ink">
-                  {pkg.badge}
-                </div>
-              )}
-
-              <div>
-                <div className="flex items-center justify-between">
-                  <h3
-                    className={`text-2xl font-medium tracking-tight ${
-                      pkg.popular ? "text-white" : "text-ink"
-                    }`}
-                  >
-                    {pkg.name}
-                  </h3>
-                  {pkg.popular ? (
-                    <Sparkles className="text-primary" size={22} />
-                  ) : (
-                    <Zap className="text-primary" size={22} />
-                  )}
-                </div>
-
-                <p
-                  className={`mt-3 text-sm leading-relaxed ${
-                    pkg.popular ? "text-white/70" : "text-ink-muted"
-                  }`}
-                >
-                  {pkg.tagline}
-                </p>
-
-                <div className="mt-6 border-y border-current/10 py-5">
-                  <div className="text-xs uppercase tracking-wider opacity-60">
-                    Fixed Investment
-                  </div>
-                  <div className="mt-1 flex items-baseline gap-1">
-                    <span className="text-4xl font-semibold tracking-tight">{pkg.price}</span>
-                    <span className="text-xs opacity-70">+ VAT</span>
-                  </div>
-                </div>
-
-                <ul className="mt-6 space-y-3">
-                  {pkg.features.map((feat) => (
-                    <li key={feat} className="flex items-start gap-3 text-[14px] leading-relaxed">
-                      <Check className="mt-0.5 shrink-0 text-primary" size={16} />
-                      <span>{feat}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              <div className="mt-8 border-t border-current/10 pt-6">
-                <div className="flex items-center gap-2 text-xs font-medium text-primary">
-                  <ShieldCheck size={16} />
-                  <span>{pkg.carePlanNote}</span>
-                </div>
-
-                <div className="mt-6">
-                  <PillButton
-                    as="link"
-                    to="/contact"
-                    search={{ package: pkg.packageCode }}
-                    variant={pkg.popular ? "light" : "dark"}
-                    className="w-full justify-center"
-                  >
-                    {pkg.ctaText}
-                  </PillButton>
-                </div>
-              </div>
-            </article>
-          ))}
-        </div>
-
-        {/* Care Plans Continuation Highlight */}
-        <div className="mt-14 rounded-2xl border border-ink/10 bg-surface-sage p-8 md:p-10">
-          <div className="grid gap-6 md:grid-cols-[1fr_auto] md:items-center">
+              Get your website plan
+            </PillButton>
+            <span className="offer-small">
+              A conversation first. A written quote before work begins.
+            </span>
+          </div>
+          <div className="managed-offer-detail">
             <div>
-              <div className="font-mono text-xs font-semibold uppercase tracking-wider text-ink/60">
-                The Harley Digital Works Difference
-              </div>
-              <h3 className="mt-2 text-2xl font-medium tracking-tight text-ink md:text-3xl">
-                Your website is live. We’re still here.
-              </h3>
-              <p className="mt-2 max-w-2xl text-[15px] leading-relaxed text-ink-muted">
-                New project photos? A change to your services? Our managed care plans cover hosting,
-                maintenance and updates within your agreed scope, so your website keeps up with your
-                business. Care starts at £95/month + VAT after the included care period.
-              </p>
+              <span className="offer-stage">01 / INITIAL BUILD FEE</span>
+              <h3>Get the right foundations.</h3>
+              <ul>
+                {[
+                  "A focused website with your services, work and contact details",
+                  "Copy written for you, with business facts approved by you",
+                  "Mobile-friendly design and clear enquiry routes",
+                  "Search metadata, launch checks and domain connection",
+                ].map((x) => (
+                  <li key={x}>
+                    <Check size={17} />
+                    {x}
+                  </li>
+                ))}
+              </ul>
             </div>
-            <div className="shrink-0">
-              <PillButton as="link" to="/services/care-plans" variant="dark">
-                Explore Care Plans
-              </PillButton>
+            <div>
+              <span className="offer-stage">02 / MONTHLY SUBSCRIPTION</span>
+              <h3>Keep moving after launch.</h3>
+              <ul>
+                {[
+                  "Managed hosting and routine website maintenance",
+                  "Content changes within an agreed monthly allowance",
+                  "Enquiry checks and a clear route to request help",
+                  "Practical reporting and prioritised improvements",
+                ].map((x) => (
+                  <li key={x}>
+                    <Check size={17} />
+                    {x}
+                  </li>
+                ))}
+              </ul>
             </div>
+            <p className="offer-terms">
+              Your proposal sets out the setup fee, monthly cost, page count, revisions, support,
+              ownership and cancellation terms. Extra pages or integrations are scoped separately.
+            </p>
+            <a href="/services/care-plans" className="studio-text-link">
+              What ongoing care means <ArrowUpRight size={16} />
+            </a>
           </div>
         </div>
-      </Container>
+      </div>
     </section>
   );
 }

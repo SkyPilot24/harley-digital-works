@@ -6,10 +6,10 @@ import { StudioWordmark } from "./StudioWordmark";
 import { useAuth, useIsAdmin } from "@/hooks/use-auth";
 
 const links = [
-  { href: "/#selected-work", label: "The work" },
+  { href: "/#selected-work", label: "Design studies" },
   { href: "/services/web-design-development", label: "Websites" },
   { href: "/#process", label: "Our approach" },
-  { href: "/#packages", label: "Pricing" },
+  { href: "/#packages", label: "Build & care" },
   { href: "/about", label: "About" },
 ];
 
@@ -62,7 +62,7 @@ export function SiteHeader() {
             </Link>
           )}
           <PillButton as="link" to="/contact" variant="dark" className="studio-button">
-            Let’s talk
+            Get your website plan
           </PillButton>
         </div>
         <button

@@ -30,9 +30,11 @@ Once authorized access works:
 4. Prove one controlled enquiry is persisted and retrievable by the intended staff account; verify a failed notification does not lose it.
 5. Review and deploy the tested Cloudflare release; re-run controlled production checks. No deployment has occurred in this increment.
 
-## Commercial decision still open
+## Current commercial direction and central records
 
-The website advertises upfront builds plus care, while the September 16 business definition proposes an unpriced subscription. Existing prices have not been changed in this increment. The founder has been asked which model to use for initial sales. Do not introduce new rates, discounts, tax treatment, response guarantees or minimum terms without resolving the offer.
+The founder has now selected an initial setup/build fee plus an ongoing monthly subscription for a productised digital service for trades. This supersedes the September 16 optional-setup direction. The recommended Managed MVP is £1,495 setup plus £249/month, but prices, VAT treatment, scope, payment/cancellation terms and support commitments remain proposals requiring approval before publication or charging. Existing public prices have not been changed by this documentation update.
+
+The [Business OS central index](https://drive.google.com/file/d/1_bPSSKnLH2FekfD8xSAPcloMbIZSySgl/view) governs business direction, decisions, activity and the 50-item delivery backlog. Update its status, activity log and relevant task evidence at each material milestone. Code stays in this repository; local implementation, deployed verification and actual revenue must be recorded separately. Earlier plans labelled REFERENCE are superseded, not alternative current instructions.
 
 ## Minimum first-sale process
 
@@ -70,6 +72,6 @@ No prospect messages have been sent. Drafting prospect lists or outreach can fol
 
 1. Restore existing backend access and prove enquiry capture/admin retrieval.
 2. Resolve offer/entity facts; remove unsupported proof and consolidate the retained public pages.
-3. Fix CRM conversion and connect a real proposal/invoice/payment process using the existing provider if suitable.
+3. Verify the locally corrected CRM conversion against the intended database, then connect a real proposal/invoice/payment process using the existing provider if suitable.
 4. Complete brand-domain metadata, deployment gates, monitoring and retained-journey QA.
 5. Run the first authorized pilot and record collected revenue. Do not enable prototype portals merely to make the feature list look complete.

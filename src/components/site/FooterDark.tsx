@@ -20,7 +20,7 @@ export function FooterDark() {
             <h3>Make your next move.</h3>
             <nav aria-label="Website services">
               <a href="/#selected-work">Explore the designs</a>
-              <a href="/#packages">Website packages</a>
+              <a href="/#packages">Build & monthly care</a>
               <Link to="/services/care-plans">Managed care</Link>
               <Link
                 to="/contact"
@@ -39,9 +39,9 @@ export function FooterDark() {
             <h3>Get to know us.</h3>
             <nav aria-label="About the studio">
               <Link to="/about">About the studio</Link>
-              <Link to="/the-harley-group">The Harley Group</Link>
+              <a href="https://theharleygroup.org">The Harley Group</a>
               <Link to="/resources">Resources</Link>
-              <Link to="/care-desk">Client care desk</Link>
+              <a href="/contact?service=Website%20care%20support">Request website help</a>
             </nav>
           </div>
           <div>
