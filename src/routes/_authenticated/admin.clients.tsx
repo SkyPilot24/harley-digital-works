@@ -203,15 +203,11 @@ function ClientsPage() {
   return (
     <div>
       <PageHeader
-        title={
-          clientViewMode === "clients"
-            ? "Client 360 & Accounts"
-            : "Automated Care Desk & Uptime Radar"
-        }
+        title={clientViewMode === "clients" ? "Client 360 & Accounts" : "Care delivery"}
         subtitle={
           clientViewMode === "clients"
-            ? "Manage client relationships, active web development deliverables, care plan subscriptions, and recurring MRR."
-            : "Zero-touch edge performance monitoring, SSL/DNS health radar, and 24-hour change request fulfillment."
+            ? "Manage client records, website delivery and manually recorded monthly agreement values."
+            : "Track agreed monthly care. Monitoring and support metrics require verified provider evidence."
         }
         action={
           clientViewMode === "clients" ? (
@@ -261,9 +257,9 @@ function ClientsPage() {
             size={15}
             className={clientViewMode === "caredesk" ? "text-emerald-300" : "text-emerald-600"}
           />
-          <span>Automated Care Desk & Uptime Radar</span>
+          <span>Care delivery</span>
           <span className="ml-1 rounded bg-emerald-500/20 px-1.5 py-0.5 text-[10px] font-bold text-emerald-600 dark:text-emerald-400">
-            24/7 ACTIVE
+            MANUAL REVIEW
           </span>
         </button>
       </div>

@@ -15,6 +15,7 @@ import { Route as TrackRouteImport } from './routes/track'
 import { Route as TheHarleyGroupRouteImport } from './routes/the-harley-group'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as ResourcesRouteImport } from './routes/resources'
+import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as ProposalsRouteImport } from './routes/proposals'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as PartnersRouteImport } from './routes/partners'
@@ -91,6 +92,11 @@ const ServicesRoute = ServicesRouteImport.update({
 const ResourcesRoute = ResourcesRouteImport.update({
   id: '/resources',
   path: '/resources',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResetPasswordRoute = ResetPasswordRouteImport.update({
+  id: '/reset-password',
+  path: '/reset-password',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ProposalsRoute = ProposalsRouteImport.update({
@@ -359,6 +365,7 @@ export interface FileRoutesByFullPath {
   '/partners': typeof PartnersRoute
   '/privacy': typeof PrivacyRoute
   '/proposals': typeof ProposalsRoute
+  '/reset-password': typeof ResetPasswordRoute
   '/resources': typeof ResourcesRoute
   '/services': typeof ServicesRoute
   '/the-harley-group': typeof TheHarleyGroupRoute
@@ -413,6 +420,7 @@ export interface FileRoutesByTo {
   '/partners': typeof PartnersRoute
   '/privacy': typeof PrivacyRoute
   '/proposals': typeof ProposalsRoute
+  '/reset-password': typeof ResetPasswordRoute
   '/resources': typeof ResourcesRoute
   '/services': typeof ServicesRoute
   '/the-harley-group': typeof TheHarleyGroupRoute
@@ -469,6 +477,7 @@ export interface FileRoutesById {
   '/partners': typeof PartnersRoute
   '/privacy': typeof PrivacyRoute
   '/proposals': typeof ProposalsRoute
+  '/reset-password': typeof ResetPasswordRoute
   '/resources': typeof ResourcesRoute
   '/services': typeof ServicesRoute
   '/the-harley-group': typeof TheHarleyGroupRoute
@@ -525,6 +534,7 @@ export interface FileRouteTypes {
     | '/partners'
     | '/privacy'
     | '/proposals'
+    | '/reset-password'
     | '/resources'
     | '/services'
     | '/the-harley-group'
@@ -579,6 +589,7 @@ export interface FileRouteTypes {
     | '/partners'
     | '/privacy'
     | '/proposals'
+    | '/reset-password'
     | '/resources'
     | '/services'
     | '/the-harley-group'
@@ -634,6 +645,7 @@ export interface FileRouteTypes {
     | '/partners'
     | '/privacy'
     | '/proposals'
+    | '/reset-password'
     | '/resources'
     | '/services'
     | '/the-harley-group'
@@ -690,6 +702,7 @@ export interface RootRouteChildren {
   PartnersRoute: typeof PartnersRoute
   PrivacyRoute: typeof PrivacyRoute
   ProposalsRoute: typeof ProposalsRoute
+  ResetPasswordRoute: typeof ResetPasswordRoute
   ResourcesRoute: typeof ResourcesRoute
   ServicesRoute: typeof ServicesRoute
   TheHarleyGroupRoute: typeof TheHarleyGroupRoute
@@ -753,6 +766,13 @@ declare module '@tanstack/react-router' {
       path: '/resources'
       fullPath: '/resources'
       preLoaderRoute: typeof ResourcesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/reset-password': {
+      id: '/reset-password'
+      path: '/reset-password'
+      fullPath: '/reset-password'
+      preLoaderRoute: typeof ResetPasswordRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/proposals': {
@@ -1148,6 +1168,7 @@ const rootRouteChildren: RootRouteChildren = {
   PartnersRoute: PartnersRoute,
   PrivacyRoute: PrivacyRoute,
   ProposalsRoute: ProposalsRoute,
+  ResetPasswordRoute: ResetPasswordRoute,
   ResourcesRoute: ResourcesRoute,
   ServicesRoute: ServicesRoute,
   TheHarleyGroupRoute: TheHarleyGroupRoute,

@@ -68,6 +68,14 @@ No prospect messages have been sent. Drafting prospect lists or outreach can fol
 - Dashboard win rate counts leads marked won rather than dividing unrelated active-client counts by enquiries. Database count failures propagate instead of becoming fabricated zeros; enquiry/client lists show retrieval failures with retry controls.
 - Six additional behavioural checks cover package-price contamination, concurrent retries, preservation of existing client data, conflicting records, failed inserts and active-only monthly totals. All 75 checks/tests and typechecking passed; the updated production build passed. Live database/RLS concurrency testing remains pending, and no payment has been recorded or collected.
 
+### Stabilisation follow-up - 29 September 2026
+
+- Removed the operational staging simulator. Revenue OS now reports payment/provisioning as not connected and links to enquiries. No simulated webhook can insert won leads, claim payment, generate a live preview, or prepare a customer welcome message.
+- Replaced the invoice page and client invoice modal with a shared unavailable state. Unverified bank/VAT details, sample customer invoices, manual paid receipts, invoice email drafts and the sample consolidation view are no longer exposed through these entry points. Billing must use the verified accounting provider until a persistent integration is implemented.
+- Removing the simulator also removes the failing package-selector TypeScript assignment. Existing source history retains the prototype for reference; these capabilities are deferred, not complete.
+- Lovable confirms the existing database is enabled. A read-only table/RLS metadata query still fails because the connector lacks `projects:write`. The tool requires removing and re-adding the Lovable app to refresh permissions. No database or credential changes were attempted.
+- Provider choice remains undecided, as confirmed by the founder. Verified billing identity is also still required. Live enquiry persistence, access policies, payment receipt and deployment verification remain pending.
+
 ### Remaining execution sequence
 
 1. Restore existing backend access and prove enquiry capture/admin retrieval.
