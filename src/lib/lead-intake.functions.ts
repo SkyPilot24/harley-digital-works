@@ -4,6 +4,7 @@ import type { SupabaseClient } from "@supabase/supabase-js";
 import type { Database } from "@/integrations/supabase/types";
 import { leadInputSchema } from "@/lib/lead-schema";
 import { siteConfig } from "@/lib/site-config";
+import { formatLeadMessage, notifyWithoutFailingReceipt } from "@/lib/lead-details";
 
 const RATE_LIMIT_WINDOW_MS = 10 * 60 * 1000;
 const RATE_LIMIT_MAX_ATTEMPTS = 5;
@@ -29,16 +30,7 @@ export const submitLead = createServerFn({ method: "POST" })
 
     const normalizedEmail = data.email.toLowerCase();
 
-    const metadataParts = [
-      data.websiteUrl ? `Current Website: ${data.websiteUrl}` : null,
-      data.budget ? `Budget: ${data.budget}` : null,
-      data.timeline ? `Timeline: ${data.timeline}` : null,
-    ].filter(Boolean);
-
-    const enrichedMessage =
-      metadataParts.length > 0
-        ? `${data.message}\n\n---\nQualification Context:\n${metadataParts.join("\n")}`
-        : data.message;
+    const enrichedMessage = formatLeadMessage(data);
 
     const lead = {
       name: data.name,
@@ -46,6 +38,7 @@ export const submitLead = createServerFn({ method: "POST" })
       company: data.company || null,
       package: data.package || null,
       message: enrichedMessage,
+      source: data.source || "contact_form",
     };
 
     const duplicateCutoff = new Date(now - DUPLICATE_WINDOW_MS).toISOString();
@@ -64,12 +57,16 @@ export const submitLead = createServerFn({ method: "POST" })
     const { error } = await supabaseAdmin.from("leads").insert(lead);
     if (error) throw new Error("Lead submission failed.");
 
-    await notifySlackOfLead({
-      ...lead,
-      websiteUrl: data.websiteUrl || null,
-      budget: data.budget || null,
-      timeline: data.timeline || null,
-    });
+    await notifyWithoutFailingReceipt(
+      () =>
+        notifySlackOfLead({
+          ...lead,
+          websiteUrl: data.websiteUrl || null,
+          budget: data.budget || null,
+          timeline: data.timeline || null,
+        }),
+      () => console.error("[Lead intake] Lead saved; Slack notification failed. Check the CRM."),
+    );
     return { ok: true };
   });
 
@@ -162,6 +159,7 @@ async function notifySlackOfLead(lead: {
 
   const response = await fetch(webhookUrl, {
     method: "POST",
+    signal: AbortSignal.timeout(5_000),
     headers: { "content-type": "application/json" },
     body: JSON.stringify({
       text: `New lead from ${lead.name}`,
@@ -187,7 +185,7 @@ async function notifySlackOfLead(lead: {
   });
 
   if (!response.ok) {
-    console.error(`[Slack] Lead notification failed with status ${response.status}`);
+    throw new Error("Lead notification was not accepted.");
   }
 }
 

@@ -44,26 +44,62 @@ function isH3SwallowedErrorBody(body: string): boolean {
   }
 }
 
+function applySecurityHeaders(response: Response, isHttps: boolean): Response {
+  const headers = new Headers(response.headers);
+  if (!headers.has("X-Frame-Options")) {
+    headers.set("X-Frame-Options", "SAMEORIGIN");
+  }
+  if (!headers.has("X-Content-Type-Options")) {
+    headers.set("X-Content-Type-Options", "nosniff");
+  }
+  if (!headers.has("Referrer-Policy")) {
+    headers.set("Referrer-Policy", "strict-origin-when-cross-origin");
+  }
+  if (!headers.has("Permissions-Policy")) {
+    headers.set("Permissions-Policy", "camera=(), microphone=(), geolocation=()");
+  }
+  if (isHttps && !headers.has("Strict-Transport-Security")) {
+    headers.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
+  }
+
+  return new Response(response.body, {
+    status: response.status,
+    statusText: response.statusText,
+    headers,
+  });
+}
+
 export default {
   async fetch(request: Request, env: unknown, ctx: unknown) {
     try {
       const url = new URL(request.url);
       const host = url.hostname.toLowerCase();
+      const isHttps = url.protocol === "https:";
 
       // Multi-Tenant Host Routing: If visiting theharleygroup.org/ -> redirect to /the-harley-group
-      if ((host.includes("theharleygroup.org") || host.includes("theharleygroup.co.uk")) && (url.pathname === "/" || url.pathname === "")) {
+      if (
+        [
+          "theharleygroup.org",
+          "www.theharleygroup.org",
+          "theharleygroup.co.uk",
+          "www.theharleygroup.co.uk",
+        ].includes(host) &&
+        (url.pathname === "/" || url.pathname === "")
+      ) {
         return Response.redirect(`${url.origin}/the-harley-group`, 302);
       }
 
       const handler = await getServerEntry();
-      const response = await handler.fetch(request, env, ctx);
-      return await normalizeCatastrophicSsrResponse(response);
+      const rawResponse = await handler.fetch(request, env, ctx);
+      const normalizedResponse = await normalizeCatastrophicSsrResponse(rawResponse);
+      return applySecurityHeaders(normalizedResponse, isHttps);
     } catch (error) {
       console.error(error);
-      return new Response(renderErrorPage(), {
+      const errResponse = new Response(renderErrorPage(), {
         status: 500,
         headers: { "content-type": "text/html; charset=utf-8" },
       });
+      return applySecurityHeaders(errResponse, request.url.startsWith("https:"));
     }
   },
 };

@@ -6,7 +6,7 @@ import { ExitIntentModal } from "./ExitIntentModal";
 
 export function PageShell({
   children,
-  quiet = false,
+  quiet = true,
   header,
   footer,
 }: {
@@ -17,8 +17,11 @@ export function PageShell({
 }) {
   return (
     <div className="min-h-screen bg-background text-ink relative">
+      <a className="site-skip-link" href="#main-content">
+        Skip to content
+      </a>
       {header !== undefined ? header : <SiteHeader />}
-      <main>{children}</main>
+      <main id="main-content">{children}</main>
       {footer !== undefined ? footer : <FooterDark />}
       {!quiet && <FloatingWhatsAppDesk />}
       {!quiet && <ExitIntentModal />}

@@ -31,6 +31,7 @@ export const siteConfig = {
 };
 
 export function canonicalUrlForPath(pathname: string) {
+  if (pathname === "/the-harley-group") return "https://theharleygroup.org/the-harley-group";
   const safePath = pathname.startsWith("/") ? pathname : `/${pathname}`;
   return safePath === "/" ? siteConfig.canonicalUrl : `${siteConfig.url}${safePath}`;
 }

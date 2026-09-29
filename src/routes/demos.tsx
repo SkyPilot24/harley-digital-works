@@ -76,7 +76,7 @@ function TradeDemosPage() {
                 </div>
                 <div className="flex items-center gap-1.5 bg-white border border-ink/10 px-3 py-1.5 rounded-full shadow-2xs">
                   <CheckCircle2 className="h-4 w-4 text-emerald-700" />
-                  <span>Care Plans from £95/mo</span>
+                  <span>Ongoing monthly care</span>
                 </div>
               </div>
             </div>
@@ -130,7 +130,7 @@ function TradeDemosPage() {
                   Request a website quote
                 </PillButton>
                 <span className="final-price">
-                  Websites from £1,495 + VAT · Managed Care from £95/month + VAT
+                  Initial build + monthly care · Scope agreed before you commit
                 </span>
               </div>
             </div>

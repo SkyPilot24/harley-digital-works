@@ -30,7 +30,7 @@ const principles = [
   {
     number: "01",
     title: "Done-for-you, from words to code.",
-    copy: "We write your sales copy, curate professional photography, and build a bespoke website. No homework, no templates, and no technical headaches for you.",
+    copy: "We write your copy, help organise approved photography, and build a website around your business. We use proven foundations, tailored to your business, to keep delivery focused and straightforward.",
   },
   {
     number: "02",
@@ -40,7 +40,7 @@ const principles = [
   {
     number: "03",
     title: "Transparent scope and fixed pricing.",
-    copy: "Upfront investment (£1,495 / £2,995 / £4,995) with every deliverable and revision stage agreed in writing before work begins. No unexpected invoices.",
+    copy: "An initial build fee and ongoing monthly service, with deliverables, revisions and any additional work agreed in writing before it starts.",
   },
   {
     number: "04",
@@ -168,8 +168,8 @@ function AboutPage() {
                 </p>
                 <p>
                   Every website we create is treated as a bespoke asset: tailored to your services,
-                  tuned for search visibility, and backed by ongoing care so it continues to work for
-                  you year after year.
+                  tuned for search visibility, and backed by ongoing care so it continues to work
+                  for you year after year.
                 </p>
               </div>
             </div>
@@ -234,9 +234,9 @@ function AboutPage() {
                 account managers.”
               </p>
               <p className="text-sm leading-relaxed text-ink/75">
-                Harley Digital Works operates as the digital flagship of <strong>The Harley Group</strong>,
-                bringing structured governance, rigorous quality assurance, and long-term stability
-                to every client engagement.
+                Harley Digital Works operates as the digital flagship of{" "}
+                <strong>The Harley Group</strong>, bringing structured governance, rigorous quality
+                assurance, and long-term stability to every client engagement.
               </p>
               <div className="founder-signature">
                 <span>Dr Robbie Harley</span>
@@ -274,7 +274,7 @@ function AboutPage() {
                   Let’s talk about your website
                 </PillButton>
                 <span className="final-price">
-                  Websites from £1,495 + VAT · Managed Care from £95/month + VAT
+                  Initial build + monthly care · Scope agreed before you commit
                 </span>
               </div>
             </div>

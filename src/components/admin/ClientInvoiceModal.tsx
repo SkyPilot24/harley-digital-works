@@ -1,5 +1,16 @@
 import { useState, useMemo } from "react";
-import { X, Printer, Copy, Check, FileCheck, Landmark, Receipt, Sparkles, Mail, Loader2 } from "lucide-react";
+import {
+  X,
+  Printer,
+  Copy,
+  Check,
+  FileCheck,
+  Landmark,
+  Receipt,
+  Sparkles,
+  Mail,
+  Loader2,
+} from "lucide-react";
 import { useServerFn } from "@tanstack/react-start";
 import { toast } from "sonner";
 import { dispatchTransactionalEmail } from "@/lib/email-dispatch.functions";
@@ -14,39 +25,53 @@ interface ClientInvoiceModalProps {
 
 export function ClientInvoiceModal({ client, onClose }: ClientInvoiceModalProps) {
   const dispatchEmailFn = useServerFn(dispatchTransactionalEmail);
-  const [invoiceType, setInvoiceType] = useState<"deposit_launch" | "deposit_growth" | "final_launch" | "care_plan">("deposit_launch");
+  const [invoiceType, setInvoiceType] = useState<
+    "deposit_launch" | "deposit_growth" | "final_launch" | "care_plan"
+  >("deposit_launch");
   const [copiedBacs, setCopiedBacs] = useState(false);
   const [isSendingEmail, setIsSendingEmail] = useState(false);
 
   const invoiceNumber = `HDW-INV-${new Date().getFullYear()}-${Math.floor(1000 + Math.random() * 9000)}`;
-  const issueDate = new Date().toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" });
-  const dueDate = new Date(Date.now() + 7 * 86400000).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" });
+  const issueDate = new Date().toLocaleDateString("en-GB", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  });
+  const dueDate = new Date(Date.now() + 7 * 86400000).toLocaleDateString("en-GB", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  });
 
   const invoiceData = useMemo(() => {
     switch (invoiceType) {
       case "deposit_launch":
         return {
           title: "50% Commencement Deposit — 14-Day Launch Website",
-          description: "Initial 50% deposit for turnkey website design, professional copywriting, and mobile setup.",
-          netAmount: 747.50,
+          description:
+            "Initial 50% deposit for turnkey website design, professional copywriting, and mobile setup.",
+          netAmount: 747.5,
         };
       case "deposit_growth":
         return {
           title: "50% Commencement Deposit — Growth Website & Local SEO",
-          description: "Initial 50% deposit for custom website, interactive quote estimator, and multi-location local SEO.",
-          netAmount: 1497.50,
+          description:
+            "Initial 50% deposit for custom website, interactive quote estimator, and multi-location local SEO.",
+          netAmount: 1497.5,
         };
       case "final_launch":
         return {
           title: "Final 50% Balance — Pre-Launch Sign-off",
-          description: "Final completion balance upon website review sign-off and domain DNS cutover.",
-          netAmount: 747.50,
+          description:
+            "Final completion balance upon website review sign-off and domain DNS cutover.",
+          netAmount: 747.5,
         };
       case "care_plan":
         return {
           title: "Monthly Managed Care Plan & High-Speed UK Hosting",
-          description: "Recurring 30-day managed hosting, daily backups, 24/7 uptime monitoring, and 30 mins monthly updates.",
-          netAmount: 95.00,
+          description:
+            "Recurring 30-day managed hosting, daily backups, 24/7 uptime monitoring, and 30 mins monthly updates.",
+          netAmount: 95.0,
         };
     }
   }, [invoiceType]);
@@ -113,8 +138,8 @@ Harley Digital Works (The Harley Group Ltd)`;
         },
       });
 
-      if (res.delivered) {
-        toast.success(`Invoice delivered directly to ${targetEmail}`);
+      if (res.accepted) {
+        toast.success(res.message);
       } else {
         toast.info("Opening email client draft with pre-formatted invoice...");
         window.location.href = res.mailtoUrl;
@@ -136,11 +161,10 @@ Harley Digital Works (The Harley Group Ltd)`;
               <Receipt className="h-4 w-4" />
               <span>VAT Invoice & Receipt Generator</span>
             </div>
-            <h2 className="text-xl md:text-2xl font-bold text-white">
-              Invoice for {client.name}
-            </h2>
+            <h2 className="text-xl md:text-2xl font-bold text-white">Invoice for {client.name}</h2>
             <p className="text-xs text-neutral-400 mt-0.5">
-              Ref: <span className="font-mono text-gold-300">{invoiceNumber}</span> • Issued: {issueDate}
+              Ref: <span className="font-mono text-gold-300">{invoiceNumber}</span> • Issued:{" "}
+              {issueDate}
             </p>
           </div>
           <button
@@ -209,8 +233,12 @@ Harley Digital Works (The Harley Group Ltd)`;
           {/* Top Brand Header */}
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-neutral-200 pb-5 mb-5">
             <div>
-              <div className="text-xl font-extrabold tracking-tight text-neutral-950">HARLEY DIGITAL WORKS</div>
-              <div className="text-xs text-neutral-500 font-mono">A Division of The Harley Group Ltd</div>
+              <div className="text-xl font-extrabold tracking-tight text-neutral-950">
+                HARLEY DIGITAL WORKS
+              </div>
+              <div className="text-xs text-neutral-500 font-mono">
+                A Division of The Harley Group Ltd
+              </div>
             </div>
             <div className="sm:text-right">
               <div className="text-lg font-bold text-neutral-950">VAT INVOICE</div>
@@ -222,15 +250,25 @@ Harley Digital Works (The Harley Group Ltd)`;
           {/* Billed To & From */}
           <div className="grid grid-cols-2 gap-4 text-xs mb-6 pb-5 border-b border-neutral-200">
             <div>
-              <div className="font-bold text-neutral-500 uppercase tracking-wider mb-1">Billed To:</div>
+              <div className="font-bold text-neutral-500 uppercase tracking-wider mb-1">
+                Billed To:
+              </div>
               <div className="font-bold text-neutral-950 text-sm">{client.name}</div>
-              {client.contact_name && <div className="text-neutral-700">Attn: {client.contact_name}</div>}
-              {client.contact_email && <div className="text-neutral-500">{client.contact_email}</div>}
-              {client.contact_phone && <div className="text-neutral-500">{client.contact_phone}</div>}
+              {client.contact_name && (
+                <div className="text-neutral-700">Attn: {client.contact_name}</div>
+              )}
+              {client.contact_email && (
+                <div className="text-neutral-500">{client.contact_email}</div>
+              )}
+              {client.contact_phone && (
+                <div className="text-neutral-500">{client.contact_phone}</div>
+              )}
             </div>
 
             <div className="sm:text-right">
-              <div className="font-bold text-neutral-500 uppercase tracking-wider mb-1">Payable To:</div>
+              <div className="font-bold text-neutral-500 uppercase tracking-wider mb-1">
+                Payable To:
+              </div>
               <div className="font-bold text-neutral-950">The Harley Group Ltd</div>
               <div className="text-neutral-600">Company Reg: England & Wales</div>
               <div className="text-neutral-600">VAT Reg: GB 948 2018 39</div>
@@ -252,7 +290,9 @@ Harley Digital Works (The Harley Group Ltd)`;
               <tr className="border-b border-neutral-200">
                 <td className="py-3">
                   <div className="font-bold text-neutral-950">{invoiceData.title}</div>
-                  <div className="text-neutral-500 text-[11px] mt-0.5">{invoiceData.description}</div>
+                  <div className="text-neutral-500 text-[11px] mt-0.5">
+                    {invoiceData.description}
+                  </div>
                 </td>
                 <td className="text-right font-mono py-3">£{invoiceData.netAmount.toFixed(2)}</td>
                 <td className="text-right font-mono py-3">£{vatAmount.toFixed(2)}</td>
@@ -302,7 +342,11 @@ Harley Digital Works (The Harley Group Ltd)`;
             onClick={handleCopyBacs}
             className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl bg-neutral-800 hover:bg-neutral-700 px-4 py-2.5 text-xs font-semibold text-white transition-all border border-neutral-700"
           >
-            {copiedBacs ? <Check className="h-3.5 w-3.5 text-emerald-400" /> : <Copy className="h-3.5 w-3.5" />}
+            {copiedBacs ? (
+              <Check className="h-3.5 w-3.5 text-emerald-400" />
+            ) : (
+              <Copy className="h-3.5 w-3.5" />
+            )}
             <span>{copiedBacs ? "Copied BACS" : "Copy BACS Details"}</span>
           </button>
 
