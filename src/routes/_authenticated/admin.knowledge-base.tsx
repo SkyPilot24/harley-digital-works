@@ -52,6 +52,61 @@ export interface KnowledgeArticle {
 
 export const KNOWLEDGE_ARTICLES: KnowledgeArticle[] = [
   {
+    id: "revenue-readiness-launch-safeguards",
+    category: "tech",
+    title: "Revenue Readiness & System Baseline: Intake Security, CRM Integrity & Production Architecture",
+    summary:
+      "Comprehensive protocol covering shared intake validation, server-side email authorization, non-contaminating CRM workspace logic, standardized trade marketing routes, HTTP security headers, and Cloudflare SSR deployment.",
+    badge: "Production Baseline 2026",
+    readTime: "5 min read",
+    quickAction: { label: "System Diagnostics", to: "/admin/diagnostics" },
+    steps: [
+      {
+        title: "1. Shared Server Lead Intake & Transactional Email Safeguards",
+        description:
+          "All public lead submissions (HDW and THG) route through server actions (submitLeadIntake and submitCorporateEnquiry). Validation includes honeypot fields, submission timing checks, contact phone preservation, and brand source tagging. Server-side transactional email requires authenticated admin roles, with TRANSACTIONAL_EMAIL_ENABLED defaulting to false for abuse prevention.",
+        tips: [
+          "Intake failures trigger a graceful client-side mailto draft fallback without losing entered data.",
+          "Slack webhook timeouts or delivery rejections do not invalidate persisted Supabase CRM lead records.",
+        ],
+      },
+      {
+        title: "2. Non-Contaminating CRM Workspaces & Revenue Metrics",
+        description:
+          "Workspace creation in /admin/leads preserves prospect status and starts at zero recorded recurring value. Proposal text or package labels are never interpreted as contracted sales, preventing artificial MRR inflation or fake win-rate spikes.",
+        tips: [
+          "Client monthly totals represent active client subscriptions only and are explicitly labelled as manually recorded.",
+          "Lead UUIDs are maintained as stable primary keys to handle concurrent conversion retries safely.",
+        ],
+      },
+      {
+        title: "3. Managed Trade Offer & Standardized Marketing Pages",
+        description:
+          "Public offer messaging aligns on the Managed MVP (£1,495 setup + £249/mo). Marketing pages utilize standardized, accessible studio components (ManagedServicePage, TradeServiceLanding, EnquiryForm). Unbuilt prototype routes (/audit, /tools/*, /care-desk, /onboarding, /proposals, /partners, /track) automatically redirect visitors to the lead intake.",
+      },
+      {
+        title: "4. The Harley Group Corporate Governance & Multi-Tenant Routing",
+        description:
+          "The Harley Group corporate holding page (/the-harley-group) presents an authoritative overview of HDW, Care OS, and Labs. Multi-tenant host routing in src/server.ts redirects corporate domain traffic (theharleygroup.org) directly to /the-harley-group.",
+      },
+      {
+        title: "5. Edge HTTP Security Headers & UK GDPR Disclosures",
+        description:
+          "src/server.ts injects dynamic HTTP security headers (SAMEORIGIN framing protection, nosniff, strict-origin-when-cross-origin referrer policy, HSTS) into all SSR responses. /privacy features updated UK GDPR disclosures, subprocessor listings, and data rights contact details.",
+      },
+    ],
+    faq: [
+      {
+        q: "Why is TRANSACTIONAL_EMAIL_ENABLED set to false by default?",
+        a: "To protect domain reputation and prevent unauthorized sending before email provider SPF/DKIM verification and sending quotas are configured.",
+      },
+      {
+        q: "How does the system prevent fake recurring revenue in CRM dashboards?",
+        a: "Workspace creation logic decouples prospect creation from won sales, ensuring revenue metrics reflect only verified, active client subscriptions.",
+      },
+    ],
+  },
+  {
     id: "proposals-closing",
     category: "sales",
     title: "How to Issue Interactive Client Proposals & Close Deals",
