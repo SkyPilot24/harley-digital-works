@@ -45,12 +45,18 @@ export function MobileAssetDropzone({ companyName, token }: MobileAssetDropzoneP
           <UploadCloud className="h-5 w-5" />
         </div>
         <div>
-          <span className="text-xs font-semibold uppercase tracking-wider text-gold-400">Mobile Fast-Drop</span>
-          <h3 className="text-xl font-bold text-white tracking-tight">Upload Job Photos & Customer Reviews</h3>
+          <span className="text-xs font-semibold uppercase tracking-wider text-gold-400">
+            Mobile Fast-Drop
+          </span>
+          <h3 className="text-xl font-bold text-white tracking-tight">
+            Upload Job Photos & Customer Reviews
+          </h3>
         </div>
       </div>
       <p className="text-xs md:text-sm text-neutral-400 mb-6">
-        No complicated logins. Snap a completed job on site or take a screenshot of a WhatsApp review. Our production team will crop, optimize, and publish it to your website within 24 hours.
+        No complicated logins. Snap a completed job on site or take a screenshot of a WhatsApp
+        review. Our production team will crop, optimize, and publish it to your website within 24
+        hours.
       </p>
 
       {isSuccess ? (
@@ -58,7 +64,8 @@ export function MobileAssetDropzone({ companyName, token }: MobileAssetDropzoneP
           <CheckCircle2 className="h-8 w-8 text-emerald-400 mx-auto mb-2" />
           <h4 className="text-base font-bold text-white">Photos & Notes Received!</h4>
           <p className="text-xs text-neutral-300 mt-1">
-            Our web producer is adding these to <strong>{companyName}</strong>'s live build queue now.
+            Our web producer is adding these to <strong>{companyName}</strong>'s live build queue
+            now.
           </p>
         </div>
       ) : (
@@ -67,9 +74,13 @@ export function MobileAssetDropzone({ companyName, token }: MobileAssetDropzoneP
           <label className="border-2 border-dashed border-neutral-700 hover:border-gold-500/60 bg-neutral-950/60 hover:bg-neutral-950/90 rounded-2xl p-6 flex flex-col items-center justify-center cursor-pointer transition-all text-center">
             <Image className="h-8 w-8 text-neutral-400 mb-2" />
             <span className="text-xs font-semibold text-white">
-              {selectedFileCount > 0 ? `📁 ${selectedFileCount} photo(s) selected` : "Tap here to select photos from phone or computer"}
+              {selectedFileCount > 0
+                ? `📁 ${selectedFileCount} photo(s) selected`
+                : "Tap here to select photos from phone or computer"}
             </span>
-            <span className="text-[11px] text-neutral-500 mt-1">Accepts JPG, PNG, HEIC from mobile camera (up to 25MB)</span>
+            <span className="text-[11px] text-neutral-500 mt-1">
+              Accepts JPG, PNG, HEIC from mobile camera (up to 25MB)
+            </span>
             <input
               type="file"
               multiple
@@ -103,7 +114,11 @@ export function MobileAssetDropzone({ companyName, token }: MobileAssetDropzoneP
               disabled={isSubmitting}
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl bg-gold-500 hover:bg-gold-400 text-neutral-950 font-bold text-xs px-5 py-3 transition-all shadow-md disabled:opacity-50"
             >
-              {isSubmitting ? <span className="animate-spin">⏳</span> : <Send className="h-3.5 w-3.5" />}
+              {isSubmitting ? (
+                <span className="animate-spin">⏳</span>
+              ) : (
+                <Send className="h-3.5 w-3.5" />
+              )}
               <span>{isSubmitting ? "Uploading…" : "Send to Production Team"}</span>
             </button>
           </div>

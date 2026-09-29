@@ -6,6 +6,7 @@ description: Use for implementing local SEO architectures, Google Business Profi
 # Local SEO & Schema for Trades
 
 ## When to Use
+
 - Implementing JSON-LD structured data for trade websites (`LocalBusiness`, `Electrician`, `Plumber`, `RoofingContractor`, `Service`, `Review`, `FAQPage`).
 - Designing multi-location or service-area landing pages (e.g. `/services/ev-chargers-manchester`, `/services/ev-chargers-cheshire`).
 - Optimizing NAP (Name, Address, Phone), geo-coordinates, opening hours, and service radius.
@@ -14,7 +15,9 @@ description: Use for implementing local SEO architectures, Google Business Profi
 ## Best Practices
 
 ### 1. JSON-LD Structured Data Template
+
 Always inject valid Schema.org JSON-LD in the `<head>` or route meta:
+
 ```json
 {
   "@context": "https://schema.org",
@@ -52,6 +55,7 @@ Always inject valid Schema.org JSON-LD in the `<head>` or route meta:
 ```
 
 ### 2. Local Service Page Structure
+
 - **URL**: `/[service]-[town-or-city]` (e.g. `/emergency-roof-repair-stockport`)
 - **H1**: `[Service] in [Town/City] • Fast Quotes & Emergency Response`
 - **Content**: Include specific local landmarks, postcodes served, local case studies, and customer testimonials from that area.

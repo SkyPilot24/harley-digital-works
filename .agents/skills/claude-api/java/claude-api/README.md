@@ -6,15 +6,15 @@
 
 Types are organized by package. If a class you need isn't shown in an example below, locate it via this table first - don't block on fetching SDK source over the network.
 
-| `import` prefix | Contains |
-|---|---|
-| `com.anthropic.client` / `com.anthropic.client.okhttp` | `AnthropicClient`, `AnthropicOkHttpClient` |
-| `com.anthropic.models.messages` | non-beta request/response types - `MessageCreateParams`, `Model`, `Message`, `TextBlockParam`, `ContentBlockParam`, `ToolUseBlockParam`, `ToolResultBlockParam`, `CacheControlEphemeral`, `Tool*` (e.g. `ToolBash20250124`, `ToolTextEditor20250728`), `StopReason`, `StructuredMessage*` |
-| `com.anthropic.models.messages.batches` | Batch API - `BatchResultsParams`, `MessageBatchIndividualResponse` |
-| `com.anthropic.models.beta` | `AnthropicBeta` (beta-flag constants) |
-| `com.anthropic.models.beta.messages` | beta-endpoint types - `MessageCreateParams`, `BetaMessage`, `BetaStopReason`, `BetaContextManagementConfig`, `BetaMcpToolset`, `BetaRequestMcpServerUrlDefinition`, `BetaTool*` |
-| `com.anthropic.core` | `JsonValue`, `JsonField`, `JsonSchemaLocalValidation`, `com.anthropic.core.http.StreamResponse` |
-| `com.anthropic.errors` | typed exceptions - `AnthropicServiceException`, `RateLimitException`, `NotFoundException`, etc. (see `shared/error-codes.md`) |
+| `import` prefix                                        | Contains                                                                                                                                                                                                                                                                                  |
+| ------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `com.anthropic.client` / `com.anthropic.client.okhttp` | `AnthropicClient`, `AnthropicOkHttpClient`                                                                                                                                                                                                                                                |
+| `com.anthropic.models.messages`                        | non-beta request/response types - `MessageCreateParams`, `Model`, `Message`, `TextBlockParam`, `ContentBlockParam`, `ToolUseBlockParam`, `ToolResultBlockParam`, `CacheControlEphemeral`, `Tool*` (e.g. `ToolBash20250124`, `ToolTextEditor20250728`), `StopReason`, `StructuredMessage*` |
+| `com.anthropic.models.messages.batches`                | Batch API - `BatchResultsParams`, `MessageBatchIndividualResponse`                                                                                                                                                                                                                        |
+| `com.anthropic.models.beta`                            | `AnthropicBeta` (beta-flag constants)                                                                                                                                                                                                                                                     |
+| `com.anthropic.models.beta.messages`                   | beta-endpoint types - `MessageCreateParams`, `BetaMessage`, `BetaStopReason`, `BetaContextManagementConfig`, `BetaMcpToolset`, `BetaRequestMcpServerUrlDefinition`, `BetaTool*`                                                                                                           |
+| `com.anthropic.core`                                   | `JsonValue`, `JsonField`, `JsonSchemaLocalValidation`, `com.anthropic.core.http.StreamResponse`                                                                                                                                                                                           |
+| `com.anthropic.errors`                                 | typed exceptions - `AnthropicServiceException`, `RateLimitException`, `NotFoundException`, etc. (see `shared/error-codes.md`)                                                                                                                                                             |
 
 `client.messages()` uses `com.anthropic.models.messages.*`; `client.beta().messages()` uses `com.anthropic.models.beta.messages.*`. Both packages define a `MessageCreateParams` - import the one matching the client path you call.
 
@@ -22,18 +22,18 @@ Types are organized by package. If a class you need isn't shown in an example be
 
 Write from this table instead of `javap`/jar inspection. Endpoint column tells you whether to use `client.messages()` or `client.beta().messages()`.
 
-| Feature | Endpoint | Key Java types / builder calls |
-|---|---|---|
-| User profiles | beta | `client.beta().userProfiles().create(...)` / `.retrieve(id)` / `.list()`. Pass the returned profile id on the beta `MessageCreateParams`. Requires a beta header - check the SDK's beta-headers reference for the current flag. |
-| Agent Skills | beta | `BetaContainerParams`, `BetaSkillParams`, `BetaCodeExecutionTool20250825`. `.addBeta("code-execution-2025-08-25")` (Skills is out of beta - no `skills-2025-10-02`). Download the output via `client.beta().files().download(fileId)`. |
-| Cache diagnostics | beta | `BetaDiagnosticsParam`, `BetaCacheControlEphemeral` |
-| Context editing | beta | `.contextManagement(BetaContextManagementConfig.builder()...)`. The edit strategy is a `BetaClearToolUses20250919Edit` (or `BetaClearThinking20251015Edit`); its trigger is a `BetaInputTokensTrigger` built separately and passed to the edit's builder - there is no direct `.inputTokensTrigger(N)` shortcut on the edit builder. `javap` the edit and trigger classes for the exact setter names. |
-| Memory tool | non-beta | `.addTool(MemoryTool20250818.builder().build())` from `com.anthropic.models.messages` |
-| Programmatic tool calling | non-beta | `CodeExecutionTool20260120`, `Tool`, `ContentBlockParam` |
-| Strict tool use | non-beta | `Tool`, `Tool.InputSchema` |
-| Task budgets | beta | `.outputConfig(BetaOutputConfig.builder().taskBudget(BetaTokenTaskBudget.builder()...))` |
-| Tool search | non-beta | `.addTool(ToolSearchToolRegex20251119.builder()...)` from `com.anthropic.models.messages` |
-| Web search | non-beta | `WebSearchTool20260209` from `com.anthropic.models.messages` - the latest variant with dynamic filtering (Claude Fable 5.1 + Claude Opus 5 + Opus 4.8/4.7/4.6 + Claude Sonnet 5 + Sonnet 4.6). For older models or Vertex, use `WebSearchTool20250305` |
+| Feature                   | Endpoint | Key Java types / builder calls                                                                                                                                                                                                                                                                                                                                                                        |
+| ------------------------- | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| User profiles             | beta     | `client.beta().userProfiles().create(...)` / `.retrieve(id)` / `.list()`. Pass the returned profile id on the beta `MessageCreateParams`. Requires a beta header - check the SDK's beta-headers reference for the current flag.                                                                                                                                                                       |
+| Agent Skills              | beta     | `BetaContainerParams`, `BetaSkillParams`, `BetaCodeExecutionTool20250825`. `.addBeta("code-execution-2025-08-25")` (Skills is out of beta - no `skills-2025-10-02`). Download the output via `client.beta().files().download(fileId)`.                                                                                                                                                                |
+| Cache diagnostics         | beta     | `BetaDiagnosticsParam`, `BetaCacheControlEphemeral`                                                                                                                                                                                                                                                                                                                                                   |
+| Context editing           | beta     | `.contextManagement(BetaContextManagementConfig.builder()...)`. The edit strategy is a `BetaClearToolUses20250919Edit` (or `BetaClearThinking20251015Edit`); its trigger is a `BetaInputTokensTrigger` built separately and passed to the edit's builder - there is no direct `.inputTokensTrigger(N)` shortcut on the edit builder. `javap` the edit and trigger classes for the exact setter names. |
+| Memory tool               | non-beta | `.addTool(MemoryTool20250818.builder().build())` from `com.anthropic.models.messages`                                                                                                                                                                                                                                                                                                                 |
+| Programmatic tool calling | non-beta | `CodeExecutionTool20260120`, `Tool`, `ContentBlockParam`                                                                                                                                                                                                                                                                                                                                              |
+| Strict tool use           | non-beta | `Tool`, `Tool.InputSchema`                                                                                                                                                                                                                                                                                                                                                                            |
+| Task budgets              | beta     | `.outputConfig(BetaOutputConfig.builder().taskBudget(BetaTokenTaskBudget.builder()...))`                                                                                                                                                                                                                                                                                                              |
+| Tool search               | non-beta | `.addTool(ToolSearchToolRegex20251119.builder()...)` from `com.anthropic.models.messages`                                                                                                                                                                                                                                                                                                             |
+| Web search                | non-beta | `WebSearchTool20260209` from `com.anthropic.models.messages` - the latest variant with dynamic filtering (Claude Fable 5.1 + Claude Opus 5 + Opus 4.8/4.7/4.6 + Claude Sonnet 5 + Sonnet 4.6). For older models or Vertex, use `WebSearchTool20250305`                                                                                                                                                |
 
 ### Discovering type and member names
 
@@ -235,4 +235,3 @@ try {
 ```
 
 ---
-

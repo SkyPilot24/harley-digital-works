@@ -49,11 +49,7 @@ export function BrandLogo({
 
   return (
     <span className={cn("inline-flex items-center", className)}>
-      <img
-        src={src}
-        alt={alt}
-        className={cn("block h-auto max-w-full", imageClassName)}
-      />
+      <img src={src} alt={alt} className={cn("block h-auto max-w-full", imageClassName)} />
     </span>
   );
 }

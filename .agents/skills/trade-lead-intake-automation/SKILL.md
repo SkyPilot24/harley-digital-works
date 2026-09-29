@@ -6,6 +6,7 @@ description: Use for designing, configuring, and testing automated lead capture 
 # Trade Lead Intake Automation
 
 ## When to Use
+
 - Connecting public quote forms (`/contact`, quick quote calculators) to Supabase and external alerting systems.
 - Setting up real-time lead alerts (Slack incoming webhooks, instant SMS, WhatsApp notifications to tradespeople on site).
 - Implementing rate limiting, honeypot spam protection, and automated lead qualification scoring.
@@ -14,11 +15,13 @@ description: Use for designing, configuring, and testing automated lead capture 
 ## Key Architecture Patterns
 
 ### 1. Zero-Friction Multi-Step Quote Flow
-- **Step 1**: Quick button selection for trade/service required (e.g. *New Boiler*, *Solar Panels*, *Full Rewire*).
-- **Step 2**: Timeline / Urgency (e.g. *Emergency / Immediate*, *Within 30 Days*, *Planning*).
+
+- **Step 1**: Quick button selection for trade/service required (e.g. _New Boiler_, _Solar Panels_, _Full Rewire_).
+- **Step 2**: Timeline / Urgency (e.g. _Emergency / Immediate_, _Within 30 Days_, _Planning_).
 - **Step 3**: Contact details (Name, Phone number, Email, Postcode).
 
 ### 2. Lead Notification Pipeline
+
 1. **Server Validation**: Validate submission against Zod schema (`src/lib/lead-schema.ts`).
 2. **Spam Defense**: Check honeypot field + timestamp velocity.
 3. **Database Record**: Insert into Supabase `leads` table with metadata (service, package, source, timestamp).

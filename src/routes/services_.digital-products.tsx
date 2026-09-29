@@ -22,12 +22,14 @@ export const Route = createFileRoute("/services_/digital-products")({
       deliverables={[
         {
           tag: "Customer Portals",
-          title: "Self-serve booking, job tracking, invoice payments, and automated client SMS alerts.",
+          title:
+            "Self-serve booking, job tracking, invoice payments, and automated client SMS alerts.",
           surface: "sage",
         },
         {
           tag: "Quoting Engines",
-          title: "Custom multi-variable price calculators with live material cost feeds and instant quote generation.",
+          title:
+            "Custom multi-variable price calculators with live material cost feeds and instant quote generation.",
           surface: "stone",
         },
         {
@@ -37,7 +39,8 @@ export const Route = createFileRoute("/services_/digital-products")({
         },
         {
           tag: "SLA Engineering",
-          title: "Dedicated high-throughput architecture, 99.99% uptime SLA, and custom Postgres databases.",
+          title:
+            "Dedicated high-throughput architecture, 99.99% uptime SLA, and custom Postgres databases.",
           surface: "cream",
         },
       ]}

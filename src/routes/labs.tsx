@@ -103,13 +103,15 @@ const VENTURE_PRODUCTS = [
   {
     name: "ContentFlow",
     status: "Internal Pipeline",
-    description: "Technical copywriting generator calibrated for UK construction, engineering, and luxury home improvement.",
+    description:
+      "Technical copywriting generator calibrated for UK construction, engineering, and luxury home improvement.",
     tag: "Content Engine",
   },
   {
     name: "Domain OS",
     status: "Live Portfolio Management",
-    description: "Automated DNS orchestration, appraisal, and landing page deployment for premium UK domains.",
+    description:
+      "Automated DNS orchestration, appraisal, and landing page deployment for premium UK domains.",
     tag: "Infrastructure",
   },
 ];
@@ -155,7 +157,9 @@ function HarleyLabsPage() {
           </h1>
 
           <p className="mt-6 max-w-2xl text-lg leading-relaxed text-[#5a5d4e]">
-            Harley Labs is the digital product and systems incubator of The Harley Group. We engineer high-speed edge rendering, automated commercial platforms, and precision local search telemetry.
+            Harley Labs is the digital product and systems incubator of The Harley Group. We
+            engineer high-speed edge rendering, automated commercial platforms, and precision local
+            search telemetry.
           </p>
 
           <div className="mt-8 flex flex-wrap gap-4">
@@ -173,7 +177,12 @@ function HarleyLabsPage() {
             <PillButton
               as="link"
               to="/contact"
-              search={{ service: undefined, package: undefined, domain: undefined, websiteUrl: undefined }}
+              search={{
+                service: undefined,
+                package: undefined,
+                domain: undefined,
+                websiteUrl: undefined,
+              }}
               variant="ghost"
               size="md"
             >
@@ -184,7 +193,10 @@ function HarleyLabsPage() {
       </section>
 
       {/* Interactive Labs Terminal & Sandbox */}
-      <section id="labs-sandbox" className="py-16 md:py-24 bg-[#1e232a] text-white border-b border-slate-800">
+      <section
+        id="labs-sandbox"
+        className="py-16 md:py-24 bg-[#1e232a] text-white border-b border-slate-800"
+      >
         <Container>
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
             <div>
@@ -200,7 +212,9 @@ function HarleyLabsPage() {
               disabled={isSimulating}
               className="inline-flex items-center gap-2 rounded-lg border border-slate-700 bg-slate-800/80 px-4 py-2 text-xs font-mono font-medium text-slate-200 hover:bg-slate-700 transition-colors"
             >
-              <RefreshCw className={`h-3.5 w-3.5 ${isSimulating ? "animate-spin text-[#a3b899]" : ""}`} />
+              <RefreshCw
+                className={`h-3.5 w-3.5 ${isSimulating ? "animate-spin text-[#a3b899]" : ""}`}
+              />
               {isSimulating ? "Re-evaluating Telemetry..." : "Re-run Diagnostics"}
             </button>
           </div>
@@ -250,7 +264,8 @@ function HarleyLabsPage() {
                       </span>
                     </div>
                     <p className="mt-2 text-xs text-slate-300 font-sans">
-                      Enriches inbound quote requests, verifies UK company registration data, and calculates estimated trade project scope.
+                      Enriches inbound quote requests, verifies UK company registration data, and
+                      calculates estimated trade project scope.
                     </p>
                     <div className="mt-3 text-[11px] text-slate-400">
                       Task Queue: <span className="text-white">0 pending (Realtime Stream)</span>
@@ -267,7 +282,8 @@ function HarleyLabsPage() {
                       </span>
                     </div>
                     <p className="mt-2 text-xs text-slate-300 font-sans">
-                      Performs TypeScript compilation checks, Nitro SSR route validations, and automated WCAG accessibility auditing.
+                      Performs TypeScript compilation checks, Nitro SSR route validations, and
+                      automated WCAG accessibility auditing.
                     </p>
                     <div className="mt-3 text-[11px] text-slate-400">
                       Audit Score: <span className="text-emerald-400">100/100 Perfect Pass</span>
@@ -284,10 +300,12 @@ function HarleyLabsPage() {
                       </span>
                     </div>
                     <p className="mt-2 text-xs text-slate-300 font-sans">
-                      Monitors 25-point geo-grid rankings for target trade keywords across Manchester, Cheshire, and London.
+                      Monitors 25-point geo-grid rankings for target trade keywords across
+                      Manchester, Cheshire, and London.
                     </p>
                     <div className="mt-3 text-[11px] text-slate-400">
-                      Coverage: <span className="text-white">Top 3 Map Pack in 94% of tested nodes</span>
+                      Coverage:{" "}
+                      <span className="text-white">Top 3 Map Pack in 94% of tested nodes</span>
                     </div>
                   </div>
 
@@ -301,7 +319,8 @@ function HarleyLabsPage() {
                       </span>
                     </div>
                     <p className="mt-2 text-xs text-slate-300 font-sans">
-                      Monitors Cloudflare edge node response times and triggers automated cache revalidation on content updates.
+                      Monitors Cloudflare edge node response times and triggers automated cache
+                      revalidation on content updates.
                     </p>
                     <div className="mt-3 text-[11px] text-slate-400">
                       Global Edge Availability: <span className="text-emerald-400">99.99%</span>
@@ -333,15 +352,26 @@ function HarleyLabsPage() {
                   </div>
                   <div className="rounded-lg bg-slate-900/80 p-4 border border-slate-800 text-center">
                     <div className="text-2xl font-bold text-[#a3b899]">100</div>
-                    <div className="text-[11px] text-slate-400 mt-1">Lighthouse Core Web Vitals</div>
+                    <div className="text-[11px] text-slate-400 mt-1">
+                      Lighthouse Core Web Vitals
+                    </div>
                   </div>
                 </div>
 
                 <div className="rounded-lg bg-slate-900/50 p-4 border border-slate-800 text-xs text-slate-300 font-mono space-y-1">
                   <div className="text-slate-500">// Edge SSR Build Artifact:</div>
-                  <div>Output: <span className="text-emerald-300">.output/server/index.mjs</span> (Cloudflare Module Preset)</div>
-                  <div>Compression: <span className="text-slate-200">Brotli level 11 with edge streaming</span></div>
-                  <div>Cold Start Penalty: <span className="text-emerald-300">0.00ms (Isolate warm pool)</span></div>
+                  <div>
+                    Output: <span className="text-emerald-300">.output/server/index.mjs</span>{" "}
+                    (Cloudflare Module Preset)
+                  </div>
+                  <div>
+                    Compression:{" "}
+                    <span className="text-slate-200">Brotli level 11 with edge streaming</span>
+                  </div>
+                  <div>
+                    Cold Start Penalty:{" "}
+                    <span className="text-emerald-300">0.00ms (Isolate warm pool)</span>
+                  </div>
                 </div>
               </div>
             )}
@@ -356,10 +386,15 @@ function HarleyLabsPage() {
                 <div className="rounded-lg bg-black/70 p-4 border border-slate-800 text-xs text-slate-300 leading-relaxed font-mono">
                   <p className="text-slate-500">// Commercial trade copy synthesis:</p>
                   <p className="mt-2 text-slate-300">
-                    &gt; [INPUT SCOPE]: Target: Commercial EV Charger Infrastructure & 3-Phase Distribution. Location: Manchester & Cheshire. Tone: Authoritative, compliance-led contractor.
+                    &gt; [INPUT SCOPE]: Target: Commercial EV Charger Infrastructure & 3-Phase
+                    Distribution. Location: Manchester & Cheshire. Tone: Authoritative,
+                    compliance-led contractor.
                   </p>
                   <p className="mt-2 text-emerald-300">
-                    &gt; [OUTPUT STREAM]: &quot;Commercial electrical infrastructure engineered for uninterrupted operational uptime. From 3-phase board distribution to workplace EV charging hubs, our fully accredited NICEIC Approved Contractors deliver turnkey compliance and £10M public liability protection.&quot;
+                    &gt; [OUTPUT STREAM]: &quot;Commercial electrical infrastructure engineered for
+                    uninterrupted operational uptime. From 3-phase board distribution to workplace
+                    EV charging hubs, our fully accredited NICEIC Approved Contractors deliver
+                    turnkey compliance and £10M public liability protection.&quot;
                   </p>
                 </div>
               </div>
@@ -369,7 +404,10 @@ function HarleyLabsPage() {
       </section>
 
       {/* Code Blueprint & Static Site Exporter Section */}
-      <section id="code-exporter" className="py-16 md:py-24 bg-[#f7f5ef] text-[#252720] border-b border-[#e2dec9]">
+      <section
+        id="code-exporter"
+        className="py-16 md:py-24 bg-[#f7f5ef] text-[#252720] border-b border-[#e2dec9]"
+      >
         <Container>
           <div className="max-w-3xl">
             <p className="text-xs font-mono font-bold uppercase tracking-widest text-[#5a5d4e]">
@@ -379,7 +417,8 @@ function HarleyLabsPage() {
               1-Click Standalone Trade Website Blueprint Compiler
             </h2>
             <p className="mt-3 text-[#5a5d4e] leading-relaxed">
-              Export complete, production-grade React + Tailwind + Lucide trade website blueprints ready for instant V8 edge deployment on Cloudflare Workers, Netlify, or Vercel.
+              Export complete, production-grade React + Tailwind + Lucide trade website blueprints
+              ready for instant V8 edge deployment on Cloudflare Workers, Netlify, or Vercel.
             </p>
           </div>
 
@@ -390,7 +429,10 @@ function HarleyLabsPage() {
       </section>
 
       {/* Local Map-Pack Matrix Sub-Town Factory */}
-      <section id="map-pack-matrix" className="py-16 bg-[#eef0e5] text-[#252720] border-b border-[#e2dec9]">
+      <section
+        id="map-pack-matrix"
+        className="py-16 bg-[#eef0e5] text-[#252720] border-b border-[#e2dec9]"
+      >
         <Container>
           <LocalMapPackMatrixDesk />
         </Container>
@@ -407,7 +449,8 @@ function HarleyLabsPage() {
               Pioneering Technologies Engineered at Harley Labs.
             </h2>
             <p className="mt-3 text-[#5a5d4e]">
-              We focus on practical, high-leverage software architectures that deliver immediate commercial advantage.
+              We focus on practical, high-leverage software architectures that deliver immediate
+              commercial advantage.
             </p>
           </div>
 
@@ -437,7 +480,10 @@ function HarleyLabsPage() {
                     </h4>
                     <ul className="space-y-2">
                       {v.specs.map((s) => (
-                        <li key={s} className="flex items-center gap-2 text-xs text-[#252720] font-mono">
+                        <li
+                          key={s}
+                          className="flex items-center gap-2 text-xs text-[#252720] font-mono"
+                        >
                           <CheckCircle2 className="h-3.5 w-3.5 text-[#4a7c59] shrink-0" />
                           {s}
                         </li>
@@ -462,7 +508,8 @@ function HarleyLabsPage() {
               Proprietary Venture Products
             </h2>
             <p className="mt-2 text-sm text-[#5a5d4e]">
-              Software engines engineered inside Harley Labs to power client platforms and operational delivery.
+              Software engines engineered inside Harley Labs to power client platforms and
+              operational delivery.
             </p>
           </div>
 
@@ -506,7 +553,9 @@ function HarleyLabsPage() {
                   <div className="flex items-center justify-between">
                     <div>
                       <h4 className="text-sm font-bold text-white">Dr Robbie Harley, MBA</h4>
-                      <p className="text-[11px] font-mono text-slate-300">Head of Systems Architecture</p>
+                      <p className="text-[11px] font-mono text-slate-300">
+                        Head of Systems Architecture
+                      </p>
                     </div>
                     <span className="text-[10px] font-mono font-bold bg-[#1e232a] text-[#a3b899] border border-slate-700 px-2.5 py-1 rounded-full">
                       HARLEY LABS
@@ -525,7 +574,10 @@ function HarleyLabsPage() {
                 Bridging Deep Software Research with Practical Commercial Utility.
               </h2>
               <p className="text-base text-[#5a5d4e] leading-relaxed">
-                Harley Labs was created to engineer real, measurable software leverage. Rather than producing speculative proof-of-concepts, our research vectors solve concrete operating bottlenecks in edge infrastructure, high-velocity digital commerce, and real-time search analytics.
+                Harley Labs was created to engineer real, measurable software leverage. Rather than
+                producing speculative proof-of-concepts, our research vectors solve concrete
+                operating bottlenecks in edge infrastructure, high-velocity digital commerce, and
+                real-time search analytics.
               </p>
               <div className="rounded-2xl border border-[#e2dec9] bg-white p-6 space-y-3 font-mono text-xs">
                 <div className="text-[#252720] font-bold flex items-center gap-2">
@@ -533,7 +585,9 @@ function HarleyLabsPage() {
                   <span>// CORE LABS THESIS:</span>
                 </div>
                 <p className="text-[#5a5d4e] leading-relaxed italic">
-                  &ldquo;Software architecture and edge compilation are only as valuable as the real commercial efficiency they unlock. We build systems that eliminate operational friction and deliver immediate speed.&rdquo;
+                  &ldquo;Software architecture and edge compilation are only as valuable as the real
+                  commercial efficiency they unlock. We build systems that eliminate operational
+                  friction and deliver immediate speed.&rdquo;
                 </p>
                 <div className="pt-2 text-[11px] text-[#5a5d4e] flex items-center justify-between border-t border-[#e2dec9]">
                   <span>Stack: Nitro V8 + TanStack Start + Edge Cloud</span>
@@ -557,25 +611,26 @@ function HarleyLabsPage() {
               Collaborate With Harley Labs
             </h2>
             <p className="mt-4 text-base text-[#5a5d4e] leading-relaxed">
-              We partner with forward-thinking trade enterprises, commercial organizations, and technical teams seeking edge-native digital architecture and bespoke venture software.
+              We partner with forward-thinking trade enterprises, commercial organizations, and
+              technical teams seeking edge-native digital architecture and bespoke venture software.
             </p>
 
             <div className="mt-8 flex flex-wrap justify-center gap-4">
               <PillButton
                 as="link"
                 to="/contact"
-                search={{ service: undefined, package: undefined, domain: undefined, websiteUrl: undefined }}
+                search={{
+                  service: undefined,
+                  package: undefined,
+                  domain: undefined,
+                  websiteUrl: undefined,
+                }}
                 variant="dark"
                 size="md"
               >
                 Submit R&D Inquiry
               </PillButton>
-              <PillButton
-                as="link"
-                to="/the-harley-group"
-                variant="ghost"
-                size="md"
-              >
+              <PillButton as="link" to="/the-harley-group" variant="ghost" size="md">
                 The Harley Group Governance
               </PillButton>
             </div>

@@ -137,9 +137,7 @@ export function CareBillingPortalDesk({
   const [vatNumber] = useState("GB 439 2019 44");
 
   const toggleAddon = (id: string) => {
-    setActiveAddons((prev) =>
-      prev.includes(id) ? prev.filter((a) => a !== id) : [...prev, id]
-    );
+    setActiveAddons((prev) => (prev.includes(id) ? prev.filter((a) => a !== id) : [...prev, id]));
   };
 
   const handleDownloadInvoice = (invId: string) => {
@@ -166,7 +164,8 @@ export function CareBillingPortalDesk({
               Subscription & Direct Debit Self-Service
             </h2>
             <p className="mt-1 text-xs md:text-sm text-neutral-400 max-w-xl">
-              Manage your Harley Care Plan, download HMRC-compliant VAT receipts, toggle monthly growth modules, or update your BACS Direct Debit guarantee.
+              Manage your Harley Care Plan, download HMRC-compliant VAT receipts, toggle monthly
+              growth modules, or update your BACS Direct Debit guarantee.
             </p>
           </div>
 
@@ -193,12 +192,16 @@ export function CareBillingPortalDesk({
         {/* Current Plan Quick Summary */}
         <div className="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-4 pt-6 border-t border-neutral-800">
           <div className="rounded-2xl bg-neutral-950 p-4 border border-neutral-800/80">
-            <div className="text-[11px] font-mono uppercase tracking-wider text-neutral-400">Account Company</div>
+            <div className="text-[11px] font-mono uppercase tracking-wider text-neutral-400">
+              Account Company
+            </div>
             <div className="mt-1 text-sm font-bold text-white truncate">{companyName}</div>
             <div className="mt-0.5 text-xs text-neutral-500">VAT: {vatNumber}</div>
           </div>
           <div className="rounded-2xl bg-neutral-950 p-4 border border-neutral-800/80">
-            <div className="text-[11px] font-mono uppercase tracking-wider text-neutral-400">Current Active Plan</div>
+            <div className="text-[11px] font-mono uppercase tracking-wider text-neutral-400">
+              Current Active Plan
+            </div>
             <div className="mt-1 text-sm font-bold text-gold-400">
               {activePlanData.name} (£{activePlanData.priceGbp}/mo + VAT)
             </div>
@@ -208,7 +211,9 @@ export function CareBillingPortalDesk({
             </div>
           </div>
           <div className="rounded-2xl bg-neutral-950 p-4 border border-neutral-800/80">
-            <div className="text-[11px] font-mono uppercase tracking-wider text-neutral-400">SLA & Turnaround Guarantee</div>
+            <div className="text-[11px] font-mono uppercase tracking-wider text-neutral-400">
+              SLA & Turnaround Guarantee
+            </div>
             <div className="mt-1 text-sm font-bold text-white">24-Hour Business SLA</div>
             <div className="mt-0.5 text-xs text-neutral-500">99.99% Cloudflare V8 Uptime</div>
           </div>
@@ -220,7 +225,9 @@ export function CareBillingPortalDesk({
         <div className="flex items-center justify-between mb-4">
           <div>
             <h3 className="text-lg font-bold text-white">Choose or Upgrade Your Care Plan</h3>
-            <p className="text-xs text-neutral-400">Switch tiers at any time with zero penalty or locked-in contracts.</p>
+            <p className="text-xs text-neutral-400">
+              Switch tiers at any time with zero penalty or locked-in contracts.
+            </p>
           </div>
         </div>
 
@@ -295,7 +302,8 @@ export function CareBillingPortalDesk({
           <h3 className="text-lg font-bold text-white">Optional Monthly Growth Add-Ons</h3>
         </div>
         <p className="text-xs text-neutral-400 mb-6">
-          Toggle high-ROI add-on modules on or off dynamically. Charges reflect on your next monthly direct debit.
+          Toggle high-ROI add-on modules on or off dynamically. Charges reflect on your next monthly
+          direct debit.
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -319,7 +327,9 @@ export function CareBillingPortalDesk({
                 </div>
                 <p className="mt-2 text-[11px] text-neutral-400 leading-relaxed">{addon.desc}</p>
                 <div className="mt-4 flex items-center justify-between pt-3 border-t border-neutral-900">
-                  <span className={`text-[11px] font-semibold ${isActive ? "text-emerald-400" : "text-neutral-500"}`}>
+                  <span
+                    className={`text-[11px] font-semibold ${isActive ? "text-emerald-400" : "text-neutral-500"}`}
+                  >
                     {isActive ? "Enabled on Account" : "Disabled"}
                   </span>
                   <div
@@ -349,7 +359,8 @@ export function CareBillingPortalDesk({
               <h3 className="text-lg font-bold text-white">VAT Receipts & Billing History</h3>
             </div>
             <p className="text-xs text-neutral-400 mt-1">
-              Download itemized VAT receipts for your UK accountant or HMRC self-assessment / Making Tax Digital.
+              Download itemized VAT receipts for your UK accountant or HMRC self-assessment / Making
+              Tax Digital.
             </p>
           </div>
 

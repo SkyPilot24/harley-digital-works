@@ -36,6 +36,7 @@ var parameters = new MessageCreateParams
 Derived from `anthropic-sdk-csharp/src/Anthropic/Models/Messages/Tool.cs` and `ToolUnion.cs:799` (implicit conversion).
 
 See [shared tool use concepts](../../shared/tool-use-concepts.md) for the loop pattern.
+
 ### Converting response content to the follow-up assistant message
 
 When echoing Claude's response back in the assistant turn, **there is no `.ToParam()` helper** - manually reconstruct each `ContentBlock` variant as its `*Param` counterpart. Do NOT use `new ContentBlockParam(block.Json)`: it compiles and serializes, but `.Value` stays `null` so `TryPick*`/`Validate()` fail (degraded JSON pass-through, not the typed path).
@@ -161,4 +162,3 @@ await foreach (BetaMessage message in runner)
 ```
 
 ---
-

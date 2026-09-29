@@ -19,15 +19,15 @@ export function TradeQuoteCalculator({ business }: TradeQuoteCalculatorProps) {
 
   const activeJob = useMemo(
     () => calc.jobTypes.find((j) => j.id === selectedJob) || calc.jobTypes[0],
-    [calc.jobTypes, selectedJob]
+    [calc.jobTypes, selectedJob],
   );
   const activeSize = useMemo(
     () => calc.propertySizes.find((s) => s.id === selectedSize) || calc.propertySizes[0],
-    [calc.propertySizes, selectedSize]
+    [calc.propertySizes, selectedSize],
   );
   const activeUrgency = useMemo(
     () => calc.urgencyOptions.find((u) => u.id === selectedUrgency) || calc.urgencyOptions[0],
-    [calc.urgencyOptions, selectedUrgency]
+    [calc.urgencyOptions, selectedUrgency],
   );
 
   const priceEstimate = useMemo(() => {
@@ -40,9 +40,12 @@ export function TradeQuoteCalculator({ business }: TradeQuoteCalculatorProps) {
 
   const handleWhatsAppQuote = () => {
     const message = encodeURIComponent(
-      `Hi ${business.name}, I used your instant estimator on your website for ${activeJob?.name} (${activeSize?.name}). Ballpark estimate: £${priceEstimate.low} - £${priceEstimate.high}. My postcode is ${postcode || "local area"}. Can you confirm your availability?`
+      `Hi ${business.name}, I used your instant estimator on your website for ${activeJob?.name} (${activeSize?.name}). Ballpark estimate: £${priceEstimate.low} - £${priceEstimate.high}. My postcode is ${postcode || "local area"}. Can you confirm your availability?`,
     );
-    window.open(`https://wa.me/44${business.whatsapp.replace(/^0+/, "").replace(/\s+/g, "")}?text=${message}`, "_blank");
+    window.open(
+      `https://wa.me/44${business.whatsapp.replace(/^0+/, "").replace(/\s+/g, "")}?text=${message}`,
+      "_blank",
+    );
   };
 
   return (
@@ -52,7 +55,9 @@ export function TradeQuoteCalculator({ business }: TradeQuoteCalculatorProps) {
           <Calculator className="h-5 w-5" />
         </div>
         <div>
-          <span className="text-xs font-semibold uppercase tracking-wider text-gold-400">Interactive Customer Feature</span>
+          <span className="text-xs font-semibold uppercase tracking-wider text-gold-400">
+            Interactive Customer Feature
+          </span>
           <h3 className="text-xl md:text-2xl font-bold text-white tracking-tight">{calc.title}</h3>
         </div>
       </div>
@@ -144,10 +149,14 @@ export function TradeQuoteCalculator({ business }: TradeQuoteCalculatorProps) {
       <div className="rounded-2xl border border-gold-500/40 bg-gradient-to-br from-gold-500/10 via-neutral-950 to-neutral-950 p-5 md:p-6">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-gold-500/20 pb-5 mb-5">
           <div>
-            <div className="text-xs font-medium text-gold-400 uppercase tracking-wider">Estimated Guide Price</div>
+            <div className="text-xs font-medium text-gold-400 uppercase tracking-wider">
+              Estimated Guide Price
+            </div>
             <div className="text-3xl md:text-4xl font-extrabold text-white tracking-tight mt-0.5">
               £{priceEstimate.low.toLocaleString()} – £{priceEstimate.high.toLocaleString()}
-              <span className="text-xs font-normal text-neutral-400 ml-2">(inc. VAT & fitting guide)</span>
+              <span className="text-xs font-normal text-neutral-400 ml-2">
+                (inc. VAT & fitting guide)
+              </span>
             </div>
           </div>
           <div className="flex items-center gap-2 text-xs text-neutral-300 bg-neutral-900/80 border border-neutral-800 px-3 py-2 rounded-xl">
@@ -161,7 +170,8 @@ export function TradeQuoteCalculator({ business }: TradeQuoteCalculatorProps) {
             <CheckCircle2 className="h-6 w-6 text-emerald-400 mx-auto mb-2" />
             <div className="text-sm font-semibold text-white">Estimate Locked & Sent!</div>
             <p className="text-xs text-neutral-300 mt-1">
-              One of our certified team will WhatsApp/call you on <strong className="text-white">{phone}</strong> within 15 minutes to confirm booking.
+              One of our certified team will WhatsApp/call you on{" "}
+              <strong className="text-white">{phone}</strong> within 15 minutes to confirm booking.
             </p>
           </div>
         ) : (

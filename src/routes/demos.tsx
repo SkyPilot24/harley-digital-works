@@ -2,7 +2,10 @@ import { createFileRoute } from "@tanstack/react-router";
 import { z } from "zod";
 import { PageShell, Container } from "@/components/site/PageShell";
 import { PillButton } from "@/components/site/PillButton";
-import { DynamicStagingGenerator } from "@/components/demos/DynamicStagingGenerator";
+import {
+  DynamicStagingGenerator,
+  type StagingConfig,
+} from "@/components/demos/DynamicStagingGenerator";
 import { WebsitePackagesSection } from "@/components/site/WebsitePackagesSection";
 import { CheckCircle2, ShieldCheck, PenLine, Check } from "lucide-react";
 
@@ -94,7 +97,7 @@ function TradeDemosPage() {
             <DynamicStagingGenerator
               initialConfig={{
                 company: search.company,
-                trade: search.trade as any,
+                trade: search.trade as StagingConfig["trade"],
                 city: search.city,
                 phone: search.phone,
                 palette: search.palette,

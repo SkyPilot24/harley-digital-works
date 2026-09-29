@@ -18,7 +18,7 @@ import {
   Send,
   ExternalLink,
   Camera,
-  FileCheck
+  FileCheck,
 } from "lucide-react";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
@@ -112,7 +112,12 @@ export function ContractorOnboardingWizard({ initialData }: ContractorOnboarding
 
   const handleNext = () => {
     if (step === 1) {
-      if (!data.companyName.trim() || !data.contactName.trim() || !data.phone.trim() || !data.email.trim()) {
+      if (
+        !data.companyName.trim() ||
+        !data.contactName.trim() ||
+        !data.phone.trim() ||
+        !data.email.trim()
+      ) {
         toast.error("Please fill in your company name, your name, phone, and email.");
         return;
       }
@@ -167,8 +172,9 @@ Existing Domain: ${data.existingDomain || "None provided"}`;
 
       setCompletedToken(token);
       toast.success("Onboarding successfully completed!");
-    } catch (err: any) {
-      toast.error(err.message || "Submission failed. Please try again.");
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : "Submission failed. Please try again.";
+      toast.error(msg);
     } finally {
       setIsSubmitting(false);
     }
@@ -184,7 +190,8 @@ Existing Domain: ${data.existingDomain || "None provided"}`;
           Onboarding Received for {data.companyName}!
         </h2>
         <p className="mt-3 text-sm text-neutral-300 leading-relaxed max-w-lg mx-auto">
-          Our team is now drafting your trade-specific copywriting and configuring your conversion funnels. Your 14-day delivery sprint has officially begun.
+          Our team is now drafting your trade-specific copywriting and configuring your conversion
+          funnels. Your 14-day delivery sprint has officially begun.
         </p>
 
         <div className="mt-8 rounded-2xl border border-neutral-800 bg-neutral-950 p-5 text-left">
@@ -192,7 +199,9 @@ Existing Domain: ${data.existingDomain || "None provided"}`;
             Your Private Project Tracker:
           </div>
           <div className="flex items-center justify-between gap-3 text-xs bg-neutral-900 p-3 rounded-xl border border-neutral-800">
-            <span className="font-mono text-neutral-300 truncate">https://harleydigitalworks.com/track/{completedToken}</span>
+            <span className="font-mono text-neutral-300 truncate">
+              https://harleydigitalworks.com/track/{completedToken}
+            </span>
             <Link
               to="/track/$token"
               params={{ token: completedToken }}
@@ -248,7 +257,11 @@ Existing Domain: ${data.existingDomain || "None provided"}`;
               <div
                 key={s}
                 className={`h-1.5 rounded-full transition-all ${
-                  s === step ? "w-6 bg-gold-400" : s < step ? "w-3 bg-emerald-400" : "w-3 bg-neutral-800"
+                  s === step
+                    ? "w-6 bg-gold-400"
+                    : s < step
+                      ? "w-3 bg-emerald-400"
+                      : "w-3 bg-neutral-800"
                 }`}
               />
             ))}
@@ -281,7 +294,11 @@ Existing Domain: ${data.existingDomain || "None provided"}`;
                       onClick={() => {
                         updateField("trade", t.id);
                         if (!data.accreditations.includes(t.defaultCert)) {
-                          setData((prev) => ({ ...prev, trade: t.id, accreditations: [t.defaultCert] }));
+                          setData((prev) => ({
+                            ...prev,
+                            trade: t.id,
+                            accreditations: [t.defaultCert],
+                          }));
                         }
                       }}
                       className={`flex items-center gap-2.5 p-3 rounded-2xl border text-xs font-semibold text-left transition-all ${
@@ -438,7 +455,9 @@ Existing Domain: ${data.existingDomain || "None provided"}`;
                       }`}
                     >
                       <span className="truncate">{cert}</span>
-                      {active && <CheckCircle2 className="h-3.5 w-3.5 shrink-0 text-gold-400 ml-1" />}
+                      {active && (
+                        <CheckCircle2 className="h-3.5 w-3.5 shrink-0 text-gold-400 ml-1" />
+                      )}
                     </button>
                   );
                 })}
@@ -506,7 +525,9 @@ Existing Domain: ${data.existingDomain || "None provided"}`;
                     <span className="h-4 w-4 rounded-full bg-amber-400" />
                   </div>
                   <div className="font-bold text-xs text-white">Dark Luxury & Gold</div>
-                  <div className="text-[11px] text-neutral-400 mt-0.5">High contrast, modern premium look.</div>
+                  <div className="text-[11px] text-neutral-400 mt-0.5">
+                    High contrast, modern premium look.
+                  </div>
                 </button>
 
                 <button
@@ -523,7 +544,9 @@ Existing Domain: ${data.existingDomain || "None provided"}`;
                     <span className="h-4 w-4 rounded-full bg-white" />
                   </div>
                   <div className="font-bold text-xs text-white">Classic Navy & White</div>
-                  <div className="text-[11px] text-neutral-400 mt-0.5">Established, corporate contractor style.</div>
+                  <div className="text-[11px] text-neutral-400 mt-0.5">
+                    Established, corporate contractor style.
+                  </div>
                 </button>
 
                 <button
@@ -540,7 +563,9 @@ Existing Domain: ${data.existingDomain || "None provided"}`;
                     <span className="h-4 w-4 rounded-full bg-yellow-400" />
                   </div>
                   <div className="font-bold text-xs text-white">High-Vis Yellow & Slate</div>
-                  <div className="text-[11px] text-neutral-400 mt-0.5">Emergency trades & fast conversion.</div>
+                  <div className="text-[11px] text-neutral-400 mt-0.5">
+                    Emergency trades & fast conversion.
+                  </div>
                 </button>
               </div>
             </div>
@@ -550,9 +575,12 @@ Existing Domain: ${data.existingDomain || "None provided"}`;
               <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-neutral-800 text-gold-400 mb-3">
                 <Camera className="h-6 w-6" />
               </div>
-              <h3 className="font-bold text-sm text-white">Upload Your Logo, Van Photo or Business Card</h3>
+              <h3 className="font-bold text-sm text-white">
+                Upload Your Logo, Van Photo or Business Card
+              </h3>
               <p className="text-xs text-neutral-400 max-w-sm mx-auto mt-1 mb-4">
-                Don't have a high-res file? Just snap a clear photo of your van graphics, branded invoice, or business card. We vectorize it for you.
+                Don't have a high-res file? Just snap a clear photo of your van graphics, branded
+                invoice, or business card. We vectorize it for you.
               </p>
               <label className="inline-flex cursor-pointer items-center gap-2 rounded-full bg-gold-500 hover:bg-gold-400 px-5 py-2.5 text-xs font-bold text-neutral-950 transition-all shadow-md">
                 <Upload className="h-4 w-4" />
@@ -564,7 +592,10 @@ Existing Domain: ${data.existingDomain || "None provided"}`;
                   className="hidden"
                   onChange={(e) => {
                     const files = Array.from(e.target.files || []).map((f) => f.name);
-                    setData((prev) => ({ ...prev, uploadedFiles: [...prev.uploadedFiles, ...files] }));
+                    setData((prev) => ({
+                      ...prev,
+                      uploadedFiles: [...prev.uploadedFiles, ...files],
+                    }));
                     toast.success(`${files.length} file(s) queued for project build!`);
                   }}
                 />
@@ -573,7 +604,10 @@ Existing Domain: ${data.existingDomain || "None provided"}`;
               {data.uploadedFiles.length > 0 && (
                 <div className="mt-4 flex flex-wrap justify-center gap-2">
                   {data.uploadedFiles.map((fn, idx) => (
-                    <span key={idx} className="inline-flex items-center gap-1.5 rounded-lg bg-neutral-800 px-3 py-1 text-xs text-emerald-400 border border-neutral-700">
+                    <span
+                      key={idx}
+                      className="inline-flex items-center gap-1.5 rounded-lg bg-neutral-800 px-3 py-1 text-xs text-emerald-400 border border-neutral-700"
+                    >
                       <FileCheck className="h-3.5 w-3.5" />
                       <span>{fn}</span>
                     </span>
@@ -595,23 +629,39 @@ Existing Domain: ${data.existingDomain || "None provided"}`;
           >
             <div className="rounded-2xl border border-neutral-800 bg-neutral-950 p-6 space-y-4">
               <div className="flex items-center justify-between border-b border-neutral-800 pb-3">
-                <span className="text-xs text-neutral-400 uppercase font-semibold">Business Name</span>
+                <span className="text-xs text-neutral-400 uppercase font-semibold">
+                  Business Name
+                </span>
                 <span className="text-sm font-bold text-white">{data.companyName}</span>
               </div>
               <div className="flex items-center justify-between border-b border-neutral-800 pb-3">
-                <span className="text-xs text-neutral-400 uppercase font-semibold">Lead Contact</span>
-                <span className="text-sm font-bold text-white">{data.contactName} ({data.phone})</span>
+                <span className="text-xs text-neutral-400 uppercase font-semibold">
+                  Lead Contact
+                </span>
+                <span className="text-sm font-bold text-white">
+                  {data.contactName} ({data.phone})
+                </span>
               </div>
               <div className="flex items-center justify-between border-b border-neutral-800 pb-3">
-                <span className="text-xs text-neutral-400 uppercase font-semibold">Primary Region</span>
-                <span className="text-sm font-bold text-emerald-400">{data.primaryCity} & Surrounding Postcodes</span>
+                <span className="text-xs text-neutral-400 uppercase font-semibold">
+                  Primary Region
+                </span>
+                <span className="text-sm font-bold text-emerald-400">
+                  {data.primaryCity} & Surrounding Postcodes
+                </span>
               </div>
               <div className="flex items-center justify-between border-b border-neutral-800 pb-3">
-                <span className="text-xs text-neutral-400 uppercase font-semibold">Selected Accreditations</span>
-                <span className="text-xs font-semibold text-gold-300">{data.accreditations.join(", ") || "Standard Trade Insurance"}</span>
+                <span className="text-xs text-neutral-400 uppercase font-semibold">
+                  Selected Accreditations
+                </span>
+                <span className="text-xs font-semibold text-gold-300">
+                  {data.accreditations.join(", ") || "Standard Trade Insurance"}
+                </span>
               </div>
               <div className="flex items-center justify-between">
-                <span className="text-xs text-neutral-400 uppercase font-semibold">Turnaround Commitment</span>
+                <span className="text-xs text-neutral-400 uppercase font-semibold">
+                  Turnaround Commitment
+                </span>
                 <span className="text-xs font-bold text-white bg-gold-500/10 text-gold-400 border border-gold-500/20 px-3 py-1 rounded-full">
                   14 Calendar Days Guaranteed
                 </span>
@@ -621,7 +671,9 @@ Existing Domain: ${data.existingDomain || "None provided"}`;
             <div className="rounded-xl border border-emerald-500/20 bg-emerald-500/5 p-4 text-xs text-neutral-300 leading-relaxed flex items-start gap-2.5">
               <ShieldCheck className="h-5 w-5 shrink-0 text-emerald-400 mt-0.5" />
               <span>
-                <strong>100% Done-For-You Promise:</strong> You do not need to write any copy or configure code. Once submitted, our web producers write all service pages and prepare your live preview within 10 days.
+                <strong>100% Done-For-You Promise:</strong> You do not need to write any copy or
+                configure code. Once submitted, our web producers write all service pages and
+                prepare your live preview within 10 days.
               </span>
             </div>
           </motion.div>

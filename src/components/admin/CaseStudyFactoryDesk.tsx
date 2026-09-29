@@ -84,7 +84,8 @@ export const CASE_STUDY_PRESETS: TradeCaseStudy[] = [
       role: "Director & Lead Engineer",
     },
     packageTier: "Growth Engine (£2,995)",
-    liveUrl: "https://harleydigitalworks.com/demos?company=Cheshire+Heat+%26+Boiler+Co+Ltd&trade=heating&city=Stockport",
+    liveUrl:
+      "https://harleydigitalworks.com/demos?company=Cheshire+Heat+%26+Boiler+Co+Ltd&trade=heating&city=Stockport",
   },
   {
     id: "cs-vanguard-electrical",
@@ -120,7 +121,8 @@ export const CASE_STUDY_PRESETS: TradeCaseStudy[] = [
       role: "Managing Director",
     },
     packageTier: "Growth Engine (£2,995) + £195/mo Care",
-    liveUrl: "https://harleydigitalworks.com/demos?company=Vanguard+Electrical+%26+EV+Ltd&trade=electrical&city=Solihull",
+    liveUrl:
+      "https://harleydigitalworks.com/demos?company=Vanguard+Electrical+%26+EV+Ltd&trade=electrical&city=Solihull",
   },
   {
     id: "cs-apex-roofing",
@@ -156,7 +158,8 @@ export const CASE_STUDY_PRESETS: TradeCaseStudy[] = [
       role: "Founder & Master Roofer",
     },
     packageTier: "Launch Plan (£1,495) + £95/mo Care",
-    liveUrl: "https://harleydigitalworks.com/demos?company=Apex+Premier+Roofing&trade=roofing&city=Leeds",
+    liveUrl:
+      "https://harleydigitalworks.com/demos?company=Apex+Premier+Roofing&trade=roofing&city=Leeds",
   },
 ];
 
@@ -212,7 +215,8 @@ export function CaseStudyFactoryDesk() {
           role: "Owner & Master Plumber",
         },
         packageTier: "Launch Plan (£1,495)",
-        liveUrl: "https://harleydigitalworks.com/demos?company=Summit+Plumbing+%26+Bathrooms&trade=plumbing&city=Altrincham",
+        liveUrl:
+          "https://harleydigitalworks.com/demos?company=Summit+Plumbing+%26+Bathrooms&trade=plumbing&city=Altrincham",
       };
 
       setCaseStudies([newStudy, ...caseStudies]);
@@ -241,7 +245,8 @@ export function CaseStudyFactoryDesk() {
                 </span>
               </div>
               <p className="text-xs text-ink-muted">
-                Synthesize high-converting trade case studies with speed scores, revenue metrics, verified review lift, and client quotes for /work.
+                Synthesize high-converting trade case studies with speed scores, revenue metrics,
+                verified review lift, and client quotes for /work.
               </p>
             </div>
           </div>
@@ -251,8 +256,12 @@ export function CaseStudyFactoryDesk() {
             disabled={isSynthesizing}
             className="inline-flex items-center gap-2 rounded-xl bg-ink px-4 py-2.5 text-xs font-semibold text-white hover:bg-ink/90 transition-colors shadow-xs shrink-0"
           >
-            <Sparkles className={`h-4 w-4 text-amber-400 ${isSynthesizing ? "animate-spin" : ""}`} />
-            <span>{isSynthesizing ? "Synthesizing Case Study..." : "Synthesize New Case Study"}</span>
+            <Sparkles
+              className={`h-4 w-4 text-amber-400 ${isSynthesizing ? "animate-spin" : ""}`}
+            />
+            <span>
+              {isSynthesizing ? "Synthesizing Case Study..." : "Synthesize New Case Study"}
+            </span>
           </button>
         </div>
       </div>
@@ -281,7 +290,9 @@ export function CaseStudyFactoryDesk() {
                   {study.afterStats.monthlyQuotes}
                 </span>
               </div>
-              <div className="text-[11px] text-ink-muted mt-1">{study.tradeLabel} • {study.city.split(",")[0]}</div>
+              <div className="text-[11px] text-ink-muted mt-1">
+                {study.tradeLabel} • {study.city.split(",")[0]}
+              </div>
               <p className="mt-2 text-[11px] text-ink/80 italic line-clamp-2">
                 &ldquo;{study.tagline}&rdquo;
               </p>
@@ -301,7 +312,9 @@ export function CaseStudyFactoryDesk() {
                 <span className="text-xs text-ink-muted">• {activeStudy.city}</span>
               </div>
               <h2 className="mt-2 text-2xl font-bold text-ink">{activeStudy.clientName}</h2>
-              <p className="mt-1 text-xs text-emerald-700 font-semibold font-mono">{activeStudy.packageTier}</p>
+              <p className="mt-1 text-xs text-emerald-700 font-semibold font-mono">
+                {activeStudy.packageTier}
+              </p>
             </div>
 
             <div className="flex items-center gap-2">
@@ -309,7 +322,11 @@ export function CaseStudyFactoryDesk() {
                 onClick={() => handleCopyJson(activeStudy)}
                 className="inline-flex items-center gap-1.5 rounded-xl border border-ink/15 px-3 py-1.5 text-xs font-semibold text-ink hover:bg-slate-50 transition-colors"
               >
-                {copiedId === activeStudy.id ? <Check className="h-3.5 w-3.5 text-emerald-600" /> : <Copy className="h-3.5 w-3.5" />}
+                {copiedId === activeStudy.id ? (
+                  <Check className="h-3.5 w-3.5 text-emerald-600" />
+                ) : (
+                  <Copy className="h-3.5 w-3.5" />
+                )}
                 <span>{copiedId === activeStudy.id ? "Copied JSON" : "Copy JSON"}</span>
               </button>
 
@@ -330,7 +347,9 @@ export function CaseStudyFactoryDesk() {
           {/* Tagline & Narrative */}
           <div className="space-y-2">
             <h3 className="text-base font-bold text-ink">{activeStudy.tagline}</h3>
-            <p className="text-xs sm:text-sm text-ink-muted leading-relaxed">{activeStudy.summary}</p>
+            <p className="text-xs sm:text-sm text-ink-muted leading-relaxed">
+              {activeStudy.summary}
+            </p>
           </div>
 
           {/* Before vs After Telemetry Comparison Grid */}
@@ -343,26 +362,44 @@ export function CaseStudyFactoryDesk() {
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center">
               <div className="rounded-xl bg-white p-3 border border-ink/10">
                 <div className="text-[10px] uppercase font-mono text-ink-muted">Page Speed</div>
-                <div className="mt-1 text-xs text-rose-600 line-through font-mono">{activeStudy.beforeStats.loadTime}</div>
-                <div className="text-base font-bold text-emerald-700 font-mono">{activeStudy.afterStats.loadTime}</div>
+                <div className="mt-1 text-xs text-rose-600 line-through font-mono">
+                  {activeStudy.beforeStats.loadTime}
+                </div>
+                <div className="text-base font-bold text-emerald-700 font-mono">
+                  {activeStudy.afterStats.loadTime}
+                </div>
               </div>
 
               <div className="rounded-xl bg-white p-3 border border-ink/10">
                 <div className="text-[10px] uppercase font-mono text-ink-muted">Mobile Bounce</div>
-                <div className="mt-1 text-xs text-rose-600 line-through font-mono">{activeStudy.beforeStats.bounceRate}</div>
-                <div className="text-base font-bold text-emerald-700 font-mono">{activeStudy.afterStats.bounceRate}</div>
+                <div className="mt-1 text-xs text-rose-600 line-through font-mono">
+                  {activeStudy.beforeStats.bounceRate}
+                </div>
+                <div className="text-base font-bold text-emerald-700 font-mono">
+                  {activeStudy.afterStats.bounceRate}
+                </div>
               </div>
 
               <div className="rounded-xl bg-white p-3 border border-ink/10">
-                <div className="text-[10px] uppercase font-mono text-ink-muted">Monthly Pipeline</div>
-                <div className="mt-1 text-xs text-rose-600 line-through font-mono">{activeStudy.beforeStats.monthlyQuotes}</div>
-                <div className="text-base font-bold text-emerald-700 font-mono">{activeStudy.afterStats.monthlyQuotes}</div>
+                <div className="text-[10px] uppercase font-mono text-ink-muted">
+                  Monthly Pipeline
+                </div>
+                <div className="mt-1 text-xs text-rose-600 line-through font-mono">
+                  {activeStudy.beforeStats.monthlyQuotes}
+                </div>
+                <div className="text-base font-bold text-emerald-700 font-mono">
+                  {activeStudy.afterStats.monthlyQuotes}
+                </div>
               </div>
 
               <div className="rounded-xl bg-white p-3 border border-ink/10">
                 <div className="text-[10px] uppercase font-mono text-ink-muted">Map Pack Rank</div>
-                <div className="mt-1 text-xs text-rose-600 line-through font-mono">{activeStudy.beforeStats.mapPackRank}</div>
-                <div className="text-base font-bold text-emerald-700 font-mono">{activeStudy.afterStats.mapPackRank}</div>
+                <div className="mt-1 text-xs text-rose-600 line-through font-mono">
+                  {activeStudy.beforeStats.mapPackRank}
+                </div>
+                <div className="text-base font-bold text-emerald-700 font-mono">
+                  {activeStudy.afterStats.mapPackRank}
+                </div>
               </div>
             </div>
           </div>
@@ -374,7 +411,10 @@ export function CaseStudyFactoryDesk() {
             </h4>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
               {activeStudy.keyFeatures.map((feat) => (
-                <div key={feat} className="flex items-center gap-2 rounded-lg bg-white p-2 border border-ink/10 text-ink">
+                <div
+                  key={feat}
+                  className="flex items-center gap-2 rounded-lg bg-white p-2 border border-ink/10 text-ink"
+                >
                   <ShieldCheck className="h-4 w-4 text-emerald-600 shrink-0" />
                   <span>{feat}</span>
                 </div>
@@ -390,13 +430,18 @@ export function CaseStudyFactoryDesk() {
               <Star className="h-4 w-4 fill-amber-400 text-amber-400" />
               <Star className="h-4 w-4 fill-amber-400 text-amber-400" />
               <Star className="h-4 w-4 fill-amber-400 text-amber-400" />
-              <span className="text-xs font-mono font-bold text-amber-900 ml-2">5.0 / 5.0 Client Rating</span>
+              <span className="text-xs font-mono font-bold text-amber-900 ml-2">
+                5.0 / 5.0 Client Rating
+              </span>
             </div>
             <p className="text-xs sm:text-sm text-amber-950 italic leading-relaxed">
               &ldquo;{activeStudy.clientQuote.quote}&rdquo;
             </p>
             <div className="text-xs text-amber-900 font-semibold pt-1 border-t border-amber-200/60">
-              — {activeStudy.clientQuote.author}, <span className="font-normal text-amber-800">{activeStudy.clientQuote.role} ({activeStudy.clientName})</span>
+              — {activeStudy.clientQuote.author},{" "}
+              <span className="font-normal text-amber-800">
+                {activeStudy.clientQuote.role} ({activeStudy.clientName})
+              </span>
             </div>
           </div>
         </div>

@@ -7,9 +7,10 @@ This playbook defines the architecture, content templates, and technical standar
 ## 1. Regional Landing Page Strategy
 
 To rank for high-intent queries like:
-- *"electrician web design Manchester"*
-- *"website designer for trades Cheshire"*
-- *"builder web design Stockport"*
+
+- _"electrician web design Manchester"_
+- _"website designer for trades Cheshire"_
+- _"builder web design Stockport"_
 
 We create dedicated, high-relevance location pages structured for conversion and search authority.
 
@@ -26,16 +27,19 @@ We create dedicated, high-relevance location pages structured for conversion and
 ## 3. Page Structure Blueprint
 
 ### A. Hero Section
+
 - **Location Eyebrow**: `UK WEBSITES FOR TRADES & BUSINESSES IN [LOCATION]`
 - **Headline**: `The Web Design Partner for [Location] Trades.`
-- **Sub-copy**: *We build, write, and manage high-converting websites for electricians, builders, plumbers, and contractors across [Location] & surrounding areas.*
+- **Sub-copy**: _We build, write, and manage high-converting websites for electricians, builders, plumbers, and contractors across [Location] & surrounding areas._
 - **CTA**: `Get a Free [Location] Trade Quote`
 
 ### B. Local Trust Grid
+
 - Showcase local client case studies from that county/region.
-- Google Maps snippet and local coverage badges (e.g. *Serving Central Manchester, Salford, Stockport, Trafford, Altrincham, Wilmslow*).
+- Google Maps snippet and local coverage badges (e.g. _Serving Central Manchester, Salford, Stockport, Trafford, Altrincham, Wilmslow_).
 
 ### C. Package Matrix & 14-Day Delivery
+
 - Embedded Launch (£1,495), Growth (£2,995), and Care Plan (£95/mo) pricing.
 
 ---

@@ -24,24 +24,28 @@ This skill dictates the copywriting, positioning, and conversion architecture fo
 ## Trade-Specific Conversion Blueprints
 
 ### 1. Electrical & EV Installations
+
 - **Key Accreditations**: NICEIC Approved Contractor, NAPIT, TrustMark, OZEV Authorized.
 - **High-Value Triggers**: Consumer Unit (Fuseboard) Replacements, EV Home & Workplace Chargers, Full & Partial Rewires, EICR Landlord Certificates.
-- **Conversion Hook**: *"Fully certified Part P electricians. Clean, prompt, and insured up to £5M."*
+- **Conversion Hook**: _"Fully certified Part P electricians. Clean, prompt, and insured up to £5M."_
 
 ### 2. Roofing & GRP Flat Roofs
+
 - **Key Accreditations**: CORC (Confederation of Roofing Contractors), NFRC, TrustMark, CHAS.
 - **High-Value Triggers**: GRP Fibreglass Flat Roofs, Slate & Tile Re-roofs, Emergency Chimney & Ridge Tile Repairs, Fascias & Soffits.
-- **Conversion Hook**: *"20-Year Guarantee on all GRP flat roof installations. Zero-deposit inspection and written fixed-price quotation."*
+- **Conversion Hook**: _"20-Year Guarantee on all GRP flat roof installations. Zero-deposit inspection and written fixed-price quotation."_
 
 ### 3. Heating, Gas Safe & Plumbing
+
 - **Key Accreditations**: Gas Safe Registered (include Reg # placeholder), Worcester Bosch / Vaillant Accredited Installer, CIPHE.
 - **High-Value Triggers**: Boiler Replacements, Unvented Hot Water Cylinders, Power Flushing, Emergency Leaks.
-- **Conversion Hook**: *"10-Year Manufacturer Warranty on new A-rated boiler installations. Fixed-price quotes with no hidden callout charges."*
+- **Conversion Hook**: _"10-Year Manufacturer Warranty on new A-rated boiler installations. Fixed-price quotes with no hidden callout charges."_
 
 ### 4. Luxury Renovations, Extensions & Joinery
+
 - **Key Accreditations**: Federation of Master Builders (FMB), Considerate Constructors, Guild of Master Craftsmen.
 - **High-Value Triggers**: Single & Double-Storey Kitchen Extensions, Loft Conversions, Bespoke Architectural Joinery.
-- **Conversion Hook**: *"End-to-end design, planning, and structural build. Turnkey project management with weekly milestone updates."*
+- **Conversion Hook**: _"End-to-end design, planning, and structural build. Turnkey project management with weekly milestone updates."_
 
 ---
 
@@ -49,7 +53,7 @@ This skill dictates the copywriting, positioning, and conversion architecture fo
 
 1. **Above the Fold (Hero)**:
    - Eyebrow: `[City] & [Region] Certified [Trade]`
-   - Heading: Problem-solving claim + Location (e.g., *"Reliable Manchester Electricians — On Time, Certified & Fully Insured."*)
+   - Heading: Problem-solving claim + Location (e.g., _"Reliable Manchester Electricians — On Time, Certified & Fully Insured."_)
    - Subtitle: Fixed prices, fast response, 100% satisfaction guarantee.
    - CTAs: Primary = `Get Instant WhatsApp Quote`, Secondary = `Call [Phone Number]`.
 2. **Accreditation Trust Bar**:

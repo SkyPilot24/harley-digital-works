@@ -55,21 +55,22 @@ curl https://api.anthropic.com/v1/models/claude-opus-4-8 \
 
 ## Current Models (recommended)
 
-| Friendly Name     | Alias (use this)    | Full ID                       | Context        | Max Output | Status |
-|-------------------|---------------------|-------------------------------|----------------|------------|--------|
-| Claude Fable 5.1    | `claude-fable-5-1`      | -                             | 1M             | 128K       | Active |
-| Claude Mythos 5.1   | `claude-mythos-5-1`     | -                             | 1M             | 128K       | Active (Project Glasswing only) |
-| Claude Fable 5 | `claude-fable-5` | -                             | 1M             | 128K       | Active |
-| Claude Mythos 5 | `claude-mythos-5` | -                          | 1M             | 128K       | Active (Project Glasswing only) |
-| Claude Opus 5     | `claude-opus-5`       | -                             | 1M             | 128K       | Active |
-| Claude Opus 4.8   | `claude-opus-4-8`   | -                             | 1M             | 128K       | Active |
-| Claude Opus 4.7   | `claude-opus-4-7`   | -                             | 1M             | 128K       | Active |
-| Claude Opus 4.6   | `claude-opus-4-6`   | -                             | 1M             | 128K       | Active |
-| Claude Sonnet 5 | `claude-sonnet-5` | -                         | 1M             | 128K       | Active |
-| Claude Sonnet 4.6 | `claude-sonnet-4-6` | -                             | 1M             | 128K       | Active |
-| Claude Haiku 4.5  | `claude-haiku-4-5`  | `claude-haiku-4-5-20251001`   | 200K           | 64K        | Active |
+| Friendly Name     | Alias (use this)    | Full ID                     | Context | Max Output | Status                          |
+| ----------------- | ------------------- | --------------------------- | ------- | ---------- | ------------------------------- |
+| Claude Fable 5.1  | `claude-fable-5-1`  | -                           | 1M      | 128K       | Active                          |
+| Claude Mythos 5.1 | `claude-mythos-5-1` | -                           | 1M      | 128K       | Active (Project Glasswing only) |
+| Claude Fable 5    | `claude-fable-5`    | -                           | 1M      | 128K       | Active                          |
+| Claude Mythos 5   | `claude-mythos-5`   | -                           | 1M      | 128K       | Active (Project Glasswing only) |
+| Claude Opus 5     | `claude-opus-5`     | -                           | 1M      | 128K       | Active                          |
+| Claude Opus 4.8   | `claude-opus-4-8`   | -                           | 1M      | 128K       | Active                          |
+| Claude Opus 4.7   | `claude-opus-4-7`   | -                           | 1M      | 128K       | Active                          |
+| Claude Opus 4.6   | `claude-opus-4-6`   | -                           | 1M      | 128K       | Active                          |
+| Claude Sonnet 5   | `claude-sonnet-5`   | -                           | 1M      | 128K       | Active                          |
+| Claude Sonnet 4.6 | `claude-sonnet-4-6` | -                           | 1M      | 128K       | Active                          |
+| Claude Haiku 4.5  | `claude-haiku-4-5`  | `claude-haiku-4-5-20251001` | 200K    | 64K        | Active                          |
 
 ### Model Descriptions
+
 - **Claude Fable 5.1** - Anthropic's most capable widely released model, for the most demanding reasoning and long-horizon agentic work. Successor to Claude Fable 5 in the same tier at the same per-token price ($10/$50 per MTok; cache reads $0.25/MTok - 0.025x, a quarter of Claude Fable 5's; batch $5/$25); stronger long-running agentic coding, knowledge work with documents/spreadsheets/slides, multistep research, vision, long-context retrieval, and computer use. Same API surface as Claude Fable 5 (thinking always on, no prefill, no sampling params, `refusal` stop reason, 512-token cache minimum) with three breaking changes: forced tool use (`tool_choice` `any` / `tool`) returns a 400; thinking blocks are bound to the producing model (only Claude Mythos 5.1 can read them - other models drop them); and editing earlier turns invalidates thinking blocks ("preserved thinking"; new accounts created on/after 2026-08-31 get a 400 on edited history; later models enforce it for everyone; the opt-in controls are per-platform - `shared/platform-availability.md`). Adds per-message `effort`, turn-scoped `clear_at` system messages, `thinking.display: "updates"` progress updates, and content provenance. Same tokenizer as Claude Fable 5; 1M context (default), 128K max output. Covered Model: 30-day retention required (ZDR only if expressly authorized by Anthropic) - ZDR orgs get `400 invalid_request_error`, as on Claude Fable 5. No Priority Tier; shares the Fable 5.x rate-limit pool. See `shared/model-migration.md` -> Migrating to Claude Fable 5.1 from Claude Fable 5.
 - **Claude Fable 5** / **Claude Mythos 5** (`claude-fable-5` / `claude-mythos-5`) - the previous Fable / Mythos release: same tier, limits and per-token pricing as Claude Fable 5.1, which adds three breaking API changes over them (see above; cache reads here are $1/MTok rather than Claude Fable 5.1's $0.25); still served and selectable by id. Claude Mythos 5 ran no safety classifiers, so `stop_reason: "refusal"` does not occur on it. Prefer claude-fable-5-1 for new work.
 - **Claude Mythos 5.1** - The same model as Claude Fable 5.1 (same capabilities, limits, per-token pricing, API behavior), offered only to approved Project Glasswing customers; successor to Claude Mythos 5 (which itself succeeded the invitation-only `claude-mythos-preview`). Unlike Claude Mythos 5 it runs safeguards that depend on the access program, so handle `stop_reason: "refusal"`. Not offered on Claude Platform on AWS. Use it only when the org participates in Project Glasswing; otherwise use `claude-fable-5-1`.
@@ -83,60 +84,60 @@ curl https://api.anthropic.com/v1/models/claude-opus-4-8 \
 
 ## Legacy Models (still active)
 
-| Friendly Name     | Alias (use this)    | Full ID                       | Status |
-|-------------------|---------------------|-------------------------------|--------|
-| Claude Opus 4.5   | `claude-opus-4-5`   | `claude-opus-4-5-20251101`    | Active |
-| Claude Opus 4.1   | `claude-opus-4-1`   | `claude-opus-4-1-20250805`    | Deprecated (retires 2026-08-05 - migrate to `claude-opus-5`) |
-| Claude Sonnet 4.5 | `claude-sonnet-4-5` | `claude-sonnet-4-5-20250929`  | Active |
+| Friendly Name     | Alias (use this)    | Full ID                      | Status                                                       |
+| ----------------- | ------------------- | ---------------------------- | ------------------------------------------------------------ |
+| Claude Opus 4.5   | `claude-opus-4-5`   | `claude-opus-4-5-20251101`   | Active                                                       |
+| Claude Opus 4.1   | `claude-opus-4-1`   | `claude-opus-4-1-20250805`   | Deprecated (retires 2026-08-05 - migrate to `claude-opus-5`) |
+| Claude Sonnet 4.5 | `claude-sonnet-4-5` | `claude-sonnet-4-5-20250929` | Active                                                       |
 
 ## Deprecated Models (retiring soon)
 
-| Friendly Name     | Alias (use this)    | Full ID                       | Status     | Retires      |
-|-------------------|---------------------|-------------------------------|------------|--------------|
-| Claude Sonnet 4   | `claude-sonnet-4-0` | `claude-sonnet-4-20250514`    | Deprecated | TBD          |
-| Claude Opus 4     | `claude-opus-4-0`   | `claude-opus-4-20250514`      | Deprecated | TBD          |
-| Claude Haiku 3    | -                   | `claude-3-haiku-20240307`     | Deprecated | Apr 19, 2026 |
+| Friendly Name   | Alias (use this)    | Full ID                    | Status     | Retires      |
+| --------------- | ------------------- | -------------------------- | ---------- | ------------ |
+| Claude Sonnet 4 | `claude-sonnet-4-0` | `claude-sonnet-4-20250514` | Deprecated | TBD          |
+| Claude Opus 4   | `claude-opus-4-0`   | `claude-opus-4-20250514`   | Deprecated | TBD          |
+| Claude Haiku 3  | -                   | `claude-3-haiku-20240307`  | Deprecated | Apr 19, 2026 |
 
 ## Retired Models (no longer available)
 
-| Friendly Name     | Full ID                       | Retired     |
-|-------------------|-------------------------------|-------------|
-| Claude Sonnet 3.7 | `claude-3-7-sonnet-20250219`  | Feb 19, 2026 |
-| Claude Haiku 3.5  | `claude-3-5-haiku-20241022`   | Feb 19, 2026 |
-| Claude Opus 3     | `claude-3-opus-20240229`      | Jan 5, 2026 |
-| Claude Sonnet 3.5 | `claude-3-5-sonnet-20241022`  | Oct 28, 2025 |
-| Claude Sonnet 3.5 | `claude-3-5-sonnet-20240620`  | Oct 28, 2025 |
-| Claude Sonnet 3   | `claude-3-sonnet-20240229`    | Jul 21, 2025 |
-| Claude 2.1        | `claude-2.1`                  | Jul 21, 2025 |
-| Claude 2.0        | `claude-2.0`                  | Jul 21, 2025 |
+| Friendly Name     | Full ID                      | Retired      |
+| ----------------- | ---------------------------- | ------------ |
+| Claude Sonnet 3.7 | `claude-3-7-sonnet-20250219` | Feb 19, 2026 |
+| Claude Haiku 3.5  | `claude-3-5-haiku-20241022`  | Feb 19, 2026 |
+| Claude Opus 3     | `claude-3-opus-20240229`     | Jan 5, 2026  |
+| Claude Sonnet 3.5 | `claude-3-5-sonnet-20241022` | Oct 28, 2025 |
+| Claude Sonnet 3.5 | `claude-3-5-sonnet-20240620` | Oct 28, 2025 |
+| Claude Sonnet 3   | `claude-3-sonnet-20240229`   | Jul 21, 2025 |
+| Claude 2.1        | `claude-2.1`                 | Jul 21, 2025 |
+| Claude 2.0        | `claude-2.0`                 | Jul 21, 2025 |
 
 ## Resolving User Requests
 
 When a user asks for a model by name, use this table to find the correct model ID:
 
-| User says...                              | Use this model ID              |
-|-------------------------------------------|--------------------------------|
-| "fable", "most capable model"             | `claude-fable-5-1`                 |
-| "most powerful"                           | `claude-fable-5-1`                 |
-| "mythos", "mythos 5.1"                    | `claude-mythos-5-1` (Project Glasswing participants only; otherwise use `claude-fable-5-1`) |
+| User says...                             | Use this model ID                                                                           |
+| ---------------------------------------- | ------------------------------------------------------------------------------------------- |
+| "fable", "most capable model"            | `claude-fable-5-1`                                                                          |
+| "most powerful"                          | `claude-fable-5-1`                                                                          |
+| "mythos", "mythos 5.1"                   | `claude-mythos-5-1` (Project Glasswing participants only; otherwise use `claude-fable-5-1`) |
 | "fable 5", "mythos 5" (previous version) | `claude-fable-5` / `claude-mythos-5` (still served; prefer `claude-fable-5-1` for new work) |
-| "mythos preview"                          | `claude-mythos-5-1` (successor to `claude-mythos-preview` - see migration guide) |
-| "opus"                                    | `claude-opus-5`                   |
-| "opus 5"                                  | `claude-opus-5`             |
-| "opus 4.8"                                | `claude-opus-4-8`              |
-| "opus 4.7"                                | `claude-opus-4-7`              |
-| "opus 4.6"                                | `claude-opus-4-6`              |
-| "opus 4.5"                                | `claude-opus-4-5`              |
-| "opus 4.1"                                | `claude-opus-4-1` (deprecated, retires 2026-08-05 - suggest `claude-opus-5`) |
-| "opus 4", "opus 4.0"                      | `claude-opus-4-0` (deprecated - suggest `claude-opus-5`) |
-| "sonnet", "balanced"                      | `claude-sonnet-5`           |
-| "sonnet 5"                                | `claude-sonnet-5`           |
-| "sonnet 4.6"                              | `claude-sonnet-4-6`            |
-| "sonnet 4.5"                              | `claude-sonnet-4-5`            |
-| "sonnet 4", "sonnet 4.0"                  | `claude-sonnet-4-0` (deprecated - suggest `claude-sonnet-5`) |
-| "sonnet 3.7"                              | Retired - suggest `claude-sonnet-5` |
-| "sonnet 3.5"                              | Retired - suggest `claude-sonnet-5` |
-| "haiku", "fast", "cheap"                  | `claude-haiku-4-5`             |
-| "haiku 4.5"                               | `claude-haiku-4-5`             |
-| "haiku 3.5"                               | Retired - suggest `claude-haiku-4-5` |
-| "haiku 3"                                 | Deprecated - suggest `claude-haiku-4-5` |
+| "mythos preview"                         | `claude-mythos-5-1` (successor to `claude-mythos-preview` - see migration guide)            |
+| "opus"                                   | `claude-opus-5`                                                                             |
+| "opus 5"                                 | `claude-opus-5`                                                                             |
+| "opus 4.8"                               | `claude-opus-4-8`                                                                           |
+| "opus 4.7"                               | `claude-opus-4-7`                                                                           |
+| "opus 4.6"                               | `claude-opus-4-6`                                                                           |
+| "opus 4.5"                               | `claude-opus-4-5`                                                                           |
+| "opus 4.1"                               | `claude-opus-4-1` (deprecated, retires 2026-08-05 - suggest `claude-opus-5`)                |
+| "opus 4", "opus 4.0"                     | `claude-opus-4-0` (deprecated - suggest `claude-opus-5`)                                    |
+| "sonnet", "balanced"                     | `claude-sonnet-5`                                                                           |
+| "sonnet 5"                               | `claude-sonnet-5`                                                                           |
+| "sonnet 4.6"                             | `claude-sonnet-4-6`                                                                         |
+| "sonnet 4.5"                             | `claude-sonnet-4-5`                                                                         |
+| "sonnet 4", "sonnet 4.0"                 | `claude-sonnet-4-0` (deprecated - suggest `claude-sonnet-5`)                                |
+| "sonnet 3.7"                             | Retired - suggest `claude-sonnet-5`                                                         |
+| "sonnet 3.5"                             | Retired - suggest `claude-sonnet-5`                                                         |
+| "haiku", "fast", "cheap"                 | `claude-haiku-4-5`                                                                          |
+| "haiku 4.5"                              | `claude-haiku-4-5`                                                                          |
+| "haiku 3.5"                              | Retired - suggest `claude-haiku-4-5`                                                        |
+| "haiku 3"                                | Deprecated - suggest `claude-haiku-4-5`                                                     |

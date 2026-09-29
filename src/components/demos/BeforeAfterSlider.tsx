@@ -40,7 +40,9 @@ export function BeforeAfterSlider({ business }: BeforeAfterSliderProps) {
             </div>
             <div>
               <p className="text-sm text-neutral-300 italic mb-2">"{item.beforeDesc}"</p>
-              <div className="text-xs text-rose-400/80 font-medium">Issue: Inefficient, non-compliant, leaking or dangerous.</div>
+              <div className="text-xs text-rose-400/80 font-medium">
+                Issue: Inefficient, non-compliant, leaking or dangerous.
+              </div>
             </div>
           </div>
 
@@ -52,7 +54,9 @@ export function BeforeAfterSlider({ business }: BeforeAfterSliderProps) {
             </div>
             <div>
               <p className="text-sm text-white font-medium mb-2">"{item.afterDesc}"</p>
-              <div className="text-xs text-emerald-400 font-medium">Result: Full certification, 10–20 year guarantee, and energy savings.</div>
+              <div className="text-xs text-emerald-400 font-medium">
+                Result: Full certification, 10–20 year guarantee, and energy savings.
+              </div>
             </div>
           </div>
         </div>

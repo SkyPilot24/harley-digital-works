@@ -13,7 +13,7 @@ import {
   MessageSquare,
   ThumbsUp,
   AlertTriangle,
-  ArrowRight
+  ArrowRight,
 } from "lucide-react";
 import { toast } from "sonner";
 
@@ -48,7 +48,9 @@ export const Route = createFileRoute("/tools/review-booster")({
 function ReviewBoosterPage() {
   const search = Route.useSearch();
   const [businessName, setBusinessName] = useState(search.biz || "Apex Electrical Contractors");
-  const [googlePlaceUrl, setGooglePlaceUrl] = useState(search.placeUrl || "https://g.page/r/your-google-review-link/review");
+  const [googlePlaceUrl, setGooglePlaceUrl] = useState(
+    search.placeUrl || "https://g.page/r/your-google-review-link/review",
+  );
   const [customerName, setCustomerName] = useState(search.customer || "John");
   const [customerPhone, setCustomerPhone] = useState(search.phone || "07700 900123");
   const [copiedText, setCopiedText] = useState(false);
@@ -83,7 +85,9 @@ https://harleydigitalworks.com/tools/review-booster?biz=${encodeURIComponent(bus
               <span className="text-gold-400">& Reputation Shield.</span>
             </h1>
             <p className="mt-3 text-sm sm:text-base text-neutral-300 leading-relaxed max-w-xl mx-auto">
-              Text your homeowner right after packing your tools on site. Happy customers get routed straight to your Google Review page in 1 tap, while unhappy feedback is intercepted privately.
+              Text your homeowner right after packing your tools on site. Happy customers get routed
+              straight to your Google Review page in 1 tap, while unhappy feedback is intercepted
+              privately.
             </p>
           </div>
         </Container>
@@ -167,7 +171,11 @@ https://harleydigitalworks.com/tools/review-booster?biz=${encodeURIComponent(bus
                       onClick={handleCopySms}
                       className="inline-flex items-center gap-1 text-xs font-semibold text-gold-400 hover:text-gold-300 bg-neutral-950 border border-neutral-800 px-3 py-1 rounded-lg"
                     >
-                      {copiedText ? <Check className="h-3.5 w-3.5 text-emerald-400" /> : <Copy className="h-3.5 w-3.5" />}
+                      {copiedText ? (
+                        <Check className="h-3.5 w-3.5 text-emerald-400" />
+                      ) : (
+                        <Copy className="h-3.5 w-3.5" />
+                      )}
                       <span>{copiedText ? "Copied!" : "Copy Text"}</span>
                     </button>
                   </div>
@@ -194,11 +202,17 @@ https://harleydigitalworks.com/tools/review-booster?biz=${encodeURIComponent(bus
               <div className="rounded-2xl border border-neutral-800 bg-neutral-900/60 p-5 space-y-3 text-xs text-neutral-400">
                 <div className="flex items-start gap-2.5 text-neutral-300 font-semibold">
                   <ShieldCheck className="h-4 w-4 text-emerald-400 shrink-0 mt-0.5" />
-                  <span>Smart Reputation Shield: 1-3 star ratings are caught privately before harming your Google Map Pack ranking.</span>
+                  <span>
+                    Smart Reputation Shield: 1-3 star ratings are caught privately before harming
+                    your Google Map Pack ranking.
+                  </span>
                 </div>
                 <div className="flex items-start gap-2.5 text-neutral-300 font-semibold">
                   <Star className="h-4 w-4 text-gold-400 shrink-0 mt-0.5" />
-                  <span>10x More Reviews: Eliminates friction by bringing the homeowner directly to the Google comment modal.</span>
+                  <span>
+                    10x More Reviews: Eliminates friction by bringing the homeowner directly to the
+                    Google comment modal.
+                  </span>
                 </div>
               </div>
             </div>
@@ -257,7 +271,8 @@ https://harleydigitalworks.com/tools/review-booster?biz=${encodeURIComponent(bus
                       <span>Thank You So Much!</span>
                     </div>
                     <p className="text-xs text-neutral-300 leading-relaxed">
-                      Would you mind taking 15 seconds to copy your review to our official Google page? It helps local homeowners find us!
+                      Would you mind taking 15 seconds to copy your review to our official Google
+                      page? It helps local homeowners find us!
                     </p>
                     <a
                       href={googlePlaceUrl}
@@ -279,7 +294,8 @@ https://harleydigitalworks.com/tools/review-booster?biz=${encodeURIComponent(bus
                       <span>We Value Your Honesty</span>
                     </div>
                     <p className="text-xs text-neutral-300 leading-relaxed">
-                      We are sorry your experience wasn't 100% perfect. Please tell our owner directly so we can resolve this today.
+                      We are sorry your experience wasn't 100% perfect. Please tell our owner
+                      directly so we can resolve this today.
                     </p>
 
                     {feedbackSent ? (

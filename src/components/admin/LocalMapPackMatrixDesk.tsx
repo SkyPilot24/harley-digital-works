@@ -25,16 +25,76 @@ interface SuburbPageConfig {
 }
 
 const DEFAULT_SUBURBS: SuburbPageConfig[] = [
-  { suburb: "Wilmslow", county: "Cheshire", postcodeArea: "SK9", landmark: "The Carrs Park & Water Lane", distanceMiles: 0 },
-  { suburb: "Alderley Edge", county: "Cheshire", postcodeArea: "SK9", landmark: "London Road & The Edge", distanceMiles: 2 },
-  { suburb: "Knutsford", county: "Cheshire", postcodeArea: "WA16", landmark: "Tatton Park & King Street", distanceMiles: 6 },
-  { suburb: "Altrincham", county: "Greater Manchester", postcodeArea: "WA14", landmark: "Altrincham Market & Hale Road", distanceMiles: 5 },
-  { suburb: "Hale & Bowdon", county: "Greater Manchester", postcodeArea: "WA15", landmark: "Ashley Road & Stamford Park", distanceMiles: 4 },
-  { suburb: "Prestbury", county: "Cheshire", postcodeArea: "SK10", landmark: "The Village & St Peter's Church", distanceMiles: 7 },
-  { suburb: "Macclesfield", county: "Cheshire", postcodeArea: "SK11", landmark: "Market Place & Silk Museum", distanceMiles: 8 },
-  { suburb: "Bramhall", county: "Greater Manchester", postcodeArea: "SK7", landmark: "Bramall Hall & Bramhall Park", distanceMiles: 5 },
-  { suburb: "Poynton", county: "Cheshire", postcodeArea: "SK12", landmark: "Park Lane & Anson Engine Museum", distanceMiles: 6 },
-  { suburb: "Cheadle & Gatley", county: "Greater Manchester", postcodeArea: "SK8", landmark: "High Street & Bruntwood Park", distanceMiles: 7 },
+  {
+    suburb: "Wilmslow",
+    county: "Cheshire",
+    postcodeArea: "SK9",
+    landmark: "The Carrs Park & Water Lane",
+    distanceMiles: 0,
+  },
+  {
+    suburb: "Alderley Edge",
+    county: "Cheshire",
+    postcodeArea: "SK9",
+    landmark: "London Road & The Edge",
+    distanceMiles: 2,
+  },
+  {
+    suburb: "Knutsford",
+    county: "Cheshire",
+    postcodeArea: "WA16",
+    landmark: "Tatton Park & King Street",
+    distanceMiles: 6,
+  },
+  {
+    suburb: "Altrincham",
+    county: "Greater Manchester",
+    postcodeArea: "WA14",
+    landmark: "Altrincham Market & Hale Road",
+    distanceMiles: 5,
+  },
+  {
+    suburb: "Hale & Bowdon",
+    county: "Greater Manchester",
+    postcodeArea: "WA15",
+    landmark: "Ashley Road & Stamford Park",
+    distanceMiles: 4,
+  },
+  {
+    suburb: "Prestbury",
+    county: "Cheshire",
+    postcodeArea: "SK10",
+    landmark: "The Village & St Peter's Church",
+    distanceMiles: 7,
+  },
+  {
+    suburb: "Macclesfield",
+    county: "Cheshire",
+    postcodeArea: "SK11",
+    landmark: "Market Place & Silk Museum",
+    distanceMiles: 8,
+  },
+  {
+    suburb: "Bramhall",
+    county: "Greater Manchester",
+    postcodeArea: "SK7",
+    landmark: "Bramall Hall & Bramhall Park",
+    distanceMiles: 5,
+  },
+  {
+    suburb: "Poynton",
+    county: "Cheshire",
+    postcodeArea: "SK12",
+    landmark: "Park Lane & Anson Engine Museum",
+    distanceMiles: 6,
+  },
+  {
+    suburb: "Cheadle & Gatley",
+    county: "Greater Manchester",
+    postcodeArea: "SK8",
+    landmark: "High Street & Bruntwood Park",
+    distanceMiles: 7,
+  },
 ];
 
 export function LocalMapPackMatrixDesk({
@@ -88,7 +148,7 @@ export function LocalMapPackMatrixDesk({
         openingHours: "Mo-Su 00:00-23:59",
       },
       null,
-      2
+      2,
     );
   };
 
@@ -169,7 +229,8 @@ export default function ${sub.suburb.replace(/[^a-zA-Z]/g, "")}ServicePage() {
             Automated Sub-Town Landing Page Factory
           </h2>
           <p className="mt-1 text-xs md:text-sm text-neutral-400 max-w-2xl">
-            Instantly generate 10+ high-ranking geo-targeted landing pages with localized landmarks, Google Map Pack Schema.org JSON-LD, and ready-to-deploy React components.
+            Instantly generate 10+ high-ranking geo-targeted landing pages with localized landmarks,
+            Google Map Pack Schema.org JSON-LD, and ready-to-deploy React components.
           </p>
         </div>
 
@@ -313,13 +374,17 @@ export default function ${sub.suburb.replace(/[^a-zA-Z]/g, "")}ServicePage() {
                     activeTab === "preview"
                       ? `${generatePageTitle(selectedSuburb)}\n\n${generateMetaDesc(selectedSuburb)}`
                       : activeTab === "schema"
-                      ? generateSchemaJson(selectedSuburb)
-                      : generateTsxCode(selectedSuburb);
+                        ? generateSchemaJson(selectedSuburb)
+                        : generateTsxCode(selectedSuburb);
                   copyToClipboard(content, `${selectedSuburb.suburb} ${activeTab.toUpperCase()}`);
                 }}
                 className="inline-flex items-center gap-1.5 rounded-lg bg-neutral-800 hover:bg-neutral-700 px-3 py-1.5 text-xs font-semibold text-white border border-neutral-700 transition-colors cursor-pointer"
               >
-                {copiedKey ? <Check className="h-3.5 w-3.5 text-emerald-400" /> : <Copy className="h-3.5 w-3.5" />}
+                {copiedKey ? (
+                  <Check className="h-3.5 w-3.5 text-emerald-400" />
+                ) : (
+                  <Copy className="h-3.5 w-3.5" />
+                )}
                 <span>{copiedKey ? "Copied!" : "Copy"}</span>
               </button>
             </div>
@@ -329,7 +394,8 @@ export default function ${sub.suburb.replace(/[^a-zA-Z]/g, "")}ServicePage() {
               <div className="space-y-6">
                 <div className="rounded-xl bg-neutral-900/90 p-4 border border-neutral-800">
                   <div className="text-[10px] font-mono text-emerald-400 mb-1">
-                    https://{companyName.toLowerCase().replace(/[^a-z0-9]/g, "")}.co.uk/{selectedSuburb.suburb.toLowerCase()}
+                    https://{companyName.toLowerCase().replace(/[^a-z0-9]/g, "")}.co.uk/
+                    {selectedSuburb.suburb.toLowerCase()}
                   </div>
                   <h3 className="text-base font-bold text-blue-400 hover:underline cursor-pointer">
                     {generatePageTitle(selectedSuburb)}
@@ -350,7 +416,9 @@ export default function ${sub.suburb.replace(/[^a-zA-Z]/g, "")}ServicePage() {
                     <span className="text-[10px] font-mono uppercase text-neutral-400 block mb-1">
                       Target Postcode Sector
                     </span>
-                    <span className="font-semibold text-gold-400">{selectedSuburb.postcodeArea}</span>
+                    <span className="font-semibold text-gold-400">
+                      {selectedSuburb.postcodeArea}
+                    </span>
                   </div>
                 </div>
 
@@ -361,10 +429,12 @@ export default function ${sub.suburb.replace(/[^a-zA-Z]/g, "")}ServicePage() {
                   <div className="space-y-2">
                     <div>
                       <p className="font-bold text-white">
-                        Do you provide emergency {tradeSector.toLowerCase()} in {selectedSuburb.suburb}?
+                        Do you provide emergency {tradeSector.toLowerCase()} in{" "}
+                        {selectedSuburb.suburb}?
                       </p>
                       <p className="text-neutral-400 text-[11px] mt-0.5">
-                        Yes! Our mobile team is regularly deployed near {selectedSuburb.landmark} and guarantees rapid response across {selectedSuburb.postcodeArea}.
+                        Yes! Our mobile team is regularly deployed near {selectedSuburb.landmark}{" "}
+                        and guarantees rapid response across {selectedSuburb.postcodeArea}.
                       </p>
                     </div>
                   </div>

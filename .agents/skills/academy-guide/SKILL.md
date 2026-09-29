@@ -52,8 +52,8 @@ often the better recommendation than any single item.
    never a replacement.
 
 2. **Only recommend on strong matches.** A strong match is about intent,
-   not just topic. The user must be asking *how to use a Claude feature*
-   or *how to get started with X* — they're looking for a resource to
+   not just topic. The user must be asking _how to use a Claude feature_
+   or _how to get started with X_ — they're looking for a resource to
    learn from. "How do projects work?" is a strong match. "Help me
    organize this document" is not, even though projects are topically
    relevant — they're mid-task, they want help with the task, not a

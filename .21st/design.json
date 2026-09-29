@@ -3,25 +3,13 @@
   "project": {
     "name": "tanstack_start_ts",
     "productType": null,
-    "stack": [
-      "react",
-      "shadcn",
-      "tailwind-v4",
-      "vite"
-    ]
+    "stack": ["react", "shadcn", "tailwind-v4", "vite"]
   },
   "sources": {
     "tokens": [],
-    "components": [
-      "src/components/ui"
-    ],
-    "assets": [
-      "public/brand",
-      "public/images"
-    ],
-    "instructions": [
-      "AGENTS.md"
-    ]
+    "components": ["src/components/ui"],
+    "assets": ["public/brand", "public/images"],
+    "instructions": ["AGENTS.md"]
   },
   "design": {
     "colorMode": "unknown",
@@ -82,9 +70,7 @@
       "toggle-group",
       "tooltip"
     ],
-    "preferredPrimitives": [
-      "radix-ui"
-    ],
+    "preferredPrimitives": ["radix-ui"],
     "patterns": []
   },
   "constraints": {

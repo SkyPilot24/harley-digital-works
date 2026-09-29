@@ -24,6 +24,7 @@ This skill governs all financial calculations, UK VAT rules, and payment terms a
 ## Standard Pricing & Billing Structure
 
 ### 1. 14-Day Launch Website Package (£1,495 + VAT)
+
 - **Net Price**: £1,495.00
 - **VAT (20%)**: £299.00
 - **Gross Total**: £1,794.00
@@ -32,6 +33,7 @@ This skill governs all financial calculations, UK VAT rules, and payment terms a
   - **Final 50% Balance Invoice**: £747.50 + £149.50 VAT = **£897.00** (Payable upon pre-launch review sign-off).
 
 ### 2. Growth Commercial Website Package (£2,995 + VAT)
+
 - **Net Price**: £2,995.00
 - **VAT (20%)**: £599.00
 - **Gross Total**: £3,594.00
@@ -40,6 +42,7 @@ This skill governs all financial calculations, UK VAT rules, and payment terms a
   - **Final 50% Balance Invoice**: £1,497.50 + £299.50 VAT = **£1,797.00**.
 
 ### 3. Managed Care & Hosting Retainers
+
 - **Standard Care Plan**: £95.00/mo + £19.00 VAT = **£114.00/mo** gross.
 - **Priority Care Plan**: £195.00/mo + £39.00 VAT = **£234.00/mo** gross.
 - **Billing Terms**: 30-day rolling term, direct debit / standing order via BACS, cancel anytime with 30 days notice.

@@ -38,22 +38,26 @@ const PARTNER_BENEFITS = [
   {
     icon: PoundSterling,
     title: "£250 Cash Referral Reward",
-    description: "Paid directly to your company or personal bank account via BACS on the 1st of every month for every confirmed website build.",
+    description:
+      "Paid directly to your company or personal bank account via BACS on the 1st of every month for every confirmed website build.",
   },
   {
     icon: Gift,
     title: "£150 Client Voucher",
-    description: "Your referred trade contractors receive an exclusive £150 discount on their Launch (£1,495) or Growth (£2,995) package.",
+    description:
+      "Your referred trade contractors receive an exclusive £150 discount on their Launch (£1,495) or Growth (£2,995) package.",
   },
   {
     icon: ShieldCheck,
     title: "14-Day Delivery SLA Guarantee",
-    description: "We handle 100% of the copywriting, design, and tech so your contractors enjoy a flawless experience that reflects brilliantly on you.",
+    description:
+      "We handle 100% of the copywriting, design, and tech so your contractors enjoy a flawless experience that reflects brilliantly on you.",
   },
   {
     icon: Building2,
     title: "Co-Branded Marketing Collateral",
-    description: "We supply ready-to-print trade counter leaflets, counter display cards, and digital email snippets customized for your branch.",
+    description:
+      "We supply ready-to-print trade counter leaflets, counter display cards, and digital email snippets customized for your branch.",
   },
 ];
 
@@ -95,7 +99,9 @@ function PartnersPage() {
     setTimeout(() => {
       setIsSubmitting(false);
       setHasApplied(true);
-      toast.success("Partner application received! Our partnership director will contact you within 24 hours.");
+      toast.success(
+        "Partner application received! Our partnership director will contact you within 24 hours.",
+      );
     }, 900);
   };
 
@@ -104,7 +110,7 @@ function PartnersPage() {
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-slate-950 pt-32 pb-12 text-white md:pt-40 md:pb-16 border-b border-emerald-950/40">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_-20%,rgba(16,185,129,0.18),rgba(255,255,255,0))]" />
-        
+
         <Container className="relative z-10">
           {/* Top Switcher Tabs */}
           <div className="flex flex-wrap items-center gap-2 mb-6">
@@ -148,7 +154,8 @@ function PartnersPage() {
               </div>
 
               <h1 className="mt-6 max-w-4xl text-[clamp(2.5rem,5.5vw,4.8rem)] font-bold tracking-tight text-white leading-[1.05]">
-                Earn <span className="text-emerald-400">£250 for Every UK Trade Contractor</span> You Introduce.
+                Earn <span className="text-emerald-400">£250 for Every UK Trade Contractor</span>{" "}
+                You Introduce.
               </h1>
 
               <p className="mt-6 max-w-2xl text-lg leading-relaxed text-slate-300">
@@ -197,7 +204,10 @@ function PartnersPage() {
       </section>
 
       {/* Interactive Partner Earnings Calculator */}
-      <section id="commission-calculator" className="py-20 md:py-24 bg-slate-900 text-white border-b border-slate-800">
+      <section
+        id="commission-calculator"
+        className="py-20 md:py-24 bg-slate-900 text-white border-b border-slate-800"
+      >
         <Container>
           <div className="mx-auto max-w-4xl rounded-2xl border border-slate-800 bg-slate-950 p-8 md:p-12 shadow-2xl">
             <div className="flex items-center gap-3 border-b border-slate-800 pb-6">
@@ -208,7 +218,9 @@ function PartnersPage() {
                 <span className="text-xs font-mono font-bold uppercase tracking-wider text-emerald-400">
                   Revenue Model
                 </span>
-                <h2 className="text-2xl font-bold text-white">Monthly Referral Earnings Calculator</h2>
+                <h2 className="text-2xl font-bold text-white">
+                  Monthly Referral Earnings Calculator
+                </h2>
               </div>
             </div>
 
@@ -242,15 +254,21 @@ function PartnersPage() {
                 <div className="rounded-xl bg-slate-900 p-4 text-xs text-slate-300 space-y-2 border border-slate-800">
                   <div className="flex items-center gap-2">
                     <CheckCircle2 className="h-4 w-4 text-emerald-400" />
-                    <span>Commission rate: <strong>£250 per completed build</strong></span>
+                    <span>
+                      Commission rate: <strong>£250 per completed build</strong>
+                    </span>
                   </div>
                   <div className="flex items-center gap-2">
                     <CheckCircle2 className="h-4 w-4 text-emerald-400" />
-                    <span>Payout schedule: <strong>1st of every month via direct BACS</strong></span>
+                    <span>
+                      Payout schedule: <strong>1st of every month via direct BACS</strong>
+                    </span>
                   </div>
                   <div className="flex items-center gap-2">
                     <CheckCircle2 className="h-4 w-4 text-emerald-400" />
-                    <span>Client discount: <strong>£150 co-branded voucher for each trade</strong></span>
+                    <span>
+                      Client discount: <strong>£150 co-branded voucher for each trade</strong>
+                    </span>
                   </div>
                 </div>
               </div>
@@ -265,7 +283,9 @@ function PartnersPage() {
                 <span className="text-xs text-slate-400">per month</span>
 
                 <div className="mt-6 border-t border-emerald-900/60 pt-4">
-                  <span className="text-xs text-slate-400 block font-mono">Annualized Commission:</span>
+                  <span className="text-xs text-slate-400 block font-mono">
+                    Annualized Commission:
+                  </span>
                   <span className="text-xl font-bold text-white font-mono">
                     £{annualCommission.toLocaleString()} / year
                   </span>
@@ -287,7 +307,8 @@ function PartnersPage() {
               Why UK Trade Suppliers & Accountants Partner With Us.
             </h2>
             <p className="mt-3 text-sm text-ink-muted">
-              We protect your commercial reputation with strict 14-day delivery and senior operating governance.
+              We protect your commercial reputation with strict 14-day delivery and senior operating
+              governance.
             </p>
           </div>
 
@@ -350,12 +371,16 @@ function PartnersPage() {
                 Register as an Official Trade Partner
               </h2>
               <p className="mt-2 text-sm text-slate-300">
-                Receive your unique partner referral code, co-branded marketing pack, and dedicated WhatsApp support channel.
+                Receive your unique partner referral code, co-branded marketing pack, and dedicated
+                WhatsApp support channel.
               </p>
             </div>
 
             {!hasApplied ? (
-              <form onSubmit={handleSubmit} className="mt-10 rounded-2xl border border-slate-800 bg-slate-900 p-8 shadow-xl space-y-5">
+              <form
+                onSubmit={handleSubmit}
+                className="mt-10 rounded-2xl border border-slate-800 bg-slate-900 p-8 shadow-xl space-y-5"
+              >
                 <div className="grid gap-4 sm:grid-cols-2">
                   <div>
                     <label className="block text-xs font-semibold text-slate-300 mb-1">
@@ -455,8 +480,9 @@ function PartnersPage() {
                 </div>
                 <h3 className="text-xl font-bold text-white">Application Received</h3>
                 <p className="mt-2 text-xs text-emerald-200 leading-relaxed">
-                  Thank you, <strong>{partnerName}</strong>. Your application for <strong>{companyName}</strong> has been registered.
-                  Our partnership director will contact you via {email} with your partner referral code and marketing assets.
+                  Thank you, <strong>{partnerName}</strong>. Your application for{" "}
+                  <strong>{companyName}</strong> has been registered. Our partnership director will
+                  contact you via {email} with your partner referral code and marketing assets.
                 </p>
               </div>
             )}

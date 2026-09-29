@@ -110,7 +110,10 @@ const depositRequired = Math.round(upfrontTotal * 0.5);
 const balance = upfrontTotal - depositRequired;
 
 assert(upfrontTotal === 4180, `Upfront total calculation (£4,180 expected, got £${upfrontTotal})`);
-assert(depositRequired === 2090, `50% deposit requirement (£2,090 expected, got £${depositRequired})`);
+assert(
+  depositRequired === 2090,
+  `50% deposit requirement (£2,090 expected, got £${depositRequired})`,
+);
 assert(balance === 2090, `50% completion balance (£2,090 expected, got £${balance})`);
 
 // 5. Verify Partner Referral Commission Logic
@@ -120,18 +123,30 @@ const ratePerTrade = 250;
 const monthlyPayout = partnerReferrals * ratePerTrade;
 const annualPayout = monthlyPayout * 12;
 
-assert(monthlyPayout === 1000, `Partner monthly commission (£1,000 for 4 trades, got £${monthlyPayout})`);
-assert(annualPayout === 12000, `Partner annual commission (£12,000 for 4 trades/mo, got £${annualPayout})`);
+assert(
+  monthlyPayout === 1000,
+  `Partner monthly commission (£1,000 for 4 trades, got £${monthlyPayout})`,
+);
+assert(
+  annualPayout === 12000,
+  `Partner annual commission (£12,000 for 4 trades/mo, got £${annualPayout})`,
+);
 
 // 6. Verify VAT Calculation & HMRC Rules (GB 948 2018 39)
 console.log("\n[Test Suite 6: VAT & Invoicing Accounting Logic]");
-const netDeposit = 1497.50;
-const ukVatRate = 0.20;
+const netDeposit = 1497.5;
+const ukVatRate = 0.2;
 const expectedVat = netDeposit * ukVatRate;
 const expectedGross = netDeposit + expectedVat;
 
-assert(expectedVat === 299.50, `20% UK VAT on £1,497.50 (£299.50 expected, got £${expectedVat.toFixed(2)})`);
-assert(expectedGross === 1797.00, `Gross Total Inc-VAT (£1,797.00 expected, got £${expectedGross.toFixed(2)})`);
+assert(
+  expectedVat === 299.5,
+  `20% UK VAT on £1,497.50 (£299.50 expected, got £${expectedVat.toFixed(2)})`,
+);
+assert(
+  expectedGross === 1797.0,
+  `Gross Total Inc-VAT (£1,797.00 expected, got £${expectedGross.toFixed(2)})`,
+);
 
 console.log("\n==================================================");
 console.log(` Summary: ${passed} Passed | ${failed} Failed`);

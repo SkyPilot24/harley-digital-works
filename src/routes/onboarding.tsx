@@ -48,7 +48,8 @@ function OnboardingPage() {
               <span className="text-gold-400">Project Onboarding.</span>
             </h1>
             <p className="mt-3 text-sm sm:text-base text-neutral-300 leading-relaxed max-w-lg mx-auto">
-              Take 3 minutes to tell us about your coverage areas, accreditations, and key services. We handle 100% of the copywriting and code.
+              Take 3 minutes to tell us about your coverage areas, accreditations, and key services.
+              We handle 100% of the copywriting and code.
             </p>
 
             <div className="mt-6 flex flex-wrap items-center justify-center gap-4 text-xs text-neutral-400">

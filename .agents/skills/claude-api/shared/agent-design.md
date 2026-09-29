@@ -6,10 +6,10 @@ This file covers decision heuristics for building agents on the Claude API: whic
 
 ## Model Parameters
 
-| Parameter | When to use it | What to expect |
-| --- | --- | --- |
-| **Adaptive thinking** (`thinking: {type: "adaptive"}`) | When you want Claude to control when and how much to think. | Claude determines thinking depth per request and automatically interleaves thinking between tool calls. No token budget to tune. |
-| **Effort** (`output_config: {effort: ...}`) | When adjusting the tradeoff between thoroughness and token efficiency. | Lower effort -> fewer and more-consolidated tool calls, less preamble, terser confirmations. `medium` is often a favorable balance. Use `max` when correctness matters more than cost. |
+| Parameter                                              | When to use it                                                         | What to expect                                                                                                                                                                         |
+| ------------------------------------------------------ | ---------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Adaptive thinking** (`thinking: {type: "adaptive"}`) | When you want Claude to control when and how much to think.            | Claude determines thinking depth per request and automatically interleaves thinking between tool calls. No token budget to tune.                                                       |
+| **Effort** (`output_config: {effort: ...}`)            | When adjusting the tradeoff between thoroughness and token efficiency. | Lower effort -> fewer and more-consolidated tool calls, less preamble, terser confirmations. `medium` is often a favorable balance. Use `max` when correctness matters more than cost. |
 
 See `SKILL.md` §Thinking & Effort for model support and parameter details.
 
@@ -36,14 +36,14 @@ A **bash tool** gives Claude broad programmatic leverage - it can perform almost
 
 ## Anthropic-Provided Tools
 
-| Tool | Side | When to use it | What to expect |
-| --- | --- | --- | --- |
-| **Bash** | Client | Claude needs to execute shell commands. | Claude emits commands; your harness executes them. Reference implementation provided. |
-| **Text editor** | Client | Claude needs to read or edit files. | Claude views, creates, and edits files via your implementation. Reference implementation provided. |
-| **Computer use** | Client or Server | Claude needs to interact with GUIs, web apps, or visual interfaces. | Claude takes screenshots and issues mouse/keyboard commands. Can be self-hosted (you run the environment) or Anthropic-hosted. |
-| **Code execution** | Server | Claude needs to run code in a sandbox you don't want to manage. | Anthropic-hosted container with built-in file and bash sub-tools. No client-side execution. |
-| **Web search / fetch** | Server | Claude needs information past its training cutoff (news, current events, recent docs) or the content of a specific URL. | Claude issues a query or URL; Anthropic executes it and returns results with citations. |
-| **Memory** | Client | Claude needs to save context across sessions. | Claude reads/writes a `/memories` directory. You implement the storage backend. |
+| Tool                   | Side             | When to use it                                                                                                          | What to expect                                                                                                                 |
+| ---------------------- | ---------------- | ----------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| **Bash**               | Client           | Claude needs to execute shell commands.                                                                                 | Claude emits commands; your harness executes them. Reference implementation provided.                                          |
+| **Text editor**        | Client           | Claude needs to read or edit files.                                                                                     | Claude views, creates, and edits files via your implementation. Reference implementation provided.                             |
+| **Computer use**       | Client or Server | Claude needs to interact with GUIs, web apps, or visual interfaces.                                                     | Claude takes screenshots and issues mouse/keyboard commands. Can be self-hosted (you run the environment) or Anthropic-hosted. |
+| **Code execution**     | Server           | Claude needs to run code in a sandbox you don't want to manage.                                                         | Anthropic-hosted container with built-in file and bash sub-tools. No client-side execution.                                    |
+| **Web search / fetch** | Server           | Claude needs information past its training cutoff (news, current events, recent docs) or the content of a specific URL. | Claude issues a query or URL; Anthropic executes it and returns results with citations.                                        |
+| **Memory**             | Client           | Claude needs to save context across sessions.                                                                           | Claude reads/writes a `/memories` directory. You implement the storage backend.                                                |
 
 **Client-side** tools are defined by Anthropic (name, schema, Claude's usage pattern) but executed by your harness. Anthropic provides reference implementations. **Server-side** tools run entirely on Anthropic infrastructure - declare them in `tools` and Claude handles the rest.
 
@@ -55,18 +55,18 @@ With standard tool use, each tool call is a round trip: Claude calls the tool, t
 
 **Programmatic tool calling (PTC)** lets Claude compose those calls into a script instead. The script runs in the code execution container. When the script calls a tool, the container pauses, the call is executed (client-side or server-side), and the result returns to the running code - not to Claude's context. The script processes it with normal control flow (loops, filters, branches). Only the script's final output returns to Claude.
 
-| When to use it | What to expect |
-| --- | --- |
+| When to use it                                                                                                  | What to expect                                                                                                                                           |
+| --------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Many sequential tool calls, or large intermediate results you want filtered before they hit the context window. | Claude writes code that invokes tools as functions. Runs in the code execution container. Token cost scales with final output, not intermediate results. |
 
 ---
 
 ## Scaling the Tool and Instruction Set
 
-| Feature | When to use it | What to expect |
-| --- | --- | --- |
-| **Tool search** | Many tools available, but only a few relevant per request. Don't want all schemas in context upfront. | Claude searches the tool set and loads only relevant schemas. Tool definitions are appended, not swapped - preserves cache (see Caching below). |
-| **Skills** | Task-specific instructions Claude should load only when relevant. | Each skill is a folder with a `SKILL.md`. The skill's description sits in context by default; Claude reads the full file when the task calls for it. |
+| Feature         | When to use it                                                                                        | What to expect                                                                                                                                       |
+| --------------- | ----------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Tool search** | Many tools available, but only a few relevant per request. Don't want all schemas in context upfront. | Claude searches the tool set and loads only relevant schemas. Tool definitions are appended, not swapped - preserves cache (see Caching below).      |
+| **Skills**      | Task-specific instructions Claude should load only when relevant.                                     | Each skill is a folder with a `SKILL.md`. The skill's description sits in context by default; Claude reads the full file when the task calls for it. |
 
 Both patterns keep the fixed context small and load detail on demand.
 
@@ -74,11 +74,11 @@ Both patterns keep the fixed context small and load detail on demand.
 
 ## Long-Running Agents: Managing Context
 
-| Pattern | When to use it | What to expect |
-| --- | --- | --- |
-| **Context editing** | Context grows stale over many turns (old tool results, completed thinking). | Tool results and thinking blocks are cleared based on configurable thresholds. Keeps the transcript lean without summarizing. |
-| **Compaction** | Conversation likely to reach or exceed the context window limit. | Earlier context is summarized into a compaction block server-side. See `SKILL.md` §Compaction for the critical `response.content` handling. |
-| **Memory** | State must persist across sessions (not just within one conversation). | Claude reads/writes files in a memory directory. Survives process restarts. |
+| Pattern             | When to use it                                                              | What to expect                                                                                                                              |
+| ------------------- | --------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Context editing** | Context grows stale over many turns (old tool results, completed thinking). | Tool results and thinking blocks are cleared based on configurable thresholds. Keeps the transcript lean without summarizing.               |
+| **Compaction**      | Conversation likely to reach or exceed the context window limit.            | Earlier context is summarized into a compaction block server-side. See `SKILL.md` §Compaction for the critical `response.content` handling. |
+| **Memory**          | State must persist across sessions (not just within one conversation).      | Claude reads/writes files in a memory directory. Survives process restarts.                                                                 |
 
 **Choosing between them:** Context editing and compaction operate within a session - editing prunes stale turns, compaction summarizes when you're near the limit. Memory is for cross-session persistence. Many long-running agents use all three.
 
@@ -88,11 +88,11 @@ Both patterns keep the fixed context small and load detail on demand.
 
 **Read `prompt-caching.md` first.** It covers the prefix-match invariant, breakpoint placement, the silent-invalidator audit, and why changing tools or models mid-session breaks the cache. This section covers only the agent-specific workarounds for those constraints.
 
-| Constraint (from `prompt-caching.md`) | Agent-specific workaround |
-| --- | --- |
+| Constraint (from `prompt-caching.md`)                        | Agent-specific workaround                                                                                                                                                                                                                                                                                                                                                                    |
+| ------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Editing the system prompt mid-session invalidates the cache. | Append a `{"role": "system", ...}` message to `messages[]` instead (no beta header; on supporting models - see `prompt-caching.md` § Mid-conversation system messages). The cached prefix stays intact, and the model treats it as an operator-authority instruction rather than user text. On models that don't support it, fall back to a `<system-reminder>` text block in the user turn. |
-| Switching models mid-session invalidates the cache. | Spawn a **subagent** with the cheaper model for the sub-task; keep the main loop on one model. On Managed Agents that is a `multiagent` roster entry - see `managed-agents-multiagent.md`. |
-| Adding/removing tools mid-session invalidates the cache. | Use **tool search** for dynamic discovery - it appends tool schemas rather than swapping them, so the existing prefix is preserved. |
+| Switching models mid-session invalidates the cache.          | Spawn a **subagent** with the cheaper model for the sub-task; keep the main loop on one model. On Managed Agents that is a `multiagent` roster entry - see `managed-agents-multiagent.md`.                                                                                                                                                                                                   |
+| Adding/removing tools mid-session invalidates the cache.     | Use **tool search** for dynamic discovery - it appends tool schemas rather than swapping them, so the existing prefix is preserved.                                                                                                                                                                                                                                                          |
 
 For multi-turn breakpoint placement, use the combination in `prompt-caching.md` § Automatic vs explicit breakpoints: one explicit breakpoint on the static system prefix plus top-level automatic caching for the conversation tail (where automatic caching is available).
 

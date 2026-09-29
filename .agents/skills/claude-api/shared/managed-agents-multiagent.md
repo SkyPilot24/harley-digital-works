@@ -83,9 +83,9 @@ The same shape fits a pipeline of different specialists: a fast document extract
 
 - **Good fits:** parallel research across sources; reading large amounts of material without filling the coordinator's context; specialists with narrow prompts and tool sets rather than one agent carrying every tool. **Poor fit:** a small single-step task - every delegation costs a round-trip and a re-briefing.
 - **Write `name` and `description` for the coordinator to read.** The coordinator chooses whom to spawn from each roster entry's name and description (the `self` entry is listed under the coordinator's own name), so say what each agent is good at and what to hand it. Names must be unique across the roster; don't name an agent `self`.
-- **Say how to delegate in the coordinator's `system` prompt** - what to hand off and to whom, how many at once, what to keep for itself, and what is too small to be worth delegating (the *Delegating to subagents* sample prompt in `shared/model-migration.md` is a starting point). Subagents see none of the coordinator's conversation, so each task must carry the paths, constraints, and report format it needs. Spawning returns immediately; the subagent's report arrives in a later coordinator turn.
+- **Say how to delegate in the coordinator's `system` prompt** - what to hand off and to whom, how many at once, what to keep for itself, and what is too small to be worth delegating (the _Delegating to subagents_ sample prompt in `shared/model-migration.md` is a starting point). Subagents see none of the coordinator's conversation, so each task must carry the paths, constraints, and report format it needs. Spawning returns immediately; the subagent's report arrives in a later coordinator turn.
 - **Web tool domain lists layer, never widen.** A roster agent's `web_search` / `web_fetch` calls are bound by its own `allowed_domains` / `blocked_domains`, by those of every agent that called it, and by the coordinator's current lists (allow-lists intersect, block-lists union). Keep each roster agent's allow-list inside the coordinator's - disjoint lists leave the tool present but every call fails `url_not_allowed`. See `shared/managed-agents-tools.md` § Web search & web fetch settings.
-- **Limits:** 1-20 roster entries (at most one `self`; each rostered agent can be spawned many times), one level of delegation (a roster member must not have its own `multiagent`), and at most 25 concurrent threads per session - archive finished threads if a long session needs more (see *Interrupting and archiving threads* below).
+- **Limits:** 1-20 roster entries (at most one `self`; each rostered agent can be spawned many times), one level of delegation (a roster member must not have its own `multiagent`), and at most 25 concurrent threads per session - archive finished threads if a long session needs more (see _Interrupting and archiving threads_ below).
 
 The sections below are the reference for rosters, threads, events, and client-side handling; the platform guide is `https://platform.claude.com/docs/en/managed-agents/multiagent-orchestration.md`.
 
@@ -114,12 +114,12 @@ orchestrator = client.beta.agents.create(
 session = client.beta.sessions.create(agent=orchestrator.id, environment_id=env.id)
 ```
 
-| Roster entry | Shape | Notes |
-|---|---|---|
-| String shorthand | `"agent_abc123"` | References the latest version of a stored agent. |
-| Agent reference | `{type: "agent", id, version?}` | Omit `version` to pin the latest at coordinator save time. |
-| Self | `{type: "self"}` | The coordinator can spawn copies of itself. |
-| Advisor | `{type: "advisor", model}` | A model the session's primary thread can consult mid-turn. At most one per roster. See § Advisor below. |
+| Roster entry     | Shape                           | Notes                                                                                                   |
+| ---------------- | ------------------------------- | ------------------------------------------------------------------------------------------------------- |
+| String shorthand | `"agent_abc123"`                | References the latest version of a stored agent.                                                        |
+| Agent reference  | `{type: "agent", id, version?}` | Omit `version` to pin the latest at coordinator save time.                                              |
+| Self             | `{type: "self"}`                | The coordinator can spawn copies of itself.                                                             |
+| Advisor          | `{type: "advisor", model}`      | A model the session's primary thread can consult mid-turn. At most one per roster. See § Advisor below. |
 
 If the session was created with `agent_with_overrides` (see `shared/managed-agents-core.md` -> Override agent configuration for a session), those overrides apply to the **coordinator and its `self` copies**. Roster agents referenced by ID always use their own as-created configuration - overrides do not propagate to them.
 
@@ -133,13 +133,13 @@ The coordinator's thread receives delegation tools for working the roster: `list
 
 The session-level event stream is the **primary thread** - it shows the coordinator's trace plus a condensed view of subagent activity (thread status transitions and cross-thread messages, not every subagent tool call). Drill into a specific subagent via the per-thread endpoints:
 
-| Operation | HTTP | SDK (`client.beta.sessions.threads.*`) |
-|---|---|---|
-| List threads | `GET /v1/sessions/{sid}/threads` | `.list(session_id)` |
-| Retrieve one | `GET /v1/sessions/{sid}/threads/{tid}` | `.retrieve(thread_id, session_id=...)` |
-| Archive | `POST /v1/sessions/{sid}/threads/{tid}/archive` | `.archive(thread_id, session_id=...)` |
-| List thread events | `GET /v1/sessions/{sid}/threads/{tid}/events` | `.events.list(thread_id, session_id=...)` |
-| Stream thread events | `GET /v1/sessions/{sid}/threads/{tid}/stream` | `.events.stream(thread_id, session_id=...)` |
+| Operation            | HTTP                                            | SDK (`client.beta.sessions.threads.*`)      |
+| -------------------- | ----------------------------------------------- | ------------------------------------------- |
+| List threads         | `GET /v1/sessions/{sid}/threads`                | `.list(session_id)`                         |
+| Retrieve one         | `GET /v1/sessions/{sid}/threads/{tid}`          | `.retrieve(thread_id, session_id=...)`      |
+| Archive              | `POST /v1/sessions/{sid}/threads/{tid}/archive` | `.archive(thread_id, session_id=...)`       |
+| List thread events   | `GET /v1/sessions/{sid}/threads/{tid}/events`   | `.events.list(thread_id, session_id=...)`   |
+| Stream thread events | `GET /v1/sessions/{sid}/threads/{tid}/stream`   | `.events.stream(thread_id, session_id=...)` |
 
 Each `SessionThread` carries `id`, `status` (`running` | `idle` | `rescheduling` | `terminated`), `agent` (a resolved snapshot of the agent config - `id`, `name`, `model`, `system`, `tools`, `skills`, `mcp_servers`, `version` - except advisor threads, whose `agent` is the two-field advisor form `{"type": "advisor", "model": ...}` - see § Advisor), `parent_thread_id` (null for the primary thread, which is included in the list), `archived_at`, and optional `stats`/`usage`. Per-thread `usage.list_cost` figures do **not** sum to the session total - the session figure additionally includes session running time and each figure is rounded independently; the session-level `usage.list_cost` is authoritative. **Session status aggregates thread statuses** - if any thread is `running`, `session.status` is `running`. Max **25 concurrent threads** (advisor threads are exempt - see § Advisor). When draining a per-thread stream, break on `session.thread_status_idle` (and check its `stop_reason` as you would for the session-level idle).
 
@@ -149,15 +149,15 @@ Each `SessionThread` carries `id`, `status` (`running` | `idle` | `rescheduling`
 
 ## Multiagent events (on the session stream)
 
-| Event | Payload highlights | Meaning |
-|---|---|---|
-| `session.thread_created` | `session_thread_id`, `agent_name` | A new thread was created. |
-| `session.thread_status_running` | `session_thread_id`, `agent_name` | Thread started activity. |
-| `session.thread_status_idle` | `session_thread_id`, `agent_name`, **`stop_reason`** | Thread is awaiting input - or paused at the session's shared budget (`stop_reason: budget_reached`). Inspect `stop_reason` (same shape as `session.status_idle.stop_reason`). |
-| `session.thread_status_rescheduled` | `session_thread_id`, `agent_name` | Thread is rescheduling after a retryable error. |
-| `session.thread_status_terminated` | `session_thread_id`, `agent_name` | Thread ended - completed its work and self-terminated (advisor consultation threads - see § Advisor), was archived, or hit a terminal error. |
-| `agent.thread_message_sent` | `to_session_thread_id`, `to_agent_name`, `content` | *This* thread sent a message to another thread. On the primary stream: the coordinator sent a task or follow-up to an agent. |
-| `agent.thread_message_received` | `from_session_thread_id`, `from_agent_name`, `content` | A message arrived on *this* thread from another. On the primary stream: an agent sent a report or question to the coordinator. |
+| Event                               | Payload highlights                                     | Meaning                                                                                                                                                                       |
+| ----------------------------------- | ------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `session.thread_created`            | `session_thread_id`, `agent_name`                      | A new thread was created.                                                                                                                                                     |
+| `session.thread_status_running`     | `session_thread_id`, `agent_name`                      | Thread started activity.                                                                                                                                                      |
+| `session.thread_status_idle`        | `session_thread_id`, `agent_name`, **`stop_reason`**   | Thread is awaiting input - or paused at the session's shared budget (`stop_reason: budget_reached`). Inspect `stop_reason` (same shape as `session.status_idle.stop_reason`). |
+| `session.thread_status_rescheduled` | `session_thread_id`, `agent_name`                      | Thread is rescheduling after a retryable error.                                                                                                                               |
+| `session.thread_status_terminated`  | `session_thread_id`, `agent_name`                      | Thread ended - completed its work and self-terminated (advisor consultation threads - see § Advisor), was archived, or hit a terminal error.                                  |
+| `agent.thread_message_sent`         | `to_session_thread_id`, `to_agent_name`, `content`     | _This_ thread sent a message to another thread. On the primary stream: the coordinator sent a task or follow-up to an agent.                                                  |
+| `agent.thread_message_received`     | `from_session_thread_id`, `from_agent_name`, `content` | A message arrived on _this_ thread from another. On the primary stream: an agent sent a report or question to the coordinator.                                                |
 
 > **Direction is relative to the thread whose stream carries the event**, not to the coordinator. The same delegated task is an `agent.thread_message_sent` on the primary stream and an `agent.thread_message_received` on the child's own stream. Reading `_received` as "a subagent finished" is wrong once you're reading a child stream.
 
@@ -173,7 +173,7 @@ GET /v1/sessions/{sid}/threads/{tid}/stream?event_deltas%5B%5D=agent.message
 
 **Previews are thread-scoped.** A child's previews are delivered only on that child's stream and never cross-posted to the session-level stream, whose previews stay scoped to the primary thread. So watching a subagent live means opening its thread stream - the session stream will not show it, no matter what you pass.
 
-> Warning: **Only plain assistant text previews.** A subagent's *reply to its coordinator* rides `agent.thread_message_sent` and is never previewed. A worker that does nothing but report back therefore streams no deltas at all, even with a correct opt-in on the right thread. To get a live preview out of a subagent, its prompt has to make it write the answer as a plain assistant message in its own thread first, and only then report to the coordinator. Run one accumulator per connection, and exit the read loop on `session.thread_status_idle`. Opt-in, accumulate, and reconcile details: `shared/managed-agents-events.md` -> Live previews.
+> Warning: **Only plain assistant text previews.** A subagent's _reply to its coordinator_ rides `agent.thread_message_sent` and is never previewed. A worker that does nothing but report back therefore streams no deltas at all, even with a correct opt-in on the right thread. To get a live preview out of a subagent, its prompt has to make it write the answer as a plain assistant message in its own thread first, and only then report to the coordinator. Run one accumulator per connection, and exit the read loop on `session.thread_status_idle`. Opt-in, accumulate, and reconcile details: `shared/managed-agents-events.md` -> Live previews.
 
 ---
 
@@ -193,9 +193,10 @@ agent = client.beta.agents.create(
 )
 ```
 
-(Claude Opus 5 is the default advisor choice. It is a redacted advisor - the agent reads its advice server-side, but the client sees `[{"type": "redacted"}]`; see *Plaintext vs redacted delivery* below. For client-readable advice, a plaintext advisor such as `claude-opus-4-8` is valid only when the agent's own model is `claude-opus-4-8` or below - agents on Claude Opus 5, Claude Fable 5.1, or Claude Mythos 5.1 can only pair with redacted advisors, so client-readable advice is not available for them (pairing table: `shared/tool-use-concepts.md`).)
+(Claude Opus 5 is the default advisor choice. It is a redacted advisor - the agent reads its advice server-side, but the client sees `[{"type": "redacted"}]`; see _Plaintext vs redacted delivery_ below. For client-readable advice, a plaintext advisor such as `claude-opus-4-8` is valid only when the agent's own model is `claude-opus-4-8` or below - agents on Claude Opus 5, Claude Fable 5.1, or Claude Mythos 5.1 can only pair with redacted advisors, so client-readable advice is not available for them (pairing table: `shared/tool-use-concepts.md`).)
 
 **Rules:**
+
 - **At most one advisor entry per roster.** The entry occupies the reserved roster name `anthropic.advisor` - a roster that also lists a member literally named `anthropic.advisor` is a 400. In responses, the advisor entry is echoed **last** in the roster regardless of submitted position.
 - **Pairing is validated at agent save:** the advisor model must meet a minimum capability bar, and the agent's own model must not be more capable than its advisor (equals can pair). Invalid pairing -> 400. The valid pairs mirror the Messages advisor tool's executor<->advisor table (`shared/tool-use-concepts.md`).
 - **Only the primary thread consults it.** The advisor is not a roster agent: invisible to the coordinator's `list_agents` tool, unreachable via `send_to_agent`, and roster agents cannot consult it.
@@ -246,8 +247,8 @@ The same pattern applies to `user.custom_tool_result`.
 ## Interrupting and archiving threads
 
 - **`user.interrupt` without `session_thread_id` interrupts every non-archived thread in the session, including the primary** - it is not a primary-only stop. Pass `session_thread_id` to target one thread.
-- **Against a child thread blocked on `requires_action`**, the interrupt closes each pending tool call with an *error* tool result (`"Tool execution was interrupted before completion. Please retry."`) and re-emits `session.thread_status_idle` with `stop_reason: end_turn` directly - the model is not sampled. Against a thread already `idle`, the interrupt is a no-op - with one exception: a session on a self-hosted environment whose worker failed the claimed work item (e.g. a memory-store mount error) sits `idle`, and a `user.interrupt` re-queues that work so the next worker claim retries (`shared/managed-agents-self-hosted-sandboxes.md` § Memory stores -> Troubleshooting).
-- **Archive requires the thread to be idle, and `requires_action` counts as idle** - a thread parked on a pending tool call can be archived directly. Only a *running* thread must be interrupted first.
+- **Against a child thread blocked on `requires_action`**, the interrupt closes each pending tool call with an _error_ tool result (`"Tool execution was interrupted before completion. Please retry."`) and re-emits `session.thread_status_idle` with `stop_reason: end_turn` directly - the model is not sampled. Against a thread already `idle`, the interrupt is a no-op - with one exception: a session on a self-hosted environment whose worker failed the claimed work item (e.g. a memory-store mount error) sits `idle`, and a `user.interrupt` re-queues that work so the next worker claim retries (`shared/managed-agents-self-hosted-sandboxes.md` § Memory stores -> Troubleshooting).
+- **Archive requires the thread to be idle, and `requires_action` counts as idle** - a thread parked on a pending tool call can be archived directly. Only a _running_ thread must be interrupted first.
 
 ---
 

@@ -21,7 +21,9 @@ export function ClientSiteCodeExporter() {
   const [tradeSector, setTradeSector] = useState("heating-engineers");
   const [cityHub, setCityHub] = useState("Stockport, Greater Manchester");
   const [phoneNumber, setPhoneNumber] = useState("0161 480 9201");
-  const [activeFile, setActiveFile] = useState<"App.tsx" | "Hero.tsx" | "Calculator.tsx" | "package.json">("App.tsx");
+  const [activeFile, setActiveFile] = useState<
+    "App.tsx" | "Hero.tsx" | "Calculator.tsx" | "package.json"
+  >("App.tsx");
   const [isCompiling, setIsCompiling] = useState(false);
 
   const cleanSlug = companyName.toLowerCase().replace(/[^a-z0-9]/g, "-");
@@ -135,7 +137,8 @@ export function TradeCalculator({ phone }: { phone: string }) {
     setTimeout(() => {
       setIsCompiling(false);
       toast.success(`Production code bundle for "${companyName}" compiled!`, {
-        description: "Standalone repository ready for instant Cloudflare Pages or Vercel deployment.",
+        description:
+          "Standalone repository ready for instant Cloudflare Pages or Vercel deployment.",
       });
     }, 1000);
   };
@@ -151,13 +154,16 @@ export function TradeCalculator({ phone }: { phone: string }) {
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <h3 className="text-base font-bold text-ink">Harley Labs — 1-Click Code Blueprint & Static Site Exporter</h3>
+                <h3 className="text-base font-bold text-ink">
+                  Harley Labs — 1-Click Code Blueprint & Static Site Exporter
+                </h3>
                 <span className="rounded bg-indigo-100 px-2 py-0.5 text-[10px] font-bold text-indigo-800 font-mono">
                   LABS V2.4
                 </span>
               </div>
               <p className="text-xs text-ink-muted">
-                Compiles ContentFlow copywriting, trade schema, and before/after sliders into a clean, standalone React 19 codebase.
+                Compiles ContentFlow copywriting, trade schema, and before/after sliders into a
+                clean, standalone React 19 codebase.
               </p>
             </div>
           </div>

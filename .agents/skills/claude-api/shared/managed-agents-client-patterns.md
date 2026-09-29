@@ -10,16 +10,16 @@ Code samples are TypeScript - other languages follow the same shape; see `{lang}
 
 **Problem:** SSE has no replay. If the connection drops mid-session, a naive reconnect re-opens the stream from "now" and you silently miss every event emitted in between.
 
-**Solution:** on reconnect, fetch the full event history via `events.list()` *before* consuming the live stream, and dedupe on event ID as the live stream catches up.
+**Solution:** on reconnect, fetch the full event history via `events.list()` _before_ consuming the live stream, and dedupe on event ID as the live stream catches up.
 
 ```ts
-const seenEventIds = new Set<string>()
-const stream = await client.beta.sessions.events.stream(session.id)
+const seenEventIds = new Set<string>();
+const stream = await client.beta.sessions.events.stream(session.id);
 
 // Stream is now open and buffering server-side. Read history first.
 for await (const event of client.beta.sessions.events.list(session.id)) {
-  seenEventIds.add(event.id)
-  handle(event)
+  seenEventIds.add(event.id);
+  handle(event);
 }
 
 // Tail the live stream. Dedupe only gates handle() - terminal checks must run
@@ -27,11 +27,11 @@ for await (const event of client.beta.sessions.events.list(session.id)) {
 // response gets skipped by `continue` and the loop never exits.
 for await (const event of stream) {
   if (!seenEventIds.has(event.id)) {
-    seenEventIds.add(event.id)
-    handle(event)
+    seenEventIds.add(event.id);
+    handle(event);
   }
-  if (event.type === 'session.status_terminated') break
-  if (event.type === 'session.status_idle' && event.stop_reason.type !== 'requires_action') break
+  if (event.type === "session.status_terminated") break;
+  if (event.type === "session.status_idle" && event.stop_reason.type !== "requires_action") break;
 }
 ```
 
@@ -45,9 +45,9 @@ Every event on the stream carries `processed_at` (ISO 8601), set when the event 
 
 ```ts
 for await (const event of stream) {
-  if (event.type === 'user.message') {
-    if (event.processed_at == null) onQueued(event.id)
-    else onProcessed(event.id, event.processed_at)
+  if (event.type === "user.message") {
+    if (event.processed_at == null) onQueued(event.id);
+    else onProcessed(event.id, event.processed_at);
   }
 }
 ```
@@ -62,16 +62,13 @@ Send `user.interrupt` as a normal event. The session keeps running until it reac
 
 ```ts
 await client.beta.sessions.events.send(session.id, {
-  events: [{ type: 'user.interrupt' }],
-})
+  events: [{ type: "user.interrupt" }],
+});
 
 // Drain until the session is truly done - see Pattern 5 for the full gate.
 for await (const event of stream) {
-  if (event.type === 'session.status_terminated') break
-  if (
-    event.type === 'session.status_idle' &&
-    event.stop_reason.type !== 'requires_action'
-  ) break
+  if (event.type === "session.status_terminated") break;
+  if (event.type === "session.status_idle" && event.stop_reason.type !== "requires_action") break;
 }
 ```
 
@@ -85,22 +82,28 @@ When a call evaluates to `ask` - the tool has `permission_policy: { type: 'alway
 
 ```ts
 for await (const event of stream) {
-  if ((event.type === 'agent.tool_use' || event.type === 'agent.mcp_tool_use') && event.evaluated_permission === 'ask') {
+  if (
+    (event.type === "agent.tool_use" || event.type === "agent.mcp_tool_use") &&
+    event.evaluated_permission === "ask"
+  ) {
     await client.beta.sessions.events.send(session.id, {
-      events: [{
-        type: 'user.tool_confirmation',
-        tool_use_id: event.id,         // not a toolu_ id - use event.id
-        result: 'allow',               // or 'deny'
-        // deny_message: '...',        // optional, only with result: 'deny'
-      }],
-    })
+      events: [
+        {
+          type: "user.tool_confirmation",
+          tool_use_id: event.id, // not a toolu_ id - use event.id
+          result: "allow", // or 'deny'
+          // deny_message: '...',        // optional, only with result: 'deny'
+        },
+      ],
+    });
   }
 }
 ```
 
 Key points:
+
 - `tool_use_id` is `event.id` (typically `sevt_...`), **not** a `toolu_...` ID.
-- `result` is `'allow' | 'deny'`. Use `deny_message` to tell the model *why* you denied - it gets surfaced back to the agent.
+- `result` is `'allow' | 'deny'`. Use `deny_message` to tell the model _why_ you denied - it gets surfaced back to the agent.
 - Multiple pending tools: respond once per `agent.tool_use` / `agent.mcp_tool_use` event with `evaluated_permission === 'ask'`.
 - Gate on `evaluated_permission === 'ask'`, not on the policy you configured - it covers `always_ask` and `auto`-indeterminate alike. Calls the server **denies** under `auto` (`evaluated_permission === 'deny'`, `evaluation.evaluated_permission.reason_code === 'high_risk'`) never enter this flow: the agent gets an error tool result and the session keeps running; sending a confirmation for one is a 400.
 - Log `event.evaluation` for audit (`type` + `reason_code`), and tolerate a `type` or `reason_code` you don't recognize - branch on known values, pass unknown ones through.
@@ -115,16 +118,17 @@ Do not break on `session.status_idle` alone. The session goes idle transiently -
 
 ```ts
 for await (const event of stream) {
-  handle(event)
-  if (event.type === 'session.status_terminated') break
-  if (event.type === 'session.status_idle') {
-    if (event.stop_reason.type === 'requires_action') continue // waiting on you - handle it
-    break // end_turn, retries_exhausted, or budget_reached - see list below
+  handle(event);
+  if (event.type === "session.status_terminated") break;
+  if (event.type === "session.status_idle") {
+    if (event.stop_reason.type === "requires_action") continue; // waiting on you - handle it
+    break; // end_turn, retries_exhausted, or budget_reached - see list below
   }
 }
 ```
 
 `stop_reason.type` values on `session.status_idle`:
+
 - `requires_action` - agent is waiting on a client-side event (tool confirmation, custom tool result). Handle it, don't break. **Self-hosted exception:** if the session went `requires_action`-idle with no pending `agent.tool_use` / `agent.mcp_tool_use` (`ask`) or `agent.custom_tool_use` to answer, the worker failed the claimed work item (typically a memory-store mount error, logged only on the worker host). Don't `continue` forever on that - surface it, fix the host, and send `user.interrupt` to re-queue the work (`shared/managed-agents-self-hosted-sandboxes.md` § Memory stores -> Troubleshooting).
 - `retries_exhausted` - terminal failure. Break, then check `sessions.retrieve()` for the error state.
 - `end_turn` - normal completion.
@@ -139,14 +143,14 @@ The SSE stream emits `session.status_idle` slightly before the session's queryab
 Poll before cleanup:
 
 ```ts
-let s
+let s;
 for (let i = 0; i < 10; i++) {
-  s = await client.beta.sessions.retrieve(session.id)
-  if (s.status !== 'running') break
-  await new Promise(r => setTimeout(r, 200))
+  s = await client.beta.sessions.retrieve(session.id);
+  if (s.status !== "running") break;
+  await new Promise((r) => setTimeout(r, 200));
 }
-if (s?.status !== 'running') {
-  await client.beta.sessions.archive(session.id)
+if (s?.status !== "running") {
+  await client.beta.sessions.archive(session.id);
 } // else: still running after 2s - don't archive, let it settle or escalate
 ```
 
@@ -157,11 +161,13 @@ if (s?.status !== 'running') {
 Always open the stream **before** sending the kickoff event. Otherwise the agent may process the event and emit the first events before your consumer is attached, and you'll miss them.
 
 ```ts
-const stream = await client.beta.sessions.events.stream(session.id)
+const stream = await client.beta.sessions.events.stream(session.id);
 await client.beta.sessions.events.send(session.id, {
-  events: [{ type: 'user.message', content: [{ type: 'text', text: 'Hello' }] }],
-})
-for await (const event of stream) { /* ... */ }
+  events: [{ type: "user.message", content: [{ type: "text", text: "Hello" }] }],
+});
+for await (const event of stream) {
+  /* ... */
+}
 ```
 
 The `Promise.all([stream, send])` shape works too, but stream-first is simpler and has the same effect - the stream starts buffering the moment it's opened.
@@ -173,12 +179,12 @@ The `Promise.all([stream, send])` shape works too, but stream-first is simpler a
 **The mounted resource has a different `file_id` than the file you uploaded.** Session creation makes a session-scoped copy.
 
 ```ts
-const uploaded = await client.beta.files.upload({ file, purpose: 'agent_resource' })
+const uploaded = await client.beta.files.upload({ file, purpose: "agent_resource" });
 // uploaded.id         -> the original file
 const session = await client.beta.sessions.create({
   /* ... */
-  resources: [{ type: 'file', file_id: uploaded.id, mount_path: '/workspace/data.csv' }],
-})
+  resources: [{ type: "file", file_id: uploaded.id, mount_path: "/workspace/data.csv" }],
+});
 // session.resources[0].file_id !== uploaded.id  <- different IDs
 ```
 
@@ -196,19 +202,21 @@ Delete the original via `files.delete(uploaded.id)`; the session-scoped copy is 
 
 ```ts
 // Agent template: declare the tool, no credentials
-tools: [{ type: 'custom', name: 'linear_graphql', input_schema: { /* query, vars */ } }]
+tools: [{ type: "custom", name: "linear_graphql", input_schema: {/* query, vars */} }];
 
 // Orchestrator: handle the call with host-side creds
 for await (const event of stream) {
-  if (event.type === 'agent.custom_tool_use' && event.name === 'linear_graphql') {
-    const result = await linear.request(event.input.query, event.input.vars) // host's key
+  if (event.type === "agent.custom_tool_use" && event.name === "linear_graphql") {
+    const result = await linear.request(event.input.query, event.input.vars); // host's key
     await client.beta.sessions.events.send(session.id, {
-      events: [{
-        type: 'user.custom_tool_result',
-        custom_tool_use_id: event.id,
-        content: [{ type: 'text', text: JSON.stringify(result) }],
-      }],
-    })
+      events: [
+        {
+          type: "user.custom_tool_result",
+          custom_tool_use_id: event.id,
+          content: [{ type: "text", text: JSON.stringify(result) }],
+        },
+      ],
+    });
   }
 }
 ```

@@ -67,7 +67,9 @@ function DynamicTrackPage() {
           <div className="rounded-3xl border border-gold-500/30 bg-neutral-900/90 p-6 md:p-8 backdrop-blur-xl mb-8 shadow-xl">
             <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
               <div>
-                <div className="text-xs font-semibold text-gold-400 uppercase tracking-wider">Active Build Project</div>
+                <div className="text-xs font-semibold text-gold-400 uppercase tracking-wider">
+                  Active Build Project
+                </div>
                 <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight mt-1">
                   {project.companyName}
                 </h2>
@@ -82,7 +84,9 @@ function DynamicTrackPage() {
               {/* Producer Desk Card */}
               <div className="bg-neutral-950/80 border border-neutral-800 p-4 rounded-2xl flex items-center justify-between gap-6">
                 <div>
-                  <div className="text-[10px] uppercase tracking-wider font-semibold text-neutral-400">Assigned Web Producer</div>
+                  <div className="text-[10px] uppercase tracking-wider font-semibold text-neutral-400">
+                    Assigned Web Producer
+                  </div>
                   <div className="text-sm font-bold text-white">{project.projectManager.name}</div>
                   <div className="text-[11px] text-neutral-400">{project.projectManager.role}</div>
                 </div>
@@ -125,10 +129,7 @@ function DynamicTrackPage() {
             </div>
 
             <div className="lg:col-span-5 space-y-8">
-              <MobileAssetDropzone
-                companyName={project.companyName}
-                token={project.token}
-              />
+              <MobileAssetDropzone companyName={project.companyName} token={project.token} />
 
               <DnsConnectGuide domain={project.domain} />
             </div>

@@ -22,10 +22,14 @@ export function ContentFlowEngine() {
   const [selectedTrade, setSelectedTrade] = useState<string>("heating-engineers");
   const [businessName, setBusinessName] = useState("Vanguard Heating & Energy Ltd");
   const [town, setTown] = useState("Manchester & Stockport");
-  const [accreditations, setAccreditations] = useState("Gas Safe Reg: 592819, Worcester Bosch Accredited");
+  const [accreditations, setAccreditations] = useState(
+    "Gas Safe Reg: 592819, Worcester Bosch Accredited",
+  );
   const [guaranteeYears, setGuaranteeYears] = useState("12");
   const [isGenerating, setIsGenerating] = useState(false);
-  const [activePageTab, setActivePageTab] = useState<"home" | "services" | "pricing" | "about" | "geo">("home");
+  const [activePageTab, setActivePageTab] = useState<
+    "home" | "services" | "pricing" | "about" | "geo"
+  >("home");
 
   const trade = TRADE_VERTICALS[selectedTrade] || TRADE_VERTICALS["heating-engineers"];
 
@@ -128,7 +132,8 @@ We provide rapid same-day heating and gas engineering coverage across all local 
             </h3>
           </div>
           <p className="mt-1 text-xs text-ink-muted">
-            Synthesizes 5 complete pages of authoritative, jargon-free trade copy ready for instant staging deployment.
+            Synthesizes 5 complete pages of authoritative, jargon-free trade copy ready for instant
+            staging deployment.
           </p>
         </div>
 
@@ -137,7 +142,9 @@ We provide rapid same-day heating and gas engineering coverage across all local 
           disabled={isGenerating}
           className="inline-flex items-center gap-2 rounded-xl bg-indigo-600 px-4 py-2.5 text-xs font-bold text-white shadow-sm hover:bg-indigo-500 transition-colors"
         >
-          <Sparkles className={`h-3.5 w-3.5 ${isGenerating ? "animate-spin text-amber-300" : ""}`} />
+          <Sparkles
+            className={`h-3.5 w-3.5 ${isGenerating ? "animate-spin text-amber-300" : ""}`}
+          />
           <span>{isGenerating ? "Synthesizing Copy..." : "Generate Full Copy Pack"}</span>
         </button>
       </div>
@@ -169,7 +176,9 @@ We provide rapid same-day heating and gas engineering coverage across all local 
         </div>
 
         <div>
-          <label className="block text-[11px] font-semibold text-ink mb-1">Primary Metro Region</label>
+          <label className="block text-[11px] font-semibold text-ink mb-1">
+            Primary Metro Region
+          </label>
           <input
             type="text"
             value={town}
@@ -179,7 +188,9 @@ We provide rapid same-day heating and gas engineering coverage across all local 
         </div>
 
         <div>
-          <label className="block text-[11px] font-semibold text-ink mb-1">Accreditations / Badges</label>
+          <label className="block text-[11px] font-semibold text-ink mb-1">
+            Accreditations / Badges
+          </label>
           <input
             type="text"
             value={accreditations}

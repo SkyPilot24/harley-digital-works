@@ -35,7 +35,7 @@ Each tool requires a name, description, and JSON Schema for its inputs:
 **Best practices for tool definitions:**
 
 - Use clear, descriptive names (e.g., `get_weather`, `search_database`, `send_email`)
-- Write detailed descriptions - Claude uses these to decide when to use the tool. Be **prescriptive about *when* to call it**, not just what it does (e.g. "Call this when the user asks about current prices or recent events"). On recent Opus models, which reach for tools more conservatively, trigger conditions in the description give measurable lift in should-call rate.
+- Write detailed descriptions - Claude uses these to decide when to use the tool. Be **prescriptive about _when_ to call it**, not just what it does (e.g. "Call this when the user asks about current prices or recent events"). On recent Opus models, which reach for tools more conservatively, trigger conditions in the description give measurable lift in should-call rate.
 - Include descriptions for each property
 - Use `enum` for parameters with a fixed set of values
 - Mark truly required parameters in `required`; make others optional with defaults
@@ -63,23 +63,23 @@ Any `tool_choice` value can also include `"disable_parallel_tool_use": true` to 
 
 **Tool Runner (Recommended):** The SDK's tool runner handles the agentic loop automatically - it calls the API, detects tool use requests, executes your tool functions, feeds results back to Claude, and repeats until Claude stops calling tools. Available in Python, TypeScript, Java, Go, Ruby, PHP, and C# SDKs (beta). The Python SDK also provides MCP conversion helpers (`anthropic.lib.tools.mcp`) to convert MCP tools, prompts, and resources for use with the tool runner - see `python/claude-api/tool-use.md` for details. **Default to the tool runner** for any custom-tool agent.
 
-**The tool runner is not a black box - "I need control" is rarely a reason to drop to the manual loop.** Each iteration yields the assistant message *before* the tools run and lets you intervene, so most "fine-grained control" needs are covered without hand-writing the loop:
+**The tool runner is not a black box - "I need control" is rarely a reason to drop to the manual loop.** Each iteration yields the assistant message _before_ the tools run and lets you intervene, so most "fine-grained control" needs are covered without hand-writing the loop:
 
-- **Human-in-the-loop approval / gating** - gate in the tool's run function (return a "user declined" result instead of executing), or inspect the tool call in the yielded message and override the pending request with `set_messages_params()` / `setMessagesParams()` / `append_messages()` / `pushMessages()` to allow or deny *before* the tool executes. The runner runs your function automatically only if you don't intervene.
+- **Human-in-the-loop approval / gating** - gate in the tool's run function (return a "user declined" result instead of executing), or inspect the tool call in the yielded message and override the pending request with `set_messages_params()` / `setMessagesParams()` / `append_messages()` / `pushMessages()` to allow or deny _before_ the tool executes. The runner runs your function automatically only if you don't intervene.
 - **Error interception** - inspect the tool result before it returns to Claude (`generate_tool_call_response()` / `generateToolResponse()`); stop early or handle it yourself.
 - **Result modification** - mutate the tool result before it goes back (e.g. add `cache_control` for prompt caching, or transform the output).
 - **Per-turn retries / param changes** - e.g. bump `max_tokens` and re-run a truncated turn; bound the whole loop with `max_iterations`.
 - **Streaming and automatic compaction** are both supported.
 
-These hooks are SDK helper features, not separate API parameters - for the exact method names and worked examples, WebFetch the per-language SDK repo listed in `shared/live-sources.md` -> *Claude API SDK Repositories* (the tool-runner helpers live in each repo's `tools.md` / `helpers.md`). The bundled `python/claude-api/tool-use.md` and `typescript/claude-api/tool-use.md` show the basic tool-runner setup.
+These hooks are SDK helper features, not separate API parameters - for the exact method names and worked examples, WebFetch the per-language SDK repo listed in `shared/live-sources.md` -> _Claude API SDK Repositories_ (the tool-runner helpers live in each repo's `tools.md` / `helpers.md`). The bundled `python/claude-api/tool-use.md` and `typescript/claude-api/tool-use.md` show the basic tool-runner setup.
 
 **Don't drop to a manual loop because of these misconceptions:**
 
 - The tool runner does not require Zod/Pydantic - `betaTool()` (TS) and `@beta_tool` (Python) accept raw JSON Schema; other SDKs use plain structs/maps/classes.
-- The runner makes detecting the final turn *easier*, not harder - iteration ends when Claude stops calling tools, and the last yielded message is the final response. Most SDKs also offer a one-shot variant (`runner.until_done()` / `runner.runUntilDone()` / `RunToCompletion()`).
+- The runner makes detecting the final turn _easier_, not harder - iteration ends when Claude stops calling tools, and the last yielded message is the final response. Most SDKs also offer a one-shot variant (`runner.until_done()` / `runner.runUntilDone()` / `RunToCompletion()`).
 - Confirmation/approval gates work with the runner (see Security below).
 
-**Manual Agentic Loop:** Reach for this only when you want to own the *entire* loop - you need control the runner does not expose (e.g., a custom transport, request shapes the SDK cannot build, per-token streaming on SDKs whose runner does not support it), you'd rather not take the beta dependency, or your control flow doesn't fit the runner's per-turn hooks (e.g. interleaving unrelated work mid-loop). Approval gates, logging, interception, result modification, and conditional execution do **not** require it - the tool runner covers those (above). Loop until `stop_reason == "end_turn"`, always append the full `response.content` to preserve tool_use blocks, and ensure each `tool_result` includes the matching `tool_use_id`.
+**Manual Agentic Loop:** Reach for this only when you want to own the _entire_ loop - you need control the runner does not expose (e.g., a custom transport, request shapes the SDK cannot build, per-token streaming on SDKs whose runner does not support it), you'd rather not take the beta dependency, or your control flow doesn't fit the runner's per-turn hooks (e.g. interleaving unrelated work mid-loop). Approval gates, logging, interception, result modification, and conditional execution do **not** require it - the tool runner covers those (above). Loop until `stop_reason == "end_turn"`, always append the full `response.content` to preserve tool_use blocks, and ensure each `tool_result` includes the matching `tool_use_id`.
 
 **Stop reasons for server-side tools:** When using server-side tools (code execution, web search, etc.), the API runs a server-side sampling loop. If this loop reaches its default limit of 10 iterations, the response will have `stop_reason: "pause_turn"`. To continue, re-send the user message and assistant response and make another API request - the server will resume where it left off. Do NOT add an extra user message like "Continue." - the API detects the trailing `server_tool_use` block and knows to resume automatically.
 
@@ -100,7 +100,7 @@ if response.stop_reason == "pause_turn":
 
 Set a `max_continuations` limit (e.g., 5) to prevent infinite loops. For the full guide, see: `https://platform.claude.com/docs/en/build-with-claude/handling-stop-reasons`
 
-> **Security:** The tool runner executes your tool functions automatically whenever Claude requests them. For tools with side effects (sending emails, modifying databases, financial transactions), validate inputs and gate destructive operations behind human approval. **Both** the tool runner and the manual loop support this - with the tool runner, gate inside the tool's run function (prompt the user and return a "user declined" result instead of executing), or inspect the tool call in each yielded message and take over message history with `set_messages_params()` / `setMessagesParams()` to allow or deny *before* the tool runs (it executes your function automatically only if you don't intervene); with the manual loop you gate inline before calling the function.
+> **Security:** The tool runner executes your tool functions automatically whenever Claude requests them. For tools with side effects (sending emails, modifying databases, financial transactions), validate inputs and gate destructive operations behind human approval. **Both** the tool runner and the manual loop support this - with the tool runner, gate inside the tool's run function (prompt the user and return a "user declined" result instead of executing), or inspect the tool call in each yielded message and take over message history with `set_messages_params()` / `setMessagesParams()` to allow or deny _before_ the tool runs (it executes your function automatically only if you don't intervene); with the manual loop you gate inline before calling the function.
 
 ---
 
@@ -268,7 +268,7 @@ tools = [
 
 SDK typings lag these blocks - pass them as plain dicts in Python, or add a `@ts-expect-error` in TypeScript.
 
-**Choosing between this and tool search:** tool search is for *discovery* - Claude finds what it needs from a large library on its own. Mid-conversation tool changes are for *control* - your application decides the tool set has changed (a mode switch, a resource that became available, a capability you want to revoke) and says so explicitly.
+**Choosing between this and tool search:** tool search is for _discovery_ - Claude finds what it needs from a large library on its own. Mid-conversation tool changes are for _control_ - your application decides the tool set has changed (a mode switch, a resource that became available, a capability you want to revoke) and says so explicitly.
 
 ---
 
@@ -379,22 +379,22 @@ Optional fields on the tool definition:
 
 **The advisor model must be at least as capable as the executor.** An invalid pairing returns `400 invalid_request_error`. Valid pairs:
 
-| Executor (request `model`) | Valid advisor (tool `model`) |
-|---|---|
-| `claude-haiku-4-5` / `claude-sonnet-4-6` / `claude-sonnet-5` / `claude-opus-4-6` / `claude-opus-4-7` | `claude-opus-5`, `claude-fable-5-1`, `claude-mythos-5-1`, `claude-fable-5`, `claude-mythos-5`, `claude-opus-4-8`, or `claude-opus-4-7` |
-| `claude-opus-4-8` | `claude-opus-5`, `claude-fable-5-1`, `claude-mythos-5-1`, `claude-fable-5`, `claude-mythos-5`, or `claude-opus-4-8` |
-| `claude-opus-5` | `claude-opus-5`, `claude-fable-5-1`, `claude-mythos-5-1`, `claude-fable-5`, or `claude-mythos-5` |
-| `claude-fable-5` | `claude-fable-5-1`, `claude-mythos-5-1`, `claude-fable-5`, `claude-mythos-5`, or `claude-opus-5` |
-| `claude-mythos-5` | `claude-mythos-5-1`, `claude-fable-5-1`, `claude-mythos-5`, `claude-fable-5`, or `claude-opus-5` |
-| `claude-fable-5-1` / `claude-mythos-5-1` | `claude-mythos-5-1`, `claude-fable-5-1`, `claude-mythos-5`, `claude-fable-5`, or `claude-opus-5` - and these executors reject forced `tool_choice`, so nudge the advisor call from the prompt (the `-5-1` advisors return the encrypted `advisor_redacted_result`, like claude-opus-5 / claude-fable-5 / claude-mythos-5) |
+| Executor (request `model`)                                                                           | Valid advisor (tool `model`)                                                                                                                                                                                                                                                                                              |
+| ---------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `claude-haiku-4-5` / `claude-sonnet-4-6` / `claude-sonnet-5` / `claude-opus-4-6` / `claude-opus-4-7` | `claude-opus-5`, `claude-fable-5-1`, `claude-mythos-5-1`, `claude-fable-5`, `claude-mythos-5`, `claude-opus-4-8`, or `claude-opus-4-7`                                                                                                                                                                                    |
+| `claude-opus-4-8`                                                                                    | `claude-opus-5`, `claude-fable-5-1`, `claude-mythos-5-1`, `claude-fable-5`, `claude-mythos-5`, or `claude-opus-4-8`                                                                                                                                                                                                       |
+| `claude-opus-5`                                                                                      | `claude-opus-5`, `claude-fable-5-1`, `claude-mythos-5-1`, `claude-fable-5`, or `claude-mythos-5`                                                                                                                                                                                                                          |
+| `claude-fable-5`                                                                                     | `claude-fable-5-1`, `claude-mythos-5-1`, `claude-fable-5`, `claude-mythos-5`, or `claude-opus-5`                                                                                                                                                                                                                          |
+| `claude-mythos-5`                                                                                    | `claude-mythos-5-1`, `claude-fable-5-1`, `claude-mythos-5`, `claude-fable-5`, or `claude-opus-5`                                                                                                                                                                                                                          |
+| `claude-fable-5-1` / `claude-mythos-5-1`                                                             | `claude-mythos-5-1`, `claude-fable-5-1`, `claude-mythos-5`, `claude-fable-5`, or `claude-opus-5` - and these executors reject forced `tool_choice`, so nudge the advisor call from the prompt (the `-5-1` advisors return the encrypted `advisor_redacted_result`, like claude-opus-5 / claude-fable-5 / claude-mythos-5) |
 
 > Warning: **The advisor's payload shape differs by advisor model.** The response block is always `advisor_tool_result`; what varies is its **`content`**, a discriminated union:
 >
-> | `content` type | Fields | When |
-> |---|---|---|
-> | `advisor_result` | `text`, `stop_reason` | Advisor returns plaintext (e.g. Opus 4.8) |
-> | `advisor_redacted_result` | `encrypted_content`, `stop_reason` | Advisor returns encrypted output - Claude Opus 5, Claude Fable 5.1, Claude Mythos 5.1, Claude Fable 5, Claude Mythos 5 |
-> | `advisor_tool_result_error` | `error_code` | Consultation failed - `max_uses_exceeded`, `prompt_too_long`, `too_many_requests`, `overloaded`, `unavailable`, `execution_time_exceeded`, or `model_not_found` |
+> | `content` type              | Fields                             | When                                                                                                                                                            |
+> | --------------------------- | ---------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> | `advisor_result`            | `text`, `stop_reason`              | Advisor returns plaintext (e.g. Opus 4.8)                                                                                                                       |
+> | `advisor_redacted_result`   | `encrypted_content`, `stop_reason` | Advisor returns encrypted output - Claude Opus 5, Claude Fable 5.1, Claude Mythos 5.1, Claude Fable 5, Claude Mythos 5                                          |
+> | `advisor_tool_result_error` | `error_code`                       | Consultation failed - `max_uses_exceeded`, `prompt_too_long`, `too_many_requests`, `overloaded`, `unavailable`, `execution_time_exceeded`, or `model_not_found` |
 >
 > So switch on `advisor_tool_result.content` type, not on the block type. Code that reads `.text` unconditionally gets nothing back from an Claude Opus 5 advisor, because the payload is under `encrypted_content` instead - and you cannot read it, only replay it.
 
@@ -432,16 +432,16 @@ Both are **client-executed**: Claude returns a `tool_use` block, your code perfo
 ### Bash tool declaration
 
 ```json
-{"type": "bash_20250124", "name": "bash"}
+{ "type": "bash_20250124", "name": "bash" }
 ```
 
-| Language | Declaration |
-|---|---|
-| Python / TypeScript / Ruby / cURL | plain object `{"type": "bash_20250124", "name": "bash"}` |
-| Go | `anthropic.ToolUnionParam{OfBashTool20250124: &anthropic.ToolBash20250124Param{}}` |
-| Java | `.addTool(ToolBash20250124.builder().build())` from `com.anthropic.models.messages` |
-| C# | `Tools = [new ToolBash20250124()]` from `Anthropic.Models.Messages` |
-| PHP | `tools: [new \Anthropic\Messages\ToolBash20250124()]` |
+| Language                          | Declaration                                                                         |
+| --------------------------------- | ----------------------------------------------------------------------------------- |
+| Python / TypeScript / Ruby / cURL | plain object `{"type": "bash_20250124", "name": "bash"}`                            |
+| Go                                | `anthropic.ToolUnionParam{OfBashTool20250124: &anthropic.ToolBash20250124Param{}}`  |
+| Java                              | `.addTool(ToolBash20250124.builder().build())` from `com.anthropic.models.messages` |
+| C#                                | `Tools = [new ToolBash20250124()]` from `Anthropic.Models.Messages`                 |
+| PHP                               | `tools: [new \Anthropic\Messages\ToolBash20250124()]`                               |
 
 Claude's `tool_use.input` contains either `{"command": "<string>"}` or `{"restart": true}`. Check for `restart` first (reset the session, return a confirmation string); otherwise run `command` and return combined stdout + stderr.
 
@@ -450,7 +450,7 @@ Claude's `tool_use.input` contains either `{"command": "<string>"}` or `{"restar
 ### Text editor tool declaration
 
 ```json
-{"type": "text_editor_20250728", "name": "str_replace_based_edit_tool"}
+{ "type": "text_editor_20250728", "name": "str_replace_based_edit_tool" }
 ```
 
 Optional field: `max_characters` to cap `view` output. Java exposes a typed `ToolTextEditor20250728` builder (`com.anthropic.models.messages`); other statically-typed SDKs follow the same naming pattern - see the Anthropic-Defined Tools section in `{lang}/claude-api/tool-use.md` for the exact class.
@@ -459,12 +459,12 @@ Optional field: `max_characters` to cap `view` output. Java exposes a typed `Too
 
 `tool_use.input.command` is one of:
 
-| `command` | Other inputs | Action |
-|---|---|---|
-| `view` | `path`, optional `view_range` | Return file contents or directory listing |
-| `create` | `path`, `file_text` | Create/overwrite file with `file_text`. Create a backup if the file already exists. |
-| `str_replace` | `path`, `old_str`, `new_str` | Replace exactly one occurrence; error if 0 or >1 matches |
-| `insert` | `path`, `insert_line`, `insert_text` | Insert `insert_text` after line `insert_line` (0 = beginning of file) |
+| `command`     | Other inputs                         | Action                                                                              |
+| ------------- | ------------------------------------ | ----------------------------------------------------------------------------------- |
+| `view`        | `path`, optional `view_range`        | Return file contents or directory listing                                           |
+| `create`      | `path`, `file_text`                  | Create/overwrite file with `file_text`. Create a backup if the file already exists. |
+| `str_replace` | `path`, `old_str`, `new_str`         | Replace exactly one occurrence; error if 0 or >1 matches                            |
+| `insert`      | `path`, `insert_line`, `insert_text` | Insert `insert_text` after line `insert_line` (0 = beginning of file)               |
 
 For both tools, on error return `{"type": "tool_result", "tool_use_id": "...", "content": "<error text>", "is_error": true}` so Claude can recover.
 

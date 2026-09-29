@@ -1,10 +1,20 @@
 import React, { useState, useRef, useCallback } from "react";
-import { ArrowLeftRight, ArrowUpRight, Check, AlertTriangle, Sparkles, Phone, Shield } from "lucide-react";
+import {
+  ArrowLeftRight,
+  ArrowUpRight,
+  Check,
+  AlertTriangle,
+  Sparkles,
+  Phone,
+  Shield,
+} from "lucide-react";
 
 export function BeforeAfterSlider() {
   const [sliderPosition, setSliderPosition] = useState(50);
   const [isDragging, setIsDragging] = useState(false);
-  const [activeConcept, setActiveConcept] = useState<"architecture" | "solar" | "interior">("architecture");
+  const [activeConcept, setActiveConcept] = useState<"architecture" | "solar" | "interior">(
+    "architecture",
+  );
   const containerRef = useRef<HTMLDivElement>(null);
 
   const concepts = {
@@ -61,7 +71,7 @@ export function BeforeAfterSlider() {
         handleMove(e.touches[0].clientX);
       }
     },
-    [handleMove]
+    [handleMove],
   );
 
   const handleMouseMove = useCallback(
@@ -70,7 +80,7 @@ export function BeforeAfterSlider() {
         handleMove(e.clientX);
       }
     },
-    [isDragging, handleMove]
+    [isDragging, handleMove],
   );
 
   return (
@@ -85,8 +95,8 @@ export function BeforeAfterSlider() {
             Drag to reveal the difference.
           </h3>
           <p className="text-sm text-ink-muted mt-1 max-w-lg">
-            See how high-resolution photography, bespoke typography, and generous white space elevate
-            a trade business above generic DIY templates.
+            See how high-resolution photography, bespoke typography, and generous white space
+            elevate a trade business above generic DIY templates.
           </p>
         </div>
 
@@ -106,7 +116,11 @@ export function BeforeAfterSlider() {
                   : "text-ink/70 hover:text-ink hover:bg-ink/5"
               }`}
             >
-              {key === "architecture" ? "Architecture" : key === "solar" ? "Solar & Energy" : "Interiors"}
+              {key === "architecture"
+                ? "Architecture"
+                : key === "solar"
+                  ? "Solar & Energy"
+                  : "Interiors"}
             </button>
           ))}
         </div>
@@ -160,9 +174,9 @@ export function BeforeAfterSlider() {
             </div>
 
             <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-sans">
-              Welcome to our website! We have over 15 years experience in the local area. Please download
-              our 8-page PDF brochure or fill out the 14-field enquiry questionnaire below and our office
-              will call you back within 3-5 business days.
+              Welcome to our website! We have over 15 years experience in the local area. Please
+              download our 8-page PDF brochure or fill out the 14-field enquiry questionnaire below
+              and our office will call you back within 3-5 business days.
             </p>
 
             <div className="pt-2 flex flex-wrap gap-2">
@@ -194,7 +208,9 @@ export function BeforeAfterSlider() {
         {/* ============================================================ */}
         <div
           className="absolute inset-0 flex flex-col justify-between overflow-hidden"
-          style={{ clipPath: `polygon(0 0, ${sliderPosition}% 0, ${sliderPosition}% 100%, 0 100%)` }}
+          style={{
+            clipPath: `polygon(0 0, ${sliderPosition}% 0, ${sliderPosition}% 100%, 0 100%)`,
+          }}
         >
           {/* Background Photography with Subtle Gradient Scrim */}
           <img
@@ -281,7 +297,8 @@ export function BeforeAfterSlider() {
       <div className="flex items-center justify-between text-xs text-ink-muted mt-3 font-mono">
         <span>⟵ Drag slider left or right to inspect the contrast</span>
         <span className="font-bold text-ink">
-          Comparison: {Math.round(sliderPosition)}% Harley Standard / {100 - Math.round(sliderPosition)}% Dated DIY Build
+          Comparison: {Math.round(sliderPosition)}% Harley Standard /{" "}
+          {100 - Math.round(sliderPosition)}% Dated DIY Build
         </span>
       </div>
     </div>

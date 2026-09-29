@@ -76,14 +76,22 @@ const REGISTRARS = [
   },
 ];
 
-export function DnsAutoProvisionerDesk({ defaultDomain = "cheshireheat.co.uk" }: { defaultDomain?: string }) {
+export function DnsAutoProvisionerDesk({
+  defaultDomain = "cheshireheat.co.uk",
+}: {
+  defaultDomain?: string;
+}) {
   const [domainName, setDomainName] = useState(defaultDomain);
   const [selectedRegistrar, setSelectedRegistrar] = useState("123reg");
   const [copiedKey, setCopiedKey] = useState<string | null>(null);
   const [isVerifying, setIsVerifying] = useState(false);
   const [verifiedStatus, setVerifiedStatus] = useState<"pending" | "healthy">("healthy");
 
-  const cleanDomain = domainName.trim().toLowerCase().replace(/^https?:\/\//, "").replace(/\/.*$/, "");
+  const cleanDomain = domainName
+    .trim()
+    .toLowerCase()
+    .replace(/^https?:\/\//, "")
+    .replace(/\/.*$/, "");
 
   const dnsRecords: DnsRecord[] = [
     {
@@ -121,9 +129,12 @@ export function DnsAutoProvisionerDesk({ defaultDomain = "cheshireheat.co.uk" }:
     setTimeout(() => {
       setIsVerifying(false);
       setVerifiedStatus("healthy");
-      toast.success(`DNS check for ${cleanDomain}: All records resolved and SSL certificate verified!`, {
-        description: "Zero downtime edge cutover active.",
-      });
+      toast.success(
+        `DNS check for ${cleanDomain}: All records resolved and SSL certificate verified!`,
+        {
+          description: "Zero downtime edge cutover active.",
+        },
+      );
     }, 1000);
   };
 
@@ -148,7 +159,8 @@ export function DnsAutoProvisionerDesk({ defaultDomain = "cheshireheat.co.uk" }:
                 </span>
               </div>
               <p className="text-xs text-ink-muted">
-                1-click DNS cutover generator with automatic MX preservation and registrar setup instructions for UK contractor domains.
+                1-click DNS cutover generator with automatic MX preservation and registrar setup
+                instructions for UK contractor domains.
               </p>
             </div>
           </div>
@@ -203,7 +215,8 @@ export function DnsAutoProvisionerDesk({ defaultDomain = "cheshireheat.co.uk" }:
           <div>
             <h4 className="text-base font-bold text-ink">Required DNS Zone Entries</h4>
             <p className="text-xs text-ink-muted mt-0.5">
-              Add these records to your domain registrar DNS zone. Existing MX (email) records will remain untouched.
+              Add these records to your domain registrar DNS zone. Existing MX (email) records will
+              remain untouched.
             </p>
           </div>
           <span className="text-xs font-mono font-bold text-cyan-700 bg-cyan-50 px-2.5 py-1 rounded-full border border-cyan-200">
@@ -238,7 +251,11 @@ export function DnsAutoProvisionerDesk({ defaultDomain = "cheshireheat.co.uk" }:
                       onClick={() => handleCopy(rec.value, rec.type + rec.name)}
                       className="inline-flex items-center gap-1 text-xs font-semibold text-cyan-700 hover:text-cyan-900 bg-cyan-50 border border-cyan-200 px-2.5 py-1 rounded-lg"
                     >
-                      {copiedKey === rec.type + rec.name ? <Check className="h-3 w-3 text-emerald-600" /> : <Copy className="h-3 w-3" />}
+                      {copiedKey === rec.type + rec.name ? (
+                        <Check className="h-3 w-3 text-emerald-600" />
+                      ) : (
+                        <Copy className="h-3 w-3" />
+                      )}
                       <span>{copiedKey === rec.type + rec.name ? "Copied" : "Copy Value"}</span>
                     </button>
                   </td>

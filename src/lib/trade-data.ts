@@ -95,7 +95,7 @@ export const TRADE_VERTICALS: Record<string, TradeVertical> = {
       { label: "Managed Care", value: "£95/mo" },
     ],
   },
-  "electricians": {
+  electricians: {
     slug: "electricians",
     name: "Electricians & EV Installers",
     badge: "NICEIC & EV Infrastructure",
@@ -134,7 +134,7 @@ export const TRADE_VERTICALS: Record<string, TradeVertical> = {
       { label: "Managed Care", value: "£95/mo" },
     ],
   },
-  "builders": {
+  builders: {
     slug: "builders",
     name: "Master Builders & Construction",
     badge: "FMB & Structural Specialists",

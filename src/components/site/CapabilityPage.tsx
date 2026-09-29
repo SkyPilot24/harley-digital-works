@@ -24,8 +24,8 @@ export function CapabilityPage({
   const conceptKey = data.eyebrow.toLowerCase().includes("care")
     ? "interior"
     : data.eyebrow.toLowerCase().includes("launch")
-    ? "solar"
-    : "architecture";
+      ? "solar"
+      : "architecture";
 
   return (
     <PageShell quiet>
@@ -97,8 +97,8 @@ export function CapabilityPage({
                   conceptKey === "interior"
                     ? "/images/home/interior.jpg"
                     : conceptKey === "solar"
-                    ? "/images/home/solar.jpg"
-                    : "/images/home/architecture.jpg"
+                      ? "/images/home/solar.jpg"
+                      : "/images/home/architecture.jpg"
                 }
                 alt="Craftsmanship detail illustrating structural quality"
                 width="1200"

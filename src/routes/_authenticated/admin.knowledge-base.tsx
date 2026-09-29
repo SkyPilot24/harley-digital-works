@@ -25,14 +25,7 @@ export const Route = createFileRoute("/_authenticated/admin/knowledge-base")({
 });
 
 export type GuideCategory =
-  | "all"
-  | "sales"
-  | "onboarding"
-  | "care"
-  | "tools"
-  | "partners"
-  | "tech"
-  | "group";
+  "all" | "sales" | "onboarding" | "care" | "tools" | "partners" | "tech" | "group";
 
 export interface KnowledgeArticle {
   id: string;
@@ -54,7 +47,8 @@ export const KNOWLEDGE_ARTICLES: KnowledgeArticle[] = [
   {
     id: "revenue-readiness-launch-safeguards",
     category: "tech",
-    title: "Revenue Readiness & System Baseline: Intake Security, CRM Integrity & Production Architecture",
+    title:
+      "Revenue Readiness & System Baseline: Intake Security, CRM Integrity & Production Architecture",
     summary:
       "Comprehensive protocol covering shared intake validation, server-side email authorization, non-contaminating CRM workspace logic, standardized trade marketing routes, HTTP security headers, and Cloudflare SSR deployment.",
     badge: "Production Baseline 2026",
@@ -678,7 +672,8 @@ export const KNOWLEDGE_ARTICLES: KnowledgeArticle[] = [
   {
     id: "group-executive-valuation-governance-playbook",
     category: "group",
-    title: "The Harley Group Executive Governance, Cap Table & Valuation Framework (/the-harley-group)",
+    title:
+      "The Harley Group Executive Governance, Cap Table & Valuation Framework (/the-harley-group)",
     summary:
       "Parent company governance, 100% founder-controlled equity structure, 50/30/20 capital allocation protocol, and statutory board oversight.",
     badge: "Executive Governance",
@@ -769,7 +764,8 @@ export const KNOWLEDGE_ARTICLES: KnowledgeArticle[] = [
   {
     id: "domain-os-dns-provisioning-sop",
     category: "tech",
-    title: "SOP 25: 1-Click Registrar DNS Provisioning & SSL Zero-Downtime Migration (/admin/domain-os)",
+    title:
+      "SOP 25: 1-Click Registrar DNS Provisioning & SSL Zero-Downtime Migration (/admin/domain-os)",
     summary:
       "Automated procedure for provisioning root A records, www CNAME aliases, and TXT ownership tokens across UK registrars (123 Reg, GoDaddy, Cloudflare, IONOS, Namecheap).",
     badge: "Domain OS",
@@ -796,7 +792,8 @@ export const KNOWLEDGE_ARTICLES: KnowledgeArticle[] = [
   {
     id: "care-billing-direct-debit-sop",
     category: "care",
-    title: "SOP 26: Client Care Plan Management, BACS Direct Debit & HMRC VAT Invoicing (/care-desk)",
+    title:
+      "SOP 26: Client Care Plan Management, BACS Direct Debit & HMRC VAT Invoicing (/care-desk)",
     summary:
       "Self-service protocol for managing client recurring subscriptions (£95/mo Essentials, £195/mo Growth), BACS direct debit mandates, add-on modules, and HMRC-compliant VAT receipts.",
     badge: "Care Desk Billing",
@@ -805,8 +802,7 @@ export const KNOWLEDGE_ARTICLES: KnowledgeArticle[] = [
     steps: [
       {
         title: "1. Access Care Desk Self-Service Portal",
-        description:
-          "Navigate to /care-desk and click the 'Subscription, Direct Debit & VAT' tab.",
+        description: "Navigate to /care-desk and click the 'Subscription, Direct Debit & VAT' tab.",
       },
       {
         title: "2. Toggle Plan Tiers & High-ROI Monthly Add-Ons",
@@ -850,7 +846,8 @@ export const KNOWLEDGE_ARTICLES: KnowledgeArticle[] = [
   {
     id: "audit-pitch-deck-loom-sop",
     category: "sales",
-    title: "SOP 28: 1-Click Client Audit Pitch Deck & 60-Second Video Script Workflow (/admin/leads)",
+    title:
+      "SOP 28: 1-Click Client Audit Pitch Deck & 60-Second Video Script Workflow (/admin/leads)",
     summary:
       "Procedure for generating bespoke 4-slide PDF audit pitch decks and high-converting Loom video recording scripts to close hesitant trade prospects.",
     badge: "Pitch Deck OS",
@@ -877,7 +874,8 @@ export const KNOWLEDGE_ARTICLES: KnowledgeArticle[] = [
   {
     id: "payment-webhook-auto-provisioning-sop",
     category: "tech",
-    title: "SOP 29: Automated Stripe/GoCardless Webhook Handling & Staging Auto-Provisioning (/admin/revenue-os)",
+    title:
+      "SOP 29: Automated Stripe/GoCardless Webhook Handling & Staging Auto-Provisioning (/admin/revenue-os)",
     summary:
       "Protocol for zero-touch client onboarding: webhook event signature validation, project tracking token assignment (HDW-XXXX), and staging isolate deployment.",
     badge: "Auto-Provisioning",
@@ -945,7 +943,7 @@ function KnowledgeBasePage() {
   const [selectedCat, setSelectedCat] = useState<GuideCategory>("all");
   const [searchQuery, setSearchQuery] = useState("");
   const [activeArticle, setActiveArticle] = useState<KnowledgeArticle | null>(
-    KNOWLEDGE_ARTICLES[0]
+    KNOWLEDGE_ARTICLES[0],
   );
 
   const filteredArticles = KNOWLEDGE_ARTICLES.filter((art) => {
@@ -956,7 +954,7 @@ function KnowledgeBasePage() {
       art.steps.some(
         (s) =>
           s.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          s.description.toLowerCase().includes(searchQuery.toLowerCase())
+          s.description.toLowerCase().includes(searchQuery.toLowerCase()),
       );
     return matchesCat && matchesSearch;
   });
@@ -1033,9 +1031,7 @@ function KnowledgeBasePage() {
                   </span>
                   <span className="text-[11px] text-ink-muted">{art.readTime}</span>
                 </div>
-                <h4 className="mt-2 text-sm font-semibold text-ink leading-snug">
-                  {art.title}
-                </h4>
+                <h4 className="mt-2 text-sm font-semibold text-ink leading-snug">{art.title}</h4>
                 <p className="mt-1 text-xs text-ink-muted line-clamp-2 leading-relaxed">
                   {art.summary}
                 </p>
@@ -1051,7 +1047,9 @@ function KnowledgeBasePage() {
             <div className="rounded-xl border border-dashed border-ink/20 bg-white p-8 text-center text-ink-muted">
               <HelpCircle className="mx-auto h-8 w-8 opacity-40" />
               <p className="mt-2 text-sm font-medium">No runbooks match your search</p>
-              <p className="text-xs">Try searching for keywords like 'leads', 'proposals', or 'DNS'.</p>
+              <p className="text-xs">
+                Try searching for keywords like 'leads', 'proposals', or 'DNS'.
+              </p>
             </div>
           )}
         </div>
@@ -1065,9 +1063,7 @@ function KnowledgeBasePage() {
                   <span className="rounded-md bg-emerald-50 text-emerald-700 px-2.5 py-1 text-xs font-semibold border border-emerald-200">
                     {activeArticle.badge}
                   </span>
-                  <span className="ml-2 text-xs text-ink-muted">
-                    {activeArticle.readTime}
-                  </span>
+                  <span className="ml-2 text-xs text-ink-muted">{activeArticle.readTime}</span>
                 </div>
                 {activeArticle.quickAction && (
                   <Link
@@ -1080,12 +1076,8 @@ function KnowledgeBasePage() {
                 )}
               </div>
 
-              <h2 className="mt-4 text-2xl font-bold text-ink">
-                {activeArticle.title}
-              </h2>
-              <p className="mt-2 text-sm text-ink-muted leading-relaxed">
-                {activeArticle.summary}
-              </p>
+              <h2 className="mt-4 text-2xl font-bold text-ink">{activeArticle.title}</h2>
+              <p className="mt-2 text-sm text-ink-muted leading-relaxed">{activeArticle.summary}</p>
 
               {/* Step By Step Instructions */}
               <div className="mt-8 space-y-6">
@@ -1093,7 +1085,10 @@ function KnowledgeBasePage() {
                   Standard Operating Steps
                 </h3>
                 {activeArticle.steps.map((step, idx) => (
-                  <div key={step.title} className="rounded-xl border border-ink/10 bg-slate-50/70 p-5">
+                  <div
+                    key={step.title}
+                    className="rounded-xl border border-ink/10 bg-slate-50/70 p-5"
+                  >
                     <h4 className="text-sm font-bold text-ink flex items-center gap-2">
                       <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-ink text-white text-[11px] font-mono">
                         {idx + 1}
@@ -1106,7 +1101,10 @@ function KnowledgeBasePage() {
                     {step.tips && step.tips.length > 0 && (
                       <div className="mt-3 pl-7 space-y-1.5">
                         {step.tips.map((tip) => (
-                          <div key={tip} className="flex items-start gap-1.5 text-xs text-ink-muted">
+                          <div
+                            key={tip}
+                            className="flex items-start gap-1.5 text-xs text-ink-muted"
+                          >
                             <CheckCircle2 className="h-3.5 w-3.5 text-emerald-600 shrink-0 mt-0.5" />
                             <span>{tip}</span>
                           </div>

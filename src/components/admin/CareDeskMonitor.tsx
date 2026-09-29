@@ -109,15 +109,14 @@ export function CareDeskMonitor({ clients = [] }: { clients?: ClientRow[] }) {
   };
 
   const handleResolveRequest = (id: string) => {
-    setRequests((prev) =>
-      prev.map((r) => (r.id === id ? { ...r, status: "resolved" } : r))
-    );
+    setRequests((prev) => prev.map((r) => (r.id === id ? { ...r, status: "resolved" } : r)));
     toast.success("Change request marked as deployed to production!");
   };
 
   const handleDispatchMonthlyReport = () => {
     toast.success("Monthly Care ROI & Performance Report dispatched to client email & WhatsApp!", {
-      description: "Included uptime certificate, Core Web Vitals score, and new Google review count.",
+      description:
+        "Included uptime certificate, Core Web Vitals score, and new Google review count.",
     });
   };
 
@@ -138,7 +137,8 @@ export function CareDeskMonitor({ clients = [] }: { clients?: ClientRow[] }) {
                 </span>
               </div>
               <p className="text-xs text-ink-muted">
-                Zero-touch performance monitoring, automated daily backups, and 24-hour change request fulfillment for £95/mo Care subscribers.
+                Zero-touch performance monitoring, automated daily backups, and 24-hour change
+                request fulfillment for £95/mo Care subscribers.
               </p>
             </div>
           </div>
@@ -161,7 +161,9 @@ export function CareDeskMonitor({ clients = [] }: { clients?: ClientRow[] }) {
               <span>Fleet Uptime (30-Day)</span>
             </div>
             <div className="mt-2 text-2xl font-bold text-ink">99.98%</div>
-            <div className="mt-0.5 text-[11px] text-emerald-700 font-medium">0 minutes unplanned downtime</div>
+            <div className="mt-0.5 text-[11px] text-emerald-700 font-medium">
+              0 minutes unplanned downtime
+            </div>
           </div>
 
           <div className="rounded-xl border border-ink/10 bg-slate-50/50 p-4">
@@ -179,7 +181,9 @@ export function CareDeskMonitor({ clients = [] }: { clients?: ClientRow[] }) {
               <span>Change Request SLA</span>
             </div>
             <div className="mt-2 text-2xl font-bold text-ink">&lt; 6.2 hrs</div>
-            <div className="mt-0.5 text-[11px] text-blue-700 font-medium">Guaranteed under 24 hours</div>
+            <div className="mt-0.5 text-[11px] text-blue-700 font-medium">
+              Guaranteed under 24 hours
+            </div>
           </div>
 
           <div className="rounded-xl border border-ink/10 bg-slate-50/50 p-4">
@@ -188,7 +192,9 @@ export function CareDeskMonitor({ clients = [] }: { clients?: ClientRow[] }) {
               <span>Recurring Care MRR</span>
             </div>
             <div className="mt-2 text-2xl font-bold text-ink">£1,805/mo</div>
-            <div className="mt-0.5 text-[11px] text-purple-700 font-medium">19 Active Care Subscribers</div>
+            <div className="mt-0.5 text-[11px] text-purple-700 font-medium">
+              19 Active Care Subscribers
+            </div>
           </div>
         </div>
       </div>
@@ -217,13 +223,15 @@ export function CareDeskMonitor({ clients = [] }: { clients?: ClientRow[] }) {
                   <div>
                     <div className="flex items-center gap-2">
                       <span className="text-xs font-bold text-ink">{req.clientName}</span>
-                      <span className={`text-[10px] font-bold uppercase px-1.5 py-0.5 rounded ${
-                        req.status === "resolved"
-                          ? "bg-emerald-100 text-emerald-800"
-                          : req.status === "in_progress"
-                            ? "bg-blue-100 text-blue-800"
-                            : "bg-amber-100 text-amber-800"
-                      }`}>
+                      <span
+                        className={`text-[10px] font-bold uppercase px-1.5 py-0.5 rounded ${
+                          req.status === "resolved"
+                            ? "bg-emerald-100 text-emerald-800"
+                            : req.status === "in_progress"
+                              ? "bg-blue-100 text-blue-800"
+                              : "bg-amber-100 text-amber-800"
+                        }`}
+                      >
                         {req.status}
                       </span>
                     </div>
@@ -232,7 +240,9 @@ export function CareDeskMonitor({ clients = [] }: { clients?: ClientRow[] }) {
                       <span>{req.createdAt}</span>
                       <span>•</span>
                       {req.status !== "resolved" ? (
-                        <span className="text-amber-700 font-medium">SLA: {req.slaHoursLeft}h remaining</span>
+                        <span className="text-amber-700 font-medium">
+                          SLA: {req.slaHoursLeft}h remaining
+                        </span>
                       ) : (
                         <span className="text-emerald-700 font-medium">Turnaround: 2.1 hours</span>
                       )}
@@ -262,10 +272,13 @@ export function CareDeskMonitor({ clients = [] }: { clients?: ClientRow[] }) {
                 <div>
                   <div className="flex items-center gap-2">
                     <Globe className="h-4 w-4 text-emerald-400" />
-                    <span className="text-sm font-bold text-white font-mono">{selectedClientHealth.domain}</span>
+                    <span className="text-sm font-bold text-white font-mono">
+                      {selectedClientHealth.domain}
+                    </span>
                   </div>
                   <div className="text-[11px] text-slate-400 mt-0.5">
-                    SSL Cert: Valid ({selectedClientHealth.sslExpiresDays} days left) • Automated Edge Backups Active
+                    SSL Cert: Valid ({selectedClientHealth.sslExpiresDays} days left) • Automated
+                    Edge Backups Active
                   </div>
                 </div>
 
@@ -277,20 +290,32 @@ export function CareDeskMonitor({ clients = [] }: { clients?: ClientRow[] }) {
               {/* Vital Score Metrics */}
               <div className="grid grid-cols-3 gap-3 mb-6">
                 <div className="rounded-xl border border-slate-800 bg-slate-900/60 p-3 text-center">
-                  <div className="text-[10px] uppercase font-mono tracking-wider text-slate-400">Mobile Speed</div>
-                  <div className="mt-1 text-2xl font-black text-emerald-400">{selectedClientHealth.cwvScore}</div>
+                  <div className="text-[10px] uppercase font-mono tracking-wider text-slate-400">
+                    Mobile Speed
+                  </div>
+                  <div className="mt-1 text-2xl font-black text-emerald-400">
+                    {selectedClientHealth.cwvScore}
+                  </div>
                   <div className="text-[10px] text-slate-400">Core Web Vitals</div>
                 </div>
 
                 <div className="rounded-xl border border-slate-800 bg-slate-900/60 p-3 text-center">
-                  <div className="text-[10px] uppercase font-mono tracking-wider text-slate-400">Edge TTFB</div>
-                  <div className="mt-1 text-2xl font-black text-emerald-400">{selectedClientHealth.ttfbMs}ms</div>
+                  <div className="text-[10px] uppercase font-mono tracking-wider text-slate-400">
+                    Edge TTFB
+                  </div>
+                  <div className="mt-1 text-2xl font-black text-emerald-400">
+                    {selectedClientHealth.ttfbMs}ms
+                  </div>
                   <div className="text-[10px] text-slate-400">Global Response</div>
                 </div>
 
                 <div className="rounded-xl border border-slate-800 bg-slate-900/60 p-3 text-center">
-                  <div className="text-[10px] uppercase font-mono tracking-wider text-slate-400">Reviews (30d)</div>
-                  <div className="mt-1 text-2xl font-black text-gold-400">+{selectedClientHealth.googleReviewsThisMonth}</div>
+                  <div className="text-[10px] uppercase font-mono tracking-wider text-slate-400">
+                    Reviews (30d)
+                  </div>
+                  <div className="mt-1 text-2xl font-black text-gold-400">
+                    +{selectedClientHealth.googleReviewsThisMonth}
+                  </div>
                   <div className="text-[10px] text-slate-400">Google 5-Star</div>
                 </div>
               </div>
@@ -299,7 +324,9 @@ export function CareDeskMonitor({ clients = [] }: { clients?: ClientRow[] }) {
               <div className="space-y-2 text-xs text-slate-300 bg-slate-900/80 p-4 rounded-xl border border-slate-800">
                 <div className="flex justify-between">
                   <span className="text-slate-400">Last Database & Asset Snapshot:</span>
-                  <span className="font-mono text-white">{selectedClientHealth.lastBackupDate}</span>
+                  <span className="font-mono text-white">
+                    {selectedClientHealth.lastBackupDate}
+                  </span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-slate-400">WAF & DDoS Protection:</span>

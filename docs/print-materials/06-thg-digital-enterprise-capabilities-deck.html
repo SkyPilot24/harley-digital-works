@@ -1,88 +1,202 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en-GB">
-<head>
-  <meta charset="UTF-8">
-  <title>THG Digital — Enterprise Engineering & Digital Systems</title>
-  <style>
-    @page { size: A4 portrait; margin: 15mm 15mm 15mm 15mm; }
-    * { box-sizing: border-box; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; color: #111; margin: 0; padding: 0; background: #fff; font-size: 9.5pt; line-height: 1.5; }
-    .header { border-bottom: 2px solid #0f172a; padding-bottom: 12px; margin-bottom: 16px; display: flex; justify-content: space-between; align-items: flex-end; }
-    .brand-title { font-size: 14pt; font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; color: #0f172a; margin: 0; }
-    .brand-sub { font-size: 8pt; color: #64748b; margin-top: 2px; text-transform: uppercase; letter-spacing: 0.1em; }
-    .doc-type { font-size: 9pt; font-weight: 700; color: #3b82f6; text-transform: uppercase; letter-spacing: 0.08em; text-align: right; }
-    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 14px; }
-    .card { border: 1px solid #e2e8f0; border-radius: 6px; padding: 10px 12px; background: #f8fafc; }
-    .card h3 { font-size: 10pt; font-weight: 700; color: #0f172a; margin: 0 0 4px 0; }
-    .card p { font-size: 8.5pt; color: #475569; margin: 0; }
-    h2 { font-size: 11pt; font-weight: 700; margin: 14px 0 8px 0; color: #0f172a; border-bottom: 1px solid #e2e8f0; padding-bottom: 4px; }
-    .tag { display: inline-block; font-size: 7.5pt; font-weight: 600; padding: 2px 6px; background: #e2e8f0; color: #1e293b; border-radius: 4px; margin-right: 4px; margin-top: 4px; }
-    .footer { position: fixed; bottom: 0; width: 100%; text-align: center; font-size: 7.5pt; color: #94a3b8; border-top: 1px solid #e2e8f0; padding-top: 5px; }
-  </style>
-</head>
-<body>
-  <div class="header">
-    <div>
-      <h1 class="brand-title">THG DIGITAL</h1>
-      <div class="brand-sub">Enterprise Digital Products & Systems Division · The Harley Group</div>
-    </div>
-    <div class="doc-type">
-      Capability Brief & Architecture<br>
-      <span style="font-size: 7.5pt; color: #64748b; font-weight: normal;">Cloud, Edge & Workflow Automation</span>
-    </div>
-  </div>
-
-  <h2>1. Enterprise Division Overview</h2>
-  <p>THG Digital is the engineering and systems division of The Harley Group. While Harley Digital Works specialises in high-velocity turnkey websites for trades and local businesses, THG Digital engineers bespoke multi-tenant SaaS platforms, proprietary business operating portals, CRM integrations, and serverless workflow automations for growth-stage enterprises.</p>
-
-  <h2>2. Core Engineering Capabilities</h2>
-  <div class="grid">
-    <div class="card">
-      <h3>Custom Web Applications & Portals</h3>
-      <p>Bespoke customer dashboards, quoting engines, and internal admin operating systems built on React, Next.js / TanStack, and Supabase / Postgres.</p>
-      <div style="margin-top: 6px;">
-        <span class="tag">TanStack Start</span>
-        <span class="tag">Postgres RLS</span>
-        <span class="tag">Edge Runtime</span>
+  <head>
+    <meta charset="UTF-8" />
+    <title>THG Digital — Enterprise Engineering & Digital Systems</title>
+    <style>
+      @page {
+        size: A4 portrait;
+        margin: 15mm 15mm 15mm 15mm;
+      }
+      * {
+        box-sizing: border-box;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+      body {
+        font-family:
+          -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        color: #111;
+        margin: 0;
+        padding: 0;
+        background: #fff;
+        font-size: 9.5pt;
+        line-height: 1.5;
+      }
+      .header {
+        border-bottom: 2px solid #0f172a;
+        padding-bottom: 12px;
+        margin-bottom: 16px;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+      }
+      .brand-title {
+        font-size: 14pt;
+        font-weight: 800;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        color: #0f172a;
+        margin: 0;
+      }
+      .brand-sub {
+        font-size: 8pt;
+        color: #64748b;
+        margin-top: 2px;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+      }
+      .doc-type {
+        font-size: 9pt;
+        font-weight: 700;
+        color: #3b82f6;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        text-align: right;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+        margin-bottom: 14px;
+      }
+      .card {
+        border: 1px solid #e2e8f0;
+        border-radius: 6px;
+        padding: 10px 12px;
+        background: #f8fafc;
+      }
+      .card h3 {
+        font-size: 10pt;
+        font-weight: 700;
+        color: #0f172a;
+        margin: 0 0 4px 0;
+      }
+      .card p {
+        font-size: 8.5pt;
+        color: #475569;
+        margin: 0;
+      }
+      h2 {
+        font-size: 11pt;
+        font-weight: 700;
+        margin: 14px 0 8px 0;
+        color: #0f172a;
+        border-bottom: 1px solid #e2e8f0;
+        padding-bottom: 4px;
+      }
+      .tag {
+        display: inline-block;
+        font-size: 7.5pt;
+        font-weight: 600;
+        padding: 2px 6px;
+        background: #e2e8f0;
+        color: #1e293b;
+        border-radius: 4px;
+        margin-right: 4px;
+        margin-top: 4px;
+      }
+      .footer {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        text-align: center;
+        font-size: 7.5pt;
+        color: #94a3b8;
+        border-top: 1px solid #e2e8f0;
+        padding-top: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <div>
+        <h1 class="brand-title">THG DIGITAL</h1>
+        <div class="brand-sub">
+          Enterprise Digital Products & Systems Division · The Harley Group
+        </div>
+      </div>
+      <div class="doc-type">
+        Capability Brief & Architecture<br />
+        <span style="font-size: 7.5pt; color: #64748b; font-weight: normal"
+          >Cloud, Edge & Workflow Automation</span
+        >
       </div>
     </div>
 
-    <div class="card">
-      <h3>Workflow & API Integrations</h3>
-      <p>Automated dispatch, CRM synchronization (HubSpot, Salesforce, ServiceM8), payment gateway tokenization (Stripe), and real-time webhook routing.</p>
-      <div style="margin-top: 6px;">
-        <span class="tag">Webhooks</span>
-        <span class="tag">Stripe Billing</span>
-        <span class="tag">Slack Dispatch</span>
+    <h2>1. Enterprise Division Overview</h2>
+    <p>
+      THG Digital is the engineering and systems division of The Harley Group. While Harley Digital
+      Works specialises in high-velocity turnkey websites for trades and local businesses, THG
+      Digital engineers bespoke multi-tenant SaaS platforms, proprietary business operating portals,
+      CRM integrations, and serverless workflow automations for growth-stage enterprises.
+    </p>
+
+    <h2>2. Core Engineering Capabilities</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>Custom Web Applications & Portals</h3>
+        <p>
+          Bespoke customer dashboards, quoting engines, and internal admin operating systems built
+          on React, Next.js / TanStack, and Supabase / Postgres.
+        </p>
+        <div style="margin-top: 6px">
+          <span class="tag">TanStack Start</span>
+          <span class="tag">Postgres RLS</span>
+          <span class="tag">Edge Runtime</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Workflow & API Integrations</h3>
+        <p>
+          Automated dispatch, CRM synchronization (HubSpot, Salesforce, ServiceM8), payment gateway
+          tokenization (Stripe), and real-time webhook routing.
+        </p>
+        <div style="margin-top: 6px">
+          <span class="tag">Webhooks</span>
+          <span class="tag">Stripe Billing</span>
+          <span class="tag">Slack Dispatch</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Enterprise Cloud Infrastructure</h3>
+        <p>
+          Global CDN edge caching, serverless compute (Cloudflare Workers, AWS, GCP), automatic DDoS
+          mitigation, and enterprise 99.99% uptime guarantees.
+        </p>
+        <div style="margin-top: 6px">
+          <span class="tag">Cloudflare Edge</span>
+          <span class="tag">Nitro SSR</span>
+          <span class="tag">Multi-Region</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Data Pipelines & Intelligence</h3>
+        <p>
+          Structured analytics ingestion, GA4 custom event telemetry, automated client performance
+          reporting, and CRM attribution insights.
+        </p>
+        <div style="margin-top: 6px">
+          <span class="tag">GA4 Telemetry</span>
+          <span class="tag">Automated Reports</span>
+          <span class="tag">BigQuery / SQL</span>
+        </div>
       </div>
     </div>
 
-    <div class="card">
-      <h3>Enterprise Cloud Infrastructure</h3>
-      <p>Global CDN edge caching, serverless compute (Cloudflare Workers, AWS, GCP), automatic DDoS mitigation, and enterprise 99.99% uptime guarantees.</p>
-      <div style="margin-top: 6px;">
-        <span class="tag">Cloudflare Edge</span>
-        <span class="tag">Nitro SSR</span>
-        <span class="tag">Multi-Region</span>
-      </div>
+    <h2>3. Delivery Framework & Governance</h2>
+    <p>
+      All THG Digital engagements operate under The Harley Group's institutional engineering
+      standards, including immutable audit trails, strict GDPR compliance, SOC2-aligned encryption
+      at rest and in transit, and continuous automated CI/CD validation.
+    </p>
+
+    <div class="footer">
+      THG Digital · Division of The Harley Group · Contact: direct@harleydigitalworks.com · UK
+      Engineering Desk
     </div>
-
-    <div class="card">
-      <h3>Data Pipelines & Intelligence</h3>
-      <p>Structured analytics ingestion, GA4 custom event telemetry, automated client performance reporting, and CRM attribution insights.</p>
-      <div style="margin-top: 6px;">
-        <span class="tag">GA4 Telemetry</span>
-        <span class="tag">Automated Reports</span>
-        <span class="tag">BigQuery / SQL</span>
-      </div>
-    </div>
-  </div>
-
-  <h2>3. Delivery Framework & Governance</h2>
-  <p>All THG Digital engagements operate under The Harley Group's institutional engineering standards, including immutable audit trails, strict GDPR compliance, SOC2-aligned encryption at rest and in transit, and continuous automated CI/CD validation.</p>
-
-  <div class="footer">
-    THG Digital · Division of The Harley Group · Contact: direct@harleydigitalworks.com · UK Engineering Desk
-  </div>
-</body>
+  </body>
 </html>

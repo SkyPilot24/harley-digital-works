@@ -1,5 +1,13 @@
 import { useState, useEffect } from "react";
-import { MessageCircle, X, Send, Sparkles, CheckCircle2, ShieldCheck, ArrowRight } from "lucide-react";
+import {
+  MessageCircle,
+  X,
+  Send,
+  Sparkles,
+  CheckCircle2,
+  ShieldCheck,
+  ArrowRight,
+} from "lucide-react";
 
 const QUICK_PROMPTS = [
   "Hi, I want to get a quote for a 14-Day Launch Website (£1,495).",
@@ -17,7 +25,10 @@ export function FloatingWhatsAppDesk() {
   const phone = "447883180424"; // Format without + or spaces for wa.me
 
   const handleSend = (textToSend: string) => {
-    const encoded = encodeURIComponent(textToSend || "Hi Harley Digital Works, I'd like to chat about getting a website sorted for my business.");
+    const encoded = encodeURIComponent(
+      textToSend ||
+        "Hi Harley Digital Works, I'd like to chat about getting a website sorted for my business.",
+    );
     const url = `https://wa.me/${phone}?text=${encoded}`;
     window.open(url, "_blank", "noopener,noreferrer");
     setIsOpen(false);
@@ -42,7 +53,8 @@ export function FloatingWhatsAppDesk() {
             </span>
           </div>
           <span className="text-xs font-bold tracking-wide">
-            WhatsApp Desk <span className="hidden sm:inline font-normal text-emerald-100">· 60s Reply</span>
+            WhatsApp Desk{" "}
+            <span className="hidden sm:inline font-normal text-emerald-100">· 60s Reply</span>
           </span>
         </button>
       )}
@@ -84,7 +96,8 @@ export function FloatingWhatsAppDesk() {
                 Need your website sorted fast?
               </p>
               <p className="text-[11px] text-slate-400 leading-relaxed">
-                Send us a direct message on WhatsApp for instant pricing, package advice, or to check our next available 14-day build slot.
+                Send us a direct message on WhatsApp for instant pricing, package advice, or to
+                check our next available 14-day build slot.
               </p>
             </div>
 

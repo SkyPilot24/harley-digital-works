@@ -1,6 +1,15 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Star, CheckCircle2, Quote, ArrowRight, ShieldCheck, MapPin, TrendingUp, Sparkles } from "lucide-react";
+import {
+  Star,
+  CheckCircle2,
+  Quote,
+  ArrowRight,
+  ShieldCheck,
+  MapPin,
+  TrendingUp,
+  Sparkles,
+} from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import { Container } from "@/components/site/PageShell";
 
@@ -30,7 +39,8 @@ const VERIFIED_REVIEWS: TradeReview[] = [
     city: "Manchester",
     rating: 5,
     date: "2 weeks ago",
-    quote: "I didn't have time to write a single word of website copy. Harley Digital Works handled 100% of the copywriting, built the EV calculator, and had us live in under 12 days. We received 7 commercial rewiring enquiries in the very first week.",
+    quote:
+      "I didn't have time to write a single word of website copy. Harley Digital Works handled 100% of the copywriting, built the EV calculator, and had us live in under 12 days. We received 7 commercial rewiring enquiries in the very first week.",
     roiHighlight: "£18,400 in closed jobs (Month 1)",
     badge: "NICEIC Approved",
   },
@@ -44,7 +54,8 @@ const VERIFIED_REVIEWS: TradeReview[] = [
     city: "Birmingham",
     rating: 5,
     date: "1 month ago",
-    quote: "Most web agencies charge thousands and take 4 months. Harley delivered our site in 14 days flat with our CORC accreditation front and center. The instant quote estimator filter weeds out time-wasters and gets us high-value flat roof jobs.",
+    quote:
+      "Most web agencies charge thousands and take 4 months. Harley delivered our site in 14 days flat with our CORC accreditation front and center. The instant quote estimator filter weeds out time-wasters and gets us high-value flat roof jobs.",
     roiHighlight: "14 GRP roof enquiries in 30 days",
     badge: "CORC Confederation Member",
   },
@@ -58,7 +69,8 @@ const VERIFIED_REVIEWS: TradeReview[] = [
     city: "Leeds",
     rating: 5,
     date: "3 weeks ago",
-    quote: "The 1-click WhatsApp quote button on mobile is a game-changer. Homeowners send photos of their boiler while we are on site, and we close quotes on the same day. The £95/mo care plan gives total peace of mind.",
+    quote:
+      "The 1-click WhatsApp quote button on mobile is a game-changer. Homeowners send photos of their boiler while we are on site, and we close quotes on the same day. The £95/mo care plan gives total peace of mind.",
     roiHighlight: "+£32,000 extra boiler installs",
     badge: "Gas Safe Registered #648192",
   },
@@ -72,7 +84,8 @@ const VERIFIED_REVIEWS: TradeReview[] = [
     city: "Cheshire",
     rating: 5,
     date: "2 months ago",
-    quote: "The before-and-after slider and high-end typography completely transformed how affluent homeowners perceive our building firm. We secured a £65k kitchen extension within 3 weeks of launching.",
+    quote:
+      "The before-and-after slider and high-end typography completely transformed how affluent homeowners perceive our building firm. We secured a £65k kitchen extension within 3 weeks of launching.",
     roiHighlight: "£65k extension contract secured",
     badge: "FMB Master Builder",
   },
@@ -86,7 +99,8 @@ const VERIFIED_REVIEWS: TradeReview[] = [
     city: "London",
     rating: 5,
     date: "1 month ago",
-    quote: "Harley Digital Works built our regional sub-pages for City of London and Canary Wharf. Our Google rankings jumped to page 1 for commercial office sanitisation within 6 weeks.",
+    quote:
+      "Harley Digital Works built our regional sub-pages for City of London and Canary Wharf. Our Google rankings jumped to page 1 for commercial office sanitisation within 6 weeks.",
     roiHighlight: "3 recurring annual FM contracts",
     badge: "BIFM Certified",
   },
@@ -100,7 +114,8 @@ const VERIFIED_REVIEWS: TradeReview[] = [
     city: "Bristol",
     rating: 5,
     date: "2 weeks ago",
-    quote: "The done-for-you process is genuine. I gave them 3 photos and my business card, and they turned it into a high-converting website with emergency call-out buttons. Best business investment I made this year.",
+    quote:
+      "The done-for-you process is genuine. I gave them 3 photos and my business card, and they turned it into a high-converting website with emergency call-out buttons. Best business investment I made this year.",
     roiHighlight: "5x ROI on launch investment",
     badge: "CIPHE Registered",
   },
@@ -115,12 +130,19 @@ const CATEGORIES = [
   { id: "commercial", label: "Commercial & FM" },
 ];
 
-export function TradeGoogleReviewsWidget({ title = "What UK Trades Say About Us", subtitle = "Over 140+ trade contractors trust Harley Digital Works for turnkey websites that generate high-value inbound quotes." }: { title?: string; subtitle?: string }) {
+export function TradeGoogleReviewsWidget({
+  title = "What UK Trades Say About Us",
+  subtitle = "Over 140+ trade contractors trust Harley Digital Works for turnkey websites that generate high-value inbound quotes.",
+}: {
+  title?: string;
+  subtitle?: string;
+}) {
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
 
-  const filteredReviews = selectedCategory === "all"
-    ? VERIFIED_REVIEWS
-    : VERIFIED_REVIEWS.filter((r) => r.trade === selectedCategory);
+  const filteredReviews =
+    selectedCategory === "all"
+      ? VERIFIED_REVIEWS
+      : VERIFIED_REVIEWS.filter((r) => r.trade === selectedCategory);
 
   return (
     <section className="py-20 md:py-28 bg-neutral-900 text-white relative overflow-hidden">
@@ -145,9 +167,7 @@ export function TradeGoogleReviewsWidget({ title = "What UK Trades Say About Us"
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white max-w-2xl">
               {title}
             </h2>
-            <p className="mt-3 text-base sm:text-lg text-neutral-400 max-w-2xl">
-              {subtitle}
-            </p>
+            <p className="mt-3 text-base sm:text-lg text-neutral-400 max-w-2xl">{subtitle}</p>
           </div>
 
           {/* Quick CTA */}
@@ -233,7 +253,9 @@ export function TradeGoogleReviewsWidget({ title = "What UK Trades Say About Us"
                     <div className="text-xs text-neutral-400">{rev.company}</div>
                     <div className="flex items-center gap-1 text-[11px] text-neutral-500 mt-0.5">
                       <MapPin className="h-3 w-3" />
-                      <span>{rev.city} • {rev.tradeLabel}</span>
+                      <span>
+                        {rev.city} • {rev.tradeLabel}
+                      </span>
                     </div>
                   </div>
                   <div className="text-right">
@@ -267,7 +289,9 @@ export function TradeGoogleReviewsWidget({ title = "What UK Trades Say About Us"
             </div>
             <div className="text-xs">
               <div className="font-bold text-white">Join 140+ Trade Leaders Across the UK</div>
-              <div className="text-neutral-400">Guaranteed 14-day turnaround with 0 copywriting required from you.</div>
+              <div className="text-neutral-400">
+                Guaranteed 14-day turnaround with 0 copywriting required from you.
+              </div>
             </div>
           </div>
 

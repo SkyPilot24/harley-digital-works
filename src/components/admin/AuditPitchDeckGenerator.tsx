@@ -157,7 +157,9 @@ The Harley Group · Harley Digital Works
             <div className="rounded-2xl border border-red-200 bg-red-50/30 p-6 space-y-4">
               <div className="flex items-center justify-between">
                 <span className="font-bold text-sm text-red-900">Current Website ({cleanUrl})</span>
-                <span className="rounded bg-red-100 px-2 py-0.5 text-xs font-bold text-red-700">Legacy CMS</span>
+                <span className="rounded bg-red-100 px-2 py-0.5 text-xs font-bold text-red-700">
+                  Legacy CMS
+                </span>
               </div>
               <div className="space-y-3 text-xs text-ink/80">
                 <div className="flex justify-between py-1 border-b border-red-100">
@@ -182,7 +184,9 @@ The Harley Group · Harley Digital Works
             <div className="rounded-2xl border border-emerald-300 bg-emerald-50/40 p-6 space-y-4 shadow-sm">
               <div className="flex items-center justify-between">
                 <span className="font-bold text-sm text-emerald-950">Harley Edge Upgrade</span>
-                <span className="rounded bg-emerald-600 px-2 py-0.5 text-xs font-bold text-white">V8 Edge Isolate</span>
+                <span className="rounded bg-emerald-600 px-2 py-0.5 text-xs font-bold text-white">
+                  V8 Edge Isolate
+                </span>
               </div>
               <div className="space-y-3 text-xs text-ink/80">
                 <div className="flex justify-between py-1 border-b border-emerald-100">
@@ -228,7 +232,8 @@ The Harley Group · Harley Digital Works
               </div>
               <h4 className="font-bold text-sm text-ink">1-Tap Quote Calculator</h4>
               <p className="mt-1 text-xs text-ink-muted leading-relaxed">
-                Homeowners configure their job scope in 3 taps, delivering pre-qualified quote leads straight to your phone.
+                Homeowners configure their job scope in 3 taps, delivering pre-qualified quote leads
+                straight to your phone.
               </p>
             </div>
 
@@ -238,7 +243,8 @@ The Harley Group · Harley Digital Works
               </div>
               <h4 className="font-bold text-sm text-ink">Floating WhatsApp Desk</h4>
               <p className="mt-1 text-xs text-ink-muted leading-relaxed">
-                Captures urgent out-of-hours emergencies directly to your WhatsApp without forcing customers to fill long contact forms.
+                Captures urgent out-of-hours emergencies directly to your WhatsApp without forcing
+                customers to fill long contact forms.
               </p>
             </div>
 
@@ -248,7 +254,8 @@ The Harley Group · Harley Digital Works
               </div>
               <h4 className="font-bold text-sm text-ink">5-Star Review Engine</h4>
               <p className="mt-1 text-xs text-ink-muted leading-relaxed">
-                Automates post-job review collection, funneling 5-star ratings straight to Google and Checkatrade.
+                Automates post-job review collection, funneling 5-star ratings straight to Google
+                and Checkatrade.
               </p>
             </div>
           </div>
@@ -354,14 +361,15 @@ The Harley Group · Harley Digital Works
               Turn Prospect Audits into Closed Deals
             </h2>
             <p className="mt-1 text-xs text-ink-muted">
-              Auto-generates a 4-slide visual presentation and 60-second video script calibrated to {company}.
+              Auto-generates a 4-slide visual presentation and 60-second video script calibrated to{" "}
+              {company}.
             </p>
           </div>
 
           <div className="flex items-center gap-3">
             <a
               href={`https://wa.me/${phone.replace(/[^0-9]/g, "")}?text=${encodeURIComponent(
-                `Hi ${director}, Robbie Harley here from Harley Digital Works. I just recorded a 60-second speed teardown for ${company}: ${url}. Would love to share the 4-slide audit with you.`
+                `Hi ${director}, Robbie Harley here from Harley Digital Works. I just recorded a 60-second speed teardown for ${company}: ${url}. Would love to share the 4-slide audit with you.`,
               )}`}
               target="_blank"
               rel="noreferrer"
@@ -490,7 +498,8 @@ The Harley Group · Harley Digital Works
                 60-Second Video / Voice Pitch Script (for Robbie Harley)
               </h3>
               <p className="text-xs text-slate-400">
-                Pre-calibrated conversational script with live numbers for recording quick personalized Loom audits.
+                Pre-calibrated conversational script with live numbers for recording quick
+                personalized Loom audits.
               </p>
             </div>
           </div>

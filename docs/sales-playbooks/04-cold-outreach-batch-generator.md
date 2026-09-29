@@ -6,21 +6,22 @@ This playbook provides automated batch merge scripts and dynamic personalization
 
 ## 1. Dynamic Merge Variables Matrix
 
-| Variable | Definition | Example Values |
-|---|---|---|
-| `{{First_Name}}` | Owner / Director First Name | Mark, Dave, Gary, Sarah, Rob |
-| `{{Company_Name}}` | Registered Business Name | Apex Electrical, Vanguard Roofing, Harley Heating |
-| `{{Trade_Niche}}` | Specific Trade Specialism | NICEIC electrician, Gas Safe heating engineer, GRP roofer |
-| `{{City_Region}}` | Operating County / Metro | Greater Manchester, West Midlands, West Yorkshire |
-| `{{Demo_URL}}` | Direct interactive trade demo | `https://harleydigitalworks.com/demos?trade=electrical` |
-| `{{Calculator_URL}}` | Direct ROI calculator link | `https://harleydigitalworks.com/calculator` |
-| `{{Local_Hub_URL}}` | Regional coverage landing page | `https://harleydigitalworks.com/locations/manchester` |
+| Variable             | Definition                     | Example Values                                            |
+| -------------------- | ------------------------------ | --------------------------------------------------------- |
+| `{{First_Name}}`     | Owner / Director First Name    | Mark, Dave, Gary, Sarah, Rob                              |
+| `{{Company_Name}}`   | Registered Business Name       | Apex Electrical, Vanguard Roofing, Harley Heating         |
+| `{{Trade_Niche}}`    | Specific Trade Specialism      | NICEIC electrician, Gas Safe heating engineer, GRP roofer |
+| `{{City_Region}}`    | Operating County / Metro       | Greater Manchester, West Midlands, West Yorkshire         |
+| `{{Demo_URL}}`       | Direct interactive trade demo  | `https://harleydigitalworks.com/demos?trade=electrical`   |
+| `{{Calculator_URL}}` | Direct ROI calculator link     | `https://harleydigitalworks.com/calculator`               |
+| `{{Local_Hub_URL}}`  | Regional coverage landing page | `https://harleydigitalworks.com/locations/manchester`     |
 
 ---
 
 ## 2. High-Converting WhatsApp Direct Outreach Sequence
 
 ### Message 1: The 15-Second Video / Demo Pitch
+
 > **Subject / Greeting**:
 > "Hi {{First_Name}}, came across {{Company_Name}} while looking at top {{Trade_Niche}} contractors around {{City_Region}}.
 >
@@ -34,6 +35,7 @@ This playbook provides automated batch merge scripts and dynamic personalization
 > Worth a quick 5-min look?"
 
 ### Message 2: The ROI & Competitor Angle (Sent 48 Hours Later)
+
 > "Hi {{First_Name}}, just following up on {{Company_Name}}.
 >
 > We ran the numbers on local search volume for {{Trade_Niche}} in {{City_Region}}. Just 2 extra customer enquiries a month generates an estimated +£35,000/year in turnover.
@@ -49,11 +51,12 @@ This playbook provides automated batch merge scripts and dynamic personalization
 
 Use template: [`docs/print-materials/01-harley-digital-works-proposal-matrix.html`](../print-materials/01-harley-digital-works-proposal-matrix.html)
 
-**Envelope Eyebrow**: *"Confidential: Website Audit & Local Market Report for the Directors of {{Company_Name}}"*
+**Envelope Eyebrow**: _"Confidential: Website Audit & Local Market Report for the Directors of {{Company_Name}}"_
 **Enclosures**:
+
 1. Printed 1-page Proposal Matrix
 2. Printed 14-Day Delivery Roadmap
-3. Personal handwritten post-it note: *"{{First_Name}} — checked out your work in {{City_Region}}. We can have this live for {{Company_Name}} in 14 days. Call my direct mobile on 0161 820 4910. — Jack, Harley Digital Works"*
+3. Personal handwritten post-it note: _"{{First_Name}} — checked out your work in {{City_Region}}. We can have this live for {{Company_Name}} in 14 days. Call my direct mobile on 0161 820 4910. — Jack, Harley Digital Works"_
 
 ---
 
