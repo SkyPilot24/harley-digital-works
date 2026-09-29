@@ -156,6 +156,20 @@ The build uses the nitro **vercel** preset (`NITRO_PRESET=vercel`), which genera
 
 ## Local development
 
+Copy `.env.example` to the ignored `.env.local` file. For admin sign-in, set
+`VITE_SUPABASE_URL` and `VITE_SUPABASE_PUBLISHABLE_KEY`, then set `SUPABASE_URL`
+and `SUPABASE_PUBLISHABLE_KEY` to the same values for authenticated server functions.
+The existing Lovable Cloud project uses `https://sprljifjcpbnagsxefrp.supabase.co`
+(verified through Lovable on 29 September 2026). The reference in
+`supabase/config.toml` is stale; verify the intended target before using the CLI.
+Use that project's existing publishable/anon key; do not create a replacement database.
+Restart the dev server after changing environment values.
+
+`SUPABASE_SERVICE_ROLE_KEY` is only needed for privileged server workflows, not
+browser sign-in. Never put it in a `VITE_*` variable. Local server environment
+values are loaded by the development server; deployed server values must still
+be configured in the hosting platform.
+
 Install dependencies:
 
 ```bash

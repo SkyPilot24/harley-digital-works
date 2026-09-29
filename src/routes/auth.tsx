@@ -33,6 +33,11 @@ function AuthPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [busy, setBusy] = useState(false);
+  const [localSignIn, setLocalSignIn] = useState(false);
+
+  useEffect(() => {
+    setLocalSignIn(["localhost", "127.0.0.1", "[::1]"].includes(window.location.hostname));
+  }, []);
 
   useEffect(() => {
     if (!supabaseConfigured) return;
@@ -94,6 +99,12 @@ function AuthPage() {
   }
 
   async function handleGoogle() {
+    if (["localhost", "127.0.0.1", "[::1]"].includes(window.location.hostname)) {
+      toast.error(
+        "Google sign-in is unavailable locally. Email sign-in requires an account password.",
+      );
+      return;
+    }
     setBusy(true);
     try {
       const result = await lovable.auth.signInWithOAuth("google", {
@@ -129,12 +140,19 @@ function AuthPage() {
             <button
               type="button"
               onClick={handleGoogle}
-              disabled={busy}
+              disabled={busy || localSignIn}
               className="mt-6 flex w-full items-center justify-center gap-3 rounded-full border border-ink/15 bg-white px-4 py-2.5 text-sm font-medium text-ink transition hover:bg-ink/[0.03] disabled:opacity-50"
             >
               <GoogleIcon />
               Continue with Google
             </button>
+            {localSignIn && (
+              <p className="mt-3 text-sm leading-6 text-ink-muted">
+                Google sign-in is unavailable on the local preview. Email sign-in requires a
+                password configured on your account. Creating another account will not grant admin
+                access.
+              </p>
+            )}
 
             <div className="my-6 flex items-center gap-3 text-xs text-ink-muted">
               <div className="h-px flex-1 bg-ink/10" />
@@ -174,6 +192,13 @@ function AuthPage() {
                 {busy ? "Please wait…" : mode === "signin" ? "Sign in" : "Create account"}
               </button>
             </form>
+
+            <a
+              href="/reset-password"
+              className="mt-5 block text-center text-sm font-medium text-ink underline underline-offset-4"
+            >
+              Set or reset your password
+            </a>
 
             <div className="mt-6 text-center text-sm text-ink-muted">
               {mode === "signin" ? (

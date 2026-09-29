@@ -14,11 +14,9 @@ import {
   Settings,
   Shield,
   Stethoscope,
-  Globe2,
   LogOut,
   Menu,
   X,
-  Radar,
 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth, useIsAdmin } from "@/hooks/use-auth";
@@ -27,9 +25,7 @@ import { cn } from "@/lib/utils";
 
 const NAV: { to: string; label: string; icon: typeof LayoutDashboard; exact?: boolean }[] = [
   { to: "/admin", label: "Control Centre", icon: LayoutDashboard, exact: true },
-  { to: "/admin/revenue-os", label: "Revenue OS", icon: Rocket },
-  { to: "/admin/domain-os", label: "Domain OS", icon: Globe2 },
-  { to: "/admin/radar", label: "Lead Radar", icon: Radar },
+  { to: "/admin/revenue-os", label: "Business strategy", icon: Rocket },
   { to: "/admin/leads", label: "Leads", icon: Inbox },
   { to: "/admin/clients", label: "Clients", icon: Users },
   { to: "/admin/projects", label: "Projects", icon: Briefcase },
@@ -37,8 +33,8 @@ const NAV: { to: string; label: string; icon: typeof LayoutDashboard; exact?: bo
   { to: "/admin/team", label: "Team", icon: UsersRound },
   { to: "/admin/services", label: "Services", icon: FileText },
   { to: "/admin/resources", label: "Resources", icon: BookOpen },
-  { to: "/admin/knowledge-base", label: "Knowledge Base", icon: BookOpen },
-  { to: "/admin/playbooks", label: "Playbooks", icon: ClipboardList },
+  { to: "/admin/knowledge-base", label: "Business records", icon: BookOpen },
+  { to: "/admin/playbooks", label: "Delivery playbook", icon: ClipboardList },
   { to: "/admin/testimonials", label: "Testimonials", icon: MessageSquareQuote },
   { to: "/admin/users", label: "Users & roles", icon: Shield },
   { to: "/admin/diagnostics", label: "Diagnostics", icon: Stethoscope },
