@@ -1,5 +1,9 @@
 # Simple Agency Runbooks
 
+## Current shared context
+
+Read [AGENTS.md](../AGENTS.md), [Business Definition](../BUSINESS_DEFINITION.md), [Project Status](../PROJECT_STATUS.md), [Master Backlog](../MASTER_BACKLOG.md) and [Shared Handover](HANDOVER.md) before continuing work. These records integrate the current commercial/domain roadmap and verified state. The dated observations below are retained for reference; they do not establish current pricing approval, deployment or production readiness. Use the shared handover procedure for Codex and Antigravity as well as the workflows below.
+
 Use these runbooks to coordinate Google Gemini, OpenAI ChatGPT Work agents, and GitHub Copilot with clear handoffs.
 
 ## 1) New Client Campaign Runbook
