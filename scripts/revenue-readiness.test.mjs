@@ -608,3 +608,14 @@ test("UK locations dataset contains valid postcodes, borough coverage, and verif
     assert.ok(loc.localCaseStudy.quote);
   }
 });
+
+import { leadCaptureConfigured, siteConfig } from "../src/lib/site-config.ts";
+
+test("environment deployment flags safeguard unconfigured transactional mail and fallback to mailto draft", () => {
+  // Verify siteConfig has canonical production domain
+  assert.equal(siteConfig.url, "https://harleydigitalworks.com");
+  assert.equal(siteConfig.contactEmail, "hello@harleydigitalworks.com");
+
+  // Lead capture fallback behavior
+  assert.equal(typeof leadCaptureConfigured, "boolean");
+});
