@@ -3,23 +3,16 @@ import { PageShell } from "@/components/site/PageShell";
 import { HarleyGroupHeader } from "@/components/site/HarleyGroupHeader";
 import { HarleyGroupFooter } from "@/components/site/HarleyGroupFooter";
 import { EnquiryForm } from "@/components/site/EnquiryForm";
+import { buildPageSeoHead } from "@/lib/site-config";
+
 export const Route = createFileRoute("/the-harley-group")({
-  head: () => ({
-    meta: [
-      { title: "The Harley Group | Practical digital services" },
-      {
-        name: "description",
-        content:
-          "The Harley Group is building practical digital services for independent businesses. Discover Harley Digital Works: websites and ongoing care for UK trades.",
-      },
-      { property: "og:title", content: "The Harley Group | Practical digital services" },
-      {
-        property: "og:description",
-        content:
-          "Thoughtful design. Useful technology. Digital services that support the people doing the work.",
-      },
-    ],
-  }),
+  head: () =>
+    buildPageSeoHead({
+      title: "The Harley Group | Practical digital services",
+      description:
+        "The Harley Group is building practical digital services for independent businesses. Discover Harley Digital Works: websites and ongoing care for UK trades.",
+      path: "/the-harley-group",
+    }),
   component: TheHarleyGroupPage,
 });
 export function TheHarleyGroupPage() {

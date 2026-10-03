@@ -1,34 +1,69 @@
 import { PageShell } from "./PageShell";
 import { PillButton } from "./PillButton";
 import { WebsitePackagesSection } from "./WebsitePackagesSection";
+import type { TradeVertical } from "@/lib/trade-data";
+import type { LocationInfo } from "@/lib/location-data";
+
 export function TradeServiceLanding({
   name,
   location = false,
   topics = [],
+  tradeInfo,
+  locationInfo,
 }: {
   name: string;
   location?: boolean;
   topics?: string[];
+  tradeInfo?: TradeVertical;
+  locationInfo?: LocationInfo;
 }) {
+  const kicker = tradeInfo
+    ? tradeInfo.badge
+    : locationInfo
+      ? `WEBSITES FOR ${locationInfo.cityName.toUpperCase()} & ${locationInfo.county.toUpperCase()} TRADES`
+      : location
+        ? "WEBSITES FOR LOCAL SERVICE BUSINESSES"
+        : "WEBSITES FOR YOUR TRADE";
+
+  const headline = tradeInfo ? (
+    <>
+      {tradeInfo.heroHeadline}
+      <br />
+      <span>{tradeInfo.heroHighlight}</span>
+    </>
+  ) : locationInfo ? (
+    <>
+      {locationInfo.headline.split(".")[0]}.
+      <br />
+      <span className="studio-muted">{locationInfo.cityName} & Area.</span>
+    </>
+  ) : (
+    <>
+      {location ? "Good work in" : "Built around"}
+      <br />
+      <span>{name}.</span>
+    </>
+  );
+
+  const subheadline = tradeInfo
+    ? tradeInfo.heroSubheadline
+    : locationInfo
+      ? locationInfo.subheadline
+      : location
+        ? "A considered website for your local business, with clear services, genuine project work and a straightforward way to enquire."
+        : "Show the quality of your work. Explain your services clearly. Make it easy for the right customers to get in touch.";
+
+  const effectiveTopics = tradeInfo?.targetEnquiries || topics;
+
   return (
     <PageShell quiet>
       <div className="studio-home">
         <section className="studio-hero">
           <div className="studio-wrap hero-layout">
             <div className="hero-copy">
-              <p className="studio-kicker">
-                {location ? "WEBSITES FOR LOCAL SERVICE BUSINESSES" : "WEBSITES FOR YOUR TRADE"}
-              </p>
-              <h1>
-                {location ? "Good work in" : "Built around"}
-                <br />
-                <span>{name}.</span>
-              </h1>
-              <p className="hero-description">
-                {location
-                  ? "A considered website for your local business, with clear services, genuine project work and a straightforward way to enquire."
-                  : "Show the quality of your work. Explain your services clearly. Make it easy for the right customers to get in touch."}
-              </p>
+              <p className="studio-kicker">{kicker}</p>
+              <h1>{headline}</h1>
+              <p className="hero-description">{subheadline}</p>
               <div className="studio-actions">
                 <PillButton
                   as="link"
@@ -38,10 +73,21 @@ export function TradeServiceLanding({
                 >
                   Get your website plan
                 </PillButton>
+
+                {locationInfo?.localPhone && (
+                  <PillButton
+                    as="a"
+                    href={`tel:${locationInfo.localPhone.replace(/\s+/g, "")}`}
+                    variant="ghost"
+                  >
+                    Call {locationInfo.localPhone}
+                  </PillButton>
+                )}
               </div>
               <p className="hero-support">
-                An initial build fee and an ongoing monthly service. Scope, timing and costs agreed
-                before work begins.
+                {tradeInfo
+                  ? `Accreditation: ${tradeInfo.accreditationBadge} · Avg contract value: ${tradeInfo.averageJobValue}`
+                  : "An initial build fee and an ongoing monthly service. Scope, timing and costs agreed before work begins."}
               </p>
             </div>
             <div className="service-preview">
@@ -55,6 +101,94 @@ export function TradeServiceLanding({
             </div>
           </div>
         </section>
+
+        {tradeInfo?.stats && (
+          <section className="studio-wrap my-8">
+            <div className="grid grid-cols-2 gap-4 sm:grid-cols-4 rounded-2xl border border-ink/10 bg-white p-6">
+              {tradeInfo.stats.map((stat) => (
+                <div key={stat.label} className="text-center sm:text-left">
+                  <p className="text-xs font-semibold uppercase tracking-wider text-ink-muted">
+                    {stat.label}
+                  </p>
+                  <p className="mt-1 font-mono text-2xl font-semibold text-ink">{stat.value}</p>
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {locationInfo?.stats && (
+          <section className="studio-wrap my-8">
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-3 rounded-2xl border border-ink/10 bg-white p-6">
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-wider text-ink-muted">
+                  Sites Launched
+                </p>
+                <p className="mt-1 font-mono text-2xl font-semibold text-ink">
+                  {locationInfo.stats.tradeSitesLaunched} across {locationInfo.cityName}
+                </p>
+              </div>
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-wider text-ink-muted">
+                  Average Turnaround
+                </p>
+                <p className="mt-1 font-mono text-2xl font-semibold text-ink">
+                  {locationInfo.stats.avgTurnaroundDays} Days SLA
+                </p>
+              </div>
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-wider text-ink-muted">
+                  Avg Monthly Enquiries
+                </p>
+                <p className="mt-1 font-mono text-2xl font-semibold text-ink">
+                  {locationInfo.stats.avgInquiriesMonthly} / client
+                </p>
+              </div>
+            </div>
+          </section>
+        )}
+
+        {locationInfo?.localCaseStudy && (
+          <section className="studio-wrap my-8">
+            <div className="rounded-2xl border border-emerald-900/10 bg-emerald-50/50 p-6 sm:p-8">
+              <span className="text-xs font-semibold uppercase tracking-widest text-emerald-800">
+                Verified Local Case Study
+              </span>
+              <h3 className="mt-2 text-xl font-semibold text-ink">
+                {locationInfo.localCaseStudy.name} — {locationInfo.localCaseStudy.trade}
+              </h3>
+              <p className="text-sm font-medium text-emerald-700">
+                {locationInfo.localCaseStudy.location}
+              </p>
+              <p className="mt-4 text-base italic text-ink/80">
+                "{locationInfo.localCaseStudy.quote}"
+              </p>
+              <div className="mt-4 inline-block rounded-full bg-emerald-700 px-3 py-1 text-xs font-semibold text-white">
+                {locationInfo.localCaseStudy.result}
+              </div>
+            </div>
+          </section>
+        )}
+
+        {tradeInfo?.keyChallenges && tradeInfo.keyChallenges.length > 0 && (
+          <section className="studio-section studio-wrap">
+            <p className="studio-kicker">SOLVING YOUR INBOUND CHALLENGES</p>
+            <h2>
+              Stop losing quotes.
+              <br />
+              <span className="studio-muted">Start capturing high-margin work.</span>
+            </h2>
+            <div className="group-principle-grid">
+              {tradeInfo.keyChallenges.map((challenge, idx) => (
+                <article key={idx}>
+                  <h3>Challenge 0{idx + 1}</h3>
+                  <p>{challenge}</p>
+                </article>
+              ))}
+            </div>
+          </section>
+        )}
+
         <section className="studio-section studio-wrap">
           <p className="studio-kicker">MAKE YOUR BUSINESS EASY TO CHOOSE</p>
           <h2>
@@ -67,8 +201,8 @@ export function TradeServiceLanding({
               <h3>Show what you do.</h3>
               <p>
                 Organise your services around the work you want enquiries for.{" "}
-                {topics.length
-                  ? "We can discuss " + topics.slice(0, 3).join(", ") + "."
+                {effectiveTopics.length
+                  ? "We can discuss " + effectiveTopics.slice(0, 3).join(", ") + "."
                   : "Keep the information useful, specific and easy to find."}
               </p>
             </article>
@@ -88,6 +222,35 @@ export function TradeServiceLanding({
             </article>
           </div>
         </section>
+
+        {locationInfo?.boroughs && locationInfo.boroughs.length > 0 && (
+          <section className="studio-wrap my-8">
+            <div className="rounded-2xl border border-ink/10 bg-white p-6">
+              <h3 className="text-sm font-semibold uppercase tracking-wider text-ink-muted">
+                Coverage Postcodes & Boroughs
+              </h3>
+              <div className="mt-3 flex flex-wrap gap-2">
+                {locationInfo.nearbyPostcodes.map((pc) => (
+                  <span
+                    key={pc}
+                    className="rounded-md bg-ink/5 px-2.5 py-1 text-xs font-mono font-medium text-ink"
+                  >
+                    {pc}
+                  </span>
+                ))}
+                {locationInfo.boroughs.map((b) => (
+                  <span
+                    key={b}
+                    className="rounded-md bg-ink/5 px-2.5 py-1 text-xs font-medium text-ink"
+                  >
+                    {b}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
+
         <WebsitePackagesSection />
       </div>
     </PageShell>

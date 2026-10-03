@@ -1,7 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageShell } from "@/components/site/PageShell";
 import { EnquiryForm } from "@/components/site/EnquiryForm";
-import { siteConfig } from "@/lib/site-config";
+import { siteConfig, buildPageSeoHead } from "@/lib/site-config";
+
 export const Route = createFileRoute("/contact")({
   validateSearch: (s: Record<string, unknown>) => ({
     service: typeof s.service === "string" ? s.service : undefined,
@@ -9,16 +10,13 @@ export const Route = createFileRoute("/contact")({
     domain: typeof s.domain === "string" ? s.domain : undefined,
     websiteUrl: typeof s.websiteUrl === "string" ? s.websiteUrl : undefined,
   }),
-  head: () => ({
-    meta: [
-      { title: "Let’s plan your website | Harley Digital Works" },
-      {
-        name: "description",
-        content:
-          "Tell us about your trade business. Discuss your website build and ongoing care, with a clear scope and written quote before you commit.",
-      },
-    ],
-  }),
+  head: () =>
+    buildPageSeoHead({
+      title: "Let’s plan your website | Harley Digital Works",
+      description:
+        "Tell us about your trade business. Discuss your website build and ongoing care, with a clear scope and written quote before you commit.",
+      path: "/contact",
+    }),
   component: ContactPage,
 });
 function ContactPage() {

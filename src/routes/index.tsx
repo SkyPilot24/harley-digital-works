@@ -14,26 +14,16 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 
+import { buildPageSeoHead } from "@/lib/site-config";
+
 export const Route = createFileRoute("/")({
-  head: () => ({
-    meta: [
-      { title: "Harley Digital Works | Websites Worth Choosing" },
-      {
-        name: "description",
-        content:
-          "Your work deserves a better website. Website design, copywriting and ongoing digital care for UK trades. An initial build fee, a monthly service, and one team to look after your website.",
-      },
-      {
-        property: "og:title",
-        content: "Your work deserves a better website | Harley Digital Works",
-      },
-      {
-        property: "og:description",
-        content:
-          "Thoughtful design. Clear words. A website that does your business justice. Explore our design approach and website packages.",
-      },
-    ],
-  }),
+  head: () =>
+    buildPageSeoHead({
+      title: "Harley Digital Works | Websites Worth Choosing",
+      description:
+        "Your work deserves a better website. Website design, copywriting and ongoing digital care for UK trades. An initial build fee, a monthly service, and one team to look after your website.",
+      path: "/",
+    }),
   component: HomePage,
 });
 

@@ -22,6 +22,25 @@ import {
 import { toast } from "sonner";
 
 export const Route = createFileRoute("/proposals")({
+  validateSearch: (
+    search: Record<string, unknown>,
+  ): {
+    client?: string;
+    name?: string;
+    trade?: string;
+    package?: string;
+    service?: string;
+    domain?: string;
+    websiteUrl?: string;
+  } => ({
+    client: typeof search.client === "string" ? search.client : undefined,
+    name: typeof search.name === "string" ? search.name : undefined,
+    trade: typeof search.trade === "string" ? search.trade : undefined,
+    package: typeof search.package === "string" ? search.package : undefined,
+    service: typeof search.service === "string" ? search.service : undefined,
+    domain: typeof search.domain === "string" ? search.domain : undefined,
+    websiteUrl: typeof search.websiteUrl === "string" ? search.websiteUrl : undefined,
+  }),
   head: () => ({
     meta: [
       { title: "Interactive Client Proposal Desk | Harley Digital Works" },
@@ -150,11 +169,19 @@ const SLA_SCHEDULE = [
 ];
 
 function ProposalsPage() {
+  const search = Route.useSearch();
+  const initialClient = search.client || "Apex Heating & Mechanical Ltd";
+  const initialPkgKey =
+    search.package && search.package in PACKAGES
+      ? (search.package as keyof typeof PACKAGES)
+      : "growth";
+
   // Preset defaults for proposal demonstration & customisation
-  const [clientName, setClientName] = useState("Apex Heating & Mechanical Ltd");
-  const [clientSector, setClientSector] = useState("Commercial & Domestic Gas Engineering");
-  const [clientLocation, setClientLocation] = useState("Greater Manchester & Cheshire");
-  const [selectedPackageKey, setSelectedPackageKey] = useState<keyof typeof PACKAGES>("growth");
+  const [clientName, setClientName] = useState(initialClient);
+  const [clientSector, setClientSector] = useState("Commercial & Domestic Trade Services");
+  const [clientLocation, setClientLocation] = useState("Greater London & South East");
+  const [selectedPackageKey, setSelectedPackageKey] =
+    useState<keyof typeof PACKAGES>(initialPkgKey);
   const [selectedAddons, setSelectedAddons] = useState<string[]>([
     "care-plus",
     "seo-pack",
@@ -174,22 +201,27 @@ function ProposalsPage() {
   };
 
   const calculatedTotals = useMemo(() => {
-    let upfrontTotal = currentPkg.price;
+    let netUpfront = currentPkg.price;
     let monthlyTotal = 0;
 
     selectedAddons.forEach((id) => {
       const addon = AVAILABLE_ADDONS.find((a) => a.id === id);
       if (addon) {
-        upfrontTotal += addon.price;
+        netUpfront += addon.price;
         if (addon.monthly) monthlyTotal += addon.monthly;
       }
     });
 
-    const depositRequired = Math.round(upfrontTotal * 0.5);
-    const balanceOnCompletion = upfrontTotal - depositRequired;
+    const ukVatAmount = Math.round(netUpfront * 0.2 * 100) / 100;
+    const grossUpfront = Math.round((netUpfront + ukVatAmount) * 100) / 100;
+    const depositRequired = Math.round(grossUpfront * 0.5 * 100) / 100;
+    const balanceOnCompletion = Math.round((grossUpfront - depositRequired) * 100) / 100;
 
     return {
-      upfrontTotal,
+      netUpfront,
+      ukVatAmount,
+      grossUpfront,
+      upfrontTotal: netUpfront,
       monthlyTotal,
       depositRequired,
       balanceOnCompletion,
@@ -459,9 +491,29 @@ function ProposalsPage() {
                       );
                     })}
 
-                    <div className="border-t border-ink/10 pt-3 flex justify-between font-bold text-base text-ink">
-                      <span>Total Upfront Project</span>
-                      <span>£{calculatedTotals.upfrontTotal.toLocaleString()}</span>
+                    <div className="border-t border-ink/10 pt-3 flex justify-between font-bold text-sm text-ink">
+                      <span>Net Subtotal</span>
+                      <span>£{calculatedTotals.netUpfront.toLocaleString()}</span>
+                    </div>
+                    <div className="flex justify-between text-xs text-ink-muted">
+                      <span>UK VAT (20% HMRC GB 948 2018 39)</span>
+                      <span>
+                        £
+                        {calculatedTotals.ukVatAmount.toLocaleString(undefined, {
+                          minimumFractionDigits: 2,
+                          maximumFractionDigits: 2,
+                        })}
+                      </span>
+                    </div>
+                    <div className="flex justify-between font-bold text-base text-emerald-800 border-t border-ink/5 pt-2">
+                      <span>Gross Upfront Total</span>
+                      <span>
+                        £
+                        {calculatedTotals.grossUpfront.toLocaleString(undefined, {
+                          minimumFractionDigits: 2,
+                          maximumFractionDigits: 2,
+                        })}
+                      </span>
                     </div>
 
                     {calculatedTotals.monthlyTotal > 0 && (
@@ -474,14 +526,24 @@ function ProposalsPage() {
 
                   <div className="mt-6 rounded-xl bg-slate-900 p-4 text-white text-xs space-y-2">
                     <div className="flex justify-between text-slate-300">
-                      <span>50% Deposit to Start:</span>
+                      <span>50% Deposit to Start (Inc-VAT):</span>
                       <span className="font-bold text-white text-sm">
-                        £{calculatedTotals.depositRequired.toLocaleString()}
+                        £
+                        {calculatedTotals.depositRequired.toLocaleString(undefined, {
+                          minimumFractionDigits: 2,
+                          maximumFractionDigits: 2,
+                        })}
                       </span>
                     </div>
                     <div className="flex justify-between text-slate-400 text-[11px]">
-                      <span>50% Balance on Live Launch:</span>
-                      <span>£{calculatedTotals.balanceOnCompletion.toLocaleString()}</span>
+                      <span>50% Balance on Live Launch (Inc-VAT):</span>
+                      <span>
+                        £
+                        {calculatedTotals.balanceOnCompletion.toLocaleString(undefined, {
+                          minimumFractionDigits: 2,
+                          maximumFractionDigits: 2,
+                        })}
+                      </span>
                     </div>
                   </div>
 

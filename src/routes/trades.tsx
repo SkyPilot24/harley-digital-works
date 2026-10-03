@@ -2,17 +2,16 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { TRADE_VERTICALS } from "@/lib/trade-data";
 import { PageShell } from "@/components/site/PageShell";
 import { WebsitePackagesSection } from "@/components/site/WebsitePackagesSection";
+import { buildPageSeoHead } from "@/lib/site-config";
+
 export const Route = createFileRoute("/trades")({
-  head: () => ({
-    meta: [
-      { title: "Websites for your trade | Harley Digital Works" },
-      {
-        name: "description",
-        content:
-          "Explore website design and ongoing digital care for UK trades and local service businesses.",
-      },
-    ],
-  }),
+  head: () =>
+    buildPageSeoHead({
+      title: "Websites for your trade | Harley Digital Works",
+      description:
+        "Explore website design and ongoing digital care for UK trades and local service businesses.",
+      path: "/trades",
+    }),
   component: Page,
 });
 function Page() {
