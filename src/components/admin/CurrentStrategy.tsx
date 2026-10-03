@@ -3,6 +3,8 @@ import {
   currentPriorities,
   strategyRecords,
   deliverySteps,
+  tradeVerticalPlaybooks,
+  conversionToolPlaybooks,
 } from "@/lib/current-strategy";
 
 export function StrategySummary() {
@@ -76,12 +78,49 @@ export function CurrentStrategy() {
 
 export function DeliveryPlaybook() {
   return (
-    <div className="space-y-4">
-      {deliverySteps.map((step, index) => (
-        <StrategyCard key={step.title} title={`${index + 1}. ${step.title}`}>
-          <p>{step.detail}</p>
-        </StrategyCard>
-      ))}
+    <div className="space-y-8">
+      <div className="space-y-4">
+        <h3 className="text-xl font-bold text-ink">8-Step Turnaround Delivery Sequence</h3>
+        {deliverySteps.map((step, index) => (
+          <StrategyCard key={step.title} title={`${index + 1}. ${step.title}`}>
+            <p>{step.detail}</p>
+          </StrategyCard>
+        ))}
+      </div>
+
+      <div className="space-y-4 pt-6 border-t border-ink/10">
+        <h3 className="text-xl font-bold text-ink">Trade Vertical Execution Playbooks</h3>
+        <div className="grid gap-4 md:grid-cols-2">
+          {tradeVerticalPlaybooks.map((tv) => (
+            <div key={tv.name} className="rounded-xl border border-ink/10 bg-white p-5 space-y-2">
+              <span className="rounded-full bg-emerald-50 px-2.5 py-1 text-[10px] font-semibold text-emerald-800 uppercase tracking-wider">
+                {tv.badge}
+              </span>
+              <h4 className="font-semibold text-ink text-base pt-1">{tv.name}</h4>
+              <p className="text-xs font-mono font-medium text-ink-muted">
+                Avg Value: {tv.avgJobValue}
+              </p>
+              <p className="text-xs text-ink-muted leading-relaxed">{tv.keyFeatures}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="space-y-4 pt-6 border-t border-ink/10">
+        <h3 className="text-xl font-bold text-ink">Interactive Lead Conversion Tools Playbook</h3>
+        <div className="grid gap-4 md:grid-cols-3">
+          {conversionToolPlaybooks.map((ct) => (
+            <div key={ct.name} className="rounded-xl border border-ink/10 bg-white p-5 space-y-2">
+              <h4 className="font-semibold text-ink text-sm">{ct.name}</h4>
+              <p className="text-xs font-mono text-emerald-700">{ct.route}</p>
+              <p className="text-xs text-ink-muted leading-relaxed">{ct.purpose}</p>
+              <p className="text-xs font-medium text-ink/80 pt-2 border-t border-ink/5">
+                Path: {ct.conversionPath}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   );
 }
@@ -90,8 +129,8 @@ export function StrategySources() {
   return (
     <section className="space-y-4">
       <p className="text-sm text-ink-muted">
-        Governing Business OS records. Dashboard summary reviewed 29 September 2026; changes in
-        Drive do not automatically update this page.
+        Governing Business OS records. Dashboard summary updated October 2026; changes in Drive do
+        not automatically update this page.
       </p>
       <div className="grid gap-4 md:grid-cols-2">
         {strategyRecords.map((record) => (

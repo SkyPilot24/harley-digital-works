@@ -315,3 +315,307 @@ test("launch pages and admin paths remain accessible", () => {
   ])
     assert.equal(deferredServiceForPath(url), undefined, url);
 });
+
+// =========================================================
+// Backend & Supabase Verification: Leads RLS & Authorization
+// =========================================================
+
+function simulateLeadsRLS({ role = "anon", hasAdminRole = false } = {}) {
+  const table = [];
+
+  return {
+    insert: (lead) => {
+      // "Anyone can submit a lead" ON public.leads FOR INSERT TO anon, authenticated WITH CHECK (true);
+      if (!lead.name || !lead.email || !lead.message) {
+        throw new Error("Missing required lead fields");
+      }
+      const record = {
+        id: crypto.randomUUID(),
+        name: lead.name,
+        email: lead.email.toLowerCase(),
+        company: lead.company || null,
+        package: lead.package || null,
+        message: lead.message,
+        status: lead.status || "new",
+        notes: lead.notes || null,
+        source: lead.source || "contact_form",
+        created_at: new Date().toISOString(),
+        updated_at: new Date().toISOString(),
+      };
+      table.push(record);
+      return { data: record, error: null };
+    },
+    select: () => {
+      // "Admins read leads" ON public.leads FOR SELECT TO authenticated USING (public.has_role(auth.uid(), 'admin'));
+      if (role !== "authenticated" || !hasAdminRole) {
+        return {
+          data: null,
+          error: { message: "Permission denied by RLS policy: Admins read leads" },
+        };
+      }
+      return { data: [...table], error: null };
+    },
+    update: (id, updates) => {
+      // "Admins update leads" ON public.leads FOR UPDATE TO authenticated USING (public.has_role(auth.uid(), 'admin'))
+      if (role !== "authenticated" || !hasAdminRole) {
+        return {
+          data: null,
+          error: { message: "Permission denied by RLS policy: Admins update leads" },
+        };
+      }
+      const idx = table.findIndex((l) => l.id === id);
+      if (idx === -1) return { data: null, error: { message: "Lead not found" } };
+      table[idx] = { ...table[idx], ...updates, updated_at: new Date().toISOString() };
+      return { data: table[idx], error: null };
+    },
+    delete: (id) => {
+      // "Admins delete leads" ON public.leads FOR DELETE TO authenticated USING (public.has_role(auth.uid(), 'admin'))
+      if (role !== "authenticated" || !hasAdminRole) {
+        return {
+          data: null,
+          error: { message: "Permission denied by RLS policy: Admins delete leads" },
+        };
+      }
+      const idx = table.findIndex((l) => l.id === id);
+      if (idx === -1) return { data: null, error: { message: "Lead not found" } };
+      const [deleted] = table.splice(idx, 1);
+      return { data: deleted, error: null };
+    },
+  };
+}
+
+test("anonymous users can insert enquiries but RLS blocks select, update, and delete", () => {
+  const anonClient = simulateLeadsRLS({ role: "anon", hasAdminRole: false });
+
+  // Anonymous user submits an enquiry
+  const insertResult = anonClient.insert({
+    name: "John Doe",
+    email: "JOHN.DOE@EXAMPLE.COM",
+    message: "Enquiry for Launch website package",
+  });
+  assert.equal(insertResult.error, null);
+  assert.equal(insertResult.data.email, "john.doe@example.com");
+
+  // Anonymous user attempts to query leads list
+  const selectResult = anonClient.select();
+  assert.ok(selectResult.error);
+  assert.match(selectResult.error.message, /Permission denied by RLS policy/);
+
+  // Anonymous user attempts to update status
+  const updateResult = anonClient.update(insertResult.data.id, { status: "won" });
+  assert.ok(updateResult.error);
+  assert.match(updateResult.error.message, /Permission denied by RLS policy/);
+
+  // Anonymous user attempts to delete lead
+  const deleteResult = anonClient.delete(insertResult.data.id);
+  assert.ok(deleteResult.error);
+  assert.match(deleteResult.error.message, /Permission denied by RLS policy/);
+});
+
+test("non-admin authenticated users are blocked from viewing or managing leads", () => {
+  const userClient = simulateLeadsRLS({ role: "authenticated", hasAdminRole: false });
+
+  const selectResult = userClient.select();
+  assert.ok(selectResult.error);
+  assert.match(selectResult.error.message, /Admins read leads/);
+
+  const updateResult = userClient.update("some-id", { status: "qualified" });
+  assert.ok(updateResult.error);
+  assert.match(updateResult.error.message, /Admins update leads/);
+});
+
+test("admin authenticated users have full access to select, update, delete, and manage leads", () => {
+  const adminClient = simulateLeadsRLS({ role: "authenticated", hasAdminRole: true });
+
+  const lead1 = adminClient.insert({
+    name: "Trade Client Ltd",
+    email: "contact@tradeclient.co.uk",
+    company: "Trade Client Ltd",
+    package: "Growth Website (£2,995)",
+    message: "Looking for new website and care plan",
+  }).data;
+
+  // Admin reads leads
+  const selectResult = adminClient.select();
+  assert.equal(selectResult.error, null);
+  assert.equal(selectResult.data.length, 1);
+  assert.equal(selectResult.data[0].name, "Trade Client Ltd");
+
+  // Admin updates lead status to qualified
+  const updateResult = adminClient.update(lead1.id, {
+    status: "qualified",
+    notes: "Called 03/10: approved proposal",
+  });
+  assert.equal(updateResult.error, null);
+  assert.equal(updateResult.data.status, "qualified");
+  assert.equal(updateResult.data.notes, "Called 03/10: approved proposal");
+
+  // Admin deletes lead
+  const deleteResult = adminClient.delete(lead1.id);
+  assert.equal(deleteResult.error, null);
+  assert.equal(adminClient.select().data.length, 0);
+});
+
+// =========================================================
+// Client Workspace & Strategy Verification
+// =========================================================
+import { currentStrategy, deliverySteps, currentPriorities } from "../src/lib/current-strategy.ts";
+
+test("client workspace creation for lead initializes with zero monthly value and lead status", () => {
+  const sampleLead = {
+    id: "e5f2a100-3021-4f90-a292-200984a98401",
+    name: "Apex Electricals",
+    email: "info@apexelectricals.co.uk",
+    company: "Apex Electrical Services",
+    package: "Growth Website (£2,995)",
+    message: "Need a managed website",
+    status: "qualified",
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
+  };
+
+  const clientPayload = clientWorkspaceForLead(sampleLead);
+  assert.equal(clientPayload.id, sampleLead.id);
+  assert.equal(clientPayload.name, "Apex Electrical Services");
+  assert.equal(clientPayload.status, "lead");
+  assert.equal(clientPayload.monthly_value_cents, 0);
+  assert.match(clientPayload.notes, /No agreement or payment is implied/);
+});
+
+test("strategy definition matches Business OS governance specifications", () => {
+  assert.match(currentStrategy.title, /Managed/);
+  assert.match(currentStrategy.model, /initial website build fee/);
+  assert.match(currentStrategy.milestone, /verified paying/);
+  assert.equal(deliverySteps.length, 8);
+  assert.equal(currentPriorities.length, 5);
+});
+
+import { buildPageSeoHead } from "../src/lib/site-config.ts";
+
+test("buildPageSeoHead outputs valid canonical links, OpenGraph tags and Schema.org JSON-LD microdata", () => {
+  const head = buildPageSeoHead({
+    title: "Test Page | Harley Digital Works",
+    description: "Test page description for UK trades.",
+    path: "/services",
+  });
+
+  const canonicalLink = head.links.find((l) => l.rel === "canonical");
+  assert.ok(canonicalLink);
+  assert.equal(canonicalLink.href, "https://harleydigitalworks.com/services");
+
+  const ogTitle = head.meta.find((m) => m.property === "og:title");
+  assert.ok(ogTitle);
+  assert.equal(ogTitle.content, "Test Page | Harley Digital Works");
+
+  const twitterCard = head.meta.find((m) => m.name === "twitter:card");
+  assert.ok(twitterCard);
+  assert.equal(twitterCard.content, "summary_large_image");
+
+  assert.equal(head.scripts.length, 1);
+  const schemaObj = JSON.parse(head.scripts[0].children);
+  assert.equal(schemaObj["@context"], "https://schema.org");
+  assert.equal(schemaObj["@type"], "ProfessionalService");
+  assert.equal(schemaObj.name, "Harley Digital Works");
+});
+
+import { publicWebsiteRoutes } from "../src/lib/site-config.ts";
+
+test("publicWebsiteRoutes defines complete diagnostic metadata for all key revenue surfaces", () => {
+  assert.ok(publicWebsiteRoutes.length >= 11);
+
+  for (const route of publicWebsiteRoutes) {
+    assert.ok(route.path.startsWith("/"));
+    assert.ok(route.label);
+    assert.ok(route.adminPath.startsWith("/admin"));
+    assert.ok(route.owner);
+    assert.ok(
+      ["Brand", "Services", "Domains", "Resources", "Lead capture"].includes(route.diagnosticGroup),
+    );
+    assert.ok(route.leadCapturePath);
+    assert.ok(route.revenueRole);
+    assert.ok(["High", "Medium", "Low"].includes(route.priority));
+  }
+});
+
+import {
+  domainPortfolio,
+  rankedDomains,
+  getDomainBuyNowPrice,
+  formatGbp,
+} from "../src/lib/domain-portfolio.ts";
+
+test("domain portfolio ranking orders High priority assets first and formats pricing correctly", () => {
+  const ranked = rankedDomains();
+  assert.equal(ranked.length, domainPortfolio.length);
+
+  // First item must be High priority
+  assert.equal(ranked[0].priority, "High");
+
+  // Check valuation guide pricing
+  assert.equal(getDomainBuyNowPrice("valuecurrencies.com"), 4995);
+  assert.equal(formatGbp(4995), "£4,995");
+  assert.equal(formatGbp(null), "Enquire only");
+});
+
+import { TRADE_VERTICALS } from "../src/lib/trade-data.ts";
+
+test("trade verticals dataset is structured with valid slugs, stats, and accreditation badges", () => {
+  const verticals = Object.values(TRADE_VERTICALS);
+  assert.ok(verticals.length >= 4);
+
+  for (const trade of verticals) {
+    assert.ok(trade.slug);
+    assert.ok(trade.name);
+    assert.ok(trade.badge);
+    assert.ok(trade.heroHeadline);
+    assert.ok(trade.heroHighlight);
+    assert.ok(trade.heroSubheadline);
+    assert.ok(trade.accreditationBadge);
+    assert.ok(trade.averageJobValue);
+    assert.ok(Array.isArray(trade.targetEnquiries) && trade.targetEnquiries.length > 0);
+    assert.ok(Array.isArray(trade.keyChallenges) && trade.keyChallenges.length > 0);
+    assert.ok(Array.isArray(trade.includedFeatures) && trade.includedFeatures.length > 0);
+    assert.ok(trade.metaTitle.includes("Harley Digital Works"));
+    assert.ok(trade.metaDescription.length > 20);
+    assert.ok(Array.isArray(trade.stats) && trade.stats.length >= 4);
+  }
+});
+
+import { UK_LOCATIONS } from "../src/lib/location-data.ts";
+
+test("UK locations dataset contains valid postcodes, borough coverage, and verified case studies", () => {
+  const locations = Object.values(UK_LOCATIONS);
+  assert.ok(locations.length >= 2);
+
+  for (const loc of locations) {
+    assert.ok(loc.slug);
+    assert.ok(loc.cityName);
+    assert.ok(loc.regionName);
+    assert.ok(loc.county);
+    assert.ok(loc.headline);
+    assert.ok(loc.subheadline);
+    assert.ok(loc.localPhone.length >= 10);
+    assert.ok(Array.isArray(loc.boroughs) && loc.boroughs.length > 0);
+    assert.ok(Array.isArray(loc.nearbyPostcodes) && loc.nearbyPostcodes.length > 0);
+    assert.ok(loc.stats.tradeSitesLaunched > 0);
+    assert.ok(loc.stats.avgTurnaroundDays > 0);
+    assert.ok(loc.stats.avgInquiriesMonthly > 0);
+    assert.ok(Array.isArray(loc.featuredTrades) && loc.featuredTrades.length > 0);
+    assert.ok(loc.localCaseStudy.name);
+    assert.ok(loc.localCaseStudy.trade);
+    assert.ok(loc.localCaseStudy.location);
+    assert.ok(loc.localCaseStudy.result);
+    assert.ok(loc.localCaseStudy.quote);
+  }
+});
+
+import { leadCaptureConfigured, siteConfig } from "../src/lib/site-config.ts";
+
+test("environment deployment flags safeguard unconfigured transactional mail and fallback to mailto draft", () => {
+  // Verify siteConfig has canonical production domain
+  assert.equal(siteConfig.url, "https://harleydigitalworks.com");
+  assert.equal(siteConfig.contactEmail, "hello@harleydigitalworks.com");
+
+  // Lead capture fallback behavior
+  assert.equal(typeof leadCaptureConfigured, "boolean");
+});

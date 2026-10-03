@@ -148,6 +148,55 @@ assert(
   `Gross Total Inc-VAT (£1,797.00 expected, got £${expectedGross.toFixed(2)})`,
 );
 
+// 7. Cloudflare Deployment & Environment Secrets Verification
+console.log("\n[Test Suite 7: Cloudflare Deployment & Environment Secrets]");
+const outputWranglerPath = path.join(rootDir, ".output/server/wrangler.json");
+const outputHeadersPath = path.join(rootDir, ".output/public/_headers");
+
+assert(
+  fs.existsSync(outputWranglerPath),
+  "Cloudflare Nitro worker output exists (.output/server/wrangler.json)",
+);
+assert(
+  fs.existsSync(outputHeadersPath),
+  "Cloudflare static asset headers exit (.output/public/_headers)",
+);
+
+if (fs.existsSync(outputWranglerPath)) {
+  const wranglerContent = fs.readFileSync(outputWranglerPath, "utf-8");
+  const wranglerConfig = JSON.parse(wranglerContent);
+  assert(
+    wranglerConfig.main.includes("index.mjs"),
+    "Wrangler entrypoint references index.mjs worker",
+  );
+  assert(
+    wranglerConfig.compatibility_flags?.includes("nodejs_compat") ||
+      wranglerConfig.compatibility_date,
+    "Wrangler includes Cloudflare compatibility settings",
+  );
+}
+
+// Ensure SUPABASE_SERVICE_ROLE_KEY is not leaked to public bundle
+const publicBundleDir = path.join(rootDir, ".output/public");
+if (fs.existsSync(publicBundleDir)) {
+  const publicFiles = fs.readdirSync(publicBundleDir, { recursive: true });
+  let secretLeaked = false;
+  for (const file of publicFiles) {
+    if (typeof file === "string" && file.endsWith(".js")) {
+      const filePath = path.join(publicBundleDir, file);
+      const content = fs.readFileSync(filePath, "utf-8");
+      if (content.includes("SUPABASE_SERVICE_ROLE_KEY")) {
+        secretLeaked = true;
+        break;
+      }
+    }
+  }
+  assert(
+    !secretLeaked,
+    "SUPABASE_SERVICE_ROLE_KEY secret is strictly isolated from public client bundles",
+  );
+}
+
 console.log("\n==================================================");
 console.log(` Summary: ${passed} Passed | ${failed} Failed`);
 console.log("==================================================");

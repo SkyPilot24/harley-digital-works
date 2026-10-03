@@ -3,7 +3,7 @@ function normalizeSiteUrl(url: string) {
 }
 
 const configuredSiteUrl =
-  import.meta.env.VITE_SITE_URL ||
+  (typeof import.meta !== "undefined" && import.meta.env && import.meta.env.VITE_SITE_URL) ||
   process.env.VITE_SITE_URL ||
   process.env.SITE_URL ||
   "https://harleydigitalworks.com";
@@ -12,7 +12,11 @@ const siteUrl = normalizeSiteUrl(configuredSiteUrl);
 const siteDomain = new URL(siteUrl).hostname;
 
 export const leadCaptureConfigured = Boolean(
-  import.meta.env.VITE_SUPABASE_URL && import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY,
+  (typeof import.meta !== "undefined" &&
+    import.meta.env &&
+    import.meta.env.VITE_SUPABASE_URL &&
+    import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY) ||
+  (process.env.VITE_SUPABASE_URL && process.env.VITE_SUPABASE_PUBLISHABLE_KEY),
 );
 
 export const siteConfig = {
@@ -222,3 +226,62 @@ export const websiteAuditSuggestions: WebsiteAuditSuggestion[] = [
       "Use the Diagnostics screen to monitor route status, metadata coverage, and legacy contact details; add lead-capture checks next.",
   },
 ];
+
+export function buildPageSeoHead({
+  title,
+  description,
+  path = "/",
+  ogType = "website",
+  includeSchemaJsonLd = true,
+}: {
+  title: string;
+  description: string;
+  path?: string;
+  ogType?: string;
+  includeSchemaJsonLd?: boolean;
+}) {
+  const canonicalUrl = canonicalUrlForPath(path);
+  const fullOgImage = siteConfig.ogImage;
+
+  const meta = [
+    { title },
+    { name: "description", content: description },
+    { property: "og:site_name", content: siteConfig.name },
+    { property: "og:type", content: ogType },
+    { property: "og:title", content: title },
+    { property: "og:description", content: description },
+    { property: "og:url", content: canonicalUrl },
+    { property: "og:image", content: fullOgImage },
+    { name: "twitter:card", content: "summary_large_image" },
+    { name: "twitter:title", content: title },
+    { name: "twitter:description", content: description },
+    { name: "twitter:image", content: fullOgImage },
+  ];
+
+  const links = [{ rel: "canonical", href: canonicalUrl }];
+
+  const scripts = includeSchemaJsonLd
+    ? [
+        {
+          type: "application/ld+json",
+          children: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "ProfessionalService",
+            name: siteConfig.name,
+            url: siteConfig.url,
+            logo: `${siteConfig.url}${siteConfig.brandMark}`,
+            image: fullOgImage,
+            email: siteConfig.contactEmail,
+            priceRange: "£1,495 - £4,995",
+            address: {
+              "@type": "PostalAddress",
+              addressCountry: "GB",
+            },
+            description: "Managed websites, copywriting, and digital care for UK trade businesses.",
+          }),
+        },
+      ]
+    : [];
+
+  return { meta, links, scripts };
+}

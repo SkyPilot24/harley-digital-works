@@ -2,27 +2,16 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowUpRight, Check, PenLine, ShieldCheck } from "lucide-react";
 import { PageShell } from "@/components/site/PageShell";
 import { PillButton } from "@/components/site/PillButton";
+import { buildPageSeoHead } from "@/lib/site-config";
 
 export const Route = createFileRoute("/about")({
-  head: () => ({
-    meta: [
-      { title: "About the Studio | Harley Digital Works" },
-      {
-        name: "description",
-        content:
-          "An independent British web studio dedicated to ambitious trades and service businesses. Thoughtful design, clear words, and personal commitment from Dr Robbie Harley.",
-      },
-      {
-        property: "og:title",
-        content: "About the Studio | Harley Digital Works",
-      },
-      {
-        property: "og:description",
-        content:
-          "We build, write, and look after websites for people who take pride in their work. Meet the studio and founder Dr Robbie Harley.",
-      },
-    ],
-  }),
+  head: () =>
+    buildPageSeoHead({
+      title: "About the Studio | Harley Digital Works",
+      description:
+        "An independent British web studio dedicated to ambitious trades and service businesses. Thoughtful design, clear words, and personal commitment from Dr Robbie Harley.",
+      path: "/about",
+    }),
   component: AboutPage,
 });
 

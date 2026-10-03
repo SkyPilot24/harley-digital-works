@@ -9,19 +9,16 @@ import {
   getDomainBuyNowPrice,
   rankedDomains,
 } from "@/lib/domain-portfolio";
+import { buildPageSeoHead } from "@/lib/site-config";
 
 export const Route = createFileRoute("/domains")({
-  head: () => ({
-    meta: [
-      { title: "Domains - Harley Digital Works" },
-      {
-        name: "description",
-        content:
-          "A sale portfolio of owned domains across AI, autonomous driving, green transport, IoT, finance, and UK niche brands.",
-      },
-      { property: "og:title", content: "Domains - Harley Digital Works" },
-    ],
-  }),
+  head: () =>
+    buildPageSeoHead({
+      title: "Domains - Harley Digital Works",
+      description:
+        "A sale portfolio of owned domains across AI, autonomous driving, green transport, IoT, finance, and UK niche brands.",
+      path: "/domains",
+    }),
   component: DomainsPage,
 });
 
