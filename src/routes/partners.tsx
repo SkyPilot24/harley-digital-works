@@ -19,18 +19,16 @@ import {
   QrCode,
 } from "lucide-react";
 import { toast } from "sonner";
+import { buildPageSeoHead } from "@/lib/site-config";
 
 export const Route = createFileRoute("/partners")({
-  head: () => ({
-    meta: [
-      { title: "Trade Partner & Referral Network | Harley Digital Works" },
-      {
-        name: "description",
-        content:
-          "Earn £250 commission per referral introducing UK trade contractors to Harley Digital Works 100% done-for-you website systems.",
-      },
-    ],
-  }),
+  head: () =>
+    buildPageSeoHead({
+      title: "Trade Partner & Referral Network | Harley Digital Works",
+      description:
+        "Earn £250 commission per referral introducing UK trade contractors to Harley Digital Works 100% done-for-you website systems.",
+      path: "/partners",
+    }),
   component: PartnersPage,
 });
 
