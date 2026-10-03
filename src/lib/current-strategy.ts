@@ -93,7 +93,7 @@ export const deliverySteps = [
   {
     title: "Launch & Cloudflare Deployment",
     detail:
-      "Deploy prebuilt Nitro worker (.output/server/wrangler.json) to Cloudflare. Verify SUPABASE_SERVICE_ROLE_KEY isolation from public bundle and preserve client domain DNS email records.",
+      "Deploy prebuilt Nitro worker (.output/server/wrangler.json) to Cloudflare. Verify Supabase service role key isolation from public bundle and preserve client domain DNS email records.",
   },
   {
     title: "Deliver Ongoing Monthly Care & Review Booster",
