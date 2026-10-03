@@ -1,5 +1,13 @@
 # The Harley Group — current business definition
 
+## Founder operating direction - 3 October 2026
+
+The Harley Group is the umbrella; Harley Digital Works delivers customer services and Harley Labs covers experiments, automation and prototypes. Domain services remain a separate measured workstream within the same business, not a competing hub.
+
+Design for near end-to-end automation, managed by exception, with Robbie retaining oversight and quality review alongside his other responsibilities. Standard approved cases advance automatically under defined commercial, security and quality rules. Do not create a permanent founder approval step for every proposal, build or routine task. The first paid pilot must validate this repeatable workflow, including recovery from failures; it must not establish a founder-heavy manual agency.
+
+During initial pilot validation, review each critical transition and all launch outputs. In steady state, automate routine checks and standard transitions, retain customer approval of their content/site, and use selected founder quality reviews plus mandatory review of novel or high-risk exceptions. Founder approval of prices, contractual rules, spending limits and publication policy is an initial business decision, not approval of every subsequent compliant transaction. See docs/REVENUE_WORKFLOW.md for the lifecycle and exception rules. This is a target operating model, not evidence that the automation is live.
+
 ## Shared record and precedence
 
 Imported from the existing The Harley Group / Business OS records on 2 October 2026; existing task IDs and commercial decisions are preserved. These repository files govern development across Codex/ChatGPT Work and Google Antigravity. Google Drive originals remain business reference records; there is no automatic synchronisation. When either copy changes, explicitly reconcile the other and record the date/source in the handover. Latest explicit founder decisions take precedence. Historical implementation notes require current source and runtime evidence before being marked complete.

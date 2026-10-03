@@ -1,4 +1,4 @@
-﻿---
+---
 title: Harley Digital Works Technical & Brand Guidelines
 trigger: always_on
 ---
@@ -8,7 +8,7 @@ trigger: always_on
 1. **Brand Identity**:
    - Company: Harley Digital Works (A division of The Harley Group Ltd).
    - Core Audience: UK Trade Contractors (Electricians, Gas Safe Engineers, Roofers, Builders, Commercial Facilities).
-   - Core Promise: 14-Day Delivery, 100% Done-For-You Copywriting, £95/mo Managed Care.
+   - Core Offer Structure: Setup fee plus ongoing monthly digital care (Pricing, SLAs, and commercial scope subject to explicit founder approval; see BUSINESS_DEFINITION.md).
 
 2. **Tech Stack & Architecture**:
    - Framework: TanStack Router + TanStack Start + Nitro SSR (`cloudflare-module` preset).

@@ -17,13 +17,15 @@ When working on strategy, copy, Control Centre, Revenue OS, diagnostics, service
 
 ## Shared project context — Codex, ChatGPT Work and Google Antigravity
 
-At the start of a session, read:
+At the start of a session, read PROJECT_STATUS.md's short operating brief first. Select one ready task, then retrieve relevant detail from:
 1. [BUSINESS_DEFINITION.md](BUSINESS_DEFINITION.md) — commercial direction and approval boundaries.
 2. [PROJECT_STATUS.md](PROJECT_STATUS.md) — verified state, blockers and evidence.
 3. [MASTER_BACKLOG.md](MASTER_BACKLOG.md) — integrated H01–H50 and D01–D08 roadmap.
 4. [docs/HANDOVER.md](docs/HANDOVER.md) — last handover and continuation procedure.
 
 These files are the shared repository record. Chat histories, personal memory, installed skills and connector sessions are not automatically shared between tools. Optional skills inform execution; they do not replace this record.
+
+Load full historical records only when relevant. Canonical standards: skills/thg-client-build-standard/SKILL.md for website delivery; skills/thg-supabase-security/SKILL.md for auth/database security; skills/thg-production-qa/SKILL.md for release readiness. Antigravity reads the same files through .agents/rules/thg-shared-skills.md. See docs/SHARED_SKILLS.md for installation/sync. Use existing checks with concise pass/fail summaries and actionable failure detail; context efficiency must not skip verification.
 
 The latest explicit founder instruction governs. Preserve The Harley Group as parent and Harley Digital Works as customer-facing agency unless a rename is explicitly confirmed; do not infer a rename from “Heaney Group”. Proposed prices are not approved commercial terms. Older plans, public copy and rules must be checked against BUSINESS_DEFINITION.md. The older £95/month and guaranteed 14-day language is not evidence of current approval.
 

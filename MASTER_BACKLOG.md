@@ -1,5 +1,31 @@
 # Master delivery backlog
 
+## Current execution overlay - 3 October 2026
+
+This evidence/status overlay supersedes stale gap statements in the preserved historical task definitions. It does not create duplicate tasks or mark unverified work complete. Read PROJECT_STATUS.md for exact source and release evidence.
+
+| Existing task | Current evidence and next acceptance |
+|---|---|
+| H01 | Setup plus monthly approved as model; final price, VAT, scope and terms remain decisions. Define reusable rules so routine proposals need no founder approval. |
+| H07/H08/H09/H42 | Highest next bottleneck: reconcile intended backend, safely integrate isolated security fixes, prove persisted enquiry and real admin dashboard retrieval plus denied unauthorised access. Existing admin account is insufficient evidence. |
+| H03/H12/H46 | Refreshed source is merged locally; map exact deployed revision and verify live multi-brand journeys before closing visual/release acceptance. |
+| H39/H40/H41 | Continue technical/security verification against current source and runtime; historical green tests cannot close current acceptance. |
+| H47 | PR #8 Quality run succeeded but PR remains draft/open and Cloudflare preview failed; reconcile CI and deployment separately. |
+| H50 | Pilot must validate the full automated lifecycle in docs/REVENUE_WORKFLOW.md, including exceptions, quality review and recurring collection; a manually delivered website alone is insufficient. |
+| D01-D08 / H49 | Preserve integrated domain workstream; enrich existing roster instead of requesting a replacement. Advanced automation and separate branding remain demand-gated. |
+
+Execution order: H07/H42 target and security acceptance; H08/H09 full enquiry/admin journey; H23/H24 provider-confirmed billing; H50 repeatable pilot through launch/care. H01 rules and D01 inventory can progress independently. Core brand/Labs QA runs within H12/H46; no separate competing QA backlog.
+
+### L01 - Align the existing Harley Labs page with the agreed basic brief
+- **Priority:** Medium
+- **Who needs to act:** You; Me only for unsupported claims/brand decisions
+- **Status:** Requested, implementation against new brief unverified
+- **Current gap:** Existing labs route presents systems architecture and tools; recent chat was a refined brief, not proof of the requested simple page.
+- **Why it matters:** The umbrella's three public brands need coherent purpose and credible conversion journeys.
+- **Dependencies:** Existing brand conventions, H03/H12/H46; approved claims.
+- **Resolution:** Assess and simplify existing route for AI, automation, prototypes and internal tools; preserve useful work, align navigation, contact CTA and metadata.
+- **Definition of done:** Accurate brief-aligned page, functional CTA, responsive/keyboard checks and correct metadata; verified deployment recorded separately. No invented products, clients or performance claims.
+
 ## Shared record and precedence
 
 Imported from the existing The Harley Group / Business OS records on 2 October 2026; existing task IDs and commercial decisions are preserved. These repository files govern development across Codex/ChatGPT Work and Google Antigravity. Google Drive originals remain business reference records; there is no automatic synchronisation. When either copy changes, explicitly reconcile the other and record the date/source in the handover. Latest explicit founder decisions take precedence. Historical implementation notes require current source and runtime evidence before being marked complete.

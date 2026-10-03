@@ -1,0 +1,7 @@
+interface:
+  display_name: "THG Production QA"
+  short_description: "Evidence-based website and SaaS release readiness"
+  default_prompt: "Use $thg-production-qa to audit this project for production readiness without deploying or making destructive changes."
+policy:
+  allow_implicit_invocation: true
+

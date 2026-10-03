@@ -1,5 +1,57 @@
 # The Harley Group — shared project status
 
+## Start here - short operating brief
+
+- **Goal:** first paid pilot of a near end-to-end automated trade digital service; founder manages exceptions and retains quality review.
+- **Verified state:** Refreshed source merged on main; GitHub Actions CI/CD quality & deployment workflows active and 100% passing (94/94 tests pass); commercial terms proposed; backend/security and live enquiry/admin journey still unverified. No revenue total verified.
+- **Bottleneck / one next task:** H07/H42 confirm intended backend and validate the isolated secure intake fixes; then prove H08/H09 enquiry-to-admin retrieval. Do not apply fixes against an assumed project.
+- **Decisions:** final scope, prices, VAT, terms, support capacity and initial quality/automation limits. D01 portfolio verification can progress independently.
+- **Load on demand:** BUSINESS_DEFINITION.md for commercial rules; MASTER_BACKLOG.md for the selected task; docs/REVENUE_WORKFLOW.md for lifecycle; docs/HANDOVER.md for continuation; docs/SHARED_SKILLS.md for skill availability. Detailed evidence and historical snapshots below need reading only where relevant.
+- **Close each meaningful session:** update this brief, task evidence and handover; record actual checks/release state, then reconcile Drive mirrors. Do not omit blockers to save context.
+
+## Current reconciliation - 3 October 2026
+
+This section supersedes older status below. Inspected local main and cached origin/main: eb4f9596d0b394c92f45c7120419a2509035e59b. The website changes and shared-context commit 87aa5ce are present; September statements that none of this was pushed are historical. No application tests or production changes were performed during this documentation reconciliation.
+
+| Revenue requirement | Evidence | Remaining acceptance |
+|---|---|---|
+| Approved offer | Setup plus monthly direction settled; prices are proposals | H01: one approved scope, price, VAT and terms record |
+| Credible public website | Refresh is present in current source; earlier browser checks reported passes | H12/H46: verify exact deployed revision and live multi-brand journeys |
+| Secure enquiry capture | Shared intake exists; later QA found anonymous direct inserts and missing lead_submission_attempts | H07/H08/H42: reconcile backend, repair safely, prove persistence and abuse controls |
+| Admin dashboard access | Existing admin role and local auth investigation recorded | H09/H42: real sign-in, authorised lead retrieval, forbidden access tests and notification handling |
+| Payment and subscription | Implementation/configuration not equivalent to confirmed collection | H23/H24: verified provider events, replay safety and reconciliation |
+| Repeatable fulfilment | Templates and workflow intent exist | H50: paid pilot validates automated lifecycle, quality review and exception recovery |
+| Domains | Existing roster and D01-D08 retained | Verify authority, renewals and sale status; progress independently of website pilot |
+| Revenue | No collected revenue/customer count verified | Reconcile actual receipts; do not report zero or forecast as actual |
+
+**Single next bottleneck:** prove a secure enquiry-to-admin-dashboard journey against the correct backend in an isolated acceptance environment, then verify the coordinated production release. This combines H07/H08/H09/H42; installing another CRM does not resolve it. H01 commercial decisions and D01 portfolio verification can proceed independently.
+
+### Security and release evidence
+
+The later production QA chat reported an enabled first-admin signup trigger, anonymous direct lead insertion and a missing public.lead_submission_attempts table. One existing admin must be preserved. Proposed fixes and migration 20261003090748_restrict_signup_admin_and_public_intake.sql are in the isolated hdw-release-safety checkout, based on b5a7967, not in inspected main and not verified applied. Do not remove anonymous insert permission before the secure server intake is deployed and tested. Review docs/release-safety.md and docs/staging-acceptance.md in that checkout before porting anything.
+
+Isolated checkout: C:/Users/drrob/.codex/.chatgpt-projects/g-p-6821b09180c48191b13b8c6d60d6782b/implementation/hdw-release-safety. Its reported 54 smoke and 32 behaviour/database tests are historical isolated-fix evidence, not current-main or live verification.
+
+Backend references remain conflicting: the September 29 Lovable mapping identifies sprljifjcpbnagsxefrp; CLI/older records name worzpzbutngugwzhlvtj. Direct metadata access to the latter does not prove the application uses it. Connector access is no longer the sole blocker. Confirm deployed configuration and intended ownership before writes. Local sign-in investigation does not prove a staff member can open the dashboard and retrieve a persisted enquiry.
+
+GitHub PR #8 was read on 3 October: open, draft, unmerged; head 45f0c0f6bc0225f81c7d393992567e8f271cd82a. Quality run 37127221878 succeeded. Cloudflare subsequently reported a failed preview build at 13:45:04 UTC (build f836e931-0efe-4275-ae63-12c0b74de51e). Earlier dashboard observations of no Git integration/build history are therefore historical. A successful GitHub check is not a successful Cloudflare deployment. Local main contains related CI improvements, but this does not establish PR #8 merged.
+
+Earlier Cloudflare inspection recorded manually deployed worker skypilot24-harley-digital-works, active version prefix 52739fd4, serving Digital Works and Group domains. Exact deployed Git revision remains unmapped. Branch preview URLs do not establish backend isolation. Do not retarget or deploy from this record alone.
+
+### First paid pilot and founder workflow
+
+1. Resolve the secure enquiry/admin acceptance bottleneck; agree H01 rules in parallel.
+2. Prove proposal, provider-confirmed payment and repeatable onboarding with test data.
+3. Run one paid pilot through templated build, automated QA, founder quality review, customer approval and controlled launch.
+4. Prove recurring billing/care, retries and exception escalation; measure founder time and contribution.
+5. Allow standard cases to advance under validated rules; keep selected quality reviews and an exception queue. See docs/REVENUE_WORKFLOW.md.
+
+Founder view should show each customer, current stage, next action/owner, age, payment evidence, quality status and exceptions. Review urgent security/payment/delivery failures when alerted and a concise routine quality/operations digest; cadence is to be agreed. No manual chasing of every normal transition.
+
+### Reconciliation coverage
+
+Sources: Integrate Domain Sales Strategy; Build Harley Labs Page; GitHub Project Health Review; Review pull request 8; Create THG production QA skill; Install Company Building Skills; current repository and PR #8. Labs and project-health chats supplied improved briefs, not proof of completed implementation/audit. A Labs route exists but needs assessment against the simpler requested brief (L01). The production QA skill exists locally; other proposed skills and suggested sales tools are not verified installed/connected. Preserve current TanStack/Cloudflare work rather than migrate for a proposed tool list.
+
 Updated 2 October 2026. Read this current summary before the historical snapshot below.
 
 ## Current evidence and limits
