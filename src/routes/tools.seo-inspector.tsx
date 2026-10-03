@@ -1,4 +1,4 @@
-﻿import { useState } from "react";
+import { useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { PageShell, Container } from "@/components/site/PageShell";
 import { TagChip } from "@/components/site/TagChip";
@@ -17,19 +17,16 @@ import {
   Award,
 } from "lucide-react";
 import { toast } from "sonner";
+import { buildPageSeoHead } from "@/lib/site-config";
 
 export const Route = createFileRoute("/tools/seo-inspector")({
-  head: () => ({
-    meta: [
-      { title: "Local Trade SEO & Google Map Pack Inspector | Harley Digital Works" },
-      {
-        name: "description",
-        content:
-          "Scan your local UK trade keywords, inspect competitors in Google's Local 3-Pack, and discover high-value untapped search traffic in your area.",
-      },
-      { property: "og:title", content: "Local Trade SEO Inspector | Harley Digital Works" },
-    ],
-  }),
+  head: () =>
+    buildPageSeoHead({
+      title: "Local Trade SEO & Google Map Pack Inspector | Harley Digital Works",
+      description:
+        "Scan your local UK trade keywords, inspect competitors in Google's Local 3-Pack, and discover high-value untapped search traffic in your area.",
+      path: "/tools/seo-inspector",
+    }),
   component: SeoInspectorPage,
 });
 
@@ -357,6 +354,34 @@ function SeoInspectorPage() {
                     of a cumbersome 10-field contact form.
                   </p>
                 </div>
+              </div>
+
+              {/* Conversion CTA Banner */}
+              <div className="mt-8 rounded-3xl border border-gold-500/30 bg-gradient-to-r from-neutral-900 via-neutral-900 to-neutral-950 p-6 md:p-8 flex flex-col md:flex-row items-center justify-between gap-6">
+                <div>
+                  <span className="text-xs font-bold uppercase tracking-wider text-gold-400">
+                    Ready to Dominate {town}?
+                  </span>
+                  <h3 className="mt-1 text-xl font-extrabold text-white">
+                    Get a Done-For-You {trade.toUpperCase()} Website for {town}
+                  </h3>
+                  <p className="mt-1 text-xs text-neutral-300">
+                    Includes local Map Pack schema, done-for-you trade copy, and 14-day launch SLA.
+                  </p>
+                </div>
+                <Link
+                  to="/contact"
+                  search={{
+                    service: `Local SEO & Map Pack Plan for ${trade} in ${town}`,
+                    package: "Growth Website (£2,995)",
+                    domain: undefined,
+                    websiteUrl: undefined,
+                  }}
+                  className="shrink-0 inline-flex items-center gap-2 rounded-xl bg-gold-500 hover:bg-gold-400 px-6 py-3.5 text-sm font-bold text-neutral-950 transition-all shadow-lg"
+                >
+                  <span>Request {town} SEO Plan</span>
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
               </div>
             </div>
           ) : (

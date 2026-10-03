@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { PageShell, Container } from "@/components/site/PageShell";
 import { TagChip } from "@/components/site/TagChip";
 import {
@@ -16,6 +16,7 @@ import {
   ArrowRight,
 } from "lucide-react";
 import { toast } from "sonner";
+import { buildPageSeoHead } from "@/lib/site-config";
 
 interface ReviewBoosterSearch {
   biz?: string;
@@ -31,17 +32,13 @@ export const Route = createFileRoute("/tools/review-booster")({
     phone: typeof search.phone === "string" ? search.phone : undefined,
     placeUrl: typeof search.placeUrl === "string" ? search.placeUrl : undefined,
   }),
-  head: () => ({
-    meta: [
-      { title: "5-Star Google Review Booster for Trade Contractors | Harley Digital Works" },
-      {
-        name: "description",
-        content:
-          "Generate more 5-star Google Reviews on autopilot for your trade business. Routes happy homeowners to Google with 1 tap and intercepts negative feedback privately.",
-      },
-      { property: "og:title", content: "Trade Google Review Booster | Harley Digital Works" },
-    ],
-  }),
+  head: () =>
+    buildPageSeoHead({
+      title: "5-Star Google Review Booster for Trade Contractors | Harley Digital Works",
+      description:
+        "Generate more 5-star Google Reviews on autopilot for your trade business. Routes happy homeowners to Google with 1 tap and intercepts negative feedback privately.",
+      path: "/tools/review-booster",
+    }),
   component: ReviewBoosterPage,
 });
 
@@ -327,6 +324,35 @@ https://harleydigitalworks.com/tools/review-booster?biz=${encodeURIComponent(bus
                 )}
               </div>
             </div>
+          </div>
+
+          {/* Bottom Conversion CTA */}
+          <div className="mt-12 max-w-4xl mx-auto rounded-3xl border border-gold-500/30 bg-gradient-to-r from-neutral-900 via-neutral-900 to-neutral-950 p-6 md:p-8 flex flex-col md:flex-row items-center justify-between gap-6 shadow-2xl">
+            <div>
+              <span className="text-xs font-bold uppercase tracking-wider text-gold-400">
+                Included In All Care Plans (£95/mo)
+              </span>
+              <h3 className="mt-1 text-xl font-extrabold text-white">
+                Get the Review Booster Engine for {businessName}
+              </h3>
+              <p className="mt-1 text-xs text-neutral-300">
+                Automate your 5-star Google review collection with zero ongoing setup or tech
+                management.
+              </p>
+            </div>
+            <Link
+              to="/contact"
+              search={{
+                service: `Review Booster Engine for ${businessName}`,
+                package: "Care Plan (£95/mo)",
+                domain: undefined,
+                websiteUrl: undefined,
+              }}
+              className="shrink-0 inline-flex items-center gap-2 rounded-xl bg-gold-500 hover:bg-gold-400 px-6 py-3.5 text-sm font-bold text-neutral-950 transition-all shadow-lg"
+            >
+              <span>Get Review Booster Plan</span>
+              <ArrowRight className="h-4 w-4" />
+            </Link>
           </div>
         </Container>
       </section>

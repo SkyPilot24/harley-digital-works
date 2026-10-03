@@ -1,24 +1,18 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { PageShell, Container } from "@/components/site/PageShell";
 import { TagChip } from "@/components/site/TagChip";
 import { TradeRoiCalculator } from "@/components/site/TradeRoiCalculator";
-import { CheckCircle2, TrendingUp, ShieldCheck, Sparkles } from "lucide-react";
+import { CheckCircle2 } from "lucide-react";
+import { buildPageSeoHead } from "@/lib/site-config";
 
 export const Route = createFileRoute("/calculator")({
-  head: () => ({
-    meta: [
-      { title: "Trade Website ROI & Revenue Calculator | Harley Digital Works" },
-      {
-        name: "description",
-        content:
-          "Calculate your estimated return on investment. See how just 1 to 3 additional trade enquiries per month generates £20,000 to £100,000+ in extra annual turnover.",
-      },
-      {
-        property: "og:title",
-        content: "Trade Website ROI & Revenue Calculator | Harley Digital Works",
-      },
-    ],
-  }),
+  head: () =>
+    buildPageSeoHead({
+      title: "Trade Website ROI & Revenue Calculator | Harley Digital Works",
+      description:
+        "Calculate your estimated return on investment. See how just 1 to 3 additional trade enquiries per month generates £20,000 to £100,000+ in extra annual turnover.",
+      path: "/calculator",
+    }),
   component: CalculatorPage,
 });
 
