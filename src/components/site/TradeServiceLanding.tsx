@@ -86,8 +86,8 @@ export function TradeServiceLanding({
               </div>
               <p className="hero-support">
                 {tradeInfo
-                  ? `Accreditation: ${tradeInfo.accreditationBadge} · Avg contract value: ${tradeInfo.averageJobValue}`
-                  : "An initial build fee and an ongoing monthly service. Scope, timing and costs agreed before work begins."}
+                  ? `Accreditation: ${tradeInfo.accreditationBadge} · Avg contract: ${tradeInfo.averageJobValue} · 14-day SLA`
+                  : "£1,495 fixed setup (50% deposit / 50% approval) · £249/mo managed care · 14-day delivery SLA."}
               </p>
             </div>
             <div className="service-preview">
@@ -96,6 +96,8 @@ export function TradeServiceLanding({
                 alt="Solar panels illustrating the practical work of a trade business"
                 width="1200"
                 height="800"
+                loading="lazy"
+                decoding="async"
               />
               <p>Illustrative photography · your website will use approved business assets</p>
             </div>
@@ -175,7 +177,7 @@ export function TradeServiceLanding({
         )}
 
         {tradeInfo?.keyChallenges && tradeInfo.keyChallenges.length > 0 && (
-          <section className="studio-section studio-wrap">
+          <section className="studio-section studio-wrap deferred-section">
             <p className="studio-kicker">SOLVING YOUR INBOUND CHALLENGES</p>
             <h2>
               Stop losing quotes.
@@ -193,7 +195,7 @@ export function TradeServiceLanding({
           </section>
         )}
 
-        <section className="studio-section studio-wrap">
+        <section className="studio-section studio-wrap deferred-section">
           <p className="studio-kicker">MAKE YOUR BUSINESS EASY TO CHOOSE</p>
           <h2>
             Your services. Your work.
@@ -228,7 +230,7 @@ export function TradeServiceLanding({
         </section>
 
         {locationInfo?.boroughs && locationInfo.boroughs.length > 0 && (
-          <section className="studio-wrap my-8">
+          <section className="studio-wrap my-8 deferred-section">
             <div className="rounded-2xl border border-ink/10 bg-white p-6">
               <h3 className="text-sm font-semibold uppercase tracking-wider text-ink-muted">
                 Coverage Postcodes & Boroughs
@@ -255,7 +257,9 @@ export function TradeServiceLanding({
           </section>
         )}
 
-        <WebsitePackagesSection />
+        <div className="deferred-section">
+          <WebsitePackagesSection />
+        </div>
       </div>
     </PageShell>
   );

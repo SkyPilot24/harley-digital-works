@@ -242,3 +242,58 @@ body.is-loading {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* ========================================================
+ * Modern Web Guidance: Typographic Polish & Legibility
+ * Baseline: text-wrap: balance (May 2024), text-wrap: pretty (Sep 2023)
+ * ======================================================== */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.display,
+.studio-kicker,
+.directory-heading {
+  text-wrap: balance;
+}
+
+p,
+li,
+blockquote,
+.hero-description,
+.hero-support,
+.enquiry-form-intro,
+.trade-hero-subheadline {
+  text-wrap: pretty;
+}
+
+/* ========================================================
+ * Modern Web Guidance: Form Interaction & User Feedback
+ * Baseline: :user-invalid & :user-valid (Nov 2023)
+ * Shows error feedback only after deliberate user interaction
+ * ======================================================== */
+input:user-invalid,
+textarea:user-invalid,
+select:user-invalid {
+  border-color: #d93025 !important;
+  background-color: color-mix(in srgb, #d93025 4%, transparent) !important;
+}
+
+input:user-valid:not(:placeholder-shown),
+textarea:user-valid:not(:placeholder-shown) {
+  border-color: #188038;
+}
+
+/* ========================================================
+ * Modern Web Guidance: Defer Offscreen Heavy Layout Rendering
+ * Baseline: content-visibility: auto (Sep 2025)
+ * Skips paint/layout calculations for below-the-fold sections
+ * while maintaining estimated intrinsic height to prevent layout shift
+ * ======================================================== */
+.deferred-section {
+  content-visibility: auto;
+  contain-intrinsic-size: auto none auto 600px;
+}
+

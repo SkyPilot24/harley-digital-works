@@ -260,7 +260,8 @@ export function TradeRoiCalculator() {
         <div className="flex items-center gap-2 text-xs text-neutral-300">
           <ShieldCheck className="h-4 w-4 text-gold-400 shrink-0" />
           <span>
-            100% Done-For-You: Copywriting, Mobile Layout, and WhatsApp lead flow included.
+            100% Done-For-You: Copywriting, 14-day turnaround SLA, 50/50 milestone payment, zero
+            VAT.
           </span>
         </div>
 

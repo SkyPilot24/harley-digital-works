@@ -42,6 +42,7 @@ export function TheHarleyGroupPage() {
               width="1200"
               height="800"
               fetchPriority="high"
+              decoding="async"
             />
             <figcaption>Built with care. Designed to last.</figcaption>
           </figure>
@@ -61,8 +62,9 @@ export function TheHarleyGroupPage() {
               </p>
               <p>
                 Ratified commercial model: £1,495 setup (50% deposit £747.50, 50% completion balance
-                £747.50) plus £249 / month ongoing managed care. Zero-rated VAT under statutory HMRC
-                threshold; onboarding capacity strictly capped at 2–3 concurrent builds.
+                £747.50, 14-day delivery SLA) plus £249 / month ongoing managed care. Zero-rated VAT
+                under statutory HMRC threshold; onboarding capacity strictly capped at 2–3
+                concurrent builds.
               </p>
               <div className="mt-4 flex flex-wrap gap-3">
                 <a href="https://harleydigitalworks.com" className="enquiry-submit">
@@ -100,7 +102,10 @@ export function TheHarleyGroupPage() {
             </div>
           </div>
         </section>
-        <section className="studio-section studio-wrap group-principles" id="approach">
+        <section
+          className="studio-section studio-wrap group-principles deferred-section"
+          id="approach"
+        >
           <p className="studio-kicker">HOW WE THINK</p>
           <h2>
             Useful before complicated.
@@ -129,7 +134,7 @@ export function TheHarleyGroupPage() {
             ))}
           </div>
         </section>
-        <section className="studio-section group-contact" id="contact">
+        <section className="studio-section group-contact deferred-section" id="contact">
           <div className="studio-wrap group-division">
             <div>
               <p className="studio-kicker">LET’S START A CONVERSATION</p>
