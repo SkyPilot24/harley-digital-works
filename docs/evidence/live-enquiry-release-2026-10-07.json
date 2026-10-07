@@ -1,0 +1,22 @@
+{
+  "date": "2026-10-07",
+  "source_commit": "60f41d52d4e1f5b444173635a63994a6a48d6cde",
+  "worker": "skypilot24-harley-digital-works",
+  "worker_version": "76a25f25-d0f1-44b9-a39a-72187cb890a1",
+  "production_backend": "worzpzbutngugwzhlvtj",
+  "applied_migration": "thg_reviewed_live_enquiry_cutover",
+  "preservation": { "existing_admins": 1, "existing_auth_users": 2, "previous_leads": 0 },
+  "live_browser_contact_receipt": "PASS on initial release 6a2b6017; final release changes sign-in only",
+  "labelled_saved_enquiry_count": 1,
+  "anonymous_rest_read": "DENIED",
+  "anonymous_intake_rpc": "DENIED",
+  "authenticated_intake_rpc_privilege": false,
+  "unsafe_lead_policies": 0,
+  "signup_admin_bootstrap_present": false,
+  "final_output_secret_scan": { "result": "PASS", "files": 309 },
+  "google_button_disabled_live": true,
+  "notifications_enabled": false,
+  "transactional_email_enabled": false,
+  "owner_browser_retrieval": "PENDING private owner sign-in",
+  "limits": ["No owner impersonation or live synthetic administrator created", "Expiry/session revocation and backup/restore remain unverified", "Leaked-password protection warning and tooling advisories remain", "Hourly retention scheduling and durable notification retry remain open"]
+}
