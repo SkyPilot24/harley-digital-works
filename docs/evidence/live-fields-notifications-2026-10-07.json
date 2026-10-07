@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-10-07T11:29:11.507Z",
+  "checkedAt": "2026-10-07T11:33:38.579Z",
   "sourceCommit": "c2254b119861fcb989b01dae68ceb7ae68d97735",
   "workerVersion": "6e9d3147-2efa-464f-ab6b-4d7d92b13978",
   "backend": "worzpzbutngugwzhlvtj",
@@ -11,7 +11,7 @@
     "pushed": true,
     "deployed": true,
     "liveFieldsVerified": true,
-    "liveSlackDeliveryVerified": false
+    "liveSlackDeliveryVerified": true
   },
   "nativeSchedule": "* * * * *",
   "notificationsEnabled": true,
@@ -23,7 +23,9 @@
     "channel": "all-the-harley-group",
     "channelId": "C0BFQS2P2H1",
     "app": "THG Enquiry Alerts",
-    "webhookConfiguredPrivately": true
+    "webhookConfiguredPrivately": true,
+    "actualChannelMessagesVerified": true,
+    "receivedAt": "2026-10-07T11:31:39Z"
   },
   "leads": [
     {
@@ -35,11 +37,10 @@
       "fullLongDomainInterestAfterEditedMessage": "PASS",
       "ownerBrowserRetrieval": "PASS",
       "jobs": 1,
-      "status": "pending",
-      "attempts": 2,
-      "nextAttemptAt": "2026-10-07T11:30:06Z",
-      "acceptedAt": null,
-      "lastError": "Slack request failed or timed out; acknowledgement unknown."
+      "status": "accepted",
+      "attempts": 3,
+      "acceptedAt": "2026-10-07T11:31:39Z",
+      "lastError": null
     },
     {
       "brand": "The Harley Group",
@@ -49,11 +50,10 @@
       "allFieldsPersisted": "PASS",
       "ownerBrowserRetrieval": "PASS",
       "jobs": 1,
-      "status": "pending",
-      "attempts": 2,
-      "nextAttemptAt": "2026-10-07T11:30:06Z",
-      "acceptedAt": null,
-      "lastError": "Slack request failed or timed out; acknowledgement unknown."
+      "status": "accepted",
+      "attempts": 3,
+      "acceptedAt": "2026-10-07T11:31:39Z",
+      "lastError": null
     }
   ],
   "access": {
@@ -70,10 +70,11 @@
     "externalMessagesSent": 0
   },
   "pending": [
-    "Verify actual Slack receipt after native fetch context correction",
-    "Transactional customer email sender/provider delivery remains disabled"
+    "Transactional customer email sender/provider delivery remains disabled",
+    "Wider H08/H07/H42 acceptance remains in existing backlog"
   ],
   "nativeScheduleVerified": true,
-  "liveFailureRecovery": "Native schedule claimed both jobs and stored two failed attempts; leads remain saved and jobs pending.",
-  "fixVerification": "Native fetch wrapper deployed; real channel acknowledgement unverified"
+  "liveFailureRecovery": "PASS: two genuine failed delivery attempts, followed by native scheduled third-attempt acknowledgement for both jobs. Same leads/jobs retained, no manual send/reset.",
+  "fixVerification": "Native fetch wrapper deployed; both actual Slack messages matched saved lead references. Initial error cause inferred because first failures were not classified.",
+  "ownerBrowserAlertStatus": "PASS: Slack acknowledged this alert; Delivery attempts 3 / 5"
 }

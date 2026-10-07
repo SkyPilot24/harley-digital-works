@@ -7,7 +7,7 @@ This evidence/status overlay supersedes stale gap statements in the preserved hi
 | Existing task | Current evidence and next acceptance |
 |---|---|
 | H01 | Setup plus monthly approved as model; final price, VAT, scope and terms remain decisions. Define reusable rules so routine proposals need no founder approval. |
-| H07/H08/H09/H42 | Live secure intake and genuine owner retrieval accepted. Both-brand fields verified in staging; durable notifications implemented and migrations applied. Complete verified Slack delivery, live field/alert acceptance and remaining session/backup/security work. |
+| H07/H08/H09/H42 | Live secure intake and genuine owner retrieval accepted. Both-brand fields verified in staging; durable notifications implemented and migrations applied. Both-brand live fields and scheduled Slack recovery now accepted. Continue remaining email/session/backup/security work. |
 | H03/H12/H46 | Refreshed source is merged locally; map exact deployed revision and verify live multi-brand journeys before closing visual/release acceptance. |
 | H39/H40/H41 | Continue technical/security verification against current source and runtime; historical green tests cannot close current acceptance. |
 | H47 | PR #8 Quality run succeeded but PR remains draft/open and Cloudflare preview failed; reconcile CI and deployment separately. |
@@ -121,7 +121,7 @@ Updated 2 October 2026. Domain integration added following the founder's request
 - **Priority:** High
 - **Who needs to act:** You
 - **Status:** In progress / partially resolved
-- **Current gap:** Both brands now pass live browser receipt, all six field persistence and genuine owner CRM retrieval. Long interest survives message editing; source brands remain distinct. Wider fallback/package-link/session-expiry coverage remains open.
+- **Current gap:** Both brands pass live browser receipt, all six field persistence and genuine owner CRM retrieval. Long interest survives message editing; source brands remain distinct. Wider fallback/package-link/session-expiry coverage remains open.
 - **Why it matters:** Valid interest can be lost or arrive without the information needed to follow up.
 - **Dependencies:** H01, H05, H06
 - **Resolution:** Use a shared server intake with stable offer IDs, phone, source brand/page and explicit service selection. Preserve accessible validation and the existing honeypot/timing protections.
@@ -133,7 +133,7 @@ Updated 2 October 2026. Domain integration added following the founder's request
 - **Priority:** High
 - **Who needs to act:** You
 - **Status:** In progress / partially resolved
-- **Current gap:** Durable retries and staff-visible status are live. Native schedule ran; both labelled test alerts failed two requests and remain safely pending for 11:30 UTC. Native fetch receiver correction deployed as c2254b1 / Worker 6e9d3147; actual Slack receipt is still unverified. Preserve bounded retries and inspect channel history before manual resend. Customer-email delivery remains disabled/unverified.
+- **Current gap:** Durable Slack retries and staff-visible status are live-verified. Both labelled alerts failed twice, then native scheduled third attempts succeeded at 12:31:39 BST; matching references are present in Slack and accepted status appears in owner CRM. No lead duplication or manual reset. Transactional customer-email sender/delivery/bounce acceptance remains disabled/unverified.
 - **Why it matters:** Staff can miss leads and customers may retry submissions or rely on undelivered documents.
 - **Dependencies:** H04, H06, H08, H10
 - **Resolution:** Treat persisted intake as the authoritative receipt; enqueue/retry notification separately. Distinguish prepared, queued, provider-accepted, delivered and failed states. Add bounded timeouts and staff-visible failures.
@@ -145,7 +145,7 @@ Updated 2 October 2026. Domain integration added following the founder's request
 - **Priority:** High
 - **Who needs to act:** Third party
 - **Status:** Open — acceptance not yet demonstrated
-- **Current gap:** Founder configured THG Enquiry Alerts Incoming Webhook to #all-the-harley-group (C0BFQS2P2H1); installed as private live Worker secret and notifications enabled. Destination configuration verified, but actual scheduled Slack acceptance still pending. Transactional sender/provider delivery remains unverified.
+- **Current gap:** THG Enquiry Alerts webhook to #all-the-harley-group (C0BFQS2P2H1) is privately installed and live delivery verified for both brands at 12:31:39 BST. Transactional sender/provider delivery remains unverified.
 - **Why it matters:** Email delivery and operational alerts require real account/domain setup.
 - **Dependencies:** H04; Me: confirm authorized sender/inbox and account owner
 - **Resolution:** Configure the chosen transactional provider, verify its required DNS records, check SPF/DKIM/DMARC without disturbing business mail, and connect a restricted Slack notification destination.
