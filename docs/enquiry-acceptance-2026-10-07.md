@@ -1,3 +1,5 @@
+Current approved state (7 October): founder confirmed canonical GitHub/Cloudflare/THG Agency plan and approved the exact reviewed database cutover. Migration applied; tested Worker deployed; labelled live browser contact produced receipt and exactly one saved THG Agency enquiry. Existing admin/browser retrieval and expiry await owner sign-in. Notifications disabled. See PROJECT_STATUS.md and docs/AGREED_DELIVERY_PLAN.md; older states below are historical and superseded.
+
 Live-release continuation (7 October): founder selected THG Agency and authorised release. Server credential verified and installed on the existing Worker; production source/database cutover pending exact approval after automatic review rejection. See PROJECT_STATUS.md and docs/thg-agency-reviewed-cutover.sql for the superseding state. Staging compatibility and all 11 Auth/API checks pass; production build and complete tests pass; secret scan across 310 output files passes. No new live code or enquiry verification claimed.
 
 # H07/H08/H09/H42 — enquiry acceptance, 7 October 2026

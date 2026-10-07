@@ -2,11 +2,11 @@ import { createFileRoute, redirect, useNavigate, useRouter } from "@tanstack/rea
 import { useEffect, useState } from "react";
 import { z } from "zod";
 import { supabase } from "@/integrations/supabase/client";
-import { lovable } from "@/integrations/lovable/index";
 import { PageShell, Container } from "@/components/site/PageShell";
 import { toast } from "sonner";
 
 const searchSchema = z.object({ redirect: z.string().optional() });
+const googleSignInEnabled = import.meta.env.VITE_GOOGLE_AUTH_ENABLED === "true";
 const supabaseConfigured = Boolean(
   import.meta.env.VITE_SUPABASE_URL && import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY,
 );
@@ -99,6 +99,7 @@ function AuthPage() {
   }
 
   async function handleGoogle() {
+    if (!googleSignInEnabled) return;
     if (["localhost", "127.0.0.1", "[::1]"].includes(window.location.hostname)) {
       toast.error(
         "Google sign-in is unavailable locally. Email sign-in requires an account password.",
@@ -107,8 +108,9 @@ function AuthPage() {
     }
     setBusy(true);
     try {
-      const result = await lovable.auth.signInWithOAuth("google", {
-        redirect_uri: window.location.origin + "/auth",
+      const result = await supabase.auth.signInWithOAuth({
+        provider: "google",
+        options: { redirectTo: window.location.origin + "/auth" },
       });
       if (result.error) throw result.error;
     } catch (err: unknown) {
@@ -140,17 +142,16 @@ function AuthPage() {
             <button
               type="button"
               onClick={handleGoogle}
-              disabled={busy || localSignIn}
+              disabled={busy || localSignIn || !googleSignInEnabled}
               className="mt-6 flex w-full items-center justify-center gap-3 rounded-full border border-ink/15 bg-white px-4 py-2.5 text-sm font-medium text-ink transition hover:bg-ink/[0.03] disabled:opacity-50"
             >
               <GoogleIcon />
               Continue with Google
             </button>
-            {localSignIn && (
+            {(localSignIn || !googleSignInEnabled) && (
               <p className="mt-3 text-sm leading-6 text-ink-muted">
-                Google sign-in is unavailable on the local preview. Email sign-in requires a
-                password configured on your account. Creating another account will not grant admin
-                access.
+                Google sign-in is currently unavailable. Email sign-in requires a password
+                configured on your account. Creating another account will not grant admin access.
               </p>
             )}
 

@@ -1,8 +1,8 @@
 # Shared development handover
 
-## Live release continuation — 7 October 2026
+## Approved plan and live release — 7 October 2026
 
-THG Agency selected by founder. Live server secret installed on existing Worker; new code not deployed. Production schema cutover rejected by automatic approval review; exact approval requested for docs/thg-agency-reviewed-cutover.sql. Do not bypass rejection. After explicit approval, apply reviewed transaction, verify owner/count preservation and permission denies, deploy exact target build and push reviewed main, then verify a labelled live enquiry and owner retrieval. Production preflight metadata is docs/evidence/thg-agency-preflight.json. Recovery requires roll-forward; never restore unrestricted policies. Notifications stay disabled. Current build/test/secret-scan pass; 23 DB regression tests and 11 staging Auth/API checks pass after compatibility fix. No full backup/restore or browser owner/session proof claimed.
+Canonical repository: SkyPilot24/harley-digital-works; production: Cloudflare; backend: THG Agency worzpzbutngugwzhlvtj; isolated staging: mfpnfxpgkfuqtedbcxvp. Lovable stays a separate prototype/design workspace; reconnecting its Git is deferred. Live Google OAuth uses native Supabase if explicitly enabled, currently disabled; no Lovable Auth delegation. Founder explicitly approved the reviewed schema cutover after automatic approval rejection. thg_reviewed_live_enquiry_cutover applied successfully, preserving 1 administrator/2 Auth users/0 previous leads; permission checks pass. Worker 6a2b6017 deployed and labelled live browser contact produces one saved enquiry. Further auth clarification is being built and released. Owner sign-in tab handed off to founder for final real-browser retrieval; never impersonate owner with a service key. Notifications/email disabled. Remaining: owner retrieval/session expiry, retention scheduling, durable retries, leaked-password setting/tooling advisory assessment and backup/restore proof. See PROJECT_STATUS.md for current superseding evidence. Historical sections below retain earlier states.
 
 ## Enquiry continuation — 7 October 2026
 
