@@ -70,4 +70,3 @@ REVOKE ALL ON FUNCTION public.claim_lead_notifications() FROM PUBLIC,anon,authen
 REVOKE ALL ON FUNCTION public.finish_lead_notification(uuid,uuid,boolean,text) FROM PUBLIC,anon,authenticated;
 GRANT EXECUTE ON FUNCTION public.claim_lead_notifications() TO service_role;
 GRANT EXECUTE ON FUNCTION public.finish_lead_notification(uuid,uuid,boolean,text) TO service_role;
-

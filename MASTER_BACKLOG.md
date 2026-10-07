@@ -121,7 +121,7 @@ Updated 2 October 2026. Domain integration added following the founder's request
 - **Priority:** High
 - **Who needs to act:** You
 - **Status:** In progress / partially resolved
-- **Current gap:** Both brands save all six visible fields and distinct sources in staging browser/API acceptance. Digital Works service interest survives message editing; long enquiry context is preserved. Live field acceptance on the new release and remaining session cases still need evidence.
+- **Current gap:** Both brands now pass live browser receipt, all six field persistence and genuine owner CRM retrieval. Long interest survives message editing; source brands remain distinct. Wider fallback/package-link/session-expiry coverage remains open.
 - **Why it matters:** Valid interest can be lost or arrive without the information needed to follow up.
 - **Dependencies:** H01, H05, H06
 - **Resolution:** Use a shared server intake with stable offer IDs, phone, source brand/page and explicit service selection. Preserve accessible validation and the existing honeypot/timing protections.
@@ -133,7 +133,7 @@ Updated 2 October 2026. Domain integration added following the founder's request
 - **Priority:** High
 - **Who needs to act:** You
 - **Status:** In progress / partially resolved
-- **Current gap:** Durable, transactionally queued alerts, bounded retries, leases/crash recovery and staff-visible status are implemented. Local and real staging tests pass. Migration applied to staging/live; Slack sending remains disabled pending private webhook and actual scheduled delivery confirmation. Slack ambiguous failures may repeat an alert, never the saved lead. Transactional email states are prepared/accepted/delivered=false until confirmation; provider delivery remains unverified.
+- **Current gap:** Durable retries and staff-visible status are live. Native schedule ran; both labelled test alerts failed two requests and remain safely pending for 11:30 UTC. Native fetch receiver correction deployed as c2254b1 / Worker 6e9d3147; actual Slack receipt is still unverified. Preserve bounded retries and inspect channel history before manual resend. Customer-email delivery remains disabled/unverified.
 - **Why it matters:** Staff can miss leads and customers may retry submissions or rely on undelivered documents.
 - **Dependencies:** H04, H06, H08, H10
 - **Resolution:** Treat persisted intake as the authoritative receipt; enqueue/retry notification separately. Distinguish prepared, queued, provider-accepted, delivered and failed states. Add bounded timeouts and staff-visible failures.
@@ -145,7 +145,7 @@ Updated 2 October 2026. Domain integration added following the founder's request
 - **Priority:** High
 - **Who needs to act:** Third party
 - **Status:** Open — acceptance not yet demonstrated
-- **Current gap:** Founder selected The Harley Group Slack workspace; #all-the-harley-group identified (C0BFQS2P2H1). THG Enquiry Alerts app exists; founder must complete channel permission and privately supply its Incoming Webhook. Website secret installation, actual channel receipt and verified transactional sender remain pending.
+- **Current gap:** Founder configured THG Enquiry Alerts Incoming Webhook to #all-the-harley-group (C0BFQS2P2H1); installed as private live Worker secret and notifications enabled. Destination configuration verified, but actual scheduled Slack acceptance still pending. Transactional sender/provider delivery remains unverified.
 - **Why it matters:** Email delivery and operational alerts require real account/domain setup.
 - **Dependencies:** H04; Me: confirm authorized sender/inbox and account owner
 - **Resolution:** Configure the chosen transactional provider, verify its required DNS records, check SPF/DKIM/DMARC without disturbing business mail, and connect a restricted Slack notification destination.

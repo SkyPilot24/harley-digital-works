@@ -1,0 +1,79 @@
+{
+  "checkedAt": "2026-10-07T11:29:11.507Z",
+  "sourceCommit": "c2254b119861fcb989b01dae68ceb7ae68d97735",
+  "workerVersion": "6e9d3147-2efa-464f-ab6b-4d7d92b13978",
+  "backend": "worzpzbutngugwzhlvtj",
+  "migration": "durable_lead_notifications",
+  "state": {
+    "local": "implemented/tested",
+    "staging": "applied/verified; outbound disabled",
+    "committed": true,
+    "pushed": true,
+    "deployed": true,
+    "liveFieldsVerified": true,
+    "liveSlackDeliveryVerified": false
+  },
+  "nativeSchedule": "* * * * *",
+  "notificationsEnabled": true,
+  "transactionalEmailEnabled": false,
+  "secretBundled": false,
+  "scannedFiles": 310,
+  "slack": {
+    "workspace": "The Harley Group",
+    "channel": "all-the-harley-group",
+    "channelId": "C0BFQS2P2H1",
+    "app": "THG Enquiry Alerts",
+    "webhookConfiguredPrivately": true
+  },
+  "leads": [
+    {
+      "brand": "Harley Digital Works",
+      "id": "5bb98b63-6df6-4c4b-b5a3-6983e487d6a1",
+      "source": "contact_form",
+      "receipt": "PASS",
+      "allFieldsPersisted": "PASS",
+      "fullLongDomainInterestAfterEditedMessage": "PASS",
+      "ownerBrowserRetrieval": "PASS",
+      "jobs": 1,
+      "status": "pending",
+      "attempts": 2,
+      "nextAttemptAt": "2026-10-07T11:30:06Z",
+      "acceptedAt": null,
+      "lastError": "Slack request failed or timed out; acknowledgement unknown."
+    },
+    {
+      "brand": "The Harley Group",
+      "id": "5e218218-cc0f-47ff-ab46-586f3c27cca6",
+      "source": "group_contact_form",
+      "receipt": "PASS",
+      "allFieldsPersisted": "PASS",
+      "ownerBrowserRetrieval": "PASS",
+      "jobs": 1,
+      "status": "pending",
+      "attempts": 2,
+      "nextAttemptAt": "2026-10-07T11:30:06Z",
+      "acceptedAt": null,
+      "lastError": "Slack request failed or timed out; acknowledgement unknown."
+    }
+  ],
+  "access": {
+    "liveAnonymousLeadRead": "DENIED",
+    "liveAnonymousNotificationRead": "DENIED",
+    "liveAnonymousNotificationClaim": "DENIED",
+    "stageOrdinaryReadAndClaim": "DENIED",
+    "existingAdministratorPreserved": true
+  },
+  "schedulerLocalTest": {
+    "environment": "built Cloudflare worker with staging credential overrides and notifications false",
+    "status": 200,
+    "outcome": "ok",
+    "externalMessagesSent": 0
+  },
+  "pending": [
+    "Verify actual Slack receipt after native fetch context correction",
+    "Transactional customer email sender/provider delivery remains disabled"
+  ],
+  "nativeScheduleVerified": true,
+  "liveFailureRecovery": "Native schedule claimed both jobs and stored two failed attempts; leads remain saved and jobs pending.",
+  "fixVerification": "Native fetch wrapper deployed; real channel acknowledgement unverified"
+}
