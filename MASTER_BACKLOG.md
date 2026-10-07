@@ -42,19 +42,19 @@ Updated 2 October 2026. Domain integration added following the founder's request
 - **Dependencies:** None
 - **Resolution:** Approve a single offer sheet. Recommended MVP is Managed at £1,495 setup plus £249/month; do not publish or charge until commercial terms are approved.
 - **Definition of done:** One approved offer sheet governs every public price, proposal, onboarding step and billing rule.
-- **Latest evidence:** Founder explicitly selected setup plus monthly. Proposed prices and terms are awaiting approval.
+- **Latest evidence:** Founder explicitly selected setup plus monthly. Single sellable Managed offer, unit economics model (Low/Base/High), governance rules and decision list drafted in [docs/COMMERCIAL_OFFER_MANAGED.md](file:///c:/Local%20Data/The%20Harley%20Group/harley-digital-works/docs/COMMERCIAL_OFFER_MANAGED.md). Awaiting final founder ratification.
 
 ## H02 — Verify business identity, capacity and support commitments
 - **Phase:** 1
 - **Priority:** High
 - **Who needs to act:** Me
-- **Status:** Open — acceptance not yet demonstrated
+- **Status:** In progress / partially resolved
 - **Current gap:** Bristol/group and Manchester/service content conflict. Team, credentials, company/VAT/bank details, certifications and service-response claims are not backed by verified records in the reviewed evidence.
 - **Why it matters:** Incorrect identity or operational promises damage trust and contaminate contracts and invoices.
 - **Dependencies:** None
 - **Resolution:** Supply or confirm the trading/legal entity, public address/contact details, actual team and qualifications, tax status, supported hours, realistic delivery capacity and turnaround. Do not publish bank details from sample components.
 - **Definition of done:** A small approved business fact sheet exists; every identity and operational claim can be traced to it.
-- **Latest evidence:** See original audit evidence; no subsequent completion verified.
+- **Latest evidence:** Business fact sheet created in [docs/COMMERCIAL_OFFER_MANAGED.md](file:///c:/Local%20Data/The%20Harley%20Group/harley-digital-works/docs/COMMERCIAL_OFFER_MANAGED.md). Rules established to not charge VAT until HMRC registration is confirmed, present as UK-wide studio with Bristol/Bath pilot, and limit concurrent onboarding to 2-3 builds/month. Awaiting founder entity confirmation.
 
 ## H03 — Establish one source of truth and a release inventory
 - **Phase:** 1

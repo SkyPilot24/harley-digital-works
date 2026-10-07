@@ -1,8 +1,10 @@
 # Shared development handover
 
-## Current handover — 7 October 2026, hourly attempt retention scheduled
+## Current handover — 7 October 2026, commercial launch offer and hourly retention
 
-**Scope:** H42 automated retention scheduling. Implemented `server/tasks/prune-lead-attempts.ts` using Nitro task calling `supabaseAdmin.rpc("prune_lead_submission_attempts")`. Configured `nitro.config.ts` with `tasks["prune-lead-attempts"]` and `scheduledTasks["0 * * * *"] = ["lead-notifications", "prune-lead-attempts"]`. Added type definitions to `src/integrations/supabase/types.ts`.
+**Scope:**
+1. **Commercial Governance (H01/H02):** Delivered one sellable Managed launch offer, defensible economics model (Low/Base/High), business fact sheet, reusable proposal automation rules, and founder decision register in [`docs/COMMERCIAL_OFFER_MANAGED.md`](file:///c:/Local%20Data/The%20Harley%20Group/harley-digital-works/docs/COMMERCIAL_OFFER_MANAGED.md). Evaluated £1,495 setup + £249/mo against delivery labour, lost assessment/preview CAC overhead, hosting, payment fees, generation usage, support labour, and incident allowances. Verified zero VAT charging rule until HMRC registration is confirmed.
+2. **H42 Automated Retention Scheduling:** Implemented `server/tasks/prune-lead-attempts.ts` using Nitro task calling `supabaseAdmin.rpc("prune_lead_submission_attempts")`. Configured `nitro.config.ts` with `tasks["prune-lead-attempts"]` and `scheduledTasks["0 * * * *"] = ["lead-notifications", "prune-lead-attempts"]`. Added type definitions to `src/integrations/supabase/types.ts`.
 
 **Verified results:**
 - Automated test suite: `npm test` runs 125 tests (60 platform smoke checks + 62 regression tests + 3 service worker tests) — 125/125 PASS.
@@ -10,7 +12,7 @@
 - Quality checks: `npm run typecheck` (0 errors), `npm run lint` (0 errors, 9 existing warnings), `npm run format:check` (PASS).
 - Platform smoke suite: `scripts/verify-platform.mjs` verifies presence of both minute notification and hourly retention cron triggers.
 
-**Next action:** Continue H42 coordinated live owner session expiry/logout acceptance and tooling advisory review, H09/H10 transactional email sender/provider setup and bounce handling once credentials are ready (customer transactional email stays disabled), and H07 backup/recovery proof for live THG Agency database (`worzpzbutngugwzhlvtj`). Preserve existing owner session.
+**Next action:** Robbie ratification of the 4 decisions in the Founder Decision Register (pricing £1,495 + £249/mo, legal entity/VAT status, UK-wide/Bristol-Bath positioning, 2 concurrent builds cap). Continue H42 coordinated live owner session expiry/logout acceptance and tooling advisory review, H09/H10 transactional email sender/provider setup and bounce handling once credentials are ready (customer transactional email stays disabled), and H07 backup/recovery proof for live THG Agency database (`worzpzbutngugwzhlvtj`). Preserve existing owner session.
 
 ## Historical handover — 7 October 2026, live fields and Slack acceptance passed
 
