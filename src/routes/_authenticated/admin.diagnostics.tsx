@@ -52,7 +52,7 @@ function DiagnosticsPage() {
     (trigger) =>
       trigger.trigger_name === BOOTSTRAP_TRIGGER && trigger.function_name === BOOTSTRAP_FUNCTION,
   );
-  const bootstrapOk = !!bootstrap && bootstrap.enabled;
+  const bootstrapOk = triggersQuery.isSuccess && !bootstrap?.enabled;
   const websiteChecks = websiteQuery.data ?? [];
   const websiteSummary = summarizeWebsiteChecks(websiteChecks);
   const attentionCount = websiteSummary.warning + websiteSummary.error;
@@ -297,15 +297,15 @@ function DiagnosticsPage() {
                 {bootstrapOk ? <CheckCircle2 size={22} /> : <XCircle size={22} />}
               </div>
               <div className="flex-1">
-                <h2 className="text-[15px] font-semibold text-ink">
-                  First-signup admin bootstrap trigger
-                </h2>
+                <h2 className="text-[15px] font-semibold text-ink">Administrator provisioning</h2>
                 <p className="mt-1 text-sm text-ink-muted">
-                  {bootstrapOk
-                    ? "Enabled. The first user to sign up while no admin exists will be promoted to admin automatically."
-                    : bootstrap
-                      ? "Trigger exists but is disabled. New signups will not be promoted."
-                      : "Not attached. New signups will not be promoted; an admin must grant the role manually."}
+                  {triggersQuery.isPending
+                    ? "Checking administrator provisioning…"
+                    : triggersQuery.isError
+                      ? "Unable to verify administrator provisioning. Retry the diagnostic before approving a release."
+                      : bootstrapOk
+                        ? "Automatic promotion is inactive. Administrator access must be granted explicitly by a trusted operator."
+                        : "Unsafe automatic promotion is enabled. A signup can become an administrator whenever no admin exists. Apply the reviewed security migration before release."}
                 </p>
                 <dl className="mt-3 grid grid-cols-1 gap-1 text-[12px] text-ink-muted sm:grid-cols-2">
                   <div>

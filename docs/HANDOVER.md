@@ -1,5 +1,17 @@
 # Shared development handover
 
+## Enquiry continuation — 7 October 2026
+
+Scope: existing H07/H08/H09/H42. Inspected clean requested main 79e378cb8d887af0d36db127bfc96e63c2243c2d; current production Worker b59af9dc maps to this exact revision. Safe acceptance branch codex/h07-h42-enquiry-acceptance is in implementation/hdw-enquiry-acceptance. See [complete acceptance and release record](enquiry-acceptance-2026-10-07.md).
+
+Reviewed/ported isolated permission migration; added atomic service-only intake, fail-closed backend matching, Cloudflare-only IP trust, notification opt-in, independent cleanup RPC, inherited function-grant correction and focused regressions. Updated only vulnerable transitive dependencies within current constraints; remaining tooling advisories are recorded.
+
+Founder created staging mfpnfxpgkfuqtedbcxvp in SkyPilot24’s Org, Free, eu-west-1. It was empty before schema bootstrap. Schema and security migrations are applied there only. Real staging SQL concurrency: 1/12 duplicate leads saved; 5/12 boundary requests accepted; stored counts match. Security advisor has no WARN findings. Local build/typecheck/format/tests pass; lint has no errors and nine existing warnings.
+
+Staging secret saved privately and validated. API harness passed all 11 real Auth/API checks; browser contact receipt and one persisted row verified. Evidence: docs/evidence/staging-api-acceptance.json. Next action: browser administrator UI/session-expiry acceptance, then live-target release preflight. Start isolated local server with node --env-file=.env.local node_modules/vite/bin/vite.js --host 127.0.0.1 --port 5190 with staging network access. Both notification flags remain false and outbound keys absent.
+
+Do not equate SQL role fixtures with signed-in Auth. Do not use service-role identity as owner proof. Do not bulk replay staging bootstrap into production; observed production migration IDs differ from local filenames. Complete reviewed release preflight, backups, existing-owner sign-in and missing Cloudflare public/server settings before seeking explicit live-action approval. No push/deploy or production write performed. Hourly retention setup, durable H09 retries, live target reconciliation and Drive mirror update remain pending. Synced sources unchanged.
+
 Updated 3 October 2026. Start with PROJECT_STATUS.md's current brief, then load only records relevant to the selected task. Read repository instructions and preserve uncommitted changes. Chat history, credentials and personal skill installations do not automatically transfer between tools.
 
 ## Reconciliation (3 October 2026 — Google Antigravity Session)
@@ -14,6 +26,7 @@ Updated 3 October 2026. Start with PROJECT_STATUS.md's current brief, then load 
 - **Next Bottleneck:** H07/H42 reconcile intended backend target, validate isolated secure lead intake fixes, and prove H08/H09 enquiry-to-admin dashboard retrieval.
 
 ## Reconciliation (Previous Sessions)
+
 Documentation and skills only. Inspected main/cached origin main eb4f9596d0b394c92f45c7120419a2509035e59b. No application, production database, billing, outreach or deployment changes. Check Git history/final report for publication of this change.
 
 Reconciled six chats: Integrate Domain Sales Strategy; Build Harley Labs Page; GitHub Project Health Review; Review pull request 8; Create THG production QA skill; Install Company Building Skills. The Labs and project-health conversations were briefs, not proof of completed implementation. Existing Labs route needs assessment under L01. H01-H50 and D01-D08 are preserved.
@@ -29,6 +42,7 @@ Next task: H07/H42 reconcile the intended backend and validate isolated secure i
 Skills: three canonical folders under skills/; central Codex loader copies synchronised by scripts/sync-thg-skills.ps1; Antigravity rule reads the same source. See SHARED_SKILLS.md. No wider 12-skill pack installed. Static configuration/packaging checks are not an actual Antigravity run.
 
 ## Central records
+
 [Business OS](https://drive.google.com/drive/folders/1A6e8LO2cElTH4WsIwdQAggJnH94xTJuP) remains the single entrypoint. Repository records govern shared execution; Drive mirrors are explicitly reconciled.
 
 - [Definition](https://drive.google.com/file/d/1sGcm_svP0v9WRrxRLSg33hq5G9BlkSx_/view)
@@ -38,6 +52,7 @@ Skills: three canonical folders under skills/; central Codex loader copies synch
 Earlier handover links pointed to exported copies; these are the original central records. Preserve exports as references rather than creating another hub.
 
 ## Efficient continuation and closing
+
 Read the short current status first; select one ready task. Load its backlog definition, relevant evidence and skill rather than every historical record. Use existing project checks; summarise passes concisely and retain actionable failure detail. Context efficiency never removes critical verification.
 
 After a meaningful session update current status, relevant backlog evidence and this handover: date/tool, scope, inspected/resulting commit, changes, checks actually run, implemented/tested/pushed/deployed separately, migration application state, blockers, next action and Drive reconciliation. Preserve history in Git and linked detail. Never record secrets or customer personal data.

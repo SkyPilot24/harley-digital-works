@@ -1,16 +1,10 @@
 import { createServerFn } from "@tanstack/react-start";
-import { getRequest, getRequestIP } from "@tanstack/react-start/server";
-import type { SupabaseClient } from "@supabase/supabase-js";
-import type { Database } from "@/integrations/supabase/types";
+import { getRequest } from "@tanstack/react-start/server";
+
+import { assertIntakeBackend, checkIntakeResult, trustedIntakeIp } from "@/lib/lead-intake-result";
 import { leadInputSchema } from "@/lib/lead-schema";
 import { siteConfig } from "@/lib/site-config";
 import { formatLeadMessage, notifyWithoutFailingReceipt } from "@/lib/lead-details";
-
-const RATE_LIMIT_WINDOW_MS = 10 * 60 * 1000;
-const RATE_LIMIT_MAX_ATTEMPTS = 5;
-const DUPLICATE_WINDOW_MS = 15 * 60 * 1000;
-const MINIMUM_FORM_TIME_MS = 1200;
-const ATTEMPT_RETENTION_MS = 24 * 60 * 60 * 1000;
 
 export const submitLead = createServerFn({ method: "POST" })
   .validator((input: unknown) => leadInputSchema.parse(input))
@@ -18,15 +12,11 @@ export const submitLead = createServerFn({ method: "POST" })
     // Give basic form-filling bots a success response without storing or notifying.
     if (data.website) return { ok: true };
 
+    assertIntakeBackend(process.env.SUPABASE_URL, import.meta.env.VITE_SUPABASE_URL);
+
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
-    const now = Date.now();
+
     const fingerprint = await createRequestFingerprint(getClientIp());
-
-    await enforceRateLimit(supabaseAdmin, fingerprint, now);
-
-    if (data.startedAt > now + 60_000 || now - data.startedAt < MINIMUM_FORM_TIME_MS) {
-      throw new Response("Please wait before trying again.", { status: 429 });
-    }
 
     const normalizedEmail = data.email.toLowerCase();
 
@@ -41,21 +31,13 @@ export const submitLead = createServerFn({ method: "POST" })
       source: data.source || "contact_form",
     };
 
-    const duplicateCutoff = new Date(now - DUPLICATE_WINDOW_MS).toISOString();
-    const { data: duplicate, error: duplicateError } = await supabaseAdmin
-      .from("leads")
-      .select("id")
-      .eq("email", normalizedEmail)
-      .eq("message", enrichedMessage)
-      .gte("created_at", duplicateCutoff)
-      .limit(1)
-      .maybeSingle();
-
-    if (duplicateError) throw new Error("Lead duplicate check failed.");
-    if (duplicate) return { ok: true };
-
-    const { error } = await supabaseAdmin.from("leads").insert(lead);
+    const { data: result, error } = await supabaseAdmin.rpc("submit_public_lead", {
+      p_fingerprint: fingerprint,
+      p_started_at: data.startedAt,
+      p_lead: lead,
+    });
     if (error) throw new Error("Lead submission failed.");
+    if (checkIntakeResult(result) === "duplicate") return { ok: true };
 
     await notifyWithoutFailingReceipt(
       () =>
@@ -70,44 +52,8 @@ export const submitLead = createServerFn({ method: "POST" })
     return { ok: true };
   });
 
-async function enforceRateLimit(
-  client: SupabaseClient<Database>,
-  fingerprint: string,
-  now: number,
-) {
-  const windowStart = new Date(now - RATE_LIMIT_WINDOW_MS).toISOString();
-  const { count, error: countError } = await client
-    .from("lead_submission_attempts")
-    .select("id", { count: "exact", head: true })
-    .eq("fingerprint", fingerprint)
-    .gte("created_at", windowStart);
-
-  if (countError) throw new Error("Lead rate-limit check failed.");
-  if ((count ?? 0) >= RATE_LIMIT_MAX_ATTEMPTS) {
-    throw new Response("Too many requests. Please try again later.", { status: 429 });
-  }
-
-  const { error: insertError } = await client
-    .from("lead_submission_attempts")
-    .insert({ fingerprint });
-  if (insertError) throw new Error("Lead rate-limit recording failed.");
-
-  const retentionCutoff = new Date(now - ATTEMPT_RETENTION_MS).toISOString();
-  const { error: cleanupError } = await client
-    .from("lead_submission_attempts")
-    .delete()
-    .lt("created_at", retentionCutoff);
-  if (cleanupError) console.error("[Lead intake] Rate-limit cleanup failed.");
-}
-
 function getClientIp() {
-  const request = getRequest();
-  return (
-    request.headers.get("cf-connecting-ip") ||
-    request.headers.get("x-real-ip") ||
-    getRequestIP({ xForwardedFor: true }) ||
-    "unknown"
-  );
+  return trustedIntakeIp(getRequest().headers);
 }
 
 async function createRequestFingerprint(ip: string) {
@@ -137,6 +83,7 @@ async function notifySlackOfLead(lead: {
   budget?: string | null;
   timeline?: string | null;
 }) {
+  if (process.env.LEAD_NOTIFICATIONS_ENABLED !== "true") return;
   const webhookUrl = process.env.SLACK_WEBHOOK_URL;
   if (!webhookUrl) return;
 

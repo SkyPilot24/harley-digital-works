@@ -499,6 +499,10 @@ export type Database = {
       };
     };
     Functions: {
+      submit_public_lead: {
+        Args: { p_fingerprint: string; p_started_at: number; p_lead: Json };
+        Returns: string;
+      };
       get_auth_user_triggers: {
         Args: never;
         Returns: {
