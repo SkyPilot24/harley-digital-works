@@ -45,14 +45,12 @@ export async function deliverLeadNotifications(options: {
       if (!ok) error = `Slack did not acknowledge delivery (HTTP ${response.status}).`;
     } catch (failure) {
       console.error("[Lead alert] Slack request failed", {
-        name: failure instanceof Error ? failure.name : "Unknown",
-        message:
-          failure instanceof Error
-            ? failure.message
-                .replaceAll(destination.href, "[webhook]")
-                .replace(/https?:\/\/\S+/g, "[url]")
-                .slice(0, 200)
-            : "Unknown failure",
+        reason:
+          failure instanceof Error && /Illegal invocation|incorrect this/i.test(failure.message)
+            ? "Native fetch receiver rejected"
+            : failure instanceof Error && /timeout|aborted/i.test(failure.name)
+              ? "Request timed out or aborted"
+              : "Request failed",
       });
       error = "Slack request failed or timed out; acknowledgement unknown.";
     }
