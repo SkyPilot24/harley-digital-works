@@ -43,7 +43,17 @@ export async function deliverLeadNotifications(options: {
       });
       ok = response.ok && (await response.text()).trim() === "ok";
       if (!ok) error = `Slack did not acknowledge delivery (HTTP ${response.status}).`;
-    } catch {
+    } catch (failure) {
+      console.error("[Lead alert] Slack request failed", {
+        name: failure instanceof Error ? failure.name : "Unknown",
+        message:
+          failure instanceof Error
+            ? failure.message
+                .replaceAll(destination.href, "[webhook]")
+                .replace(/https?:\/\/\S+/g, "[url]")
+                .slice(0, 200)
+            : "Unknown failure",
+      });
       error = "Slack request failed or timed out; acknowledgement unknown.";
     }
     // If acknowledgement storage fails, the lease expires and another run retries.

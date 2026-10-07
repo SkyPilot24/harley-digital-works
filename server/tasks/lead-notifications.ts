@@ -11,7 +11,8 @@ export default defineTask({
     const result = await deliverLeadNotifications({
       enabled: process.env.LEAD_NOTIFICATIONS_ENABLED === "true",
       webhookUrl: process.env.SLACK_WEBHOOK_URL,
-      fetch,
+      // Native Cloudflare fetch must retain its global receiver.
+      fetch: (input, init) => fetch(input, init),
       async claim() {
         const { data, error } = await supabaseAdmin.rpc("claim_lead_notifications");
         if (error) throw new Error("Notification queue unavailable");
