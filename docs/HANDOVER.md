@@ -1,6 +1,18 @@
 # Shared development handover
 
-## Current handover — 7 October 2026, live fields and Slack acceptance passed
+## Current handover — 7 October 2026, hourly attempt retention scheduled
+
+**Scope:** H42 automated retention scheduling. Implemented `server/tasks/prune-lead-attempts.ts` using Nitro task calling `supabaseAdmin.rpc("prune_lead_submission_attempts")`. Configured `nitro.config.ts` with `tasks["prune-lead-attempts"]` and `scheduledTasks["0 * * * *"] = ["lead-notifications", "prune-lead-attempts"]`. Added type definitions to `src/integrations/supabase/types.ts`.
+
+**Verified results:**
+- Automated test suite: `npm test` runs 125 tests (60 platform smoke checks + 62 regression tests + 3 service worker tests) — 125/125 PASS.
+- Build & Worker triggers: `npm run build` compiles clean worker and generates `.output/server/wrangler.json` with triggers `crons: ["* * * * *", "0 * * * *"]`.
+- Quality checks: `npm run typecheck` (0 errors), `npm run lint` (0 errors, 9 existing warnings), `npm run format:check` (PASS).
+- Platform smoke suite: `scripts/verify-platform.mjs` verifies presence of both minute notification and hourly retention cron triggers.
+
+**Next action:** Continue H42 coordinated live owner session expiry/logout acceptance and tooling advisory review, H09/H10 transactional email sender/provider setup and bounce handling once credentials are ready (customer transactional email stays disabled), and H07 backup/recovery proof for live THG Agency database (`worzpzbutngugwzhlvtj`). Preserve existing owner session.
+
+## Historical handover — 7 October 2026, live fields and Slack acceptance passed
 
 **Verified live:** both brands save all six visible enquiry fields exactly once into THG Agency (worzpzbutngugwzhlvtj). Genuine existing-owner browser retrieval of both records passes. HDW long domain/service interest survives editing the message. Sources are contact_form/group_contact_form; phone, website and full interest are in message qualification context. Native Cloudflare minute schedule has run and claimed jobs. Live anonymous lead/job reads and notification claims are denied. Existing owner/admin assignment preserved.
 

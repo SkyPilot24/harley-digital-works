@@ -535,6 +535,10 @@ export type Database = {
         Args: { p_fingerprint: string; p_started_at: number; p_lead: Json };
         Returns: string;
       };
+      prune_lead_submission_attempts: {
+        Args: Record<PropertyKey, never>;
+        Returns: void;
+      };
       get_auth_user_triggers: {
         Args: never;
         Returns: {

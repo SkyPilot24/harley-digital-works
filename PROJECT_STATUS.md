@@ -1,6 +1,12 @@
 # The Harley Group — shared project status
 
-## Current handover — 7 October 2026, live fields and Slack acceptance passed
+## Current handover — 7 October 2026, hourly attempt retention scheduled
+
+**Verified live & implemented:** both brands save all six visible enquiry fields exactly once into THG Agency (worzpzbutngugwzhlvtj). Genuine existing-owner browser retrieval passes. Scheduled Slack alerts delivered and accepted. H42 hourly attempt retention task `prune-lead-attempts` implemented in Nitro with `0 * * * *` scheduled trigger, invoking `prune_lead_submission_attempts()` via `supabaseAdmin`. Cloudflare worker output wrangler triggers verified with minute notification and hourly retention crons. 125/125 test suite passed.
+
+**Next action:** Continue H42 coordinated owner session expiry/logout acceptance and tooling advisory review, H09/H10 transactional email sender/provider setup and bounce handling once credentials are ready (customer transactional email stays disabled), and H07 backup/recovery proof for live THG Agency database (`worzpzbutngugwzhlvtj`). Preserve existing owner session.
+
+## Historical handover — 7 October 2026, live fields and Slack acceptance passed
 
 **Verified live:** both brands save all six visible enquiry fields exactly once into THG Agency (worzpzbutngugwzhlvtj). Genuine existing-owner browser retrieval of both records passes. HDW long domain/service interest survives editing the message. Sources are contact_form/group_contact_form; phone, website and full interest are in message qualification context. Native Cloudflare minute schedule has run and claimed jobs. Live anonymous lead/job reads and notification claims are denied. Existing owner/admin assignment preserved.
 

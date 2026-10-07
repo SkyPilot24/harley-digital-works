@@ -528,13 +528,13 @@ Updated 2 October 2026. Domain integration added following the founder's request
 - **Phase:** 5
 - **Priority:** High
 - **Who needs to act:** You
-- **Status:** In progress — staging concurrency and access controls accepted
-- **Current gap:** Local atomic intake and restricted cleanup replace the read-then-write races; staging SQL concurrency passes. Live session expiry/logout acceptance, hourly retention scheduling and remaining tooling advisory assessment are pending.
+- **Status:** In progress — staging concurrency, access controls and hourly retention schedule accepted
+- **Current gap:** Local atomic intake, restricted cleanup and hourly Nitro task `prune-lead-attempts` (`0 * * * *`) calling `prune_lead_submission_attempts()` implemented and verified; staging SQL concurrency passes. Live session expiry/logout acceptance and remaining tooling advisory assessment are pending.
 - **Why it matters:** Concurrent abuse, excess retained data or overlooked secrets can survive ordinary happy-path tests.
 - **Dependencies:** H06, H07, H27
 - **Resolution:** Make idempotency/rate limits robust under concurrency and trust only verified edge client-IP input. Schedule retention cleanup. Scan dependencies/secrets and inspect authentication bootstrap, role escalation, API payload limits and storage isolation.
 - **Definition of done:** Parallel requests cannot bypass defined limits or create duplicate records; retention runs without traffic; exploitable dependency/secret findings are resolved or explicitly blocked from release.
-- **Latest evidence (7 October):** See [dated enquiry acceptance](docs/enquiry-acceptance-2026-10-07.md). Local secure intake/permission fixes implemented; isolated staging schema applied; SQL concurrency passes. Real Auth/API passes all 11 checks; browser enquiry receipt and one stored row verified. Existing owner browser sign-in, dashboard/Leads/full message retrieval pass; live session expiry remains untested. Founder agreed canonical GitHub/Cloudflare/THG Agency plan and approved exact database cutover, now applied. Matching code deployed; latest manually verified Worker 9d3bfd74; labelled live browser contact saves exactly one enquiry. Notifications disabled. Existing owner browser retrieval now passes; expiry/logout remains untested. See docs/evidence/live-owner-retrieval-2026-10-07.json.
+- **Latest evidence (7 October):** See [dated enquiry acceptance](docs/enquiry-acceptance-2026-10-07.md). Local secure intake/permission fixes implemented; isolated staging schema applied; SQL concurrency passes. Real Auth/API passes all 11 checks; browser enquiry receipt and one stored row verified. Existing owner browser sign-in, dashboard/Leads/full message retrieval pass; live session expiry remains untested. Founder agreed canonical GitHub/Cloudflare/THG Agency plan and approved exact database cutover, now applied. Matching code deployed; latest manually verified Worker 9d3bfd74; labelled live browser contact saves exactly one enquiry. Notifications disabled. Existing owner browser retrieval now passes; expiry/logout remains untested. Hourly attempt retention task scheduled in Nitro (`0 * * * *`) invoking `prune_lead_submission_attempts()`. See docs/evidence/live-owner-retrieval-2026-10-07.json.
 
 ## H43 — Add operational monitoring and prove recovery
 - **Phase:** 5

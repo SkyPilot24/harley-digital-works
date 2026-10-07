@@ -174,6 +174,12 @@ if (fs.existsSync(outputWranglerPath)) {
       wranglerConfig.compatibility_date,
     "Wrangler includes Cloudflare compatibility settings",
   );
+  assert(
+    Array.isArray(wranglerConfig.triggers?.crons) &&
+      wranglerConfig.triggers.crons.includes("* * * * *") &&
+      wranglerConfig.triggers.crons.includes("0 * * * *"),
+    "Cloudflare worker triggers configure both minute notification and hourly retention cron schedules",
+  );
 }
 
 // Ensure SUPABASE_SERVICE_ROLE_KEY is not leaked to public bundle

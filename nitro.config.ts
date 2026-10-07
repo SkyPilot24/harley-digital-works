@@ -7,6 +7,12 @@ export default defineConfig({
     "lead-notifications": {
       handler: fileURLToPath(new URL("./server/tasks/lead-notifications.ts", import.meta.url)),
     },
+    "prune-lead-attempts": {
+      handler: fileURLToPath(new URL("./server/tasks/prune-lead-attempts.ts", import.meta.url)),
+    },
   },
-  scheduledTasks: { "* * * * *": ["lead-notifications"] },
+  scheduledTasks: {
+    "* * * * *": ["lead-notifications"],
+    "0 * * * *": ["lead-notifications", "prune-lead-attempts"],
+  },
 });
