@@ -2,7 +2,7 @@
 
 ## Enquiry continuation — 7 October 2026
 
-Scope: existing H07/H08/H09/H42. Inspected clean requested main 79e378cb8d887af0d36db127bfc96e63c2243c2d; current production Worker b59af9dc maps to this exact revision. Safe acceptance branch codex/h07-h42-enquiry-acceptance is in implementation/hdw-enquiry-acceptance. See [complete acceptance and release record](enquiry-acceptance-2026-10-07.md).
+Scope: existing H07/H08/H09/H42. Implementation and evidence committed as c69ae9a9d106e0ea52f1dd8538704ac8cac14d75 on codex/h07-h42-enquiry-acceptance; branch imported into the requested repository without changing main or pushing. Shared documentation/evidence copied into its main working tree for visibility and remain uncommitted there. Anonymous browser /admin/leads access redirected to /auth; signed-in browser retrieval/session expiry remain pending. Inspected clean requested main 79e378cb8d887af0d36db127bfc96e63c2243c2d; current production Worker b59af9dc maps to this exact revision. Safe acceptance branch codex/h07-h42-enquiry-acceptance is in implementation/hdw-enquiry-acceptance. See [complete acceptance and release record](enquiry-acceptance-2026-10-07.md).
 
 Reviewed/ported isolated permission migration; added atomic service-only intake, fail-closed backend matching, Cloudflare-only IP trust, notification opt-in, independent cleanup RPC, inherited function-grant correction and focused regressions. Updated only vulnerable transitive dependencies within current constraints; remaining tooling advisories are recorded.
 
