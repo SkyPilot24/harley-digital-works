@@ -9,7 +9,7 @@
   "vars": {
     "SUPABASE_URL": "https://worzpzbutngugwzhlvtj.supabase.co",
     "SUPABASE_PUBLISHABLE_KEY": "sb_publishable_zww1QFK_jynAmjvcc0-m_g_A4I1aC8V",
-    "LEAD_NOTIFICATIONS_ENABLED": "false",
+    "LEAD_NOTIFICATIONS_ENABLED": "true",
     "TRANSACTIONAL_EMAIL_ENABLED": "false"
   }
 }
