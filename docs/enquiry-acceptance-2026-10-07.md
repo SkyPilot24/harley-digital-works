@@ -1,3 +1,11 @@
+# Current acceptance — live owner retrieval verified, 7 October 2026
+
+Core secure enquiry capture/persistence/owner retrieval is PASS in production. The existing owner completed recovery privately and signed in. Dashboard, Leads and detail view display exactly one labelled enquiry and its original full message. Provider confirms recent existing-admin sign-in, unchanged 1 admin/2 Auth users and 1 labelled enquiry. Evidence: evidence/live-owner-retrieval-2026-10-07.json. Deployed application source ebce69e; last manually verified Worker 9d3bfd74. Canonical main is pushed and the reviewed database migration is applied to THG Agency.
+
+Notifications disabled. Remaining: both-brand fields/packages, owner logout/expiry/copied-token revocation, retention scheduler, durable notifications, backup/restore proof and remaining advisories. H07/H08/H09/H42 remain partially open. Existing session preserved for the owner.
+
+## Historical preparation and release records — superseded by current acceptance
+
 Release record: source 60f41d52d4e1f5b444173635a63994a6a48d6cde pushed to canonical main; final Worker 76a25f25-d0f1-44b9-a39a-72187cb890a1 deployed. Final live anonymous REST/RPC checks denied; final secret scan passed across 309 outputs; disabled Google sign-in visibly verified. See docs/evidence/live-enquiry-release-2026-10-07.json (from repository root). Existing-owner retrieval remains pending private sign-in. Historical versions below are superseded by this record.
 
 Current approved state (7 October): founder confirmed canonical GitHub/Cloudflare/THG Agency plan and approved the exact reviewed database cutover. Migration applied; tested Worker deployed; labelled live browser contact produced receipt and exactly one saved THG Agency enquiry. Existing admin/browser retrieval and expiry await owner sign-in. Notifications disabled. See PROJECT_STATUS.md and docs/AGREED_DELIVERY_PLAN.md; older states below are historical and superseded.

@@ -1,27 +1,31 @@
-Sign-in follow-up (7 October): fix source ebce69ee2f1b5f20da50aceccec4ec83ffba5a96 pushed to main and deployed as Worker 9d3bfd74-d90b-479d-ad48-63dde99c3a76. Owner reported a silent login failure. Confirmed existing administrator email, password-configured and confirmed-account booleans without reading credentials. Added persistent inline errors/status, actual form-value reading for autofill, deferred post-sign-in routing outside Supabase Auth callbacks, and signup-only minimum password length. Staging browser invalid-login case visibly shows Invalid login credentials. Build/typecheck/focused lint and complete tests pass. Owner success/retrieval is still pending; no password reset or credential change performed.
-
-Release record: source 60f41d52d4e1f5b444173635a63994a6a48d6cde pushed to canonical main; final Worker 76a25f25-d0f1-44b9-a39a-72187cb890a1 deployed. Final live anonymous REST/RPC checks denied; final secret scan passed across 309 outputs; disabled Google sign-in visibly verified. See docs/evidence/live-enquiry-release-2026-10-07.json (from repository root). Existing-owner retrieval remains pending private sign-in. Historical versions below are superseded by this record.
-
 # The Harley Group — shared project status
 
 ## Start here - short operating brief
 
 - **Goal:** first paid pilot of a near end-to-end automated trade digital service; founder manages exceptions and retains quality review.
-- **Verified state:** 7 October: founder-approved THG Agency database cutover applied; tested Cloudflare release deployed; labelled live browser enquiry saved exactly once. Existing admin/accounts preserved. Owner browser retrieval/session expiry remain pending. Canonical source is SkyPilot24/harley-digital-works; Lovable remains a separate prototype workspace. No revenue total verified.
-- **Bottleneck / one next task:** H07/H08/H09/H42 verify existing owner browser retrieval of the labelled live enquiry and session behaviour; maintain disabled notifications until destinations/retries are separately verified.
+- **Verified state:** 7 October: live secure enquiry saved exactly once to THG Agency and retrieved by the genuinely signed-in existing owner in dashboard, Leads and full detail view. Existing 1 admin/2 Auth accounts preserved. Canonical GitHub source and Cloudflare release are deployed; Lovable remains a separate prototype workspace. No revenue total verified.
+- **Bottleneck / one next task:** Core enquiry-to-owner bottleneck resolved. Continue H08 both-brand/field acceptance and H09/H10 notification destination/retry work; notifications remain disabled. H07 recovery/backup and H42 retention/session/advisory follow-ups remain open.
 - **Decisions:** final scope, prices, VAT, terms, support capacity and initial quality/automation limits. D01 portfolio verification can progress independently.
 - **Load on demand:** BUSINESS_DEFINITION.md for commercial rules; MASTER_BACKLOG.md for the selected task; docs/REVENUE_WORKFLOW.md for lifecycle; docs/HANDOVER.md for continuation; docs/SHARED_SKILLS.md for skill availability. Detailed evidence and historical snapshots below need reading only where relevant.
 - **Close each meaningful session:** update this brief, task evidence and handover; record actual checks/release state, then reconcile Drive mirrors. Do not omit blockers to save context.
+
+## Live owner acceptance — 7 October 2026
+
+**Core revenue bottleneck resolved:** authorised live browser contact submission displayed a receipt, persisted exactly one labelled enquiry to THG Agency, and the existing owner completed recovery privately and signed in. Browser verification confirms the same enquiry and full original message in dashboard/Leads/detail. Provider metadata confirms recent existing-admin sign-in, 1 admin, 2 Auth users and exactly 1 labelled enquiry. No new administrator or owner impersonation. Evidence: docs/evidence/live-owner-retrieval-2026-10-07.json.
+
+Deployed application source ebce69ee2f1b5f20da50aceccec4ec83ffba5a96; last manually verified Worker 9d3bfd74-d90b-479d-ad48-63dde99c3a76. Source is committed/pushed to canonical main, schema applied to live THG Agency, and secure capture plus genuine owner retrieval live-verified. Google sign-in remains disabled; email/password and recovery use THG Agency. Notifications/email remain disabled.
+
+**Ready:** secure live enquiry persistence and genuine owner retrieval; staging concurrency/ordinary-user isolation; bounded live anonymous REST/RPC denial. **Needs attention:** both-brand field/package coverage, production owner logout/expiry, retention scheduling, durable notifications, backup/restore proof, leaked-password protection and tooling advisories. Do not mark H07/H08/H09/H42 wholly complete; acceptance evidence resolves the core journey only.
 
 ## Agreed architecture and live release — 7 October 2026
 
 Founder approved: SkyPilot24/harley-digital-works is the canonical application source; Cloudflare is production hosting; THG Agency (worzpzbutngugwzhlvtj) is the live backend; mfpnfxpgkfuqtedbcxvp remains isolated staging. Lovable THG Digital/SkyPilot24/thgdigital remains a separate design/prototype workspace. Reconnecting Lovable to canonical Git is a later reviewed action, not performed. Existing Lovable build tooling remains; live Google Auth no longer delegates to Lovable and stays disabled until THG Agency OAuth is explicitly configured. Email/password Auth uses THG Agency.
 
-Exact database approval received and thg_reviewed_live_enquiry_cutover applied successfully. Verified 0 pre-existing leads, 1 admin and 2 Auth users preserved; unsafe lead policies/bootstrap removed, anonymous read/insert and authenticated intake-RPC denied. Deployed Worker 6a2b6017-2705-4a48-8653-46facc145b46 with matching backend and server secret. Labelled live contact browser submission displayed receipt and exactly one matching THG Agency row (thg-live-check-20261007@example.test). Notifications/email stay disabled. Latest auth clarification will be included in the final source/build.
+Exact database approval received and thg_reviewed_live_enquiry_cutover applied successfully. Verified 0 pre-existing leads, 1 admin and 2 Auth users preserved; unsafe lead policies/bootstrap removed, anonymous read/insert and authenticated intake-RPC denied. Deployed Worker 6a2b6017-2705-4a48-8653-46facc145b46 with matching backend and server secret. Labelled live contact browser submission displayed receipt and exactly one matching THG Agency row (thg-live-check-20261007@example.test). Notifications/email stay disabled. Sign-in feedback clarification is deployed.
 
-Build/test/typecheck pass; 23 DB regressions, 11 staging Auth/API checks and prior secret scan across 310 outputs pass. Existing-owner browser sign-in/retrieval and expiry remain pending human sign-in, so full end-to-end administrator live verification is not claimed. Advisor leaves intentional service-only attempt-table INFO and leaked-password protection WARN; retention schedule, durable notifications and remaining tooling advisories remain open. Prepared metadata snapshot is not a tested backup/restore.
+Build/test/typecheck pass; 23 DB regressions, 11 staging Auth/API checks and prior secret scan across 310 outputs pass. Existing-owner browser sign-in and full enquiry retrieval now pass. Live expiry/logout remains untested. Advisor leaves intentional service-only attempt-table INFO and leaked-password protection WARN; retention schedule, durable notifications and remaining tooling advisories remain open. Prepared metadata snapshot is not a tested backup/restore.
 
-## Current enquiry acceptance — 7 October 2026
+## Historical enquiry checkpoints — superseded by live owner acceptance
 
 This supersedes older environment/deployment claims below. See [dated enquiry acceptance](docs/enquiry-acceptance-2026-10-07.md) for environment map, root causes, migration state, test evidence, access actions and release gate.
 

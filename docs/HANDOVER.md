@@ -1,12 +1,16 @@
-Sign-in follow-up (7 October): fix source ebce69ee2f1b5f20da50aceccec4ec83ffba5a96 pushed to main and deployed as Worker 9d3bfd74-d90b-479d-ad48-63dde99c3a76. Owner reported a silent login failure. Confirmed existing administrator email, password-configured and confirmed-account booleans without reading credentials. Added persistent inline errors/status, actual form-value reading for autofill, deferred post-sign-in routing outside Supabase Auth callbacks, and signup-only minimum password length. Staging browser invalid-login case visibly shows Invalid login credentials. Build/typecheck/focused lint and complete tests pass. Owner success/retrieval is still pending; no password reset or credential change performed.
-
-Release record: source 60f41d52d4e1f5b444173635a63994a6a48d6cde pushed to canonical main; final Worker 76a25f25-d0f1-44b9-a39a-72187cb890a1 deployed. Final live anonymous REST/RPC checks denied; final secret scan passed across 309 outputs; disabled Google sign-in visibly verified. See docs/evidence/live-enquiry-release-2026-10-07.json (from repository root). Existing-owner retrieval remains pending private sign-in. Historical versions below are superseded by this record.
-
 # Shared development handover
 
-## Approved plan and live release — 7 October 2026
+## Current handover — 7 October 2026
 
-Canonical repository: SkyPilot24/harley-digital-works; production: Cloudflare; backend: THG Agency worzpzbutngugwzhlvtj; isolated staging: mfpnfxpgkfuqtedbcxvp. Lovable stays a separate prototype/design workspace; reconnecting its Git is deferred. Live Google OAuth uses native Supabase if explicitly enabled, currently disabled; no Lovable Auth delegation. Founder explicitly approved the reviewed schema cutover after automatic approval rejection. thg_reviewed_live_enquiry_cutover applied successfully, preserving 1 administrator/2 Auth users/0 previous leads; permission checks pass. Worker 6a2b6017 deployed and labelled live browser contact produces one saved enquiry. Further auth clarification is being built and released. Owner sign-in tab handed off to founder for final real-browser retrieval; never impersonate owner with a service key. Notifications/email disabled. Remaining: owner retrieval/session expiry, retention scheduling, durable retries, leaked-password setting/tooling advisory assessment and backup/restore proof. See PROJECT_STATUS.md for current superseding evidence. Historical sections below retain earlier states.
+The core secure enquiry journey is live-verified: labelled browser enquiry saved exactly once to THG Agency; genuinely signed-in existing owner sees it in dashboard, Leads and full details. Owner completed password recovery privately. Provider verifies recent existing-admin sign-in and unchanged 1 admin/2 Auth users. Evidence: evidence/live-owner-retrieval-2026-10-07.json. No credential or recovery token recorded.
+
+Canonical source: SkyPilot24/harley-digital-works/main. Cloudflare Worker: skypilot24-harley-digital-works. Live backend: worzpzbutngugwzhlvtj; isolated staging: mfpnfxpgkfuqtedbcxvp. Lovable THG Digital/thgdigital remains separate design/prototyping; reconnecting its Git is deferred. Deployed app source ebce69ee2f1b5f20da50aceccec4ec83ffba5a96; last manually verified Worker 9d3bfd74-d90b-479d-ad48-63dde99c3a76. thg_reviewed_live_enquiry_cutover is applied. Public/server configuration matches; Google sign-in disabled pending selected backend OAuth setup.
+
+Tests: build/typecheck/focused lint/full suite pass; 23 database regressions and 11 real staging Auth/API checks pass. Live anonymous REST read and intake RPC denied. Owner UI reads original enquiry message. Notifications/email disabled. Remaining existing work: H08 both-brand fields/package coverage; H09/H10 durable notification retry/destinations and truthful delivery status; H07 backup/recovery proof; H42 retention schedule, live session/logout/expiry and advisories. Preserve the signed-in owner session; do not sign out merely to complete tests without coordinating with the owner.
+
+Agreed plan: AGREED_DELIVERY_PLAN.md. Synced sources untouched. Original shared-record stash is retained for recovery; do not reapply it over newer accepted records. Repository main is kept clean and committed/pushed after updates. No wholesale production migration replay or further role grants.
+
+## Historical delivery checkpoints — superseded by current handover
 
 ## Enquiry continuation — 7 October 2026
 

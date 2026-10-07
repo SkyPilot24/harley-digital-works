@@ -10,8 +10,8 @@ The founder approved this plan and the reviewed production database cutover in t
 
 Continue existing H07/H08/H09/H42; do not create another backlog. Reviewed live cutover preserves records and administrator assignments, adds missing intake schema, removes public/direct submission bypass and signup-admin bootstrap, and restricts legacy staff policies. Empty staging schema bootstrap must never be replayed into production.
 
-The database cutover and tested Cloudflare build are deployed. A labelled live browser enquiry showed a receipt and persisted exactly once. Next is genuine existing-owner browser sign-in and retrieval; an administrator service key is not owner-access proof. Record the final Git revision, Worker version and remaining checks in PROJECT_STATUS.md and docs/HANDOVER.md.
+The database cutover and tested Cloudflare build are deployed. A labelled live browser enquiry showed a receipt and persisted exactly once. Genuine existing-owner browser sign-in and retrieval now pass, including the full enquiry message; no service-key impersonation was used. Record the final Git revision, Worker version and remaining checks in PROJECT_STATUS.md and docs/HANDOVER.md.
 
-Notifications and transactional email remain disabled. Retention scheduling, durable notification retries, leaked-password protection, remaining tooling advisories and backup/restore proof remain recorded work. Release success is not full end-to-end acceptance until the existing owner's retrieval is verified.
+Notifications and transactional email remain disabled. Retention scheduling, durable notification retries, leaked-password protection, remaining tooling advisories and backup/restore proof remain recorded work. The core live secure-enquiry-to-owner journey is accepted; wider task completion still requires the remaining checks.
 
 Synced `sources/` remain read-only. Do not force-push published history. Future changes to production, billing, communications or Lovable connections require their applicable authorisation.
