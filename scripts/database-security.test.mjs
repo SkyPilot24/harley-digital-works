@@ -10,6 +10,63 @@ const hardening = "20261003090748_restrict_signup_admin_and_public_intake.sql";
 const owner = "00000000-0000-4000-8000-000000000001";
 const ordinary = "00000000-0000-4000-8000-000000000002";
 
+test("THG Agency legacy lead schema is upgraded without losing records", async (t) => {
+  const db = new PGlite();
+  t.after(() => db.close());
+  await db.exec(`
+    CREATE ROLE anon; CREATE ROLE authenticated; CREATE ROLE service_role BYPASSRLS;
+    CREATE SCHEMA app_private; CREATE SCHEMA auth;
+    CREATE TYPE public.app_role AS ENUM ('admin','client');
+    CREATE FUNCTION auth.uid() RETURNS uuid LANGUAGE sql AS $$ SELECT NULL::uuid $$;
+    CREATE FUNCTION app_private.has_role(uuid,public.app_role) RETURNS boolean LANGUAGE sql AS $$ SELECT false $$;
+    CREATE FUNCTION public.get_auth_user_triggers() RETURNS jsonb LANGUAGE sql AS $$ SELECT '[]'::jsonb $$;
+    CREATE TABLE public.user_roles(user_id uuid,role public.app_role);
+    INSERT INTO public.user_roles VALUES ('${owner}','admin');
+    CREATE TABLE public.leads(id uuid PRIMARY KEY DEFAULT gen_random_uuid(),name text NOT NULL,email text NOT NULL,package text NOT NULL DEFAULT 'Unknown',source text NOT NULL DEFAULT 'Website',status text NOT NULL DEFAULT 'New',notes text,created_at timestamptz DEFAULT now());
+    INSERT INTO public.leads(name,email,notes) VALUES ('Existing','existing@example.test','Preserved notes');
+    CREATE POLICY public_insert_leads ON public.leads FOR INSERT TO anon,authenticated WITH CHECK (true);
+    CREATE POLICY admin_all_leads ON public.leads FOR ALL TO authenticated USING (true) WITH CHECK (true);
+    CREATE TABLE public.projects(id uuid);
+    CREATE POLICY admin_all_projects ON public.projects FOR ALL TO authenticated USING (true) WITH CHECK (true);
+  `);
+  await db.exec(
+    await readFile(
+      new URL("20261007101106_thg_agency_intake_compatibility.sql", migrationsDir),
+      "utf8",
+    ),
+  );
+  const existing = (
+    await db.query("SELECT notes,message FROM public.leads WHERE email='existing@example.test'")
+  ).rows[0];
+  assert.deepEqual(existing, { notes: "Preserved notes", message: "" });
+  assert.equal(
+    (await db.query("SELECT count(*)::int AS n FROM public.user_roles WHERE role='admin'")).rows[0]
+      .n,
+    1,
+  );
+  await db.exec(
+    "INSERT INTO public.leads(name,email,message,package) VALUES ('New','new@example.test','Real enquiry',NULL)",
+  );
+  assert.equal(
+    (await db.query("SELECT status FROM public.leads WHERE email='new@example.test'")).rows[0]
+      .status,
+    "new",
+  );
+  assert.equal(
+    (await db.query("SELECT count(*)::int AS n FROM pg_policies WHERE tablename='leads'")).rows[0]
+      .n,
+    0,
+  );
+  assert.equal(
+    (
+      await db.query(
+        "SELECT has_function_privilege('anon','public.get_auth_user_triggers()','EXECUTE') AS allowed",
+      )
+    ).rows[0].allowed,
+    false,
+  );
+});
+
 test("database security across migration upgrade and clean signup", async (t) => {
   const db = new PGlite();
   t.after(() => db.close());
@@ -32,6 +89,12 @@ test("database security across migration upgrade and clean signup", async (t) =>
   // Reproduce the old behaviour, then verify that the migration preserves this owner.
   // Mirror broad grants observed in the provider database, including non-RLS operations.
   await db.exec("GRANT ALL ON public.leads, public.user_roles TO anon, authenticated");
+  // THG Agency also has permissive legacy policies absent from source history.
+  await db.exec(`
+    CREATE POLICY admin_all_leads ON public.leads FOR ALL TO authenticated USING (true) WITH CHECK (true);
+    CREATE POLICY public_insert_leads ON public.leads FOR INSERT TO anon,authenticated WITH CHECK (true);
+    CREATE POLICY admin_all_projects ON public.projects FOR ALL TO authenticated USING (true) WITH CHECK (true);
+  `);
   await db.query("INSERT INTO auth.users (id,email) VALUES ($1,'owner@example.test')", [owner]);
   assert.equal(
     (await db.query("SELECT count(*)::int AS n FROM public.user_roles WHERE role='admin'")).rows[0]
@@ -59,6 +122,24 @@ test("database security across migration upgrade and clean signup", async (t) =>
     db.query(
       "INSERT INTO public.leads (name,email,message) VALUES ('QA','qa@example.test','Test enquiry') RETURNING id",
     );
+
+  await t.test("legacy staff-wide policies cannot grant ordinary users access", async () => {
+    const policies = (
+      await db.query(
+        "SELECT qual,with_check FROM pg_policies WHERE policyname='admin_all_projects'",
+      )
+    ).rows;
+    assert.match(policies[0].qual, /has_role/);
+    assert.match(policies[0].with_check, /has_role/);
+    assert.equal(
+      (
+        await db.query(
+          "SELECT count(*)::int AS n FROM pg_policies WHERE tablename='leads' AND policyname IN ('admin_all_leads','public_insert_leads')",
+        )
+      ).rows[0].n,
+      0,
+    );
+  });
 
   await t.test("existing owner is preserved and later signup receives no admin role", async () => {
     const roles = (await db.query("SELECT user_id,role FROM public.user_roles")).rows;

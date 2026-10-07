@@ -1,3 +1,5 @@
+Live-release continuation (7 October): founder selected THG Agency and authorised release. Server credential verified and installed on the existing Worker; production source/database cutover pending exact approval after automatic review rejection. See PROJECT_STATUS.md and docs/thg-agency-reviewed-cutover.sql for the superseding state. Staging compatibility and all 11 Auth/API checks pass; production build and complete tests pass; secret scan across 310 output files passes. No new live code or enquiry verification claimed.
+
 # H07/H08/H09/H42 — enquiry acceptance, 7 October 2026
 
 Release decision: **Blocking launch**. Local remediation and isolated PostgreSQL acceptance have progressed. Real staging Auth/API and browser enquiry-to-admin acceptance remain pending private staging server-key configuration. No production migration, release, notification, account or credential change was made.

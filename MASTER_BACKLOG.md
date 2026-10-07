@@ -114,7 +114,7 @@ Updated 2 October 2026. Domain integration added following the founder's request
 - **Dependencies:** Me: reconnect/grant the correct project account or identify its administrator
 - **Resolution:** Have the backend account owner provide scoped access; inventory deployed migrations, auth settings, roles, tables, storage, backup and recovery capability. Apply only reviewed missing changes in staging first.
 - **Definition of done:** Correct project identity is confirmed; migration reconciliation and anonymous/staff/client isolation tests pass; recovery settings and ownership are recorded.
-- **Latest evidence (7 October):** See [dated enquiry acceptance](docs/enquiry-acceptance-2026-10-07.md). Local secure intake/permission fixes implemented; isolated staging schema applied; SQL concurrency passes. Real Auth/API passes all 11 checks; browser enquiry receipt and one stored row verified. Browser admin UI/session expiry pending. No production changes or deployment.
+- **Latest evidence (7 October):** See [dated enquiry acceptance](docs/enquiry-acceptance-2026-10-07.md). Local secure intake/permission fixes implemented; isolated staging schema applied; SQL concurrency passes. Real Auth/API passes all 11 checks; browser enquiry receipt and one stored row verified. Browser admin UI/session expiry pending. Acceptance branch pushed to GitHub; founder authorised live release. Main unchanged while live backend identity/access and configuration remain blocking. No production changes or deployment.
 
 ## H08 — Connect both brand enquiry forms to one validated intake
 - **Phase:** 2
@@ -126,7 +126,7 @@ Updated 2 October 2026. Domain integration added following the founder's request
 - **Dependencies:** H01, H05, H06
 - **Resolution:** Use a shared server intake with stable offer IDs, phone, source brand/page and explicit service selection. Preserve accessible validation and the existing honeypot/timing protections.
 - **Definition of done:** Both brands save all entered fields once; package links preselect correctly; validation, retry, duplicate and fallback cases are covered.
-- **Latest evidence (7 October):** See [dated enquiry acceptance](docs/enquiry-acceptance-2026-10-07.md). Local secure intake/permission fixes implemented; isolated staging schema applied; SQL concurrency passes. Real Auth/API passes all 11 checks; browser enquiry receipt and one stored row verified. Browser admin UI/session expiry pending. No production changes or deployment.
+- **Latest evidence (7 October):** See [dated enquiry acceptance](docs/enquiry-acceptance-2026-10-07.md). Local secure intake/permission fixes implemented; isolated staging schema applied; SQL concurrency passes. Real Auth/API passes all 11 checks; browser enquiry receipt and one stored row verified. Browser admin UI/session expiry pending. Acceptance branch pushed to GitHub; founder authorised live release. Main unchanged while live backend identity/access and configuration remain blocking. No production changes or deployment.
 
 ## H09 — Make lead notifications and email status reliable
 - **Phase:** 4
@@ -138,7 +138,7 @@ Updated 2 October 2026. Domain integration added following the founder's request
 - **Dependencies:** H04, H06, H08, H10
 - **Resolution:** Treat persisted intake as the authoritative receipt; enqueue/retry notification separately. Distinguish prepared, queued, provider-accepted, delivered and failed states. Add bounded timeouts and staff-visible failures.
 - **Definition of done:** Slack/provider outages do not lose or duplicate leads; a failed notification can retry safely; UI and audit records never describe simulated or merely accepted mail as delivered.
-- **Latest evidence (7 October):** See [dated enquiry acceptance](docs/enquiry-acceptance-2026-10-07.md). Local secure intake/permission fixes implemented; isolated staging schema applied; SQL concurrency passes. Real Auth/API passes all 11 checks; browser enquiry receipt and one stored row verified. Browser admin UI/session expiry pending. No production changes or deployment.
+- **Latest evidence (7 October):** See [dated enquiry acceptance](docs/enquiry-acceptance-2026-10-07.md). Local secure intake/permission fixes implemented; isolated staging schema applied; SQL concurrency passes. Real Auth/API passes all 11 checks; browser enquiry receipt and one stored row verified. Browser admin UI/session expiry pending. Acceptance branch pushed to GitHub; founder authorised live release. Main unchanged while live backend identity/access and configuration remain blocking. No production changes or deployment.
 
 ## H10 — Verify transactional sender and notification destinations
 - **Phase:** 4
@@ -534,7 +534,7 @@ Updated 2 October 2026. Domain integration added following the founder's request
 - **Dependencies:** H06, H07, H27
 - **Resolution:** Make idempotency/rate limits robust under concurrency and trust only verified edge client-IP input. Schedule retention cleanup. Scan dependencies/secrets and inspect authentication bootstrap, role escalation, API payload limits and storage isolation.
 - **Definition of done:** Parallel requests cannot bypass defined limits or create duplicate records; retention runs without traffic; exploitable dependency/secret findings are resolved or explicitly blocked from release.
-- **Latest evidence (7 October):** See [dated enquiry acceptance](docs/enquiry-acceptance-2026-10-07.md). Local secure intake/permission fixes implemented; isolated staging schema applied; SQL concurrency passes. Real Auth/API passes all 11 checks; browser enquiry receipt and one stored row verified. Browser admin UI/session expiry pending. No production changes or deployment.
+- **Latest evidence (7 October):** See [dated enquiry acceptance](docs/enquiry-acceptance-2026-10-07.md). Local secure intake/permission fixes implemented; isolated staging schema applied; SQL concurrency passes. Real Auth/API passes all 11 checks; browser enquiry receipt and one stored row verified. Browser admin UI/session expiry pending. Acceptance branch pushed to GitHub; founder authorised live release. Main unchanged while live backend identity/access and configuration remain blocking. No production changes or deployment.
 
 ## H43 — Add operational monitoring and prove recovery
 - **Phase:** 5
