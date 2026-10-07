@@ -1,7 +1,7 @@
 {
-  "date": "2026-10-07T10:14:46.007Z",
+  "date": "2026-10-07T11:11:51.205Z",
   "project": "mfpnfxpgkfuqtedbcxvp",
-  "marker": "thg-qa-3a6c3576-e238-4a3f-82f8-f6252b3696e7",
+  "marker": "thg-qa-2698dd04-f25b-4b6a-b299-f6009b06c512",
   "results": [
     {
       "name": "signup cannot grant admin",
@@ -41,6 +41,14 @@
     },
     {
       "name": "administrator retains manual intake",
+      "status": "PASS"
+    },
+    {
+      "name": "ordinary user cannot read, claim or acknowledge notifications",
+      "status": "PASS"
+    },
+    {
+      "name": "signed-in administrator can inspect notification state",
       "status": "PASS"
     },
     {

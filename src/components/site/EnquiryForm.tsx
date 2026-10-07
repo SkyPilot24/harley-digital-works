@@ -61,7 +61,12 @@ export function EnquiryForm({
     <form className="enquiry-form" onSubmit={submit} aria-label="Website project enquiry">
       <input type="hidden" name="source" value={source} />
       <input type="hidden" name="startedAt" value={startedAt} />
-      <input type="hidden" name="package" value={interest.slice(0, 60)} />
+      <input
+        type="hidden"
+        name="package"
+        value={interest.length <= 60 ? interest : "See enquiry context"}
+      />
+      <input type="hidden" name="enquiryContext" value={interest} />
       <div className="enquiry-honeypot" aria-hidden="true">
         <label htmlFor={source + "-trap"}>Leave empty</label>
         <input id={source + "-trap"} name="website" tabIndex={-1} autoComplete="off" />
@@ -111,7 +116,11 @@ export function EnquiryForm({
           required
           minLength={5}
           maxLength={2000}
-          placeholder="Your trade, where you work, and what you’d like your website to do better."
+          placeholder={
+            source === "group_contact_form"
+              ? "Tell us about your business and what you would like help with."
+              : "Your trade, where you work, and what you’d like your website to do better."
+          }
           defaultValue={interest ? "I would like to discuss " + interest + "." : ""}
         />
       </label>

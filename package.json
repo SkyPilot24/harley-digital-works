@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "vite dev",
     "typecheck": "tsc --noEmit",
-    "test": "node scripts/verify-platform.mjs && node --experimental-strip-types --test scripts/revenue-readiness.test.mjs scripts/database-security.test.mjs scripts/intake-results.test.mjs && node --test scripts/verify-service-worker.mjs",
+    "test": "node scripts/verify-platform.mjs && node --experimental-strip-types --test scripts/revenue-readiness.test.mjs scripts/database-security.test.mjs scripts/intake-results.test.mjs scripts/lead-notifications.test.mjs && node --test scripts/verify-service-worker.mjs",
     "format:check": "prettier --check \"src/**/*.{ts,tsx}\" package.json .prettierrc \".github/**/*.{yml,yaml}\"",
     "build": "vite build",
     "build:dev": "vite build --mode development",

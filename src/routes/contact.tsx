@@ -5,10 +5,11 @@ import { siteConfig, buildPageSeoHead } from "@/lib/site-config";
 
 export const Route = createFileRoute("/contact")({
   validateSearch: (s: Record<string, unknown>) => ({
-    service: typeof s.service === "string" ? s.service : undefined,
-    package: typeof s.package === "string" ? s.package : undefined,
-    domain: typeof s.domain === "string" ? s.domain : undefined,
-    websiteUrl: typeof s.websiteUrl === "string" ? s.websiteUrl : undefined,
+    service: typeof s.service === "string" && s.service.length <= 120 ? s.service : undefined,
+    package: typeof s.package === "string" && s.package.length <= 120 ? s.package : undefined,
+    domain: typeof s.domain === "string" && s.domain.length <= 253 ? s.domain : undefined,
+    websiteUrl:
+      typeof s.websiteUrl === "string" && s.websiteUrl.length <= 200 ? s.websiteUrl : undefined,
   }),
   head: () =>
     buildPageSeoHead({

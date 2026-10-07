@@ -165,6 +165,27 @@ try {
       .insert({ ...lead, email: `${marker}-manual@example.test` });
     assert.ifError(error);
   });
+  await check("ordinary user cannot read, claim or acknowledge notifications", async () => {
+    const rows = await ordinary.client.from("lead_notification_jobs").select("id");
+    assert.ifError(rows.error);
+    assert.equal(rows.data.length, 0);
+    assert.ok((await ordinary.client.rpc("claim_lead_notifications")).error);
+    assert.ok(
+      (
+        await ordinary.client.rpc("finish_lead_notification", {
+          p_id: owner.userId,
+          p_lease_token: owner.userId,
+          p_accepted: true,
+          p_error: null,
+        })
+      ).error,
+    );
+  });
+  await check("signed-in administrator can inspect notification state", async () => {
+    const result = await owner.client.from("lead_notification_jobs").select("status,attempts");
+    assert.ifError(result.error);
+    assert.ok(result.data.length > 0);
+  });
   await check("owner logout removes client lead access", async () => {
     const logout = await owner.client.auth.signOut();
     assert.ifError(logout.error);

@@ -1,0 +1,37 @@
+{
+  "checkedAt": "2026-10-07T11:10:44.917Z",
+  "project": "mfpnfxpgkfuqtedbcxvp",
+  "environment": "isolated staging",
+  "outboundNotifications": false,
+  "acknowledgement": "simulated; no Slack delivery claimed",
+  "checks": [
+    {
+      "name": "Atomic lead and alert persistence",
+      "status": "PASS"
+    },
+    {
+      "name": "Duplicate has exactly one alert",
+      "status": "PASS"
+    },
+    {
+      "name": "Concurrent workers have disjoint leases",
+      "status": "PASS"
+    },
+    {
+      "name": "Transient failure schedules a retry",
+      "status": "PASS"
+    },
+    {
+      "name": "Second attempt records simulated acknowledgement",
+      "status": "PASS"
+    },
+    {
+      "name": "Stale acknowledgement rejected",
+      "status": "PASS"
+    },
+    {
+      "name": "Anonymous read and claim denied",
+      "status": "PASS"
+    }
+  ]
+}

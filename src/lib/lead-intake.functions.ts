@@ -4,7 +4,7 @@ import { getRequest } from "@tanstack/react-start/server";
 import { assertIntakeBackend, checkIntakeResult, trustedIntakeIp } from "@/lib/lead-intake-result";
 import { leadInputSchema } from "@/lib/lead-schema";
 import { siteConfig } from "@/lib/site-config";
-import { formatLeadMessage, notifyWithoutFailingReceipt } from "@/lib/lead-details";
+import { formatLeadMessage } from "@/lib/lead-details";
 
 export const submitLead = createServerFn({ method: "POST" })
   .validator((input: unknown) => leadInputSchema.parse(input))
@@ -39,16 +39,7 @@ export const submitLead = createServerFn({ method: "POST" })
     if (error) throw new Error("Lead submission failed.");
     if (checkIntakeResult(result) === "duplicate") return { ok: true };
 
-    await notifyWithoutFailingReceipt(
-      () =>
-        notifySlackOfLead({
-          ...lead,
-          websiteUrl: data.websiteUrl || null,
-          budget: data.budget || null,
-          timeline: data.timeline || null,
-        }),
-      () => console.error("[Lead intake] Lead saved; Slack notification failed. Check the CRM."),
-    );
+    // The database commits the alert job with the lead; scheduled delivery cannot delay this receipt.
     return { ok: true };
   });
 
@@ -71,71 +62,4 @@ async function createRequestFingerprint(ip: string) {
   return Array.from(new Uint8Array(signature), (byte) => byte.toString(16).padStart(2, "0")).join(
     "",
   );
-}
-
-async function notifySlackOfLead(lead: {
-  name: string;
-  email: string;
-  company: string | null;
-  package: string | null;
-  message: string;
-  websiteUrl?: string | null;
-  budget?: string | null;
-  timeline?: string | null;
-}) {
-  if (process.env.LEAD_NOTIFICATIONS_ENABLED !== "true") return;
-  const webhookUrl = process.env.SLACK_WEBHOOK_URL;
-  if (!webhookUrl) return;
-
-  const fields = [
-    { type: "mrkdwn", text: `*Name:*\n${lead.name}` },
-    { type: "mrkdwn", text: `*Email:*\n${lead.email}` },
-    { type: "mrkdwn", text: `*Company:*\n${lead.company || "—"}` },
-    { type: "mrkdwn", text: `*Interested in:*\n${lead.package || "Not specified"}` },
-  ];
-
-  if (lead.websiteUrl) {
-    fields.push({ type: "mrkdwn", text: `*Current Website:*\n${lead.websiteUrl}` });
-  }
-  if (lead.budget) {
-    fields.push({ type: "mrkdwn", text: `*Budget:*\n${lead.budget}` });
-  }
-  if (lead.timeline) {
-    fields.push({ type: "mrkdwn", text: `*Timeline:*\n${lead.timeline}` });
-  }
-
-  const response = await fetch(webhookUrl, {
-    method: "POST",
-    signal: AbortSignal.timeout(5_000),
-    headers: { "content-type": "application/json" },
-    body: JSON.stringify({
-      text: `New lead from ${lead.name}`,
-      blocks: [
-        {
-          type: "header",
-          text: { type: "plain_text", text: "New website lead", emoji: true },
-        },
-        {
-          type: "section",
-          fields,
-        },
-        {
-          type: "section",
-          text: { type: "mrkdwn", text: `*Message:*\n${truncateForSlack(lead.message)}` },
-        },
-        {
-          type: "context",
-          elements: [{ type: "mrkdwn", text: `Source: ${siteConfig.canonicalUrl}contact` }],
-        },
-      ],
-    }),
-  });
-
-  if (!response.ok) {
-    throw new Error("Lead notification was not accepted.");
-  }
-}
-
-function truncateForSlack(value: string) {
-  return value.length > 1800 ? `${value.slice(0, 1800)}...` : value;
 }

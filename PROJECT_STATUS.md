@@ -1,5 +1,16 @@
 # The Harley Group — shared project status
 
+## Enquiry fields and notification retries — 7 October 2026
+
+Both brands' six visible fields were submitted through the real browser form to isolated staging and retrieved from the database: name, email, business, phone, current website and message. Digital Works service interest survived editing the message. Sources remain contact_form and group_contact_form. Phone/website/full interest are stored in qualification context; budget/timeline are accepted by the shared schema but are not current visible fields. Long interest truncation is fixed, with bounded query values and intact saved context.
+
+Durable alert jobs commit with service intake, independently of delivery. Cloudflare's native minute schedule claims leased batches, retries failures at 1/5/15/60 minutes, stops at five attempts and recovers expired leases. Anonymous/ordinary users cannot read or mutate jobs; existing administrators can inspect state in lead details. Alerts contain brand, lead reference and secure CRM link, with no customer message/contact details sent to Slack. Slack acknowledgement is recorded as accepted; this does not prove someone read the alert. An ambiguous Slack failure can produce a repeated alert, because incoming webhooks have no exactly-once guarantee.
+
+Local typecheck/build/focused lint/full suite pass; isolated real Auth/API has 13 passing checks and notification API acceptance has seven. Mock acknowledgement is explicitly recorded as simulated. Migration durable_lead_notifications is applied to staging and THG Agency; no historic leads are backfilled and owner access is preserved. Code release is being prepared with notifications disabled. Founder selected The Harley Group Slack workspace; discovered destination #all-the-harley-group (C0BFQS2P2H1). Website webhook credential and real delivery confirmation remain pending. Transactional email remains disabled; its prepared/accepted/delivered distinctions already exist but provider delivery is unverified.
+
+See docs/notification-delivery-2026-10-07.md and docs/evidence/staging-notification-acceptance.json. Existing H08/H09/H10 remain the workstream; no new backlog. Synced sources untouched.
+
+
 ## Start here - short operating brief
 
 - **Goal:** first paid pilot of a near end-to-end automated trade digital service; founder manages exceptions and retains quality review.
