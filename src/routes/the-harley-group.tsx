@@ -49,40 +49,46 @@ export function TheHarleyGroupPage() {
         <section className="group-purpose studio-section" id="digital-works">
           <div className="studio-wrap group-division">
             <div>
-              <p className="studio-kicker">OUR FOCUS / HARLEY DIGITAL WORKS</p>
+              <p className="studio-kicker">OUR CUSTOMER OPERATING BRAND / HARLEY DIGITAL WORKS</p>
               <h2>
                 You do the trade.
                 <br />
                 <span className="studio-muted">We handle the digital.</span>
               </h2>
               <p>
-                Professional websites and ongoing digital care for electricians, builders, heating
-                engineers and other local service businesses.
+                Professional websites and ongoing digital care for established UK trades — starting
+                with our electrical contractor pilot across Bristol, Bath, and the M4 Corridor.
               </p>
               <p>
-                An initial build fee creates the right foundations. A monthly subscription keeps the
-                website maintained, the information current and the next enquiry easy to make.
+                Ratified commercial model: £1,495 setup (50% deposit £747.50, 50% completion balance
+                £747.50) plus £249 / month ongoing managed care. Zero-rated VAT under statutory HMRC
+                threshold; onboarding capacity strictly capped at 2–3 concurrent builds.
               </p>
-              <a href="https://harleydigitalworks.com" className="enquiry-submit">
-                Visit Harley Digital Works ↗
-              </a>
+              <div className="mt-4 flex flex-wrap gap-3">
+                <a href="https://harleydigitalworks.com" className="enquiry-submit">
+                  Visit Harley Digital Works ↗
+                </a>
+                <a href="/labs" className="studio-text-link">
+                  Explore Harley Labs ↗
+                </a>
+              </div>
             </div>
             <div className="group-focus-list">
               {[
                 [
                   "01",
-                  "Present your work",
-                  "Design and words that reflect the quality of your business.",
+                  "Harley Digital Works",
+                  "Turnkey trade websites, 100% DFY copywriting, and managed Cloudflare edge care.",
                 ],
                 [
                   "02",
-                  "Make contact simple",
-                  "Clear services and a straightforward route to an enquiry.",
+                  "Harley Labs",
+                  "Automation workflows, sub-50ms edge rendering, and operational software systems.",
                 ],
                 [
                   "03",
-                  "Keep it looked after",
-                  "An ongoing service with an agreed scope and a human point of contact.",
+                  "Domain Services",
+                  "A curated portfolio of high-conviction digital brand assets and assisted transfers.",
                 ],
               ].map(([n, t, p]) => (
                 <div key={n}>

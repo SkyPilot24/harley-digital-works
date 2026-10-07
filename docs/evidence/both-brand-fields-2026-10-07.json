@@ -18,14 +18,7 @@
       "allVisibleFieldsPersist": "PASS"
     }
   ],
-  "visibleFields": [
-    "name",
-    "email",
-    "company",
-    "phone",
-    "websiteUrl",
-    "message"
-  ],
+  "visibleFields": ["name", "email", "company", "phone", "websiteUrl", "message"],
   "storage": {
     "phone": "message qualification context",
     "websiteUrl": "message qualification context",

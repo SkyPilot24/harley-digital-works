@@ -2,9 +2,7 @@
   "name": "skypilot24-harley-digital-works",
   "account_id": "6ccd86a1ec4535357f9bc51cd05e68cd",
   "compatibility_date": "2026-10-03",
-  "compatibility_flags": [
-    "nodejs_compat"
-  ],
+  "compatibility_flags": ["nodejs_compat"],
   "keep_vars": true,
   "vars": {
     "SUPABASE_URL": "https://worzpzbutngugwzhlvtj.supabase.co",

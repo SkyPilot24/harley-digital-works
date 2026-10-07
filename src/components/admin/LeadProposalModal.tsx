@@ -17,9 +17,27 @@ import {
 type LeadRow = Database["public"]["Tables"]["leads"]["Row"];
 
 const PACKAGES = {
-  launch: { key: "launch", name: "14-Day Launch Website", price: 1495, careMonthly: 95 },
-  growth: { key: "growth", name: "Commercial Growth Platform", price: 2995, careMonthly: 195 },
-  pro: { key: "pro", name: "Enterprise Digital Product", price: 4995, careMonthly: 295 },
+  managed: {
+    key: "managed",
+    name: "Managed Digital Presence",
+    price: 1495,
+    careMonthly: 249,
+    badge: "Recommended MVP",
+  },
+  essential: {
+    key: "essential",
+    name: "Essential Digital Service",
+    price: 1495,
+    careMonthly: 149,
+    badge: "Standard",
+  },
+  visibility: {
+    key: "visibility",
+    name: "Multi-Location Visibility",
+    price: 2495,
+    careMonthly: 399,
+    badge: "Expanded",
+  },
 };
 
 const ADDONS = [
@@ -29,14 +47,14 @@ const ADDONS = [
 ];
 
 export function LeadProposalModal({ lead, onClose }: { lead: LeadRow; onClose: () => void }) {
-  const defaultPkgKey = lead.package?.toLowerCase().includes("growth")
-    ? "growth"
-    : lead.package?.toLowerCase().includes("pro")
-      ? "pro"
-      : "launch";
+  const defaultPkgKey: keyof typeof PACKAGES = lead.package?.toLowerCase().includes("visibility")
+    ? "visibility"
+    : lead.package?.toLowerCase().includes("essential")
+      ? "essential"
+      : "managed";
 
   const [selectedPkgKey, setSelectedPkgKey] = useState<keyof typeof PACKAGES>(defaultPkgKey);
-  const [selectedAddons, setSelectedAddons] = useState<string[]>(["seo-pack"]);
+  const [selectedAddons, setSelectedAddons] = useState<string[]>([]);
 
   const currentPkg = PACKAGES[selectedPkgKey];
 
@@ -47,15 +65,13 @@ export function LeadProposalModal({ lead, onClose }: { lead: LeadRow; onClose: (
       if (addon) netUpfront += addon.price;
     });
 
-    const ukVatAmount = Math.round(netUpfront * 0.2 * 100) / 100;
-    const grossUpfrontIncVat = Math.round((netUpfront + ukVatAmount) * 100) / 100;
-    const depositRequired = Math.round(grossUpfrontIncVat * 0.5 * 100) / 100;
-    const balanceOnCompletion = Math.round((grossUpfrontIncVat - depositRequired) * 100) / 100;
+    const depositRequired = Math.round(netUpfront * 0.5 * 100) / 100;
+    const balanceOnCompletion = Math.round((netUpfront - depositRequired) * 100) / 100;
 
     return {
       netUpfront,
-      ukVatAmount,
-      grossUpfrontIncVat,
+      vatNotice: "VAT not applicable / zero-rated (under HMRC registration threshold)",
+      totalUpfront: netUpfront,
       depositRequired,
       balanceOnCompletion,
       monthlyCare: currentPkg.careMonthly,
@@ -75,7 +91,7 @@ Commercial Proposal Quote — Harley Digital Works
 Client: ${clientNameStr} (${lead.email})
 Date: ${new Date().toLocaleDateString("en-GB")}
 
-Package Selected: ${currentPkg.name} (£${currentPkg.price.toLocaleString()} Net)
+Package Selected: ${currentPkg.name} (£${currentPkg.price.toLocaleString()})
 Add-ons Included: ${
     selectedAddons
       .map((id) => ADDONS.find((a) => a.id === id)?.name)
@@ -83,17 +99,13 @@ Add-ons Included: ${
       .join(", ") || "None"
   }
 
-Financial Schedule (UK VAT GB 948 2018 39 @ 20%):
-- Net Upfront Subtotal: £${financialCalculations.netUpfront.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
-- UK VAT (20%): £${financialCalculations.ukVatAmount.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
-- Gross Total Inc-VAT: £${financialCalculations.grossUpfrontIncVat.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+Financial Schedule:
+- Total Upfront Build Fee: £${financialCalculations.totalUpfront.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })} (VAT not applicable / zero-rated)
+- 50% Deposit to Reserve Build Slot: £${financialCalculations.depositRequired.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+- 50% Completion Balance on Staged Preview Sign-Off: £${financialCalculations.balanceOnCompletion.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+- Ongoing Monthly Digital Care: £${financialCalculations.monthlyCare}/month (rolling 30-day agreement, billed from launch)
 
-Payment Milestones:
-- 50% Deposit to Reserve Build Slot: £${financialCalculations.depositRequired.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })} Inc-VAT
-- 50% Completion Balance on Live Launch: £${financialCalculations.balanceOnCompletion.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })} Inc-VAT
-- Ongoing Monthly Care & Hosting: £${financialCalculations.monthlyCare}/month
-
-Turnaround Guarantee: 14-Day Delivery SLA
+Delivery Standard: 14-day turnaround target upon asset intake. Two revision rounds included.
 `.trim();
 
   const handleCopySummary = () => {
@@ -205,52 +217,54 @@ Turnaround Guarantee: 14-Day Delivery SLA
           {/* Financial Breakdown Table */}
           <div className="rounded-xl border border-ink/10 bg-ink/[0.02] p-4 text-xs space-y-2.5">
             <div className="flex justify-between font-medium text-ink/80">
-              <span>Net Upfront Subtotal:</span>
-              <span className="font-semibold text-ink">
-                £{financialCalculations.netUpfront.toLocaleString()}
+              <span>Total Upfront Build Fee:</span>
+              <span className="font-semibold text-ink text-sm">
+                £{financialCalculations.totalUpfront.toLocaleString()}
               </span>
             </div>
             <div className="flex justify-between text-ink-muted">
-              <span>UK VAT (20% HMRC GB 948 2018 39):</span>
-              <span>
-                £
-                {financialCalculations.ukVatAmount.toLocaleString(undefined, {
-                  minimumFractionDigits: 2,
-                  maximumFractionDigits: 2,
-                })}
+              <span>Tax Status:</span>
+              <span className="text-[11px] font-medium text-ink-muted">
+                {financialCalculations.vatNotice}
               </span>
             </div>
-            <div className="border-t border-ink/10 pt-2 flex justify-between font-bold text-sm text-ink">
-              <span>Gross Total (Inc-VAT):</span>
-              <span className="text-emerald-700">
-                £
-                {financialCalculations.grossUpfrontIncVat.toLocaleString(undefined, {
-                  minimumFractionDigits: 2,
-                  maximumFractionDigits: 2,
-                })}
+            <div className="flex justify-between text-ink-muted">
+              <span>Ongoing Care:</span>
+              <span className="font-semibold text-emerald-800">
+                £{financialCalculations.monthlyCare}/month (rolling 30-day care)
               </span>
             </div>
-            <div className="grid gap-2 sm:grid-cols-2 pt-2 text-[11px]">
-              <div className="rounded-lg bg-emerald-100/70 border border-emerald-300/60 p-2.5 text-emerald-950 font-semibold">
-                <span>50% Start Deposit: </span>
-                <span className="block text-xs font-bold text-emerald-900 mt-0.5">
+            <div className="border-t border-ink/10 pt-2 grid gap-2 sm:grid-cols-2 text-[11px]">
+              <div className="rounded-lg bg-emerald-50 border border-emerald-300 p-2.5 text-emerald-950 font-semibold">
+                <span className="text-[10px] uppercase tracking-wider text-emerald-700 block font-bold">
+                  Milestone 1 · To Start
+                </span>
+                <span className="text-xs font-extrabold text-emerald-900 mt-0.5 block">
                   £
                   {financialCalculations.depositRequired.toLocaleString(undefined, {
                     minimumFractionDigits: 2,
                     maximumFractionDigits: 2,
                   })}{" "}
-                  Inc-VAT
+                  (50% Deposit)
+                </span>
+                <span className="text-[10px] text-emerald-800 font-normal mt-0.5 block">
+                  Reserves slot & begins intake
                 </span>
               </div>
-              <div className="rounded-lg bg-slate-100 border border-slate-300 p-2.5 text-slate-900 font-semibold">
-                <span>50% Launch Balance: </span>
-                <span className="block text-xs font-bold text-slate-900 mt-0.5">
+              <div className="rounded-lg bg-slate-50 border border-slate-300 p-2.5 text-slate-900 font-semibold">
+                <span className="text-[10px] uppercase tracking-wider text-slate-600 block font-bold">
+                  Milestone 2 · Pre-Launch
+                </span>
+                <span className="text-xs font-extrabold text-slate-900 mt-0.5 block">
                   £
                   {financialCalculations.balanceOnCompletion.toLocaleString(undefined, {
                     minimumFractionDigits: 2,
                     maximumFractionDigits: 2,
                   })}{" "}
-                  Inc-VAT
+                  (50% Balance)
+                </span>
+                <span className="text-[10px] text-slate-600 font-normal mt-0.5 block">
+                  Due on final preview sign-off
                 </span>
               </div>
             </div>

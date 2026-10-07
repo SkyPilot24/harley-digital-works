@@ -83,6 +83,10 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
   beforeLoad: ({ location }) => {
+    // In development mode, allow direct preview of prototype pages.
+    // In production, defer unfinished public prototypes to the structured contact form.
+    if (import.meta.env.DEV) return;
+
     const service = deferredServiceForPath(location.pathname);
     if (service)
       throw redirect({

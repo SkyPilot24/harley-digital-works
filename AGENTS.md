@@ -18,6 +18,7 @@ When working on strategy, copy, Control Centre, Revenue OS, diagnostics, service
 ## Shared project context — Codex, ChatGPT Work and Google Antigravity
 
 At the start of a session, read PROJECT_STATUS.md's short operating brief first. Select one ready task, then retrieve relevant detail from:
+
 1. [BUSINESS_DEFINITION.md](BUSINESS_DEFINITION.md) — commercial direction and approval boundaries.
 2. [PROJECT_STATUS.md](PROJECT_STATUS.md) — verified state, blockers and evidence.
 3. [MASTER_BACKLOG.md](MASTER_BACKLOG.md) — integrated H01–H50 and D01–D08 roadmap.

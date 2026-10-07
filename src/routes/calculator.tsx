@@ -42,15 +42,15 @@ function CalculatorPage() {
             <div className="flex flex-wrap items-center gap-4 text-xs sm:text-sm text-neutral-300">
               <div className="flex items-center gap-1.5">
                 <CheckCircle2 className="h-4 w-4 text-emerald-400" />
-                <span>Average Payback Under 30 Days</span>
+                <span>Illustrative Scenario Modeling</span>
               </div>
               <div className="flex items-center gap-1.5">
                 <CheckCircle2 className="h-4 w-4 text-emerald-400" />
-                <span>100% Fixed Price (£1,495 / £2,995)</span>
+                <span>Ratified Setup (£1,495 · Zero VAT)</span>
               </div>
               <div className="flex items-center gap-1.5">
                 <CheckCircle2 className="h-4 w-4 text-emerald-400" />
-                <span>£95/mo Rolling Care Plan</span>
+                <span>£249/mo Managed Care Plan</span>
               </div>
             </div>
           </div>

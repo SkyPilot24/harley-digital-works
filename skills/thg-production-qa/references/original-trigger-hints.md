@@ -4,23 +4,23 @@ These fields were present in the proposed specification but are not supported by
 
 ```yaml
 pathPatterns:
-  - 'app/**/*'
-  - 'src/**/*'
-  - 'pages/**/*'
-  - 'components/**/*'
-  - 'public/**/*'
-  - 'supabase/**/*'
-  - 'prisma/**/*'
-  - 'api/**/*'
-  - 'tests/**/*'
-  - 'e2e/**/*'
-  - 'package.json'
-  - 'next.config.*'
-  - 'vite.config.*'
-  - 'vercel.json'
-  - 'tsconfig.json'
-  - 'tailwind.config.*'
-  - '.github/workflows/**/*'
+  - "app/**/*"
+  - "src/**/*"
+  - "pages/**/*"
+  - "components/**/*"
+  - "public/**/*"
+  - "supabase/**/*"
+  - "prisma/**/*"
+  - "api/**/*"
+  - "tests/**/*"
+  - "e2e/**/*"
+  - "package.json"
+  - "next.config.*"
+  - "vite.config.*"
+  - "vercel.json"
+  - "tsconfig.json"
+  - "tailwind.config.*"
+  - ".github/workflows/**/*"
 bashPatterns:
   - '\bnpm\s+run\s+build\b'
   - '\bpnpm\s+build\b'
@@ -59,4 +59,3 @@ promptSignals:
     - "pre deployment"
     - "pre-deployment"
 ```
-

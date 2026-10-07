@@ -5,14 +5,10 @@
       "name": "@lovable.dev/vite-tanstack-config",
       "severity": "moderate",
       "isDirect": true,
-      "via": [
-        "lovable-tagger"
-      ],
+      "via": ["lovable-tagger"],
       "effects": [],
       "range": "1.0.0 - 2.7.2-rc.4",
-      "nodes": [
-        "node_modules/@lovable.dev/vite-tanstack-config"
-      ],
+      "nodes": ["node_modules/@lovable.dev/vite-tanstack-config"],
       "fixAvailable": {
         "name": "@lovable.dev/vite-tanstack-config",
         "version": "2.25.3",
@@ -31,9 +27,7 @@
           "title": "braces vulnerable to stack-exhaustion denial of service through deeply nested patterns",
           "url": "https://github.com/advisories/GHSA-vfj7-8cjw-p6xm",
           "severity": "high",
-          "cwe": [
-            "CWE-674"
-          ],
+          "cwe": ["CWE-674"],
           "cvss": {
             "score": 7.5,
             "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
@@ -41,14 +35,9 @@
           "range": "<=3.0.3"
         }
       ],
-      "effects": [
-        "chokidar",
-        "micromatch"
-      ],
+      "effects": ["chokidar", "micromatch"],
       "range": "*",
-      "nodes": [
-        "node_modules/braces"
-      ],
+      "nodes": ["node_modules/braces"],
       "fixAvailable": {
         "name": "@lovable.dev/vite-tanstack-config",
         "version": "2.25.3",
@@ -59,16 +48,10 @@
       "name": "chokidar",
       "severity": "high",
       "isDirect": false,
-      "via": [
-        "braces"
-      ],
-      "effects": [
-        "tailwindcss"
-      ],
+      "via": ["braces"],
+      "effects": ["tailwindcss"],
       "range": "2.0.0 - 3.6.0",
-      "nodes": [
-        "node_modules/lovable-tagger/node_modules/chokidar"
-      ],
+      "nodes": ["node_modules/lovable-tagger/node_modules/chokidar"],
       "fixAvailable": {
         "name": "@lovable.dev/vite-tanstack-config",
         "version": "2.25.3",
@@ -79,30 +62,20 @@
       "name": "fast-glob",
       "severity": "high",
       "isDirect": false,
-      "via": [
-        "micromatch"
-      ],
+      "via": ["micromatch"],
       "effects": [],
       "range": "*",
-      "nodes": [
-        "node_modules/fast-glob"
-      ],
+      "nodes": ["node_modules/fast-glob"],
       "fixAvailable": true
     },
     "lovable-tagger": {
       "name": "lovable-tagger",
       "severity": "moderate",
       "isDirect": false,
-      "via": [
-        "tailwindcss"
-      ],
-      "effects": [
-        "@lovable.dev/vite-tanstack-config"
-      ],
+      "via": ["tailwindcss"],
+      "effects": ["@lovable.dev/vite-tanstack-config"],
       "range": ">=1.1.1",
-      "nodes": [
-        "node_modules/lovable-tagger"
-      ],
+      "nodes": ["node_modules/lovable-tagger"],
       "fixAvailable": {
         "name": "@lovable.dev/vite-tanstack-config",
         "version": "2.25.3",
@@ -113,17 +86,10 @@
       "name": "micromatch",
       "severity": "high",
       "isDirect": false,
-      "via": [
-        "braces"
-      ],
-      "effects": [
-        "fast-glob",
-        "tailwindcss"
-      ],
+      "via": ["braces"],
+      "effects": ["fast-glob", "tailwindcss"],
       "range": ">=0.2.0",
-      "nodes": [
-        "node_modules/micromatch"
-      ],
+      "nodes": ["node_modules/micromatch"],
       "fixAvailable": {
         "name": "@lovable.dev/vite-tanstack-config",
         "version": "2.25.3",
@@ -134,14 +100,10 @@
       "name": "postcss-nested",
       "severity": "moderate",
       "isDirect": false,
-      "via": [
-        "postcss-selector-parser"
-      ],
+      "via": ["postcss-selector-parser"],
       "effects": [],
       "range": "2.0.3 - 6.2.0",
-      "nodes": [
-        "node_modules/postcss-nested"
-      ],
+      "nodes": ["node_modules/postcss-nested"],
       "fixAvailable": true
     },
     "postcss-selector-parser": {
@@ -156,10 +118,7 @@
           "title": "PostCSS: Quadratic complexity in flat selector parsing allows CPU exhaustion",
           "url": "https://github.com/advisories/GHSA-rj75-hqrm-r3gf",
           "severity": "moderate",
-          "cwe": [
-            "CWE-400",
-            "CWE-407"
-          ],
+          "cwe": ["CWE-400", "CWE-407"],
           "cvss": {
             "score": 5.9,
             "vectorString": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H"
@@ -167,14 +126,9 @@
           "range": "<7.1.6"
         }
       ],
-      "effects": [
-        "postcss-nested",
-        "tailwindcss"
-      ],
+      "effects": ["postcss-nested", "tailwindcss"],
       "range": "<7.1.6",
-      "nodes": [
-        "node_modules/postcss-selector-parser"
-      ],
+      "nodes": ["node_modules/postcss-selector-parser"],
       "fixAvailable": {
         "name": "@lovable.dev/vite-tanstack-config",
         "version": "2.25.3",
@@ -185,20 +139,10 @@
       "name": "tailwindcss",
       "severity": "high",
       "isDirect": false,
-      "via": [
-        "chokidar",
-        "fast-glob",
-        "micromatch",
-        "postcss-nested",
-        "postcss-selector-parser"
-      ],
-      "effects": [
-        "lovable-tagger"
-      ],
+      "via": ["chokidar", "fast-glob", "micromatch", "postcss-nested", "postcss-selector-parser"],
+      "effects": ["lovable-tagger"],
       "range": "<=0.0.0-oxide-insiders.ff2c25f || 0.5.0 - 3.4.19",
-      "nodes": [
-        "node_modules/lovable-tagger/node_modules/tailwindcss"
-      ],
+      "nodes": ["node_modules/lovable-tagger/node_modules/tailwindcss"],
       "fixAvailable": {
         "name": "@lovable.dev/vite-tanstack-config",
         "version": "2.25.3",

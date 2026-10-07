@@ -1,18 +1,62 @@
 # Shared development handover
 
-## Current handover — 7 October 2026, commercial launch offer and hourly retention
+## Current handover — 7 October 2026, External Sites Commercial Rollout & Live Deployment
 
-**Scope:**
-1. **Commercial Governance (H01/H02):** Delivered one sellable Managed launch offer, defensible economics model (Low/Base/High), business fact sheet, reusable proposal automation rules, and founder decision register in [`docs/COMMERCIAL_OFFER_MANAGED.md`](file:///c:/Local%20Data/The%20Harley%20Group/harley-digital-works/docs/COMMERCIAL_OFFER_MANAGED.md). Evaluated £1,495 setup + £249/mo against delivery labour, lost assessment/preview CAC overhead, hosting, payment fees, generation usage, support labour, and incident allowances. Verified zero VAT charging rule until HMRC registration is confirmed.
-2. **H42 Automated Retention Scheduling:** Implemented `server/tasks/prune-lead-attempts.ts` using Nitro task calling `supabaseAdmin.rpc("prune_lead_submission_attempts")`. Configured `nitro.config.ts` with `tasks["prune-lead-attempts"]` and `scheduledTasks["0 * * * *"] = ["lead-notifications", "prune-lead-attempts"]`. Added type definitions to `src/integrations/supabase/types.ts`.
+**Scope & Implemented State:**
 
-**Verified results:**
-- Automated test suite: `npm test` runs 125 tests (60 platform smoke checks + 62 regression tests + 3 service worker tests) — 125/125 PASS.
+1. **External Websites Commercial Alignment:**
+   - Synchronized all customer-facing surfaces across Harley Digital Works and The Harley Group to the ratified commercial offer: single Managed Launch package at **£1,495 setup** + **£249/mo Managed Care**, 50/50 payment milestone (£747.50 deposit / £747.50 on approval), zero-rated VAT compliance notices, and strict 2–3 concurrent onboarding capacity cap.
+   - Updated surfaces: `WebsitePackagesSection.tsx` (Homepage packages & pricing table), `the-harley-group.tsx` (Holding corporate overview & standards), `TradeServiceLanding.tsx` (Bristol & Bath trade pilots, Electricians & EV installers), `CareBillingPortalDesk.tsx` / `care-desk.tsx`, `TradeRoiCalculator.tsx` / `calculator.tsx`, `proposals.tsx`, and `partners.tsx`.
+   - Enabled local development preview in `src/routes/__root.tsx` (`if (import.meta.env.DEV) return;`) allowing direct local browser testing while preserving the production launch deferral route guard.
+
+
+2. **Slack Operational Command Centre & Founder Cockpit:**
+   - **Architectural Paradigm:** Established Slack as the founder's primary operational command centre so Robbie can manage the business directly from Slack without constant dashboard context switching, operating strictly on a **Management by Exception** model.
+   - **Interactive Two-Way Workflows:** Inbound lead cards now deliver rich Block Kit components featuring 1-click action buttons: `[📞 Contacted]`, `[⭐ Qualify]`, `[📁 Create Client Workspace]`, and `[CRM ↗]`. Clicking buttons triggers HMAC-SHA256 verified callbacks (`/api/slack/interactions`) that update Supabase state idempotently and acknowledge the action in-place with user attribution and timestamps.
+   - **Founder Slash Commands:** Implemented `/thg` slash command router (`/api/slack/commands`) allowing the founder to query KPIs and execute commands directly from Slack:
+     - `/thg status` / `/thg digest`: Instant executive briefing (verified MRR, 3-build capacity, pipeline, approvals).
+     - `/thg leads`: Recent enquiries with quick qualification buttons.
+     - `/thg builds`: Active 14-day SLA trade builds in flight.
+     - `/thg approvals`: Pending founder sign-offs (staged previews, custom proposals).
+     - `/thg retry`: Resets and immediately re-queues stuck outbox notification jobs.
+     - `/thg help`: Interactive command palette.
+   - **9-Channel Operational Topology:** Implemented clean, noise-suppressed routing across `#founder-command` (executive briefing & urgent approvals), `#new-leads`, `#sales`, `#customers`, `#operations`, `#finance-alerts`, `#system-alerts`, `#automation-alerts`, and `#deployments`. Supports Slack Bot Web API, dedicated per-channel webhooks, and single-webhook fallback multiplexing.
+   - **Scheduled Executive Digest & Health Scanning:** Created `server/tasks/founder-daily-digest.ts` (scheduled at 08:00 daily via `0 8 * * *`) and `server/tasks/system-health-alerts.ts` (scheduled every 30 minutes via `*/30 * * * *`) in `nitro.config.ts`.
+   - **Admin Control Centre Card ([`src/components/admin/SlackCommandCentreCard.tsx`](file:///c:/Local%20Data/The%20Harley%20Group/harley-digital-works/src/components/admin/SlackCommandCentreCard.tsx)):** Embedded dedicated "Slack Command" tab in the Control Centre with live connection status, interactive dispatch simulators, channel matrix, and slash command reference.
+   - **Security Architecture:** Inbound request verification via Web Crypto HMAC-SHA256 (`crypto.subtle`) with 300s replay attack prevention and constant-time string comparison.
+   - **Architecture Blueprint ([`docs/SLACK_COMMAND_CENTRE_ARCHITECTURE.md`](file:///c:/Local%20Data/The%20Harley%20Group/harley-digital-works/docs/SLACK_COMMAND_CENTRE_ARCHITECTURE.md)):** Comprehensive systems integration reference guide.
+3. **Commercial Governance & Economics (H01/H02):** Delivered one sellable Managed launch offer, defensible economics model (Low/Base/High), business fact sheet, reusable proposal automation rules, and founder decision register in [`docs/COMMERCIAL_OFFER_MANAGED.md`](file:///c:/Local%20Data/The%20Harley%20Group/harley-digital-works/docs/COMMERCIAL_OFFER_MANAGED.md). Evaluated £1,495 setup + £249/mo against delivery labour, lost assessment/preview CAC overhead, hosting, payment fees, generation usage, support labour, and incident allowances. Verified zero VAT charging rule until HMRC registration is confirmed. Established hard cap of 2–3 concurrent client onboarding builds to safeguard founder NHS schedule balance (10–12 hours/week).
+4. **H42 Automated Retention Scheduling:** Implemented `server/tasks/prune-lead-attempts.ts` using Nitro task calling `supabaseAdmin.rpc("prune_lead_submission_attempts")`. Configured `nitro.config.ts` with `tasks["prune-lead-attempts"]` and `scheduledTasks["0 * * * *"] = ["lead-notifications", "prune-lead-attempts"]`. Verified in Cloudflare Worker `triggers.crons: ["* * * * *", "0 * * * *", "0 8 * * *", "*/30 * * * *"]`. Added type definitions to `src/integrations/supabase/types.ts`.
+5. **Comprehensive Admin Suite & Dashboard General Knowledge Base:**
+   - **Control Centre ([`src/routes/_authenticated/admin.index.tsx`](file:///c:/Local%20Data/The%20Harley%20Group/harley-digital-works/src/routes/_authenticated/admin.index.tsx)):** Real-time pipeline counters, quick quote generation, project initiation modal, financial safeguards ensuring package interest never assumes revenue, Slack Command Centre tab.
+   - **Financials & Invoices ([`src/routes/_authenticated/admin.invoices.tsx`](file:///c:/Local%20Data/The%20Harley%20Group/harley-digital-works/src/routes/_authenticated/admin.invoices.tsx)):** Milestone payment request generator (50% deposit £747.50, 50% balance £747.50, monthly care £249), VAT-compliant disclosure, client recurring ledger.
+   - **Projects & Delivery ([`src/routes/_authenticated/admin.projects.tsx`](file:///c:/Local%20Data/The%20Harley%20Group/harley-digital-works/src/routes/_authenticated/admin.projects.tsx)):** 14-day SLA project initialization modal, 4-stage tracking (Discovery, Build, Preview, Launched), client assignment.
+   - **Automations & Health ([`src/routes/_authenticated/admin.diagnostics.tsx`](file:///c:/Local%20Data/The%20Harley%20Group/harley-digital-works/src/routes/_authenticated/admin.diagnostics.tsx)):** Live outbox job monitor (`lead_notification_jobs`), attempt counters (max 5), status badges, last error display, background crons display.
+   - **General Knowledge Base ([`src/routes/_authenticated/admin.knowledge-base.tsx`](file:///c:/Local%20Data/The%20Harley%20Group/harley-digital-works/src/routes/_authenticated/admin.knowledge-base.tsx) & [`src/lib/knowledge-base.ts`](file:///c:/Local%20Data/The%20Harley%20Group/harley-digital-works/src/lib/knowledge-base.ts)):** Unified operational knowledge base with categorized search across Systems Architecture, Commercial Economics, SOP Playbooks, Governance Boundaries, Support Runbooks, and Business OS Drive mirrors.
+6. **Verified Live Lead Intake & Outbox Delivery:** Both brands save all six visible enquiry fields exactly once into THG Agency (`worzpzbutngugwzhlvtj`). Genuine existing-owner browser sign-in and retrieval verified in dashboard, Leads, and full detail view. Scheduled Slack alerts delivered to `#all-the-harley-group` and accepted (3/5 attempts acknowledged); native Worker fetch context preserved.
+
+**Verified Results & Integrity Checks:**
+
+- Automated test suite: `npm test` runs 136 tests (66 platform smoke checks including drift detection + 67 regression/integration tests + 3 service worker tests) — 136/136 PASS.
 - Build & Worker triggers: `npm run build` compiles clean worker and generates `.output/server/wrangler.json` with triggers `crons: ["* * * * *", "0 * * * *"]`.
 - Quality checks: `npm run typecheck` (0 errors), `npm run lint` (0 errors, 9 existing warnings), `npm run format:check` (PASS).
-- Platform smoke suite: `scripts/verify-platform.mjs` verifies presence of both minute notification and hourly retention cron triggers.
+- Platform smoke suite: `scripts/verify-platform.mjs` verifies presence of both minute notification and hourly retention cron triggers, plus absence of leaked credentials in client bundles.
 
-**Next action:** Robbie ratification of the 4 decisions in the Founder Decision Register (pricing £1,495 + £249/mo, legal entity/VAT status, UK-wide/Bristol-Bath positioning, 2 concurrent builds cap). Continue H42 coordinated live owner session expiry/logout acceptance and tooling advisory review, H09/H10 transactional email sender/provider setup and bounce handling once credentials are ready (customer transactional email stays disabled), and H07 backup/recovery proof for live THG Agency database (`worzpzbutngugwzhlvtj`). Preserve existing owner session.
+**Known Limitations & Operational Boundaries:**
+
+- Customer transactional email remains strictly disabled (`TRANSACTIONAL_EMAIL_ENABLED=false`).
+- Google OAuth is disabled pending provider setup; administrative sign-in uses email/password or magic links against THG Agency.
+- **H01/H02 Commercial Direction RATIFIED**: Robbie formally approved the commercial blueprint on 7 October 2026 (£1,495 setup + £249/mo care, zero VAT, 2-build cap, Bristol/Bath electrical contractor pilot).
+- Coordinated live owner session expiry/logout acceptance and tooling advisory review (H42) remain open.
+- Backup and recovery proof for live THG Agency database (H07) remains open.
+- Preserve the active signed-in owner session.
+
+**Next Actions:**
+
+1. Outreach list curation (first 50 Bristol/Bath electrical contractors) and pilot template assembly.
+2. Execute H42 coordinated live owner session expiry/logout acceptance.
+3. Complete H09/H10 transactional email sender/provider setup and bounce handling once credentials are ready.
+4. Complete H07 backup/recovery proof for live THG Agency database (`worzpzbutngugwzhlvtj`).
 
 ## Historical handover — 7 October 2026, live fields and Slack acceptance passed
 
@@ -29,7 +73,6 @@
 **Validation:** full suite 59 platform +62 regression +3 service-worker checks passed; real staging Auth/API 13 checks and notification API seven checks pass. Local built Cloudflare scheduled handler with disabled staging override returned HTTP200/outcome ok. 310 built files scanned without server credentials. Real live Slack failures demonstrated jobs remain durable and retry counters advance. Actual channel acceptance after correction now passes. No production session-expiry/logout, backup restore, hourly retention, leaked-password protection or customer-email delivery claim. H08/H09/H10/H42 retain their remaining acceptance; no new backlog.
 
 **Working copies:** primary C:/Local Data/The Harley Group/harley-digital-works main; safe clone implementation/hdw-enquiry-acceptance branch codex/h07-h42-enquiry-acceptance. Untracked acceptance-audit.json is a local duplicate audit artifact, not part of release. Synced sources untouched. No force pushes or historical schema replay. See notification-delivery-2026-10-07.md and evidence/live-fields-notifications-2026-10-07.json.
-
 
 ## Current handover — 7 October 2026
 

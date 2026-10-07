@@ -203,6 +203,92 @@ if (fs.existsSync(publicBundleDir)) {
   );
 }
 
+// 8. Knowledge Base & Handover Drift Detection Verification
+console.log("\n[Test Suite 8: Knowledge Base & Handover Drift Detection]");
+const kbPath = path.join(rootDir, "src/lib/knowledge-base.ts");
+const strategyPath = path.join(rootDir, "src/lib/current-strategy.ts");
+const offerDocPath = path.join(rootDir, "docs/COMMERCIAL_OFFER_MANAGED.md");
+const handoverDocPath = path.join(rootDir, "docs/HANDOVER.md");
+const projectStatusDocPath = path.join(rootDir, "PROJECT_STATUS.md");
+const nitroConfigPath = path.join(rootDir, "nitro.config.ts");
+
+assert(
+  fs.existsSync(kbPath),
+  "Dashboard operational knowledge base data exists (src/lib/knowledge-base.ts)",
+);
+
+if (
+  fs.existsSync(kbPath) &&
+  fs.existsSync(strategyPath) &&
+  fs.existsSync(offerDocPath) &&
+  fs.existsSync(handoverDocPath) &&
+  fs.existsSync(projectStatusDocPath) &&
+  fs.existsSync(nitroConfigPath)
+) {
+  const kbContent = fs.readFileSync(kbPath, "utf-8");
+  const strategyContent = fs.readFileSync(strategyPath, "utf-8");
+  const offerDocContent = fs.readFileSync(offerDocPath, "utf-8");
+  const handoverDocContent = fs.readFileSync(handoverDocPath, "utf-8");
+  const projectStatusContent = fs.readFileSync(projectStatusDocPath, "utf-8");
+  const nitroConfigContent = fs.readFileSync(nitroConfigPath, "utf-8");
+
+  // Check 1: Commercial pricing alignment (£1,495 setup + £249/mo)
+  const priceAligned =
+    kbContent.includes("£1,495") &&
+    kbContent.includes("£249") &&
+    strategyContent.includes("£1,495") &&
+    strategyContent.includes("£249") &&
+    offerDocContent.includes("£1,495") &&
+    offerDocContent.includes("£249");
+  assert(
+    priceAligned,
+    "Commercial pricing (£1,495 setup + £249/mo) is consistent across docs, strategy, and KB",
+  );
+
+  // Check 2: Active live database target alignment (worzpzbutngugwzhlvtj)
+  const liveTargetAligned =
+    kbContent.includes("worzpzbutngugwzhlvtj") &&
+    handoverDocContent.includes("worzpzbutngugwzhlvtj") &&
+    projectStatusContent.includes("worzpzbutngugwzhlvtj");
+  assert(
+    liveTargetAligned,
+    "Live backend database ID (worzpzbutngugwzhlvtj) is consistent across handover, status, and KB",
+  );
+
+  // Check 3: Dual background cron schedules (* * * * * and 0 * * * *)
+  const cronsAligned =
+    nitroConfigContent.includes("* * * * *") &&
+    nitroConfigContent.includes("0 * * * *") &&
+    kbContent.includes("* * * * *") &&
+    kbContent.includes("0 * * * *") &&
+    handoverDocContent.includes("* * * * *") &&
+    handoverDocContent.includes("0 * * * *");
+  assert(
+    cronsAligned,
+    "Scheduled crons (* * * * * and 0 * * * *) are synchronized across Nitro config, handover, and KB",
+  );
+
+  // Check 4: Zero-rated VAT policy consistency
+  const vatAligned =
+    kbContent.includes("zero-rated") &&
+    strategyContent.includes("zero-rated") &&
+    offerDocContent.includes("zero-rated");
+  assert(
+    vatAligned,
+    "Zero-rated VAT policy is consistently enforced across commercial offer, strategy, and KB",
+  );
+
+  // Check 5: Concurrency limit cap alignment (2–3 / 2 to 3 concurrent builds)
+  const concurrencyAligned =
+    (kbContent.includes("2 to 3") || kbContent.includes("2–3")) &&
+    (strategyContent.includes("2 to 3") || strategyContent.includes("2–3")) &&
+    (offerDocContent.includes("2 to 3") || offerDocContent.includes("2–3"));
+  assert(
+    concurrencyAligned,
+    "Founder concurrency capacity cap (2–3 builds) is synchronized across docs and KB",
+  );
+}
+
 console.log("\n==================================================");
 console.log(` Summary: ${passed} Passed | ${failed} Failed`);
 console.log("==================================================");

@@ -18,5 +18,10 @@
   "notifications_enabled": false,
   "transactional_email_enabled": false,
   "owner_browser_retrieval": "PENDING private owner sign-in",
-  "limits": ["No owner impersonation or live synthetic administrator created", "Expiry/session revocation and backup/restore remain unverified", "Leaked-password protection warning and tooling advisories remain", "Hourly retention scheduling and durable notification retry remain open"]
+  "limits": [
+    "No owner impersonation or live synthetic administrator created",
+    "Expiry/session revocation and backup/restore remain unverified",
+    "Leaked-password protection warning and tooling advisories remain",
+    "Hourly retention scheduling and durable notification retry remain open"
+  ]
 }

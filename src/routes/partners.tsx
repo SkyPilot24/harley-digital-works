@@ -43,7 +43,7 @@ const PARTNER_BENEFITS = [
     icon: Gift,
     title: "£150 Client Voucher",
     description:
-      "Your referred trade contractors receive an exclusive £150 discount on their Launch (£1,495) or Growth (£2,995) package.",
+      "Your referred trade contractors receive an exclusive £150 discount on their Managed (£1,495) or Expansion (£2,495) setup package.",
   },
   {
     icon: ShieldCheck,

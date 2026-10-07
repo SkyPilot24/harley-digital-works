@@ -14,7 +14,6 @@ metadata:
   purpose: "production-gate"
 ---
 
-
 # THG Production QA
 
 ## Mission
@@ -946,6 +945,7 @@ A QA verdict does not authorize deployment.
 For every applicable stage record PASS, FAIL, BLOCKED, NOT RUN or NOT APPLICABLE, with evidence and a reason for anything not completed. Code inspection is not a runtime pass. Automated accessibility checks alone do not establish WCAG conformance. Local performance measurements do not establish production field Core Web Vitals.
 
 Deliver:
+
 1. Exactly one production-gate status, with a short rationale.
 2. Project, branch/commit if available, environment, audit scope and date.
 3. Checks performed: command or journey, result, exit code where applicable, evidence location, and baseline status if known.
@@ -969,4 +969,3 @@ Redact credentials, personal data and session tokens from reports, screenshots a
 Stop only processes started for this audit. Preserve user changes and read-only reference material. Run the full applicable verification once, then repeat failed/affected checks after fixes; expand only for new evidence or unresolved risk.
 
 For host adaptation only, see [original trigger hints](references/original-trigger-hints.md). The Markdown workflow is portable; validate discovery and tool availability in the target host.
-

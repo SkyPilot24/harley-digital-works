@@ -7,8 +7,18 @@
   "dashboard_retrieval": "PASS: one recent enquiry shown",
   "leads_retrieval": "PASS: exactly one labelled enquiry shown in authenticated Leads",
   "detail_retrieval": "PASS: original synthetic enquiry message visible in detail view",
-  "provider_verification": {"existing_admin_recent_sign_in": true, "admin_count": 1, "auth_user_count": 2, "labelled_enquiry_count": 1},
+  "provider_verification": {
+    "existing_admin_recent_sign_in": true,
+    "admin_count": 1,
+    "auth_user_count": 2,
+    "labelled_enquiry_count": 1
+  },
   "notifications_enabled": false,
-  "limitations": ["Owner logout/expiry and copied-token revocation not tested in live session", "No tested backup/restore claim", "Both-brand field/package acceptance still open", "Retention schedule, durable notifications and remaining advisories still open"],
+  "limitations": [
+    "Owner logout/expiry and copied-token revocation not tested in live session",
+    "No tested backup/restore claim",
+    "Both-brand field/package acceptance still open",
+    "Retention schedule, durable notifications and remaining advisories still open"
+  ],
   "credential_handling": "Owner completed recovery privately; no password or recovery token recorded; no administrator created or impersonated"
 }

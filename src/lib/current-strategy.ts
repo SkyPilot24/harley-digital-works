@@ -1,23 +1,22 @@
 // Summary of the governing Business OS records & verified platform engine, updated October 2026.
 export const currentStrategy = {
   title: "Managed Websites & Digital Infrastructure for UK Trades",
-  model:
-    "An initial website build fee (£1,495 / £2,995) plus ongoing monthly digital care (£95/mo – £249/mo).",
+  model: "An initial website build fee (£1,495 setup) plus ongoing monthly digital care (£249/mo).",
   milestone:
     "Win, deliver and retain verified paying trade customers with 100% done-for-you technical copy & local SEO.",
   audience:
-    "Established UK trade contractors (Gas Safe heating engineers, NICEIC electricians, FMB master builders, CHAS commercial contractors).",
+    "Established UK trade contractors (NICEIC electricians, Gas Safe heating engineers, builders, multi-van contractors with 2–10 staff).",
   pilot:
-    "Gas Safe Heating Engineers & NICEIC Electricians across Manchester, West Midlands, and Cheshire. Fixed 14-day SLA live launch.",
+    "Bristol & Bath regional trade contractors (expanding UK-wide remote digital studio). 14-day SLA delivery target.",
   offer:
-    "Launch Plan (£1,495 setup + £95/mo care) & Growth Plan (£2,995 setup + £195/mo care). Net + 20% UK VAT with 50% deposit & 50% completion balance.",
+    "Managed Digital Presence: £1,495 setup fee (50% deposit £747.50, 50% completion balance £747.50) + £249/mo ongoing monthly care. VAT not applicable / zero-rated.",
   approval:
-    "Written proposal acceptance, 50% deposit confirmation in bank/provider ledger, and verified business identity required before work begins.",
+    "Written proposal acceptance, 50% deposit (£747.50) confirmed in bank/provider ledger, and verified trade accreditations before work begins.",
   build:
-    "Turnkey trade website, 100% done-for-you technical copywriting, Gas Safe/NICEIC/FMB/CHAS compliance badges, mobile-responsive layout, 1-tap WhatsApp lead desk, Local Map Pack Schema.org JSON-LD microdata, and edge SSR performance.",
-  care: "Managed hosting, SSL certificates, automated 5-star Google review booster, monthly SEO inspection, domain DNS upkeep preserving business email, and emergency recovery.",
+    "Turnkey 5-page trade website, 100% done-for-you technical copywriting, trade accreditation badges, mobile-responsive layout, dual-channel lead desk, Local Map Pack Schema.org JSON-LD microdata, and Cloudflare edge SSR performance.",
+  care: "Managed Cloudflare edge hosting, SSL certificates, 1 batch of content edits per month (up to 30 mins), automated enquiry health checks, review workflow, monthly performance summary, and 24h support response window.",
   boundaries:
-    "No unverified revenue claims, dummy invoice receipts, or unauthenticated lead access. All leads are protected by Supabase Row-Level Security (RLS).",
+    "Capacity limit: Max 2–3 concurrent client onboarding builds to protect NHS schedule balance. Zero unverified revenue claims. VAT not applicable. All leads protected by Supabase RLS.",
 };
 
 export const strategyRecords = [
@@ -71,14 +70,14 @@ export const deliverySteps = [
       "Use the Trade ROI Calculator (/calculator) to model turnover growth, the Local SEO Inspector (/tools/seo-inspector) to scan Map Pack keywords for the town, and the 5-Star Review Booster (/tools/review-booster) to demonstrate reputation defense.",
   },
   {
-    title: "Approve Commercial Quote & VAT Breakdown",
+    title: "Approve Commercial Quote & Milestone Breakdown",
     detail:
-      "Generate a formal proposal using LeadProposalModal with transparent Net, 20% UK VAT (HMRC GB 948 2018 39), Gross Total, 50% Deposit, and 50% Completion Balance.",
+      "Generate a formal proposal using LeadProposalModal with standard Managed pricing (£1,495 Setup, VAT zero-rated), 50% Deposit (£747.50), and 50% Completion Balance (£747.50).",
   },
   {
     title: "Verify Deposit Payment",
     detail:
-      "Confirm 50% deposit in bank ledger before initializing workspace. Package interest never creates assumed recurring revenue or automatically marks leads won.",
+      "Confirm 50% deposit (£747.50) in bank ledger before initializing workspace. Package interest never creates assumed recurring revenue or automatically marks leads won.",
   },
   {
     title: "Onboard & Assemble Trade Infrastructure",
@@ -98,7 +97,7 @@ export const deliverySteps = [
   {
     title: "Deliver Ongoing Monthly Care & Review Booster",
     detail:
-      "Activate £95/mo – £195/mo Care Plan. Deploy 1-tap WhatsApp lead desk and automated SMS review booster to capture 5-star Google ratings.",
+      "Activate £249/mo Managed Care Plan. Maintain edge hosting, 30-min monthly edit batch, enquiry-routing health checks, and review workflows.",
   },
 ];
 
@@ -153,13 +152,13 @@ export const conversionToolPlaybooks = [
     route: "/tools/review-booster",
     purpose:
       "Routes 4–5 star ratings to Google in 1 tap while shielding negative feedback privately.",
-    conversionPath: "Promotes review booster integration as part of the £95/mo Care Plan.",
+    conversionPath: "Promotes review booster integration as part of the £249/mo Managed Care Plan.",
   },
 ];
 
 export const currentPriorities = [
   "Execute first commercial pilot with verified Gas Safe heating & NICEIC electrical contractors.",
-  "Maintain 100% pass rate across 59 smoke checks + 32 unit tests and zero build errors.",
+  "Maintain 100% pass rate across 125 automated tests (60 smoke + 62 regression + 3 service worker) and zero build errors.",
   "Reconcile 50% deposit payments directly via banking ledger before marking client workspaces active.",
   "Run weekly Control Centre diagnostics checks to ensure metadata, canonicals, and Cloudflare edge SSR health.",
   "Maintain strict RLS authorization policies protecting prospect data in Supabase.",

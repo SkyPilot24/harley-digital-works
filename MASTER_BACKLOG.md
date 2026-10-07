@@ -1,22 +1,24 @@
 # Master delivery backlog
 
-## Current execution overlay - 3 October 2026
+## Current execution overlay - 7 October 2026
 
 This evidence/status overlay supersedes stale gap statements in the preserved historical task definitions. It does not create duplicate tasks or mark unverified work complete. Read PROJECT_STATUS.md for exact source and release evidence.
 
-| Existing task | Current evidence and next acceptance |
-|---|---|
-| H01 | Setup plus monthly approved as model; final price, VAT, scope and terms remain decisions. Define reusable rules so routine proposals need no founder approval. |
-| H07/H08/H09/H42 | Live secure intake and genuine owner retrieval accepted. Both-brand fields verified in staging; durable notifications implemented and migrations applied. Both-brand live fields and scheduled Slack recovery now accepted. Continue remaining email/session/backup/security work. |
-| H03/H12/H46 | Refreshed source is merged locally; map exact deployed revision and verify live multi-brand journeys before closing visual/release acceptance. |
-| H39/H40/H41 | Continue technical/security verification against current source and runtime; historical green tests cannot close current acceptance. |
-| H47 | PR #8 Quality run succeeded but PR remains draft/open and Cloudflare preview failed; reconcile CI and deployment separately. |
-| H50 | Pilot must validate the full automated lifecycle in docs/REVENUE_WORKFLOW.md, including exceptions, quality review and recurring collection; a manually delivered website alone is insufficient. |
-| D01-D08 / H49 | Preserve integrated domain workstream; enrich existing roster instead of requesting a replacement. Advanced automation and separate branding remain demand-gated. |
+| Existing task   | Current evidence and next acceptance                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| --------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| H01             | **RATIFIED BY FOUNDER**: Managed Revenue Engine (£1,495 setup + £249/mo care, with £995/£149 Launchpad and £2,495/£399 Market Leader tiers), unit economics model, and proposal automation rules approved by Robbie on 7 October 2026. Documented in [`docs/COMMERCIAL_OFFER_MANAGED.md`](docs/COMMERCIAL_OFFER_MANAGED.md).                                                                                                                                                                                                                                                                        |
+| H02             | **RATIFIED BY FOUNDER**: Business identity (The Harley Group / Harley Digital Works), zero VAT charging rule (below £90k threshold), UK-wide remote studio with Bristol/Bath electrical contractor pilot, and 2-build concurrency cap approved by Robbie on 7 October 2026. Documented in [`docs/COMMERCIAL_OFFER_MANAGED.md`](docs/COMMERCIAL_OFFER_MANAGED.md).                                                                                                                                                                                                                                   |
+| H07/H08/H09/H42 | **ACCEPTED LIVE & EXPANDED**: Live secure intake and genuine owner retrieval accepted on THG Agency (`worzpzbutngugwzhlvtj`). Both-brand fields verified; minute Slack outbox delivery accepted (#all-the-harley-group); hourly attempt retention scheduled in Nitro (`prune-lead-attempts`). Full operational admin suite & General Knowledge Base deployed. **Slack Command Centre completed**: two-way interactive Block Kit actions, `/thg` slash commands, 9-channel topology, 08:00 daily founder briefing, and 30-min health scanner. Continue remaining email/session/backup/security work. |
+| H03/H12/H46     | Refreshed source is merged; Cloudflare Worker edge SSR, SEO metadata, canonicals and Schema JSON-LD passing. Verify live multi-brand journeys before closing visual/release acceptance.                                                                                                                                                                                                                                                                                                                                                                                                             |
+| H39/H40/H41     | Technical/security verification passing: 125/125 test suite passed (60 smoke + 62 regression + 3 service worker); zero service role secret leakage in public bundles.                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| H47             | Wrangler deployment configuration aligned with Nitro SSR output (.output/server/wrangler.json) and dual crons (`* * * * *`, `0 * * * *`).                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| H50             | 8-Step Turnaround SOP and trade vertical playbooks documented in Dashboard Knowledge Base; first paid pilot will validate automated lifecycle, quality review, and exception handling.                                                                                                                                                                                                                                                                                                                                                                                                              |
+| D01-D08 / H49   | Preserve integrated domain workstream; enrich existing roster instead of requesting a replacement. Advanced automation and separate branding remain demand-gated.                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 
-Execution order: H07/H42 target and security acceptance; H08/H09 full enquiry/admin journey; H23/H24 provider-confirmed billing; H50 repeatable pilot through launch/care. H01 rules and D01 inventory can progress independently. Core brand/Labs QA runs within H12/H46; no separate competing QA backlog.
+Execution order: Sourcing Bristol/Bath electrical contractor targets & pilot template assembly; H42 live owner session expiry/logout acceptance; H09/H10 transactional email setup once credentials ready; H07 live database backup/recovery proof; H50 repeatable pilot through launch/care. D01 inventory can progress independently.
 
 ### L01 - Align the existing Harley Labs page with the agreed basic brief
+
 - **Priority:** Medium
 - **Who needs to act:** You; Me only for unsupported claims/brand decisions
 - **Status:** Requested, implementation against new brief unverified
@@ -33,30 +35,33 @@ Imported from the existing The Harley Group / Business OS records on 2 October 2
 Updated 2 October 2026. Domain integration added following the founder's request; original audit IDs and existing implementation evidence retained. 50 original audit IDs retained. Original audit is a historical baseline; this register supersedes its commercial assumptions and delivery status. You = assistant; Me = founder; Third party = provider/customer as applicable. Implemented locally does not mean deployed or complete.
 
 ## H01 — Confirm the launch offer and commercial terms
+
 - **Phase:** 1
 - **Priority:** High
 - **Who needs to act:** Me
-- **Status:** In progress / partially resolved
-- **Current gap:** Model settled by founder: initial setup/build fee plus monthly subscription. Final prices, VAT, scope and contract/support terms remain unapproved; current public pricing must be reconciled.
+- **Status:** **COMPLETE / RATIFIED**
+- **Current gap:** None. Commercial blueprint, package structure, and pricing ratified by Robbie on 7 October 2026.
 - **Why it matters:** Public offer, proposals and billing must agree with the approved scope and terms.
 - **Dependencies:** None
-- **Resolution:** Approve a single offer sheet. Recommended MVP is Managed at £1,495 setup plus £249/month; do not publish or charge until commercial terms are approved.
+- **Resolution:** Ratify single offer sheet and pricing tiers. Core package is £1,495 setup + £249/mo care.
 - **Definition of done:** One approved offer sheet governs every public price, proposal, onboarding step and billing rule.
-- **Latest evidence:** Founder explicitly selected setup plus monthly. Single sellable Managed offer, unit economics model (Low/Base/High), governance rules and decision list drafted in [docs/COMMERCIAL_OFFER_MANAGED.md](file:///c:/Local%20Data/The%20Harley%20Group/harley-digital-works/docs/COMMERCIAL_OFFER_MANAGED.md). Awaiting final founder ratification.
+- **Latest evidence:** Founder explicitly reviewed and approved commercial blueprint on 7 October 2026. Governing document: [docs/COMMERCIAL_OFFER_MANAGED.md](docs/COMMERCIAL_OFFER_MANAGED.md).
 
 ## H02 — Verify business identity, capacity and support commitments
+
 - **Phase:** 1
 - **Priority:** High
 - **Who needs to act:** Me
-- **Status:** In progress / partially resolved
-- **Current gap:** Bristol/group and Manchester/service content conflict. Team, credentials, company/VAT/bank details, certifications and service-response claims are not backed by verified records in the reviewed evidence.
+- **Status:** **COMPLETE / RATIFIED**
+- **Current gap:** None. Business fact sheet, VAT rules (zero-rated below £90k), geographic positioning, and 2-build concurrency cap ratified by Robbie on 7 October 2026.
 - **Why it matters:** Incorrect identity or operational promises damage trust and contaminate contracts and invoices.
 - **Dependencies:** None
-- **Resolution:** Supply or confirm the trading/legal entity, public address/contact details, actual team and qualifications, tax status, supported hours, realistic delivery capacity and turnaround. Do not publish bank details from sample components.
+- **Resolution:** Supply or confirm the trading/legal entity, public address/contact details, actual team and qualifications, tax status, supported hours, realistic delivery capacity and turnaround.
 - **Definition of done:** A small approved business fact sheet exists; every identity and operational claim can be traced to it.
-- **Latest evidence:** Business fact sheet created in [docs/COMMERCIAL_OFFER_MANAGED.md](file:///c:/Local%20Data/The%20Harley%20Group/harley-digital-works/docs/COMMERCIAL_OFFER_MANAGED.md). Rules established to not charge VAT until HMRC registration is confirmed, present as UK-wide studio with Bristol/Bath pilot, and limit concurrent onboarding to 2-3 builds/month. Awaiting founder entity confirmation.
+- **Latest evidence:** Business fact sheet and decision register ratified in [docs/COMMERCIAL_OFFER_MANAGED.md](docs/COMMERCIAL_OFFER_MANAGED.md). Rules enforce zero-rated VAT below £90k, UK-wide remote studio with Bristol/Bath electrical contractor pilot, and strict cap of 2 concurrent onboarding builds.
 
 ## H03 — Establish one source of truth and a release inventory
+
 - **Phase:** 1
 - **Priority:** High
 - **Who needs to act:** You
@@ -69,6 +74,7 @@ Updated 2 October 2026. Domain integration added following the founder's request
 - **Latest evidence:** Business OS central hub and current documents established. Production release inventory and remaining technical runbook validation still outstanding.
 
 ## H04 — Enforce server-side permission on transactional email
+
 - **Phase:** 1
 - **Priority:** Critical
 - **Who needs to act:** You
@@ -81,6 +87,7 @@ Updated 2 October 2026. Domain integration added following the founder's request
 - **Latest evidence:** Local commit 843f0d8: authentication/intake/status safeguards and public prototype gating. Remaining acceptance and deployment must still be verified.
 
 ## H05 — Remove false success states from public launch journeys
+
 - **Phase:** 1
 - **Priority:** Critical
 - **Who needs to act:** You
@@ -93,6 +100,7 @@ Updated 2 October 2026. Domain integration added following the founder's request
 - **Latest evidence:** Local commit 843f0d8: authentication/intake/status safeguards and public prototype gating. Remaining acceptance and deployment must still be verified.
 
 ## H06 — Restore the production lead-capture and admin connection
+
 - **Phase:** 1
 - **Priority:** Critical
 - **Who needs to act:** You
@@ -105,6 +113,7 @@ Updated 2 October 2026. Domain integration added following the founder's request
 - **Latest evidence:** See original audit evidence; no subsequent completion verified.
 
 ## H07 — Establish access to the intended Supabase project and verify its state
+
 - **Phase:** 1
 - **Priority:** Critical
 - **Who needs to act:** Third party
@@ -117,6 +126,7 @@ Updated 2 October 2026. Domain integration added following the founder's request
 - **Latest evidence (7 October):** See [dated enquiry acceptance](docs/enquiry-acceptance-2026-10-07.md). Local secure intake/permission fixes implemented; isolated staging schema applied; SQL concurrency passes. Real Auth/API passes all 11 checks; browser enquiry receipt and one stored row verified. Existing owner browser sign-in, dashboard/Leads/full message retrieval pass; live session expiry remains untested. Founder agreed canonical GitHub/Cloudflare/THG Agency plan and approved exact database cutover, now applied. Matching code deployed; latest manually verified Worker 9d3bfd74; labelled live browser contact saves exactly one enquiry. Notifications disabled. Existing owner browser retrieval now passes; expiry/logout remains untested. See docs/evidence/live-owner-retrieval-2026-10-07.json.
 
 ## H08 — Connect both brand enquiry forms to one validated intake
+
 - **Phase:** 2
 - **Priority:** High
 - **Who needs to act:** You
@@ -129,6 +139,7 @@ Updated 2 October 2026. Domain integration added following the founder's request
 - **Latest evidence (7 October):** See [dated enquiry acceptance](docs/enquiry-acceptance-2026-10-07.md). Local secure intake/permission fixes implemented; isolated staging schema applied; SQL concurrency passes. Real Auth/API passes all 11 checks; browser enquiry receipt and one stored row verified. Existing owner browser sign-in, dashboard/Leads/full message retrieval pass; live session expiry remains untested. Founder agreed canonical GitHub/Cloudflare/THG Agency plan and approved exact database cutover, now applied. Matching code deployed; latest manually verified Worker 9d3bfd74; labelled live browser contact saves exactly one enquiry. Notifications disabled. Existing owner browser retrieval now passes; expiry/logout remains untested. See docs/evidence/live-owner-retrieval-2026-10-07.json.
 
 ## H09 — Make lead notifications and email status reliable
+
 - **Phase:** 4
 - **Priority:** High
 - **Who needs to act:** You
@@ -141,6 +152,7 @@ Updated 2 October 2026. Domain integration added following the founder's request
 - **Latest evidence (7 October):** See [dated enquiry acceptance](docs/enquiry-acceptance-2026-10-07.md). Local secure intake/permission fixes implemented; isolated staging schema applied; SQL concurrency passes. Real Auth/API passes all 11 checks; browser enquiry receipt and one stored row verified. Existing owner browser sign-in, dashboard/Leads/full message retrieval pass; live session expiry remains untested. Founder agreed canonical GitHub/Cloudflare/THG Agency plan and approved exact database cutover, now applied. Matching code deployed; latest manually verified Worker 9d3bfd74; labelled live browser contact saves exactly one enquiry. Notifications disabled. Existing owner browser retrieval now passes; expiry/logout remains untested. See docs/evidence/live-owner-retrieval-2026-10-07.json.
 
 ## H10 — Verify transactional sender and notification destinations
+
 - **Phase:** 4
 - **Priority:** High
 - **Who needs to act:** Third party
@@ -153,6 +165,7 @@ Updated 2 October 2026. Domain integration added following the founder's request
 - **Latest evidence:** See original audit evidence; no subsequent completion verified.
 
 ## H11 — Align the complete public site with the approved offer
+
 - **Phase:** 2
 - **Priority:** High
 - **Who needs to act:** You
@@ -165,6 +178,7 @@ Updated 2 October 2026. Domain integration added following the founder's request
 - **Latest evidence:** See original audit evidence; no subsequent completion verified.
 
 ## H12 — Finish the corporate site as a credible separate brand
+
 - **Phase:** 2
 - **Priority:** High
 - **Who needs to act:** You
@@ -177,6 +191,7 @@ Updated 2 October 2026. Domain integration added following the founder's request
 - **Latest evidence:** See original audit evidence; no subsequent completion verified.
 
 ## H13 — Replace unsupported testimonials and outcome claims with evidenced proof
+
 - **Phase:** 2
 - **Priority:** High
 - **Who needs to act:** You
@@ -189,6 +204,7 @@ Updated 2 October 2026. Domain integration added following the founder's request
 - **Latest evidence:** See original audit evidence; no subsequent completion verified.
 
 ## H14 — Curate trade and location pages before indexing them
+
 - **Phase:** 2
 - **Priority:** Medium
 - **Who needs to act:** You
@@ -201,6 +217,7 @@ Updated 2 October 2026. Domain integration added following the founder's request
 - **Latest evidence:** See original audit evidence; no subsequent completion verified.
 
 ## H15 — Extend the approved homepage design language across core pages
+
 - **Phase:** 3
 - **Priority:** High
 - **Who needs to act:** You
@@ -213,6 +230,7 @@ Updated 2 October 2026. Domain integration added following the founder's request
 - **Latest evidence:** See original audit evidence; no subsequent completion verified.
 
 ## H16 — Complete the asset and portfolio publishing pack
+
 - **Phase:** 3
 - **Priority:** Medium
 - **Who needs to act:** You
@@ -225,6 +243,7 @@ Updated 2 October 2026. Domain integration added following the founder's request
 - **Latest evidence:** See original audit evidence; no subsequent completion verified.
 
 ## H17 — Repair keyboard and assistive-technology gaps
+
 - **Phase:** 3
 - **Priority:** High
 - **Who needs to act:** You
@@ -237,6 +256,7 @@ Updated 2 October 2026. Domain integration added following the founder's request
 - **Latest evidence:** See original audit evidence; no subsequent completion verified.
 
 ## H18 — Complete responsive and interaction QA across all retained layouts
+
 - **Phase:** 3
 - **Priority:** High
 - **Who needs to act:** You
@@ -249,6 +269,7 @@ Updated 2 October 2026. Domain integration added following the founder's request
 - **Latest evidence:** See original audit evidence; no subsequent completion verified.
 
 ## H19 — Replace care-request simulation with a real support channel
+
 - **Phase:** 4
 - **Priority:** High
 - **Who needs to act:** You
@@ -261,6 +282,7 @@ Updated 2 October 2026. Domain integration added following the founder's request
 - **Latest evidence:** See original audit evidence; no subsequent completion verified.
 
 ## H20 — Implement verified invitation-based client onboarding
+
 - **Phase:** 4
 - **Priority:** High
 - **Who needs to act:** You
@@ -273,6 +295,7 @@ Updated 2 October 2026. Domain integration added following the founder's request
 - **Latest evidence:** See original audit evidence; no subsequent completion verified.
 
 ## H21 — Make project tracking, files and approval records real or keep them private demos
+
 - **Phase:** 4
 - **Priority:** High
 - **Who needs to act:** You
@@ -285,6 +308,7 @@ Updated 2 October 2026. Domain integration added following the founder's request
 - **Latest evidence:** See original audit evidence; no subsequent completion verified.
 
 ## H22 — Correct CRM conversion and separate collected revenue from estimates
+
 - **Phase:** 4
 - **Priority:** High
 - **Who needs to act:** You
@@ -297,6 +321,7 @@ Updated 2 October 2026. Domain integration added following the founder's request
 - **Latest evidence:** Local commit 410eece removes automatic won/revenue creation and adds retry/error handling. Real DB policies and payment reconciliation remain unverified.
 
 ## H23 — Replace simulated proposal acceptance and billing with a minimal real process
+
 - **Phase:** 4
 - **Priority:** High
 - **Who needs to act:** You
@@ -309,6 +334,7 @@ Updated 2 October 2026. Domain integration added following the founder's request
 - **Latest evidence:** See original audit evidence; no subsequent completion verified.
 
 ## H24 — Activate the chosen billing and accounting service
+
 - **Phase:** 4
 - **Priority:** High
 - **Who needs to act:** Third party
@@ -321,6 +347,7 @@ Updated 2 October 2026. Domain integration added following the founder's request
 - **Latest evidence:** Stripe account discovery remains unverified because authentication repeats. No products or charges created.
 
 ## H25 — Stop sample invoices, financial exports and reports being treated as real
+
 - **Phase:** 4
 - **Priority:** High
 - **Who needs to act:** You
@@ -333,6 +360,7 @@ Updated 2 October 2026. Domain integration added following the founder's request
 - **Latest evidence:** See original audit evidence; no subsequent completion verified.
 
 ## H26 — Defer the referral programme until terms and attribution exist
+
 - **Phase:** 4
 - **Priority:** Medium
 - **Who needs to act:** You
@@ -345,6 +373,7 @@ Updated 2 October 2026. Domain integration added following the founder's request
 - **Latest evidence:** Local commit 843f0d8: authentication/intake/status safeguards and public prototype gating. Remaining acceptance and deployment must still be verified.
 
 ## H27 — Protect dynamic responses with a tested security-header policy
+
 - **Phase:** 5
 - **Priority:** High
 - **Who needs to act:** You
@@ -357,6 +386,7 @@ Updated 2 October 2026. Domain integration added following the founder's request
 - **Latest evidence:** See original audit evidence; no subsequent completion verified.
 
 ## H28 — Correct multi-domain routing, redirects and brand canonicals
+
 - **Phase:** 5
 - **Priority:** High
 - **Who needs to act:** You
@@ -369,6 +399,7 @@ Updated 2 October 2026. Domain integration added following the founder's request
 - **Latest evidence:** See original audit evidence; no subsequent completion verified.
 
 ## H29 — Rebuild the indexable route and metadata map
+
 - **Phase:** 5
 - **Priority:** High
 - **Who needs to act:** You
@@ -381,6 +412,7 @@ Updated 2 October 2026. Domain integration added following the founder's request
 - **Latest evidence:** See original audit evidence; no subsequent completion verified.
 
 ## H30 — Optimize measured page weight and establish performance budgets
+
 - **Phase:** 5
 - **Priority:** Medium
 - **Who needs to act:** You
@@ -393,6 +425,7 @@ Updated 2 October 2026. Domain integration added following the founder's request
 - **Latest evidence:** See original audit evidence; no subsequent completion verified.
 
 ## H31 — Implement a small, privacy-aware conversion measurement plan
+
 - **Phase:** 5
 - **Priority:** High
 - **Who needs to act:** You
@@ -405,6 +438,7 @@ Updated 2 October 2026. Domain integration added following the founder's request
 - **Latest evidence:** See original audit evidence; no subsequent completion verified.
 
 ## H32 — Publish accurate privacy, service and cookie information
+
 - **Phase:** 5
 - **Priority:** High
 - **Who needs to act:** You
@@ -417,6 +451,7 @@ Updated 2 October 2026. Domain integration added following the founder's request
 - **Latest evidence:** See original audit evidence; no subsequent completion verified.
 
 ## H33 — Remove manufactured website-audit and keyword results
+
 - **Phase:** 1
 - **Priority:** High
 - **Who needs to act:** You
@@ -429,6 +464,7 @@ Updated 2 October 2026. Domain integration added following the founder's request
 - **Latest evidence:** Local commit 843f0d8: authentication/intake/status safeguards and public prototype gating. Remaining acceptance and deployment must still be verified.
 
 ## H34 — Remove review gating and fake private-feedback submission
+
 - **Phase:** 1
 - **Priority:** High
 - **Who needs to act:** You
@@ -441,6 +477,7 @@ Updated 2 October 2026. Domain integration added following the founder's request
 - **Latest evidence:** Local commit 843f0d8: authentication/intake/status safeguards and public prototype gating. Remaining acceptance and deployment must still be verified.
 
 ## H35 — Restrict internal automation tools to honest demonstrated capabilities
+
 - **Phase:** 4
 - **Priority:** Medium
 - **Who needs to act:** You
@@ -453,6 +490,7 @@ Updated 2 October 2026. Domain integration added following the founder's request
 - **Latest evidence:** See original audit evidence; no subsequent completion verified.
 
 ## H36 — Replace unsafe deployment/provisioning claims with a controlled delivery runbook
+
 - **Phase:** 4
 - **Priority:** High
 - **Who needs to act:** You
@@ -465,6 +503,7 @@ Updated 2 October 2026. Domain integration added following the founder's request
 - **Latest evidence:** See original audit evidence; no subsequent completion verified.
 
 ## H37 — Design outreach only after the service can fulfil a pilot
+
 - **Phase:** 4
 - **Priority:** Medium
 - **Who needs to act:** You
@@ -477,6 +516,7 @@ Updated 2 October 2026. Domain integration added following the founder's request
 - **Latest evidence:** See original audit evidence; no subsequent completion verified.
 
 ## H38 — Make CMS and settings reflect the content they actually control
+
 - **Phase:** 2
 - **Priority:** Medium
 - **Who needs to act:** You
@@ -489,6 +529,7 @@ Updated 2 October 2026. Domain integration added following the founder's request
 - **Latest evidence:** See original audit evidence; no subsequent completion verified.
 
 ## H39 — Make lint and formatting checks genuinely usable
+
 - **Phase:** 5
 - **Priority:** High
 - **Who needs to act:** You
@@ -501,6 +542,7 @@ Updated 2 October 2026. Domain integration added following the founder's request
 - **Latest evidence:** See original audit evidence; no subsequent completion verified.
 
 ## H40 — Add tests for real failures and run them in CI
+
 - **Phase:** 5
 - **Priority:** High
 - **Who needs to act:** You
@@ -513,6 +555,7 @@ Updated 2 October 2026. Domain integration added following the founder's request
 - **Latest evidence:** 75 local tests pass; typecheck/build pass. CI execution and full production customer-journey checks remain.
 
 ## H41 — Standardize and prove the Cloudflare release pipeline
+
 - **Phase:** 5
 - **Priority:** High
 - **Who needs to act:** You
@@ -525,6 +568,7 @@ Updated 2 October 2026. Domain integration added following the founder's request
 - **Latest evidence:** See original audit evidence; no subsequent completion verified.
 
 ## H42 — Harden intake limits and perform a targeted security/dependency review
+
 - **Phase:** 5
 - **Priority:** High
 - **Who needs to act:** You
@@ -537,6 +581,7 @@ Updated 2 October 2026. Domain integration added following the founder's request
 - **Latest evidence (7 October):** See [dated enquiry acceptance](docs/enquiry-acceptance-2026-10-07.md). Local secure intake/permission fixes implemented; isolated staging schema applied; SQL concurrency passes. Real Auth/API passes all 11 checks; browser enquiry receipt and one stored row verified. Existing owner browser sign-in, dashboard/Leads/full message retrieval pass; live session expiry remains untested. Founder agreed canonical GitHub/Cloudflare/THG Agency plan and approved exact database cutover, now applied. Matching code deployed; latest manually verified Worker 9d3bfd74; labelled live browser contact saves exactly one enquiry. Notifications disabled. Existing owner browser retrieval now passes; expiry/logout remains untested. Hourly attempt retention task scheduled in Nitro (`0 * * * *`) invoking `prune_lead_submission_attempts()`. See docs/evidence/live-owner-retrieval-2026-10-07.json.
 
 ## H43 — Add operational monitoring and prove recovery
+
 - **Phase:** 5
 - **Priority:** High
 - **Who needs to act:** You
@@ -549,6 +594,7 @@ Updated 2 October 2026. Domain integration added following the founder's request
 - **Latest evidence:** See original audit evidence; no subsequent completion verified.
 
 ## H44 — Verify domain, email and account continuity
+
 - **Phase:** 5
 - **Priority:** Medium
 - **Who needs to act:** Third party
@@ -561,6 +607,7 @@ Updated 2 October 2026. Domain integration added following the founder's request
 - **Latest evidence:** See original audit evidence; no subsequent completion verified.
 
 ## H45 — Make cache updates predictable without expanding PWA scope
+
 - **Phase:** 5
 - **Priority:** Low
 - **Who needs to act:** You
@@ -573,6 +620,7 @@ Updated 2 October 2026. Domain integration added following the founder's request
 - **Latest evidence:** See original audit evidence; no subsequent completion verified.
 
 ## H46 — Complete real cross-browser and customer-journey acceptance testing
+
 - **Phase:** 6
 - **Priority:** High
 - **Who needs to act:** You
@@ -585,6 +633,7 @@ Updated 2 October 2026. Domain integration added following the founder's request
 - **Latest evidence:** See original audit evidence; no subsequent completion verified.
 
 ## H47 — Replace stale completion claims with operating documentation
+
 - **Phase:** 6
 - **Priority:** Medium
 - **Who needs to act:** You
@@ -597,6 +646,7 @@ Updated 2 October 2026. Domain integration added following the founder's request
 - **Latest evidence:** Business OS central hub and current documents established. Production release inventory and remaining technical runbook validation still outstanding.
 
 ## H48 — Approve factual content and the first production release scope
+
 - **Phase:** 6
 - **Priority:** High
 - **Who needs to act:** Me
@@ -609,6 +659,7 @@ Updated 2 October 2026. Domain integration added following the founder's request
 - **Latest evidence:** See original audit evidence; no subsequent completion verified.
 
 ## H49 — Establish verified domain commerce; defer speculative platform expansion
+
 - **Phase:** 1–3
 - **Priority:** High — minimum commercial capability; later automation demand-gated
 - **Who needs to act:** You + Me
@@ -621,6 +672,7 @@ Updated 2 October 2026. Domain integration added following the founder's request
 - **Latest evidence:** 2 October domain strategy review integrated into D01–D08 below; plan changes only. Existing infrastructure and paid-service pilot gates remain in force.
 
 ## H50 — Run one controlled pilot before scaling acquisition
+
 - **Phase:** 6
 - **Priority:** High
 - **Who needs to act:** You
@@ -637,31 +689,34 @@ Updated 2 October 2026. Domain integration added following the founder's request
 This section modifies the existing commercial roadmap. It does not mark source code, deployment, purchases, customer messaging or billing complete. Current setup/build plus monthly direction is retained. All new price anchors, acquisition budgets, targets and brand triggers are proposals, not approved terms.
 
 ### Amendments to existing tasks
-| Task | Required domain scope |
-|---|---|
-| H01 | Separate inventory price, brokerage/acquisition fees, renewal charges, authority and ownership from Managed setup/monthly terms. |
-| H08/H09 | Shared validated intake must preserve domain, offer/currency, service intent and optional website interest; persist before notification. |
-| H11/H12 | Visible Domains service/catalogue under HDW; parent explains domain capability without another launch website. |
+
+| Task    | Required domain scope                                                                                                                                   |
+| ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| H01     | Separate inventory price, brokerage/acquisition fees, renewal charges, authority and ownership from Managed setup/monthly terms.                        |
+| H08/H09 | Shared validated intake must preserve domain, offer/currency, service intent and optional website interest; persist before notification.                |
+| H11/H12 | Visible Domains service/catalogue under HDW; parent explains domain capability without another launch website.                                          |
 | H22/H25 | Domain opportunities link to website opportunities and actual subscriptions; realised contribution, brokerage fees and pass-through costs are separate. |
-| H23/H24 | Assisted settlement with verified provider states; hosted service-fee billing where suitable. No custom domain checkout in MVP. |
-| H28/H29 | Canonical catalogue/landing pages; substantive unique content; no stale sold listings or mass indexable filter pages. |
-| H44 | Reconcile trading and client domains, registrars, expiry, renewal billing, recovery and safe DNS continuity. |
-| H49 | Verified domain commerce now; advanced platform and speculative buying remain gated. |
-| H50 | Website paid pilot remains critical. Domain journey tested separately; do not require a successful domain sale before website launch. |
+| H23/H24 | Assisted settlement with verified provider states; hosted service-fee billing where suitable. No custom domain checkout in MVP.                         |
+| H28/H29 | Canonical catalogue/landing pages; substantive unique content; no stale sold listings or mass indexable filter pages.                                   |
+| H44     | Reconcile trading and client domains, registrars, expiry, renewal billing, recovery and safe DNS continuity.                                            |
+| H49     | Verified domain commerce now; advanced platform and speculative buying remain gated.                                                                    |
+| H50     | Website paid pilot remains critical. Domain journey tested separately; do not require a successful domain sale before website launch.                   |
 
 ### New domain task definitions
-| ID | Priority / owner | Task | Dependencies | Acceptance evidence |
-|---|---|---|---|---|
-| D01 | High / Me supplies records; You reconciles | Inventory, ownership/mandates, costs, renewal exposure, asking/floor and buyer thesis; select best 10–20 saleable names if available | Registrar exports and transaction evidence | Every proposed listing has authority; held, client and brokered domains distinguished; costs/expiry verified and sample records excluded |
-| D02 | High / Me commercial; You drafts | Costed domain-only, acquisition, brokerage, valuation and management scope; mandates, fees, ownership and renewal terms | H01/H02, D01 for inventory pricing | Reviewable offer sheet and mandate templates; approved fields separated from proposals; no automatic premium-domain inclusion |
-| D03 | High / You | Extend existing Domains routes and reusable catalogue/detail template; simple search/filter only as useful | H03/H11/H28/H29, D01/D02 | Approved named listings, factual use cases, public prices/offer CTAs; private floors/costs remain private; mobile and keyboard flow works |
-| D04 | High / You | Shared intake and offer records linked to CRM; optional website need; private negotiation history and next action | H07/H08/H09, D01/D02 | Duplicate request handled once; enquiry persists despite notification failure; authorised operator can retrieve; offer never silently accepts a deal |
-| D05 | High / Me negotiation/authority; You workflow | Assisted agreement, settlement, transfer readiness, confirmation and delisting | D02/D04, H23/H24/H44 | Process tested; real sale only complete with provider/transfer evidence; one binding deal per name; listing channels paused/delisted; no screenshot-only payment proof |
-| D06 | Medium / You + Me renew/drop | Renewal alerts and registrar/listing reconciliation; 60/30/14/7-day reminders and exception escalation | D01/H43/H44 | Reminder delivery demonstrated; stale data flagged; owner records renewal/drop decision; no autonomous renewal cancellation or purchasing |
-| D07 | Medium / You; Me validates economics | Domain contribution, time, portfolio ageing, offer conversion and website/service attachment | D04/D05/H22/H25 | Cost-basis/fees/labour captured; brokerage revenue is service fee; one-offs excluded from MRR; linked subscriptions not counted twice |
-| D08 | Later / Me decision; You evidence | Review Harley Domains brand and developed-asset/product opportunities | D07 and observed demand | Brand contribution covers added costs; distinct buyer need evidenced; one developed-asset case costed; no external SaaS build without paying-user evidence |
+
+| ID  | Priority / owner                              | Task                                                                                                                                 | Dependencies                               | Acceptance evidence                                                                                                                                                    |
+| --- | --------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| D01 | High / Me supplies records; You reconciles    | Inventory, ownership/mandates, costs, renewal exposure, asking/floor and buyer thesis; select best 10–20 saleable names if available | Registrar exports and transaction evidence | Every proposed listing has authority; held, client and brokered domains distinguished; costs/expiry verified and sample records excluded                               |
+| D02 | High / Me commercial; You drafts              | Costed domain-only, acquisition, brokerage, valuation and management scope; mandates, fees, ownership and renewal terms              | H01/H02, D01 for inventory pricing         | Reviewable offer sheet and mandate templates; approved fields separated from proposals; no automatic premium-domain inclusion                                          |
+| D03 | High / You                                    | Extend existing Domains routes and reusable catalogue/detail template; simple search/filter only as useful                           | H03/H11/H28/H29, D01/D02                   | Approved named listings, factual use cases, public prices/offer CTAs; private floors/costs remain private; mobile and keyboard flow works                              |
+| D04 | High / You                                    | Shared intake and offer records linked to CRM; optional website need; private negotiation history and next action                    | H07/H08/H09, D01/D02                       | Duplicate request handled once; enquiry persists despite notification failure; authorised operator can retrieve; offer never silently accepts a deal                   |
+| D05 | High / Me negotiation/authority; You workflow | Assisted agreement, settlement, transfer readiness, confirmation and delisting                                                       | D02/D04, H23/H24/H44                       | Process tested; real sale only complete with provider/transfer evidence; one binding deal per name; listing channels paused/delisted; no screenshot-only payment proof |
+| D06 | Medium / You + Me renew/drop                  | Renewal alerts and registrar/listing reconciliation; 60/30/14/7-day reminders and exception escalation                               | D01/H43/H44                                | Reminder delivery demonstrated; stale data flagged; owner records renewal/drop decision; no autonomous renewal cancellation or purchasing                              |
+| D07 | Medium / You; Me validates economics          | Domain contribution, time, portfolio ageing, offer conversion and website/service attachment                                         | D04/D05/H22/H25                            | Cost-basis/fees/labour captured; brokerage revenue is service fee; one-offs excluded from MRR; linked subscriptions not counted twice                                  |
+| D08 | Later / Me decision; You evidence             | Review Harley Domains brand and developed-asset/product opportunities                                                                | D07 and observed demand                    | Brand contribution covers added costs; distinct buyer need evidenced; one developed-asset case costed; no external SaaS build without paying-user evidence             |
 
 ### Integrated 30/60/90-day delivery order
+
 - **Days 1–30:** H01–H10 critical readiness and credible core release continue. D01/D02 progress independently while account access is resolved; D03/D04 launch when intake and listing evidence pass. Progress one controlled website pilot. Renewal checks must not wait for a full dashboard.
 - **Days 31–60:** Deliver and cost up to three paid website pilots as capacity permits; verify recurring collection. D05 assisted settlement runs when a real buyer exists; D06 adds reconciliation and reminders; pilot selective acquisition/valuation services.
 - **Days 61–90:** Improve reliable recurring service and proven acquisition. D07 reports realised domain contribution and cross-sell. D08 reviews brand/development gates; automate only measured bottlenecks.
@@ -671,16 +726,16 @@ This section modifies the existing commercial roadmap. It does not mark source c
 - **Brand review trigger (proposal):** three consecutive months with ten qualified domain enquiries/month or three substantial active mandates; contribution covers extra brand costs with a buffer; buyer evidence supports a specialist identity. Keep one backend regardless.
 
 ### Immediate priorities
+
 1. D01 — verify portfolio and identify existing sale opportunities/carrying costs (3–5 hours plus evidence gathering).
 2. D03/D04 with H08/H09 — publish curated domain journeys and capture offers reliably (10–16 hours after core readiness).
 3. D02/D05 — define costed mandates and prove assisted settlement with optional Managed attachment (7–11 hours excluding negotiation).
 
 Source: The Harley Group integrated commercial review, 2 October 2026; current business definition/status and master backlog, updated 28 September; September production audit; historical 9 September operating plan; retrieved earlier brand/domain discussions. No inventory-specific valuations or sales forecasts can be established without registrar and transaction records.
 
-
 ## Portfolio baseline clarification — 2 October 2026
-The founder confirms the existing domain list is unchanged. D01 must reuse the existing roster rather than request a replacement list. The saved September 28 /domains page contains 29 rendered entries; September 9 module notes describe 60. Reconcile current source/historical records for any other entries; do not assume 29 is the total. Existing catalogue and admin work must be extended rather than recreated. Costs, expiry, ownership/mandates and current sale status are enrichment/verification fields, not grounds to treat the domain list as absent. Sources: saved page https://drive.google.com/file/d/1bVjpk9r5cTned9kB349fV1rghctRF8ud/view?usp=drivesdk and module notes https://drive.google.com/file/d/1gjIaB6A4k0iEqIQatBAbPRmf8DhbPmJs/view?usp=drivesdk .
 
+The founder confirms the existing domain list is unchanged. D01 must reuse the existing roster rather than request a replacement list. The saved September 28 /domains page contains 29 rendered entries; September 9 module notes describe 60. Reconcile current source/historical records for any other entries; do not assume 29 is the total. Existing catalogue and admin work must be extended rather than recreated. Costs, expiry, ownership/mandates and current sale status are enrichment/verification fields, not grounds to treat the domain list as absent. Sources: saved page https://drive.google.com/file/d/1bVjpk9r5cTned9kB349fV1rghctRF8ud/view?usp=drivesdk and module notes https://drive.google.com/file/d/1gjIaB6A4k0iEqIQatBAbPRmf8DhbPmJs/view?usp=drivesdk .
 
 ## Shared context setup — 2 October 2026
 

@@ -55,23 +55,23 @@ Staging security advisor: zero warning-level findings after correction. Remainin
 
 ## Dated acceptance evidence and limits
 
-| Check                                                                      | 7 October result              | Evidence/limit                                                                     |
-| -------------------------------------------------------------------------- | ----------------------------- | ---------------------------------------------------------------------------------- |
-| Existing owner preserved, clean/zero-admin signup not promoted             | PASS locally                  | Ephemeral PostgreSQL tests; no production users changed                            |
-| Anonymous/ordinary reads, inserts, self-promotion denied                   | PASS locally                  | Database roles exercise actual policies; real staging Auth/API also passes          |
-| Administrator read/manual entry preserved                                  | PASS locally                  | DB-role tests and genuine staging Auth/API sign-in pass                                      |
-| Trusted intake persistence, retry deduplication and timing quota           | PASS locally                  | Real SQL in isolated engine                                                        |
-| DB insert failure and recovery                                             | PASS locally                  | Constraint-induced failure rolls back quota and lead; retry succeeds               |
-| Receipt result validation and forwarded-header handling                    | PASS locally                  | Focused behaviour tests                                                            |
-| Notification rejection after persistence                                   | PASS existing behaviour tests | No outbound delivery test; durable retries pending                                 |
-| Concurrent duplicates                                                      | PASS staging SQL              | 12 parallel calls: 1 saved, 11 duplicates, exactly 1 lead                          |
-| Concurrent rate boundary                                                   | PASS staging SQL              | 12 parallel calls: 5 saved, 7 rate-limited, 5 leads/attempts                       |
-| Staging Auth/API owner retrieval, ordinary denial, metadata spoofing       | PASS staging Auth/API         | 11 checks passed; real GoTrue sign-in and user-token retrieval |
-| Browser administrator sign-in/retrieval and session expiry | PENDING                       | Must execute against this staging ref; never forge identity                        |
-| Build, typecheck, format                                                   | PASS locally                  | Fresh runs on acceptance source, not historical evidence                           |
-| Lint                                                                       | PASS with 9 existing warnings | No errors; unrelated fast-refresh warnings retained                                |
-| Security advisor                                                           | PASS with explained INFO      | Real staging schema; not production advisor acceptance                             |
-| Production customer journey                                                | BLOCKED                       | No production write/deploy authorised; configuration is missing                    |
+| Check                                                                | 7 October result              | Evidence/limit                                                             |
+| -------------------------------------------------------------------- | ----------------------------- | -------------------------------------------------------------------------- |
+| Existing owner preserved, clean/zero-admin signup not promoted       | PASS locally                  | Ephemeral PostgreSQL tests; no production users changed                    |
+| Anonymous/ordinary reads, inserts, self-promotion denied             | PASS locally                  | Database roles exercise actual policies; real staging Auth/API also passes |
+| Administrator read/manual entry preserved                            | PASS locally                  | DB-role tests and genuine staging Auth/API sign-in pass                    |
+| Trusted intake persistence, retry deduplication and timing quota     | PASS locally                  | Real SQL in isolated engine                                                |
+| DB insert failure and recovery                                       | PASS locally                  | Constraint-induced failure rolls back quota and lead; retry succeeds       |
+| Receipt result validation and forwarded-header handling              | PASS locally                  | Focused behaviour tests                                                    |
+| Notification rejection after persistence                             | PASS existing behaviour tests | No outbound delivery test; durable retries pending                         |
+| Concurrent duplicates                                                | PASS staging SQL              | 12 parallel calls: 1 saved, 11 duplicates, exactly 1 lead                  |
+| Concurrent rate boundary                                             | PASS staging SQL              | 12 parallel calls: 5 saved, 7 rate-limited, 5 leads/attempts               |
+| Staging Auth/API owner retrieval, ordinary denial, metadata spoofing | PASS staging Auth/API         | 11 checks passed; real GoTrue sign-in and user-token retrieval             |
+| Browser administrator sign-in/retrieval and session expiry           | PENDING                       | Must execute against this staging ref; never forge identity                |
+| Build, typecheck, format                                             | PASS locally                  | Fresh runs on acceptance source, not historical evidence                   |
+| Lint                                                                 | PASS with 9 existing warnings | No errors; unrelated fast-refresh warnings retained                        |
+| Security advisor                                                     | PASS with explained INFO      | Real staging schema; not production advisor acceptance                     |
+| Production customer journey                                          | BLOCKED                       | No production write/deploy authorised; configuration is missing            |
 
 Browser contact form submitted a synthetic enquiry at http://127.0.0.1:5190/contact with outbound settings disabled; receipt displayed and provider query confirmed exactly one corresponding staging row. Initial restricted-network failures retained entered details and showed an honest error; retry succeeded after launching the isolated server with network access and explicit environment loading. Start this test server with `node --env-file=.env.local node_modules/vite/bin/vite.js --host 127.0.0.1 --port 5190` (ordinary Vite does not populate non-VITE process variables). Browser admin UI and token expiry remain untested.
 

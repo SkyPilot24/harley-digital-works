@@ -44,14 +44,19 @@ export function WebsitePackagesSection({
           </div>
           <div className="managed-offer-detail">
             <div>
-              <span className="offer-stage">01 / INITIAL BUILD FEE</span>
+              <span className="offer-stage">01 / INITIAL SETUP · £1,495</span>
               <h3>Get the right foundations.</h3>
+              <p className="text-sm text-ink-muted mb-3">
+                50% deposit (£747.50) to reserve build slot · 50% balance (£747.50) upon preview
+                sign-off.
+              </p>
               <ul>
                 {[
-                  "A focused website with your services, work and contact details",
-                  "Copy written for you, with business facts approved by you",
-                  "Mobile-friendly design and clear enquiry routes",
-                  "Search metadata, launch checks and domain connection",
+                  "5-page trade architecture (Home, About, Services, Selected Work, Contact Desk)",
+                  "100% done-for-you technical copy written and verified for your trade",
+                  "Mobile-responsive design, trade accreditation badges and dual enquiry desk",
+                  "Local Map Pack Schema JSON-LD microdata, domain DNS and email protection",
+                  "Two structured preview revision rounds before public cutover",
                 ].map((x) => (
                   <li key={x}>
                     <Check size={17} />
@@ -61,14 +66,19 @@ export function WebsitePackagesSection({
               </ul>
             </div>
             <div>
-              <span className="offer-stage">02 / MONTHLY SUBSCRIPTION</span>
+              <span className="offer-stage">02 / MONTHLY CARE · £249 / MO</span>
               <h3>Keep moving after launch.</h3>
+              <p className="text-sm text-ink-muted mb-3">
+                Rolling 30-day agreement · Billed via Stripe auto-debit starting on your go-live
+                date.
+              </p>
               <ul>
                 {[
-                  "Managed hosting and routine website maintenance",
-                  "Content changes within an agreed monthly allowance",
-                  "Enquiry checks and a clear route to request help",
-                  "Practical reporting and prioritised improvements",
+                  "Cloudflare edge hosting, SSL certificates and uptime monitoring",
+                  "1 batch of content updates per month (up to 30 mins non-accumulative)",
+                  "Dual-desk enquiry health checks and direct support triage",
+                  "Monthly performance digest and review workflow guidance",
+                  "Standard 24h business-day support SLA (4h outage priority response)",
                 ].map((x) => (
                   <li key={x}>
                     <Check size={17} />
@@ -78,8 +88,9 @@ export function WebsitePackagesSection({
               </ul>
             </div>
             <p className="offer-terms">
-              Your proposal sets out the setup fee, monthly cost, page count, revisions, support,
-              ownership and cancellation terms. Extra pages or integrations are scoped separately.
+              VAT treatment: Operating below the statutory HMRC threshold; prices are zero-rated /
+              VAT not applicable. Onboarding capacity is capped at 2–3 concurrent builds to
+              safeguard quality and senior attention.
             </p>
             <a href="/services/care-plans" className="studio-text-link">
               What ongoing care means <ArrowUpRight size={16} />

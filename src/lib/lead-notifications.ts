@@ -30,6 +30,20 @@ export async function deliverLeadNotifications(options: {
     try {
       const brand =
         job.source === "group_contact_form" ? "The Harley Group" : "Harley Digital Works";
+      const { buildLeadCard } = await import("./slack/blocks.ts");
+      const blocks = buildLeadCard(
+        {
+          id: job.lead_id,
+          brand,
+          name: "Trade Enquiry",
+          email: "enquiry@harleydigitalworks.com",
+          message: `Enquiry reference ${job.lead_id}. Review full details securely in authenticated CRM.`,
+          source: job.source,
+          createdAt: new Date().toISOString(),
+        },
+        { jobId: job.id, attempts: job.attempts },
+      );
+
       const response = await options.fetch(destination.href, {
         method: "POST",
         signal: AbortSignal.timeout(5000),
@@ -37,6 +51,7 @@ export async function deliverLeadNotifications(options: {
         // Keep personal enquiry details in the authenticated CRM.
         body: JSON.stringify({
           text: `New ${brand} enquiry. Reference: ${job.lead_id}\nReview securely: https://harleydigitalworks.com/admin/leads`,
+          blocks,
           unfurl_links: false,
           unfurl_media: false,
         }),

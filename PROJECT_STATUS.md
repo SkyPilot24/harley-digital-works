@@ -1,36 +1,28 @@
 # The Harley Group — shared project status
 
-## Current handover — 7 October 2026, hourly attempt retention scheduled
+## Current handover — 7 October 2026, Slack Operational Command Centre, commercial launch offer, and knowledge base
 
-**Verified live & implemented:** both brands save all six visible enquiry fields exactly once into THG Agency (worzpzbutngugwzhlvtj). Genuine existing-owner browser retrieval passes. Scheduled Slack alerts delivered and accepted. H42 hourly attempt retention task `prune-lead-attempts` implemented in Nitro with `0 * * * *` scheduled trigger, invoking `prune_lead_submission_attempts()` via `supabaseAdmin`. Cloudflare worker output wrangler triggers verified with minute notification and hourly retention crons. 125/125 test suite passed.
+**Verified live & implemented:**
 
-**Next action:** Continue H42 coordinated owner session expiry/logout acceptance and tooling advisory review, H09/H10 transactional email sender/provider setup and bounce handling once credentials are ready (customer transactional email stays disabled), and H07 backup/recovery proof for live THG Agency database (`worzpzbutngugwzhlvtj`). Preserve existing owner session.
+- Both brands save all six visible enquiry fields exactly once into THG Agency (`worzpzbutngugwzhlvtj`).
+- Genuine existing-owner browser sign-in and retrieval verified in dashboard, Leads, and detail view.
+- Scheduled Slack alerts delivered to `#all-the-harley-group` and accepted (3/5 attempts acknowledged); native Worker fetch context preserved.
+- **Slack Operational Command Centre implemented**: Two-way interactive Block Kit actions (`[📞 Contacted]`, `[⭐ Qualify]`, `[📁 Create Client]`, `[🔄 Retry]`), `/thg` slash commands (`status`, `leads`, `builds`, `approvals`, `retry`, `help`), clean 9-channel routing topology, 08:00 daily founder briefing task (`0 8 * * *`), 30-min health scanner (`*/30 * * * *`), HMAC-SHA256 request verification, and dedicated Admin Control Centre Slack panel.
+- H42 hourly attempt retention task `prune-lead-attempts` implemented in Nitro with `0 * * * *` scheduled trigger, invoking `prune_lead_submission_attempts()` via `supabaseAdmin`.
+- **H01/H02 Commercial Direction RATIFIED**: Robbie formally approved the commercial blueprint on 7 October 2026. Ratified terms: Managed Revenue Engine (£1,495 setup + £249/mo care, with £995/£149 entry and £2,495/£399 expansion tiers), zero-rated VAT below £90k, hard limit of 2 concurrent builds during pilot, and initial focus on established Electrical Contractors in Bristol/Bath / M4 corridor.
+- Comprehensive operational Admin suite deployed: Control Centre (`admin.index.tsx`), Invoices milestone generator (`admin.invoices.tsx`), Projects stage tracker (`admin.projects.tsx`), Diagnostics outbox monitor (`admin.diagnostics.tsx`), and the General Knowledge Base (`admin.knowledge-base.tsx` & `src/lib/knowledge-base.ts`).
+- 136/136 test suite passed (66 smoke including drift detection + 67 regression/integration + 3 service worker), 0 typecheck errors, 0 lint errors.
 
-## Historical handover — 7 October 2026, live fields and Slack acceptance passed
-
-**Verified live:** both brands save all six visible enquiry fields exactly once into THG Agency (worzpzbutngugwzhlvtj). Genuine existing-owner browser retrieval of both records passes. HDW long domain/service interest survives editing the message. Sources are contact_form/group_contact_form; phone, website and full interest are in message qualification context. Native Cloudflare minute schedule has run and claimed jobs. Live anonymous lead/job reads and notification claims are denied. Existing owner/admin assignment preserved.
-
-**Implemented, committed, pushed and deployed:** durable alert queue, atomic service-intake trigger, disjoint leases, crash recovery, five-attempt cap, 1/5/15/60-minute retry delays, staff-visible status and minimal Slack alert payload (brand/reference/secure CRM link). Migration 20261007110303_durable_lead_notifications.sql is applied to staging and live. Source c2254b119861fcb989b01dae68ceb7ae68d97735; latest manually deployed Worker 6e9d3147-2efa-464f-ab6b-4d7d92b13978. Canonical GitHub main may auto-deploy identical source separately.
-
-**Live delivery accepted:** native scheduled retries delivered both test alerts at 2026-10-07 11:31:39 UTC (12:31:39 BST). Both jobs are accepted, attempts=3, accepted_at populated and last_error cleared. Slack channel history contains exactly the matching HDW and Group lead references; authenticated CRM displays “Slack acknowledged this alert” and 3/5 attempts. Two initial request failures left leads/jobs durable; the deployed native-fetch wrapper then allowed automatic recovery. Initial exception details were not logged, so the native receiver diagnosis is inferred from the code change and successful retry, not a captured exception. No manual send/reset or duplicate enquiry was needed.
-
-**Next action:** this requested both-brand field and Slack delivery/retry acceptance is complete. Continue existing H09/H10 transactional-email sender/provider/bounce acceptance, H42 hourly attempt retention and coordinated session expiry/logout, and H07 backup/restore proof. Customer transactional email stays disabled. Do not close wider tasks solely on this success. Preserve the owner session; keep the queued-alert failure/rollback runbook in notification-delivery-2026-10-07.md.
-
-**Access/config:** founder completed THG Enquiry Alerts app setup and selected #all-the-harley-group in The Harley Group workspace. SLACK_WEBHOOK_URL installed privately on the existing Worker; LEAD_NOTIFICATIONS_ENABLED=true, TRANSACTIONAL_EMAIL_ENABLED=false. Secret only in ignored .env.production.local/.notification-secrets.local in the safe clone, never source/docs. Staging mfpnfxpgkfuqtedbcxvp remains notification-disabled with no outbound credentials.
-
-**Validation:** full suite 59 platform +62 regression +3 service-worker checks passed; real staging Auth/API 13 checks and notification API seven checks pass. Local built Cloudflare scheduled handler with disabled staging override returned HTTP200/outcome ok. 310 built files scanned without server credentials. Real live Slack failures demonstrated jobs remain durable and retry counters advance. Actual channel acceptance after correction now passes. No production session-expiry/logout, backup restore, hourly retention, leaked-password protection or customer-email delivery claim. H08/H09/H10/H42 retain their remaining acceptance; no new backlog.
-
-**Working copies:** primary C:/Local Data/The Harley Group/harley-digital-works main; safe clone implementation/hdw-enquiry-acceptance branch codex/h07-h42-enquiry-acceptance. Untracked acceptance-audit.json is a local duplicate audit artifact, not part of release. Synced sources untouched. No force pushes or historical schema replay. See notification-delivery-2026-10-07.md and evidence/live-fields-notifications-2026-10-07.json.
-
+**Next action:** Outreach list curation (first 50 Bristol/Bath electrical contractors) and pilot template assembly. Continue technical track: H42 coordinated owner session expiry/logout acceptance and tooling advisory review, H09/H10 transactional email sender/provider setup and bounce handling once credentials are ready (customer transactional email stays disabled), and H07 backup/recovery proof for live THG Agency database (`worzpzbutngugwzhlvtj`). Preserve existing owner session.
 
 ## Start here - short operating brief
 
 - **Goal:** first paid pilot of a near end-to-end automated trade digital service; founder manages exceptions and retains quality review.
-- **Verified state:** 7 October: live secure enquiry saved exactly once to THG Agency and retrieved by the genuinely signed-in existing owner in dashboard, Leads and full detail view. Existing 1 admin/2 Auth accounts preserved. Canonical GitHub source and Cloudflare release are deployed; Lovable remains a separate prototype workspace. No revenue total verified.
-- **Bottleneck / one next task:** Core enquiry-to-owner bottleneck resolved. Continue H08 both-brand/field acceptance and H09/H10 notification destination/retry work; notifications remain disabled. H07 recovery/backup and H42 retention/session/advisory follow-ups remain open.
-- **Decisions:** final scope, prices, VAT, terms, support capacity and initial quality/automation limits. D01 portfolio verification can progress independently.
-- **Load on demand:** BUSINESS_DEFINITION.md for commercial rules; MASTER_BACKLOG.md for the selected task; docs/REVENUE_WORKFLOW.md for lifecycle; docs/HANDOVER.md for continuation; docs/SHARED_SKILLS.md for skill availability. Detailed evidence and historical snapshots below need reading only where relevant.
-- **Close each meaningful session:** update this brief, task evidence and handover; record actual checks/release state, then reconcile Drive mirrors. Do not omit blockers to save context.
+- **Verified state:** 7 October: live secure enquiry saved exactly once to THG Agency and retrieved by the genuinely signed-in existing owner in dashboard, Leads and full detail view. Minute Slack outbox alerts acknowledged. Hourly retention pruning scheduled. Canonical GitHub source and Cloudflare release are deployed; Lovable remains a separate prototype workspace. Full operational knowledge base active in dashboard. H01/H02 commercial terms ratified by Founder. No revenue total verified.
+- **Bottleneck / one next task:** Commercial terms ratified. Active execution tracks: Pilot lead sourcing & outreach template setup; H42 live owner session expiry/logout acceptance; H09/H10 transactional email setup (customer email disabled); H07 live database backup/restore proof.
+- **Decisions:** Launch offer (£1,495 setup + £249/mo), legal entity/VAT status, UK-wide/Bristol-Bath positioning, and 2 concurrent builds cap RATIFIED by Robbie on 7 October 2026. D01 portfolio verification can progress independently.
+- **Load on demand:** docs/COMMERCIAL_OFFER_MANAGED.md for ratified offer & economics; BUSINESS_DEFINITION.md for commercial rules; MASTER_BACKLOG.md for the selected task; docs/REVENUE_WORKFLOW.md for lifecycle; docs/HANDOVER.md for continuation; src/lib/knowledge-base.ts for operational knowledge base.
+- **Close each meaningful session:** update this brief, task evidence, handover, and dashboard knowledge base; record actual checks/release state, then reconcile Drive mirrors. Do not omit blockers to save context.
 
 ## Live owner acceptance — 7 October 2026
 
@@ -65,16 +57,16 @@ This supersedes older environment/deployment claims below. See [dated enquiry ac
 
 This section supersedes older status below. Inspected local main and cached origin/main: eb4f9596d0b394c92f45c7120419a2509035e59b. The website changes and shared-context commit 87aa5ce are present; September statements that none of this was pushed are historical. No application tests or production changes were performed during this documentation reconciliation.
 
-| Revenue requirement | Evidence | Remaining acceptance |
-|---|---|---|
-| Approved offer | Setup plus monthly direction settled; prices are proposals | H01: one approved scope, price, VAT and terms record |
-| Credible public website | Refresh is present in current source; earlier browser checks reported passes | H12/H46: verify exact deployed revision and live multi-brand journeys |
-| Secure enquiry capture | Shared intake exists; later QA found anonymous direct inserts and missing lead_submission_attempts | H07/H08/H42: reconcile backend, repair safely, prove persistence and abuse controls |
-| Admin dashboard access | Existing admin role and local auth investigation recorded | H09/H42: real sign-in, authorised lead retrieval, forbidden access tests and notification handling |
-| Payment and subscription | Implementation/configuration not equivalent to confirmed collection | H23/H24: verified provider events, replay safety and reconciliation |
-| Repeatable fulfilment | Templates and workflow intent exist | H50: paid pilot validates automated lifecycle, quality review and exception recovery |
-| Domains | Existing roster and D01-D08 retained | Verify authority, renewals and sale status; progress independently of website pilot |
-| Revenue | No collected revenue/customer count verified | Reconcile actual receipts; do not report zero or forecast as actual |
+| Revenue requirement      | Evidence                                                                                                                 | Remaining acceptance                                                                                                  |
+| ------------------------ | ------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------- |
+| Approved offer           | **RATIFIED BY FOUNDER**: £1,495 setup + £249/mo care (3 tiers: £995, £1,495, £2,495) in docs/COMMERCIAL_OFFER_MANAGED.md | H01/H02: Ratified on 7 October 2026. Zero VAT, 2 builds concurrency cap, and Bristol/Bath electrical niche confirmed. |
+| Credible public website  | Refresh live; Cloudflare Worker edge SSR, SEO metadata, canonicals and Schema JSON-LD passing                            | H12/H46: verify live multi-brand domain journeys                                                                      |
+| Secure enquiry capture   | **ACCEPTED LIVE**: Both brands save 6 fields to THG Agency (worzpzbutngugwzhlvtj); Slack alerts ok                       | H09/H10: transactional email sender/bounce (customer email disabled); H07 live backup/restore proof                   |
+| Admin dashboard access   | **ACCEPTED LIVE**: Existing owner sign-in and retrieval verified; full admin suite & KB deployed                         | H42: live owner session expiry/logout acceptance and tooling advisory review                                          |
+| Payment and subscription | Milestone payment request generator active; zero-rated VAT rules enforced                                                | H23/H24: verified provider events, replay safety and reconciliation                                                   |
+| Repeatable fulfilment    | 8-Step delivery SOP and trade vertical playbooks established in Dashboard Knowledge Base                                 | H50: paid pilot validates automated lifecycle, quality review and exception recovery                                  |
+| Domains                  | Existing roster and D01-D08 retained                                                                                     | Verify authority, renewals and sale status; progress independently of website pilot                                   |
+| Revenue                  | Zero unverified revenue; pipeline strictly separated from collected ledger payments                                      | Reconcile actual receipts; do not report zero or forecast as actual                                                   |
 
 **Single next bottleneck:** prove a secure enquiry-to-admin-dashboard journey against the correct backend in an isolated acceptance environment, then verify the coordinated production release. This combines H07/H08/H09/H42; installing another CRM does not resolve it. H01 commercial decisions and D01 portfolio verification can proceed independently.
 
@@ -144,22 +136,25 @@ The following is the imported September 28 record plus its October 2 commercial 
 Updated 28 September 2026. Central business records: The Harley Group / Business OS in Google Drive. Current direction: setup/build fee plus monthly digital service for trades. Prices are proposed, not approved.
 
 ## Health
+
 Reusable website/application foundation and a complete 50-item production audit exist. Revenue readiness is not established: production backend access, real enquiry handling, payment configuration and end-to-end fulfilment remain unverified. No paying-customer or revenue figure has been verified; this is not evidence that the figures are zero.
 
 ## Verified implementation
+
 Authoritative active repository: SkyPilot24/harley-digital-works. Local checkout: C:/Local Data/The Harley Group/harley-digital-works. Branch codex/revenue-readiness; baseline 7f52f8a. Recovered Development exports and the older inspection checkout are reference copies, not the active release source.
 
-| Evidence | Implemented locally | Remaining release condition |
-|---|---|---|
-| 843f0d8 | Server-side admin authentication/authorisation for transactional email; explicit prepared versus provider-accepted status; sending disabled by default | Verify real backend roles, provider, quotas and operational monitoring before enabling |
-| 843f0d8 | Shared validated intake, phone/source preservation and corporate form; notification failure does not invalidate saved enquiry | Verify persistence and notification delivery against intended backend; durable retry remains outstanding |
-| 843f0d8 | Prototype public tools gated to contact; source retained for deferred work | Deploy and verify public routes; do not describe deferred tools as complete |
-| 410eece | Prospect workspace creation no longer declares a won sale or invents recurring revenue; retry/concurrency handling; honest admin errors and revenue labels | Verify DB policies and real authenticated journeys; connect reconciled billing later |
-| Latest local verification | 75 tests passed, typecheck and production build passed; targeted lint passed | Repository-wide lint/format debt, production QA and release checks remain |
+| Evidence                  | Implemented locally                                                                                                                                        | Remaining release condition                                                                              |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
+| 843f0d8                   | Server-side admin authentication/authorisation for transactional email; explicit prepared versus provider-accepted status; sending disabled by default     | Verify real backend roles, provider, quotas and operational monitoring before enabling                   |
+| 843f0d8                   | Shared validated intake, phone/source preservation and corporate form; notification failure does not invalidate saved enquiry                              | Verify persistence and notification delivery against intended backend; durable retry remains outstanding |
+| 843f0d8                   | Prototype public tools gated to contact; source retained for deferred work                                                                                 | Deploy and verify public routes; do not describe deferred tools as complete                              |
+| 410eece                   | Prospect workspace creation no longer declares a won sale or invents recurring revenue; retry/concurrency handling; honest admin errors and revenue labels | Verify DB policies and real authenticated journeys; connect reconciled billing later                     |
+| Latest local verification | 75 tests passed, typecheck and production build passed; targeted lint passed                                                                               | Repository-wide lint/format debt, production QA and release checks remain                                |
 
 These commits have not been pushed or deployed as part of this work. No live email, payment, campaign or production database migration was performed.
 
 ## Access and infrastructure
+
 Lovable project THG Digital: f2aa963f-2beb-4507-b37e-a1865915cda7. Its configuration confirms intended Supabase project worzpzbutngugwzhlvtj. The separately connected Supabase account exposes only unrelated TRF Connect. Lovable database inspection was refused because the connector lacks projects:write scope. Restore the correct access; do not create a replacement database or modify TRF Connect.
 
 Stripe account retrieval has not succeeded because authentication repeats. Account, products, prices, webhooks and trading status are unverified.
@@ -167,6 +162,7 @@ Stripe account retrieval has not succeeded because authentication repeats. Accou
 Cloudflare currently serves the brand domains through skypilot24-harley-digital-works; the previously inspected live release predates these local fixes. Production Supabase configuration, multi-domain routing/canonicals and release rollback need verification.
 
 ## Next execution sequence
+
 1. Approve final Managed scope, price, VAT treatment and contract/support terms; model choice is already settled as setup plus monthly.
 2. Restore access to the existing Lovable/Supabase backend and intended Stripe account; inspect roles, policies and configuration.
 3. Prove one enquiry persists, is visible to an authorised operator and generates an accurately reported notification.
@@ -178,4 +174,5 @@ Cloudflare currently serves the brand domains through skypilot24-harley-digital-
 Detailed task definitions, priorities, owners, dependencies and acceptance criteria are in MASTER_BACKLOG.md. No whole audit task is marked complete solely because part of its code was changed.
 
 ## Commercial roadmap update — 2 October 2026
+
 Domains are now a separately measured commercial workstream under The Harley Group, marketed through Harley Digital Works. MASTER_BACKLOG H49 was revised and D01–D08 added for verified inventory, offers/mandates, catalogue, intake, assisted settlement/transfer, renewals, reporting/cross-sell and later brand/product review. Existing setup-plus-monthly direction and production-readiness sequence remain. This is a planning/documentation update only; no inventory ownership, code deployment, buyer messaging, purchase, payment integration or transaction completion is implied. Prices remain proposals. The central Business Definition in The Harley Group / Business OS was updated to match.

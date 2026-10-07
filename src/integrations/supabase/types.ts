@@ -23,7 +23,19 @@ export type Database = {
           created_at: string;
         };
         Insert: never;
-        Update: never;
+        Update: {
+          id?: string;
+          lead_id?: string;
+          source?: string;
+          status?: string;
+          attempts?: number;
+          next_attempt_at?: string;
+          lease_token?: string | null;
+          lease_until?: string | null;
+          last_error?: string | null;
+          accepted_at?: string | null;
+          created_at?: string;
+        };
         Relationships: [];
       };
       agency_settings: {
