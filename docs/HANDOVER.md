@@ -1,3 +1,5 @@
+Sign-in follow-up (7 October): owner reported a silent login failure. Confirmed existing administrator email, password-configured and confirmed-account booleans without reading credentials. Added persistent inline errors/status, actual form-value reading for autofill, deferred post-sign-in routing outside Supabase Auth callbacks, and signup-only minimum password length. Staging browser invalid-login case visibly shows Invalid login credentials. Build/typecheck/focused lint and complete tests pass. Owner success/retrieval is still pending; no password reset or credential change performed.
+
 Release record: source 60f41d52d4e1f5b444173635a63994a6a48d6cde pushed to canonical main; final Worker 76a25f25-d0f1-44b9-a39a-72187cb890a1 deployed. Final live anonymous REST/RPC checks denied; final secret scan passed across 309 outputs; disabled Google sign-in visibly verified. See docs/evidence/live-enquiry-release-2026-10-07.json (from repository root). Existing-owner retrieval remains pending private sign-in. Historical versions below are superseded by this record.
 
 # Shared development handover

@@ -33,6 +33,8 @@ function AuthPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [busy, setBusy] = useState(false);
+  const [formError, setFormError] = useState<string | null>(null);
+  const [formNotice, setFormNotice] = useState<string | null>(null);
   const [localSignIn, setLocalSignIn] = useState(false);
 
   useEffect(() => {
@@ -44,8 +46,11 @@ function AuthPage() {
 
     const { data: sub } = supabase.auth.onAuthStateChange((event) => {
       if (event === "SIGNED_IN") {
-        router.invalidate();
-        navigate({ to: (search.redirect as "/admin") ?? "/admin", replace: true });
+        // Let Supabase release its Auth lock before route guards query the session.
+        window.setTimeout(() => {
+          router.invalidate();
+          navigate({ to: (search.redirect as "/admin") ?? "/admin", replace: true });
+        }, 0);
       }
     });
     return () => sub.subscription.unsubscribe();
@@ -77,22 +82,35 @@ function AuthPage() {
 
   async function handleEmail(e: React.FormEvent) {
     e.preventDefault();
+    const fields = new FormData(e.currentTarget as HTMLFormElement);
+    const enteredEmail = String(fields.get("email") ?? "").trim();
+    const enteredPassword = String(fields.get("password") ?? "");
+    setFormError(null);
+    setFormNotice(null);
     setBusy(true);
     try {
       if (mode === "signup") {
         const { error } = await supabase.auth.signUp({
-          email,
-          password,
+          email: enteredEmail,
+          password: enteredPassword,
           options: { emailRedirectTo: window.location.origin + "/admin" },
         });
         if (error) throw error;
         toast.success("Check your inbox to confirm your email.");
+        setFormNotice(
+          "Check your inbox to confirm your email. Creating an account does not grant administrator access.",
+        );
       } else {
-        const { error } = await supabase.auth.signInWithPassword({ email, password });
+        const { data, error } = await supabase.auth.signInWithPassword({
+          email: enteredEmail,
+          password: enteredPassword,
+        });
         if (error) throw error;
+        if (!data.session) throw new Error("Sign-in did not return a session. Please try again.");
       }
     } catch (err: unknown) {
-      toast.error(err instanceof Error ? err.message : "Sign in failed");
+      const message = err instanceof Error ? err.message : "Sign in failed. Please try again.";
+      setFormError(message);
     } finally {
       setBusy(false);
     }
@@ -165,6 +183,7 @@ function AuthPage() {
               <label className="block">
                 <span className="text-[13px] font-medium text-ink">Email</span>
                 <input
+                  name="email"
                   type="email"
                   required
                   autoComplete="email"
@@ -176,15 +195,26 @@ function AuthPage() {
               <label className="block">
                 <span className="text-[13px] font-medium text-ink">Password</span>
                 <input
+                  name="password"
                   type="password"
                   required
-                  minLength={8}
+                  minLength={mode === "signup" ? 8 : undefined}
                   autoComplete={mode === "signup" ? "new-password" : "current-password"}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   className="mt-1.5 w-full rounded-lg border border-ink/15 bg-white px-3 py-2.5 text-sm text-ink outline-none focus:border-ink/40"
                 />
               </label>
+              {formError && (
+                <p role="alert" className="text-sm text-red-700">
+                  {formError}
+                </p>
+              )}
+              {formNotice && (
+                <p role="status" className="text-sm text-ink-muted">
+                  {formNotice}
+                </p>
+              )}
               <button
                 type="submit"
                 disabled={busy}
