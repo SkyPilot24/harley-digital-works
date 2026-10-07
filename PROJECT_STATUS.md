@@ -3,11 +3,28 @@
 ## Start here - short operating brief
 
 - **Goal:** first paid pilot of a near end-to-end automated trade digital service; founder manages exceptions and retains quality review.
-- **Verified state:** Refreshed source merged on main; GitHub Actions CI/CD quality & deployment workflows active and 100% passing (94/94 tests pass); commercial terms proposed; backend/security and live enquiry/admin journey still unverified. No revenue total verified.
-- **Bottleneck / one next task:** H07/H42 confirm intended backend and validate the isolated secure intake fixes; then prove H08/H09 enquiry-to-admin retrieval. Do not apply fixes against an assumed project.
+- **Verified state:** 7 October: production Cloudflare version b59af9dc maps to source 79e378c; runtime/build backend configuration is absent. Secure intake fixes are implemented in the isolated acceptance branch; separate staging mfpnfxpgkfuqtedbcxvp has reviewed schema and passing SQL concurrency evidence. Real staging Auth/API passes all 11 checks; browser form receipt and exactly one stored enquiry verified. Browser admin UI/session expiry remain pending. No revenue total verified.
+- **Bottleneck / one next task:** H07/H08/H09/H42 complete browser admin UI/session acceptance, then review the coordinated production release. Founder authorised a live push on 7 October; release is waiting for production backend identity/access and configuration.
 - **Decisions:** final scope, prices, VAT, terms, support capacity and initial quality/automation limits. D01 portfolio verification can progress independently.
 - **Load on demand:** BUSINESS_DEFINITION.md for commercial rules; MASTER_BACKLOG.md for the selected task; docs/REVENUE_WORKFLOW.md for lifecycle; docs/HANDOVER.md for continuation; docs/SHARED_SKILLS.md for skill availability. Detailed evidence and historical snapshots below need reading only where relevant.
 - **Close each meaningful session:** update this brief, task evidence and handover; record actual checks/release state, then reconcile Drive mirrors. Do not omit blockers to save context.
+
+## Live release preparation — 7 October 2026
+
+Founder authorised live release and selected THG Agency (worzpzbutngugwzhlvtj). Its private credential verified and installed on skypilot24-harley-digital-works; live code/main remain unchanged. Production build, complete test suite and secret scan of 310 output files passed. Additional schema drift found: missing message/updated_at columns, package NOT NULL, and legacy policies permitting all authenticated users. Compatibility tests pass (23 database tests); staging compatibility applied and all 11 real Auth/API tests pass again. Reviewed exact cutover is docs/thg-agency-reviewed-cutover.sql; preflight metadata snapshot retained (0 leads, 1 admin, 2 Auth users; no customer rows exported). Automatic approval review rejected production schema/permission changes as requiring exact user approval. That approval is pending; database cutover has not run. Remaining browser owner/session and live write/retrieval verification must be recorded honestly.
+
+## Current enquiry acceptance — 7 October 2026
+
+This supersedes older environment/deployment claims below. See [dated enquiry acceptance](docs/enquiry-acceptance-2026-10-07.md) for environment map, root causes, migration state, test evidence, access actions and release gate.
+
+- Inspected requested repository: clean main, 79e378cb8d887af0d36db127bfc96e63c2243c2d. Safe versioned branch: codex/h07-h42-enquiry-acceptance in implementation/hdw-enquiry-acceptance.
+- Cloudflare current active version b59af9dc links that revision; Git is connected to SkyPilot24/harley-digital-works/main. Lovable separately remains connected to SkyPilot24/thgdigital/main. No runtime secrets or build variables are configured on the production Worker.
+- Existing application configuration and Lovable project-info record identify sprljifjcpbnagsxefrp; accessible THG Agency metadata and stale CLI config identify worzpzbutngugwzhlvtj. Neither was retargeted or written. Current Lovable inspection confirms public insert bypass, missing attempt table, enabled signup-admin bootstrap and one existing admin. The owner now has a password configured; sign-in remains unproved.
+- Founder created genuinely separate staging mfpnfxpgkfuqtedbcxvp in SkyPilot24’s Org, Ireland, Free. Empty preflight passed. Reviewed schema/hardening and follow-up inherited-function grant fix are applied only there. Notifications disabled; no production data copied.
+- Local tests prove owner preservation, denied public/ordinary lead access and self-promotion, atomic intake, quota/timing, failure rollback/retry and restricted cleanup. Real staging SQL: 12 duplicate requests -> 1 saved/11 duplicates/1 lead; 12 boundary requests -> 5 saved/7 rejected/5 attempts. Privileged SQL is not Auth/API or browser proof.
+- Fresh build/typecheck/format passed. Test suite passed; lint has nine existing warnings and no errors. Critical dependency advisories cleared within existing constraints; nine tooling moderate/high findings remain. Staging security advisor has no warnings; service-only attempt-table INFO is intentional.
+- **Blocking launch:** browser admin UI/session acceptance; missing live runtime/build configuration; final live target/backup/schema reconciliation. Live-release approval received; prerequisites remain. Retention schedule and durable notifications remain unfinished.
+- Implemented locally and schema applied in isolated staging; acceptance branch pushed to GitHub (ff7cdfb); no push to main, app deployment or production mutation. Synced sources untouched. Drive mirrors not updated automatically.
 
 ## Current reconciliation - 3 October 2026
 
@@ -127,4 +144,3 @@ Detailed task definitions, priorities, owners, dependencies and acceptance crite
 
 ## Commercial roadmap update — 2 October 2026
 Domains are now a separately measured commercial workstream under The Harley Group, marketed through Harley Digital Works. MASTER_BACKLOG H49 was revised and D01–D08 added for verified inventory, offers/mandates, catalogue, intake, assisted settlement/transfer, renewals, reporting/cross-sell and later brand/product review. Existing setup-plus-monthly direction and production-readiness sequence remain. This is a planning/documentation update only; no inventory ownership, code deployment, buyer messaging, purchase, payment integration or transaction completion is implied. Prices remain proposals. The central Business Definition in The Harley Group / Business OS was updated to match.
-

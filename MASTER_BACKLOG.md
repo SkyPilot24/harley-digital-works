@@ -108,37 +108,37 @@ Updated 2 October 2026. Domain integration added following the founder's request
 - **Phase:** 1
 - **Priority:** Critical
 - **Who needs to act:** Third party
-- **Status:** Access blocked
-- **Current gap:** The source points at project worzpzbutngugwzhlvtj; the accessible Supabase inventory contains a different project. Existing source migrations include RLS and later fixes, but deployed policies, tables, backups and region could not be inspected.
+- **Status:** In progress — staging Auth/API accepted; live target/recovery pending
+- **Current gap:** Existing application config identifies sprljifjcpbnagsxefrp; stale CLI and accessible THG Agency metadata identify worzpzbutngugwzhlvtj. Production Cloudflare configuration is empty. Staging mfpnfxpgkfuqtedbcxvp is separate; staging credentials are privately configured and real Auth/API acceptance passes.
 - **Why it matters:** Production configuration and data isolation cannot be signed off from migration files alone.
 - **Dependencies:** Me: reconnect/grant the correct project account or identify its administrator
 - **Resolution:** Have the backend account owner provide scoped access; inventory deployed migrations, auth settings, roles, tables, storage, backup and recovery capability. Apply only reviewed missing changes in staging first.
 - **Definition of done:** Correct project identity is confirmed; migration reconciliation and anonymous/staff/client isolation tests pass; recovery settings and ownership are recorded.
-- **Latest evidence:** Lovable config confirms worzpzbutngugwzhlvtj; query access refused for missing projects:write scope. Separate Supabase account exposes unrelated project.
+- **Latest evidence (7 October):** See [dated enquiry acceptance](docs/enquiry-acceptance-2026-10-07.md). Local secure intake/permission fixes implemented; isolated staging schema applied; SQL concurrency passes. Real Auth/API passes all 11 checks; browser enquiry receipt and one stored row verified. Browser admin UI/session expiry pending. Acceptance branch pushed to GitHub; founder authorised live release. Main unchanged while live backend identity/access and configuration remain blocking. No production changes or deployment.
 
 ## H08 — Connect both brand enquiry forms to one validated intake
 - **Phase:** 2
 - **Priority:** High
 - **Who needs to act:** You
 - **Status:** In progress / partially resolved
-- **Current gap:** The Harley Group enquiry is local state only. HDW contact renders a phone input but its parsed schema/payload omit the phone. Service query selection is unused; Pro and domain package labels do not match selectable values.
+- **Current gap:** Shared server intake and qualification-field parsing are implemented. Staging browser contact receipt, one stored enquiry and genuinely authenticated API administrator retrieval pass. Both-brand field coverage and browser admin/session checks remain; production Cloudflare backend configuration is absent.
 - **Why it matters:** Valid interest can be lost or arrive without the information needed to follow up.
 - **Dependencies:** H01, H05, H06
 - **Resolution:** Use a shared server intake with stable offer IDs, phone, source brand/page and explicit service selection. Preserve accessible validation and the existing honeypot/timing protections.
 - **Definition of done:** Both brands save all entered fields once; package links preselect correctly; validation, retry, duplicate and fallback cases are covered.
-- **Latest evidence:** Local commit 843f0d8: authentication/intake/status safeguards and public prototype gating. Remaining acceptance and deployment must still be verified.
+- **Latest evidence (7 October):** See [dated enquiry acceptance](docs/enquiry-acceptance-2026-10-07.md). Local secure intake/permission fixes implemented; isolated staging schema applied; SQL concurrency passes. Real Auth/API passes all 11 checks; browser enquiry receipt and one stored row verified. Browser admin UI/session expiry pending. Acceptance branch pushed to GitHub; founder authorised live release. Main unchanged while live backend identity/access and configuration remain blocking. No production changes or deployment.
 
 ## H09 — Make lead notifications and email status reliable
 - **Phase:** 4
 - **Priority:** High
 - **Who needs to act:** You
 - **Status:** In progress / partially resolved
-- **Current gap:** Lead intake awaits Slack after saving; a network rejection can make a saved lead appear failed. Email dispatch returns success even in simulated mode and Slack labels a simulated email Sent. There is no durable retry/outbox.
+- **Current gap:** Saved enquiries now remain successful when Slack rejects or times out; notification failure regression checks pass. Staging outbound notifications/email are disabled. Durable retry/outbox and truthful simulated/provider email status remain unfinished.
 - **Why it matters:** Staff can miss leads and customers may retry submissions or rely on undelivered documents.
 - **Dependencies:** H04, H06, H08, H10
 - **Resolution:** Treat persisted intake as the authoritative receipt; enqueue/retry notification separately. Distinguish prepared, queued, provider-accepted, delivered and failed states. Add bounded timeouts and staff-visible failures.
 - **Definition of done:** Slack/provider outages do not lose or duplicate leads; a failed notification can retry safely; UI and audit records never describe simulated or merely accepted mail as delivered.
-- **Latest evidence:** Local commit 843f0d8: authentication/intake/status safeguards and public prototype gating. Remaining acceptance and deployment must still be verified.
+- **Latest evidence (7 October):** See [dated enquiry acceptance](docs/enquiry-acceptance-2026-10-07.md). Local secure intake/permission fixes implemented; isolated staging schema applied; SQL concurrency passes. Real Auth/API passes all 11 checks; browser enquiry receipt and one stored row verified. Browser admin UI/session expiry pending. Acceptance branch pushed to GitHub; founder authorised live release. Main unchanged while live backend identity/access and configuration remain blocking. No production changes or deployment.
 
 ## H10 — Verify transactional sender and notification destinations
 - **Phase:** 4
@@ -528,13 +528,13 @@ Updated 2 October 2026. Domain integration added following the founder's request
 - **Phase:** 5
 - **Priority:** High
 - **Who needs to act:** You
-- **Status:** Open — acceptance not yet demonstrated
-- **Current gap:** Intake has useful validation, honeypot, timing and rate-limit records, but duplicate/count checks are read-then-write, cleanup runs on submission, and forwarded-IP trust needs validation. No complete dependency/secret/security assessment was performed.
+- **Status:** In progress — staging concurrency and access controls accepted
+- **Current gap:** Local atomic intake and restricted cleanup replace the read-then-write races; staging SQL concurrency passes. Browser admin UI/session expiry acceptance, hourly retention scheduling and remaining tooling advisory assessment are pending.
 - **Why it matters:** Concurrent abuse, excess retained data or overlooked secrets can survive ordinary happy-path tests.
 - **Dependencies:** H06, H07, H27
 - **Resolution:** Make idempotency/rate limits robust under concurrency and trust only verified edge client-IP input. Schedule retention cleanup. Scan dependencies/secrets and inspect authentication bootstrap, role escalation, API payload limits and storage isolation.
 - **Definition of done:** Parallel requests cannot bypass defined limits or create duplicate records; retention runs without traffic; exploitable dependency/secret findings are resolved or explicitly blocked from release.
-- **Latest evidence:** See original audit evidence; no subsequent completion verified.
+- **Latest evidence (7 October):** See [dated enquiry acceptance](docs/enquiry-acceptance-2026-10-07.md). Local secure intake/permission fixes implemented; isolated staging schema applied; SQL concurrency passes. Real Auth/API passes all 11 checks; browser enquiry receipt and one stored row verified. Browser admin UI/session expiry pending. Acceptance branch pushed to GitHub; founder authorised live release. Main unchanged while live backend identity/access and configuration remain blocking. No production changes or deployment.
 
 ## H43 — Add operational monitoring and prove recovery
 - **Phase:** 5
