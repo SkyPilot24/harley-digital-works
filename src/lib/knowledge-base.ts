@@ -85,19 +85,19 @@ export const KNOWLEDGE_BASE_ARTICLES: KnowledgeArticle[] = [
   {
     id: "commercial-offer-managed",
     category: "commercial",
-    title: "Commercial Offer: The Managed Digital Presence",
+    title: "Commercial Model: The Three Productised Packages",
     summary:
-      "The single, sellable launch package designed specifically for established UK trade contractors.",
+      "The three productised packages designed for UK trade contractors, anchored by the flagship Revenue Engine.",
     keyPoints: [
-      "Setup fee: £1,495 fixed setup (split into 50% deposit and 50% completion balance).",
-      "Ongoing Care: £249 per month on a rolling 30-day agreement, billed from go-live.",
-      "Core build scope: 5-page trade website, 100% done-for-you technical copy, accreditation badges, dual-channel lead desk.",
-      "Included revisions: Two structured preview revision rounds before DNS cutover.",
-      "Monthly Care scope: Cloudflare edge hosting, SSL certificates, 1 batch of content edits (up to 30 mins), enquiry health checks, review workflow, monthly performance digest.",
+      "The Revenue Engine (Core Flagship): £1,495 setup (50/50 split £747.50) + £249/mo care. 5 pages, DFY trade copy, dual SMS/email lead desk, GBP local SEO + Schema JSON-LD, automated review kit, 30-min monthly edits.",
+      "The Launchpad (Entry): £995 setup (50/50 split £497.50) + £149/mo care. 3 pages, DFY copy, email lead desk, GBP verification, Cloudflare edge hosting, 15-min monthly edits.",
+      "The Market Leader (Expansion): £2,495 setup (50/50 split £1,247.50) + £399/mo care. 8 pages, 3 geo-targeted area landing pages, missed-call SMS auto-reply, priority review booster, Google LSA setup, 60-min monthly edits.",
+      "Initial Target Niche: Established Electrical Contractors (2–8 staff) across Bristol, Bath, and the M4 Corridor.",
+      "Acquisition Engine: Zero cold calling. Automated corporate B2B digital leak audits (PECR compliant) + private interactive prototypes.",
     ],
     operationalDetails:
-      "Harley Digital Works targets established trade contractors (electricians, heating engineers, builders, commercial contractors) with 2–10 staff. The proposition eliminates digital administration and guarantees high local authority. Out-of-scope items (e-commerce, custom web apps, photography site visits) are quoted separately or excluded.",
-    statusBadge: "Ratified Offer",
+      "Harley Digital Works positions as the digital operating infrastructure for UK trades: 'We build and run your complete digital enquiry desk — so high-value local customers find you, trust you, and book with you, while you stay focused on the tools.' All billing is milestone-gated (50% upfront deposit, 50% on preview sign-off before DNS cutover). Out-of-scope items (e-commerce, custom apps, site visits) are quoted separately.",
+    statusBadge: "Ratified Tiers",
     lastUpdated: "7 October 2026",
   },
   {
@@ -128,12 +128,12 @@ export const KNOWLEDGE_BASE_ARTICLES: KnowledgeArticle[] = [
       "Founder weekly capacity: 10–12 hours per week dedicated to Harley Digital Works.",
       "Automation ratio: Scaffolding, intake parsing, and diagnostic checks automate ~70% of setup work.",
       "Active labour per build: 4–5 hours of active founder touch per completed website.",
-      "Hard concurrency limit: Maximum 2 to 3 new client builds per calendar month.",
-      "Fleet servicing: Support for active care clients requires ~1.0h/client/month, fitting within part-time capacity up to 15 active accounts.",
+      "Hard concurrency limit: Maximum 2 to 3 concurrent client onboarding builds (hard cap of 2 during initial pilot).",
+      "Fleet servicing: Support for active care clients requires ~0.5–1.0h/client/month, fitting within part-time capacity up to 15 active accounts.",
     ],
     operationalDetails:
-      "To prevent delivery delays and maintain personal balance, any pipeline volume exceeding 3 concurrent onboarding builds must trigger an immediate pause on outbound acquisition or require onboarding a vetted production junior.",
-    statusBadge: "Max 3 Concurrency",
+      "To prevent delivery delays and maintain personal balance alongside NHS clinical responsibilities, any pipeline volume exceeding 2 to 3 concurrent onboarding builds must trigger an immediate pause on outbound acquisition or require onboarding a vetted production junior.",
+    statusBadge: "2–3 Concurrency",
     lastUpdated: "7 October 2026",
   },
   {

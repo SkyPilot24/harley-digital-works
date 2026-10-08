@@ -1,6 +1,6 @@
 # The Harley Group — shared project status
 
-## Current handover — 7 October 2026, Slack Operational Command Centre, commercial launch offer, and knowledge base
+## Current handover — 8 October 2026, Dual Architecture, Client AI Template, and Commercial Ratification
 
 **Verified live & implemented:**
 
@@ -10,6 +10,7 @@
 - **Slack Operational Command Centre implemented**: Two-way interactive Block Kit actions (`[📞 Contacted]`, `[⭐ Qualify]`, `[📁 Create Client]`, `[🔄 Retry]`), `/thg` slash commands (`status`, `leads`, `builds`, `approvals`, `retry`, `help`), clean 9-channel routing topology, 08:00 daily founder briefing task (`0 8 * * *`), 30-min health scanner (`*/30 * * * *`), HMAC-SHA256 request verification, and dedicated Admin Control Centre Slack panel.
 - H42 hourly attempt retention task `prune-lead-attempts` implemented in Nitro with `0 * * * *` scheduled trigger, invoking `prune_lead_submission_attempts()` via `supabaseAdmin`.
 - **H01/H02 Commercial Direction RATIFIED**: Robbie formally approved the commercial blueprint on 7 October 2026. Ratified terms: Managed Revenue Engine (£1,495 setup + £249/mo care, with £995/£149 entry and £2,495/£399 expansion tiers), zero-rated VAT below £90k, hard limit of 2 concurrent builds during pilot, and initial focus on established Electrical Contractors in Bristol/Bath / M4 corridor.
+- **Dual Architecture & Client Template Established (8 October 2026)**: Wessex Volt 5-page trade template built and verified in `SkyPilot24/kindred-spark` (commit `f1481fe`) connected to Lovable with project knowledge `UK Trade Website Standards`. Agency platform (`harley-digital-works`) remains governed directly in code by Codex/Antigravity to safeguard server tasks, Slack commands, and Supabase RLS security.
 - Comprehensive operational Admin suite deployed: Control Centre (`admin.index.tsx`), Invoices milestone generator (`admin.invoices.tsx`), Projects stage tracker (`admin.projects.tsx`), Diagnostics outbox monitor (`admin.diagnostics.tsx`), and the General Knowledge Base (`admin.knowledge-base.tsx` & `src/lib/knowledge-base.ts`).
 - 136/136 test suite passed (66 smoke including drift detection + 67 regression/integration + 3 service worker), 0 typecheck errors, 0 lint errors.
 
@@ -18,9 +19,9 @@
 ## Start here - short operating brief
 
 - **Goal:** first paid pilot of a near end-to-end automated trade digital service; founder manages exceptions and retains quality review.
-- **Verified state:** 7 October: live secure enquiry saved exactly once to THG Agency and retrieved by the genuinely signed-in existing owner in dashboard, Leads and full detail view. Minute Slack outbox alerts acknowledged. Hourly retention pruning scheduled. Canonical GitHub source and Cloudflare release are deployed; Lovable remains a separate prototype workspace. Full operational knowledge base active in dashboard. H01/H02 commercial terms ratified by Founder. No revenue total verified.
-- **Bottleneck / one next task:** Commercial terms ratified. Active execution tracks: Pilot lead sourcing & outreach template setup; H42 live owner session expiry/logout acceptance; H09/H10 transactional email setup (customer email disabled); H07 live database backup/restore proof.
-- **Decisions:** Launch offer (£1,495 setup + £249/mo), legal entity/VAT status, UK-wide/Bristol-Bath positioning, and 2 concurrent builds cap RATIFIED by Robbie on 7 October 2026. D01 portfolio verification can progress independently.
+- **Verified state:** 8 October: live secure enquiry saved exactly once to THG Agency and retrieved by the genuinely signed-in existing owner in dashboard, Leads and full detail view. Minute Slack outbox alerts acknowledged. Hourly retention pruning scheduled. Canonical GitHub source and Cloudflare release are deployed; client trade template active in `kindred-spark` via Lovable. Full operational knowledge base active in dashboard. H01/H02 commercial terms ratified by Founder. No revenue total verified.
+- **Bottleneck / one next task:** Commercial terms ratified and client template active. Active execution tracks: Pilot lead sourcing (50 Bristol/Bath electrical contractors) & outreach template setup; H42 live owner session expiry/logout acceptance; H09/H10 transactional email setup (customer email disabled); H07 live database backup/restore proof.
+- **Decisions:** Launch offer (£1,495 setup + £249/mo), legal entity/VAT status, UK-wide/Bristol-Bath positioning, and 2 concurrent builds cap RATIFIED by Robbie on 7 October 2026. D01 portfolio verification can progress independently. Dual architecture (Lovable for client sites, code for agency platform) settled 8 October 2026.
 - **Load on demand:** docs/COMMERCIAL_OFFER_MANAGED.md for ratified offer & economics; BUSINESS_DEFINITION.md for commercial rules; MASTER_BACKLOG.md for the selected task; docs/REVENUE_WORKFLOW.md for lifecycle; docs/HANDOVER.md for continuation; src/lib/knowledge-base.ts for operational knowledge base.
 - **Close each meaningful session:** update this brief, task evidence, handover, and dashboard knowledge base; record actual checks/release state, then reconcile Drive mirrors. Do not omit blockers to save context.
 

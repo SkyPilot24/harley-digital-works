@@ -24,11 +24,13 @@ This repository is collaboratively maintained by **ChatGPT**, **Codex**, and **G
 
 ---
 
-## 2. Session Start Protocol (All Agents)
+## 2. Session Start Protocol (All Agents: Antigravity, Codex, ChatGPT)
 
-1. **Read `PROJECT_STATUS.md` First**: Read the short operating brief to determine the current single bottleneck.
-2. **Inspect Git Environment**: Check `git status`, current branch, and HEAD. Preserve uncommitted changes and ongoing work by peer agents.
-3. **Reconcile Backend Targets**: Do NOT execute database writes or migrations without verifying the active Supabase target recorded in `PROJECT_STATUS.md`.
+1. **Mandatory Handover & Status Inspection**: At the beginning of EVERY session, read:
+   - **`PROJECT_STATUS.md`**: Inspect the short operating brief to identify the current single bottleneck and verified database/release target.
+   - **`docs/HANDOVER.md`**: Read the latest dated handover section to inherit the exact recent state, decisions, peer agent activities, test results, and next actions.
+2. **Inspect Git Environment**: Check `git status`, current branch (`main`), and HEAD. Preserve uncommitted changes and ongoing work by peer agents.
+3. **Reconcile Backend Targets**: Do NOT execute database writes or migrations without verifying the active Supabase target recorded in `PROJECT_STATUS.md` (`worzpzbutngugwzhlvtj`).
 4. **Load Context On-Demand**: Load only task-specific files and skills needed for the selected task; do not flood context with historical logs.
 
 ---

@@ -1,22 +1,23 @@
 // Summary of the governing Business OS records & verified platform engine, updated October 2026.
 export const currentStrategy = {
-  title: "Managed Websites & Digital Infrastructure for UK Trades",
-  model: "An initial website build fee (£1,495 setup) plus ongoing monthly digital care (£249/mo).",
+  title: "Managed Digital Operating Infrastructure for Established UK Trade Contractors",
+  model:
+    "An initial website build fee (Core Flagship: £1,495 setup) plus ongoing monthly digital care (£249/mo), with £995/£149 Launchpad and £2,495/£399 Market Leader tiers.",
   milestone:
-    "Win, deliver and retain verified paying trade customers with 100% done-for-you technical copy & local SEO.",
+    "Win, deliver and retain verified paying trade contractors through automated B2B leak audits, 100% DFY trade copy, and dual lead desk routing.",
   audience:
-    "Established UK trade contractors (NICEIC electricians, Gas Safe heating engineers, builders, multi-van contractors with 2–10 staff).",
+    "Established UK Electrical Contractors (2–8 staff, NICEIC/NAPIT accredited), expanding to heating/plumbing following pilot validation.",
   pilot:
-    "Bristol & Bath regional trade contractors (expanding UK-wide remote digital studio). 14-day SLA delivery target.",
+    "Bristol & Bath regional electrical contractors (M4 Corridor pilot, UK-wide remote digital studio). 14-day SLA delivery target.",
   offer:
-    "Managed Digital Presence: £1,495 setup fee (50% deposit £747.50, 50% completion balance £747.50) + £249/mo ongoing monthly care. VAT not applicable / zero-rated.",
+    "The Revenue Engine (Core Flagship): £1,495 setup (50% deposit £747.50, 50% completion balance £747.50) + £249/mo care. Entry: The Launchpad (£995 + £149/mo). Expansion: The Market Leader (£2,495 + £399/mo). VAT zero-rated / not applicable below £90k.",
   approval:
-    "Written proposal acceptance, 50% deposit (£747.50) confirmed in bank/provider ledger, and verified trade accreditations before work begins.",
+    "Written proposal acceptance, 50% deposit confirmed in banking ledger, and verified trade accreditations before work begins.",
   build:
-    "Turnkey 5-page trade website, 100% done-for-you technical copywriting, trade accreditation badges, mobile-responsive layout, dual-channel lead desk, Local Map Pack Schema.org JSON-LD microdata, and Cloudflare edge SSR performance.",
+    "Turnkey 5-page trade conversion website, 100% done-for-you technical copywriting, trade accreditation badges, mobile-responsive layout, dual-channel lead desk, Local Map Pack Schema.org JSON-LD microdata, and Cloudflare edge SSR performance.",
   care: "Managed Cloudflare edge hosting, SSL certificates, 1 batch of content edits per month (up to 30 mins), automated enquiry health checks, review workflow, monthly performance summary, and 24h support response window.",
   boundaries:
-    "Capacity limit: Max 2–3 concurrent client onboarding builds to protect NHS schedule balance. Zero unverified revenue claims. VAT not applicable. All leads protected by Supabase RLS.",
+    "Capacity limit: Maximum 2 to 3 concurrent client onboarding builds (strict limit of 2 during initial pilot) to safeguard founder NHS schedule balance (10–12 hours/week). Zero cold calling. Zero unverified revenue claims. VAT zero-rated below £90k. All leads protected by Supabase RLS.",
 };
 
 export const strategyRecords = [

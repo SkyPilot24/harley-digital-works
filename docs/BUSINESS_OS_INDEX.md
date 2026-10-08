@@ -24,11 +24,12 @@ Current state:
 - Durable lead notifications and minute Slack outbox delivery accepted (#all-the-harley-group).
 - H42 automated hourly abuse attempt retention task (`prune-lead-attempts`) scheduled in Nitro and Cloudflare Worker.
 - Complete operational Control Centre, Invoices milestone generator, Projects SLA tracker, Diagnostics outbox monitor, and General Knowledge Base deployed in dashboard.
-- Single sellable Managed commercial offer (£1,495 setup + £249/mo) and defensible economics drafted in `docs/COMMERCIAL_OFFER_MANAGED.md`, awaiting Robbie ratification.
+- **Commercial Direction RATIFIED (H01/H02)**: Robbie formally approved the commercial blueprint on 7 October 2026. Ratified terms: Managed Revenue Engine (£1,495 setup + £249/mo care, with £995/£149 Launchpad and £2,495/£399 Market Leader tiers), zero-rated VAT below £90k, hard limit of 2 concurrent builds during pilot, and initial focus on established Electrical Contractors in Bristol/Bath / M4 corridor. Documented in [`docs/COMMERCIAL_OFFER_MANAGED.md`](COMMERCIAL_OFFER_MANAGED.md).
 
 Next actions:
 
-- Robbie ratification of the 4 Founder Decision Register items (pricing, legal entity/VAT status, UK-wide/Bristol-Bath positioning, 2 concurrent builds cap).
+- Sourcing and curating the first 50 verified Bristol/Bath electrical contractor targets (Companies House + Google Places).
+- Assembling the automated "Digital Leak Audit" teardown templates and staging preview workflows.
 - Coordinated owner session expiry/logout acceptance and tooling advisory review (H42).
 - Transactional email sender/provider setup and bounce handling once credentials ready (H09/H10; customer email remains disabled).
 - Backup/recovery proof for live THG Agency database (H07).

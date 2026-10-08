@@ -9,21 +9,34 @@
 
 ## 1. One-Page Sellable Offer: The Managed Digital Presence
 
-### Proposition
+### Strategic Proposition
 
-**"The Digital Operating System for Established UK Trade Contractors"**  
-A 100% done-for-you, professional digital presence that establishes local authority, captures enquiries reliably, and eliminates digital admin — maintained under continuous technical and operational care.
+**"The Digital Operating Infrastructure for Established UK Trade Contractors"**  
+*"We build and run your complete digital enquiry desk — so high-value local customers find you, trust you, and book with you, while you stay focused on the tools."*
 
 ---
 
-### Core Commercial Terms
+### The Three Ratified Commercial Packages
 
-- **Initial Setup & Build Fee:** **£1,495** _(Proposal; tax presentation subject to VAT status)_
-- **Ongoing Monthly Care:** **£249 / month** _(Billed monthly from go-live)_
+| Package | Target Customer | Upfront Setup Fee | Ongoing Monthly Care | Core Included Scope |
+| :--- | :--- | :---: | :---: | :--- |
+| **1. The Launchpad** | Solo subcontractors & small partnerships (1–2 staff) | **£995** (50/50: £497.50 / £497.50) | **£149 / month** (rolling 30 days) | 3-page modern trade site, done-for-you copy, email enquiry desk, GBP verification, Cloudflare hosting & SSL, 15-min monthly edits. |
+| **2. The Revenue Engine** *(Core Flagship)* | Established contractors (2–8 staff, £300k–£1m turnover) | **£1,495** (50/50: £747.50 / £747.50) | **£249 / month** (rolling 30 days) | 5-page high-authority site, DFY trade copywriting, instant dual SMS/email lead routing, GBP local SEO + Schema JSON-LD, automated review kit, 30-min monthly edits. |
+| **3. The Market Leader** | Growing regional firms & multi-van operations (5–15 staff) | **£2,495** (50/50: £1,247.50 / £1,247.50) | **£399 / month** (rolling 30 days) | 8-page trade site, 3 geo-targeted area landing pages, missed-call SMS auto-reply, priority review booster, Google LSA setup, 60-min monthly edits. |
+
+---
+
+### Core Commercial Terms (Flagship Package: The Revenue Engine)
+
+- **Initial Setup & Build Fee:** **£1,495** *(Zero-rated / VAT not applicable below £90k statutory threshold)*
+- **Ongoing Monthly Care:** **£249 / month** *(Billed monthly via Stripe auto-debit starting from go-live date)*
 - **Billing & Payment Milestones:**
   1. **50% Deposit (£747.50):** Due upon proposal acceptance to reserve build slot and initiate discovery/copywriting. Strictly non-refundable once intake audit begins.
   2. **50% Balance (£747.50):** Due upon final client approval of the staged preview, prior to public DNS switch and live launch.
   3. **Monthly Care Subscription (£249/mo):** Initiated via Stripe auto-debit on the go-live date, recurring monthly on a rolling 30-day agreement.
+- **Initial Target Niche:** Established Electrical Contractors (2–8 staff) across Bristol, Bath, and the M4 Corridor.
+- **Acquisition Model:** Zero cold calling. Automated corporate B2B "Digital Leak Audits" (mobile speed, schema gaps, SMS response tests) + private staging previews.
+- **Capacity Limits:** Maximum **2 to 3 concurrent client onboarding builds** (hard limit of **2** during initial pilot) to safeguard founder NHS schedule balance (10–12 hours/week).
 
 ---
 

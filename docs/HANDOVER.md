@@ -1,10 +1,55 @@
 # Shared development handover
 
-## Current handover — 7 October 2026, External Sites Commercial Rollout & Live Deployment
+## Current handover — 8 October 2026, Dual Architecture, Client AI Template & Codex Operating Framework
 
 **Scope & Implemented State:**
 
-1. **External Websites Commercial Alignment:**
+1. **Dual Architecture & AI Editing Operating Model (Settled 8 October 2026):**
+   - **External Client Websites (Trade Delivery):** Built and maintained visually via **Lovable** connected to isolated GitHub repositories (e.g. `SkyPilot24/kindred-spark` — Wessex Volt Electrical 5-page trade template, verified live at commit `f1481fe`).
+     - Lovable project Knowledge saved as: `UK Trade Website Standards`.
+     - Delivers 100% visual AI editing for the £249/mo "30-minute monthly care" allowance without touching agency code.
+     - Deploys via Cloudflare Pages edge hosting.
+   - **Agency Platform & Operational Hub (`SkyPilot24/harley-digital-works`):** Maintained strictly in code via **Codex**, **Antigravity**, and canonical Git.
+     - Houses live Supabase RLS policies (`worzpzbutngugwzhlvtj`), Cloudflare Nitro Worker SSR, Slack Operational Command Centre (`/thg` slash commands, Block Kit 1-click triage buttons), minute notification outbox crons, hourly abuse pruning (`prune-lead-attempts`), and authenticated Admin suite.
+     - **Safety Boundary for Codex/Antigravity:** Do not attempt to import `harley-digital-works` into Lovable; Lovable is reserved for isolated client web repositories. All marketing page and platform adjustments are made directly in code.
+
+2. **Commercial Ratification (H01 / H02 Complete):**
+   - **Governing Document:** [`docs/COMMERCIAL_OFFER_MANAGED.md`](COMMERCIAL_OFFER_MANAGED.md) (Version 1.1, Ratified by Robbie on 7 October 2026).
+   - **Three Commercial Tiers:**
+     - **The Launchpad (Entry):** **£995 setup** (50/50: £497.50 / £497.50) + **£149 / month** (3 pages, DFY copy, email lead desk, GBP setup, Cloudflare hosting, 15-min monthly edits).
+     - **The Revenue Engine (Core Flagship):** **£1,495 setup** (50/50: £747.50 / £747.50) + **£249 / month** (5 pages, DFY trade copy, dual instant SMS/email lead routing, GBP local SEO + Schema JSON-LD, automated review kit, 30-min monthly edits).
+     - **The Market Leader (Expansion):** **£2,495 setup** (50/50: £1,247.50 / £1,247.50) + **£399 / month** (8 pages, 3 geo-targeted area landing pages, missed-call SMS auto-reply, review booster, Google LSA setup, 60-min monthly edits).
+   - **Target Niche & Pilot Geography:** Established UK Electrical Contractors (2–8 staff, NICEIC/NAPIT accredited) across Bristol, Bath, and the M4 Corridor.
+   - **Acquisition Model:** Zero cold calling. Automated corporate B2B "Digital Leak Audits" (PECR-compliant) highlighting mobile speed fails, missing schema, and form response gaps, paired with private interactive staging prototypes (`/demos_/electrician-concept` in HDW, or `kindred-spark`).
+   - **Statutory Boundaries:** Zero-rated VAT below £90k statutory threshold. Concurrency limit capped at maximum 2 to 3 onboarding builds (strict limit of 2 during initial pilot) to safeguard founder NHS clinical commitments (10–12 hours/week).
+
+3. **Verified Technical & Test Baseline:**
+   - Automated test suite: `npm test` runs 136 tests (66 platform smoke checks including drift detection + 67 regression/integration tests + 3 service worker tests) — **136 / 136 PASS**.
+   - TypeScript compilation: `npm run typecheck` (`tsc --noEmit`) — **0 errors**.
+   - Code formatting: `npm run format:check` — **100% matched Prettier style**.
+   - Code linting: `npm run lint` — **0 errors** (9 existing component warnings).
+   - Worker triggers: Cloudflare Wrangler crons configured for `["* * * * *", "0 * * * *"]`.
+   - Security: Supabase service role key strictly quarantined from public bundles; RLS enforced on `worzpzbutngugwzhlvtj`.
+
+4. **Instructions for Codex When Picking Up This Work:**
+   - **Step 1:** Read [`PROJECT_STATUS.md`](../PROJECT_STATUS.md) operating brief to confirm current active task.
+   - **Step 2:** Check `git status` on `main`. All local changes must pass `npm test` and `npm run typecheck` before pushing. Never force-push or rebase published history.
+   - **Step 3:** Current execution focus for Codex:
+     1. Curate the first 50 verified Bristol/Bath electrical contractor targets (Companies House + Google Places data).
+     2. Draft the automated "Digital Leak Audit" PDF/video outreach template.
+     3. Execute H42 coordinated live owner session expiry/logout acceptance.
+     4. Complete H09/H10 transactional email sender/provider setup and bounce handling once credentials are ready.
+     5. Complete H07 backup/recovery proof for live THG Agency database (`worzpzbutngugwzhlvtj`).
+
+---
+
+## Historical handover — 7 October 2026, Founder Commercial Ratification & Documentation Alignment
+
+2. **Full Documentation & Knowledge Base Alignment:**
+   - Synchronized all governing records across the repository: [`docs/COMMERCIAL_OFFER_MANAGED.md`](COMMERCIAL_OFFER_MANAGED.md), [`BUSINESS_DEFINITION.md`](../BUSINESS_DEFINITION.md), [`MASTER_BACKLOG.md`](../MASTER_BACKLOG.md), [`PROJECT_STATUS.md`](../PROJECT_STATUS.md), [`docs/BUSINESS_OS_INDEX.md`](BUSINESS_OS_INDEX.md), [`src/lib/current-strategy.ts`](../src/lib/current-strategy.ts), and [`src/lib/knowledge-base.ts`](../src/lib/knowledge-base.ts).
+   - Drift detection test suite expanded and verified passing (136/136 tests pass, 0 typecheck errors, 0 lint errors).
+
+3. **External Websites Commercial Alignment:**
    - Synchronized all customer-facing surfaces across Harley Digital Works and The Harley Group to the ratified commercial offer: single Managed Launch package at **£1,495 setup** + **£249/mo Managed Care**, 50/50 payment milestone (£747.50 deposit / £747.50 on approval), zero-rated VAT compliance notices, and strict 2–3 concurrent onboarding capacity cap.
    - Updated surfaces: `WebsitePackagesSection.tsx` (Homepage packages & pricing table), `the-harley-group.tsx` (Holding corporate overview & standards), `TradeServiceLanding.tsx` (Bristol & Bath trade pilots, Electricians & EV installers), `CareBillingPortalDesk.tsx` / `care-desk.tsx`, `TradeRoiCalculator.tsx` / `calculator.tsx`, `proposals.tsx`, and `partners.tsx`.
    - Enabled local development preview in `src/routes/__root.tsx` (`if (import.meta.env.DEV) return;`) allowing direct local browser testing while preserving the production launch deferral route guard.
