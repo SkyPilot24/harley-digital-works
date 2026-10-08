@@ -51,6 +51,21 @@ function LeadsPage() {
     },
   });
 
+  const notificationQuery = useQuery({
+    queryKey: ["lead-notification", selectedLead?.id],
+    enabled: !!selectedLead,
+    refetchInterval: 30_000,
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("lead_notification_jobs")
+        .select("status,attempts,last_error,next_attempt_at")
+        .eq("lead_id", selectedLead!.id)
+        .maybeSingle();
+      if (error) throw error;
+      return data;
+    },
+  });
+
   // Convert Lead to Client Mutation
   const convertToClientMutation = useMutation({
     mutationFn: async (lead: LeadRow) =>
@@ -505,6 +520,32 @@ function LeadsPage() {
                   <div className="mt-2 whitespace-pre-wrap rounded-xl border border-ink/10 bg-ink/[0.02] p-4 text-sm leading-relaxed text-ink/90">
                     {selectedLead.message}
                   </div>
+                </div>
+
+                <div aria-live="polite">
+                  <h3 className="text-xs font-semibold uppercase tracking-wider text-ink-muted">
+                    Enquiry alert
+                  </h3>
+                  <p className="mt-2 text-sm text-ink-muted">
+                    {notificationQuery.isError
+                      ? "Alert status unavailable. The enquiry remains saved here."
+                      : notificationQuery.isPending
+                        ? "Checking alert status…"
+                        : !notificationQuery.data
+                          ? "No automatic alert recorded for this lead."
+                          : notificationQuery.data.status === "accepted"
+                            ? "Slack acknowledged this alert."
+                            : notificationQuery.data.status === "failed"
+                              ? "Alert failed after five attempts. Check the Slack connection before arranging a manual resend."
+                              : notificationQuery.data.status === "processing"
+                                ? "Alert delivery in progress."
+                                : "Alert queued. Automatic retries run when the Slack connection is enabled."}
+                  </p>
+                  {notificationQuery.data && (
+                    <p className="mt-1 text-xs text-ink-muted">
+                      Delivery attempts: {notificationQuery.data.attempts} / 5
+                    </p>
+                  )}
                 </div>
 
                 {/* Internal Notes */}

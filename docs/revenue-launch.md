@@ -1,5 +1,7 @@
 # Revenue launch — implementation record
 
+Current-state pointer, 3 October 2026: this is a historical implementation log. Use ../PROJECT_STATUS.md, ../MASTER_BACKLOG.md and REVENUE_WORKFLOW.md for current evidence and the automated pilot. Repository records govern shared execution; Drive Business OS is the central entrypoint and explicitly reconciled mirror. Older access, unpushed and authority statements below describe their dates.
+
 Updated 28 September 2026. Branch: `codex/revenue-readiness`.
 
 ## Outcome

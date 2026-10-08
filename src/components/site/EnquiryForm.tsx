@@ -46,6 +46,22 @@ export function EnquiryForm({
       setBusy(false);
     }
   }
+  const handleFieldBlur = (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const target = e.target;
+    if (!target.checkValidity()) {
+      target.setAttribute("aria-invalid", "true");
+    } else {
+      target.removeAttribute("aria-invalid");
+    }
+  };
+
+  const handleFieldInput = (e: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const target = e.target as HTMLInputElement | HTMLTextAreaElement;
+    if (target.hasAttribute("aria-invalid") && target.checkValidity()) {
+      target.removeAttribute("aria-invalid");
+    }
+  };
+
   if (sent)
     return (
       <div className="enquiry-success" role="status">
@@ -61,7 +77,12 @@ export function EnquiryForm({
     <form className="enquiry-form" onSubmit={submit} aria-label="Website project enquiry">
       <input type="hidden" name="source" value={source} />
       <input type="hidden" name="startedAt" value={startedAt} />
-      <input type="hidden" name="package" value={interest.slice(0, 60)} />
+      <input
+        type="hidden"
+        name="package"
+        value={interest.length <= 60 ? interest : "See enquiry context"}
+      />
+      <input type="hidden" name="enquiryContext" value={interest} />
       <div className="enquiry-honeypot" aria-hidden="true">
         <label htmlFor={source + "-trap"}>Leave empty</label>
         <input id={source + "-trap"} name="website" tabIndex={-1} autoComplete="off" />
@@ -76,21 +97,49 @@ export function EnquiryForm({
       <div className="enquiry-field-grid">
         <label>
           Your name <span>*</span>
-          <input name="name" autoComplete="name" required maxLength={100} />
+          <input
+            name="name"
+            autoComplete="name"
+            required
+            maxLength={100}
+            onBlur={handleFieldBlur}
+            onInput={handleFieldInput}
+          />
         </label>
         <label>
           Email address <span>*</span>
-          <input name="email" type="email" autoComplete="email" required maxLength={255} />
+          <input
+            name="email"
+            type="email"
+            autoComplete="email"
+            required
+            maxLength={255}
+            onBlur={handleFieldBlur}
+            onInput={handleFieldInput}
+          />
         </label>
       </div>
       <div className="enquiry-field-grid">
         <label>
           Business name <small>(optional)</small>
-          <input name="company" autoComplete="organization" maxLength={120} />
+          <input
+            name="company"
+            autoComplete="organization"
+            maxLength={120}
+            onBlur={handleFieldBlur}
+            onInput={handleFieldInput}
+          />
         </label>
         <label>
           Phone <small>(optional)</small>
-          <input name="phone" type="tel" autoComplete="tel" maxLength={40} />
+          <input
+            name="phone"
+            type="tel"
+            autoComplete="tel"
+            maxLength={40}
+            onBlur={handleFieldBlur}
+            onInput={handleFieldInput}
+          />
         </label>
       </div>
       <label>
@@ -101,6 +150,8 @@ export function EnquiryForm({
           defaultValue={websiteUrl}
           placeholder="Your website address, if you have one"
           maxLength={200}
+          onBlur={handleFieldBlur}
+          onInput={handleFieldInput}
         />
       </label>
       <label>
@@ -111,7 +162,13 @@ export function EnquiryForm({
           required
           minLength={5}
           maxLength={2000}
-          placeholder="Your trade, where you work, and what you’d like your website to do better."
+          onBlur={handleFieldBlur}
+          onInput={handleFieldInput}
+          placeholder={
+            source === "group_contact_form"
+              ? "Tell us about your business and what you would like help with."
+              : "Your trade, where you work, and what you’d like your website to do better."
+          }
           defaultValue={interest ? "I would like to discuss " + interest + "." : ""}
         />
       </label>

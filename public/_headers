@@ -1,9 +1,10 @@
-# Global Security & Performance Headers
+# Global Security & Edge Performance Headers for Cloudflare Workers & Pages
 /*
+  Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
   X-Frame-Options: SAMEORIGIN
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
-  Permissions-Policy: camera=(), microphone=(), geolocation=()
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=()
   X-XSS-Protection: 1; mode=block
 
 # Immutable Static Assets (1 Year Edge Caching)
@@ -16,7 +17,18 @@
 /brand/*
   Cache-Control: public, max-age=31536000, immutable
 
-# Favicons & Manifest
+# Service Worker - Never Cache Stale Service Worker Script
+/sw.js
+  Cache-Control: no-cache, no-store, must-revalidate
+
+# Sitemap & Robots
+/sitemap.xml
+  Cache-Control: public, max-age=3600
+
+/robots.txt
+  Cache-Control: public, max-age=3600
+
+# Favicons & Web Manifest
 /favicon.ico
   Cache-Control: public, max-age=86400
 

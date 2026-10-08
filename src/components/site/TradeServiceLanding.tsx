@@ -86,8 +86,8 @@ export function TradeServiceLanding({
               </div>
               <p className="hero-support">
                 {tradeInfo
-                  ? `Accreditation: ${tradeInfo.accreditationBadge} · Avg contract value: ${tradeInfo.averageJobValue}`
-                  : "An initial build fee and an ongoing monthly service. Scope, timing and costs agreed before work begins."}
+                  ? `Accreditation: ${tradeInfo.accreditationBadge} · Avg contract: ${tradeInfo.averageJobValue} · 14-day SLA`
+                  : "£1,495 fixed setup (50% deposit / 50% approval) · £249/mo managed care · 14-day delivery SLA."}
               </p>
             </div>
             <div className="service-preview">
@@ -96,6 +96,8 @@ export function TradeServiceLanding({
                 alt="Solar panels illustrating the practical work of a trade business"
                 width="1200"
                 height="800"
+                loading="lazy"
+                decoding="async"
               />
               <p>Illustrative photography · your website will use approved business assets</p>
             </div>
@@ -122,15 +124,15 @@ export function TradeServiceLanding({
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-3 rounded-2xl border border-ink/10 bg-white p-6">
               <div>
                 <p className="text-xs font-semibold uppercase tracking-wider text-ink-muted">
-                  Sites Launched
+                  Regional Opportunity
                 </p>
                 <p className="mt-1 font-mono text-2xl font-semibold text-ink">
-                  {locationInfo.stats.tradeSitesLaunched} across {locationInfo.cityName}
+                  {locationInfo.cityName} & Surrounds
                 </p>
               </div>
               <div>
                 <p className="text-xs font-semibold uppercase tracking-wider text-ink-muted">
-                  Average Turnaround
+                  Standard Turnaround
                 </p>
                 <p className="mt-1 font-mono text-2xl font-semibold text-ink">
                   {locationInfo.stats.avgTurnaroundDays} Days SLA
@@ -138,11 +140,9 @@ export function TradeServiceLanding({
               </div>
               <div>
                 <p className="text-xs font-semibold uppercase tracking-wider text-ink-muted">
-                  Avg Monthly Enquiries
+                  Commercial Offer
                 </p>
-                <p className="mt-1 font-mono text-2xl font-semibold text-ink">
-                  {locationInfo.stats.avgInquiriesMonthly} / client
-                </p>
+                <p className="mt-1 font-mono text-2xl font-semibold text-ink">£1,495 + £249/mo</p>
               </div>
             </div>
           </section>
@@ -152,7 +152,7 @@ export function TradeServiceLanding({
           <section className="studio-wrap my-8">
             <div className="rounded-2xl border border-emerald-900/10 bg-emerald-50/50 p-6 sm:p-8">
               <span className="text-xs font-semibold uppercase tracking-widest text-emerald-800">
-                Verified Local Case Study
+                Illustrative Design Study · Trade Blueprint
               </span>
               <h3 className="mt-2 text-xl font-semibold text-ink">
                 {locationInfo.localCaseStudy.name} — {locationInfo.localCaseStudy.trade}
@@ -163,15 +163,21 @@ export function TradeServiceLanding({
               <p className="mt-4 text-base italic text-ink/80">
                 "{locationInfo.localCaseStudy.quote}"
               </p>
-              <div className="mt-4 inline-block rounded-full bg-emerald-700 px-3 py-1 text-xs font-semibold text-white">
-                {locationInfo.localCaseStudy.result}
+              <div className="mt-4 flex flex-wrap items-center justify-between gap-3 pt-3 border-t border-emerald-900/10 text-xs text-ink-muted">
+                <span className="inline-block rounded-full bg-emerald-700 px-3 py-1 font-semibold text-white">
+                  Target Outcome: {locationInfo.localCaseStudy.result}
+                </span>
+                <span className="text-[11px] italic">
+                  Independent design study demonstrating trade architecture; not an endorsement or
+                  guaranteed result.
+                </span>
               </div>
             </div>
           </section>
         )}
 
         {tradeInfo?.keyChallenges && tradeInfo.keyChallenges.length > 0 && (
-          <section className="studio-section studio-wrap">
+          <section className="studio-section studio-wrap deferred-section">
             <p className="studio-kicker">SOLVING YOUR INBOUND CHALLENGES</p>
             <h2>
               Stop losing quotes.
@@ -189,7 +195,7 @@ export function TradeServiceLanding({
           </section>
         )}
 
-        <section className="studio-section studio-wrap">
+        <section className="studio-section studio-wrap deferred-section">
           <p className="studio-kicker">MAKE YOUR BUSINESS EASY TO CHOOSE</p>
           <h2>
             Your services. Your work.
@@ -224,7 +230,7 @@ export function TradeServiceLanding({
         </section>
 
         {locationInfo?.boroughs && locationInfo.boroughs.length > 0 && (
-          <section className="studio-wrap my-8">
+          <section className="studio-wrap my-8 deferred-section">
             <div className="rounded-2xl border border-ink/10 bg-white p-6">
               <h3 className="text-sm font-semibold uppercase tracking-wider text-ink-muted">
                 Coverage Postcodes & Boroughs
@@ -251,7 +257,9 @@ export function TradeServiceLanding({
           </section>
         )}
 
-        <WebsitePackagesSection />
+        <div className="deferred-section">
+          <WebsitePackagesSection />
+        </div>
       </div>
     </PageShell>
   );

@@ -2,11 +2,11 @@ import { createFileRoute, redirect, useNavigate, useRouter } from "@tanstack/rea
 import { useEffect, useState } from "react";
 import { z } from "zod";
 import { supabase } from "@/integrations/supabase/client";
-import { lovable } from "@/integrations/lovable/index";
 import { PageShell, Container } from "@/components/site/PageShell";
 import { toast } from "sonner";
 
 const searchSchema = z.object({ redirect: z.string().optional() });
+const googleSignInEnabled = import.meta.env.VITE_GOOGLE_AUTH_ENABLED === "true";
 const supabaseConfigured = Boolean(
   import.meta.env.VITE_SUPABASE_URL && import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY,
 );
@@ -33,6 +33,8 @@ function AuthPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [busy, setBusy] = useState(false);
+  const [formError, setFormError] = useState<string | null>(null);
+  const [formNotice, setFormNotice] = useState<string | null>(null);
   const [localSignIn, setLocalSignIn] = useState(false);
 
   useEffect(() => {
@@ -44,8 +46,11 @@ function AuthPage() {
 
     const { data: sub } = supabase.auth.onAuthStateChange((event) => {
       if (event === "SIGNED_IN") {
-        router.invalidate();
-        navigate({ to: (search.redirect as "/admin") ?? "/admin", replace: true });
+        // Let Supabase release its Auth lock before route guards query the session.
+        window.setTimeout(() => {
+          router.invalidate();
+          navigate({ to: (search.redirect as "/admin") ?? "/admin", replace: true });
+        }, 0);
       }
     });
     return () => sub.subscription.unsubscribe();
@@ -77,28 +82,42 @@ function AuthPage() {
 
   async function handleEmail(e: React.FormEvent) {
     e.preventDefault();
+    const fields = new FormData(e.currentTarget as HTMLFormElement);
+    const enteredEmail = String(fields.get("email") ?? "").trim();
+    const enteredPassword = String(fields.get("password") ?? "");
+    setFormError(null);
+    setFormNotice(null);
     setBusy(true);
     try {
       if (mode === "signup") {
         const { error } = await supabase.auth.signUp({
-          email,
-          password,
+          email: enteredEmail,
+          password: enteredPassword,
           options: { emailRedirectTo: window.location.origin + "/admin" },
         });
         if (error) throw error;
         toast.success("Check your inbox to confirm your email.");
+        setFormNotice(
+          "Check your inbox to confirm your email. Creating an account does not grant administrator access.",
+        );
       } else {
-        const { error } = await supabase.auth.signInWithPassword({ email, password });
+        const { data, error } = await supabase.auth.signInWithPassword({
+          email: enteredEmail,
+          password: enteredPassword,
+        });
         if (error) throw error;
+        if (!data.session) throw new Error("Sign-in did not return a session. Please try again.");
       }
     } catch (err: unknown) {
-      toast.error(err instanceof Error ? err.message : "Sign in failed");
+      const message = err instanceof Error ? err.message : "Sign in failed. Please try again.";
+      setFormError(message);
     } finally {
       setBusy(false);
     }
   }
 
   async function handleGoogle() {
+    if (!googleSignInEnabled) return;
     if (["localhost", "127.0.0.1", "[::1]"].includes(window.location.hostname)) {
       toast.error(
         "Google sign-in is unavailable locally. Email sign-in requires an account password.",
@@ -107,8 +126,9 @@ function AuthPage() {
     }
     setBusy(true);
     try {
-      const result = await lovable.auth.signInWithOAuth("google", {
-        redirect_uri: window.location.origin + "/auth",
+      const result = await supabase.auth.signInWithOAuth({
+        provider: "google",
+        options: { redirectTo: window.location.origin + "/auth" },
       });
       if (result.error) throw result.error;
     } catch (err: unknown) {
@@ -140,17 +160,16 @@ function AuthPage() {
             <button
               type="button"
               onClick={handleGoogle}
-              disabled={busy || localSignIn}
+              disabled={busy || localSignIn || !googleSignInEnabled}
               className="mt-6 flex w-full items-center justify-center gap-3 rounded-full border border-ink/15 bg-white px-4 py-2.5 text-sm font-medium text-ink transition hover:bg-ink/[0.03] disabled:opacity-50"
             >
               <GoogleIcon />
               Continue with Google
             </button>
-            {localSignIn && (
+            {(localSignIn || !googleSignInEnabled) && (
               <p className="mt-3 text-sm leading-6 text-ink-muted">
-                Google sign-in is unavailable on the local preview. Email sign-in requires a
-                password configured on your account. Creating another account will not grant admin
-                access.
+                Google sign-in is currently unavailable. Email sign-in requires a password
+                configured on your account. Creating another account will not grant admin access.
               </p>
             )}
 
@@ -164,6 +183,7 @@ function AuthPage() {
               <label className="block">
                 <span className="text-[13px] font-medium text-ink">Email</span>
                 <input
+                  name="email"
                   type="email"
                   required
                   autoComplete="email"
@@ -175,15 +195,26 @@ function AuthPage() {
               <label className="block">
                 <span className="text-[13px] font-medium text-ink">Password</span>
                 <input
+                  name="password"
                   type="password"
                   required
-                  minLength={8}
+                  minLength={mode === "signup" ? 8 : undefined}
                   autoComplete={mode === "signup" ? "new-password" : "current-password"}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   className="mt-1.5 w-full rounded-lg border border-ink/15 bg-white px-3 py-2.5 text-sm text-ink outline-none focus:border-ink/40"
                 />
               </label>
+              {formError && (
+                <p role="alert" className="text-sm text-red-700">
+                  {formError}
+                </p>
+              )}
+              {formNotice && (
+                <p role="status" className="text-sm text-ink-muted">
+                  {formNotice}
+                </p>
+              )}
               <button
                 type="submit"
                 disabled={busy}

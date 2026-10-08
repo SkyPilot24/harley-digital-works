@@ -34,7 +34,7 @@ const faqs = [
   ],
   [
     "How quickly can my website launch?",
-    "We agree your launch schedule after reviewing the scope, content and access needed. You see the website before launch, with time set aside for your feedback and approval.",
+    "Our standard pilot turnaround is 14 days from agreed brief and assets to staging preview. You see the fully working website before launch, with dedicated time set aside for your review, test calls, and final approval.",
   ],
   [
     "Are the websites above real client projects?",
@@ -50,7 +50,7 @@ const faqs = [
   ],
   [
     "What is included in the price?",
-    "There is an initial setup/build fee and an ongoing monthly subscription. We quote both together, with the page count, revisions, payment schedule, ownership and cancellation terms in writing before you commit.",
+    "We offer transparent commercial terms: a fixed £1,495 setup investment (structured as 50% deposit and 50% upon final sign-off, zero-rated VAT) and an ongoing £249/month Care & Growth retainer. Page count, custom copywriting, mobile optimization, revisions, ownership, and cancellation terms are confirmed in writing before you commit.",
   ],
 ];
 
@@ -87,8 +87,8 @@ function HomePage() {
                 </a>
               </div>
               <div className="hero-price">
-                <span>Built for your trade</span>
-                <span>Setup + monthly care</span>
+                <span>Bristol & Bath trade pilot</span>
+                <span>£1,495 setup · £249/mo care</span>
               </div>
             </div>
             <div className="hero-art">
@@ -239,7 +239,7 @@ function HomePage() {
         </section>
 
         <section
-          className="studio-process studio-section"
+          className="studio-process studio-section deferred-section"
           id="process"
           aria-labelledby="process-heading"
         >
@@ -291,14 +291,17 @@ function HomePage() {
           </div>
         </section>
 
-        <div className="studio-pricing">
+        <div className="studio-pricing deferred-section">
           <WebsitePackagesSection
             title="A clear investment. A better website."
             subtitle="An initial build fee. Ongoing monthly care. One clear proposal covering both."
           />
         </div>
 
-        <section className="studio-founder studio-section" aria-labelledby="founder-heading">
+        <section
+          className="studio-founder studio-section deferred-section"
+          aria-labelledby="founder-heading"
+        >
           <div className="studio-wrap founder-layout">
             <div className="founder-photo">
               <img
@@ -307,6 +310,7 @@ function HomePage() {
                 width="1200"
                 height="1600"
                 loading="lazy"
+                decoding="async"
               />
               <span>ROBBIE HARLEY / FOUNDER</span>
             </div>
@@ -341,7 +345,10 @@ function HomePage() {
           </div>
         </section>
 
-        <section className="studio-faq studio-section" aria-labelledby="faq-heading">
+        <section
+          className="studio-faq studio-section deferred-section"
+          aria-labelledby="faq-heading"
+        >
           <div className="studio-wrap faq-layout">
             <div>
               <p className="studio-kicker">THE PRACTICAL DETAILS</p>
@@ -375,7 +382,7 @@ function HomePage() {
           </div>
         </section>
 
-        <section className="studio-final" aria-labelledby="final-heading">
+        <section className="studio-final deferred-section" aria-labelledby="final-heading">
           <div className="studio-wrap">
             <p className="studio-kicker">YOUR NEXT CHAPTER STARTS HERE</p>
             <div className="final-layout">
@@ -394,19 +401,19 @@ function HomePage() {
                   Get your website plan
                 </PillButton>
                 <span className="final-price">
-                  Initial build + monthly care · Scope agreed before you commit
+                  £1,495 setup · £249/mo care · 14-day turnaround · 2–3 pilot spots
                 </span>
               </div>
             </div>
             <div className="final-reassurance">
               <span>
-                <PenLine size={16} /> Copywriting included
+                <PenLine size={16} /> 100% Copywriting included
               </span>
               <span>
-                <Check size={16} /> Clear scope, agreed upfront
+                <Check size={16} /> 50% deposit / 50% on approval
               </span>
               <span>
-                <ShieldCheck size={16} /> Ongoing managed care
+                <ShieldCheck size={16} /> Zero VAT & ongoing managed care
               </span>
             </div>
           </div>

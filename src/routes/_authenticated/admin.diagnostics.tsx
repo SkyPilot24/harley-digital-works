@@ -20,8 +20,10 @@ import {
   type WebsiteDiagnostic,
 } from "@/lib/admin-diagnostics.functions";
 import { toast } from "sonner";
-import { PageHeader } from "./admin.index";
+import { PageHeader, StatusBadge } from "./admin.index";
 import { ClientSiteCodeExporter } from "@/components/admin/ClientSiteCodeExporter";
+import { supabase } from "@/integrations/supabase/client";
+import type { Database } from "@/integrations/supabase/types";
 
 const BOOTSTRAP_TRIGGER = "on_auth_user_created_bootstrap";
 const BOOTSTRAP_FUNCTION = "public.handle_new_user_bootstrap";
@@ -47,12 +49,26 @@ function DiagnosticsPage() {
     queryFn: () => checkWebsite(),
   });
 
+  const outboxQuery = useQuery({
+    queryKey: ["admin", "outbox-jobs"],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("lead_notification_jobs")
+        .select("*")
+        .order("created_at", { ascending: false })
+        .limit(8);
+      if (error) throw error;
+      return (data ?? []) as Database["public"]["Tables"]["lead_notification_jobs"]["Row"][];
+    },
+  });
+
   const triggers = triggersQuery.data ?? [];
+  const outboxJobs = outboxQuery.data ?? [];
   const bootstrap = triggers.find(
     (trigger) =>
       trigger.trigger_name === BOOTSTRAP_TRIGGER && trigger.function_name === BOOTSTRAP_FUNCTION,
   );
-  const bootstrapOk = !!bootstrap && bootstrap.enabled;
+  const bootstrapOk = triggersQuery.isSuccess && !bootstrap?.enabled;
   const websiteChecks = websiteQuery.data ?? [];
   const websiteSummary = summarizeWebsiteChecks(websiteChecks);
   const attentionCount = websiteSummary.warning + websiteSummary.error;
@@ -71,6 +87,8 @@ function DiagnosticsPage() {
   function refreshAll() {
     queryClient.invalidateQueries({ queryKey: ["admin", "auth-triggers"] });
     queryClient.invalidateQueries({ queryKey: ["admin", "website-diagnostics"] });
+    queryClient.invalidateQueries({ queryKey: ["admin", "outbox-jobs"] });
+    toast.success("Diagnostics refreshed");
   }
 
   return (
@@ -285,6 +303,119 @@ function DiagnosticsPage() {
             </div>
           </section>
 
+          {/* Background Automations & Crons Monitoring */}
+          <section className="mt-8 space-y-4">
+            <div>
+              <h2 className="text-sm font-semibold uppercase tracking-wider text-ink-muted">
+                Automated Background Workflows & Scheduled Crons
+              </h2>
+              <p className="mt-1 text-sm text-ink-muted">
+                Continuous background processes running via Cloudflare Workers and Nitro server
+                engine.
+              </p>
+            </div>
+
+            <div className="grid gap-4 sm:grid-cols-2">
+              <div className="rounded-xl border border-ink/10 bg-white p-5 space-y-2">
+                <div className="flex items-center justify-between">
+                  <span className="text-xs font-bold text-ink flex items-center gap-2">
+                    <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
+                    Slack Notification Outbox (* * * * *)
+                  </span>
+                  <span className="rounded-full bg-emerald-50 px-2 py-0.5 text-[10px] font-bold text-emerald-800">
+                    Minute Schedule
+                  </span>
+                </div>
+                <p className="text-xs text-ink-muted leading-relaxed">
+                  Cloudflare worker runs minute scheduled handler, claiming pending jobs with
+                  disjoint leases and executing safe retries with exponential backoff up to 5
+                  attempts.
+                </p>
+              </div>
+
+              <div className="rounded-xl border border-ink/10 bg-white p-5 space-y-2">
+                <div className="flex items-center justify-between">
+                  <span className="text-xs font-bold text-ink flex items-center gap-2">
+                    <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
+                    Abuse Attempt Retention Pruning (0 * * * *)
+                  </span>
+                  <span className="rounded-full bg-emerald-50 px-2 py-0.5 text-[10px] font-bold text-emerald-800">
+                    Hourly Schedule
+                  </span>
+                </div>
+                <p className="text-xs text-ink-muted leading-relaxed">
+                  Nitro scheduled task invokes prune_lead_submission_attempts() via service role
+                  client every hour to ensure database cleanliness and GDPR-safe retention.
+                </p>
+              </div>
+            </div>
+
+            {/* Outbox Table */}
+            <div className="overflow-hidden rounded-xl border border-ink/10 bg-white">
+              <div className="border-b border-ink/10 bg-ink/[0.02] px-4 py-3 flex items-center justify-between">
+                <h3 className="text-xs font-bold text-ink uppercase tracking-wider">
+                  Lead Notification Jobs Outbox ({outboxJobs.length})
+                </h3>
+                <span className="text-[11px] text-ink-muted">
+                  Max 5 attempts · 1m, 5m, 15m, 60m delays
+                </span>
+              </div>
+              <table className="w-full text-xs">
+                <thead className="bg-ink/[0.01] text-left text-[11px] uppercase tracking-wider text-ink-muted border-b border-ink/5">
+                  <tr>
+                    <th className="px-4 py-2.5">Job ID / Source</th>
+                    <th className="px-4 py-2.5">Attempts</th>
+                    <th className="px-4 py-2.5">Status</th>
+                    <th className="px-4 py-2.5">Created</th>
+                    <th className="px-4 py-2.5">Details / Error</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-ink/5">
+                  {outboxQuery.isLoading ? (
+                    <tr>
+                      <td colSpan={5} className="px-4 py-6 text-center text-ink-muted">
+                        Loading outbox jobs…
+                      </td>
+                    </tr>
+                  ) : outboxJobs.length === 0 ? (
+                    <tr>
+                      <td colSpan={5} className="px-4 py-6 text-center text-ink-muted">
+                        No notification jobs recorded.
+                      </td>
+                    </tr>
+                  ) : (
+                    outboxJobs.map((job) => (
+                      <tr key={job.id} className="hover:bg-ink/[0.01]">
+                        <td className="px-4 py-3">
+                          <div className="font-mono font-bold text-ink">{job.id.slice(0, 8)}…</div>
+                          <div className="text-[11px] text-ink-muted">{job.source}</div>
+                        </td>
+                        <td className="px-4 py-3 font-semibold text-ink">{job.attempts} / 5</td>
+                        <td className="px-4 py-3">
+                          <StatusBadge status={job.status} />
+                        </td>
+                        <td className="px-4 py-3 text-[11px] text-ink-muted">
+                          {new Date(job.created_at).toLocaleString("en-GB")}
+                        </td>
+                        <td className="px-4 py-3 text-[11px]">
+                          {job.status === "accepted" ? (
+                            <span className="text-emerald-700 font-medium">
+                              Slack acknowledged this alert
+                            </span>
+                          ) : job.last_error ? (
+                            <span className="text-rose-600 font-mono">{job.last_error}</span>
+                          ) : (
+                            <span className="text-ink-muted">Pending delivery</span>
+                          )}
+                        </td>
+                      </tr>
+                    ))
+                  )}
+                </tbody>
+              </table>
+            </div>
+          </section>
+
           <section className="mt-8">
             <div
               className={`flex items-start gap-4 rounded-xl border p-5 ${
@@ -297,15 +428,15 @@ function DiagnosticsPage() {
                 {bootstrapOk ? <CheckCircle2 size={22} /> : <XCircle size={22} />}
               </div>
               <div className="flex-1">
-                <h2 className="text-[15px] font-semibold text-ink">
-                  First-signup admin bootstrap trigger
-                </h2>
+                <h2 className="text-[15px] font-semibold text-ink">Administrator provisioning</h2>
                 <p className="mt-1 text-sm text-ink-muted">
-                  {bootstrapOk
-                    ? "Enabled. The first user to sign up while no admin exists will be promoted to admin automatically."
-                    : bootstrap
-                      ? "Trigger exists but is disabled. New signups will not be promoted."
-                      : "Not attached. New signups will not be promoted; an admin must grant the role manually."}
+                  {triggersQuery.isPending
+                    ? "Checking administrator provisioning…"
+                    : triggersQuery.isError
+                      ? "Unable to verify administrator provisioning. Retry the diagnostic before approving a release."
+                      : bootstrapOk
+                        ? "Automatic promotion is inactive. Administrator access must be granted explicitly by a trusted operator."
+                        : "Unsafe automatic promotion is enabled. A signup can become an administrator whenever no admin exists. Apply the reviewed security migration before release."}
                 </p>
                 <dl className="mt-3 grid grid-cols-1 gap-1 text-[12px] text-ink-muted sm:grid-cols-2">
                   <div>

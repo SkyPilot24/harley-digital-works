@@ -1,0 +1,63 @@
+{
+  "date": "2026-10-07T11:11:51.205Z",
+  "project": "mfpnfxpgkfuqtedbcxvp",
+  "marker": "thg-qa-2698dd04-f25b-4b6a-b299-f6009b06c512",
+  "results": [
+    {
+      "name": "signup cannot grant admin",
+      "status": "PASS"
+    },
+    {
+      "name": "concurrent duplicates across fingerprints persist once",
+      "status": "PASS"
+    },
+    {
+      "name": "concurrent rate boundary admits only five",
+      "status": "PASS"
+    },
+    {
+      "name": "anonymous cannot read leads",
+      "status": "PASS"
+    },
+    {
+      "name": "anonymous cannot bypass intake",
+      "status": "PASS"
+    },
+    {
+      "name": "ordinary cannot read leads",
+      "status": "PASS"
+    },
+    {
+      "name": "ordinary cannot bypass intake",
+      "status": "PASS"
+    },
+    {
+      "name": "ordinary user cannot self-promote via API or metadata",
+      "status": "PASS"
+    },
+    {
+      "name": "genuinely signed-in staging administrator retrieves saved enquiry",
+      "status": "PASS"
+    },
+    {
+      "name": "administrator retains manual intake",
+      "status": "PASS"
+    },
+    {
+      "name": "ordinary user cannot read, claim or acknowledge notifications",
+      "status": "PASS"
+    },
+    {
+      "name": "signed-in administrator can inspect notification state",
+      "status": "PASS"
+    },
+    {
+      "name": "owner logout removes client lead access",
+      "status": "PASS"
+    }
+  ],
+  "limits": [
+    "API test; browser owner journey and server form still require acceptance",
+    "Logout does not prove immediate revocation of a previously copied access token"
+  ]
+}

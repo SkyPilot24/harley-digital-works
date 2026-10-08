@@ -1,0 +1,4 @@
+interface:
+  display_name: "THG Client Build Standard"
+  short_description: "Consistent, credible websites that convert"
+  default_prompt: "Use $thg-client-build-standard to deliver this website against the approved brief and verify its customer journey."

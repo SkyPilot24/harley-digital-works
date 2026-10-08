@@ -1,0 +1,4 @@
+interface:
+  display_name: "THG Supabase Security"
+  short_description: "Verify auth, RLS and privileged database access"
+  default_prompt: "Use $thg-supabase-security to assess this project's access model and verify the smallest safe remediation within the authorised scope."

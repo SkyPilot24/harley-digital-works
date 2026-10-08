@@ -5,10 +5,11 @@ import { siteConfig, buildPageSeoHead } from "@/lib/site-config";
 
 export const Route = createFileRoute("/contact")({
   validateSearch: (s: Record<string, unknown>) => ({
-    service: typeof s.service === "string" ? s.service : undefined,
-    package: typeof s.package === "string" ? s.package : undefined,
-    domain: typeof s.domain === "string" ? s.domain : undefined,
-    websiteUrl: typeof s.websiteUrl === "string" ? s.websiteUrl : undefined,
+    service: typeof s.service === "string" && s.service.length <= 120 ? s.service : undefined,
+    package: typeof s.package === "string" && s.package.length <= 120 ? s.package : undefined,
+    domain: typeof s.domain === "string" && s.domain.length <= 253 ? s.domain : undefined,
+    websiteUrl:
+      typeof s.websiteUrl === "string" && s.websiteUrl.length <= 200 ? s.websiteUrl : undefined,
   }),
   head: () =>
     buildPageSeoHead({
@@ -55,8 +56,11 @@ function ContactPage() {
               <li>
                 <span>03</span>
                 <div>
-                  <strong>Know the scope and cost.</strong>
-                  <p>Your build fee and monthly care, agreed in writing.</p>
+                  <strong>Know the scope and cost upfront.</strong>
+                  <p>
+                    £1,495 setup (50% deposit / 50% on approval) + £249/mo care, 14-day delivery
+                    SLA, zero-rated VAT.
+                  </p>
                 </div>
               </li>
             </ol>
@@ -66,6 +70,8 @@ function ContactPage() {
                 alt="Robbie Harley"
                 width="72"
                 height="72"
+                loading="lazy"
+                decoding="async"
               />
               <div>
                 <strong>Robbie Harley</strong>

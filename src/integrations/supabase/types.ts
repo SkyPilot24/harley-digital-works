@@ -8,6 +8,36 @@ export type Database = {
   };
   public: {
     Tables: {
+      lead_notification_jobs: {
+        Row: {
+          id: string;
+          lead_id: string;
+          source: string;
+          status: string;
+          attempts: number;
+          next_attempt_at: string;
+          lease_token: string | null;
+          lease_until: string | null;
+          last_error: string | null;
+          accepted_at: string | null;
+          created_at: string;
+        };
+        Insert: never;
+        Update: {
+          id?: string;
+          lead_id?: string;
+          source?: string;
+          status?: string;
+          attempts?: number;
+          next_attempt_at?: string;
+          lease_token?: string | null;
+          lease_until?: string | null;
+          last_error?: string | null;
+          accepted_at?: string | null;
+          created_at?: string;
+        };
+        Relationships: [];
+      };
       agency_settings: {
         Row: {
           address: string | null;
@@ -499,6 +529,28 @@ export type Database = {
       };
     };
     Functions: {
+      claim_lead_notifications: {
+        Args: Record<PropertyKey, never>;
+        Returns: {
+          id: string;
+          lead_id: string;
+          source: string;
+          lease_token: string;
+          attempts: number;
+        }[];
+      };
+      finish_lead_notification: {
+        Args: { p_id: string; p_lease_token: string; p_accepted: boolean; p_error: string | null };
+        Returns: boolean;
+      };
+      submit_public_lead: {
+        Args: { p_fingerprint: string; p_started_at: number; p_lead: Json };
+        Returns: string;
+      };
+      prune_lead_submission_attempts: {
+        Args: Record<PropertyKey, never>;
+        Returns: void;
+      };
       get_auth_user_triggers: {
         Args: never;
         Returns: {

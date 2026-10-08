@@ -72,9 +72,27 @@ function applySecurityHeaders(response: Response, isHttps: boolean): Response {
 export default {
   async fetch(request: Request, env: unknown, ctx: unknown) {
     try {
+      // Propagate worker environment bindings to process.env if present
+      if (env && typeof env === "object") {
+        for (const [key, value] of Object.entries(env)) {
+          if (typeof value === "string" && process.env[key] === undefined) {
+            process.env[key] = value;
+          }
+        }
+      }
+
       const url = new URL(request.url);
       const host = url.hostname.toLowerCase();
       const isHttps = url.protocol === "https:";
+
+      // Intercept Slack interactive actions, slash commands, and event callbacks
+      if (url.pathname.startsWith("/api/slack/")) {
+        const { handleSlackIncomingRequest } = await import("./lib/slack/server-handler");
+        const slackResponse = await handleSlackIncomingRequest(request, url.pathname);
+        if (slackResponse) {
+          return applySecurityHeaders(slackResponse, isHttps);
+        }
+      }
 
       // Multi-Tenant Host Routing: If visiting theharleygroup.org/ -> redirect to /the-harley-group
       if (

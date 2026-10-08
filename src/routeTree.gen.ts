@@ -46,6 +46,7 @@ import { Route as ServicesCarePlansRouteImport } from './routes/services_.care-p
 import { Route as ServicesAutomationRouteImport } from './routes/services_.automation'
 import { Route as ServicesAiAutomationRouteImport } from './routes/services_.ai-automation'
 import { Route as LocationsSlugRouteImport } from './routes/locations_.$slug'
+import { Route as DemosElectricianConceptRouteImport } from './routes/demos_.electrician-concept'
 import { Route as AuthenticatedAdminIndexRouteImport } from './routes/_authenticated/admin.index'
 import { Route as AuthenticatedAdminUsersRouteImport } from './routes/_authenticated/admin.users'
 import { Route as AuthenticatedAdminTestimonialsRouteImport } from './routes/_authenticated/admin.testimonials'
@@ -250,6 +251,11 @@ const LocationsSlugRoute = LocationsSlugRouteImport.update({
   path: '/locations/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DemosElectricianConceptRoute = DemosElectricianConceptRouteImport.update({
+  id: '/demos_/electrician-concept',
+  path: '/demos/electrician-concept',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AuthenticatedAdminIndexRoute = AuthenticatedAdminIndexRouteImport.update({
   id: '/admin/',
   path: '/admin/',
@@ -372,6 +378,7 @@ export interface FileRoutesByFullPath {
   '/track': typeof TrackRoute
   '/trades': typeof TradesRoute
   '/work': typeof WorkRoute
+  '/demos/electrician-concept': typeof DemosElectricianConceptRoute
   '/locations/$slug': typeof LocationsSlugRoute
   '/services/ai-automation': typeof ServicesAiAutomationRoute
   '/services/automation': typeof ServicesAutomationRoute
@@ -427,6 +434,7 @@ export interface FileRoutesByTo {
   '/track': typeof TrackRoute
   '/trades': typeof TradesRoute
   '/work': typeof WorkRoute
+  '/demos/electrician-concept': typeof DemosElectricianConceptRoute
   '/locations/$slug': typeof LocationsSlugRoute
   '/services/ai-automation': typeof ServicesAiAutomationRoute
   '/services/automation': typeof ServicesAutomationRoute
@@ -484,6 +492,7 @@ export interface FileRoutesById {
   '/track': typeof TrackRoute
   '/trades': typeof TradesRoute
   '/work': typeof WorkRoute
+  '/demos_/electrician-concept': typeof DemosElectricianConceptRoute
   '/locations_/$slug': typeof LocationsSlugRoute
   '/services_/ai-automation': typeof ServicesAiAutomationRoute
   '/services_/automation': typeof ServicesAutomationRoute
@@ -541,6 +550,7 @@ export interface FileRouteTypes {
     | '/track'
     | '/trades'
     | '/work'
+    | '/demos/electrician-concept'
     | '/locations/$slug'
     | '/services/ai-automation'
     | '/services/automation'
@@ -596,6 +606,7 @@ export interface FileRouteTypes {
     | '/track'
     | '/trades'
     | '/work'
+    | '/demos/electrician-concept'
     | '/locations/$slug'
     | '/services/ai-automation'
     | '/services/automation'
@@ -652,6 +663,7 @@ export interface FileRouteTypes {
     | '/track'
     | '/trades'
     | '/work'
+    | '/demos_/electrician-concept'
     | '/locations_/$slug'
     | '/services_/ai-automation'
     | '/services_/automation'
@@ -709,6 +721,7 @@ export interface RootRouteChildren {
   TrackRoute: typeof TrackRoute
   TradesRoute: typeof TradesRoute
   WorkRoute: typeof WorkRoute
+  DemosElectricianConceptRoute: typeof DemosElectricianConceptRoute
   LocationsSlugRoute: typeof LocationsSlugRoute
   ServicesAiAutomationRoute: typeof ServicesAiAutomationRoute
   ServicesAutomationRoute: typeof ServicesAutomationRoute
@@ -985,6 +998,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LocationsSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/demos_/electrician-concept': {
+      id: '/demos_/electrician-concept'
+      path: '/demos/electrician-concept'
+      fullPath: '/demos/electrician-concept'
+      preLoaderRoute: typeof DemosElectricianConceptRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/_authenticated/admin/': {
       id: '/_authenticated/admin/'
       path: '/admin'
@@ -1175,6 +1195,7 @@ const rootRouteChildren: RootRouteChildren = {
   TrackRoute: TrackRoute,
   TradesRoute: TradesRoute,
   WorkRoute: WorkRoute,
+  DemosElectricianConceptRoute: DemosElectricianConceptRoute,
   LocationsSlugRoute: LocationsSlugRoute,
   ServicesAiAutomationRoute: ServicesAiAutomationRoute,
   ServicesAutomationRoute: ServicesAutomationRoute,
