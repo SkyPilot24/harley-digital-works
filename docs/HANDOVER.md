@@ -1,6 +1,20 @@
 # Shared development handover
 
-## Current handover — 8 October 2026, Dual Architecture, Client AI Template & Codex Operating Framework
+## Current handover — 8 October 2026, Antigravity Customizations & Skills Optimization (Token Quota Recovery)
+
+**Scope & Implemented State:**
+
+1. **Resolution of Prompt Bloat & Token Limit Exhaustion:**
+   - **Root Cause Identified:** 129 SKILL.md files (1.68M characters / ~420k tokens) were discovered across global and workspace directories. Antigravity was injecting skill headers and descriptions into every message turn, breaching context budgets and causing prompt truncation warnings (`academy-guide`, `building-data-apps`, etc. were dropped).
+   - **Global Discovery Fix:** The user's earlier manual archiving in `~/.gemini/skills/Archive` had not taken effect because Antigravity's active global path is `~/.gemini/config/skills`. Moved all 21 Google Cloud / BigQuery / Spark / dbt data engineering skills from `~/.gemini/config/skills` into `~/.gemini/config/skills_archive/` and archived residual folders in `~/.gemini/skills/Archive/`. Global skills footprint reduced to 0.
+   - **Workspace Skills Consolidation:** In `.agents/skills`, 64 non-essential or duplicated skills (including out-of-scope Swift, p5.js generative art, Expo mobile, and 8 redundant/conflicting UI taste skills) were safely relocated to `.agents/skills_archive/` via git renames.
+   - **Active Skills Retained:** Exactly 32 high-impact skills remain active in `.agents/skills` (14 trade agency & commercial skills, 14 web/engineering/security essentials, and 4 growth/mobile tools) alongside repository canonical standards (`skills/thg-*`).
+   - **Results:** Active SKILL.md count reduced from **129 down to 44** (including plugin skills) — a **74.3% reduction** in raw skill content. Total character footprint dropped from 1,680,831 down to 431,304 chars. Prompt overhead eliminated, completely restoring context headroom.
+   - **Verification:** `npm test` passes 136/136 tests. `npm run typecheck` passes with 0 TS errors. `npm run build` completed cleanly.
+
+---
+
+## Historical handover — 8 October 2026, Dual Architecture, Client AI Template & Codex Operating Framework
 
 **Scope & Implemented State:**
 
