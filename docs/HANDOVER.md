@@ -1,5 +1,16 @@
 # Shared development handover
 
+## Codex — Harley Labs Dell knowledge-base addition — 9 October 2026
+
+- Scope: one central dashboard article **Harley Labs — Dell Build**, id `harley-labs-dell-build`, in `src/lib/knowledge-base.ts`; related PROJECT_STATUS/L01 evidence only. No branding, skill, handover-audit, CI, dependency or production changes in this PR.
+- Branch: `codex/harley-labs-dell-kb`; managed worktree `C:/Users/drrob/.codex/worktrees/harley-labs-dell-kb/harley-digital-works`. Initially inspected `d589bf669d7ca6141c9fd745f34ec314760b13c7`; reconciled by fast-forwarding to current remote main `e972b74ca2258e28b56b4887c1d6055a263dc725` and restoring the four scoped draft files without conflicts. Concurrent CI/dependency changes preserved.
+- Lab evidence: founder observations from the guided Dell session on 9 October; Codex did not inspect the Dell remotely. Completed: WSL2, Docker hello-world/nginx, VS Code, custom Compose website/edit-refresh and named-volume exercise. In progress: n8n setup page reached. Owner account, workflows, reboot recovery, backups, hardware upgrade/details and actual software versions remain unverified.
+- Content: Dell-only commands/links and configurations; completed/in-progress/not-verified checklist; nine copyable prompts for onboarding and fictional enquiry, persistence, backup/restore, versions, triage, retries/idempotency, human review and staged release. No real messages, customer connections or production writes authorized; no account-memory update.
+- Deduplication: current remote-main KB contains neither this title nor id; final content validation confirms exactly one article. Any queued assistant must reconcile this branch/PR before adding another.
+- Current post-integration checks: fresh `npm ci` PASS (420 packages; audit reported 0 vulnerabilities); `npm run build` PASS; `npm test` PASS (66 smoke + 67 regression/integration + 3 service-worker = 136); `npm run typecheck` PASS; `npm run format:check` PASS; `npm run lint` PASS (0 errors, 9 existing warnings); `git diff --check` PASS. Content check PASS: one article, nine prompts, exact loopback ports/timezone/Compose convention and explicit checkpoint states. Fresh dependencies, output and ignored logs are isolated in this worktree.
+- Publication: authorized scoped commit/push and draft PR preparation; no main merge, deployment or live dashboard/browser verification. Commit/PR publication evidence will be recorded after those actions succeed. L01 public-page acceptance remains open.
+- Next action: review the draft PR and complete CI; merge only when authorized, let the established main release run, then verify the entry in the genuinely authenticated live `/admin/knowledge-base`. Continue the Dell lab with private owner onboarding, then one manual fictional-lead workflow.
+
 ## Current handover — 8 October 2026, Antigravity Customizations & Skills Optimization (Token Quota Recovery)
 
 **Scope & Implemented State:**

@@ -19,6 +19,8 @@ Execution order: Sourcing Bristol/Bath electrical contractor targets & pilot tem
 
 ### L01 - Align the existing Harley Labs page with the agreed basic brief
 
+- **Related lab evidence — 9 October 2026:** One dashboard KB article, `harley-labs-dell-build` / **Harley Labs — Dell Build**, prepared for draft PR review on `codex/harley-labs-dell-kb`, reconciled with remote main `e972b74`. Founder-reported Dell checkpoint and reusable prompts are recorded; n8n owner/workflow/reboot recovery remain unverified. This supports the Labs workstream without completing or changing the public-page scope below. Draft review preparation only; no main merge, deployment or live KB acceptance. See the dated `docs/HANDOVER.md` section for exact validation/publication state.
+
 - **Priority:** Medium
 - **Who needs to act:** You; Me only for unsupported claims/brand decisions
 - **Status:** Requested, implementation against new brief unverified

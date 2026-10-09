@@ -1,5 +1,9 @@
 # The Harley Group — shared project status
 
+## Harley Labs Dell knowledge-base addition — 9 October 2026 (draft review preparation)
+
+Codex prepared one dashboard entry, **Harley Labs — Dell Build** (`harley-labs-dell-build`), in `src/lib/knowledge-base.ts` on `codex/harley-labs-dell-kb`, reconciled with remote main `e972b74ca2258e28b56b4887c1d6055a263dc725`. It records founder-observed Dell progress, exact local commands, explicit unverified steps and nine reusable continuation prompts. n8n onboarding was reached; owner completion, workflows, reboot persistence and backup/restore remain unverified. Prepared for a scoped draft pull request; dashboard publication and deployment remain pending review and an authorized main release. Validation results are recorded in the matching handover section. Next lab action: privately complete onboarding, then one manual fictional-enquiry workflow. Production/business next actions below are unchanged.
+
 ## Current handover — 8 October 2026, Dual Architecture, Client AI Template, and Commercial Ratification
 
 **Verified live & implemented:**
