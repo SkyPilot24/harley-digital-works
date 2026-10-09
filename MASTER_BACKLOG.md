@@ -64,6 +64,10 @@ Updated 2 October 2026. Domain integration added following the founder's request
 
 ## H03 — Establish one source of truth and a release inventory
 
+- **9 October activity consolidation:** current main checkout verified clean with no unpushed commits; scanner PR #22 included in Headquarters PR #23 on the review branch. Recent activity review/KB and Drive proposed-brand references added; socials confirmed not yet set up. Fresh combined checks pass; production identity, reviewed release and live acceptance remain open. See `docs/RECENT_ACTIVITY_REVIEW_2026-10-09.md`.
+
+- **9 October Control Centre evidence:** `/admin/headquarters` and its dashboard/sidebar entry implemented on `codex/group-headquarters-control-centre` from main `5e0520d`; 118 linked references including every shared-HQ folder/document/reference destination, 17 portfolio records and ten priorities. Local build/checks and UI search/mobile acceptance pass; CI/release/live authenticated acceptance and wider release inventory remain outstanding. See `docs/HANDOVER.md`.
+
 - **Phase:** 1
 - **Priority:** High
 - **Who needs to act:** You
@@ -744,3 +748,5 @@ The founder confirms the existing domain list is unchanged. D01 must reuse the e
 Repository business definition, status, this backlog, AGENTS.md and docs/HANDOVER.md provide a common record for both development tools. Antigravity has an always-on pointer in .agents/rules/shared-context.md; existing rules and runbooks are retained. This is documentation work, not completion of backend, billing or domain implementation.
 
 Next execution: H07 — reconcile the intended backend and inspect access/policies; D01 — reuse and verify the existing portfolio in parallel. H01 commercial approval remains outstanding. Check PROJECT_STATUS.md before acting on older account-access or unpushed-commit statements.
+
+H42 evidence — 9 October 2026: Secret & Credential Scan self-match repaired on codex/security-scan-fix; no secret exception. Quiet fail-closed scan covers all tracked files. Local clean scan and six synthetic checks pass; GitHub Security Audit 37923833877 and Quality 37923834004 passed for 1ed96ff; PR #22 open. Separate dependency-upgrade CI failures remain; see handover.

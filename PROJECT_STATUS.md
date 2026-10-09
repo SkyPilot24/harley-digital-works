@@ -1,5 +1,19 @@
 # The Harley Group — shared project status
 
+## PR #23 Cloudflare build repair — 9 October 2026
+
+H47: Cloudflare builds at c92dc60 and 0c38e1d compiled successfully, then failed because npx wrangler preview requires a previews block. Added previews.vars to wrangler.json; generated Nitro configuration preserves it. Preview server backend is deliberately unconfigured (reserved .invalid URL, placeholder public key); notifications and transactional email are disabled. Production variables and commands are unchanged. The dashboard base-command experiment did not alter the existing branch trigger and was reverted to npx wrangler preview. Fresh local build and all 136 existing checks pass; diff whitespace check passes. Replacement provider check pending. No main merge or production promotion.
+
+## Recent activity review and consolidated push — 9 October 2026
+
+Canonical main checkout freshly verified clean at `5e0520d`, with no unpushed commits. Reviewed scanner-fix PR #22 (`3e13544`) merged into the Headquarters review branch without conflicts or history rewriting (`df46a7b`), removing the known scanner self-match blocker from the combined source. Fresh combined scan/build/typecheck/136 checks pass; lint retains 9 existing warnings. `docs/RECENT_ACTIVITY_REVIEW_2026-10-09.md` and one central KB article record recent commercial/Slack/skills/CI work already in main, Dell source merged but recovery/live acceptance pending, completed proposed brand pack now in Drive and unresolved laptop continuity. Founder confirms socials are not yet set up; dashboard copy updated. Proposed brand decisions and untested dependency upgrades remain separate. Publication is via existing PR #23; main release and live owner acceptance remain pending.
+
+## Group Headquarters in Control Centre — 9 October 2026
+
+H03/H47: added authenticated `/admin/headquarters`, a primary navigation item and a Control Centre summary card on `codex/group-headquarters-control-centre`, based on main `5e0520dca8c8b9d633474cc9f64d2453b19e99cb`. The page links the existing shared Drive headquarters and every folder/document/reference (32 destinations), with 118 link records, 17 portfolio records and ten priorities from the 9 October audit. It provides automation, sales/marketing, finance and live-operations shortcuts and reuses the existing social content guide. Social profile URLs/scheduler/analytics are explicitly awaiting connection. Portfolio/priorities are dated reference records, not live telemetry or automatic Drive sync. Source is implemented and locally validated; publication/deployment/live admin acceptance remain pending. See the matching handover section for checks and limits.
+
+Reconciliation: PR #20 is included in the fetched main baseline above; its older draft wording below is historical. This does not establish the current live deployment revision.
+
 ## Harley Labs Dell knowledge-base addition — 9 October 2026 (draft review preparation)
 
 Codex prepared one dashboard entry, **Harley Labs — Dell Build** (`harley-labs-dell-build`), in `src/lib/knowledge-base.ts` on `codex/harley-labs-dell-kb`, reconciled with remote main `e972b74ca2258e28b56b4887c1d6055a263dc725`. It records founder-observed Dell progress, exact local commands, explicit unverified steps and nine reusable continuation prompts. n8n onboarding was reached; owner completion, workflows, reboot persistence and backup/restore remain unverified. Committed/pushed in `dbf567c` and available as draft [PR #20](https://github.com/SkyPilot24/harley-digital-works/pull/20); dashboard publication and deployment remain pending review and an authorized main release. Validation results are recorded in the matching handover section. Next lab action: privately complete onboarding, then one manual fictional-enquiry workflow. Production/business next actions below are unchanged.
@@ -181,3 +195,7 @@ Detailed task definitions, priorities, owners, dependencies and acceptance crite
 ## Commercial roadmap update — 2 October 2026
 
 Domains are now a separately measured commercial workstream under The Harley Group, marketed through Harley Digital Works. MASTER_BACKLOG H49 was revised and D01–D08 added for verified inventory, offers/mandates, catalogue, intake, assisted settlement/transfer, renewals, reporting/cross-sell and later brand/product review. Existing setup-plus-monthly direction and production-readiness sequence remain. This is a planning/documentation update only; no inventory ownership, code deployment, buyer messaging, purchase, payment integration or transaction completion is implied. Prices remain proposals. The central Business Definition in The Harley Group / Business OS was updated to match.
+
+## Security audit repair — 9 October 2026
+
+H42: scanner self-match in security.yml diagnosed and fixed on codex/security-scan-fix. Clean-tree and six synthetic/redaction/error checks passed. GitHub Security Audit 37923833877 and Quality 37923834004 passed for 1ed96ff; PR #22 open, no main merge or deployment. See docs/HANDOVER.md for related Dependabot failures and audit limitations.
