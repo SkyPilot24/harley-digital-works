@@ -2,7 +2,7 @@
 
 ## PR #23 Cloudflare build repair — 9 October 2026
 
-H47: Cloudflare build `0c885878` successfully built `c92dc60`, then failed because the configured PR command `npx wrangler preview` requires a separate `previews` block. Changed the provider's Previews Base command to `npx wrangler versions upload`, the documented non-production branch command. Production command remains `npx wrangler deploy`. Retrying the old build reuses its original command; this documentation push triggers a fresh check using the saved configuration. Replacement acceptance is pending; no main merge or production promotion performed.
+H47: Cloudflare builds at c92dc60 and 0c38e1d compiled successfully, then failed because npx wrangler preview requires a previews block. Added previews.vars to wrangler.json; generated Nitro configuration preserves it. Preview server backend is deliberately unconfigured (reserved .invalid URL, placeholder public key); notifications and transactional email are disabled. Production variables and commands are unchanged. The dashboard base-command experiment did not alter the existing branch trigger and was reverted to npx wrangler preview. Fresh local build and all 136 existing checks pass; diff whitespace check passes. Replacement provider check pending. No main merge or production promotion.
 
 ## Recent activity review and consolidated push — 9 October 2026
 

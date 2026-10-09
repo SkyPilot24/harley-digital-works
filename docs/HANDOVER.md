@@ -239,7 +239,7 @@ Founder decisions remain final price/scope/VAT/contract/support limits, verified
 
 ### PR #23 Workers Builds configuration repair — 9 October 2026
 
-Exact provider log for build `0c885878` at `c92dc60`: application build succeeded; `npx wrangler preview` failed with "Your Wrangler configuration is missing a `previews` block". Saved Previews Base command as `npx wrangler versions upload`; preserved production deployment command, existing token, runtime variables and cron configuration. An old-build retry (`50d8e717`) retained the old command, so this documentation commit triggers a fresh PR build. Provider verification pending. No application edits or new test claims; existing GitHub Quality and Security Audit checks for `c92dc60` passed. No main merge or production promotion.
+H47: Cloudflare builds at c92dc60 and 0c38e1d compiled successfully, then failed because npx wrangler preview requires a previews block. Added previews.vars to wrangler.json; generated Nitro configuration preserves it. Preview server backend is deliberately unconfigured (reserved .invalid URL, placeholder public key); notifications and transactional email are disabled. Production variables and commands are unchanged. The dashboard base-command experiment did not alter the existing branch trigger and was reverted to npx wrangler preview. Fresh local build and all 136 existing checks pass; diff whitespace check passes. Replacement provider check pending. No main merge or production promotion.
 
 H42: Security Audit run 37922988328 failed because its inline Supabase search matched the literal pattern in .github/workflows/security.yml. This is a scanner self-match, not evidence of a leaked credential. No credential rotation or history rewrite is justified by this finding.
 
