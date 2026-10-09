@@ -1,5 +1,9 @@
 # The Harley Group — shared project status
 
+## PR #23 Cloudflare build repair — 9 October 2026
+
+H47: Cloudflare build `0c885878` successfully built `c92dc60`, then failed because the configured PR command `npx wrangler preview` requires a separate `previews` block. Changed the provider's Previews Base command to `npx wrangler versions upload`, the documented non-production branch command. Production command remains `npx wrangler deploy`. Retrying the old build reuses its original command; this documentation push triggers a fresh check using the saved configuration. Replacement acceptance is pending; no main merge or production promotion performed.
+
 ## Recent activity review and consolidated push — 9 October 2026
 
 Canonical main checkout freshly verified clean at `5e0520d`, with no unpushed commits. Reviewed scanner-fix PR #22 (`3e13544`) merged into the Headquarters review branch without conflicts or history rewriting (`df46a7b`), removing the known scanner self-match blocker from the combined source. Fresh combined scan/build/typecheck/136 checks pass; lint retains 9 existing warnings. `docs/RECENT_ACTIVITY_REVIEW_2026-10-09.md` and one central KB article record recent commercial/Slack/skills/CI work already in main, Dell source merged but recovery/live acceptance pending, completed proposed brand pack now in Drive and unresolved laptop continuity. Founder confirms socials are not yet set up; dashboard copy updated. Proposed brand decisions and untested dependency upgrades remain separate. Publication is via existing PR #23; main release and live owner acceptance remain pending.

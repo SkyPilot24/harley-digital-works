@@ -237,6 +237,10 @@ Founder decisions remain final price/scope/VAT/contract/support limits, verified
 
 ## Security scan repair — 9 October 2026
 
+### PR #23 Workers Builds configuration repair — 9 October 2026
+
+Exact provider log for build `0c885878` at `c92dc60`: application build succeeded; `npx wrangler preview` failed with "Your Wrangler configuration is missing a `previews` block". Saved Previews Base command as `npx wrangler versions upload`; preserved production deployment command, existing token, runtime variables and cron configuration. An old-build retry (`50d8e717`) retained the old command, so this documentation commit triggers a fresh PR build. Provider verification pending. No application edits or new test claims; existing GitHub Quality and Security Audit checks for `c92dc60` passed. No main merge or production promotion.
+
 H42: Security Audit run 37922988328 failed because its inline Supabase search matched the literal pattern in .github/workflows/security.yml. This is a scanner self-match, not evidence of a leaked credential. No credential rotation or history rewrite is justified by this finding.
 
 The scan now runs scripts/scan-secrets.sh. Equivalent character-class patterns avoid matching the scanner itself; every tracked file remains scanned, including the workflow. Previous docs/environment-example exclusions are removed. Quiet matching prevents credential values entering logs, and Git inspection errors fail closed. No finding exception or security job disabling was introduced.
