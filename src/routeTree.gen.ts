@@ -61,6 +61,7 @@ import { Route as AuthenticatedAdminPlaybooksRouteImport } from './routes/_authe
 import { Route as AuthenticatedAdminLeadsRouteImport } from './routes/_authenticated/admin.leads'
 import { Route as AuthenticatedAdminKnowledgeBaseRouteImport } from './routes/_authenticated/admin.knowledge-base'
 import { Route as AuthenticatedAdminInvoicesRouteImport } from './routes/_authenticated/admin.invoices'
+import { Route as AuthenticatedAdminHeadquartersRouteImport } from './routes/_authenticated/admin.headquarters'
 import { Route as AuthenticatedAdminDomainOsRouteImport } from './routes/_authenticated/admin.domain-os'
 import { Route as AuthenticatedAdminDiagnosticsRouteImport } from './routes/_authenticated/admin.diagnostics'
 import { Route as AuthenticatedAdminClientsRouteImport } from './routes/_authenticated/admin.clients'
@@ -335,6 +336,12 @@ const AuthenticatedAdminInvoicesRoute =
     path: '/admin/invoices',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
+const AuthenticatedAdminHeadquartersRoute =
+  AuthenticatedAdminHeadquartersRouteImport.update({
+    id: '/admin/headquarters',
+    path: '/admin/headquarters',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const AuthenticatedAdminDomainOsRoute =
   AuthenticatedAdminDomainOsRouteImport.update({
     id: '/admin/domain-os',
@@ -395,6 +402,7 @@ export interface FileRoutesByFullPath {
   '/admin/clients': typeof AuthenticatedAdminClientsRoute
   '/admin/diagnostics': typeof AuthenticatedAdminDiagnosticsRoute
   '/admin/domain-os': typeof AuthenticatedAdminDomainOsRoute
+  '/admin/headquarters': typeof AuthenticatedAdminHeadquartersRoute
   '/admin/invoices': typeof AuthenticatedAdminInvoicesRoute
   '/admin/knowledge-base': typeof AuthenticatedAdminKnowledgeBaseRoute
   '/admin/leads': typeof AuthenticatedAdminLeadsRoute
@@ -451,6 +459,7 @@ export interface FileRoutesByTo {
   '/admin/clients': typeof AuthenticatedAdminClientsRoute
   '/admin/diagnostics': typeof AuthenticatedAdminDiagnosticsRoute
   '/admin/domain-os': typeof AuthenticatedAdminDomainOsRoute
+  '/admin/headquarters': typeof AuthenticatedAdminHeadquartersRoute
   '/admin/invoices': typeof AuthenticatedAdminInvoicesRoute
   '/admin/knowledge-base': typeof AuthenticatedAdminKnowledgeBaseRoute
   '/admin/leads': typeof AuthenticatedAdminLeadsRoute
@@ -509,6 +518,7 @@ export interface FileRoutesById {
   '/_authenticated/admin/clients': typeof AuthenticatedAdminClientsRoute
   '/_authenticated/admin/diagnostics': typeof AuthenticatedAdminDiagnosticsRoute
   '/_authenticated/admin/domain-os': typeof AuthenticatedAdminDomainOsRoute
+  '/_authenticated/admin/headquarters': typeof AuthenticatedAdminHeadquartersRoute
   '/_authenticated/admin/invoices': typeof AuthenticatedAdminInvoicesRoute
   '/_authenticated/admin/knowledge-base': typeof AuthenticatedAdminKnowledgeBaseRoute
   '/_authenticated/admin/leads': typeof AuthenticatedAdminLeadsRoute
@@ -567,6 +577,7 @@ export interface FileRouteTypes {
     | '/admin/clients'
     | '/admin/diagnostics'
     | '/admin/domain-os'
+    | '/admin/headquarters'
     | '/admin/invoices'
     | '/admin/knowledge-base'
     | '/admin/leads'
@@ -623,6 +634,7 @@ export interface FileRouteTypes {
     | '/admin/clients'
     | '/admin/diagnostics'
     | '/admin/domain-os'
+    | '/admin/headquarters'
     | '/admin/invoices'
     | '/admin/knowledge-base'
     | '/admin/leads'
@@ -680,6 +692,7 @@ export interface FileRouteTypes {
     | '/_authenticated/admin/clients'
     | '/_authenticated/admin/diagnostics'
     | '/_authenticated/admin/domain-os'
+    | '/_authenticated/admin/headquarters'
     | '/_authenticated/admin/invoices'
     | '/_authenticated/admin/knowledge-base'
     | '/_authenticated/admin/leads'
@@ -1103,6 +1116,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAdminInvoicesRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/admin/headquarters': {
+      id: '/_authenticated/admin/headquarters'
+      path: '/admin/headquarters'
+      fullPath: '/admin/headquarters'
+      preLoaderRoute: typeof AuthenticatedAdminHeadquartersRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/admin/domain-os': {
       id: '/_authenticated/admin/domain-os'
       path: '/admin/domain-os'
@@ -1131,6 +1151,7 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedAdminClientsRoute: typeof AuthenticatedAdminClientsRoute
   AuthenticatedAdminDiagnosticsRoute: typeof AuthenticatedAdminDiagnosticsRoute
   AuthenticatedAdminDomainOsRoute: typeof AuthenticatedAdminDomainOsRoute
+  AuthenticatedAdminHeadquartersRoute: typeof AuthenticatedAdminHeadquartersRoute
   AuthenticatedAdminInvoicesRoute: typeof AuthenticatedAdminInvoicesRoute
   AuthenticatedAdminKnowledgeBaseRoute: typeof AuthenticatedAdminKnowledgeBaseRoute
   AuthenticatedAdminLeadsRoute: typeof AuthenticatedAdminLeadsRoute
@@ -1151,6 +1172,7 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedAdminClientsRoute: AuthenticatedAdminClientsRoute,
   AuthenticatedAdminDiagnosticsRoute: AuthenticatedAdminDiagnosticsRoute,
   AuthenticatedAdminDomainOsRoute: AuthenticatedAdminDomainOsRoute,
+  AuthenticatedAdminHeadquartersRoute: AuthenticatedAdminHeadquartersRoute,
   AuthenticatedAdminInvoicesRoute: AuthenticatedAdminInvoicesRoute,
   AuthenticatedAdminKnowledgeBaseRoute: AuthenticatedAdminKnowledgeBaseRoute,
   AuthenticatedAdminLeadsRoute: AuthenticatedAdminLeadsRoute,

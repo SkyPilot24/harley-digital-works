@@ -35,6 +35,7 @@ import { StrategySummary } from "@/components/admin/CurrentStrategy";
 import { LeadProposalModal } from "@/components/admin/LeadProposalModal";
 import { SlackCommandCentreCard } from "@/components/admin/SlackCommandCentreCard";
 import { FounderProcessGuide } from "@/components/admin/FounderProcessGuide";
+import { GroupHeadquartersSummary } from "@/components/admin/GroupHeadquarters";
 
 export const Route = createFileRoute("/_authenticated/admin/")({ component: DashboardPage });
 
@@ -365,6 +366,7 @@ function DashboardPage() {
       </div>
 
       {/* Founder Daily Operating Flow */}
+      <GroupHeadquartersSummary />
       <section aria-label="Founder Operating Flow">
         <FounderProcessGuide
           uncontactedCount={recentLeads.filter((l) => l.status === "new").length}

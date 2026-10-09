@@ -1,5 +1,11 @@
 # The Harley Group — shared project status
 
+## Group Headquarters in Control Centre — 9 October 2026
+
+H03/H47: added authenticated `/admin/headquarters`, a primary navigation item and a Control Centre summary card on `codex/group-headquarters-control-centre`, based on main `5e0520dca8c8b9d633474cc9f64d2453b19e99cb`. The page links the existing shared Drive headquarters and every folder/document/reference (32 destinations), with 118 link records, 17 portfolio records and ten priorities from the 9 October audit. It provides automation, sales/marketing, finance and live-operations shortcuts and reuses the existing social content guide. Social profile URLs/scheduler/analytics are explicitly awaiting connection. Portfolio/priorities are dated reference records, not live telemetry or automatic Drive sync. Source is implemented and locally validated; publication/deployment/live admin acceptance remain pending. See the matching handover section for checks and limits.
+
+Reconciliation: PR #20 is included in the fetched main baseline above; its older draft wording below is historical. This does not establish the current live deployment revision.
+
 ## Harley Labs Dell knowledge-base addition — 9 October 2026 (draft review preparation)
 
 Codex prepared one dashboard entry, **Harley Labs — Dell Build** (`harley-labs-dell-build`), in `src/lib/knowledge-base.ts` on `codex/harley-labs-dell-kb`, reconciled with remote main `e972b74ca2258e28b56b4887c1d6055a263dc725`. It records founder-observed Dell progress, exact local commands, explicit unverified steps and nine reusable continuation prompts. n8n onboarding was reached; owner completion, workflows, reboot persistence and backup/restore remain unverified. Committed/pushed in `dbf567c` and available as draft [PR #20](https://github.com/SkyPilot24/harley-digital-works/pull/20); dashboard publication and deployment remain pending review and an authorized main release. Validation results are recorded in the matching handover section. Next lab action: privately complete onboarding, then one manual fictional-enquiry workflow. Production/business next actions below are unchanged.
