@@ -1,0 +1,42 @@
+name: Feature Request
+description: Propose a new feature, platform enhancement, or automation.
+title: "feat: "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Please outline the proposed feature, user persona, and business value.
+  - type: input
+    id: summary
+    attributes:
+      label: Feature Summary
+      description: Brief one-line summary of the feature.
+    validations:
+      required: true
+  - type: textarea
+    id: user-story
+    attributes:
+      label: User Story & Problem Statement
+      description: As a [user type], I want [capability] so that [benefit].
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance-criteria
+    attributes:
+      label: Acceptance Criteria
+      description: What specific outcomes or tests define success?
+    validations:
+      required: true
+  - type: dropdown
+    id: strategic-tier
+    attributes:
+      label: Strategic Category
+      options:
+        - "Revenue Engine / Managed Trade Client Offering"
+        - "Slack Operational Command Centre"
+        - "Admin Control Centre"
+        - "Inbound Lead & Outbox Processing"
+        - "Technical Debt & Quality Assurance"
+    validations:
+      required: true

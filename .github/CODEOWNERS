@@ -1,0 +1,17 @@
+# Global owners for The Harley Group / Harley Digital Works
+* @SkyPilot24
+
+# Core Security & Database RLS Policies
+/supabase/ @SkyPilot24
+/src/integrations/supabase/ @SkyPilot24
+
+# CI/CD & Deployments
+/.github/ @SkyPilot24
+/wrangler.json @SkyPilot24
+/nitro.config.ts @SkyPilot24
+
+# Commercial & Business OS Governance
+/docs/COMMERCIAL_OFFER_MANAGED.md @SkyPilot24
+/BUSINESS_DEFINITION.md @SkyPilot24
+/PROJECT_STATUS.md @SkyPilot24
+/docs/HANDOVER.md @SkyPilot24

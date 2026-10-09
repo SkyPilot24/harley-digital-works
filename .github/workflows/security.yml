@@ -1,0 +1,63 @@
+name: Security Audit
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+      - "codex/**"
+      - "antigravity/**"
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
+
+permissions:
+  contents: read
+
+jobs:
+  secret-scan:
+    name: Secret & Credential Scan
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Verify no leaked production service role keys
+        run: |
+          echo "Scanning for accidental secret commits..."
+          # Check for raw Supabase service role keys or private secrets in source code
+          if git grep -i "SUPABASE_SERVICE_ROLE_KEY=ey" -- ':(exclude).env.example' ':(exclude)docs/' ; then
+            echo "::error::Found hardcoded SUPABASE_SERVICE_ROLE_KEY in tracked code!"
+            exit 1
+          fi
+          # Check for raw Slack bot tokens in tracked files
+          if git grep "xoxb-[0-9]" -- ':(exclude)docs/' ; then
+            echo "::error::Found hardcoded Slack Bot token in tracked code!"
+            exit 1
+          fi
+          echo "Secret scan passed cleanly."
+
+  dependency-audit:
+    name: Dependency Audit
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run audit summary
+        run: |
+          npm audit || true

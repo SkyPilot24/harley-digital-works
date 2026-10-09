@@ -1,0 +1,35 @@
+name: Drift Detection & System Health
+
+on:
+  schedule:
+    # Run every Monday at 08:00 UTC to guard against configuration or dependency drift
+    - cron: "0 8 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  drift-verification:
+    name: Verify Platform Alignment & Zero Drift
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run platform verification & drift detection
+        run: node scripts/verify-platform.mjs
+
+      - name: Run full regression and integration test suite
+        run: npm test

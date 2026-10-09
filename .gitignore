@@ -34,6 +34,7 @@ dist-ssr
 *.sln
 *.sw?
 *.lnk
+*.code-workspace
 
 
 # Local environment secrets

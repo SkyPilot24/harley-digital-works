@@ -6,6 +6,14 @@ on:
     branches:
       - main
       - "codex/**"
+      - "antigravity/**"
+      - "feat/**"
+      - "feature/**"
+      - "fix/**"
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
 
 permissions:
   contents: read

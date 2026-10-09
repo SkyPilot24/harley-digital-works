@@ -1,0 +1,42 @@
+name: Trade Client Onboarding (14-Day Delivery)
+description: Track onboarding, build, review, and launch for an electrical contractor client.
+title: "client: [Business Name] Onboarding"
+labels: ["client-delivery", "in-progress"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Track a client onboarding build under the 14-day delivery SLA.
+        **Important:** Confirm that the concurrent onboarding cap (max 2 active builds) has capacity before opening.
+  - type: input
+    id: client-name
+    attributes:
+      label: Client Business Name & Contact
+      description: Company name, primary contact name, phone, email.
+    validations:
+      required: true
+  - type: dropdown
+    id: tier
+    attributes:
+      label: Selected Service Tier
+      options:
+        - "The Launchpad (£995 + £149/mo)"
+        - "The Revenue Engine Flagship (£1,495 + £249/mo)"
+        - "The Market Leader (£2,495 + £399/mo)"
+    validations:
+      required: true
+  - type: textarea
+    id: milestones
+    attributes:
+      label: 14-Day Delivery Checklist
+      value: |
+        - [ ] Day 1: 50% deposit received & client workspace initialized
+        - [ ] Day 2: Domain DNS mapped & GBP access requested
+        - [ ] Day 3–5: Copywriting & visual site built in Lovable template repo
+        - [ ] Day 6: Schema markup, instant lead alerts & SEO verified
+        - [ ] Day 7: Private review link dispatched to client
+        - [ ] Day 8–10: Client revision cycle completed (under 30-min budget)
+        - [ ] Day 11: Final sign-off & remaining 50% milestone settled
+        - [ ] Day 12–14: Live Cloudflare Pages launch & review booster activated
+    validations:
+      required: true
