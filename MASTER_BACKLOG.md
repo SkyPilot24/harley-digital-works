@@ -744,3 +744,5 @@ The founder confirms the existing domain list is unchanged. D01 must reuse the e
 Repository business definition, status, this backlog, AGENTS.md and docs/HANDOVER.md provide a common record for both development tools. Antigravity has an always-on pointer in .agents/rules/shared-context.md; existing rules and runbooks are retained. This is documentation work, not completion of backend, billing or domain implementation.
 
 Next execution: H07 — reconcile the intended backend and inspect access/policies; D01 — reuse and verify the existing portfolio in parallel. H01 commercial approval remains outstanding. Check PROJECT_STATUS.md before acting on older account-access or unpushed-commit statements.
+
+H42 evidence — 9 October 2026: Secret & Credential Scan self-match repaired on codex/security-scan-fix; no secret exception. Quiet fail-closed scan covers all tracked files. Local clean scan and six synthetic checks pass; GitHub validation pending. Separate dependency-upgrade CI failures remain; see handover.
