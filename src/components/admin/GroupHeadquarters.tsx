@@ -242,14 +242,14 @@ export function GroupHeadquarters() {
           Marketing & socials
         </h2>
         <p className="mt-2 text-sm text-ink-muted">
-          Plan content and review profiles here. Verified company profile URLs, a publishing
-          scheduler and social analytics have not yet been connected.
+          Plan content and set up profiles here. Company social accounts have not yet been set up. A
+          publishing scheduler and social analytics are not connected.
         </p>
         <div className="mt-4 grid gap-3 sm:grid-cols-3">
           {["LinkedIn", "Instagram", "Facebook"].map((platform) => (
             <div key={platform} className="rounded-lg border border-amber-200 bg-amber-50 p-4">
               <h3 className="text-sm font-semibold text-ink">{platform}</h3>
-              <p className="mt-1 text-xs text-amber-900">Awaiting verified company profile link</p>
+              <p className="mt-1 text-xs text-amber-900">Not yet set up</p>
             </div>
           ))}
         </div>

@@ -1,5 +1,15 @@
 # Shared development handover
 
+## Codex — review and push recent activity — 9 October 2026
+
+- Scope: review recent Harley activity and push completed work; inspected current main, all remote branches, recent PR metadata, relevant chats and brand package. Main checkout clean at `5e0520d`; no unpushed commits found. Refreshed remote refs. No writes to the main checkout or unrelated repositories.
+- Consolidation: reviewed full scanner/workflow diff from PR #22 at `3e13544`, including all-file scanning, quiet output and fail-closed Git errors. Merge commit `df46a7b` includes this existing repair in `codex/group-headquarters-control-centre`, with no conflicts or rewritten history. PR #22 itself remains open. Known older PR #8 and dependency/action upgrades remain separate.
+- Shared record: added `docs/RECENT_ACTIVITY_REVIEW_2026-10-09.md`, one KB article (`group-recent-activities-2026-10-09`), activity/brand links in Headquarters and founder-confirmed “Not yet set up” social status. Corrected new brand pack status to proposed, preserving approved existing foundations.
+- Drive: proposed brand pack ZIP and PDF guide uploaded into existing Companies & Brands; metadata readback verified. ZIP fresh CRC integrity passes for all 147 entries. Pack: https://drive.google.com/file/d/1e6PsIfGok-SeJyGKlu4HPCPHuyMovbNa/view?usp=drivesdk ; guide: https://drive.google.com/file/d/1DYkghFuZAPJccvuqvlu9j5FyhqR_3mlY/view?usp=drivesdk . No branding rollout or sharing changes. The recent-activity report is mirrored to Headquarters after checks.
+- Fresh combined verification: build/typecheck/136 existing checks pass; lint 0 errors / 9 existing warnings; format/diff checks pass. Reviewed scanner passes against combined tracked files (Windows sandbox initially blocked its shell startup; approved normal-host run passed). 21st review adjusted component: 0 findings. Earlier browser acceptance remains historical for the original layout; this follow-up changes content only.
+- Release state: pushed through existing PR #23 after verification; remote final-head CI is separate from local evidence. No main merge/deployment, database/billing/social publication, laptop writes or credential copying. Next: complete final combined CI/review, release via existing main pipeline and verify exact deployed revision plus genuine owner access. Final brand decisions, social account creation and laptop host/Git continuity remain founder/setup actions.
+- Verified Drive review mirror: https://drive.google.com/file/d/1tz9xqL2-cykQyrv067d1TfcpqCR3jFsl/view?usp=drivesdk . Headquarters now contains 122 link records including this mirror and proposed brand artifacts; original 32 HQ destinations remain covered.
+
 ## Codex — Group Headquarters Control Centre integration — 9 October 2026
 
 - Request: add the shared headquarters page and all links to the Control Centre for oversight from automation through marketing/socials.

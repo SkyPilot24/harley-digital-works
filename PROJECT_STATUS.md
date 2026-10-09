@@ -1,5 +1,9 @@
 # The Harley Group — shared project status
 
+## Recent activity review and consolidated push — 9 October 2026
+
+Canonical main checkout freshly verified clean at `5e0520d`, with no unpushed commits. Reviewed scanner-fix PR #22 (`3e13544`) merged into the Headquarters review branch without conflicts or history rewriting (`df46a7b`), removing the known scanner self-match blocker from the combined source. Fresh combined scan/build/typecheck/136 checks pass; lint retains 9 existing warnings. `docs/RECENT_ACTIVITY_REVIEW_2026-10-09.md` and one central KB article record recent commercial/Slack/skills/CI work already in main, Dell source merged but recovery/live acceptance pending, completed proposed brand pack now in Drive and unresolved laptop continuity. Founder confirms socials are not yet set up; dashboard copy updated. Proposed brand decisions and untested dependency upgrades remain separate. Publication is via existing PR #23; main release and live owner acceptance remain pending.
+
 ## Group Headquarters in Control Centre — 9 October 2026
 
 H03/H47: added authenticated `/admin/headquarters`, a primary navigation item and a Control Centre summary card on `codex/group-headquarters-control-centre`, based on main `5e0520dca8c8b9d633474cc9f64d2453b19e99cb`. The page links the existing shared Drive headquarters and every folder/document/reference (32 destinations), with 118 link records, 17 portfolio records and ten priorities from the 9 October audit. It provides automation, sales/marketing, finance and live-operations shortcuts and reuses the existing social content guide. Social profile URLs/scheduler/analytics are explicitly awaiting connection. Portfolio/priorities are dated reference records, not live telemetry or automatic Drive sync. Source is implemented and locally validated; publication/deployment/live admin acceptance remain pending. See the matching handover section for checks and limits.

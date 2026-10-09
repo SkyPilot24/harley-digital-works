@@ -64,6 +64,8 @@ Updated 2 October 2026. Domain integration added following the founder's request
 
 ## H03 — Establish one source of truth and a release inventory
 
+- **9 October activity consolidation:** current main checkout verified clean with no unpushed commits; scanner PR #22 included in Headquarters PR #23 on the review branch. Recent activity review/KB and Drive proposed-brand references added; socials confirmed not yet set up. Fresh combined checks pass; production identity, reviewed release and live acceptance remain open. See `docs/RECENT_ACTIVITY_REVIEW_2026-10-09.md`.
+
 - **9 October Control Centre evidence:** `/admin/headquarters` and its dashboard/sidebar entry implemented on `codex/group-headquarters-control-centre` from main `5e0520d`; 118 linked references including every shared-HQ folder/document/reference destination, 17 portfolio records and ten priorities. Local build/checks and UI search/mobile acceptance pass; CI/release/live authenticated acceptance and wider release inventory remain outstanding. See `docs/HANDOVER.md`.
 
 - **Phase:** 1

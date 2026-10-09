@@ -29,6 +29,24 @@ export const KNOWLEDGE_CATEGORIES = [
 
 export const KNOWLEDGE_BASE_ARTICLES: KnowledgeArticle[] = [
   {
+    id: "group-recent-activities-2026-10-09",
+    category: "records",
+    title: "Group recent activity review — 9 October 2026",
+    summary:
+      "Consolidated Headquarters, scanner, proposed brand, Dell lab, commercial and continuity record. Source publication and live release are separate states.",
+    statusBadge: "Reviewed · release pending",
+    lastUpdated: "2026-10-09",
+    keyPoints: [
+      "HEADQUARTERS — Shared-HQ links and group overview are on the Headquarters review branch. The reviewed scanner repair from PR #22 is included for combined verification.",
+      "BRAND — Completed proposed pack and guide uploaded to Companies & Brands. Fresh ZIP integrity passes for 147 entries. Final decisions and live rollout remain separate.",
+      "SOCIALS — Founder confirms accounts are not yet set up. Profile creation, publishing connections and analytics remain setup tasks; use the weekly content guide when ready.",
+      "DELL / CONTINUITY — Dell KB included in main; workflows/recovery and live acceptance remain unverified. Main checkout is clean with no unpushed commits. Laptop checkout/host connection unresolved.",
+      "OTHER SOURCE WORK — Commercial, Slack, skills and earlier CI changes are already in main. Historical acceptance is not a fresh live check. Older CI and untested dependency PRs remain separate.",
+    ],
+    operationalDetails:
+      "Review: docs/RECENT_ACTIVITY_REVIEW_2026-10-09.md. Headquarters: /admin/headquarters. Combined review: https://github.com/SkyPilot24/harley-digital-works/pull/23. Main inspected at 5e0520dca8c8b9d633474cc9f64d2453b19e99cb. Complete review/CI before main release; verify deployed revision and genuine owner access afterwards.",
+  },
+  {
     id: "harley-labs-dell-build",
     category: "playbooks",
     title: "Harley Labs — Dell Build",

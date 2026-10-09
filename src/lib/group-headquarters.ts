@@ -4,6 +4,30 @@ export const headquartersUrl =
 export const headquartersAsOf = "2026-10-09";
 export const headquartersLinks = [
   {
+    title: "Recent activity review — shared Drive copy",
+    url: "https://drive.google.com/file/d/1tz9xqL2-cykQyrv067d1TfcpqCR3jFsl/view?usp=drivesdk",
+    group: "Headquarters documents",
+    description: "9 October review, validation and next actions",
+  },
+  {
+    title: "Recent activity review — 9 October 2026",
+    url: "https://github.com/SkyPilot24/harley-digital-works/blob/codex/group-headquarters-control-centre/docs/RECENT_ACTIVITY_REVIEW_2026-10-09.md",
+    group: "Source records",
+    description: "Consolidated recent code, brand, lab, commercial and continuity activity",
+  },
+  {
+    title: "Proposed Harley family brand pack (ZIP)",
+    url: "https://drive.google.com/file/d/1e6PsIfGok-SeJyGKlu4HPCPHuyMovbNa/view?usp=drivesdk",
+    group: "Headquarters documents",
+    description: "Proposed assets; final decisions and production rollout pending",
+  },
+  {
+    title: "Proposed Harley family brand guide (PDF)",
+    url: "https://drive.google.com/file/d/1DYkghFuZAPJccvuqvlu9j5FyhqR_3mlY/view?usp=drivesdk",
+    group: "Headquarters documents",
+    description: "Proposed identity, usage guidance and three creative directions",
+  },
+  {
     title: "GROUP PORTFOLIO REGISTER",
     url: "https://drive.google.com/file/d/1iUpAk4QZoJTv1U1c5pMBou6JpIf46TRb/view?usp=drivesdk",
     group: "Headquarters documents",
@@ -862,14 +886,14 @@ export const groupPortfolio = [
     id: "P11",
     name: "The Harley Standard brand rollout",
     relationship: "Brand-family assets",
-    status: "Design approval found; rollout completion unverified",
+    status: "Existing visual foundations approved; completed new family pack proposed",
     focus: "Group, Works and Labs identity deployment",
     priority: "Medium",
     next_action: "Reconcile approved assets, latest rollout branch and live visual acceptance",
     completed:
       "Completed brand-pack response lists SVG/PNG/PDF/ZIP; later founder asks approved rollout",
     blockers:
-      "Rollout turn interrupted; asset README still says proposed; authenticated visual check deferred",
+      "Final family hierarchy, accents and copy pending; real contact details and print proof needed; live rollout unverified",
     dependencies: "H16/H48; existing brand chat",
     sources: "S02,S04",
     commercial_readiness:
@@ -974,7 +998,7 @@ export const groupPriorities = [
     action: "Reconcile current release and CI",
     owner: "Delivery lead; founder authorises release",
     timing: "Immediate",
-    work: "Review PR #22 at 3e13544, passing Quality/Security Audit; investigate PR #20 failed preview; identify current deployed commit and verify authenticated KB",
+    work: "Scanner repair reviewed and included in PR #23; complete combined CI and reviewed release, identify current deployed commit and verify authenticated Headquarters and KB",
     acceptance:
       "Exact source→build→deploy evidence, working public/admin smoke and updated handover",
     sources: "S09,S10,S02",
