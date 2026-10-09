@@ -187,3 +187,7 @@ Detailed task definitions, priorities, owners, dependencies and acceptance crite
 ## Commercial roadmap update — 2 October 2026
 
 Domains are now a separately measured commercial workstream under The Harley Group, marketed through Harley Digital Works. MASTER_BACKLOG H49 was revised and D01–D08 added for verified inventory, offers/mandates, catalogue, intake, assisted settlement/transfer, renewals, reporting/cross-sell and later brand/product review. Existing setup-plus-monthly direction and production-readiness sequence remain. This is a planning/documentation update only; no inventory ownership, code deployment, buyer messaging, purchase, payment integration or transaction completion is implied. Prices remain proposals. The central Business Definition in The Harley Group / Business OS was updated to match.
+
+## Security audit repair — 9 October 2026
+
+H42: scanner self-match in security.yml diagnosed and fixed on codex/security-scan-fix. Clean-tree and six synthetic/redaction/error checks passed. GitHub Security Audit 37923833877 and Quality 37923834004 passed for 1ed96ff; PR #22 open, no main merge or deployment. See docs/HANDOVER.md for related Dependabot failures and audit limitations.

@@ -26,19 +26,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Verify no leaked production service role keys
-        run: |
-          echo "Scanning for accidental secret commits..."
-          # Check for raw Supabase service role keys or private secrets in source code
-          if git grep -i "SUPABASE_SERVICE_ROLE_KEY=ey" -- ':(exclude).env.example' ':(exclude)docs/' ; then
-            echo "::error::Found hardcoded SUPABASE_SERVICE_ROLE_KEY in tracked code!"
-            exit 1
-          fi
-          # Check for raw Slack bot tokens in tracked files
-          if git grep "xoxb-[0-9]" -- ':(exclude)docs/' ; then
-            echo "::error::Found hardcoded Slack Bot token in tracked code!"
-            exit 1
-          fi
-          echo "Secret scan passed cleanly."
+        run: sh scripts/scan-secrets.sh
 
   dependency-audit:
     name: Dependency Audit
