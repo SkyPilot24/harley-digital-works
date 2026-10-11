@@ -1,15 +1,13 @@
-<!-- LOVABLE:BEGIN -->
+<!-- DUAL_ARCHITECTURE:BEGIN -->
 
 > [!IMPORTANT]
-> This project is connected to [Lovable](https://lovable.dev). Avoid rewriting
-> published git history — force pushing, or rebasing/amending/squashing commits
-> that are already pushed — as it rewrites history on Lovable's side and the
-> user will likely lose their project history.
+> **Dual Architecture Operating Rule (Settled 8 October 2026):**
+> - **Agency Platform (`SkyPilot24/harley-digital-works`):** Maintained strictly via code by **Codex**, **Antigravity**, and canonical Git. Houses live Supabase RLS policies (`worzpzbutngugwzhlvtj`), Cloudflare Nitro Worker SSR, Slack Command Centre, minute notification outbox crons, hourly abuse pruning (`prune-lead-attempts`), and authenticated Admin suite. Do not import into Lovable.
+> - **External Client Trade Websites:** Built and maintained visually via **Lovable** connected to dedicated GitHub repos (e.g. `SkyPilot24/kindred-spark` - Wessex Volt Electrical template, commit `f1481fe`). Deploys to Cloudflare Pages.
 >
-> Commits you push to the connected branch sync back to Lovable and show up in
-> the editor, so keep the branch in a working state.
+> Commits pushed to `main` auto-deploy to Cloudflare. Avoid rewriting published git history (no force pushes or squashing). Keep `main` in a verified working state.
 
-<!-- LOVABLE:END -->
+<!-- DUAL_ARCHITECTURE:END -->
 
 ## Project Context Skill
 
@@ -17,13 +15,17 @@ When working on strategy, copy, Control Centre, Revenue OS, diagnostics, service
 
 ## Shared project context — Codex, ChatGPT Work and Google Antigravity
 
-At the start of a session, read:
-1. [BUSINESS_DEFINITION.md](BUSINESS_DEFINITION.md) — commercial direction and approval boundaries.
-2. [PROJECT_STATUS.md](PROJECT_STATUS.md) — verified state, blockers and evidence.
-3. [MASTER_BACKLOG.md](MASTER_BACKLOG.md) — integrated H01–H50 and D01–D08 roadmap.
-4. [docs/HANDOVER.md](docs/HANDOVER.md) — last handover and continuation procedure.
+At the start of a session, read **`PROJECT_STATUS.md`**'s short operating brief AND **`docs/HANDOVER.md`** first to inherit the current verified state, recent peer agent activities, test results, and active bottleneck. Select one ready task, then retrieve relevant detail from:
+
+1. [PROJECT_STATUS.md](PROJECT_STATUS.md) — verified state, active bottleneck, and backend target.
+2. [docs/HANDOVER.md](docs/HANDOVER.md) — exact commit hashes, dual-architecture state, test evidence, and next actions.
+3. [BUSINESS_DEFINITION.md](BUSINESS_DEFINITION.md) — commercial direction and approval boundaries.
+4. [MASTER_BACKLOG.md](MASTER_BACKLOG.md) — integrated H01–H50 and D01–D08 roadmap.
+5. [docs/COMMERCIAL_OFFER_MANAGED.md](docs/COMMERCIAL_OFFER_MANAGED.md) — ratified packages, pricing, VAT rules, and economics.
 
 These files are the shared repository record. Chat histories, personal memory, installed skills and connector sessions are not automatically shared between tools. Optional skills inform execution; they do not replace this record.
+
+Load full historical records only when relevant. Canonical standards: skills/thg-client-build-standard/SKILL.md for website delivery; skills/thg-supabase-security/SKILL.md for auth/database security; skills/thg-production-qa/SKILL.md for release readiness. Antigravity reads the same files through .agents/rules/thg-shared-skills.md. See docs/SHARED_SKILLS.md for installation/sync. Use existing checks with concise pass/fail summaries and actionable failure detail; context efficiency must not skip verification.
 
 The latest explicit founder instruction governs. Preserve The Harley Group as parent and Harley Digital Works as customer-facing agency unless a rename is explicitly confirmed; do not infer a rename from “Heaney Group”. Proposed prices are not approved commercial terms. Older plans, public copy and rules must be checked against BUSINESS_DEFINITION.md. The older £95/month and guaranteed 14-day language is not evidence of current approval.
 

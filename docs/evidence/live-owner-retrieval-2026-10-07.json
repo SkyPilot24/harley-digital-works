@@ -1,0 +1,24 @@
+{
+  "date": "2026-10-07",
+  "production_backend": "worzpzbutngugwzhlvtj",
+  "deployed_application_source": "ebce69ee2f1b5f20da50aceccec4ec83ffba5a96",
+  "last_manually_verified_worker_version": "9d3bfd74-d90b-479d-ad48-63dde99c3a76",
+  "owner_login": "PASS: human confirmed sign-in; browser displays existing owner and administrator navigation",
+  "dashboard_retrieval": "PASS: one recent enquiry shown",
+  "leads_retrieval": "PASS: exactly one labelled enquiry shown in authenticated Leads",
+  "detail_retrieval": "PASS: original synthetic enquiry message visible in detail view",
+  "provider_verification": {
+    "existing_admin_recent_sign_in": true,
+    "admin_count": 1,
+    "auth_user_count": 2,
+    "labelled_enquiry_count": 1
+  },
+  "notifications_enabled": false,
+  "limitations": [
+    "Owner logout/expiry and copied-token revocation not tested in live session",
+    "No tested backup/restore claim",
+    "Both-brand field/package acceptance still open",
+    "Retention schedule, durable notifications and remaining advisories still open"
+  ],
+  "credential_handling": "Owner completed recovery privately; no password or recovery token recorded; no administrator created or impersonated"
+}

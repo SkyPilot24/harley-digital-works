@@ -25,15 +25,15 @@ import { CareBillingPortalDesk } from "@/components/portal/CareBillingPortalDesk
 export const Route = createFileRoute("/care-desk")({
   head: () => ({
     meta: [
-      { title: "Client Care Plan Desk & Direct Debit Portal | Harley Digital Works" },
+      { title: "Client Care Plan Desk & Billing Portal | Harley Digital Works" },
       {
         name: "description",
         content:
-          "Fast-track 1-tap website change requests, BACS Direct Debit management, VAT receipts, and 24-hour turnaround support for Harley Digital Works Care Plan clients.",
+          "Fast-track 1-tap website change requests, billing receipts, and 24-hour turnaround support for Harley Digital Works Care Plan clients.",
       },
       {
         property: "og:title",
-        content: "Care Plan Desk & Direct Debit Portal | Harley Digital Works",
+        content: "Care Plan Desk & Billing Portal | Harley Digital Works",
       },
     ],
   }),
@@ -131,11 +131,11 @@ Files Attached: ${uploadedFiles.join(", ") || "None"}`;
             </div>
             <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-white leading-tight">
               1-Tap Client Care & <br />
-              <span className="text-gold-400">Direct Debit Portal.</span>
+              <span className="text-gold-400">Subscription Portal.</span>
             </h1>
             <p className="mt-3 text-sm sm:text-base text-neutral-300 leading-relaxed max-w-xl mx-auto">
-              Need website updates deployed or want to manage your recurring £95/mo or £195/mo Care
-              Plan, VAT invoices, and BACS Direct Debit? Everything is self-service below.
+              Need website updates deployed or want to manage your recurring £249/mo Managed Care
+              Plan and subscription receipts? Everything is self-service below.
             </p>
 
             {/* Tab Buttons */}
@@ -162,7 +162,7 @@ Files Attached: ${uploadedFiles.join(", ") || "None"}`;
                 }`}
               >
                 <CreditCard className="h-3.5 w-3.5" />
-                <span>Subscription, Direct Debit & VAT</span>
+                <span>Subscription & Billing Receipts</span>
               </button>
             </div>
           </div>

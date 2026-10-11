@@ -1,15 +1,15 @@
 export const agencyStats = [
   { label: "Delivery speed", value: "14 days" },
   { label: "Copy & images", value: "100% Done-For-You" },
-  { label: "Ongoing care", value: "£95/mo (Hosting + Edits)" },
+  { label: "Ongoing care", value: "£249/mo (Hosting + Edits)" },
 ] as const;
 
 export const agencyOffers = [
   {
     slug: "launch-website",
-    eyebrow: "Turnkey Web Presence",
-    title: "Launch Website",
-    price: "£1,495 + VAT",
+    eyebrow: "Turnkey Web Presence (Ratified MVP)",
+    title: "Managed Trade Website",
+    price: "£1,495 (Zero-Rated VAT)",
     summary:
       "A fast, clean, professional website built to give trades and local businesses immediate credibility and inbound calls.",
     outcome:
@@ -18,19 +18,19 @@ export const agencyOffers = [
       "5 bespoke conversion-focused pages",
       "We write all the industry copy and curate high-res photography",
       "Mobile-first design with direct click-to-call and WhatsApp routing",
-      "Basic local Google SEO and Google Business Profile setup",
-      "30 days of included managed care and hosting",
+      "Local Map Pack Schema JSON-LD microdata and Google Business Profile setup",
+      "Ongoing £249/mo managed care, Cloudflare edge hosting, and 24h SLA",
     ],
-    cta: "Choose Launch Website",
+    cta: "Choose Managed Website",
     surface: "sage" as const,
   },
   {
     slug: "growth-website",
-    eyebrow: "Most Popular for Trades",
-    title: "Growth Website",
-    price: "£2,995 + VAT",
+    eyebrow: "Multi-Location Expansion",
+    title: "Expansion Platform",
+    price: "£2,495 (Zero-Rated VAT)",
     summary:
-      "The complete online lead-generation engine designed to dominate local search, showcase projects, and convert quote requests.",
+      "The complete online lead-generation engine designed to showcase multiple service hubs and regional service areas.",
     outcome:
       "You win higher-value projects, outshine local competitors, and receive qualified job enquiries directly to your phone.",
     bullets: [
@@ -38,25 +38,25 @@ export const agencyOffers = [
       "Interactive quick-quote estimator and enquiry routing",
       "Google Reviews integration and verified trust badges",
       "Advanced local SEO schema for top Google Maps ranking",
-      "30 days of VIP managed care, daily backups, and priority support",
+      "Cloudflare edge hosting, daily backups, and priority support",
     ],
-    cta: "Choose Growth Website",
+    cta: "Choose Expansion Platform",
     surface: "mist" as const,
   },
   {
     slug: "managed-care-plans",
     eyebrow: "Zero Tech Hassle",
     title: "Website Care & Managed Hosting",
-    price: "From £95 / month",
+    price: "£249 / month (Zero-Rated VAT)",
     summary:
-      "We manage your digital presence so you can run your business. Ultra-fast UK cloud hosting, daily backups, and unlimited edits.",
+      "We manage your digital presence so you can run your business. Ultra-fast UK cloud hosting, daily backups, and routine edit batches.",
     outcome:
-      "You never touch a server, update a plugin, or worry about your website breaking. Just message us on WhatsApp when you need changes.",
+      "You never touch a server, update a plugin, or worry about your website breaking. Just message us when you need changes.",
     bullets: [
       "Blazing-fast UK green cloud hosting and SSL security",
       "Daily off-site cloud backups and 24/7 uptime monitoring",
-      "Monthly content edits (photos, phone numbers, prices, new reviews)",
-      "Direct UK phone, email, and WhatsApp support",
+      "Monthly content edits (photos, phone numbers, prices, new reviews up to 30 mins)",
+      "Direct UK phone, email, and WhatsApp support with 24h business SLA",
       "Monthly performance and enquiry summary report",
     ],
     cta: "Explore Care Plans",

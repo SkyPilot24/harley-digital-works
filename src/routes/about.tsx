@@ -29,7 +29,7 @@ const principles = [
   {
     number: "03",
     title: "Transparent scope and fixed pricing.",
-    copy: "An initial build fee and ongoing monthly service, with deliverables, revisions and any additional work agreed in writing before it starts.",
+    copy: "Fixed £1,495 setup investment (50% deposit / 50% on approval) and £249/mo ongoing care. Zero-rated VAT, with deliverables, revisions and 14-day turnaround agreed in writing before work begins.",
   },
   {
     number: "04",
@@ -85,6 +85,8 @@ function AboutPage() {
                   width="1200"
                   height="1600"
                   loading="eager"
+                  fetchPriority="high"
+                  decoding="async"
                 />
                 <span>DR ROBBIE HARLEY / FOUNDER & MANAGING DIRECTOR</span>
               </div>
@@ -125,6 +127,7 @@ function AboutPage() {
                 width="1200"
                 height="801"
                 loading="lazy"
+                decoding="async"
               />
               <span className="purpose-image-label">MAKE THE DETAILS COUNT.</span>
               <div className="purpose-annotation">
@@ -166,7 +169,10 @@ function AboutPage() {
         </section>
 
         {/* Studio Principles */}
-        <section className="studio-process studio-section" aria-labelledby="principles-heading">
+        <section
+          className="studio-process studio-section deferred-section"
+          aria-labelledby="principles-heading"
+        >
           <div className="studio-wrap">
             <div className="studio-section-heading">
               <div>
@@ -198,7 +204,10 @@ function AboutPage() {
         </section>
 
         {/* Founder Story Section */}
-        <section className="studio-founder studio-section" aria-labelledby="founder-story-heading">
+        <section
+          className="studio-founder studio-section deferred-section"
+          aria-labelledby="founder-story-heading"
+        >
           <div className="studio-wrap founder-layout">
             <div className="founder-photo">
               <img
@@ -207,6 +216,7 @@ function AboutPage() {
                 width="1200"
                 height="1600"
                 loading="lazy"
+                decoding="async"
               />
               <span>ROBBIE HARLEY / MANAGING DIRECTOR</span>
             </div>
@@ -245,7 +255,7 @@ function AboutPage() {
         </section>
 
         {/* Final CTA */}
-        <section className="studio-final" aria-labelledby="about-final-heading">
+        <section className="studio-final deferred-section" aria-labelledby="about-final-heading">
           <div className="studio-wrap">
             <p className="studio-kicker">TAKE THE NEXT STEP</p>
             <div className="final-layout">
@@ -263,19 +273,19 @@ function AboutPage() {
                   Let’s talk about your website
                 </PillButton>
                 <span className="final-price">
-                  Initial build + monthly care · Scope agreed before you commit
+                  £1,495 setup · £249/mo care · 14-day turnaround · Capped capacity
                 </span>
               </div>
             </div>
             <div className="final-reassurance">
               <span>
-                <PenLine size={16} /> Copywriting included
+                <PenLine size={16} /> 100% Copywriting included
               </span>
               <span>
-                <Check size={16} /> Fixed scope agreed upfront
+                <Check size={16} /> 50% deposit / 50% on approval
               </span>
               <span>
-                <ShieldCheck size={16} /> Direct WhatsApp support
+                <ShieldCheck size={16} /> Zero VAT & direct WhatsApp support
               </span>
             </div>
           </div>

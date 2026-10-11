@@ -85,7 +85,8 @@ export function ConceptScreen({
                 width="1800"
                 height="1200"
                 loading={priority ? "eager" : "lazy"}
-                fetchPriority={priority ? "high" : "auto"}
+                decoding="async"
+                {...(priority ? { fetchPriority: "high" } : {})}
               />
               <div className="architecture-copy">
                 <span>CONSIDERED DESIGN. EXCEPTIONAL BUILD.</span>

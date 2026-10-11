@@ -31,44 +31,44 @@ const CARE_TIERS: CarePlanTier[] = [
   {
     id: "essentials",
     name: "Care Plan Essentials",
-    priceGbp: 95,
+    priceGbp: 149,
     cadence: "month",
     features: [
       "Ultra-fast Cloudflare V8 edge hosting & SSL",
-      "Unlimited text, phone & pricing updates",
+      "Routine maintenance & security updates",
+      "15-minute monthly content edit allowance",
       "24-business-hour SLA turnaround",
-      "Daily offsite automated backups",
-      "HMRC VAT invoice sent monthly",
+      "Zero-rated VAT subscription receipt via Stripe",
     ],
   },
   {
     id: "growth",
-    name: "Growth & Local Dominance",
-    priceGbp: 195,
+    name: "Care Plan Managed (Ratified MVP)",
+    priceGbp: 249,
     cadence: "month",
     popular: true,
-    tag: "Most Popular for UK Trades",
+    tag: "Standard Ratified Care",
     features: [
       "Everything in Essentials Plan",
-      "Monthly Local SEO & Google Map Pack tuning",
-      "Automated Google 5-Star Review Booster integration",
-      "Priority 12-hour turnaround queue",
-      "Quarterly conversion rate & lead audit",
-      "Direct WhatsApp access to your Web Producer",
+      "30-min monthly edit batch (non-accumulative)",
+      "Dual-desk enquiry health checks & direct support triage",
+      "Monthly performance digest & review workflow guidance",
+      "Standard 24h business-day SLA (4h outage priority response)",
+      "Zero-rated VAT (under HMRC registration threshold)",
     ],
   },
   {
     id: "fleet",
-    name: "Multi-Van Fleet Master",
-    priceGbp: 395,
+    name: "Expansion Care Plan",
+    priceGbp: 399,
     cadence: "month",
     tag: "Multi-Location & Franchises",
     features: [
-      "Everything in Growth & Local Dominance",
-      "Up to 10 sub-town landing pages created per quarter",
+      "Everything in Care Plan Managed",
       "Multi-van quote calculation routing",
-      "Same-day 4-hour emergency SLA",
-      "Dedicated monthly strategy call with Robbie Harley",
+      "Multi-area landing page updates",
+      "Priority 12-hour turnaround queue",
+      "Quarterly conversion review with Robbie Harley",
     ],
   },
 ];
@@ -78,7 +78,7 @@ const ADDONS = [
     id: "map-pack",
     name: "Google Map Pack Geotargeting Booster",
     price: "£95/mo",
-    desc: "Monthly geo-tagged photo uploads and local citation indexing across Cheshire & Greater Manchester.",
+    desc: "Monthly geo-tagged photo uploads and local citation indexing across your primary service area.",
   },
   {
     id: "review-booster",
@@ -96,31 +96,31 @@ const ADDONS = [
 
 const MOCK_INVOICES = [
   {
-    id: "INV-2026-0901",
+    id: "REC-2026-0901",
     date: "01 Sep 2026",
-    description: "Monthly Care Plan (Growth Tier) - cheshireheat.co.uk",
-    amount: "£234.00",
-    netAmount: "£195.00",
-    vat: "£39.00 (20%)",
-    status: "Paid via BACS Direct Debit",
+    description: "Monthly Care Plan (Managed Tier) - cheshireheat.co.uk",
+    amount: "£249.00",
+    netAmount: "£249.00",
+    vat: "£0.00 (Zero-Rated)",
+    status: "Paid via Stripe Auto-Debit",
   },
   {
-    id: "INV-2026-0801",
+    id: "REC-2026-0801",
     date: "01 Aug 2026",
-    description: "Monthly Care Plan (Growth Tier) - cheshireheat.co.uk",
-    amount: "£234.00",
-    netAmount: "£195.00",
-    vat: "£39.00 (20%)",
-    status: "Paid via BACS Direct Debit",
+    description: "Monthly Care Plan (Managed Tier) - cheshireheat.co.uk",
+    amount: "£249.00",
+    netAmount: "£249.00",
+    vat: "£0.00 (Zero-Rated)",
+    status: "Paid via Stripe Auto-Debit",
   },
   {
-    id: "INV-2026-0701",
+    id: "REC-2026-0701",
     date: "01 Jul 2026",
-    description: "Monthly Care Plan (Growth Tier) - cheshireheat.co.uk",
-    amount: "£234.00",
-    netAmount: "£195.00",
-    vat: "£39.00 (20%)",
-    status: "Paid via BACS Direct Debit",
+    description: "Monthly Care Plan (Managed Tier) - cheshireheat.co.uk",
+    amount: "£249.00",
+    netAmount: "£249.00",
+    vat: "£0.00 (Zero-Rated)",
+    status: "Paid via Stripe Auto-Debit",
   },
 ];
 
@@ -134,18 +134,18 @@ export function CareBillingPortalDesk({
   const [selectedTier, setSelectedTier] = useState<"essentials" | "growth" | "fleet">(defaultTier);
   const [activeAddons, setActiveAddons] = useState<string[]>(["map-pack"]);
   const [companyName] = useState(defaultCompany);
-  const [vatNumber] = useState("GB 439 2019 44");
+  const [taxTreatment] = useState("Zero-rated (under HMRC £90k threshold)");
 
   const toggleAddon = (id: string) => {
     setActiveAddons((prev) => (prev.includes(id) ? prev.filter((a) => a !== id) : [...prev, id]));
   };
 
   const handleDownloadInvoice = (invId: string) => {
-    toast.success(`HMRC Compliant VAT Receipt ${invId} downloaded!`);
+    toast.success(`Payment receipt ${invId} downloaded!`);
   };
 
   const handleUpdateDirectDebit = () => {
-    toast.success("BACS Direct Debit mandate link dispatched to your billing email.");
+    toast.success("Stripe billing portal link dispatched to your billing email.");
   };
 
   const activePlanData = CARE_TIERS.find((t) => t.id === selectedTier)!;
@@ -164,8 +164,8 @@ export function CareBillingPortalDesk({
               Subscription & Direct Debit Self-Service
             </h2>
             <p className="mt-1 text-xs md:text-sm text-neutral-400 max-w-xl">
-              Manage your Harley Care Plan, download HMRC-compliant VAT receipts, toggle monthly
-              growth modules, or update your BACS Direct Debit guarantee.
+              Manage your Harley Care Plan, download payment receipts, toggle monthly growth
+              modules, or manage your recurring payment settings.
             </p>
           </div>
 
@@ -175,7 +175,7 @@ export function CareBillingPortalDesk({
               className="inline-flex items-center justify-center gap-2 rounded-full bg-gold-500 hover:bg-gold-400 px-5 py-2.5 text-xs font-bold text-neutral-950 transition-all shadow-md cursor-pointer"
             >
               <CreditCard className="h-4 w-4" />
-              <span>Update BACS Mandate</span>
+              <span>Update Billing Details</span>
             </button>
             <a
               href="https://wa.me/441618204910?text=Hi%20Jack,%20I%20have%20a%20question%20regarding%20my%20Harley%20Care%20Plan%20billing."
@@ -196,14 +196,14 @@ export function CareBillingPortalDesk({
               Account Company
             </div>
             <div className="mt-1 text-sm font-bold text-white truncate">{companyName}</div>
-            <div className="mt-0.5 text-xs text-neutral-500">VAT: {vatNumber}</div>
+            <div className="mt-0.5 text-xs text-neutral-500">{taxTreatment}</div>
           </div>
           <div className="rounded-2xl bg-neutral-950 p-4 border border-neutral-800/80">
             <div className="text-[11px] font-mono uppercase tracking-wider text-neutral-400">
               Current Active Plan
             </div>
             <div className="mt-1 text-sm font-bold text-gold-400">
-              {activePlanData.name} (£{activePlanData.priceGbp}/mo + VAT)
+              {activePlanData.name} (£{activePlanData.priceGbp}/mo · Zero VAT)
             </div>
             <div className="mt-0.5 text-xs text-emerald-400 flex items-center gap-1">
               <CheckCircle2 className="h-3 w-3" />
@@ -261,7 +261,7 @@ export function CareBillingPortalDesk({
 
                   <div className="mt-4 flex items-baseline gap-1">
                     <span className="text-3xl font-extrabold text-white">£{tier.priceGbp}</span>
-                    <span className="text-xs text-neutral-400">/ month + VAT</span>
+                    <span className="text-xs text-neutral-400">/ month (Zero VAT)</span>
                   </div>
 
                   <ul className="mt-5 space-y-2.5 text-xs text-neutral-300">
@@ -356,16 +356,18 @@ export function CareBillingPortalDesk({
           <div>
             <div className="flex items-center gap-2">
               <Receipt className="h-4 w-4 text-emerald-400" />
-              <h3 className="text-lg font-bold text-white">VAT Receipts & Billing History</h3>
+              <h3 className="text-lg font-bold text-white">Payment Receipts & Billing History</h3>
             </div>
             <p className="text-xs text-neutral-400 mt-1">
-              Download itemized VAT receipts for your UK accountant or HMRC self-assessment / Making
-              Tax Digital.
+              Download itemized subscription receipts for your UK accountant or bookkeeping.
             </p>
           </div>
 
           <div className="text-xs text-neutral-400 font-mono">
-            HMRC VAT Registered: <span className="text-white font-semibold">GB 439 2019 44</span>
+            Tax Treatment:{" "}
+            <span className="text-white font-semibold">
+              Zero-Rated (£0 VAT / Below £90k HMRC Threshold)
+            </span>
           </div>
         </div>
 
@@ -373,10 +375,10 @@ export function CareBillingPortalDesk({
           <table className="w-full text-left text-xs">
             <thead>
               <tr className="border-b border-neutral-800 text-neutral-400 uppercase tracking-wider font-mono text-[11px]">
-                <th className="pb-3 font-semibold">Invoice Ref</th>
+                <th className="pb-3 font-semibold">Receipt Ref</th>
                 <th className="pb-3 font-semibold">Date</th>
                 <th className="pb-3 font-semibold">Description</th>
-                <th className="pb-3 font-semibold">Net / VAT</th>
+                <th className="pb-3 font-semibold">Net / Tax</th>
                 <th className="pb-3 font-semibold">Total</th>
                 <th className="pb-3 font-semibold">Status</th>
                 <th className="pb-3 font-semibold text-right">Receipt</th>

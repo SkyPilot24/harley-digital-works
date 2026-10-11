@@ -19,18 +19,16 @@ import {
   QrCode,
 } from "lucide-react";
 import { toast } from "sonner";
+import { buildPageSeoHead } from "@/lib/site-config";
 
 export const Route = createFileRoute("/partners")({
-  head: () => ({
-    meta: [
-      { title: "Trade Partner & Referral Network | Harley Digital Works" },
-      {
-        name: "description",
-        content:
-          "Earn £250 commission per referral introducing UK trade contractors to Harley Digital Works 100% done-for-you website systems.",
-      },
-    ],
-  }),
+  head: () =>
+    buildPageSeoHead({
+      title: "Trade Partner & Referral Network | Harley Digital Works",
+      description:
+        "Earn £250 commission per referral introducing UK trade contractors to Harley Digital Works 100% done-for-you website systems.",
+      path: "/partners",
+    }),
   component: PartnersPage,
 });
 
@@ -45,7 +43,7 @@ const PARTNER_BENEFITS = [
     icon: Gift,
     title: "£150 Client Voucher",
     description:
-      "Your referred trade contractors receive an exclusive £150 discount on their Launch (£1,495) or Growth (£2,995) package.",
+      "Your referred trade contractors receive an exclusive £150 discount on their Managed (£1,495) or Expansion (£2,495) setup package.",
   },
   {
     icon: ShieldCheck,

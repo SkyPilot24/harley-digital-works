@@ -65,62 +65,64 @@ interface AddonOption {
 
 const PACKAGES = {
   launch: {
-    name: "14-Day Launch Website",
+    name: "Managed Trade Presence (MVP)",
     price: 1495,
-    tagline: "High-converting 5-page trade website ready in 14 days.",
+    tagline: "High-converting 5-page trade website ready in 14 days with ongoing managed care.",
     deliverables: [
-      "100% Done-for-you technical copywriting (zero homework)",
-      "Mobile-first responsive design & Google PageSpeed 95+",
-      "Interactive trade quote request form",
-      "Google Map Pack & Local Business Schema markup",
-      "Full SSL, domain connection & UK edge cloud hosting",
-      "14-Day guaranteed turnaround to live Google launch",
+      "5-Page trade architecture (Home, About, Services, Selected Work, Contact Desk)",
+      "100% Done-for-you technical copywriting (zero homework on your end)",
+      "Mobile-responsive layout, trade accreditation badges (NICEIC/NAPIT/Gas Safe)",
+      "Local Map Pack Schema.org JSON-LD microdata for regional ranking",
+      "Dual enquiry desk (triage form + click-to-WhatsApp dispatch)",
+      "Cloudflare edge SSR hosting, SSL, and business MX email preservation",
+      "Two structured preview revision rounds before public DNS cutover",
     ],
   },
-  growth: {
-    name: "Commercial Growth Platform",
-    price: 2995,
-    tagline: "Multi-page dominance platform with sub-service hubs and trade ROI calculator.",
+  entry: {
+    name: "Essential Foundation",
+    price: 995,
+    tagline: "Core 3-page trade web foundation for sole operators establishing local presence.",
     deliverables: [
-      "Everything in Launch Website + up to 10 custom service pages",
-      "Interactive Trade ROI & Instant Quote Calculator engine",
-      "Commercial Fleet / Multi-van compliance & CHAS showcase",
-      "Advanced geo-targeted landing pages for up to 5 regional towns",
-      "Google 5-Star Review Booster & WhatsApp dispatch integration",
-      "Priority 14-day SLA delivery with dedicated project lead",
+      "3-Page streamlined layout (Home, Services & Pricing, Contact Desk)",
+      "Done-for-you copywriting and trade accreditation showcase",
+      "Mobile-optimized performance & Google PageSpeed 95+",
+      "Direct phone and WhatsApp enquiry routing",
+      "Cloudflare edge hosting & domain connection with email protection",
+      "One preview revision round prior to launch",
     ],
   },
-  pro: {
-    name: "Enterprise Digital Product",
-    price: 4995,
-    tagline: "Custom bespoke digital infrastructure, client portals, and workflow automation.",
+  expansion: {
+    name: "Expansion Dominance Platform",
+    price: 2495,
+    tagline: "Multi-page trade platform with sub-service hubs and regional location targeting.",
     deliverables: [
-      "Everything in Growth Platform + custom database/API integrations",
-      "Client Self-Service Portal & booking dispatcher",
-      "Automated SMS/Email follow-up workflow engines",
-      "Custom domain acquisition & DNS architecture by Domain OS",
-      "Direct senior engineering oversight by Harley Labs",
+      "Everything in Managed + up to 10 custom service and sub-area pages",
+      "Interactive Trade Price Estimator / Quote Calculator module",
+      "Multi-van compliance, commercial tender showcase, and CHAS badges",
+      "Advanced geo-targeted landing hubs across regional towns/postcodes",
+      "Google 5-Star Review Booster & direct dispatch integration",
+      "Priority SLA delivery with dedicated project producer",
     ],
   },
 };
 
 const AVAILABLE_ADDONS: AddonOption[] = [
   {
-    id: "care-plus",
-    name: "Managed Care Plan Plus",
+    id: "care-managed",
+    name: "Managed Digital Care Plan",
     category: "Ongoing Care",
     price: 0,
-    monthly: 95,
+    monthly: 249,
     description:
-      "Ultra-fast UK cloud hosting, automated daily backups, security monitoring, and unlimited monthly content updates.",
+      "Cloudflare edge hosting, SSL certificates, 30-min monthly edit batch, dual-desk enquiry health checks, monthly performance digest, and 24h SLA response window.",
   },
   {
     id: "seo-pack",
-    name: "Local Map-Pack Domination Pack",
+    name: "Local Map-Pack & Directory Booster",
     category: "Search Engine Optimization",
     price: 495,
     description:
-      "In-depth competitor geo-grid audit, 25 high-authority UK trade directory citations, and Google Business Profile optimization.",
+      "Competitor geo-grid proximity audit, high-authority UK trade directory citations, and Google Business Profile optimization.",
   },
   {
     id: "review-booster",
@@ -128,7 +130,7 @@ const AVAILABLE_ADDONS: AddonOption[] = [
     category: "Lead Conversion",
     price: 295,
     description:
-      "Automated 1-tap SMS & WhatsApp review request dispatcher to turn happy customers into 5-star Google ratings.",
+      "Automated 1-tap SMS & WhatsApp review request dispatcher to turn happy clients into verified 5-star Google reviews.",
   },
   {
     id: "fleet-pack",
@@ -136,7 +138,7 @@ const AVAILABLE_ADDONS: AddonOption[] = [
     category: "Commercial Authority",
     price: 395,
     description:
-      "CHAS Elite, SafeContractor, and £10M commercial compliance portal for landing high-ticket commercial contracts.",
+      "Commercial compliance portal, health & safety documentation, and tender credential showcase.",
   },
 ];
 
@@ -174,16 +176,16 @@ function ProposalsPage() {
   const initialPkgKey =
     search.package && search.package in PACKAGES
       ? (search.package as keyof typeof PACKAGES)
-      : "growth";
+      : "launch";
 
   // Preset defaults for proposal demonstration & customisation
   const [clientName, setClientName] = useState(initialClient);
-  const [clientSector, setClientSector] = useState("Commercial & Domestic Trade Services");
-  const [clientLocation, setClientLocation] = useState("Greater London & South East");
+  const [clientSector, setClientSector] = useState("Commercial & Domestic Electrical Contractors");
+  const [clientLocation, setClientLocation] = useState("Bristol, Bath & M4 Corridor");
   const [selectedPackageKey, setSelectedPackageKey] =
     useState<keyof typeof PACKAGES>(initialPkgKey);
   const [selectedAddons, setSelectedAddons] = useState<string[]>([
-    "care-plus",
+    "care-managed",
     "seo-pack",
     "review-booster",
   ]);
@@ -212,8 +214,8 @@ function ProposalsPage() {
       }
     });
 
-    const ukVatAmount = Math.round(netUpfront * 0.2 * 100) / 100;
-    const grossUpfront = Math.round((netUpfront + ukVatAmount) * 100) / 100;
+    const ukVatAmount = 0; // Below HMRC £90,000 threshold; VAT not charged / zero-rated
+    const grossUpfront = netUpfront;
     const depositRequired = Math.round(grossUpfront * 0.5 * 100) / 100;
     const balanceOnCompletion = Math.round((grossUpfront - depositRequired) * 100) / 100;
 
@@ -492,21 +494,15 @@ function ProposalsPage() {
                     })}
 
                     <div className="border-t border-ink/10 pt-3 flex justify-between font-bold text-sm text-ink">
-                      <span>Net Subtotal</span>
+                      <span>Setup Subtotal</span>
                       <span>£{calculatedTotals.netUpfront.toLocaleString()}</span>
                     </div>
                     <div className="flex justify-between text-xs text-ink-muted">
-                      <span>UK VAT (20% HMRC GB 948 2018 39)</span>
-                      <span>
-                        £
-                        {calculatedTotals.ukVatAmount.toLocaleString(undefined, {
-                          minimumFractionDigits: 2,
-                          maximumFractionDigits: 2,
-                        })}
-                      </span>
+                      <span>Tax Treatment (Zero-Rated / Below £90k Threshold)</span>
+                      <span>£0.00</span>
                     </div>
                     <div className="flex justify-between font-bold text-base text-emerald-800 border-t border-ink/5 pt-2">
-                      <span>Gross Upfront Total</span>
+                      <span>Total Upfront Investment</span>
                       <span>
                         £
                         {calculatedTotals.grossUpfront.toLocaleString(undefined, {
@@ -526,7 +522,7 @@ function ProposalsPage() {
 
                   <div className="mt-6 rounded-xl bg-slate-900 p-4 text-white text-xs space-y-2">
                     <div className="flex justify-between text-slate-300">
-                      <span>50% Deposit to Start (Inc-VAT):</span>
+                      <span>50% Deposit to Reserve Slot:</span>
                       <span className="font-bold text-white text-sm">
                         £
                         {calculatedTotals.depositRequired.toLocaleString(undefined, {
@@ -536,7 +532,7 @@ function ProposalsPage() {
                       </span>
                     </div>
                     <div className="flex justify-between text-slate-400 text-[11px]">
-                      <span>50% Balance on Live Launch (Inc-VAT):</span>
+                      <span>50% Balance on Preview Sign-Off:</span>
                       <span>
                         £
                         {calculatedTotals.balanceOnCompletion.toLocaleString(undefined, {

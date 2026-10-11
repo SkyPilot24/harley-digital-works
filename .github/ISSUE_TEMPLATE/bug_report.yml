@@ -1,0 +1,54 @@
+name: Bug Report
+description: Report a defect, test failure, or runtime issue.
+title: "fix: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting an issue! Please describe the problem clearly.
+  - type: input
+    id: summary
+    attributes:
+      label: Summary
+      description: Brief one-line description of the problem.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to Reproduce
+      description: Detailed reproduction steps.
+      placeholder: |
+        1. Navigate to ...
+        2. Submit form with ...
+        3. Observe error ...
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected Behavior
+      description: What should have happened?
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual Behavior
+      description: What actually happened? (Include logs, error messages, or screenshots).
+    validations:
+      required: true
+  - type: dropdown
+    id: surface
+    attributes:
+      label: Affected Surface
+      options:
+        - "Public Marketing Site"
+        - "Admin Control Centre"
+        - "Supabase Backend / RLS"
+        - "Cloudflare Worker / Crons"
+        - "Slack Integration / Commands"
+        - "CI/CD / GitHub Workflows"
+    validations:
+      required: true

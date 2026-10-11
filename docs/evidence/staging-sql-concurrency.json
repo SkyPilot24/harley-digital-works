@@ -1,0 +1,18 @@
+{
+  "date": "2026-10-07",
+  "project": "mfpnfxpgkfuqtedbcxvp",
+  "method": "Parallel connector SQL requests to real PostgreSQL. Privileged SQL; not an Auth/API or browser acceptance test.",
+  "duplicates": {
+    "saved": 1,
+    "duplicate": 11
+  },
+  "rateBoundary": {
+    "saved": 5,
+    "rate_limited": 7
+  },
+  "persisted": {
+    "duplicateLeads": 1,
+    "boundaryLeads": 5,
+    "boundaryAttempts": 5
+  }
+}
