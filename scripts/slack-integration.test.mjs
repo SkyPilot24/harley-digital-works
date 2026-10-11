@@ -13,6 +13,15 @@ import {
 import { handleSlackCommand } from "../src/lib/slack/commands.ts";
 import { handleSlackBlockAction } from "../src/lib/slack/actions.ts";
 import { sendSlackMessage } from "../src/lib/slack/dispatcher.ts";
+import { assertDigestQueriesSucceeded } from "../src/lib/slack/founder-digest.ts";
+
+test("digest rejects returned database errors instead of reporting empty healthy metrics", () => {
+  assert.doesNotThrow(() => assertDigestQueriesSucceeded([{ error: null }, { error: null }]));
+  assert.throws(
+    () => assertDigestQueriesSucceeded([{ error: null }, { error: { message: "denied" } }]),
+    /operational metrics queries failed/,
+  );
+});
 
 test("verifySlackSignature enforces HMAC-SHA256 and replay protection", async () => {
   const secret = "test_signing_secret_12345";

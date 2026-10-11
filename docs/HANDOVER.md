@@ -1,5 +1,9 @@
 # Shared development handover
 
+## Codex — integration follow-up — 11 October 2026
+
+Isolated checkout from main e90da3b. H42/H47 proposed fix: returned database query errors now enter existing warning fallback; successful metrics no longer claim an unmeasured live HTTP check. Capacity unchanged pending founder decision. Six targeted Slack tests and full npm test pass (66 smoke, 68 regression/integration, 3 service-worker = 137 checks). Build/typecheck/format pass, lint zero errors/nine existing warnings, locked dependency install reports zero vulnerabilities. No production credentials used for local tests. Current integration evidence and settings proposals in docs/INTEGRATION_FOLLOW_UP_2026-10-11.md. No main release, production settings, database writes, real Slack actions/messages or dependency upgrades. Exact live Worker revision and owner Headquarters acceptance remain unverified.
+
 ## Codex — review and push recent activity — 9 October 2026
 
 - Scope: review recent Harley activity and push completed work; inspected current main, all remote branches, recent PR metadata, relevant chats and brand package. Main checkout clean at `5e0520d`; no unpushed commits found. Refreshed remote refs. No writes to the main checkout or unrelated repositories.

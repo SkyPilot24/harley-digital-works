@@ -750,3 +750,5 @@ Repository business definition, status, this backlog, AGENTS.md and docs/HANDOVE
 Next execution: H07 — reconcile the intended backend and inspect access/policies; D01 — reuse and verify the existing portfolio in parallel. H01 commercial approval remains outstanding. Check PROJECT_STATUS.md before acting on older account-access or unpushed-commit statements.
 
 H42 evidence — 9 October 2026: Secret & Credential Scan self-match repaired on codex/security-scan-fix; no secret exception. Quiet fail-closed scan covers all tracked files. Local clean scan and six synthetic checks pass; GitHub Security Audit 37923833877 and Quality 37923834004 passed for 1ed96ff; PR #22 open. Separate dependency-upgrade CI failures remain; see handover.
+
+H42/H47 follow-up — 11 October 2026: isolated digest correction rejects returned query errors and removes unmeasured edge-health claims. Local build/typecheck/format/137 checks pass; lint zero errors/nine existing warnings. Integration report records current PR #23 merge, provider deployment ambiguity, protection plan limit and owner decisions. Prepared for review; no production release. See docs/INTEGRATION_FOLLOW_UP_2026-10-11.md.

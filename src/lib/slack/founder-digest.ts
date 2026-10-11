@@ -5,6 +5,12 @@
 
 import type { FounderDigestData } from "./types.ts";
 
+export function assertDigestQueriesSucceeded(results: Array<{ error: unknown }>): void {
+  if (results.some((result) => result.error)) {
+    throw new Error("One or more operational metrics queries failed");
+  }
+}
+
 export async function fetchFounderDigestData(overrideDate?: string): Promise<FounderDigestData> {
   const now = overrideDate || new Date().toLocaleString("en-GB", { timeZone: "Europe/London" });
 
@@ -33,6 +39,16 @@ export async function fetchFounderDigestData(overrideDate?: string): Promise<Fou
         .in("status", ["discovery", "in_progress", "review"]),
       supabaseAdmin.from("projects").select("id, name, status").eq("status", "review"),
       supabaseAdmin.from("lead_notification_jobs").select("id, status, attempts, last_error"),
+    ]);
+
+    assertDigestQueriesSucceeded([
+      clientsRes,
+      leadsRes,
+      uncontactedLeadsRes,
+      qualifiedLeadsRes,
+      projectsRes,
+      reviewProjectsRes,
+      jobsRes,
     ]);
 
     const clients = clientsRes.data ?? [];
@@ -85,7 +101,7 @@ export async function fetchFounderDigestData(overrideDate?: string): Promise<Fou
     const systemHealthSummary =
       stuckJobs.length > 0
         ? `${stuckJobs.length} job(s) in retry backoff`
-        : "Cloudflare Edge 200 OK · SSR Responsive";
+        : "Operational metrics available · No retrying alerts · Live site health not checked";
 
     return {
       generatedAt: now,

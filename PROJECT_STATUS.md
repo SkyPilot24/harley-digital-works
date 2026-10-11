@@ -1,5 +1,9 @@
 # The Harley Group — shared project status
 
+## Integration follow-up — 11 October 2026
+
+Main e90da3b includes PR #23; older pending-merge wording below is historical. Correct public domains harleydigitalworks.com and theharleygroup.org respond HTTP 200 through Cloudflare. Exact live revision and genuine owner Headquarters acceptance remain unverified. Separate Workers Build check passed; GitHub actual deploy step skipped. THG Agency direct reads healthy despite project-list omission. Proposed H42/H47 digest fix rejects failed metrics queries and removes unmeasured edge-health claims. Build/typecheck/format/tests pass; lint has zero errors and nine existing warnings. Prepared for review, not deployed. See docs/INTEGRATION_FOLLOW_UP_2026-10-11.md for settings proposals and remaining owner decisions.
+
 ## PR #23 Cloudflare build repair — 9 October 2026
 
 H47: Cloudflare builds at c92dc60 and 0c38e1d compiled successfully, then failed because npx wrangler preview requires a previews block. Added previews.vars to wrangler.json; generated Nitro configuration preserves it. Preview server backend is deliberately unconfigured (reserved .invalid URL, placeholder public key); notifications and transactional email are disabled. Production variables and commands are unchanged. The dashboard base-command experiment did not alter the existing branch trigger and was reverted to npx wrangler preview. Fresh local build and all 136 existing checks pass; diff whitespace check passes. Replacement provider check pending. No main merge or production promotion.
