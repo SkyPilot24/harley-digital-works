@@ -2,7 +2,7 @@
 
 ## PR #8 conflict resolution — 11 October 2026
 
-Merged main `e90da3bc6f8c8892c939ecbc3a360916b6e71462` into PR #8's `copilot/fix-failing-github-actions-job` from `45f0c0f6bc0225f81c7d393992567e8f271cd82a`. Resolved quality workflow and strategy wording conflicts using current main: build precedes tests, typechecking stays in its dedicated job, and public copy avoids the secret variable name. Fresh locked install, build, 136 checks, typecheck and formatting pass. Prepared for branch push; no main merge or deployment performed. Next: verify remote mergeability and new provider checks.
+Merged main `e90da3bc6f8c8892c939ecbc3a360916b6e71462` into PR #8's `copilot/fix-failing-github-actions-job` from `45f0c0f6bc0225f81c7d393992567e8f271cd82a`. Resolved quality workflow and strategy wording conflicts using current main: build precedes tests, typechecking stays in its dedicated job, and public copy avoids the secret variable name. Fresh locked install, build, 136 checks, typecheck and formatting pass. Resolution `e18c676d52b5c3c1485977ad1ac20b5407ff214e` pushed; GitHub confirms MERGEABLE. No main merge or deployment performed. Next: verify fresh remote checks.
 
 ## PR #23 Cloudflare build repair — 9 October 2026
 
