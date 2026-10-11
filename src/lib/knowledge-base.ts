@@ -183,12 +183,12 @@ export const KNOWLEDGE_BASE_ARTICLES: KnowledgeArticle[] = [
       "Founder weekly capacity: 10–12 hours per week dedicated to Harley Digital Works.",
       "Automation ratio: Scaffolding, intake parsing, and diagnostic checks automate ~70% of setup work.",
       "Active labour per build: 4–5 hours of active founder touch per completed website.",
-      "Hard concurrency limit: Maximum 2 to 3 concurrent client onboarding builds (hard cap of 2 during initial pilot).",
+      "Hard concurrency limit: Maximum 3 concurrent client onboarding builds (confirmed by Robbie on 11 October 2026).",
       "Fleet servicing: Support for active care clients requires ~0.5–1.0h/client/month, fitting within part-time capacity up to 15 active accounts.",
     ],
     operationalDetails:
-      "To prevent delivery delays and maintain personal balance alongside NHS clinical responsibilities, any pipeline volume exceeding 2 to 3 concurrent onboarding builds must trigger an immediate pause on outbound acquisition or require onboarding a vetted production junior.",
-    statusBadge: "2–3 Concurrency",
+      "To prevent delivery delays and maintain personal balance alongside NHS clinical responsibilities, any pipeline volume exceeding 3 concurrent onboarding builds must trigger an immediate pause on outbound acquisition or require onboarding a vetted production junior.",
+    statusBadge: "3 Build Maximum",
     lastUpdated: "7 October 2026",
   },
   {

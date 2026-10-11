@@ -278,14 +278,14 @@ if (
     "Zero-rated VAT policy is consistently enforced across commercial offer, strategy, and KB",
   );
 
-  // Check 5: Concurrency limit cap alignment (2–3 / 2 to 3 concurrent builds)
+  // Check 5: The approved hard cap must agree across the governing sources.
   const concurrencyAligned =
-    (kbContent.includes("2 to 3") || kbContent.includes("2–3")) &&
-    (strategyContent.includes("2 to 3") || strategyContent.includes("2–3")) &&
-    (offerDocContent.includes("2 to 3") || offerDocContent.includes("2–3"));
+    kbContent.includes("Maximum 3 concurrent client onboarding builds") &&
+    strategyContent.includes("Maximum 3 concurrent client onboarding builds") &&
+    offerDocContent.includes("3 concurrent");
   assert(
     concurrencyAligned,
-    "Founder concurrency capacity cap (2–3 builds) is synchronized across docs and KB",
+    "Founder concurrency capacity cap (3 builds) is synchronized across docs and KB",
   );
 }
 

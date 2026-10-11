@@ -1,37 +1,23 @@
 # Slack Integration
 
-The app can notify Slack when a new public website lead is submitted.
+## Verified live configuration — 11 October 2026
 
-## Environment variable
+Robbie has confirmed one operational channel for now: **#all-the-harley-group** in **The Harley Group** workspace. Keep this routing until a later explicit decision.
 
-Set this secret in the deployment environment:
+The deployed Worker has `SLACK_WEBHOOK_URL`. The other logical routes in the dispatcher fall back to that webhook. Daily digest messages and accepted lead notifications have been observed in the channel. Scheduled Worker triggers are installed, including the daily `0 8 * * *` trigger (08:00 UTC).
 
-- `SLACK_WEBHOOK_URL`
+The approved pilot maximum is **three concurrent builds**. A successful digest query is not a live website health check. The draft repair rejects database query errors rather than reporting zero metrics and removes the unsupported edge-health success claim.
 
-Use a Slack Incoming Webhook URL for the channel that should receive sales and operations alerts.
+## Implemented features versus live acceptance
 
-## Current behaviour
+The repository contains interactive endpoints, slash commands, logical routing and durable retry handling. The deployed settings inspected on 11 October did not include `SLACK_BOT_TOKEN` or `SLACK_SIGNING_SECRET`. Commands and interactive actions therefore remain unverified; do not describe them as an operational two-way command centre. Nine logical route names do not establish nine installed Slack channels.
 
-- The `/contact` form submits through a server function.
-- The lead is saved to Supabase first.
-- If `SLACK_WEBHOOK_URL` is configured, the server sends a Slack message with the lead name, email, company, package interest, and message.
-- If `SLACK_WEBHOOK_URL` is not configured, the lead still saves normally and no Slack message is sent.
+Observed lead alerts direct the owner to the secure CRM. Consult the current card and notification implementations for payload details; do not assume every fallback contains identical fields. Lead persistence precedes notification delivery, and the durable queue records delivery outcomes.
 
-## Safety notes
+## Safety and next acceptance
 
-- Do not add the webhook URL to client-side `VITE_*` variables.
-- Do not commit the webhook URL to the repository.
-- Rotate the webhook in Slack if it is ever exposed.
+Keep webhook and signing credentials server-side, outside client variables and Git. Do not print or share their values. Inspect queue status and delivery history before retrying to avoid duplicate notifications.
 
-## Current Status — Complete Slack Operational Command Centre
+No channels were created and no test messages were sent during this audit. Any future interactive acceptance must use an explicitly approved test and verify both the Slack response and the resulting authorised record change.
 
-The Slack integration has been upgraded into a two-way **Founder Operational Command Centre**. Robbie can manage the business directly from Slack without constant dashboard context switching:
-
-1. **Daily Founder Digest:** 08:00 scheduled briefing with verified MRR, 3-build capacity tracking, pipeline totals, outstanding approvals, and edge health.
-2. **Two-Way Interactive Workflows:** Inbound lead cards include 1-click `[📞 Contacted]`, `[⭐ Qualify]`, `[📁 Create Client Workspace]`, and `[CRM ↗]` buttons.
-3. **Founder Slash Commands:** Use `/thg status`, `/thg leads`, `/thg builds`, `/thg approvals`, `/thg retry`, and `/thg help` directly in Slack.
-4. **9-Channel Operational Topology:** Targeted dispatch across `#founder-command`, `#new-leads`, `#sales`, `#customers`, `#operations`, `#finance-alerts`, `#system-alerts`, `#automation-alerts`, and `#deployments`.
-5. **Durable & Exception-Managed:** Scheduled queue processor, automatic retry backoff, and 1-click retry button for stuck jobs.
-6. **HMAC-SHA256 Security:** Cryptographically verified incoming request endpoints (`/api/slack/interactions`, `/api/slack/commands`, `/api/slack/events`) with 300s replay attack prevention.
-
-For full architectural blueprints, Block Kit specs, and deployment instructions, see [SLACK_COMMAND_CENTRE_ARCHITECTURE.md](SLACK_COMMAND_CENTRE_ARCHITECTURE.md).
+See [SLACK_COMMAND_CENTRE_ARCHITECTURE.md](SLACK_COMMAND_CENTRE_ARCHITECTURE.md) for the implementation design; its proposed topology is not proof of the live configuration.

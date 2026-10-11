@@ -17,7 +17,7 @@ export const currentStrategy = {
     "Turnkey 5-page trade conversion website, 100% done-for-you technical copywriting, trade accreditation badges, mobile-responsive layout, dual-channel lead desk, Local Map Pack Schema.org JSON-LD microdata, and Cloudflare edge SSR performance.",
   care: "Managed Cloudflare edge hosting, SSL certificates, 1 batch of content edits per month (up to 30 mins), automated enquiry health checks, review workflow, monthly performance summary, and 24h support response window.",
   boundaries:
-    "Capacity limit: Maximum 2 to 3 concurrent client onboarding builds (strict limit of 2 during initial pilot) to safeguard founder NHS schedule balance (10–12 hours/week). Zero cold calling. Zero unverified revenue claims. VAT zero-rated below £90k. All leads protected by Supabase RLS.",
+    "Capacity limit: Maximum 3 concurrent client onboarding builds, confirmed by Robbie on 11 October 2026, to safeguard founder NHS schedule balance (10–12 hours/week). Zero cold calling. Zero unverified revenue claims. VAT zero-rated below £90k. All leads protected by Supabase RLS.",
 };
 
 export const strategyRecords = [
