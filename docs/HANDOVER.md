@@ -1,5 +1,12 @@
 # Shared development handover
 
+## Codex — PR #8 conflict repair — 11 October 2026
+
+- Branch: `copilot/fix-failing-github-actions-job`; isolated `.pr8-repair` checkout. Starting head `45f0c0f6bc0225f81c7d393992567e8f271cd82a`; merged main `e90da3bc6f8c8892c939ecbc3a360916b6e71462` without rewriting history. Canonical checkout's uncommitted domain documents preserved.
+- Conflicts: `.github/workflows/quality.yml` and `src/lib/current-strategy.ts`. Kept main's split CI jobs, build-before-test order and safe strategy wording; resolved application/workflow source matches main exactly.
+- Fresh verification: `npm ci --no-audit --no-fund`, `npm run build`, `npm test` (66 smoke + 67 regression/integration + 3 service-worker checks), `npm run typecheck`, and `npm run format:check` PASS. Lint not repeated because resolved code matches main; no live browser or production checks performed.
+- State: merge commit `e18c676d52b5c3c1485977ad1ac20b5407ff214e` pushed to existing PR branch; GitHub confirms MERGEABLE. No main merge, deployment or production configuration change. Existing Cloudflare failure belongs to the old head; new remote checks remain pending. `git diff origin/main --check` PASS; full merge whitespace check flags inherited main Markdown hard breaks and a CSS EOF blank line only. Next: inspect fresh provider results.
+
 ## Codex — review and push recent activity — 9 October 2026
 
 - Scope: review recent Harley activity and push completed work; inspected current main, all remote branches, recent PR metadata, relevant chats and brand package. Main checkout clean at `5e0520d`; no unpushed commits found. Refreshed remote refs. No writes to the main checkout or unrelated repositories.

@@ -640,6 +640,8 @@ Updated 2 October 2026. Domain integration added following the founder's request
 
 ## H47 — Replace stale completion claims with operating documentation
 
+- **11 October 2026 PR #8 evidence:** resolved workflow/strategy conflicts by merging main `e90da3b` into `copilot/fix-failing-github-actions-job`; fresh build, 136 checks, typecheck and formatting PASS. See `docs/HANDOVER.md`; remote checks and release remain separate.
+
 - **Phase:** 6
 - **Priority:** Medium
 - **Who needs to act:** You
