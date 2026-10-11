@@ -203,3 +203,5 @@ Domains are now a separately measured commercial workstream under The Harley Gro
 ## Security audit repair — 9 October 2026
 
 H42: scanner self-match in security.yml diagnosed and fixed on codex/security-scan-fix. Clean-tree and six synthetic/redaction/error checks passed. GitHub Security Audit 37923833877 and Quality 37923834004 passed for 1ed96ff; PR #22 open, no main merge or deployment. See docs/HANDOVER.md for related Dependabot failures and audit limitations.
+
+Founder decision — 11 October 2026: three concurrent builds governs pilot capacity and supersedes historical two-build wording above. Business definition/commercial concurrency terms reconciled; code already uses three.

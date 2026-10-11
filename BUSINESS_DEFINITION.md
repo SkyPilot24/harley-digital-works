@@ -12,7 +12,9 @@ During initial pilot validation, review each critical transition and all launch 
 
 Imported from the existing The Harley Group / Business OS records on 2 October 2026; existing task IDs and commercial decisions are preserved. These repository files govern development across Codex/ChatGPT Work and Google Antigravity. Google Drive originals remain business reference records; there is no automatic synchronisation. When either copy changes, explicitly reconcile the other and record the date/source in the handover. Latest explicit founder decisions take precedence. Historical implementation notes require current source and runtime evidence before being marked complete.
 
-Updated 7 October 2026. Founder direction RATIFIED: The commercial blueprint, pricing tiers, unit economics, zero-rated VAT status, and 2-concurrency cap are formally approved by Robbie. Setup/build fee plus ongoing monthly subscription is confirmed as the governing model.
+Updated 7 October 2026. Founder direction RATIFIED: The commercial blueprint, pricing tiers, unit economics, zero-rated VAT status, are formally approved by Robbie. Setup/build fee plus ongoing monthly subscription is confirmed as the governing model.
+
+Founder update — 11 October 2026: **Three concurrent builds** is the governing pilot limit, superseding the earlier two-build cap. Dashboard and Slack use three.
 
 ## Business and customer
 
@@ -29,7 +31,7 @@ Governing detail and unit economics model: [docs/COMMERCIAL_OFFER_MANAGED.md](do
 | **Managed (Single Launch MVP)** | **£1,495** (50% deposit £747.50, 50% balance £747.50) | **£249 / month** (rolling 30-day agreement) | 5-page trade website, 100% DFY copywriting, local SEO, Schema JSON-LD, dual lead desk, 2 preview revisions, 30-min monthly edit batch, 24h SLA. |
 
 - **VAT Treatment:** Harley Digital Works operates below the statutory £90,000 HMRC VAT registration threshold. All prices are zero-rated / VAT not applicable. No VAT is charged and no fake VAT numbers or mock tax documents are generated.
-- **Capacity Limits:** Maximum **2 to 3 concurrent client onboarding builds** to safeguard founder NHS schedule balance (10–12 hours/week).
+- **Capacity Limits:** Maximum **3 concurrent client onboarding builds** to safeguard founder NHS schedule balance (10–12 hours/week).
 - **Setup Scope:** 5-page template-based architecture (Home, About, Services, Selected Work, Contact Desk), professional done-for-you copywriting, trade accreditation badges (Gas Safe, NICEIC, FMB), mobile/accessibility compliance, domain DNS connection preserving business email (MX records protected), and two structured revision rounds.
 - **Monthly Care Scope:** Cloudflare edge hosting, SSL maintenance, enquiry-routing health checks, 1 batch of content updates per month (up to 30 mins non-accumulative), review workflow guidance, monthly performance digest, standard 24h business-day support SLA (4h outage SLA).
 - **Payment Sequence:** 50% deposit (£747.50) due upon proposal acceptance to reserve build slot; strictly non-refundable once intake audit starts. 50% completion balance (£747.50) due upon preview sign-off before DNS cutover. Monthly care (£249/mo) billed via Stripe auto-debit starting on the go-live date.

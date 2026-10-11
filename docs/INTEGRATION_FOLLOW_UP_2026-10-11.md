@@ -11,7 +11,7 @@ Baseline main e90da3bc6f8c8892c939ecbc3a360916b6e71462; PR #23 merged. Earlier p
 - Auth leaked-password protection disabled: proposed enable after eligibility and owner sign-in impact review. No Auth settings/backup tools exposed. H07 still needs latest backup, retention, named recovery owner and isolated restore evidence. Preserve existing owner session.
 - Security INFO: lead_submission_attempts has RLS and no policies; can be intentional service-only access. Do not add public access to clear it. Performance: 35 RLS initplan, 15 multiple-policy warnings, 5 unindexed FKs; optimize in staging without changing authorization.
 - Slack workspace T0BFQS2G2HZ has three visible channels. Digest dated 11 October 09:02 BST exists. Database aggregates: two accepted notification jobs, no pending/failed statuses; three new leads. Two leads match recorded 7 October acceptance tests; third unclassified. No outreach/status changes.
-- Dispatcher uses default-webhook fallback for nine logical destinations; this does not prove nine real channels. Runtime commands/buttons remain untested. Capacity records conflict: ratified two builds versus two-to-three elsewhere and three in source; founder decision required before changing.
+- Dispatcher uses default-webhook fallback for nine logical destinations; this does not prove nine real channels. Runtime commands/buttons remain untested. Capacity reconciled: Robbie confirmed three concurrent builds on 11 October. Business definition and commercial concurrency terms updated; code already uses three. Monthly intake wording is a separate limit and unchanged.
 - Digest currently ignores returned database errors and claims edge HTTP health without a request. Proposed fix routes failed metrics queries into warning fallback and explicitly says live site health is unchecked. No invented live health test.
 - Six PRs open: #8 historical CI repair, #16 checkout, #17 wrangler-action, #18 setup-node, #19 production dependencies, #21 dev dependencies. #21 head eb04203 has action_required Actions runs and failed Workers Build e753392d-b32d-4a8f-b383-bf96e045df0f; provider logs needed for cause. No reruns or major upgrades.
 
@@ -34,5 +34,5 @@ Local validation: locked npm install (scripts disabled) reports zero vulnerabili
 1. Review digest fix; approve release separately. Confirm live Worker version/publish route and owner Headquarters access.
 2. Confirm GitHub protection eligibility, then apply proposed policy; preserve private repository.
 3. Review eligible Auth password protection and provide H07 backup/restore evidence; stage performance changes.
-4. Decide pilot capacity and real-channel versus single-channel fallback; classify remaining lead before contact.
+4. Pilot concurrency is confirmed at three. Decide real-channel versus single-channel fallback; classify remaining lead before contact.
 5. Inspect #21 provider failure and assess historical #8 against current main; preserve legacy assets pending retirement decisions.

@@ -36,7 +36,7 @@
   3. **Monthly Care Subscription (£249/mo):** Initiated via Stripe auto-debit on the go-live date, recurring monthly on a rolling 30-day agreement.
 - **Initial Target Niche:** Established Electrical Contractors (2–8 staff) across Bristol, Bath, and the M4 Corridor.
 - **Acquisition Model:** Zero cold calling. Automated corporate B2B "Digital Leak Audits" (mobile speed, schema gaps, SMS response tests) + private staging previews.
-- **Capacity Limits:** Maximum **2 to 3 concurrent client onboarding builds** (hard limit of **2** during initial pilot) to safeguard founder NHS schedule balance (10–12 hours/week).
+- **Capacity Limits:** Maximum **3 concurrent client onboarding builds**, confirmed by Robbie on 11 October 2026 to safeguard founder NHS schedule balance (10–12 hours/week).
 
 ---
 
@@ -186,4 +186,4 @@ The automated engine **must halt and alert the founder** if any of the following
 1. [x] **Confirm Launch Pricing:** **RATIFIED** — £1,495 setup (50/50 split £747.50) + £249/month for the core Revenue Engine package (with entry Launchpad £995 + £149/mo and expansion Market Leader £2,495 + £399/mo).
 2. [x] **Confirm Legal Entity & VAT:** **RATIFIED** — Operating below HMRC's £90k statutory threshold. All prices are zero-rated / VAT not applicable. No VAT charged. Contracts issued under Harley Digital Works / The Harley Group.
 3. [x] **Confirm Geographic & Niche Positioning:** **RATIFIED** — Positioned as a UK-wide remote digital studio with initial pilot outreach focused on established Electrical Contractors (2–8 staff) across Bristol & Bath / M4 Corridor.
-4. [x] **Confirm Concurrency Cap:** **RATIFIED** — Hard limit of 2 concurrent client onboarding builds enforced during pilot to safeguard founder NHS schedule balance (10–12 hours/week).
+4. [x] **Confirm Concurrency Cap:** **RATIFIED** — Hard limit of 3 concurrent client onboarding builds confirmed by Robbie on 11 October 2026 during pilot to safeguard founder NHS schedule balance (10–12 hours/week).
