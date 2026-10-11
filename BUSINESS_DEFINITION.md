@@ -12,7 +12,7 @@ During initial pilot validation, review each critical transition and all launch 
 
 Imported from the existing The Harley Group / Business OS records on 2 October 2026; existing task IDs and commercial decisions are preserved. These repository files govern development across Codex/ChatGPT Work and Google Antigravity. Google Drive originals remain business reference records; there is no automatic synchronisation. When either copy changes, explicitly reconcile the other and record the date/source in the handover. Latest explicit founder decisions take precedence. Historical implementation notes require current source and runtime evidence before being marked complete.
 
-Updated 7 October 2026. Founder direction RATIFIED: The commercial blueprint, pricing tiers, unit economics, zero-rated VAT status, are formally approved by Robbie. Setup/build fee plus ongoing monthly subscription is confirmed as the governing model.
+Updated 7 October 2026. Founder direction RATIFIED: The commercial blueprint, pricing tiers, unit economics and zero-rated VAT status are formally approved by Robbie. Setup/build fee plus ongoing monthly subscription is confirmed as the governing model.
 
 Founder update — 11 October 2026: **Three concurrent builds** is the governing pilot limit, superseding the earlier two-build cap. Dashboard and Slack use three.
 
