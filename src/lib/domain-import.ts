@@ -35,6 +35,8 @@ export function parseDomainExport(bytes: ArrayBuffer, observedOn: string): Impor
     if (values.every((value) => value === "" || value === null)) return;
     const get = (name: string) => values[headers.indexOf(name)] ?? "";
     try {
+      if (headers.includes("DomainType") && String(get("DomainType")).trim() !== "ON_DOMAIN")
+        throw new Error("Verify the registrar for this domain type before importing");
       const name = normaliseDomain(String(get("DomainName")));
       if (seen.has(name)) throw new Error("Duplicate domain");
       seen.add(name);

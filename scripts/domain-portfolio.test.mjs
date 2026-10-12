@@ -41,6 +41,22 @@ test("BIFF XLS numeric dates, unknown fields and IDNs", () => {
   assert.equal(state.domains[0].autoRenew, "unknown");
   assert.equal(state.domains[0].annualCostPence, null);
 });
+test("declared external or unverified domain types cannot be labelled as IONOS registrations", () => {
+  const result = parseDomainExport(
+    workbook([
+      ["DomainName", "Status", "ExpirationDate", "DomainType"],
+      ["owned.test", "ACTIVE", 46312, "ON_DOMAIN"],
+      ["external.test", "ACTIVE", 46312, "EXTERNAL"],
+    ]),
+    "2026-10-12",
+  );
+  assert.equal(result.rows.length, 1);
+  assert.equal(result.rows[0].registrar, "IONOS");
+  assert.match(result.errors[0], /Verify the registrar/);
+  assert.throws(() =>
+    applyImport(emptyInventory(), result, "synthetic.xls", "2026-10-12", "types"),
+  );
+});
 test("1904 workbook and quoted CSV dates are interpreted without locale guesses", () => {
   const result = parseDomainExport(
     workbook(
