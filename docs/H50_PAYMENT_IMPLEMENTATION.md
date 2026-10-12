@@ -118,4 +118,3 @@ Actual Auth follow-up: repeatable `node scripts/verify-staging-auth.mjs` passes 
 Source migration `20261012111915_payment_reconciliation_observations.sql` applied only to isolated staging as `20261012112156`. Server orchestration reads a stored signed event and its object event count before verified provider lookup. Commit serializes with signed ingestion and rejects changed generation, identity mismatch, inconsistent holds and conflicting retry IDs. Observations remain append-only private audit evidence; storing one alone does not clear launch holds.
 
 Six focused tests, fresh typecheck and targeted lint pass. Actual staging rollback-only fictional observation save succeeded and unresolved hold remained. RLS and denied public/service-update privileges confirmed; retained observations zero. Production unchanged. Admin recovery action, safe hold resolution, real provider lookup/delivery and authenticated browser acceptance remain required. Overall gate RED.
-

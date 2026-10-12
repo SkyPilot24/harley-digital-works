@@ -2,6 +2,8 @@
 
 ## H50 production-gate implementation — 12 October 2026
 
+Local implementation checkpoint: baf9c99cb3a982c91d3144ab6d13a39e3dc2380a on codex/first-client-production. Full suite now includes redirect/reconciliation DB regressions and passes. Repository quiet credential patterns plus configured-private-value scan of tracked source pass; only blank staging template tracked, private config ignored. Windows shell equivalent of prescribed secret patterns used because sh/bash unavailable. Not pushed/deployed; full readiness remains RED.
+
 Current gate summary: docs/H50_READINESS_GATES.md consolidates workflow requirements and verified versus missing evidence; older paragraphs are chronological. Fresh build and configured-private-key exposure check pass across 194 public artifacts (raw/URI/base64/compressed). Does not replace general credential scan, reviewed commit/deployment provenance or full lifecycle acceptance. Production RED.
 
 Atomic approval follow-up: application now passes signature-verified session ID into approval transaction; matching unexpired Auth session is locked while project membership/version approval executes. Source 20261012114111 applied staging only as 20261012114300. Database expired/deleted/missing-session/retry checks and full suite pass; actual Auth rehearsal verifies active session reaches membership denial and logged-out session fails before project lookup. Eight real Auth checks pass with cleanup; private RPC grants confirmed. Successful post-change browser approval and concurrent GoTrue logout acceptance still open; production RED.

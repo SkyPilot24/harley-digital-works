@@ -4,7 +4,7 @@ Current assessment: **RED — not ready for production**. Updated 12 October 202
 
 Scope comes from REVENUE_WORKFLOW.md and H50: payment → onboarding → build → explicit customer approval → launch → recurring care, including controlled failures/retries. Local build success is one requirement, not the release decision.
 
-Work branch: `codex/first-client-production`, baseline `e90da3bc6f8c8892c939ecbc3a360916b6e71462`. Changes currently local and uncommitted. Agency production backend: `worzpzbutngugwzhlvtj`; all schema/testing writes in this work used isolated `mfpnfxpgkfuqtedbcxvp`. No production migration/deployment or live billing activation.
+Work branch: `codex/first-client-production`, baseline `e90da3bc6f8c8892c939ecbc3a360916b6e71462`. Implementation checkpoint committed locally as `baf9c99cb3a982c91d3144ab6d13a39e3dc2380a`; not pushed or deployed. Agency production backend: `worzpzbutngugwzhlvtj`; all schema/testing writes in this work used isolated `mfpnfxpgkfuqtedbcxvp`. No production migration/deployment or live billing activation.
 
 | Gate | Current evidence | Evidence still required |
 | --- | --- | --- |
