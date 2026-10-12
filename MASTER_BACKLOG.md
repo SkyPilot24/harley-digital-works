@@ -1,5 +1,9 @@
 # Master delivery backlog
 
+## Domain portfolio local evidence — 12 October 2026
+
+H49/D01–D08: local inventory/import-review/renewal queue implemented; 53 registrar names reconciled, 26 near-term expiries. Unapplied private migration tested locally. Remaining: today's exact register, registrar cost/auto-renew evidence, isolated staging adapter/Auth API acceptance, conflict resolution/backup restore, durable reminder delivery and separately approved production release. See `docs/DOMAIN_PORTFOLIO_LOCAL_IMPLEMENTATION_2026-10-12.md`.
+
 ## Current execution overlay - 7 October 2026
 
 This evidence/status overlay supersedes stale gap statements in the preserved historical task definitions. It does not create duplicate tasks or mark unverified work complete. Read PROJECT_STATUS.md for exact source and release evidence.

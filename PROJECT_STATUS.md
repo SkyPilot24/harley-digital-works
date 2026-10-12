@@ -1,5 +1,9 @@
 # The Harley Group — shared project status
 
+## Local domain portfolio — 12 October 2026
+
+Inventory, reviewed IONOS imports and renewal alerts implemented in isolated `codex/domain-portfolio-local`. 53 export domains; 26 expiries within 90 days. Browser working copy only; private migration unapplied, no external alerts or deployment. See `docs/DOMAIN_PORTFOLIO_LOCAL_IMPLEMENTATION_2026-10-12.md`. Production integration and finance/valuation/sales expansion remain later stages.
+
 ## PR #23 Cloudflare build repair — 9 October 2026
 
 H47: Cloudflare builds at c92dc60 and 0c38e1d compiled successfully, then failed because npx wrangler preview requires a previews block. Added previews.vars to wrangler.json; generated Nitro configuration preserves it. Preview server backend is deliberately unconfigured (reserved .invalid URL, placeholder public key); notifications and transactional email are disabled. Production variables and commands are unchanged. The dashboard base-command experiment did not alter the existing branch trigger and was reverted to npx wrangler preview. Fresh local build and all 136 existing checks pass; diff whitespace check passes. Replacement provider check pending. No main merge or production promotion.

@@ -1,5 +1,9 @@
 # Shared development handover
 
+## Domain Portfolio local implementation — 12 October 2026
+
+See [local implementation handover](DOMAIN_PORTFOLIO_LOCAL_IMPLEMENTATION_2026-10-12.md) for reconciliation, local route, unapplied migration, acceptance evidence and exact staging prerequisites. Branch `codex/domain-portfolio-local`, isolated clone; no production writes, notifications, push or deployment. Review local functionality before separately authorising staging connection.
+
 ## Codex — review and push recent activity — 9 October 2026
 
 - Scope: review recent Harley activity and push completed work; inspected current main, all remote branches, recent PR metadata, relevant chats and brand package. Main checkout clean at `5e0520d`; no unpushed commits found. Refreshed remote refs. No writes to the main checkout or unrelated repositories.
