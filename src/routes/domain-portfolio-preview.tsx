@@ -5,5 +5,5 @@ export const Route = createFileRoute("/domain-portfolio-preview")({
     if (!import.meta.env.DEV) throw notFound();
   },
   head: () => ({ meta: [{ name: "robots", content: "noindex,nofollow" }] }),
-  component: DomainPortfolio,
+  component: () => <DomainPortfolio localPreview />,
 });

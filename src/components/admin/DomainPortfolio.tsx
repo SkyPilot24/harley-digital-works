@@ -13,6 +13,11 @@ import {
   type InventoryDomain,
 } from "@/lib/domain-inventory";
 import { loadLocalInventory, saveLocalInventory } from "@/lib/domain-local-store";
+import {
+  loadDatabaseInventory,
+  saveDatabaseInventory,
+  importDatabaseInventory,
+} from "@/lib/domain-database-store";
 
 const today = () =>
   new Intl.DateTimeFormat("en-CA", {
@@ -25,9 +30,11 @@ const money = (pence: number | null) =>
   pence === null
     ? "Unknown"
     : new Intl.NumberFormat("en-GB", { style: "currency", currency: "GBP" }).format(pence / 100);
-export function DomainPortfolio() {
+export function DomainPortfolio({ localPreview = false }: { localPreview?: boolean }) {
   const [snapshot, setSnapshot] = useState(emptyInventory);
   const [loaded, setLoaded] = useState(false);
+  const [reload, setReload] = useState(0);
+  const [saving, setSaving] = useState(false);
   const [message, setMessage] = useState("");
   const [tab, setTab] = useState<"inventory" | "imports" | "renewals">("inventory");
   const [query, setQuery] = useState("");
@@ -40,14 +47,25 @@ export function DomainPortfolio() {
   const [editing, setEditing] = useState<InventoryDomain | null>(null);
   const workerRef = useRef<Worker | null>(null);
   useEffect(() => {
-    try {
-      setSnapshot(loadLocalInventory());
-      setLoaded(true);
-    } catch (error) {
-      setMessage(error instanceof Error ? error.message : "Unable to load local data.");
-    }
-    return () => workerRef.current?.terminate();
-  }, []);
+    let cancelled = false;
+    setLoaded(false);
+    (async () => {
+      try {
+        const state = localPreview ? loadLocalInventory() : await loadDatabaseInventory();
+        if (!cancelled) {
+          setSnapshot(state);
+          setLoaded(true);
+        }
+      } catch (error) {
+        if (!cancelled)
+          setMessage(error instanceof Error ? error.message : "Unable to load portfolio.");
+      }
+    })();
+    return () => {
+      cancelled = true;
+      workerRef.current?.terminate();
+    };
+  }, [localPreview, reload]);
   const changes = useMemo(
     () => previewChanges(preview?.rows || [], snapshot.domains),
     [preview, snapshot.domains],
@@ -56,11 +74,13 @@ export function DomainPortfolio() {
     () => renewalAlerts(snapshot.domains, asOf, snapshot.acknowledgements),
     [snapshot, asOf],
   );
-  function save(next: typeof snapshot) {
+  async function save(next: typeof snapshot) {
+    if (saving) return false;
+    setSaving(true);
     try {
-      saveLocalInventory(next, snapshot.revision);
-      setSnapshot(next);
-      setMessage("Saved on this computer.");
+      if (localPreview) saveLocalInventory(next, snapshot.revision);
+      setSnapshot(localPreview ? next : await saveDatabaseInventory(snapshot, next));
+      setMessage(localPreview ? "Saved on this computer." : "Saved to the private portfolio.");
       return true;
     } catch (error) {
       setMessage(
@@ -69,6 +89,8 @@ export function DomainPortfolio() {
           : "Unable to save. Existing data has been preserved.",
       );
       return false;
+    } finally {
+      setSaving(false);
     }
   }
   async function readFile(file?: File) {
@@ -117,15 +139,24 @@ export function DomainPortfolio() {
       setBusy(false);
     }
   }
-  function commitImport() {
-    if (!preview) return;
+  async function commitImport() {
+    if (!preview || saving) return;
+    setSaving(true);
     try {
-      if (save(applyImport(snapshot, preview, source, observedOn, batchId))) {
-        setPreview(null);
-        setTab("inventory");
-      }
+      const next = applyImport(snapshot, preview, source, observedOn, batchId);
+      if (localPreview) saveLocalInventory(next, snapshot.revision);
+      setSnapshot(
+        localPreview ? next : await importDatabaseInventory(preview, source, observedOn, batchId),
+      );
+      setMessage(
+        localPreview ? "Saved on this computer." : "Import saved to the private portfolio.",
+      );
+      setPreview(null);
+      setTab("inventory");
     } catch (error) {
       setMessage(error instanceof Error ? error.message : "Import failed. No records saved.");
+    } finally {
+      setSaving(false);
     }
   }
   const filtered = snapshot.domains.filter((domain) =>
@@ -141,10 +172,23 @@ export function DomainPortfolio() {
         <p className="mt-2 text-sm text-ink-muted">
           Inventory, registrar imports and upcoming renewals.
         </p>
+        {!localPreview && loaded && (
+          <Button
+            variant="outline"
+            disabled={saving || busy}
+            onClick={() => {
+              setMessage("");
+              setReload((value) => value + 1);
+            }}
+          >
+            Refresh inventory
+          </Button>
+        )}
       </header>
       <div className="rounded-xl border border-amber-300 bg-amber-50 p-4 text-sm">
-        Local working copy · Saved only in this browser. No production connection or notifications.
-        Back up your working copy before clearing browser data.
+        {localPreview
+          ? "Local working copy · Saved only in this browser. Back up before clearing browser data."
+          : "Private portfolio · Shared with authorised admins. Renewal alerts appear here; no external notifications are sent."}
       </div>
       {message && (
         <p role="status" className="rounded-xl border border-ink/15 bg-white p-4 text-sm">
@@ -152,7 +196,23 @@ export function DomainPortfolio() {
         </p>
       )}
       {!loaded ? (
-        <p>Local storage is unavailable. Existing data has not been overwritten.</p>
+        <div>
+          <p>
+            {message
+              ? "Unable to load the inventory. Existing data has been preserved."
+              : "Loading inventory…"}
+          </p>
+          {message && (
+            <Button
+              onClick={() => {
+                setMessage("");
+                setReload((value) => value + 1);
+              }}
+            >
+              Try again
+            </Button>
+          )}
+        </div>
       ) : (
         <>
           <div className="grid gap-3 sm:grid-cols-3">
@@ -349,13 +409,18 @@ export function DomainPortfolio() {
                   </div>
                   <Button
                     disabled={
+                      saving ||
                       !!preview.errors.length ||
                       !preview.rows.length ||
                       changes.some((change) => change.action === "conflict")
                     }
                     onClick={commitImport}
                   >
-                    Save reviewed import locally
+                    {saving
+                      ? "Saving…"
+                      : localPreview
+                        ? "Save reviewed import locally"
+                        : "Save reviewed import"}
                   </Button>
                   <Button variant="outline" onClick={() => setPreview(null)}>
                     Discard preview
@@ -407,6 +472,7 @@ export function DomainPortfolio() {
                   </div>
                   <Button
                     variant="outline"
+                    disabled={saving}
                     onClick={() =>
                       save({
                         ...snapshot,
@@ -437,15 +503,16 @@ export function DomainPortfolio() {
               <DialogContent className="max-h-[90vh] overflow-y-auto">
                 <DialogTitle>{editing.name}</DialogTitle>
                 <DialogDescription>
-                  Private details saved on this computer. Registrar dates remain linked to the
-                  import evidence.
+                  Private details saved{" "}
+                  {localPreview ? "on this computer" : "to the shared portfolio"}. Registrar dates
+                  remain linked to the import evidence.
                 </DialogDescription>
                 <form
                   className="grid gap-4 sm:grid-cols-2"
-                  onSubmit={(event) => {
+                  onSubmit={async (event) => {
                     event.preventDefault();
                     try {
-                      if (save(updateDomain(snapshot, editing))) setEditing(null);
+                      if (await save(updateDomain(snapshot, editing))) setEditing(null);
                     } catch (error) {
                       setMessage(error instanceof Error ? error.message : "Unable to save.");
                     }
@@ -527,7 +594,9 @@ export function DomainPortfolio() {
                     />
                   </div>
                   <div className="flex gap-2">
-                    <Button type="submit">Save details locally</Button>
+                    <Button type="submit" disabled={saving}>
+                      {saving ? "Saving…" : localPreview ? "Save details locally" : "Save details"}
+                    </Button>
                     <Button type="button" variant="outline" onClick={() => setEditing(null)}>
                       Cancel
                     </Button>

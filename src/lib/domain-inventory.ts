@@ -1,4 +1,5 @@
 export type InventoryDomain = {
+  updatedAt?: string;
   name: string;
   registrar: string;
   contract: string;

@@ -23,6 +23,17 @@ CREATE TABLE public.domain_portfolio_inventory (
   updated_at timestamptz NOT NULL DEFAULT now()
 );
 CREATE INDEX domain_portfolio_expiry_idx ON public.domain_portfolio_inventory(expires_on) WHERE expires_on IS NOT NULL;
+-- A server timestamp makes stale-tab checks independent of the browser clock.
+CREATE FUNCTION app_private.touch_domain_portfolio_updated_at()
+RETURNS trigger LANGUAGE plpgsql SECURITY INVOKER SET search_path='' AS $$
+BEGIN
+  NEW.updated_at := clock_timestamp();
+  RETURN NEW;
+END;
+$$;
+REVOKE ALL ON FUNCTION app_private.touch_domain_portfolio_updated_at() FROM PUBLIC,anon,authenticated;
+CREATE TRIGGER domain_portfolio_updated_at BEFORE UPDATE ON public.domain_portfolio_inventory
+FOR EACH ROW EXECUTE FUNCTION app_private.touch_domain_portfolio_updated_at();
 CREATE TABLE public.domain_portfolio_alert_acknowledgements (
   domain_name text NOT NULL REFERENCES public.domain_portfolio_inventory(name),
   expires_on date NOT NULL,

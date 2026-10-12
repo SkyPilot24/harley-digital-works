@@ -29,9 +29,7 @@ const PRIMARY_NAV: { to: string; label: string; icon: typeof LayoutDashboard; ex
   [
     { to: "/admin", label: "Control Centre", icon: LayoutDashboard, exact: true },
     { to: "/admin/headquarters", label: "Group Headquarters", icon: Building2 },
-    ...(import.meta.env.DEV
-      ? [{ to: "/admin/domain-portfolio", label: "Domain Portfolio", icon: Globe }]
-      : []),
+    { to: "/admin/domain-portfolio", label: "Domain Portfolio", icon: Globe },
     { to: "/admin/leads", label: "Pipeline & Leads", icon: Inbox },
     { to: "/admin/clients", label: "Clients & Care", icon: Users },
     { to: "/admin/projects", label: "Projects & Delivery", icon: Briefcase },

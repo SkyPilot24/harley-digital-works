@@ -183,7 +183,7 @@ test("private migration denies visitors/nonadmins; atomic import and public data
   await db.exec(
     await readFile(
       new URL(
-        "../supabase/migrations/20261012140000_domain_portfolio_inventory.sql",
+        "../supabase/migrations/20261012155701_domain_portfolio_inventory.sql",
         import.meta.url,
       ),
       "utf8",
@@ -235,6 +235,29 @@ test("private migration denies visitors/nonadmins; atomic import and public data
     0,
   );
   await db.exec("UPDATE public.domain_portfolio_inventory SET notes='preserved',purpose='client'");
+  const originalTimestamp = (
+    await db.query(
+      "SELECT updated_at::text AS updated_at FROM public.domain_portfolio_inventory WHERE name='example.com'",
+    )
+  ).rows[0].updated_at;
+  await db.exec(
+    "UPDATE public.domain_portfolio_inventory SET notes='preserved',updated_at='2000-01-01'",
+  );
+  const currentTimestamp = (
+    await db.query(
+      "SELECT updated_at::text AS updated_at FROM public.domain_portfolio_inventory WHERE name='example.com'",
+    )
+  ).rows[0].updated_at;
+  assert.notEqual(String(currentTimestamp), String(originalTimestamp));
+  assert.equal(
+    (
+      await db.query(
+        "UPDATE public.domain_portfolio_inventory SET notes='stale overwrite' WHERE name='example.com' AND updated_at=$1 RETURNING name",
+        [originalTimestamp],
+      )
+    ).rows.length,
+    0,
+  );
   const invalid = JSON.stringify([
     { name: "new.com", registrar: "IONOS", registrar_status: "ACTIVE", expires_on: "2026-10-17" },
     { name: "bad/path", registrar: "IONOS", registrar_status: "ACTIVE" },

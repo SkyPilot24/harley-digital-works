@@ -1,5 +1,9 @@
 # The Harley Group — shared project status
 
+## Domain Portfolio live release preparation — 12 October 2026
+
+Shared private database adapter and production admin navigation implemented locally. Build, TypeScript, formatting and regression checks pass. No production migration/import/push/deployment. Release blocked on real Auth/Data API staging tests: local Docker needs WSL; hosted branching requires a paid plan upgrade. See `docs/DOMAIN_PORTFOLIO_RELEASE_2026-10-12.md` for evidence, costs and exact next action.
+
 ## Automated Outreach Engine & Resend Integration — 12 October 2026
 
 H37/H50: Implemented and verified automated prospect outreach engine in `src/lib/outreach-dispatcher.ts` with Nitro scheduled background task in `server/tasks/outreach-dispatcher.ts` configured for Monday–Friday 09:00 UK. Strict 2-build concurrency guard automatically queries Supabase active projects (`in_progress`, `review`) and halts outbound outreach when capacity is reached. Ratified sender policy: all cold prospect outreach sent as `Robbie Harley <robbie@theharleygroup.org>` with matching `reply_to` to prevent spam filter flags associated with generic mailboxes (`hello@`) and maximize peer-to-peer B2B response rates. Connected via Resend API (`https://api.resend.com/emails`) with 10-second timeout, duplicate protection, and Slack `#sales` audit alerts. Test suite `scripts/outreach-dispatcher.test.mjs` passes 5/5; full test suite passes 136/136; TypeScript 0 errors; code formatting and linting 0 errors.
