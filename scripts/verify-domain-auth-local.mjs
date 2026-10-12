@@ -50,10 +50,18 @@ async function account(role) {
   const signed = await client.auth.signInWithPassword({ email, password });
   assert.equal(signed.error, null);
   assert.equal(signed.data.user.id, id);
-  return { client, id };
+  return { client, id, email, password };
 }
 const admin = await account("admin");
 const ordinary = await account("ordinary");
+// Synthetic credentials are local-only, ignored by Git, and enable browser acceptance.
+await writeFile(
+  new URL("../local-evidence/domain-test-users.json", import.meta.url),
+  JSON.stringify({
+    admin: { email: admin.email, password: admin.password },
+    ordinary: { email: ordinary.email, password: ordinary.password },
+  }),
+);
 const table = "domain_portfolio_inventory";
 const domain = `acceptance-${randomUUID()}.test`;
 const batch = randomUUID();
@@ -81,6 +89,17 @@ await check("ordinary user private reads hidden", async () => {
 });
 await check("ordinary user cannot import via direct RPC", async () => {
   assert.ok((await ordinary.client.rpc("import_domain_portfolio", payload)).error);
+});
+await check("editable admin metadata cannot grant administrator access", async () => {
+  assert.equal(
+    (await ordinary.client.auth.updateUser({ data: { role: "admin", is_admin: true } })).error,
+    null,
+  );
+  assert.equal((await ordinary.client.auth.refreshSession()).error, null);
+  assert.ok((await ordinary.client.rpc("import_domain_portfolio", payload)).error);
+  const result = await ordinary.client.from(table).select("*");
+  assert.equal(result.error, null);
+  assert.deepEqual(result.data, []);
 });
 await check("ordinary user cannot promote own role", async () => {
   assert.ok(
