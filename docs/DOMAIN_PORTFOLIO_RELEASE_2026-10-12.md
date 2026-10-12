@@ -33,3 +33,9 @@ Local Docker cannot start: WSL is not installed; Docker API returns HTTP 500. No
 5. Import the supplied IONOS export through the real founder-authenticated module, verify 53 private records and 26 current renewal alerts, and check existing admin/public journeys. Do not fabricate user identity in owner SQL to seed production.
 
 Rollback: revert the app release while retaining the private tables and data. Do not drop imported records as a routine rollback. Financial reporting, valuations and sales-pipeline extensions remain subsequent approved stages.
+
+## Approved free setup follow-up — 12 October 2026
+
+User approved free local testing. Installed official WSL via elevated Windows installer, exit 0; verified WSL 3.0.1.0 and kernel 6.18.40.1-1. Ran Windows feature setup, exit 0; elevated readback confirms VirtualMachinePlatform Enabled, RestartRequired Possible. WSL still reports virtualisation unavailable before restart. CPU firmware-virtualisation query returns false; recheck after reboot before prescribing BIOS changes. No restart was initiated, and no paid Supabase upgrade/branch was created.
+
+Initialised ignored local-evidence/staging/supabase configuration, project id thg-domain-portfolio-test, API port 54421/database 54422, PostgreSQL 17; copied 21 application migrations. The local database is not yet started or tested. After Windows restart: check WSL status and Docker engine; if virtualisation remains unavailable, inspect firmware/hypervisor requirements. Then start isolated Supabase and continue the actual Auth/Data API acceptance/release sequence above. Production remains unchanged.
