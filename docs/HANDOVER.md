@@ -1,5 +1,6 @@
 # Shared development handover
 
+<<<<<<< HEAD
 ## Antigravity — Automated Outreach Engine & Resend Integration — 12 October 2026
 
 - Automated corporate prospect dispatch engine implemented in `src/lib/outreach-dispatcher.ts` and Nitro scheduled task in `server/tasks/outreach-dispatcher.ts`. Scheduled for Monday–Friday at 09:00 UK (`0 9 * * 1-5`) in `nitro.config.ts`.
@@ -36,6 +37,12 @@
 - Current source: /admin/domain-os redirects to /admin/revenue-os strategy/playbooks; public /domains uses static ownership wording/legacy prices. No live exposure or central domain database acceptance claimed. Historical localStorage admin description and £5,000/£250 targets are not revenue evidence.
 - Validation: documentation/CSV checks only: whitespace, unique reference names, 45 rows/21 columns, 29 current roster entries and 16 historical/operational references. No application code changed; application tests not run. Documentation is local/uncommitted; no push/deployment, registrar/DNS/marketplace/database changes, outreach or money movement.
 - Next action: founder supplies read-only registrar exports/invoices to enrich the existing roster and verify imminent renewals/first five; then approve concrete prices/floors and listings. D01/H49 remain open. Protected and rights-sensitive records excluded from sale pending review. Report flags existing VAT wording for seller/accountant reconciliation; no tax settings changed.
+## Codex — PR #8 conflict repair — 11 October 2026
+
+- Branch: `copilot/fix-failing-github-actions-job`; isolated `.pr8-repair` checkout. Starting head `45f0c0f6bc0225f81c7d393992567e8f271cd82a`; merged main `e90da3bc6f8c8892c939ecbc3a360916b6e71462` without rewriting history. Canonical checkout's uncommitted domain documents preserved.
+- Conflicts: `.github/workflows/quality.yml` and `src/lib/current-strategy.ts`. Kept main's split CI jobs, build-before-test order and safe strategy wording; resolved application/workflow source matches main exactly.
+- Fresh verification: `npm ci --no-audit --no-fund`, `npm run build`, `npm test` (66 smoke + 67 regression/integration + 3 service-worker checks), `npm run typecheck`, and `npm run format:check` PASS. Lint not repeated because resolved code matches main; no live browser or production checks performed.
+- State: merge commit `e18c676d52b5c3c1485977ad1ac20b5407ff214e` pushed to existing PR branch; merged via PR #8 into main (`5479714`).
 
 ## Codex — review and push recent activity — 9 October 2026
 
