@@ -2,7 +2,7 @@
 
 ## Objective
 
-Deliver and verify the production-ready digital agency operating platform and commercial website for **Harley Digital Works** (`https://harleydigitalworks.com`).
+Deliver and verify the production-ready digital agency operating platform and commercial website for **Harley Digital Works** (`https://harleydigitalworks.com`) under **The Harley Group**.
 
 ---
 
@@ -15,13 +15,18 @@ Deliver and verify the production-ready digital agency operating platform and co
 - [x] Responsive layout checks at mobile/tablet/laptop/desktop widths (touch targets >= 44px)
 - [x] Text readability, typography tokens, dark/gold aesthetic, and visual consistency
 - [x] Standardised commercial website packages (Launch £1,495, Growth £2,995, Pro £4,995+)
-- [x] Embedded recurring Care Plan attach upsells (£95/mo hosting, backups, maintenance)
+- [x] Embedded recurring Care Plan attach upsells (£249/mo managed care, hosting, backups, maintenance)
 - [x] Interactive free website health & conversion check tool (`/audit`)
 - [x] One-click lead-to-client conversion pipeline in `/admin/leads`
 - [x] Client 360 Workspace in `/admin/clients` with linked project management and MRR tracking
 - [x] Domain acquisition enquiry routing with search parameter hydration
 - [x] Schema.org `ProfessionalService` JSON-LD structured data and OpenGraph tags
 - [x] Robots.txt crawl rules and canonical URL generation
+- [x] Staged First-Client Rehearsal (H50): 10-step evidence matrix, fictional test fixture, and internal agreement draft
+- [x] Delivery Approval & Exact Versioning: cryptographically signed preview approvals (`sha256`), live session enforcement, and atomic rollback
+- [x] Payment Invariants & Webhooks: signed Stripe webhook processing, replay protection, and durable receipt ledger
+- [x] Bristol/Bath Pilot Research (H37): 50-prospect discovery pool, 10 desk assessments, and P01–P03 qualified shortlist
+- [x] Automated Outreach Engine: Nitro scheduled task (`outreach-dispatcher`), 2-build concurrency guard, and Resend provider integration (`robbie@theharleygroup.org`)
 - [x] Zero TypeScript, Prettier, or ESLint errors across the codebase
 
 ---
@@ -32,5 +37,7 @@ Deliver and verify the production-ready digital agency operating platform and co
 | -------------------------- | ---------------------- | ----------------------------- |
 | **TypeScript**             | `npm run typecheck`    | Passed (0 errors)             |
 | **Prettier**               | `npm run format:check` | Passed (100% compliant)       |
-| **ESLint**                 | `npm run lint`         | Passed (0 errors)             |
+| **ESLint**                 | `npm run lint`         | Passed (0 errors, 18 existing warnings) |
+| **Platform Test Suite**    | `npm test`             | Passed (136/136 tests pass)   |
+| **Outreach Dispatcher**    | `scripts/outreach-dispatcher.test.mjs` | Passed (5/5 tests pass)       |
 | **Vite + Nitro SSR Build** | `npm run build`        | Passed (Output in `.output/`) |

@@ -1,0 +1,85 @@
+{
+  "method": "Read-only public HTTP GET; raw HTML patterns corroborate desk observations, not visual defects or form delivery; no submissions",
+  "results": [
+    {
+      "id": "P01",
+      "url": "https://www.rg-electrical.com/",
+      "final_url": "https://www.rg-electrical.com/",
+      "status": 200,
+      "retrieved_at": "2026-10-11T16:09:55.749Z",
+      "desk_observation_pattern_present": true
+    },
+    {
+      "id": "P02",
+      "url": "https://bath-electrical.co.uk/",
+      "final_url": "https://bath-electrical.co.uk/",
+      "status": 200,
+      "retrieved_at": "2026-10-11T16:09:56.543Z",
+      "desk_observation_pattern_present": true
+    },
+    {
+      "id": "P03",
+      "url": "https://www.nextgenelec.co.uk/",
+      "final_url": "https://www.nextgenelec.co.uk/",
+      "status": 200,
+      "retrieved_at": "2026-10-11T16:09:55.710Z",
+      "desk_observation_pattern_present": true
+    },
+    {
+      "id": "P04",
+      "url": "https://www.holtselectricalcontractors.com/",
+      "final_url": "https://www.holtselectricalcontractors.com/",
+      "status": 200,
+      "retrieved_at": "2026-10-11T16:09:56.841Z",
+      "desk_observation_pattern_present": true
+    },
+    {
+      "id": "P05",
+      "url": "https://www.aessltd.com/",
+      "final_url": "https://www.aessltd.com/",
+      "status": 200,
+      "retrieved_at": "2026-10-11T16:09:56.890Z",
+      "desk_observation_pattern_present": true
+    },
+    {
+      "id": "P06",
+      "url": "https://electricianbath.com/",
+      "final_url": "https://electricianbath.com/",
+      "status": 200,
+      "retrieved_at": "2026-10-11T16:09:59.302Z",
+      "desk_observation_pattern_present": true
+    },
+    {
+      "id": "P07",
+      "url": "https://www.aztecelectricalanddata.co.uk/",
+      "final_url": "https://www.aztecelectricalanddata.co.uk/",
+      "status": 200,
+      "retrieved_at": "2026-10-11T16:09:59.582Z",
+      "desk_observation_pattern_present": true
+    },
+    {
+      "id": "P08",
+      "url": "https://www.svelectricalbathltd.co.uk/",
+      "final_url": "https://www.svelectricalbathltd.co.uk/",
+      "status": 200,
+      "retrieved_at": "2026-10-11T16:09:59.795Z",
+      "desk_observation_pattern_present": true
+    },
+    {
+      "id": "P09",
+      "url": "https://sparksec.ltd/",
+      "final_url": "https://sparksec.ltd/",
+      "status": 200,
+      "retrieved_at": "2026-10-11T16:10:01.214Z",
+      "desk_observation_pattern_present": true
+    },
+    {
+      "id": "P10",
+      "url": "https://isdurnell.com/",
+      "final_url": "https://isdurnell.com/",
+      "status": 200,
+      "retrieved_at": "2026-10-11T16:10:02.211Z",
+      "desk_observation_pattern_present": true
+    }
+  ]
+}

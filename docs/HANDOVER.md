@@ -1,8 +1,48 @@
 # Shared development handover
 
-## Domain Portfolio local implementation — 12 October 2026
+<<<<<<< HEAD
+## Antigravity — Automated Outreach Engine & Resend Integration — 12 October 2026
 
-See [local implementation handover](DOMAIN_PORTFOLIO_LOCAL_IMPLEMENTATION_2026-10-12.md) for reconciliation, local route, unapplied migration, acceptance evidence and exact staging prerequisites. Branch `codex/domain-portfolio-local`, isolated clone; no production writes, notifications, push or deployment. Review local functionality before separately authorising staging connection.
+- Automated corporate prospect dispatch engine implemented in `src/lib/outreach-dispatcher.ts` and Nitro scheduled task in `server/tasks/outreach-dispatcher.ts`. Scheduled for Monday–Friday at 09:00 UK (`0 9 * * 1-5`) in `nitro.config.ts`.
+- Concurrency protection: Automatically queries active projects in Supabase (`in_progress` / `review`) and halts outbound outreach when active builds reach the strict 2-build concurrency cap, safeguarding founder clinical schedules.
+- Sender policy & deliverability: Ratified sender identity set to `Robbie Harley <robbie@theharleygroup.org>` with matching `reply_to` header to prevent spam filter flags associated with generic mailboxes (`hello@`) and maximize peer-to-peer B2B response rates.
+- Provider integration: Connected via Resend API (`https://api.resend.com/emails`) with 10-second timeout bounds, duplicate prevention, and provider receipt ID capture (`providerId`).
+- Automated tests: Added `scripts/outreach-dispatcher.test.mjs` (5/5 PASS: concurrency limits, unapproved prospect filtering, deduplication, Resend provider integration, and disabled fallback).
+- Knowledge base: Documented in `src/lib/knowledge-base.ts` as article `outbound-email-architecture-2026-10-12`.
+- Verification: Full test suite passes (136/136 PASS), typecheck 0 errors, format check 100% Prettier compliant, lint passes with 0 errors.
+
+## Codex — first-client rehearsal preparation — 12 October 2026
+
+- Subsequent authorised sandbox execution: connected account `acct_1UKnAQGev7YjDfff` (The Harley Group sandbox, livemode=false). One hosted fictional £747.50 GBP deposit completed in browser with public Stripe test card; independent provider readback confirms Checkout complete/paid and PaymentIntent succeeded/amount_received=74750, matching rehearsal/milestone metadata. Minimized evidence: `evidence/stripe-sandbox-deposit-2026-10-12.json`. No card/key/real-contact data saved. No real funds or revenue; no customer messages.
+- Webhook inventory is empty (zero, has_more=false); provider-side payment test does not establish app receipt persistence or webhook authenticity/replay/failure handling. Balance/subscription not run. Earlier authentication blocker resolved. Next: isolated application receiver with securely configured sandbox credentials, then signed-event persistence/replay/failure verification. No application change, commit/push or production release; RED/H50 open.
+
+- H50: prepared `FIRST_CLIENT_REHEARSAL_2026-10-12.md`, fictional `FIRST_CLIENT_REHEARSAL_FIXTURE_2026-10-12.json` and `FIRST_CLIENT_PROPOSAL_DRAFT_2026-10-12.md`. Ten-step evidence matrix, failure cases, intervention/time logging, exact blocked dependency and reviewable agreement skeleton. RED gate reflects incomplete runtime evidence; no completed rehearsal, paid pilot or revenue claim.
+- Inspected prototype proposal/onboarding/care source and production route deferral. Existing local revenue regression command freshly passes 32/32, exit 0. Fixture JSON parses; deposit plus balance equals setup; fictional/no-live-import/zero-revenue/no-accreditation boundaries pass. Diff whitespace check passes. Full build/browser/template/provider/database tests not run: no application change and no verified isolated provider/client environment.
+- Stripe account discovery twice requested an authentication retry without returning account/context/livemode; stopped repeating. No payment objects or provider writes. Commercial channel mismatch (SMS/email versus Slack/email), concurrency mismatch (use strict two), supplier/tax terminology and unproven backup/support promises recorded for reconciliation before customer issuance.
+- Local docs only on main at e90da3bc6f8c8892c939ecbc3a360916b6e71462; prospect/domain edits preserved. No code change, commit, push, outreach, live billing, DNS/deployment or backend mutation. Next: verify existing Stripe sandbox identity/mode/access, then smallest hosted-payment/receipt implementation in an isolated branch with failure/replay evidence. H19–H25/H50 remain open.
+
+## Codex — Bristol/Bath electrical pilot research — 11 October 2026
+
+- Validation: CSV parses with 50 unique IDs, 40 business-website sources, ten directory discoveries and ten ranked candidates; all sending held and staffing/capacity explicitly unverified. All ten saved HTTP checks returned 200 with the desk text pattern present. Git whitespace check passes. Application tests not run because this change contains documentation and research data only.
+- Scope H37/H50: 50-company discovery CSV (40 primary websites, ten directory-only), first ten desk assessments, ten personalised unsent drafts, one proposed follow-up and interested-reply price wording. Files: `BRISTOL_BATH_ELECTRICAL_PROSPECTS_2026-10-11.csv`, `BRISTOL_BATH_PILOT_RESEARCH_2026-10-11.md`, `BRISTOL_BATH_PILOT_OUTREACH_DRAFTS_2026-10-11.md`; evidence `evidence/prospect-public-pages-2026-10-11.json`.
+- Evidence: public business/directory/registry research; ten fresh read-only homepage GETs returned 200 and matched observed text patterns. No form submissions, visual/mobile/performance/ranking tests or message delivery tests. Five active registry records retrieved; RG/Bath/Nextgen/Holts have corroborating operator evidence, Aztec remains unresolved. No directors' personal data or recipient contacts saved. Directory claims do not establish current membership or outreach permission.
+- Decision: qualify RG Electrical Bristol, Bath-Electrical and Nextgen first. Hold all sending. Verify current scheme membership, staffing/capacity, browser-visible evidence and recipient eligibility; preserve opt-in/inbound handling for uncertain entity types. Existing delivery/session/email/backup gates remain open; no H37/H50 completion claim.
+- Working state: local documentation only on main baseline `e90da3bc6f8c8892c939ecbc3a360916b6e71462`; existing domain-review changes preserved. No commit, push, outreach, external CRM/Drive write, billing or production operation. Temporary research helper removed. Next: qualify first three, review concrete audit/draft, then request specific sending authorisation when fulfilment gates are satisfied.
+
+## Codex — domain commercial review — 10 October 2026
+
+- Scope: read-only commercial/source audit for H49/D01–D08. Reviewed governing repository records, current routes/roster, saved 29-entry page, September 60-name module descriptions and 9 October Drive portfolio register. Clean main baseline e90da3bc6f8c8892c939ecbc3a360916b6e71462.
+- Deliverables: `DOMAIN_COMMERCIAL_REVIEW_2026-10-10.md` and `DOMAIN_PORTFOLIO_AUDIT_2026-10-10.csv`. Preferred Option B preserves current THG oversight/HDW sales workstream; low-confidence conditional pricing, marketplace fees, operating model, cash scenarios and 30/60/90-day plan are proposals. No new brand or domain buying recommended.
+- Evidence: 29 current entries (28 full names, one incomplete); 15 extra complete names from historical notes; operational HDW .com added. CSV has 45 reference rows; possible doula duplicate, protected-use records and unresolved 60-name claim prevent a verified holdings count. Registrar/title/cost/expiry/traffic/revenue unknown. Gmail searches had no matches; Chrome discovery failed twice with request-header-policy error; targeted GitHub search had no extra roster. Marketplace terms checked against official sources on 10 October.
+- Current source: /admin/domain-os redirects to /admin/revenue-os strategy/playbooks; public /domains uses static ownership wording/legacy prices. No live exposure or central domain database acceptance claimed. Historical localStorage admin description and £5,000/£250 targets are not revenue evidence.
+- Validation: documentation/CSV checks only: whitespace, unique reference names, 45 rows/21 columns, 29 current roster entries and 16 historical/operational references. No application code changed; application tests not run. Documentation is local/uncommitted; no push/deployment, registrar/DNS/marketplace/database changes, outreach or money movement.
+- Next action: founder supplies read-only registrar exports/invoices to enrich the existing roster and verify imminent renewals/first five; then approve concrete prices/floors and listings. D01/H49 remain open. Protected and rights-sensitive records excluded from sale pending review. Report flags existing VAT wording for seller/accountant reconciliation; no tax settings changed.
+## Codex — PR #8 conflict repair — 11 October 2026
+
+- Branch: `copilot/fix-failing-github-actions-job`; isolated `.pr8-repair` checkout. Starting head `45f0c0f6bc0225f81c7d393992567e8f271cd82a`; merged main `e90da3bc6f8c8892c939ecbc3a360916b6e71462` without rewriting history. Canonical checkout's uncommitted domain documents preserved.
+- Conflicts: `.github/workflows/quality.yml` and `src/lib/current-strategy.ts`. Kept main's split CI jobs, build-before-test order and safe strategy wording; resolved application/workflow source matches main exactly.
+- Fresh verification: `npm ci --no-audit --no-fund`, `npm run build`, `npm test` (66 smoke + 67 regression/integration + 3 service-worker checks), `npm run typecheck`, and `npm run format:check` PASS. Lint not repeated because resolved code matches main; no live browser or production checks performed.
+- State: merge commit `e18c676d52b5c3c1485977ad1ac20b5407ff214e` pushed to existing PR branch; merged via PR #8 into main (`5479714`).
 
 ## Codex — review and push recent activity — 9 October 2026
 
