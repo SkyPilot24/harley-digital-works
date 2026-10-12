@@ -23,6 +23,7 @@ import { supabase } from "@/integrations/supabase/client";
 import type { Database } from "@/integrations/supabase/types";
 import { PageHeader, StatusBadge } from "./admin.index";
 import { toast } from "sonner";
+import { ProjectReviewDetails } from "@/components/admin/DeliveryReviewPanel";
 
 export const Route = createFileRoute("/_authenticated/admin/projects")({
   component: ProjectsAdminPage,
@@ -108,7 +109,7 @@ function ProjectsAdminPage() {
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <PageHeader
           title="Projects & Delivery"
-          subtitle="14-day turnaround SLA, staged previews, client approvals, and Cloudflare DNS cutover."
+          subtitle="Build progress, versioned customer reviews and verified launch readiness."
         />
         <button
           onClick={() => setIsCreatingProject(true)}
@@ -130,13 +131,13 @@ function ProjectsAdminPage() {
             <Layers size={16} className="text-blue-700" />
           </div>
           <div className="mt-2 text-3xl font-extrabold text-ink">
-            {activeProjects.length} / 3{" "}
+            {activeProjects.length} / 2{" "}
             <span className="text-sm font-normal text-ink-muted">slots</span>
           </div>
           <p className="mt-2 text-xs text-ink-muted">
-            {activeProjects.length >= 3
+            {activeProjects.length >= 2
               ? "At capacity limit — complete an existing build before onboarding new trades."
-              : `${3 - activeProjects.length} build slot(s) open. Protects founder part-time capacity.`}
+              : `${2 - activeProjects.length} build slot(s) within the pilot capacity target.`}
           </p>
         </div>
 
@@ -144,13 +145,14 @@ function ProjectsAdminPage() {
         <div className="rounded-xl border border-ink/10 bg-white p-5 shadow-xs">
           <div className="flex items-center justify-between text-ink-muted">
             <span className="text-[11px] font-bold uppercase tracking-wider">
-              Standard Delivery SLA
+              Standard Delivery Target
             </span>
             <Clock size={16} className="text-emerald-700" />
           </div>
-          <div className="mt-2 text-3xl font-extrabold text-ink">14 Days</div>
+          <div className="mt-2 text-3xl font-extrabold text-ink">14 Business Days</div>
           <p className="mt-2 text-xs text-ink-muted">
-            From asset intake to staging preview and client launch sign-off.
+            Target from complete asset receipt, excluding client delays. Confirm project dates
+            individually.
           </p>
         </div>
 
@@ -224,7 +226,7 @@ function ProjectsAdminPage() {
                 "Staged preview ready — awaiting client revision feedback or sign-off";
             } else if (project.status === "launched") {
               outstandingAction =
-                "Live on Cloudflare edge — £249/mo care and 30-min monthly edit allowance active";
+                "Verify the live deployment, billing and care records; project status alone does not confirm them.";
             }
 
             return (
@@ -274,6 +276,7 @@ function ProjectsAdminPage() {
                 </div>
 
                 {/* Outstanding Action Indicator */}
+                <ProjectReviewDetails projectId={project.id} />
                 <div className="rounded-lg bg-ink/[0.02] border border-ink/5 p-3 flex items-start gap-2.5 text-xs">
                   <div className="font-bold text-ink shrink-0">Current Action:</div>
                   <div className="text-ink-muted">{outstandingAction}</div>
@@ -328,12 +331,11 @@ function ProjectsAdminPage() {
                     )}
                     {project.status === "review" && (
                       <button
-                        onClick={() =>
-                          updateStageMutation.mutate({ id: project.id, status: "launched" })
-                        }
-                        className="rounded-full bg-emerald-700 px-3 py-1 text-[11px] font-bold text-white hover:bg-emerald-800"
+                        disabled
+                        title="Payment, approved website version and launch checks must be verified before release."
+                        className="rounded-full bg-ink/10 px-3 py-1 text-[11px] font-bold text-ink-muted"
                       >
-                        Approve & Launch DNS →
+                        Launch verification pending
                       </button>
                     )}
                   </div>
@@ -569,7 +571,9 @@ function EditProjectModal({
               <option value="discovery">1. Discovery & Assets</option>
               <option value="in_progress">2. Build & Copywriting</option>
               <option value="review">3. Staged Preview & Approval</option>
-              <option value="launched">4. Live Launched</option>
+              <option value="launched" disabled>
+                4. Live Launched — requires verified release
+              </option>
               <option value="on_hold">On Hold</option>
               <option value="archived">Archived</option>
             </select>

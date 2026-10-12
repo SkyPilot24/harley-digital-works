@@ -41,6 +41,7 @@ dist-ssr
 .env
 .env.*
 !.env.example
+!.env.staging.example
 !.env.production
 
 supabase/.temp/

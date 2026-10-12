@@ -4,8 +4,9 @@ import { z } from "zod";
 import { supabase } from "@/integrations/supabase/client";
 import { PageShell, Container } from "@/components/site/PageShell";
 import { toast } from "sonner";
+import { safeAuthRedirect } from "@/lib/auth-redirect";
 
-const searchSchema = z.object({ redirect: z.string().optional() });
+const searchSchema = z.object({ redirect: z.unknown().transform(safeAuthRedirect) });
 const googleSignInEnabled = import.meta.env.VITE_GOOGLE_AUTH_ENABLED === "true";
 const supabaseConfigured = Boolean(
   import.meta.env.VITE_SUPABASE_URL && import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY,
@@ -20,7 +21,10 @@ export const Route = createFileRoute("/auth")({
     if (data.session) throw redirect({ to: search.redirect ?? "/admin" });
   },
   head: () => ({
-    meta: [{ title: "Sign in — HDW Admin" }, { name: "robots", content: "noindex, nofollow" }],
+    meta: [
+      { title: "Sign in — Harley Digital Works" },
+      { name: "robots", content: "noindex, nofollow" },
+    ],
   }),
   component: AuthPage,
 });
@@ -93,7 +97,7 @@ function AuthPage() {
         const { error } = await supabase.auth.signUp({
           email: enteredEmail,
           password: enteredPassword,
-          options: { emailRedirectTo: window.location.origin + "/admin" },
+          options: { emailRedirectTo: window.location.origin + search.redirect },
         });
         if (error) throw error;
         toast.success("Check your inbox to confirm your email.");
@@ -128,7 +132,10 @@ function AuthPage() {
     try {
       const result = await supabase.auth.signInWithOAuth({
         provider: "google",
-        options: { redirectTo: window.location.origin + "/auth" },
+        options: {
+          redirectTo:
+            window.location.origin + "/auth?redirect=" + encodeURIComponent(search.redirect),
+        },
       });
       if (result.error) throw result.error;
     } catch (err: unknown) {
@@ -151,10 +158,12 @@ function AuthPage() {
                 fontSize: "1.75rem",
               }}
             >
-              {mode === "signin" ? "Sign in to admin" : "Create an admin account"}
+              {mode === "signin" ? "Sign in" : "Create an account"}
             </h1>
             <p className="mt-2 text-sm text-ink-muted">
-              Access the Harley Digital Works agency dashboard.
+              {search.redirect.startsWith("/client-review/")
+                ? "Use the account invited to review your project."
+                : "Access the Harley Digital Works agency dashboard."}
             </p>
 
             <button
