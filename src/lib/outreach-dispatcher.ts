@@ -38,6 +38,8 @@ export async function processOutreachBatch(options: {
   enabled: boolean;
   apiKey?: string;
   senderEmail?: string;
+  senderName?: string;
+  replyToEmail?: string;
   activeBuildsCount: number;
   maxConcurrentBuilds: number;
   alreadyContactedIds: Set<string>;
@@ -101,6 +103,8 @@ export async function processOutreachBatch(options: {
         enabled: options.enabled,
         apiKey: options.apiKey,
         senderEmail: options.senderEmail,
+        senderName: options.senderName || "Robbie Harley",
+        replyToEmail: options.replyToEmail || options.senderEmail,
         fetch: options.fetch,
       });
 

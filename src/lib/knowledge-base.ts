@@ -29,6 +29,24 @@ export const KNOWLEDGE_CATEGORIES = [
 
 export const KNOWLEDGE_BASE_ARTICLES: KnowledgeArticle[] = [
   {
+    id: "outbound-email-architecture-2026-10-12",
+    category: "architecture",
+    title: "Outbound Email & Automated Outreach Architecture",
+    summary:
+      "Operational specification for transactional email delivery via Resend API and scheduled automated corporate outreach.",
+    statusBadge: "Ratified · 12 Oct 2026",
+    lastUpdated: "2026-10-12",
+    keyPoints: [
+      "SENDER SPECIFICATION — All outbound cold outreach and founder communications are sent as Robbie Harley <robbie@theharleygroup.org>. Generic roles (hello@) are rejected for prospect outreach to maximize deliverability and trust.",
+      "REPLY-TO ROUTING — reply_to is configured to robbie@theharleygroup.org so customer responses route directly to the founder and CRM channels.",
+      "PROVIDER INTEGRATION — Dispatched via Resend API (https://api.resend.com/emails) with timeout bounds, signature verification, and immutable receipt ID capture.",
+      "CONCURRENCY GUARD — Outreach engine enforces the strict 2-concurrent build limit before initiating any automated dispatch.",
+      "PECR COMPLIANCE — Restricted strictly to verified UK corporate entities (Companies House) with observable digital opportunities. Public quote forms are never used.",
+    ],
+    operationalDetails:
+      "Engine: src/lib/outreach-dispatcher.ts & src/lib/email-delivery.ts. Task: server/tasks/outreach-dispatcher.ts running at 09:00 UK weekdays. Environment: TRANSACTIONAL_EMAIL_ENABLED=true, RESEND_API_KEY, and TRANSACTIONAL_SENDER_EMAIL=robbie@theharleygroup.org.",
+  },
+  {
     id: "group-recent-activities-2026-10-09",
     category: "records",
     title: "Group recent activity review — 9 October 2026",

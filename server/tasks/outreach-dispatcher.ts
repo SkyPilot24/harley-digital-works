@@ -11,7 +11,8 @@ export default defineTask({
   async run() {
     const isEnabled = process.env.TRANSACTIONAL_EMAIL_ENABLED === "true";
     const apiKey = process.env.RESEND_API_KEY;
-    const senderEmail = process.env.TRANSACTIONAL_SENDER_EMAIL;
+    const senderEmail = process.env.TRANSACTIONAL_SENDER_EMAIL || "robbie@theharleygroup.org";
+    const senderName = process.env.TRANSACTIONAL_SENDER_NAME || "Robbie Harley";
 
     // Check active builds count against the strict 2-build concurrency cap
     let activeBuilds = 0;
@@ -50,6 +51,8 @@ export default defineTask({
       enabled: isEnabled,
       apiKey,
       senderEmail,
+      senderName,
+      replyToEmail: senderEmail,
       activeBuildsCount: activeBuilds,
       maxConcurrentBuilds: 2,
       alreadyContactedIds: new Set(),

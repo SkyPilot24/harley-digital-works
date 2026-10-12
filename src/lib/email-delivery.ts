@@ -20,6 +20,8 @@ export async function dispatchAuthorizedEmail(
     enabled: boolean;
     apiKey?: string;
     senderEmail?: string;
+    senderName?: string;
+    replyToEmail?: string;
     fetch: typeof fetch;
   },
 ) {
@@ -35,13 +37,16 @@ export async function dispatchAuthorizedEmail(
       message: "Email draft prepared. Nothing has been sent.",
     };
   }
+  const fromName = options.senderName || "Robbie Harley";
+  const replyTo = options.replyToEmail || options.senderEmail;
   const response = await options.fetch("https://api.resend.com/emails", {
     method: "POST",
     headers: { Authorization: `Bearer ${options.apiKey}`, "Content-Type": "application/json" },
     signal: AbortSignal.timeout(10_000),
     body: JSON.stringify({
-      from: `Harley Digital Works <${options.senderEmail}>`,
+      from: `${fromName} <${options.senderEmail}>`,
       to: [data.recipientEmail],
+      reply_to: replyTo,
       subject: data.subject,
       text: data.plainTextBody,
       html: data.htmlContent || undefined,
