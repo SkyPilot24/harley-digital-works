@@ -1,0 +1,46 @@
+{
+  "date": "2026-10-12",
+  "rehearsal_id": "H50-INTERNAL-20261012",
+  "account_name": "The Harley Group sandbox",
+  "stripe_context": "acct_1UKnAQGev7YjDfff",
+  "livemode": false,
+  "checkout": {
+    "id": "cs_test_a104usj0mNzzQ32uJxheMX9YUdUFYzMx2fbf6JCZBSykmaPGjpmRZEpwHf",
+    "client_reference_id": "H50-INTERNAL-20261012-DEPOSIT",
+    "amount_total": 74750,
+    "currency": "gbp",
+    "status": "complete",
+    "payment_status": "paid",
+    "payment_intent": "pi_3UPflXGev7YjDfff0M01sFmx",
+    "metadata": {
+      "fictional": "true",
+      "milestone": "deposit",
+      "rehearsal_id": "H50-INTERNAL-20261012"
+    }
+  },
+  "payment_intent": {
+    "id": "pi_3UPflXGev7YjDfff0M01sFmx",
+    "status": "succeeded",
+    "amount": 74750,
+    "amount_received": 74750,
+    "currency": "gbp",
+    "livemode": false,
+    "latest_charge": "ch_3UPflXGev7YjDfff0c0kG21u",
+    "metadata": {
+      "fictional": "true",
+      "milestone": "deposit",
+      "rehearsal_id": "H50-INTERNAL-20261012"
+    }
+  },
+  "webhook_endpoints": {
+    "count": 0,
+    "has_more": false
+  },
+  "real_revenue_pence": 0,
+  "limits": [
+    "Provider sandbox test only; no agency CRM or ledger integration",
+    "No webhook endpoints registered in this sandbox",
+    "Signature verification, replay safety, failure recovery, balance and subscription not tested",
+    "No live funds, production changes or real customer"
+  ]
+}

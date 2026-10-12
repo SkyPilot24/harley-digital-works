@@ -510,6 +510,8 @@ Updated 2 October 2026. Domain integration added following the founder's request
 
 ## H37 — Design outreach only after the service can fulfil a pilot
 
+- **11 October research evidence:** 50 candidates sourced (40 primary website / ten directory-only), ten desk assessments and ten unsent drafts prepared in `docs/BRISTOL_BATH_PILOT_RESEARCH_2026-10-11.md` and linked CSV/draft pack. Ten read-only homepage checks pass; current membership, team/capacity and recipient eligibility remain unverified. RG Electrical Bristol, Bath-Electrical and Nextgen lead qualification. Sending and stop-condition implementation remain untested; H37 stays open.
+
 - **Phase:** 4
 - **Priority:** Medium
 - **Who needs to act:** You
@@ -675,9 +677,15 @@ Updated 2 October 2026. Domain integration added following the founder's request
 - **Dependencies:** D01/D02 before named listings; H07/H08/H09 before integrated live capture. H44 for domain continuity.
 - **Resolution:** Run domain trading and brokerage as a separately measured commercial workstream marketed through Harley Digital Works. Launch verified inventory, assisted enquiries/offers and a costed transfer/settlement process. Reuse the central CRM, finance and hosting. Defer custom checkout, speculative acquisitions, autonomous valuations, separate brand/site and external Domain OS SaaS until evidence justifies them.
 - **Definition of done:** Every advertised name has verified ownership or mandate and an approved price/offer route; a test enquiry persists and reaches an authorised operator; renewals have accountable owners; any actual sale has settlement/transfer/delisting evidence and a realised contribution record.
-- **Latest evidence:** 2 October domain strategy review integrated into D01–D08 below; plan changes only. Existing infrastructure and paid-service pilot gates remain in force.
+- **Latest evidence:** 10 October review in `docs/DOMAIN_COMMERCIAL_REVIEW_2026-10-10.md` and 45-row reference CSV `docs/DOMAIN_PORTFOLIO_AUDIT_2026-10-10.csv` confirms preferred HDW workstream under THG. 29 current roster entries reconciled to saved page; 15 additional historical names plus operational HDW .com identified. Full 60-name claim, title/mandates, renewals/costs, traffic and sale state remain unverified. Low-confidence prices/scenarios are proposals; first five prioritised after authority/rights checks. No listings, account changes, sales or live domain database implemented. D01/H49 remain open; core pilot gates remain in force.
 
 ## H50 — Run one controlled pilot before scaling acquisition
+
+- **12 October sandbox execution:** authentication resolved; The Harley Group sandbox livemode=false. Fictional hosted deposit £747.50 confirmed Checkout paid and PaymentIntent succeeded through provider readback (`docs/evidence/stripe-sandbox-deposit-2026-10-12.json`). Zero real revenue; zero registered sandbox webhook endpoints. App receipt persistence/signature/replay/failure tests, balance/subscription and delivery remain open. Next: isolated application receiver and secure sandbox configuration. H50 not completed; no live billing/deployment.
+
+- **12 October rehearsal preparation:** ten-step first-client evidence matrix, fictional fixture and internal proposal skeleton in `docs/FIRST_CLIENT_REHEARSAL_2026-10-12.md` and companions. Existing revenue checks freshly pass 32/32; no provider/client lifecycle run. Stripe account discovery repeats authentication prompt and returns no verified sandbox. RED gate: payment/onboarding/approval/care/recovery not accepted. Next: verify existing isolated Stripe sandbox, then hosted-payment/receipt path. No client contacted, payment collected, launch or H50 completion.
+
+- **11 October preparation:** first 50 business candidates and ten desk assessments prepared; P01–P03 are the initial qualification queue. No prospects contacted, client won, payment verified or pilot delivered. Session/email/backup fulfilment gates remain open. See `docs/BRISTOL_BATH_PILOT_RESEARCH_2026-10-11.md`; H50 stays open.
 
 - **Phase:** 6
 - **Priority:** High
