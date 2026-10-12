@@ -58,20 +58,47 @@ type PortfolioDatabase = {
 };
 // Same existing user-authenticated client. Database RLS/RPC enforce the trusted admin role.
 const db = supabase as unknown as SupabaseClient<PortfolioDatabase>;
-export async function loadDatabaseInventory(): Promise<InventorySnapshot> {
-  const [domains, batches, acks] = await Promise.all([
-    db.from("domain_portfolio_inventory").select("*").order("name").limit(5000),
-    db.from("domain_portfolio_imports").select("*").order("created_at").limit(5000),
-    db.from("domain_portfolio_alert_acknowledgements").select("*").limit(5000),
-  ]);
-  for (const result of [domains, batches, acks])
+async function readPages<T>(
+  query: (start: number, end: number) => PromiseLike<{ data: T[] | null; error: unknown }>,
+): Promise<T[]> {
+  const rows: T[] = [];
+  for (let start = 0; start < 50000; start += 500) {
+    const result = await query(start, start + 499);
     if (result.error)
       throw new Error(
         "Unable to load the private portfolio. Check your admin access and database setup.",
       );
+    rows.push(...(result.data || []));
+    if ((result.data || []).length < 500) return rows;
+  }
+  throw new Error("Portfolio exceeds the loading limit. No partial inventory has been shown.");
+}
+export async function loadDatabaseInventory(): Promise<InventorySnapshot> {
+  const [domains, batches, acks] = await Promise.all([
+    readPages<DomainRow>((start, end) =>
+      db.from("domain_portfolio_inventory").select("*").order("name").range(start, end),
+    ),
+    readPages<BatchRow>((start, end) =>
+      db
+        .from("domain_portfolio_imports")
+        .select("*")
+        .order("created_at")
+        .order("id")
+        .range(start, end),
+    ),
+    readPages<AckRow>((start, end) =>
+      db
+        .from("domain_portfolio_alert_acknowledgements")
+        .select("*")
+        .order("domain_name")
+        .order("expires_on")
+        .order("renewal_window")
+        .range(start, end),
+    ),
+  ]);
   const state: InventorySnapshot = {
     ...emptyInventory(),
-    domains: (domains.data || []).map((row) => ({
+    domains: domains.map((row) => ({
       name: row.name,
       registrar: row.registrar,
       contract: row.contract,
@@ -84,13 +111,13 @@ export async function loadDatabaseInventory(): Promise<InventorySnapshot> {
       notes: row.notes,
       updatedAt: row.updated_at,
     })),
-    imports: (batches.data || []).map((row) => ({
+    imports: batches.map((row) => ({
       id: row.id,
       source: row.source_name,
       observedOn: row.observed_on,
       count: row.row_count,
     })),
-    acknowledgements: (acks.data || []).map(
+    acknowledgements: acks.map(
       (row) => `${row.domain_name}:${row.expires_on}:${row.renewal_window}`,
     ),
   };
@@ -139,6 +166,7 @@ export async function saveDatabaseInventory(
   );
   const added = next.acknowledgements.filter((key) => !previous.acknowledgements.includes(key));
   const removed = previous.acknowledgements.filter((key) => !next.acknowledgements.includes(key));
+  if (changed.length + added.length + removed.length === 0) return loadDatabaseInventory();
   if (changed.length + added.length + removed.length !== 1)
     throw new Error("Save one reviewed change at a time.");
   if (changed.length) {
