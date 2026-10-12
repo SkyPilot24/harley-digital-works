@@ -2,7 +2,7 @@
 
 ## Codex — Domain Portfolio live release preparation — 12 October 2026
 
-User authorised live release. Shared private database storage and admin navigation are prepared locally; release remains blocked on actual Auth/Data API staging acceptance. No production data or deployment changed. CLI-generated unapplied migration `20261012155701_domain_portfolio_inventory.sql`; details and next actions in `DOMAIN_PORTFOLIO_RELEASE_2026-10-12.md`. Preserve unrelated work, public listings and unknown renewal costs. Local Docker lacks WSL; hosted branching needs paid upgrade, not yet approved.
+User authorised live release. Shared private database storage and admin navigation are in draft PR #25; release remains blocked on actual Auth/Data API staging acceptance. No main merge, production migration/import or deployment. CLI-generated unapplied migration `20261012155701_domain_portfolio_inventory.sql`; details in `DOMAIN_PORTFOLIO_RELEASE_2026-10-12.md`. WSL is installed. Windows repair succeeded and component health is clean, but the system-file checker explicitly requires another restart before it can continue. Resume with WSL/Docker verification and the isolated staging configuration after that restart. Preserve public listings and unknown costs; no paid upgrade approved or created.
 ## Antigravity — Automated Outreach Engine & Resend Integration — 12 October 2026
 
 - Automated corporate prospect dispatch engine implemented in `src/lib/outreach-dispatcher.ts` and Nitro scheduled task in `server/tasks/outreach-dispatcher.ts`. Scheduled for Monday–Friday at 09:00 UK (`0 9 * * 1-5`) in `nitro.config.ts`.

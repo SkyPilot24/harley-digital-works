@@ -2,7 +2,7 @@
 
 ## Domain Portfolio live release preparation — 12 October 2026
 
-Shared private database adapter and production admin navigation implemented locally. Build, TypeScript, formatting and regression checks pass. No production migration/import/push/deployment. Release blocked on real Auth/Data API staging tests: local Docker needs WSL; hosted branching requires a paid plan upgrade. See `docs/DOMAIN_PORTFOLIO_RELEASE_2026-10-12.md` for evidence, costs and exact next action.
+Shared private database adapter and production admin navigation implemented and pushed to draft PR #25. Build, TypeScript, formatting and regression checks pass; eight domain tests pass and the actual export accepts 53 rows with zero errors. No main merge, production migration/import or deployment. Release blocked on real Auth/Data API staging tests. WSL is installed; Windows component repair succeeded and health check is clean, but Windows explicitly requires another restart to complete pending repairs. Hosted branching remains an unapproved paid alternative. See `docs/DOMAIN_PORTFOLIO_RELEASE_2026-10-12.md` for the exact restart checkpoint.
 
 ## Automated Outreach Engine & Resend Integration — 12 October 2026
 

@@ -1,6 +1,6 @@
 # Domain Portfolio release preparation — 12 October 2026
 
-User authorised making the local module live. Release is prepared locally but blocked on real Supabase Auth/Data API staging acceptance. No production migration, import, push or deployment has occurred.
+User authorised making the local module live. Release changes are committed and pushed to draft [PR #25](https://github.com/SkyPilot24/harley-digital-works/pull/25), blocked on real Supabase Auth/Data API staging acceptance. No main merge, production migration/import or deployment has occurred.
 
 ## Confirmed destination
 
@@ -20,13 +20,13 @@ IONOS export reconciles 53 unique active domains; 26 expiries fall within 90 day
 
 ## Validation and blocker
 
-Fresh application build, TypeScript, formatting and regression checks pass. Seven domain tests additionally cover XLS dates, invalid imports, atomic rollback, private fields, grants/RLS and stale timestamps using embedded PostgreSQL. These are not real Supabase Auth/PostgREST acceptance.
+Fresh application build, TypeScript, formatting and regression checks pass. Eight domain tests additionally cover XLS dates, external domain types, invalid imports, atomic rollback, private fields, grants/RLS and stale timestamps using embedded PostgreSQL. These are not real Supabase Auth/PostgREST acceptance. The actual 53-row export declares ON_DOMAIN for all rows and freshly parses with zero errors; declared external/unverified domain types require registrar review rather than being labelled as IONOS registrations.
 
-Local Docker cannot start: WSL is not installed; Docker API returns HTTP 500. No WSL installation or restart was performed. Provider pricing tool is unavailable; authenticated Supabase dashboard confirms Free plan and branching requires Pro, from US$25/month, plus branch compute US$0.01344/hour, taxes and other applicable usage. Organisation has six projects: total upgrade cost is not assumed to be US$25. No paid upgrade or branch was created.
+Initial local blocker was missing WSL; the approved free setup and subsequent repair results are recorded below. Provider pricing tool is unavailable; authenticated Supabase dashboard confirms Free plan and branching requires Pro, from US$25/month, plus branch compute US$0.01344/hour, taxes and other applicable usage. Organisation has six projects: total upgrade cost is not assumed to be US$25. No paid upgrade or branch was created.
 
 ## Exact next actions
 
-1. Prefer an approved free local Supabase test environment: install/enable WSL and finish Docker setup, possibly requiring a Windows restart. Alternatively explicitly approve account-specific paid staging after full cost review.
+1. Windows now explicitly requires a restart to complete its pending repair. After the user restarts, rerun the system-file check if required and verify vmcompute/WSL/Docker, then start the existing isolated local Supabase configuration. Do not initiate a restart automatically.
 2. Create synthetic admin and ordinary users in staging. Prove anon/non-admin reads and writes denied; admin import/details/acknowledgement allowed; direct RPC authorisation, repeat import, invalid-row rollback, conflict and stale-tab protection. Keep outbound effects disabled.
 3. Verify application against staging with real Auth, desktop/mobile navigation, import preview, persistence, editing and renewal acknowledgements. Include missing configuration and network failure.
 4. Review and apply only the additive production migration, verify grants/policies and unchanged public listing/enquiry data. Push a reviewable release branch/PR, run CI, then merge without rewriting history and verify the actual Cloudflare deployment.
@@ -45,3 +45,9 @@ Initialised ignored local-evidence/staging/supabase configuration, project id th
 A Windows restart was verified from the boot timestamp. WSL still cannot create a VM. Elevated diagnostics confirm WSL, VirtualMachinePlatform and HypervisorPlatform Enabled and HypervisorPresent true, but vmcompute service and its system binary are absent. Do not prescribe BIOS changes solely from the earlier CPU flags. Re-enabling VirtualMachinePlatform with DISM succeeded with exit 3010 (restart required). Windows CheckHealth reports the component store repairable; official RestoreHealth repair is in progress. No reboot was initiated by the agent.
 
 Prepared `scripts/verify-domain-auth-local.mjs`, guarded to only use localhost:54421, for real anonymous/ordinary/admin Auth/Data API acceptance with synthetic fixtures. Syntax and lint pass; it has not run against a database yet. Shared storage now paginates below the Data API row cap and fails closed on loading errors, avoiding silent truncation of larger inventories; TypeScript and lint pass. Release remains blocked; no production migration, import, push or deployment.
+
+## Completed Windows repair / restart checkpoint — 12 October 2026
+
+Official DISM RestoreHealth completed successfully, exit 0. A subsequent elevated CheckHealth reports no component-store corruption. The vmcompute binary is still absent before feature activation. SFC exits 1 with the explicit message: "There is a system repair pending which requires reboot to complete. Restart Windows and run sfc again." The earlier feature enable returned 3010. No reboot was initiated by the agent. Next required user action is save work and restart Windows; then inspect WSL/Docker and finish SFC if needed before starting the isolated database.
+
+Draft PR #25 was created and attached to this chat. GitHub Quality and Security Audit succeeded on 526a03b. Subsequent local checks pass for the external-domain safeguard and editable-metadata acceptance fixture. The real Auth script is prepared but unexecuted; synthetic browser credentials will be written only into ignored local-evidence when it runs. No real credentials, raw export, private contracts or test credentials are committed.
