@@ -193,7 +193,7 @@ Are you free for a brief 10-minute chat this week?
 Best regards,
 Dr Robbie Harley, MBA
 Managing Director | The Harley Group & Harley Digital Works
-0161 820 4910 | harleydigitalworks.com`;
+0117 214 1357 | harleydigitalworks.com`;
     }
 
     return `Hi team at ${prospect.companyName}, congratulations on your strong track record in ${prospect.location}. 
