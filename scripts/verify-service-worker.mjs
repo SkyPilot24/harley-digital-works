@@ -20,6 +20,7 @@ function harness(fetch) {
       keys: async () => [
         "harley-digital-works-cache-v2",
         "harley-digital-works-cache-v3",
+        "harley-digital-works-cache-v4",
         "unrelated-cache",
       ],
       delete: async (name) => deleted.push(name),
@@ -57,5 +58,5 @@ test("activation removes only obsolete caches owned by this app", async () => {
   let result;
   handlers.activate({ waitUntil: (value) => (result = value) });
   await result;
-  assert.deepEqual(deleted, ["harley-digital-works-cache-v2"]);
+  assert.deepEqual(deleted, ["harley-digital-works-cache-v2", "harley-digital-works-cache-v3"]);
 });

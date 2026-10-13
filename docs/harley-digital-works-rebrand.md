@@ -1,5 +1,9 @@
 ﻿# Harley Digital Works Rebrand
 
+## Current-record precedence — 13 October 2026
+
+The founder approved the midnight-navy/warm-ivory wordmark with HARLEY above DIGITAL WORKS, a capital H with a subtle curved bridge, and exact endorsement “Part of The Harley Group”. See [brand-pack.md](brand-pack.md) for current assets and rollout status. The implementation account below is historical; current AGENTS.md governs platform maintenance.
+
 ## Scope
 
 This rebrand moves the public agency identity from THG Digital / THG Digital Agency to Harley Digital Works across the website, application shell, admin-visible labels, PWA metadata, social preview assets, contact surfaces, diagnostics, and supporting documentation.

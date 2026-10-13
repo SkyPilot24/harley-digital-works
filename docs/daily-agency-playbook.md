@@ -1,6 +1,6 @@
 # Daily Agency Playbook
 
-Use this as the simple operating rhythm for THG Digital Agency.
+Use this as the simple operating rhythm for Harley Digital Works, part of The Harley Group.
 
 ## Daily steps
 

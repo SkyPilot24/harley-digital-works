@@ -557,9 +557,9 @@
   }
 }
 :root {
-  --studio-paper: #f7f5ef;
+  --studio-paper: #f6f3ed;
   --studio-white: #fffefa;
-  --studio-ink: #252720;
+  --studio-ink: #081b30;
   --studio-muted: #696b60;
   --studio-gold: #9a7432;
   --studio-line: #dcdcd2;
@@ -573,8 +573,8 @@
   flex-shrink: 0;
 }
 .studio-wordmark img {
-  width: 42px;
-  height: 42px;
+  width: 176px;
+  height: auto;
 }
 .studio-wordmark > span {
   display: flex;
@@ -1979,8 +1979,8 @@
     gap: 10px;
   }
   .studio-wordmark img {
-    width: 37px;
-    height: 37px;
+    width: 154px;
+    height: auto;
   }
   .studio-wordmark strong {
     font-size: 21px;

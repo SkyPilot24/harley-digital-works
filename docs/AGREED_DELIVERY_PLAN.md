@@ -1,5 +1,9 @@
 # Agreed delivery plan — 7 October 2026
 
+## Current-record precedence — 13 October 2026
+
+The older Lovable THG Digital/thgdigital connection account below is historical. Current AGENTS.md governs the settled dual architecture: the Harley Digital Works agency platform is maintained in canonical Git by code; external client trade sites use dedicated Lovable-connected repositories. Current brand guidance is [brand-pack.md](brand-pack.md), with the exact endorsement “Part of The Harley Group”. This note changes no connections or assets.
+
 The founder approved this plan and the reviewed production database cutover in this delivery engagement.
 
 - **Canonical source:** `SkyPilot24/harley-digital-works`. Maintain its existing architecture and shared status/backlog/handover.

@@ -1,45 +1,29 @@
-﻿# THG Digital Agency Brand Pack
+# Harley Digital Works brand direction
 
-## Brand Positioning
+## Approved direction — 13 October 2026
 
-THG Digital Agency is the practical, workflow-led digital partner for small operators: direct, capable, and human.
+The founder selected the middle wordmark concept and approved the refined mockups. Harley Digital Works remains the customer-facing agency; The Harley Group remains the parent. The approved direction now has a prepared asset pack; website rollout remains separate.
 
-## Core Assets
+- Use a premium, understated wordmark with very deep midnight navy and warm ivory contrast.
+- Set widely spaced `HARLEY` on the first line and `DIGITAL WORKS` on the second.
+- Retain the distinctive capital H with a subtle curved bridge.
+- Use the secondary endorsement exactly: `Part of The Harley Group`.
+- Keep the endorsement subordinate and legible; preserve the approved proportions and spacing.
 
-- Horizontal logo: `/brand/thg-logo-horizontal.svg`
-- Wordmark icon: `/brand/thg-mark.svg`
-- Social preview image: `/og-image.svg`
-- Favicon SVG: `/favicon.svg`
-- Favicon ICO: `/favicon.ico`
-- PNG favicons: `/favicon-16x16.png`, `/favicon-32x32.png`
-- Apple touch icon: `/apple-touch-icon.png`
-- App icons: `/brand/icon-180.png`, `/brand/icon-192.png`, `/brand/icon-512.png`
-- Web manifest: `/site.webmanifest`
+## Use rules
 
-## Colour System
+Use the approved composition intact. Do not stretch, redraw the H, change the endorsement, add effects, or combine the new wordmark with the earlier teal or black-and-gold logo systems. Check readability at the intended size before publication; do not assume a full wordmark works as a favicon.
 
-- Ink: `#173033` — use for the lowercase wordmark and deep UI surfaces.
-- Teal: `#7DA8A3` — use as the single accent colour for highlights and action lines.
-- Warm cream: `#F6F4EE` — use as the main brand canvas.
-- Soft sage: `#E4E9DE` — use for calm supporting surfaces.
-- Mist: `#E8EBEB` — use for secondary neutral panels.
+Pack palette: midnight `#081B30`, ivory `#F6F3ED`, supporting blue `#173C62`, slate `#526479`. Typography is Arial-based outlined lettering with a custom H; the suggested body stack is Arial, Helvetica, sans-serif. Keep clear space of at least one H stem width. Use compact/symbol variants when the endorsement becomes too small to read. Guide minimum sizes are starting recommendations to check in context.
 
-## Typography
+## Asset and release status
 
-- Wordmark: lowercase `thg` in `Syne`, heavy weight, paired with a tiny `DM Mono` `digital` label.
-- UI and display text: `DM Sans`.
-- Operational labels: `DM Mono`.
+The prepared pack has been inspected. A repository subset is retained in [the dated asset folder](brand/approved/2026-10-13/README.md): twelve outlined SVGs, colour tokens and the eight-page guide. Imported files match their supplied originals. The artwork reconstructs the approved mockup using custom H and Arial-based outlined letters; small visual differences remain. No trademark clearance is claimed. Templates and raster/social outputs remain in the separate full pack.
 
-## Usage Notes
+Current public HDW placements now use the dated navy/ivory SVGs. Navigation uses the compact wordmark; the brand page offers endorsed wordmarks and symbols plus the prepared guide. Icons, social preview, admin navigation and compatibility aliases have been updated. Group and Labs identities are preserved. The earlier DOCX/PDF and dated concept records remain historical; [the asset index](brand/approved/asset-index.md) distinguishes them. These are local source changes, not a live release.
 
-- Prefer the horizontal logo for presentations, documents, and landing-page brand areas.
-- Prefer the wordmark icon for favicon, avatars, small cards, and compact admin surfaces.
-- Keep the teal accent sparse so revenue and action states remain clear.
-- Use the social preview image for Open Graph and Twitter cards.
+Next: review the local responsive screenshots and source change, then approve publication separately. Publishing and live verification remain pending.
 
-## Do Not
+## Historical guidance
 
-- Do not stretch the wordmark icon outside its square ratio.
-- Do not introduce additional accent colours without adding them to the design system.
-- Do not place the teal accent on low-contrast green backgrounds.
-- Do not commit local `.env` values or Slack webhook URLs.
+The former THG Digital Agency lowercase Syne/teal guidance in this file is superseded. Older concept documents remain history. Business positioning and commercial terms continue to be governed by [BUSINESS_DEFINITION.md](../BUSINESS_DEFINITION.md).

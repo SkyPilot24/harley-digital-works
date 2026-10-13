@@ -34,7 +34,7 @@ export function LocalSeoFactoryDesk() {
     "@context": "https://schema.org",
     "@type": "HomeAndConstructionBusiness",
     name: `${contractorName}`,
-    image: "https://harleydigitalworks.com/brand/approved/logos/hdw-wordmark-dark.svg",
+    image: "https://harleydigitalworks.com/brand/2026-10-13/logos/hdw-endorsed-ivory.svg",
     telephone: city.localPhone,
     email: `enquiries@${contractorName.toLowerCase().replace(/[^a-z0-9]/g, "")}.co.uk`,
     priceRange: "££",

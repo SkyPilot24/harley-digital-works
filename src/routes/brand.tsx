@@ -60,43 +60,43 @@ const BRANDS_DATA: Record<BrandEntity, BrandSpec> = {
       "Harley Digital Works delivers 100% done-for-you website design, commercial copywriting, and ongoing monthly care for UK trades and small businesses.",
     colors: [
       {
-        name: "Harley Gold",
-        hex: "#C89D3C",
-        role: "Primary Accent & CTA",
-        textClass: "text-amber-950",
+        name: "Supporting Blue",
+        hex: "#173C62",
+        role: "Supporting Accent",
+        textClass: "text-white",
       },
       {
-        name: "Deep Charcoal",
-        hex: "#0D0D0D",
+        name: "Midnight Navy",
+        hex: "#081B30",
         role: "Primary Canvas & Typography",
         textClass: "text-white",
       },
-      { name: "Dark Slate", hex: "#173033", role: "Secondary Container", textClass: "text-white" },
-      { name: "Warm Canvas", hex: "#F7F5F0", role: "Background & Shell", textClass: "text-ink" },
+      { name: "Slate", hex: "#526479", role: "Supporting Neutral", textClass: "text-white" },
+      { name: "Warm Ivory", hex: "#F6F3ED", role: "Background & Contrast", textClass: "text-ink" },
     ],
     logos: [
       {
         title: "Full Wordmark (Dark Theme)",
         variant: "dark",
-        path: "/brand/approved/logos/hdw-wordmark-dark.svg",
-        description: "Primary horizontal logo for dark containers and headers.",
+        path: "/brand/2026-10-13/logos/hdw-endorsed-ivory.svg",
+        description: "Endorsed stacked wordmark in ivory for dark backgrounds.",
       },
       {
         title: "Full Wordmark (Light Theme)",
         variant: "light",
-        path: "/brand/approved/logos/hdw-wordmark-light.svg",
-        description: "Standard horizontal logo for clean light documents and invoices.",
+        path: "/brand/2026-10-13/logos/hdw-endorsed-navy.svg",
+        description: "Endorsed stacked wordmark in navy for light documents and backgrounds.",
       },
       {
         title: "Monogram Mark (Dark)",
         variant: "mark-dark",
-        path: "/brand/approved/logos/hdw-monogram-dark.svg",
+        path: "/brand/2026-10-13/logos/hdw-symbol-ivory.svg",
         description: "Square app icon & social avatar for dark backgrounds.",
       },
       {
         title: "Monogram Mark (Light)",
         variant: "mark-light",
-        path: "/brand/approved/logos/hdw-monogram-light.svg",
+        path: "/brand/2026-10-13/logos/hdw-symbol-navy.svg",
         description: "Clean square monogram for light surfaces and favicons.",
       },
     ],
@@ -272,12 +272,12 @@ function BrandAssetsPage() {
 
           <div className="mt-8 flex flex-wrap gap-4">
             <a
-              href="/brand/approved/documents/Harley-Digital-Works-Brand-Pack.pdf"
+              href="/brand/2026-10-13/Harley-Digital-Works-Brand-Guide.pdf"
               download
               className="inline-flex items-center gap-2 rounded-full bg-amber-500 px-5 py-2.5 text-sm font-bold text-slate-950 shadow-lg hover:bg-amber-400 transition-colors"
             >
               <Download className="h-4 w-4" />
-              <span>Download Brand Guidelines (PDF)</span>
+              <span>Download Brand Guide (PDF)</span>
             </a>
             <PillButton
               as="link"
@@ -292,6 +292,36 @@ function BrandAssetsPage() {
         </Container>
       </section>
 
+      <section aria-labelledby="approved-hdw-direction" className="bg-slate-950 py-10 text-white">
+        <Container>
+          <div className="max-w-3xl">
+            <p className="text-sm text-slate-300">
+              Harley Digital Works · Approved 13 October 2026
+            </p>
+            <h2 id="approved-hdw-direction" className="mt-3 text-2xl font-semibold">
+              Our new wordmark direction
+            </h2>
+            <p className="mt-4 leading-relaxed text-slate-200">
+              A premium, understated wordmark in very deep midnight navy and warm ivory. Widely
+              spaced HARLEY sits above DIGITAL WORKS, with a distinctive capital H and a subtle
+              curved bridge. The secondary endorsement reads exactly: Part of The Harley Group.
+            </p>
+            <p className="mt-4 leading-relaxed text-slate-200">
+              Preserve the proportions, spacing and endorsement. Keep the contrast clear; avoid
+              stretching, redrawing the H or adding effects. Midnight navy is #081B30 and warm ivory
+              is #F6F3ED, supported by blue #173C62 and slate #526479. The prepared vector artwork
+              uses Arial-based outlined lettering and a custom H. Keep at least one H stem width of
+              clear space; use a compact wordmark or symbol when the endorsement is too small to
+              read.
+            </p>
+            <p className="mt-4 text-sm leading-relaxed text-slate-300">
+              The wordmark keeps Harley Digital Works prominent, with the group endorsement smaller.
+              Use the supplied vector artwork rather than recreating the lettering. The guide and
+              downloadable variants below explain how to use it consistently.
+            </p>
+          </div>
+        </Container>
+      </section>
       {/* Brand Entity Switcher & Overview */}
       <section className="py-20 bg-slate-900 text-white border-b border-slate-800">
         <Container>
@@ -354,11 +384,15 @@ function BrandAssetsPage() {
                       </a>
                     </div>
 
-                    <div className="mt-4 rounded-xl bg-slate-900/80 p-6 border border-slate-800/80 flex items-center justify-center min-h-[140px]">
+                    <div
+                      className={`mt-4 rounded-xl p-6 border border-slate-800/80 flex items-center justify-center min-h-[140px] ${logo.variant === "light" || logo.variant === "mark-light" ? "bg-[#F6F3ED]" : "bg-[#081B30]"}`}
+                    >
                       <BrandLogo
                         entity={brand.id}
                         variant={logo.variant}
-                        imageClassName="h-10 sm:h-12 w-auto max-w-full"
+                        imageClassName={
+                          logo.variant.startsWith("mark") ? "h-16 w-16" : "h-auto w-72 max-w-full"
+                        }
                       />
                     </div>
 
@@ -450,11 +484,12 @@ function BrandAssetsPage() {
               Typography Hierarchy
             </p>
             <h2 className="mt-2 text-3xl font-bold tracking-tight text-ink md:text-4xl">
-              Precision Type Pairing Standards
+              Website Typography
             </h2>
             <p className="mt-3 text-sm text-ink-muted">
-              Engineered for maximum legibility on mobile screens and authoritative desktop
-              presentation.
+              These fonts describe the existing website. The new logo uses supplied Arial-based
+              outlined lettering with a custom H; use the artwork rather than recreating it with
+              website fonts.
             </p>
           </div>
 
@@ -668,18 +703,18 @@ function BrandAssetsPage() {
               Need Vector Assets for Publication?
             </h2>
             <p className="mt-3 text-sm text-slate-300 leading-relaxed">
-              All official SVG logos, monograms, and brand guidelines are free to use for press,
-              accreditation listings, and partner co-marketing.
+              Download the prepared Harley Digital Works guide and SVG artwork above. Preserve the
+              exact endorsement, proportions and spacing; contact us for publication guidance.
             </p>
 
             <div className="mt-8 flex flex-wrap justify-center gap-4">
               <a
-                href="/brand/approved/documents/Harley-Digital-Works-Brand-Pack.pdf"
+                href="/brand/2026-10-13/Harley-Digital-Works-Brand-Guide.pdf"
                 download
                 className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-2.5 text-xs font-bold text-slate-950 hover:bg-slate-200 transition-colors shadow-lg"
               >
                 <Download className="h-4 w-4" />
-                <span>Download Complete Brand Pack</span>
+                <span>Download Brand Guide</span>
               </a>
               <PillButton
                 as="link"

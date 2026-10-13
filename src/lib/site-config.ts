@@ -24,14 +24,14 @@ export const siteConfig = {
   domain: siteDomain,
   url: siteUrl,
   canonicalUrl: `${siteUrl}/`,
-  ogImage: `${siteUrl}/brand/hdw-og-image.svg`,
+  ogImage: `${siteUrl}/brand/2026-10-13/hdw-og-image.png`,
   contactEmail: "hello@harleydigitalworks.com",
-  brandMark: "/brand/approved/logos/hdw-monogram-dark.svg",
-  brandLogo: "/brand/approved/logos/hdw-wordmark-dark.svg",
-  brandLogoDark: "/brand/approved/logos/hdw-wordmark-dark.svg",
-  brandLogoLight: "/brand/approved/logos/hdw-wordmark-light.svg",
-  brandMarkDark: "/brand/approved/logos/hdw-monogram-dark.svg",
-  brandMarkLight: "/brand/approved/logos/hdw-monogram-light.svg",
+  brandMark: "/brand/2026-10-13/logos/hdw-symbol-ivory.svg",
+  brandLogo: "/brand/2026-10-13/logos/hdw-endorsed-ivory.svg",
+  brandLogoDark: "/brand/2026-10-13/logos/hdw-endorsed-ivory.svg",
+  brandLogoLight: "/brand/2026-10-13/logos/hdw-endorsed-navy.svg",
+  brandMarkDark: "/brand/2026-10-13/logos/hdw-symbol-ivory.svg",
+  brandMarkLight: "/brand/2026-10-13/logos/hdw-symbol-navy.svg",
 };
 
 export function canonicalUrlForPath(pathname: string) {
