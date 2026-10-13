@@ -1,5 +1,9 @@
 # Overall Plan
 
+## Current-record precedence — 13 October 2026
+
+Earlier THG Digital Agency asset-pack and live-audit references below are historical. Current agency name is Harley Digital Works, endorsed “Part of The Harley Group”. Current navy/ivory direction and rollout state are recorded in [brand-pack.md](brand-pack.md).
+
 ## Current shared context
 
 Read [AGENTS.md](../AGENTS.md), [Business Definition](../BUSINESS_DEFINITION.md), [Project Status](../PROJECT_STATUS.md), [Master Backlog](../MASTER_BACKLOG.md) and [Shared Handover](HANDOVER.md) before continuing work. These records integrate the current commercial/domain roadmap and verified state. The dated observations below are retained for reference; they do not establish current pricing approval, deployment or production readiness. Use the shared handover procedure for Codex and Antigravity as well as the workflows below.

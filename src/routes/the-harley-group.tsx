@@ -17,7 +17,7 @@ export const Route = createFileRoute("/the-harley-group")({
 });
 export function TheHarleyGroupPage() {
   return (
-    <PageShell quiet header={<HarleyGroupHeader />} footer={<HarleyGroupFooter />}>
+    <PageShell quiet brand="group" header={<HarleyGroupHeader />} footer={<HarleyGroupFooter />}>
       <div className="studio-home group-site">
         <section className="group-hero studio-wrap" id="overview">
           <div>

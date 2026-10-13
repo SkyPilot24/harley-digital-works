@@ -1,0 +1,299 @@
+[
+  {
+    "width": 375,
+    "route": "/",
+    "overflow": false,
+    "logos": [
+      {
+        "src": "/brand/2026-10-13/logos/hdw-compact-navy.svg",
+        "loaded": true,
+        "width": 154,
+        "height": 46.1875
+      },
+      {
+        "src": "/brand/2026-10-13/logos/hdw-compact-navy.svg",
+        "loaded": true,
+        "width": 154,
+        "height": 46.1875
+      }
+    ]
+  },
+  {
+    "width": 375,
+    "route": "/brand",
+    "overflow": false,
+    "logos": [
+      {
+        "src": "/brand/2026-10-13/logos/hdw-compact-navy.svg",
+        "loaded": true,
+        "width": 154,
+        "height": 46.1875
+      },
+      {
+        "src": "/brand/2026-10-13/logos/hdw-symbol-ivory.svg",
+        "loaded": true,
+        "width": 16.31999969482422,
+        "height": 16.320068359375
+      },
+      {
+        "src": "/brand/approved/logos/thg-monogram-dark.svg",
+        "loaded": true,
+        "width": 16,
+        "height": 16
+      },
+      {
+        "src": "/brand/approved/logos/labs-monogram-dark.svg",
+        "loaded": true,
+        "width": 16,
+        "height": 16
+      },
+      {
+        "src": "/brand/2026-10-13/logos/hdw-endorsed-ivory.svg",
+        "loaded": true,
+        "width": 227,
+        "height": 86.25
+      },
+      {
+        "src": "/brand/2026-10-13/logos/hdw-endorsed-navy.svg",
+        "loaded": true,
+        "width": 227,
+        "height": 86.25
+      },
+      {
+        "src": "/brand/2026-10-13/logos/hdw-symbol-ivory.svg",
+        "loaded": true,
+        "width": 64,
+        "height": 64
+      },
+      {
+        "src": "/brand/2026-10-13/logos/hdw-symbol-navy.svg",
+        "loaded": true,
+        "width": 64,
+        "height": 64
+      },
+      {
+        "src": "/brand/2026-10-13/logos/hdw-compact-navy.svg",
+        "loaded": true,
+        "width": 154,
+        "height": 46.1875
+      }
+    ]
+  },
+  {
+    "width": 375,
+    "route": "/auth",
+    "overflow": false,
+    "logos": [
+      {
+        "src": "/brand/2026-10-13/logos/hdw-compact-navy.svg",
+        "loaded": true,
+        "width": 154,
+        "height": 46.1875
+      },
+      {
+        "src": "/brand/2026-10-13/logos/hdw-compact-navy.svg",
+        "loaded": true,
+        "width": 154,
+        "height": 46.1875
+      }
+    ]
+  },
+  {
+    "width": 768,
+    "route": "/",
+    "overflow": false,
+    "logos": [
+      {
+        "src": "/brand/2026-10-13/logos/hdw-compact-navy.svg",
+        "loaded": true,
+        "width": 176,
+        "height": 52.796875
+      },
+      {
+        "src": "/brand/2026-10-13/logos/hdw-compact-navy.svg",
+        "loaded": true,
+        "width": 176,
+        "height": 52.796875
+      }
+    ]
+  },
+  {
+    "width": 768,
+    "route": "/brand",
+    "overflow": false,
+    "logos": [
+      {
+        "src": "/brand/2026-10-13/logos/hdw-compact-navy.svg",
+        "loaded": true,
+        "width": 176,
+        "height": 52.796875
+      },
+      {
+        "src": "/brand/2026-10-13/logos/hdw-symbol-ivory.svg",
+        "loaded": true,
+        "width": 16.31999969482422,
+        "height": 16.320068359375
+      },
+      {
+        "src": "/brand/approved/logos/thg-monogram-dark.svg",
+        "loaded": true,
+        "width": 16,
+        "height": 16
+      },
+      {
+        "src": "/brand/approved/logos/labs-monogram-dark.svg",
+        "loaded": true,
+        "width": 16,
+        "height": 16
+      },
+      {
+        "src": "/brand/2026-10-13/logos/hdw-endorsed-ivory.svg",
+        "loaded": true,
+        "width": 232,
+        "height": 88.15625
+      },
+      {
+        "src": "/brand/2026-10-13/logos/hdw-endorsed-navy.svg",
+        "loaded": true,
+        "width": 232,
+        "height": 88.15625
+      },
+      {
+        "src": "/brand/2026-10-13/logos/hdw-symbol-ivory.svg",
+        "loaded": true,
+        "width": 64,
+        "height": 64
+      },
+      {
+        "src": "/brand/2026-10-13/logos/hdw-symbol-navy.svg",
+        "loaded": true,
+        "width": 64,
+        "height": 64
+      },
+      {
+        "src": "/brand/2026-10-13/logos/hdw-compact-navy.svg",
+        "loaded": true,
+        "width": 176,
+        "height": 52.796875
+      }
+    ]
+  },
+  {
+    "width": 768,
+    "route": "/auth",
+    "overflow": false,
+    "logos": [
+      {
+        "src": "/brand/2026-10-13/logos/hdw-compact-navy.svg",
+        "loaded": true,
+        "width": 176,
+        "height": 52.796875
+      },
+      {
+        "src": "/brand/2026-10-13/logos/hdw-compact-navy.svg",
+        "loaded": true,
+        "width": 176,
+        "height": 52.796875
+      }
+    ]
+  },
+  {
+    "width": 1440,
+    "route": "/",
+    "overflow": false,
+    "logos": [
+      {
+        "src": "/brand/2026-10-13/logos/hdw-compact-navy.svg",
+        "loaded": true,
+        "width": 176,
+        "height": 52.796875
+      },
+      {
+        "src": "/brand/2026-10-13/logos/hdw-compact-navy.svg",
+        "loaded": true,
+        "width": 176,
+        "height": 52.796875
+      }
+    ]
+  },
+  {
+    "width": 1440,
+    "route": "/brand",
+    "overflow": false,
+    "logos": [
+      {
+        "src": "/brand/2026-10-13/logos/hdw-compact-navy.svg",
+        "loaded": true,
+        "width": 176,
+        "height": 52.796875
+      },
+      {
+        "src": "/brand/2026-10-13/logos/hdw-symbol-ivory.svg",
+        "loaded": true,
+        "width": 16.32000732421875,
+        "height": 16.320068359375
+      },
+      {
+        "src": "/brand/approved/logos/thg-monogram-dark.svg",
+        "loaded": true,
+        "width": 16,
+        "height": 16
+      },
+      {
+        "src": "/brand/approved/logos/labs-monogram-dark.svg",
+        "loaded": true,
+        "width": 16,
+        "height": 16
+      },
+      {
+        "src": "/brand/2026-10-13/logos/hdw-endorsed-ivory.svg",
+        "loaded": true,
+        "width": 288,
+        "height": 109.4375
+      },
+      {
+        "src": "/brand/2026-10-13/logos/hdw-endorsed-navy.svg",
+        "loaded": true,
+        "width": 288,
+        "height": 109.4375
+      },
+      {
+        "src": "/brand/2026-10-13/logos/hdw-symbol-ivory.svg",
+        "loaded": true,
+        "width": 64,
+        "height": 64
+      },
+      {
+        "src": "/brand/2026-10-13/logos/hdw-symbol-navy.svg",
+        "loaded": true,
+        "width": 64,
+        "height": 64
+      },
+      {
+        "src": "/brand/2026-10-13/logos/hdw-compact-navy.svg",
+        "loaded": true,
+        "width": 176,
+        "height": 52.796875
+      }
+    ]
+  },
+  {
+    "width": 1440,
+    "route": "/auth",
+    "overflow": false,
+    "logos": [
+      {
+        "src": "/brand/2026-10-13/logos/hdw-compact-navy.svg",
+        "loaded": true,
+        "width": 176,
+        "height": 52.796875
+      },
+      {
+        "src": "/brand/2026-10-13/logos/hdw-compact-navy.svg",
+        "loaded": true,
+        "width": 176,
+        "height": 52.796875
+      }
+    ]
+  }
+]

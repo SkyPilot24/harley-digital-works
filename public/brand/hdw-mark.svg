@@ -1,11 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-<defs>
-  <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
-    <stop offset="0%" stop-color="#F2C45A"/>
-    <stop offset="100%" stop-color="#C89D3C"/>
-  </linearGradient>
-</defs>
-<rect width="512" height="512" rx="96" fill="#0D0D0D"/>
-<path d="M112 82h78v133l132-76V82h78v348h-78V232L190 308v122h-78V82z" fill="url(#g)"/>
-<path d="M190 218l132-76v90L190 308v-90z" fill="#0D0D0D" opacity=".32"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="1000" viewBox="0 0 1000 1000" role="img" aria-label="Harley Digital Works"><title>Harley Digital Works</title><path d="M 361.000 320.000 L 418.500 320.000 L 418.500 651.200 L 361.000 651.200 Z M 604.800 320.000 L 662.300 320.000 L 662.300 651.200 L 604.800 651.200 Z M 333.400 540.800 C 420.800 455.700 533.500 458.000 632.400 508.600 L 632.400 552.300 C 522.000 471.800 430.000 469.500 333.400 540.800 Z" fill="#081B30" fill-rule="nonzero"/></svg>

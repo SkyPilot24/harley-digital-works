@@ -224,6 +224,8 @@ Updated 2 October 2026. Domain integration added following the founder's request
 
 ## H15 — Extend the approved homepage design language across core pages
 
+- **13 October 2026 wordmark evidence:** approved navy/ivory HDW identity implemented locally on `codex/hdw-wordmark-2026-10-13` (`172b576`); current HDW logos/icons/social preview and public brand guide updated, stale guidance reconciled. Build/typecheck/format and 136 tests PASS; lint 9 existing warnings; nine responsive route-width checks PASS. See docs/HANDOVER.md and docs/evidence/brand-2026-10-13. No publication/live acceptance; wider task remains open.
+
 - **Phase:** 3
 - **Priority:** High
 - **Who needs to act:** You
@@ -641,6 +643,10 @@ Updated 2 October 2026. Domain integration added following the founder's request
 - **Latest evidence:** See original audit evidence; no subsequent completion verified.
 
 ## H47 — Replace stale completion claims with operating documentation
+
+- **13 October 2026 review publication:** HDW wordmark review branch pushed; initial remote/local head verified at `4000ea1`; [draft PR #27](https://github.com/SkyPilot24/harley-digital-works/pull/27). Internal shared Brand Assets link recorded in brand guidance/handover. Main integration, CI, merge and production/live acceptance remain pending.
+
+- **13 October 2026 wordmark evidence:** approved navy/ivory HDW identity implemented locally on `codex/hdw-wordmark-2026-10-13` (`172b576`); current HDW logos/icons/social preview and public brand guide updated, stale guidance reconciled. Build/typecheck/format and 136 tests PASS; lint 9 existing warnings; nine responsive route-width checks PASS. See docs/HANDOVER.md and docs/evidence/brand-2026-10-13. No publication/live acceptance; wider task remains open.
 
 - **11 October 2026 PR #8 evidence:** resolved workflow/strategy conflicts by merging main `e90da3b` into `copilot/fix-failing-github-actions-job`; fresh build, 136 checks, typecheck and formatting PASS. See `docs/HANDOVER.md`; remote checks and release remain separate.
 

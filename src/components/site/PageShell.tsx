@@ -9,14 +9,19 @@ export function PageShell({
   quiet = true,
   header,
   footer,
+  brand = "hdw",
 }: {
   children: ReactNode;
   quiet?: boolean;
   header?: ReactNode | null;
   footer?: ReactNode | null;
+  brand?: "hdw" | "group" | "labs";
 }) {
   return (
-    <div className="min-h-screen bg-background text-ink relative">
+    <div
+      data-brand={brand}
+      className={`min-h-screen bg-background text-ink relative ${brand === "labs" ? "" : "family-marketing"} ${brand === "hdw" ? "hdw-marketing" : ""}`}
+    >
       <a className="site-skip-link" href="#main-content">
         Skip to content
       </a>

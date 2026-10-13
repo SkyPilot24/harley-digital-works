@@ -1,5 +1,9 @@
 # THG Digital — Landing Page Design System & Animation Specifications
 
+## Historical design specification
+
+The Poster OS specification below describes an earlier THG Digital design and is retained as history. Its locked colours, wordmark fonts and loader lettering do not govern current Harley Digital Works branding. See [brand-pack.md](brand-pack.md) for the founder-approved 13 October 2026 navy/ivory wordmark direction. This documentation change does not alter application styling or animation.
+
 This document defines the high-fidelity visual and animation design rules for the **THG Digital** marketing website. These specifications are locked to prevent design drift during future development.
 
 ---

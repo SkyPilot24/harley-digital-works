@@ -13,10 +13,10 @@ type BrandLogoProps = {
 
 const LOGO_MAP: Record<BrandEntity, Record<BrandVariant, string>> = {
   hdw: {
-    dark: "/brand/approved/logos/hdw-wordmark-dark.svg",
-    light: "/brand/approved/logos/hdw-wordmark-light.svg",
-    "mark-dark": "/brand/approved/logos/hdw-monogram-dark.svg",
-    "mark-light": "/brand/approved/logos/hdw-monogram-light.svg",
+    dark: "/brand/2026-10-13/logos/hdw-endorsed-ivory.svg",
+    light: "/brand/2026-10-13/logos/hdw-endorsed-navy.svg",
+    "mark-dark": "/brand/2026-10-13/logos/hdw-symbol-ivory.svg",
+    "mark-light": "/brand/2026-10-13/logos/hdw-symbol-navy.svg",
   },
   group: {
     dark: "/brand/approved/logos/thg-wordmark-dark.svg",

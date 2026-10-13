@@ -1,7 +1,7 @@
-# Project Domain
+# Project domains
 
-The primary domain for The Harley Group platform is:
+Harley Digital Works is the customer-facing agency at `https://harleydigitalworks.com`. The Harley Group is the parent at `https://theharleygroup.org`.
 
-- `https://theharleygroup.org/`
+Current source metadata in `src/lib/site-config.ts` defaults to HDW, supports environment overrides and uses a separate corporate canonical for `/the-harley-group`. Do not use the group domain as a blanket canonical for agency pages. This is source evidence, not live DNS or deployment verification.
 
-Use this as the canonical URL for public metadata, social previews, deployment checks, and client-facing project references.
+See [brand-pack.md](brand-pack.md) for the prepared pack, approved direction and exact endorsement “Part of The Harley Group”. Website integration remains pending.

@@ -111,12 +111,11 @@ export function AdminShell({ children }: { children: ReactNode }) {
       {/* Mobile Header */}
       <header className="sticky top-0 z-30 flex h-16 items-center justify-between border-b border-ink/10 bg-white px-4 md:hidden">
         <Link to="/" className="flex items-baseline gap-1.5">
-          <span
-            className="text-[20px] font-extrabold leading-none tracking-tight text-ink"
-            style={{ fontFamily: "var(--font-wordmark)" }}
-          >
-            hdw
-          </span>
+          <img
+            src="/brand/2026-10-13/logos/hdw-compact-navy.svg"
+            alt="Harley Digital Works"
+            className="h-auto w-32"
+          />
           <span className="text-[10px] font-mono uppercase tracking-[0.22em] text-ink-muted">
             admin
           </span>
@@ -149,12 +148,11 @@ export function AdminShell({ children }: { children: ReactNode }) {
       >
         <div className="flex h-16 items-center justify-between border-b border-ink/10 px-6">
           <Link to="/" className="flex items-baseline gap-1.5">
-            <span
-              className="text-[20px] font-extrabold leading-none tracking-tight text-ink"
-              style={{ fontFamily: "var(--font-wordmark)" }}
-            >
-              hdw
-            </span>
+            <img
+              src="/brand/2026-10-13/logos/hdw-compact-navy.svg"
+              alt="Harley Digital Works"
+              className="h-auto w-32"
+            />
             <span className="text-[10px] font-mono uppercase tracking-[0.22em] text-ink-muted">
               admin
             </span>
@@ -233,12 +231,11 @@ export function AdminShell({ children }: { children: ReactNode }) {
       <aside className="fixed inset-y-0 left-0 z-40 hidden w-60 flex-col border-r border-ink/10 bg-white md:flex">
         <div className="border-b border-ink/10 px-6 py-5">
           <Link to="/" className="flex items-baseline gap-1.5">
-            <span
-              className="text-[20px] font-extrabold leading-none tracking-tight text-ink"
-              style={{ fontFamily: "var(--font-wordmark)" }}
-            >
-              hdw
-            </span>
+            <img
+              src="/brand/2026-10-13/logos/hdw-compact-navy.svg"
+              alt="Harley Digital Works"
+              className="h-auto w-32"
+            />
             <span className="text-[10px] font-mono uppercase tracking-[0.22em] text-ink-muted">
               admin
             </span>

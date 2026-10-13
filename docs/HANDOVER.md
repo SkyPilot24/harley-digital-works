@@ -1,5 +1,25 @@
 # Shared development handover
 
+## Review-branch reconciliation — 13 October 2026
+
+Latest main b4c751a is integrated into the branding review branch, preserving peer safeguards/qualification work and the peer removal of the orphan handover marker. This is source reconciliation only; main is unchanged and no production deployment is performed. Earlier pending-integration and marker-retention notes below are dated history. Fresh integrated checks follow the styling pass.
+
+## Branding review branch published — 13 October 2026
+
+Founder explicitly approved pushing the review branch. `codex/hdw-wordmark-2026-10-13` pushed; initial origin head verified equal to local `4000ea142913b37534c108b6555666f5b71b6352`. [Draft PR #27](https://github.com/SkyPilot24/harley-digital-works/pull/27) created and attached. Implementation `172b576` remains unchanged; this documentation follow-up records the shared [Brand Assets folder](https://drive.google.com/drive/folders/1SH7LXBz72wGUL9H-PBQtWVggqMUxF1gG) supplied by the pack-producing session (complete ZIP and 40 individual files reported uploaded). Repository visibility verified PRIVATE; folder permissions not audited; link is internal documentation only.
+
+No main push, merge or production deployment. Main advanced to `b4c751a`; integration/fresh CI and review remain pending. Earlier no-push wording below describes the pre-publication state. Previous branch validation is retained as dated evidence, not a fresh integration result. H15/H47 remain open.
+
+## Codex — approved HDW wordmark and reference reconciliation — 13 October 2026
+
+- Scope H15/H47: founder selected the middle wordmark and refined mockups, then explicitly approved replacing the old visible HDW logo for review before publication. Main name Harley Digital Works; exact endorsement Part of The Harley Group; midnight #081B30, ivory #F6F3ED, supporting blue #173C62 and slate #526479.
+- Source: branch `codex/hdw-wordmark-2026-10-13`, based on `be0f8d20afcaa8868b3f431b6cc7df883d635f0b`; implementation commit `172b576f40b0a7971a0a00ebf8cde573ac0a4ad3`. This follow-up records evidence and marks PDFs binary to preserve their exact bytes across Windows Git checkouts.
+- Implemented: compact outlined navigation/footer wordmark, three admin navigation placements, shared HDW logo configuration, dated public SVGs/guide/tokens, brand-page HDW palette and previews/downloads, favicon/app icons, PNG social preview, compatibility logo aliases and service-worker v4 cache refresh. Existing content/functionality and Group/Labs identities preserved. Finalized twelve public/doc SVGs match supplied source hashes; artwork reconstructs the approved mockup with custom H and Arial-based lettering, with small visual differences. No trademark clearance claimed.
+- Old guidance: THG Digital Agency playbook name corrected; earlier teal brand guide replaced with current use rules; Poster OS locked fonts/colours, gold-H implementation brief, rebrand and overall-plan records marked historical; blanket group-domain canonical guidance corrected against current site-config. Older commercial/audit/concept records and original DOCX/PDF remain history. No prices, infrastructure connections, production data or business architecture changed.
+- Fresh validation: locked dependency install PASS (420 packages; audit 0 vulnerabilities); build PASS; typecheck PASS; format check PASS; lint PASS (0 errors, 9 existing warnings); npm test PASS 136/136 (66 smoke, 67 regression/integration, 3 service worker); diff whitespace PASS. Cache regression verifies v2/v3 removal and v4/unrelated-cache retention. Initial pre-build smoke failed for absent build output, then passed after build; the cache-version expectation was updated and rerun successfully.
+- Browser evidence: local Edge, reduced motion, homepage /brand /auth at 375/768/1440px: nine route-width checks PASS, all visible logos loaded, no horizontal overflow; mobile menu opened/closed. Desktop/mobile screenshots inspected; evidence `docs/evidence/brand-2026-10-13/`. Authenticated admin runtime and production browsers were not tested; admin change is source/build verified. Local preview at http://127.0.0.1:4175/ while the review server runs.
+- Boundary: committed locally for review; no push, merge, deployment or live acceptance. H15 wider visual acceptance and H47 operating-doc acceptance remain open. Pre-existing `
+
 ## Chief of staff operating setup, IONOS domain resolution and Drive handover — 13 October 2026
 
 - ACTIVE 08:15 UK chief-of-staff briefing and existing 09:00 UK chat housekeeping verified in saved Codex configuration; first timed/unattended/DST execution unverified. Private chief-of-staff Slack send/readback passes; existing enquiry/digest routes preserved.

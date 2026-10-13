@@ -1,5 +1,9 @@
 # Harley Digital Works - Brand Implementation Brief
 
+## Current-record precedence — 13 October 2026
+
+The gold geometric H, Concept 3 and token specifications below are historical. Current direction and use rules are in [brand-pack.md](../../brand-pack.md); prepared SVGs, tokens and guide are indexed in [2026-10-13/README.md](2026-10-13/README.md). The exact endorsement is “Part of The Harley Group”.
+
 Use the supplied Harley Digital Works brand pack and assets as the single source of truth for the digital build.
 
 ## Brand

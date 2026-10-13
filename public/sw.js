@@ -1,9 +1,9 @@
-const CACHE_NAME = "harley-digital-works-cache-v3";
+const CACHE_NAME = "harley-digital-works-cache-v4";
 const OFFLINE_URL = "/offline.html";
 
 const PRECACHE_ASSETS = [
-  "/brand/approved/icons/favicon-32.png",
-  "/brand/approved/icons/favicon-16.png",
+  "/brand/2026-10-13/icons/favicon-32.png",
+  "/brand/2026-10-13/icons/favicon-16.png",
   "/site.webmanifest",
   OFFLINE_URL,
 ];
