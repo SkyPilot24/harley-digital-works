@@ -157,9 +157,9 @@ Are you free for a brief 10-minute intro call on Thursday or Friday?
 
 Best regards,
 
-Jack Miller
-Lead Web Producer | Harley Digital Works
-0161 820 4910 | www.harleydigitalworks.com`;
+Robbie Harley
+Founder | Harley Digital Works
+0117 214 1357 | www.harleydigitalworks.com`;
   };
 
   const handleCopy = (text: string, type: string) => {

@@ -34,14 +34,14 @@ export default defineTask({
         businessName: "RG Electrical Bristol Limited",
         area: "Bradley Stoke / Bristol",
         website: "https://www.rg-electrical.com/",
-        recipientEmail: process.env.PILOT_P01_TARGET_EMAIL || "office@rg-electrical.com",
+        recipientEmail: process.env.PILOT_P01_TARGET_EMAIL || "info@rg-electrical.com",
         recipientName: "RG Electrical Team",
         companyNumber: "10082511",
         accreditationEvidence: "NICEIC verified via TrustMark 421650",
         observationSummary: "Projects section indicates portfolio forthcoming",
         subject: "A small improvement to your project portfolio",
         plainTextBody:
-          "Hello RG Electrical team,\n\nI noticed your website's project section says the full portfolio is coming soon. A few clear examples could help customers understand the work you already do.\n\nI run Harley Digital Works, part of The Harley Group. Would you like a short note showing how that section could be improved?\n\nRobbie\nHarley Digital Works, part of The Harley Group",
+          "Hello RG Electrical team,\n\nI was looking at your website and noticed your project section mentions the full portfolio is coming soon.\n\nFor customers looking for reliable domestic rewires and installations around Bradley Stoke and Bristol, seeing two or three finished project summaries with photos makes a huge difference in trust before they get in touch.\n\nI run Harley Digital Works (part of The Harley Group, based locally). Would you like me to send over a short mockup showing how that section could look with your recent work?\n\nBest regards,\nRobbie Harley\nFounder, Harley Digital Works\nrobbie@theharleygroup.org",
         approvedForSending: true,
       },
     ];

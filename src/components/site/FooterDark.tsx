@@ -47,6 +47,7 @@ export function FooterDark() {
           <div>
             <h3>A good place to start.</h3>
             <nav aria-label="Contact the studio">
+              <a href={"tel:" + siteConfig.contactPhoneRaw}>{siteConfig.contactPhone}</a>
               <a href={"mailto:" + siteConfig.contactEmail}>{siteConfig.contactEmail}</a>
               <Link
                 to="/contact"

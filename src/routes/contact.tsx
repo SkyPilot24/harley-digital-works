@@ -77,6 +77,12 @@ function ContactPage() {
                 <strong>Robbie Harley</strong>
                 <span>Founder, Harley Digital Works</span>
                 <a href={"mailto:" + siteConfig.contactEmail}>{siteConfig.contactEmail}</a>
+                <a
+                  href={"tel:" + siteConfig.contactPhoneRaw}
+                  className="text-xs font-semibold text-gold-400 hover:underline"
+                >
+                  {siteConfig.contactPhone}
+                </a>
               </div>
             </div>
           </div>
