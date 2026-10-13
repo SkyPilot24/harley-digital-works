@@ -281,7 +281,7 @@ export const UK_LOCATIONS: Record<string, LocationInfo> = {
     headline: "Fast Turnkey Websites for Bristol & Bath Trades.",
     subheadline:
       "Rank higher on Google across Clifton, Bedminster, Keynsham, and Bath with done-for-you technical copy.",
-    localPhone: "0117 490 8120",
+    localPhone: "0117 214 1357",
     boroughs: [
       "Clifton & Redland",
       "Bedminster & Southville",

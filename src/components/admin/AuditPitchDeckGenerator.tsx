@@ -71,7 +71,7 @@ I've attached our 4-slide speed teardown below. If you'd like to see what a high
 Best regards,
 Robbie Harley
 The Harley Group · Harley Digital Works
-0161 820 4910 · harleydigitalworks.com`;
+0117 214 1357 · harleydigitalworks.com`;
 
   const copyToClipboard = (text: string, key: string) => {
     navigator.clipboard.writeText(text);
