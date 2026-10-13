@@ -94,6 +94,15 @@ export default {
         }
       }
 
+      // Intercept Stripe payment webhooks
+      if (url.pathname === "/api/stripe/webhook" || url.pathname === "/api/webhooks/stripe") {
+        const { handleStripeIncomingRequest } = await import("./lib/stripe/server-handler");
+        const stripeResponse = await handleStripeIncomingRequest(request, url.pathname);
+        if (stripeResponse) {
+          return applySecurityHeaders(stripeResponse, isHttps);
+        }
+      }
+
       // Multi-Tenant Host Routing: If visiting theharleygroup.org/ -> redirect to /the-harley-group
       if (
         [

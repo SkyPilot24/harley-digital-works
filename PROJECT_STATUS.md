@@ -1,5 +1,9 @@
 # The Harley Group — shared project status
 
+## Review-branch reconciliation — 13 October 2026
+
+Latest main b4c751a is integrated into the branding review branch, preserving peer safeguards/qualification work and the peer removal of the orphan handover marker. This is source reconciliation only; main is unchanged and no production deployment is performed. Earlier pending-integration and marker-retention notes below are dated history. Fresh integrated checks follow the styling pass.
+
 ## Branding review branch published — 13 October 2026
 
 Founder explicitly approved pushing the review branch. `codex/hdw-wordmark-2026-10-13` pushed; initial origin head verified equal to local `4000ea142913b37534c108b6555666f5b71b6352`. [Draft PR #27](https://github.com/SkyPilot24/harley-digital-works/pull/27) created and attached. Implementation `172b576` remains unchanged; this documentation follow-up records the shared [Brand Assets folder](https://drive.google.com/drive/folders/1SH7LXBz72wGUL9H-PBQtWVggqMUxF1gG) supplied by the pack-producing session (complete ZIP and 40 individual files reported uploaded). Repository visibility verified PRIVATE; folder permissions not audited; link is internal documentation only.
@@ -10,6 +14,18 @@ No main push, merge or production deployment. Main advanced to `b4c751a`; integr
 
 H15/H47: navy/ivory wordmark implemented locally on `codex/hdw-wordmark-2026-10-13`, implementation `172b576f40b0a7971a0a00ebf8cde573ac0a4ad3`. Replaces current HDW header/footer/admin logos, brand-page previews/downloads, icons and social preview; reconciles stale current brand/domain guidance while retaining historical records. Exact endorsement: Part of The Harley Group. Prepared pack uses midnight #081B30 and ivory #F6F3ED with outlined Arial-based lettering/custom H. Build/typecheck/format PASS; lint 0 errors, 9 existing warnings; 136 tests PASS. Local /, /brand, /auth at 375/768/1440px PASS for loaded logos/no overflow; mobile menu PASS. See docs/brand-pack.md and handover for evidence, limits and asset provenance. No push, merge, deployment or live admin acceptance. Review artwork/screenshots, then obtain separate publication approval. H15/H47 remain open.
 
+
+
+
+## Chief of staff operating setup, IONOS domain resolution and Drive handover — 13 October 2026
+
+H49/Prompt 1: Configured and verified live IONOS API connection (`https://api.hosting.ionos.com`) for domains and DNS (53 domains, 53 DNS zones). Script `scripts/ionos-domains.mjs` added (`npm run domain:check`). Live inspection confirmed `buydronesupplies.co.uk` expires 2026-10-17 18:25:32 UTC with `autoRenew: false`. Robbie formally approved Option A (let domain drop/lapse naturally without renewal spend or manual intervention). Orphan `<<<<<<< HEAD` marker cleaned from `docs/HANDOVER.md`. Outbound dispatch safety validated locally (5/5 PASS) with fail-closed concurrency capping and unapproved prospect filtering.
+
+H50/Prompt 3: Implemented isolated Stripe webhook receiver in `src/lib/stripe/payment-receiver.ts` with Web Crypto HMAC-SHA256 signature verification in `src/lib/stripe/verify.ts` and Nitro/Worker routing in `src/server.ts`. Validates signed £747.50 deposit checkout/intent events, verifies GBP currency and client references, enforces 300s replay attack tolerance, and guarantees idempotency against duplicate payloads. Added automated test suite `scripts/stripe-receipt.test.mjs` (10/10 PASS).
+
+H07/H42/H09/Prompt 4: Reconciled release safeguards acceptance matrix (Ready, Needs Attention, Blocking Launch). Implemented and verified safe local session-expiry and authorization test suite in `scripts/session-authorization.test.mjs` (7/7 PASS) demonstrating that expired JWTs, missing bearer headers, malformed tokens, and unauthorized roles fail closed with 401/403, and signout clears query cache. Active signed-in owner session preserved; isolated database restore drill framed for founder scheduling. Total automated test suite now runs 153/153 PASS; TypeScript 0 errors; code formatting and linting 0 errors.
+
+H37/H50/Prompt 5: Prepared and verified qualification packets in `docs/PROSPECT_QUALIFICATION_PILOT_2026-10-13.md` for top 3 candidates: P01 RG Electrical Bristol Limited (#10082511), P02 Bath-Electrical Ltd (#07702599), and P03 Nextgen Electrical Contractors Ltd (#11042444). Verified corporate PECR eligibility, TrustMark/NICEIC accreditation records, and tailored constructive digital angles. All outreach held pending founder sending authorization; P01 established as #1 pilot candidate. All 5 execution prompts from the 13 October pack are now complete.
 
 ## Automated Outreach Engine & Resend Integration — 12 October 2026
 

@@ -7,14 +7,15 @@
   "scripts": {
     "dev": "vite dev",
     "typecheck": "tsc --noEmit",
-    "test": "node scripts/verify-platform.mjs && node --experimental-strip-types --test scripts/revenue-readiness.test.mjs scripts/database-security.test.mjs scripts/intake-results.test.mjs scripts/lead-notifications.test.mjs scripts/slack-integration.test.mjs && node --test scripts/verify-service-worker.mjs",
+    "test": "node scripts/verify-platform.mjs && node --experimental-strip-types --test scripts/revenue-readiness.test.mjs scripts/database-security.test.mjs scripts/intake-results.test.mjs scripts/lead-notifications.test.mjs scripts/slack-integration.test.mjs scripts/stripe-receipt.test.mjs scripts/session-authorization.test.mjs && node --test scripts/verify-service-worker.mjs",
     "format:check": "prettier --check \"src/**/*.{ts,tsx}\" package.json .prettierrc \".github/**/*.{yml,yaml}\"",
     "build": "vite build",
     "build:dev": "vite build --mode development",
     "preview": "wrangler dev --config .output/server/wrangler.json",
     "lint": "eslint .",
     "format": "prettier --write .",
-    "test:database": "node --test scripts/database-security.test.mjs"
+    "test:database": "node --test scripts/database-security.test.mjs",
+    "domain:check": "node scripts/ionos-domains.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
