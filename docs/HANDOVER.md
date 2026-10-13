@@ -1,5 +1,17 @@
 # Shared development handover
 
+## Codex — approved HDW wordmark and reference reconciliation — 13 October 2026
+
+- Scope H15/H47: founder selected the middle wordmark and refined mockups, then explicitly approved replacing the old visible HDW logo for review before publication. Main name Harley Digital Works; exact endorsement Part of The Harley Group; midnight #081B30, ivory #F6F3ED, supporting blue #173C62 and slate #526479.
+- Source: branch `codex/hdw-wordmark-2026-10-13`, based on `be0f8d20afcaa8868b3f431b6cc7df883d635f0b`; implementation commit `172b576f40b0a7971a0a00ebf8cde573ac0a4ad3`. This follow-up records evidence and marks PDFs binary to preserve their exact bytes across Windows Git checkouts.
+- Implemented: compact outlined navigation/footer wordmark, three admin navigation placements, shared HDW logo configuration, dated public SVGs/guide/tokens, brand-page HDW palette and previews/downloads, favicon/app icons, PNG social preview, compatibility logo aliases and service-worker v4 cache refresh. Existing content/functionality and Group/Labs identities preserved. Finalized twelve public/doc SVGs match supplied source hashes; artwork reconstructs the approved mockup with custom H and Arial-based lettering, with small visual differences. No trademark clearance claimed.
+- Old guidance: THG Digital Agency playbook name corrected; earlier teal brand guide replaced with current use rules; Poster OS locked fonts/colours, gold-H implementation brief, rebrand and overall-plan records marked historical; blanket group-domain canonical guidance corrected against current site-config. Older commercial/audit/concept records and original DOCX/PDF remain history. No prices, infrastructure connections, production data or business architecture changed.
+- Fresh validation: locked dependency install PASS (420 packages; audit 0 vulnerabilities); build PASS; typecheck PASS; format check PASS; lint PASS (0 errors, 9 existing warnings); npm test PASS 136/136 (66 smoke, 67 regression/integration, 3 service worker); diff whitespace PASS. Cache regression verifies v2/v3 removal and v4/unrelated-cache retention. Initial pre-build smoke failed for absent build output, then passed after build; the cache-version expectation was updated and rerun successfully.
+- Browser evidence: local Edge, reduced motion, homepage /brand /auth at 375/768/1440px: nine route-width checks PASS, all visible logos loaded, no horizontal overflow; mobile menu opened/closed. Desktop/mobile screenshots inspected; evidence `docs/evidence/brand-2026-10-13/`. Authenticated admin runtime and production browsers were not tested; admin change is source/build verified. Local preview at http://127.0.0.1:4175/ while the review server runs.
+- Boundary: committed locally for review; no push, merge, deployment or live acceptance. H15 wider visual acceptance and H47 operating-doc acceptance remain open. Pre-existing `<<<<<<< HEAD` marker in this handover is retained for a separate reconciliation; it predates this change and does not affect the application build.
+- Next: review source/screenshots and reconstructed artwork, approve publication separately, then use the established release process and verify fresh-client header/menu/footer/brand guide/icons/social preview plus genuine admin navigation after release.
+
+
 <<<<<<< HEAD
 ## Antigravity — Automated Outreach Engine & Resend Integration — 12 October 2026
 

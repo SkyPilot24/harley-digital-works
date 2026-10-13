@@ -1,5 +1,10 @@
 # The Harley Group — shared project status
 
+## Approved HDW wordmark — 13 October 2026
+
+H15/H47: navy/ivory wordmark implemented locally on `codex/hdw-wordmark-2026-10-13`, implementation `172b576f40b0a7971a0a00ebf8cde573ac0a4ad3`. Replaces current HDW header/footer/admin logos, brand-page previews/downloads, icons and social preview; reconciles stale current brand/domain guidance while retaining historical records. Exact endorsement: Part of The Harley Group. Prepared pack uses midnight #081B30 and ivory #F6F3ED with outlined Arial-based lettering/custom H. Build/typecheck/format PASS; lint 0 errors, 9 existing warnings; 136 tests PASS. Local /, /brand, /auth at 375/768/1440px PASS for loaded logos/no overflow; mobile menu PASS. See docs/brand-pack.md and handover for evidence, limits and asset provenance. No push, merge, deployment or live admin acceptance. Review artwork/screenshots, then obtain separate publication approval. H15/H47 remain open.
+
+
 ## Automated Outreach Engine & Resend Integration — 12 October 2026
 
 H37/H50: Implemented and verified automated prospect outreach engine in `src/lib/outreach-dispatcher.ts` with Nitro scheduled background task in `server/tasks/outreach-dispatcher.ts` configured for Monday–Friday 09:00 UK. Strict 2-build concurrency guard automatically queries Supabase active projects (`in_progress`, `review`) and halts outbound outreach when capacity is reached. Ratified sender policy: all cold prospect outreach sent as `Robbie Harley <robbie@theharleygroup.org>` with matching `reply_to` to prevent spam filter flags associated with generic mailboxes (`hello@`) and maximize peer-to-peer B2B response rates. Connected via Resend API (`https://api.resend.com/emails`) with 10-second timeout, duplicate protection, and Slack `#sales` audit alerts. Test suite `scripts/outreach-dispatcher.test.mjs` passes 5/5; full test suite passes 136/136; TypeScript 0 errors; code formatting and linting 0 errors.
