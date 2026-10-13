@@ -1,5 +1,11 @@
 # Shared development handover
 
+## Branding review branch published — 13 October 2026
+
+Founder explicitly approved pushing the review branch. `codex/hdw-wordmark-2026-10-13` pushed; initial origin head verified equal to local `4000ea142913b37534c108b6555666f5b71b6352`. [Draft PR #27](https://github.com/SkyPilot24/harley-digital-works/pull/27) created and attached. Implementation `172b576` remains unchanged; this documentation follow-up records the shared [Brand Assets folder](https://drive.google.com/drive/folders/1SH7LXBz72wGUL9H-PBQtWVggqMUxF1gG) supplied by the pack-producing session (complete ZIP and 40 individual files reported uploaded). Repository visibility verified PRIVATE; folder permissions not audited; link is internal documentation only.
+
+No main push, merge or production deployment. Main advanced to `b4c751a`; integration/fresh CI and review remain pending. Earlier no-push wording below describes the pre-publication state. Previous branch validation is retained as dated evidence, not a fresh integration result. H15/H47 remain open.
+
 ## Codex — approved HDW wordmark and reference reconciliation — 13 October 2026
 
 - Scope H15/H47: founder selected the middle wordmark and refined mockups, then explicitly approved replacing the old visible HDW logo for review before publication. Main name Harley Digital Works; exact endorsement Part of The Harley Group; midnight #081B30, ivory #F6F3ED, supporting blue #173C62 and slate #526479.

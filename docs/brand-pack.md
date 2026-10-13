@@ -1,5 +1,11 @@
 # Harley Digital Works brand direction
 
+## Shared full pack and review publication — 13 October 2026
+
+The pack-producing session reports the complete ZIP and 40 individual files uploaded to the shared [Brand Assets folder](https://drive.google.com/drive/folders/1SH7LXBz72wGUL9H-PBQtWVggqMUxF1gG). This is an internal reference in this private repository; access permissions were not changed or audited here. No Drive link is added to public website content. The dated repository/public assets remain the website implementation source.
+
+Review branch pushed and initial remote head verified at `4000ea142913b37534c108b6555666f5b71b6352`; [draft PR #27](https://github.com/SkyPilot24/harley-digital-works/pull/27) contains the implementation and evidence. Publication of the review branch is complete; merge, production deployment and live acceptance remain pending.
+
 ## Approved direction — 13 October 2026
 
 The founder selected the middle wordmark concept and approved the refined mockups. Harley Digital Works remains the customer-facing agency; The Harley Group remains the parent. The approved direction now has a prepared asset pack; website rollout remains separate.
