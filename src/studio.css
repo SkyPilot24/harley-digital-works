@@ -29,7 +29,7 @@
   letter-spacing: -0.03em;
 }
 .directory-grid > a:hover {
-  color: var(--studio-gold);
+  color: var(--studio-accent);
 }
 @media (max-width: 650px) {
   .directory-grid {
@@ -43,7 +43,7 @@
   top: -100px;
   z-index: 100;
   padding: 12px 20px;
-  background: #252720;
+  background: var(--studio-ink);
   color: white;
   border-radius: 4px;
 }
@@ -52,7 +52,7 @@
 }
 .studio-home :is(a, button, input, textarea, select):focus-visible,
 .studio-header :is(a, button):focus-visible {
-  outline: 3px solid #9a7432;
+  outline: 3px solid var(--studio-accent);
   outline-offset: 5px;
 }
 [id] {
@@ -83,13 +83,13 @@
 }
 .managed-offer-intro > p:not(.studio-kicker) {
   line-height: 1.8;
-  color: #d2d5c9;
+  color: var(--hdw-ivory);
   margin-bottom: 32px;
 }
 .offer-small {
   font-size: 12px;
   line-height: 1.7;
-  color: #d2d5c9;
+  color: var(--hdw-ivory);
   margin-top: 18px;
 }
 .managed-offer-detail {
@@ -101,7 +101,7 @@
 .offer-stage {
   font: 500 10px/1.5 var(--font-mono);
   letter-spacing: 0.12em;
-  color: var(--studio-gold);
+  color: var(--studio-accent);
 }
 .managed-offer-detail h3 {
   font-size: 25px;
@@ -146,7 +146,7 @@
   font-weight: 500;
 }
 .contact-intro h1 span {
-  color: var(--studio-gold);
+  color: var(--studio-accent);
 }
 .contact-intro > p:not(.studio-kicker) {
   max-width: 440px;
@@ -165,7 +165,7 @@
 }
 .contact-next li > span {
   font: 12px/2 var(--font-mono);
-  color: var(--studio-gold);
+  color: var(--studio-accent);
 }
 .contact-next strong {
   font-weight: 500;
@@ -259,7 +259,7 @@
 }
 .enquiry-form input:focus,
 .enquiry-form textarea:focus {
-  border-color: var(--studio-gold);
+  border-color: var(--studio-accent);
 }
 .enquiry-honeypot {
   position: absolute;
@@ -287,7 +287,7 @@
   text-decoration: none;
 }
 .enquiry-submit:hover {
-  background: #414638;
+  background: var(--studio-accent);
   transform: translateY(-1px);
 }
 .enquiry-submit:disabled {
@@ -364,7 +364,7 @@
   font-weight: 500;
 }
 .group-hero h1 span {
-  color: var(--studio-gold);
+  color: var(--studio-accent);
 }
 .group-hero p:not(.studio-kicker) {
   font-size: 19px;
@@ -418,7 +418,7 @@
 }
 .group-focus-list span {
   font: 11px/1.5 var(--font-mono);
-  color: var(--studio-gold);
+  color: var(--studio-accent);
 }
 .group-focus-list h3 {
   margin-top: 10px;
@@ -560,10 +560,10 @@
   --studio-paper: #f6f3ed;
   --studio-white: #fffefa;
   --studio-ink: #081b30;
-  --studio-muted: #696b60;
-  --studio-gold: #9a7432;
-  --studio-line: #dcdcd2;
-  --studio-sage: #e9ece4;
+  --studio-muted: #526479;
+  --studio-accent: #173c62;
+  --studio-line: color-mix(in srgb, #526479 20%, #f6f3ed);
+  --studio-sage: color-mix(in srgb, #f6f3ed 92%, #173c62);
 }
 .studio-wordmark {
   display: flex;
@@ -628,7 +628,7 @@
   padding: 12px 0;
 }
 .studio-desktop-nav a:hover {
-  color: var(--studio-gold);
+  color: var(--studio-accent);
 }
 .studio-header-cta {
   display: flex;
@@ -683,7 +683,7 @@
   display: inline-block;
   width: 28px;
   height: 1px;
-  background: var(--studio-gold);
+  background: var(--studio-accent);
   vertical-align: middle;
   margin-right: 10px;
 }
@@ -723,7 +723,7 @@
 }
 .studio-home :is(a, button):focus-visible,
 .studio-header :is(a, button):focus-visible {
-  outline: 2px solid var(--studio-gold);
+  outline: 2px solid var(--studio-accent);
   outline-offset: 5px;
 }
 .studio-home button {
@@ -759,7 +759,7 @@
   margin: 28px 0;
 }
 .hero-copy h1 > span {
-  color: var(--studio-gold);
+  color: var(--studio-accent);
 }
 .hero-description {
   font-size: 19px;
@@ -1191,7 +1191,7 @@
 }
 .studio-section-heading .studio-kicker {
   margin-bottom: 20px;
-  color: var(--studio-gold);
+  color: var(--studio-accent);
 }
 .studio-section-heading > p {
   max-width: 340px;
@@ -1272,7 +1272,7 @@
   margin-top: 24px;
 }
 .project-caption .studio-kicker {
-  color: var(--studio-gold);
+  color: var(--studio-accent);
   font-size: 9px;
   margin-bottom: 10px;
 }
@@ -1524,7 +1524,7 @@
   line-height: 1.5;
 }
 .purpose-copy > .studio-kicker {
-  color: var(--studio-gold);
+  color: var(--studio-accent);
   margin-bottom: 22px;
 }
 .studio-intro {
@@ -1542,7 +1542,7 @@
 }
 .purpose-point > span {
   font: 400 11px/1.7 var(--font-mono);
-  color: var(--studio-gold);
+  color: var(--studio-accent);
 }
 .purpose-point h3 {
   font-size: 19px;
@@ -1586,7 +1586,7 @@
 .process-row .studio-kicker {
   display: block;
   margin-top: 18px;
-  color: var(--studio-gold);
+  color: var(--studio-accent);
   font-size: 9px;
 }
 .studio-pricing {
@@ -1613,7 +1613,7 @@
   line-height: 1.7;
 }
 .studio-pricing .eyebrow {
-  color: var(--studio-gold);
+  color: var(--studio-accent);
 }
 .studio-pricing article a {
   min-height: 48px;
@@ -1695,7 +1695,7 @@
   gap: 100px;
 }
 .faq-layout .studio-kicker {
-  color: var(--studio-gold);
+  color: var(--studio-accent);
   margin-bottom: 22px;
 }
 .faq-layout > div:first-child > p:not(.studio-kicker) {

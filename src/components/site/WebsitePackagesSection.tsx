@@ -24,7 +24,7 @@ export function WebsitePackagesSection({
         </div>
         <div className="managed-offer-grid">
           <div className="managed-offer-intro">
-            <div className="inline-flex items-center gap-2 rounded-full bg-works-charcoal/60 px-3 py-1 text-xs font-mono text-signature-gold mb-3 border border-signature-gold/30">
+            <div className="inline-flex items-center gap-2 rounded-full bg-hdw-blue/60 px-3 py-1 text-xs font-mono text-hdw-ivory mb-3 border border-hdw-ivory/30">
               <span className="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
               Pilot Capacity: Capped at 2–3 Builds
             </div>
@@ -38,9 +38,9 @@ export function WebsitePackagesSection({
               Professional design, industry-verified copywriting, and ongoing technical care. No
               homework assignments, no agency retainers, and no technical headaches.
             </p>
-            <div className="flex flex-col gap-2 w-full my-4 p-4 rounded-xl bg-works-charcoal/80 border border-white/10 text-xs">
+            <div className="flex flex-col gap-2 w-full my-4 p-4 rounded-xl bg-hdw-blue/80 border border-white/10 text-xs">
               <div className="flex justify-between items-center text-white/90">
-                <span className="font-semibold text-signature-gold">Initial Setup</span>
+                <span className="font-semibold text-hdw-ivory">Initial Setup</span>
                 <span className="font-mono">£1,495 (Zero VAT)</span>
               </div>
               <div className="flex justify-between items-center text-white/70">

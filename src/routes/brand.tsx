@@ -184,7 +184,7 @@ const BRANDS_DATA: Record<BrandEntity, BrandSpec> = {
         name: "Electric Lavender",
         hex: "#818CF8",
         role: "Terminal Glow",
-        textClass: "text-slate-950",
+        textClass: "text-hdw-midnight",
       },
       {
         name: "Cyber Obsidian",
@@ -251,21 +251,21 @@ function BrandAssetsPage() {
   return (
     <PageShell>
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-slate-950 pt-32 pb-20 text-white md:pt-44 md:pb-28 border-b border-slate-800">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_-20%,rgba(200,157,60,0.18),rgba(255,255,255,0))]" />
+      <section className="relative overflow-hidden bg-hdw-midnight pt-32 pb-20 text-white md:pt-44 md:pb-28 border-b border-hdw-ivory/15">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_-20%,rgba(23,60,98,0.3),rgba(255,255,255,0))]" />
 
         <Container className="relative z-10">
-          <div className="inline-flex items-center gap-2 rounded-full border border-amber-500/30 bg-amber-950/60 px-3.5 py-1.5 text-xs font-semibold tracking-wide text-amber-300 backdrop-blur-md">
+          <div className="inline-flex items-center gap-2 rounded-full border border-hdw-ivory/30 bg-hdw-blue px-3.5 py-1.5 text-xs font-semibold tracking-wide text-hdw-ivory backdrop-blur-md">
             <Palette className="h-3.5 w-3.5" />
             <span>Official Brand Identity & Design Systems</span>
           </div>
 
           <h1 className="mt-6 max-w-4xl text-[clamp(2.5rem,5.5vw,4.8rem)] font-bold tracking-tight text-white leading-[1.05]">
             Unified Brand Assets For{" "}
-            <span className="text-amber-400">The Harley Group Ecosystem.</span>
+            <span className="text-hdw-ivory">The Harley Group Ecosystem.</span>
           </h1>
 
-          <p className="mt-6 max-w-2xl text-lg leading-relaxed text-slate-300">
+          <p className="mt-6 max-w-2xl text-lg leading-relaxed text-hdw-ivory/80">
             Vector logos, precise color tokens, typography scales, and commercial voice guidelines
             for The Harley Group holding company and its two operating arms.
           </p>
@@ -274,7 +274,7 @@ function BrandAssetsPage() {
             <a
               href="/brand/2026-10-13/Harley-Digital-Works-Brand-Guide.pdf"
               download
-              className="inline-flex items-center gap-2 rounded-full bg-amber-500 px-5 py-2.5 text-sm font-bold text-slate-950 shadow-lg hover:bg-amber-400 transition-colors"
+              className="inline-flex items-center gap-2 rounded-full bg-hdw-ivory px-5 py-2.5 text-sm font-bold text-hdw-midnight shadow-lg hover:bg-hdw-ivory transition-colors"
             >
               <Download className="h-4 w-4" />
               <span>Download Brand Guide (PDF)</span>
@@ -284,7 +284,7 @@ function BrandAssetsPage() {
               to="/the-harley-group"
               variant="ghost"
               size="md"
-              className="border-slate-700 text-white hover:bg-slate-900 hover:text-white"
+              className="border-hdw-ivory/25 text-white hover:bg-hdw-blue hover:text-white"
             >
               Group Corporate Governance
             </PillButton>
@@ -292,10 +292,13 @@ function BrandAssetsPage() {
         </Container>
       </section>
 
-      <section aria-labelledby="approved-hdw-direction" className="bg-slate-950 py-10 text-white">
+      <section
+        aria-labelledby="approved-hdw-direction"
+        className="bg-hdw-midnight py-10 text-white"
+      >
         <Container>
           <div className="max-w-3xl">
-            <p className="text-sm text-slate-300">
+            <p className="text-sm text-hdw-ivory/80">
               Harley Digital Works · Approved 13 October 2026
             </p>
             <h2 id="approved-hdw-direction" className="mt-3 text-2xl font-semibold">
@@ -314,7 +317,7 @@ function BrandAssetsPage() {
               clear space; use a compact wordmark or symbol when the endorsement is too small to
               read.
             </p>
-            <p className="mt-4 text-sm leading-relaxed text-slate-300">
+            <p className="mt-4 text-sm leading-relaxed text-hdw-ivory/80">
               The wordmark keeps Harley Digital Works prominent, with the group endorsement smaller.
               Use the supplied vector artwork rather than recreating the lettering. The guide and
               downloadable variants below explain how to use it consistently.
@@ -323,10 +326,10 @@ function BrandAssetsPage() {
         </Container>
       </section>
       {/* Brand Entity Switcher & Overview */}
-      <section className="py-20 bg-slate-900 text-white border-b border-slate-800">
+      <section className="py-20 bg-hdw-blue text-white border-b border-hdw-ivory/15">
         <Container>
           {/* Brand Switcher Tabs */}
-          <div className="flex flex-wrap gap-3 border-b border-slate-800 pb-6">
+          <div className="flex flex-wrap gap-3 border-b border-hdw-ivory/15 pb-6">
             {(Object.keys(BRANDS_DATA) as BrandEntity[]).map((key) => {
               const b = BRANDS_DATA[key];
               const isSelected = selectedBrand === key;
@@ -334,10 +337,10 @@ function BrandAssetsPage() {
                 <button
                   key={key}
                   onClick={() => setSelectedBrand(key)}
-                  className={`inline-flex items-center gap-2 rounded-xl px-5 py-3 text-sm font-bold transition-all ${
+                  className={`inline-flex items-center gap-2 rounded-xl px-5 py-3 text-sm font-bold transition-colors ${
                     isSelected
-                      ? "bg-white text-slate-950 shadow-lg scale-[1.02]"
-                      : "bg-slate-950 text-slate-400 hover:text-white hover:bg-slate-800 border border-slate-800"
+                      ? "bg-white text-hdw-midnight shadow-lg"
+                      : "bg-hdw-midnight text-hdw-ivory/75 hover:text-white hover:bg-slate-800 border border-hdw-ivory/15"
                   }`}
                 >
                   <BrandLogo entity={key} variant="mark-dark" imageClassName="h-4 w-4 rounded" />
@@ -350,18 +353,20 @@ function BrandAssetsPage() {
           {/* Active Brand Header */}
           <div className="mt-8 flex flex-col md:flex-row md:items-center justify-between gap-6">
             <div>
-              <span className="rounded-full bg-slate-800 px-3 py-1 text-xs font-mono font-semibold text-amber-300">
+              <span className="rounded-full bg-slate-800 px-3 py-1 text-xs font-mono font-semibold text-hdw-ivory">
                 {brand.role}
               </span>
               <h2 className="mt-3 text-3xl font-bold text-white">{brand.name}</h2>
-              <p className="mt-1 text-sm text-slate-400">{brand.tagline}</p>
+              <p className="mt-1 text-sm text-hdw-ivory/75">{brand.tagline}</p>
             </div>
-            <p className="max-w-md text-sm text-slate-300 leading-relaxed">{brand.description}</p>
+            <p className="max-w-md text-sm text-hdw-ivory/80 leading-relaxed">
+              {brand.description}
+            </p>
           </div>
 
           {/* Vector Logos Grid */}
           <div className="mt-12">
-            <h3 className="text-xs font-mono font-bold uppercase tracking-wider text-slate-400 mb-6">
+            <h3 className="text-xs font-mono font-bold uppercase tracking-wider text-hdw-ivory/75 mb-6">
               Official Vector Logos & Monograms (SVG)
             </h3>
 
@@ -369,15 +374,15 @@ function BrandAssetsPage() {
               {brand.logos.map((logo) => (
                 <div
                   key={logo.title}
-                  className="rounded-2xl border border-slate-800 bg-slate-950 p-6 flex flex-col justify-between"
+                  className="rounded-2xl border border-hdw-ivory/15 bg-hdw-midnight p-6 flex flex-col justify-between"
                 >
                   <div>
-                    <div className="flex items-center justify-between text-xs text-slate-400">
+                    <div className="flex items-center justify-between text-xs text-hdw-ivory/75">
                       <span className="font-semibold text-white">{logo.title}</span>
                       <a
                         href={logo.path}
                         download
-                        className="inline-flex items-center gap-1 text-amber-400 hover:text-amber-300"
+                        className="inline-flex items-center gap-1 text-hdw-ivory hover:text-hdw-ivory"
                       >
                         <Download className="h-3.5 w-3.5" />
                         <span>Download SVG</span>
@@ -385,7 +390,7 @@ function BrandAssetsPage() {
                     </div>
 
                     <div
-                      className={`mt-4 rounded-xl p-6 border border-slate-800/80 flex items-center justify-center min-h-[140px] ${logo.variant === "light" || logo.variant === "mark-light" ? "bg-[#F6F3ED]" : "bg-[#081B30]"}`}
+                      className={`mt-4 rounded-xl p-6 border border-hdw-ivory/15 flex items-center justify-center min-h-[140px] ${logo.variant === "light" || logo.variant === "mark-light" ? "bg-hdw-ivory" : "bg-hdw-midnight"}`}
                     >
                       <BrandLogo
                         entity={brand.id}
@@ -396,12 +401,12 @@ function BrandAssetsPage() {
                       />
                     </div>
 
-                    <p className="mt-4 text-xs text-slate-400 leading-relaxed">
+                    <p className="mt-4 text-xs text-hdw-ivory/75 leading-relaxed">
                       {logo.description}
                     </p>
                   </div>
 
-                  <div className="mt-4 pt-3 border-t border-slate-900 text-[11px] font-mono text-slate-500">
+                  <div className="mt-4 pt-3 border-t border-slate-900 text-[11px] font-mono text-hdw-ivory/70">
                     Path: {logo.path}
                   </div>
                 </div>
@@ -411,13 +416,16 @@ function BrandAssetsPage() {
 
           {/* Color Palette Tokens */}
           <div className="mt-16">
-            <h3 className="text-xs font-mono font-bold uppercase tracking-wider text-slate-400 mb-6">
+            <h3 className="text-xs font-mono font-bold uppercase tracking-wider text-hdw-ivory/75 mb-6">
               Primary Color Tokens & Hex Codes
             </h3>
 
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
               {brand.colors.map((c) => (
-                <div key={c.hex} className="rounded-xl border border-slate-800 bg-slate-950 p-4">
+                <div
+                  key={c.hex}
+                  className="rounded-xl border border-hdw-ivory/15 bg-hdw-midnight p-4"
+                >
                   <div
                     className="h-20 w-full rounded-lg shadow-inner flex items-end p-2 justify-between"
                     style={{ backgroundColor: c.hex }}
@@ -430,12 +438,12 @@ function BrandAssetsPage() {
                   <div className="mt-3 flex items-center justify-between">
                     <div>
                       <div className="text-xs font-bold text-white font-mono">{c.hex}</div>
-                      <div className="text-[11px] text-slate-400">{c.role}</div>
+                      <div className="text-[11px] text-hdw-ivory/75">{c.role}</div>
                     </div>
 
                     <button
                       onClick={() => handleCopyHex(c.hex)}
-                      className="rounded-lg p-1.5 text-slate-400 hover:text-white hover:bg-slate-800 transition-colors"
+                      className="rounded-lg p-1.5 text-hdw-ivory/75 hover:text-white hover:bg-slate-800 transition-colors"
                       title="Copy Hex"
                     >
                       {copiedHex === c.hex ? (
@@ -451,8 +459,8 @@ function BrandAssetsPage() {
           </div>
 
           {/* Brand Voice Guidelines */}
-          <div className="mt-16 rounded-2xl border border-slate-800 bg-slate-950 p-8">
-            <span className="text-xs font-mono font-bold uppercase tracking-wider text-amber-400">
+          <div className="mt-16 rounded-2xl border border-hdw-ivory/15 bg-hdw-midnight p-8">
+            <span className="text-xs font-mono font-bold uppercase tracking-wider text-hdw-ivory">
               Tone of Voice & Editorial Principles
             </span>
             <h3 className="mt-2 text-xl font-bold text-white">
@@ -463,12 +471,12 @@ function BrandAssetsPage() {
               {brand.voiceGuidelines.map((guide, idx) => (
                 <div
                   key={guide}
-                  className="flex items-start gap-3 rounded-xl bg-slate-900/60 p-4 border border-slate-800"
+                  className="flex items-start gap-3 rounded-xl bg-hdw-blue/60 p-4 border border-hdw-ivory/15"
                 >
-                  <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-amber-500 text-slate-950 text-xs font-bold font-mono">
+                  <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-hdw-ivory text-hdw-midnight text-xs font-bold font-mono">
                     {idx + 1}
                   </span>
-                  <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">{guide}</p>
+                  <p className="text-xs sm:text-sm text-hdw-ivory/80 leading-relaxed">{guide}</p>
                 </div>
               ))}
             </div>
@@ -477,7 +485,7 @@ function BrandAssetsPage() {
       </section>
 
       {/* Typography System */}
-      <section className="py-20 bg-white border-b border-ink/10">
+      <section className="py-20 bg-hdw-ivory border-b border-ink/10">
         <Container>
           <div className="max-w-2xl">
             <p className="text-xs font-bold uppercase tracking-widest text-slate-600">
@@ -487,48 +495,48 @@ function BrandAssetsPage() {
               Website Typography
             </h2>
             <p className="mt-3 text-sm text-ink-muted">
-              These fonts describe the existing website. The new logo uses supplied Arial-based
-              outlined lettering with a custom H; use the artwork rather than recreating it with
-              website fonts.
+              Harley Digital Works uses Arial and Helvetica for clear, consistent website text. The
+              logo uses supplied outlined lettering with a custom H; use the artwork rather than
+              recreating it with website fonts. Group and Labs retain their own identity assets.
             </p>
           </div>
 
           <div className="mt-10 grid gap-6 md:grid-cols-3">
-            <div className="rounded-xl border border-ink/10 bg-slate-50 p-6">
-              <span className="text-[11px] font-mono text-emerald-700 font-bold uppercase">
+            <div className="rounded-xl border border-ink/10 bg-hdw-blue/5 p-6">
+              <span className="text-[11px] font-mono text-hdw-blue font-bold uppercase">
                 Primary Headings
               </span>
               <h3
                 className="mt-2 text-2xl font-bold text-ink"
                 style={{ fontFamily: "var(--font-heading)" }}
               >
-                Manrope Display
+                Arial / Helvetica
               </h3>
               <p className="mt-2 text-xs text-ink-muted leading-relaxed">
-                Weights: 600 SemiBold, 700 Bold, 800 ExtraBold. Used for hero titles, section
-                headlines, and price numbers.
+                Use the existing heading hierarchy and readable weights for hero titles, section
+                headlines and price numbers. Preserve the supplied logo artwork.
               </p>
             </div>
 
-            <div className="rounded-xl border border-ink/10 bg-slate-50 p-6">
-              <span className="text-[11px] font-mono text-emerald-700 font-bold uppercase">
+            <div className="rounded-xl border border-ink/10 bg-hdw-blue/5 p-6">
+              <span className="text-[11px] font-mono text-hdw-blue font-bold uppercase">
                 Body & Copy
               </span>
-              <h3 className="mt-2 text-2xl font-semibold text-ink">Inter / Segoe UI</h3>
+              <h3 className="mt-2 text-2xl font-semibold text-ink">Arial / Helvetica</h3>
               <p className="mt-2 text-xs text-ink-muted leading-relaxed">
-                Weights: 400 Regular, 500 Medium. Line height: 1.6. Clean, open apertures for
-                effortless reading on mobile.
+                Use regular text with generous line spacing and short paragraphs. Keep supporting
+                copy readable at mobile widths.
               </p>
             </div>
 
-            <div className="rounded-xl border border-ink/10 bg-slate-50 p-6">
-              <span className="text-[11px] font-mono text-emerald-700 font-bold uppercase">
+            <div className="rounded-xl border border-ink/10 bg-hdw-blue/5 p-6">
+              <span className="text-[11px] font-mono text-hdw-blue font-bold uppercase">
                 Technical Data & Code
               </span>
-              <h3 className="mt-2 text-2xl font-mono font-bold text-ink">JetBrains Mono</h3>
+              <h3 className="mt-2 text-2xl font-mono font-bold text-ink">DM Mono</h3>
               <p className="mt-2 text-xs text-ink-muted leading-relaxed">
-                Weights: 500 Medium, 700 Bold. Used for SLA days, pricing tokens, invoice
-                references, and telemetry streams.
+                Existing monospace labels support compact references and technical information. They
+                complement the main text family and do not recreate the logo.
               </p>
             </div>
           </div>
@@ -536,18 +544,18 @@ function BrandAssetsPage() {
       </section>
 
       {/* Founder Photography & Executive Media Kit */}
-      <section className="py-20 md:py-28 bg-slate-900 text-white border-b border-slate-800">
+      <section className="py-20 md:py-28 bg-hdw-blue text-white border-b border-hdw-ivory/15">
         <Container>
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
             <div>
-              <div className="inline-flex items-center gap-2 rounded-full border border-amber-400/30 bg-amber-950/60 px-3.5 py-1 text-xs font-semibold text-amber-300 font-mono">
+              <div className="inline-flex items-center gap-2 rounded-full border border-hdw-ivory/30 bg-hdw-blue px-3.5 py-1 text-xs font-semibold text-hdw-ivory font-mono">
                 <Sparkles className="h-3.5 w-3.5" />
                 <span>Executive Imagery & Press Media</span>
               </div>
               <h2 className="mt-3 text-3xl font-bold tracking-tight text-white md:text-4xl">
                 Dr Robbie Harley · Official Media Asset Collection
               </h2>
-              <p className="mt-2 text-sm text-slate-300 max-w-2xl leading-relaxed">
+              <p className="mt-2 text-sm text-hdw-ivory/80 max-w-2xl leading-relaxed">
                 Approved editorial and commercial portraits for press releases, partnership
                 announcements, keynotes, and cross-division digital publications.
               </p>
@@ -555,7 +563,7 @@ function BrandAssetsPage() {
             <a
               href="/images/robbie/robbie-harley-master-board.jpg"
               download="Robbie-Harley-Master-Media-Board.jpg"
-              className="inline-flex items-center gap-2 rounded-xl bg-amber-400 hover:bg-amber-300 px-4 py-2.5 text-xs font-bold text-slate-950 transition-colors shadow-md shrink-0"
+              className="inline-flex items-center gap-2 rounded-xl bg-hdw-ivory hover:bg-white px-4 py-2.5 text-xs font-bold text-hdw-midnight transition-colors shadow-md shrink-0"
             >
               <Download className="h-4 w-4" />
               <span>Download Master Contact Sheet</span>
@@ -651,16 +659,16 @@ function BrandAssetsPage() {
             ].map((p) => (
               <div
                 key={p.num}
-                className="group rounded-2xl border border-slate-800 bg-slate-950 p-4 shadow-xl flex flex-col justify-between hover:border-slate-700 transition-all"
+                className="group rounded-2xl border border-hdw-ivory/15 bg-hdw-midnight p-4 shadow-xl flex flex-col justify-between hover:border-hdw-ivory/25 transition-colors"
               >
                 <div>
-                  <div className="relative aspect-4/3 rounded-xl overflow-hidden bg-slate-900 border border-slate-800">
+                  <div className="relative aspect-4/3 rounded-xl overflow-hidden bg-hdw-blue border border-hdw-ivory/15">
                     <img
                       src={p.src}
                       alt={`Dr Robbie Harley - ${p.name}`}
-                      className="h-full w-full object-cover object-center group-hover:scale-105 transition-transform duration-300"
+                      className="h-full w-full object-cover object-center motion-safe:group-hover:scale-105 transition-transform duration-300"
                     />
-                    <div className="absolute top-2 left-2 rounded-md bg-black/70 backdrop-blur-xs px-2 py-0.5 text-[10px] font-mono font-bold text-amber-300">
+                    <div className="absolute top-2 left-2 rounded-md bg-black/70 backdrop-blur-xs px-2 py-0.5 text-[10px] font-mono font-bold text-hdw-ivory">
                       {p.num}
                     </div>
                   </div>
@@ -670,16 +678,16 @@ function BrandAssetsPage() {
                       {p.division}
                     </span>
                     <h4 className="mt-1 text-sm font-bold text-white">{p.name}</h4>
-                    <p className="mt-1 text-xs text-slate-400 italic">&ldquo;{p.tag}&rdquo;</p>
+                    <p className="mt-1 text-xs text-hdw-ivory/75 italic">&ldquo;{p.tag}&rdquo;</p>
                   </div>
                 </div>
 
-                <div className="mt-4 pt-3 border-t border-slate-800 flex items-center justify-between">
-                  <span className="text-[10px] font-mono text-slate-500">JPG · High-Res</span>
+                <div className="mt-4 pt-3 border-t border-hdw-ivory/15 flex items-center justify-between">
+                  <span className="text-[10px] font-mono text-hdw-ivory/70">JPG · High-Res</span>
                   <a
                     href={p.src}
                     download={`Robbie-Harley-${p.num}-${p.name.replace(/\s+/g, "-")}.jpg`}
-                    className="inline-flex items-center gap-1 text-xs font-semibold text-amber-400 hover:text-amber-300"
+                    className="inline-flex items-center gap-1 text-xs font-semibold text-hdw-ivory hover:text-hdw-ivory"
                   >
                     <Download className="h-3.5 w-3.5" />
                     <span>Download</span>
@@ -692,17 +700,17 @@ function BrandAssetsPage() {
       </section>
 
       {/* Brand Asset Download CTA */}
-      <section className="py-20 bg-slate-950 text-white">
+      <section className="py-20 bg-hdw-midnight text-white">
         <Container>
           <div className="mx-auto max-w-3xl text-center">
-            <span className="inline-flex items-center gap-2 rounded-full border border-amber-500/30 bg-amber-950/60 px-3.5 py-1 text-xs font-semibold text-amber-300">
+            <span className="inline-flex items-center gap-2 rounded-full border border-hdw-ivory/30 bg-hdw-blue px-3.5 py-1 text-xs font-semibold text-hdw-ivory">
               <Sparkles className="h-3.5 w-3.5" />
               Press & Media Kit
             </span>
             <h2 className="mt-4 text-3xl font-bold tracking-tight text-white md:text-4xl">
               Need Vector Assets for Publication?
             </h2>
-            <p className="mt-3 text-sm text-slate-300 leading-relaxed">
+            <p className="mt-3 text-sm text-hdw-ivory/80 leading-relaxed">
               Download the prepared Harley Digital Works guide and SVG artwork above. Preserve the
               exact endorsement, proportions and spacing; contact us for publication guidance.
             </p>
@@ -711,7 +719,7 @@ function BrandAssetsPage() {
               <a
                 href="/brand/2026-10-13/Harley-Digital-Works-Brand-Guide.pdf"
                 download
-                className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-2.5 text-xs font-bold text-slate-950 hover:bg-slate-200 transition-colors shadow-lg"
+                className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-2.5 text-xs font-bold text-hdw-midnight hover:bg-slate-200 transition-colors shadow-lg"
               >
                 <Download className="h-4 w-4" />
                 <span>Download Brand Guide</span>
@@ -727,7 +735,7 @@ function BrandAssetsPage() {
                 }}
                 variant="ghost"
                 size="md"
-                className="border-slate-700 text-white hover:bg-slate-900 hover:text-white"
+                className="border-hdw-ivory/25 text-white hover:bg-hdw-blue hover:text-white"
               >
                 Contact Press & Brand Desk
               </PillButton>
