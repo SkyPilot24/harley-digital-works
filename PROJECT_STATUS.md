@@ -1,5 +1,15 @@
 # The Harley Group — shared project status
 
+## Launch completion review — 14 October 2026
+
+H23–H25/H47/H50: isolated review from canonical main `45012e4`; see [completion roadmap](docs/LAUNCH_COMPLETION_ROADMAP_2026-10-14.md). GitHub main matches local main; #22/#23/#26/#27/#28 merged; #24 closed/unmerged; #25 draft/open with conflicts. Deployment run 38444496336 is green but its deploy step is skipped: exact live revision remains unverified. Today's Slack digest reports zero active clients/MRR and three uncontacted leads, plus a three-build cap conflicting with the retained two-build pilot guard; these are reported values, not reconciled ledger facts.
+
+Reproduced and corrected three receipt-recovery failures locally: false success when paid-state persistence returns false, skipped interrupted paid-state repair on replay, and escaping datastore lookup errors. Generic retryable failures now protect internal details. Receipt/paid-state operations still need an atomic durable adapter; the default HTTP store remains in memory. No H50 closure or live acceptance claimed.
+
+Fresh isolated validation: build, typecheck, format and full test command PASS; 66 smoke checks, 87 tests and 3 service-worker tests PASS; additional outreach tests 5/5 PASS. Lint: zero errors, nine existing warnings. Three new regression cases failed against baseline before the fix. Original checkout's peer documentation changes preserved; no provider/database writes, sends, live billing, push, merge or deploy.
+
+Three active priorities: durable receipts/recovery, accurate fulfilable commercial agreement, and complete pilot delivery/care rehearsal. Proposed readiness target 26 October depends on verified isolated access and 24–36 engineering hours; first real pilot and recurring collection remain customer-dependent. Next: implement/test atomic receipt and client paid-state persistence in a verified isolated target, then authentic sandbox restart/concurrency/replay acceptance. Existing price ratification stands; contract/tax/routing/support/capacity evidence still requires reconciliation.
+
 ## Review-branch reconciliation — 13 October 2026
 
 Latest main b4c751a is integrated into the branding review branch, preserving peer safeguards/qualification work and the peer removal of the orphan handover marker. This is source reconciliation only; main is unchanged and no production deployment is performed. Earlier pending-integration and marker-retention notes below are dated history. Fresh integrated checks follow the styling pass.

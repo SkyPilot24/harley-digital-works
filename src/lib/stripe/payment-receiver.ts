@@ -81,31 +81,56 @@ export async function processStripeWebhook(options: {
   }
 
   // 4. Idempotency Check: Event ID already processed?
-  const existingByEvent = await storage.findReceiptByEventId(event.id);
-  if (existingByEvent) {
+  try {
+    const existingByEvent = await storage.findReceiptByEventId(event.id);
+    if (existingByEvent) {
+      return await confirmPaidState(existingByEvent, storage, "duplicate");
+    }
+
+    // 5. Route by Event Type
+    if (event.type === "checkout.session.completed") {
+      return await handleCheckoutSessionCompleted(
+        event as StripeEvent<StripeCheckoutSession>,
+        storage,
+      );
+    }
+
+    if (event.type === "payment_intent.succeeded") {
+      return await handlePaymentIntentSucceeded(event as StripeEvent<StripePaymentIntent>, storage);
+    }
+
+    // Ignored / Unhandled event type
     return {
-      status: "duplicate",
-      receipt: existingByEvent,
-      reason: "Event has already been recorded",
+      status: "rejected",
+      reason: `Unhandled event type: ${event.type}`,
       statusCode: 200,
     };
+  } catch {
+    return persistenceFailure();
   }
+}
 
-  // 5. Route by Event Type
-  if (event.type === "checkout.session.completed") {
-    return handleCheckoutSessionCompleted(event as StripeEvent<StripeCheckoutSession>, storage);
-  }
-
-  if (event.type === "payment_intent.succeeded") {
-    return handlePaymentIntentSucceeded(event as StripeEvent<StripePaymentIntent>, storage);
-  }
-
-  // Ignored / Unhandled event type
+function persistenceFailure(): ProcessEventResult {
   return {
     status: "rejected",
-    reason: `Unhandled event type: ${event.type}`,
-    statusCode: 200,
+    reason: "Receipt persistence error; retry required",
+    statusCode: 500,
   };
+}
+
+async function confirmPaidState(
+  receipt: DepositReceipt,
+  storage: ReceiptStorage,
+  status: "success" | "duplicate",
+): Promise<ProcessEventResult> {
+  // Replays repair interrupted paid-state writes. The adapter must make this idempotent.
+  try {
+    const confirmed = await storage.markClientDepositPaid(receipt.client_reference_id, receipt.id);
+    if (!confirmed) return persistenceFailure();
+    return { status, receipt, statusCode: 200 };
+  } catch {
+    return persistenceFailure();
+  }
 }
 
 async function handleCheckoutSessionCompleted(
@@ -158,12 +183,7 @@ async function handleCheckoutSessionCompleted(
   // Idempotency Check by Payment Intent ID
   const existingByPi = await storage.findReceiptByPaymentIntent(paymentIntentId);
   if (existingByPi) {
-    return {
-      status: "duplicate",
-      receipt: existingByPi,
-      reason: "Payment intent has already been recorded",
-      statusCode: 200,
-    };
+    return confirmPaidState(existingByPi, storage, "duplicate");
   }
 
   // Create immutable receipt
@@ -183,19 +203,9 @@ async function handleCheckoutSessionCompleted(
 
   try {
     const saved = await storage.saveReceipt(receipt);
-    await storage.markClientDepositPaid(clientRef, saved.id);
-
-    return {
-      status: "success",
-      receipt: saved,
-      statusCode: 200,
-    };
-  } catch (err) {
-    return {
-      status: "rejected",
-      reason: `Receipt persistence error: ${err instanceof Error ? err.message : String(err)}`,
-      statusCode: 500,
-    };
+    return await confirmPaidState(saved, storage, "success");
+  } catch {
+    return persistenceFailure();
   }
 }
 
@@ -240,12 +250,7 @@ async function handlePaymentIntentSucceeded(
 
   const existingByPi = await storage.findReceiptByPaymentIntent(pi.id);
   if (existingByPi) {
-    return {
-      status: "duplicate",
-      receipt: existingByPi,
-      reason: "Payment intent has already been recorded",
-      statusCode: 200,
-    };
+    return confirmPaidState(existingByPi, storage, "duplicate");
   }
 
   const receipt: DepositReceipt = {
@@ -263,18 +268,8 @@ async function handlePaymentIntentSucceeded(
 
   try {
     const saved = await storage.saveReceipt(receipt);
-    await storage.markClientDepositPaid(clientRef, saved.id);
-
-    return {
-      status: "success",
-      receipt: saved,
-      statusCode: 200,
-    };
-  } catch (err) {
-    return {
-      status: "rejected",
-      reason: `Receipt persistence error: ${err instanceof Error ? err.message : String(err)}`,
-      statusCode: 500,
-    };
+    return await confirmPaidState(saved, storage, "success");
+  } catch {
+    return persistenceFailure();
   }
 }

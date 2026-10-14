@@ -67,5 +67,6 @@ export interface ReceiptStorage {
   findReceiptByEventId: (eventId: string) => Promise<DepositReceipt | null>;
   findReceiptByPaymentIntent: (paymentIntentId: string) => Promise<DepositReceipt | null>;
   saveReceipt: (receipt: DepositReceipt) => Promise<DepositReceipt>;
+  // Must be idempotent: replays confirm or repair the same receipt's paid-state transition.
   markClientDepositPaid: (clientReferenceId: string, receiptId: string) => Promise<boolean>;
 }

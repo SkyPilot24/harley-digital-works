@@ -1,5 +1,18 @@
 # Master delivery backlog
 
+## Launch-critical execution overlay — 14 October 2026
+
+See [dated completion roadmap](docs/LAUNCH_COMPLETION_ROADMAP_2026-10-14.md) for evidence, existing H01–H50/D01–D08 coverage, suggested owners, dependencies, conditional dates and revenue gates. Individual dated task bodies below are preserved; newer source/provider evidence takes precedence over obsolete open/pending wording. Do not infer an overall completion percentage.
+
+- H23–H25/H50: three payment partial-write/replay/error failures reproduced and fixed in an isolated review copy; fresh build/typecheck/format/full tests PASS; 66 smoke + 87 tests + 3 service-worker checks, plus 5 outreach checks. Default HTTP receipt storage remains in-memory, so durable atomic persistence/authentic provider/restart/concurrent acceptance is still blocking. No migration or production change made.
+- H03/H41/H47: main `45012e4` verified local/remote; #22/#23/#26/#27/#28 merged. #24 closed without merge; #25 draft/open/non-mergeable. Latest successful Actions deployment run skips its deploy step; reconcile provider revision before claiming publication.
+- H01/H02/H10/H32/H48: approved prices retained; customer-use tax/contract/refund/routing/backups/support/capacity evidence remains open. Keep the two-build pilot guard pending decision; today's digest displays three.
+- H19–H25/H43–H46/H50: complete one protected agreement/onboarding/approval/balance/care/recovery rehearsal, then one real paid pilot and recurring collection. Source/unit checks alone do not pass runtime gates.
+- H37: P01 authorised send recorded; three digest leads need CRM/inbox reconciliation. P02/P03 and expanded outreach require their applicable explicit sending authority. No new messages sent by this review.
+- H49/D01–D08/L01: independent domain evidence/renewal exceptions and optional Labs/product work do not block website-pilot readiness. Preserve unfinished prototypes behind existing deferral gates.
+
+No blanket task closure, source rollout or permission expansion. Original checkout's unrelated changes remain untouched.
+
 ## Current execution overlay - 7 October 2026
 
 This evidence/status overlay supersedes stale gap statements in the preserved historical task definitions. It does not create duplicate tasks or mark unverified work complete. Read PROJECT_STATUS.md for exact source and release evidence.
