@@ -1,5 +1,8 @@
 # The Harley Group — shared project status
 
+**Draft review submitted, 14 October:** [PR #29](https://github.com/SkyPilot24/harley-digital-works/pull/29) integrates the existing first-client work and launch corrections on `codex/launch-completion-2026-10-14`. Review head `1a71b7b` passed GitHub quality and credential checks; dependency audit reported zero vulnerabilities. Cloudflare created a successful native review Preview with an unconfigured backend, not functional acceptance. Active production deployment remains `ab1ae80f-5523-475f-8050-1c1be9a8aa99` / version `25218195-69ef-4616-8977-416cd740d876`, created 13 October; GitHub main remains `45012e4`. No merge, production migration, live billing or customer outreach. This supersedes earlier local-only submission labels while retaining tested runtime `280b0e6` and earlier rehearsal source identities. Full sale-to-care and owner decisions remain RED. This documentation follow-up requires its own current-head check result before treating that head as CI-verified.
+
+
 **Current runtime checkpoint: `280b0e615c1c777c526e67b51b857fa37ac513af`, 14 October.** Active trade/location pricing and schedule claims aligned with the approved £1,495/£249 offer; unsupported rendered job-value/performance figures removed. Build/typecheck/format/full suite pass; lint nine existing warnings; private-value scan 223 artifacts pass; representative phone/desktop browser checks pass. This checkpoint is local only. Prior sandbox receipt and fictional customer approval evidence retain their tested source identities. Production release and full sale-to-care acceptance remain open. See `TRADE_OFFER_CORRECTION_2026-10-14.md`.
 
 
