@@ -2,6 +2,8 @@
 
 14 October 2026. This plan authorises nothing by itself. The project remains RED for the complete paid-client lifecycle.
 
+Reviewed runtime source checkpoint: `a918919fa20dcf2f135fac31e7960c6d584af918`, branch `codex/launch-completion-2026-10-14`. Any later runtime change requires fresh affected checks and artifact identity before publication. Documentation follow-ups may reference this runtime checkpoint separately from their own commit.
+
 ## Concrete change ready for review
 
 The isolated review branch now integrates existing `codex/first-client-production` checkpoint `1ab1943` with canonical main `45012e4` and the payment-recovery corrections. This reuses the durable receipt/approval work already present in THG Enquiry Staging. All three request paths use the durable contract-bound receiver by default: `/api/payments/stripe`, `/api/stripe/webhook` and `/api/webhooks/stripe`. The prior default in-memory production fallback is removed; explicit injected storage is retained only for the legacy isolated test harness.
