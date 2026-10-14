@@ -419,3 +419,20 @@ test("storage lookup failure returns a retryable result without leaking internal
   assert.doesNotMatch(result.reason, /private datastore details/);
   assert.equal(storage.saveCalls, 0);
 });
+
+test("default webhook aliases fail closed without durable receiver enablement", async () => {
+  const enabled = process.env.STRIPE_WEBHOOK_ENABLED;
+  process.env.STRIPE_WEBHOOK_ENABLED = "false";
+  try {
+    for (const path of ["/api/stripe/webhook", "/api/webhooks/stripe"]) {
+      const request = new Request(`https://example.test${path}`, { method: "POST", body: "{}" });
+      const response = await handleStripeIncomingRequest(request, path);
+      assert.equal(response.status, 503);
+      assert.equal(response.headers.get("cache-control"), "no-store");
+      assert.deepEqual(await response.json(), { result: "unconfigured" });
+    }
+  } finally {
+    if (enabled === undefined) delete process.env.STRIPE_WEBHOOK_ENABLED;
+    else process.env.STRIPE_WEBHOOK_ENABLED = enabled;
+  }
+});
