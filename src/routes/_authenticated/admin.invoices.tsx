@@ -95,7 +95,7 @@ function InvoicesAdminPage() {
 
     return `
 INTERNAL PAYMENT REQUEST DRAFT — NOT AN ISSUED INVOICE
-Harley Digital Works · The Harley Group
+Harley DigitalWorks Ltd · Harley Digital Works
 Date: ${dateStr}
 Reference: HDW-${selectedClient ? selectedClient.id.slice(0, 8).toUpperCase() : "INV"}-${milestoneType.toUpperCase()}
 
@@ -105,7 +105,8 @@ ${contactName}${contactEmail}
 Item: ${paymentCalculation.label}
 Description: ${paymentCalculation.purpose}
 Proposed Milestone Amount: £${paymentCalculation.amount.toFixed(2)}
-Tax Treatment: Confirm seller registration and invoice treatment before issuing.
+VAT Status: Not VAT-registered (owner confirmed 14 October 2026).
+Supplier Details: Reconcile the supplied company number and address against the internal seller record before issue.
 Final Payable Amount: Confirm in the approved invoice/payment provider.
 --------------------------------------------------
 
@@ -197,9 +198,9 @@ Confirm actual payment independently from provider/ledger evidence.
             <span className="text-[11px] font-bold uppercase tracking-wider">Tax & VAT Status</span>
             <Receipt size={16} className="text-amber-700" />
           </div>
-          <div className="mt-2 text-xl font-bold text-ink">Confirmation required</div>
+          <div className="mt-2 text-xl font-bold text-ink">Not VAT-registered</div>
           <div className="mt-1 text-xs text-ink-muted">
-            Verify registration and invoice treatment.
+            Owner confirmed 14 October 2026. Seller issue details remain pending.
           </div>
         </div>
       </div>

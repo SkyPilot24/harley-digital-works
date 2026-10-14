@@ -1,5 +1,8 @@
 # The Harley Group — shared project status
 
+**Latest 14 October acceptance update:** the user approved and we executed the isolated sandbox rehearsal. Authentic fictional £747.50 checkout delivery produced one durable receipt; same-build redeployment, concurrent duplicate replays, rejection controls and temporary credential failure/recovery passed with the limits recorded in `Harley-sandbox-acceptance-2026-10-14.md`. Temporary Worker and new staging fixtures removed; original fixture retained. New Stripe endpoint disabled, physical deletion remains. Production and live billing unchanged. Owner confirmed Harley DigitalWorks Ltd and not VAT-registered; supplied company number/address recorded internally. Exact company-number search returned no result; reconciliation requested before invoice issue. The full paid-client lifecycle remains RED. Earlier pending statements below describe previous checkpoints and are superseded by this dated update.
+
+
 ## Customer-use offer and finance corrections — 14 October 2026
 
 H01/H02/H11/H22–H25/H47/H48: corrected local public/draft copy against ratified £1,495/£249 flagship and £995/£149 Launchpad. Removed unsupported public zero-tax/+VAT, guaranteed turnaround, unapproved growth/referral/instant-reply framing from affected surfaces; retained source WhatsApp widget is quiet/default suppressed. Shared offer keeps agreed dual routing and requires written tax/schedule/support/backup terms, with a two-build pilot guard and 30-minute monthly edit batch. No sold channel silently reduced or billing setting changed.

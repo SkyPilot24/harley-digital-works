@@ -1,5 +1,8 @@
 # First-client commercial decisions and issue checklist
 
+**Latest 14 October acceptance update:** the user approved and we executed the isolated sandbox rehearsal. Authentic fictional £747.50 checkout delivery produced one durable receipt; same-build redeployment, concurrent duplicate replays, rejection controls and temporary credential failure/recovery passed with the limits recorded in `Harley-sandbox-acceptance-2026-10-14.md`. Temporary Worker and new staging fixtures removed; original fixture retained. New Stripe endpoint disabled, physical deletion remains. Production and live billing unchanged. Owner confirmed Harley DigitalWorks Ltd and not VAT-registered; supplied company number/address recorded internally. Exact company-number search returned no result; reconciliation requested before invoice issue. The full paid-client lifecycle remains RED. Earlier pending statements below describe previous checkpoints and are superseded by this dated update.
+
+
 14 October 2026. Internal review for H01/H02/H10/H11/H19/H23–H25/H32/H48/H50. This is a decision/evidence pack, not an issued agreement, invoice, accepted order or new commercial approval.
 
 ## Governing offer

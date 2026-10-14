@@ -1,5 +1,8 @@
 # H50 sandbox receiver: review and approval scope
 
+**Latest 14 October acceptance update:** the user approved and we executed the isolated sandbox rehearsal. Authentic fictional £747.50 checkout delivery produced one durable receipt; same-build redeployment, concurrent duplicate replays, rejection controls and temporary credential failure/recovery passed with the limits recorded in `Harley-sandbox-acceptance-2026-10-14.md`. Temporary Worker and new staging fixtures removed; original fixture retained. New Stripe endpoint disabled, physical deletion remains. Production and live billing unchanged. Owner confirmed Harley DigitalWorks Ltd and not VAT-registered; supplied company number/address recorded internally. Exact company-number search returned no result; reconciliation requested before invoice issue. The full paid-client lifecycle remains RED. Earlier pending statements below describe previous checkpoints and are superseded by this dated update.
+
+
 14 October 2026. This plan authorises nothing by itself. The project remains RED for the complete paid-client lifecycle.
 
 Current reviewed runtime source checkpoint: `90e282fc75b13d8ed9fcbd6f608a8fb1f8f1d299`, branch `codex/launch-completion-2026-10-14`. This supersedes `a918919` with customer-use offer/payment-draft corrections. Fresh build/typecheck/format/full suite pass; lint nine existing warnings and configured-private-value scan passes across 223 public artifacts. The requested sandbox-only publication/provider-settings scope and exclusions are unchanged; approval is still pending. Any later runtime change requires fresh affected checks and artifact identity before publication. Documentation follow-ups may reference this runtime checkpoint separately from their own commit.

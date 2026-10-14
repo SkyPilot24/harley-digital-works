@@ -11,7 +11,8 @@ export const currentStrategy = {
     "Bristol & Bath regional electrical contractors (M4 Corridor pilot, UK-wide remote digital studio). Delivery schedule agreed after brief, access and assets are confirmed.",
   offer:
     "The Revenue Engine (Core Flagship): £1,495 setup (50% deposit £747.50, 50% completion balance £747.50) + £249/mo care. Entry: The Launchpad (£995 + £149/mo). Expansion: The Market Leader (£2,495 + £399/mo). Confirm seller tax registration and invoice treatment before issue.",
-  taxStatus: "Unverified — confirm registration and invoice treatment before issue",
+  sellerName: "Harley DigitalWorks Ltd",
+  taxStatus: "Not VAT-registered — owner confirmed 14 October 2026; seller issue details pending",
   approval:
     "Written proposal acceptance, 50% deposit confirmed in banking ledger, and verified trade accreditations before work begins.",
   build:

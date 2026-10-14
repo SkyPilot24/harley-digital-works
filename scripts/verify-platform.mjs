@@ -268,10 +268,10 @@ if (
     "Scheduled crons (* * * * * and 0 * * * *) are synchronized across Nitro config, handover, and KB",
   );
 
-  // Check 4: Records retain the unresolved invoice/tax review gate, not a tax compliance claim.
+  // Check 4: Record the owner-confirmed status while retaining invoice review before issue.
   const vatAligned =
     kbContent.includes("Tax review required") &&
-    strategyContent.includes('taxStatus: "Unverified') &&
+    strategyContent.includes('taxStatus: "Not VAT-registered') &&
     offerDocContent.includes("Registration/tax presentation needs seller/accountant confirmation");
   assert(vatAligned, "Commercial records retain the tax registration/invoice review gate");
 

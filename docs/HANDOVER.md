@@ -1,5 +1,8 @@
 # Shared development handover
 
+**Latest 14 October acceptance update:** the user approved and we executed the isolated sandbox rehearsal. Authentic fictional £747.50 checkout delivery produced one durable receipt; same-build redeployment, concurrent duplicate replays, rejection controls and temporary credential failure/recovery passed with the limits recorded in `Harley-sandbox-acceptance-2026-10-14.md`. Temporary Worker and new staging fixtures removed; original fixture retained. New Stripe endpoint disabled, physical deletion remains. Production and live billing unchanged. Owner confirmed Harley DigitalWorks Ltd and not VAT-registered; supplied company number/address recorded internally. Exact company-number search returned no result; reconciliation requested before invoice issue. The full paid-client lifecycle remains RED. Earlier pending statements below describe previous checkpoints and are superseded by this dated update.
+
+
 ## Codex — customer-use offer and invoice-draft audit — 14 October 2026
 
 - Continued safe work while sandbox Worker/webhook approval remains pending; no automatic-goal continuation treated as approval. Source inspected at `85e5848`; original main/peer changes untouched. Read current canonical commercial reconciliation before changes and carried its tax/capacity/terms limits into isolated governing records.
