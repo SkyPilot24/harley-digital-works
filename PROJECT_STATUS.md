@@ -1,5 +1,13 @@
 # The Harley Group — shared project status
 
+## Customer-use offer and finance corrections — 14 October 2026
+
+H01/H02/H11/H22–H25/H47/H48: corrected local public/draft copy against ratified £1,495/£249 flagship and £995/£149 Launchpad. Removed unsupported public zero-tax/+VAT, guaranteed turnaround, unapproved growth/referral/instant-reply framing from affected surfaces; retained source WhatsApp widget is quiet/default suppressed. Shared offer keeps agreed dual routing and requires written tax/schedule/support/backup terms, with a two-build pilot guard and 30-minute monthly edit batch. No sold channel silently reduced or billing setting changed.
+
+Admin proposal/payment text is explicitly internal/unissued, with no assumed bank payee or VAT status. Finance reuses the safe recorded-value helper and distinguishes manual agreements from actual receipts; retrieval failures show unavailable/retry. Old £95/£195 client presets corrected to agreed £149/£249 without changing data. Carried current canonical commercial reconciliation into this isolated branch; strategy/KB and smoke checks now retain unknown tax/terms gates instead of asserting compliance from repeated wording. Actual economics/time remain unmeasured.
+
+Build/typecheck/format/full suite PASS (66 smoke + 133 tests + 3 service-worker tests); lint zero errors/nine existing warnings; exact private-value scan PASS across 223 public artifacts. Browser: three representative public routes at 375/768/1440, no retained horizontal overflow; one transient desktop reading cleared after settled DOM/screenshot. Mobile pricing navigation and selected-service enquiry prefill PASS; no form submission/message. Admin changes are source/build checked, not genuine admin-browser payment acceptance. Owner-supplied legal entity and VAT registration are pending; sandbox rollout approval remains pending. See `docs/FIRST_CLIENT_COMMERCIAL_DECISIONS_2026-10-14.md`. Source local only, no push/deploy/live billing. Full lifecycle remains RED.
+
 ## First-client branch recovered and integrated locally — 14 October 2026
 
 H19–H25/H47/H50: fresh staging metadata identified already applied payment/delivery/session/launch schemas missing from main. Reused `codex/first-client-production` at `1ab1943`; integrated locally with `45012e4` and launch-review changes, preserving both histories and both test suites. Default webhook aliases now delegate to the durable contract-bound receiver; memory fallback removed. Payment/delivery features stay disabled. No production/main change, provider publication or new migration.

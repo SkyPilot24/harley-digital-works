@@ -616,28 +616,28 @@ function ClientsPage() {
                           <span className="text-xs text-emerald-800">/ month recurring</span>
                         </div>
                       </div>
-                      <div className="flex gap-2">
+                      <div className="flex flex-wrap gap-2">
                         <button
                           onClick={() =>
                             saveClientMutation.mutate({
                               id: client360.id,
-                              monthly_value_cents: 9500,
+                              monthly_value_cents: 14900,
                             })
                           }
                           className="rounded-lg border border-emerald-300 bg-white px-3 py-1.5 text-xs font-semibold text-emerald-900 shadow-xs hover:bg-emerald-50"
                         >
-                          Set £95/mo (Launch)
+                          Record agreed £149/mo
                         </button>
                         <button
                           onClick={() =>
                             saveClientMutation.mutate({
                               id: client360.id,
-                              monthly_value_cents: 19500,
+                              monthly_value_cents: 24900,
                             })
                           }
                           className="rounded-lg border border-emerald-300 bg-white px-3 py-1.5 text-xs font-semibold text-emerald-900 shadow-xs hover:bg-emerald-50"
                         >
-                          Set £195/mo (Growth)
+                          Record agreed £249/mo
                         </button>
                       </div>
                     </div>

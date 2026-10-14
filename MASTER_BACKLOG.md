@@ -1,5 +1,9 @@
 # Master delivery backlog
 
+## H11/H22–H25 commercial-use correction — 14 October 2026
+
+Prepared local customer-use copy and finance/draft corrections, preserving ratified prices and existing records. Public retained surfaces stop asserting unverified zero-tax/+VAT and guaranteed timing; core £1,495/£249 and £747.50 milestones remain. Launchpad draft matches £995/£149; payment/proposal copies remain internal/unissued; manually recorded client values are not verified revenue. Existing tax/capacity smoke assertions revised to test the unknown-tax/two-build-pilot record, not claim legal/runtime compliance. Nine representative viewport-route observations, mobile pricing navigation and enquiry prefill verified; no submission. Build/typecheck/format/full suite and private-value exposure checks PASS; lint nine existing warnings. Supplier/tax/sold-routing/support/refund/backup decisions and external acceptance remain open; do not close H01/H02/H11/H23/H24/H25/H47/H48/H50 from this preparation. Decision pack: `docs/FIRST_CLIENT_COMMERCIAL_DECISIONS_2026-10-14.md`.
+
 ## H50 existing implementation reconciliation — 14 October 2026
 
 The isolated launch-review branch now integrates existing first-client checkpoint `1ab1943`; do not duplicate its staged payment/delivery tables or treat absent main source as absent implementation. Default request aliases use its durable receiver; production and main unchanged. Build/typecheck/format/full suite PASS (66 smoke + 133 tests + 3 service-worker); lint nine existing warnings. Actual local/staging request-origin/session tests pass; fictional account cleanup independently confirmed. Payment feature disabled, authentic provider delivery/restart/concurrency and complete client lifecycle remain open. Next specific approval/execution: `docs/H50_SANDBOX_RELEASE_PLAN_2026-10-14.md`. See dated status/handover for implementation and staging migration mapping limits.

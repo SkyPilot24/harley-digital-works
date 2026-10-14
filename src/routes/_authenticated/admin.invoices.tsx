@@ -21,6 +21,7 @@ import { supabase } from "@/integrations/supabase/client";
 import type { Database } from "@/integrations/supabase/types";
 import { PageHeader, StatusBadge } from "./admin.index";
 import { toast } from "sonner";
+import { recordedActiveMonthlyValue } from "@/lib/client-workspace";
 
 export const Route = createFileRoute("/_authenticated/admin/invoices")({
   component: InvoicesAdminPage,
@@ -51,11 +52,7 @@ function InvoicesAdminPage() {
   });
 
   const clients = clientsQuery.data ?? [];
-  const activeClients = clients.filter((c) => c.status === "active");
-
-  const verifiedMRR = activeClients.reduce((sum, c) => {
-    return sum + (c.monthly_value_cents ? c.monthly_value_cents / 100 : 0);
-  }, 0);
+  const recordedMonthlyValue = recordedActiveMonthlyValue(clients) / 100;
 
   const selectedClient = clients.find((c) => c.id === selectedClientId) ?? clients[0];
 
@@ -97,7 +94,7 @@ function InvoicesAdminPage() {
     const dateStr = new Date().toLocaleDateString("en-GB");
 
     return `
-PAYMENT REQUEST & MILESTONE INVOICE
+INTERNAL PAYMENT REQUEST DRAFT — NOT AN ISSUED INVOICE
 Harley Digital Works · The Harley Group
 Date: ${dateStr}
 Reference: HDW-${selectedClient ? selectedClient.id.slice(0, 8).toUpperCase() : "INV"}-${milestoneType.toUpperCase()}
@@ -107,14 +104,12 @@ ${contactName}${contactEmail}
 --------------------------------------------------
 Item: ${paymentCalculation.label}
 Description: ${paymentCalculation.purpose}
-Amount Due: £${paymentCalculation.amount.toFixed(2)}
-Tax Treatment: VAT not applicable / zero-rated (under HMRC registration threshold)
-Total Payable: £${paymentCalculation.amount.toFixed(2)}
+Proposed Milestone Amount: £${paymentCalculation.amount.toFixed(2)}
+Tax Treatment: Confirm seller registration and invoice treatment before issuing.
+Final Payable Amount: Confirm in the approved invoice/payment provider.
 --------------------------------------------------
 
-PAYMENT INSTRUCTIONS (UK BACS Bank Transfer):
-Account Name: The Harley Group / Harley Digital Works
-Payment Reference: HDW-${
+Proposed Payment Reference: HDW-${
       selectedClient
         ? selectedClient.name
             .replace(/[^a-zA-Z0-9]/g, "")
@@ -123,8 +118,9 @@ Payment Reference: HDW-${
         : "TRADE"
     }
 
-Alternatively, pay securely online via Stripe invoice link on request.
-Please confirm once payment has been sent.
+Before sending: verify supplier legal details, agreed scope, tax treatment and payment destination.
+Issue through the approved provider; this draft contains no payable link or verified bank details.
+Confirm actual payment independently from provider/ledger evidence.
 `.trim();
   }, [selectedClient, milestoneType, paymentCalculation]);
 
@@ -136,8 +132,8 @@ Please confirm once payment has been sent.
   return (
     <div className="space-y-8 pb-12">
       <PageHeader
-        title="Finance & Invoices"
-        subtitle="Manage setup milestones, deposit tracking, and recurring care subscriptions (£249/mo)."
+        title="Finance & Payment Drafts"
+        subtitle="Prepare milestone drafts; reconcile actual payments in the approved provider and ledger."
       />
 
       {/* Financial Health Summary */}
@@ -145,16 +141,28 @@ Please confirm once payment has been sent.
         <div className="rounded-xl border border-ink/10 bg-white p-5 shadow-xs">
           <div className="flex items-center justify-between text-ink-muted">
             <span className="text-[11px] font-bold uppercase tracking-wider">
-              Verified Active MRR
+              Recorded Monthly Agreement Value
             </span>
             <Receipt size={16} className="text-emerald-700" />
           </div>
           <div className="mt-2 text-3xl font-extrabold text-ink">
-            £{verifiedMRR.toLocaleString()}/mo
+            {clientsQuery.isError
+              ? "Unavailable"
+              : clientsQuery.isPending
+                ? "Loading…"
+                : `£${recordedMonthlyValue.toLocaleString()}/mo`}
           </div>
           <div className="mt-1 text-xs text-ink-muted">
-            {activeClients.length} active client subscription{activeClients.length === 1 ? "" : "s"}
-            .
+            {clientsQuery.isError ? (
+              <span role="alert">
+                Could not retrieve client agreements.{" "}
+                <button className="underline" onClick={() => clientsQuery.refetch()}>
+                  Retry
+                </button>
+              </span>
+            ) : (
+              "Manually recorded client values; not verified subscriptions or collected revenue."
+            )}
           </div>
         </div>
 
@@ -189,8 +197,10 @@ Please confirm once payment has been sent.
             <span className="text-[11px] font-bold uppercase tracking-wider">Tax & VAT Status</span>
             <Receipt size={16} className="text-amber-700" />
           </div>
-          <div className="mt-2 text-xl font-bold text-ink">Zero-Rated</div>
-          <div className="mt-1 text-xs text-ink-muted">Under HMRC threshold; VAT not charged.</div>
+          <div className="mt-2 text-xl font-bold text-ink">Confirmation required</div>
+          <div className="mt-1 text-xs text-ink-muted">
+            Verify registration and invoice treatment.
+          </div>
         </div>
       </div>
 
@@ -198,20 +208,19 @@ Please confirm once payment has been sent.
       <div className="rounded-xl border border-ink/10 bg-emerald-50/50 p-4 text-xs text-emerald-950 flex items-start gap-3">
         <ShieldCheck size={18} className="text-emerald-700 shrink-0 mt-0.5" />
         <div>
-          <span className="font-bold">HMRC & Accounting Compliance Rule:</span> Formal statutory
-          accounts, VAT returns, and official legal tax invoices are managed via your primary
-          accounting software or bank ledger. This console generates verified client milestone
-          payment notices without invented VAT numbers or mock random invoices.
+          <span className="font-bold">Before issuing a payment request:</span> Confirm supplier
+          identity, agreed scope, tax treatment and payment destination. This console prepares
+          drafts; it does not issue provider invoices or verify payments. Record actual receipts
+          separately in the approved provider and accounting ledger.
         </div>
       </div>
 
       {/* Interactive Milestone Payment Request Generator */}
       <div className="rounded-xl border border-ink/10 bg-white p-6 shadow-xs">
         <div className="border-b border-ink/10 pb-4 mb-6">
-          <h2 className="text-lg font-bold text-ink">Generate Milestone Payment Request</h2>
+          <h2 className="text-lg font-bold text-ink">Prepare Milestone Payment Draft</h2>
           <p className="text-xs text-ink-muted mt-0.5">
-            Create professional payment notices for 50% deposits, 50% completion balances, or
-            monthly care subscriptions.
+            Prepare a draft for review before issuing an approved deposit, balance or care invoice.
           </p>
         </div>
 

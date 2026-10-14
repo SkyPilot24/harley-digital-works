@@ -235,9 +235,9 @@ function RevenueOSPage() {
                 VAT & Statutory Compliance
               </h4>
               <p className="text-xs text-ink-muted leading-relaxed">
-                Harley Digital Works operates below the HMRC statutory VAT registration threshold.
-                Prices are presented as £1,495 (VAT not applicable / zero-rated). No fake VAT
-                numbers or mock tax documents are generated.
+                Confirm seller VAT registration and invoice treatment before issuing a quote or
+                invoice. Being below the registration threshold does not establish a zero rate.
+                Approved package prices remain unchanged; use the verified provider and ledger.
               </p>
               <div className="pt-2 text-xs font-bold text-ink">
                 Statutory invoices and accounting reconciliations managed in primary ledger.
