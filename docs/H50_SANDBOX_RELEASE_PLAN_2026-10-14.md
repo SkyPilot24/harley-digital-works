@@ -2,7 +2,7 @@
 
 14 October 2026. This plan authorises nothing by itself. The project remains RED for the complete paid-client lifecycle.
 
-Reviewed runtime source checkpoint: `a918919fa20dcf2f135fac31e7960c6d584af918`, branch `codex/launch-completion-2026-10-14`. Any later runtime change requires fresh affected checks and artifact identity before publication. Documentation follow-ups may reference this runtime checkpoint separately from their own commit.
+Current reviewed runtime source checkpoint: `90e282fc75b13d8ed9fcbd6f608a8fb1f8f1d299`, branch `codex/launch-completion-2026-10-14`. This supersedes `a918919` with customer-use offer/payment-draft corrections. Fresh build/typecheck/format/full suite pass; lint nine existing warnings and configured-private-value scan passes across 223 public artifacts. The requested sandbox-only publication/provider-settings scope and exclusions are unchanged; approval is still pending. Any later runtime change requires fresh affected checks and artifact identity before publication. Documentation follow-ups may reference this runtime checkpoint separately from their own commit.
 
 ## Concrete change ready for review
 
