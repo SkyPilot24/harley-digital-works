@@ -6,6 +6,21 @@ import {
   type ClientFilter,
 } from "@/lib/admin-records";
 import { AdminPagination } from "@/components/admin/AdminPagination";
+import {
+  adminErrorMessage,
+  deleteRecord,
+  insertRecord,
+  invalidateAdminData,
+  updateRecord,
+} from "@/lib/admin-writes";
+import {
+  AdminValidationError,
+  MAX_CENTS,
+  centsToPoundsInput,
+  formatCents,
+  parseClientInput,
+  parseProjectInput,
+} from "@/lib/admin-validation";
 import { useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { createFileRoute } from "@tanstack/react-router";
@@ -108,104 +123,63 @@ function ClientsPage() {
   });
   // Client Mutations
   const saveClientMutation = useMutation({
-    mutationFn: async (payload: Partial<ClientRow>) => {
-      if (payload.id) {
-        const { id, ...rest } = payload;
-        const { data, error } = await supabase
-          .from("clients")
-          .update(rest)
-          .eq("id", id)
-          .select("*")
-          .single();
-        if (error) throw error;
-        return data;
-      } else {
-        const { data, error } = await supabase
-          .from("clients")
-          .insert({
-            name: payload.name ?? "",
-            contact_name: payload.contact_name ?? null,
-            contact_email: payload.contact_email ?? null,
-            contact_phone: payload.contact_phone ?? null,
-            website: payload.website ?? null,
-            status: payload.status ?? "lead",
-            monthly_value_cents: payload.monthly_value_cents ?? 0,
-            notes: payload.notes ?? null,
-          })
-          .select("*")
-          .single();
-        if (error) throw error;
-        return data;
+    mutationFn: async (
+      payload: Record<string, unknown> & { id?: string; quickMonthlyCents?: number },
+    ) => {
+      if (payload.id && payload.quickMonthlyCents !== undefined) {
+        const cents = payload.quickMonthlyCents;
+        if (!Number.isSafeInteger(cents) || cents < 0 || cents > MAX_CENTS)
+          throw new AdminValidationError("Monthly care value is invalid");
+        return updateRecord(supabase, "clients", payload.id, { monthly_value_cents: cents });
       }
+      const input = parseClientInput(payload);
+      if (payload.id) return updateRecord(supabase, "clients", payload.id, input);
+      return insertRecord(supabase, "clients", input);
     },
     onSuccess: (saved) => {
       setClient360((current) => (current?.id === saved.id ? saved : current));
-      qc.invalidateQueries({ queryKey: ["clients"] });
-      qc.invalidateQueries({ queryKey: ["admin"] });
+      invalidateAdminData(qc, "client");
       setEditingClient(null);
       setIsCreatingClient(false);
       toast.success("Client saved");
     },
-    onError: (err: Error) => toast.error(err.message),
+    onError: (err: unknown) =>
+      toast.error(adminErrorMessage(err, "The client could not be saved.")),
   });
 
   const deleteClientMutation = useMutation({
-    mutationFn: async (id: string) => {
-      const { error } = await supabase.from("clients").delete().eq("id", id).select("id").single();
-      if (error) throw error;
-    },
-    onSuccess: () => {
-      qc.invalidateQueries({ queryKey: ["clients"] });
-      qc.invalidateQueries({ queryKey: ["admin"] });
-      if (client360?.id) setClient360(null);
+    mutationFn: (id: string) => deleteRecord(supabase, "clients", id),
+    onSuccess: (_result, id) => {
+      invalidateAdminData(qc, "client");
+      setClient360((current) => (current?.id === id ? null : current));
       setPage(0);
       toast.success("Client deleted");
     },
-    onError: (err: Error) => toast.error(err.message),
+    onError: (err: unknown) =>
+      toast.error(adminErrorMessage(err, "The client could not be deleted.")),
   });
 
   // Project Mutation (for Client 360 Workspace)
   const createProjectMutation = useMutation({
-    mutationFn: async (payload: {
-      name: string;
-      client_id: string;
-      status: ProjectStatus;
-      budget_cents: number;
-      start_date?: string;
-      target_date?: string;
-      summary?: string;
-    }) => {
-      const { error } = await supabase.from("projects").insert({
-        name: payload.name,
-        client_id: payload.client_id,
-        status: payload.status,
-        budget_cents: payload.budget_cents,
-        start_date: payload.start_date || null,
-        target_date: payload.target_date || null,
-        summary: payload.summary || null,
-      });
-      if (error) throw error;
-    },
+    mutationFn: (payload: Record<string, unknown>) =>
+      insertRecord(supabase, "projects", parseProjectInput(payload)),
     onSuccess: () => {
-      qc.invalidateQueries({ queryKey: ["projects"] });
-      qc.invalidateQueries({ queryKey: ["admin"] });
+      invalidateAdminData(qc, "project");
       setIsAddingProject(false);
       toast.success("Project attached to client successfully");
     },
-    onError: (err: Error) => toast.error(err.message),
+    onError: (err: unknown) =>
+      toast.error(adminErrorMessage(err, "The project could not be created.")),
   });
 
   const deleteProjectMutation = useMutation({
-    mutationFn: async (id: string) => {
-      const { error } = await supabase.from("projects").delete().eq("id", id).select("id").single();
-      if (error) throw error;
-    },
+    mutationFn: (id: string) => deleteRecord(supabase, "projects", id),
     onSuccess: () => {
-      qc.invalidateQueries({ queryKey: ["projects"] });
-      qc.invalidateQueries({ queryKey: ["admin"] });
+      invalidateAdminData(qc, "project");
       toast.success("Project deleted");
     },
-    onError: (err: Error) => toast.error(err.message),
+    onError: (err: unknown) =>
+      toast.error(adminErrorMessage(err, "The project could not be deleted.")),
   });
 
   const clients = clientsQuery.isSuccess ? clientsQuery.data.rows : [];
@@ -214,7 +188,10 @@ function ClientsPage() {
   const counts = summary?.counts;
   const projectCounts = projectSummaryQuery.isSuccess ? projectSummaryQuery.data : undefined;
   const activeClientCount = counts?.active ?? 0;
-  const totalMRRPounds = (summary?.monthlyValueCents ?? 0) / 100;
+  const totalMRR = formatCents(summary?.monthlyValueCents ?? 0)!;
+  const averageMRR = formatCents(
+    activeClientCount > 0 ? Math.round((summary?.monthlyValueCents ?? 0) / activeClientCount) : 0,
+  )!;
   const filteredClients = clients;
   const clientProjects = clientProjectsQuery.isSuccess ? clientProjectsQuery.data : [];
   return (
@@ -327,7 +304,7 @@ function ClientsPage() {
                 </span>
               </div>
               <div className="mt-3 text-3xl font-semibold text-emerald-900">
-                {clientSummaryQuery.isSuccess ? `£${totalMRRPounds.toLocaleString()}` : "—"}
+                {clientSummaryQuery.isSuccess ? totalMRR : "—"}
                 <span className="text-sm font-normal text-emerald-700">/mo</span>
               </div>
               <div className="mt-1 text-xs text-emerald-700">
@@ -358,9 +335,7 @@ function ClientsPage() {
                 </span>
               </div>
               <div className="mt-3 text-3xl font-semibold text-ink">
-                {clientSummaryQuery.isSuccess
-                  ? `£${activeClientCount > 0 ? Math.round(totalMRRPounds / activeClientCount) : 0}`
-                  : "—"}
+                {clientSummaryQuery.isSuccess ? averageMRR : "—"}
                 <span className="text-sm font-normal text-ink-muted">/mo</span>
               </div>
               <div className="mt-1 text-xs text-ink-muted">Per active client account</div>
@@ -467,7 +442,7 @@ function ClientsPage() {
                   </tr>
                 )}
                 {filteredClients.map((client) => {
-                  const monthlyValue = (client.monthly_value_cents ?? 0) / 100;
+                  const monthlyValue = client.monthly_value_cents ?? 0;
                   const linkedProjectsCount = allProjects.filter(
                     (p) => p.client_id === client.id,
                   ).length;
@@ -509,7 +484,7 @@ function ClientsPage() {
                       <td className="px-4 py-3.5">
                         {monthlyValue > 0 ? (
                           <span className="inline-flex items-center gap-1 rounded-full bg-emerald-50 px-2.5 py-1 text-xs font-semibold text-emerald-800">
-                            £{monthlyValue}/mo
+                            {formatCents(monthlyValue)}/mo
                           </span>
                         ) : (
                           <span className="text-xs text-ink-muted">One-off / None</span>
@@ -660,7 +635,7 @@ function ClientsPage() {
                         </div>
                         <div className="mt-1 flex items-baseline gap-2">
                           <span className="text-2xl font-bold text-emerald-950">
-                            £{(client360.monthly_value_cents ?? 0) / 100}
+                            {formatCents(client360.monthly_value_cents) ?? "Not recorded"}
                           </span>
                           <span className="text-xs text-emerald-800">/ month recurring</span>
                         </div>
@@ -670,7 +645,7 @@ function ClientsPage() {
                           onClick={() =>
                             saveClientMutation.mutate({
                               id: client360.id,
-                              monthly_value_cents: 14900,
+                              quickMonthlyCents: 14900,
                             })
                           }
                           className="rounded-lg border border-emerald-300 bg-white px-3 py-1.5 text-xs font-semibold text-emerald-900 shadow-xs hover:bg-emerald-50"
@@ -681,7 +656,7 @@ function ClientsPage() {
                           onClick={() =>
                             saveClientMutation.mutate({
                               id: client360.id,
-                              monthly_value_cents: 24900,
+                              quickMonthlyCents: 24900,
                             })
                           }
                           className="rounded-lg border border-emerald-300 bg-white px-3 py-1.5 text-xs font-semibold text-emerald-900 shadow-xs hover:bg-emerald-50"
@@ -775,17 +750,14 @@ function ClientsPage() {
                         onSubmit={(e) => {
                           e.preventDefault();
                           const fd = new FormData(e.currentTarget);
-                          const budgetGbp = parseFloat(String(fd.get("budget") ?? "0"));
                           createProjectMutation.mutate({
-                            name: String(fd.get("name") ?? ""),
+                            name: fd.get("name"),
                             client_id: client360.id,
-                            status:
-                              (String(fd.get("status") ?? "discovery") as ProjectStatus) ||
-                              "discovery",
-                            budget_cents: Math.round(budgetGbp * 100),
-                            start_date: String(fd.get("start_date") ?? "") || undefined,
-                            target_date: String(fd.get("target_date") ?? "") || undefined,
-                            summary: String(fd.get("summary") ?? "") || undefined,
+                            status: fd.get("status"),
+                            budget: fd.get("budget"),
+                            start_date: fd.get("start_date"),
+                            target_date: fd.get("target_date"),
+                            summary: fd.get("summary"),
                           });
                         }}
                         className="mt-4 space-y-3 rounded-xl border border-blue-200 bg-blue-50/40 p-4 text-xs"
@@ -813,7 +785,7 @@ function ClientsPage() {
                               <option value="discovery">Discovery</option>
                               <option value="in_progress">In Progress</option>
                               <option value="review">Review</option>
-                              <option value="launched">Launched</option>
+                              <option value="launched">Launched (requires verified release)</option>
                               <option value="on_hold">On Hold</option>
                             </select>
                           </div>
@@ -823,8 +795,9 @@ function ClientsPage() {
                             </label>
                             <input
                               name="budget"
-                              type="number"
-                              defaultValue="1495"
+                              type="text"
+                              inputMode="decimal"
+                              placeholder="Optional, e.g. 1495"
                               className="mt-1 w-full rounded-md border border-ink/15 bg-white px-3 py-1.5 text-xs text-ink focus:border-ink focus:outline-none"
                             />
                           </div>
@@ -835,7 +808,6 @@ function ClientsPage() {
                             <input
                               name="start_date"
                               type="date"
-                              defaultValue={new Date().toISOString().split("T")[0]}
                               className="mt-1 w-full rounded-md border border-ink/15 bg-white px-3 py-1.5 text-xs text-ink focus:border-ink focus:outline-none"
                             />
                           </div>
@@ -905,7 +877,7 @@ function ClientsPage() {
                         </p>
                       )}
                       {clientProjects.map((project) => {
-                        const budgetGbp = (project.budget_cents ?? 0) / 100;
+                        const budgetCents = project.budget_cents ?? 0;
                         return (
                           <div
                             key={project.id}
@@ -924,9 +896,9 @@ function ClientsPage() {
                                 </p>
                               )}
                               <div className="mt-2 flex flex-wrap items-center gap-3 text-xs text-ink-muted">
-                                {budgetGbp > 0 && (
+                                {budgetCents > 0 && (
                                   <span className="font-medium text-ink">
-                                    Budget: £{budgetGbp.toLocaleString()}
+                                    Budget: {formatCents(budgetCents)}
                                   </span>
                                 )}
                                 {project.start_date && (
@@ -1009,18 +981,17 @@ function ClientsPage() {
               onSubmit={(e) => {
                 e.preventDefault();
                 const fd = new FormData(e.currentTarget);
-                const monthlyGbp = parseFloat(String(fd.get("monthly_value") ?? "0"));
 
                 saveClientMutation.mutate({
                   id: editingClient?.id,
-                  name: String(fd.get("name") ?? ""),
-                  contact_name: String(fd.get("contact_name") ?? "") || null,
-                  contact_email: String(fd.get("contact_email") ?? "") || null,
-                  contact_phone: String(fd.get("contact_phone") ?? "") || null,
-                  website: String(fd.get("website") ?? "") || null,
-                  status: (String(fd.get("status") ?? "active") as ClientStatus) || "active",
-                  monthly_value_cents: Math.round(monthlyGbp * 100),
-                  notes: String(fd.get("notes") ?? "") || null,
+                  name: fd.get("name"),
+                  contact_name: fd.get("contact_name"),
+                  contact_email: fd.get("contact_email"),
+                  contact_phone: fd.get("contact_phone"),
+                  website: fd.get("website"),
+                  status: fd.get("status"),
+                  monthly_value: fd.get("monthly_value"),
+                  notes: fd.get("notes"),
                 });
               }}
               className="mt-5 space-y-4 text-sm"
@@ -1107,13 +1078,10 @@ function ClientsPage() {
                   </label>
                   <input
                     name="monthly_value"
-                    type="number"
-                    defaultValue={
-                      editingClient?.monthly_value_cents
-                        ? editingClient.monthly_value_cents / 100
-                        : 0
-                    }
-                    placeholder="95"
+                    type="text"
+                    inputMode="decimal"
+                    defaultValue={centsToPoundsInput(editingClient?.monthly_value_cents)}
+                    placeholder="e.g. 95 or 95.50 (optional)"
                     className="mt-1 w-full rounded-lg border border-ink/15 px-3 py-2 text-ink focus:border-ink focus:outline-none"
                   />
                 </div>
