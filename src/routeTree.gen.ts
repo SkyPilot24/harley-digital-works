@@ -47,7 +47,9 @@ import { Route as ServicesAutomationRouteImport } from './routes/services_.autom
 import { Route as ServicesAiAutomationRouteImport } from './routes/services_.ai-automation'
 import { Route as LocationsSlugRouteImport } from './routes/locations_.$slug'
 import { Route as DemosElectricianConceptRouteImport } from './routes/demos_.electrician-concept'
+import { Route as ClientReviewProjectIdRouteImport } from './routes/client-review_.$projectId'
 import { Route as AuthenticatedAdminIndexRouteImport } from './routes/_authenticated/admin.index'
+import { Route as ApiPaymentsStripeRouteImport } from './routes/api.payments.stripe'
 import { Route as AuthenticatedAdminUsersRouteImport } from './routes/_authenticated/admin.users'
 import { Route as AuthenticatedAdminTestimonialsRouteImport } from './routes/_authenticated/admin.testimonials'
 import { Route as AuthenticatedAdminTeamRouteImport } from './routes/_authenticated/admin.team'
@@ -257,10 +259,20 @@ const DemosElectricianConceptRoute = DemosElectricianConceptRouteImport.update({
   path: '/demos/electrician-concept',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ClientReviewProjectIdRoute = ClientReviewProjectIdRouteImport.update({
+  id: '/client-review_/$projectId',
+  path: '/client-review/$projectId',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AuthenticatedAdminIndexRoute = AuthenticatedAdminIndexRouteImport.update({
   id: '/admin/',
   path: '/admin/',
   getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const ApiPaymentsStripeRoute = ApiPaymentsStripeRouteImport.update({
+  id: '/api/payments/stripe',
+  path: '/api/payments/stripe',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const AuthenticatedAdminUsersRoute = AuthenticatedAdminUsersRouteImport.update({
   id: '/admin/users',
@@ -385,6 +397,7 @@ export interface FileRoutesByFullPath {
   '/track': typeof TrackRoute
   '/trades': typeof TradesRoute
   '/work': typeof WorkRoute
+  '/client-review/$projectId': typeof ClientReviewProjectIdRoute
   '/demos/electrician-concept': typeof DemosElectricianConceptRoute
   '/locations/$slug': typeof LocationsSlugRoute
   '/services/ai-automation': typeof ServicesAiAutomationRoute
@@ -416,6 +429,7 @@ export interface FileRoutesByFullPath {
   '/admin/team': typeof AuthenticatedAdminTeamRoute
   '/admin/testimonials': typeof AuthenticatedAdminTestimonialsRoute
   '/admin/users': typeof AuthenticatedAdminUsersRoute
+  '/api/payments/stripe': typeof ApiPaymentsStripeRoute
   '/admin/': typeof AuthenticatedAdminIndexRoute
 }
 export interface FileRoutesByTo {
@@ -442,6 +456,7 @@ export interface FileRoutesByTo {
   '/track': typeof TrackRoute
   '/trades': typeof TradesRoute
   '/work': typeof WorkRoute
+  '/client-review/$projectId': typeof ClientReviewProjectIdRoute
   '/demos/electrician-concept': typeof DemosElectricianConceptRoute
   '/locations/$slug': typeof LocationsSlugRoute
   '/services/ai-automation': typeof ServicesAiAutomationRoute
@@ -473,6 +488,7 @@ export interface FileRoutesByTo {
   '/admin/team': typeof AuthenticatedAdminTeamRoute
   '/admin/testimonials': typeof AuthenticatedAdminTestimonialsRoute
   '/admin/users': typeof AuthenticatedAdminUsersRoute
+  '/api/payments/stripe': typeof ApiPaymentsStripeRoute
   '/admin': typeof AuthenticatedAdminIndexRoute
 }
 export interface FileRoutesById {
@@ -501,6 +517,7 @@ export interface FileRoutesById {
   '/track': typeof TrackRoute
   '/trades': typeof TradesRoute
   '/work': typeof WorkRoute
+  '/client-review_/$projectId': typeof ClientReviewProjectIdRoute
   '/demos_/electrician-concept': typeof DemosElectricianConceptRoute
   '/locations_/$slug': typeof LocationsSlugRoute
   '/services_/ai-automation': typeof ServicesAiAutomationRoute
@@ -532,6 +549,7 @@ export interface FileRoutesById {
   '/_authenticated/admin/team': typeof AuthenticatedAdminTeamRoute
   '/_authenticated/admin/testimonials': typeof AuthenticatedAdminTestimonialsRoute
   '/_authenticated/admin/users': typeof AuthenticatedAdminUsersRoute
+  '/api/payments/stripe': typeof ApiPaymentsStripeRoute
   '/_authenticated/admin/': typeof AuthenticatedAdminIndexRoute
 }
 export interface FileRouteTypes {
@@ -560,6 +578,7 @@ export interface FileRouteTypes {
     | '/track'
     | '/trades'
     | '/work'
+    | '/client-review/$projectId'
     | '/demos/electrician-concept'
     | '/locations/$slug'
     | '/services/ai-automation'
@@ -591,6 +610,7 @@ export interface FileRouteTypes {
     | '/admin/team'
     | '/admin/testimonials'
     | '/admin/users'
+    | '/api/payments/stripe'
     | '/admin/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -617,6 +637,7 @@ export interface FileRouteTypes {
     | '/track'
     | '/trades'
     | '/work'
+    | '/client-review/$projectId'
     | '/demos/electrician-concept'
     | '/locations/$slug'
     | '/services/ai-automation'
@@ -648,6 +669,7 @@ export interface FileRouteTypes {
     | '/admin/team'
     | '/admin/testimonials'
     | '/admin/users'
+    | '/api/payments/stripe'
     | '/admin'
   id:
     | '__root__'
@@ -675,6 +697,7 @@ export interface FileRouteTypes {
     | '/track'
     | '/trades'
     | '/work'
+    | '/client-review_/$projectId'
     | '/demos_/electrician-concept'
     | '/locations_/$slug'
     | '/services_/ai-automation'
@@ -706,6 +729,7 @@ export interface FileRouteTypes {
     | '/_authenticated/admin/team'
     | '/_authenticated/admin/testimonials'
     | '/_authenticated/admin/users'
+    | '/api/payments/stripe'
     | '/_authenticated/admin/'
   fileRoutesById: FileRoutesById
 }
@@ -734,6 +758,7 @@ export interface RootRouteChildren {
   TrackRoute: typeof TrackRoute
   TradesRoute: typeof TradesRoute
   WorkRoute: typeof WorkRoute
+  ClientReviewProjectIdRoute: typeof ClientReviewProjectIdRoute
   DemosElectricianConceptRoute: typeof DemosElectricianConceptRoute
   LocationsSlugRoute: typeof LocationsSlugRoute
   ServicesAiAutomationRoute: typeof ServicesAiAutomationRoute
@@ -748,6 +773,7 @@ export interface RootRouteChildren {
   ToolsSeoInspectorRoute: typeof ToolsSeoInspectorRoute
   TrackTokenRoute: typeof TrackTokenRoute
   TradesSlugRoute: typeof TradesSlugRoute
+  ApiPaymentsStripeRoute: typeof ApiPaymentsStripeRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -1018,12 +1044,26 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DemosElectricianConceptRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/client-review_/$projectId': {
+      id: '/client-review_/$projectId'
+      path: '/client-review/$projectId'
+      fullPath: '/client-review/$projectId'
+      preLoaderRoute: typeof ClientReviewProjectIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/_authenticated/admin/': {
       id: '/_authenticated/admin/'
       path: '/admin'
       fullPath: '/admin/'
       preLoaderRoute: typeof AuthenticatedAdminIndexRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/api/payments/stripe': {
+      id: '/api/payments/stripe'
+      path: '/api/payments/stripe'
+      fullPath: '/api/payments/stripe'
+      preLoaderRoute: typeof ApiPaymentsStripeRouteImport
+      parentRoute: typeof rootRouteImport
     }
     '/_authenticated/admin/users': {
       id: '/_authenticated/admin/users'
@@ -1217,6 +1257,7 @@ const rootRouteChildren: RootRouteChildren = {
   TrackRoute: TrackRoute,
   TradesRoute: TradesRoute,
   WorkRoute: WorkRoute,
+  ClientReviewProjectIdRoute: ClientReviewProjectIdRoute,
   DemosElectricianConceptRoute: DemosElectricianConceptRoute,
   LocationsSlugRoute: LocationsSlugRoute,
   ServicesAiAutomationRoute: ServicesAiAutomationRoute,
@@ -1231,6 +1272,7 @@ const rootRouteChildren: RootRouteChildren = {
   ToolsSeoInspectorRoute: ToolsSeoInspectorRoute,
   TrackTokenRoute: TrackTokenRoute,
   TradesSlugRoute: TradesSlugRoute,
+  ApiPaymentsStripeRoute: ApiPaymentsStripeRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

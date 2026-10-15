@@ -58,8 +58,8 @@ function ContactPage() {
                 <div>
                   <strong>Know the scope and cost upfront.</strong>
                   <p>
-                    £1,495 setup (50% deposit / 50% on approval) + £249/mo care, 14-day delivery
-                    SLA, zero-rated VAT.
+                    £1,495 setup (50% deposit / 50% on approval) + £249/mo care. Your written quote
+                    confirms scope, delivery timing and any applicable taxes.
                   </p>
                 </div>
               </li>

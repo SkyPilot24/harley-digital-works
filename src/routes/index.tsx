@@ -50,7 +50,7 @@ const faqs = [
   ],
   [
     "What is included in the price?",
-    "We offer transparent commercial terms: a fixed £1,495 setup investment (structured as 50% deposit and 50% upon final sign-off, zero-rated VAT) and an ongoing £249/month Care & Growth retainer. Page count, custom copywriting, mobile optimization, revisions, ownership, and cancellation terms are confirmed in writing before you commit.",
+    "Our managed website package is £1,495 setup, paid 50% on agreement and 50% after final preview approval, plus £249/month ongoing care. Your written quote confirms pages, copywriting, mobile optimization, revisions, timing, ownership, cancellation terms and any applicable taxes before you commit.",
   ],
 ];
 
@@ -413,7 +413,7 @@ function HomePage() {
                 <Check size={16} /> 50% deposit / 50% on approval
               </span>
               <span>
-                <ShieldCheck size={16} /> Zero VAT & ongoing managed care
+                <ShieldCheck size={16} /> Clear scope & ongoing managed care
               </span>
             </div>
           </div>

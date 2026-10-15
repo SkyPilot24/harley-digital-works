@@ -1,4 +1,101 @@
+## Admin user listing and last-admin safeguard — 15 October 2026
+
+H03/H42: `listAdminUsers` previously read only the first 200 Auth users and an uncapped-by-assumption role query; it now follows Auth next-page pointers and reads roles by exact-count ranges, failing visibly on errors, missing counts or early end. `revokeUserRole` now blocks revoking the last admin for any target (previously only self-revocation was checked) and fails closed if the count is unavailable. Logic in `src/lib/admin-users.ts` with `scripts/admin-users.test.mjs` (5 tests, registered in `npm test`).
+
+Fresh build/typecheck/format PASS; lint 0 errors / 9 existing warnings; 66 smoke checks plus all regression, integration and service-worker tests PASS, 0 failures. Limits: unit-level only; no staging Auth acceptance with more than 200 users, and the revoke check is not atomic (concurrent revocations could race). Remaining: server-side form validation, then enquiry/recovery/care/release gates. Source: `codex/platform-completion-2026-10-15` + local changes, uncommitted/unpushed. No production change, merge, deployment, billing or messages. Launch remains RED.
+
+## Session and permission recovery acceptance — 15 October 2026
+
+H03/H07/H42: fixed role lookup failures being labelled Access denied, rejected session reads remaining in loading, stale session-read races and incomplete sign-out error handling. Private views/cache now clear or remain hidden on uncertain/denied access; retry states distinguish uncertainty from a confirmed missing role. Identity changes clear query data before publishing the new identity; protected redirects preserve the destination. Backend policies/credentials unchanged.
+
+Fresh build/typecheck/format PASS; lint 0 errors / 9 existing warnings; 66 smoke + 150 regression/integration + 3 service-worker checks PASS. Real staging Auth/API/Edge verifies ordinary/anonymous denial, self-promotion/metadata rejection, cached-role outage/retry, temporary role revoke/restore and sign-out failure/retry. Client/project browser regression also rerun PASS. Exact synthetic records/accounts removed; genuine owner sessions untouched. [Evidence, actor matrix and limits](docs/ADMIN_ACCESS_ACCEPTANCE_2026-10-15.md).
+
+Read-only provider advisors show leaked-password protection disabled on Agency and staging; review exact provider configuration/availability before live changes. RLS-without-policy INFO records retain the intentional server-only deny model; no policies broadened. No production mutation, main merge/release, live billing or external message. Full launch remains RED. Next: current-head CI, admin user/role server controls and remaining form validation, then enquiry/recovery/care/release gates.
+## Complete admin record reads and client/project paging — 15 October 2026
+
+H03/H07/H42: added server-side client/project paging/search and full counts, complete cursor reads for monthly values/active lists/client choices, count-only notification totals, complete per-client project links/details, accurate error/retry states and saved drawer values. Dashboard exceptions now use full counts. New projects default to unassigned/no deadline; explicit agreed dates replace automatic fourteen-day targets. Earlier capped-response guard is superseded and removed.
+
+Fresh build/typecheck/format PASS; lint 0 errors / 9 existing warnings. All 66 smoke, 143 regression/integration and 3 service-worker checks PASS. Real staging Auth/PostgREST plus Edge PASS with 56 fictional clients/56 projects, including 55 linked projects, pence accuracy, owner writes/readback, anonymous denial, paging/mobile/filter/reset/error/retry and project defaults. Exact fixtures/account removed; original totals independently restored. [Evidence and limits](docs/ADMIN_RECORDS_ACCEPTANCE_2026-10-15.md).
+
+Existing PR #31 at 1337972 freshly verified draft/CLEAN with all checks successful before this extension. Publication and final-head CI must be verified against the PR, independently of this local evidence. No main merge, production migration/release, live billing or external messages. Full launch remains RED. Next: current-head review/CI, permission/error handling and remaining admin journeys, then enquiry/recovery/care/release gates.
+## Lead desk paging and staging acceptance — 15 October 2026
+
+H03/H07/H42: following local checkpoint fb9e97d, implemented server-side enquiry search/status filtering, 25-row paging, full exact-count metrics including Contacted, unavailable/retry states and narrow-screen table scrolling. Fixed stale saved status in the inspector and guarded sign-in hydration/native POST. Real staging Auth/PostgREST and headless Edge acceptance PASS with 56 fictional records: three pages, counts, punctuation/literal-asterisk search, admin/anonymous access, persisted status/readback, zero-row rejection, sign-in, mobile width, dashboard failure/retry and exact cleanup. No port 4187 listener remains.
+
+Final build/typecheck/format PASS; lint 0 errors / 9 existing warnings; 66 smoke + 139 regression + 3 service-worker checks PASS. Source, reproducible runners, limits and next gates: [lead acceptance](docs/ADMIN_LEAD_ACCEPTANCE_2026-10-15.md). Staging browser evidence is not production acceptance. Overall launch remains RED; next complete clients/projects paging and dashboard aggregation, then remaining enquiry/recovery/care/release gates. Production, live billing and outbound messages unchanged.
+## Platform completion checkpoint — 15 October 2026
+
+H03/H07/H42: isolated `codex/platform-completion-2026-10-15` from existing launch review `1c8af5d` (PR #29), preserving payment/delivery/marketing work and unrelated local checkouts. Fixed dashboard partial-query failure handling, misleading revenue/automation labels, two-build pilot capacity display, admin cache invalidation after lead/client changes, and zero-row update/delete success handling. Full scope, ranked follow-ups and live read-only aggregate evidence: [platform checkpoint](docs/PLATFORM_COMPLETION_2026-10-15.md).
+
+Final fresh build/typecheck/format PASS; lint 0 errors / 9 existing warnings; platform smoke PASS, 135 regression tests and 3 service-worker tests PASS. New tests cover all ten operational source-failure positions and capped/missing data. Authenticated browser/RLS mutation/readback acceptance remains pending; no customer data writes, migration, push, merge, deployment, sending or spending. Overall launch remains RED. Next: bounded staging browser acceptance of dashboard failure/retry and cross-screen mutation refresh, followed by remaining intake/recovery/care and concrete release gates.
 # Master delivery backlog
+
+**Latest customer approval evidence, 14 October:** fictional customer browser sign-in, proposal/latest-version confirmation and separate website-review approval passed against staging. Six active runtime checks cover superseded/digest rejection, membership revoke/restore, retry and release-evidence launch denial. Exact test project/user/evidence and credentials removed; zero residual fixtures and no port 4183 listener verified. No real agreement, administrator publish/invitation, client website, payment or launch is implied. Broader H20/H21/H50 remain open; see `CLIENT_APPROVAL_ACCEPTANCE_2026-10-14.md`.
+
+
+**Latest 14 October acceptance update:** the user approved and we executed the isolated sandbox rehearsal. Authentic fictional £747.50 checkout delivery produced one durable receipt; same-build redeployment, concurrent duplicate replays, rejection controls and temporary credential failure/recovery passed with the limits recorded in `Harley-sandbox-acceptance-2026-10-14.md`. Temporary Worker and new staging fixtures removed; original fixture retained. New Stripe endpoint disabled, physical deletion remains. Production and live billing unchanged. Owner confirmed Harley DigitalWorks Ltd and not VAT-registered; supplied company number/address recorded internally. Exact company-number search returned no result; reconciliation requested before invoice issue. The full paid-client lifecycle remains RED. Earlier pending statements below describe previous checkpoints and are superseded by this dated update.
+
+
+## H11/H22–H25 commercial-use correction — 14 October 2026
+
+Prepared local customer-use copy and finance/draft corrections, preserving ratified prices and existing records. Public retained surfaces stop asserting unverified zero-tax/+VAT and guaranteed timing; core £1,495/£249 and £747.50 milestones remain. Launchpad draft matches £995/£149; payment/proposal copies remain internal/unissued; manually recorded client values are not verified revenue. Existing tax/capacity smoke assertions revised to test the unknown-tax/two-build-pilot record, not claim legal/runtime compliance. Nine representative viewport-route observations, mobile pricing navigation and enquiry prefill verified; no submission. Build/typecheck/format/full suite and private-value exposure checks PASS; lint nine existing warnings. Supplier/tax/sold-routing/support/refund/backup decisions and external acceptance remain open; do not close H01/H02/H11/H23/H24/H25/H47/H48/H50 from this preparation. Decision pack: `docs/FIRST_CLIENT_COMMERCIAL_DECISIONS_2026-10-14.md`.
+
+## H50 existing implementation reconciliation — 14 October 2026
+
+The isolated launch-review branch now integrates existing first-client checkpoint `1ab1943`; do not duplicate its staged payment/delivery tables or treat absent main source as absent implementation. Default request aliases use its durable receiver; production and main unchanged. Build/typecheck/format/full suite PASS (66 smoke + 133 tests + 3 service-worker); lint nine existing warnings. Actual local/staging request-origin/session tests pass; fictional account cleanup independently confirmed. Payment feature disabled, authentic provider delivery/restart/concurrency and complete client lifecycle remain open. Next specific approval/execution: `docs/H50_SANDBOX_RELEASE_PLAN_2026-10-14.md`. See dated status/handover for implementation and staging migration mapping limits.
+
+## Launch-critical execution overlay — 14 October 2026
+
+See [dated completion roadmap](docs/LAUNCH_COMPLETION_ROADMAP_2026-10-14.md) for evidence, existing H01–H50/D01–D08 coverage, suggested owners, dependencies, conditional dates and revenue gates. Individual dated task bodies below are preserved; newer source/provider evidence takes precedence over obsolete open/pending wording. Do not infer an overall completion percentage.
+
+- H23–H25/H50: three payment partial-write/replay/error failures reproduced and fixed in an isolated review copy; fresh build/typecheck/format/full tests PASS; 66 smoke + 87 tests + 3 service-worker checks, plus 5 outreach checks. Default HTTP receipt storage remains in-memory, so durable atomic persistence/authentic provider/restart/concurrent acceptance is still blocking. No migration or production change made.
+- H03/H41/H47: main `45012e4` verified local/remote; #22/#23/#26/#27/#28 merged. #24 closed without merge; #25 draft/open/non-mergeable. Latest successful Actions deployment run skips its deploy step; reconcile provider revision before claiming publication.
+- H01/H02/H10/H32/H48: approved prices retained; customer-use tax/contract/refund/routing/backups/support/capacity evidence remains open. Keep the two-build pilot guard pending decision; today's digest displays three.
+- H19–H25/H43–H46/H50: complete one protected agreement/onboarding/approval/balance/care/recovery rehearsal, then one real paid pilot and recurring collection. Source/unit checks alone do not pass runtime gates.
+- H37: P01 authorised send recorded; three digest leads need CRM/inbox reconciliation. P02/P03 and expanded outreach require their applicable explicit sending authority. No new messages sent by this review.
+- H49/D01–D08/L01: independent domain evidence/renewal exceptions and optional Labs/product work do not block website-pilot readiness. Preserve unfinished prototypes behind existing deferral gates.
+
+No blanket task closure, source rollout or permission expansion. Original checkout's unrelated changes remain untouched.
+
+H50 checkpoint committed locally: baf9c99cb3a982c91d3144ab6d13a39e3dc2380a. Complete standard regression suite/quiet credential patterns/configured private-source-value checks pass. No push/deployment; readiness matrix still RED.
+
+H50 consolidated acceptance: docs/H50_READINESS_GATES.md maps full workflow gates to current evidence and exact missing proof. Fresh build/configured-private-key scan passes over 194 public artifacts. Full lint now zero errors/nine Fast Refresh warnings after formatting authored verification scripts. Overall RED; branch remains local/uncommitted.
+
+H50 atomic approval evidence: session validated/locked inside approval transaction, staging migration 20261012114300. Unit/full suite and eight actual Auth checks pass; private grants verified. Concurrent logout and successful authenticated browser approval still require acceptance.
+
+H50 origin protection: framework CSRF middleware implemented; six origin/provider plus seven actual Auth/runtime checks pass with fixture cleanup. Fresh full suite/typecheck/lint/build pass. Same-origin authenticated traffic reaches feature gate; foreign/missing origin denied. Production remains RED pending browser and full lifecycle/release acceptance.
+
+H50 running-application acceptance: staging publisher/customer version approval and stored readback pass; revoked membership=409/logout=401. Synthetic accounts/admin roles/project/reviews cleaned and zero residual rows independently verified. Temporary cleanup helper removed/local enabled process stopped. Authenticated browser acceptance, CSRF hardening and remaining payment/recovery/care/release gates open.
+
+H50 actual Auth acceptance: six staging checks pass (real sign-in, identity binding, private RPC denial, direct approval bypass denied, logout invalidates session, synthetic account cleanup). Script pins staging and retains no credentials. Authenticated browser/application approval and complete delivery/payment/care acceptance remain open.
+
+H50 runtime evidence: local signed-out review and disabled payment endpoint verified. Customer sign-in return destination corrected; browser navigation and redirect regression verified. Successful authenticated return/approval still needs acceptance evidence.
+
+H50 durable recovery evidence: append-only reconciliation store applied staging only (20261012112156), six focused tests/typecheck/lint pass; actual rollback-only save and role isolation verified. No retained observation; hold resolution/admin integration and real runtime acceptance remain incomplete.
+
+H50 latest evidence: staging private configuration now passes preflight and read-only application-key database access returns HTTP 200. Missing-key blocker below is superseded. Five reconciliation tests/typecheck pass and full-suite/build logs completed successfully. Durable reconciliation persistence and real runtime Auth/provider acceptance remain open; production RED.
+
+H50 runtime setup follow-up: secret-safe configuration preflight added; THG staging public fields populated through connector. Only private server key missing, no feature enabled. Template reviewable/private file ignored. Actual authenticated/provider acceptance remains incomplete.
+
+H50 financial health follow-up: signed refunds/disputes and durable launch holds applied only to staging as 20261012110113. Thirteen focused tests/full suite/typecheck/lint/build pass; sandbox/live hold separation verified without persisting a fabricated event. Real provider delivery/rehearsal, unmatched reconciliation and care exceptions still open.
+
+H50 payment ownership follow-up: immutable contract/receipt history plus same-client one-time admin binding applied staging only. Four focused DB/service-role tests and full suite/typecheck/lint pass; actual staging amount-mutation denial verified. Refund/dispute lifecycle, approved terms, checkout/UI and end-to-end acceptance remain open.
+
+H50 backend launch follow-up: staging guard applied as 20261012104650; three launch regressions/full suite and rollback-only staging denial pass. New launch statuses require recorded version/payment/release prerequisites. Actual evidence collection and remaining lifecycle are unverified; H50 stays open.
+
+H50 project-page integration: admin publication/access controls implemented behind disabled feature; typecheck/lint/full suite pass. Status-only launch action disabled and pilot capacity/delivery wording reconciled. Backend launch guard, preview binding and configured authenticated acceptance remain open; no production release.
+
+H50 session follow-up: verified-token session/user guard implemented for all delivery server operations and applied staging-only as 20261012103258. Restricted service execution and missing-session denial confirmed; eleven focused tests/build pass. Actual GoTrue sign-out/browser and complete paid-client lifecycle remain unverified; no production readiness claim.
+
+H50 publication follow-up: atomic admin publication, publisher evidence, revision conflict/retry protection and rollback implemented; staging schema only. Nine DB tests/typecheck/lint pass. Application staging credentials requested privately; publication UI/runtime session/preview binding and full launch/care acceptance remain open.
+
+H50 readable review follow-up: client review/explicit approval screen and digest-bound immutable text artifact schema implemented; staging only migration 20261012102231. Seven DB regressions/full suite/typecheck/lint pass. Browser acceptance incomplete due approval-review 429. Server feature remains disabled; publication, preview-version binding, real-session and full lifecycle acceptance still open.
+
+H50 access follow-up: administrator-only explicit project membership operation implemented and disabled; no users granted access. Customer-readable immutable artifacts, approval interface and token/session revocation enforcement remain open. Typecheck/targeted lint pass; no production acceptance.
+
+H50 authenticated-approval follow-up: disabled server operation and active project mapping/atomic approval migration applied to staging only (20261012101535). Six delivery DB regressions and full suite/build/typecheck pass. Real-session/browser approval and launch enforcement remain open; no production acceptance claim.
+
+H50 follow-up, 12 October: payment and immutable project-version approval schemas applied only to verified isolated staging (20261012100429 and 20261012101143). Fictional sandbox deposit reconciled once; duplicate rejected. Four approval database regressions and complete npm test pass. Identity/customer approval endpoint, signed payment delivery, launch/care/recovery and production acceptance remain open; H50 is not complete.
 
 ## Current execution overlay - 7 October 2026
 
@@ -694,6 +791,10 @@ Updated 2 October 2026. Domain integration added following the founder's request
 - **12 October rehearsal preparation:** ten-step first-client evidence matrix, fictional fixture and internal proposal skeleton in `docs/FIRST_CLIENT_REHEARSAL_2026-10-12.md` and companions. Existing revenue checks freshly pass 32/32; no provider/client lifecycle run. Stripe account discovery repeats authentication prompt and returns no verified sandbox. RED gate: payment/onboarding/approval/care/recovery not accepted. Next: verify existing isolated Stripe sandbox, then hosted-payment/receipt path. No client contacted, payment collected, launch or H50 completion.
 
 - **11 October preparation:** first 50 business candidates and ten desk assessments prepared; P01–P03 are the initial qualification queue. No prospects contacted, client won, payment verified or pilot delivered. Session/email/backup fulfilment gates remain open. See `docs/BRISTOL_BATH_PILOT_RESEARCH_2026-10-11.md`; H50 stays open.
+
+- **12 October durable receipts:** unapplied service-only payment migration, adapter and bounded disabled POST endpoint prepared; 14 payment tests pass, local HTTP disabled/method responses verified. Correct Supabase staging account unavailable (connector shows unrelated inactive project); reconnection requested. No staging/provider delivery or production readiness claim. H50 remains open; see H50_PAYMENT_IMPLEMENTATION.md.
+
+- **12 October implementation:** codex/first-client-production server-only Stripe event processor and six payment tests prepared; typecheck/existing suite/format/build pass. Durable adapter and receiver are unfinished. No provider delivery, actual database receipt or paid lifecycle acceptance; H50 remains open. See docs/H50_PAYMENT_IMPLEMENTATION.md.
 
 - **Phase:** 6
 - **Priority:** High

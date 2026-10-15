@@ -181,15 +181,15 @@ export const KNOWLEDGE_BASE_ARTICLES: KnowledgeArticle[] = [
       "Defensible cost breakdown, upfront contribution margins, recurring profitability, and statutory tax rules.",
     keyPoints: [
       "Upfront delivery cost (Base): £772.63 (14h build labour @ £40/hr + CAC overhead + Stripe fee).",
-      "Net Upfront Contribution: +£722.37 (48.3% margin) — instant Day 0 payback before subscription starts.",
+      "Illustrative setup contribution: +£722.37 (48.3%) after the full setup fee, not Day 0 cash from a half-deposit; actual delivery costs remain to measure.",
       "Monthly servicing cost (Base): £66.94 (prorated infrastructure + 1h support labour @ £40/hr + Stripe fee + incident buffer).",
       "Monthly recurring net contribution: +£182.06 / month (73.1% margin) per active client.",
-      "VAT Treatment: Harley Digital Works operates below HMRC's £90k statutory threshold. All prices are zero-rated / VAT not applicable. No VAT is charged and no fake VAT numbers are displayed.",
+      "Tax review required: seller VAT registration and invoice treatment must be confirmed before issue. Being below the threshold is not proof of a zero rate. Approved package prices remain unchanged; never invent a VAT number.",
     ],
     operationalDetails:
-      "Customer acquisition cost (CAC) overhead accounts for 3 unclosed previews for every 1 won customer. Even in a challenged scenario with 22h build labour, setup remains cash positive (+£292.37). Invoices and quotes must always display 'VAT not applicable / zero-rated' until official HMRC registration is completed.",
-    statusBadge: "Zero-Rated VAT",
-    lastUpdated: "7 October 2026",
+      "Unit economics are illustrative, not measured profit. Reconcile processing fees, actual labour, support and staged cash receipts. Full setup contribution cannot be reported as Day 0 cash from a half-deposit. Do not use historical zero-rated/not-applicable wording as an invoice rule; confirm registration and treatment with the seller/accountant first.",
+    statusBadge: "Tax review required",
+    lastUpdated: "14 October 2026",
   },
   {
     id: "capacity-and-operating-boundaries",
@@ -199,15 +199,15 @@ export const KNOWLEDGE_BASE_ARTICLES: KnowledgeArticle[] = [
       "Operating rules protecting founder NHS schedule commitments while maintaining strict delivery SLAs.",
     keyPoints: [
       "Founder weekly capacity: 10–12 hours per week dedicated to Harley Digital Works.",
-      "Automation ratio: Scaffolding, intake parsing, and diagnostic checks automate ~70% of setup work.",
-      "Active labour per build: 4–5 hours of active founder touch per completed website.",
-      "Hard concurrency limit: Maximum 2 to 3 concurrent client onboarding builds (hard cap of 2 during initial pilot).",
+      "Automation target: roughly 70% of setup work; measured end-to-end pilot evidence is still required.",
+      "Active labour target: 4–5 hours of founder touch per website; this is not an observed delivery result.",
+      "Hard pilot cap: 2 concurrent builds. Wider two/three capacity records require decision-scope reconciliation before changing the guard.",
       "Fleet servicing: Support for active care clients requires ~0.5–1.0h/client/month, fitting within part-time capacity up to 15 active accounts.",
     ],
     operationalDetails:
-      "To prevent delivery delays and maintain personal balance alongside NHS clinical responsibilities, any pipeline volume exceeding 2 to 3 concurrent onboarding builds must trigger an immediate pause on outbound acquisition or require onboarding a vetted production junior.",
-    statusBadge: "2–3 Concurrency",
-    lastUpdated: "7 October 2026",
+      "Retain the two-build pilot guard and measure founder delivery/support time. Pause acquisition when the existing guard is reached. Expansion, staffing spend and response commitments require the applicable commercial decision and coverage evidence.",
+    statusBadge: "2-build pilot cap",
+    lastUpdated: "14 October 2026",
   },
   {
     id: "eight-step-turnaround-sequence",

@@ -1,7 +1,5 @@
-import type { Database } from "@/integrations/supabase/types";
 import { currentStrategy } from "@/lib/current-strategy";
-type ClientRow = Database["public"]["Tables"]["clients"]["Row"];
-export function CareDeskMonitor({ clients }: { clients: ClientRow[] }) {
+export function CareDeskMonitor({ activeCount }: { activeCount?: number }) {
   return (
     <section className="space-y-4 rounded-xl border border-ink/10 bg-white p-6">
       <h2 className="text-lg font-semibold">Monthly care delivery</h2>
@@ -13,8 +11,10 @@ export function CareDeskMonitor({ clients }: { clients: ClientRow[] }) {
         client status.
       </p>
       <p className="text-sm">
-        {clients.filter((client) => client.status === "active").length} client records marked
-        active; subscription payment status is not verified.
+        {activeCount === undefined
+          ? "Active client count unavailable."
+          : `${activeCount} client records marked active.`}{" "}
+        Subscription payment status is not verified.
       </p>
     </section>
   );

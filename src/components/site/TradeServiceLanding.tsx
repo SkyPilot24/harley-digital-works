@@ -86,8 +86,8 @@ export function TradeServiceLanding({
               </div>
               <p className="hero-support">
                 {tradeInfo
-                  ? `Accreditation: ${tradeInfo.accreditationBadge} · Avg contract: ${tradeInfo.averageJobValue} · 14-day SLA`
-                  : "£1,495 fixed setup (50% deposit / 50% approval) · £249/mo managed care · 14-day delivery SLA."}
+                  ? "Show your verified trade accreditations, services and genuine project work."
+                  : "£1,495 setup (50% deposit / 50% approval) · £249/mo managed care · delivery schedule agreed in writing."}
               </p>
             </div>
             <div className="service-preview">
@@ -132,11 +132,9 @@ export function TradeServiceLanding({
               </div>
               <div>
                 <p className="text-xs font-semibold uppercase tracking-wider text-ink-muted">
-                  Standard Turnaround
+                  Delivery Schedule
                 </p>
-                <p className="mt-1 font-mono text-2xl font-semibold text-ink">
-                  {locationInfo.stats.avgTurnaroundDays} Days SLA
-                </p>
+                <p className="mt-1 font-mono text-2xl font-semibold text-ink">Agreed after brief</p>
               </div>
               <div>
                 <p className="text-xs font-semibold uppercase tracking-wider text-ink-muted">

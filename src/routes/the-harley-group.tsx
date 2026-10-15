@@ -61,10 +61,10 @@ export function TheHarleyGroupPage() {
                 with our electrical contractor pilot across Bristol, Bath, and the M4 Corridor.
               </p>
               <p>
-                Ratified commercial model: £1,495 setup (50% deposit £747.50, 50% completion balance
-                £747.50, 14-day delivery SLA) plus £249 / month ongoing managed care. Zero-rated VAT
-                under statutory HMRC threshold; onboarding capacity strictly capped at 2–3
-                concurrent builds.
+                Managed websites: £1,495 setup (£747.50 deposit and £747.50 balance after preview
+                approval) plus £249 / month ongoing care. Your written quote confirms delivery,
+                support and any applicable taxes. Pilot capacity is limited to two concurrent
+                builds.
               </p>
               <div className="mt-4 flex flex-wrap gap-3">
                 <a href="https://harleydigitalworks.com" className="enquiry-submit">

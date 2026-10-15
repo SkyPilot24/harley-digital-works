@@ -4,47 +4,22 @@
  */
 
 import { processStripeWebhook } from "./payment-receiver.ts";
-import type { ReceiptStorage, DepositReceipt } from "./types.ts";
-
-// In-memory fallback receipt store for isolated tests & local dev
-class MemoryReceiptStorage implements ReceiptStorage {
-  private receiptsByEvent = new Map<string, DepositReceipt>();
-  private receiptsByPi = new Map<string, DepositReceipt>();
-  private paidClients = new Set<string>();
-
-  async findReceiptByEventId(eventId: string): Promise<DepositReceipt | null> {
-    return this.receiptsByEvent.get(eventId) || null;
-  }
-
-  async findReceiptByPaymentIntent(piId: string): Promise<DepositReceipt | null> {
-    return this.receiptsByPi.get(piId) || null;
-  }
-
-  async saveReceipt(receipt: DepositReceipt): Promise<DepositReceipt> {
-    this.receiptsByEvent.set(receipt.stripe_event_id, receipt);
-    this.receiptsByPi.set(receipt.stripe_payment_intent_id, receipt);
-    return receipt;
-  }
-
-  async markClientDepositPaid(clientRef: string, _receiptId: string): Promise<boolean> {
-    this.paidClients.add(clientRef);
-    return true;
-  }
-
-  isClientPaid(clientRef: string): boolean {
-    return this.paidClients.has(clientRef);
-  }
-}
-
-export const defaultReceiptStorage = new MemoryReceiptStorage();
+import type { ReceiptStorage } from "./types.ts";
 
 export async function handleStripeIncomingRequest(
   request: Request,
   path: string,
-  storage: ReceiptStorage = defaultReceiptStorage,
+  storage?: ReceiptStorage,
 ): Promise<Response | null> {
   if (path !== "/api/stripe/webhook" && path !== "/api/webhooks/stripe") {
     return null;
+  }
+
+  // Production aliases use the existing durable, contract-bound receiver.
+  // Explicit storage injection retains the isolated legacy test harness only.
+  if (!storage) {
+    const { configuredPaymentWebhook } = await import("../payment-webhook.server.ts");
+    return configuredPaymentWebhook(request);
   }
 
   if (request.method !== "POST") {

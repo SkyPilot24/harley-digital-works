@@ -1,0 +1,170 @@
+# Harley Group / Harley Digital Works: launch completion and revenue roadmap
+
+**Draft review submitted, 14 October:** [PR #29](https://github.com/SkyPilot24/harley-digital-works/pull/29) integrates the existing first-client work and launch corrections on `codex/launch-completion-2026-10-14`. Review head `1a71b7b` passed GitHub quality and credential checks; dependency audit reported zero vulnerabilities. Cloudflare created a successful native review Preview with an unconfigured backend, not functional acceptance. Active production deployment remains `ab1ae80f-5523-475f-8050-1c1be9a8aa99` / version `25218195-69ef-4616-8977-416cd740d876`, created 13 October; GitHub main remains `45012e4`. No merge, production migration, live billing or customer outreach. This supersedes earlier local-only submission labels while retaining tested runtime `280b0e6` and earlier rehearsal source identities. Full sale-to-care and owner decisions remain RED. This documentation follow-up requires its own current-head check result before treating that head as CI-verified.
+
+
+**Current runtime checkpoint: `280b0e615c1c777c526e67b51b857fa37ac513af`, 14 October.** Active trade/location pricing and schedule claims aligned with the approved £1,495/£249 offer; unsupported rendered job-value/performance figures removed. Build/typecheck/format/full suite pass; lint nine existing warnings; private-value scan 223 artifacts pass; representative phone/desktop browser checks pass. This checkpoint is local only. Prior sandbox receipt and fictional customer approval evidence retain their tested source identities. Production release and full sale-to-care acceptance remain open. See `TRADE_OFFER_CORRECTION_2026-10-14.md`.
+
+
+**Latest customer approval evidence, 14 October:** fictional customer browser sign-in, proposal/latest-version confirmation and separate website-review approval passed against staging. Six active runtime checks cover superseded/digest rejection, membership revoke/restore, retry and release-evidence launch denial. Exact test project/user/evidence and credentials removed; zero residual fixtures and no port 4183 listener verified. No real agreement, administrator publish/invitation, client website, payment or launch is implied. Broader H20/H21/H50 remain open; see `CLIENT_APPROVAL_ACCEPTANCE_2026-10-14.md`.
+
+
+**Latest 14 October acceptance update:** the user approved and we executed the isolated sandbox rehearsal. Authentic fictional £747.50 checkout delivery produced one durable receipt; same-build redeployment, concurrent duplicate replays, rejection controls and temporary credential failure/recovery passed with the limits recorded in `Harley-sandbox-acceptance-2026-10-14.md`. Temporary Worker and new staging fixtures removed; original fixture retained. New Stripe endpoint disabled, physical deletion remains. Production and live billing unchanged. Owner confirmed Harley DigitalWorks Ltd and not VAT-registered; supplied company number/address recorded internally. Exact company-number search returned no result; reconciliation requested before invoice issue. The full paid-client lifecycle remains RED. Earlier pending statements below describe previous checkpoints and are superseded by this dated update.
+
+
+Assessment: 14 October 2026, Europe/London. Scope: the existing agency platform and first electrical-contractor pilot; domain commerce is a separate workstream. **Production gate: RED — Not Ready for the complete paid-client lifecycle.** This does not assert that the already accepted enquiry desk is broken.
+
+**Commercial-use continuation:** prepared local offer/draft corrections and a six-topic founder decision pack. Retained £1,495/£249 flagship and £747.50 milestones; corrected Launchpad to £995/£149 in the internal proposal draft; removed affected unsupported tax/turnaround/legacy price claims and distinguished recorded agreement values from collected revenue. Copy does not settle seller tax, sold routing, refund/support/backup or invoice identity. Build/typecheck/format/full suite pass; representative responsive public layouts and enquiry prefill checked. No publication, invoice, data write or contact occurred. Sandbox rollout and seller/legal/tax input remain pending. See the commercial decisions deliverable and current handover.
+
+**14 October execution update:** further read-only staging inspection found durable payment and delivery work already implemented on `codex/first-client-production` at `1ab1943`, absent from canonical main. That branch is now integrated into the isolated review copy, preserving both histories and current safeguards. Production webhook aliases now use its durable contract-bound receiver; the default memory fallback is removed there. The next payment task is authentic sandbox delivery/restart/concurrency acceptance and reviewed rollout, rather than recreating these tables/functions. See the separate sandbox release plan. Canonical main and production remain unchanged.
+
+Fresh combined validation passes: build/typecheck/format, lint with nine existing warnings, 66 smoke assertions + 133 tests + 3 service-worker tests, six local disabled receiver requests, six request-origin checks and nine real staging Auth/application checks. Fictional Auth users were removed; independent count is zero. Staging has one matching retained sandbox receipt/paid contract. One network-restricted Auth attempt failed and cleaned up; rerunning with permitted local-server network access passes. Local source and staging tests do not establish authentic provider-signed delivery or a paying customer.
+
+## Executive decision
+
+Finish one reliable paid-client journey before expanding acquisition. Keep three priorities active: (1) durable payment and recovery, (2) one accurate, fulfilable commercial agreement, and (3) a rehearsed client delivery/care journey. Preserve the approved flagship price of £1,495 setup (£747.50 deposit and balance) plus £249/month. Retain the stricter two-build pilot guard pending capacity reconciliation.
+
+The agency has substantial infrastructure and commercial preparation. The bottleneck is operational acceptance, not a new brand, dashboard, CRM or template collection. Source is integrated; the complete sale-to-care process is not demonstrated. No credible percentage complete can be calculated from the present backlog: dated task bodies contradict newer evidence.
+
+## Evidence and current position
+
+| Area | Current assessment | Evidence and limits |
+| --- | --- | --- |
+| Canonical source | Verified locally and remotely at `45012e4a8b4b73335d64f260bb6ccc1047dedcb9` | GitHub main read on 14 October; existing uncommitted documentation preserved in original checkout |
+| Brand and safeguards | Merged source | GitHub confirms PRs #22, #23, #26, #27 and #28 merged. Their old pending-merge headings are historical |
+| CI and release | Quality/security pass; this Actions release did not deploy | [Deployment run](https://github.com/SkyPilot24/harley-digital-works/actions/runs/38444496336) succeeds but its deployment step is **skipped**. Source condition checks deployment-token availability. Another provider-native release is possible; exact live Worker revision remains unverified |
+| Enquiry desk | Historically live accepted; full fresh journey not rerun | Canonical records identify THG Agency `worzpzbutngugwzhlvtj`, both-brand intake, genuine owner retrieval and Slack outbox. Do not repeat already completed fixes or substitute fixture tests for fresh live acceptance |
+| Commercial offer | Prices ratified; customer-use conditions unresolved | 14 October reconciliation in BUSINESS_DEFINITION and COMMERCIAL_OFFER_MANAGED retains prices but flags tax wording, refunds, routing, backups, support and capacity |
+| Payments | Durable implementation recovered and integrated locally; runtime/release gate still open | Canonical main's old handler uses Maps. The isolated review branch now routes default aliases to the existing durable receiver. Staging metadata/aggregate readback confirms applied receipt transaction and one matching sandbox receipt/paid contract. Authentic endpoint delivery/restart/concurrency remains unverified |
+| Acceptance environments | Current identities verified read-only | THG Supabase connector lists `THG Agency` and `THG Enquiry Staging` (`mfpnfxpgkfuqtedbcxvp`) as ACTIVE_HEALTHY. Stripe connector lists only `The Harley Group sandbox`, `acct_1UKnAQGev7YjDfff`, livemode=false. Environment availability is no proof that the application receiver is configured or that a schema change is approved |
+| Payment recovery | Three defects reproduced; local review fix prepared | Failed paid-state update can be acknowledged as success; duplicate receipt can bypass unfinished paid-state update; lookup failure escapes normal handling. Added regressions fail against baseline and pass after local fix. Durable database transactions remain separate work |
+| Client lifecycle | Existing protected approval/session/launch-gate source integrated; full workflow acceptance outstanding | First-client branch includes immutable readable revisions, membership/session-checked approval and launch prerequisites. Fresh actual staging session/denial checks pass. Agreement terms, complete assets/onboarding, administrator publish/invitation and actual client preview, balance/care/support/restore remain open |
+| Acquisition | Research and first authorised dispatch completed | 50 candidates, 40 primary-site records, ten assessments and drafts; three qualification packets. Canonical record says P01 sent 13 October with provider acceptance. P02 remains explicitly unsent. Sending is not proof of inbox delivery, reply or sale |
+| Operational snapshot | Slack reports zero active clients/MRR, zero builds and three uncontacted leads | [14 October digest](https://the-harley-group.slack.com/archives/C0BFQS2P2H1/p1791964828511939), 09:00 BST. These are digest values, not independently reconciled ledger/customer facts. Lead authenticity and ownership need authorised CRM review |
+| Capacity/reporting | Conflict verified | Live digest shows 0/3; pilot dispatcher/documentation use two. Preserve existing guard, reconcile the pilot versus wider capacity scope, and correct reporting after the decision |
+| Inbox/customer interest | Not established | Narrow search of connected Gmail returned no matching replies from the three candidate domains since 12 October. This does not prove the monitored `robbie@theharleygroup.org` inbox has no reply |
+| Domain portfolio | Separate, incomplete release | PR #25 is open/draft and reports non-mergeable. 13 October records report 53 IONOS domains/zones, but pricing/rights/renewal evidence is not complete for all inventory. Its migration remains recorded as unapplied. No domain sale is required for agency launch |
+| Chief-of-staff documentation | Separate pushed branch, not merged | Latest chat records branch `codex/chief-of-staff-docs-2026-10-14` at `2451050`; avoid duplicating its six historical documents. Its separate briefing-delivery hold is not proof that the platform digest is absent |
+
+GitHub PR #24 is **closed, unmerged**. Check whether its digest error-reporting corrections exist in main before porting them; do not count a closed PR as delivered functionality. GitHub issue search returned no open issues, but the repository backlog clearly contains outstanding work.
+
+## Completed, ongoing and outstanding work
+
+**Completed evidence layers:** commercial price ratification; integrated agency source and approved HDW identity; source security/intake/outbox improvements; previously accepted enquiry/admin flow; prospect research/qualification; authorised P01 send; fictional provider sandbox deposit; existing local safeguard tests. Each retains its stated source/runtime/provider scope.
+
+**Ongoing:** payment receiver and recovery; source-to-production reconciliation; operating documentation and capacity/reporting correction; first-pilot qualification and response handling; privacy/content/public-offer acceptance; session/email/restore verification; independent registrar inventory reconciliation.
+
+**Launch-critical outstanding:** durable atomic receipts and client paid state; authentic sandbox delivery/restart/concurrency proof; actual billing ledger; agreement acceptance; protected onboarding and assets; client-template QA; exact-version approval; balance and care billing; support delivery/recovery; deployment/rollback and email/DNS continuity; final factual/commercial acceptance. Keep public prototypes deferred while those processes are incomplete.
+
+### Existing backlog coverage — no new parallel backlog
+
+| Existing IDs | Completion disposition |
+| --- | --- |
+| H01–H02 | Preserve ratified prices/brand; reopen only unresolved tax/contract/routing/support/capacity evidence, not the whole commercial decision |
+| H03–H10 | Reconcile release inventory; retain historical intake acceptance; prove remaining owner-session, customer email, permissions and notification recovery |
+| H11–H18 | Verify retained public offer and factual claims; core mobile/keyboard/browser QA. Brand merge is complete source evidence; wider live acceptance remains |
+| H19–H25 | Critical first-sale path: support receipt, onboarding/assets, approval, client conversion, agreement/billing and honest ledger. Use the existing provider and records; avoid rebuilding every prototype screen |
+| H26 | Defer referrals until terms/attribution and successful pilot exist |
+| H27–H29 | Verify headers, domain routing/canonicals and launch-route metadata at exact release |
+| H30–H31 | Fix measured customer-blocking performance issues; use a small privacy-aware funnel/ledger. Broader optimisation and analytics features can follow |
+| H32 | Accurate privacy, service/cancellation and cookie information before collecting/charging clients |
+| H33–H36 | Keep simulated audits/reviews/internal tools private or deferred; no manufactured proof or unsafe provisioning promises; use the controlled runbook |
+| H37 | P01 dispatch is recorded; P02/P03 require their own sending authority. Triage genuine inbound leads before expanding cold acquisition |
+| H38 | Only repair CMS/settings issues affecting the sold pilot; defer broad CMS expansion |
+| H39–H42 | Quality/security checks and provider deployment proof at release. Historical passing suites do not prove runtime payment, auth or recovery |
+| H43–H46 | Monitoring, restore, DNS/email continuity, cache updates and real browser journey acceptance |
+| H47–H48 | Dated operating record and approved factual release scope; reconcile rather than overwrite peer documentation |
+| H49 / D01–D07 | Independent domain rights/costs/expiry/mandates, catalogue/intake/settlement/renewal/metrics. Public settlement remains assisted and evidence-gated; no new checkout needed |
+| D08 / L01 | Defer speculative domain products/new brands and additional Labs polish; retain any genuinely customer-blocking defect as an exception |
+| H50 | One real paid pilot completes launch, care, recurring collection and measured recovery/economics before scaling. Rehearsal is necessary but does not close this task |
+
+The accompanying task register preserves each H01–H50 task's recorded status. Those statuses are historical labels, not 50 fresh runtime verdicts. The overlay above controls sequencing.
+
+## Prioritised completion roadmap
+
+Dates below are **proposed internal targets**, not founder commitments or client delivery promises. They assume access to a verified existing acceptance environment and approximately 24–36 focused engineering hours, plus 4–6 founder review hours across two weeks. If Robbie supplies all engineering within the recorded 10–12 hours/week, allow roughly three weeks. Rebaseline after the first payment milestone. Customer responses, accounting review and provider approval can extend dates.
+
+| Priority / IDs | Concrete work and owner | Dependency | Target / effort | Definition of done |
+| --- | --- | --- | --- | --- |
+| P1 / H23–H25/H50 | Codex/Antigravity: verify integrated durable receipt path with authentic sandbox delivery/restart/concurrency; Robbie approves isolated external rollout | Existing durable branch integrated 14 Oct; staging identified; review sandbox release plan | Source integration DONE locally 14 Oct; acceptance target 15–19 Oct, approval-dependent | One authentic deposit creates one authorised receipt and correctly linked client state; restart, parallel deliveries, alternate events and interrupted writes recover without duplicate activation; unknown/wrong customer remains unpaid |
+| P1 / H01–H02/H10/H32/H48 | Robbie + accountant/commercial adviser as needed: approve one customer-use agreement/fact sheet; delivery lead proves promised channels/support | Existing ratified prices; accurate seller identity; operational evidence | By 19 Oct; 1–2h founder plus adviser lead time | Tax presentation, deposit/refunds, routing, revisions, ownership/export, cancellation, hours and backup promises agree across public copy, proposal and billing; unsupported promise resolved before issuing agreement |
+| P1 / H19–H25/H36 | Codex/Antigravity: minimal persistent agreement → onboarding → approval → balance/care process using existing platform/provider | Payment storage and approved agreement; dedicated client-template repository | 19–22 Oct; 8–12h | Reload preserves agreement/brief/assets and project; missing assets hold build; client boundaries enforced; approval identifies exact revision; deposit/balance/subscription distinguished from pipeline and invoiced amounts |
+| P1 / H07–H10/H43/H46/H50 | Delivery lead: fictional end-to-end rehearsal, owner/non-owner sessions, email/support receipt, outage/replay and restore | Previous two technical milestones; verified sandbox and test recipient scope | 22–23 Oct; 4–6h | Dated evidence for every stage; durable payment survives restart; denied cross-client access; failure alerts recover once; restored fictional records retrievable; support ticket acknowledged accurately |
+| P1 / H03/H11–H18/H27–H29/H41/H44–H48 | Delivery lead + Robbie: verify public/client release; reconcile actual provider revision; prepare reviewed release and rollback | Passed rehearsal, factual/commercial review, release authorisation | By 26 Oct; 4–6h | Quality/security checks pass; zero unresolved critical defects; retained routes usable on mobile/desktop and keyboard; forms/retrieval work; DNS/MX intact; exact deployed revision and rollback recorded |
+| P2 / H37/H50 | Robbie owns replies/qualification; agent prepares reviewable evidence and records. Reconcile three CRM leads and P01 status; qualify P02/P03 | Inbox/CRM access; no new send without explicit authority; pilot fulfilment dates known | Triage 15 Oct; limited acquisition after readiness gate | Every genuine lead has owner/next action; test/spam entries excluded; P01 provider/reply state distinguished; approved recipient and factual message only; no unsolicited speculative full builds |
+| P2 / H50 | Robbie + delivery lead: secure and deliver one real paid pilot | Qualified buyer, approved scope, provider-confirmed deposit, complete assets, release approval | Commercial target: week of 26 Oct; launch 5–10 business days after payment/assets if capacity supports it | Provider-reconciled deposit and balance; exact-version customer approval; live tested site/enquiry desk; support and subscription operating; actual labour/cost log. Buyer timing remains unknown |
+| P2 / H43/H50 | Delivery lead monitors first care/collection and recoveries; Robbie reviews exceptions/economics | Actual go-live and subscription commencement | First full billing cycle, about 30 days after actual go-live | First real recurring collection reconciled; successful care request; failed payment/cancellation/recovery evidence; measured margins and intervention burden justify acquisition expansion |
+
+Do not run all rows as independent projects. Three active priorities remain payments, commercial accuracy and complete pilot fulfilment. Combine closely related backlog items into acceptance milestones, rather than a separate feature sprint per ID.
+
+## Risks and resolutions
+
+| Risk / severity | Evidence | Resolution / owner |
+| --- | --- | --- |
+| Payment durability and recovery / P1 | Canonical memory store/partial-write defects; existing durable branch now integrated locally | Review/release integrated atomic datastore path and prove authentic provider/restart/concurrency acceptance; do not recreate staged tables — engineering |
+| Source not proven live / P1 gate | Actions deployment step skipped; exact Worker revision unknown | Read provider deployment metadata; use the existing approved release path. Determine whether native Cloudflare builds already own deployment before changing GitHub credentials — delivery lead/account owner |
+| Billing/contract mismatch / P1 gate | Customer-use reconciliation flags tax/refunds/routing/backups/support | One reviewed agreement and operational evidence; accountant confirms tax presentation. Do not infer any tax setting or silently reduce sold channels — Robbie |
+| Customer process remains prototype / P1 | Deferred public proposal/onboarding/care/tracking; missing persistent acceptance | Implement minimum honest recorded process; keep unfinished UI deferred. Log manual pilot interventions and remove routine friction before scaling — engineering |
+| Digest overstates readiness / P2 | Digest says no approvals while H50 is RED; 0/3 conflicts with two-build pilot cap | Distinguish snapshot health from release gate; reconcile active capacity; inspect closed-unmerged PR #24's error-reporting work and port only missing correction — delivery lead |
+| Prospect count mistaken for demand / P2 | Research candidates and three digest leads lack reconciled buyer/receipt evidence | Verify inbox/CRM records and decision-maker interest; qualify before costly previews; do not claim pipeline conversion or collected revenue from these counts — Robbie |
+| Unsupported sales proof / P2 | Internal teardown examples/claims explicitly flagged by 14 October review | Use observed website facts and real client-approved project evidence; label fictional demos; no ranking/lead/revenue promises — commercial/delivery |
+| Capacity and margin assumptions / P2 | 10–12 founder hours/week; 14h base build estimate and 4–5h automation target unmeasured | Time every transition, cap pilot at two, run one first pilot before scaling, calculate realised contribution after all labour/provider costs — Robbie |
+| Domain distraction / P3 for website launch | PR #25 conflicts; unapplied inventory migration | Preserve separate workstream; imminent renewals are exceptions, not justification to delay agency receipts/onboarding. No unapproved purchases/listings/renewals — domain owner |
+
+## Revenue-readiness gates
+
+### Gate A — permitted to take the first pilot through an honest operational process
+
+- [ ] Accurate seller/offer/contract/tax presentation approved; public copy and proposal match the sold service.
+- [ ] Retained public contact route and genuine operator retrieval pass fresh acceptance; no fake success or sample invoice exposed as real.
+- [ ] Authentic sandbox payment is persisted atomically with correct customer, agreement, currency, amount and environment.
+- [ ] Restart, concurrent/replayed events, paid-state interruption and datastore failure do not lose receipts, double-activate or falsely acknowledge success.
+- [ ] Agreement acceptance, brief/assets and exact-version approval survive reload and enforce customer boundaries.
+- [ ] Deposit, balance, subscription and invoiced/collected values are separate; real provider receipts reconcile with the ledger.
+- [ ] Customer email, lead routing, support acknowledgement, backup/restore and monitoring fulfil the contracted service.
+- [ ] Five-page client template passes factual/rights, mobile, keyboard, links, SEO and form checks at an exact revision.
+- [ ] Release owner, live revision, domain/email preservation and rollback are evidenced; critical checks pass and no unresolved P0/P1 exists.
+- [ ] First pilot launch outputs and any live provider/production changes receive the applicable explicit approval.
+
+**Gate A completion = 100% of launch-critical acceptance criteria passed**, not 100% of every feature in H01–H50. Until then, customer conversations can establish fit but cannot imply a proven instant delivery/billing workflow.
+
+### Gate B — first genuine revenue and operational customer
+
+- [ ] Approved real scope and customer acceptance recorded.
+- [ ] £747.50 deposit and £747.50 balance, where flagship package applies, confirmed by provider and reconciled without duplicate conversion.
+- [ ] Client-approved exact version launched and live enquiry/admin/support journeys checked.
+- [ ] Actual monthly subscription starts at the agreed go-live point; no planned MRR counted as received cash.
+- [ ] Delivery costs, labour and founder interventions measured.
+
+### Gate C — permission to scale acquisition
+
+- [ ] First recurring payment collected/reconciled and one real care request completed.
+- [ ] Payment, notification, build, missing-asset and restore/recovery exceptions have demonstrable safe outcomes.
+- [ ] Observed margin and founder time support approved capacity; customer outcomes do not depend on unlimited founder administration.
+- [ ] Routine approved cases use repeatable rules; customer content approval remains explicit; founder handles high-risk exceptions and selected quality reviews.
+
+Proposed pilot scorecard: one real paying client, zero lost enquiries, zero duplicate receipts/activations, zero unresolved critical release defects, 100% explicit revision approval, 100% provider-to-ledger reconciliation, and a measured delivery/care cost. Ten qualified conversations and three scoped opportunities may be useful acquisition targets; they are planning goals, not current CRM facts or guaranteed conversion.
+
+## Execution completed in this review
+
+Read current governing records and recent discussions, verified local/remote main and selected PR outcomes, examined CI deployment steps, read live Slack digest messages, and ran the existing receipt/session/outreach checks on the original checkout: **22/22 PASS**. Preserved its uncommitted documentation and untracked files.
+
+Created an isolated local review copy at baseline `45012e4`. Three added payment regressions first failed against baseline. Prepared a small correction that checks paid-state confirmation, repairs interrupted state on duplicate delivery and returns generic retryable errors for datastore failures. This does **not** implement durable receipts, atomic transactions or prove real provider/database/browser acceptance. The original application source, live configuration and data remain unchanged. Local validation details and review patch accompany this roadmap.
+
+Fresh isolated validation: build, typecheck and formatting PASS; lint PASS with zero errors and nine existing warnings; full test command PASS (66 smoke checks, 87 tests and 3 service-worker tests); separate outreach tests 5/5 PASS; whitespace check PASS. These include local fixtures and database emulation, not remote provider acceptance. The test harness still contains historical claim-oriented checks; passing those assertions does not ratify tax/capacity wording or prove real customer outcomes. Repository status, backlog and handover received dated updates in the isolated review branch; they have not been integrated into the original checkout.
+
+No outreach, provider/database writes, purchases, live billing, DNS changes, publication, merge or deployment occurred in this review. Safe documentation and code preparation do not authorise those actions.
+
+## Immediate next action and handover
+
+Engineering's next task is **durable atomic payment receipts in a verified isolated target**, building on the existing receiver and the reviewable recovery fix. Before execution, establish target identity, existing tables/client/offer model, access policies and secure configuration; revalidate the recorded sandbox and acceptance backend rather than copying historical IDs into commands.
+
+**Superseding next action after integration:** review the sandbox-only release plan, then run authentic signed payment/restart/concurrent replay acceptance through an authorised isolated receiver. Existing staged durable storage and first-client approval work are reused. Independent staging readback and source integration supersede the earlier instruction to implement the adapter from scratch. The request is for sandbox publication/provider settings only; production release, live billing and customer messages are excluded.
+
+Read-only discovery in this review confirms the existing THG Enquiry Staging and The Harley Group Stripe sandbox are available. Next inspect their schema/configuration without customer data, prepare the durable adapter/migration and isolated acceptance evidence, then obtain the applicable scoped approval before applying external schema/provider configuration. Do not use the live THG Agency database for the rehearsal.
+
+Acceptance packet must include: target identity, exact revision, authentic sandbox event and receipt IDs without secrets, correct agreement/client linkage, expected versus observed amount/currency, restart/concurrency/replay results, independent retrieval, failure recovery and evidence that no live data/charges were involved. Commit source and migration only after local checks; applying provider/database changes requires specifically scoped approval.
+
+Robbie's parallel next action is to settle the customer-use commercial reconciliation and establish which inbox/CRM leads represent genuine opportunities. Complete drafts and readiness evidence before requesting any new customer send or production release approval.
+
+Canonical references: BUSINESS_DEFINITION.md; PROJECT_STATUS.md; MASTER_BACKLOG.md; docs/HANDOVER.md; docs/COMMERCIAL_OFFER_MANAGED.md; docs/REVENUE_WORKFLOW.md; docs/FIRST_CLIENT_REHEARSAL_2026-10-12.md; docs/PROSPECT_QUALIFICATION_PILOT_2026-10-13.md; docs/LOCAL_DOCUMENTATION_REVIEW_2026-10-14.md. The local task register retains existing IDs and proposed milestone dates; it is an execution overlay, not a replacement CRM or automatic mirror.

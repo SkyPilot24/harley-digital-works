@@ -103,7 +103,7 @@ const BRANDS_DATA: Record<BrandEntity, BrandSpec> = {
     voiceGuidelines: [
       "Plain English first: Explain technical concepts in terms of revenue, booked jobs, and time saved.",
       "No homework rule: Emphasize that we write 100% of the copy and configure all DNS records.",
-      "Concrete numbers over vague promises: Quote £1,495 / £2,995 pricing and 14-day SLA timelines.",
+      "Use the approved managed offer: £1,495 setup + £249/month care. Confirm delivery timing and terms in writing; do not promise a guaranteed launch date.",
     ],
   },
   group: {

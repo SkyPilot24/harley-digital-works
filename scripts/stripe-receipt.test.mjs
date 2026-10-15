@@ -149,9 +149,9 @@ test("2. Replay of identical signed event is idempotent and does not create dupl
   assert.equal(second.status, "duplicate");
   assert.equal(second.statusCode, 200);
   assert.equal(second.receipt?.id, first.receipt?.id);
-  // Storage was NOT invoked a second time
+  // Receipt is saved once; paid-state confirmation is safely repeated for recovery.
   assert.equal(storage.saveCalls, 1);
-  assert.equal(storage.markPaidCalls, 1);
+  assert.equal(storage.markPaidCalls, 2);
 });
 
 test("3. Invalid signature header is rejected with 401 Unauthorized", async () => {
@@ -305,7 +305,7 @@ test("8. Livemode mismatch is rejected", async () => {
   assert.equal(storage.saveCalls, 0);
 });
 
-test("9. Persistence failure rolls back and returns 500 error", async () => {
+test("9. Receipt save failure returns a retryable 500 error", async () => {
   const faultyStorage = {
     findReceiptByEventId: async () => null,
     findReceiptByPaymentIntent: async () => null,
@@ -366,4 +366,73 @@ test("10. handleStripeIncomingRequest endpoint routes POST /api/stripe/webhook",
   assert.equal(body.status, "success");
   assert.ok(body.receipt);
   assert.equal(body.receipt.amount_pence, 74750);
+});
+
+async function deliverEvent(event, storage) {
+  const rawBody = JSON.stringify(event);
+  return processStripeWebhook({
+    rawBody,
+    signatureHeader: await generateTestStripeSignature(TEST_WEBHOOK_SECRET, rawBody, event.created),
+    webhookSecret: TEST_WEBHOOK_SECRET,
+    storage,
+    nowInSeconds: event.created,
+  });
+}
+
+test("a failed paid-state write is retried without saving a second receipt", async () => {
+  const storage = createMockStorage();
+  const markPaid = storage.markClientDepositPaid;
+  storage.markClientDepositPaid = async () => false;
+  const event = buildCheckoutSessionEvent();
+  const first = await deliverEvent(event, storage);
+  assert.equal(first.statusCode, 500);
+  assert.equal(first.status, "rejected");
+  assert.equal(storage.clientPaidStatus.size, 0);
+  storage.markClientDepositPaid = markPaid;
+  const retry = await deliverEvent(event, storage);
+  assert.equal(retry.statusCode, 200);
+  assert.equal(storage.clientPaidStatus.get(TEST_CLIENT_REF)?.paid, true);
+  assert.equal(storage.saveCalls, 1);
+});
+
+test("a different event for the same payment repairs an interrupted paid-state write", async () => {
+  const storage = createMockStorage();
+  const markPaid = storage.markClientDepositPaid;
+  storage.markClientDepositPaid = async () => {
+    throw new Error("interrupted");
+  };
+  assert.equal((await deliverEvent(buildCheckoutSessionEvent(), storage)).statusCode, 500);
+  storage.markClientDepositPaid = markPaid;
+  const retry = await deliverEvent(buildCheckoutSessionEvent({ eventId: "evt_recovery" }), storage);
+  assert.equal(retry.statusCode, 200);
+  assert.equal(storage.clientPaidStatus.get(TEST_CLIENT_REF)?.paid, true);
+  assert.equal(storage.saveCalls, 1);
+});
+
+test("storage lookup failure returns a retryable result without leaking internal details", async () => {
+  const storage = createMockStorage();
+  storage.findReceiptByEventId = async () => {
+    throw new Error("private datastore details");
+  };
+  const result = await deliverEvent(buildCheckoutSessionEvent(), storage);
+  assert.equal(result.statusCode, 500);
+  assert.doesNotMatch(result.reason, /private datastore details/);
+  assert.equal(storage.saveCalls, 0);
+});
+
+test("default webhook aliases fail closed without durable receiver enablement", async () => {
+  const enabled = process.env.STRIPE_WEBHOOK_ENABLED;
+  process.env.STRIPE_WEBHOOK_ENABLED = "false";
+  try {
+    for (const path of ["/api/stripe/webhook", "/api/webhooks/stripe"]) {
+      const request = new Request(`https://example.test${path}`, { method: "POST", body: "{}" });
+      const response = await handleStripeIncomingRequest(request, path);
+      assert.equal(response.status, 503);
+      assert.equal(response.headers.get("cache-control"), "no-store");
+      assert.deepEqual(await response.json(), { result: "unconfigured" });
+    }
+  } finally {
+    if (enabled === undefined) delete process.env.STRIPE_WEBHOOK_ENABLED;
+    else process.env.STRIPE_WEBHOOK_ENABLED = enabled;
+  }
 });

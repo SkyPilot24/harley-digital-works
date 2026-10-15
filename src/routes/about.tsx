@@ -285,7 +285,7 @@ function AboutPage() {
                 <Check size={16} /> 50% deposit / 50% on approval
               </span>
               <span>
-                <ShieldCheck size={16} /> Zero VAT & direct WhatsApp support
+                <ShieldCheck size={16} /> Clear scope & direct WhatsApp contact
               </span>
             </div>
           </div>
