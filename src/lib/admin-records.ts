@@ -153,10 +153,55 @@ export async function loadProjectPage(
   if (options.search?.trim())
     query = query.or(recordSearchFilter(["name", "summary"], options.search));
   if (options.signal) query = query.abortSignal(options.signal);
-  const { data, count, error } = await query
+  let { data, count, error } = await query
     .order("created_at", { ascending: false })
     .order("id", { ascending: false })
     .range(options.page * ADMIN_PAGE_SIZE, (options.page + 1) * ADMIN_PAGE_SIZE - 1);
+
+  if (error && (error.code === "PGRST200" || error.message?.includes("relationship"))) {
+    let fallbackQuery = client
+      .from("projects")
+      .select("*", { count: "exact" });
+    if (options.status === "active") fallbackQuery = fallbackQuery.in("status", [...activeProjectStages]);
+    else if (options.status !== "all") fallbackQuery = fallbackQuery.eq("status", options.status);
+    if (options.search?.trim())
+      fallbackQuery = fallbackQuery.or(recordSearchFilter(["name", "summary"], options.search));
+    if (options.signal) fallbackQuery = fallbackQuery.abortSignal(options.signal);
+    const fallback = await fallbackQuery
+      .order("created_at", { ascending: false })
+      .order("id", { ascending: false })
+      .range(options.page * ADMIN_PAGE_SIZE, (options.page + 1) * ADMIN_PAGE_SIZE - 1);
+
+    count = fallback.count;
+    error = fallback.error;
+    if (!error && fallback.data) {
+      const clientIds = [...new Set(fallback.data.map((r) => r.client_id).filter(Boolean))] as string[];
+      let clientMap = new Map<
+        string,
+        {
+          id: string;
+          name: string;
+          contact_name: string | null;
+          contact_email: string | null;
+          website: string | null;
+        }
+      >();
+      if (clientIds.length > 0) {
+        const { data: clientRows } = await client
+          .from("clients")
+          .select("id, name, contact_name, contact_email, website")
+          .in("id", clientIds);
+        if (clientRows) {
+          clientMap = new Map(clientRows.map((c) => [c.id, c]));
+        }
+      }
+      data = fallback.data.map((r) => ({
+        ...r,
+        clients: r.client_id ? clientMap.get(r.client_id) ?? null : null,
+      })) as unknown as typeof data;
+    }
+  }
+
   if (error) throw error;
   if (data === null || count === null) throw new Error("Project results unavailable");
   confirmPageLength(data, count, options.page);

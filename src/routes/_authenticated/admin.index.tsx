@@ -133,16 +133,51 @@ function DashboardPage() {
   const activeProjectsQuery = useQuery({
     queryKey: ["admin", "active-projects"],
     queryFn: async () => {
-      const rows = await loadCompleteRecords((after) => {
-        let query = supabase
-          .from("projects")
-          .select("*, clients(name, contact_name, contact_email)", { count: "exact" })
-          .in("status", ["discovery", "in_progress", "review"])
-          .order("id")
-          .limit(500);
-        if (after) query = query.gt("id", after);
-        return query;
-      });
+      let rows: (ProjectRow & {
+        clients?: { name?: string | null; contact_name?: string | null; contact_email?: string | null } | null;
+      })[];
+      try {
+        rows = await loadCompleteRecords((after) => {
+          let query = supabase
+            .from("projects")
+            .select("*, clients(name, contact_name, contact_email)", { count: "exact" })
+            .in("status", ["discovery", "in_progress", "review"])
+            .order("id")
+            .limit(500);
+          if (after) query = query.gt("id", after);
+          return query;
+        });
+      } catch (err: unknown) {
+        const error = err as { code?: string; message?: string };
+        if (error?.code === "PGRST200" || error?.message?.includes("relationship")) {
+          const flatRows = await loadCompleteRecords((after) => {
+            let query = supabase
+              .from("projects")
+              .select("*", { count: "exact" })
+              .in("status", ["discovery", "in_progress", "review"])
+              .order("id")
+              .limit(500);
+            if (after) query = query.gt("id", after);
+            return query;
+          });
+          const clientIds = [...new Set(flatRows.map((r) => r.client_id).filter(Boolean))] as string[];
+          if (clientIds.length > 0) {
+            const { data: clientRows } = await supabase
+              .from("clients")
+              .select("id, name, contact_name, contact_email")
+              .in("id", clientIds);
+            const map = new Map((clientRows || []).map((c) => [c.id, c]));
+            rows = flatRows.map((r) => ({
+              ...r,
+              clients: r.client_id ? map.get(r.client_id) ?? null : null,
+            }));
+          } else {
+            rows = flatRows.map((r) => ({ ...r, clients: null }));
+          }
+        } else {
+          throw err;
+        }
+      }
       return rows.sort((a, b) => b.created_at.localeCompare(a.created_at));
     },
   });
