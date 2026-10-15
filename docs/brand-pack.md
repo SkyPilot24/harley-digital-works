@@ -1,5 +1,9 @@
 # Harley Digital Works brand direction
 
+## Current source status — 14 October 2026
+
+Local main includes the approved wordmark merge `cbb4974` (#27), integrated at `45012e4`. The review branch and implementation paragraphs below retain their 13 October provenance; pending-merge wording is historical. Production deployment identity, live owner/admin acceptance and full-pack Drive access were not verified in this documentation review. The navy/ivory HDW direction governs over earlier family-pack proposals. See [documentation review](LOCAL_DOCUMENTATION_REVIEW_2026-10-14.md).
+
 ## Shared full pack and review publication — 13 October 2026
 
 The pack-producing session reports the complete ZIP and 40 individual files uploaded to the shared [Brand Assets folder](https://drive.google.com/drive/folders/1SH7LXBz72wGUL9H-PBQtWVggqMUxF1gG). This is an internal reference in this private repository; access permissions were not changed or audited here. No Drive link is added to public website content. The dated repository/public assets remain the website implementation source.

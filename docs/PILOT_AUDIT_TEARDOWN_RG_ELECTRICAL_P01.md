@@ -1,4 +1,6 @@
 # Pilot Audit Teardown & Mockup Specification: RG Electrical Bristol Limited (P01)
+
+> Documentation review, 14 October 2026: this asset specification remains internal. The canonical handover separately records authorised P01 Stage 1 outreach on 13 October; that does not establish permission to send this specification or later follow-ups. Project examples, timings, certifications, outcomes and conversion effects below are illustrative/unverified unless accompanied by actual client evidence. Do not present them as completed RG Electrical work. Verify observations and replace examples with genuine approved project details before customer-facing use.
 **Prepared:** 13 October 2026 | **Governing Framework:** `docs/COMMERCIAL_OFFER_MANAGED.md` & `BUSINESS_DEFINITION.md`  
 **Status:** **INTERNAL ASSET SPECIFICATION — STRICTLY UNSENT / PRE-APPROVAL ONLY**  
 **Prospect:** RG Electrical Bristol Limited (Companies House `#10082511`, NICEIC Verified via TrustMark)  

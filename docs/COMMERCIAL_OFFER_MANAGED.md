@@ -7,7 +7,16 @@
 
 ## Reconciliation for customer use — 14 October 2026
 
-Carried forward from the current canonical documentation review; approved prices and historical terms are retained. Registration/tax presentation needs seller/accountant confirmation before invoice issue. Historical zero-rated/not-applicable wording is not a verified invoice instruction. Confirm cancellation/refunds, support coverage, backup/restore and the sold dual routing channels before issuing the agreement. Keep the two-build pilot guard pending reconciliation of wider two/three capacity records. Sandbox receipts do not establish balance, recurring billing, support or live-client acceptance. See `FIRST_CLIENT_COMMERCIAL_DECISIONS_2026-10-14.md` for the concrete owner/evidence checklist. No price, tax-setting or production change is authorised by this note.
+Carried forward from the current canonical documentation review; approved prices and historical terms are retained. This note identifies unresolved wording and fulfilment evidence; it does not add approved terms.
+
+| Item | Current use and next evidence |
+| --- | --- |
+| Capacity | Existing pilot guard is two builds. Wider capacity has conflicting two/three records; reconcile founder decision scope before changing the guard. |
+| VAT | Registration/tax presentation needs current seller/accountant confirmation. Historical zero-rated/not-applicable wording is not a verified invoice instruction. |
+| Deposit/refunds | Keep the approved payment amounts; validate cancellation/refund clause before issuing an agreement. |
+| Support and daily backups | Response windows and backup promises need monitored operational and restore evidence; a document does not prove fulfilment. |
+| Lead routing | Table promises SMS/email while other records specify Slack/email. Confirm the sold channels and prove delivery before issuing a proposal; no silent scope reduction. |
+| Billing | Sandbox provider deposit evidence exists; durable application receipts, balance and care-cycle acceptance remain open. No live billing enabled by this record. |
 
 ---
 

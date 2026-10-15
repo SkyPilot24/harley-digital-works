@@ -2,12 +2,18 @@
 
 **Document Version:** 1.0  
 **Date:** 7 October 2026  
-**Status:** Implemented & Verified  
+**Status:** Mixed implementation and proposed design; see current operating limits below
 **Governing Context:** [BUSINESS_DEFINITION.md](file:///c:/Local%20Data/The%20Harley%20Group/harley-digital-works/BUSINESS_DEFINITION.md), [PROJECT_STATUS.md](file:///c:/Local%20Data/The%20Harley%20Group/harley-digital-works/PROJECT_STATUS.md), [docs/COMMERCIAL_OFFER_MANAGED.md](file:///c:/Local%20Data/The%20Harley%20Group/harley-digital-works/docs/COMMERCIAL_OFFER_MANAGED.md)
 
 ---
 
 ## 1. Executive Summary & Founder Operating Model
+
+### Current operating limits — 14 October 2026
+
+The recorded founder preference in the 11 October integration-session handover is to keep one operational channel, `#all-the-harley-group`. The nine-channel matrix below is retained as a historical design proposal, not proof of deployed channels or permission to create them. Later `#sales` references require destination reconciliation; this review changes no Slack settings and sends no messages. Current live topology was not rechecked.
+
+Digest times in this guide, the chief-of-staff schedule and the outreach schedule describe different jobs. Repository `nitro.config.ts` contains outreach cron `0 9 * * 1-5`; that expression alone does not prove 09:00 Europe/London execution or daylight-saving handling. The 14 October mirror briefing reports a timing discrepancy and unconfirmed send acknowledgement. Verify each scheduler's timezone, observed run timestamp and delivery acknowledgement before claiming unattended acceptance. No schedule altered here.
 
 The Harley Group operates as the umbrella holding company; Harley Digital Works delivers managed website and digital operations services for UK trade contractors. The founder, Robbie Harley, manages the business alongside an NHS clinical career.
 
@@ -21,7 +27,7 @@ The Harley Group operates as the umbrella holding company; Harley Digital Works 
 
 ## 2. Operational Channel Topology & Routing Matrix
 
-To prevent notification fatigue and ensure critical signals are never lost in noise, the workspace utilizes a clean 9-channel architecture with strict notification rules:
+The historical expansion proposal specifies nine channels and notification rules. It remains unapproved for rollout under the recorded single-channel preference:
 
 | Channel                  | Purpose                                                                              | Traffic Source                                                     | Interactive Controls                                            | Severity Tier                  |
 | :----------------------- | :----------------------------------------------------------------------------------- | :----------------------------------------------------------------- | :-------------------------------------------------------------- | :----------------------------- |

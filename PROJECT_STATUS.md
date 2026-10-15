@@ -45,6 +45,7 @@ H03/H07/H42: isolated `codex/platform-completion-2026-10-15` from existing launc
 Final fresh build/typecheck/format PASS; lint 0 errors / 9 existing warnings; platform smoke PASS, 135 regression tests and 3 service-worker tests PASS. New tests cover all ten operational source-failure positions and capped/missing data. Authenticated browser/RLS mutation/readback acceptance remains pending; no customer data writes, migration, push, merge, deployment, sending or spending. Overall launch remains RED. Next: bounded staging browser acceptance of dashboard failure/retry and cross-screen mutation refresh, followed by remaining intake/recovery/care and concrete release gates.
 # The Harley Group — shared project status
 
+<<<<<<< HEAD
 **Draft review submitted, 14 October:** [PR #29](https://github.com/SkyPilot24/harley-digital-works/pull/29) integrates the existing first-client work and launch corrections on `codex/launch-completion-2026-10-14`. Review head `1a71b7b` passed GitHub quality and credential checks; dependency audit reported zero vulnerabilities. Cloudflare created a successful native review Preview with an unconfigured backend, not functional acceptance. Active production deployment remains `ab1ae80f-5523-475f-8050-1c1be9a8aa99` / version `25218195-69ef-4616-8977-416cd740d876`, created 13 October; GitHub main remains `45012e4`. No merge, production migration, live billing or customer outreach. This supersedes earlier local-only submission labels while retaining tested runtime `280b0e6` and earlier rehearsal source identities. Full sale-to-care and owner decisions remain RED. This documentation follow-up requires its own current-head check result before treating that head as CI-verified.
 
 
@@ -88,6 +89,16 @@ Three active priorities: durable receipts/recovery, accurate fulfilable commerci
 Added docs/chief-of-staff/README.md and six dated business-document snapshots with source/hash manifest on an isolated documentation branch based at main 45012e4. Current peer records already supersede the old domain, handover-marker and five-prompt next actions; archived reports are historical, not instructions to repeat completed work. The old handover patch was not applied. Original source outputs and unrelated work are preserved.
 
 Existing 08:15 UK briefing/09:00 UK housekeeping and prior Slack/local fixture acceptance are recorded in the archive, separately from unattended/runtime evidence. Approved prompt pack, continuation handover and curated knowledge index have verified Drive metadata/content readbacks. Always-on inbound Slack/cloud responder remains a separate unverified setup request. No application change, new schedule, push, merge, deployment, customer contact, spending or production/data operation in this documentation task. See docs/chief-of-staff/README.md for authority and current boundaries.
+
+## Documentation follow-up and fresh acceptance checks — 14 October 2026
+
+H47/H50: clarified commercial capacity/contract/tax evidence limits without changing prices or guards; reconciled the rehearsal's obsolete account-discovery next action with the current in-memory receipt handler. Existing receipt/session/outreach tests freshly PASS 22/22; these are fixture/mock checks, not persistent/provider/browser acceptance. Added runtime acceptance gates to the existing rehearsal, and marked nine-channel Slack topology as a historical proposal under the recorded single-channel preference. Wider capacity still conflicts with the two-build pilot guard; no new capacity decision inferred. No code/configuration, provider/database writes, sending, commit, push or deployment. Next: implement durable receipt storage in a verified isolated target, then authentic sandbox delivery/restart/replay proof. Documentation validation in handover.
+
+## Local business documentation review — 14 October 2026
+
+H47: local main `45012e4a8b4b73335d64f260bb6ccc1047dedcb9` includes wordmark #27 (`cbb4974`), P01 dispatch/audit #28 (`269123a`) and P02 teardown/chief-of-staff documentation (`c8c8337`). Earlier pending-merge headings below retain their historical dates. No exact deployed revision or live acceptance verified here.
+
+Created [documentation directory](docs/README.md) and [output review](docs/LOCAL_DOCUMENTATION_REVIEW_2026-10-14.md); refreshed Business OS navigation, brand source status and activity, and labelled unsupported prospect examples. External mirror output records retained by reference; no files moved or application/configuration/data altered. H47 remains open for wider reproducibility/runbook acceptance. Commercial capacity/VAT wording, Slack destinations, briefing delivery/timing and H50 runtime receipt/recovery remain unresolved. Documentation is local/uncommitted; no push or deployment. Fresh documentation checks recorded in handover; historical application checks were not rerun.
 
 ## Review-branch reconciliation — 13 October 2026
 

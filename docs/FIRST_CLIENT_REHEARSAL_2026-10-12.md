@@ -56,7 +56,23 @@ Routine steps should use the existing customer record and approved rules. Any te
 
 No client build or support time has been measured. Log actual start/end, active minutes, tool/provider cost, retry reason and founder minutes at each step. The 14-hour build estimate in the commercial model remains an estimate. Use observed totals to decide whether two simultaneous builds fit available capacity.
 
-## Exact next action
+## Current acceptance and exact next action — reconciled 14 October 2026
+
+The earlier account-discovery blocker and “no handler identified” entries above retain their 12 October observation dates. Current source routes `/api/stripe/webhook` and `/api/webhooks/stripe` through `src/lib/stripe/server-handler.ts`. Its default receipt storage uses process-local Maps. There is no durable receipt adapter on that default request path; a restart or another Worker instance does not share those Maps. Fresh existing local tests pass 22/22 across receipt (10), session/authorization (7) and outreach (5). These use isolated fixtures/mocks and do not establish provider delivery, persistent payment acceptance, genuine browser session behaviour or production recovery.
+
+| Acceptance gate | Required evidence and next step | State |
+| --- | --- | --- |
+| Persistent receipt | Choose the existing authorised isolated datastore; implement an atomic durable receipt/payment transition with event and payment-intent uniqueness, then restart and retrieve the receipt | Blocking; default HTTP store is in memory |
+| Authentic provider event | Confirm sandbox identity/livemode and receiver revision; deliver one authentic signed sandbox event, match amount/currency/client and retrieve receipt independently | Not run in this follow-up |
+| Replay/failure recovery | Replay across a fresh process and concurrent deliveries; simulate storage/paid-state failures and reconciliation after interruption; never activate on partial failure | Local tests pass; durable/concurrent runtime acceptance open |
+| Owner sessions | Isolated genuine owner and non-owner browser sessions: expiry, signout, cache clearing, denied retrieval; preserve existing live owner session | Local tests pass; browser acceptance open |
+| Recovery | Restore fictional data into an isolated target; retrieve receipts/client records and record elapsed time and rollback | Not run; live database untouched |
+| Customer email | Prove receipt delivery, bounce/retry and safe failure in isolation; prospect sender verification is separate | Not accepted |
+| Remaining journey | Persist agreement/onboarding, approve exact preview, reconcile balance/care cycle and record labour/exception handling using the existing matrix | Open |
+
+Next implementation is the durable receipt path in isolation, followed by authentic sandbox delivery and restart/replay proof. Record target identity, revision, minimised event/receipt IDs, expected versus actual results and recovery outcome. Do not store secrets or payment capability URLs. Provider/database writes need the applicable explicit scope before execution; this documentation follow-up performs none. H50 remains open.
+
+## Historical next action — 12 October 2026
 
 Identify an existing Stripe account and isolated sandbox through authenticated read-only account discovery, returning account context and livemode=false without exposing keys. Then verify provider test access and implement the smallest hosted-payment/receipt path with replay and failure tests in an isolated code branch. Do not activate live billing. Account discovery is the first external dependency; prototype rebuilding, outreach expansion and new dashboards are not prerequisites to identifying it.
 
