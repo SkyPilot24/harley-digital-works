@@ -36,6 +36,22 @@ import {
   MessageSquare,
 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
+import {
+  adminErrorMessage,
+  insertRecord,
+  invalidateAdminData,
+  updateRecord,
+} from "@/lib/admin-writes";
+import {
+  parseClientInput,
+  parseLeadInput,
+  parseLeadStatus,
+  parsePhone,
+  parseProjectInput,
+  parseProjectStatus,
+  parseText,
+  formatCents,
+} from "@/lib/admin-validation";
 import type { Database } from "@/integrations/supabase/types";
 import { toast } from "sonner";
 import { StrategySummary } from "@/components/admin/CurrentStrategy";
@@ -231,38 +247,25 @@ function DashboardPage() {
   // Mutations
   const updateLeadStatusMutation = useMutation({
     mutationFn: async ({ id, status }: { id: string; status: LeadRow["status"] }) => {
-      const { error } = await supabase
-        .from("leads")
-        .update({ status })
-        .eq("id", id)
-        .select("id")
-        .single();
-      if (error) throw error;
+      await updateRecord(supabase, "leads", id, { status: parseLeadStatus(status) });
     },
     onSuccess: () => {
-      qc.invalidateQueries({ queryKey: ["admin", "operational-stats"] });
-      qc.invalidateQueries({ queryKey: ["admin", "recent-leads"] });
+      invalidateAdminData(qc, "lead");
       toast.success("Lead status updated");
     },
-    onError: (err: Error) => toast.error(err.message),
+    onError: (err: unknown) => toast.error(adminErrorMessage(err, "Lead status was not updated.")),
   });
 
   const updateProjectStatusMutation = useMutation({
     mutationFn: async ({ id, status }: { id: string; status: ProjectRow["status"] }) => {
-      const { error } = await supabase
-        .from("projects")
-        .update({ status })
-        .eq("id", id)
-        .select("id")
-        .single();
-      if (error) throw error;
+      await updateRecord(supabase, "projects", id, { status: parseProjectStatus(status) });
     },
     onSuccess: () => {
-      qc.invalidateQueries({ queryKey: ["admin", "operational-stats"] });
-      qc.invalidateQueries({ queryKey: ["admin", "active-projects"] });
+      invalidateAdminData(qc, "project");
       toast.success("Project stage updated");
     },
-    onError: (err: Error) => toast.error(err.message),
+    onError: (err: unknown) =>
+      toast.error(adminErrorMessage(err, "Project stage was not updated.")),
   });
 
   const operationalQueries = [
@@ -1019,7 +1022,9 @@ function DashboardPage() {
                       </div>
                       <div className="text-right">
                         <span className="font-mono font-bold text-emerald-800 text-sm">
-                          £{((client.monthly_value_cents ?? 24900) / 100).toFixed(0)}/mo
+                          {formatCents(client.monthly_value_cents)
+                            ? `${formatCents(client.monthly_value_cents)}/mo`
+                            : "Not recorded"}
                         </span>
                         <span className="block text-[10px] text-ink-muted">30m edit allowance</span>
                       </div>
@@ -1157,8 +1162,7 @@ function DashboardPage() {
         <AddLeadModal
           onClose={() => setIsAddingLead(false)}
           onSuccess={() => {
-            qc.invalidateQueries({ queryKey: ["admin", "operational-stats"] });
-            qc.invalidateQueries({ queryKey: ["admin", "recent-leads"] });
+            invalidateAdminData(qc, "lead");
             setIsAddingLead(false);
           }}
         />
@@ -1169,8 +1173,7 @@ function DashboardPage() {
         <AddClientModal
           onClose={() => setIsAddingClient(false)}
           onSuccess={() => {
-            qc.invalidateQueries({ queryKey: ["admin", "operational-stats"] });
-            qc.invalidateQueries({ queryKey: ["admin", "active-clients-list"] });
+            invalidateAdminData(qc, "client");
             setIsAddingClient(false);
           }}
         />
@@ -1182,8 +1185,7 @@ function DashboardPage() {
           clients={activeClients}
           onClose={() => setIsStartingProject(false)}
           onSuccess={() => {
-            qc.invalidateQueries({ queryKey: ["admin", "operational-stats"] });
-            qc.invalidateQueries({ queryKey: ["admin", "active-projects"] });
+            invalidateAdminData(qc, "project");
             setIsStartingProject(false);
           }}
         />
@@ -1201,37 +1203,28 @@ function AddLeadModal({ onClose, onSuccess }: { onClose: () => void; onSuccess: 
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [company, setCompany] = useState("");
-  const [pkg, setPkg] = useState("Managed Digital Presence (£1,495)");
+  const [pkg, setPkg] = useState("");
   const [notes, setNotes] = useState("");
   const [loading, setLoading] = useState(false);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (!name || !email) {
-      toast.error("Name and email are required");
-      return;
-    }
     setLoading(true);
     try {
-      const messageContent = phone
-        ? `Direct Phone: ${phone}\n\n${notes || "Manual lead created via Admin Control Centre"}`
-        : notes || "Manual lead created via Admin Control Centre";
-
-      const { error } = await supabase.from("leads").insert({
-        name,
-        email,
-        company: company || null,
-        message: messageContent,
-        package: pkg,
-        notes: notes || null,
-        source: "admin_manual",
-        status: "new",
-      });
-      if (error) throw error;
+      const phoneValue = parsePhone(phone, "Phone");
+      const noteValue = parseText(notes, "Initial notes", { multiline: true });
+      const message = [phoneValue ? `Direct Phone: ${phoneValue}` : null, noteValue]
+        .filter(Boolean)
+        .join("\n\n");
+      const input = parseLeadInput(
+        { name, email, company, package: pkg, message, notes: noteValue },
+        { messageRequired: false },
+      );
+      await insertRecord(supabase, "leads", { ...input, source: "admin_manual" });
       toast.success("Enquiry recorded successfully");
       onSuccess();
     } catch (err: unknown) {
-      toast.error(err instanceof Error ? err.message : "Failed to record enquiry");
+      toast.error(adminErrorMessage(err, "Failed to record enquiry"));
     } finally {
       setLoading(false);
     }
@@ -1298,6 +1291,7 @@ function AddLeadModal({ onClose, onSuccess }: { onClose: () => void; onSuccess: 
               onChange={(e) => setPkg(e.target.value)}
               className="mt-1 w-full rounded-lg border border-ink/20 px-3 py-2 text-xs"
             >
+              <option value="">Not specified</option>
               <option value="Managed Digital Presence (£1,495)">
                 Managed Digital Presence (£1,495 setup + £249/mo)
               </option>
@@ -1347,32 +1341,27 @@ function AddClientModal({ onClose, onSuccess }: { onClose: () => void; onSuccess
   const [contactEmail, setContactEmail] = useState("");
   const [contactPhone, setContactPhone] = useState("");
   const [website, setWebsite] = useState("");
-  const [monthlyValue, setMonthlyValue] = useState("249");
+  const [monthlyValue, setMonthlyValue] = useState("");
   const [loading, setLoading] = useState(false);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (!name) {
-      toast.error("Business name is required");
-      return;
-    }
     setLoading(true);
     try {
-      const monthlyCents = Math.round(parseFloat(monthlyValue || "0") * 100);
-      const { error } = await supabase.from("clients").insert({
+      const input = parseClientInput({
         name,
-        contact_name: contactName || null,
-        contact_email: contactEmail || null,
-        contact_phone: contactPhone || null,
-        website: website || null,
+        contact_name: contactName,
+        contact_email: contactEmail,
+        contact_phone: contactPhone,
+        website,
         status: "active",
-        monthly_value_cents: monthlyCents,
+        monthly_value: monthlyValue,
       });
-      if (error) throw error;
+      await insertRecord(supabase, "clients", input);
       toast.success("Client account created");
       onSuccess();
     } catch (err: unknown) {
-      toast.error(err instanceof Error ? err.message : "Failed to create client");
+      toast.error(adminErrorMessage(err, "Failed to create client"));
     } finally {
       setLoading(false);
     }
@@ -1433,12 +1422,15 @@ function AddClientModal({ onClose, onSuccess }: { onClose: () => void; onSuccess
               />
             </div>
             <div>
-              <label className="block text-xs font-semibold text-ink">Monthly Care (£/mo)</label>
+              <label className="block text-xs font-semibold text-ink">
+                Monthly Care (£/mo, optional)
+              </label>
               <input
-                type="number"
+                type="text"
+                inputMode="decimal"
                 value={monthlyValue}
                 onChange={(e) => setMonthlyValue(e.target.value)}
-                placeholder="249"
+                placeholder="e.g. 249"
                 className="mt-1 w-full rounded-lg border border-ink/20 px-3 py-2 text-xs"
               />
             </div>
@@ -1486,35 +1478,26 @@ function StartProjectModal({
 }) {
   const [clientId, setClientId] = useState(clients[0]?.id ?? "");
   const [name, setName] = useState("");
-  const [targetDays, setTargetDays] = useState("14");
-  const [summary, setSummary] = useState("Standard 5-page Managed trade website build.");
+  const [targetDate, setTargetDate] = useState("");
+  const [summary, setSummary] = useState("");
   const [loading, setLoading] = useState(false);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (!name) {
-      toast.error("Project name is required");
-      return;
-    }
     setLoading(true);
     try {
-      const targetDate = new Date();
-      targetDate.setDate(targetDate.getDate() + parseInt(targetDays || "14", 10));
-
-      const { error } = await supabase.from("projects").insert({
+      const input = parseProjectInput({
         name,
-        client_id: clientId || null,
+        client_id: clientId,
         status: "discovery",
-        budget_cents: 149500, // £1,495 standard setup
-        start_date: new Date().toISOString(),
-        target_date: targetDate.toISOString(),
-        summary: summary || null,
+        target_date: targetDate,
+        summary,
       });
-      if (error) throw error;
+      await insertRecord(supabase, "projects", input);
       toast.success("Project initialized in Discovery stage");
       onSuccess();
     } catch (err: unknown) {
-      toast.error(err instanceof Error ? err.message : "Failed to start project");
+      toast.error(adminErrorMessage(err, "Failed to start project"));
     } finally {
       setLoading(false);
     }
@@ -1558,17 +1541,14 @@ function StartProjectModal({
           </div>
           <div>
             <label className="block text-xs font-semibold text-ink">
-              Delivery Turnaround (SLA Days)
+              Agreed target date (optional)
             </label>
             <input
-              type="number"
-              value={targetDays}
-              onChange={(e) => setTargetDays(e.target.value)}
+              type="date"
+              value={targetDate}
+              onChange={(e) => setTargetDate(e.target.value)}
               className="mt-1 w-full rounded-lg border border-ink/20 px-3 py-2 text-xs"
             />
-            <span className="text-[10px] text-ink-muted mt-0.5 block">
-              Default 14 days standard
-            </span>
           </div>
           <div>
             <label className="block text-xs font-semibold text-ink">Scope Summary</label>

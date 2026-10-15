@@ -1,7 +1,14 @@
 import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
 import { requireSupabaseAuth } from "@/integrations/supabase/auth-middleware";
-import { loadAllPages, loadAllRanges, wouldRemoveLastAdmin } from "./admin-users";
+import {
+  grantRole,
+  loadAllPages,
+  loadAllRanges,
+  revokeRole,
+  roleErrorMessage,
+  type RoleDb,
+} from "./admin-users";
 
 async function assertAdmin(userId: string) {
   const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
@@ -77,10 +84,11 @@ export const grantUserRole = createServerFn({ method: "POST" })
   .handler(async ({ data, context }) => {
     await assertAdmin(context.userId);
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
-    const { error } = await supabaseAdmin
-      .from("user_roles")
-      .insert({ user_id: data.user_id, role: data.role });
-    if (error && !/duplicate key/i.test(error.message)) throw new Error(error.message);
+    try {
+      await grantRole(supabaseAdmin as unknown as RoleDb, data.user_id, data.role);
+    } catch (err) {
+      throw new Error(roleErrorMessage(err, "The role could not be granted."));
+    }
     return { ok: true };
   });
 
@@ -90,22 +98,10 @@ export const revokeUserRole = createServerFn({ method: "POST" })
   .handler(async ({ data, context }) => {
     await assertAdmin(context.userId);
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
-    if (data.role === "admin") {
-      const { count, error: countErr } = await supabaseAdmin
-        .from("user_roles")
-        .select("user_id", { count: "exact", head: true })
-        .eq("role", "admin");
-      if (countErr) throw new Error(countErr.message);
-      if (count === null) throw new Error("Could not confirm the administrator count.");
-      if (wouldRemoveLastAdmin(data.role, count)) {
-        throw new Error("This is the last admin — grant admin to another user first.");
-      }
+    try {
+      await revokeRole(supabaseAdmin as unknown as RoleDb, data.user_id, data.role);
+    } catch (err) {
+      throw new Error(roleErrorMessage(err, "The role could not be revoked."));
     }
-    const { error } = await supabaseAdmin
-      .from("user_roles")
-      .delete()
-      .eq("user_id", data.user_id)
-      .eq("role", data.role);
-    if (error) throw new Error(error.message);
     return { ok: true };
   });
