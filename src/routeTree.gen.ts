@@ -23,6 +23,7 @@ import { Route as OnboardingRouteImport } from './routes/onboarding'
 import { Route as LocationsRouteImport } from './routes/locations'
 import { Route as LabsRouteImport } from './routes/labs'
 import { Route as DomainsRouteImport } from './routes/domains'
+import { Route as DomainPortfolioPreviewRouteImport } from './routes/domain-portfolio-preview'
 import { Route as DemosRouteImport } from './routes/demos'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CareDeskRouteImport } from './routes/care-desk'
@@ -64,6 +65,7 @@ import { Route as AuthenticatedAdminLeadsRouteImport } from './routes/_authentic
 import { Route as AuthenticatedAdminKnowledgeBaseRouteImport } from './routes/_authenticated/admin.knowledge-base'
 import { Route as AuthenticatedAdminInvoicesRouteImport } from './routes/_authenticated/admin.invoices'
 import { Route as AuthenticatedAdminHeadquartersRouteImport } from './routes/_authenticated/admin.headquarters'
+import { Route as AuthenticatedAdminDomainPortfolioRouteImport } from './routes/_authenticated/admin.domain-portfolio'
 import { Route as AuthenticatedAdminDomainOsRouteImport } from './routes/_authenticated/admin.domain-os'
 import { Route as AuthenticatedAdminDiagnosticsRouteImport } from './routes/_authenticated/admin.diagnostics'
 import { Route as AuthenticatedAdminClientsRouteImport } from './routes/_authenticated/admin.clients'
@@ -136,6 +138,11 @@ const LabsRoute = LabsRouteImport.update({
 const DomainsRoute = DomainsRouteImport.update({
   id: '/domains',
   path: '/domains',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DomainPortfolioPreviewRoute = DomainPortfolioPreviewRouteImport.update({
+  id: '/domain-portfolio-preview',
+  path: '/domain-portfolio-preview',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DemosRoute = DemosRouteImport.update({
@@ -354,6 +361,12 @@ const AuthenticatedAdminHeadquartersRoute =
     path: '/admin/headquarters',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
+const AuthenticatedAdminDomainPortfolioRoute =
+  AuthenticatedAdminDomainPortfolioRouteImport.update({
+    id: '/admin/domain-portfolio',
+    path: '/admin/domain-portfolio',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const AuthenticatedAdminDomainOsRoute =
   AuthenticatedAdminDomainOsRouteImport.update({
     id: '/admin/domain-os',
@@ -383,6 +396,7 @@ export interface FileRoutesByFullPath {
   '/care-desk': typeof CareDeskRoute
   '/contact': typeof ContactRoute
   '/demos': typeof DemosRoute
+  '/domain-portfolio-preview': typeof DomainPortfolioPreviewRoute
   '/domains': typeof DomainsRoute
   '/labs': typeof LabsRoute
   '/locations': typeof LocationsRoute
@@ -415,6 +429,7 @@ export interface FileRoutesByFullPath {
   '/admin/clients': typeof AuthenticatedAdminClientsRoute
   '/admin/diagnostics': typeof AuthenticatedAdminDiagnosticsRoute
   '/admin/domain-os': typeof AuthenticatedAdminDomainOsRoute
+  '/admin/domain-portfolio': typeof AuthenticatedAdminDomainPortfolioRoute
   '/admin/headquarters': typeof AuthenticatedAdminHeadquartersRoute
   '/admin/invoices': typeof AuthenticatedAdminInvoicesRoute
   '/admin/knowledge-base': typeof AuthenticatedAdminKnowledgeBaseRoute
@@ -442,6 +457,7 @@ export interface FileRoutesByTo {
   '/care-desk': typeof CareDeskRoute
   '/contact': typeof ContactRoute
   '/demos': typeof DemosRoute
+  '/domain-portfolio-preview': typeof DomainPortfolioPreviewRoute
   '/domains': typeof DomainsRoute
   '/labs': typeof LabsRoute
   '/locations': typeof LocationsRoute
@@ -474,6 +490,7 @@ export interface FileRoutesByTo {
   '/admin/clients': typeof AuthenticatedAdminClientsRoute
   '/admin/diagnostics': typeof AuthenticatedAdminDiagnosticsRoute
   '/admin/domain-os': typeof AuthenticatedAdminDomainOsRoute
+  '/admin/domain-portfolio': typeof AuthenticatedAdminDomainPortfolioRoute
   '/admin/headquarters': typeof AuthenticatedAdminHeadquartersRoute
   '/admin/invoices': typeof AuthenticatedAdminInvoicesRoute
   '/admin/knowledge-base': typeof AuthenticatedAdminKnowledgeBaseRoute
@@ -503,6 +520,7 @@ export interface FileRoutesById {
   '/care-desk': typeof CareDeskRoute
   '/contact': typeof ContactRoute
   '/demos': typeof DemosRoute
+  '/domain-portfolio-preview': typeof DomainPortfolioPreviewRoute
   '/domains': typeof DomainsRoute
   '/labs': typeof LabsRoute
   '/locations': typeof LocationsRoute
@@ -535,6 +553,7 @@ export interface FileRoutesById {
   '/_authenticated/admin/clients': typeof AuthenticatedAdminClientsRoute
   '/_authenticated/admin/diagnostics': typeof AuthenticatedAdminDiagnosticsRoute
   '/_authenticated/admin/domain-os': typeof AuthenticatedAdminDomainOsRoute
+  '/_authenticated/admin/domain-portfolio': typeof AuthenticatedAdminDomainPortfolioRoute
   '/_authenticated/admin/headquarters': typeof AuthenticatedAdminHeadquartersRoute
   '/_authenticated/admin/invoices': typeof AuthenticatedAdminInvoicesRoute
   '/_authenticated/admin/knowledge-base': typeof AuthenticatedAdminKnowledgeBaseRoute
@@ -564,6 +583,7 @@ export interface FileRouteTypes {
     | '/care-desk'
     | '/contact'
     | '/demos'
+    | '/domain-portfolio-preview'
     | '/domains'
     | '/labs'
     | '/locations'
@@ -596,6 +616,7 @@ export interface FileRouteTypes {
     | '/admin/clients'
     | '/admin/diagnostics'
     | '/admin/domain-os'
+    | '/admin/domain-portfolio'
     | '/admin/headquarters'
     | '/admin/invoices'
     | '/admin/knowledge-base'
@@ -623,6 +644,7 @@ export interface FileRouteTypes {
     | '/care-desk'
     | '/contact'
     | '/demos'
+    | '/domain-portfolio-preview'
     | '/domains'
     | '/labs'
     | '/locations'
@@ -655,6 +677,7 @@ export interface FileRouteTypes {
     | '/admin/clients'
     | '/admin/diagnostics'
     | '/admin/domain-os'
+    | '/admin/domain-portfolio'
     | '/admin/headquarters'
     | '/admin/invoices'
     | '/admin/knowledge-base'
@@ -683,6 +706,7 @@ export interface FileRouteTypes {
     | '/care-desk'
     | '/contact'
     | '/demos'
+    | '/domain-portfolio-preview'
     | '/domains'
     | '/labs'
     | '/locations'
@@ -715,6 +739,7 @@ export interface FileRouteTypes {
     | '/_authenticated/admin/clients'
     | '/_authenticated/admin/diagnostics'
     | '/_authenticated/admin/domain-os'
+    | '/_authenticated/admin/domain-portfolio'
     | '/_authenticated/admin/headquarters'
     | '/_authenticated/admin/invoices'
     | '/_authenticated/admin/knowledge-base'
@@ -744,6 +769,7 @@ export interface RootRouteChildren {
   CareDeskRoute: typeof CareDeskRoute
   ContactRoute: typeof ContactRoute
   DemosRoute: typeof DemosRoute
+  DomainPortfolioPreviewRoute: typeof DomainPortfolioPreviewRoute
   DomainsRoute: typeof DomainsRoute
   LabsRoute: typeof LabsRoute
   LocationsRoute: typeof LocationsRoute
@@ -874,6 +900,13 @@ declare module '@tanstack/react-router' {
       path: '/domains'
       fullPath: '/domains'
       preLoaderRoute: typeof DomainsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/domain-portfolio-preview': {
+      id: '/domain-portfolio-preview'
+      path: '/domain-portfolio-preview'
+      fullPath: '/domain-portfolio-preview'
+      preLoaderRoute: typeof DomainPortfolioPreviewRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/demos': {
@@ -1163,6 +1196,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAdminHeadquartersRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/admin/domain-portfolio': {
+      id: '/_authenticated/admin/domain-portfolio'
+      path: '/admin/domain-portfolio'
+      fullPath: '/admin/domain-portfolio'
+      preLoaderRoute: typeof AuthenticatedAdminDomainPortfolioRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/admin/domain-os': {
       id: '/_authenticated/admin/domain-os'
       path: '/admin/domain-os'
@@ -1191,6 +1231,7 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedAdminClientsRoute: typeof AuthenticatedAdminClientsRoute
   AuthenticatedAdminDiagnosticsRoute: typeof AuthenticatedAdminDiagnosticsRoute
   AuthenticatedAdminDomainOsRoute: typeof AuthenticatedAdminDomainOsRoute
+  AuthenticatedAdminDomainPortfolioRoute: typeof AuthenticatedAdminDomainPortfolioRoute
   AuthenticatedAdminHeadquartersRoute: typeof AuthenticatedAdminHeadquartersRoute
   AuthenticatedAdminInvoicesRoute: typeof AuthenticatedAdminInvoicesRoute
   AuthenticatedAdminKnowledgeBaseRoute: typeof AuthenticatedAdminKnowledgeBaseRoute
@@ -1212,6 +1253,8 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedAdminClientsRoute: AuthenticatedAdminClientsRoute,
   AuthenticatedAdminDiagnosticsRoute: AuthenticatedAdminDiagnosticsRoute,
   AuthenticatedAdminDomainOsRoute: AuthenticatedAdminDomainOsRoute,
+  AuthenticatedAdminDomainPortfolioRoute:
+    AuthenticatedAdminDomainPortfolioRoute,
   AuthenticatedAdminHeadquartersRoute: AuthenticatedAdminHeadquartersRoute,
   AuthenticatedAdminInvoicesRoute: AuthenticatedAdminInvoicesRoute,
   AuthenticatedAdminKnowledgeBaseRoute: AuthenticatedAdminKnowledgeBaseRoute,
@@ -1243,6 +1286,7 @@ const rootRouteChildren: RootRouteChildren = {
   CareDeskRoute: CareDeskRoute,
   ContactRoute: ContactRoute,
   DemosRoute: DemosRoute,
+  DomainPortfolioPreviewRoute: DomainPortfolioPreviewRoute,
   DomainsRoute: DomainsRoute,
   LabsRoute: LabsRoute,
   LocationsRoute: LocationsRoute,

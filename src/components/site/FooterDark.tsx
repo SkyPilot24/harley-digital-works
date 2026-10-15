@@ -22,6 +22,7 @@ export function FooterDark() {
               <a href="/#selected-work">Explore the designs</a>
               <a href="/#packages">Build & monthly care</a>
               <Link to="/services/care-plans">Managed care</Link>
+              <Link to="/domains">Premium domain assets</Link>
               <Link
                 to="/contact"
                 search={{
