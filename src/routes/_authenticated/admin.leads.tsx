@@ -1,3 +1,4 @@
+import { LEAD_PAGE_SIZE, loadLeadPage, loadLeadCounts, type LeadFilter } from "@/lib/admin-leads";
 import { ensureClientWorkspace } from "@/lib/client-workspace";
 import { useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
@@ -32,25 +33,23 @@ export const Route = createFileRoute("/_authenticated/admin/leads")({
 
 function LeadsPage() {
   const qc = useQueryClient();
-  const [activeTab, setActiveTab] = useState<string>("all");
+  const [activeTab, setActiveTab] = useState<LeadFilter>("all");
   const [searchTerm, setSearchTerm] = useState("");
+  const [page, setPage] = useState(0);
   const [selectedLead, setSelectedLead] = useState<LeadRow | null>(null);
   const [editingLead, setEditingLead] = useState<Partial<LeadRow> | null>(null);
   const [proposingLead, setProposingLead] = useState<LeadRow | null>(null);
   const [isCreating, setIsCreating] = useState(false);
 
   const leadsQuery = useQuery({
-    queryKey: ["leads"],
-    queryFn: async () => {
-      const { data, error } = await supabase
-        .from("leads")
-        .select("*")
-        .order("created_at", { ascending: false });
-      if (error) throw error;
-      return (data ?? []) as LeadRow[];
-    },
+    queryKey: ["leads", "page", activeTab, searchTerm, page],
+    queryFn: ({ signal }) =>
+      loadLeadPage(supabase, { page, status: activeTab, search: searchTerm, signal }),
   });
-
+  const countsQuery = useQuery({
+    queryKey: ["leads", "counts"],
+    queryFn: () => loadLeadCounts(supabase),
+  });
   const notificationQuery = useQuery({
     queryKey: ["lead-notification", selectedLead?.id],
     enabled: !!selectedLead,
@@ -105,28 +104,35 @@ function LeadsPage() {
     mutationFn: async (payload: Partial<LeadRow>) => {
       if (payload.id) {
         const { id, ...rest } = payload;
-        const { error } = await supabase
+        const { data, error } = await supabase
           .from("leads")
           .update(rest)
           .eq("id", id)
-          .select("id")
+          .select("*")
           .single();
         if (error) throw error;
+        return data;
       } else {
-        const { error } = await supabase.from("leads").insert({
-          name: payload.name ?? "",
-          email: payload.email ?? "",
-          message: payload.message ?? "",
-          company: payload.company ?? null,
-          package: payload.package ?? null,
-          status: payload.status ?? "new",
-          notes: payload.notes ?? null,
-          source: payload.source ?? "admin_manual",
-        });
+        const { data, error } = await supabase
+          .from("leads")
+          .insert({
+            name: payload.name ?? "",
+            email: payload.email ?? "",
+            message: payload.message ?? "",
+            company: payload.company ?? null,
+            package: payload.package ?? null,
+            status: payload.status ?? "new",
+            notes: payload.notes ?? null,
+            source: payload.source ?? "admin_manual",
+          })
+          .select("*")
+          .single();
         if (error) throw error;
+        return data;
       }
     },
-    onSuccess: () => {
+    onSuccess: (saved) => {
+      setSelectedLead((current) => (current?.id === saved.id ? saved : current));
       qc.invalidateQueries({ queryKey: ["leads"] });
       qc.invalidateQueries({ queryKey: ["admin"] });
       setEditingLead(null);
@@ -146,36 +152,21 @@ function LeadsPage() {
       qc.invalidateQueries({ queryKey: ["leads"] });
       qc.invalidateQueries({ queryKey: ["admin"] });
       if (selectedLead?.id) setSelectedLead(null);
+      setPage(0);
       toast.success("Lead deleted");
     },
     onError: (err: Error) => toast.error(err.message),
   });
 
-  const leads = leadsQuery.data ?? [];
-  const totalLeads = leads.length;
-  const newLeads = leads.filter((l) => l.status === "new").length;
-  const qualifiedLeads = leads.filter((l) => l.status === "qualified").length;
-  const wonLeads = leads.filter((l) => l.status === "won").length;
-  const conversionRate = totalLeads > 0 ? Math.round((wonLeads / totalLeads) * 100) : 0;
-
-  const filteredLeads = leads.filter((l) => {
-    const matchesTab =
-      activeTab === "all" ||
-      (activeTab === "new" && l.status === "new") ||
-      (activeTab === "qualified" && l.status === "qualified") ||
-      (activeTab === "won" && l.status === "won") ||
-      (activeTab === "lost" && l.status === "lost");
-
-    const matchesSearch =
-      !searchTerm ||
-      l.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      l.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      (l.company && l.company.toLowerCase().includes(searchTerm.toLowerCase())) ||
-      (l.package && l.package.toLowerCase().includes(searchTerm.toLowerCase()));
-
-    return matchesTab && matchesSearch;
-  });
-
+  const filteredLeads = leadsQuery.isSuccess ? (leadsQuery.data?.rows ?? []) : [];
+  const counts = countsQuery.isSuccess ? countsQuery.data : undefined;
+  const totalLeads = counts?.all;
+  const newLeads = counts?.new;
+  const qualifiedLeads = counts?.qualified;
+  const wonLeads = counts?.won;
+  const conversionRate =
+    totalLeads && wonLeads !== undefined ? Math.round((wonLeads / totalLeads) * 100) : 0;
+  const matchedTotal = leadsQuery.data?.total ?? 0;
   return (
     <div>
       <PageHeader
@@ -200,9 +191,9 @@ function LeadsPage() {
           <div className="rounded-xl border border-ink/10 bg-white p-5">
             <div className="flex items-center gap-2 text-ink-muted">
               <Inbox size={14} />
-              <span className="text-[12px] uppercase tracking-wider">Total Inbound</span>
+              <span className="text-[12px] uppercase tracking-wider">Total enquiries</span>
             </div>
-            <div className="mt-3 text-3xl font-semibold text-ink">{totalLeads}</div>
+            <div className="mt-3 text-3xl font-semibold text-ink">{totalLeads ?? "—"}</div>
             <div className="mt-1 text-xs text-ink-muted">All-time enquiries</div>
           </div>
           <div className="rounded-xl border border-blue-200 bg-blue-50/50 p-5">
@@ -212,7 +203,7 @@ function LeadsPage() {
                 Action Required
               </span>
             </div>
-            <div className="mt-3 text-3xl font-semibold text-blue-900">{newLeads}</div>
+            <div className="mt-3 text-3xl font-semibold text-blue-900">{newLeads ?? "—"}</div>
             <div className="mt-1 text-xs text-blue-700">New / uncontacted leads</div>
           </div>
           <div className="rounded-xl border border-ink/10 bg-white p-5">
@@ -220,45 +211,59 @@ function LeadsPage() {
               <Building size={14} />
               <span className="text-[12px] uppercase tracking-wider font-semibold">Qualified</span>
             </div>
-            <div className="mt-3 text-3xl font-semibold text-ink">{qualifiedLeads}</div>
+            <div className="mt-3 text-3xl font-semibold text-ink">{qualifiedLeads ?? "—"}</div>
             <div className="mt-1 text-xs text-ink-muted">Ready for proposal / quote</div>
           </div>
           <div className="rounded-xl border border-emerald-200 bg-emerald-50/50 p-5">
             <div className="flex items-center gap-2 text-emerald-700">
               <UserPlus size={14} />
-              <span className="text-[12px] uppercase tracking-wider font-semibold">Converted</span>
+              <span className="text-[12px] uppercase tracking-wider font-semibold">Won</span>
             </div>
-            <div className="mt-3 text-3xl font-semibold text-emerald-900">{wonLeads}</div>
+            <div className="mt-3 text-3xl font-semibold text-emerald-900">{wonLeads ?? "—"}</div>
             <div className="mt-1 text-xs text-emerald-700">
-              {conversionRate}% win / conversion rate
+              {countsQuery.isSuccess
+                ? `${conversionRate}% of records marked won`
+                : "Rate unavailable"}
             </div>
           </div>
         </div>
 
+        {countsQuery.isError && (
+          <p role="alert">
+            Enquiry totals are unavailable.{" "}
+            <button type="button" className="underline" onClick={() => void countsQuery.refetch()}>
+              Retry totals
+            </button>
+          </p>
+        )}
         {/* Filter and Search Bar */}
         <div className="mt-8 flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
           <div className="flex flex-wrap gap-2">
             {[
               { id: "all", label: "All Leads", count: totalLeads },
               { id: "new", label: "New", count: newLeads },
+              { id: "contacted", label: "Contacted", count: counts?.contacted },
               { id: "qualified", label: "Qualified", count: qualifiedLeads },
-              { id: "won", label: "Won / Converted", count: wonLeads },
+              { id: "won", label: "Won", count: wonLeads },
               {
                 id: "lost",
                 label: "Lost",
-                count: leads.filter((l) => l.status === "lost").length,
+                count: counts?.lost,
               },
             ].map((tab) => (
               <button
                 key={tab.id}
-                onClick={() => setActiveTab(tab.id)}
+                onClick={() => {
+                  setActiveTab(tab.id as LeadFilter);
+                  setPage(0);
+                }}
                 className={`rounded-full px-3.5 py-1.5 text-xs font-medium transition-colors ${
                   activeTab === tab.id
                     ? "bg-ink text-white"
                     : "border border-ink/10 bg-white text-ink/70 hover:bg-ink/[0.04]"
                 }`}
               >
-                {tab.label} ({tab.count})
+                {tab.label} ({tab.count ?? "—"})
               </button>
             ))}
           </div>
@@ -269,14 +274,21 @@ function LeadsPage() {
               type="text"
               placeholder="Search leads by name, email, company..."
               value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
+              onChange={(e) => {
+                setSearchTerm(e.target.value);
+                setPage(0);
+              }}
+              aria-label="Search enquiries"
               className="w-full rounded-full border border-ink/15 bg-white py-1.5 pl-9 pr-4 text-xs text-ink placeholder:text-ink-muted focus:border-ink focus:outline-none"
             />
           </div>
         </div>
 
         {/* Leads Table */}
-        <div className="mt-6 overflow-hidden rounded-xl border border-ink/10 bg-white">
+        <div
+          className="mt-6 overflow-x-auto rounded-xl border border-ink/10 bg-white"
+          aria-busy={leadsQuery.isFetching}
+        >
           <table className="w-full text-sm">
             <thead className="bg-ink/[0.03] text-left text-[12px] uppercase tracking-wider text-ink-muted">
               <tr>
@@ -406,6 +418,38 @@ function LeadsPage() {
           </table>
         </div>
 
+        <nav
+          aria-label="Enquiry pages"
+          className="mt-4 flex flex-wrap items-center justify-between gap-3 text-sm"
+        >
+          <p role="status">
+            {leadsQuery.isSuccess
+              ? `${matchedTotal} matching enquiries · Page ${page + 1}`
+              : "Enquiry page unavailable"}
+          </p>
+          <div className="flex gap-2">
+            <button
+              type="button"
+              className="rounded-full border border-ink/20 px-4 py-2 disabled:opacity-40"
+              disabled={page === 0 || leadsQuery.isFetching}
+              onClick={() => setPage((current) => current - 1)}
+            >
+              Previous
+            </button>
+            <button
+              type="button"
+              className="rounded-full border border-ink/20 px-4 py-2 disabled:opacity-40"
+              disabled={
+                !leadsQuery.isSuccess ||
+                leadsQuery.isFetching ||
+                (page + 1) * LEAD_PAGE_SIZE >= matchedTotal
+              }
+              onClick={() => setPage((current) => current + 1)}
+            >
+              Next
+            </button>
+          </div>
+        </nav>
         {/* Lead Detail & Inspection Drawer */}
         {selectedLead && (
           <div
@@ -575,6 +619,7 @@ function LeadsPage() {
                       (st) => (
                         <button
                           key={st}
+                          disabled={saveLeadMutation.isPending}
                           onClick={() =>
                             saveLeadMutation.mutate({ id: selectedLead.id, status: st })
                           }
