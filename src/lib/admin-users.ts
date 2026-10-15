@@ -51,3 +51,59 @@ export async function loadAllRanges<T>(
 export function wouldRemoveLastAdmin(role: string, adminCount: number) {
   return role === "admin" && adminCount <= 1;
 }
+
+export class RoleChangeError extends Error {
+  constructor(message: string) {
+    super(message);
+    this.name = "RoleChangeError";
+  }
+}
+
+type DbError = { code?: string; message?: string } | null;
+// Minimal structural view of the service-role client so the logic can be tested with a fake.
+export type RoleDb = {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  from: (table: string) => any;
+  auth: {
+    admin: {
+      getUserById: (id: string) => Promise<{ data: { user: unknown } | null; error: DbError }>;
+    };
+  };
+};
+
+/** Maps a failure to non-sensitive text; raw database messages are never returned. */
+export function roleErrorMessage(error: unknown, fallback: string) {
+  if (error instanceof RoleChangeError) return error.message;
+  return fallback;
+}
+
+export async function grantRole(db: RoleDb, userId: string, role: "admin" | "user") {
+  const found = await db.auth.admin.getUserById(userId);
+  if (found.error || !found.data?.user) throw new RoleChangeError("That user does not exist.");
+  const { error } = (await db.from("user_roles").insert({ user_id: userId, role })) as {
+    error: DbError;
+  };
+  if (error && error.code !== "23505") throw new RoleChangeError("The role could not be granted.");
+}
+
+export async function revokeRole(db: RoleDb, userId: string, role: "admin" | "user") {
+  if (role === "admin") {
+    const { data, error } = (await db.from("user_roles").select("user_id").eq("role", "admin")) as {
+      data: { user_id: string }[] | null;
+      error: DbError;
+    };
+    if (error || !data) throw new RoleChangeError("Could not confirm the administrator count.");
+    if (!data.some((r) => r.user_id === userId))
+      throw new RoleChangeError("That user does not hold this role.");
+    if (wouldRemoveLastAdmin(role, data.length))
+      throw new RoleChangeError("This is the last admin — grant admin to another user first.");
+  }
+  const { data, error } = (await db
+    .from("user_roles")
+    .delete()
+    .eq("user_id", userId)
+    .eq("role", role)
+    .select("user_id")) as { data: unknown[] | null; error: DbError };
+  if (error) throw new RoleChangeError("The role could not be revoked.");
+  if (!data || data.length === 0) throw new RoleChangeError("That user does not hold this role.");
+}

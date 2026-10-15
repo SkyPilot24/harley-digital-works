@@ -27,6 +27,14 @@ import {
   Trash2,
 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
+import {
+  adminErrorMessage,
+  deleteRecord,
+  insertRecord,
+  invalidateAdminData,
+  updateRecord,
+} from "@/lib/admin-writes";
+import { parseProjectInput, parseProjectStatus } from "@/lib/admin-validation";
 import type { Database } from "@/integrations/supabase/types";
 import { PageHeader, StatusBadge } from "./admin.index";
 import { toast } from "sonner";
@@ -81,36 +89,24 @@ function ProjectsAdminPage() {
   const filteredProjects = projects;
   const updateStageMutation = useMutation({
     mutationFn: async ({ id, status }: { id: string; status: ProjectRow["status"] }) => {
-      const { error } = await supabase
-        .from("projects")
-        .update({ status })
-        .eq("id", id)
-        .select("id")
-        .single();
-      if (error) throw error;
+      await updateRecord(supabase, "projects", id, { status: parseProjectStatus(status) });
     },
     onSuccess: () => {
-      qc.invalidateQueries({ queryKey: ["admin", "projects-list"] });
-      qc.invalidateQueries({ queryKey: ["admin"] });
-      qc.invalidateQueries({ queryKey: ["projects"] });
+      invalidateAdminData(qc, "project");
       toast.success("Project stage updated");
     },
-    onError: (err: Error) => toast.error(err.message),
+    onError: (err: unknown) =>
+      toast.error(adminErrorMessage(err, "Project stage was not updated.")),
   });
 
   const deleteProjectMutation = useMutation({
-    mutationFn: async (id: string) => {
-      const { error } = await supabase.from("projects").delete().eq("id", id).select("id").single();
-      if (error) throw error;
-    },
+    mutationFn: (id: string) => deleteRecord(supabase, "projects", id),
     onSuccess: () => {
-      qc.invalidateQueries({ queryKey: ["admin", "projects-list"] });
-      qc.invalidateQueries({ queryKey: ["admin"] });
-      qc.invalidateQueries({ queryKey: ["projects"] });
+      invalidateAdminData(qc, "project");
       setPage(0);
       toast.success("Project deleted");
     },
-    onError: (err: Error) => toast.error(err.message),
+    onError: (err: unknown) => toast.error(adminErrorMessage(err, "Project was not deleted.")),
   });
 
   return (
@@ -413,9 +409,7 @@ function ProjectsAdminPage() {
           clients={clients}
           onClose={() => setIsCreatingProject(false)}
           onSuccess={() => {
-            qc.invalidateQueries({ queryKey: ["admin", "projects-list"] });
-            qc.invalidateQueries({ queryKey: ["admin"] });
-            qc.invalidateQueries({ queryKey: ["projects"] });
+            invalidateAdminData(qc, "project");
             setIsCreatingProject(false);
           }}
         />
@@ -428,9 +422,7 @@ function ProjectsAdminPage() {
           clients={clients}
           onClose={() => setEditingProject(null)}
           onSuccess={() => {
-            qc.invalidateQueries({ queryKey: ["admin", "projects-list"] });
-            qc.invalidateQueries({ queryKey: ["admin"] });
-            qc.invalidateQueries({ queryKey: ["projects"] });
+            invalidateAdminData(qc, "project");
             setEditingProject(null);
           }}
         />
@@ -455,31 +447,25 @@ function CreateProjectModal({
   const [name, setName] = useState("");
   const [clientId, setClientId] = useState("");
   const [targetDate, setTargetDate] = useState("");
-  const [summary, setSummary] = useState("Standard 5-page Managed trade website build.");
+  const [summary, setSummary] = useState("");
   const [loading, setLoading] = useState(false);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (!name.trim()) {
-      toast.error("Project name is required");
-      return;
-    }
     setLoading(true);
     try {
-      const { error } = await supabase.from("projects").insert({
-        name: name.trim(),
-        client_id: clientId || null,
+      const input = parseProjectInput({
+        name,
+        client_id: clientId,
         status: "discovery",
-        budget_cents: 149500, // £1,495 standard setup
-        start_date: new Date().toISOString(),
-        target_date: targetDate || null,
-        summary: summary || null,
+        target_date: targetDate,
+        summary,
       });
-      if (error) throw error;
+      await insertRecord(supabase, "projects", input);
       toast.success("Project created in Discovery stage");
       onSuccess();
     } catch (err: unknown) {
-      toast.error(err instanceof Error ? err.message : "Failed to create project");
+      toast.error(adminErrorMessage(err, "Failed to create project"));
     } finally {
       setLoading(false);
     }
@@ -598,22 +584,17 @@ function EditProjectModal({
     e.preventDefault();
     setLoading(true);
     try {
-      const { error } = await supabase
-        .from("projects")
-        .update({
-          name,
-          client_id: clientId || null,
-          status,
-          summary: summary || null,
-        })
-        .eq("id", project.id)
-        .select("id")
-        .single();
-      if (error) throw error;
+      const input = parseProjectInput({ name, client_id: clientId, status, summary });
+      await updateRecord(supabase, "projects", project.id, {
+        name: input.name,
+        client_id: input.client_id,
+        status: input.status,
+        summary: input.summary,
+      });
       toast.success("Project updated");
       onSuccess();
     } catch (err: unknown) {
-      toast.error(err instanceof Error ? err.message : "Failed to update project");
+      toast.error(adminErrorMessage(err, "Failed to update project"));
     } finally {
       setLoading(false);
     }

@@ -1,3 +1,9 @@
+## Admin server-side validation and data integrity — 15 October 2026
+
+Branch `skypilot24-validation-integrity`, stacked on PR #32. Start here: `src/lib/admin-validation.ts` (parsers), `src/lib/admin-writes.ts` (write helpers, safe error mapping, `invalidateAdminData`), `src/lib/admin-users.ts` (`grantRole`/`revokeRole`). All admin forms (leads, clients, projects, dashboard modals, outreach push) must use them; do not reintroduce `parseFloat`, `.single()` on mutations, `error.message` in toasts or invented defaults. `launched` project status is still gated by the DB trigger. Query-key families: lead → leads, lead-notification, admin; client → clients, projects, leads, admin; project → projects, clients, admin.
+
+Tests: `scripts/admin-validation.test.mjs`, `scripts/admin-writes.test.mjs`. Not done: staging browser acceptance (no credentials here), atomic last-admin revoke (needs SQL function), DB CHECK constraints (none applied), `agency_settings`/`ResourceManager` numeric validation, and no follow-up-date column exists. No production change, deployment, billing or messages.
+
 ## Admin user listing and last-admin safeguard — 15 October 2026
 
 H03/H42: `listAdminUsers` previously read only the first 200 Auth users and an uncapped-by-assumption role query; it now follows Auth next-page pointers and reads roles by exact-count ranges, failing visibly on errors, missing counts or early end. `revokeUserRole` now blocks revoking the last admin for any target (previously only self-revocation was checked) and fails closed if the count is unavailable. Logic in `src/lib/admin-users.ts` with `scripts/admin-users.test.mjs` (5 tests, registered in `npm test`).

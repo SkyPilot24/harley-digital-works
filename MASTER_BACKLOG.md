@@ -1,3 +1,7 @@
+## Admin server-side validation and data integrity — 15 October 2026
+
+Done (unit-tested, branch `skypilot24-validation-integrity`): shared validators and write helpers across leads, clients, projects, dashboard modals, outreach push and role grant/revoke; exact pence; no invented defaults; zero-row and error handling; full query invalidation. Open: (1) staging ordinary-user vs admin browser acceptance (blocked: no credentials); (2) atomic last-admin revoke SQL function; (3) DB CHECK constraints (length, non-negative cents) — design only, unapplied; (4) move writes behind server functions so direct API calls are validated too; (5) validate `agency_settings` and `ResourceManager` numbers; (6) decide whether leads/clients need a follow-up date column. Launch remains RED.
+
 ## Admin user listing and last-admin safeguard — 15 October 2026
 
 H03/H42: `listAdminUsers` previously read only the first 200 Auth users and an uncapped-by-assumption role query; it now follows Auth next-page pointers and reads roles by exact-count ranges, failing visibly on errors, missing counts or early end. `revokeUserRole` now blocks revoking the last admin for any target (previously only self-revocation was checked) and fails closed if the count is unavailable. Logic in `src/lib/admin-users.ts` with `scripts/admin-users.test.mjs` (5 tests, registered in `npm test`).
