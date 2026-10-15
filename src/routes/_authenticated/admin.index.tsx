@@ -1,3 +1,4 @@
+import { requireSuccessfulQueries, requireCompleteRows } from "@/lib/admin-query-results";
 import { useState, useMemo } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { createFileRoute, Link } from "@tanstack/react-router";
@@ -83,7 +84,7 @@ function DashboardPage() {
           .select("id", { count: "exact", head: true })
           .eq("status", "qualified"),
         supabase.from("leads").select("id", { count: "exact", head: true }).eq("status", "won"),
-        supabase.from("clients").select("id, monthly_value_cents, status"),
+        supabase.from("clients").select("id, monthly_value_cents, status", { count: "exact" }),
         supabase
           .from("clients")
           .select("id", { count: "exact", head: true })
@@ -93,16 +94,29 @@ function DashboardPage() {
           .from("projects")
           .select("id", { count: "exact", head: true })
           .in("status", ["discovery", "in_progress", "review"]),
-        supabase.from("lead_notification_jobs").select("id, status, attempts, last_error"),
+        supabase
+          .from("lead_notification_jobs")
+          .select("id, status, attempts, last_error", { count: "exact" }),
       ]);
 
-      if (leadsRes.error) throw leadsRes.error;
-      if (clientsRes.error) throw clientsRes.error;
-      if (projectsRes.error) throw projectsRes.error;
+      requireSuccessfulQueries([
+        leadsRes,
+        newLeadsRes,
+        contactedLeadsRes,
+        qualifiedLeadsRes,
+        wonLeadsRes,
+        clientsRes,
+        activeClientsRes,
+        projectsRes,
+        activeProjectsRes,
+        jobsRes,
+      ]);
 
-      // Calculate strictly verified MRR from active clients
+      requireCompleteRows(clientsRes);
+      requireCompleteRows(jobsRes);
+      // Recorded client values do not prove collected subscription revenue.
       const clientsList = clientsRes.data ?? [];
-      const verifiedMRR = clientsList
+      const recordedMonthlyValue = clientsList
         .filter((c) => c.status === "active" && c.monthly_value_cents && c.monthly_value_cents > 0)
         .reduce((sum, c) => sum + (c.monthly_value_cents ?? 0) / 100, 0);
 
@@ -119,7 +133,7 @@ function DashboardPage() {
         leadsWon: wonLeadsRes.count ?? 0,
         clientsTotal: clientsList.length,
         clientsActive: activeClientsRes.count ?? 0,
-        verifiedMRR,
+        recordedMonthlyValue,
         projectsTotal: projectsRes.count ?? 0,
         projectsActive: activeProjectsRes.count ?? 0,
         jobsTotal: jobsList.length,
@@ -255,16 +269,16 @@ function DashboardPage() {
       });
     }
 
-    // 4. Capacity warning (founder part-time constraint: max 2-3 concurrent builds)
+    // 4. Capacity warning: preserve the two-build pilot guard.
     const activeCount = stats?.projectsActive ?? 0;
-    if (activeCount >= 3) {
+    if (activeCount >= 2) {
       list.push({
         id: "capacity-limit",
         category: "capacity",
         severity: "medium",
-        title: `Build capacity reached (${activeCount}/3 active builds)`,
+        title: `Build capacity reached (${activeCount}/2 active builds)`,
         description:
-          "To protect founder part-time capacity alongside NHS commitments, cap active builds at 3 before onboarding new clients.",
+          "To protect founder part-time capacity alongside NHS commitments, cap active builds at 2 before onboarding new clients.",
         actionLabel: "View Delivery Pipeline",
         actionUrl: "/admin/projects",
       });
@@ -276,7 +290,12 @@ function DashboardPage() {
   // Mutations
   const updateLeadStatusMutation = useMutation({
     mutationFn: async ({ id, status }: { id: string; status: LeadRow["status"] }) => {
-      const { error } = await supabase.from("leads").update({ status }).eq("id", id);
+      const { error } = await supabase
+        .from("leads")
+        .update({ status })
+        .eq("id", id)
+        .select("id")
+        .single();
       if (error) throw error;
     },
     onSuccess: () => {
@@ -289,7 +308,12 @@ function DashboardPage() {
 
   const updateProjectStatusMutation = useMutation({
     mutationFn: async ({ id, status }: { id: string; status: ProjectRow["status"] }) => {
-      const { error } = await supabase.from("projects").update({ status }).eq("id", id);
+      const { error } = await supabase
+        .from("projects")
+        .update({ status })
+        .eq("id", id)
+        .select("id")
+        .single();
       if (error) throw error;
     },
     onSuccess: () => {
@@ -300,6 +324,35 @@ function DashboardPage() {
     onError: (err: Error) => toast.error(err.message),
   });
 
+  const operationalQueries = [
+    statsQuery,
+    recentLeadsQuery,
+    activeProjectsQuery,
+    notificationJobsQuery,
+    activeClientsQuery,
+  ];
+  if (operationalQueries.some((query) => query.isPending || query.isError)) {
+    const failed = operationalQueries.some((query) => query.isError);
+    return (
+      <div className="space-y-4" role={failed ? "alert" : "status"}>
+        <PageHeader title="Control Centre" subtitle="Live business information" />
+        <p>
+          {failed
+            ? "Business data could not be loaded. Metrics and automation status are unavailable until all sources can be checked."
+            : "Loading business data…"}
+        </p>
+        {failed && (
+          <button
+            type="button"
+            className="rounded-full border border-ink/20 px-4 py-2"
+            onClick={() => operationalQueries.forEach((query) => void query.refetch())}
+          >
+            Retry business data
+          </button>
+        )}
+      </div>
+    );
+  }
   return (
     <div className="space-y-8 pb-12">
       {/* 1. Header with Operational Status & Quick Actions */}
@@ -322,7 +375,7 @@ function DashboardPage() {
                 }`}
               />
               {exceptions.length === 0
-                ? "All Automations Healthy"
+                ? "No recorded exceptions"
                 : `${exceptions.length} Attention Required`}
             </span>
           </div>
@@ -371,7 +424,7 @@ function DashboardPage() {
         <FounderProcessGuide
           uncontactedCount={recentLeads.filter((l) => l.status === "new").length}
           activeBuildsCount={stats?.projectsActive ?? 0}
-          maxCapacity={3}
+          maxCapacity={2}
           exceptionsCount={exceptions.length}
           activeClientsCount={stats?.clientsActive ?? 0}
         />
@@ -450,26 +503,26 @@ function DashboardPage() {
       {/* 3. Primary Operational Metrics Hierarchy (Strict CRM & Financial Truth) */}
       <section aria-label="Key Performance Indicators">
         <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-          {/* Card 1: Verified Monthly Recurring Revenue (MRR) */}
+          {/* Card 1: Recorded monthly client value */}
           <div className="rounded-xl border border-ink/10 bg-white p-5 shadow-xs">
             <div className="flex items-center justify-between text-ink-muted">
               <span className="text-[11px] font-bold uppercase tracking-wider">
-                Active Care MRR
+                Recorded care value
               </span>
               <Receipt size={16} className="text-emerald-700" />
             </div>
             <div className="mt-2 flex items-baseline gap-2">
               <span className="text-3xl font-extrabold text-ink">
-                £{stats?.verifiedMRR.toLocaleString() ?? 0}
+                £{stats?.recordedMonthlyValue.toLocaleString() ?? 0}
               </span>
               <span className="text-xs text-ink-muted font-medium">/ month</span>
             </div>
             <div className="mt-2 text-[11px] text-ink-muted leading-relaxed">
               <span className="font-semibold text-emerald-800">
-                {stats?.clientsActive ?? 0} active care contract
+                {stats?.clientsActive ?? 0} active client record
                 {stats?.clientsActive === 1 ? "" : "s"}
               </span>{" "}
-              (£249/mo standard). Strictly verified payments; excludes pipeline.
+              (£249/mo standard). Recorded client values; payment collection is not verified here.
             </div>
           </div>
 
@@ -484,7 +537,7 @@ function DashboardPage() {
             <div className="mt-2 flex items-baseline gap-2">
               <span className="text-3xl font-extrabold text-ink">
                 {stats?.projectsActive ?? 0}{" "}
-                <span className="text-xl text-ink-muted font-normal">/ 3 slots</span>
+                <span className="text-xl text-ink-muted font-normal">/ 2 slots</span>
               </span>
             </div>
             {/* Visual Capacity Bar */}
@@ -492,20 +545,20 @@ function DashboardPage() {
               <div className="h-2 w-full overflow-hidden rounded-full bg-slate-100">
                 <div
                   className={`h-full transition-all ${
-                    (stats?.projectsActive ?? 0) >= 3
+                    (stats?.projectsActive ?? 0) >= 2
                       ? "bg-rose-500"
-                      : (stats?.projectsActive ?? 0) >= 2
+                      : (stats?.projectsActive ?? 0) >= 1
                         ? "bg-amber-500"
                         : "bg-emerald-500"
                   }`}
-                  style={{ width: `${Math.min(((stats?.projectsActive ?? 0) / 3) * 100, 100)}%` }}
+                  style={{ width: `${Math.min(((stats?.projectsActive ?? 0) / 2) * 100, 100)}%` }}
                 />
               </div>
               <p className="mt-1.5 text-[11px] text-ink-muted">
-                {3 - (stats?.projectsActive ?? 0) > 0
-                  ? `${3 - (stats?.projectsActive ?? 0)} build slot(s) available`
+                {2 - (stats?.projectsActive ?? 0) > 0
+                  ? `${2 - (stats?.projectsActive ?? 0)} build slot(s) available`
                   : "At full capacity limit"}{" "}
-                · 14-day SLA target.
+                · Two-build pilot limit.
               </p>
             </div>
           </div>
@@ -543,9 +596,9 @@ function DashboardPage() {
             </div>
             <div className="mt-2 flex items-baseline gap-2">
               <span className="text-3xl font-extrabold text-ink">
-                {stats?.jobsFailed === 0 ? "100%" : "Alerts"}
+                {stats?.jobsFailed === 0 ? "No retries" : "Alerts"}
               </span>
-              <span className="text-xs text-ink-muted">operational</span>
+              <span className="text-xs text-ink-muted">in recorded jobs</span>
             </div>
             <div className="mt-2 text-[11px] text-ink-muted space-y-0.5">
               <div className="flex justify-between">
@@ -554,7 +607,7 @@ function DashboardPage() {
               </div>
               <div className="flex justify-between">
                 <span>Abuse Pruning:</span>
-                <span className="font-semibold text-emerald-700">Hourly cron active</span>
+                <span className="font-semibold text-emerald-700">Runtime not verified</span>
               </div>
             </div>
           </div>

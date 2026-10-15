@@ -88,7 +88,7 @@ function LeadsPage() {
     onSuccess: (client) => {
       qc.invalidateQueries({ queryKey: ["leads"] });
       qc.invalidateQueries({ queryKey: ["clients"] });
-      qc.invalidateQueries({ queryKey: ["admin", "stats"] });
+      qc.invalidateQueries({ queryKey: ["admin"] });
       setSelectedLead(null);
       toast.success(`Client workspace ready for ${client.name}`, {
         description:
@@ -105,7 +105,12 @@ function LeadsPage() {
     mutationFn: async (payload: Partial<LeadRow>) => {
       if (payload.id) {
         const { id, ...rest } = payload;
-        const { error } = await supabase.from("leads").update(rest).eq("id", id);
+        const { error } = await supabase
+          .from("leads")
+          .update(rest)
+          .eq("id", id)
+          .select("id")
+          .single();
         if (error) throw error;
       } else {
         const { error } = await supabase.from("leads").insert({
@@ -123,7 +128,7 @@ function LeadsPage() {
     },
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ["leads"] });
-      qc.invalidateQueries({ queryKey: ["admin", "stats"] });
+      qc.invalidateQueries({ queryKey: ["admin"] });
       setEditingLead(null);
       setIsCreating(false);
       toast.success("Lead saved successfully");
@@ -134,12 +139,12 @@ function LeadsPage() {
   // Delete Lead Mutation
   const deleteLeadMutation = useMutation({
     mutationFn: async (id: string) => {
-      const { error } = await supabase.from("leads").delete().eq("id", id);
+      const { error } = await supabase.from("leads").delete().eq("id", id).select("id").single();
       if (error) throw error;
     },
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ["leads"] });
-      qc.invalidateQueries({ queryKey: ["admin", "stats"] });
+      qc.invalidateQueries({ queryKey: ["admin"] });
       if (selectedLead?.id) setSelectedLead(null);
       toast.success("Lead deleted");
     },

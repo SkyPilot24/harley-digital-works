@@ -80,7 +80,12 @@ function ProjectsAdminPage() {
 
   const updateStageMutation = useMutation({
     mutationFn: async ({ id, status }: { id: string; status: ProjectRow["status"] }) => {
-      const { error } = await supabase.from("projects").update({ status }).eq("id", id);
+      const { error } = await supabase
+        .from("projects")
+        .update({ status })
+        .eq("id", id)
+        .select("id")
+        .single();
       if (error) throw error;
     },
     onSuccess: () => {
@@ -93,7 +98,7 @@ function ProjectsAdminPage() {
 
   const deleteProjectMutation = useMutation({
     mutationFn: async (id: string) => {
-      const { error } = await supabase.from("projects").delete().eq("id", id);
+      const { error } = await supabase.from("projects").delete().eq("id", id).select("id").single();
       if (error) throw error;
     },
     onSuccess: () => {

@@ -83,7 +83,12 @@ function ClientsPage() {
     mutationFn: async (payload: Partial<ClientRow>) => {
       if (payload.id) {
         const { id, ...rest } = payload;
-        const { error } = await supabase.from("clients").update(rest).eq("id", id);
+        const { error } = await supabase
+          .from("clients")
+          .update(rest)
+          .eq("id", id)
+          .select("id")
+          .single();
         if (error) throw error;
       } else {
         const { error } = await supabase.from("clients").insert({
@@ -101,7 +106,7 @@ function ClientsPage() {
     },
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ["clients"] });
-      qc.invalidateQueries({ queryKey: ["admin", "stats"] });
+      qc.invalidateQueries({ queryKey: ["admin"] });
       setEditingClient(null);
       setIsCreatingClient(false);
       toast.success("Client saved");
@@ -111,12 +116,12 @@ function ClientsPage() {
 
   const deleteClientMutation = useMutation({
     mutationFn: async (id: string) => {
-      const { error } = await supabase.from("clients").delete().eq("id", id);
+      const { error } = await supabase.from("clients").delete().eq("id", id).select("id").single();
       if (error) throw error;
     },
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ["clients"] });
-      qc.invalidateQueries({ queryKey: ["admin", "stats"] });
+      qc.invalidateQueries({ queryKey: ["admin"] });
       if (client360?.id) setClient360(null);
       toast.success("Client deleted");
     },
@@ -147,7 +152,7 @@ function ClientsPage() {
     },
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ["projects"] });
-      qc.invalidateQueries({ queryKey: ["admin", "stats"] });
+      qc.invalidateQueries({ queryKey: ["admin"] });
       setIsAddingProject(false);
       toast.success("Project attached to client successfully");
     },
@@ -156,12 +161,12 @@ function ClientsPage() {
 
   const deleteProjectMutation = useMutation({
     mutationFn: async (id: string) => {
-      const { error } = await supabase.from("projects").delete().eq("id", id);
+      const { error } = await supabase.from("projects").delete().eq("id", id).select("id").single();
       if (error) throw error;
     },
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ["projects"] });
-      qc.invalidateQueries({ queryKey: ["admin", "stats"] });
+      qc.invalidateQueries({ queryKey: ["admin"] });
       toast.success("Project deleted");
     },
     onError: (err: Error) => toast.error(err.message),
