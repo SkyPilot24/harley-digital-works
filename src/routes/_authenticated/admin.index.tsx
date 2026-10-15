@@ -1478,6 +1478,7 @@ function StartProjectModal({
 }) {
   const [clientId, setClientId] = useState(clients[0]?.id ?? "");
   const [name, setName] = useState("");
+  const [budget, setBudget] = useState("1495");
   const [targetDate, setTargetDate] = useState("");
   const [summary, setSummary] = useState("");
   const [loading, setLoading] = useState(false);
@@ -1490,6 +1491,7 @@ function StartProjectModal({
         name,
         client_id: clientId,
         status: "discovery",
+        budget,
         target_date: targetDate,
         summary,
       });
@@ -1539,16 +1541,27 @@ function StartProjectModal({
               ))}
             </select>
           </div>
-          <div>
-            <label className="block text-xs font-semibold text-ink">
-              Agreed target date (optional)
-            </label>
-            <input
-              type="date"
-              value={targetDate}
-              onChange={(e) => setTargetDate(e.target.value)}
-              className="mt-1 w-full rounded-lg border border-ink/20 px-3 py-2 text-xs"
-            />
+          <div className="grid grid-cols-2 gap-2">
+            <div>
+              <label className="block text-xs font-semibold text-ink">Agreed Fee (£)</label>
+              <input
+                type="text"
+                inputMode="decimal"
+                value={budget}
+                onChange={(e) => setBudget(e.target.value)}
+                placeholder="1495"
+                className="mt-1 w-full rounded-lg border border-ink/20 px-3 py-2 text-xs"
+              />
+            </div>
+            <div>
+              <label className="block text-xs font-semibold text-ink">Target Date (optional)</label>
+              <input
+                type="date"
+                value={targetDate}
+                onChange={(e) => setTargetDate(e.target.value)}
+                className="mt-1 w-full rounded-lg border border-ink/20 px-3 py-2 text-xs"
+              />
+            </div>
           </div>
           <div>
             <label className="block text-xs font-semibold text-ink">Scope Summary</label>

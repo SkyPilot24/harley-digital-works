@@ -12,7 +12,7 @@ Carried forward from the current canonical documentation review; approved prices
 | Item | Current use and next evidence |
 | --- | --- |
 | Capacity | Existing pilot guard is two builds. Wider capacity has conflicting two/three records; reconcile founder decision scope before changing the guard. |
-| VAT | Registration/tax presentation needs current seller/accountant confirmation. Historical zero-rated/not-applicable wording is not a verified invoice instruction. |
+| VAT | Registration/tax presentation needs seller/accountant confirmation. Historical zero-rated/not-applicable wording is not a verified invoice instruction. |
 | Deposit/refunds | Keep the approved payment amounts; validate cancellation/refund clause before issuing an agreement. |
 | Support and daily backups | Response windows and backup promises need monitored operational and restore evidence; a document does not prove fulfilment. |
 | Lead routing | Table promises SMS/email while other records specify Slack/email. Confirm the sold channels and prove delivery before issuing a proposal; no silent scope reduction. |

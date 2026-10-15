@@ -34,7 +34,12 @@ import {
   invalidateAdminData,
   updateRecord,
 } from "@/lib/admin-writes";
-import { parseProjectInput, parseProjectStatus } from "@/lib/admin-validation";
+import {
+  parseProjectInput,
+  parseProjectStatus,
+  centsToPoundsInput,
+  formatCents,
+} from "@/lib/admin-validation";
 import type { Database } from "@/integrations/supabase/types";
 import { PageHeader, StatusBadge } from "./admin.index";
 import { toast } from "sonner";
@@ -302,7 +307,7 @@ function ProjectsAdminPage() {
 
                   <div className="flex items-center gap-2">
                     <span className="font-mono text-xs font-bold text-emerald-800 bg-emerald-50 border border-emerald-200 px-3 py-1 rounded-full">
-                      £1,495 Setup
+                      {formatCents(project.budget_cents) ? `${formatCents(project.budget_cents)} Setup` : "£1,495 Setup"}
                     </span>
                     <button
                       onClick={() => setEditingProject(project)}
@@ -446,6 +451,7 @@ function CreateProjectModal({
 }) {
   const [name, setName] = useState("");
   const [clientId, setClientId] = useState("");
+  const [budget, setBudget] = useState("1495");
   const [targetDate, setTargetDate] = useState("");
   const [summary, setSummary] = useState("");
   const [loading, setLoading] = useState(false);
@@ -458,6 +464,7 @@ function CreateProjectModal({
         name,
         client_id: clientId,
         status: "discovery",
+        budget,
         target_date: targetDate,
         summary,
       });
@@ -517,17 +524,33 @@ function CreateProjectModal({
               ))}
             </select>
           </div>
-          <div>
-            <label htmlFor="new-project-target" className="block text-xs font-semibold text-ink">
-              Agreed target date (optional)
-            </label>
-            <input
-              type="date"
-              id="new-project-target"
-              value={targetDate}
-              onChange={(e) => setTargetDate(e.target.value)}
-              className="mt-1 w-full rounded-lg border border-ink/20 px-3 py-2 text-xs"
-            />
+          <div className="grid grid-cols-2 gap-2">
+            <div>
+              <label htmlFor="new-project-budget" className="block text-xs font-semibold text-ink">
+                Agreed Fee (£)
+              </label>
+              <input
+                type="text"
+                inputMode="decimal"
+                id="new-project-budget"
+                value={budget}
+                onChange={(e) => setBudget(e.target.value)}
+                placeholder="1495"
+                className="mt-1 w-full rounded-lg border border-ink/20 px-3 py-2 text-xs"
+              />
+            </div>
+            <div>
+              <label htmlFor="new-project-target" className="block text-xs font-semibold text-ink">
+                Target Launch Date
+              </label>
+              <input
+                type="date"
+                id="new-project-target"
+                value={targetDate}
+                onChange={(e) => setTargetDate(e.target.value)}
+                className="mt-1 w-full rounded-lg border border-ink/20 px-3 py-2 text-xs"
+              />
+            </div>
           </div>
           <div>
             <label htmlFor="new-project-summary" className="block text-xs font-semibold text-ink">
@@ -577,6 +600,8 @@ function EditProjectModal({
   const [name, setName] = useState(project.name);
   const [clientId, setClientId] = useState(project.client_id ?? "");
   const [status, setStatus] = useState<ProjectRow["status"]>(project.status);
+  const [budget, setBudget] = useState(centsToPoundsInput(project.budget_cents));
+  const [targetDate, setTargetDate] = useState(project.target_date ?? "");
   const [summary, setSummary] = useState(project.summary ?? "");
   const [loading, setLoading] = useState(false);
 
@@ -584,11 +609,20 @@ function EditProjectModal({
     e.preventDefault();
     setLoading(true);
     try {
-      const input = parseProjectInput({ name, client_id: clientId, status, summary });
+      const input = parseProjectInput({
+        name,
+        client_id: clientId,
+        status,
+        budget,
+        target_date: targetDate,
+        summary,
+      });
       await updateRecord(supabase, "projects", project.id, {
         name: input.name,
         client_id: input.client_id,
         status: input.status,
+        budget_cents: input.budget_cents,
+        target_date: input.target_date,
         summary: input.summary,
       });
       toast.success("Project updated");
@@ -651,6 +685,28 @@ function EditProjectModal({
                 </option>
               ))}
             </select>
+          </div>
+          <div className="grid grid-cols-2 gap-2">
+            <div>
+              <label className="block text-xs font-semibold text-ink">Agreed Fee (£)</label>
+              <input
+                type="text"
+                inputMode="decimal"
+                value={budget}
+                onChange={(e) => setBudget(e.target.value)}
+                placeholder="1495"
+                className="mt-1 w-full rounded-lg border border-ink/20 px-3 py-2 text-xs"
+              />
+            </div>
+            <div>
+              <label className="block text-xs font-semibold text-ink">Target Launch Date</label>
+              <input
+                type="date"
+                value={targetDate}
+                onChange={(e) => setTargetDate(e.target.value)}
+                className="mt-1 w-full rounded-lg border border-ink/20 px-3 py-2 text-xs"
+              />
+            </div>
           </div>
           <div>
             <label className="block text-xs font-semibold text-ink">Scope Summary</label>

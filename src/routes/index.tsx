@@ -6,6 +6,7 @@ import { PillButton } from "@/components/site/PillButton";
 import { ConceptScreen, ConceptShowcase } from "@/components/site/ConceptShowcase";
 import { BeforeAfterSlider } from "@/components/site/BeforeAfterSlider";
 import { WebsitePackagesSection } from "@/components/site/WebsitePackagesSection";
+import { TradeShowcaseSection } from "@/components/site/TradeShowcaseSection";
 import { TheHarleyGroupPage } from "./the-harley-group";
 import {
   Accordion,
@@ -82,13 +83,13 @@ function HomePage() {
                 <PillButton as="link" to="/contact" variant="dark" className="studio-button">
                   Get your website plan
                 </PillButton>
-                <a href="#selected-work" className="studio-text-link">
-                  See the design studies <ArrowDown size={16} />
+                <a href="#trades-showcase" className="studio-text-link">
+                  See how it works for your trade <ArrowDown size={16} />
                 </a>
               </div>
               <div className="hero-price">
-                <span>Bristol & Bath trade pilot</span>
-                <span>£1,495 setup · £249/mo care</span>
+                <span>Bristol, Bath & UK-wide trade pilot</span>
+                <span>£1,495 setup · £249/mo care · Strict 2-spot capacity</span>
               </div>
             </div>
             <div className="hero-art">
@@ -173,6 +174,8 @@ function HomePage() {
           </div>
         </section>
 
+        <TradeShowcaseSection />
+
         <section className="studio-purpose studio-section" aria-labelledby="purpose-heading">
           <div className="studio-wrap purpose-layout">
             <div className="purpose-visual">
@@ -194,7 +197,7 @@ function HomePage() {
               </div>
             </div>
             <div className="purpose-copy">
-              <p className="studio-kicker">02 / GOOD LOOKS. CLEAR PURPOSE.</p>
+              <p className="studio-kicker">03 / GOOD LOOKS. CLEAR PURPOSE.</p>
               <h2 id="purpose-heading">
                 A beautiful website.
                 <br />
@@ -246,7 +249,7 @@ function HomePage() {
           <div className="studio-wrap">
             <div className="studio-section-heading">
               <div>
-                <p className="studio-kicker">03 / SIMPLE FROM THE START</p>
+                <p className="studio-kicker">04 / SIMPLE FROM THE START</p>
                 <h2 id="process-heading">
                   You know your business.
                   <br />
@@ -401,7 +404,7 @@ function HomePage() {
                   Get your website plan
                 </PillButton>
                 <span className="final-price">
-                  £1,495 setup · £249/mo care · 14-day turnaround · 2–3 pilot spots
+                  £1,495 setup · £249/mo care · 14-day turnaround · Up to 2 pilot spots
                 </span>
               </div>
             </div>

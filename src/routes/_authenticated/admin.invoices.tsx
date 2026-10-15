@@ -23,6 +23,8 @@ import { PageHeader, StatusBadge } from "./admin.index";
 import { toast } from "sonner";
 import { recordedActiveMonthlyValue } from "@/lib/client-workspace";
 
+import { parsePoundsToCents, formatCents } from "@/lib/admin-validation";
+
 export const Route = createFileRoute("/_authenticated/admin/invoices")({
   component: InvoicesAdminPage,
 });
@@ -52,35 +54,39 @@ function InvoicesAdminPage() {
   });
 
   const clients = clientsQuery.data ?? [];
-  const recordedMonthlyValue = recordedActiveMonthlyValue(clients) / 100;
+  const recordedMonthlyCents = recordedActiveMonthlyValue(clients);
 
   const selectedClient = clients.find((c) => c.id === selectedClientId) ?? clients[0];
 
   const paymentCalculation = useMemo(() => {
-    let amount = 747.5;
+    let amountCents = 74750;
     let label = "50% Setup Deposit (Milestone 1)";
     let purpose = "To reserve build slot, initiate Discovery and technical copywriting.";
 
     if (milestoneType === "deposit") {
-      amount = 747.5;
+      amountCents = 74750;
       label = "50% Setup Deposit (Milestone 1)";
       purpose = "To reserve build slot, initiate Discovery and technical copywriting.";
     } else if (milestoneType === "balance") {
-      amount = 747.5;
+      amountCents = 74750;
       label = "50% Completion Balance (Milestone 2)";
       purpose = "Due upon final staged preview sign-off, prior to live Cloudflare DNS launch.";
     } else if (milestoneType === "monthly") {
-      amount = 249.0;
+      amountCents = 24900;
       label = "Monthly Digital Care Subscription";
       purpose =
         "Cloudflare hosting, SSL maintenance, 30-min monthly edit batch, and enquiry health checks.";
     } else {
-      amount = parseFloat(customAmount || "0");
+      try {
+        amountCents = parsePoundsToCents(customAmount, "Custom Amount") ?? 0;
+      } catch {
+        amountCents = 0;
+      }
       label = "Custom Milestone Payment";
       purpose = customDescription || "Additional approved trade digital scope.";
     }
 
-    return { amount, label, purpose };
+    return { amountCents, label, purpose };
   }, [milestoneType, customAmount, customDescription]);
 
   const invoiceRequestText = useMemo(() => {
@@ -104,7 +110,7 @@ ${contactName}${contactEmail}
 --------------------------------------------------
 Item: ${paymentCalculation.label}
 Description: ${paymentCalculation.purpose}
-Proposed Milestone Amount: £${paymentCalculation.amount.toFixed(2)}
+Proposed Milestone Amount: ${formatCents(paymentCalculation.amountCents)}
 VAT Status: Not VAT-registered (owner confirmed 14 October 2026).
 Supplier Details: Reconcile the supplied company number and address against the internal seller record before issue.
 Final Payable Amount: Confirm in the approved invoice/payment provider.
@@ -151,7 +157,7 @@ Confirm actual payment independently from provider/ledger evidence.
               ? "Unavailable"
               : clientsQuery.isPending
                 ? "Loading…"
-                : `£${recordedMonthlyValue.toLocaleString()}/mo`}
+                : `${formatCents(recordedMonthlyCents) ?? "£0.00"}/mo`}
           </div>
           <div className="mt-1 text-xs text-ink-muted">
             {clientsQuery.isError ? (
@@ -309,12 +315,12 @@ Confirm actual payment independently from provider/ledger evidence.
               <div className="flex justify-between font-medium">
                 <span className="text-ink-muted">Amount Due:</span>
                 <span className="font-extrabold text-emerald-800 text-sm">
-                  £{paymentCalculation.amount.toFixed(2)}
+                  {formatCents(paymentCalculation.amountCents)}
                 </span>
               </div>
               <div className="flex justify-between text-[11px] text-ink-muted">
                 <span>VAT Treatment:</span>
-                <span>Zero-rated / Not applicable</span>
+                <span>Not VAT-registered</span>
               </div>
             </div>
 
