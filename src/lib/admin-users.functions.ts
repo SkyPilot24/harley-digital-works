@@ -1,6 +1,7 @@
 import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
 import { requireSupabaseAuth } from "@/integrations/supabase/auth-middleware";
+import { loadAllPages, loadAllRanges, wouldRemoveLastAdmin } from "./admin-users";
 
 async function assertAdmin(userId: string) {
   const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
@@ -29,25 +30,33 @@ export const listAdminUsers = createServerFn({ method: "GET" })
     await assertAdmin(context.userId);
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
 
-    const { data: usersData, error: usersErr } = await supabaseAdmin.auth.admin.listUsers({
-      page: 1,
-      perPage: 200,
+    const authUsers = await loadAllPages(async (page) => {
+      const { data, error } = await supabaseAdmin.auth.admin.listUsers({ page, perPage: 200 });
+      return {
+        items: data?.users ?? [],
+        nextPage: (data as { nextPage?: number | null } | null)?.nextPage ?? null,
+        error,
+      };
     });
-    if (usersErr) throw new Error(usersErr.message);
 
-    const { data: rolesData, error: rolesErr } = await supabaseAdmin
-      .from("user_roles")
-      .select("user_id, role");
-    if (rolesErr) throw new Error(rolesErr.message);
+    const rolesData = await loadAllRanges<{ user_id: string; role: string }>(async (from, to) => {
+      const { data, count, error } = await supabaseAdmin
+        .from("user_roles")
+        .select("user_id, role", { count: "exact" })
+        .order("user_id")
+        .order("role")
+        .range(from, to);
+      return { data, count, error };
+    });
 
     const rolesByUser = new Map<string, AdminUserRow["roles"]>();
-    for (const r of rolesData ?? []) {
+    for (const r of rolesData) {
       const arr = rolesByUser.get(r.user_id) ?? [];
       arr.push(r.role as AdminUserRow["roles"][number]);
       rolesByUser.set(r.user_id, arr);
     }
 
-    return usersData.users.map((u) => ({
+    return authUsers.map((u) => ({
       id: u.id,
       email: u.email ?? null,
       created_at: u.created_at,
@@ -80,18 +89,18 @@ export const revokeUserRole = createServerFn({ method: "POST" })
   .validator((data: unknown) => roleSchema.parse(data))
   .handler(async ({ data, context }) => {
     await assertAdmin(context.userId);
-    if (data.role === "admin" && data.user_id === context.userId) {
-      const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+    const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+    if (data.role === "admin") {
       const { count, error: countErr } = await supabaseAdmin
         .from("user_roles")
         .select("user_id", { count: "exact", head: true })
         .eq("role", "admin");
       if (countErr) throw new Error(countErr.message);
-      if ((count ?? 0) <= 1) {
-        throw new Error("You are the last admin — grant admin to another user first.");
+      if (count === null) throw new Error("Could not confirm the administrator count.");
+      if (wouldRemoveLastAdmin(data.role, count)) {
+        throw new Error("This is the last admin — grant admin to another user first.");
       }
     }
-    const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
     const { error } = await supabaseAdmin
       .from("user_roles")
       .delete()
