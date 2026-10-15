@@ -1,4 +1,11 @@
-import { recordedActiveMonthlyValue } from "@/lib/client-workspace";
+import {
+  loadClientPage,
+  loadClientSummary,
+  loadProjectSummary,
+  loadCompleteRecords,
+  type ClientFilter,
+} from "@/lib/admin-records";
+import { AdminPagination } from "@/components/admin/AdminPagination";
 import { useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { createFileRoute } from "@tanstack/react-router";
@@ -44,8 +51,9 @@ export const Route = createFileRoute("/_authenticated/admin/clients")({
 function ClientsPage() {
   const qc = useQueryClient();
   const [clientViewMode, setClientViewMode] = useState<"clients" | "caredesk">("clients");
-  const [activeTab, setActiveTab] = useState<string>("all");
+  const [activeTab, setActiveTab] = useState<ClientFilter>("all");
   const [searchTerm, setSearchTerm] = useState("");
+  const [page, setPage] = useState(0);
   const [client360, setClient360] = useState<ClientRow | null>(null);
   const [editingClient, setEditingClient] = useState<Partial<ClientRow> | null>(null);
   const [invoicingClient, setInvoicingClient] = useState<ClientRow | null>(null);
@@ -55,56 +63,83 @@ function ClientsPage() {
 
   // Queries
   const clientsQuery = useQuery({
-    queryKey: ["clients"],
-    queryFn: async () => {
-      const { data, error } = await supabase
-        .from("clients")
-        .select("*")
-        .order("created_at", { ascending: false });
-      if (error) throw error;
-      return (data ?? []) as ClientRow[];
-    },
+    queryKey: ["clients", "page", activeTab, searchTerm, page],
+    queryFn: ({ signal }) =>
+      loadClientPage(supabase, { page, status: activeTab, search: searchTerm, signal }),
   });
-
+  const clientSummaryQuery = useQuery({
+    queryKey: ["clients", "summary"],
+    queryFn: () => loadClientSummary(supabase),
+  });
+  const projectSummaryQuery = useQuery({
+    queryKey: ["projects", "summary"],
+    queryFn: () => loadProjectSummary(supabase),
+  });
+  const visibleClientIds = clientsQuery.data?.rows.map((row) => row.id) ?? [];
   const allProjectsQuery = useQuery({
-    queryKey: ["projects"],
-    queryFn: async () => {
-      const { data, error } = await supabase
-        .from("projects")
-        .select("*")
-        .order("created_at", { ascending: false });
-      if (error) throw error;
-      return (data ?? []) as ProjectRow[];
-    },
+    queryKey: ["projects", "client-links", visibleClientIds.join(",")],
+    enabled: visibleClientIds.length > 0,
+    queryFn: () =>
+      loadCompleteRecords((after) => {
+        let query = supabase
+          .from("projects")
+          .select("id,client_id,status", { count: "exact" })
+          .in("client_id", visibleClientIds)
+          .order("id")
+          .limit(500);
+        if (after) query = query.gt("id", after);
+        return query;
+      }),
   });
-
+  const clientProjectsQuery = useQuery({
+    queryKey: ["projects", "client", client360?.id],
+    enabled: !!client360,
+    queryFn: () =>
+      loadCompleteRecords((after) => {
+        let query = supabase
+          .from("projects")
+          .select("*", { count: "exact" })
+          .eq("client_id", client360!.id)
+          .order("id")
+          .limit(500);
+        if (after) query = query.gt("id", after);
+        return query;
+      }),
+  });
   // Client Mutations
   const saveClientMutation = useMutation({
     mutationFn: async (payload: Partial<ClientRow>) => {
       if (payload.id) {
         const { id, ...rest } = payload;
-        const { error } = await supabase
+        const { data, error } = await supabase
           .from("clients")
           .update(rest)
           .eq("id", id)
-          .select("id")
+          .select("*")
           .single();
         if (error) throw error;
+        return data;
       } else {
-        const { error } = await supabase.from("clients").insert({
-          name: payload.name ?? "",
-          contact_name: payload.contact_name ?? null,
-          contact_email: payload.contact_email ?? null,
-          contact_phone: payload.contact_phone ?? null,
-          website: payload.website ?? null,
-          status: payload.status ?? "lead",
-          monthly_value_cents: payload.monthly_value_cents ?? 0,
-          notes: payload.notes ?? null,
-        });
+        const { data, error } = await supabase
+          .from("clients")
+          .insert({
+            name: payload.name ?? "",
+            contact_name: payload.contact_name ?? null,
+            contact_email: payload.contact_email ?? null,
+            contact_phone: payload.contact_phone ?? null,
+            website: payload.website ?? null,
+            status: payload.status ?? "lead",
+            monthly_value_cents: payload.monthly_value_cents ?? 0,
+            notes: payload.notes ?? null,
+          })
+          .select("*")
+          .single();
         if (error) throw error;
+        return data;
       }
     },
-    onSuccess: () => {
+    onSuccess: (saved) => {
+      setClient360((current) => (current?.id === saved.id ? saved : current));
       qc.invalidateQueries({ queryKey: ["clients"] });
       qc.invalidateQueries({ queryKey: ["admin"] });
       setEditingClient(null);
@@ -123,6 +158,7 @@ function ClientsPage() {
       qc.invalidateQueries({ queryKey: ["clients"] });
       qc.invalidateQueries({ queryKey: ["admin"] });
       if (client360?.id) setClient360(null);
+      setPage(0);
       toast.success("Client deleted");
     },
     onError: (err: Error) => toast.error(err.message),
@@ -172,39 +208,15 @@ function ClientsPage() {
     onError: (err: Error) => toast.error(err.message),
   });
 
-  const clients = clientsQuery.data ?? [];
-  const allProjects = allProjectsQuery.data ?? [];
-
-  // Metrics
-  const activeClients = clients.filter((c) => c.status === "active");
-  const totalMRRPence = recordedActiveMonthlyValue(clients);
-  const totalMRRPounds = Math.round(totalMRRPence / 100);
-  const inFlightProjects = allProjects.filter(
-    (p) => p.status === "in_progress" || p.status === "discovery" || p.status === "review",
-  );
-
-  // Filter clients
-  const filteredClients = clients.filter((c) => {
-    const matchesTab =
-      activeTab === "all" ||
-      (activeTab === "active" && c.status === "active") ||
-      (activeTab === "lead" && c.status === "lead") ||
-      (activeTab === "paused" && c.status === "paused") ||
-      (activeTab === "archived" && c.status === "archived");
-
-    const matchesSearch =
-      !searchTerm ||
-      c.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      (c.contact_name && c.contact_name.toLowerCase().includes(searchTerm.toLowerCase())) ||
-      (c.contact_email && c.contact_email.toLowerCase().includes(searchTerm.toLowerCase())) ||
-      (c.website && c.website.toLowerCase().includes(searchTerm.toLowerCase()));
-
-    return matchesTab && matchesSearch;
-  });
-
-  // Projects for active Client 360 view
-  const clientProjects = client360 ? allProjects.filter((p) => p.client_id === client360.id) : [];
-
+  const clients = clientsQuery.isSuccess ? clientsQuery.data.rows : [];
+  const allProjects = allProjectsQuery.isSuccess ? allProjectsQuery.data : [];
+  const summary = clientSummaryQuery.isSuccess ? clientSummaryQuery.data : undefined;
+  const counts = summary?.counts;
+  const projectCounts = projectSummaryQuery.isSuccess ? projectSummaryQuery.data : undefined;
+  const activeClientCount = counts?.active ?? 0;
+  const totalMRRPounds = (summary?.monthlyValueCents ?? 0) / 100;
+  const filteredClients = clients;
+  const clientProjects = clientProjectsQuery.isSuccess ? clientProjectsQuery.data : [];
   return (
     <div>
       <PageHeader
@@ -229,6 +241,21 @@ function ClientsPage() {
         }
       />
 
+      {[
+        { query: clientSummaryQuery, label: "Client totals" },
+        { query: projectSummaryQuery, label: "Project totals" },
+        { query: allProjectsQuery, label: "Linked project counts" },
+      ].map(
+        ({ query, label }) =>
+          query.isError && (
+            <p key={label} role="alert" className="mt-4">
+              {label} are unavailable.{" "}
+              <button type="button" className="underline" onClick={() => void query.refetch()}>
+                Retry {label.toLowerCase()}
+              </button>
+            </p>
+          ),
+      )}
       {/* Module Switcher Tabs */}
       <div className="mt-6 flex flex-wrap items-center gap-2 border-b border-ink/10 pb-4">
         <button
@@ -246,7 +273,7 @@ function ClientsPage() {
               clientViewMode === "clients" ? "bg-white/20 text-white" : "bg-ink/10 text-ink"
             }`}
           >
-            {clients.length}
+            {counts?.all ?? "—"}
           </span>
         </button>
 
@@ -271,7 +298,7 @@ function ClientsPage() {
 
       {clientViewMode === "caredesk" && (
         <div className="mt-6">
-          <CareDeskMonitor clients={clients} />
+          <CareDeskMonitor activeCount={counts?.active} />
         </div>
       )}
 
@@ -285,10 +312,10 @@ function ClientsPage() {
                 <span className="text-[12px] uppercase tracking-wider">Active Clients</span>
               </div>
               <div className="mt-3 text-3xl font-semibold text-ink">
-                {clientsQuery.isSuccess ? activeClients.length : "—"}
+                {clientSummaryQuery.isSuccess ? activeClientCount : "—"}
               </div>
               <div className="mt-1 text-xs text-ink-muted">
-                {clients.length} total across all statuses
+                {counts?.all ?? "—"} total across all statuses
               </div>
             </div>
 
@@ -300,7 +327,7 @@ function ClientsPage() {
                 </span>
               </div>
               <div className="mt-3 text-3xl font-semibold text-emerald-900">
-                {clientsQuery.isSuccess ? `£${totalMRRPounds.toLocaleString()}` : "—"}
+                {clientSummaryQuery.isSuccess ? `£${totalMRRPounds.toLocaleString()}` : "—"}
                 <span className="text-sm font-normal text-emerald-700">/mo</span>
               </div>
               <div className="mt-1 text-xs text-emerald-700">
@@ -315,8 +342,12 @@ function ClientsPage() {
                   In-Flight Projects
                 </span>
               </div>
-              <div className="mt-3 text-3xl font-semibold text-ink">{inFlightProjects.length}</div>
-              <div className="mt-1 text-xs text-ink-muted">{allProjects.length} total projects</div>
+              <div className="mt-3 text-3xl font-semibold text-ink">
+                {projectCounts?.active ?? "—"}
+              </div>
+              <div className="mt-1 text-xs text-ink-muted">
+                {projectCounts?.all ?? "—"} total projects
+              </div>
             </div>
 
             <div className="rounded-xl border border-ink/10 bg-white p-5">
@@ -327,8 +358,8 @@ function ClientsPage() {
                 </span>
               </div>
               <div className="mt-3 text-3xl font-semibold text-ink">
-                {clientsQuery.isSuccess
-                  ? `£${activeClients.length > 0 ? Math.round(totalMRRPounds / activeClients.length) : 0}`
+                {clientSummaryQuery.isSuccess
+                  ? `£${activeClientCount > 0 ? Math.round(totalMRRPounds / activeClientCount) : 0}`
                   : "—"}
                 <span className="text-sm font-normal text-ink-muted">/mo</span>
               </div>
@@ -340,27 +371,30 @@ function ClientsPage() {
           <div className="mt-8 flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
             <div className="flex flex-wrap gap-2">
               {[
-                { id: "all", label: "All Clients", count: clients.length },
-                { id: "active", label: "Active", count: activeClients.length },
+                { id: "all", label: "All Clients", count: counts?.all ?? "—" },
+                { id: "active", label: "Active", count: counts?.active ?? "—" },
                 {
                   id: "lead",
                   label: "Prospective / Lead",
-                  count: clients.filter((c) => c.status === "lead").length,
+                  count: counts?.lead ?? "—",
                 },
                 {
                   id: "paused",
                   label: "Paused",
-                  count: clients.filter((c) => c.status === "paused").length,
+                  count: counts?.paused ?? "—",
                 },
                 {
                   id: "archived",
                   label: "Archived",
-                  count: clients.filter((c) => c.status === "archived").length,
+                  count: counts?.archived ?? "—",
                 },
               ].map((tab) => (
                 <button
                   key={tab.id}
-                  onClick={() => setActiveTab(tab.id)}
+                  onClick={() => {
+                    setActiveTab(tab.id as ClientFilter);
+                    setPage(0);
+                  }}
                   className={`rounded-full px-3.5 py-1.5 text-xs font-medium transition-colors ${
                     activeTab === tab.id
                       ? "bg-ink text-white"
@@ -381,14 +415,18 @@ function ClientsPage() {
                 type="text"
                 placeholder="Search clients by name, contact, website..."
                 value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
+                onChange={(e) => {
+                  setSearchTerm(e.target.value);
+                  setPage(0);
+                }}
+                aria-label="Search clients"
                 className="w-full rounded-full border border-ink/15 bg-white py-1.5 pl-9 pr-4 text-xs text-ink placeholder:text-ink-muted focus:border-ink focus:outline-none"
               />
             </div>
           </div>
 
           {/* Clients Table */}
-          <div className="mt-6 overflow-hidden rounded-xl border border-ink/10 bg-white">
+          <div className="mt-6 overflow-x-auto rounded-xl border border-ink/10 bg-white">
             <table className="w-full text-sm">
               <thead className="bg-ink/[0.03] text-left text-[12px] uppercase tracking-wider text-ink-muted">
                 <tr>
@@ -486,11 +524,9 @@ function ClientsPage() {
                           >
                             <Layers size={13} />
                             <span>360 View</span>
-                            {linkedProjectsCount > 0 && (
-                              <span className="ml-0.5 rounded-full bg-ink px-1.5 py-0.2 text-[10px] text-white">
-                                {linkedProjectsCount}
-                              </span>
-                            )}
+                            <span className="ml-0.5 rounded-full bg-ink px-1.5 text-[10px] text-white">
+                              {allProjectsQuery.isSuccess ? linkedProjectsCount : "—"}
+                            </span>
                           </button>
                           <button
                             onClick={(e) => {
@@ -544,6 +580,13 @@ function ClientsPage() {
           </div>
 
           {/* Client 360 Workspace Drawer */}
+          <AdminPagination
+            page={page}
+            total={clientsQuery.isSuccess ? clientsQuery.data.total : undefined}
+            pending={clientsQuery.isFetching}
+            label="clients"
+            onChange={setPage}
+          />
           {client360 && (
             <div
               className="fixed inset-0 z-50 flex justify-end bg-black/40 backdrop-blur-xs"
@@ -599,6 +642,7 @@ function ClientsPage() {
                         setClient360(null);
                         setIsAddingProject(false);
                       }}
+                      aria-label="Close client workspace"
                       className="rounded-md p-2 text-ink/60 hover:bg-ink/[0.05]"
                     >
                       <X size={18} />
@@ -710,7 +754,8 @@ function ClientsPage() {
                     <div className="flex items-center justify-between border-b border-ink/10 pb-3">
                       <div>
                         <h3 className="text-sm font-semibold uppercase tracking-wider text-ink">
-                          Deliverables & Projects ({clientProjects.length})
+                          Deliverables & Projects (
+                          {clientProjectsQuery.isSuccess ? clientProjects.length : "—"})
                         </h3>
                         <p className="mt-0.5 text-xs text-ink-muted">
                           Active and delivered digital projects for this account.
@@ -837,10 +882,27 @@ function ClientsPage() {
 
                     {/* Projects List */}
                     <div className="mt-4 space-y-3">
-                      {clientProjects.length === 0 && !isAddingProject && (
-                        <div className="py-6 text-center text-xs text-ink-muted">
-                          No projects linked yet. Click "Add Project" above to create one.
-                        </div>
+                      {clientProjectsQuery.isSuccess &&
+                        clientProjects.length === 0 &&
+                        !isAddingProject && (
+                          <div className="py-6 text-center text-xs text-ink-muted">
+                            No projects linked yet. Click "Add Project" above to create one.
+                          </div>
+                        )}
+                      {clientProjectsQuery.isPending && (
+                        <p role="status">Loading linked projects…</p>
+                      )}
+                      {clientProjectsQuery.isError && (
+                        <p role="alert">
+                          Linked projects could not be loaded.{" "}
+                          <button
+                            type="button"
+                            className="underline"
+                            onClick={() => void clientProjectsQuery.refetch()}
+                          >
+                            Retry linked projects
+                          </button>
+                        </p>
                       )}
                       {clientProjects.map((project) => {
                         const budgetGbp = (project.budget_cents ?? 0) / 100;

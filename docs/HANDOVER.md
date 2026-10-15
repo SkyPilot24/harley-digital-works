@@ -1,3 +1,10 @@
+## Complete admin record reads and client/project paging — 15 October 2026
+
+H03/H07/H42: added server-side client/project paging/search and full counts, complete cursor reads for monthly values/active lists/client choices, count-only notification totals, complete per-client project links/details, accurate error/retry states and saved drawer values. Dashboard exceptions now use full counts. New projects default to unassigned/no deadline; explicit agreed dates replace automatic fourteen-day targets. Earlier capped-response guard is superseded and removed.
+
+Fresh build/typecheck/format PASS; lint 0 errors / 9 existing warnings. All 66 smoke, 143 regression/integration and 3 service-worker checks PASS. Real staging Auth/PostgREST plus Edge PASS with 56 fictional clients/56 projects, including 55 linked projects, pence accuracy, owner writes/readback, anonymous denial, paging/mobile/filter/reset/error/retry and project defaults. Exact fixtures/account removed; original totals independently restored. [Evidence and limits](ADMIN_RECORDS_ACCEPTANCE_2026-10-15.md).
+
+Existing PR #31 at 1337972 freshly verified draft/CLEAN with all checks successful before this extension. Publication and final-head CI must be verified against the PR, independently of this local evidence. No main merge, production migration/release, live billing or external messages. Full launch remains RED. Next: current-head review/CI, permission/error handling and remaining admin journeys, then enquiry/recovery/care/release gates.
 ## Draft admin review published — 15 October 2026
 
 [Draft PR #31](https://github.com/SkyPilot24/harley-digital-works/pull/31) publishes checkpoints fb9e97d and 6e27743 against the existing launch branch for PR #29. Destination freshly verified PRIVATE, SkyPilot24 owner, ADMIN access; origin matches. Review delta checked against configured private credential values with no matches. An initial automatic publication review rejected the unverified destination; read-only ownership/privacy and payload checks resolved that concern before a successful authorised retry.

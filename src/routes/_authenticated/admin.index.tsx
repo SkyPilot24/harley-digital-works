@@ -1,4 +1,10 @@
-import { requireSuccessfulQueries, requireCompleteRows } from "@/lib/admin-query-results";
+import { loadLeadCounts } from "@/lib/admin-leads";
+import {
+  loadClientSummary,
+  loadProjectSummary,
+  loadNotificationSummary,
+  loadCompleteRecords,
+} from "@/lib/admin-records";
 import { useState, useMemo } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { createFileRoute, Link } from "@tanstack/react-router";
@@ -61,89 +67,30 @@ function DashboardPage() {
   const statsQuery = useQuery({
     queryKey: ["admin", "operational-stats"],
     queryFn: async () => {
-      const [
-        leadsRes,
-        newLeadsRes,
-        contactedLeadsRes,
-        qualifiedLeadsRes,
-        wonLeadsRes,
-        clientsRes,
-        activeClientsRes,
-        projectsRes,
-        activeProjectsRes,
-        jobsRes,
-      ] = await Promise.all([
-        supabase.from("leads").select("id", { count: "exact", head: true }),
-        supabase.from("leads").select("id", { count: "exact", head: true }).eq("status", "new"),
-        supabase
-          .from("leads")
-          .select("id", { count: "exact", head: true })
-          .eq("status", "contacted"),
-        supabase
-          .from("leads")
-          .select("id", { count: "exact", head: true })
-          .eq("status", "qualified"),
-        supabase.from("leads").select("id", { count: "exact", head: true }).eq("status", "won"),
-        supabase.from("clients").select("id, monthly_value_cents, status", { count: "exact" }),
-        supabase
-          .from("clients")
-          .select("id", { count: "exact", head: true })
-          .eq("status", "active"),
-        supabase.from("projects").select("id", { count: "exact", head: true }),
-        supabase
-          .from("projects")
-          .select("id", { count: "exact", head: true })
-          .in("status", ["discovery", "in_progress", "review"]),
-        supabase
-          .from("lead_notification_jobs")
-          .select("id, status, attempts, last_error", { count: "exact" }),
+      const [leads, clients, projects, jobs] = await Promise.all([
+        loadLeadCounts(supabase),
+        loadClientSummary(supabase),
+        loadProjectSummary(supabase),
+        loadNotificationSummary(supabase),
       ]);
-
-      requireSuccessfulQueries([
-        leadsRes,
-        newLeadsRes,
-        contactedLeadsRes,
-        qualifiedLeadsRes,
-        wonLeadsRes,
-        clientsRes,
-        activeClientsRes,
-        projectsRes,
-        activeProjectsRes,
-        jobsRes,
-      ]);
-
-      requireCompleteRows(clientsRes);
-      requireCompleteRows(jobsRes);
-      // Recorded client values do not prove collected subscription revenue.
-      const clientsList = clientsRes.data ?? [];
-      const recordedMonthlyValue = clientsList
-        .filter((c) => c.status === "active" && c.monthly_value_cents && c.monthly_value_cents > 0)
-        .reduce((sum, c) => sum + (c.monthly_value_cents ?? 0) / 100, 0);
-
-      const jobsList = jobsRes.data ?? [];
-      const pendingJobs = jobsList.filter((j) => j.status !== "accepted");
-      const failedJobs = jobsList.filter((j) => (j.attempts ?? 0) > 0 && j.status !== "accepted");
-      const acceptedJobs = jobsList.filter((j) => j.status === "accepted");
-
       return {
-        leadsTotal: leadsRes.count ?? 0,
-        leadsNew: newLeadsRes.count ?? 0,
-        leadsContacted: contactedLeadsRes.count ?? 0,
-        leadsQualified: qualifiedLeadsRes.count ?? 0,
-        leadsWon: wonLeadsRes.count ?? 0,
-        clientsTotal: clientsList.length,
-        clientsActive: activeClientsRes.count ?? 0,
-        recordedMonthlyValue,
-        projectsTotal: projectsRes.count ?? 0,
-        projectsActive: activeProjectsRes.count ?? 0,
-        jobsTotal: jobsList.length,
-        jobsPending: pendingJobs.length,
-        jobsFailed: failedJobs.length,
-        jobsAccepted: acceptedJobs.length,
+        leadsTotal: leads.all,
+        leadsNew: leads.new,
+        leadsContacted: leads.contacted,
+        leadsQualified: leads.qualified,
+        leadsWon: leads.won,
+        clientsTotal: clients.counts.all,
+        clientsActive: clients.counts.active,
+        recordedMonthlyValue: clients.monthlyValueCents / 100,
+        projectsTotal: projects.all,
+        projectsActive: projects.active,
+        jobsTotal: jobs.total,
+        jobsPending: jobs.outstanding,
+        jobsFailed: jobs.retrying,
+        jobsAccepted: jobs.accepted,
       };
     },
   });
-
   // 2. Recent Leads Query
   const recentLeadsQuery = useQuery({
     queryKey: ["admin", "recent-leads"],
@@ -162,16 +109,19 @@ function DashboardPage() {
   const activeProjectsQuery = useQuery({
     queryKey: ["admin", "active-projects"],
     queryFn: async () => {
-      const { data, error } = await supabase
-        .from("projects")
-        .select("*, clients(name, contact_name, contact_email)")
-        .in("status", ["discovery", "in_progress", "review"])
-        .order("created_at", { ascending: false });
-      if (error) throw error;
-      return data ?? [];
+      const rows = await loadCompleteRecords((after) => {
+        let query = supabase
+          .from("projects")
+          .select("*, clients(name, contact_name, contact_email)", { count: "exact" })
+          .in("status", ["discovery", "in_progress", "review"])
+          .order("id")
+          .limit(500);
+        if (after) query = query.gt("id", after);
+        return query;
+      });
+      return rows.sort((a, b) => b.created_at.localeCompare(a.created_at));
     },
   });
-
   // 4. Notification Jobs for Automation Exception Monitoring
   const notificationJobsQuery = useQuery({
     queryKey: ["admin", "recent-jobs"],
@@ -190,16 +140,19 @@ function DashboardPage() {
   const activeClientsQuery = useQuery({
     queryKey: ["admin", "active-clients-list"],
     queryFn: async () => {
-      const { data, error } = await supabase
-        .from("clients")
-        .select("*")
-        .eq("status", "active")
-        .order("created_at", { ascending: false });
-      if (error) throw error;
-      return (data ?? []) as ClientRow[];
+      const rows = await loadCompleteRecords((after) => {
+        let query = supabase
+          .from("clients")
+          .select("*", { count: "exact" })
+          .eq("status", "active")
+          .order("id")
+          .limit(500);
+        if (after) query = query.gt("id", after);
+        return query;
+      });
+      return rows.sort((a, b) => b.created_at.localeCompare(a.created_at));
     },
   });
-
   const stats = statsQuery.data;
   const recentLeads = useMemo(() => recentLeadsQuery.data ?? [], [recentLeadsQuery.data]);
   const activeProjects = useMemo(() => activeProjectsQuery.data ?? [], [activeProjectsQuery.data]);
@@ -219,42 +172,30 @@ function DashboardPage() {
       onAction?: () => void;
     }[] = [];
 
-    // 1. Uncontacted new leads
-    const uncontacted = recentLeads.filter((l) => l.status === "new");
-    if (uncontacted.length > 0) {
+    // Counts cover the full dataset; recent activity is only a preview.
+    if ((stats?.leadsNew ?? 0) > 0) {
       list.push({
         id: "uncontacted-leads",
         category: "lead",
         severity: "high",
-        title: `${uncontacted.length} new enquiry requiring response`,
-        description: `Enquiries from ${uncontacted
-          .map((l) => l.name || l.company)
-          .slice(0, 2)
-          .join(
-            ", ",
-          )}${uncontacted.length > 2 ? " and others" : ""} are awaiting initial trade qualification.`,
+        title: `${stats!.leadsNew} new enquiries requiring response`,
+        description: "Review the full enquiry desk to qualify and respond to every new record.",
         actionLabel: "Review Leads",
         actionUrl: "/admin/leads",
       });
     }
-
-    // 2. Failed / retrying notifications
-    const failedOrRetrying = recentJobs.filter(
-      (j) => (j.attempts ?? 0) > 0 && j.status !== "accepted",
-    );
-    if (failedOrRetrying.length > 0) {
+    if ((stats?.jobsFailed ?? 0) > 0) {
       list.push({
         id: "failed-notifications",
         category: "automation",
         severity: "high",
-        title: `${failedOrRetrying.length} Slack lead alert retrying`,
+        title: `${stats!.jobsFailed} lead alerts need review`,
         description:
-          "Scheduled worker is attempting retry delivery with exponential backoff (1m, 5m, 15m, 60m).",
+          "Recorded delivery attempts have not been accepted. Check notification state and worker recovery before assuming retries are running.",
         actionLabel: "Inspect Automations",
         actionUrl: "/admin/diagnostics",
       });
     }
-
     // 3. Projects in Review awaiting client approval
     const awaitingApproval = activeProjects.filter((p) => p.status === "review");
     if (awaitingApproval.length > 0) {
@@ -262,8 +203,8 @@ function DashboardPage() {
         id: "projects-review",
         category: "project",
         severity: "medium",
-        title: `${awaitingApproval.length} build staged preview awaiting client sign-off`,
-        description: `Project staged previews for ${awaitingApproval.map((p) => p.name).join(", ")} are ready for customer approval prior to DNS switch.`,
+        title: `${awaitingApproval.length} projects marked for review`,
+        description: `Project staged previews for ${awaitingApproval.map((p) => p.name).join(", ")} are marked for review. Verify the published preview and approval evidence before launch.`,
         actionLabel: "View Projects",
         actionUrl: "/admin/projects",
       });
@@ -285,7 +226,7 @@ function DashboardPage() {
     }
 
     return list;
-  }, [recentLeads, recentJobs, activeProjects, stats]);
+  }, [activeProjects, stats]);
 
   // Mutations
   const updateLeadStatusMutation = useMutation({
@@ -422,7 +363,7 @@ function DashboardPage() {
       <GroupHeadquartersSummary />
       <section aria-label="Founder Operating Flow">
         <FounderProcessGuide
-          uncontactedCount={recentLeads.filter((l) => l.status === "new").length}
+          uncontactedCount={stats?.leadsNew ?? 0}
           activeBuildsCount={stats?.projectsActive ?? 0}
           maxCapacity={2}
           exceptionsCount={exceptions.length}
