@@ -1,3 +1,7 @@
+## GitHub Copilot onboarding — 15 October 2026
+
+Added repository-wide .github/copilot-instructions.md, [quick start and starter prompt](COPILOT_QUICKSTART.md), and shared agent/standards references. Copilot uses the same governing records, architecture, checks and approval boundaries as Codex/Antigravity. Documentation links and diff checked; no application changes or new runtime test claims. Actual Copilot discovery/execution and account configuration remain unverified. Auth recovery is saved in local checkpoint d8355e3; inspect current branch publication before hosted use. No production change or launch-status change.
+
 ## Resume checkpoint saved at user request — 15 October 2026
 
 This is the current restart point; dated entries below retain historical evidence. Repository: `SkyPilot24/harley-digital-works`, local checkout `implementation/hdw-platform-development` under the ChatGPT project mirror. Branch: `codex/platform-completion-2026-10-15`. Last pushed checkpoint: `8bd03dee57d3413b7628cb4321c0da2c6e297a65`. Existing [draft PR #31](https://github.com/SkyPilot24/harley-digital-works/pull/31) targets `codex/launch-completion-2026-10-14` (PR #29), not main. Its successful checks and Cloudflare review preview apply to that pushed head only.
