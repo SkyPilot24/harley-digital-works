@@ -59,6 +59,7 @@ H03/H07/H42: isolated `codex/platform-completion-2026-10-15` from existing launc
 Final fresh build/typecheck/format PASS; lint 0 errors / 9 existing warnings; platform smoke PASS, 135 regression tests and 3 service-worker tests PASS. New tests cover all ten operational source-failure positions and capped/missing data. Authenticated browser/RLS mutation/readback acceptance remains pending; no customer data writes, migration, push, merge, deployment, sending or spending. Overall launch remains RED. Next: bounded staging browser acceptance of dashboard failure/retry and cross-screen mutation refresh, followed by remaining intake/recovery/care and concrete release gates.
 # Shared development handover
 
+<<<<<<< HEAD
 **Draft review submitted, 14 October:** [PR #29](https://github.com/SkyPilot24/harley-digital-works/pull/29) integrates the existing first-client work and launch corrections on `codex/launch-completion-2026-10-14`. Review head `1a71b7b` passed GitHub quality and credential checks; dependency audit reported zero vulnerabilities. Cloudflare created a successful native review Preview with an unconfigured backend, not functional acceptance. Active production deployment remains `ab1ae80f-5523-475f-8050-1c1be9a8aa99` / version `25218195-69ef-4616-8977-416cd740d876`, created 13 October; GitHub main remains `45012e4`. No merge, production migration, live billing or customer outreach. This supersedes earlier local-only submission labels while retaining tested runtime `280b0e6` and earlier rehearsal source identities. Full sale-to-care and owner decisions remain RED. This documentation follow-up requires its own current-head check result before treating that head as CI-verified.
 
 
@@ -101,6 +102,12 @@ Final fresh build/typecheck/format PASS; lint 0 errors / 9 existing warnings; pl
 - Live Slack message read at 09:00 BST on 14 October reports zero active MRR/clients and three uncontacted leads; not reconciled ledger evidence. Its 0/3 capacity conflicts with the two-build pilot guard. Connected Gmail search found no candidate-domain replies, but coverage of the operational reply inbox is unverified. Chief-of-staff documentation branch is separately pushed at 2451050; do not duplicate its historical assets.
 - No live customer contact, provider/database writes, billing, deployment, domain changes, push or merge. Internal roadmap dates are proposed, access-dependent estimates, not client promises. Production gate RED for complete paid-client lifecycle; historical live enquiry acceptance retained.
 - Exact next action: verified isolated target plus atomic durable receipt/paid-state implementation; authentic sandbox event, restart/concurrent replay and failure recovery; in parallel resolve customer-use commercial terms. Do not enable live billing or expand acquisition until the readiness gates pass.
+
+## Chief of staff document archive reconciled — 14 October 2026
+
+Added docs/chief-of-staff/README.md and six dated business-document snapshots with source/hash manifest on an isolated documentation branch based at main 45012e4. Current peer records already supersede the old domain, handover-marker and five-prompt next actions; archived reports are historical, not instructions to repeat completed work. The old handover patch was not applied. Original source outputs and unrelated work are preserved.
+
+Existing 08:15 UK briefing/09:00 UK housekeeping and prior Slack/local fixture acceptance are recorded in the archive, separately from unattended/runtime evidence. Approved prompt pack, continuation handover and curated knowledge index have verified Drive metadata/content readbacks. Always-on inbound Slack/cloud responder remains a separate unverified setup request. No application change, new schedule, push, merge, deployment, customer contact, spending or production/data operation in this documentation task. See docs/chief-of-staff/README.md for authority and current boundaries.
 
 ## Review-branch reconciliation — 13 October 2026
 

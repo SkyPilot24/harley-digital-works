@@ -83,6 +83,12 @@ Fresh isolated validation: build, typecheck, format and full test command PASS; 
 
 Three active priorities: durable receipts/recovery, accurate fulfilable commercial agreement, and complete pilot delivery/care rehearsal. Proposed readiness target 26 October depends on verified isolated access and 24–36 engineering hours; first real pilot and recurring collection remain customer-dependent. Next: implement/test atomic receipt and client paid-state persistence in a verified isolated target, then authentic sandbox restart/concurrency/replay acceptance. Existing price ratification stands; contract/tax/routing/support/capacity evidence still requires reconciliation.
 
+## Chief of staff document archive reconciled — 14 October 2026
+
+Added docs/chief-of-staff/README.md and six dated business-document snapshots with source/hash manifest on an isolated documentation branch based at main 45012e4. Current peer records already supersede the old domain, handover-marker and five-prompt next actions; archived reports are historical, not instructions to repeat completed work. The old handover patch was not applied. Original source outputs and unrelated work are preserved.
+
+Existing 08:15 UK briefing/09:00 UK housekeeping and prior Slack/local fixture acceptance are recorded in the archive, separately from unattended/runtime evidence. Approved prompt pack, continuation handover and curated knowledge index have verified Drive metadata/content readbacks. Always-on inbound Slack/cloud responder remains a separate unverified setup request. No application change, new schedule, push, merge, deployment, customer contact, spending or production/data operation in this documentation task. See docs/chief-of-staff/README.md for authority and current boundaries.
+
 ## Review-branch reconciliation — 13 October 2026
 
 Latest main b4c751a is integrated into the branding review branch, preserving peer safeguards/qualification work and the peer removal of the orphan handover marker. This is source reconciliation only; main is unchanged and no production deployment is performed. Earlier pending-integration and marker-retention notes below are dated history. Fresh integrated checks follow the styling pass.
