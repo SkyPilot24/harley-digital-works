@@ -1,6 +1,6 @@
 # Admin lead desk — implementation and acceptance, 15 October 2026
 
-Status: local code and isolated staging acceptance; production unchanged. Continues H03/H07/H42 on `codex/platform-completion-2026-10-15`, after checkpoint `fb9e97d` and existing launch review PR #29.
+Status: implementation pushed for draft review in [PR #31](https://github.com/SkyPilot24/harley-digital-works/pull/31), with local and isolated staging acceptance. No main merge or production release. Continues H03/H07/H42 on `codex/platform-completion-2026-10-15`, after checkpoint `fb9e97d` and existing launch review PR #29.
 
 ## Changes
 
