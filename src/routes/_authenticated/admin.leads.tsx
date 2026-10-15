@@ -1,5 +1,13 @@
 import { LEAD_PAGE_SIZE, loadLeadPage, loadLeadCounts, type LeadFilter } from "@/lib/admin-leads";
 import { ensureClientWorkspace } from "@/lib/client-workspace";
+import {
+  adminErrorMessage,
+  deleteRecord,
+  insertRecord,
+  invalidateAdminData,
+  updateRecord,
+} from "@/lib/admin-writes";
+import { parseLeadInput, parseLeadStatus } from "@/lib/admin-validation";
 import { useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { createFileRoute, Link } from "@tanstack/react-router";
@@ -85,77 +93,53 @@ function LeadsPage() {
         },
       }),
     onSuccess: (client) => {
-      qc.invalidateQueries({ queryKey: ["leads"] });
-      qc.invalidateQueries({ queryKey: ["clients"] });
-      qc.invalidateQueries({ queryKey: ["admin"] });
+      invalidateAdminData(qc, "client");
       setSelectedLead(null);
       toast.success(`Client workspace ready for ${client.name}`, {
         description:
           "This does not mark the lead won or record payment. Confirm the agreement separately.",
       });
     },
-    onError: (err: Error) => {
-      toast.error(`Conversion failed: ${err.message}`);
-    },
+    onError: (err: unknown) =>
+      toast.error(
+        `Conversion failed: ${adminErrorMessage(err, "The workspace could not be created.")}`,
+      ),
   });
 
   // Save / Update Lead Mutation
   const saveLeadMutation = useMutation({
-    mutationFn: async (payload: Partial<LeadRow>) => {
-      if (payload.id) {
-        const { id, ...rest } = payload;
-        const { data, error } = await supabase
-          .from("leads")
-          .update(rest)
-          .eq("id", id)
-          .select("*")
-          .single();
-        if (error) throw error;
-        return data;
-      } else {
-        const { data, error } = await supabase
-          .from("leads")
-          .insert({
-            name: payload.name ?? "",
-            email: payload.email ?? "",
-            message: payload.message ?? "",
-            company: payload.company ?? null,
-            package: payload.package ?? null,
-            status: payload.status ?? "new",
-            notes: payload.notes ?? null,
-            source: payload.source ?? "admin_manual",
-          })
-          .select("*")
-          .single();
-        if (error) throw error;
-        return data;
-      }
+    mutationFn: async (
+      payload: Record<string, unknown> & { id?: string; statusOnly?: boolean },
+    ) => {
+      if (payload.statusOnly && payload.id)
+        return updateRecord(supabase, "leads", payload.id, {
+          status: parseLeadStatus(payload.status),
+        });
+      const input = parseLeadInput(payload);
+      if (payload.id) return updateRecord(supabase, "leads", payload.id, input);
+      return insertRecord(supabase, "leads", { ...input, source: "admin_manual" });
     },
     onSuccess: (saved) => {
       setSelectedLead((current) => (current?.id === saved.id ? saved : current));
-      qc.invalidateQueries({ queryKey: ["leads"] });
-      qc.invalidateQueries({ queryKey: ["admin"] });
+      invalidateAdminData(qc, "lead");
       setEditingLead(null);
       setIsCreating(false);
       toast.success("Lead saved successfully");
     },
-    onError: (err: Error) => toast.error(err.message),
+    onError: (err: unknown) => toast.error(adminErrorMessage(err, "The lead could not be saved.")),
   });
 
   // Delete Lead Mutation
   const deleteLeadMutation = useMutation({
-    mutationFn: async (id: string) => {
-      const { error } = await supabase.from("leads").delete().eq("id", id).select("id").single();
-      if (error) throw error;
-    },
-    onSuccess: () => {
-      qc.invalidateQueries({ queryKey: ["leads"] });
-      qc.invalidateQueries({ queryKey: ["admin"] });
-      if (selectedLead?.id) setSelectedLead(null);
+    mutationFn: (id: string) => deleteRecord(supabase, "leads", id),
+    onSuccess: (_result, id) => {
+      invalidateAdminData(qc, "lead");
+      setSelectedLead((current) => (current?.id === id ? null : current));
       setPage(0);
       toast.success("Lead deleted");
     },
-    onError: (err: Error) => toast.error(err.message),
+    onError: (err: unknown) =>
+      toast.error(adminErrorMessage(err, "The lead could not be deleted.")),
   });
 
   const filteredLeads = leadsQuery.isSuccess ? (leadsQuery.data?.rows ?? []) : [];
@@ -621,7 +605,11 @@ function LeadsPage() {
                           key={st}
                           disabled={saveLeadMutation.isPending}
                           onClick={() =>
-                            saveLeadMutation.mutate({ id: selectedLead.id, status: st })
+                            saveLeadMutation.mutate({
+                              id: selectedLead.id,
+                              status: st,
+                              statusOnly: true,
+                            })
                           }
                           className={`rounded-full px-3 py-1 text-xs font-medium transition-colors ${
                             selectedLead.status === st
@@ -675,13 +663,13 @@ function LeadsPage() {
                 const fd = new FormData(e.currentTarget);
                 saveLeadMutation.mutate({
                   id: editingLead?.id,
-                  name: String(fd.get("name") ?? ""),
-                  email: String(fd.get("email") ?? ""),
-                  company: String(fd.get("company") ?? "") || null,
-                  package: String(fd.get("package") ?? "") || null,
-                  status: (String(fd.get("status") ?? "new") as LeadStatus) || "new",
-                  message: String(fd.get("message") ?? ""),
-                  notes: String(fd.get("notes") ?? "") || null,
+                  name: fd.get("name"),
+                  email: fd.get("email"),
+                  company: fd.get("company"),
+                  package: fd.get("package"),
+                  status: fd.get("status"),
+                  message: fd.get("message"),
+                  notes: fd.get("notes"),
                 });
               }}
               className="mt-5 space-y-4 text-sm"
