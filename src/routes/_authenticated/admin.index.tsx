@@ -83,12 +83,19 @@ function DashboardPage() {
   const statsQuery = useQuery({
     queryKey: ["admin", "operational-stats"],
     queryFn: async () => {
-      const [leads, clients, projects, jobs] = await Promise.all([
+      const [leads, clients, projects, jobsResult] = await Promise.all([
         loadLeadCounts(supabase),
         loadClientSummary(supabase),
         loadProjectSummary(supabase),
-        loadNotificationSummary(supabase),
+        loadNotificationSummary(supabase).then(
+          (jobs) => ({ jobs, unavailable: false }),
+          (err) => {
+            console.warn("Automation notification summary unavailable:", err);
+            return { jobs: null, unavailable: true };
+          },
+        ),
       ]);
+      const jobs = jobsResult.jobs;
       return {
         leadsTotal: leads.all,
         leadsNew: leads.new,
@@ -100,10 +107,11 @@ function DashboardPage() {
         recordedMonthlyValue: clients.monthlyValueCents / 100,
         projectsTotal: projects.all,
         projectsActive: projects.active,
-        jobsTotal: jobs.total,
-        jobsPending: jobs.outstanding,
-        jobsFailed: jobs.retrying,
-        jobsAccepted: jobs.accepted,
+        jobsTotal: jobs?.total ?? 0,
+        jobsPending: jobs?.outstanding ?? 0,
+        jobsFailed: jobs?.retrying ?? 0,
+        jobsAccepted: jobs?.accepted ?? 0,
+        jobsUnavailable: jobsResult.unavailable,
       };
     },
   });
@@ -142,13 +150,21 @@ function DashboardPage() {
   const notificationJobsQuery = useQuery({
     queryKey: ["admin", "recent-jobs"],
     queryFn: async () => {
-      const { data, error } = await supabase
-        .from("lead_notification_jobs")
-        .select("*")
-        .order("created_at", { ascending: false })
-        .limit(6);
-      if (error) throw error;
-      return (data ?? []) as NotificationJobRow[];
+      try {
+        const { data, error } = await supabase
+          .from("lead_notification_jobs")
+          .select("*")
+          .order("created_at", { ascending: false })
+          .limit(6);
+        if (error) {
+          console.warn("Notification jobs query skipped or unavailable:", error.message);
+          return [] as NotificationJobRow[];
+        }
+        return (data ?? []) as NotificationJobRow[];
+      } catch (err) {
+        console.warn("Notification jobs unexpected error:", err);
+        return [] as NotificationJobRow[];
+      }
     },
   });
 
@@ -200,7 +216,18 @@ function DashboardPage() {
         actionUrl: "/admin/leads",
       });
     }
-    if ((stats?.jobsFailed ?? 0) > 0) {
+    if (stats?.jobsUnavailable) {
+      list.push({
+        id: "notification-queue-unlinked",
+        category: "automation",
+        severity: "info",
+        title: "Notification outbox queue not connected",
+        description:
+          "Automation jobs queue is not provisioned or unreachable in the current database. Primary lead intake and client records remain fully operational.",
+        actionLabel: "Inspect Diagnostics",
+        actionUrl: "/admin/diagnostics",
+      });
+    } else if ((stats?.jobsFailed ?? 0) > 0) {
       list.push({
         id: "failed-notifications",
         category: "automation",
@@ -268,32 +295,42 @@ function DashboardPage() {
       toast.error(adminErrorMessage(err, "Project stage was not updated.")),
   });
 
-  const operationalQueries = [
+  const coreQueries = [
     statsQuery,
     recentLeadsQuery,
     activeProjectsQuery,
-    notificationJobsQuery,
     activeClientsQuery,
   ];
-  if (operationalQueries.some((query) => query.isPending || query.isError)) {
-    const failed = operationalQueries.some((query) => query.isError);
+
+  if (coreQueries.some((query) => query.isPending)) {
     return (
-      <div className="space-y-4" role={failed ? "alert" : "status"}>
+      <div className="space-y-4" role="status">
+        <PageHeader title="Control Centre" subtitle="Live business information" />
+        <p>Loading business data…</p>
+      </div>
+    );
+  }
+
+  if (statsQuery.isError) {
+    return (
+      <div className="space-y-4" role="alert">
         <PageHeader title="Control Centre" subtitle="Live business information" />
         <p>
-          {failed
-            ? "Business data could not be loaded. Metrics and automation status are unavailable until all sources can be checked."
-            : "Loading business data…"}
+          Business data could not be loaded. Metrics and operational status are unavailable until all sources can be checked.
         </p>
-        {failed && (
-          <button
-            type="button"
-            className="rounded-full border border-ink/20 px-4 py-2"
-            onClick={() => operationalQueries.forEach((query) => void query.refetch())}
-          >
-            Retry business data
-          </button>
-        )}
+        <button
+          type="button"
+          className="rounded-full border border-ink/20 px-4 py-2"
+          onClick={() => {
+            void statsQuery.refetch();
+            void recentLeadsQuery.refetch();
+            void activeProjectsQuery.refetch();
+            void activeClientsQuery.refetch();
+            void notificationJobsQuery.refetch();
+          }}
+        >
+          Retry business data
+        </button>
       </div>
     );
   }
@@ -361,6 +398,38 @@ function DashboardPage() {
           </Link>
         </div>
       </div>
+
+      {/* Degraded State Diagnostic Alert */}
+      {(stats?.jobsUnavailable ||
+        recentLeadsQuery.isError ||
+        activeProjectsQuery.isError ||
+        activeClientsQuery.isError) && (
+        <div
+          role="alert"
+          className="rounded-xl border border-amber-200 bg-amber-50 p-4 text-xs text-amber-900 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 shadow-xs"
+        >
+          <div className="flex items-center gap-2.5">
+            <span className="h-2.5 w-2.5 rounded-full bg-amber-500 animate-pulse shrink-0" />
+            <span>
+              {stats?.jobsUnavailable
+                ? "Notification outbox queue is currently unlinked or unavailable; lead intake and CRM data remain operational."
+                : "Some operational datasets could not be refreshed in the background."}
+            </span>
+          </div>
+          <button
+            type="button"
+            onClick={() => {
+              if (stats?.jobsUnavailable) void statsQuery.refetch();
+              if (recentLeadsQuery.isError) void recentLeadsQuery.refetch();
+              if (activeProjectsQuery.isError) void activeProjectsQuery.refetch();
+              if (activeClientsQuery.isError) void activeClientsQuery.refetch();
+            }}
+            className="self-start sm:self-auto rounded-full border border-amber-300 bg-white px-3 py-1 text-xs font-semibold text-amber-900 hover:bg-amber-100 transition-colors"
+          >
+            Retry sync
+          </button>
+        </div>
+      )}
 
       {/* Founder Daily Operating Flow */}
       <GroupHeadquartersSummary />
@@ -457,7 +526,7 @@ function DashboardPage() {
             </div>
             <div className="mt-2 flex items-baseline gap-2">
               <span className="text-3xl font-extrabold text-ink">
-                £{stats?.recordedMonthlyValue.toLocaleString() ?? 0}
+                £{(stats?.recordedMonthlyValue ?? 0).toLocaleString()}
               </span>
               <span className="text-xs text-ink-muted font-medium">/ month</span>
             </div>
@@ -540,14 +609,22 @@ function DashboardPage() {
             </div>
             <div className="mt-2 flex items-baseline gap-2">
               <span className="text-3xl font-extrabold text-ink">
-                {stats?.jobsFailed === 0 ? "No retries" : "Alerts"}
+                {stats?.jobsUnavailable
+                  ? "Degraded"
+                  : stats?.jobsFailed === 0
+                    ? "No retries"
+                    : "Alerts"}
               </span>
-              <span className="text-xs text-ink-muted">in recorded jobs</span>
+              <span className="text-xs text-ink-muted">
+                {stats?.jobsUnavailable ? "queue unmonitored" : "in recorded jobs"}
+              </span>
             </div>
             <div className="mt-2 text-[11px] text-ink-muted space-y-0.5">
               <div className="flex justify-between">
                 <span>Slack Alerts:</span>
-                <span className="font-semibold text-ink">{stats?.jobsAccepted ?? 0} accepted</span>
+                <span className="font-semibold text-ink">
+                  {stats?.jobsUnavailable ? "Queue unlinked" : `${stats?.jobsAccepted ?? 0} accepted`}
+                </span>
               </div>
               <div className="flex justify-between">
                 <span>Abuse Pruning:</span>
@@ -1117,7 +1194,11 @@ function DashboardPage() {
                 </Link>
               </div>
               <div className="space-y-2">
-                {recentJobs.length === 0 ? (
+                {stats?.jobsUnavailable ? (
+                  <p className="text-xs text-amber-800 bg-amber-50 border border-amber-200 rounded-lg p-3">
+                    Notification outbox queue table is not installed or unreachable in this database environment. Lead intake RPC and website diagnostics are operational, but background Slack retry records cannot be displayed.
+                  </p>
+                ) : recentJobs.length === 0 ? (
                   <p className="text-xs text-ink-muted">No notification jobs recorded.</p>
                 ) : (
                   recentJobs.map((job) => (
