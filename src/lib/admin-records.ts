@@ -201,7 +201,6 @@ export async function loadProjectPage(
       })) as unknown as typeof data;
     }
   }
-
   if (error) throw error;
   if (data === null || count === null) throw new Error("Project results unavailable");
   confirmPageLength(data, count, options.page);

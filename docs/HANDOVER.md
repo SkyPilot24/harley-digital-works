@@ -59,8 +59,6 @@ H03/H07/H42: isolated `codex/platform-completion-2026-10-15` from existing launc
 Final fresh build/typecheck/format PASS; lint 0 errors / 9 existing warnings; platform smoke PASS, 135 regression tests and 3 service-worker tests PASS. New tests cover all ten operational source-failure positions and capped/missing data. Authenticated browser/RLS mutation/readback acceptance remains pending; no customer data writes, migration, push, merge, deployment, sending or spending. Overall launch remains RED. Next: bounded staging browser acceptance of dashboard failure/retry and cross-screen mutation refresh, followed by remaining intake/recovery/care and concrete release gates.
 # Shared development handover
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 **Draft review submitted, 14 October:** [PR #29](https://github.com/SkyPilot24/harley-digital-works/pull/29) integrates the existing first-client work and launch corrections on `codex/launch-completion-2026-10-14`. Review head `1a71b7b` passed GitHub quality and credential checks; dependency audit reported zero vulnerabilities. Cloudflare created a successful native review Preview with an unconfigured backend, not functional acceptance. Active production deployment remains `ab1ae80f-5523-475f-8050-1c1be9a8aa99` / version `25218195-69ef-4616-8977-416cd740d876`, created 13 October; GitHub main remains `45012e4`. No merge, production migration, live billing or customer outreach. This supersedes earlier local-only submission labels while retaining tested runtime `280b0e6` and earlier rehearsal source identities. Full sale-to-care and owner decisions remain RED. This documentation follow-up requires its own current-head check result before treating that head as CI-verified.
 
 
@@ -126,7 +124,6 @@ Existing 08:15 UK briefing/09:00 UK housekeeping and prior Slack/local fixture a
 - Preserved pre-existing untracked `.agents/skills/harley-commercial-governance.7z` and `.pr8-repair/`. No code/configuration, credentials, data, provider writes, sending, file moves, commit, push or deployment.
 - Fresh verification: all 63 local Markdown link targets across the ten changed/new documents exist; `git diff --check` PASS; no runtime/configuration diff PASS. Build/application tests, PDF visual validation and provider checks not run for this documentation-only change; no historical test result reused as fresh evidence.
 - Next: resolve governing commercial wording; complete persistent payment/recovery and owner-session/restore acceptance; reconcile briefing delivery/UK timing and Slack destinations; update existing Drive mirrors only under the applicable publication scope. H47/H50 remain open. See the dated review for scope and five priorities.
-
 ## Review-branch reconciliation — 13 October 2026
 
 Latest main b4c751a is integrated into the branding review branch, preserving peer safeguards/qualification work and the peer removal of the orphan handover marker. This is source reconciliation only; main is unchanged and no production deployment is performed. Earlier pending-integration and marker-retention notes below are dated history. Fresh integrated checks follow the styling pass.

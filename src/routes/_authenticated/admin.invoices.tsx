@@ -22,7 +22,6 @@ import type { Database } from "@/integrations/supabase/types";
 import { PageHeader, StatusBadge } from "./admin.index";
 import { toast } from "sonner";
 import { recordedActiveMonthlyValue } from "@/lib/client-workspace";
-
 import { parsePoundsToCents, formatCents } from "@/lib/admin-validation";
 
 export const Route = createFileRoute("/_authenticated/admin/invoices")({
