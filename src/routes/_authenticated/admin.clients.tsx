@@ -289,7 +289,13 @@ function ClientsPage() {
                 <span className="text-[12px] uppercase tracking-wider">Active Clients</span>
               </div>
               <div className="mt-3 text-3xl font-semibold text-ink">
-                {clientSummaryQuery.isSuccess ? activeClientCount : "—"}
+                {clientSummaryQuery.isPending ? (
+                  <div className="h-9 w-16 rounded bg-ink/10 animate-pulse my-1" />
+                ) : clientSummaryQuery.isSuccess ? (
+                  activeClientCount
+                ) : (
+                  "—"
+                )}
               </div>
               <div className="mt-1 text-xs text-ink-muted">
                 {counts?.all ?? "—"} total across all statuses
@@ -304,8 +310,16 @@ function ClientsPage() {
                 </span>
               </div>
               <div className="mt-3 text-3xl font-semibold text-emerald-900">
-                {clientSummaryQuery.isSuccess ? totalMRR : "—"}
-                <span className="text-sm font-normal text-emerald-700">/mo</span>
+                {clientSummaryQuery.isPending ? (
+                  <div className="h-9 w-28 rounded bg-emerald-200/50 animate-pulse my-1" />
+                ) : clientSummaryQuery.isSuccess ? (
+                  <>
+                    {totalMRR}
+                    <span className="text-sm font-normal text-emerald-700">/mo</span>
+                  </>
+                ) : (
+                  "—"
+                )}
               </div>
               <div className="mt-1 text-xs text-emerald-700">
                 Manually recorded; not verified collected revenue
@@ -320,7 +334,11 @@ function ClientsPage() {
                 </span>
               </div>
               <div className="mt-3 text-3xl font-semibold text-ink">
-                {projectCounts?.active ?? "—"}
+                {projectSummaryQuery.isPending ? (
+                  <div className="h-9 w-16 rounded bg-ink/10 animate-pulse my-1" />
+                ) : (
+                  projectCounts?.active ?? "—"
+                )}
               </div>
               <div className="mt-1 text-xs text-ink-muted">
                 {projectCounts?.all ?? "—"} total projects
@@ -335,12 +353,39 @@ function ClientsPage() {
                 </span>
               </div>
               <div className="mt-3 text-3xl font-semibold text-ink">
-                {clientSummaryQuery.isSuccess ? averageMRR : "—"}
-                <span className="text-sm font-normal text-ink-muted">/mo</span>
+                {clientSummaryQuery.isPending ? (
+                  <div className="h-9 w-24 rounded bg-ink/10 animate-pulse my-1" />
+                ) : clientSummaryQuery.isSuccess ? (
+                  <>
+                    {averageMRR}
+                    <span className="text-sm font-normal text-ink-muted">/mo</span>
+                  </>
+                ) : (
+                  "—"
+                )}
               </div>
               <div className="mt-1 text-xs text-ink-muted">Per active client account</div>
             </div>
           </div>
+
+          {(clientSummaryQuery.isError || projectSummaryQuery.isError) && (
+            <div
+              role="alert"
+              className="mt-4 rounded-xl border border-rose-200 bg-rose-50 p-3 text-xs text-rose-950 flex items-center justify-between gap-3"
+            >
+              <span>Client and project summary totals could not be loaded from Supabase.</span>
+              <button
+                type="button"
+                className="rounded-full border border-rose-300 bg-white px-3 py-1 font-bold text-rose-900 hover:bg-rose-100 transition-colors"
+                onClick={() => {
+                  void clientSummaryQuery.refetch();
+                  void projectSummaryQuery.refetch();
+                }}
+              >
+                Retry Totals
+              </button>
+            </div>
+          )}
 
           {/* Filters & Search */}
           <div className="mt-8 flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
@@ -414,30 +459,56 @@ function ClientsPage() {
               </thead>
               <tbody>
                 {clientsQuery.isLoading && (
-                  <tr>
-                    <td colSpan={5} className="px-4 py-10 text-center text-ink-muted">
-                      Loading clients…
-                    </td>
-                  </tr>
+                  <>
+                    {[1, 2, 3, 4, 5].map((i) => (
+                      <tr key={i} className="border-t border-ink/5">
+                        <td className="px-4 py-4">
+                          <div className="h-4 w-40 rounded bg-ink/10 animate-pulse mb-1.5" />
+                          <div className="h-3 w-32 rounded bg-ink/5 animate-pulse" />
+                        </td>
+                        <td className="px-4 py-4">
+                          <div className="h-4 w-32 rounded bg-ink/10 animate-pulse mb-1" />
+                          <div className="h-3 w-44 rounded bg-ink/5 animate-pulse" />
+                        </td>
+                        <td className="px-4 py-4">
+                          <div className="h-5 w-16 rounded-full bg-ink/10 animate-pulse" />
+                        </td>
+                        <td className="px-4 py-4">
+                          <div className="h-4 w-20 rounded bg-ink/10 animate-pulse" />
+                        </td>
+                        <td className="px-4 py-4 text-right">
+                          <div className="h-6 w-20 rounded-full bg-ink/10 animate-pulse ml-auto" />
+                        </td>
+                      </tr>
+                    ))}
+                  </>
                 )}
                 {clientsQuery.isError && (
                   <tr>
-                    <td colSpan={5} className="px-4 py-10 text-center" role="alert">
-                      Client records could not be loaded.{" "}
-                      <button
-                        type="button"
-                        className="underline"
-                        onClick={() => clientsQuery.refetch()}
-                      >
-                        Retry
-                      </button>
+                    <td colSpan={5} className="px-4 py-8 text-center" role="alert">
+                      <div className="mx-auto max-w-md rounded-xl border border-rose-200 bg-rose-50 p-4 text-xs text-rose-950 flex items-center justify-between gap-3">
+                        <span>Client records could not be loaded from Supabase.</span>
+                        <button
+                          type="button"
+                          className="rounded-full border border-rose-300 bg-white px-3 py-1 font-bold text-rose-900 hover:bg-rose-100 transition-colors"
+                          onClick={() => void clientsQuery.refetch()}
+                        >
+                          Retry
+                        </button>
+                      </div>
                     </td>
                   </tr>
                 )}
                 {filteredClients.length === 0 && clientsQuery.isSuccess && (
                   <tr>
                     <td colSpan={5} className="px-4 py-12 text-center text-ink-muted">
-                      No clients found in this view.
+                      <div className="mx-auto max-w-sm rounded-xl border border-dashed border-ink/15 p-6 text-center">
+                        <Users size={28} className="mx-auto text-ink-muted/50 mb-2" />
+                        <p className="text-sm font-bold text-ink">No clients match this view</p>
+                        <p className="text-xs text-ink-muted mt-1">
+                          Create a client workspace from an enquiry or click &apos;Add client&apos; above.
+                        </p>
+                      </div>
                     </td>
                   </tr>
                 )}

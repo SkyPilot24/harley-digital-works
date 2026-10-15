@@ -142,16 +142,28 @@ function ProjectsAdminPage() {
             <Layers size={16} className="text-blue-700" />
           </div>
           <div className="mt-2 text-3xl font-extrabold text-ink">
-            {activeCount ?? "—"} / 2{" "}
-            <span className="text-sm font-normal text-ink-muted">slots</span>
+            {summaryQuery.isPending ? (
+              <div className="h-9 w-20 rounded bg-ink/10 animate-pulse my-1" />
+            ) : (
+              <>
+                {activeCount ?? "—"} / 2{" "}
+                <span className="text-sm font-normal text-ink-muted">slots</span>
+              </>
+            )}
           </div>
-          <p className="mt-2 text-xs text-ink-muted">
-            {activeCount === undefined
-              ? "Capacity unavailable until project totals load."
-              : (activeCount ?? 0) >= 2
-                ? "At capacity limit — complete an existing build before onboarding new trades."
-                : `${2 - (activeCount ?? 0)} build slot(s) within the pilot capacity target.`}
-          </p>
+          <div className="mt-2 text-xs text-ink-muted">
+            {summaryQuery.isPending ? (
+              <div className="h-3 w-44 rounded bg-ink/5 animate-pulse" />
+            ) : activeCount === undefined ? (
+              "Capacity unavailable until project totals load."
+            ) : (activeCount ?? 0) >= 2 ? (
+              <span className="font-bold text-amber-700">
+                At capacity limit — complete an existing build before onboarding new trades.
+              </span>
+            ) : (
+              `${2 - (activeCount ?? 0)} build slot(s) within the pilot capacity target.`
+            )}
+          </div>
         </div>
 
         {/* Project delivery dates */}
@@ -162,7 +174,7 @@ function ProjectsAdminPage() {
             </span>
             <Clock size={16} className="text-emerald-700" />
           </div>
-          <div className="mt-2 text-3xl font-extrabold text-ink">Agreed per project</div>
+          <div className="mt-2 text-3xl font-extrabold text-ink">14-Day Delivery</div>
           <p className="mt-2 text-xs text-ink-muted">
             Target from complete asset receipt, excluding client delays. Confirm project dates
             individually.
@@ -184,22 +196,39 @@ function ProjectsAdminPage() {
         </div>
       </div>
 
-      {summaryQuery.isError && (
-        <p role="alert">
-          Project totals are unavailable.{" "}
-          <button type="button" className="underline" onClick={() => void summaryQuery.refetch()}>
-            Retry project totals
-          </button>
-        </p>
+      {(summaryQuery.isError || clientsQuery.isError) && (
+        <div
+          role="alert"
+          className="rounded-xl border border-rose-200 bg-rose-50 p-4 text-xs text-rose-950 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 shadow-xs"
+        >
+          <div>
+            <span className="font-bold">Project metadata sync degraded: </span>
+            {summaryQuery.isError && "Project totals failed to load. "}
+            {clientsQuery.isError && "Client directory for project association is unavailable."}
+          </div>
+          <div className="flex items-center gap-2">
+            {summaryQuery.isError && (
+              <button
+                type="button"
+                className="rounded-full border border-rose-300 bg-white px-3 py-1 font-bold text-rose-900 hover:bg-rose-100 transition-colors"
+                onClick={() => void summaryQuery.refetch()}
+              >
+                Retry Totals
+              </button>
+            )}
+            {clientsQuery.isError && (
+              <button
+                type="button"
+                className="rounded-full border border-rose-300 bg-white px-3 py-1 font-bold text-rose-900 hover:bg-rose-100 transition-colors"
+                onClick={() => void clientsQuery.refetch()}
+              >
+                Retry Clients
+              </button>
+            )}
+          </div>
+        </div>
       )}
-      {clientsQuery.isError && (
-        <p role="alert">
-          Client choices are unavailable.{" "}
-          <button type="button" className="underline" onClick={() => void clientsQuery.refetch()}>
-            Retry client choices
-          </button>
-        </p>
-      )}
+
       {/* Delivery Stage Filters */}
       <div className="flex overflow-x-auto border-b border-ink/10 pb-px gap-1">
         {[
@@ -245,14 +274,45 @@ function ProjectsAdminPage() {
       />
       {/* Project Cards List */}
       {projectsQuery.isPending ? (
-        <p className="text-xs text-ink-muted py-6">Loading projects…</p>
+        <div className="space-y-4 py-2">
+          {[1, 2, 3].map((i) => (
+            <div
+              key={i}
+              className="rounded-xl border border-ink/10 bg-white p-5 shadow-xs space-y-4"
+            >
+              <div className="flex justify-between items-start">
+                <div className="space-y-2">
+                  <div className="h-3 w-28 rounded bg-ink/10 animate-pulse" />
+                  <div className="h-5 w-48 rounded bg-ink/10 animate-pulse" />
+                </div>
+                <div className="h-6 w-20 rounded-full bg-ink/10 animate-pulse" />
+              </div>
+              <div className="h-3 w-3/4 rounded bg-ink/5 animate-pulse" />
+              <div className="pt-3 border-t border-ink/5 flex justify-between">
+                <div className="h-3 w-32 rounded bg-ink/5 animate-pulse" />
+                <div className="h-3 w-24 rounded bg-ink/5 animate-pulse" />
+              </div>
+            </div>
+          ))}
+        </div>
       ) : projectsQuery.isError ? (
-        <p role="alert">
-          Projects could not be loaded.{" "}
-          <button type="button" className="underline" onClick={() => void projectsQuery.refetch()}>
-            Retry projects
+        <div
+          role="alert"
+          className="rounded-xl border border-rose-200 bg-rose-50 p-6 text-center text-rose-950 space-y-3"
+        >
+          <AlertTriangle size={24} className="mx-auto text-rose-700" />
+          <h3 className="text-sm font-bold">Projects Could Not Be Loaded</h3>
+          <p className="text-xs text-rose-800">
+            A network or database connection interruption prevented loading project delivery records.
+          </p>
+          <button
+            type="button"
+            className="rounded-full border border-rose-300 bg-white px-4 py-1.5 text-xs font-bold text-rose-900 hover:bg-rose-100 transition-colors"
+            onClick={() => void projectsQuery.refetch()}
+          >
+            Retry Projects
           </button>
-        </p>
+        </div>
       ) : filteredProjects.length === 0 ? (
         <div className="rounded-xl border border-dashed border-ink/15 bg-white p-8 text-center">
           <Briefcase size={28} className="mx-auto text-ink-muted/50 mb-2" />

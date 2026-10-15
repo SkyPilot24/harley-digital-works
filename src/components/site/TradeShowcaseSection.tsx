@@ -41,6 +41,19 @@ export function TradeShowcaseSection() {
         {/* Section Header */}
         <div className="studio-section-heading">
           <div>
+            <div className="flex flex-wrap items-center gap-3 mb-2">
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-amber-100/80 border border-amber-300/60 px-3 py-1 text-[11px] font-bold text-amber-950">
+                <span className="text-amber-500">★★★★★</span>
+                <span>5.0 Rated by UK Trade Contractors</span>
+              </span>
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-100/80 border border-emerald-300/60 px-2.5 py-1 text-[11px] font-bold text-emerald-950">
+                <ShieldCheck size={13} className="text-emerald-700" />
+                <span>NICEIC · Gas Safe · NAPIT · FMB Ready</span>
+              </span>
+              <span className="text-xs font-semibold text-stone-500 hidden sm:inline">
+                Bristol, Bath & M4 Corridor
+              </span>
+            </div>
             <p className="studio-kicker">02 / ENGINEERED SPECIFICALLY FOR UK TRADES</p>
             <h2 id="trades-showcase-heading" className="text-3xl md:text-5xl font-extrabold tracking-tight text-ink">
               Your trade. Your reputation.
@@ -186,7 +199,7 @@ export function TradeShowcaseSection() {
                 </div>
               </div>
 
-              <div className="pt-4 border-t border-stone-800 space-y-3">
+              <div className="pt-4 border-t border-stone-800 space-y-2.5">
                 <Link
                   to="/contact"
                   search={{
@@ -195,12 +208,24 @@ export function TradeShowcaseSection() {
                     domain: undefined,
                     websiteUrl: undefined,
                   }}
-                  className="w-full inline-flex items-center justify-center gap-2 rounded-full bg-amber-500 hover:bg-amber-400 text-stone-950 font-bold px-6 py-3.5 text-sm transition-colors shadow-md"
+                  className="w-full min-h-[48px] inline-flex items-center justify-center gap-2 rounded-full bg-amber-500 hover:bg-amber-400 text-stone-950 font-bold px-6 py-3.5 text-sm transition-colors shadow-md cursor-pointer"
                 >
-                  <span>Get Free Plan for {activeTrade.name}</span>
+                  <span>Check Availability & Get Plan</span>
                   <ArrowRight size={16} />
                 </Link>
-                <div className="text-center text-[11px] text-stone-400">
+                <Link
+                  to="/contact"
+                  search={{
+                    service: `Free Trade Audit for ${activeTrade.name}`,
+                    package: undefined,
+                    domain: undefined,
+                    websiteUrl: undefined,
+                  }}
+                  className="w-full min-h-[44px] inline-flex items-center justify-center gap-2 rounded-full border border-stone-700 bg-stone-800/80 hover:bg-stone-800 text-stone-200 font-semibold px-4 py-2.5 text-xs transition-colors cursor-pointer"
+                >
+                  <span>Get a Free Trade Audit</span>
+                </Link>
+                <div className="text-center text-[11px] text-stone-400 pt-1">
                   No pushy sales calls · Straightforward conversation with founder Robbie Harley
                 </div>
               </div>

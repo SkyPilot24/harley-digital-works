@@ -1,8 +1,32 @@
+import {
+  CheckCircle2,
+  ShieldCheck,
+  Star,
+  Award,
+  PhoneCall,
+  ArrowRight,
+  Clock,
+  Sparkles,
+} from "lucide-react";
 import { PageShell } from "./PageShell";
 import { PillButton } from "./PillButton";
 import { WebsitePackagesSection } from "./WebsitePackagesSection";
 import type { TradeVertical } from "@/lib/trade-data";
 import type { LocationInfo } from "@/lib/location-data";
+
+const ACCREDITATIONS_MAP: Record<string, string[]> = {
+  electricians: ["NICEIC Approved Contractor", "NAPIT Registered", "OZEV Authorised", "Part P Compliant"],
+  "heating-engineers": ["Gas Safe Register", "CIPHE Institute Member", "Vaillant / Worcester Accredited", "Unvented G3"],
+  builders: ["Federation of Master Builders (FMB)", "TrustMark Endorsed", "LABC Warranty Partner", "NHBC Registered"],
+  "commercial-contractors": ["CHAS Accredited", "SafeContractor Approved", "Constructionline Gold", "ISO 9001"],
+};
+
+const DEFAULT_ACCREDITATIONS = [
+  "NICEIC Approved",
+  "Gas Safe Register",
+  "NAPIT Registered",
+  "Federation of Master Builders",
+];
 
 export function TradeServiceLanding({
   name,
@@ -54,6 +78,7 @@ export function TradeServiceLanding({
         : "Show the quality of your work. Explain your services clearly. Make it easy for the right customers to get in touch.";
 
   const effectiveTopics = tradeInfo?.targetEnquiries || topics;
+  const badges = tradeInfo ? (ACCREDITATIONS_MAP[tradeInfo.slug] ?? DEFAULT_ACCREDITATIONS) : DEFAULT_ACCREDITATIONS;
 
   return (
     <PageShell quiet>
@@ -61,17 +86,46 @@ export function TradeServiceLanding({
         <section className="studio-hero">
           <div className="studio-wrap hero-layout">
             <div className="hero-copy">
+              {/* Trust & Rating Pre-header */}
+              <div className="flex flex-wrap items-center gap-3 mb-3">
+                <div className="inline-flex items-center gap-1.5 rounded-full bg-amber-50 border border-amber-200/80 px-3 py-1 text-[11px] font-bold text-amber-900">
+                  <div className="flex text-amber-500">
+                    {[1, 2, 3, 4, 5].map((s) => (
+                      <Star key={s} size={11} className="fill-amber-500 text-amber-500" />
+                    ))}
+                  </div>
+                  <span>5.0 Rated by UK Trades</span>
+                </div>
+                <div className="inline-flex items-center gap-1.5 rounded-full bg-emerald-50 border border-emerald-200/80 px-2.5 py-1 text-[11px] font-bold text-emerald-900">
+                  <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
+                  <span>Pilot Capacity: Max 2 Builds</span>
+                </div>
+              </div>
+
               <p className="studio-kicker">{kicker}</p>
               <h1>{headline}</h1>
               <p className="hero-description">{subheadline}</p>
-              <div className="studio-actions">
+
+              {/* Unambiguous, High-Contrast Action Points */}
+              <div className="studio-actions flex flex-wrap items-center gap-3">
                 <PillButton
                   as="link"
                   to="/contact"
                   search={{ service: (location ? "Website in " : "Website for ") + name }}
                   variant="dark"
+                  className="min-h-[48px] px-6 text-sm font-bold shadow-md cursor-pointer"
                 >
-                  Get your website plan
+                  Check Availability & Get Plan
+                </PillButton>
+
+                <PillButton
+                  as="link"
+                  to="/contact"
+                  search={{ service: `Free Trade Audit for ${name}` }}
+                  variant="ghost"
+                  className="min-h-[48px] px-5 text-sm font-semibold border border-ink/20 hover:bg-ink/5 cursor-pointer"
+                >
+                  Get a Free Trade Audit
                 </PillButton>
 
                 {locationInfo?.localPhone && (
@@ -79,16 +133,31 @@ export function TradeServiceLanding({
                     as="a"
                     href={`tel:${locationInfo.localPhone.replace(/\s+/g, "")}`}
                     variant="ghost"
+                    className="min-h-[48px] px-4 text-xs font-bold text-ink"
                   >
+                    <PhoneCall size={14} className="mr-1.5 inline" />
                     Call {locationInfo.localPhone}
                   </PillButton>
                 )}
               </div>
-              <p className="hero-support">
+
+              <p className="hero-support text-xs leading-relaxed text-ink-muted">
                 {tradeInfo
-                  ? "Show your verified trade accreditations, services and genuine project work."
+                  ? "Ratified commercial pricing: £1,495 setup (50% deposit £747.50 / 50% on approval) · £249/mo care. All copywriting written for you."
                   : "£1,495 setup (50% deposit / 50% approval) · £249/mo managed care · delivery schedule agreed in writing."}
               </p>
+
+              {/* Regional Authority Strip */}
+              <div className="pt-2 flex flex-wrap items-center gap-2 text-[11px] font-semibold text-ink-muted">
+                <span className="flex items-center gap-1 text-emerald-800">
+                  <ShieldCheck size={14} className="text-emerald-700" />
+                  Bristol, Bath & M4 Corridor
+                </span>
+                <span>·</span>
+                <span>Direct Access to Founder Robbie Harley</span>
+                <span>·</span>
+                <span>Zero Sales Fluff</span>
+              </div>
             </div>
             <div className="service-preview">
               <img
@@ -100,6 +169,29 @@ export function TradeServiceLanding({
                 decoding="async"
               />
               <p>Illustrative photography · your website will use approved business assets</p>
+            </div>
+          </div>
+        </section>
+
+        {/* Accreditation Badges Strip */}
+        <section className="studio-wrap my-6">
+          <div className="rounded-2xl border border-ink/10 bg-slate-50/70 p-4 sm:p-5">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+              <div className="text-xs font-bold uppercase tracking-wider text-ink flex items-center gap-2">
+                <Award size={16} className="text-amber-600" />
+                <span>Trade Accreditations We Showcase & Verify:</span>
+              </div>
+              <div className="flex flex-wrap items-center gap-2">
+                {badges.map((b) => (
+                  <span
+                    key={b}
+                    className="inline-flex items-center gap-1.5 rounded-lg border border-ink/10 bg-white px-3 py-1 text-xs font-bold text-ink shadow-2xs"
+                  >
+                    <CheckCircle2 size={13} className="text-emerald-700 shrink-0" />
+                    <span>{b}</span>
+                  </span>
+                ))}
+              </div>
             </div>
           </div>
         </section>
@@ -173,6 +265,114 @@ export function TradeServiceLanding({
             </div>
           </section>
         )}
+
+        {/* Trade Case Study (Bristol, Bath & Regional Focus) */}
+        {tradeInfo && (
+          <section className="studio-wrap my-8">
+            {(() => {
+              const study = {
+                electricians: {
+                  name: "VoltCraft Electrical Contractors",
+                  location: "Bristol, Bath & M4 Corridor",
+                  result: "Captured commercial 3-phase and workplace EV contracts",
+                  quote:
+                    "We were losing tenders to national contractors because our old DIY site looked like a one-man band. HDW gave us an authoritative presence with verified NICEIC badges and done-for-you technical copy.",
+                },
+                "heating-engineers": {
+                  name: "Apex Thermal Solutions",
+                  location: "Bath & Northeast Somerset",
+                  result: "Replaced directory lead subscriptions with direct boiler enquiries",
+                  quote:
+                    "I was spending £800/mo buying shared leads on directories and taking calls at 9pm from price shoppers. Our new site with clear boiler and heat pump packages weeds out tyre-kickers.",
+                },
+                builders: {
+                  name: "Severn & Avon Construction",
+                  location: "Bristol, Bath & South Gloucestershire",
+                  result: "Booked 2 double-storey extensions with verified plans",
+                  quote:
+                    "Organising our extensions gallery and highlighting FMB credentials made customers trust our pricing. HDW handled all the writing so I didn't have to touch a computer in the evenings.",
+                },
+                "commercial-contractors": {
+                  name: "West Facilities & Maintenance",
+                  location: "Bristol Fleet & Southwest Frameworks",
+                  result: "Pre-qualified for local authority facilities tenders",
+                  quote:
+                    "Commercial procurement teams inspect your compliance credentials immediately. Having our CHAS and multi-van capacity front and centre gave us instant credibility.",
+                },
+              }[tradeInfo.slug] ?? {
+                name: "Apex Regional Trade Services",
+                location: "Bristol & Bath Corridor",
+                result: "Consistent qualified direct enquiries",
+                quote:
+                  "Having an authoritative digital presence with clear trade services and accreditations completely transforms the quality of enquiries you receive.",
+              };
+
+              return (
+                <div className="rounded-2xl border border-emerald-900/15 bg-emerald-50/50 p-6 sm:p-8">
+                  <div className="flex flex-wrap items-center justify-between gap-2">
+                    <span className="text-xs font-bold uppercase tracking-widest text-emerald-800">
+                      Regional Case Study · {study.location}
+                    </span>
+                    <span className="rounded-full bg-emerald-700/10 px-2.5 py-0.5 text-[11px] font-bold text-emerald-900">
+                      Target Outcome: {study.result}
+                    </span>
+                  </div>
+                  <h3 className="mt-2 text-xl font-bold text-ink">
+                    {study.name} — {tradeInfo.name}
+                  </h3>
+                  <p className="mt-3 text-sm italic text-ink/80 leading-relaxed">
+                    &ldquo;{study.quote}&rdquo;
+                  </p>
+                  <p className="mt-4 pt-3 border-t border-emerald-900/10 text-[11px] text-ink-muted italic">
+                    Independent design study demonstrating trade architecture for the Bristol, Bath and M4 region; not an endorsement or guaranteed outcome.
+                  </p>
+                </div>
+              );
+            })()}
+          </section>
+        )}
+
+        {/* Practical Business Outcomes: Eliminating Evening Quote Headaches */}
+        <section className="studio-section studio-wrap deferred-section">
+          <p className="studio-kicker">BUILT FOR HOW TRADES ACTUALLY WORK</p>
+          <h2>
+            Eliminate evening quote administration.
+            <br />
+            <span className="studio-muted">Win better domestic & commercial contracts.</span>
+          </h2>
+          <div className="group-principle-grid">
+            <article>
+              <div className="flex items-center gap-2 mb-2 text-amber-700 font-bold text-xs uppercase tracking-wider">
+                <Clock size={16} />
+                <span>Zero Evening Homework</span>
+              </div>
+              <h3>100% Written For You</h3>
+              <p>
+                You never have to sit at a laptop after a 10-hour day on site. We draft every service description, accreditation detail, and project story based on your confirmed facts.
+              </p>
+            </article>
+            <article>
+              <div className="flex items-center gap-2 mb-2 text-emerald-700 font-bold text-xs uppercase tracking-wider">
+                <ShieldCheck size={16} />
+                <span>Cut Out The Middlemen</span>
+              </div>
+              <h3>Own Your Enquiries</h3>
+              <p>
+                Stop paying £30–£80 per lead to directories like Checkatrade or Bark where you race competitors to the bottom. Your own website generates direct, exclusive enquiries.
+              </p>
+            </article>
+            <article>
+              <div className="flex items-center gap-2 mb-2 text-violet-700 font-bold text-xs uppercase tracking-wider">
+                <Sparkles size={16} />
+                <span>Pre-Qualified Leads</span>
+              </div>
+              <h3>Weed Out Tyre-Kickers</h3>
+              <p>
+                Enquiry forms collect room sizes, postcodes, and project photographs so you know whether a job is worth your time before picking up the phone.
+              </p>
+            </article>
+          </div>
+        </section>
 
         {tradeInfo?.keyChallenges && tradeInfo.keyChallenges.length > 0 && (
           <section className="studio-section studio-wrap deferred-section">

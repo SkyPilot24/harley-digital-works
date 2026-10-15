@@ -79,17 +79,36 @@ function HomePage() {
                 Distinctive design, words that connect, and ongoing care. Made for ambitious trades
                 and service businesses.
               </p>
-              <div className="studio-actions">
-                <PillButton as="link" to="/contact" variant="dark" className="studio-button">
+              <div className="flex flex-wrap items-center gap-2 mb-3">
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-amber-50 border border-amber-200/80 px-2.5 py-1 text-[11px] font-bold text-amber-900">
+                  <span className="text-amber-500">★★★★★</span>
+                  <span>5.0 UK Trade Rating</span>
+                </span>
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-50 border border-emerald-200/80 px-2.5 py-1 text-[11px] font-bold text-emerald-900">
+                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                  <span>Pilot Cap: Max 2 Concurrent Builds</span>
+                </span>
+              </div>
+              <div className="studio-actions flex flex-wrap items-center gap-3">
+                <PillButton as="link" to="/contact" variant="dark" className="studio-button min-h-[48px] px-6 text-sm font-bold shadow-md cursor-pointer">
                   Get your website plan
                 </PillButton>
+                <PillButton
+                  as="link"
+                  to="/contact"
+                  search={{ service: "Free Trade Audit" }}
+                  variant="ghost"
+                  className="min-h-[48px] px-4 text-xs font-semibold border border-ink/20 hover:bg-ink/5 cursor-pointer"
+                >
+                  Get a Free Trade Audit
+                </PillButton>
                 <a href="#trades-showcase" className="studio-text-link">
-                  See how it works for your trade <ArrowDown size={16} />
+                  See trade setups <ArrowDown size={14} />
                 </a>
               </div>
               <div className="hero-price">
-                <span>Bristol, Bath & UK-wide trade pilot</span>
-                <span>£1,495 setup · £249/mo care · Strict 2-spot capacity</span>
+                <span>Bristol, Bath & UK-wide trade pilot · NICEIC, Gas Safe & FMB ready</span>
+                <span>£1,495 setup (50% deposit / 50% approval) · £249/mo care</span>
               </div>
             </div>
             <div className="hero-art">

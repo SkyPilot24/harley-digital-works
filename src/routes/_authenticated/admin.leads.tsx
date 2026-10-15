@@ -213,12 +213,19 @@ function LeadsPage() {
         </div>
 
         {countsQuery.isError && (
-          <p role="alert">
-            Enquiry totals are unavailable.{" "}
-            <button type="button" className="underline" onClick={() => void countsQuery.refetch()}>
-              Retry totals
+          <div
+            role="alert"
+            className="mt-4 rounded-xl border border-rose-200 bg-rose-50 p-3 text-xs text-rose-950 flex items-center justify-between gap-3"
+          >
+            <span>Enquiry count metrics could not be loaded from the database.</span>
+            <button
+              type="button"
+              className="rounded-full border border-rose-300 bg-white px-3 py-1 font-bold text-rose-900 hover:bg-rose-100 transition-colors"
+              onClick={() => void countsQuery.refetch()}
+            >
+              Retry Totals
             </button>
-          </p>
+          </div>
         )}
         {/* Filter and Search Bar */}
         <div className="mt-8 flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
@@ -285,31 +292,56 @@ function LeadsPage() {
             </thead>
             <tbody>
               {leadsQuery.isLoading && (
-                <tr>
-                  <td colSpan={5} className="px-4 py-10 text-center text-ink-muted">
-                    Loading leads…
-                  </td>
-                </tr>
+                <>
+                  {[1, 2, 3, 4, 5].map((i) => (
+                    <tr key={i} className="border-t border-ink/5">
+                      <td className="px-4 py-4">
+                        <div className="h-4 w-36 rounded bg-ink/10 animate-pulse mb-1.5" />
+                        <div className="h-3 w-48 rounded bg-ink/5 animate-pulse" />
+                      </td>
+                      <td className="px-4 py-4">
+                        <div className="h-6 w-24 rounded bg-ink/10 animate-pulse" />
+                      </td>
+                      <td className="px-4 py-4">
+                        <div className="h-5 w-16 rounded-full bg-ink/10 animate-pulse" />
+                      </td>
+                      <td className="px-4 py-4">
+                        <div className="h-3 w-20 rounded bg-ink/5 animate-pulse" />
+                      </td>
+                      <td className="px-4 py-4 text-right">
+                        <div className="h-6 w-16 rounded-full bg-ink/10 animate-pulse ml-auto" />
+                      </td>
+                    </tr>
+                  ))}
+                </>
               )}
 
               {leadsQuery.isError && (
                 <tr>
-                  <td colSpan={5} className="px-4 py-10 text-center" role="alert">
-                    Enquiries could not be loaded.{" "}
-                    <button
-                      type="button"
-                      className="underline"
-                      onClick={() => leadsQuery.refetch()}
-                    >
-                      Retry
-                    </button>
+                  <td colSpan={5} className="px-4 py-8 text-center" role="alert">
+                    <div className="mx-auto max-w-md rounded-xl border border-rose-200 bg-rose-50 p-4 text-xs text-rose-950 flex items-center justify-between gap-3">
+                      <span>Enquiries could not be loaded from Supabase.</span>
+                      <button
+                        type="button"
+                        className="rounded-full border border-rose-300 bg-white px-3 py-1 font-bold text-rose-900 hover:bg-rose-100 transition-colors"
+                        onClick={() => void leadsQuery.refetch()}
+                      >
+                        Retry
+                      </button>
+                    </div>
                   </td>
                 </tr>
               )}
               {filteredLeads.length === 0 && leadsQuery.isSuccess && (
                 <tr>
                   <td colSpan={5} className="px-4 py-12 text-center text-ink-muted">
-                    No leads found in this view.
+                    <div className="mx-auto max-w-sm rounded-xl border border-dashed border-ink/15 p-6 text-center">
+                      <Inbox size={28} className="mx-auto text-ink-muted/50 mb-2" />
+                      <p className="text-sm font-bold text-ink">No enquiries match this view</p>
+                      <p className="text-xs text-ink-muted mt-1">
+                        Try resetting your search query or select another pipeline status tab.
+                      </p>
+                    </div>
                   </td>
                 </tr>
               )}

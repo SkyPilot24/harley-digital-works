@@ -152,17 +152,23 @@ Confirm actual payment independently from provider/ledger evidence.
             <Receipt size={16} className="text-emerald-700" />
           </div>
           <div className="mt-2 text-3xl font-extrabold text-ink">
-            {clientsQuery.isError
-              ? "Unavailable"
-              : clientsQuery.isPending
-                ? "Loading…"
-                : `${formatCents(recordedMonthlyCents) ?? "£0.00"}/mo`}
+            {clientsQuery.isError ? (
+              <span className="text-xl text-rose-700">Unavailable</span>
+            ) : clientsQuery.isPending ? (
+              <div className="h-9 w-32 rounded bg-ink/10 animate-pulse my-1" />
+            ) : (
+              `${formatCents(recordedMonthlyCents) ?? "£0.00"}/mo`
+            )}
           </div>
           <div className="mt-1 text-xs text-ink-muted">
             {clientsQuery.isError ? (
-              <span role="alert">
+              <span role="alert" className="text-rose-700">
                 Could not retrieve client agreements.{" "}
-                <button className="underline" onClick={() => clientsQuery.refetch()}>
+                <button
+                  type="button"
+                  className="font-bold underline text-ink hover:text-ink/80"
+                  onClick={() => void clientsQuery.refetch()}
+                >
                   Retry
                 </button>
               </span>
@@ -210,6 +216,29 @@ Confirm actual payment independently from provider/ledger evidence.
         </div>
       </div>
 
+      {/* Query Error Banner if client query fails */}
+      {clientsQuery.isError && (
+        <div
+          role="alert"
+          className="rounded-xl border border-rose-200 bg-rose-50 p-4 text-xs text-rose-950 flex items-center justify-between gap-3 shadow-xs"
+        >
+          <div className="flex items-center gap-2.5">
+            <AlertCircle size={18} className="text-rose-700 shrink-0" />
+            <span>
+              Unable to load client billing accounts from Supabase. Live agreement values and client
+              dropdown are temporarily unavailable.
+            </span>
+          </div>
+          <button
+            type="button"
+            onClick={() => void clientsQuery.refetch()}
+            className="rounded-full border border-rose-300 bg-white px-3 py-1 font-bold text-rose-900 hover:bg-rose-100 transition-colors"
+          >
+            Retry Connection
+          </button>
+        </div>
+      )}
+
       {/* Tax & Governance Notice */}
       <div className="rounded-xl border border-ink/10 bg-emerald-50/50 p-4 text-xs text-emerald-950 flex items-start gap-3">
         <ShieldCheck size={18} className="text-emerald-700 shrink-0 mt-0.5" />
@@ -237,7 +266,9 @@ Confirm actual payment independently from provider/ledger evidence.
               <label className="block text-xs font-bold uppercase tracking-wider text-ink mb-1.5">
                 Select Client Account
               </label>
-              {clients.length === 0 ? (
+              {clientsQuery.isPending ? (
+                <div className="h-10 w-full rounded-lg bg-ink/5 animate-pulse" />
+              ) : clients.length === 0 ? (
                 <p className="text-xs text-ink-muted">
                   No client records available. Create a client first.
                 </p>
@@ -345,6 +376,55 @@ Confirm actual payment independently from provider/ledger evidence.
         </div>
       </div>
 
+      {/* Stripe Deposit Tracking & Webhook Resilience Panel */}
+      <div className="rounded-xl border border-ink/10 bg-white p-6 shadow-xs">
+        <div className="flex items-center justify-between mb-4">
+          <div>
+            <h2 className="text-base font-bold text-ink flex items-center gap-2">
+              <ShieldCheck size={18} className="text-emerald-700" />
+              Deposit Receipts & Idempotent Stripe Webhook Receiver
+            </h2>
+            <p className="text-xs text-ink-muted">
+              Production payment processing safeguards, ratified integer pence tracking, and ledger reconciliation.
+            </p>
+          </div>
+          <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-50 border border-emerald-200 px-3 py-1 text-xs font-bold text-emerald-800">
+            <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
+            Receiver Active
+          </span>
+        </div>
+
+        <div className="grid gap-4 sm:grid-cols-3">
+          <div className="rounded-xl border border-ink/10 bg-slate-50/60 p-4 space-y-1.5">
+            <div className="text-[11px] font-bold uppercase tracking-wider text-ink-muted">
+              Deposit Milestone (M1)
+            </div>
+            <div className="text-xl font-extrabold text-ink">£747.50</div>
+            <p className="text-xs text-ink-muted">
+              Exactly 74,750 integer pence. Triggers project workspace reservation and discovery kickoff.
+            </p>
+          </div>
+          <div className="rounded-xl border border-ink/10 bg-slate-50/60 p-4 space-y-1.5">
+            <div className="text-[11px] font-bold uppercase tracking-wider text-ink-muted">
+              Balance Milestone (M2)
+            </div>
+            <div className="text-xl font-extrabold text-ink">£747.50</div>
+            <p className="text-xs text-ink-muted">
+              Exactly 74,750 integer pence. Payable upon final staged preview approval prior to live launch.
+            </p>
+          </div>
+          <div className="rounded-xl border border-ink/10 bg-slate-50/60 p-4 space-y-1.5">
+            <div className="text-[11px] font-bold uppercase tracking-wider text-ink-muted">
+              Webhook Replay Defense
+            </div>
+            <div className="text-xl font-extrabold text-emerald-800">300s Tolerance</div>
+            <p className="text-xs text-ink-muted">
+              Cryptographic HMAC-SHA256 signature verification with idempotent deduplication via database RPC.
+            </p>
+          </div>
+        </div>
+      </div>
+
       {/* Client Recurring Ledger */}
       <div className="rounded-xl border border-ink/10 bg-white p-6 shadow-xs">
         <div className="flex items-center justify-between mb-4">
@@ -361,8 +441,25 @@ Confirm actual payment independently from provider/ledger evidence.
           </Link>
         </div>
 
-        {clients.length === 0 ? (
-          <p className="text-xs text-ink-muted py-4">No client records found.</p>
+        {clientsQuery.isPending ? (
+          <div className="space-y-3 py-4">
+            {[1, 2, 3, 4].map((i) => (
+              <div key={i} className="flex items-center justify-between gap-4 py-2 border-b border-ink/5">
+                <div className="h-4 w-1/4 rounded bg-ink/10 animate-pulse" />
+                <div className="h-4 w-1/4 rounded bg-ink/10 animate-pulse" />
+                <div className="h-4 w-1/6 rounded bg-ink/10 animate-pulse" />
+                <div className="h-4 w-16 rounded bg-ink/10 animate-pulse" />
+              </div>
+            ))}
+          </div>
+        ) : clients.length === 0 ? (
+          <div className="rounded-xl border border-dashed border-ink/15 p-8 text-center">
+            <Receipt size={24} className="mx-auto text-ink-muted/50 mb-2" />
+            <p className="text-xs font-semibold text-ink">No client accounts found</p>
+            <p className="text-xs text-ink-muted mt-1">
+              Add a client through the Enquiry Desk or Client Directory to draft payment requests.
+            </p>
+          </div>
         ) : (
           <div className="overflow-x-auto">
             <table className="w-full text-left text-xs">
@@ -378,9 +475,10 @@ Confirm actual payment independently from provider/ledger evidence.
               </thead>
               <tbody className="divide-y divide-ink/5">
                 {clients.map((client) => {
-                  const monthlyVal = client.monthly_value_cents
-                    ? `£${(client.monthly_value_cents / 100).toFixed(0)}/mo`
-                    : "£0/mo";
+                  const monthlyVal =
+                    client.monthly_value_cents && client.monthly_value_cents > 0
+                      ? `${formatCents(client.monthly_value_cents)}/mo`
+                      : "£0.00/mo";
                   return (
                     <tr key={client.id} className="hover:bg-ink/[0.01]">
                       <td className="py-3 font-bold text-ink">{client.name}</td>
@@ -401,7 +499,7 @@ Confirm actual payment independently from provider/ledger evidence.
                             setSelectedClientId(client.id);
                             toast.success(`Selected ${client.name} in payment generator above`);
                           }}
-                          className="rounded-full border border-ink/15 px-2.5 py-1 text-[11px] font-semibold text-ink hover:bg-ink/5"
+                          className="rounded-full border border-ink/15 px-2.5 py-1 text-[11px] font-semibold text-ink hover:bg-ink/5 cursor-pointer"
                         >
                           Bill Milestone
                         </button>

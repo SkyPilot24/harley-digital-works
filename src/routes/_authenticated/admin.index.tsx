@@ -339,33 +339,98 @@ function DashboardPage() {
 
   if (coreQueries.some((query) => query.isPending)) {
     return (
-      <div className="space-y-4" role="status">
-        <PageHeader title="Control Centre" subtitle="Live business information" />
-        <p>Loading business data…</p>
+      <div className="space-y-8 pb-12" role="status" aria-label="Loading control centre dashboard">
+        {/* Header Skeleton */}
+        <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+          <div className="space-y-2">
+            <div className="h-8 w-48 rounded-lg bg-ink/10 animate-pulse" />
+            <div className="h-4 w-72 rounded bg-ink/5 animate-pulse" />
+          </div>
+          <div className="flex items-center gap-2">
+            <div className="h-8 w-24 rounded-full bg-ink/10 animate-pulse" />
+            <div className="h-8 w-24 rounded-full bg-ink/10 animate-pulse" />
+            <div className="h-8 w-24 rounded-full bg-ink/10 animate-pulse" />
+          </div>
+        </div>
+
+        {/* Status Bar Skeleton */}
+        <div className="h-16 w-full rounded-xl bg-ink/5 animate-pulse" />
+
+        {/* Metrics Grid Skeleton */}
+        <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+          {[1, 2, 3, 4].map((i) => (
+            <div key={i} className="rounded-xl border border-ink/10 bg-white p-5 shadow-xs space-y-3">
+              <div className="flex justify-between items-center">
+                <div className="h-3 w-28 rounded bg-ink/10 animate-pulse" />
+                <div className="h-4 w-4 rounded-full bg-ink/10 animate-pulse" />
+              </div>
+              <div className="h-8 w-24 rounded bg-ink/10 animate-pulse" />
+              <div className="h-3 w-36 rounded bg-ink/5 animate-pulse" />
+            </div>
+          ))}
+        </div>
+
+        {/* Dual Panel Skeleton */}
+        <div className="grid gap-6 lg:grid-cols-2">
+          <div className="rounded-xl border border-ink/10 bg-white p-6 space-y-4">
+            <div className="h-5 w-48 rounded bg-ink/10 animate-pulse" />
+            <div className="space-y-2">
+              {[1, 2, 3].map((i) => (
+                <div key={i} className="h-12 w-full rounded-lg bg-ink/5 animate-pulse" />
+              ))}
+            </div>
+          </div>
+          <div className="rounded-xl border border-ink/10 bg-white p-6 space-y-4">
+            <div className="h-5 w-48 rounded bg-ink/10 animate-pulse" />
+            <div className="space-y-2">
+              {[1, 2, 3].map((i) => (
+                <div key={i} className="h-12 w-full rounded-lg bg-ink/5 animate-pulse" />
+              ))}
+            </div>
+          </div>
+        </div>
       </div>
     );
   }
 
   if (statsQuery.isError) {
     return (
-      <div className="space-y-4" role="alert">
+      <div className="space-y-6 pb-12" role="alert">
         <PageHeader title="Control Centre" subtitle="Live business information" />
-        <p>
-          Business data could not be loaded. Metrics and operational status are unavailable until all sources can be checked.
-        </p>
-        <button
-          type="button"
-          className="rounded-full border border-ink/20 px-4 py-2"
-          onClick={() => {
-            void statsQuery.refetch();
-            void recentLeadsQuery.refetch();
-            void activeProjectsQuery.refetch();
-            void activeClientsQuery.refetch();
-            void notificationJobsQuery.refetch();
-          }}
-        >
-          Retry business data
-        </button>
+        <div className="rounded-2xl border border-rose-200 bg-rose-50 p-6 text-rose-950 shadow-xs space-y-4">
+          <div className="flex items-start gap-3">
+            <ShieldAlert size={24} className="text-rose-700 shrink-0 mt-0.5" />
+            <div className="space-y-1">
+              <h2 className="text-base font-bold">Business Data Connection Error</h2>
+              <p className="text-xs text-rose-800 leading-relaxed">
+                Supabase operational statistics and table totals could not be loaded. To preserve data
+                integrity, metrics and operational capacity remain uncalculated until live database
+                sources are verified.
+              </p>
+            </div>
+          </div>
+          <div className="flex flex-wrap items-center gap-3 pt-2 border-t border-rose-200/60">
+            <button
+              type="button"
+              className="rounded-full bg-rose-900 text-white font-bold px-4 py-2 text-xs hover:bg-rose-800 transition-colors cursor-pointer"
+              onClick={() => {
+                void statsQuery.refetch();
+                void recentLeadsQuery.refetch();
+                void activeProjectsQuery.refetch();
+                void activeClientsQuery.refetch();
+                void notificationJobsQuery.refetch();
+              }}
+            >
+              Retry Business Data Connection
+            </button>
+            <Link
+              to="/admin/diagnostics"
+              className="rounded-full border border-rose-300 bg-white px-4 py-2 text-xs font-semibold text-rose-900 hover:bg-rose-100 transition-colors"
+            >
+              Inspect Diagnostics
+            </Link>
+          </div>
+        </div>
       </div>
     );
   }
@@ -793,10 +858,23 @@ function DashboardPage() {
               </div>
 
               {recentLeadsQuery.isPending ? (
-                <p className="text-xs text-ink-muted py-4">Loading enquiries…</p>
+                <div className="space-y-3 py-4">
+                  {[1, 2, 3, 4].map((i) => (
+                    <div key={i} className="flex items-center justify-between gap-4 py-2 border-b border-ink/5">
+                      <div className="h-4 w-1/3 rounded bg-ink/10 animate-pulse" />
+                      <div className="h-4 w-1/5 rounded bg-ink/10 animate-pulse" />
+                      <div className="h-4 w-16 rounded bg-ink/10 animate-pulse" />
+                      <div className="h-4 w-20 rounded bg-ink/10 animate-pulse" />
+                    </div>
+                  ))}
+                </div>
               ) : recentLeads.length === 0 ? (
-                <div className="rounded-lg border border-dashed border-ink/15 p-6 text-center">
-                  <p className="text-xs text-ink-muted">No enquiries recorded yet.</p>
+                <div className="rounded-lg border border-dashed border-ink/15 p-8 text-center">
+                  <Inbox size={24} className="mx-auto text-ink-muted/50 mb-2" />
+                  <p className="text-xs font-bold text-ink">No enquiries recorded yet</p>
+                  <p className="text-xs text-ink-muted mt-1">
+                    New enquiries received through the website contact form or added manually will appear here.
+                  </p>
                 </div>
               ) : (
                 <div className="overflow-x-auto">

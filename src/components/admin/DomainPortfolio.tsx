@@ -196,23 +196,48 @@ export function DomainPortfolio({ localPreview = false }: { localPreview?: boole
         </p>
       )}
       {!loaded ? (
-        <div>
-          <p>
-            {message
-              ? "Unable to load the inventory. Existing data has been preserved."
-              : "Loading inventory…"}
-          </p>
-          {message && (
+        message ? (
+          <div
+            role="alert"
+            className="rounded-2xl border border-rose-200 bg-rose-50 p-6 text-rose-950 shadow-xs space-y-3"
+          >
+            <h2 className="text-sm font-bold">Unable to Load Domain Portfolio</h2>
+            <p className="text-xs text-rose-800 leading-relaxed">
+              {message} Existing inventory and local records have been preserved without changes.
+            </p>
             <Button
+              variant="outline"
+              className="border-rose-300 bg-white text-rose-900 hover:bg-rose-100"
               onClick={() => {
                 setMessage("");
                 setReload((value) => value + 1);
               }}
             >
-              Try again
+              Retry Connection
             </Button>
-          )}
-        </div>
+          </div>
+        ) : (
+          <div className="space-y-6" role="status" aria-label="Loading domain portfolio">
+            <div className="grid gap-3 sm:grid-cols-3">
+              {[1, 2, 3].map((i) => (
+                <div key={i} className="rounded-xl border border-ink/10 bg-white p-5 space-y-2">
+                  <div className="h-4 w-28 rounded bg-ink/10 animate-pulse" />
+                  <div className="h-8 w-16 rounded bg-ink/10 animate-pulse" />
+                </div>
+              ))}
+            </div>
+            <div className="h-10 w-64 rounded-lg bg-ink/5 animate-pulse" />
+            <div className="rounded-xl border border-ink/10 bg-white p-6 space-y-3">
+              {[1, 2, 3, 4].map((i) => (
+                <div key={i} className="flex justify-between py-2 border-b border-ink/5">
+                  <div className="h-4 w-40 rounded bg-ink/10 animate-pulse" />
+                  <div className="h-4 w-28 rounded bg-ink/5 animate-pulse" />
+                  <div className="h-4 w-20 rounded bg-ink/5 animate-pulse" />
+                </div>
+              ))}
+            </div>
+          </div>
+        )
       ) : (
         <>
           <div className="grid gap-3 sm:grid-cols-3">
