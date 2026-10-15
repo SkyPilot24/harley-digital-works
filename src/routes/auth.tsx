@@ -5,6 +5,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { PageShell, Container } from "@/components/site/PageShell";
 import { toast } from "sonner";
 import { safeAuthRedirect } from "@/lib/auth-redirect";
+import { useAuth } from "@/hooks/use-auth";
 
 const searchSchema = z.object({ redirect: z.unknown().transform(safeAuthRedirect) });
 const googleSignInEnabled = import.meta.env.VITE_GOOGLE_AUTH_ENABLED === "true";
@@ -17,8 +18,9 @@ export const Route = createFileRoute("/auth")({
   beforeLoad: async ({ search }) => {
     if (typeof window === "undefined") return;
     if (!supabaseConfigured) return;
-    const { data } = await supabase.auth.getSession();
-    if (data.session) throw redirect({ to: search.redirect ?? "/admin" });
+    const result = await supabase.auth.getSession().catch(() => null);
+    if (result && !result.error && result.data.session)
+      throw redirect({ to: search.redirect ?? "/admin" });
   },
   head: () => ({
     meta: [
@@ -41,6 +43,7 @@ function AuthPage() {
   const [formNotice, setFormNotice] = useState<string | null>(null);
   const [localSignIn, setLocalSignIn] = useState(false);
   const [interactive, setInteractive] = useState(false);
+  const { error: sessionError, retry: retrySession } = useAuth();
 
   useEffect(() => {
     setInteractive(true);
@@ -191,6 +194,14 @@ function AuthPage() {
             </div>
 
             <form method="post" onSubmit={handleEmail} className="space-y-4">
+              {sessionError && (
+                <p role="alert" className="text-sm text-ink-muted">
+                  Your existing sign-in could not be checked.{" "}
+                  <button type="button" className="underline" onClick={retrySession}>
+                    Retry sign-in check
+                  </button>
+                </p>
+              )}
               <noscript>
                 <p className="text-sm text-ink-muted">Enable JavaScript to sign in securely.</p>
               </noscript>

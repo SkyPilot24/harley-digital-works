@@ -23,7 +23,7 @@ export const Route = createFileRoute("/client-review_/$projectId")({
 function ClientReview() {
   const { projectId } = Route.useParams();
   const { kind } = Route.useSearch();
-  const { user, loading } = useAuth();
+  const { user, loading, error: authError, retry: retryAuth } = useAuth();
   const fetchReview = useServerFn(getDeliveryReview);
   const approve = useServerFn(approveDeliveryRevision);
   const cache = useQueryClient();
@@ -62,6 +62,13 @@ function ClientReview() {
         <p role="status" className="mt-6">
           Checking your sign-in…
         </p>
+      ) : authError ? (
+        <div className="mt-6" role="alert">
+          <p>Your sign-in could not be checked. Project information remains hidden.</p>
+          <button type="button" className="mt-4 underline" onClick={retryAuth}>
+            Retry sign-in check
+          </button>
+        </div>
       ) : !user ? (
         <div className="mt-6">
           <p>Sign in with the account invited to your project.</p>

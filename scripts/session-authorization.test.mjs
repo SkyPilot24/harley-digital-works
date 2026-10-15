@@ -1,3 +1,4 @@
+import { signOutWithPrivateCache } from "../src/lib/auth-session.ts";
 import test from "node:test";
 import assert from "node:assert/strict";
 
@@ -144,30 +145,23 @@ test("6. Role authorization boundary: non-admin authenticated user denied admin 
   });
 });
 
-test("7. Session logout and cache teardown: query cache cancelled and session invalidated", () => {
-  const mockCache = {
-    cancelled: false,
-    cleared: false,
-    cancelQueries: async () => {
-      mockCache.cancelled = true;
+test("7. Production sign-out helper cancels queries, clears cache and awaits SDK sign-out", async () => {
+  const order = [];
+  await signOutWithPrivateCache(
+    {
+      signOut: async () => {
+        order.push("session");
+        return { error: null };
+      },
     },
-    clear: () => {
-      mockCache.cleared = true;
+    {
+      cancelQueries: async () => {
+        order.push("cancel");
+      },
+      clear: () => {
+        order.push("clear");
+      },
     },
-  };
-
-  let sessionActive = true;
-  async function performSignOut(cache) {
-    await cache.cancelQueries();
-    cache.clear();
-    sessionActive = false;
-    return { redirectedTo: "/auth", sessionCleared: true };
-  }
-
-  return performSignOut(mockCache).then((res) => {
-    assert.equal(res.redirectedTo, "/auth");
-    assert.equal(mockCache.cancelled, true);
-    assert.equal(mockCache.cleared, true);
-    assert.equal(sessionActive, false);
-  });
+  );
+  assert.deepEqual(order, ["cancel", "clear", "session"]);
 });

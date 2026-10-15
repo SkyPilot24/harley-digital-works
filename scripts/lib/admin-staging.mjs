@@ -108,6 +108,12 @@ export async function withAdminStaging(run) {
   } finally {
     if (userId) {
       assert.ifError((await server.auth.admin.deleteUser(userId)).error);
+      const deletedUser = await server.auth.admin.getUserById(userId);
+      assert.equal(
+        deletedUser.error?.status,
+        404,
+        "Temporary Auth account still exists or cleanup could not be verified",
+      );
       const roles = await server.from("user_roles").select("user_id").eq("user_id", userId);
       assert.ifError(roles.error);
       assert.equal(roles.data.length, 0);

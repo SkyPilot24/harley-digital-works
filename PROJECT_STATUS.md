@@ -1,3 +1,10 @@
+## Session and permission recovery acceptance — 15 October 2026
+
+H03/H07/H42: fixed role lookup failures being labelled Access denied, rejected session reads remaining in loading, stale session-read races and incomplete sign-out error handling. Private views/cache now clear or remain hidden on uncertain/denied access; retry states distinguish uncertainty from a confirmed missing role. Identity changes clear query data before publishing the new identity; protected redirects preserve the destination. Backend policies/credentials unchanged.
+
+Fresh build/typecheck/format PASS; lint 0 errors / 9 existing warnings; 66 smoke + 150 regression/integration + 3 service-worker checks PASS. Real staging Auth/API/Edge verifies ordinary/anonymous denial, self-promotion/metadata rejection, cached-role outage/retry, temporary role revoke/restore and sign-out failure/retry. Client/project browser regression also rerun PASS. Exact synthetic records/accounts removed; genuine owner sessions untouched. [Evidence, actor matrix and limits](docs/ADMIN_ACCESS_ACCEPTANCE_2026-10-15.md).
+
+Read-only provider advisors show leaked-password protection disabled on Agency and staging; review exact provider configuration/availability before live changes. RLS-without-policy INFO records retain the intentional server-only deny model; no policies broadened. No production mutation, main merge/release, live billing or external message. Full launch remains RED. Next: current-head CI, admin user/role server controls and remaining form validation, then enquiry/recovery/care/release gates.
 ## Complete admin record reads and client/project paging — 15 October 2026
 
 H03/H07/H42: added server-side client/project paging/search and full counts, complete cursor reads for monthly values/active lists/client choices, count-only notification totals, complete per-client project links/details, accurate error/retry states and saved drawer values. Dashboard exceptions now use full counts. New projects default to unassigned/no deadline; explicit agreed dates replace automatic fourteen-day targets. Earlier capped-response guard is superseded and removed.

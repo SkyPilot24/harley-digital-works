@@ -1,63 +1,66 @@
-import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
+import { createContext, useContext, useEffect, useRef, useState, type ReactNode } from "react";
 import type { Session, User } from "@supabase/supabase-js";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
+import { observeAuthSession, type AuthSessionState } from "@/lib/auth-session";
 
 type AuthContextValue = {
   session: Session | null;
   user: User | null;
   loading: boolean;
+  error: Error | null;
+  retry: () => void;
 };
-
 const AuthContext = createContext<AuthContextValue>({
   session: null,
   user: null,
   loading: true,
+  error: null,
+  retry: () => undefined,
 });
 
 export function AuthProvider({ children }: { children: ReactNode }) {
-  const [session, setSession] = useState<Session | null>(null);
-  const [loading, setLoading] = useState(true);
-
+  const [state, setState] = useState<AuthSessionState>({
+    session: null,
+    loading: true,
+    error: null,
+  });
+  const [attempt, setAttempt] = useState(0);
+  const currentUser = useRef<string | null>(null);
+  const queryClient = useQueryClient();
   useEffect(() => {
-    const supabaseConfigured = Boolean(
-      import.meta.env.VITE_SUPABASE_URL && import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY,
-    );
-
-    // Keep the public site available when Supabase has not been configured for
-    // this deployment. Authenticated features remain signed out until the
-    // publishable client values are supplied.
-    if (!supabaseConfigured) {
-      setLoading(false);
+    if (!import.meta.env.VITE_SUPABASE_URL || !import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY) {
+      setState({ session: null, loading: false, error: null });
       return;
     }
-
-    const { data: sub } = supabase.auth.onAuthStateChange((_event, s) => {
-      setSession(s);
-    });
-    supabase.auth.getSession().then(({ data }) => {
-      setSession(data.session);
-      setLoading(false);
-    });
-    return () => sub.subscription.unsubscribe();
-  }, []);
-
+    return observeAuthSession(supabase.auth, setState, () => queryClient.clear(), currentUser);
+  }, [attempt, queryClient]);
   return (
-    <AuthContext.Provider value={{ session, user: session?.user ?? null, loading }}>
+    <AuthContext.Provider
+      value={{
+        ...state,
+        user: state.session?.user ?? null,
+        retry: () => {
+          setState((value) => ({ ...value, loading: true, error: null }));
+          setAttempt((value) => value + 1);
+        },
+      }}
+    >
       {children}
     </AuthContext.Provider>
   );
 }
-
 export function useAuth() {
   return useContext(AuthContext);
 }
-
 export function useIsAdmin() {
-  const { user } = useAuth();
+  const { user, error: authError } = useAuth();
   return useQuery({
     queryKey: ["is-admin", user?.id],
-    enabled: !!user,
+    enabled: !!user && !authError,
+    retry: 1,
+    retryDelay: 1000,
+    refetchInterval: 60_000,
     queryFn: async () => {
       if (!user) return false;
       const { data, error } = await supabase
