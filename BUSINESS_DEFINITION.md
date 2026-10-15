@@ -10,6 +10,12 @@ During initial pilot validation, review each critical transition and all launch 
 
 ## Shared record and precedence
 
+### Commercial reconciliation — 14 October 2026
+
+Approved prices remain unchanged. The active pilot dispatch record uses a two-build guard; the existing offer describes two during pilot validation. The broader two-to-three capacity sentence below is not permission to raise that guard. A separate 11 October integration-session record reports founder confirmation of three builds, while later canonical pilot records retain two. Reconcile the specific pilot versus wider capacity decision before changing enforcement; do not treat either historical statement as a new approval.
+
+VAT registration status has not been freshly verified. The historical phrases “zero-rated” and “VAT not applicable” below require accountant/seller reconciliation; do not copy them interchangeably into invoices or change tax settings from this document alone. Deposit refund, support, daily-backup and routing promises also need contract/operational validation before client use. See the commercial offer's reconciliation note. This clarification does not change package prices, contractual approval or live operations.
+
 Imported from the existing The Harley Group / Business OS records on 2 October 2026; existing task IDs and commercial decisions are preserved. These repository files govern development across Codex/ChatGPT Work and Google Antigravity. Google Drive originals remain business reference records; there is no automatic synchronisation. When either copy changes, explicitly reconcile the other and record the date/source in the handover. Latest explicit founder decisions take precedence. Historical implementation notes require current source and runtime evidence before being marked complete.
 
 Updated 7 October 2026. Founder direction RATIFIED: The commercial blueprint, pricing tiers, unit economics, zero-rated VAT status, and 2-concurrency cap are formally approved by Robbie. Setup/build fee plus ongoing monthly subscription is confirmed as the governing model.

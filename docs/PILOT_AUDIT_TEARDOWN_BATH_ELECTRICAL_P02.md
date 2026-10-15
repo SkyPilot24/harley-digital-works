@@ -1,4 +1,6 @@
 # Pilot Audit Teardown & Mockup Specification: Bath-Electrical Ltd (P02)
+
+> Documentation review, 14 October 2026: retain as an unsent internal proposal. The “over 70%” mobile-enquiry statistic has no supporting source in this record and must not be reused as a fact. All project locations, scopes, timings, certifications and outcomes are illustrative/unverified, not evidence of Bath-Electrical's completed work. Regulatory, accreditation, eligibility and current-capacity claims need verification before use; the dated CLEAR labels below do not supply current acceptance. Obtain real project evidence and specific sending authorisation before external use.
 **Prepared:** 13 October 2026 | **Governing Framework:** `docs/COMMERCIAL_OFFER_MANAGED.md` & `BUSINESS_DEFINITION.md`  
 **Status:** **INTERNAL ASSET SPECIFICATION — STRICTLY UNSENT / PRE-APPROVAL ONLY**  
 **Prospect:** Bath-Electrical Ltd (Companies House `#07702599`, NICEIC claim on primary site)  

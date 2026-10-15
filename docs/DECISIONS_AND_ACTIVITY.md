@@ -1,5 +1,11 @@
 # Decisions and activity — current reconciliation
 
+## Local documentation reconciliation — 14 October 2026
+
+Follow-up: commercial definition/offer now explicitly distinguish current pilot guard from disputed wider capacity, and flag tax/contract/fulfilment verification. Rehearsal now points to durable receipt acceptance; Slack guide labels the nine-channel design as proposed. Existing isolated receipt/session/outreach tests freshly pass 22/22. No new founder decision or external operation.
+
+H47: reviewed current main `45012e4` and mirror outputs; added the [business documentation directory](README.md) and [dated review](LOCAL_DOCUMENTATION_REVIEW_2026-10-14.md). Local source includes wordmark #27, P01 outreach/audit #28 and P02 teardown. Older state/next-action paragraphs below are dated history. H50 runtime acceptance, commercial wording conflicts, automation delivery/timing and Drive reconciliation remain open. No new commercial decision, sending, production change or external file relocation. Organisation uses existing folders and links.
+
 Updated 7 October 2026. Current direction: near end-to-end automation, managed by exception, with Robbie retaining oversight and quality review. Standard cases progress under approved rules after pilot validation. The Harley Group is the umbrella holding entity; Harley Digital Works delivers trade digital services; Harley Labs covers automation experiments and prototypes; domains remain an integrated measured workstream.
 
 Current operational authority is the shared repository with existing Drive mirrors; sync is explicit at documented milestones. Core enquiry-to-owner bottleneck is resolved: live enquiries persist to THG Agency (`worzpzbutngugwzhlvtj`), genuine owner retrieval is verified, minute Slack outbox delivery is accepted (#all-the-harley-group), and hourly abuse retention pruning (`prune_lead_submission_attempts`) is scheduled. Sellable Managed commercial offer, unit economics, proposal automation rules, and the Dashboard General Knowledge Base are fully established.

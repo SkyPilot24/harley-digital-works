@@ -1,5 +1,22 @@
 # Shared development handover
 
+## Codex — documentation follow-up and acceptance triage — 14 October 2026
+
+- Same local main HEAD `45012e4`; prior documentation edits and pre-existing untracked files preserved. Updated business definition/commercial offer with capacity, VAT, contract and delivery limits; fixed the offer's broken relative business-definition link. Prices and runtime guards unchanged.
+- Reconciled `FIRST_CLIENT_REHEARSAL_2026-10-12.md`: source HTTP handler defaults to in-memory Maps, so persistent receipt/restart/concurrency acceptance is blocking. Added evidence gates; retained the dated historical account-discovery next action.
+- Corrected Slack guide's blanket implemented/verified and nine-channel assertions. Single-channel preference and broader three-build confirmation come from the 11 October integration-session record, not fresh live inspection. They conflict with later pilot/source records; scope needs reconciliation rather than a silent configuration change. Cron expression alone does not prove UK/DST timing.
+- Fresh `node --experimental-strip-types --test scripts/stripe-receipt.test.mjs scripts/session-authorization.test.mjs scripts/outreach-dispatcher.test.mjs`: PASS 22/22, exit 0 (10 receipt, 7 session, 5 outreach); fixture/mock evidence only. `git diff --check` PASS; 34 local links across directory, offer, rehearsal and definition PASS; runtime/configuration diff empty. Build/full suite not run: no runtime changes.
+- No provider/database writes, customer contact, Slack messages, tax-setting change, external-folder edit, commit, push or deployment. Next implementation is atomic durable payment receipt/state in an isolated target, then authentic sandbox event/restart/replay/recovery acceptance. H47/H50 remain open.
+
+## Codex — local documentation organisation — 14 October 2026
+
+- H47; branch `main`, starting HEAD `45012e4a8b4b73335d64f260bb6ccc1047dedcb9`. Source history includes `cbb4974` wordmark #27, `269123a` P01 #28 and `c8c8337` P02/COS records. Prior pending-merge notes remain dated history; no production identity inferred.
+- Added `docs/README.md` and `docs/LOCAL_DOCUMENTATION_REVIEW_2026-10-14.md`; reconciled Business OS, activity, brand source status, status/backlog and internal teardown evidence labels. Group/HDW/Labs are indexed within the existing shared repository; no duplicate business hub or historical deletion.
+- Read selected business outputs in the ChatGPT project mirror; retain originals by reference, including unapplied domain module and dated chief-of-staff delivery/timing limits. Sibling kindred-spark's generic README needs a scoped delivery handover; external directories were read-only in this workspace.
+- Preserved pre-existing untracked `.agents/skills/harley-commercial-governance.7z` and `.pr8-repair/`. No code/configuration, credentials, data, provider writes, sending, file moves, commit, push or deployment.
+- Fresh verification: all 63 local Markdown link targets across the ten changed/new documents exist; `git diff --check` PASS; no runtime/configuration diff PASS. Build/application tests, PDF visual validation and provider checks not run for this documentation-only change; no historical test result reused as fresh evidence.
+- Next: resolve governing commercial wording; complete persistent payment/recovery and owner-session/restore acceptance; reconcile briefing delivery/UK timing and Slack destinations; update existing Drive mirrors only under the applicable publication scope. H47/H50 remain open. See the dated review for scope and five priorities.
+
 ## Review-branch reconciliation — 13 October 2026
 
 Latest main b4c751a is integrated into the branding review branch, preserving peer safeguards/qualification work and the peer removal of the orphan handover marker. This is source reconciliation only; main is unchanged and no production deployment is performed. Earlier pending-integration and marker-retention notes below are dated history. Fresh integrated checks follow the styling pass.

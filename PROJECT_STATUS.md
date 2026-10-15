@@ -1,5 +1,15 @@
 # The Harley Group — shared project status
 
+## Documentation follow-up and fresh acceptance checks — 14 October 2026
+
+H47/H50: clarified commercial capacity/contract/tax evidence limits without changing prices or guards; reconciled the rehearsal's obsolete account-discovery next action with the current in-memory receipt handler. Existing receipt/session/outreach tests freshly PASS 22/22; these are fixture/mock checks, not persistent/provider/browser acceptance. Added runtime acceptance gates to the existing rehearsal, and marked nine-channel Slack topology as a historical proposal under the recorded single-channel preference. Wider capacity still conflicts with the two-build pilot guard; no new capacity decision inferred. No code/configuration, provider/database writes, sending, commit, push or deployment. Next: implement durable receipt storage in a verified isolated target, then authentic sandbox delivery/restart/replay proof. Documentation validation in handover.
+
+## Local business documentation review — 14 October 2026
+
+H47: local main `45012e4a8b4b73335d64f260bb6ccc1047dedcb9` includes wordmark #27 (`cbb4974`), P01 dispatch/audit #28 (`269123a`) and P02 teardown/chief-of-staff documentation (`c8c8337`). Earlier pending-merge headings below retain their historical dates. No exact deployed revision or live acceptance verified here.
+
+Created [documentation directory](docs/README.md) and [output review](docs/LOCAL_DOCUMENTATION_REVIEW_2026-10-14.md); refreshed Business OS navigation, brand source status and activity, and labelled unsupported prospect examples. External mirror output records retained by reference; no files moved or application/configuration/data altered. H47 remains open for wider reproducibility/runbook acceptance. Commercial capacity/VAT wording, Slack destinations, briefing delivery/timing and H50 runtime receipt/recovery remain unresolved. Documentation is local/uncommitted; no push or deployment. Fresh documentation checks recorded in handover; historical application checks were not rerun.
+
 ## Review-branch reconciliation — 13 October 2026
 
 Latest main b4c751a is integrated into the branding review branch, preserving peer safeguards/qualification work and the peer removal of the orphan handover marker. This is source reconciliation only; main is unchanged and no production deployment is performed. Earlier pending-integration and marker-retention notes below are dated history. Fresh integrated checks follow the styling pass.

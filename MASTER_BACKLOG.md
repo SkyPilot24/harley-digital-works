@@ -644,6 +644,10 @@ Updated 2 October 2026. Domain integration added following the founder's request
 
 ## H47 — Replace stale completion claims with operating documentation
 
+- **14 October follow-up:** commercial evidence limits and Slack proposed-topology status clarified; rehearsal current source/next action reconciled. Existing receipt/session/outreach checks freshly PASS 22/22; default HTTP receipt store remains in memory. Persistent/runtime acceptance and capacity decision scope remain unresolved. See current handover; no production change or task completion.
+
+- **14 October 2026 documentation organisation:** reviewed main `45012e4` and selected mirror outputs; created `docs/README.md` and `docs/LOCAL_DOCUMENTATION_REVIEW_2026-10-14.md`. Reconciled merged wordmark/P01/P02 source state, indexed Group/HDW/Labs records and labelled unverified teardown examples. No moves, runtime changes or deployment; local documentation checks in handover. Commercial wording, external mirror freshness and runtime/runbook acceptance remain open; H47 is not complete.
+
 - **13 October 2026 review publication:** HDW wordmark review branch pushed; initial remote/local head verified at `4000ea1`; [draft PR #27](https://github.com/SkyPilot24/harley-digital-works/pull/27). Internal shared Brand Assets link recorded in brand guidance/handover. Main integration, CI, merge and production/live acceptance remain pending.
 
 - **13 October 2026 wordmark evidence:** approved navy/ivory HDW identity implemented locally on `codex/hdw-wordmark-2026-10-13` (`172b576`); current HDW logos/icons/social preview and public brand guide updated, stale guidance reconciled. Build/typecheck/format and 136 tests PASS; lint 9 existing warnings; nine responsive route-width checks PASS. See docs/HANDOVER.md and docs/evidence/brand-2026-10-13. No publication/live acceptance; wider task remains open.
