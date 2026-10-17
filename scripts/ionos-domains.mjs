@@ -52,8 +52,17 @@ async function apiRequest(endpoint) {
  * Lists all domains registered in the IONOS account
  */
 export async function listDomains() {
-  const data = await apiRequest("/domains/v1/domainitems");
-  return data.domains || [];
+  const all = [];
+  let offset = 0;
+  while (true) {
+    const data = await apiRequest(`/domains/v1/domainitems?offset=${offset}`);
+    const items = data.domains || [];
+    if (items.length === 0) break;
+    all.push(...items);
+    if (items.length < 25) break;
+    offset += items.length;
+  }
+  return all;
 }
 
 /**
