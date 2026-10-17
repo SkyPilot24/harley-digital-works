@@ -459,7 +459,7 @@ function HomePage() {
                   Get your website plan
                 </PillButton>
                 <span className="final-price">
-                  £1,495 setup · £249/mo care · 14-day turnaround · Up to 2 pilot spots
+                  £1,495 setup · £249/mo care · Agreed delivery schedule · Up to 2 pilot spots
                 </span>
               </div>
             </div>
