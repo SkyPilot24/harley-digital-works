@@ -1,4 +1,4 @@
-import { Phone, MessageCircle, Mail, MapPin, Clock } from "lucide-react";
+import { Phone, MessageCircle, Mail, MapPin, Clock, Sparkles } from "lucide-react";
 import { createFileRoute } from "@tanstack/react-router";
 import { PageShell } from "@/components/site/PageShell";
 import { EnquiryForm } from "@/components/site/EnquiryForm";
@@ -154,6 +154,25 @@ function ContactPage() {
             </div>
           </div>
           <div id="contact-form">
+            {/* Website Review Opportunity Callout */}
+            <div className="mb-6 rounded-2xl border border-amber-500/30 bg-amber-500/10 p-5 shadow-2xs">
+              <div className="flex items-start gap-3">
+                <div className="p-2 bg-amber-500 text-ink rounded-xl shrink-0 font-bold">
+                  <Sparkles size={18} />
+                </div>
+                <div className="space-y-1">
+                  <h3 className="text-sm font-bold text-ink">
+                    Show Us Your Website — We’ll Show You What’s Possible
+                  </h3>
+                  <p className="text-xs text-ink-muted leading-relaxed">
+                    Have an existing website that isn’t generating qualified enquiries? Enter your
+                    website address below. We’ll review your mobile usability, trust signals, and
+                    enquiry pathways, then prepare an illustrative transformation plan.
+                  </p>
+                </div>
+              </div>
+            </div>
+
             <EnquiryForm
               interest={
                 search.domain

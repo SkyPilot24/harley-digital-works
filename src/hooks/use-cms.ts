@@ -72,13 +72,17 @@ export function usePublishedTestimonials() {
   return useQuery({
     queryKey: ["cms_testimonials", "public"],
     queryFn: async () => {
-      const { data, error } = await supabase
-        .from("cms_testimonials")
-        .select("*")
-        .eq("published", true)
-        .order("sort_order", { ascending: true });
-      if (error) throw error;
-      return (data ?? []) as CmsTestimonial[];
+      try {
+        const { data, error } = await supabase
+          .from("cms_testimonials")
+          .select("*")
+          .eq("published", true)
+          .order("sort_order", { ascending: true });
+        if (error) return [];
+        return (data ?? []) as CmsTestimonial[];
+      } catch {
+        return [];
+      }
     },
     staleTime: 60_000,
   });

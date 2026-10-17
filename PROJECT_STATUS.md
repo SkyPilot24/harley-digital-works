@@ -1,5 +1,10 @@
 **Antigravity restart — 17 October 2026:** Read the current checkpoint at the top of [docs/HANDOVER.md](docs/HANDOVER.md). Local scoped commit bc42f922b4e412d8a0e5056ac9e673e742e9851a remains unpushed in codex/reconcile-2026-10-16; canonical peer edits and private-portfolio production setup/acceptance remain open. This documentation pointer is uncommitted.
 
+## Before & After portfolio, social proof & conversion optimisation — 17 October 2026
+
+Founder (Robbie) authorised the before-and-after website transformation showcase and deployment. Implemented 6 UK trade concepts (Plumbing & Heating, Electrical, Roofing, Building & Renovations, Landscaping & Gardening, Painting & Decorating) in `src/lib/portfolio-data.ts`, with interactive `BeforeAfterComparison.tsx` (slider, drag-to-reveal, desktop/mobile preview toggles, keyboard accessibility, commercial ROI scenarios with explicit assumptions, and fictional testimonials clearly marked as sample scenarios). Integrated across Homepage (`/`), Portfolio (`/work`), Services (`/services/web-design-development`), and Contact (`/contact` with "Show Us Your Website" review funnel). Typecheck, format, 190 unit/integration tests, 3 service worker tests, and Nitro SSR build PASS.
+
+
 ## Shared agent governance and CMS staging acceptance — 16 October 2026
 
 H03/H07/H42/H47: founder-approved session-start contract cleaned of pasted chat framing in canonical AGENTS.md; Antigravity and Copilot entry points explicitly reference it. Canonical and active review copies hash-match. New `npm run check:governance` passes static entry-point/record checks; actual host discovery/compliance and other checkout synchronisation remain unverified. These changes are local, not committed/pushed.

@@ -20,7 +20,7 @@ export function FooterDark() {
           <div>
             <h3>Make your next move.</h3>
             <nav aria-label="Website services">
-              <a href="/#selected-work">Explore the designs</a>
+              <Link to="/work">Work & Transformations</Link>
               <a href="/#packages">Build & monthly care</a>
               <Link to="/services/care-plans">Managed care</Link>
               <Link to="/domains">Premium domain assets</Link>

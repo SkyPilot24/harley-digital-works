@@ -7,7 +7,7 @@ import { useAuth, useIsAdmin } from "@/hooks/use-auth";
 import { siteConfig } from "@/lib/site-config";
 
 const links = [
-  { href: "/#selected-work", label: "Design studies" },
+  { href: "/work", label: "Work & Transformations" },
   { href: "/services/web-design-development", label: "Websites" },
   { href: "/#process", label: "Our approach" },
   { href: "/#packages", label: "Build & care" },

@@ -5,6 +5,7 @@ import { ArrowDown, ArrowUpRight, Check, PenLine, ShieldCheck } from "lucide-rea
 import { PageShell } from "@/components/site/PageShell";
 import { PillButton } from "@/components/site/PillButton";
 import { ConceptScreen, ConceptShowcase } from "@/components/site/ConceptShowcase";
+import { BeforeAfterComparison } from "@/components/site/BeforeAfterComparison";
 import { BeforeAfterSlider } from "@/components/site/BeforeAfterSlider";
 import { WebsitePackagesSection } from "@/components/site/WebsitePackagesSection";
 import { TradeShowcaseSection } from "@/components/site/TradeShowcaseSection";
@@ -104,8 +105,8 @@ function HomePage() {
                 >
                   Discuss your existing website
                 </PillButton>
-                <a href="#trades-showcase" className="studio-text-link">
-                  See trade setups <ArrowDown size={14} />
+                <a href="#transformations" className="studio-text-link">
+                  See transformations <ArrowDown size={14} />
                 </a>
               </div>
               <div className="hero-price">
@@ -195,8 +196,40 @@ function HomePage() {
           </div>
         </section>
 
+        {/* Prominent Transformation Preview */}
+        <section
+          className="studio-section py-20 bg-stone-50/80 border-y border-stone-200"
+          id="transformations"
+          aria-labelledby="transformations-heading"
+        >
+          <div className="studio-wrap">
+            <BeforeAfterComparison
+              initialTradeId="heating-plumbing"
+              showAllTrades={true}
+              featuredOnly={true}
+              title="See What Your Website Could Become"
+              subtitle="Drag the interactive slider to compare outdated, cluttered trades websites with professional Harley Digital Works digital experiences across UK trades."
+              sectionKicker="02 / BEFORE & AFTER TRANSFORMATIONS"
+            />
+            <div className="mt-10 pt-6 border-t border-ink/10 flex flex-wrap items-center justify-between gap-4">
+              <span className="text-xs sm:text-sm font-medium text-ink">
+                We also have transformations for Roofing, Building & Renovations, Landscaping, and
+                Painting & Decorating.
+              </span>
+              <PillButton
+                as="link"
+                to="/work"
+                hash="transformations"
+                variant="dark"
+                className="studio-button text-xs font-bold"
+              >
+                Explore All 6 Trade Transformations <ArrowUpRight size={13} />
+              </PillButton>
+            </div>
+          </div>
+        </section>
+
         <TradeShowcaseSection />
-        <IllustrativeTradeProof />
 
         <section className="studio-purpose studio-section" aria-labelledby="purpose-heading">
           <div className="studio-wrap purpose-layout">
