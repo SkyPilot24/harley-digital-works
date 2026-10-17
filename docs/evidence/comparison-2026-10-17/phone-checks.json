@@ -1,0 +1,98 @@
+[
+  {
+    "trade": "Plumbing & Heating",
+    "version": "comparison-design comparison-design--before",
+    "copyBottom": 890.4086608886719,
+    "heroBottom": 954.3629760742188,
+    "pageWidth": 378,
+    "viewport": 390
+  },
+  {
+    "trade": "Plumbing & Heating",
+    "version": "comparison-design comparison-design--after",
+    "copyBottom": 794.5673217773438,
+    "heroBottom": 954.3629760742188,
+    "pageWidth": 378,
+    "viewport": 390
+  },
+  {
+    "trade": "Electrical Services",
+    "version": "comparison-design comparison-design--before",
+    "copyBottom": 890.4086608886719,
+    "heroBottom": 954.3629760742188,
+    "pageWidth": 378,
+    "viewport": 390
+  },
+  {
+    "trade": "Electrical Services",
+    "version": "comparison-design comparison-design--after",
+    "copyBottom": 757.8485717773438,
+    "heroBottom": 954.3629760742188,
+    "pageWidth": 378,
+    "viewport": 390
+  },
+  {
+    "trade": "Roofing",
+    "version": "comparison-design comparison-design--before",
+    "copyBottom": 861.298095703125,
+    "heroBottom": 954.3629760742188,
+    "pageWidth": 378,
+    "viewport": 390
+  },
+  {
+    "trade": "Roofing",
+    "version": "comparison-design comparison-design--after",
+    "copyBottom": 794.5673217773438,
+    "heroBottom": 954.3629760742188,
+    "pageWidth": 378,
+    "viewport": 390
+  },
+  {
+    "trade": "Building & Renovations",
+    "version": "comparison-design comparison-design--before",
+    "copyBottom": 890.4086608886719,
+    "heroBottom": 954.3629760742188,
+    "pageWidth": 378,
+    "viewport": 390
+  },
+  {
+    "trade": "Building & Renovations",
+    "version": "comparison-design comparison-design--after",
+    "copyBottom": 794.5673217773438,
+    "heroBottom": 954.3629760742188,
+    "pageWidth": 378,
+    "viewport": 390
+  },
+  {
+    "trade": "Landscaping & Gardening",
+    "version": "comparison-design comparison-design--before",
+    "copyBottom": 861.298095703125,
+    "heroBottom": 954.3629760742188,
+    "pageWidth": 378,
+    "viewport": 390
+  },
+  {
+    "trade": "Landscaping & Gardening",
+    "version": "comparison-design comparison-design--after",
+    "copyBottom": 794.5673217773438,
+    "heroBottom": 954.3629760742188,
+    "pageWidth": 378,
+    "viewport": 390
+  },
+  {
+    "trade": "Painting & Decorating",
+    "version": "comparison-design comparison-design--before",
+    "copyBottom": 861.298095703125,
+    "heroBottom": 954.3629760742188,
+    "pageWidth": 378,
+    "viewport": 390
+  },
+  {
+    "trade": "Painting & Decorating",
+    "version": "comparison-design comparison-design--after",
+    "copyBottom": 794.5673217773438,
+    "heroBottom": 954.3629760742188,
+    "pageWidth": 378,
+    "viewport": 390
+  }
+]

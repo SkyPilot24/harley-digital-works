@@ -1,3 +1,6 @@
+## H15/H16 — Before-and-after comparison consistency — 17 October 2026
+
+Implemented and tested locally on `codex/comparison-consistency-2026-10-17`, isolated from canonical `audit/pre-go-live-remediation` at `7738130`. Correct reveal direction, complete phone previews, matching illustrative photography, navy/ivory framing, simpler explanations and one enquiry CTA. Fictional quotes, ROI figures and mock accreditation claims removed from this component's output; original data retained. Full build/typecheck/format PASS; lint 0 errors/9 existing warnings; 66 smoke + 190 regression + 3 service-worker checks PASS. Browser: 30 reveal positions, 12 phone versions, tablet, pointer and keyboard PASS. [Evidence and next action](docs/COMPARISON_CONSISTENCY_2026-10-17.md). Local only; no push, deployment, production/data change or broader launch acceptance. Review scoped commit and evidence before integration; preserve canonical peer work.
 **Antigravity restart — 17 October 2026:** Read the current checkpoint at the top of [docs/HANDOVER.md](docs/HANDOVER.md). Local scoped commit bc42f922b4e412d8a0e5056ac9e673e742e9851a remains unpushed in codex/reconcile-2026-10-16; canonical peer edits and private-portfolio production setup/acceptance remain open. This documentation pointer is uncommitted.
 
 ## Admin server-side validation and data integrity — 15 October 2026
