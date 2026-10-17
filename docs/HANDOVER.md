@@ -1,3 +1,17 @@
+## Interactive marketing hero — 17 October 2026
+
+H03 / marketing homepage: replaced the opening hero with the founder-supplied interactive manual-admin-to-digital-engine design. Isolated branch `codex/interactive-marketing-hero-2026-10-17`, base `7738130ec6cc629dc9c9c90f8a1df7d3b8e39f88` from `audit/pre-go-live-remediation` (PR #39); this change includes that base and must be reconciled with its merge status before release.
+
+Implemented: `InteractiveHero.tsx`, homepage integration/metadata, scoped responsive canvas styling. Reuses installed GSAP/ScrollTrigger and Lucide; no new dependencies or backend changes. Preserves all subsequent marketing sections, header/footer, existing enquiry flow and commercial terms. Keeps supplied emerald interaction accents over approved midnight navy, with exact endorsement `Part of The Harley Group`.
+
+Corrected stale scroll/cursor/manual state using refs; GSAP context and ResizeObserver clean up on navigation. Keyboard range/preset controls have visible focus and touch targets. Reduced motion starts fully ordered and disables automatic scrubbing. SSR supplies the headline, links and ordered diagram. Demo timings, savings and reduction figures are explicitly illustrative; removed the unsubstantiated 99.98% SLA label. Primary CTA routes to the existing contact flow; secondary routes to existing design studies.
+
+Fresh checks: TypeScript PASS; targeted ESLint PASS; Cloudflare-module production build PASS (existing bundle-size/plugin warnings); 190 regression tests plus 3 service-worker tests PASS; platform smoke checks PASS. Browser checks at 375/768/1440px: single H1, no horizontal overflow, range Home/End and presets PASS, reduced-motion controls/manual persistence PASS, SSR heading PASS, zero page errors. Screenshots and bounded browser evidence saved in this chat's outputs. Pointer left/right endpoints, primary contact navigation and browser-back return all PASS; zero page errors after remount.
+
+21st targeted static review: zero errors; remaining warning is fixed canvas sizing, bounded by ResizeObserver scaling and empirically checked at all three widths. Informational colour findings are supplied diagram accents. Catalogue search with automatic project context was rejected by automatic approval review for possible external context disclosure; no external catalogue context was sent under elevated access. Used the supplied design and existing project primitives.
+
+State: implemented and tested locally; not pushed, merged, deployed or live-accepted. Canonical checkout and its unrelated domain export preserved. Publishing requires explicit founder approval under AGENTS.md. Next action: review screenshots, reconcile PR #39/base with current main, then approve release of this exact scoped hero change.
+
 ## Pre-go-live audit, Cloudflare verification & PR stack review — 17 October 2026
 
 Founder requested a comprehensive pre-go-live website audit, Cloudflare CLI verification, and review of open pull requests.
