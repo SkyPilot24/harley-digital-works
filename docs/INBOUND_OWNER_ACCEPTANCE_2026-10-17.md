@@ -1,5 +1,11 @@
 # Owner-facing enquiry workflow and monitoring decision — 17 October 2026
 
+## Latest: authorised existing Slack webhook test PASS
+
+Robbie supplied the existing enquiry webhook directly in ignored local configuration and requested the retry. URL shape validated without printing it; all local notification flags remained false. Pre-send marker search found no prior test. **Exactly one** plain-text webhook POST returned HTTP 200 and Slack body `ok`; no automatic retry. Independent channel history verified the exact `HDW-INBOUND-SLACK-20261017` marker in `#all-the-harley-group` (`C0BFQS2P2H1`), message timestamp `1792274627.436269`, displayed **23:03:47 BST on 17 October**. Immediate search indexing had not caught up; direct history supplied readback. The labelled test message remains as audit evidence. [Redacted test evidence](evidence/slack-webhook-test-2026-10-17.json).
+
+No CRM/outbox record, production data/configuration change, live activation, provider email or campaign. This proves the supplied existing webhook-to-channel route; it does not freshly prove the complete deployed scheduler/outbox/retry chain or phone notification preferences. Existing browser/persistence and local retry tests remain separate evidence. **Next decision:** choose how Robbie will act on Slack enquiry alerts and the fallback desk-check cadence; nothing has been activated or scheduled. Earlier pending-webhook notes below are historical.
+
 H08/H09/H19–H24/H50. **Owner-facing screen acceptance PASS: eight fresh staging/browser checks. Slack route verification remains pending private webhook access; no monitoring cadence or live activation agreed.** Continues [browser rehearsal](INBOUND_PILOT_REHEARSAL_RESULTS_2026-10-17.md). Tested application source af5ae9c in isolated `inbound-staging-config` worktree, local branch `codex/inbound-rehearsal-2026-10-17` (documentation base 82c96c0), backend only `mfpnfxpgkfuqtedbcxvp`.
 
 ## Actual Auth/browser acceptance
