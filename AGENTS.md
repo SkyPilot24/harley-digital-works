@@ -1,40 +1,129 @@
+# The Harley Group — ChatGPT/Codex operating instructions
+
+## Mandatory session-start contract
+
+Before making changes:
+
+1. Identify the correct repository and checkout. Read root AGENTS.md and applicable nested instructions.
+2. Inspect the current branch, HEAD, working-tree changes and configured remote. Do not assume this checkout or main contains the latest peer work.
+3. Read the opening operating brief in PROJECT_STATUS.md and latest relevant checkpoint in docs/HANDOVER.md.
+4. Read BUSINESS_DEFINITION.md, MASTER_BACKLOG.md and relevant sections of docs/COMMERCIAL_OFFER_MANAGED.md.
+5. Reconcile the assigned task with recent peer activity, existing implementation, approval boundaries and unresolved blockers.
+6. State a short starting assessment: repository/path, branch/HEAD, existing changes, selected task, verified state, blockers and next action.
+
+Keep this assessment concise. Read relevant sections rather than loading every historical record or skill.
+
+If repository access is unavailable, disclose that limitation. Request the minimum missing records or prepare a clearly labelled draft; do not claim repository alignment or runtime verification.
+
+## Authority and source of truth
+
+The repository is the shared source of truth for application architecture, implementation, backlog, verification evidence and release handovers.
+
+The verified “The Harley Group / Business OS” Google Drive folder is the central shared home for business documents, playbooks, proposals, approved brand assets and finished operating reports. Follow its existing structure and Chief of Staff index.
+
+Use the designated authoritative source for each record. Repository records and Drive copies are not automatically synchronised. Record the source, date, approval status and reconciliation when publishing a copy.
+
+Latest explicit founder decisions govern within applicable safety and access constraints. Record material decisions in the appropriate durable record so other agents can inherit them.
+
+Chat history, personal memory, installed skills, connector sessions and screenshots are supporting context—not substitutes for current repository evidence. A newer file, a confident statement or a completed checklist is not automatically authoritative.
+
+When sources conflict, inspect the relevant evidence and decision scope. Preserve unresolved differences and identify the decision required; do not silently choose whichever version supports the task.
+
+## Business and commercial direction
+
+Preserve:
+- The Harley Group as the parent and oversight organisation.
+- Harley Digital Works as the customer-facing digital services brand.
+- Harley Labs as the AI, automation, prototype and product-experiment brand.
+
+Prioritise customer value, launch readiness, initial project revenue, recurring subscriptions, sensible margins and reduced repetitive work.
+
+Use the latest approved business definition and commercial decisions. Preserve ratified prices and terms; do not repeatedly seek approval for decisions already made.
+
+Changes to pricing, discounts, scope, capacity, SLAs, tax presentation, refunds, contracts or commercial commitments require explicit founder approval or a verified standing policy covering that exact action. Flag unresolved wording before customer use.
+
+Historical £95/month pricing and guaranteed 14-day language are not evidence of current approval. Never invent clients, reviews, credentials, results, accreditations or guarantees. Label fictional examples and design studies prominently.
+
+## Architecture and deployment
+
 <!-- DUAL_ARCHITECTURE:BEGIN -->
 
-> [!IMPORTANT]
-> **Dual Architecture Operating Rule (Settled 8 October 2026):**
-> - **Agency Platform (`SkyPilot24/harley-digital-works`):** Maintained strictly via code by **Codex**, **Antigravity**, **GitHub Copilot**, and canonical Git. Houses live Supabase RLS policies (`worzpzbutngugwzhlvtj`), Cloudflare Nitro Worker SSR, Slack Command Centre, minute notification outbox crons, hourly abuse pruning (`prune-lead-attempts`), and authenticated Admin suite. Do not import into Lovable.
-> - **External Client Trade Websites:** Built and maintained visually via **Lovable** connected to dedicated GitHub repos (e.g. `SkyPilot24/kindred-spark` - Wessex Volt Electrical template, commit `f1481fe`). Deploys to Cloudflare Pages.
->
-> Commits pushed to `main` auto-deploy to Cloudflare. Avoid rewriting published git history (no force pushes or squashing). Keep `main` in a verified working state.
+Agency platform: SkyPilot24/harley-digital-works is maintained through code and canonical Git by Codex, Antigravity and GitHub Copilot. Preserve its established architecture; do not import it into Lovable or rebuild it merely to adopt another framework.
+
+The recorded stack includes TanStack Start, React, TypeScript, Supabase/PostgreSQL and Cloudflare Nitro Worker SSR. Verify current configuration before implementation.
+
+External client trade websites use dedicated repositories and their recorded Lovable/Cloudflare Pages workflow. Confirm the exact client repository and deployment target before editing.
+
+Treat pushes or merges to main as potentially production-deploying actions. Verify the current pipeline and obtain explicit release approval. Never force-push or rewrite published history.
 
 <!-- DUAL_ARCHITECTURE:END -->
 
-## Project Context Skill
+Recorded production Agency backend: worzpzbutngugwzhlvtj.
+Recorded isolated staging backend: mfpnfxpgkfuqtedbcxvp.
 
-When working on strategy, copy, Control Centre, Revenue OS, diagnostics, services, resources, domains, social/content workflows, or prioritisation, use `$thg-project-context` when available to keep changes aligned with the THG north star and reduce drift.
+These identifiers locate expected targets; they do not prove current access, configuration, health or deployment. Verify the exact target before integration or database operations. Never substitute production for unavailable staging.
 
-## Shared project context — Codex, ChatGPT Work, Google Antigravity and GitHub Copilot
+## Skills and tool entry points
 
-At the start of a session, read **`PROJECT_STATUS.md`**'s short operating brief AND **`docs/HANDOVER.md`** first to inherit the current verified state, recent peer agent activities, test results, and active bottleneck. Select one ready task, then retrieve relevant detail from:
+Use only task-relevant canonical repository standards:
+- skills/thg-client-build-standard/SKILL.md — website delivery.
+- skills/thg-supabase-security/SKILL.md — Supabase/auth/database security.
+- skills/thg-production-qa/SKILL.md — release readiness.
 
-1. [PROJECT_STATUS.md](PROJECT_STATUS.md) — verified state, active bottleneck, and backend target.
-2. [docs/HANDOVER.md](docs/HANDOVER.md) — exact commit hashes, dual-architecture state, test evidence, and next actions.
-3. [BUSINESS_DEFINITION.md](BUSINESS_DEFINITION.md) — commercial direction and approval boundaries.
-4. [MASTER_BACKLOG.md](MASTER_BACKLOG.md) — integrated H01–H50 and D01–D08 roadmap.
-5. [docs/COMMERCIAL_OFFER_MANAGED.md](docs/COMMERCIAL_OFFER_MANAGED.md) — ratified packages, pricing, VAT rules, and economics.
+Use $thg-project-context when available and relevant. Its absence does not replace or block reading the governing records.
 
-These files are the shared repository record. Chat histories, personal memory, installed skills and connector sessions are not automatically shared between tools. Optional skills inform execution; they do not replace this record.
+Installed skills are loader copies. Canonical standards are authored in skills/; follow docs/SHARED_SKILLS.md for synchronisation and drift checks.
 
-Load full historical records only when relevant. Canonical standards: skills/thg-client-build-standard/SKILL.md for website delivery; skills/thg-supabase-security/SKILL.md for auth/database security; skills/thg-production-qa/SKILL.md for release readiness. Antigravity reads the same files through .agents/rules/thg-shared-skills.md. See docs/SHARED_SKILLS.md for installation/sync. Use existing checks with concise pass/fail summaries and actionable failure detail; context efficiency must not skip verification.
+Tool entry points should reference these shared rules rather than duplicate changing business facts:
+- Codex: root AGENTS.md and applicable nested instructions.
+- Antigravity: .agents/rules/thg-shared-skills.md.
+- Copilot: .github/copilot-instructions.md and docs/COPILOT_QUICKSTART.md.
 
-The latest explicit founder instruction governs. Preserve The Harley Group as parent and Harley Digital Works as customer-facing agency unless a rename is explicitly confirmed; do not infer a rename from “Heaney Group”. Proposed prices are not approved commercial terms. Older plans, public copy and rules must be checked against BUSINESS_DEFINITION.md. The older £95/month and guaranteed 14-day language is not evidence of current approval.
+Do not claim automatic instruction discovery without checking the relevant tool. These instructions do not themselves update other tools or scheduled workflows.
 
-Before editing, inspect branch, HEAD, working-tree changes and repository instructions. Preserve others' changes. Use the existing application and domain roster; extend rather than recreate them. Reconcile the backend target before database operations; PROJECT_STATUS.md records conflicting project references.
+## Execution and permissions
 
-Work against an existing task ID where possible. Avoid simultaneous edits to the same files; use separate branches/worktrees for overlapping work and an explicit handover. Never rewrite published history. Keep secrets and buyer/client personal data out of documentation.
+Work against an existing backlog ID where practical. Reuse existing components, integrations and workflows.
 
-Before ending a session, update relevant backlog evidence, PROJECT_STATUS.md and docs/HANDOVER.md in the same change where practical. Record what changed, exact checks and results, branch/commit, remaining blockers and next action. Distinguish proposed, implemented, tested, pushed and deployed. Do not mark tasks complete without their acceptance evidence. Record migrations and their application state; a migration file alone is not an applied migration.
+Preserve unrelated changes. Use an isolated branch/worktree for overlapping work. Recheck shared files before editing so peer updates are not overwritten.
 
-Run the applicable repository checks for code changes. Report checks not run and why; never reuse historical results as current verification. Do not send buyer outreach, buy domains, enable live billing/email or change production merely because a future task appears in the backlog.
+Proceed independently with authorised, reversible work. Retain founder commercial decisions and final quality judgement.
 
-GitHub Copilot enters through .github/copilot-instructions.md and docs/COPILOT_QUICKSTART.md, using the same shared records and canonical standards. Copilot onboarding does not transfer credentials or authorise production actions.
+Obtain explicit approval before spending, contacting others, publishing, deploying, deleting data, changing production or making binding commitments, unless an existing explicit authorisation covers the exact action.
+
+A backlog entry, available connector, working credential or historical approval is not blanket execution permission.
+
+Protect secrets and customer information. Never put credentials or raw customer data in shared documents, committed fixtures, browser bundles or logs.
+
+## Verification and completion
+
+Verify affected behaviour empirically where access permits. Keep loading, empty, error, retry and permission-denied states distinct.
+
+A build, unit test, preview or document claim does not prove live acceptance. Payment requires provider/application evidence; enquiries require persistence and authorised retrieval; permissions require denial as well as allowed-path checks.
+
+Report each result accurately:
+proposed → implemented locally → tested → committed → pushed →
+previewed → deployed → live-verified.
+
+Record exact revision, environment, checks, results and limitations. Historical tests apply only to their recorded revision and environment. A migration file is not proof of application.
+
+Do not weaken security, fabricate evidence or substitute production merely to obtain a passing result.
+
+## Mandatory session handover
+
+Before ending meaningful work, update the relevant backlog evidence, PROJECT_STATUS.md and docs/HANDOVER.md in the same change where practical.
+
+Record:
+- Objective and task IDs.
+- Repository, branch and exact revision.
+- Changes and founder decisions.
+- Fresh checks, environment and results.
+- What remains untested or uncertain.
+- Commit/push/deployment and migration application status.
+- Blockers, owner, approval required and one executable next action.
+
+Preserve history, but keep the current checkpoint easy to identify. Do not describe unresolved work as complete.
+
+If writes are unavailable, provide exact ready-to-save Markdown and explicitly state that it has not been applied.
+
+Finish concisely with the result, verification limits and next action. For release reviews, mark gates Ready, Needs attention or Blocking launch using evidence.

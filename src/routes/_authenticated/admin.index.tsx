@@ -134,7 +134,11 @@ function DashboardPage() {
     queryKey: ["admin", "active-projects"],
     queryFn: async () => {
       let rows: (ProjectRow & {
-        clients?: { name?: string | null; contact_name?: string | null; contact_email?: string | null } | null;
+        clients?: {
+          name?: string | null;
+          contact_name?: string | null;
+          contact_email?: string | null;
+        } | null;
       })[];
       try {
         rows = await loadCompleteRecords((after) => {
@@ -160,7 +164,9 @@ function DashboardPage() {
             if (after) query = query.gt("id", after);
             return query;
           });
-          const clientIds = [...new Set(flatRows.map((r) => r.client_id).filter(Boolean))] as string[];
+          const clientIds = [
+            ...new Set(flatRows.map((r) => r.client_id).filter(Boolean)),
+          ] as string[];
           if (clientIds.length > 0) {
             const { data: clientRows } = await supabase
               .from("clients")
@@ -169,7 +175,7 @@ function DashboardPage() {
             const map = new Map((clientRows || []).map((c) => [c.id, c]));
             rows = flatRows.map((r) => ({
               ...r,
-              clients: r.client_id ? map.get(r.client_id) ?? null : null,
+              clients: r.client_id ? (map.get(r.client_id) ?? null) : null,
             }));
           } else {
             rows = flatRows.map((r) => ({ ...r, clients: null }));
@@ -330,12 +336,7 @@ function DashboardPage() {
       toast.error(adminErrorMessage(err, "Project stage was not updated.")),
   });
 
-  const coreQueries = [
-    statsQuery,
-    recentLeadsQuery,
-    activeProjectsQuery,
-    activeClientsQuery,
-  ];
+  const coreQueries = [statsQuery, recentLeadsQuery, activeProjectsQuery, activeClientsQuery];
 
   if (coreQueries.some((query) => query.isPending)) {
     return (
@@ -359,7 +360,10 @@ function DashboardPage() {
         {/* Metrics Grid Skeleton */}
         <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
           {[1, 2, 3, 4].map((i) => (
-            <div key={i} className="rounded-xl border border-ink/10 bg-white p-5 shadow-xs space-y-3">
+            <div
+              key={i}
+              className="rounded-xl border border-ink/10 bg-white p-5 shadow-xs space-y-3"
+            >
               <div className="flex justify-between items-center">
                 <div className="h-3 w-28 rounded bg-ink/10 animate-pulse" />
                 <div className="h-4 w-4 rounded-full bg-ink/10 animate-pulse" />
@@ -403,9 +407,9 @@ function DashboardPage() {
             <div className="space-y-1">
               <h2 className="text-base font-bold">Business Data Connection Error</h2>
               <p className="text-xs text-rose-800 leading-relaxed">
-                Supabase operational statistics and table totals could not be loaded. To preserve data
-                integrity, metrics and operational capacity remain uncalculated until live database
-                sources are verified.
+                Supabase operational statistics and table totals could not be loaded. To preserve
+                data integrity, metrics and operational capacity remain uncalculated until live
+                database sources are verified.
               </p>
             </div>
           </div>
@@ -723,7 +727,9 @@ function DashboardPage() {
               <div className="flex justify-between">
                 <span>Slack Alerts:</span>
                 <span className="font-semibold text-ink">
-                  {stats?.jobsUnavailable ? "Queue unlinked" : `${stats?.jobsAccepted ?? 0} accepted`}
+                  {stats?.jobsUnavailable
+                    ? "Queue unlinked"
+                    : `${stats?.jobsAccepted ?? 0} accepted`}
                 </span>
               </div>
               <div className="flex justify-between">
@@ -860,7 +866,10 @@ function DashboardPage() {
               {recentLeadsQuery.isPending ? (
                 <div className="space-y-3 py-4">
                   {[1, 2, 3, 4].map((i) => (
-                    <div key={i} className="flex items-center justify-between gap-4 py-2 border-b border-ink/5">
+                    <div
+                      key={i}
+                      className="flex items-center justify-between gap-4 py-2 border-b border-ink/5"
+                    >
                       <div className="h-4 w-1/3 rounded bg-ink/10 animate-pulse" />
                       <div className="h-4 w-1/5 rounded bg-ink/10 animate-pulse" />
                       <div className="h-4 w-16 rounded bg-ink/10 animate-pulse" />
@@ -873,7 +882,8 @@ function DashboardPage() {
                   <Inbox size={24} className="mx-auto text-ink-muted/50 mb-2" />
                   <p className="text-xs font-bold text-ink">No enquiries recorded yet</p>
                   <p className="text-xs text-ink-muted mt-1">
-                    New enquiries received through the website contact form or added manually will appear here.
+                    New enquiries received through the website contact form or added manually will
+                    appear here.
                   </p>
                 </div>
               ) : (
@@ -1309,7 +1319,9 @@ function DashboardPage() {
               <div className="space-y-2">
                 {stats?.jobsUnavailable ? (
                   <p className="text-xs text-amber-800 bg-amber-50 border border-amber-200 rounded-lg p-3">
-                    Notification outbox queue table is not installed or unreachable in this database environment. Lead intake RPC and website diagnostics are operational, but background Slack retry records cannot be displayed.
+                    Notification outbox queue table is not installed or unreachable in this database
+                    environment. Lead intake RPC and website diagnostics are operational, but
+                    background Slack retry records cannot be displayed.
                   </p>
                 ) : recentJobs.length === 0 ? (
                   <p className="text-xs text-ink-muted">No notification jobs recorded.</p>

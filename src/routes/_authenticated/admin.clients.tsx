@@ -337,7 +337,7 @@ function ClientsPage() {
                 {projectSummaryQuery.isPending ? (
                   <div className="h-9 w-16 rounded bg-ink/10 animate-pulse my-1" />
                 ) : (
-                  projectCounts?.active ?? "—"
+                  (projectCounts?.active ?? "—")
                 )}
               </div>
               <div className="mt-1 text-xs text-ink-muted">
@@ -506,7 +506,8 @@ function ClientsPage() {
                         <Users size={28} className="mx-auto text-ink-muted/50 mb-2" />
                         <p className="text-sm font-bold text-ink">No clients match this view</p>
                         <p className="text-xs text-ink-muted mt-1">
-                          Create a client workspace from an enquiry or click &apos;Add client&apos; above.
+                          Create a client workspace from an enquiry or click &apos;Add client&apos;
+                          above.
                         </p>
                       </div>
                     </td>

@@ -15,10 +15,30 @@ import type { TradeVertical } from "@/lib/trade-data";
 import type { LocationInfo } from "@/lib/location-data";
 
 const ACCREDITATIONS_MAP: Record<string, string[]> = {
-  electricians: ["NICEIC Approved Contractor", "NAPIT Registered", "OZEV Authorised", "Part P Compliant"],
-  "heating-engineers": ["Gas Safe Register", "CIPHE Institute Member", "Vaillant / Worcester Accredited", "Unvented G3"],
-  builders: ["Federation of Master Builders (FMB)", "TrustMark Endorsed", "LABC Warranty Partner", "NHBC Registered"],
-  "commercial-contractors": ["CHAS Accredited", "SafeContractor Approved", "Constructionline Gold", "ISO 9001"],
+  electricians: [
+    "NICEIC Approved Contractor",
+    "NAPIT Registered",
+    "OZEV Authorised",
+    "Part P Compliant",
+  ],
+  "heating-engineers": [
+    "Gas Safe Register",
+    "CIPHE Institute Member",
+    "Vaillant / Worcester Accredited",
+    "Unvented G3",
+  ],
+  builders: [
+    "Federation of Master Builders (FMB)",
+    "TrustMark Endorsed",
+    "LABC Warranty Partner",
+    "NHBC Registered",
+  ],
+  "commercial-contractors": [
+    "CHAS Accredited",
+    "SafeContractor Approved",
+    "Constructionline Gold",
+    "ISO 9001",
+  ],
 };
 
 const DEFAULT_ACCREDITATIONS = [
@@ -78,7 +98,9 @@ export function TradeServiceLanding({
         : "Show the quality of your work. Explain your services clearly. Make it easy for the right customers to get in touch.";
 
   const effectiveTopics = tradeInfo?.targetEnquiries || topics;
-  const badges = tradeInfo ? (ACCREDITATIONS_MAP[tradeInfo.slug] ?? DEFAULT_ACCREDITATIONS) : DEFAULT_ACCREDITATIONS;
+  const badges = tradeInfo
+    ? (ACCREDITATIONS_MAP[tradeInfo.slug] ?? DEFAULT_ACCREDITATIONS)
+    : DEFAULT_ACCREDITATIONS;
 
   return (
     <PageShell quiet>
@@ -324,7 +346,8 @@ export function TradeServiceLanding({
                     &ldquo;{study.quote}&rdquo;
                   </p>
                   <p className="mt-4 pt-3 border-t border-emerald-900/10 text-[11px] text-ink-muted italic">
-                    Independent design study demonstrating trade architecture for the Bristol, Bath and M4 region; not an endorsement or guaranteed outcome.
+                    Independent design study demonstrating trade architecture for the Bristol, Bath
+                    and M4 region; not an endorsement or guaranteed outcome.
                   </p>
                 </div>
               );
@@ -348,7 +371,9 @@ export function TradeServiceLanding({
               </div>
               <h3>100% Written For You</h3>
               <p>
-                You never have to sit at a laptop after a 10-hour day on site. We draft every service description, accreditation detail, and project story based on your confirmed facts.
+                You never have to sit at a laptop after a 10-hour day on site. We draft every
+                service description, accreditation detail, and project story based on your confirmed
+                facts.
               </p>
             </article>
             <article>
@@ -358,7 +383,8 @@ export function TradeServiceLanding({
               </div>
               <h3>Own Your Enquiries</h3>
               <p>
-                Stop paying £30–£80 per lead to directories like Checkatrade or Bark where you race competitors to the bottom. Your own website generates direct, exclusive enquiries.
+                Stop paying £30–£80 per lead to directories like Checkatrade or Bark where you race
+                competitors to the bottom. Your own website generates direct, exclusive enquiries.
               </p>
             </article>
             <article>
@@ -368,7 +394,8 @@ export function TradeServiceLanding({
               </div>
               <h3>Weed Out Tyre-Kickers</h3>
               <p>
-                Enquiry forms collect room sizes, postcodes, and project photographs so you know whether a job is worth your time before picking up the phone.
+                Enquiry forms collect room sizes, postcodes, and project photographs so you know
+                whether a job is worth your time before picking up the phone.
               </p>
             </article>
           </div>

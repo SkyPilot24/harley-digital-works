@@ -159,10 +159,9 @@ export async function loadProjectPage(
     .range(options.page * ADMIN_PAGE_SIZE, (options.page + 1) * ADMIN_PAGE_SIZE - 1);
 
   if (error && (error.code === "PGRST200" || error.message?.includes("relationship"))) {
-    let fallbackQuery = client
-      .from("projects")
-      .select("*", { count: "exact" });
-    if (options.status === "active") fallbackQuery = fallbackQuery.in("status", [...activeProjectStages]);
+    let fallbackQuery = client.from("projects").select("*", { count: "exact" });
+    if (options.status === "active")
+      fallbackQuery = fallbackQuery.in("status", [...activeProjectStages]);
     else if (options.status !== "all") fallbackQuery = fallbackQuery.eq("status", options.status);
     if (options.search?.trim())
       fallbackQuery = fallbackQuery.or(recordSearchFilter(["name", "summary"], options.search));
@@ -175,7 +174,9 @@ export async function loadProjectPage(
     count = fallback.count;
     error = fallback.error;
     if (!error && fallback.data) {
-      const clientIds = [...new Set(fallback.data.map((r) => r.client_id).filter(Boolean))] as string[];
+      const clientIds = [
+        ...new Set(fallback.data.map((r) => r.client_id).filter(Boolean)),
+      ] as string[];
       let clientMap = new Map<
         string,
         {
@@ -197,7 +198,7 @@ export async function loadProjectPage(
       }
       data = fallback.data.map((r) => ({
         ...r,
-        clients: r.client_id ? clientMap.get(r.client_id) ?? null : null,
+        clients: r.client_id ? (clientMap.get(r.client_id) ?? null) : null,
       })) as unknown as typeof data;
     }
   }

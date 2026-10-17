@@ -90,7 +90,12 @@ function HomePage() {
                 </span>
               </div>
               <div className="studio-actions flex flex-wrap items-center gap-3">
-                <PillButton as="link" to="/contact" variant="dark" className="studio-button min-h-[48px] px-6 text-sm font-bold shadow-md cursor-pointer">
+                <PillButton
+                  as="link"
+                  to="/contact"
+                  variant="dark"
+                  className="studio-button min-h-[48px] px-6 text-sm font-bold shadow-md cursor-pointer"
+                >
                   Get your website plan
                 </PillButton>
                 <PillButton
