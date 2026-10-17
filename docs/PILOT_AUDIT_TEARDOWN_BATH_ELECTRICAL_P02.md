@@ -1,11 +1,11 @@
 # Pilot Audit Teardown & Mockup Specification: Bath-Electrical Ltd (P02)
 
 > Documentation review, 14 October 2026: retain as an unsent internal proposal. The “over 70%” mobile-enquiry statistic has no supporting source in this record and must not be reused as a fact. All project locations, scopes, timings, certifications and outcomes are illustrative/unverified, not evidence of Bath-Electrical's completed work. Regulatory, accreditation, eligibility and current-capacity claims need verification before use; the dated CLEAR labels below do not supply current acceptance. Obtain real project evidence and specific sending authorisation before external use.
-**Prepared:** 13 October 2026 | **Governing Framework:** `docs/COMMERCIAL_OFFER_MANAGED.md` & `BUSINESS_DEFINITION.md`  
-**Status:** **INTERNAL ASSET SPECIFICATION — STRICTLY UNSENT / PRE-APPROVAL ONLY**  
-**Prospect:** Bath-Electrical Ltd (Companies House `#07702599`, NICEIC claim on primary site)  
-**Website:** `https://bath-electrical.co.uk/` (HTTP 200 OK verified 11 & 13 Oct 2026)  
-**Location:** Bath, Somerset and surrounding BA1/BA2 borders  
+> **Prepared:** 13 October 2026 | **Governing Framework:** `docs/COMMERCIAL_OFFER_MANAGED.md` & `BUSINESS_DEFINITION.md`  
+> **Status:** **INTERNAL ASSET SPECIFICATION — STRICTLY UNSENT / PRE-APPROVAL ONLY**  
+> **Prospect:** Bath-Electrical Ltd (Companies House `#07702599`, NICEIC claim on primary site)  
+> **Website:** `https://bath-electrical.co.uk/` (HTTP 200 OK verified 11 & 13 Oct 2026)  
+> **Location:** Bath, Somerset and surrounding BA1/BA2 borders
 
 ---
 
@@ -14,6 +14,7 @@
 Bath is an affluent, heritage-heavy property market (Georgian townhouses, Victorian terraces, stone conversions). Homeowners in Bath have high expectations for craftsmanship, tidy working practices, and aesthetic subtlety (e.g. concealed wiring, antique brass sockets, sympathetic lighting).
 
 Our commercial angle with Bath-Electrical Ltd is:
+
 1. **A supportive, friendly copy check**: Their website mentions adherence to the "17th Edition" wiring regulations. Every professional spark knows the industry has been on the 18th Edition (BS 7671:2018+A2:2022) for years. Pointing this out gently as an outdated website copy typo builds immediate peer respect.
 2. **Heritage & period property focus**: Highlighting how Bath-Electrical handles the unique challenges of Bath stone, listed buildings, and premium residential upgrades.
 3. **No hard sell**: Keep the first touchpoint short, courteous, and constructive.
@@ -22,11 +23,11 @@ Our commercial angle with Bath-Electrical Ltd is:
 
 ## 2. Live Website Diagnostic: What Was Observed
 
-| Category | Observed Reality on `bath-electrical.co.uk` | Impact on Bath Homeowner Conversion | The Constructive Angle |
-| :--- | :--- | :--- | :--- |
-| **Wiring Regs Copy** | Workmanship copy still refers to *"17th Edition Wiring Regulations"* | Discerning domestic clients or architects checking credentials might wonder when the business was last updated. | Suggest a discreet copy update to current 18th Edition (BS 7671) standards. |
-| **Heritage / Period Property Trust** | Generic domestic service descriptions. No specific mention of period Bath stonework, concealed containment, or heritage rewiring care. | Bath homeowners pay premium rates for electricians who understand lath-and-plaster ceilings, Bath stone walls, and sub-floor cable routing without causing cosmetic damage. | Add tailored case study framing highlighting period property expertise. |
-| **Mobile CTA & Intake** | Static contact details; no fast mobile quote request or dedicated WhatsApp route for urgent callouts. | Over 70% of local residential electrical enquiries in Bath occur on mobile phones following a tripping breaker or during an ongoing renovation. | Demonstrate streamlined mobile intake with fast photo upload for fusebox/circuit queries. |
+| Category                             | Observed Reality on `bath-electrical.co.uk`                                                                                            | Impact on Bath Homeowner Conversion                                                                                                                                         | The Constructive Angle                                                                    |
+| :----------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :---------------------------------------------------------------------------------------- |
+| **Wiring Regs Copy**                 | Workmanship copy still refers to _"17th Edition Wiring Regulations"_                                                                   | Discerning domestic clients or architects checking credentials might wonder when the business was last updated.                                                             | Suggest a discreet copy update to current 18th Edition (BS 7671) standards.               |
+| **Heritage / Period Property Trust** | Generic domestic service descriptions. No specific mention of period Bath stonework, concealed containment, or heritage rewiring care. | Bath homeowners pay premium rates for electricians who understand lath-and-plaster ceilings, Bath stone walls, and sub-floor cable routing without causing cosmetic damage. | Add tailored case study framing highlighting period property expertise.                   |
+| **Mobile CTA & Intake**              | Static contact details; no fast mobile quote request or dedicated WhatsApp route for urgent callouts.                                  | Over 70% of local residential electrical enquiries in Bath occur on mobile phones following a tripping breaker or during an ongoing renovation.                             | Demonstrate streamlined mobile intake with fast photo upload for fusebox/circuit queries. |
 
 ---
 
@@ -35,6 +36,7 @@ Our commercial angle with Bath-Electrical Ltd is:
 If Bath-Electrical Ltd responds positively to our opening note, we provide this concrete layout outline:
 
 ### Project Card 1: 18th Edition Consumer Unit & Arc Fault Protection (Lansdown, Bath)
+
 ```markdown
 [ Clean RCBO Board with AFDD Slot ]
 • Location: Lansdown, Bath (BA1)
@@ -45,6 +47,7 @@ If Bath-Electrical Ltd responds positively to our opening note, we provide this 
 ```
 
 ### Project Card 2: Period Townhouse Sympathetic Rewire (Widcombe, Bath)
+
 ```markdown
 [ Discreet Antique Brass Faceplates & Period Coving Slot ]
 • Location: Widcombe, Bath (BA2)
@@ -55,6 +58,7 @@ If Bath-Electrical Ltd responds positively to our opening note, we provide this 
 ```
 
 ### Project Card 3: EV Charger & Smart Home Integration (Combe Down, Bath)
+
 ```markdown
 [ Compact EV Wallbox on Natural Stone Finish Slot ]
 • Location: Combe Down, Bath
@@ -73,7 +77,7 @@ sequenceDiagram
     autonumber
     actor Robbie as Robbie Harley (Founder)
     participant BE as Bath-Electrical Ltd (P02)
-    
+
     Robbie->>BE: Email 1: Courteous 3-sentence note (17th Edition copy check)
     alt Interested Response ("Thanks for spotting that / tell me more")
         Robbie->>BE: Email 2: Send Period Property Teardown & Interactive Demo Link
@@ -85,10 +89,12 @@ sequenceDiagram
 ```
 
 ### Stage 1: The First Contact Note (Calibrated Draft)
-* **From:** `Robbie Harley <robbie@theharleygroup.org>`
-* **To:** Bath-Electrical Ltd (contact mailbox)
-* **Subject:** `Quick wording check on your website standards`
-* **Body:**
+
+- **From:** `Robbie Harley <robbie@theharleygroup.org>`
+- **To:** Bath-Electrical Ltd (contact mailbox)
+- **Subject:** `Quick wording check on your website standards`
+- **Body:**
+
 ```text
 Hello Bath-Electrical team,
 
@@ -109,6 +115,7 @@ robbie@theharleygroup.org
 ## 5. Fulfilment Safeguards & Operational Readiness Check
 
 Before dispatching Stage 1:
+
 1. **Concurrency Check:** Active projects in Supabase must remain `< 2` (Current: 0 active projects -> **CLEAR**).
 2. **Sender Domain Reputation:** Resend authenticated from `robbie@theharleygroup.org` with DKIM/SPF verified (-> **CLEAR**).
 3. **PECR Compliance:** Bath-Electrical Ltd is a registered UK Limited Company (`#07702599`); B2B electronic marketing to corporate mailbox is compliant under Regulation 22 (-> **CLEAR**).

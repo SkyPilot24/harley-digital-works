@@ -17,6 +17,7 @@ H03/H07/H42: fixed role lookup failures being labelled Access denied, rejected s
 Fresh build/typecheck/format PASS; lint 0 errors / 9 existing warnings; 66 smoke + 150 regression/integration + 3 service-worker checks PASS. Real staging Auth/API/Edge verifies ordinary/anonymous denial, self-promotion/metadata rejection, cached-role outage/retry, temporary role revoke/restore and sign-out failure/retry. Client/project browser regression also rerun PASS. Exact synthetic records/accounts removed; genuine owner sessions untouched. [Evidence, actor matrix and limits](docs/ADMIN_ACCESS_ACCEPTANCE_2026-10-15.md).
 
 Read-only provider advisors show leaked-password protection disabled on Agency and staging; review exact provider configuration/availability before live changes. RLS-without-policy INFO records retain the intentional server-only deny model; no policies broadened. No production mutation, main merge/release, live billing or external message. Full launch remains RED. Next: current-head CI, admin user/role server controls and remaining form validation, then enquiry/recovery/care/release gates.
+
 ## Complete admin record reads and client/project paging — 15 October 2026
 
 H03/H07/H42: added server-side client/project paging/search and full counts, complete cursor reads for monthly values/active lists/client choices, count-only notification totals, complete per-client project links/details, accurate error/retry states and saved drawer values. Dashboard exceptions now use full counts. New projects default to unassigned/no deadline; explicit agreed dates replace automatic fourteen-day targets. Earlier capped-response guard is superseded and removed.
@@ -24,23 +25,24 @@ H03/H07/H42: added server-side client/project paging/search and full counts, com
 Fresh build/typecheck/format PASS; lint 0 errors / 9 existing warnings. All 66 smoke, 143 regression/integration and 3 service-worker checks PASS. Real staging Auth/PostgREST plus Edge PASS with 56 fictional clients/56 projects, including 55 linked projects, pence accuracy, owner writes/readback, anonymous denial, paging/mobile/filter/reset/error/retry and project defaults. Exact fixtures/account removed; original totals independently restored. [Evidence and limits](docs/ADMIN_RECORDS_ACCEPTANCE_2026-10-15.md).
 
 Existing PR #31 at 1337972 freshly verified draft/CLEAN with all checks successful before this extension. Publication and final-head CI must be verified against the PR, independently of this local evidence. No main merge, production migration/release, live billing or external messages. Full launch remains RED. Next: current-head review/CI, permission/error handling and remaining admin journeys, then enquiry/recovery/care/release gates.
+
 ## Lead desk paging and staging acceptance — 15 October 2026
 
 H03/H07/H42: following local checkpoint fb9e97d, implemented server-side enquiry search/status filtering, 25-row paging, full exact-count metrics including Contacted, unavailable/retry states and narrow-screen table scrolling. Fixed stale saved status in the inspector and guarded sign-in hydration/native POST. Real staging Auth/PostgREST and headless Edge acceptance PASS with 56 fictional records: three pages, counts, punctuation/literal-asterisk search, admin/anonymous access, persisted status/readback, zero-row rejection, sign-in, mobile width, dashboard failure/retry and exact cleanup. No port 4187 listener remains.
 
 Final build/typecheck/format PASS; lint 0 errors / 9 existing warnings; 66 smoke + 139 regression + 3 service-worker checks PASS. Source, reproducible runners, limits and next gates: [lead acceptance](docs/ADMIN_LEAD_ACCEPTANCE_2026-10-15.md). Staging browser evidence is not production acceptance. Overall launch remains RED; next complete clients/projects paging and dashboard aggregation, then remaining enquiry/recovery/care/release gates. Production, live billing and outbound messages unchanged.
+
 ## Platform completion checkpoint — 15 October 2026
 
 H03/H07/H42: isolated `codex/platform-completion-2026-10-15` from existing launch review `1c8af5d` (PR #29), preserving payment/delivery/marketing work and unrelated local checkouts. Fixed dashboard partial-query failure handling, misleading revenue/automation labels, two-build pilot capacity display, admin cache invalidation after lead/client changes, and zero-row update/delete success handling. Full scope, ranked follow-ups and live read-only aggregate evidence: [platform checkpoint](docs/PLATFORM_COMPLETION_2026-10-15.md).
 
 Final fresh build/typecheck/format PASS; lint 0 errors / 9 existing warnings; platform smoke PASS, 135 regression tests and 3 service-worker tests PASS. New tests cover all ten operational source-failure positions and capped/missing data. Authenticated browser/RLS mutation/readback acceptance remains pending; no customer data writes, migration, push, merge, deployment, sending or spending. Overall launch remains RED. Next: bounded staging browser acceptance of dashboard failure/retry and cross-screen mutation refresh, followed by remaining intake/recovery/care and concrete release gates.
+
 # Master delivery backlog
 
 **Latest customer approval evidence, 14 October:** fictional customer browser sign-in, proposal/latest-version confirmation and separate website-review approval passed against staging. Six active runtime checks cover superseded/digest rejection, membership revoke/restore, retry and release-evidence launch denial. Exact test project/user/evidence and credentials removed; zero residual fixtures and no port 4183 listener verified. No real agreement, administrator publish/invitation, client website, payment or launch is implied. Broader H20/H21/H50 remain open; see `CLIENT_APPROVAL_ACCEPTANCE_2026-10-14.md`.
 
-
 **Latest 14 October acceptance update:** the user approved and we executed the isolated sandbox rehearsal. Authentic fictional £747.50 checkout delivery produced one durable receipt; same-build redeployment, concurrent duplicate replays, rejection controls and temporary credential failure/recovery passed with the limits recorded in `Harley-sandbox-acceptance-2026-10-14.md`. Temporary Worker and new staging fixtures removed; original fixture retained. New Stripe endpoint disabled, physical deletion remains. Production and live billing unchanged. Owner confirmed Harley DigitalWorks Ltd and not VAT-registered; supplied company number/address recorded internally. Exact company-number search returned no result; reconciliation requested before invoice issue. The full paid-client lifecycle remains RED. Earlier pending statements below describe previous checkpoints and are superseded by this dated update.
-
 
 ## H11/H22–H25 commercial-use correction — 14 October 2026
 

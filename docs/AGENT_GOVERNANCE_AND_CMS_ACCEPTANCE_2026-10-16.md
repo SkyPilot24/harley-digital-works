@@ -8,7 +8,6 @@ On `codex/admin-marketing-completion-2026-10-16`, base d4b144c, `scripts/verify-
 
 Open: successful settings save/readback, authenticated ordinary-user CMS denial, broader Control Centre acceptance, atomic last-admin and server/DB validation gates. Full launch remains RED. Next: isolated settings/ordinary-user acceptance, then route-by-route release evidence. Existing peer application work preserved. Detailed checkpoint: `docs/AGENT_GOVERNANCE_AND_CMS_ACCEPTANCE_2026-10-16.md`.
 
-
 ## Locations and limits
 
 Canonical checkout: C:/Local Data/The Harley Group/harley-digital-works. Active review: implementation/hdw-admin-marketing-completion under this ChatGPT project. Remote: https://github.com/SkyPilot24/harley-digital-works.git. Branch codex/admin-marketing-completion-2026-10-16, starting HEAD d4b144c; application changes remain uncommitted. Other worktrees must receive the governance revision through normal review/sync after publication; no claim that all hosts are updated.

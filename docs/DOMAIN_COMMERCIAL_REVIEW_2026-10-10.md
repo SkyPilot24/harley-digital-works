@@ -1,4 +1,5 @@
 # THG domain portfolio commercial review
+
 10 October 2026 · Founder decision report · H49 / D01–D08
 
 ## 1. Executive recommendation
@@ -11,15 +12,15 @@ Domains offer occasional cash receipts and possible website work, but are not pr
 
 ## 2. Structure comparison
 
-| Criterion | A: THG directly | B: HDW workstream — preferred | C: Dedicated trading brand |
-| --- | --- | --- | --- |
-| Commercial potential | Same inventory receipts; central asset control | Same receipts plus existing website/acquisition-service cross-selling | Specialist proposition might help future mandates; no current evidence of uplift |
-| Positioning and credibility | Appropriate umbrella; weaker buyer explanation | Existing digital expertise and service journey; keep domains secondary to trade offer | Clear specialist identity but must earn credibility and demand |
-| Costs and overhead | Low if existing systems reused | Lowest incremental cost; existing enquiry and finance workflows | Extra branding, content, accounts and upkeep; separate company unnecessary |
-| Automation | Existing group systems | Existing CRM, alerts and admin give practical head start | Same underlying automation; a brand adds no technical capability |
-| Scalability | Adequate for own portfolio | Adequate for portfolio and bounded client services | Useful only if sustained third-party brokerage becomes material |
-| Acquisition and cross-selling | Requires explicit links into HDW | Best existing route; optional site/care offer, separately priced | More standalone acquisition work; narrower specialist credibility |
-| Maintaining businesses | One group workstream | One operating team; separate reporting category | More surfaces and positioning to maintain |
+| Criterion                     | A: THG directly                                | B: HDW workstream — preferred                                                         | C: Dedicated trading brand                                                       |
+| ----------------------------- | ---------------------------------------------- | ------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| Commercial potential          | Same inventory receipts; central asset control | Same receipts plus existing website/acquisition-service cross-selling                 | Specialist proposition might help future mandates; no current evidence of uplift |
+| Positioning and credibility   | Appropriate umbrella; weaker buyer explanation | Existing digital expertise and service journey; keep domains secondary to trade offer | Clear specialist identity but must earn credibility and demand                   |
+| Costs and overhead            | Low if existing systems reused                 | Lowest incremental cost; existing enquiry and finance workflows                       | Extra branding, content, accounts and upkeep; separate company unnecessary       |
+| Automation                    | Existing group systems                         | Existing CRM, alerts and admin give practical head start                              | Same underlying automation; a brand adds no technical capability                 |
+| Scalability                   | Adequate for own portfolio                     | Adequate for portfolio and bounded client services                                    | Useful only if sustained third-party brokerage becomes material                  |
+| Acquisition and cross-selling | Requires explicit links into HDW               | Best existing route; optional site/care offer, separately priced                      | More standalone acquisition work; narrower specialist credibility                |
+| Maintaining businesses        | One group workstream                           | One operating team; separate reporting category                                       | More surfaces and positioning to maintain                                        |
 
 Main conflict for B: a broad speculative-domain catalogue could dilute HDW's electrical-contractor positioning. Keep a secondary Domains service page and separate campaign audience. Domain buyers do not automatically qualify for the managed trade offer. Client domains remain client-owned; brokerage mandates are distinct from owned stock. Disclose when HDW offers its own inventory during a naming/acquisition engagement.
 
@@ -45,37 +46,37 @@ Before publishing, check actual comparable completed sales by extension, phrase 
 
 Proposed asking prices and negotiation bands are gross GBP before commission, tax and transfer costs. Bands are commercial proposals, not authorised floors. “Sell once then Retire” means one limited sales test before the next renewal decision, never an automatic cancellation. Protected or unresolved names receive no price.
 
-| Current roster entry | Conditional retail range | Proposed ask | Proposed negotiation band | Recommendation | Buyer and attractiveness |
-| --- | --- | --- | --- | --- | --- |
-| aiwearables.co.uk | £300–£1000 | £995 | £300–£700 | Sell first | UK wearable retailer or publisher; Clear category; UK-only reach |
-| virtualavatars.co.uk | £250–£900 | £795 | £250–£600 | Sell first | UK avatar video or training provider; Clear commercial use; narrower UK demand |
-| greenautomotive.co.uk | £250–£850 | £795 | £250–£600 | Sell first | EV dealer or fleet consultancy; Commercial phrase; screen existing brand rights |
-| theiotshop.co.uk | £200–£750 | £695 | £200–£500 | Sell first | IoT or smart-home retailer; Clear shop use; jargon limits audience |
-| valuecurrencies.com | £400–£1500 | £1495 | £400–£1000 | Sell first | FX education or comparison publisher; Global .com; phrasing is less natural |
-| mydigitalhouse.co.uk | £150–£600 | £595 | £150–£400 | Sell second | Smart-home installer; Plausible service brand; no traffic proof |
-| drivinggreen.co.uk | £150–£600 | £595 | £150–£400 | Sell second | Eco-driving trainer or fleet service; Readable brand; check prior rights |
-| valuedrones.co.uk | £150–£600 | £595 | £150–£400 | Sell second | Drone retailer or review publisher; Retail use; limited UK buyer pool |
-| 5gdata.org | £150–£700 | £695 | £150–£450 | Sell second | Telecom research or trade body; Short; .org mismatch for a retail business |
-| roboticpharmacist.co.uk | £100–£500 | £495 | £100–£350 | Sell second | Pharmacy automation vendor; Very narrow buyer pool; no NHS endorsement |
-| myartificialintelligence.co.uk | £100–£450 | £395 | £100–£300 | Sell second | AI training provider; Long spelling; older high priority overstated |
-| yourartificialintelligence.co.uk | £75–£350 | £295 | £75–£225 | Sell second | AI trainer or consultant; Long; optional bundle with my variant |
-| letscarshop.co.uk | £75–£350 | £295 | £75–£225 | Sell passively | Used-car dealer; Readable but limited distinctiveness |
-| baggasm.co.uk | £50–£250 | £195 | £50–£150 | Sell passively | Novelty bag retailer; Polarising name; screen rights |
-| driveautonomous.org | £50–£250 | £195 | £50–£150 | Sell once then Retire | Mobility education project; Awkward phrase |
-| driveautonomously.co.uk | £50–£250 | £195 | £50–£150 | Sell once then Retire | Mobility educator; Long adverbial phrase |
-| drivingautonomous.org | £25–£150 | £145 | £25–£100 | Sell once then Retire | Transport publication; Awkward grammar |
-| myselfdrivingcar.co.uk | £50–£250 | £195 | £50–£150 | Sell once then Retire | UK motoring publisher; Long consumer phrase |
-| myselfdriving.co.uk | £25–£150 | £145 | £25–£100 | Sell once then Retire | Motoring content publisher; Less natural wording |
-| buyblockchaincurrency.co.uk | £0–£100 | £95 | £25–£75 | Retire unless inbound | Crypto education publisher; Very long; limited direct demand |
-| bristol2020.co.uk | £0–£100 | £95 | £25–£75 | Retire unless archive use | Local archive; Dated year |
-| wales2020.co.uk | £0–£100 | £95 | £25–£75 | Retire unless archive use | Community archive; Dated year |
-| trends2020.co.uk | £0–£75 | £75 | £20–£50 | Retire unless archive use | Trend archive; Dated year |
-| recession2020.co.uk | £0–£75 | £75 | £20–£50 | Retire unless archive use | Economic archive; Dated year |
-| tokoyo2020.co.uk | Not valued | — | — | Retire subject to review | None recommended; Likely typo; event association |
-| value-lights.co.uk | Not valued | — | — | Hold from sale; review then Retire | None until rights cleared; Existing ValueLights business; possible confusion |
-| theolympics2020.co.uk | Not valued | — | — | Hold from sale; review then Retire | None recommended; Olympics wording and event association |
-| disneynostalgia.co.uk | Not valued | — | — | Hold from sale; review then Retire | None recommended; Disney wording |
-| douladeliveryhobart | Not valued | — | — | Hold for reconciliation | Hobart doula if authorised; Missing TLD; historical .com is a possible match |
+| Current roster entry             | Conditional retail range | Proposed ask | Proposed negotiation band | Recommendation                     | Buyer and attractiveness                                                        |
+| -------------------------------- | ------------------------ | ------------ | ------------------------- | ---------------------------------- | ------------------------------------------------------------------------------- |
+| aiwearables.co.uk                | £300–£1000               | £995         | £300–£700                 | Sell first                         | UK wearable retailer or publisher; Clear category; UK-only reach                |
+| virtualavatars.co.uk             | £250–£900                | £795         | £250–£600                 | Sell first                         | UK avatar video or training provider; Clear commercial use; narrower UK demand  |
+| greenautomotive.co.uk            | £250–£850                | £795         | £250–£600                 | Sell first                         | EV dealer or fleet consultancy; Commercial phrase; screen existing brand rights |
+| theiotshop.co.uk                 | £200–£750                | £695         | £200–£500                 | Sell first                         | IoT or smart-home retailer; Clear shop use; jargon limits audience              |
+| valuecurrencies.com              | £400–£1500               | £1495        | £400–£1000                | Sell first                         | FX education or comparison publisher; Global .com; phrasing is less natural     |
+| mydigitalhouse.co.uk             | £150–£600                | £595         | £150–£400                 | Sell second                        | Smart-home installer; Plausible service brand; no traffic proof                 |
+| drivinggreen.co.uk               | £150–£600                | £595         | £150–£400                 | Sell second                        | Eco-driving trainer or fleet service; Readable brand; check prior rights        |
+| valuedrones.co.uk                | £150–£600                | £595         | £150–£400                 | Sell second                        | Drone retailer or review publisher; Retail use; limited UK buyer pool           |
+| 5gdata.org                       | £150–£700                | £695         | £150–£450                 | Sell second                        | Telecom research or trade body; Short; .org mismatch for a retail business      |
+| roboticpharmacist.co.uk          | £100–£500                | £495         | £100–£350                 | Sell second                        | Pharmacy automation vendor; Very narrow buyer pool; no NHS endorsement          |
+| myartificialintelligence.co.uk   | £100–£450                | £395         | £100–£300                 | Sell second                        | AI training provider; Long spelling; older high priority overstated             |
+| yourartificialintelligence.co.uk | £75–£350                 | £295         | £75–£225                  | Sell second                        | AI trainer or consultant; Long; optional bundle with my variant                 |
+| letscarshop.co.uk                | £75–£350                 | £295         | £75–£225                  | Sell passively                     | Used-car dealer; Readable but limited distinctiveness                           |
+| baggasm.co.uk                    | £50–£250                 | £195         | £50–£150                  | Sell passively                     | Novelty bag retailer; Polarising name; screen rights                            |
+| driveautonomous.org              | £50–£250                 | £195         | £50–£150                  | Sell once then Retire              | Mobility education project; Awkward phrase                                      |
+| driveautonomously.co.uk          | £50–£250                 | £195         | £50–£150                  | Sell once then Retire              | Mobility educator; Long adverbial phrase                                        |
+| drivingautonomous.org            | £25–£150                 | £145         | £25–£100                  | Sell once then Retire              | Transport publication; Awkward grammar                                          |
+| myselfdrivingcar.co.uk           | £50–£250                 | £195         | £50–£150                  | Sell once then Retire              | UK motoring publisher; Long consumer phrase                                     |
+| myselfdriving.co.uk              | £25–£150                 | £145         | £25–£100                  | Sell once then Retire              | Motoring content publisher; Less natural wording                                |
+| buyblockchaincurrency.co.uk      | £0–£100                  | £95          | £25–£75                   | Retire unless inbound              | Crypto education publisher; Very long; limited direct demand                    |
+| bristol2020.co.uk                | £0–£100                  | £95          | £25–£75                   | Retire unless archive use          | Local archive; Dated year                                                       |
+| wales2020.co.uk                  | £0–£100                  | £95          | £25–£75                   | Retire unless archive use          | Community archive; Dated year                                                   |
+| trends2020.co.uk                 | £0–£75                   | £75          | £20–£50                   | Retire unless archive use          | Trend archive; Dated year                                                       |
+| recession2020.co.uk              | £0–£75                   | £75          | £20–£50                   | Retire unless archive use          | Economic archive; Dated year                                                    |
+| tokoyo2020.co.uk                 | Not valued               | —            | —                         | Retire subject to review           | None recommended; Likely typo; event association                                |
+| value-lights.co.uk               | Not valued               | —            | —                         | Hold from sale; review then Retire | None until rights cleared; Existing ValueLights business; possible confusion    |
+| theolympics2020.co.uk            | Not valued               | —            | —                         | Hold from sale; review then Retire | None recommended; Olympics wording and event association                        |
+| disneynostalgia.co.uk            | Not valued               | —            | —                         | Hold from sale; review then Retire | None recommended; Disney wording                                                |
+| douladeliveryhobart              | Not valued               | —            | —                         | Hold for reconciliation            | Hobart doula if authorised; Missing TLD; historical .com is a possible match    |
 
 **First batch, after verification:** aiwearables.co.uk, virtualavatars.co.uk, greenautomotive.co.uk, theiotshop.co.uk and valuecurrencies.com. These have the clearest buyer uses. The .com supplies broader distribution; the UK names have narrower but identifiable buyers. The older priority for the very long artificial-intelligence names is reduced. No development project is recommended now.
 
@@ -89,13 +90,13 @@ Proposed asking prices and negotiation bands are gross GBP before commission, ta
 
 Current terms checked on 10 October 2026; verify the final account quote and TLD eligibility before approval.
 
-| Channel | Listing cost and sale fee | Reach and practical role |
-| --- | --- | --- |
-| Afternic Basic | Free entry/listing; 25% commission without qualifying aftermarket nameservers, 15% with them; $15 minimum. Boost adds five percentage points | First choice for .com/.org registrar-search discovery; provider advertises 100+ resellers. Start Basic |
-| Sedo | Standard listing without paid promotion; qualifying parked BIN/direct marketplace sale 10%, ordinary marketplace 15%, SedoMLS 20%; paid direct auction $59 | Suitable secondary marketplace, especially UK/international keywords; .com/.org/.co.uk are Category I with no standard minimum sale fee |
-| Atom Standard | Free listing; 7.5% commission; minimum retail transaction $100 | Non-exclusive lander/transaction option; Standard has limited marketing exposure |
-| Atom Premium | Approval/submission process; public page describes $1 coins; approximately 30% commission at this portfolio's likely prices, with lower higher-value tiers | Stronger brandable presentation, but exclusivity and removal obligations make it unnecessary initially |
-| Direct buyer research | No marketplace listing charge; research time plus settlement fees | Selective fit-led outreach; independently sourced buyer can use Afternic Custom Checkout at 5%, $15 minimum, or assess AtomPay's 1.35%–4.5% price-based fee |
+| Channel               | Listing cost and sale fee                                                                                                                                  | Reach and practical role                                                                                                                                    |
+| --------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Afternic Basic        | Free entry/listing; 25% commission without qualifying aftermarket nameservers, 15% with them; $15 minimum. Boost adds five percentage points               | First choice for .com/.org registrar-search discovery; provider advertises 100+ resellers. Start Basic                                                      |
+| Sedo                  | Standard listing without paid promotion; qualifying parked BIN/direct marketplace sale 10%, ordinary marketplace 15%, SedoMLS 20%; paid direct auction $59 | Suitable secondary marketplace, especially UK/international keywords; .com/.org/.co.uk are Category I with no standard minimum sale fee                     |
+| Atom Standard         | Free listing; 7.5% commission; minimum retail transaction $100                                                                                             | Non-exclusive lander/transaction option; Standard has limited marketing exposure                                                                            |
+| Atom Premium          | Approval/submission process; public page describes $1 coins; approximately 30% commission at this portfolio's likely prices, with lower higher-value tiers | Stronger brandable presentation, but exclusivity and removal obligations make it unnecessary initially                                                      |
+| Direct buyer research | No marketplace listing charge; research time plus settlement fees                                                                                          | Selective fit-led outreach; independently sourced buyer can use Afternic Custom Checkout at 5%, $15 minimum, or assess AtomPay's 1.35%–4.5% price-based fee |
 
 Sources: [Afternic sales terms](https://www.afternic.com/sell-domains), [Afternic free entry](https://www.afternic.com/), [Sedo price list](https://sedo.com/us/what-we-offer/price-list/), [Atom selling page](https://www.atom.com/sell-domain-names), [Atom commission schedule](https://www.atom.com/help/article/atom-com-marketplace-commission-structure), [Afternic Custom Checkout](https://blog.afternic.com/custom-checkout-link-update/). Marketplace taxes, currency conversion and external-transfer charges can be additional. Sedo external transfer minimum differs from ordinary marketplace sale terms.
 
@@ -120,6 +121,7 @@ Review renewals before building a dashboard: 60/30/14/7-day reminders and earlie
 Existing source provides public /domains, CRM/admin, invoices, diagnostics, Headquarters and knowledge-base surfaces. The current /admin/domain-os route **redirects to /admin/revenue-os**, which presents strategy/playbooks. September descriptions of an admin domain table and localStorage do not establish a current central portfolio database. Likewise the static revenue-os.ts £5,000 target and £250 MRR potential are illustrative, not verified results.
 
 Extend the existing admin with one portfolio view only after D01. Begin with the audit CSV and private registrar evidence; do not delay listings for a software project. Proposed central records:
+
 - Asset: canonical name, owned/client/brokered/reserved classification, legal owner/mandate reference, registrar, expiry, billing date, renewal cost/currency/tax, cost basis, dependencies, verification source/date and disposition.
 - Listing: marketplace, ID, currency, BIN, private net floor, status, exclusivity, nameserver/transfer eligibility and reconciliation time.
 - Existing CRM link: enquiry → offer → negotiation → settlement pending → transferred → paid → delisted; reservation prevents parallel sales.
@@ -137,11 +139,11 @@ Existing portfolio sales are finite and irregular. Start with disposal; acquisit
 
 Illustrative **12-month planning scenarios for the verified initial cohort once available**, not forecasts for 60 owned names. Use a blended 20% selling-fee allowance; assumes all transactions settle and no additional transfer/FX costs.
 
-| Scenario | Sales and average gross price | Gross sales | After assumed fees | Cash contribution |
-| --- | --- | --- | --- | --- |
-| Conservative | 0 sales | £0 | £0 | −R −T |
-| Working / realistic target | 1 sale × £600 | £600 | £480 | £480 −R −T |
-| Optimistic | 3 sales × £1,000 | £3,000 | £2,400 | £2,400 −R −T |
+| Scenario                   | Sales and average gross price | Gross sales | After assumed fees | Cash contribution |
+| -------------------------- | ----------------------------- | ----------- | ------------------ | ----------------- |
+| Conservative               | 0 sales                       | £0          | £0                 | −R −T             |
+| Working / realistic target | 1 sale × £600                 | £600        | £480               | £480 −R −T        |
+| Optimistic                 | 3 sales × £1,000              | £3,000      | £2,400             | £2,400 −R −T      |
 
 R = actual prospective portfolio renewal cash cost; T = transfer/settlement/FX costs not already included. Accounting profit additionally deducts attributable acquisition cost and labour. Historical cost basis is not available. If R is £300 purely illustratively, working cash contribution is £180 before other costs/labour. At £600 gross and 20% fees each sale supplies £480 toward costs.
 
@@ -149,11 +151,11 @@ Budget **£0 domain receipts in the first 90 days**; one £300–£1,000 sale is
 
 ## 7. 30/60/90-day execution
 
-| Period | Practical actions | Acceptance evidence |
-| --- | --- | --- |
-| Days 1–30 | Reconcile registrar exports against the existing roster and 60-name historical claim; classify protected names; obtain bills and transfer constraints; screen first five; set gross asks/net floors; prepare approved marketplace listings and 25 buyer notes | Ownership/mandate, renewal bill/date, no protected-use conflict, approved terms and actual listing IDs before any name is marketed |
-| Days 31–60 | Publish authorised first batch; test domain-specific enquiry capture into existing CRM; review listings weekly; run approved selective outreach; work offers; add second batch only if justified | Domain reference retained, one saved enquiry, authorised retrieval, alert receipt, channel/offer records; actual sale needs funds and transfer evidence |
-| Days 61–90 | Review demand, repricing and drop/renew decisions; settle/delist any sales; report net contribution/hour; add simple reminders/portfolio admin only if it saves work | Renewal decisions recorded, reminder demonstrated, live listings reconciled, completed payouts separated from pipeline; reassess strategy after zero-sales case too |
+| Period     | Practical actions                                                                                                                                                                                                                                             | Acceptance evidence                                                                                                                                                 |
+| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Days 1–30  | Reconcile registrar exports against the existing roster and 60-name historical claim; classify protected names; obtain bills and transfer constraints; screen first five; set gross asks/net floors; prepare approved marketplace listings and 25 buyer notes | Ownership/mandate, renewal bill/date, no protected-use conflict, approved terms and actual listing IDs before any name is marketed                                  |
+| Days 31–60 | Publish authorised first batch; test domain-specific enquiry capture into existing CRM; review listings weekly; run approved selective outreach; work offers; add second batch only if justified                                                              | Domain reference retained, one saved enquiry, authorised retrieval, alert receipt, channel/offer records; actual sale needs funds and transfer evidence             |
+| Days 61–90 | Review demand, repricing and drop/renew decisions; settle/delist any sales; report net contribution/hour; add simple reminders/portfolio admin only if it saves work                                                                                          | Renewal decisions recorded, reminder demonstrated, live listings reconciled, completed payouts separated from pipeline; reassess strategy after zero-sales case too |
 
 No registrar, DNS, marketplace, buyer outreach, billing or production changes were made. If approval/access is delayed, shift execution dates rather than claiming launch. Do not defer imminent renewal decisions while reconciling all records.
 
@@ -175,4 +177,3 @@ Finance note: repository language equates “below VAT threshold” with “zero
 - [Saved 29-entry page](https://drive.google.com/file/d/1bVjpk9r5cTned9kB349fV1rghctRF8ud/view); [September 60-domain module notes](https://drive.google.com/file/d/1gjIaB6A4k0iEqIQatBAbPRmf8DhbPmJs/view); [historical admin description](https://drive.google.com/file/d/1Ryh9WZntAG8Ss3UyjBhkiZzT8iXTe5Kc/view); [9 October Group Portfolio Register](https://drive.google.com/file/d/1iUpAk4QZoJTv1U1c5pMBou6JpIf46TRb/view).
 - DOMAIN_PORTFOLIO_AUDIT_2026-10-10.csv covers 45 reference rows with unknown fields explicit. It is not an import-approved production register.
 - This review does not complete D01, D03–D08 or H49. Remaining gates: full roster, registrar authority, costs, rights checks, price approval, enquiry acceptance and actual sale evidence.
-

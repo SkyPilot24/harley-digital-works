@@ -33,11 +33,11 @@ Deliver and verify the production-ready digital agency operating platform and co
 
 ## Validation Summary
 
-| Gate                       | Command                | Result                        |
-| -------------------------- | ---------------------- | ----------------------------- |
-| **TypeScript**             | `npm run typecheck`    | Passed (0 errors)             |
-| **Prettier**               | `npm run format:check` | Passed (100% compliant)       |
-| **ESLint**                 | `npm run lint`         | Passed (0 errors, 18 existing warnings) |
-| **Platform Test Suite**    | `npm test`             | Passed (136/136 tests pass)   |
-| **Outreach Dispatcher**    | `scripts/outreach-dispatcher.test.mjs` | Passed (5/5 tests pass)       |
-| **Vite + Nitro SSR Build** | `npm run build`        | Passed (Output in `.output/`) |
+| Gate                       | Command                                | Result                                  |
+| -------------------------- | -------------------------------------- | --------------------------------------- |
+| **TypeScript**             | `npm run typecheck`                    | Passed (0 errors)                       |
+| **Prettier**               | `npm run format:check`                 | Passed (100% compliant)                 |
+| **ESLint**                 | `npm run lint`                         | Passed (0 errors, 18 existing warnings) |
+| **Platform Test Suite**    | `npm test`                             | Passed (136/136 tests pass)             |
+| **Outreach Dispatcher**    | `scripts/outreach-dispatcher.test.mjs` | Passed (5/5 tests pass)                 |
+| **Vite + Nitro SSR Build** | `npm run build`                        | Passed (Output in `.output/`)           |

@@ -1,9 +1,15 @@
-**Antigravity restart — 17 October 2026:** Read the current checkpoint at the top of [docs/HANDOVER.md](docs/HANDOVER.md). Local scoped commit bc42f922b4e412d8a0e5056ac9e673e742e9851a remains unpushed in codex/reconcile-2026-10-16; canonical peer edits and private-portfolio production setup/acceptance remain open. This documentation pointer is uncommitted.
+**Antigravity restart — 17 October 2026:** Read the current checkpoint at the top of [docs/HANDOVER.md](docs/HANDOVER.md). Pre-go-live audit, Cloudflare verification, PR stack triage completed ([PR #39](https://github.com/SkyPilot24/harley-digital-works/pull/39)).
+
+## Pre-go-live website audit, Cloudflare verification & PR stack review — 17 October 2026
+
+- **Comprehensive Pre-Go-Live Audit:** Evaluated UI/UX, responsive behaviour across devices, CRO, content authenticity, and technical QA. Commercial terms on `about.tsx` and `index.tsx` aligned with ratified policy (removed unverified zero-rated VAT claims and blanket 14-day delivery SLAs in favour of agreed delivery schedule and up to 2 pilot spots). Repointed package investment link from deferred `/calculator` to `/contact`.
+- **Review Branch & Pull Request:** Pushed `audit/pre-go-live-remediation` and opened [PR #39](https://github.com/SkyPilot24/harley-digital-works/pull/39) targeting `main`. Verified: 190 tests PASS, 3 service worker tests PASS, TypeScript 0 errors, ESLint 0 errors, Nitro SSR production build PASS in ~3s.
+- **Cloudflare Live Production Environment:** Authenticated with Cloudflare API under account `6ccd86a1ec4535357f9bc51cd05e68cd` for Worker `skypilot24-harley-digital-works`. Confirmed active live variables: `SUPABASE_URL`, encrypted `SUPABASE_SERVICE_ROLE_KEY` secret, `SLACK_WEBHOOK_URL`, and `LEAD_NOTIFICATIONS_ENABLED: "true"`. Automated CRM lead intake and fail-safe mailto fallback verified.
+- **PR Stack & Dependabot Triage:** Promoted admin stack PR #31 and PR #32 to Ready for Review (stacking with PR #33, which is 100% green). Closed failing bulk Dependabot PRs #38 and #19 to protect build stability.
 
 ## Before & After portfolio, social proof & conversion optimisation — 17 October 2026
 
 Founder (Robbie) authorised the before-and-after website transformation showcase and deployment. Implemented 6 UK trade concepts (Plumbing & Heating, Electrical, Roofing, Building & Renovations, Landscaping & Gardening, Painting & Decorating) in `src/lib/portfolio-data.ts`, with interactive `BeforeAfterComparison.tsx` (slider, drag-to-reveal, desktop/mobile preview toggles, keyboard accessibility, commercial ROI scenarios with explicit assumptions, and fictional testimonials clearly marked as sample scenarios). Integrated across Homepage (`/`), Portfolio (`/work`), Services (`/services/web-design-development`), and Contact (`/contact` with "Show Us Your Website" review funnel). Typecheck, format, 190 unit/integration tests, 3 service worker tests, and Nitro SSR build PASS.
-
 
 ## Shared agent governance and CMS staging acceptance — 16 October 2026
 
@@ -12,8 +18,6 @@ H03/H07/H42/H47: founder-approved session-start contract cleaned of pasted chat 
 On `codex/admin-marketing-completion-2026-10-16`, base d4b144c, `scripts/verify-admin-cms-staging.mjs` passed real isolated staging Auth/API/browser CMS create/edit/delete with independent readback, anonymous mutation denial, mobile no-overflow, intercepted read-outage/retry, and settings read-failure save prevention. Exact unpublished CMS fixture and temporary administrator removed with independent readback; no production, existing settings, live billing, outbound contact or migration changed. First attempt stopped on a selector for deliberately truncated text; cleanup passed; corrected run passed fully. Typecheck/format/governance checks PASS; new scripts lint PASS. Prior batch build/full regression evidence retains its recorded scope.
 
 Open: successful settings save/readback, authenticated ordinary-user CMS denial, broader Control Centre acceptance, atomic last-admin and server/DB validation gates. Full launch remains RED. Next: isolated settings/ordinary-user acceptance, then route-by-route release evidence. Existing peer application work preserved. Detailed checkpoint: `docs/AGENT_GOVERNANCE_AND_CMS_ACCEPTANCE_2026-10-16.md`.
-
-
 
 ## Chief of staff operating briefing and recurring workflow authorisation — 16 October 2026
 
@@ -44,6 +48,7 @@ H03/H07/H42: fixed role lookup failures being labelled Access denied, rejected s
 Fresh build/typecheck/format PASS; lint 0 errors / 9 existing warnings; 66 smoke + 150 regression/integration + 3 service-worker checks PASS. Real staging Auth/API/Edge verifies ordinary/anonymous denial, self-promotion/metadata rejection, cached-role outage/retry, temporary role revoke/restore and sign-out failure/retry. Client/project browser regression also rerun PASS. Exact synthetic records/accounts removed; genuine owner sessions untouched. [Evidence, actor matrix and limits](docs/ADMIN_ACCESS_ACCEPTANCE_2026-10-15.md).
 
 Read-only provider advisors show leaked-password protection disabled on Agency and staging; review exact provider configuration/availability before live changes. RLS-without-policy INFO records retain the intentional server-only deny model; no policies broadened. No production mutation, main merge/release, live billing or external message. Full launch remains RED. Next: current-head CI, admin user/role server controls and remaining form validation, then enquiry/recovery/care/release gates.
+
 ## Complete admin record reads and client/project paging — 15 October 2026
 
 H03/H07/H42: added server-side client/project paging/search and full counts, complete cursor reads for monthly values/active lists/client choices, count-only notification totals, complete per-client project links/details, accurate error/retry states and saved drawer values. Dashboard exceptions now use full counts. New projects default to unassigned/no deadline; explicit agreed dates replace automatic fourteen-day targets. Earlier capped-response guard is superseded and removed.
@@ -51,34 +56,34 @@ H03/H07/H42: added server-side client/project paging/search and full counts, com
 Fresh build/typecheck/format PASS; lint 0 errors / 9 existing warnings. All 66 smoke, 143 regression/integration and 3 service-worker checks PASS. Real staging Auth/PostgREST plus Edge PASS with 56 fictional clients/56 projects, including 55 linked projects, pence accuracy, owner writes/readback, anonymous denial, paging/mobile/filter/reset/error/retry and project defaults. Exact fixtures/account removed; original totals independently restored. [Evidence and limits](docs/ADMIN_RECORDS_ACCEPTANCE_2026-10-15.md).
 
 Existing PR #31 at 1337972 freshly verified draft/CLEAN with all checks successful before this extension. Publication and final-head CI must be verified against the PR, independently of this local evidence. No main merge, production migration/release, live billing or external messages. Full launch remains RED. Next: current-head review/CI, permission/error handling and remaining admin journeys, then enquiry/recovery/care/release gates.
+
 ## Draft admin review published — 15 October 2026
 
 [Draft PR #31](https://github.com/SkyPilot24/harley-digital-works/pull/31) publishes checkpoints fb9e97d and 6e27743 against the existing launch branch for PR #29. Destination freshly verified PRIVATE, SkyPilot24 owner, ADMIN access; origin matches. Review delta checked against configured private credential values with no matches. An initial automatic publication review rejected the unverified destination; read-only ownership/privacy and payload checks resolved that concern before a successful authorised retry.
 
 Implementation 6e27743 retains the fresh local/staging/browser acceptance below. At publication, credential/dependency checks and Cloudflare native review Preview passed; remaining GitHub quality checks were running. A preview build is not configured-backend or production acceptance. This documentation follow-up is separate from implementation test evidence. No main merge, production migration/release, live billing or customer messages. Next: complete final-head CI, then continue clients/projects paging and scalable dashboard aggregation. Overall launch remains RED.
+
 ## Lead desk paging and staging acceptance — 15 October 2026
 
 H03/H07/H42: following local checkpoint fb9e97d, implemented server-side enquiry search/status filtering, 25-row paging, full exact-count metrics including Contacted, unavailable/retry states and narrow-screen table scrolling. Fixed stale saved status in the inspector and guarded sign-in hydration/native POST. Real staging Auth/PostgREST and headless Edge acceptance PASS with 56 fictional records: three pages, counts, punctuation/literal-asterisk search, admin/anonymous access, persisted status/readback, zero-row rejection, sign-in, mobile width, dashboard failure/retry and exact cleanup. No port 4187 listener remains.
 
 Final build/typecheck/format PASS; lint 0 errors / 9 existing warnings; 66 smoke + 139 regression + 3 service-worker checks PASS. Source, reproducible runners, limits and next gates: [lead acceptance](docs/ADMIN_LEAD_ACCEPTANCE_2026-10-15.md). Staging browser evidence is not production acceptance. Overall launch remains RED; next complete clients/projects paging and dashboard aggregation, then remaining enquiry/recovery/care/release gates. Production, live billing and outbound messages unchanged.
+
 ## Platform completion checkpoint — 15 October 2026
 
 H03/H07/H42: isolated `codex/platform-completion-2026-10-15` from existing launch review `1c8af5d` (PR #29), preserving payment/delivery/marketing work and unrelated local checkouts. Fixed dashboard partial-query failure handling, misleading revenue/automation labels, two-build pilot capacity display, admin cache invalidation after lead/client changes, and zero-row update/delete success handling. Full scope, ranked follow-ups and live read-only aggregate evidence: [platform checkpoint](docs/PLATFORM_COMPLETION_2026-10-15.md).
 
 Final fresh build/typecheck/format PASS; lint 0 errors / 9 existing warnings; platform smoke PASS, 135 regression tests and 3 service-worker tests PASS. New tests cover all ten operational source-failure positions and capped/missing data. Authenticated browser/RLS mutation/readback acceptance remains pending; no customer data writes, migration, push, merge, deployment, sending or spending. Overall launch remains RED. Next: bounded staging browser acceptance of dashboard failure/retry and cross-screen mutation refresh, followed by remaining intake/recovery/care and concrete release gates.
+
 # The Harley Group — shared project status
 
 **Draft review submitted, 14 October:** [PR #29](https://github.com/SkyPilot24/harley-digital-works/pull/29) integrates the existing first-client work and launch corrections on `codex/launch-completion-2026-10-14`. Review head `1a71b7b` passed GitHub quality and credential checks; dependency audit reported zero vulnerabilities. Cloudflare created a successful native review Preview with an unconfigured backend, not functional acceptance. Active production deployment remains `ab1ae80f-5523-475f-8050-1c1be9a8aa99` / version `25218195-69ef-4616-8977-416cd740d876`, created 13 October; GitHub main remains `45012e4`. No merge, production migration, live billing or customer outreach. This supersedes earlier local-only submission labels while retaining tested runtime `280b0e6` and earlier rehearsal source identities. Full sale-to-care and owner decisions remain RED. This documentation follow-up requires its own current-head check result before treating that head as CI-verified.
 
-
 **Current runtime checkpoint: `280b0e615c1c777c526e67b51b857fa37ac513af`, 14 October.** Active trade/location pricing and schedule claims aligned with the approved £1,495/£249 offer; unsupported rendered job-value/performance figures removed. Build/typecheck/format/full suite pass; lint nine existing warnings; private-value scan 223 artifacts pass; representative phone/desktop browser checks pass. This checkpoint is local only. Prior sandbox receipt and fictional customer approval evidence retain their tested source identities. Production release and full sale-to-care acceptance remain open. See `TRADE_OFFER_CORRECTION_2026-10-14.md`.
-
 
 **Latest customer approval evidence, 14 October:** fictional customer browser sign-in, proposal/latest-version confirmation and separate website-review approval passed against staging. Six active runtime checks cover superseded/digest rejection, membership revoke/restore, retry and release-evidence launch denial. Exact test project/user/evidence and credentials removed; zero residual fixtures and no port 4183 listener verified. No real agreement, administrator publish/invitation, client website, payment or launch is implied. Broader H20/H21/H50 remain open; see `CLIENT_APPROVAL_ACCEPTANCE_2026-10-14.md`.
 
-
 **Latest 14 October acceptance update:** the user approved and we executed the isolated sandbox rehearsal. Authentic fictional £747.50 checkout delivery produced one durable receipt; same-build redeployment, concurrent duplicate replays, rejection controls and temporary credential failure/recovery passed with the limits recorded in `Harley-sandbox-acceptance-2026-10-14.md`. Temporary Worker and new staging fixtures removed; original fixture retained. New Stripe endpoint disabled, physical deletion remains. Production and live billing unchanged. Owner confirmed Harley DigitalWorks Ltd and not VAT-registered; supplied company number/address recorded internally. Exact company-number search returned no result; reconciliation requested before invoice issue. The full paid-client lifecycle remains RED. Earlier pending statements below describe previous checkpoints and are superseded by this dated update.
-
 
 ## Customer-use offer and finance corrections — 14 October 2026
 
@@ -121,6 +126,7 @@ H47/H50: clarified commercial capacity/contract/tax evidence limits without chan
 H47: local main `45012e4a8b4b73335d64f260bb6ccc1047dedcb9` includes wordmark #27 (`cbb4974`), P01 dispatch/audit #28 (`269123a`) and P02 teardown/chief-of-staff documentation (`c8c8337`). Earlier pending-merge headings below retain their historical dates. No exact deployed revision or live acceptance verified here.
 
 Created [documentation directory](docs/README.md) and [output review](docs/LOCAL_DOCUMENTATION_REVIEW_2026-10-14.md); refreshed Business OS navigation, brand source status and activity, and labelled unsupported prospect examples. External mirror output records retained by reference; no files moved or application/configuration/data altered. H47 remains open for wider reproducibility/runbook acceptance. Commercial capacity/VAT wording, Slack destinations, briefing delivery/timing and H50 runtime receipt/recovery remain unresolved. Documentation is local/uncommitted; no push or deployment. Fresh documentation checks recorded in handover; historical application checks were not rerun.
+
 ## Review-branch reconciliation — 13 October 2026
 
 Latest main b4c751a is integrated into the branding review branch, preserving peer safeguards/qualification work and the peer removal of the orphan handover marker. This is source reconciliation only; main is unchanged and no production deployment is performed. Earlier pending-integration and marker-retention notes below are dated history. Fresh integrated checks follow the styling pass.
@@ -134,9 +140,6 @@ No main push, merge or production deployment. Main advanced to `b4c751a`; integr
 ## Approved HDW wordmark — 13 October 2026
 
 H15/H47: navy/ivory wordmark implemented locally on `codex/hdw-wordmark-2026-10-13`, implementation `172b576f40b0a7971a0a00ebf8cde573ac0a4ad3`. Replaces current HDW header/footer/admin logos, brand-page previews/downloads, icons and social preview; reconciles stale current brand/domain guidance while retaining historical records. Exact endorsement: Part of The Harley Group. Prepared pack uses midnight #081B30 and ivory #F6F3ED with outlined Arial-based lettering/custom H. Build/typecheck/format PASS; lint 0 errors, 9 existing warnings; 136 tests PASS. Local /, /brand, /auth at 375/768/1440px PASS for loaded logos/no overflow; mobile menu PASS. See docs/brand-pack.md and handover for evidence, limits and asset provenance. No push, merge, deployment or live admin acceptance. Review artwork/screenshots, then obtain separate publication approval. H15/H47 remain open.
-
-
-
 
 ## Chief of staff operating setup, IONOS domain resolution and Drive handover — 13 October 2026
 
