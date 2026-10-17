@@ -1,4 +1,11 @@
-**Antigravity restart — 17 October 2026:** Read the current checkpoint at the top of [docs/HANDOVER.md](docs/HANDOVER.md). Local scoped commit bc42f922b4e412d8a0e5056ac9e673e742e9851a remains unpushed in codex/reconcile-2026-10-16; canonical peer edits and private-portfolio production setup/acceptance remain open. This documentation pointer is uncommitted.
+**Antigravity restart — 17 October 2026:** Read the current checkpoint at the top of [docs/HANDOVER.md](docs/HANDOVER.md). Pre-go-live audit, Cloudflare verification, PR stack triage completed ([PR #39](https://github.com/SkyPilot24/harley-digital-works/pull/39)).
+
+## Pre-go-live website audit, Cloudflare verification & PR stack review — 17 October 2026
+
+- **Comprehensive Pre-Go-Live Audit:** Evaluated UI/UX, responsive behaviour across devices, CRO, content authenticity, and technical QA. Commercial terms on `about.tsx` and `index.tsx` aligned with ratified policy (removed unverified zero-rated VAT claims and blanket 14-day delivery SLAs in favour of agreed delivery schedule and up to 2 pilot spots). Repointed package investment link from deferred `/calculator` to `/contact`.
+- **Review Branch & Pull Request:** Pushed `audit/pre-go-live-remediation` and opened [PR #39](https://github.com/SkyPilot24/harley-digital-works/pull/39) targeting `main`. Verified: 190 tests PASS, 3 service worker tests PASS, TypeScript 0 errors, ESLint 0 errors, Nitro SSR production build PASS in ~3s.
+- **Cloudflare Live Production Environment:** Authenticated with Cloudflare API under account `6ccd86a1ec4535357f9bc51cd05e68cd` for Worker `skypilot24-harley-digital-works`. Confirmed active live variables: `SUPABASE_URL`, encrypted `SUPABASE_SERVICE_ROLE_KEY` secret, `SLACK_WEBHOOK_URL`, and `LEAD_NOTIFICATIONS_ENABLED: "true"`. Automated CRM lead intake and fail-safe mailto fallback verified.
+- **PR Stack & Dependabot Triage:** Promoted admin stack PR #31 and PR #32 to Ready for Review (stacking with PR #33, which is 100% green). Closed failing bulk Dependabot PRs #38 and #19 to protect build stability.
 
 ## Before & After portfolio, social proof & conversion optimisation — 17 October 2026
 

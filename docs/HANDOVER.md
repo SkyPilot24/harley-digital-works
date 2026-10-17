@@ -1,3 +1,27 @@
+## Pre-go-live audit, Cloudflare verification & PR stack review — 17 October 2026
+
+Founder requested a comprehensive pre-go-live website audit, Cloudflare CLI verification, and review of open pull requests.
+
+1. **Pre-Go-Live Website Audit & Remediation (PR #39):**
+   - Completed multi-disciplinary audit across UI/UX, responsive layouts, conversion pathways, content integrity, and technical QA (archived in `pre-go-live-audit-report.md`).
+   - Reconciled historical "Zero-rated VAT" and blanket "14-day turnaround SLA" on `src/routes/about.tsx` and `src/routes/index.tsx` with approved commercial policy ("Deliverables, revisions, milestones, and delivery schedule agreed in writing before work begins" and "Agreed delivery schedule · Up to 2 pilot spots").
+   - Repointed package investment link in `src/components/site/WebsitePackagesSection.tsx` from deferred `/calculator` to `/contact?service=Website%20scope%20and%20investment`.
+   - Cleaned test script formatting (`scripts/portfolio-transformations.test.mjs`), achieving 0 ESLint errors.
+   - Pushed branch `audit/pre-go-live-remediation` and opened [PR #39](https://github.com/SkyPilot24/harley-digital-works/pull/39) targeting `main`. Typecheck (0 errors), 190 tests PASS, 3 service worker tests PASS, Nitro SSR build PASS.
+
+2. **Cloudflare Worker Deployment & Intake Verification:**
+   - Authenticated with Cloudflare API under account `6ccd86a1ec4535357f9bc51cd05e68cd` (`Robbieharley83@gmail.com's Account`).
+   - Inspected active production Worker deployment `skypilot24-harley-digital-works`.
+   - Confirmed active production variables: `SUPABASE_URL` (`https://worzpzbutngugwzhlvtj.supabase.co`) and encrypted secret `SUPABASE_SERVICE_ROLE_KEY` (`secret_text`), plus `SLACK_WEBHOOK_URL` and `LEAD_NOTIFICATIONS_ENABLED: "true"`.
+   - Validated that `submitLead` RPC runs with privileged server-side intake and HMAC rate-limiting, with intact `buildLeadMailto` client fallback if network fails.
+
+3. **Open Pull Requests Triage & Stack Promotion:**
+   - **PR #31** (`Fix admin totals and enquiry, client and project management`): Promoted from draft to **Ready for Review**.
+   - **PR #32** (`Page admin user listing and block revoking the last admin`): Promoted from draft to **Ready for Review**.
+   - **PR #33** (`Admin Control Centre: server-side validation and data integrity`): Verified **Open and all 6 CI checks green**.
+   - **PR #38** (bulk dev-dependencies, 14 updates) & **PR #19** (bulk production-dependencies, 47 updates): **Closed** due to breaking TypeScript/React 19 build failures; dependencies will be updated in controlled, tested batches.
+   - **PR #39** (Audit remediation): Open and awaiting founder merge into `main`.
+
 ## Antigravity continuation checkpoint — 17 October 2026
 
 Founder requested this documentation-only restart handoff so Antigravity can continue. H03/H07/H42/H47/H49/D01–D08 remain open where acceptance is missing. This new checkpoint and copied reconciliation record are saved in canonical files, **not committed**. Preserve all earlier history and peer changes.
