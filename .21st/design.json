@@ -3,25 +3,13 @@
   "project": {
     "name": "tanstack_start_ts",
     "productType": null,
-    "stack": [
-      "react",
-      "shadcn",
-      "tailwind-v4",
-      "vite"
-    ]
+    "stack": ["react", "shadcn", "tailwind-v4", "vite"]
   },
   "sources": {
     "tokens": [],
-    "components": [
-      "src/components/ui"
-    ],
-    "assets": [
-      "public/brand",
-      "public/images"
-    ],
-    "instructions": [
-      "AGENTS.md"
-    ]
+    "components": ["src/components/ui"],
+    "assets": ["public/brand", "public/images"],
+    "instructions": ["AGENTS.md"]
   },
   "design": {
     "colorMode": "unknown",
@@ -82,21 +70,14 @@
       "toggle-group",
       "tooltip"
     ],
-    "preferredPrimitives": [
-      "radix-ui"
-    ],
+    "preferredPrimitives": ["radix-ui"],
     "patterns": []
   },
   "constraints": {
     "must": [],
     "avoid": []
   },
-  "decisions": [
-    {
-      "date": "2026-10-17",
-      "decision": "Founder-supplied interactive workflow hero replaces the homepage opening; midnight navy base with supplied emerald interaction accents, existing site shell, illustrative demo labels and reduced-motion support."
-    }
-  ],
+  "decisions": [],
   "evidence": [
     {
       "fact": "components.installed",

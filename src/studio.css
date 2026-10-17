@@ -2319,35 +2319,3 @@
     padding-inline: 17px;
   }
 }
-
-/* Supplied interactive hero: fixed coordinate space scales inside its responsive stage. */
-.studio-home .engine-hero h1 {
-  font-size: clamp(2.15rem, 4.1vw, 3.35rem);
-  line-height: 1.08;
-  color: var(--hdw-ivory);
-}
-.engine-canvas {
-  position: absolute;
-  width: 600px;
-  height: 440px;
-  left: 50%;
-  top: calc(50% + 4px);
-  transform: translate(-50%, -50%) scale(var(--engine-scale, 0.45));
-  transform-origin: center;
-  pointer-events: none;
-}
-.engine-hero button {
-  min-height: 44px;
-}
-.engine-hero :is(a, button, input):focus-visible {
-  outline: 3px solid #6ee7b7;
-  outline-offset: 4px;
-}
-@media (prefers-reduced-motion: reduce) {
-  .engine-hero *,
-  .engine-hero *::before,
-  .engine-hero *::after {
-    animation: none !important;
-    transition: none !important;
-  }
-}

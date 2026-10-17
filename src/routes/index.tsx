@@ -1,10 +1,10 @@
-import InteractiveHero from "@/components/site/InteractiveHero";
 import { IllustrativeTradeProof } from "@/components/site/IllustrativeTradeProof";
+import { useEffect, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowUpRight, Check, PenLine, ShieldCheck } from "lucide-react";
+import { ArrowDown, ArrowUpRight, Check, PenLine, ShieldCheck } from "lucide-react";
 import { PageShell } from "@/components/site/PageShell";
 import { PillButton } from "@/components/site/PillButton";
-import { ConceptShowcase } from "@/components/site/ConceptShowcase";
+import { ConceptScreen, ConceptShowcase } from "@/components/site/ConceptShowcase";
 import { BeforeAfterComparison } from "@/components/site/BeforeAfterComparison";
 import { BeforeAfterSlider } from "@/components/site/BeforeAfterSlider";
 import { WebsitePackagesSection } from "@/components/site/WebsitePackagesSection";
@@ -22,9 +22,9 @@ import { buildPageSeoHead } from "@/lib/site-config";
 export const Route = createFileRoute("/")({
   head: () =>
     buildPageSeoHead({
-      title: "Harley Digital Works | Websites & Digital Workflows",
+      title: "Harley Digital Works | Websites Worth Choosing",
       description:
-        "Websites, digital care and custom workflow automation. Turn disconnected spreadsheets and manual admin into a structured digital engine with Harley Digital Works.",
+        "Your work deserves a better website. Website design, copywriting and ongoing digital care for UK trades. An initial build fee, a monthly service, and one team to look after your website.",
       path: "/",
     }),
   component: HomePage,
@@ -61,7 +61,105 @@ function HomePage() {
   return (
     <PageShell quiet>
       <div className="studio-home">
-        <InteractiveHero />
+        <section className="studio-hero" aria-labelledby="hero-heading">
+          <div className="studio-wrap hero-layout">
+            <div className="hero-copy">
+              <p className="studio-kicker">
+                <span className="studio-kicker-line" /> WEBSITES & DIGITAL CARE FOR UK TRADES
+              </p>
+              <h1 id="hero-heading">
+                Your work.
+                <br />
+                Deserves a<br />
+                <span>better website.</span>
+              </h1>
+              <p className="hero-description">
+                You’ve built a business to be proud of.
+                <br className="hero-line-break" /> Let’s give it a website to match.
+              </p>
+              <p className="hero-support">
+                Distinctive design, words that connect, and ongoing care. Made for ambitious trades
+                and service businesses.
+              </p>
+              <div className="flex flex-wrap items-center gap-2 mb-3">
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-50 border border-emerald-200/80 px-2.5 py-1 text-[11px] font-bold text-emerald-900">
+                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
+                  <span>Design, copy and ongoing care</span>
+                </span>
+              </div>
+              <div className="studio-actions flex flex-wrap items-center gap-3">
+                <PillButton
+                  as="link"
+                  to="/contact"
+                  variant="dark"
+                  className="studio-button min-h-[48px] px-6 text-sm font-bold shadow-md cursor-pointer"
+                >
+                  Get your website plan
+                </PillButton>
+                <PillButton
+                  as="link"
+                  to="/contact"
+                  search={{ service: "Existing website review" }}
+                  variant="ghost"
+                  className="min-h-[48px] px-4 text-xs font-semibold border border-ink/20 hover:bg-ink/5 cursor-pointer"
+                >
+                  Discuss your existing website
+                </PillButton>
+                <a href="#transformations" className="studio-text-link">
+                  See transformations <ArrowDown size={14} />
+                </a>
+              </div>
+              <div className="hero-price">
+                <span>Websites for Bristol, Bath and UK trade businesses</span>
+                <span>£1,495 setup (50% deposit / 50% approval) · £249/mo care</span>
+              </div>
+            </div>
+            <div className="hero-art">
+              <div className="hero-art-note">
+                <span>GOOD WORK DESERVES TO BE SEEN.</span>
+                <span>↘</span>
+              </div>
+              <a
+                href="#selected-work"
+                className="hero-browser"
+                aria-label="Explore our image-led website design studies"
+              >
+                <span className="browser-toolbar">
+                  <i />
+                  <i />
+                  <i />
+                  <span>form & field — independent design study</span>
+                </span>
+                <ConceptScreen concept="architecture" priority />
+              </a>
+              <div className="hero-phone" aria-hidden="true">
+                <div className="phone-speaker" />
+                <ConceptScreen concept="interior" />
+              </div>
+              <div className="hero-art-caption">
+                <span>
+                  Thoughtfully designed.
+                  <br />
+                  <strong>Down to the last detail.</strong>
+                </span>
+                <span className="hero-art-seal">
+                  DESIGN
+                  <br />
+                  <span>with</span>
+                  <br />
+                  PURPOSE
+                </span>
+              </div>
+            </div>
+          </div>
+          <div className="studio-wrap hero-footnote">
+            <span>STRATEGY. DESIGN. WORDS. CARE.</span>
+            <span>One studio. Your whole website.</span>
+            <a href="#selected-work" aria-label="Scroll to selected design studies">
+              <ArrowDown size={18} />
+            </a>
+          </div>
+        </section>
 
         <section
           className="studio-work studio-section"
