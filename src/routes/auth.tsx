@@ -5,6 +5,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { PageShell, Container } from "@/components/site/PageShell";
 import { toast } from "sonner";
 import { safeAuthRedirect } from "@/lib/auth-redirect";
+import { useAuth } from "@/hooks/use-auth";
 
 const searchSchema = z.object({ redirect: z.unknown().transform(safeAuthRedirect) });
 const googleSignInEnabled = import.meta.env.VITE_GOOGLE_AUTH_ENABLED === "true";
@@ -17,8 +18,9 @@ export const Route = createFileRoute("/auth")({
   beforeLoad: async ({ search }) => {
     if (typeof window === "undefined") return;
     if (!supabaseConfigured) return;
-    const { data } = await supabase.auth.getSession();
-    if (data.session) throw redirect({ to: search.redirect ?? "/admin" });
+    const result = await supabase.auth.getSession().catch(() => null);
+    if (result && !result.error && result.data.session)
+      throw redirect({ to: search.redirect ?? "/admin" });
   },
   head: () => ({
     meta: [
@@ -40,8 +42,11 @@ function AuthPage() {
   const [formError, setFormError] = useState<string | null>(null);
   const [formNotice, setFormNotice] = useState<string | null>(null);
   const [localSignIn, setLocalSignIn] = useState(false);
+  const [interactive, setInteractive] = useState(false);
+  const { error: sessionError, retry: retrySession } = useAuth();
 
   useEffect(() => {
+    setInteractive(true);
     setLocalSignIn(["localhost", "127.0.0.1", "[::1]"].includes(window.location.hostname));
   }, []);
 
@@ -169,7 +174,7 @@ function AuthPage() {
             <button
               type="button"
               onClick={handleGoogle}
-              disabled={busy || localSignIn || !googleSignInEnabled}
+              disabled={!interactive || busy || localSignIn || !googleSignInEnabled}
               className="mt-6 flex w-full items-center justify-center gap-3 rounded-full border border-ink/15 bg-white px-4 py-2.5 text-sm font-medium text-ink transition hover:bg-ink/[0.03] disabled:opacity-50"
             >
               <GoogleIcon />
@@ -188,7 +193,18 @@ function AuthPage() {
               <div className="h-px flex-1 bg-ink/10" />
             </div>
 
-            <form onSubmit={handleEmail} className="space-y-4">
+            <form method="post" onSubmit={handleEmail} className="space-y-4">
+              {sessionError && (
+                <p role="alert" className="text-sm text-ink-muted">
+                  Your existing sign-in could not be checked.{" "}
+                  <button type="button" className="underline" onClick={retrySession}>
+                    Retry sign-in check
+                  </button>
+                </p>
+              )}
+              <noscript>
+                <p className="text-sm text-ink-muted">Enable JavaScript to sign in securely.</p>
+              </noscript>
               <label className="block">
                 <span className="text-[13px] font-medium text-ink">Email</span>
                 <input
@@ -226,10 +242,16 @@ function AuthPage() {
               )}
               <button
                 type="submit"
-                disabled={busy}
+                disabled={!interactive || busy}
                 className="w-full rounded-full bg-ink px-4 py-2.5 text-sm font-medium text-white transition hover:bg-ink/90 disabled:opacity-50"
               >
-                {busy ? "Please wait…" : mode === "signin" ? "Sign in" : "Create account"}
+                {!interactive
+                  ? "Loading sign-in…"
+                  : busy
+                    ? "Please wait…"
+                    : mode === "signin"
+                      ? "Sign in"
+                      : "Create account"}
               </button>
             </form>
 

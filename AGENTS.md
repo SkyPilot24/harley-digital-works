@@ -2,7 +2,7 @@
 
 > [!IMPORTANT]
 > **Dual Architecture Operating Rule (Settled 8 October 2026):**
-> - **Agency Platform (`SkyPilot24/harley-digital-works`):** Maintained strictly via code by **Codex**, **Antigravity**, and canonical Git. Houses live Supabase RLS policies (`worzpzbutngugwzhlvtj`), Cloudflare Nitro Worker SSR, Slack Command Centre, minute notification outbox crons, hourly abuse pruning (`prune-lead-attempts`), and authenticated Admin suite. Do not import into Lovable.
+> - **Agency Platform (`SkyPilot24/harley-digital-works`):** Maintained strictly via code by **Codex**, **Antigravity**, **GitHub Copilot**, and canonical Git. Houses live Supabase RLS policies (`worzpzbutngugwzhlvtj`), Cloudflare Nitro Worker SSR, Slack Command Centre, minute notification outbox crons, hourly abuse pruning (`prune-lead-attempts`), and authenticated Admin suite. Do not import into Lovable.
 > - **External Client Trade Websites:** Built and maintained visually via **Lovable** connected to dedicated GitHub repos (e.g. `SkyPilot24/kindred-spark` - Wessex Volt Electrical template, commit `f1481fe`). Deploys to Cloudflare Pages.
 >
 > Commits pushed to `main` auto-deploy to Cloudflare. Avoid rewriting published git history (no force pushes or squashing). Keep `main` in a verified working state.
@@ -13,7 +13,7 @@
 
 When working on strategy, copy, Control Centre, Revenue OS, diagnostics, services, resources, domains, social/content workflows, or prioritisation, use `$thg-project-context` when available to keep changes aligned with the THG north star and reduce drift.
 
-## Shared project context — Codex, ChatGPT Work and Google Antigravity
+## Shared project context — Codex, ChatGPT Work, Google Antigravity and GitHub Copilot
 
 At the start of a session, read **`PROJECT_STATUS.md`**'s short operating brief AND **`docs/HANDOVER.md`** first to inherit the current verified state, recent peer agent activities, test results, and active bottleneck. Select one ready task, then retrieve relevant detail from:
 
@@ -36,3 +36,5 @@ Work against an existing task ID where possible. Avoid simultaneous edits to the
 Before ending a session, update relevant backlog evidence, PROJECT_STATUS.md and docs/HANDOVER.md in the same change where practical. Record what changed, exact checks and results, branch/commit, remaining blockers and next action. Distinguish proposed, implemented, tested, pushed and deployed. Do not mark tasks complete without their acceptance evidence. Record migrations and their application state; a migration file alone is not an applied migration.
 
 Run the applicable repository checks for code changes. Report checks not run and why; never reuse historical results as current verification. Do not send buyer outreach, buy domains, enable live billing/email or change production merely because a future task appears in the backlog.
+
+GitHub Copilot enters through .github/copilot-instructions.md and docs/COPILOT_QUICKSTART.md, using the same shared records and canonical standards. Copilot onboarding does not transfer credentials or authorise production actions.

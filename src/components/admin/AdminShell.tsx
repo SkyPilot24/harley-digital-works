@@ -23,6 +23,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { useAuth, useIsAdmin } from "@/hooks/use-auth";
 import { useQueryClient } from "@tanstack/react-query";
 import { cn } from "@/lib/utils";
+import { signOutWithPrivateCache, clearNonRoleQueries } from "@/lib/auth-session";
 
 const PRIMARY_NAV: { to: string; label: string; icon: typeof LayoutDashboard; exact?: boolean }[] =
   [
@@ -45,33 +46,94 @@ const SECONDARY_NAV: { to: string; label: string; icon: typeof LayoutDashboard }
 ];
 
 export function AdminShell({ children }: { children: ReactNode }) {
-  const { user, loading } = useAuth();
-  const { data: isAdmin, isLoading: roleLoading } = useIsAdmin();
+  const { user, loading, error: authError, retry: retryAuth } = useAuth();
+  const {
+    data: isAdmin,
+    isLoading: roleLoading,
+    isError: roleError,
+    refetch: retryRole,
+  } = useIsAdmin();
   const navigate = useNavigate();
   const router = useRouter();
   const qc = useQueryClient();
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
+  const [signingOut, setSigningOut] = useState(false);
+  const [signOutError, setSignOutError] = useState(false);
   const currentPath = router.state.location.pathname;
 
   useEffect(() => {
-    if (!loading && !user) navigate({ to: "/auth", search: { redirect: "/admin" } });
-  }, [loading, user, navigate]);
+    if (!loading && !user && !authError)
+      navigate({ to: "/auth", search: { redirect: currentPath }, replace: true });
+  }, [loading, user, authError, currentPath, navigate]);
 
   useEffect(() => {
     setMobileNavOpen(false);
   }, [currentPath]);
 
+  useEffect(() => {
+    if (roleError || isAdmin === false) clearNonRoleQueries(qc);
+  }, [roleError, isAdmin, qc]);
+
   async function signOut() {
-    await qc.cancelQueries();
-    qc.clear();
-    await supabase.auth.signOut();
-    navigate({ to: "/auth", replace: true });
+    setSigningOut(true);
+    setSignOutError(false);
+    try {
+      await signOutWithPrivateCache(supabase.auth, qc);
+      navigate({ to: "/auth", replace: true });
+    } catch {
+      setSignOutError(true);
+    } finally {
+      setSigningOut(false);
+    }
   }
 
-  if (loading || roleLoading) {
+  if (authError || roleError || signOutError) {
+    return (
+      <div className="flex min-h-screen items-center justify-center bg-background px-6">
+        <div
+          className="max-w-md rounded-2xl border border-ink/10 bg-white p-8 text-center"
+          role="alert"
+        >
+          <h1 className="text-xl font-semibold text-ink">
+            {signOutError
+              ? "Sign-out could not be confirmed"
+              : authError
+                ? "Sign-in check unavailable"
+                : "Permissions could not be checked"}
+          </h1>
+          <p className="mt-3 text-sm text-ink-muted">
+            {signOutError
+              ? "Private data has been cleared from this view. Retry sign-out before leaving this device."
+              : "Private business information remains hidden. Retry the check to continue."}
+          </p>
+          <div className="mt-6 flex flex-wrap justify-center gap-3">
+            {!signOutError && (
+              <button
+                type="button"
+                className="rounded-full border border-ink/15 px-4 py-2 text-sm"
+                onClick={() => (authError ? retryAuth() : void retryRole())}
+              >
+                {authError ? "Retry sign-in check" : "Retry permissions"}
+              </button>
+            )}
+            <button
+              type="button"
+              disabled={signingOut}
+              className="rounded-full bg-ink px-4 py-2 text-sm text-white disabled:opacity-50"
+              onClick={signOut}
+            >
+              {signingOut ? "Signing out…" : signOutError ? "Retry sign-out" : "Sign out"}
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (loading || roleLoading || signingOut) {
     return (
       <div className="flex min-h-screen items-center justify-center bg-background text-ink-muted">
-        Loading...
+        {signingOut ? "Signing out…" : "Checking access…"}
       </div>
     );
   }

@@ -1,3 +1,10 @@
+import {
+  loadProjectPage,
+  loadProjectSummary,
+  loadCompleteRecords,
+  type ProjectFilter,
+} from "@/lib/admin-records";
+import { AdminPagination } from "@/components/admin/AdminPagination";
 import { useState, useMemo } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
@@ -34,58 +41,58 @@ type ClientRow = Database["public"]["Tables"]["clients"]["Row"];
 
 function ProjectsAdminPage() {
   const qc = useQueryClient();
-  const [filterStatus, setFilterStatus] = useState<string>("all");
+  const [filterStatus, setFilterStatus] = useState<ProjectFilter>("all");
   const [isCreatingProject, setIsCreatingProject] = useState(false);
+  const [page, setPage] = useState(0);
+  const [searchTerm, setSearchTerm] = useState("");
   const [editingProject, setEditingProject] = useState<ProjectRow | null>(null);
 
   const projectsQuery = useQuery({
-    queryKey: ["admin", "projects-list"],
-    queryFn: async () => {
-      const { data, error } = await supabase
-        .from("projects")
-        .select("*, clients(id, name, contact_name, contact_email, website)")
-        .order("created_at", { ascending: false });
-      if (error) throw error;
-      return (data ?? []) as (ProjectRow & {
-        clients: Pick<
-          ClientRow,
-          "id" | "name" | "contact_name" | "contact_email" | "website"
-        > | null;
-      })[];
-    },
+    queryKey: ["admin", "projects-list", filterStatus, searchTerm, page],
+    queryFn: ({ signal }) =>
+      loadProjectPage(supabase, { page, status: filterStatus, search: searchTerm, signal }),
   });
-
+  const summaryQuery = useQuery({
+    queryKey: ["projects", "summary"],
+    queryFn: () => loadProjectSummary(supabase),
+  });
   const clientsQuery = useQuery({
     queryKey: ["admin", "clients-picker"],
-    queryFn: async () => {
-      const { data, error } = await supabase.from("clients").select("id, name");
-      if (error) throw error;
-      return (data ?? []) as Pick<ClientRow, "id" | "name">[];
-    },
+    queryFn: async () =>
+      (
+        await loadCompleteRecords((after) => {
+          let query = supabase
+            .from("clients")
+            .select("id,name", { count: "exact" })
+            .order("id")
+            .limit(500);
+          if (after) query = query.gt("id", after);
+          return query;
+        })
+      ).sort((a, b) => a.name.localeCompare(b.name)),
   });
-
-  const projects = useMemo(() => projectsQuery.data ?? [], [projectsQuery.data]);
-  const clients = useMemo(() => clientsQuery.data ?? [], [clientsQuery.data]);
-
-  const activeProjects = useMemo(
-    () => projects.filter((p) => ["discovery", "in_progress", "review"].includes(p.status)),
-    [projects],
+  const projects = projectsQuery.isSuccess ? projectsQuery.data.rows : [];
+  const clients = useMemo(
+    () => (clientsQuery.isSuccess ? clientsQuery.data : []),
+    [clientsQuery.data, clientsQuery.isSuccess],
   );
-
-  const filteredProjects = useMemo(() => {
-    if (filterStatus === "all") return projects;
-    if (filterStatus === "active") return activeProjects;
-    return projects.filter((p) => p.status === filterStatus);
-  }, [projects, filterStatus, activeProjects]);
-
+  const summary = summaryQuery.isSuccess ? summaryQuery.data : undefined;
+  const activeCount = summary?.active;
+  const filteredProjects = projects;
   const updateStageMutation = useMutation({
     mutationFn: async ({ id, status }: { id: string; status: ProjectRow["status"] }) => {
-      const { error } = await supabase.from("projects").update({ status }).eq("id", id);
+      const { error } = await supabase
+        .from("projects")
+        .update({ status })
+        .eq("id", id)
+        .select("id")
+        .single();
       if (error) throw error;
     },
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ["admin", "projects-list"] });
-      qc.invalidateQueries({ queryKey: ["admin", "operational-stats"] });
+      qc.invalidateQueries({ queryKey: ["admin"] });
+      qc.invalidateQueries({ queryKey: ["projects"] });
       toast.success("Project stage updated");
     },
     onError: (err: Error) => toast.error(err.message),
@@ -93,12 +100,14 @@ function ProjectsAdminPage() {
 
   const deleteProjectMutation = useMutation({
     mutationFn: async (id: string) => {
-      const { error } = await supabase.from("projects").delete().eq("id", id);
+      const { error } = await supabase.from("projects").delete().eq("id", id).select("id").single();
       if (error) throw error;
     },
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ["admin", "projects-list"] });
-      qc.invalidateQueries({ queryKey: ["admin", "operational-stats"] });
+      qc.invalidateQueries({ queryKey: ["admin"] });
+      qc.invalidateQueries({ queryKey: ["projects"] });
+      setPage(0);
       toast.success("Project deleted");
     },
     onError: (err: Error) => toast.error(err.message),
@@ -112,6 +121,7 @@ function ProjectsAdminPage() {
           subtitle="Build progress, versioned customer reviews and verified launch readiness."
         />
         <button
+          disabled={!clientsQuery.isSuccess}
           onClick={() => setIsCreatingProject(true)}
           className="inline-flex items-center gap-1.5 rounded-full bg-ink px-4 py-2 text-xs font-semibold text-white shadow-xs hover:bg-ink/90 transition-colors"
         >
@@ -131,17 +141,19 @@ function ProjectsAdminPage() {
             <Layers size={16} className="text-blue-700" />
           </div>
           <div className="mt-2 text-3xl font-extrabold text-ink">
-            {activeProjects.length} / 2{" "}
+            {activeCount ?? "—"} / 2{" "}
             <span className="text-sm font-normal text-ink-muted">slots</span>
           </div>
           <p className="mt-2 text-xs text-ink-muted">
-            {activeProjects.length >= 2
-              ? "At capacity limit — complete an existing build before onboarding new trades."
-              : `${2 - activeProjects.length} build slot(s) within the pilot capacity target.`}
+            {activeCount === undefined
+              ? "Capacity unavailable until project totals load."
+              : (activeCount ?? 0) >= 2
+                ? "At capacity limit — complete an existing build before onboarding new trades."
+                : `${2 - (activeCount ?? 0)} build slot(s) within the pilot capacity target.`}
           </p>
         </div>
 
-        {/* 14-Day Delivery SLA */}
+        {/* Project delivery dates */}
         <div className="rounded-xl border border-ink/10 bg-white p-5 shadow-xs">
           <div className="flex items-center justify-between text-ink-muted">
             <span className="text-[11px] font-bold uppercase tracking-wider">
@@ -149,7 +161,7 @@ function ProjectsAdminPage() {
             </span>
             <Clock size={16} className="text-emerald-700" />
           </div>
-          <div className="mt-2 text-3xl font-extrabold text-ink">14 Business Days</div>
+          <div className="mt-2 text-3xl font-extrabold text-ink">Agreed per project</div>
           <p className="mt-2 text-xs text-ink-muted">
             Target from complete asset receipt, excluding client delays. Confirm project dates
             individually.
@@ -171,19 +183,40 @@ function ProjectsAdminPage() {
         </div>
       </div>
 
+      {summaryQuery.isError && (
+        <p role="alert">
+          Project totals are unavailable.{" "}
+          <button type="button" className="underline" onClick={() => void summaryQuery.refetch()}>
+            Retry project totals
+          </button>
+        </p>
+      )}
+      {clientsQuery.isError && (
+        <p role="alert">
+          Client choices are unavailable.{" "}
+          <button type="button" className="underline" onClick={() => void clientsQuery.refetch()}>
+            Retry client choices
+          </button>
+        </p>
+      )}
       {/* Delivery Stage Filters */}
       <div className="flex overflow-x-auto border-b border-ink/10 pb-px gap-1">
         {[
-          { key: "all", label: `All Projects (${projects.length})` },
-          { key: "active", label: `Active In Flight (${activeProjects.length})` },
+          { key: "all", label: `All Projects (${summary?.all ?? "—"})` },
+          { key: "active", label: `Active In Flight (${activeCount ?? "—"})` },
           { key: "discovery", label: "1. Discovery" },
           { key: "in_progress", label: "2. Build" },
           { key: "review", label: "3. Preview & Approval" },
           { key: "launched", label: "4. Launched" },
+          { key: "on_hold", label: "On hold" },
+          { key: "archived", label: "Archived" },
         ].map((tab) => (
           <button
             key={tab.key}
-            onClick={() => setFilterStatus(tab.key)}
+            onClick={() => {
+              setFilterStatus(tab.key as ProjectFilter);
+              setPage(0);
+            }}
             className={`whitespace-nowrap border-b-2 px-4 py-2.5 text-xs font-semibold transition-colors ${
               filterStatus === tab.key
                 ? "border-ink text-ink font-bold"
@@ -195,9 +228,30 @@ function ProjectsAdminPage() {
         ))}
       </div>
 
+      <label htmlFor="project-search" className="sr-only">
+        Search projects
+      </label>
+      <input
+        id="project-search"
+        type="search"
+        placeholder="Search project titles or summaries"
+        value={searchTerm}
+        onChange={(event) => {
+          setSearchTerm(event.target.value);
+          setPage(0);
+        }}
+        className="w-full rounded-full border border-ink/15 bg-white px-4 py-2 text-sm"
+      />
       {/* Project Cards List */}
       {projectsQuery.isPending ? (
         <p className="text-xs text-ink-muted py-6">Loading projects…</p>
+      ) : projectsQuery.isError ? (
+        <p role="alert">
+          Projects could not be loaded.{" "}
+          <button type="button" className="underline" onClick={() => void projectsQuery.refetch()}>
+            Retry projects
+          </button>
+        </p>
       ) : filteredProjects.length === 0 ? (
         <div className="rounded-xl border border-dashed border-ink/15 bg-white p-8 text-center">
           <Briefcase size={28} className="mx-auto text-ink-muted/50 mb-2" />
@@ -346,6 +400,13 @@ function ProjectsAdminPage() {
         </div>
       )}
 
+      <AdminPagination
+        page={page}
+        total={projectsQuery.isSuccess ? projectsQuery.data.total : undefined}
+        pending={projectsQuery.isFetching}
+        label="projects"
+        onChange={setPage}
+      />
       {/* Create Project Modal */}
       {isCreatingProject && (
         <CreateProjectModal
@@ -353,7 +414,8 @@ function ProjectsAdminPage() {
           onClose={() => setIsCreatingProject(false)}
           onSuccess={() => {
             qc.invalidateQueries({ queryKey: ["admin", "projects-list"] });
-            qc.invalidateQueries({ queryKey: ["admin", "operational-stats"] });
+            qc.invalidateQueries({ queryKey: ["admin"] });
+            qc.invalidateQueries({ queryKey: ["projects"] });
             setIsCreatingProject(false);
           }}
         />
@@ -367,7 +429,8 @@ function ProjectsAdminPage() {
           onClose={() => setEditingProject(null)}
           onSuccess={() => {
             qc.invalidateQueries({ queryKey: ["admin", "projects-list"] });
-            qc.invalidateQueries({ queryKey: ["admin", "operational-stats"] });
+            qc.invalidateQueries({ queryKey: ["admin"] });
+            qc.invalidateQueries({ queryKey: ["projects"] });
             setEditingProject(null);
           }}
         />
@@ -390,29 +453,26 @@ function CreateProjectModal({
   onSuccess: () => void;
 }) {
   const [name, setName] = useState("");
-  const [clientId, setClientId] = useState(clients[0]?.id ?? "");
-  const [targetDays, setTargetDays] = useState("14");
+  const [clientId, setClientId] = useState("");
+  const [targetDate, setTargetDate] = useState("");
   const [summary, setSummary] = useState("Standard 5-page Managed trade website build.");
   const [loading, setLoading] = useState(false);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (!name) {
+    if (!name.trim()) {
       toast.error("Project name is required");
       return;
     }
     setLoading(true);
     try {
-      const targetDate = new Date();
-      targetDate.setDate(targetDate.getDate() + parseInt(targetDays || "14", 10));
-
       const { error } = await supabase.from("projects").insert({
-        name,
+        name: name.trim(),
         client_id: clientId || null,
         status: "discovery",
         budget_cents: 149500, // £1,495 standard setup
         start_date: new Date().toISOString(),
-        target_date: targetDate.toISOString(),
+        target_date: targetDate || null,
         summary: summary || null,
       });
       if (error) throw error;
@@ -429,17 +489,24 @@ function CreateProjectModal({
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4 backdrop-blur-xs">
       <div className="w-full max-w-md rounded-2xl bg-white p-6 shadow-2xl">
         <div className="flex items-center justify-between border-b border-ink/10 pb-3">
-          <h3 className="text-base font-bold text-ink">Start 14-Day Build Project</h3>
-          <button onClick={onClose} className="rounded p-1 text-ink-muted hover:bg-ink/5">
+          <h3 className="text-base font-bold text-ink">Start project</h3>
+          <button
+            aria-label="Close new project"
+            onClick={onClose}
+            className="rounded p-1 text-ink-muted hover:bg-ink/5"
+          >
             <X size={18} />
           </button>
         </div>
-        <form onSubmit={handleSubmit} className="mt-4 space-y-3">
+        <form method="post" onSubmit={handleSubmit} className="mt-4 space-y-3">
           <div>
-            <label className="block text-xs font-semibold text-ink">Project Title *</label>
+            <label htmlFor="new-project-name" className="block text-xs font-semibold text-ink">
+              Project Title *
+            </label>
             <input
               type="text"
               required
+              id="new-project-name"
               value={name}
               onChange={(e) => setName(e.target.value)}
               placeholder="e.g. Westside Heating 5-Page Turnkey Presence"
@@ -447,8 +514,11 @@ function CreateProjectModal({
             />
           </div>
           <div>
-            <label className="block text-xs font-semibold text-ink">Client Account</label>
+            <label htmlFor="new-project-client" className="block text-xs font-semibold text-ink">
+              Client Account
+            </label>
             <select
+              id="new-project-client"
               value={clientId}
               onChange={(e) => setClientId(e.target.value)}
               className="mt-1 w-full rounded-lg border border-ink/20 px-3 py-2 text-xs"
@@ -462,17 +532,23 @@ function CreateProjectModal({
             </select>
           </div>
           <div>
-            <label className="block text-xs font-semibold text-ink">Delivery SLA (Days)</label>
+            <label htmlFor="new-project-target" className="block text-xs font-semibold text-ink">
+              Agreed target date (optional)
+            </label>
             <input
-              type="number"
-              value={targetDays}
-              onChange={(e) => setTargetDays(e.target.value)}
+              type="date"
+              id="new-project-target"
+              value={targetDate}
+              onChange={(e) => setTargetDate(e.target.value)}
               className="mt-1 w-full rounded-lg border border-ink/20 px-3 py-2 text-xs"
             />
           </div>
           <div>
-            <label className="block text-xs font-semibold text-ink">Summary & Scope</label>
+            <label htmlFor="new-project-summary" className="block text-xs font-semibold text-ink">
+              Summary & Scope
+            </label>
             <textarea
+              id="new-project-summary"
               value={summary}
               onChange={(e) => setSummary(e.target.value)}
               rows={2}
@@ -530,7 +606,9 @@ function EditProjectModal({
           status,
           summary: summary || null,
         })
-        .eq("id", project.id);
+        .eq("id", project.id)
+        .select("id")
+        .single();
       if (error) throw error;
       toast.success("Project updated");
       onSuccess();

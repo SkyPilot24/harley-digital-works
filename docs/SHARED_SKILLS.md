@@ -9,3 +9,5 @@ Antigravity's always-on .agents/rules/thg-shared-skills.md points directly to th
 Validate each canonical folder with the skill-creator quick_validate.py, inspect UI metadata and local reference targets, then run sync -Check. This verifies packaging/configuration and byte parity. It does not prove automatic discovery in a running host, actual Antigravity execution or application production readiness. Keep those claims separate.
 
 New skills preserve approved scope, existing work, truthful claims, premium conversion design, automated delivery with founder quality review, and evidence-led auth/RLS/function/migration checks. Current Supabase and PostgreSQL documentation was consulted on 3 October 2026; recheck relevant provider changes during actual implementation.
+
+GitHub Copilot repository guidance is .github/copilot-instructions.md; setup and a reusable starter prompt are in docs/COPILOT_QUICKSTART.md. Copilot reads the canonical repository standards directly when relevant; no installed skill discovery, credentials or account configuration is implied.
