@@ -1,3 +1,24 @@
+## Gate 1 unified release candidate verified — 18 October 2026
+
+Founder (Robbie) authorised publishing the Gate 1 release candidate. Candidate branch `release/gate1-unified-candidate`, base `13d2aff36f590d23e38972edcdbbbdd92627b60e` on top of `main` (`af5ae9c2c3896ced4a078f7edde7896205a62a57`). 
+
+Integrates:
+1. Reconciled pilot capacity copy across `src/routes/index.tsx`, `src/routes/about.tsx`, `src/lib/outreach-dispatcher.ts`, and `src/components/admin/FounderProcessGuide.tsx` reflecting Gate 1 decision: 3-customer pilot authorisation with a strict 2-concurrent-build active capacity guard.
+2. Admin Control Centre truthfulness corrections: removed unverified background cron, automatic admin promotion, normal operations and active receiver claims across `admin.index.tsx`, `admin.invoices.tsx`, `admin.diagnostics.tsx`, and `admin.users.tsx`.
+3. Verified TanStack Start XSS patch (`GHSA-qx66-fv34-fjm8`) with `@tanstack/react-start` at `^1.169.3` and high-audit security workflow enforcement. `npm audit` reports 0 vulnerabilities.
+4. Clean integration of H15/H16 before/after comparison consistency (`13ebd59` on `audit/pre-go-live-remediation` and `9fc4952` on `main`).
+5. Registered recovery validation suite in `package.json` (`scripts/project-schema-review.test.mjs`) and build artifact credential scanning script (`scripts/scan-build-artifacts.mjs`).
+
+Verification gate results:
+- `npm run check:governance`: PASS.
+- `npm run typecheck`: PASS (0 errors).
+- `npm run lint`: PASS (0 errors, 9 existing warnings).
+- `npm run format:check`: PASS.
+- `npm test`: PASS (66 smoke + 196 Node regression/integration/recovery + 3 SW checks = 265 tests, 0 failures).
+- `npm run build`: PASS (Nitro SSR build in 5.3s).
+- Secret scan across all `.output/` build artifacts: PASS (0 private credentials/secrets exposed).
+No direct production deployment or live data mutation performed in this step.
+
 ## Migration recovery validation checkpoint — 17 October 2026
 
 H07/H08/H09/H19/H42/H47/H50. Candidate branch codex/pilot-security-release-2026-10-17, starting revision e61fc2cb9368c52197d3e2a2517ab046668ef268; application security source remains 750b39b5e4373040b1830b1091f37981bb75145d. Primary main af5ae9c2c3896ced4a078f7edde7896205a62a57 and unrelated peer edits preserved. User authorised continuing validation and requested handover update; no production execution authority inferred.

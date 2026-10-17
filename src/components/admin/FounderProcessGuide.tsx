@@ -45,12 +45,15 @@ export function FounderProcessGuide({
       num: 1,
       title: "Check Exceptions & Build Capacity",
       estTime: "1 min",
-      rule: "Cap active builds at 2–3 concurrently to protect NHS career balance (10–12 hrs/week).",
+      rule: `Three customers are approved for the pilot. Keep at most ${maxCapacity} builds active concurrently; agree dates within confirmed capacity.`,
       statusBadge:
         activeBuildsCount >= maxCapacity
-          ? { text: `🔴 Full (${activeBuildsCount}/3)`, style: "bg-rose-100 text-rose-800" }
+          ? {
+              text: `🔴 Full (${activeBuildsCount}/${maxCapacity})`,
+              style: "bg-rose-100 text-rose-800",
+            }
           : {
-              text: `🟢 Available (${activeBuildsCount}/3)`,
+              text: `🟢 Available (${activeBuildsCount}/${maxCapacity})`,
               style: "bg-emerald-100 text-emerald-800",
             },
       actionLabel: "View Delivery Pipeline",
@@ -76,7 +79,7 @@ export function FounderProcessGuide({
       title: "Review Staged Previews (Quality Gate)",
       estTime: "2 mins",
       rule: "Verify 5 core pages, mobile layout, trade accreditations (NICEIC/Gas Safe), and enquiry form.",
-      statusBadge: { text: "14-Day Delivery SLA", style: "bg-violet-100 text-violet-800" },
+      statusBadge: { text: "Agreed delivery schedule", style: "bg-violet-100 text-violet-800" },
       actionLabel: "Check Active Builds",
       actionUrl: "/admin/projects",
       checkDesc: "Approve preview for DNS cutover, or request structured revisions from template.",
@@ -241,8 +244,7 @@ export function FounderProcessGuide({
               Template standardisation protects your delivery time.
             </span>
             <span className="text-[11px]">
-              All steps can also be managed via Slack:{" "}
-              <code className="bg-white px-1.5 py-0.5 rounded font-mono text-ink">/thg status</code>
+              Use the operational views above. Slack command execution needs separate verification.
             </span>
           </div>
         </div>
