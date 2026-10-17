@@ -43,13 +43,9 @@ export function TradeShowcaseSection() {
         <div className="studio-section-heading">
           <div>
             <div className="flex flex-wrap items-center gap-3 mb-2">
-              <span className="inline-flex items-center gap-1.5 rounded-full bg-amber-100/80 border border-amber-300/60 px-3 py-1 text-[11px] font-bold text-amber-950">
-                <span className="text-amber-500">★★★★★</span>
-                <span>5.0 Rated by UK Trade Contractors</span>
-              </span>
               <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-100/80 border border-emerald-300/60 px-2.5 py-1 text-[11px] font-bold text-emerald-950">
                 <ShieldCheck size={13} className="text-emerald-700" />
-                <span>NICEIC · Gas Safe · NAPIT · FMB Ready</span>
+                <span>Your verified accreditations, clearly presented</span>
               </span>
               <span className="text-xs font-semibold text-stone-500 hidden sm:inline">
                 Bristol, Bath & M4 Corridor
@@ -62,13 +58,12 @@ export function TradeShowcaseSection() {
             >
               Your trade. Your reputation.
               <br />
-              <span className="text-ink-muted">A website that actually wins the right jobs.</span>
+              <span className="text-ink-muted">Make your work easier to choose.</span>
             </h2>
           </div>
           <p className="text-base text-ink-muted max-w-xl leading-relaxed">
-            Stop losing high-margin jobs to lead generation directories. We build custom, fast,
-            conversion-engineered websites with 100% written copy and ongoing care for ambitious UK
-            trades.
+            Help customers understand your services and see the quality of your work. We build
+            clear, trade websites with written copy and ongoing care for ambitious UK trades.
           </p>
         </div>
 
@@ -220,14 +215,14 @@ export function TradeShowcaseSection() {
                 <Link
                   to="/contact"
                   search={{
-                    service: `Free Trade Audit for ${activeTrade.name}`,
+                    service: `Website Review for ${activeTrade.name}`,
                     package: undefined,
                     domain: undefined,
                     websiteUrl: undefined,
                   }}
                   className="w-full min-h-[44px] inline-flex items-center justify-center gap-2 rounded-full border border-stone-700 bg-stone-800/80 hover:bg-stone-800 text-stone-200 font-semibold px-4 py-2.5 text-xs transition-colors cursor-pointer"
                 >
-                  <span>Get a Free Trade Audit</span>
+                  <span>Get a Website Review</span>
                 </Link>
                 <div className="text-center text-[11px] text-stone-400 pt-1">
                   No pushy sales calls · Straightforward conversation with founder Robbie Harley

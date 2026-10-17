@@ -1,7 +1,6 @@
 import {
   CheckCircle2,
   ShieldCheck,
-  Star,
   Award,
   PhoneCall,
   ArrowRight,
@@ -110,17 +109,9 @@ export function TradeServiceLanding({
             <div className="hero-copy">
               {/* Trust & Rating Pre-header */}
               <div className="flex flex-wrap items-center gap-3 mb-3">
-                <div className="inline-flex items-center gap-1.5 rounded-full bg-amber-50 border border-amber-200/80 px-3 py-1 text-[11px] font-bold text-amber-900">
-                  <div className="flex text-amber-500">
-                    {[1, 2, 3, 4, 5].map((s) => (
-                      <Star key={s} size={11} className="fill-amber-500 text-amber-500" />
-                    ))}
-                  </div>
-                  <span>5.0 Rated by UK Trades</span>
-                </div>
                 <div className="inline-flex items-center gap-1.5 rounded-full bg-emerald-50 border border-emerald-200/80 px-2.5 py-1 text-[11px] font-bold text-emerald-900">
-                  <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
-                  <span>Pilot Capacity: Max 2 Builds</span>
+                  <span className="h-2 w-2 rounded-full bg-emerald-500" />
+                  <span>Design, copy and ongoing care</span>
                 </div>
               </div>
 
@@ -143,17 +134,17 @@ export function TradeServiceLanding({
                 <PillButton
                   as="link"
                   to="/contact"
-                  search={{ service: `Free Trade Audit for ${name}` }}
+                  search={{ service: `Website Review for ${name}` }}
                   variant="ghost"
                   className="min-h-[48px] px-5 text-sm font-semibold border border-ink/20 hover:bg-ink/5 cursor-pointer"
                 >
-                  Get a Free Trade Audit
+                  Get a Website Review
                 </PillButton>
 
                 {locationInfo?.localPhone && (
                   <PillButton
                     as="a"
-                    href={`tel:+44${locationInfo.localPhone.replace(/^0+/, "").replace(/\s+/g, "")}`}
+                    href={`tel:${locationInfo.localPhone.replace(/\s+/g, "")}`}
                     variant="ghost"
                     className="min-h-[48px] px-4 text-xs font-bold text-ink"
                   >
