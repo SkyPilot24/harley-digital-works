@@ -1,0 +1,80 @@
+[
+  {
+    "trade": "Plumbing & Heating",
+    "result": [
+      {
+        "copyBottom": 1063.4856262207031,
+        "heroBottom": 1189.4591674804688
+      },
+      {
+        "copyBottom": 1078.5817565917969,
+        "heroBottom": 1189.4591674804688
+      }
+    ]
+  },
+  {
+    "trade": "Electrical Services",
+    "result": [
+      {
+        "copyBottom": 1063.4856262207031,
+        "heroBottom": 1189.4591674804688
+      },
+      {
+        "copyBottom": 1046.406280517578,
+        "heroBottom": 1189.4591674804688
+      }
+    ]
+  },
+  {
+    "trade": "Roofing",
+    "result": [
+      {
+        "copyBottom": 1063.4856262207031,
+        "heroBottom": 1189.4591674804688
+      },
+      {
+        "copyBottom": 1078.5817565917969,
+        "heroBottom": 1189.4591674804688
+      }
+    ]
+  },
+  {
+    "trade": "Building & Renovations",
+    "result": [
+      {
+        "copyBottom": 1063.4856262207031,
+        "heroBottom": 1189.4591674804688
+      },
+      {
+        "copyBottom": 1078.5817565917969,
+        "heroBottom": 1189.4591674804688
+      }
+    ]
+  },
+  {
+    "trade": "Landscaping & Gardening",
+    "result": [
+      {
+        "copyBottom": 1011.1778869628906,
+        "heroBottom": 1137.1514282226562
+      },
+      {
+        "copyBottom": 1026.2740173339844,
+        "heroBottom": 1137.1514282226562
+      }
+    ]
+  },
+  {
+    "trade": "Painting & Decorating",
+    "result": [
+      {
+        "copyBottom": 1011.1778869628906,
+        "heroBottom": 1137.1514282226562
+      },
+      {
+        "copyBottom": 1026.2740173339844,
+        "heroBottom": 1137.1514282226562
+      }
+    ]
+  }
+]
