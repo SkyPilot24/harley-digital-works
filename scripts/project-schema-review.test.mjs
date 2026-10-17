@@ -103,3 +103,74 @@ test("review draft aborts an unexpected foreign-key shape without replacing it",
     await db.close();
   }
 });
+
+test("missing staging task dependency aborts without changing projects", async () => {
+  const db = await database();
+  try {
+    await db.exec("DROP TABLE public.project_tasks");
+    await assert.rejects(db.exec(draft), /Expected public.project_tasks dependency is absent/);
+    await db.exec("ROLLBACK");
+    assert.equal(
+      (await db.query("SELECT to_regclass('public.projects_legacy') AS legacy")).rows[0].legacy,
+      null,
+    );
+  } finally {
+    await db.close();
+  }
+});
+
+test("backup restores migrated synthetic rows, task FK and role permissions separately", async () => {
+  const db = await database();
+  let restored;
+  try {
+    await db.exec(draft);
+    await db.exec(
+      "INSERT INTO public.clients VALUES('00000000-0000-4000-8000-000000000010','Fictional restore','customer@example.invalid');INSERT INTO public.projects(id,client_id,name)VALUES('00000000-0000-4000-8000-000000000020','00000000-0000-4000-8000-000000000010','Fictional restore');INSERT INTO public.project_tasks VALUES('00000000-0000-4000-8000-000000000030','00000000-0000-4000-8000-000000000020','Restore task');",
+    );
+    const backup = await db.dumpDataDir();
+    assert.ok(backup.size > 0);
+    await db.exec(
+      "DELETE FROM public.project_tasks;DELETE FROM public.projects;DELETE FROM public.clients;",
+    );
+    restored = new PGlite({ loadDataDir: backup });
+    assert.equal(
+      (
+        await restored.query(
+          "SELECT count(*)::int AS n FROM public.project_tasks t JOIN public.projects p ON p.id=t.project_id JOIN public.clients c ON c.id=p.client_id",
+        )
+      ).rows[0].n,
+      1,
+    );
+    assert.equal(
+      (
+        await restored.query(
+          "SELECT confrelid::regclass::text AS target FROM pg_constraint WHERE conname='project_tasks_project_id_fkey'",
+        )
+      ).rows[0].target,
+      "projects",
+    );
+    await restored.exec(
+      "SELECT set_config('request.jwt.claim.sub','00000000-0000-4000-8000-000000000002',false);SET ROLE authenticated;",
+    );
+    assert.equal(
+      (await restored.query("SELECT count(*)::int AS n FROM public.projects")).rows[0].n,
+      0,
+    );
+    await restored.exec(
+      "RESET ROLE;SELECT set_config('request.jwt.claim.sub','00000000-0000-4000-8000-000000000001',false);SET ROLE authenticated;",
+    );
+    assert.equal(
+      (await restored.query("SELECT count(*)::int AS n FROM public.projects")).rows[0].n,
+      1,
+    );
+    await restored.exec("DELETE FROM public.projects;RESET ROLE;");
+    assert.equal(
+      (await restored.query("SELECT count(*)::int AS n FROM public.project_tasks")).rows[0].n,
+      0,
+    );
+    assert.equal((await db.query("SELECT count(*)::int AS n FROM public.projects")).rows[0].n, 0);
+  } finally {
+    if (restored) await restored.close();
+    await db.close();
+  }
+});

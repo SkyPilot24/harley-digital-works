@@ -83,3 +83,8 @@ Hard stops: wrong target/source/hash; unknown customer/legacy rows; missing reco
 **Recommended next executable step:** review the four-test admin-only corrected migration draft and prepare its supported versioned staging/restore plan; in parallel review source 750b39b for an independently scoped security release. Exact remaining approval is a production window/package covering final source identity, publisher, corrected migration if included, safe fallback and backed-up recovery—not a generic “deploy everything”. No approval is requested for unresolved unknowns.
 
 Progress state: implemented locally → tested → security source committed. **Not pushed, deployed, migrated or live-accepted.** New draft/tests/evidence are review artifacts; original peer changes and saved Manus work preserved.
+
+
+## Follow-up recovery validation — 17 October 2026
+
+Six focused local migration tests now pass, including synthetic backup restoration into a separate PGlite database and safe abort when the task dependency is absent. Fresh read-only staging inspection confirms projects.client_id is present but project_tasks is absent, with zero projects and one existing client preserved. The current draft must abort there; no remote apply was attempted. A separate production-shape rehearsal target is required before actual migration/Auth/API acceptance. Local in-memory synthetic recovery does not close the production backup/restore gate. No CLI installation, remote schema/data change, push or deployment. See [fresh recovery evidence](evidence/projects-recovery-validation-2026-10-17.json) and latest handover checkpoint.
