@@ -9,14 +9,14 @@
 
 Carried forward from the current canonical documentation review; approved prices and historical terms are retained. This note identifies unresolved wording and fulfilment evidence; it does not add approved terms.
 
-| Item | Current use and next evidence |
-| --- | --- |
-| Capacity | Existing pilot guard is two builds. Wider capacity has conflicting two/three records; reconcile founder decision scope before changing the guard. |
-| VAT | Registration/tax presentation needs seller/accountant confirmation. Historical zero-rated/not-applicable wording is not a verified invoice instruction. |
-| Deposit/refunds | Keep the approved payment amounts; validate cancellation/refund clause before issuing an agreement. |
-| Support and daily backups | Response windows and backup promises need monitored operational and restore evidence; a document does not prove fulfilment. |
-| Lead routing | Table promises SMS/email while other records specify Slack/email. Confirm the sold channels and prove delivery before issuing a proposal; no silent scope reduction. |
-| Billing | Sandbox provider deposit evidence exists; durable application receipts, balance and care-cycle acceptance remain open. No live billing enabled by this record. |
+| Item                      | Current use and next evidence                                                                                                                                        |
+| ------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Capacity                  | Existing pilot guard is two builds. Wider capacity has conflicting two/three records; reconcile founder decision scope before changing the guard.                    |
+| VAT                       | Registration/tax presentation needs seller/accountant confirmation. Historical zero-rated/not-applicable wording is not a verified invoice instruction.              |
+| Deposit/refunds           | Keep the approved payment amounts; validate cancellation/refund clause before issuing an agreement.                                                                  |
+| Support and daily backups | Response windows and backup promises need monitored operational and restore evidence; a document does not prove fulfilment.                                          |
+| Lead routing              | Table promises SMS/email while other records specify Slack/email. Confirm the sold channels and prove delivery before issuing a proposal; no silent scope reduction. |
+| Billing                   | Sandbox provider deposit evidence exists; durable application receipts, balance and care-cycle acceptance remain open. No live billing enabled by this record.       |
 
 ---
 
@@ -25,24 +25,24 @@ Carried forward from the current canonical documentation review; approved prices
 ### Strategic Proposition
 
 **"The Digital Operating Infrastructure for Established UK Trade Contractors"**  
-*"We build and run your complete digital enquiry desk — so high-value local customers find you, trust you, and book with you, while you stay focused on the tools."*
+_"We build and run your complete digital enquiry desk — so high-value local customers find you, trust you, and book with you, while you stay focused on the tools."_
 
 ---
 
 ### The Three Ratified Commercial Packages
 
-| Package | Target Customer | Upfront Setup Fee | Ongoing Monthly Care | Core Included Scope |
-| :--- | :--- | :---: | :---: | :--- |
-| **1. The Launchpad** | Solo subcontractors & small partnerships (1–2 staff) | **£995** (50/50: £497.50 / £497.50) | **£149 / month** (rolling 30 days) | 3-page modern trade site, done-for-you copy, email enquiry desk, GBP verification, Cloudflare hosting & SSL, 15-min monthly edits. |
-| **2. The Revenue Engine** *(Core Flagship)* | Established contractors (2–8 staff, £300k–£1m turnover) | **£1,495** (50/50: £747.50 / £747.50) | **£249 / month** (rolling 30 days) | 5-page high-authority site, DFY trade copywriting, instant dual SMS/email lead routing, GBP local SEO + Schema JSON-LD, automated review kit, 30-min monthly edits. |
-| **3. The Market Leader** | Growing regional firms & multi-van operations (5–15 staff) | **£2,495** (50/50: £1,247.50 / £1,247.50) | **£399 / month** (rolling 30 days) | 8-page trade site, 3 geo-targeted area landing pages, missed-call SMS auto-reply, priority review booster, Google LSA setup, 60-min monthly edits. |
+| Package                                     | Target Customer                                            |             Upfront Setup Fee             |        Ongoing Monthly Care        | Core Included Scope                                                                                                                                                 |
+| :------------------------------------------ | :--------------------------------------------------------- | :---------------------------------------: | :--------------------------------: | :------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **1. The Launchpad**                        | Solo subcontractors & small partnerships (1–2 staff)       |    **£995** (50/50: £497.50 / £497.50)    | **£149 / month** (rolling 30 days) | 3-page modern trade site, done-for-you copy, email enquiry desk, GBP verification, Cloudflare hosting & SSL, 15-min monthly edits.                                  |
+| **2. The Revenue Engine** _(Core Flagship)_ | Established contractors (2–8 staff, £300k–£1m turnover)    |   **£1,495** (50/50: £747.50 / £747.50)   | **£249 / month** (rolling 30 days) | 5-page high-authority site, DFY trade copywriting, instant dual SMS/email lead routing, GBP local SEO + Schema JSON-LD, automated review kit, 30-min monthly edits. |
+| **3. The Market Leader**                    | Growing regional firms & multi-van operations (5–15 staff) | **£2,495** (50/50: £1,247.50 / £1,247.50) | **£399 / month** (rolling 30 days) | 8-page trade site, 3 geo-targeted area landing pages, missed-call SMS auto-reply, priority review booster, Google LSA setup, 60-min monthly edits.                  |
 
 ---
 
 ### Core Commercial Terms (Flagship Package: The Revenue Engine)
 
-- **Initial Setup & Build Fee:** **£1,495** *(Zero-rated / VAT not applicable below £90k statutory threshold)*
-- **Ongoing Monthly Care:** **£249 / month** *(Billed monthly via Stripe auto-debit starting from go-live date)*
+- **Initial Setup & Build Fee:** **£1,495** _(Zero-rated / VAT not applicable below £90k statutory threshold)_
+- **Ongoing Monthly Care:** **£249 / month** _(Billed monthly via Stripe auto-debit starting from go-live date)_
 - **Billing & Payment Milestones:**
   1. **50% Deposit (£747.50):** Due upon proposal acceptance to reserve build slot and initiate discovery/copywriting. Strictly non-refundable once intake audit begins.
   2. **50% Balance (£747.50):** Due upon final client approval of the staged preview, prior to public DNS switch and live launch.

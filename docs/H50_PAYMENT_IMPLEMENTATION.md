@@ -109,6 +109,7 @@ The store interface requires atomic durable writes with uniqueness across paymen
 3. Provider-confirmed balance and subscription lifecycle, protected onboarding/approval/care flows, then client preview/browser QA and data recovery. Full first-client production gate remains RED until all acceptance evidence exists.
 
 Stripe documentation consulted: https://docs.stripe.com/events/manage-webhook-endpoints (signature verification, retries and duplicate handling). Prior sandbox receipt evidence remains in canonical docs/evidence; no new provider writes in this implementation turn.
+
 # Durable reconciliation observation follow-up — 12 October 2026
 
 Actual application delivery follow-up: real staging Auth identities used against local TanStack server functions. Publication, invited exact-version retrieval, explicit approval/readback pass; revoked project access produces HTTP 409 and retained token after logout produces HTTP 401. Fixture cleanup in finally removes review/access/project/admin role and Auth accounts; independent counts zero. A narrowly scoped staging-only cleanup helper was installed temporarily and dropped afterward. It is not a production migration. Delivery flag enabled only in stopped local process; private file remains disabled. This is application HTTP acceptance, not authenticated browser acceptance. Runtime CSRF warning remains to address.

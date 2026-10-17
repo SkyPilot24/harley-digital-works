@@ -14,15 +14,15 @@ Status: locally implemented/tested; real isolated staging acceptance passed. Con
 
 Read-only staging metadata confirms `leads` SELECT/INSERT/UPDATE/DELETE require `app_private.has_role(auth.uid(),'admin')`, with appropriate update/insert checks. `user_roles` permits a user to read their own roles and administrators to manage roles. Table grants to `authenticated` are constrained by these policies; anonymous has no direct table grant. Migrations removing automatic first-signup administrator promotion and inherited public role-function grants are preserved.
 
-| Actor/state | Expected result | Fresh evidence |
-| --- | --- | --- |
-| Anonymous visitor | No private lead read | Real Auth/Data API denial against an existing fictional lead |
-| Ordinary signed-in user | Own roles only; no private lead read or self-promotion | Genuine second test account with `user_metadata.role=admin` still has zero roles, cannot read the lead and cannot insert an admin grant |
-| Temporary administrator | Allowed private lead create/read | Genuine Auth token with one explicitly provisioned test role |
-| Admin role revoked | Data API denies and browser shows confirmed denial | Only the temporary test account's role removed/restored; actual role-query refresh and recovery pass |
-| Role endpoint unavailable with warmed cache | Uncertainty/retry, private content hidden | Real signed-in Edge session with local request fault; recovery through Retry permissions passes |
-| Sign-out endpoint unavailable | Private cache/view cleared; no success claim | Browser fault, visible retry state, successful retry and protected deep-link return pass |
-| Trusted fixture setup/cleanup | Exact staging resources only | Private credentials remain in process memory; no private key supplied to browser/local app |
+| Actor/state                                 | Expected result                                        | Fresh evidence                                                                                                                          |
+| ------------------------------------------- | ------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------- |
+| Anonymous visitor                           | No private lead read                                   | Real Auth/Data API denial against an existing fictional lead                                                                            |
+| Ordinary signed-in user                     | Own roles only; no private lead read or self-promotion | Genuine second test account with `user_metadata.role=admin` still has zero roles, cannot read the lead and cannot insert an admin grant |
+| Temporary administrator                     | Allowed private lead create/read                       | Genuine Auth token with one explicitly provisioned test role                                                                            |
+| Admin role revoked                          | Data API denies and browser shows confirmed denial     | Only the temporary test account's role removed/restored; actual role-query refresh and recovery pass                                    |
+| Role endpoint unavailable with warmed cache | Uncertainty/retry, private content hidden              | Real signed-in Edge session with local request fault; recovery through Retry permissions passes                                         |
+| Sign-out endpoint unavailable               | Private cache/view cleared; no success claim           | Browser fault, visible retry state, successful retry and protected deep-link return pass                                                |
+| Trusted fixture setup/cleanup               | Exact staging resources only                           | Private credentials remain in process memory; no private key supplied to browser/local app                                              |
 
 ## Verification
 
