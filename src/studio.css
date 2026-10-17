@@ -2319,3 +2319,59 @@
     padding-inline: 17px;
   }
 }
+
+/* Understated click-to-chat, independent of exit-intent pop-ups. */
+.whatsapp-inline {
+  min-height: 44px;
+}
+.whatsapp-clearance {
+  height: calc(88px + env(safe-area-inset-bottom, 0px));
+}
+.whatsapp-contact {
+  position: fixed;
+  bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+  right: calc(16px + env(safe-area-inset-right, 0px));
+  z-index: 35;
+  display: flex;
+  align-items: center;
+  max-width: calc(100vw - 32px);
+  border: 1px solid var(--hdw-slate);
+  border-radius: 999px;
+  background: var(--hdw-midnight);
+  color: var(--hdw-ivory);
+  box-shadow: 0 3px 12px rgb(8 27 48 / 12%);
+}
+.whatsapp-contact a {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  min-height: 48px;
+  padding: 10px 8px 10px 18px;
+  font-size: 12px;
+  font-weight: 500;
+  color: inherit;
+}
+.whatsapp-contact button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 48px;
+  border-radius: 999px;
+  color: inherit;
+  cursor: pointer;
+}
+.whatsapp-contact :is(a, button):hover {
+  color: white;
+}
+.whatsapp-contact :is(a, button):focus-visible {
+  outline: 2px solid var(--hdw-ivory);
+  outline-offset: 3px;
+  border-radius: 999px;
+}
+@media print {
+  .whatsapp-contact,
+  .whatsapp-clearance {
+    display: none;
+  }
+}

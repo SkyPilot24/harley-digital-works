@@ -46,6 +46,11 @@ export const siteConfig = {
   brandMarkLight: "/brand/2026-10-13/logos/hdw-symbol-navy.svg",
 };
 
+/** Opens a draft in WhatsApp; the visitor reviews and sends it there. */
+export function getWhatsAppContactUrl(message = siteConfig.whatsappDefaultMessage) {
+  return `${siteConfig.whatsappUrl}?text=${encodeURIComponent(message)}`;
+}
+
 export const harleyGroupConfig = {
   name: "The Harley Group",
   url: "https://theharleygroup.org",

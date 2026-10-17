@@ -1,7 +1,7 @@
 import { IllustrativeTradeProof } from "@/components/site/IllustrativeTradeProof";
 import { useEffect, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowDown, ArrowUpRight, Check, PenLine, ShieldCheck } from "lucide-react";
+import { ArrowDown, ArrowUpRight, Check, MessageCircle, PenLine, ShieldCheck } from "lucide-react";
 import { PageShell } from "@/components/site/PageShell";
 import { PillButton } from "@/components/site/PillButton";
 import { ConceptScreen, ConceptShowcase } from "@/components/site/ConceptShowcase";
@@ -17,7 +17,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 
-import { buildPageSeoHead } from "@/lib/site-config";
+import { buildPageSeoHead, getWhatsAppContactUrl } from "@/lib/site-config";
 
 export const Route = createFileRoute("/")({
   head: () =>
@@ -105,6 +105,16 @@ function HomePage() {
                 >
                   Discuss your existing website
                 </PillButton>
+                <a
+                  href={getWhatsAppContactUrl()}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="studio-text-link whatsapp-inline"
+                  aria-label="Chat with us on WhatsApp (opens WhatsApp in a new tab)"
+                >
+                  <MessageCircle size={16} aria-hidden="true" />
+                  Chat with us on WhatsApp
+                </a>
                 <a href="#transformations" className="studio-text-link">
                   See transformations <ArrowDown size={14} />
                 </a>

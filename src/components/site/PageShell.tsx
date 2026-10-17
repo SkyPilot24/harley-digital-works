@@ -10,12 +10,14 @@ export function PageShell({
   header,
   footer,
   brand = "hdw",
+  whatsapp = brand === "hdw",
 }: {
   children: ReactNode;
   quiet?: boolean;
   header?: ReactNode | null;
   footer?: ReactNode | null;
   brand?: "hdw" | "group" | "labs";
+  whatsapp?: boolean;
 }) {
   return (
     <div
@@ -28,7 +30,8 @@ export function PageShell({
       {header !== undefined ? header : <SiteHeader />}
       <main id="main-content">{children}</main>
       {footer !== undefined ? footer : <FooterDark />}
-      {!quiet && <FloatingWhatsAppDesk />}
+      {whatsapp && <div className="whatsapp-clearance" aria-hidden="true" />}
+      {whatsapp && <FloatingWhatsAppDesk />}
       {!quiet && <ExitIntentModal />}
     </div>
   );
