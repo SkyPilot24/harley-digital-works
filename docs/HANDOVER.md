@@ -1,3 +1,9 @@
+## Admin user listing and last-admin safeguard — 15 October 2026
+
+H03/H42: `listAdminUsers` previously read only the first 200 Auth users and an uncapped-by-assumption role query; it now follows Auth next-page pointers and reads roles by exact-count ranges, failing visibly on errors, missing counts or early end. `revokeUserRole` now blocks revoking the last admin for any target (previously only self-revocation was checked) and fails closed if the count is unavailable. Logic in `src/lib/admin-users.ts` with `scripts/admin-users.test.mjs` (5 tests, registered in `npm test`).
+
+Fresh build/typecheck/format PASS; lint 0 errors / 9 existing warnings; 66 smoke checks plus all regression, integration and service-worker tests PASS, 0 failures. Limits: unit-level only; no staging Auth acceptance with more than 200 users, and the revoke check is not atomic (concurrent revocations could race). Remaining: server-side form validation, then enquiry/recovery/care/release gates. Source: `codex/platform-completion-2026-10-15` + local changes, uncommitted/unpushed. No production change, merge, deployment, billing or messages. Launch remains RED.
+
 ## GitHub Copilot onboarding — 15 October 2026
 
 Added repository-wide .github/copilot-instructions.md, [quick start and starter prompt](COPILOT_QUICKSTART.md), and shared agent/standards references. Copilot uses the same governing records, architecture, checks and approval boundaries as Codex/Antigravity. Documentation links and diff checked; no application changes or new runtime test claims. Actual Copilot discovery/execution and account configuration remain unverified. Auth recovery is saved in local checkpoint d8355e3; inspect current branch publication before hosted use. No production change or launch-status change.
