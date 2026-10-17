@@ -1,0 +1,164 @@
+[
+  {
+    "trade": "Plumbing & Heating",
+    "clip": "inset(0px 0px 0px 100%)",
+    "images": [
+      true,
+      true
+    ],
+    "value": 0
+  },
+  {
+    "trade": "Plumbing & Heating",
+    "clip": "inset(0px 0px 0px 50%)",
+    "images": [
+      true,
+      true
+    ],
+    "value": 50
+  },
+  {
+    "trade": "Plumbing & Heating",
+    "clip": "inset(0px 0px 0px 0%)",
+    "images": [
+      true,
+      true
+    ],
+    "value": 100
+  },
+  {
+    "trade": "Electrical Services",
+    "clip": "inset(0px 0px 0px 100%)",
+    "images": [
+      true,
+      true
+    ],
+    "value": 0
+  },
+  {
+    "trade": "Electrical Services",
+    "clip": "inset(0px 0px 0px 50%)",
+    "images": [
+      true,
+      true
+    ],
+    "value": 50
+  },
+  {
+    "trade": "Electrical Services",
+    "clip": "inset(0px 0px 0px 0%)",
+    "images": [
+      true,
+      true
+    ],
+    "value": 100
+  },
+  {
+    "trade": "Roofing",
+    "clip": "inset(0px 0px 0px 100%)",
+    "images": [
+      true,
+      true
+    ],
+    "value": 0
+  },
+  {
+    "trade": "Roofing",
+    "clip": "inset(0px 0px 0px 50%)",
+    "images": [
+      true,
+      true
+    ],
+    "value": 50
+  },
+  {
+    "trade": "Roofing",
+    "clip": "inset(0px 0px 0px 0%)",
+    "images": [
+      true,
+      true
+    ],
+    "value": 100
+  },
+  {
+    "trade": "Building & Renovations",
+    "clip": "inset(0px 0px 0px 100%)",
+    "images": [
+      true,
+      true
+    ],
+    "value": 0
+  },
+  {
+    "trade": "Building & Renovations",
+    "clip": "inset(0px 0px 0px 50%)",
+    "images": [
+      true,
+      true
+    ],
+    "value": 50
+  },
+  {
+    "trade": "Building & Renovations",
+    "clip": "inset(0px 0px 0px 0%)",
+    "images": [
+      true,
+      true
+    ],
+    "value": 100
+  },
+  {
+    "trade": "Landscaping & Gardening",
+    "clip": "inset(0px 0px 0px 100%)",
+    "images": [
+      true,
+      true
+    ],
+    "value": 0
+  },
+  {
+    "trade": "Landscaping & Gardening",
+    "clip": "inset(0px 0px 0px 50%)",
+    "images": [
+      true,
+      true
+    ],
+    "value": 50
+  },
+  {
+    "trade": "Landscaping & Gardening",
+    "clip": "inset(0px 0px 0px 0%)",
+    "images": [
+      true,
+      true
+    ],
+    "value": 100
+  },
+  {
+    "trade": "Painting & Decorating",
+    "clip": "inset(0px 0px 0px 100%)",
+    "images": [
+      true,
+      true
+    ],
+    "value": 0
+  },
+  {
+    "trade": "Painting & Decorating",
+    "clip": "inset(0px 0px 0px 50%)",
+    "images": [
+      true,
+      true
+    ],
+    "value": 50
+  },
+  {
+    "trade": "Painting & Decorating",
+    "clip": "inset(0px 0px 0px 0%)",
+    "images": [
+      true,
+      true
+    ],
+    "value": 100
+  }
+]
