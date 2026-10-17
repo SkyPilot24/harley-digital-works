@@ -1,0 +1,602 @@
+[
+  {
+    "trade": "Plumbing & Heating",
+    "position": 0,
+    "clip": "inset(0px 0px 0px 100%)",
+    "images": [
+      {
+        "height": 410,
+        "loaded": true,
+        "src": "/images/home/interior.jpg",
+        "width": 1167
+      },
+      {
+        "height": 410,
+        "loaded": true,
+        "src": "/images/home/interior.jpg",
+        "width": 1167
+      }
+    ],
+    "value": 0
+  },
+  {
+    "trade": "Plumbing & Heating",
+    "position": 25,
+    "clip": "inset(0px 0px 0px 75%)",
+    "images": [
+      {
+        "height": 410,
+        "loaded": true,
+        "src": "/images/home/interior.jpg",
+        "width": 1167
+      },
+      {
+        "height": 410,
+        "loaded": true,
+        "src": "/images/home/interior.jpg",
+        "width": 1167
+      }
+    ],
+    "value": 25
+  },
+  {
+    "trade": "Plumbing & Heating",
+    "position": 50,
+    "clip": "inset(0px 0px 0px 50%)",
+    "images": [
+      {
+        "height": 410,
+        "loaded": true,
+        "src": "/images/home/interior.jpg",
+        "width": 1167
+      },
+      {
+        "height": 410,
+        "loaded": true,
+        "src": "/images/home/interior.jpg",
+        "width": 1167
+      }
+    ],
+    "value": 50
+  },
+  {
+    "trade": "Plumbing & Heating",
+    "position": 75,
+    "clip": "inset(0px 0px 0px 25%)",
+    "images": [
+      {
+        "height": 410,
+        "loaded": true,
+        "src": "/images/home/interior.jpg",
+        "width": 1167
+      },
+      {
+        "height": 410,
+        "loaded": true,
+        "src": "/images/home/interior.jpg",
+        "width": 1167
+      }
+    ],
+    "value": 75
+  },
+  {
+    "trade": "Plumbing & Heating",
+    "position": 100,
+    "clip": "inset(0px 0px 0px 0%)",
+    "images": [
+      {
+        "height": 410,
+        "loaded": true,
+        "src": "/images/home/interior.jpg",
+        "width": 1167
+      },
+      {
+        "height": 410,
+        "loaded": true,
+        "src": "/images/home/interior.jpg",
+        "width": 1167
+      }
+    ],
+    "value": 100
+  },
+  {
+    "trade": "Electrical Services",
+    "position": 0,
+    "clip": "inset(0px 0px 0px 100%)",
+    "images": [
+      {
+        "height": 410,
+        "loaded": true,
+        "src": "/images/home/solar.jpg",
+        "width": 1167
+      },
+      {
+        "height": 410,
+        "loaded": true,
+        "src": "/images/home/solar.jpg",
+        "width": 1167
+      }
+    ],
+    "value": 0
+  },
+  {
+    "trade": "Electrical Services",
+    "position": 25,
+    "clip": "inset(0px 0px 0px 75%)",
+    "images": [
+      {
+        "height": 410,
+        "loaded": true,
+        "src": "/images/home/solar.jpg",
+        "width": 1167
+      },
+      {
+        "height": 410,
+        "loaded": true,
+        "src": "/images/home/solar.jpg",
+        "width": 1167
+      }
+    ],
+    "value": 25
+  },
+  {
+    "trade": "Electrical Services",
+    "position": 50,
+    "clip": "inset(0px 0px 0px 50%)",
+    "images": [
+      {
+        "height": 410,
+        "loaded": true,
+        "src": "/images/home/solar.jpg",
+        "width": 1167
+      },
+      {
+        "height": 410,
+        "loaded": true,
+        "src": "/images/home/solar.jpg",
+        "width": 1167
+      }
+    ],
+    "value": 50
+  },
+  {
+    "trade": "Electrical Services",
+    "position": 75,
+    "clip": "inset(0px 0px 0px 25%)",
+    "images": [
+      {
+        "height": 410,
+        "loaded": true,
+        "src": "/images/home/solar.jpg",
+        "width": 1167
+      },
+      {
+        "height": 410,
+        "loaded": true,
+        "src": "/images/home/solar.jpg",
+        "width": 1167
+      }
+    ],
+    "value": 75
+  },
+  {
+    "trade": "Electrical Services",
+    "position": 100,
+    "clip": "inset(0px 0px 0px 0%)",
+    "images": [
+      {
+        "height": 410,
+        "loaded": true,
+        "src": "/images/home/solar.jpg",
+        "width": 1167
+      },
+      {
+        "height": 410,
+        "loaded": true,
+        "src": "/images/home/solar.jpg",
+        "width": 1167
+      }
+    ],
+    "value": 100
+  },
+  {
+    "trade": "Roofing",
+    "position": 0,
+    "clip": "inset(0px 0px 0px 100%)",
+    "images": [
+      {
+        "height": 410,
+        "loaded": true,
+        "src": "/images/home/architecture.jpg",
+        "width": 1167
+      },
+      {
+        "height": 410,
+        "loaded": true,
+        "src": "/images/home/architecture.jpg",
+        "width": 1167
+      }
+    ],
+    "value": 0
+  },
+  {
+    "trade": "Roofing",
+    "position": 25,
+    "clip": "inset(0px 0px 0px 75%)",
+    "images": [
+      {
+        "height": 410,
+        "loaded": true,
+        "src": "/images/home/architecture.jpg",
+        "width": 1167
+      },
+      {
+        "height": 410,
+        "loaded": true,
+        "src": "/images/home/architecture.jpg",
+        "width": 1167
+      }
+    ],
+    "value": 25
+  },
+  {
+    "trade": "Roofing",
+    "position": 50,
+    "clip": "inset(0px 0px 0px 50%)",
+    "images": [
+      {
+        "height": 410,
+        "loaded": true,
+        "src": "/images/home/architecture.jpg",
+        "width": 1167
+      },
+      {
+        "height": 410,
+        "loaded": true,
+        "src": "/images/home/architecture.jpg",
+        "width": 1167
+      }
+    ],
+    "value": 50
+  },
+  {
+    "trade": "Roofing",
+    "position": 75,
+    "clip": "inset(0px 0px 0px 25%)",
+    "images": [
+      {
+        "height": 410,
+        "loaded": true,
+        "src": "/images/home/architecture.jpg",
+        "width": 1167
+      },
+      {
+        "height": 410,
+        "loaded": true,
+        "src": "/images/home/architecture.jpg",
+        "width": 1167
+      }
+    ],
+    "value": 75
+  },
+  {
+    "trade": "Roofing",
+    "position": 100,
+    "clip": "inset(0px 0px 0px 0%)",
+    "images": [
+      {
+        "height": 410,
+        "loaded": true,
+        "src": "/images/home/architecture.jpg",
+        "width": 1167
+      },
+      {
+        "height": 410,
+        "loaded": true,
+        "src": "/images/home/architecture.jpg",
+        "width": 1167
+      }
+    ],
+    "value": 100
+  },
+  {
+    "trade": "Building & Renovations",
+    "position": 0,
+    "clip": "inset(0px 0px 0px 100%)",
+    "images": [
+      {
+        "height": 410,
+        "loaded": true,
+        "src": "/images/home/architecture.jpg",
+        "width": 1167
+      },
+      {
+        "height": 410,
+        "loaded": true,
+        "src": "/images/home/architecture.jpg",
+        "width": 1167
+      }
+    ],
+    "value": 0
+  },
+  {
+    "trade": "Building & Renovations",
+    "position": 25,
+    "clip": "inset(0px 0px 0px 75%)",
+    "images": [
+      {
+        "height": 410,
+        "loaded": true,
+        "src": "/images/home/architecture.jpg",
+        "width": 1167
+      },
+      {
+        "height": 410,
+        "loaded": true,
+        "src": "/images/home/architecture.jpg",
+        "width": 1167
+      }
+    ],
+    "value": 25
+  },
+  {
+    "trade": "Building & Renovations",
+    "position": 50,
+    "clip": "inset(0px 0px 0px 50%)",
+    "images": [
+      {
+        "height": 410,
+        "loaded": true,
+        "src": "/images/home/architecture.jpg",
+        "width": 1167
+      },
+      {
+        "height": 410,
+        "loaded": true,
+        "src": "/images/home/architecture.jpg",
+        "width": 1167
+      }
+    ],
+    "value": 50
+  },
+  {
+    "trade": "Building & Renovations",
+    "position": 75,
+    "clip": "inset(0px 0px 0px 25%)",
+    "images": [
+      {
+        "height": 410,
+        "loaded": true,
+        "src": "/images/home/architecture.jpg",
+        "width": 1167
+      },
+      {
+        "height": 410,
+        "loaded": true,
+        "src": "/images/home/architecture.jpg",
+        "width": 1167
+      }
+    ],
+    "value": 75
+  },
+  {
+    "trade": "Building & Renovations",
+    "position": 100,
+    "clip": "inset(0px 0px 0px 0%)",
+    "images": [
+      {
+        "height": 410,
+        "loaded": true,
+        "src": "/images/home/architecture.jpg",
+        "width": 1167
+      },
+      {
+        "height": 410,
+        "loaded": true,
+        "src": "/images/home/architecture.jpg",
+        "width": 1167
+      }
+    ],
+    "value": 100
+  },
+  {
+    "trade": "Landscaping & Gardening",
+    "position": 0,
+    "clip": "inset(0px 0px 0px 100%)",
+    "images": [
+      {
+        "height": 410,
+        "loaded": true,
+        "src": "/images/home/architecture.jpg",
+        "width": 1167
+      },
+      {
+        "height": 410,
+        "loaded": true,
+        "src": "/images/home/architecture.jpg",
+        "width": 1167
+      }
+    ],
+    "value": 0
+  },
+  {
+    "trade": "Landscaping & Gardening",
+    "position": 25,
+    "clip": "inset(0px 0px 0px 75%)",
+    "images": [
+      {
+        "height": 410,
+        "loaded": true,
+        "src": "/images/home/architecture.jpg",
+        "width": 1167
+      },
+      {
+        "height": 410,
+        "loaded": true,
+        "src": "/images/home/architecture.jpg",
+        "width": 1167
+      }
+    ],
+    "value": 25
+  },
+  {
+    "trade": "Landscaping & Gardening",
+    "position": 50,
+    "clip": "inset(0px 0px 0px 50%)",
+    "images": [
+      {
+        "height": 410,
+        "loaded": true,
+        "src": "/images/home/architecture.jpg",
+        "width": 1167
+      },
+      {
+        "height": 410,
+        "loaded": true,
+        "src": "/images/home/architecture.jpg",
+        "width": 1167
+      }
+    ],
+    "value": 50
+  },
+  {
+    "trade": "Landscaping & Gardening",
+    "position": 75,
+    "clip": "inset(0px 0px 0px 25%)",
+    "images": [
+      {
+        "height": 410,
+        "loaded": true,
+        "src": "/images/home/architecture.jpg",
+        "width": 1167
+      },
+      {
+        "height": 410,
+        "loaded": true,
+        "src": "/images/home/architecture.jpg",
+        "width": 1167
+      }
+    ],
+    "value": 75
+  },
+  {
+    "trade": "Landscaping & Gardening",
+    "position": 100,
+    "clip": "inset(0px 0px 0px 0%)",
+    "images": [
+      {
+        "height": 410,
+        "loaded": true,
+        "src": "/images/home/architecture.jpg",
+        "width": 1167
+      },
+      {
+        "height": 410,
+        "loaded": true,
+        "src": "/images/home/architecture.jpg",
+        "width": 1167
+      }
+    ],
+    "value": 100
+  },
+  {
+    "trade": "Painting & Decorating",
+    "position": 0,
+    "clip": "inset(0px 0px 0px 100%)",
+    "images": [
+      {
+        "height": 410,
+        "loaded": true,
+        "src": "/images/home/interior.jpg",
+        "width": 1167
+      },
+      {
+        "height": 410,
+        "loaded": true,
+        "src": "/images/home/interior.jpg",
+        "width": 1167
+      }
+    ],
+    "value": 0
+  },
+  {
+    "trade": "Painting & Decorating",
+    "position": 25,
+    "clip": "inset(0px 0px 0px 75%)",
+    "images": [
+      {
+        "height": 410,
+        "loaded": true,
+        "src": "/images/home/interior.jpg",
+        "width": 1167
+      },
+      {
+        "height": 410,
+        "loaded": true,
+        "src": "/images/home/interior.jpg",
+        "width": 1167
+      }
+    ],
+    "value": 25
+  },
+  {
+    "trade": "Painting & Decorating",
+    "position": 50,
+    "clip": "inset(0px 0px 0px 50%)",
+    "images": [
+      {
+        "height": 410,
+        "loaded": true,
+        "src": "/images/home/interior.jpg",
+        "width": 1167
+      },
+      {
+        "height": 410,
+        "loaded": true,
+        "src": "/images/home/interior.jpg",
+        "width": 1167
+      }
+    ],
+    "value": 50
+  },
+  {
+    "trade": "Painting & Decorating",
+    "position": 75,
+    "clip": "inset(0px 0px 0px 25%)",
+    "images": [
+      {
+        "height": 410,
+        "loaded": true,
+        "src": "/images/home/interior.jpg",
+        "width": 1167
+      },
+      {
+        "height": 410,
+        "loaded": true,
+        "src": "/images/home/interior.jpg",
+        "width": 1167
+      }
+    ],
+    "value": 75
+  },
+  {
+    "trade": "Painting & Decorating",
+    "position": 100,
+    "clip": "inset(0px 0px 0px 0%)",
+    "images": [
+      {
+        "height": 410,
+        "loaded": true,
+        "src": "/images/home/interior.jpg",
+        "width": 1167
+      },
+      {
+        "height": 410,
+        "loaded": true,
+        "src": "/images/home/interior.jpg",
+        "width": 1167
+      }
+    ],
+    "value": 100
+  }
+]

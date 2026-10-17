@@ -200,21 +200,21 @@ function HomePage() {
         <section
           className="studio-section py-20 bg-stone-50/80 border-y border-stone-200"
           id="transformations"
-          aria-labelledby="transformations-heading"
+          aria-label="Before and after website design concepts"
         >
           <div className="studio-wrap">
             <BeforeAfterComparison
               initialTradeId="heating-plumbing"
               showAllTrades={true}
               featuredOnly={true}
-              title="See What Your Website Could Become"
-              subtitle="Drag the interactive slider to compare outdated, cluttered trades websites with professional Harley Digital Works digital experiences across UK trades."
+              title="See what your website could become"
+              subtitle="Compare two illustrative designs for the same trade. See how clearer words, layout and enquiry routes change the experience."
               sectionKicker="02 / BEFORE & AFTER TRANSFORMATIONS"
             />
             <div className="mt-10 pt-6 border-t border-ink/10 flex flex-wrap items-center justify-between gap-4">
               <span className="text-xs sm:text-sm font-medium text-ink">
-                We also have transformations for Roofing, Building & Renovations, Landscaping, and
-                Painting & Decorating.
+                Explore further concepts for Building & Renovations, Landscaping, and Painting &
+                Decorating.
               </span>
               <PillButton
                 as="link"
@@ -223,7 +223,7 @@ function HomePage() {
                 variant="dark"
                 className="studio-button text-xs font-bold"
               >
-                Explore All 6 Trade Transformations <ArrowUpRight size={13} />
+                Explore all six trade transformations
               </PillButton>
             </div>
           </div>

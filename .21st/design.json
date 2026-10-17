@@ -77,7 +77,13 @@
     "must": [],
     "avoid": []
   },
-  "decisions": [],
+  "decisions": [
+    {
+      "id": "comparison-consistency-2026-10-17",
+      "decision": "Reuse existing navy/ivory framing, PillButton and illustrative photography. Before stays left, after right; complete-version buttons replace split previews on phones. Remove fictional testimonial and ROI panels from this component.",
+      "source": "Founder approval of live design review, 17 October 2026"
+    }
+  ],
   "evidence": [
     {
       "fact": "components.installed",
