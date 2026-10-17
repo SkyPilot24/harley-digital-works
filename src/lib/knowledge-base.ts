@@ -29,6 +29,25 @@ export const KNOWLEDGE_CATEGORIES = [
 
 export const KNOWLEDGE_BASE_ARTICLES: KnowledgeArticle[] = [
   {
+    id: "unified-business-contact-channels-2026-10-15",
+    category: "governance",
+    title: "Unified Business Contact Channels & Lead Intake Hierarchy",
+    summary:
+      "Official operational standard for customer-facing contact points, phone numbers, WhatsApp routing, and intake hierarchy across The Harley Group and Harley Digital Works.",
+    statusBadge: "Ratified · 15 Oct 2026",
+    lastUpdated: "2026-10-15",
+    keyPoints: [
+      "PRIMARY BUSINESS LANDLINE — 0117 214 1357 (UK format) / +44 117 214 1357 (international format, click-to-call: tel:+441172141357). Geographic location: Bristol, United Kingdom. Official primary published telephone number across both The Harley Group and Harley Digital Works.",
+      "WHATSAPP BUSINESS — Verified canonical business number is +44 7394 041487 (wa.me format: 447394041487, display: 07394 041487, link: https://wa.me/447394041487). Contextual pre-filled messages configured for quote enquiries and care plan support.",
+      "THREE-TIER CONTACT HIERARCHY — Tier 1: Direct Landline (0117 214 1357) for high-intent customer phone calls. Tier 2: WhatsApp Business for fast mobile messaging and trade photo sharing. Tier 3: Website Enquiry Forms with structured database capture.",
+      "ADMIN CONTROL CENTRE INTEGRATION — Web form enquiries dispatch through submitLead to Supabase RPC submit_public_lead, appearing instantly in the Admin Control Centre (/admin/leads) with real-time triage, source attribution, and proposal generation.",
+      "SINGLE SOURCE OF TRUTH — All contact variables are centralized in src/lib/site-config.ts (siteConfig for HDW and harleyGroupConfig for THG). Component-level hardcoded contact information is deprecated.",
+      "OPERATING HOURS & SLAS — Studio operating hours: Monday–Friday 09:00–17:00 UK time. Phone callback SLA: under 2 hours. WhatsApp response SLA: under 15 minutes during operating hours. Web form submission follow-up: under 4 business hours.",
+    ],
+    operationalDetails:
+      "Configuration: src/lib/site-config.ts (siteConfig, harleyGroupConfig). Form submission: src/lib/lead-intake.functions.ts and src/components/site/EnquiryForm.tsx. Admin intake dashboard: src/routes/_authenticated/admin.leads.tsx. Floating WhatsApp: src/components/site/FloatingWhatsAppDesk.tsx. Regional data: src/lib/location-data.ts.",
+  },
+  {
     id: "outbound-email-architecture-2026-10-12",
     category: "architecture",
     title: "Outbound Email & Automated Outreach Architecture",

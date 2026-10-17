@@ -20,7 +20,12 @@ export function parseDomainExport(bytes: ArrayBuffer, observedOn: string): Impor
   if (range.e.r > 5000 || range.e.c > 30)
     throw new Error("Limit the export to 5,000 domains and 31 columns.");
   for (const [address, cell] of Object.entries(sheet))
-    if (!address.startsWith("!") && cell && typeof cell === "object" && "f" in (cell as Record<string, unknown>))
+    if (
+      !address.startsWith("!") &&
+      cell &&
+      typeof cell === "object" &&
+      "f" in (cell as Record<string, unknown>)
+    )
       throw new Error("Formula cells are not accepted. Export values only.");
   const matrix = XLSX.utils.sheet_to_json<unknown[]>(sheet, { header: 1, raw: true, defval: "" });
   const headers = ((matrix.shift() || []) as unknown[]).map((cell: unknown) => String(cell).trim());

@@ -41,3 +41,7 @@ Read repository standards for the matching task: `skills/thg-supabase-security/S
 ## Completion and handover
 
 Work against an existing backlog ID where possible. Update relevant `MASTER_BACKLOG.md`, `PROJECT_STATUS.md` and `docs/HANDOVER.md` in the same change where practical. Record source/branch, changes, exact checks, verification limits, migration application state, blockers and next executable task. Keep evidence in the repository without secrets or customer data. Clearly distinguish implemented, tested, committed, pushed, previewed, deployed and live-verified. Keep final reports concise and mark launch gates Ready / Needs attention / Blocking launch only with evidence.
+
+## Session-start assessment
+
+Before editing, report the assessment required by root AGENTS.md: repository/path, branch/HEAD, existing changes, selected task, verified state, blockers and next action. Root AGENTS.md owns this shared contract; tool-specific instructions supplement it.

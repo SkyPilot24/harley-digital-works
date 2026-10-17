@@ -385,7 +385,8 @@ Confirm actual payment independently from provider/ledger evidence.
               Deposit Receipts & Idempotent Stripe Webhook Receiver
             </h2>
             <p className="text-xs text-ink-muted">
-              Production payment processing safeguards, ratified integer pence tracking, and ledger reconciliation.
+              Production payment processing safeguards, ratified integer pence tracking, and ledger
+              reconciliation.
             </p>
           </div>
           <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-50 border border-emerald-200 px-3 py-1 text-xs font-bold text-emerald-800">
@@ -401,7 +402,8 @@ Confirm actual payment independently from provider/ledger evidence.
             </div>
             <div className="text-xl font-extrabold text-ink">£747.50</div>
             <p className="text-xs text-ink-muted">
-              Exactly 74,750 integer pence. Triggers project workspace reservation and discovery kickoff.
+              Exactly 74,750 integer pence. Triggers project workspace reservation and discovery
+              kickoff.
             </p>
           </div>
           <div className="rounded-xl border border-ink/10 bg-slate-50/60 p-4 space-y-1.5">
@@ -410,7 +412,8 @@ Confirm actual payment independently from provider/ledger evidence.
             </div>
             <div className="text-xl font-extrabold text-ink">£747.50</div>
             <p className="text-xs text-ink-muted">
-              Exactly 74,750 integer pence. Payable upon final staged preview approval prior to live launch.
+              Exactly 74,750 integer pence. Payable upon final staged preview approval prior to live
+              launch.
             </p>
           </div>
           <div className="rounded-xl border border-ink/10 bg-slate-50/60 p-4 space-y-1.5">
@@ -419,7 +422,8 @@ Confirm actual payment independently from provider/ledger evidence.
             </div>
             <div className="text-xl font-extrabold text-emerald-800">300s Tolerance</div>
             <p className="text-xs text-ink-muted">
-              Cryptographic HMAC-SHA256 signature verification with idempotent deduplication via database RPC.
+              Cryptographic HMAC-SHA256 signature verification with idempotent deduplication via
+              database RPC.
             </p>
           </div>
         </div>
@@ -444,7 +448,10 @@ Confirm actual payment independently from provider/ledger evidence.
         {clientsQuery.isPending ? (
           <div className="space-y-3 py-4">
             {[1, 2, 3, 4].map((i) => (
-              <div key={i} className="flex items-center justify-between gap-4 py-2 border-b border-ink/5">
+              <div
+                key={i}
+                className="flex items-center justify-between gap-4 py-2 border-b border-ink/5"
+              >
                 <div className="h-4 w-1/4 rounded bg-ink/10 animate-pulse" />
                 <div className="h-4 w-1/4 rounded bg-ink/10 animate-pulse" />
                 <div className="h-4 w-1/6 rounded bg-ink/10 animate-pulse" />

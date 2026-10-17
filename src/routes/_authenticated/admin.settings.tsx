@@ -82,16 +82,19 @@ function SettingsPage() {
           label="Contact email"
           type="email"
           value={form.contact_email ?? ""}
+          placeholder="hello@harleydigitalworks.com"
           onChange={(v) => setForm({ ...form, contact_email: v })}
         />
         <Field
           label="Contact phone"
           value={form.contact_phone ?? ""}
+          placeholder="0117 214 1357"
           onChange={(v) => setForm({ ...form, contact_phone: v })}
         />
         <Field
           label="Address"
           value={form.address ?? ""}
+          placeholder="Bristol, United Kingdom"
           onChange={(v) => setForm({ ...form, address: v })}
         />
         <button
@@ -111,11 +114,13 @@ function Field({
   value,
   onChange,
   type = "text",
+  placeholder,
 }: {
   label: string;
   value: string;
   onChange: (v: string) => void;
   type?: string;
+  placeholder?: string;
 }) {
   return (
     <label className="block">
@@ -123,6 +128,7 @@ function Field({
       <input
         type={type}
         value={value}
+        placeholder={placeholder}
         onChange={(e) => onChange(e.target.value)}
         className="mt-1.5 w-full rounded-lg border border-ink/15 bg-white px-3 py-2 text-sm text-ink outline-none focus:border-ink/40"
       />

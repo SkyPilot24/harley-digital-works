@@ -9,11 +9,13 @@ import {
   ArrowRight,
 } from "lucide-react";
 
+import { siteConfig } from "@/lib/site-config";
+
 const QUICK_PROMPTS = [
-  "Hi, I want to discuss a managed website (£1,495 setup + £249/mo care).",
+  "Hi, I want to discuss a managed trade website (£1,495 setup + £249/mo care).",
   "Hi Robbie, can we discuss the scope and timing for my trade website?",
-  "Hi, I want to ask about your £249/mo managed website care.",
-  "Hi, I have a question about my website project.",
+  "Hi, I want to ask about your £249/mo managed website care and updates.",
+  "Hi, I have a quick question about getting a website for my trade business.",
 ];
 
 export function FloatingWhatsAppDesk() {
@@ -21,14 +23,11 @@ export function FloatingWhatsAppDesk() {
   const [customMsg, setCustomMsg] = useState("");
   const [isDismissed, setIsDismissed] = useState(false);
 
-  // Phone number for Harley Digital Works (UK WhatsApp)
-  const phone = "447883180424"; // Format without + or spaces for wa.me
+  // Verified WhatsApp Business phone number from single source of truth
+  const phone = siteConfig.whatsappNumber; // 447394041487
 
   const handleSend = (textToSend: string) => {
-    const encoded = encodeURIComponent(
-      textToSend ||
-        "Hi Harley Digital Works, I'd like to chat about getting a website sorted for my business.",
-    );
+    const encoded = encodeURIComponent(textToSend || siteConfig.whatsappDefaultMessage);
     const url = `https://wa.me/${phone}?text=${encoded}`;
     window.open(url, "_blank", "noopener,noreferrer");
     setIsOpen(false);
@@ -61,7 +60,7 @@ export function FloatingWhatsAppDesk() {
 
       {/* Expanded Fast-Desk Modal */}
       {isOpen && (
-        <div className="relative w-[340px] sm:w-[380px] rounded-2xl border border-slate-800 bg-slate-950 text-white shadow-2xl overflow-hidden animate-in fade-in slide-in-from-bottom-5 duration-200">
+        <div className="relative w-[340px] sm:w-[380px] max-w-[calc(100vw-2rem)] rounded-2xl border border-slate-800 bg-slate-950 text-white shadow-2xl overflow-hidden animate-in fade-in slide-in-from-bottom-5 duration-200">
           {/* Header */}
           <div className="bg-gradient-to-r from-emerald-950 via-teal-950 to-slate-950 p-4 border-b border-emerald-900/40 flex items-start justify-between">
             <div className="flex items-center gap-3">

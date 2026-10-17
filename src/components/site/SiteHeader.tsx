@@ -1,9 +1,10 @@
 import { Link, useRouterState } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Phone, MessageCircle } from "lucide-react";
 import { PillButton } from "./PillButton";
 import { StudioWordmark } from "./StudioWordmark";
 import { useAuth, useIsAdmin } from "@/hooks/use-auth";
+import { siteConfig } from "@/lib/site-config";
 
 const links = [
   { href: "/#selected-work", label: "Design studies" },
@@ -56,6 +57,14 @@ export function SiteHeader() {
           ))}
         </nav>
         <div className="studio-header-cta">
+          <a
+            href={`tel:${siteConfig.contactPhoneTel}`}
+            className="hidden xl:inline-flex items-center gap-1.5 text-xs font-semibold text-ink/80 hover:text-ink transition-colors px-2.5 py-1.5 rounded-lg hover:bg-ink/5"
+            aria-label={`Call us on ${siteConfig.contactPhone}`}
+          >
+            <Phone size={13} className="text-gold-500" />
+            <span>{siteConfig.contactPhone}</span>
+          </a>
           {user && isAdmin && (
             <Link to="/admin" className="text-sm">
               Admin
@@ -79,6 +88,26 @@ export function SiteHeader() {
       </div>
       {open && (
         <nav id="mobile-site-nav" className="studio-mobile-nav" aria-label="Mobile navigation">
+          <div className="flex flex-col gap-2 pt-2 pb-3 border-b border-ink/10">
+            <a
+              href={`tel:${siteConfig.contactPhoneTel}`}
+              className="flex items-center justify-center gap-2 rounded-xl bg-ink/5 hover:bg-ink/10 p-2.5 text-xs font-bold text-ink"
+              aria-label={`Call ${siteConfig.contactPhone}`}
+            >
+              <Phone size={14} className="text-gold-600" />
+              <span>Call {siteConfig.contactPhone}</span>
+            </a>
+            <a
+              href={`${siteConfig.whatsappUrl}?text=${encodeURIComponent(siteConfig.whatsappDefaultMessage)}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center gap-2 rounded-xl bg-emerald-50 hover:bg-emerald-100 p-2.5 text-xs font-bold text-emerald-900 border border-emerald-200"
+              aria-label="Chat on WhatsApp"
+            >
+              <MessageCircle size={14} className="text-emerald-600" />
+              <span>Chat on WhatsApp ({siteConfig.whatsappDisplay})</span>
+            </a>
+          </div>
           {links.map((link) => (
             <a key={link.href} href={link.href} onClick={() => setOpen(false)}>
               {link.label}
@@ -89,7 +118,7 @@ export function SiteHeader() {
               Admin
             </Link>
           )}
-          <PillButton as="link" to="/contact" variant="dark" className="studio-button">
+          <PillButton as="link" to="/contact" variant="dark" className="studio-button mt-1">
             Let’s talk about your website
           </PillButton>
         </nav>

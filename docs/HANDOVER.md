@@ -1,3 +1,52 @@
+## Antigravity continuation checkpoint — 17 October 2026
+
+Founder requested this documentation-only restart handoff so Antigravity can continue. H03/H07/H42/H47/H49/D01–D08 remain open where acceptance is missing. This new checkpoint and copied reconciliation record are saved in canonical files, **not committed**. Preserve all earlier history and peer changes.
+
+### Exact saved engineering state
+
+Local commit **bc42f922b4e412d8a0e5056ac9e673e742e9851a**, branch `codex/reconcile-2026-10-16`, worktree `C:/Users/drrob/.codex/worktrees/114b/harley-digital-works`. Base and freshly checked remote main: `d4b144c23bd60b5ccb31fbd0ab8b122643656e56`. Commit saves governance/entry-point alignment, recovered static governance check, nine formatting-only repairs, historical CMS evidence and private-portfolio diagnosis/repair plan. **No push, merge or deployment.** Canonical main has not received this commit; do not assume canonical files contain its code fixes.
+
+Exact scoped-source export passed governance, format, typecheck and Cloudflare-module build; lint 0 errors / 9 existing warnings; 66 smoke + 183 regression + 3 service-worker + 8 embedded domain tests passed. Committed application/checker/package hashes matched the verified snapshot. This excludes peer application edits and does not prove live acceptance. Latest main Quality formatting failure is historical; the local scoped repair passes. A successful deployment job had its actual deploy step skipped; exact live revision remains unverified.
+
+**Preserved outside the commit:** 20 canonical contact/marketing/settings edits, including print/sales copy, portal contact links, site headers/footers/WhatsApp, homepage/Group/contact pages, config/location/knowledge-base and settings placeholders. Exact file list and limits: [reconciliation and portfolio repair plan](RECONCILIATION_AND_DOMAIN_SETUP_2026-10-17.md), copied unchanged from `C:/Users/drrob/.codex/worktrees/114b/harley-digital-works/docs/RECONCILIATION_AND_DOMAIN_SETUP_2026-10-17.md`. Separate review copy `C:/Users/drrob/.codex/.chatgpt-projects/g-p-6821b09180c48191b13b8c6d60d6782b/implementation/hdw-admin-marketing-completion`, branch `codex/admin-marketing-completion-2026-10-16`, base d4b144c, still holds uncommitted CMS/settings validation, illustrative-proof work and runners. Do not overwrite or sweep either batch into a commit. Knowledge-base response-SLA claims need approval reconciliation.
+
+Historical isolated staging CMS create/edit/delete/readback, anonymous denial, mobile/retry and settings read-failure save prevention apply to that separate review copy. Successful settings save/readback, ordinary-user CMS denial, broader admin acceptance, atomic last-admin and server/DB validation remain open.
+
+### Portfolio failure and registrar evidence
+
+Founder screenshot shows private portfolio load failure. Fresh read-only Agency production catalogs (`worzpzbutngugwzhlvtj`) confirm **all three private portfolio tables and import RPC absent**, with migration `20261012155701` not recorded. Public `domain_listings`, `app_private` and trusted role helper exist. This is a confirmed missing setup gap; do not blame the admin role or weaken RLS. Module code already integrated through edd20c1. Existing migration: `supabase/migrations/20261012155701_domain_portfolio_inventory.sql`; **production application/import remains unapplied and unauthorised**. Read-only setup SQL is in the isolated commit at `scripts/diagnostics/domain-portfolio-setup.sql`.
+
+The coordinating chat freshly reports THG Agency production and THG Enquiry Staging (`mfpnfxpgkfuqtedbcxvp`) ACTIVE_HEALTHY. Founder saw both projects in Supabase. No working Cloudflare staging-preview connection was verified. The offered Cloudflare setup question has no definitive answer; infer no publication/setup authority.
+
+IONOS API was configured historically and a fresh read-only connection returned 25 domains; historical records said 53 domains/53 DNS zones. Current response completeness, pagination/account scope and status reconciliation remain unresolved. The CLI does **not** automatically import/synchronise the admin database. No registrar renewals, cancellations or other settings were changed. Founder wants to sell long-held domains and avoid unwanted renewals; this is not blanket sale-publication, renewal-toggle, deletion or spending authority.
+
+### Other observation limits
+
+Coordinating chat reports public homepages/contact HTTP 200 and zero aggregate Agency leads/clients/projects; these do not prove complete runtime acceptance or revenue. Chief-of-staff handover records schedule configuration/source evaluation; newest returned private Slack message is 13 October, not proof of today's unattended run. Do not expand this restart into automation repair or send messages.
+
+### Antigravity restart instructions — next executable action
+
+1. Read root AGENTS.md and governing records. Inspect canonical main/HEAD/status/remotes and isolated commit `bc42f922b4e412d8a0e5056ac9e673e742e9851a`; preserve canonical and review-copy peer changes. Read the linked reconciliation record before selecting patches. No blind copying, reset, push or merge.
+2. Confirm the deployed app backend and run the existing read-only portfolio setup query against the exact selected project. Review the existing migration and establish exact staging application/fixture authority **before writes**. Healthy project status is not acceptance or write permission.
+3. Under verified staging authority, prove real admin allowed and ordinary-user/anonymous denied access, import/readback/repeat/concurrency/rollback/stale-edit/retry/mobile behaviour and exact cleanup. Reconcile complete IONOS inventory against historical records without deleting missing names or changing renewals. Embedded tests do not replace Auth/Data API/browser proof.
+4. Present exact tested migration, target, backup/rollback and evidence for founder approval of production application/import or deployment. Do not apply production, publish sales listings, change registrar renewals, spend or contact others without exact authority. Reconcile and locally save remaining contact/marketing/settings and separate CMS patches file by file; retain all unresolved gates.
+
+## Shared agent governance and CMS staging acceptance — 16 October 2026
+
+H03/H07/H42/H47: founder-approved session-start contract cleaned of pasted chat framing in canonical AGENTS.md; Antigravity and Copilot entry points explicitly reference it. Canonical and active review copies hash-match. New `npm run check:governance` passes static entry-point/record checks; actual host discovery/compliance and other checkout synchronisation remain unverified. These changes are local, not committed/pushed.
+
+On `codex/admin-marketing-completion-2026-10-16`, base d4b144c, `scripts/verify-admin-cms-staging.mjs` passed real isolated staging Auth/API/browser CMS create/edit/delete with independent readback, anonymous mutation denial, mobile no-overflow, intercepted read-outage/retry, and settings read-failure save prevention. Exact unpublished CMS fixture and temporary administrator removed with independent readback; no production, existing settings, live billing, outbound contact or migration changed. First attempt stopped on a selector for deliberately truncated text; cleanup passed; corrected run passed fully. Typecheck/format/governance checks PASS; new scripts lint PASS. Prior batch build/full regression evidence retains its recorded scope.
+
+Open: successful settings save/readback, authenticated ordinary-user CMS denial, broader Control Centre acceptance, atomic last-admin and server/DB validation gates. Full launch remains RED. Next: isolated settings/ordinary-user acceptance, then route-by-route release evidence. Existing peer application work preserved. Detailed checkpoint: `docs/AGENT_GOVERNANCE_AND_CMS_ACCEPTANCE_2026-10-16.md`.
+
+
+
+## Chief of staff operating briefing and recurring workflow authorisation — 16 October 2026
+
+**Authorisation & Routing:** Founder (Robbie) authorised the recurring daily operating briefing workflow at 08:15 Europe/London (UK local time, GMT/BST), with briefing and exception messages routed exclusively to verified private Slack channel `chief-of-staff` (`C0C8U1ABYM8`). All existing enquiry (`#new-leads`, email) and daily digest (`#founder-command`) routing preserved intact.
+
+**Execution & Records:** Evaluated all 13 allowlisted sources, retired obsolete pending delivery `a5d6947348f15210b100`, updated `state.json` and `latest.md`, and saved dated run record `2026-10-16-081500-briefing.md`. Configured daily 08:15 Europe/London recurring cron schedule and Antigravity automation sidecar (`harley-chief-of-staff-daily-briefing`). No customer contact, billing, or production data mutation.
+
 ## Admin server-side validation and data integrity — 15 October 2026
 
 Branch `skypilot24-validation-integrity`, stacked on PR #32. Start here: `src/lib/admin-validation.ts` (parsers), `src/lib/admin-writes.ts` (write helpers, safe error mapping, `invalidateAdminData`), `src/lib/admin-users.ts` (`grantRole`/`revokeRole`). All admin forms (leads, clients, projects, dashboard modals, outreach push) must use them; do not reintroduce `parseFloat`, `.single()` on mutations, `error.message` in toasts or invented defaults. `launched` project status is still gated by the DB trigger. Query-key families: lead → leads, lead-notification, admin; client → clients, projects, leads, admin; project → projects, clients, admin.

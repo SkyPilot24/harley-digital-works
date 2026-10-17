@@ -1,0 +1,76 @@
+# 16 October reconciliation and private portfolio diagnosis — 17 October 2026
+
+## Scope and revision
+
+H03/H07/H42/H47/H49/D01–D08. Local reconciliation branch `codex/reconcile-2026-10-16`, base `d4b144c23bd60b5ccb31fbd0ab8b122643656e56`. Remote main independently read back at that same revision on 17 October. This save covers governance, its recovered static checker, formatting-only CI repairs and this evidence/repair plan. It does not claim that all yesterday's application work has been reconciled or committed. Commit identity is the Git commit containing this record.
+
+Source checkout: `C:/Local Data/The Harley Group/harley-digital-works`; isolated working copy: `C:/Users/drrob/.codex/worktrees/114b/harley-digital-works`. Read-only inspection of yesterday's `implementation/hdw-admin-marketing-completion` review copy confirms branch `codex/admin-marketing-completion-2026-10-16`, HEAD d4b144c and uncommitted work. Source checkouts were not edited.
+
+## What did and did not transfer
+
+The isolated worktree received canonical's 25 modified files and the governance/CMS acceptance note. It did not receive review-copy package registrations, ResourceManager validation, hardened settings reads/writes, illustrative trade proof, CMS acceptance runner or the static governance checker. Recovered only the standalone static checker and registered `check:governance`. Its result is entry-point consistency, not host instruction discovery or compliance.
+
+The review-copy continuation note records historical build/typecheck/full regression and viewport results. The later CMS note records real isolated staging CMS create/edit/delete/readback, anonymous denial, mobile/retry and settings read-failure save prevention. Those records apply to that uncommitted review copy, not this transferred application. Successful settings save/readback, ordinary-user CMS denial, wider admin acceptance, atomic last-admin and server/DB validation remain open. Do not run its write-capable staging harness without exact fixture authority.
+
+Canonical contact/marketing changes overlap the review's homepage/trade/settings edits. Its knowledge article also claims ratified response SLAs (2-hour callback, 15-minute WhatsApp, 4-business-hour form follow-up) without approval established in this review. Preserve these edits uncommitted until source/approval reconciliation; do not silently publish or approve them.
+
+## Private portfolio: confirmed setup gap
+
+The supplied screenshot shows a failed private inventory load; it does not prove an invalid admin role. Fresh read-only Supabase catalog queries on **Agency production `worzpzbutngugwzhlvtj`** found all three private portfolio tables and `public.import_domain_portfolio(uuid,text,date,jsonb)` absent. Migration `20261012155701` is not recorded. Public `domain_listings`, `app_private` and trusted `app_private.has_role(uuid,public.app_role)` exist. No row contents or credentials were returned.
+
+Source `domain-database-store.ts` reads those three absent tables and maps any query error to the screenshot's message. Missing schema is therefore a confirmed cause of this route's failure against Agency production; catalog access alone does not verify the user's browser session or deployed backend binding. Existing code was integrated in `edd20c1`; do not duplicate the module or infer migration application from that merge. Historical draft PR #25 and 12 October release notes are not proof that production setup completed.
+
+Reproducible read-only SQL: `scripts/diagnostics/domain-portfolio-setup.sql`. Keep RLS and the admin gate intact. Do not substitute browser-local storage, public listings or service credentials to hide a failed private read.
+
+## IONOS API versus portfolio storage
+
+The committed `scripts/ionos-domains.mjs` configures read-only registrar/domain/DNS requests. It does not import or synchronise the admin database. The coordinating chat's fresh read-only `listDomains()` call reported connected=true and 25 returned domains. This is a supplied current observation, not an independent count repeated successfully in this worktree. Historical 13 October records say 53 domains/53 zones; pagination, account scope and current status must be reconciled before claiming complete inventory or disposal. No missing name is evidence that it was sold or dropped. No renewal/cancellation/listing action was taken.
+
+The existing parser supports IONOS export upload, preview and explicit authenticated database import. No automatic API-to-portfolio sync was found in the examined app/CLI paths. Keep registrar credentials server-side and preserve private contracts, notes and costs separately from public sales listings.
+
+## Reviewed repair sequence; not applied
+
+1. Verify the deployed app's backend is Agency and repeat the read-only SQL. Use existing migration `supabase/migrations/20261012155701_domain_portfolio_inventory.sql`; do not recreate it or rewrite history. Review its exact hash and prerequisites immediately before execution. It adds private tables/RLS/invoker RPC and does not import inventory or change public listings.
+2. Obtain exact isolated staging application/fixture authority if not already available. Apply/rehearse only there, then test real admin/ordinary/anonymous Auth/Data API, direct RPC, repeated/concurrent imports, invalid-row rollback, stale edits, persisted refresh, failure/retry and desktop/mobile. Record cleanup. Embedded tests alone do not pass these gates.
+3. Present staging evidence and exact migration for founder approval of Agency production application. No production migration, deployment, import or data mutation is authorised by this reconciliation. If approved later, apply only the reviewed additive migration, read back objects/grants/policies and retain public listing/enquiry baselines.
+4. Reconcile complete current registrar inventory with historical export/reference, preserve unmatched entries for review, then obtain authority for an explicit real authenticated import. Verify persisted counts/renewal alerts with fresh dates. Historical 26 alerts are not today's alert count.
+5. Prepare keep/sell/review/let-lapse decisions with verified ownership, use, expiry, renewal status/cost and dependencies. Founder decides renewals and commercial publication. Do not toggle renewals, cancel, list for sale or spend under this task.
+
+## Evidence limits and next action
+
+Upstream handoff supplied today's public HTTP 200, Agency ACTIVE_HEALTHY/zero aggregate leads/clients/projects, Quality formatting failure and deployment-job success with deploy step skipped. These are attributed observations, not checks independently repeated here and not release, revenue or unattended-briefing proof. Chief-of-staff configuration/source evaluation records are not evidence of a 17 October timed delivery; automation repair is outside scope.
+
+Initial offline dependency installation failed because locked packages were not cached; no tests passed from that attempt. Fresh local verification is recorded below after dependency recovery. No push, merge, deployment, production migration/import, registrar write, spending or outbound message occurred.
+
+Next executable action: run `scripts/diagnostics/domain-portfolio-setup.sql` read-only against the confirmed deployed backend and review the existing migration plus staging acceptance plan for exact execution approval. In parallel with that release decision, reconcile the overlapping source/review application patches file by file; do not sweep them into this save.
+
+## Preserved uncommitted files
+
+- `docs/print-materials/01-harley-digital-works-proposal-matrix.html`
+- `docs/print-materials/02-harley-digital-works-14-day-onboarding-guide.html`
+- `docs/print-materials/03-harley-digital-works-care-plan-sla.html`
+- `docs/sales-playbooks/01-trade-outbound-email-and-letter-campaign.md`
+- `src/components/portal/CareBillingPortalDesk.tsx`
+- `src/components/portal/ContractorOnboardingWizard.tsx`
+- `src/components/site/FloatingWhatsAppDesk.tsx`
+- `src/components/site/FooterDark.tsx`
+- `src/components/site/HarleyGroupFooter.tsx`
+- `src/components/site/HarleyGroupHeader.tsx`
+- `src/components/site/SiteHeader.tsx`
+- `src/components/site/TradeServiceLanding.tsx`
+- `src/lib/knowledge-base.ts`
+- `src/lib/location-data.ts`
+- `src/lib/site-config.ts`
+- `src/routes/_authenticated/admin.settings.tsx`
+- `src/routes/care-desk.tsx`
+- `src/routes/contact.tsx`
+- `src/routes/index.tsx`
+- `src/routes/the-harley-group.tsx`
+
+The separate review checkout retains its full uncommitted CMS/settings/illustrative-proof batch and runners; none was overwritten. The nine source formatting repairs are independent of those changes. Local validation uses an export of the exact staged source with locked dependencies, excluding preserved peer application edits; it does not verify the mixed working tree or production browser.
+
+## Fresh verification for this scoped save
+
+Exact staged-source export on Windows, locked package-lock dependencies installed with `npm ci --ignore-scripts --no-audit --no-fund`. `check:governance`, full format check, typecheck and Cloudflare-module build PASS; lint 0 errors / 9 existing Fast Refresh warnings. After build, `npm test` PASS: 66 smoke + 183 regression + 3 service-worker checks. Explicit `scripts/domain-portfolio.test.mjs` PASS 8/8 (embedded PostgreSQL/parser/renewal tests, not real Supabase Auth/PostgREST). First pre-build smoke run stopped on missing generated artifacts; rerun after build passed. Build retains bundle-size/plugin-time warnings, no performance score claimed.
+
+Verification snapshot excludes all preserved peer application changes. Nine source files received formatter output only; three overlapping files were formatted from the staged base, not copied from the peer working tree. Final evidence edits are documentation-only. Live private admin browser and real allowed/denied Auth/API, staging application and production migration/import remain untested/unapplied. Release gate: **Blocking launch for private portfolio shared use**; **Ready for local review** of this scoped save.

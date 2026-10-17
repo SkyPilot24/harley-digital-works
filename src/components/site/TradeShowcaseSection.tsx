@@ -28,7 +28,8 @@ const TRADE_ICONS: Record<string, React.ElementType> = {
 export function TradeShowcaseSection() {
   const tradeKeys = Object.keys(TRADE_VERTICALS);
   const [selectedKey, setSelectedKey] = useState<string>("heating-engineers");
-  const activeTrade: TradeVertical = TRADE_VERTICALS[selectedKey] || TRADE_VERTICALS["heating-engineers"];
+  const activeTrade: TradeVertical =
+    TRADE_VERTICALS[selectedKey] || TRADE_VERTICALS["heating-engineers"];
   const ActiveIcon = TRADE_ICONS[selectedKey] || Flame;
 
   return (
@@ -55,7 +56,10 @@ export function TradeShowcaseSection() {
               </span>
             </div>
             <p className="studio-kicker">02 / ENGINEERED SPECIFICALLY FOR UK TRADES</p>
-            <h2 id="trades-showcase-heading" className="text-3xl md:text-5xl font-extrabold tracking-tight text-ink">
+            <h2
+              id="trades-showcase-heading"
+              className="text-3xl md:text-5xl font-extrabold tracking-tight text-ink"
+            >
               Your trade. Your reputation.
               <br />
               <span className="text-ink-muted">A website that actually wins the right jobs.</span>
@@ -63,7 +67,8 @@ export function TradeShowcaseSection() {
           </div>
           <p className="text-base text-ink-muted max-w-xl leading-relaxed">
             Stop losing high-margin jobs to lead generation directories. We build custom, fast,
-            conversion-engineered websites with 100% written copy and ongoing care for ambitious UK trades.
+            conversion-engineered websites with 100% written copy and ongoing care for ambitious UK
+            trades.
           </p>
         </div>
 
@@ -85,10 +90,7 @@ export function TradeShowcaseSection() {
                 }`}
                 aria-pressed={isSelected}
               >
-                <Icon
-                  size={16}
-                  className={isSelected ? "text-amber-600" : "text-ink-muted"}
-                />
+                <Icon size={16} className={isSelected ? "text-amber-600" : "text-ink-muted"} />
                 <span>{trade.name}</span>
               </button>
             );
@@ -162,7 +164,8 @@ export function TradeShowcaseSection() {
                       Managed Turnkey Package
                     </span>
                     <div className="text-2xl font-black text-white mt-0.5">
-                      £1,495 <span className="text-xs font-normal text-stone-400">+ £249/mo care</span>
+                      £1,495{" "}
+                      <span className="text-xs font-normal text-stone-400">+ £249/mo care</span>
                     </div>
                   </div>
                   <div className="text-right">
@@ -194,7 +197,8 @@ export function TradeShowcaseSection() {
                     50% Deposit / 50% on Final Approval
                   </div>
                   <p className="text-stone-400">
-                    You only pay the completion balance once you have reviewed the working staging site and confirmed satisfaction.
+                    You only pay the completion balance once you have reviewed the working staging
+                    site and confirmed satisfaction.
                   </p>
                 </div>
               </div>
@@ -241,7 +245,8 @@ export function TradeShowcaseSection() {
               Why UK Trades Choose Harley Digital Works
             </h3>
             <p className="text-xs sm:text-sm text-ink-muted">
-              How we compare against building it yourself in the evenings or hiring a generic digital agency.
+              How we compare against building it yourself in the evenings or hiring a generic
+              digital agency.
             </p>
           </div>
 
@@ -306,7 +311,8 @@ export function TradeShowcaseSection() {
                     Submit tickets to a support desk and wait days for a response.
                   </td>
                   <td className="py-3.5 px-4 bg-amber-50/80 text-ink font-semibold border-x border-amber-200/80">
-                    ✓ Dedicated monthly care: hosting, SSL, enquiry checks & 30-min monthly edit batch.
+                    ✓ Dedicated monthly care: hosting, SSL, enquiry checks & 30-min monthly edit
+                    batch.
                   </td>
                 </tr>
 
@@ -331,7 +337,12 @@ export function TradeShowcaseSection() {
               <PhoneCall size={16} className="text-amber-700 shrink-0" />
               <span>Questions before booking? Email or call us directly. No hard sell.</span>
             </div>
-            <PillButton as="link" to="/contact" variant="dark" className="shrink-0 text-xs font-bold">
+            <PillButton
+              as="link"
+              to="/contact"
+              variant="dark"
+              className="shrink-0 text-xs font-bold"
+            >
               Book a Free 15-Minute Chat
             </PillButton>
           </div>

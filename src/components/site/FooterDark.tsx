@@ -1,4 +1,5 @@
 import { Link } from "@tanstack/react-router";
+import { Phone, MessageCircle } from "lucide-react";
 import { StudioWordmark } from "./StudioWordmark";
 import { siteConfig } from "@/lib/site-config";
 
@@ -48,7 +49,24 @@ export function FooterDark() {
           <div>
             <h3>A good place to start.</h3>
             <nav aria-label="Contact the studio">
-              <a href={"tel:" + siteConfig.contactPhoneRaw}>{siteConfig.contactPhone}</a>
+              <a
+                href={"tel:" + siteConfig.contactPhoneTel}
+                className="inline-flex items-center gap-1.5"
+                aria-label={`Call ${siteConfig.contactPhone}`}
+              >
+                <Phone size={13} className="text-gold-400" />
+                <span>{siteConfig.contactPhone}</span>
+              </a>
+              <a
+                href={`${siteConfig.whatsappUrl}?text=${encodeURIComponent(siteConfig.whatsappDefaultMessage)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 text-emerald-400 hover:text-emerald-300"
+                aria-label={`Chat on WhatsApp ${siteConfig.whatsappDisplay}`}
+              >
+                <MessageCircle size={13} />
+                <span>WhatsApp: {siteConfig.whatsappDisplay}</span>
+              </a>
               <a href={"mailto:" + siteConfig.contactEmail}>{siteConfig.contactEmail}</a>
               <Link
                 to="/contact"
@@ -66,7 +84,10 @@ export function FooterDark() {
           </div>
         </div>
         <div className="studio-footer-bottom">
-          <span>© {new Date().getFullYear()} Harley Digital Works. Part of The Harley Group.</span>
+          <span>
+            © {new Date().getFullYear()} Harley Digital Works. Part of The Harley Group · Bristol,
+            UK · Mon–Fri 09:00–17:00
+          </span>
           <span>Independent thinking. Considered design.</span>
         </div>
       </div>

@@ -1,6 +1,14 @@
 import { useEffect, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowDown, ArrowUpRight, Check, PenLine, ShieldCheck } from "lucide-react";
+import {
+  ArrowDown,
+  ArrowUpRight,
+  Check,
+  PenLine,
+  ShieldCheck,
+  Phone,
+  MessageCircle,
+} from "lucide-react";
 import { PageShell } from "@/components/site/PageShell";
 import { PillButton } from "@/components/site/PillButton";
 import { ConceptScreen, ConceptShowcase } from "@/components/site/ConceptShowcase";
@@ -15,7 +23,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 
-import { buildPageSeoHead } from "@/lib/site-config";
+import { buildPageSeoHead, siteConfig } from "@/lib/site-config";
 
 export const Route = createFileRoute("/")({
   head: () =>
@@ -90,7 +98,12 @@ function HomePage() {
                 </span>
               </div>
               <div className="studio-actions flex flex-wrap items-center gap-3">
-                <PillButton as="link" to="/contact" variant="dark" className="studio-button min-h-[48px] px-6 text-sm font-bold shadow-md cursor-pointer">
+                <PillButton
+                  as="link"
+                  to="/contact"
+                  variant="dark"
+                  className="studio-button min-h-[48px] px-6 text-sm font-bold shadow-md cursor-pointer"
+                >
                   Get your website plan
                 </PillButton>
                 <PillButton
@@ -104,6 +117,27 @@ function HomePage() {
                 </PillButton>
                 <a href="#trades-showcase" className="studio-text-link">
                   See trade setups <ArrowDown size={14} />
+                </a>
+              </div>
+              <div className="flex flex-wrap items-center gap-3 text-xs text-ink/80 pt-1 pb-1">
+                <a
+                  href={`tel:${siteConfig.contactPhoneTel}`}
+                  className="inline-flex items-center gap-1.5 font-bold text-ink hover:text-amber-800 transition-colors"
+                  aria-label={`Call us on ${siteConfig.contactPhone}`}
+                >
+                  <Phone size={13} className="text-amber-700" />
+                  <span>Call {siteConfig.contactPhone}</span>
+                </a>
+                <span className="text-ink/30">·</span>
+                <a
+                  href={`${siteConfig.whatsappUrl}?text=${encodeURIComponent(siteConfig.whatsappDefaultMessage)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 font-semibold text-emerald-800 hover:text-emerald-900 transition-colors"
+                  aria-label={`Chat on WhatsApp ${siteConfig.whatsappDisplay}`}
+                >
+                  <MessageCircle size={13} className="text-emerald-600" />
+                  <span>WhatsApp: {siteConfig.whatsappDisplay}</span>
                 </a>
               </div>
               <div className="hero-price">
@@ -419,9 +453,29 @@ function HomePage() {
                   <br />
                   And works for your business.
                 </p>
-                <PillButton as="link" to="/contact" variant="light" className="studio-button">
-                  Get your website plan
-                </PillButton>
+                <div className="flex flex-wrap items-center gap-3">
+                  <PillButton as="link" to="/contact" variant="light" className="studio-button">
+                    Get your website plan
+                  </PillButton>
+                  <a
+                    href={`tel:${siteConfig.contactPhoneTel}`}
+                    className="inline-flex items-center gap-1.5 rounded-full border border-white/30 px-4 py-2.5 text-xs font-semibold text-white hover:bg-white/10"
+                    aria-label={`Call us on ${siteConfig.contactPhone}`}
+                  >
+                    <Phone size={13} className="text-amber-300" />
+                    <span>Call {siteConfig.contactPhone}</span>
+                  </a>
+                  <a
+                    href={`${siteConfig.whatsappUrl}?text=${encodeURIComponent(siteConfig.whatsappDefaultMessage)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 rounded-full bg-emerald-700/80 hover:bg-emerald-700 px-4 py-2.5 text-xs font-semibold text-white"
+                    aria-label={`WhatsApp ${siteConfig.whatsappDisplay}`}
+                  >
+                    <MessageCircle size={13} className="text-white" />
+                    <span>WhatsApp</span>
+                  </a>
+                </div>
                 <span className="final-price">
                   £1,495 setup · £249/mo care · 14-day turnaround · Up to 2 pilot spots
                 </span>

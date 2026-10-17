@@ -303,7 +303,8 @@ function ProjectsAdminPage() {
           <AlertTriangle size={24} className="mx-auto text-rose-700" />
           <h3 className="text-sm font-bold">Projects Could Not Be Loaded</h3>
           <p className="text-xs text-rose-800">
-            A network or database connection interruption prevented loading project delivery records.
+            A network or database connection interruption prevented loading project delivery
+            records.
           </p>
           <button
             type="button"
@@ -367,7 +368,9 @@ function ProjectsAdminPage() {
 
                   <div className="flex items-center gap-2">
                     <span className="font-mono text-xs font-bold text-emerald-800 bg-emerald-50 border border-emerald-200 px-3 py-1 rounded-full">
-                      {formatCents(project.budget_cents) ? `${formatCents(project.budget_cents)} Setup` : "£1,495 Setup"}
+                      {formatCents(project.budget_cents)
+                        ? `${formatCents(project.budget_cents)} Setup`
+                        : "£1,495 Setup"}
                     </span>
                     <button
                       onClick={() => setEditingProject(project)}

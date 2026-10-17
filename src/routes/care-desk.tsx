@@ -2,6 +2,7 @@ import { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { PageShell, Container } from "@/components/site/PageShell";
 import { TagChip } from "@/components/site/TagChip";
+import { siteConfig } from "@/lib/site-config";
 import {
   ShieldCheck,
   Clock,
@@ -187,7 +188,7 @@ Files Attached: ${uploadedFiles.join(", ") || "None"}`;
 
               <div className="mt-6 pt-6 border-t border-neutral-800 flex flex-col sm:flex-row gap-3 justify-center">
                 <a
-                  href={`https://wa.me/441618204910?text=${encodeURIComponent(`Hi Jack, I just submitted an update ticket for ${businessName}.`)}`}
+                  href={`${siteConfig.whatsappUrl}?text=${encodeURIComponent(`Hi Robbie, I just submitted an update ticket for ${businessName}.`)}`}
                   target="_blank"
                   rel="noreferrer"
                   className="inline-flex items-center justify-center gap-2 rounded-full bg-emerald-600 hover:bg-emerald-500 px-5 py-2.5 text-xs font-bold text-white transition-all shadow-md"

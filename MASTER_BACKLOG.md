@@ -1,3 +1,5 @@
+**Antigravity restart — 17 October 2026:** Read the current checkpoint at the top of [docs/HANDOVER.md](docs/HANDOVER.md). Local scoped commit bc42f922b4e412d8a0e5056ac9e673e742e9851a remains unpushed in codex/reconcile-2026-10-16; canonical peer edits and private-portfolio production setup/acceptance remain open. This documentation pointer is uncommitted.
+
 ## Admin server-side validation and data integrity — 15 October 2026
 
 Done (unit-tested, branch `skypilot24-validation-integrity`): shared validators and write helpers across leads, clients, projects, dashboard modals, outreach push and role grant/revoke; exact pence; no invented defaults; zero-row and error handling; full query invalidation. Open: (1) staging ordinary-user vs admin browser acceptance (blocked: no credentials); (2) atomic last-admin revoke SQL function; (3) DB CHECK constraints (length, non-negative cents) — design only, unapplied; (4) move writes behind server functions so direct API calls are validated too; (5) validate `agency_settings` and `ResourceManager` numbers; (6) decide whether leads/clients need a follow-up date column. Launch remains RED.

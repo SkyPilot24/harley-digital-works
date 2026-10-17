@@ -27,13 +27,42 @@ export const siteConfig = {
   ogImage: `${siteUrl}/brand/2026-10-13/hdw-og-image.png`,
   contactEmail: "hello@harleydigitalworks.com",
   contactPhone: "0117 214 1357",
+  contactPhoneInternational: "+44 117 214 1357",
+  contactPhoneTel: "+441172141357",
   contactPhoneRaw: "01172141357",
+  whatsappNumber: "447394041487",
+  whatsappDisplay: "07394 041487",
+  whatsappInternational: "+44 7394 041487",
+  whatsappUrl: "https://wa.me/447394041487",
+  whatsappDefaultMessage:
+    "Hi Robbie, I'd like to chat about getting a website and digital care for my business.",
+  location: "Bristol, United Kingdom",
+  operatingHours: "Monday–Friday 09:00–17:00 UK time",
   brandMark: "/brand/2026-10-13/logos/hdw-symbol-ivory.svg",
   brandLogo: "/brand/2026-10-13/logos/hdw-endorsed-ivory.svg",
   brandLogoDark: "/brand/2026-10-13/logos/hdw-endorsed-ivory.svg",
   brandLogoLight: "/brand/2026-10-13/logos/hdw-endorsed-navy.svg",
   brandMarkDark: "/brand/2026-10-13/logos/hdw-symbol-ivory.svg",
   brandMarkLight: "/brand/2026-10-13/logos/hdw-symbol-navy.svg",
+};
+
+export const harleyGroupConfig = {
+  name: "The Harley Group",
+  url: "https://theharleygroup.org",
+  canonicalUrl: "https://theharleygroup.org/the-harley-group",
+  contactEmail: "robbie@theharleygroup.org",
+  contactPhone: "0117 214 1357",
+  contactPhoneInternational: "+44 117 214 1357",
+  contactPhoneTel: "+441172141357",
+  contactPhoneRaw: "01172141357",
+  whatsappNumber: "447394041487",
+  whatsappDisplay: "07394 041487",
+  whatsappInternational: "+44 7394 041487",
+  whatsappUrl: "https://wa.me/447394041487",
+  whatsappDefaultMessage:
+    "Hi Robert, I found The Harley Group online and I'd like to find out more about your services.",
+  location: "Bristol, United Kingdom",
+  operatingHours: "Monday–Friday 09:00–17:00 UK time",
 };
 
 export function canonicalUrlForPath(pathname: string) {
@@ -350,6 +379,7 @@ export function buildPageSeoHead({
             email: siteConfig.contactEmail,
             telephone: "+441172141357",
             priceRange: "£1,495 - £4,995",
+            openingHours: "Mo-Fr 09:00-17:00",
             address: {
               "@type": "PostalAddress",
               addressLocality: "Bristol",

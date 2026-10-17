@@ -1,3 +1,21 @@
+**Antigravity restart — 17 October 2026:** Read the current checkpoint at the top of [docs/HANDOVER.md](docs/HANDOVER.md). Local scoped commit bc42f922b4e412d8a0e5056ac9e673e742e9851a remains unpushed in codex/reconcile-2026-10-16; canonical peer edits and private-portfolio production setup/acceptance remain open. This documentation pointer is uncommitted.
+
+## Shared agent governance and CMS staging acceptance — 16 October 2026
+
+H03/H07/H42/H47: founder-approved session-start contract cleaned of pasted chat framing in canonical AGENTS.md; Antigravity and Copilot entry points explicitly reference it. Canonical and active review copies hash-match. New `npm run check:governance` passes static entry-point/record checks; actual host discovery/compliance and other checkout synchronisation remain unverified. These changes are local, not committed/pushed.
+
+On `codex/admin-marketing-completion-2026-10-16`, base d4b144c, `scripts/verify-admin-cms-staging.mjs` passed real isolated staging Auth/API/browser CMS create/edit/delete with independent readback, anonymous mutation denial, mobile no-overflow, intercepted read-outage/retry, and settings read-failure save prevention. Exact unpublished CMS fixture and temporary administrator removed with independent readback; no production, existing settings, live billing, outbound contact or migration changed. First attempt stopped on a selector for deliberately truncated text; cleanup passed; corrected run passed fully. Typecheck/format/governance checks PASS; new scripts lint PASS. Prior batch build/full regression evidence retains its recorded scope.
+
+Open: successful settings save/readback, authenticated ordinary-user CMS denial, broader Control Centre acceptance, atomic last-admin and server/DB validation gates. Full launch remains RED. Next: isolated settings/ordinary-user acceptance, then route-by-route release evidence. Existing peer application work preserved. Detailed checkpoint: `docs/AGENT_GOVERNANCE_AND_CMS_ACCEPTANCE_2026-10-16.md`.
+
+
+
+## Chief of staff operating briefing and recurring workflow authorisation — 16 October 2026
+
+**Authorisation & Schedule:** Founder (Robbie) authorised the recurring daily operating briefing workflow at 08:15 Europe/London (UK local time, GMT/BST), with briefing and exception messages routed exclusively to verified private Slack channel `chief-of-staff` (`C0C8U1ABYM8`). All existing enquiry (`#new-leads`, email) and daily digest (`#founder-command`) routing preserved intact.
+
+**Executed:** Evaluated all 13 allowlisted sources, retired obsolete pending delivery `a5d6947348f15210b100`, updated `state.json` and `latest.md`, and saved dated run record `2026-10-16-081500-briefing.md`. Configured daily 08:15 Europe/London recurring cron schedule and Antigravity automation sidecar (`harley-chief-of-staff-daily-briefing`). No customer contact, billing, or production data mutation.
+
 ## Admin server-side validation and data integrity — 15 October 2026
 
 H03/H07/H42, branch `skypilot24-validation-integrity` (stacked on PR #32 / #31 / #29).
