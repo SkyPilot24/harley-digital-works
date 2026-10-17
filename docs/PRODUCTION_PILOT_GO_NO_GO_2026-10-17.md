@@ -1,5 +1,9 @@
 # Production pilot: go/no-go checklist and approval scope
 
+## Latest release-package review
+
+[Pinned security/migration/rollback package](PILOT_SECURITY_RELEASE_PACKAGE_2026-10-17.md): four-file security candidate `750b39b5e4373040b1830b1091f37981bb75145d` is committed locally, with fresh clean audit/build/typecheck/full tests and patched browser/Auth checks. It is not pushed/deployed. Migration review reproduced a task FK left on `projects_legacy` and ineffective customer self-read under clients RLS. **The original single projects migration and package B's former single-file allowance below are on HOLD and must not be executed unchanged.** The corrected admin-only review draft passes four local tests but still requires a supported versioned migration, actual staging/API acceptance, backup/restore/fallback evidence and exact approval coverage. Main/production remain unchanged; the paying-pilot NO-GO stands. Earlier checklist details are retained as the decision baseline; use the new package for the next execution scope.
+
 17 October 2026 · H01/H02/H07–H10/H19–H25/H37/H42/H47/H48/H50 · Internal decision record
 
 **Verdict: NO-GO for accepting a paying pilot today. GO for preparing the existing security/project correction package and finishing the evidence below.** No production operation is authorised by this document. Preserve the three-customer-total pilot decision and two-concurrent-build limit; do not seek those approvals again.

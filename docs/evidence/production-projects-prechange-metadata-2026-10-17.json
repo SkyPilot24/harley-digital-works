@@ -1,0 +1,163 @@
+{
+  "scope": "Pre-change metadata only; NOT a recoverable data backup or restore proof",
+  "counts": {
+    "projects": 0,
+    "project_tasks": 0
+  },
+  "columns": [
+    {
+      "type": "uuid",
+      "table": "project_tasks",
+      "column": "id",
+      "default": "gen_random_uuid()",
+      "nullable": "NO"
+    },
+    {
+      "type": "uuid",
+      "table": "project_tasks",
+      "column": "project_id",
+      "default": null,
+      "nullable": "YES"
+    },
+    {
+      "type": "text",
+      "table": "project_tasks",
+      "column": "title",
+      "default": null,
+      "nullable": "NO"
+    },
+    {
+      "type": "boolean",
+      "table": "project_tasks",
+      "column": "done",
+      "default": "false",
+      "nullable": "YES"
+    },
+    {
+      "type": "timestamp with time zone",
+      "table": "project_tasks",
+      "column": "created_at",
+      "default": "now()",
+      "nullable": "YES"
+    },
+    {
+      "type": "uuid",
+      "table": "projects",
+      "column": "id",
+      "default": "gen_random_uuid()",
+      "nullable": "NO"
+    },
+    {
+      "type": "text",
+      "table": "projects",
+      "column": "client_name",
+      "default": null,
+      "nullable": "NO"
+    },
+    {
+      "type": "text",
+      "table": "projects",
+      "column": "package",
+      "default": "'Unknown'::text",
+      "nullable": "NO"
+    },
+    {
+      "type": "text",
+      "table": "projects",
+      "column": "status",
+      "default": "'Discovery'::text",
+      "nullable": "NO"
+    },
+    {
+      "type": "timestamp with time zone",
+      "table": "projects",
+      "column": "deadline",
+      "default": null,
+      "nullable": "YES"
+    },
+    {
+      "type": "integer",
+      "table": "projects",
+      "column": "progress",
+      "default": "0",
+      "nullable": "YES"
+    },
+    {
+      "type": "numeric",
+      "table": "projects",
+      "column": "value",
+      "default": "0",
+      "nullable": "YES"
+    },
+    {
+      "type": "text",
+      "table": "projects",
+      "column": "notes",
+      "default": null,
+      "nullable": "YES"
+    },
+    {
+      "type": "timestamp with time zone",
+      "table": "projects",
+      "column": "created_at",
+      "default": "now()",
+      "nullable": "YES"
+    }
+  ],
+  "project": "worzpzbutngugwzhlvtj",
+  "policies": [
+    {
+      "cmd": "ALL",
+      "name": "admin_all_project_tasks",
+      "qual": "app_private.has_role(auth.uid(), 'admin'::app_role)",
+      "check": "app_private.has_role(auth.uid(), 'admin'::app_role)",
+      "roles": [
+        "authenticated"
+      ],
+      "table": "project_tasks"
+    },
+    {
+      "cmd": "ALL",
+      "name": "Admins manage projects",
+      "qual": "app_private.has_role(auth.uid(), 'admin'::app_role)",
+      "check": "app_private.has_role(auth.uid(), 'admin'::app_role)",
+      "roles": [
+        "authenticated"
+      ],
+      "table": "projects"
+    },
+    {
+      "cmd": "ALL",
+      "name": "admin_all_projects",
+      "qual": "app_private.has_role(auth.uid(), 'admin'::app_role)",
+      "check": "app_private.has_role(auth.uid(), 'admin'::app_role)",
+      "roles": [
+        "authenticated"
+      ],
+      "table": "projects"
+    }
+  ],
+  "constraints": [
+    {
+      "name": "projects_pkey",
+      "table": "projects",
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "name": "projects_progress_check",
+      "table": "projects",
+      "definition": "CHECK (((progress >= 0) AND (progress <= 100)))"
+    },
+    {
+      "name": "project_tasks_pkey",
+      "table": "project_tasks",
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "name": "project_tasks_project_id_fkey",
+      "table": "project_tasks",
+      "definition": "FOREIGN KEY (project_id) REFERENCES projects(id) ON DELETE CASCADE"
+    }
+  ],
+  "captured_at_utc": "2026-10-17T22:21:52.039719+00:00"
+}

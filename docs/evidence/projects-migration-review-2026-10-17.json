@@ -1,0 +1,13 @@
+{
+  "scope": "Local disposable PGlite only; production-shape/client-policy mirror; no remote writes",
+  "migration": "supabase/migrations/20261015140000_reconcile_projects_schema.sql",
+  "originalTaskFkTargetAfterRename": "projects_legacy",
+  "newProjectTaskInsertError": "23503",
+  "matchingCustomerProjectRowsVisible": 0,
+  "migrationRepeatGuardReturnsWithoutFixingDependencies": true,
+  "localDraftFkRebindTaskInsertCount": 1,
+  "nonemptyLegacyAborted": true,
+  "nonemptyLegacyRowsPreserved": 1,
+  "verdict": "HOLD: existing migration alone is incomplete",
+  "customerPolicyFinding": "Existing admin-only clients RLS prevents intended email-linked project self-read"
+}
