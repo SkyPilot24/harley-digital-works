@@ -1,0 +1,57 @@
+{
+  "target": "mfpnfxpgkfuqtedbcxvp",
+  "source": "af5ae9c; isolated local configuration",
+  "startedUtc": "2026-10-17T21:50:11.867Z",
+  "checks": [
+    {
+      "check": "empty rendered form blocks submission",
+      "status": "PASS"
+    },
+    {
+      "check": "actual public-browser enquiry independently reads back from staging",
+      "status": "PASS"
+    },
+    {
+      "check": "duplicate browser submission returns receipt with one persisted lead and pending zero-attempt job",
+      "status": "PASS"
+    },
+    {
+      "check": "signed-out admin browser redirects to sign-in",
+      "status": "PASS"
+    },
+    {
+      "check": "anonymous lead API read denied",
+      "status": "PASS"
+    },
+    {
+      "check": "manual qualification owner and dated action persist",
+      "status": "PASS"
+    },
+    {
+      "check": "manual simulated follow-up and replacement dated action persist",
+      "status": "PASS"
+    },
+    {
+      "check": "actual workspace helper retry retains one zero-value lead client",
+      "status": "PASS"
+    },
+    {
+      "check": "fictional discovery project linkage reads back",
+      "status": "PASS"
+    }
+  ],
+  "limitations": [
+    "Admin notes/client/project operations below use service API, not authenticated owner browser.",
+    "Ordinary signed-in user denial not rerun; no new Auth users or roles.",
+    "Actual email/Slack delivery and payment not tested."
+  ],
+  "earlierAttempts": "Initial local-process exit and a subsequent success-selector timeout; exact cleanup zero. Diagnostic browser retry returned server HTTP 200 and received screen; no code fix made.",
+  "cleanup": {
+    "leads": 0,
+    "clients": 0,
+    "projects": 0,
+    "jobs": 0,
+    "ownedAttempts": 0
+  },
+  "finishedUtc": "2026-10-17T21:50:22.809Z"
+}

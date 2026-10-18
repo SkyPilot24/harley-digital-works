@@ -1,0 +1,46 @@
+{
+  "testedApplicationBase": "af5ae9c plus four reviewed security files",
+  "target": "mfpnfxpgkfuqtedbcxvp",
+  "startedUtc": "2026-10-17T22:18:27.041Z",
+  "checks": [
+    {
+      "check": "patched public contact and Auth SSR routes load",
+      "status": "PASS"
+    },
+    {
+      "check": "patched real browser server-function intake persists original enquiry",
+      "status": "PASS"
+    },
+    {
+      "check": "patched duplicate receipt retains one lead and unclaimed outbox job",
+      "status": "PASS"
+    },
+    {
+      "check": "patched signed-out admin route redirects",
+      "status": "PASS"
+    },
+    {
+      "check": "patched real Auth administrator retrieves exact browser enquiry",
+      "status": "PASS"
+    },
+    {
+      "check": "patched administrator status write independently reads back",
+      "status": "PASS"
+    },
+    {
+      "check": "patched admin desk fits mobile viewport",
+      "status": "PASS"
+    }
+  ],
+  "limitations": [
+    "Local Vite/staging browser, not deployed Cloudflare acceptance.",
+    "No notifications, payment or new roles/users."
+  ],
+  "cleanup": {
+    "leads": 0,
+    "jobs": 0,
+    "ownedAttempts": 0,
+    "testSessionSignedOut": true
+  },
+  "finishedUtc": "2026-10-17T22:18:52.184Z"
+}

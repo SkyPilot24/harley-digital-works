@@ -318,8 +318,8 @@ function DiagnosticsPage() {
                 Automated Background Workflows & Scheduled Crons
               </h2>
               <p className="mt-1 text-sm text-ink-muted">
-                Continuous background processes running via Cloudflare Workers and Nitro server
-                engine.
+                Schedules recorded in the application. Verify provider triggers and recent execution
+                logs separately; these descriptions do not establish runtime health.
               </p>
             </div>
 
