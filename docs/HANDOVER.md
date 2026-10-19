@@ -1,3 +1,5 @@
+> **Latest H07 checkpoint — 19 October 2026:** approved export completed; first offline restore **FAILED_HOLD** on event-trigger ownership. Failed target is stopped and isolated; no retry authorised. Read [H07 recovery handover](H07_RECOVERY_HANDOVER_2026-10-19.md) before continuing. Recovery artifacts expire 26 October 2026 at 16:24:10 UK time; no automatic cleanup configured. This supersedes older status text below while preserving history.
+
 ## H07 B1 metadata-only preflight completed — 19 October 2026
 
 Founder-approved B1 is complete: canonical production target matched and bounded catalogue totals checked. No customer-row reads, secret retrieval, database export, production changes, migration or release. Detailed production metadata remains restricted locally; only this completion/hold status is shared. The connector initially returned only its final result set; the same remaining approved catalogue SELECTs were grouped for one visible output in a second read-only transaction, with no expanded scope. This is not a backup snapshot or production recovery acceptance.
