@@ -1,7 +1,9 @@
 # H07 production recovery approval package — 19 October 2026
 
-**Status: preparation complete; production execution not authorised.**
-**Recommendation: approve B1 metadata-only preflight first. B2 export/restore remains HOLD.**
+**Status: B1 metadata-only approval executed and recorded; B2 production export/restore remains HOLD.**
+**Recommendation: verify encrypted storage, settle sensitive-data scope and rehearse a compatible restore method before requesting B2.**
+
+[B1 findings and completeness evidence](H07_B1_METADATA_RESULTS_2026-10-19.md): bounded catalogues complete; detailed source metadata retained locally, no customer rows/secrets/export/changes. The connector required two read-only calls because its initial response exposed only the last result set; the output adaptation preserved the approved SELECT bodies.
 
 This package follows the verified [local recovery lab](THG_LAB_RECOVERY_2026-10-19.md) and the existing [migration/recovery hold](PILOT_SECURITY_RELEASE_PACKAGE_2026-10-17.md). It does not authorise the original or review-draft projects migration. H07 Approval B here concerns production data recovery, not section B of the older release checklist.
 
@@ -9,12 +11,12 @@ This package follows the verified [local recovery lab](THG_LAB_RECOVERY_2026-10-
 
 The Dell's synthetic backup/restore is a tool check, not production recovery proof. Preparing an exact production dump/restore command before knowing the actual database version, dependencies and sensitive data scope would create an unsafe blanket approval.
 
-The next approval can nevertheless be precise: B1 permits only the attached bounded, read-only catalogue queries against the canonical production target. It excludes customer rows, object contents, secrets and changes. B1 produces the information needed to freeze B2's exact export manifest and restore procedure.
+B1 was separately approved and completed on 19 October. It covered only the attached bounded, read-only catalogue queries against the canonical production target, excluding customer rows, object contents, secrets and changes. Its findings inform B2's exact export manifest and restore procedure; they do not authorise B2.
 
 | Stage | Deliverable | Current gate |
 | --- | --- | --- |
 | Local preparation | Installed CLI; synthetic dump/restore; isolation/resource checks | Tested, with restart correction recorded below |
-| B1 production metadata preflight | Versions, schema/column/type catalogue, FK edges, extension and role attributes, RLS flags, publication metadata, database size | Ready for a separate explicit metadata-only approval |
+| B1 production metadata preflight | Versions, schema/column/type catalogue, FK edges, extension and role attributes, RLS flags, publication metadata, database size | Completed under separate explicit metadata-only approval |
 | B2 production export and local restore | One approved encrypted recovery set, independent isolated restore, integrity and recovery results | HOLD until B1 and the storage/compatibility gates pass |
 | Full H07 acceptance | Recovery ownership, agreed objectives, tested coverage and remaining exclusions | Open; neither stage silently closes it |
 
@@ -22,7 +24,7 @@ Repository preparation base: PR #43 head dcb45bb46c0478b105d60e0a2458404b873cb2b
 
 ## 2. B1: exact approval scope
 
-**Source:** only the production project identified by the canonical target entry in AGENTS.md. Its current identity, database version and access have not been live-verified in this work. The operator must match the connector target to that reference before querying. Do not use shared staging or another accessible account as a substitute.
+**Source:** only the production project identified by the canonical target entry in AGENTS.md. Its identity and catalogue access were matched through the THG connector during B1; the source engine version was returned by the read-only query and retained locally. The operator must match the connector target to that reference before querying. Do not use shared staging or another accessible account as a substitute.
 
 **Operator:** Codex prepares/runs the approved catalogue query; Robbie is the proposed accountable owner and authorises the scope. No new user, role, grant, credential, login or connection configuration may be created or changed.
 
@@ -46,7 +48,7 @@ Only non-secret catalogue results may pass through the existing authorised conne
 
 **Proposed approval wording:** “Approve H07 B1: run the reviewed metadata-only SQL once against the canonical production project, through its existing authorised connection, with no customer-row reads, secrets, export or changes.”
 
-This wording is a proposal, not recorded approval. B1 approval does not include B2.
+Robbie approved this B1 scope in the current chat and it has been executed. The output-transport adaptation is recorded in the B1 findings. B1 approval does not include B2.
 
 ## 3. Proposed B2 recovery scope — not yet an executable approval
 
@@ -70,7 +72,7 @@ B2 must name every included schema and every exclusion after B1. It must explici
 
 ## 4. Consistency and tooling decision
 
-The installed Supabase CLI is pinned at 2.121.0 and local database image at 17.11.0.004. The source version is unknown. Match source/restore database capabilities and extension/service-schema versions before choosing the export tool/image; do not assume the installed PostgreSQL 17 image is compatible.
+The installed Supabase CLI is pinned at 2.121.0 and local database image at 17.11.0.004. B1 inventoried the source engine and dependencies; detailed values remain local. Service-schema and extension compatibility still require verification. Match source/restore database capabilities and extension/service-schema versions before choosing the export tool/image; do not assume the installed PostgreSQL 17 image is compatible.
 
 The official CLI produces filtered schema/roles/data SQL. The default schema dump is not a full data backup, and separate exports must not be assumed to share a snapshot. The CLI help inspected here does not expose a snapshot argument. [CLI dump reference](https://supabase.com/docs/reference/cli/supabase-db-dump).
 
@@ -89,7 +91,7 @@ Do not copy documentation password-reset instructions into this plan. Missing cr
 
 ## 5. Storage and access gates
 
-Current observation: the local encryption status command was denied even outside the sandbox because Windows administrative access was required. Disk encryption is therefore **unverified**, not known disabled. No age, 7z or gpg executable was found on the current PATH; this does not prove no encryption software is installed elsewhere. Free local disk space is substantial, but capacity alone is not a security control.
+Current observation: the local encryption status command was denied even outside the sandbox because Windows administrative access was required. The storage-protection gate is not met. Detailed local security status is retained in the restricted runbook; no production data may be staged or restored until the gate passes. No age, 7z or gpg executable was found on the current PATH; this does not prove no encryption software is installed elsewhere. Free local disk space is substantial, but capacity alone is not a security control.
 
 Before B2:
 1. Robbie verifies encryption and private recovery-key custody without exposing the key to chat/tools. The dedicated backup location must be local, non-synchronised, access-restricted and on verified encrypted storage.
@@ -126,8 +128,8 @@ All rows must be complete before requesting export approval:
 
 | Required field | State now |
 | --- | --- |
-| B1 approved, executed, target matched and bounded metadata complete | Not approved / not run |
-| Actual source version/extensions/managed-schema compatibility | Unknown |
+| B1 approved, executed, target matched and bounded metadata complete | Complete; see dated B1 findings; two-call output adaptation recorded |
+| Actual source version/extensions/managed-schema compatibility | Source engine and dependency catalogue observed privately; compatible restore baseline not yet validated |
 | Exact include/exclude and sensitive Auth/Vault decision | Proposed; not approved |
 | Export method, snapshot and non-secret command/image hashes | Candidate only; final commands not generated |
 | Synthetic compatibility rehearsal for selected method | Basic two-row restore passed earlier; production-shape method not rehearsed |
@@ -155,4 +157,4 @@ During this package preparation, the metadata query was first tested against the
 
 Recreated the referenced network as internal-only, aligned launcher/network membership, preserved the data volume, and removed the unused replacement network. Two subsequent starts/readiness/isolation/limit checks and intervening stops passed; final state stopped. Added a launcher guard for stored-network-mode mismatch.
 
-The read-only metadata SQL then parsed/executed successfully on the local PostgreSQL lab and rolled back. No production connection, data export, application migration, encryption-key read, new cloud resource or release occurred. Local encryption verification remains blocked by Windows administrative access. These local checks do not establish production metadata, permissions or export readiness.
+The read-only metadata SQL then parsed/executed successfully on the local PostgreSQL lab and rolled back. Those local checks used no production connection, data export, application migration, encryption-key read, new cloud resource or release. B1 subsequently accessed production catalogues only, as recorded above. Local automated encryption verification was blocked by Windows administrative access; the storage-protection gate remains unmet. Neither the local checks nor B1 establish export/restore readiness.

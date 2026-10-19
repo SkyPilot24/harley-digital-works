@@ -1,3 +1,9 @@
+## H07 B1 metadata-only preflight completed — 19 October 2026
+
+Founder-approved B1 is complete: canonical production target matched and bounded catalogue totals checked. No customer-row reads, secret retrieval, database export, production changes, migration or release. Detailed production metadata remains restricted locally; only this completion/hold status is shared. The connector initially returned only its final result set; the same remaining approved catalogue SELECTs were grouped for one visible output in a second read-only transaction, with no expanded scope. This is not a backup snapshot or production recovery acceptance.
+
+[B1 completion and B2 hold](docs/H07_B1_METADATA_RESULTS_2026-10-19.md). The storage-protection/private-recovery gate is not met. B2 also requires exact sensitive-data scope, compatible restore baseline and snapshot commands, a synthetic compatibility rehearsal and recovery/retention decisions. Next action: resolve storage protection privately, then freeze the exact B2 package. Production migration/release holds remain; main/Lenovo checkout untouched and no Drive mirror update.
+
 ## H07 recovery approval package prepared — 19 October 2026
 
 [Approval package and review-only metadata SQL](docs/H07_APPROVAL_PACKAGE_2026-10-19.md) prepared from current official guidance and existing repository evidence. Production has not been accessed. Recommended next decision is **H07 B1 metadata-only preflight**: bounded read-only catalogues, no customer rows, definitions, secrets, export or changes. **B2 export/isolated restore remains HOLD** until actual versions/dependencies, exact sensitive-data scope, snapshot method, encrypted artifact/Docker storage, key custody, target and recovery/retention criteria are verified. Neither stage authorises the held schema migration or release. H07 remains open.
