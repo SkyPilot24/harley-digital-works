@@ -58,7 +58,11 @@ The local helper targets only the fixed lab container; checks network membership
 
 Use the local helper for lifecycle operations. Do not use raw `supabase start` or `supabase db start` for this zero-published-port lab: the CLI expects a host connection and its startup defaults did not meet this isolation requirement. If the container is removed, review a reconstruction plan instead of starting a default stack. Do not delete the volume, run `stop --no-backup`, or upgrade the pinned CLI/image as routine shutdown.
 
-## Next step — prepare a concrete H07 approval package
+## Follow-up: package prepared and restart correction
+
+The [H07 approval package](H07_APPROVAL_PACKAGE_2026-10-19.md) and review-only metadata SQL are now prepared. Recommended next approval is metadata-only B1, not export/restore B2. Encryption and source compatibility remain execution gates. A later local start exposed Docker's retained reference to the removed network. Corrected the internal network reference/launcher and verified two subsequent starts/readiness/isolation checks; final state stopped, data retained. The read-only SQL ran locally and rolled back. This corrects the earlier implication that restart readiness had been established after network removal.
+
+## Original next-step plan — now advanced to the package above
 
 **Next executable action:** prepare the H07 production export and isolated restore runbook from the existing repository evidence, without connecting to production or reading secrets. Owner: engineering prepares the package; Robbie approves the exact production/data-handling scope.
 
