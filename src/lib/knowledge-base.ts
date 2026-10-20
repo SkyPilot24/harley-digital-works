@@ -50,6 +50,29 @@ export const KNOWLEDGE_BASE_ARTICLES: KnowledgeArticle[] = [
       "Public brand hub: /brand. Asset directory: public/brand/social/ and public/brand/2026-10-13/logos/. Master identity board: public/brand/social/hdw-endorsed-logo-board.jpg. Vector components: src/components/site/BrandLogo.tsx & src/components/site/StudioWordmark.tsx. Governing documentation: brand-kit-and-social-media-assets.md in workspace artifacts.",
   },
   {
+    id: "master-ai-image-prompts-higgsfield-nano-banana-2026-10-21",
+    category: "playbooks",
+    title: "Master AI Image Generation Prompts Guide (Higgsfield & Nano Banana Pro)",
+    summary:
+      "Calibrated photo-realistic prompts, camera profiles, and negative filters for generating authentic UK trade, domestic before-and-after renovation, and architectural imagery on Higgsfield.ai / Nano Banana Pro.",
+    statusBadge: "Active Playbook · 21 Oct 2026",
+    lastUpdated: "2026-10-21",
+    keyPoints: [
+      "BRITISH TRADE AUTHENTICITY FORMULA — Every prompt must explicitly specify UK architectural context (British red brick, Bath stone, slate tiles), realistic UK trade tools (DeWalt, Makita, copper fittings), genuine UK vehicles (Ford Transit, Vauxhall Vivaro with UK yellow rear/white front number plates), and natural British daylight (diffused overcast, soft directional window light, zero harsh sunny Californian glow).",
+      "CAMERA & LENS PROFILES — Specify editorial medium-format realism: 'Shot on Fujifilm GFX 100 II with GF 45mm f/2.8 lens' or 'Hasselblad H6D-100c, 35mm architectural lens, f/8, natural daylight, ultra-fine texture, tactile grain, zero artificial HDR, zero plastic skin smoothing'.",
+      "UNIVERSAL NEGATIVE PROMPTS — Always exclude: 'CGI, 3D render, cartoon, oversaturated colours, glossy, plastic skin, American timber siding, American yellow fire hydrants, left-hand drive vehicles, US electrical wall sockets, unrealistic luxury mega-mansions, neon green lawns, generic cheesy stock photo smiles'.",
+      "HEATING & GAS BEFORE PROMPT — 'Cramped, dark under-stairs utility cupboard in an old British terraced house. A discoloured, yellowed 1990s wall-mounted gas boiler with rusted casing and visible temperature dials. Tangled, oxidised copper pipework with green verdigris corrosion stains, mismatched brass compression valves, messy drooping cables, flaking peeling paint on lime plaster wall. Harsh single tungsten bare bulb overhead, dusty cobwebs. Editorial documentary realism, shot on Fujifilm GFX 100 II, 35mm lens, f/4, authentic UK domestic setting.'",
+      "BUILDING & EXTENSION BEFORE PROMPT — 'Dark, dated 1970s British domestic galley kitchen before renovation. Cramped brown wood-effect laminate worktops, peeling faded floral wallpaper, small draughty white timber window overlooking a narrow brick passage. Low ceiling with humming fluorescent strip light, worn linoleum flooring with scuff marks. Realistic domestic clutter, kettle on worktop. Honest documentary photography, shot on Hasselblad H6D, 28mm wide angle, f/5.6, muted British afternoon light, authentic UK home.'",
+      "LANDSCAPING & PATIO BEFORE PROMPT — 'Neglected, waterlogged British domestic rear garden in late autumn. Broken, uneven, cracked grey concrete paving slabs covered in wet green moss and slippery lichen. Patchy, muddy lawn with tall weeds and stagnant puddles. Weathered, rotting timber lap fence panels leaning slightly, a rusty old steel wheelbarrow in corner. Overcast grey British sky, soft diffused daylight, cold damp atmosphere. Shot on Fujifilm GFX 100 II, 45mm lens, f/5.6, sharp textural detail, zero CGI.'",
+      "BATHROOM BEFORE PROMPT — 'Tired, dated 1980s British family bathroom. Pastel avocado green bathtub and matching pedestal sink with lime-scaled chrome crosshead taps. Yellowed ceramic wall tiles with dark discoloured grout and black mildew mould in silicone sealant corners. Plastic patterned shower curtain on a curved rail, curling patterned vinyl floor. Dim bathroom globe light fixture. Authentic UK domestic documentary photography, Hasselblad 35mm, f/4, candid, tactile, raw texture.'",
+      "ELECTRICAL & EV BEFORE PROMPT — 'Dangerous, outdated British domestic electrical installation in a dingy hallway cupboard. An antique brown Bakelite rewirable fuse box with exposed screw terminals, messy drooping PVC twin-and-earth cables, old rotating disc electricity meter, dusty wooden backboard, cobwebs and peeling wallpaper. Dim yellow single bulb light. Documentary editorial photography, 50mm lens, f/2.8, shallow depth of field, authentic UK home, zero render.'",
+      "ROOFING & LEADWORK BEFORE PROMPT — 'Weathered, deteriorating pitched roof on a Victorian British red-brick terraced house. Cracked, slipped terracotta clay roof tiles covered in thick green moss and lichen. Crumbling mortar along ridge tiles, cracked and buckled lead flashing around a weathered brick chimney stack with missing pointing. Overcast English sky, cold ambient light, realistic documentary telephoto architectural shot, 85mm lens, f/8, crisp detail.'",
+      "CREDIT EFFICIENCY & SETTINGS RUNBOOK — Use Higgsfield.ai Nano Banana Pro settings: Aspect ratio 16:9 for hero sections and Before/After sliders, 4:3 for portfolio grids, and 1:1 for badges. Always generate in batches of 2-3 variations, then refine seed with locked composition.",
+    ],
+    operationalDetails:
+      "Asset target directory: public/images/home/. Connected components: src/components/site/BeforeAfterComparison.tsx, src/components/site/ConceptShowcase.tsx, src/components/site/TradeServiceLanding.tsx. Generator: Higgsfield.ai / Nano Banana Pro.",
+  },
+  {
     id: "unified-business-contact-channels-2026-10-15",
     category: "governance",
     title: "Unified Business Contact Channels & Lead Intake Hierarchy",
