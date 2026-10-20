@@ -1,3 +1,11 @@
+## Git and recovery-record reconciliation — 20 October 2026
+
+H03/H41/H43: fetched remote branches and advanced the clean local work checkout from 0845172 to the already-pushed 81f1287. Remote main remains 0845172. Git fetch succeeds; GitHub REST user and GraphQL PR requests still return Forbidden in this session. Token identity/write permissions and PR state are therefore unverified. No main merge, deployment or restore attempted.
+
+Recovered existing Git evidence: commit f536c530a9249dafb87632d3023f9ad50e0a9e7d on origin/codex/thg-lab-recovery-kb-2026-10-19 contains docs/H07_RECOVERY_HANDOVER_2026-10-19.md. It records B2A export complete and first B2B restore FAILED_HOLD on event-trigger ownership; earlier synthetic rehearsal is recorded separately at 808af5f586e2140161209ed07dea20561d71d9ed. This does not reconcile with the founder-confirmed restore completion credited this morning. Preserve both: the available handover may precede later successful work. Do not rerun, declare success from synthetic evidence, or reverse founder confirmation. Next: retrieve the later successful checkpoint from the lab/operator record and link its exact revision/result; otherwise explicitly resolve the record conflict with the owner. Restricted artifacts remain outside Git; original recorded retention deadline is 26 October 2026 at 16:24:10 UTC (16:24:10 London time).
+
+Added docs/GIT_SESSION_WORKFLOW.md covering reviewed scoped commits, relevant checks, push/SHA verification and laptop recovery. No remote recovery/local-work branch was present in the fetched branch list; uncommitted laptop files remain unavailable here. Documentation-only validation: git diff --check. Commit/push outcome is reported by the session final response; no runtime acceptance claimed.
+
 ## Completed-task reconciliation — 20 October 2026
 
 - Founder asked for a full task check to prevent repeated work. Reviewed all H01–H50, D01–D08 and L01 in available local records, dated acceptance, selected current source and local Git history. Branch `work`, HEAD `0845172c455b756a0a6eb24af1e7b56d78c348e9`; earlier 20 October documentation changes preserved.
