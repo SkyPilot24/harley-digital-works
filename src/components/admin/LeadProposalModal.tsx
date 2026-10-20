@@ -26,8 +26,8 @@ const PACKAGES = {
   },
   essential: {
     key: "essential",
-    name: "Essential Digital Service",
-    price: 1495,
+    name: "The Launchpad",
+    price: 995,
     careMonthly: 149,
     badge: "Standard",
   },
@@ -70,7 +70,7 @@ export function LeadProposalModal({ lead, onClose }: { lead: LeadRow; onClose: (
 
     return {
       netUpfront,
-      vatNotice: "VAT not applicable / zero-rated (under HMRC registration threshold)",
+      vatNotice: "Tax registration and invoice treatment require confirmation before issue",
       totalUpfront: netUpfront,
       depositRequired,
       balanceOnCompletion,
@@ -87,7 +87,8 @@ export function LeadProposalModal({ lead, onClose }: { lead: LeadRow; onClose: (
   const clientNameStr = lead.company || lead.name;
 
   const proposalSummaryText = `
-Commercial Proposal Quote — Harley Digital Works
+INTERNAL PROPOSAL DRAFT — Harley Digital Works
+Not issued, accepted or a build reservation. Confirm supplier details, terms and tax treatment before client use.
 Client: ${clientNameStr} (${lead.email})
 Date: ${new Date().toLocaleDateString("en-GB")}
 
@@ -100,12 +101,13 @@ Add-ons Included: ${
   }
 
 Financial Schedule:
-- Total Upfront Build Fee: £${financialCalculations.totalUpfront.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })} (VAT not applicable / zero-rated)
+- Proposed Upfront Build Fee: £${financialCalculations.totalUpfront.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}; final tax treatment requires confirmation
 - 50% Deposit to Reserve Build Slot: £${financialCalculations.depositRequired.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
 - 50% Completion Balance on Staged Preview Sign-Off: £${financialCalculations.balanceOnCompletion.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
 - Ongoing Monthly Digital Care: £${financialCalculations.monthlyCare}/month (rolling 30-day agreement, billed from launch)
 
-Delivery Standard: 14-day turnaround target upon asset intake. Two revision rounds included.
+Delivery: Agree the schedule after the brief, access and assets are confirmed. Two revision rounds included.
+Additional scope and nonstandard terms require approval; a copied draft is not client acceptance or payment evidence.
 `.trim();
 
   const handleCopySummary = () => {

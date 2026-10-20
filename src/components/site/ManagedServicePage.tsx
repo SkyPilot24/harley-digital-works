@@ -2,6 +2,7 @@ import { PageShell } from "./PageShell";
 import { PillButton } from "./PillButton";
 import { WebsitePackagesSection } from "./WebsitePackagesSection";
 import { ConceptScreen } from "./ConceptShowcase";
+import { BeforeAfterComparison } from "./BeforeAfterComparison";
 const details = {
   website: {
     kicker: "WEBSITE DESIGN & BUILD",
@@ -112,6 +113,18 @@ export function ManagedServicePage({ kind = "website" }: { kind?: keyof typeof d
             ))}
           </div>
         </section>
+        {kind === "website" && (
+          <section className="studio-section bg-stone-50/80 border-y border-stone-200 py-16">
+            <div className="studio-wrap">
+              <BeforeAfterComparison
+                initialTradeId="electrical-ev"
+                title="Transforming Trades Websites"
+                subtitle="See how our design standard and commercial copywriting replace generic templates with high-trust trade platforms."
+                sectionKicker="PROVEN CONVERSION DESIGN"
+              />
+            </div>
+          </section>
+        )}
         <WebsitePackagesSection />
       </div>
     </PageShell>

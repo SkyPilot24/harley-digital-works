@@ -24,9 +24,9 @@ export function WebsitePackagesSection({
         </div>
         <div className="managed-offer-grid">
           <div className="managed-offer-intro">
-            <div className="inline-flex items-center gap-2 rounded-full bg-works-charcoal/60 px-3 py-1 text-xs font-mono text-signature-gold mb-3 border border-signature-gold/30">
+            <div className="inline-flex items-center gap-2 rounded-full bg-hdw-blue/60 px-3 py-1 text-xs font-mono text-hdw-ivory mb-3 border border-hdw-ivory/30">
               <span className="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-              Pilot Capacity: Capped at 2–3 Builds
+              Pilot Capacity: Up to 2 Builds
             </div>
             <p className="studio-kicker">YOUR DIGITAL PRESENCE, FULLY MANAGED</p>
             <h3>
@@ -35,13 +35,13 @@ export function WebsitePackagesSection({
               for ambitious trades.
             </h3>
             <p>
-              Professional design, industry-verified copywriting, and ongoing technical care. No
-              homework assignments, no agency retainers, and no technical headaches.
+              Professional design, copywriting based on your confirmed business facts, and ongoing
+              technical care. We prepare the copy; you approve the facts and finished website.
             </p>
-            <div className="flex flex-col gap-2 w-full my-4 p-4 rounded-xl bg-works-charcoal/80 border border-white/10 text-xs">
+            <div className="flex flex-col gap-2 w-full my-4 p-4 rounded-xl bg-hdw-blue/80 border border-white/10 text-xs">
               <div className="flex justify-between items-center text-white/90">
-                <span className="font-semibold text-signature-gold">Initial Setup</span>
-                <span className="font-mono">£1,495 (Zero VAT)</span>
+                <span className="font-semibold text-hdw-ivory">Initial Setup</span>
+                <span className="font-mono">£1,495</span>
               </div>
               <div className="flex justify-between items-center text-white/70">
                 <span>Payment Schedule</span>
@@ -69,10 +69,10 @@ export function WebsitePackagesSection({
               <div className="flex items-center justify-between gap-3 mb-1">
                 <span className="offer-stage">01 / INITIAL SETUP · £1,495</span>
                 <span className="text-xs font-mono text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200">
-                  14-Day Delivery
+                  Agreed Delivery Schedule
                 </span>
               </div>
-              <h3>Get the right foundations in 14 days.</h3>
+              <h3>Get the right foundations for your business.</h3>
               <p className="text-sm text-ink-muted mb-3">
                 50% deposit (£747.50) reserves your build slot · 50% balance (£747.50) payable only
                 upon your final preview approval.
@@ -80,9 +80,9 @@ export function WebsitePackagesSection({
               <ul>
                 {[
                   "5-page custom trade architecture (Home, About, Services, Selected Work, Dual Enquiry Desk)",
-                  "100% done-for-you technical copy written and verified for your specific trade",
-                  "Fast mobile experience, trade accreditation badges (NICEIC, Gas Safe, FMB), and dual enquiry routing",
-                  "Top-3 Local Map Pack Schema JSON-LD microdata, domain DNS, and SPF/DKIM/DMARC email protection",
+                  "Done-for-you trade copywriting based on your confirmed business facts",
+                  "Fast mobile experience, your verified trade accreditations, and agreed dual enquiry routing",
+                  "Factual local-business structured data and reviewed domain connection preserving your existing email",
                   "Two structured preview revision rounds before public cutover — you approve before going live",
                 ].map((x) => (
                   <li key={x}>
@@ -101,16 +101,16 @@ export function WebsitePackagesSection({
               </div>
               <h3>Continuous protection, speed, and updates.</h3>
               <p className="text-sm text-ink-muted mb-3">
-                Billed via Stripe auto-debit starting on your go-live date · Cancel anytime with 30
-                days notice.
+                Monthly care begins at go-live · Cancel with 30 days written notice, as set out in
+                your agreement.
               </p>
               <ul>
                 {[
-                  "Ultra-fast Cloudflare edge hosting, enterprise SSL, daily backups, and 24/7 uptime monitoring",
-                  "Monthly content & copy updates included (new case studies, photos, pricing, or service additions)",
+                  "Cloudflare hosting and SSL maintenance, with monitoring and backup arrangements confirmed in your proposal",
+                  "One non-accumulating content edit batch each month, up to 30 minutes",
                   "Dual-desk enquiry health checks with direct Slack/founder priority triage",
                   "Monthly performance reporting and Google review workflow recommendations",
-                  "Standard 24h business-day support SLA (with priority 4h outage triage)",
+                  "Support contact, covered hours and response commitments set out in your proposal",
                 ].map((x) => (
                   <li key={x}>
                     <Check size={17} />
@@ -124,21 +124,23 @@ export function WebsitePackagesSection({
                 The Harley Group Governance Promise:
               </strong>
               <p className="mb-2">
-                VAT treatment: Operating below the statutory HMRC threshold; all quoted prices are
-                zero-rated / VAT not applicable (£0 tax burden).
+                Your written quote confirms the scope, payment milestones, delivery schedule and any
+                applicable taxes before you commit.
               </p>
               <p>
-                Strict capacity governance: Robbie limits active client onboarding builds to 2–3 at
-                any time to guarantee personal craftsmanship, responsive communication, and 14-day
-                turnaround times.
+                Pilot capacity is limited to two concurrent builds. Delivery timing depends on the
+                agreed brief, access and approved assets; your proposal confirms the schedule.
               </p>
             </div>
             <div className="flex flex-wrap items-center justify-between gap-4 pt-2">
               <a href="/services/care-plans" className="studio-text-link">
                 What ongoing care means <ArrowUpRight size={16} />
               </a>
-              <a href="/calculator" className="studio-text-link">
-                Calculate your trade ROI <ArrowUpRight size={16} />
+              <a
+                href="/contact?service=Website%20scope%20and%20investment"
+                className="studio-text-link"
+              >
+                Discuss your website investment <ArrowUpRight size={16} />
               </a>
             </div>
           </div>

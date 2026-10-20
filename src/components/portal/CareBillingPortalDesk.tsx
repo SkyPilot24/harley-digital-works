@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { siteConfig } from "@/lib/site-config";
 import {
   ShieldCheck,
   CreditCard,
@@ -178,7 +179,7 @@ export function CareBillingPortalDesk({
               <span>Update Billing Details</span>
             </button>
             <a
-              href="https://wa.me/441618204910?text=Hi%20Jack,%20I%20have%20a%20question%20regarding%20my%20Harley%20Care%20Plan%20billing."
+              href={`${siteConfig.whatsappUrl}?text=${encodeURIComponent("Hi Robbie, I have a question regarding my Harley Care Plan billing.")}`}
               target="_blank"
               rel="noreferrer"
               className="inline-flex items-center justify-center gap-2 rounded-full border border-neutral-700 bg-neutral-800 hover:bg-neutral-700 px-5 py-2.5 text-xs font-semibold text-white transition-all"

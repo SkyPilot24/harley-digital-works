@@ -1,5 +1,9 @@
 # Harley Digital Works Approved Asset Index
 
+## Current-record precedence — 13 October 2026
+
+The original import record below is historical. Its public HDW filename aliases now contain the navy/ivory artwork; earlier DOCX/PDF guidance remains historical. Current public assets and the guide use /brand/2026-10-13/. The new pack subset is indexed in [2026-10-13/README.md](2026-10-13/README.md). See [brand-pack.md](../../brand-pack.md) for current use rules and rollout status.
+
 Status: Approved source assets imported for implementation
 Source folder: `Harley-Digital-Works-Complete-Brand-Pack`
 

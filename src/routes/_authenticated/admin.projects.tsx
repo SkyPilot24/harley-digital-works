@@ -1,3 +1,10 @@
+import {
+  loadProjectPage,
+  loadProjectSummary,
+  loadCompleteRecords,
+  type ProjectFilter,
+} from "@/lib/admin-records";
+import { AdminPagination } from "@/components/admin/AdminPagination";
 import { useState, useMemo } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
@@ -20,9 +27,23 @@ import {
   Trash2,
 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
+import {
+  adminErrorMessage,
+  deleteRecord,
+  insertRecord,
+  invalidateAdminData,
+  updateRecord,
+} from "@/lib/admin-writes";
+import {
+  parseProjectInput,
+  parseProjectStatus,
+  centsToPoundsInput,
+  formatCents,
+} from "@/lib/admin-validation";
 import type { Database } from "@/integrations/supabase/types";
 import { PageHeader, StatusBadge } from "./admin.index";
 import { toast } from "sonner";
+import { ProjectReviewDetails } from "@/components/admin/DeliveryReviewPanel";
 
 export const Route = createFileRoute("/_authenticated/admin/projects")({
   component: ProjectsAdminPage,
@@ -33,74 +54,64 @@ type ClientRow = Database["public"]["Tables"]["clients"]["Row"];
 
 function ProjectsAdminPage() {
   const qc = useQueryClient();
-  const [filterStatus, setFilterStatus] = useState<string>("all");
+  const [filterStatus, setFilterStatus] = useState<ProjectFilter>("all");
   const [isCreatingProject, setIsCreatingProject] = useState(false);
+  const [page, setPage] = useState(0);
+  const [searchTerm, setSearchTerm] = useState("");
   const [editingProject, setEditingProject] = useState<ProjectRow | null>(null);
 
   const projectsQuery = useQuery({
-    queryKey: ["admin", "projects-list"],
-    queryFn: async () => {
-      const { data, error } = await supabase
-        .from("projects")
-        .select("*, clients(id, name, contact_name, contact_email, website)")
-        .order("created_at", { ascending: false });
-      if (error) throw error;
-      return (data ?? []) as (ProjectRow & {
-        clients: Pick<
-          ClientRow,
-          "id" | "name" | "contact_name" | "contact_email" | "website"
-        > | null;
-      })[];
-    },
+    queryKey: ["admin", "projects-list", filterStatus, searchTerm, page],
+    queryFn: ({ signal }) =>
+      loadProjectPage(supabase, { page, status: filterStatus, search: searchTerm, signal }),
   });
-
+  const summaryQuery = useQuery({
+    queryKey: ["projects", "summary"],
+    queryFn: () => loadProjectSummary(supabase),
+  });
   const clientsQuery = useQuery({
     queryKey: ["admin", "clients-picker"],
-    queryFn: async () => {
-      const { data, error } = await supabase.from("clients").select("id, name");
-      if (error) throw error;
-      return (data ?? []) as Pick<ClientRow, "id" | "name">[];
-    },
+    queryFn: async () =>
+      (
+        await loadCompleteRecords((after) => {
+          let query = supabase
+            .from("clients")
+            .select("id,name", { count: "exact" })
+            .order("id")
+            .limit(500);
+          if (after) query = query.gt("id", after);
+          return query;
+        })
+      ).sort((a, b) => a.name.localeCompare(b.name)),
   });
-
-  const projects = useMemo(() => projectsQuery.data ?? [], [projectsQuery.data]);
-  const clients = useMemo(() => clientsQuery.data ?? [], [clientsQuery.data]);
-
-  const activeProjects = useMemo(
-    () => projects.filter((p) => ["discovery", "in_progress", "review"].includes(p.status)),
-    [projects],
+  const projects = projectsQuery.isSuccess ? projectsQuery.data.rows : [];
+  const clients = useMemo(
+    () => (clientsQuery.isSuccess ? clientsQuery.data : []),
+    [clientsQuery.data, clientsQuery.isSuccess],
   );
-
-  const filteredProjects = useMemo(() => {
-    if (filterStatus === "all") return projects;
-    if (filterStatus === "active") return activeProjects;
-    return projects.filter((p) => p.status === filterStatus);
-  }, [projects, filterStatus, activeProjects]);
-
+  const summary = summaryQuery.isSuccess ? summaryQuery.data : undefined;
+  const activeCount = summary?.active;
+  const filteredProjects = projects;
   const updateStageMutation = useMutation({
     mutationFn: async ({ id, status }: { id: string; status: ProjectRow["status"] }) => {
-      const { error } = await supabase.from("projects").update({ status }).eq("id", id);
-      if (error) throw error;
+      await updateRecord(supabase, "projects", id, { status: parseProjectStatus(status) });
     },
     onSuccess: () => {
-      qc.invalidateQueries({ queryKey: ["admin", "projects-list"] });
-      qc.invalidateQueries({ queryKey: ["admin", "operational-stats"] });
+      invalidateAdminData(qc, "project");
       toast.success("Project stage updated");
     },
-    onError: (err: Error) => toast.error(err.message),
+    onError: (err: unknown) =>
+      toast.error(adminErrorMessage(err, "Project stage was not updated.")),
   });
 
   const deleteProjectMutation = useMutation({
-    mutationFn: async (id: string) => {
-      const { error } = await supabase.from("projects").delete().eq("id", id);
-      if (error) throw error;
-    },
+    mutationFn: (id: string) => deleteRecord(supabase, "projects", id),
     onSuccess: () => {
-      qc.invalidateQueries({ queryKey: ["admin", "projects-list"] });
-      qc.invalidateQueries({ queryKey: ["admin", "operational-stats"] });
+      invalidateAdminData(qc, "project");
+      setPage(0);
       toast.success("Project deleted");
     },
-    onError: (err: Error) => toast.error(err.message),
+    onError: (err: unknown) => toast.error(adminErrorMessage(err, "Project was not deleted.")),
   });
 
   return (
@@ -108,9 +119,10 @@ function ProjectsAdminPage() {
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <PageHeader
           title="Projects & Delivery"
-          subtitle="14-day turnaround SLA, staged previews, client approvals, and Cloudflare DNS cutover."
+          subtitle="Build progress, versioned customer reviews and verified launch readiness."
         />
         <button
+          disabled={!clientsQuery.isSuccess}
           onClick={() => setIsCreatingProject(true)}
           className="inline-flex items-center gap-1.5 rounded-full bg-ink px-4 py-2 text-xs font-semibold text-white shadow-xs hover:bg-ink/90 transition-colors"
         >
@@ -130,27 +142,42 @@ function ProjectsAdminPage() {
             <Layers size={16} className="text-blue-700" />
           </div>
           <div className="mt-2 text-3xl font-extrabold text-ink">
-            {activeProjects.length} / 3{" "}
-            <span className="text-sm font-normal text-ink-muted">slots</span>
+            {summaryQuery.isPending ? (
+              <div className="h-9 w-20 rounded bg-ink/10 animate-pulse my-1" />
+            ) : (
+              <>
+                {activeCount ?? "—"} / 2{" "}
+                <span className="text-sm font-normal text-ink-muted">slots</span>
+              </>
+            )}
           </div>
-          <p className="mt-2 text-xs text-ink-muted">
-            {activeProjects.length >= 3
-              ? "At capacity limit — complete an existing build before onboarding new trades."
-              : `${3 - activeProjects.length} build slot(s) open. Protects founder part-time capacity.`}
-          </p>
+          <div className="mt-2 text-xs text-ink-muted">
+            {summaryQuery.isPending ? (
+              <div className="h-3 w-44 rounded bg-ink/5 animate-pulse" />
+            ) : activeCount === undefined ? (
+              "Capacity unavailable until project totals load."
+            ) : (activeCount ?? 0) >= 2 ? (
+              <span className="font-bold text-amber-700">
+                At capacity limit — complete an existing build before onboarding new trades.
+              </span>
+            ) : (
+              `${2 - (activeCount ?? 0)} build slot(s) within the pilot capacity target.`
+            )}
+          </div>
         </div>
 
-        {/* 14-Day Delivery SLA */}
+        {/* Project delivery dates */}
         <div className="rounded-xl border border-ink/10 bg-white p-5 shadow-xs">
           <div className="flex items-center justify-between text-ink-muted">
             <span className="text-[11px] font-bold uppercase tracking-wider">
-              Standard Delivery SLA
+              Standard Delivery Target
             </span>
             <Clock size={16} className="text-emerald-700" />
           </div>
-          <div className="mt-2 text-3xl font-extrabold text-ink">14 Days</div>
+          <div className="mt-2 text-3xl font-extrabold text-ink">14-Day Delivery</div>
           <p className="mt-2 text-xs text-ink-muted">
-            From asset intake to staging preview and client launch sign-off.
+            Target from complete asset receipt, excluding client delays. Confirm project dates
+            individually.
           </p>
         </div>
 
@@ -169,19 +196,57 @@ function ProjectsAdminPage() {
         </div>
       </div>
 
+      {(summaryQuery.isError || clientsQuery.isError) && (
+        <div
+          role="alert"
+          className="rounded-xl border border-rose-200 bg-rose-50 p-4 text-xs text-rose-950 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 shadow-xs"
+        >
+          <div>
+            <span className="font-bold">Project metadata sync degraded: </span>
+            {summaryQuery.isError && "Project totals failed to load. "}
+            {clientsQuery.isError && "Client directory for project association is unavailable."}
+          </div>
+          <div className="flex items-center gap-2">
+            {summaryQuery.isError && (
+              <button
+                type="button"
+                className="rounded-full border border-rose-300 bg-white px-3 py-1 font-bold text-rose-900 hover:bg-rose-100 transition-colors"
+                onClick={() => void summaryQuery.refetch()}
+              >
+                Retry Totals
+              </button>
+            )}
+            {clientsQuery.isError && (
+              <button
+                type="button"
+                className="rounded-full border border-rose-300 bg-white px-3 py-1 font-bold text-rose-900 hover:bg-rose-100 transition-colors"
+                onClick={() => void clientsQuery.refetch()}
+              >
+                Retry Clients
+              </button>
+            )}
+          </div>
+        </div>
+      )}
+
       {/* Delivery Stage Filters */}
       <div className="flex overflow-x-auto border-b border-ink/10 pb-px gap-1">
         {[
-          { key: "all", label: `All Projects (${projects.length})` },
-          { key: "active", label: `Active In Flight (${activeProjects.length})` },
+          { key: "all", label: `All Projects (${summary?.all ?? "—"})` },
+          { key: "active", label: `Active In Flight (${activeCount ?? "—"})` },
           { key: "discovery", label: "1. Discovery" },
           { key: "in_progress", label: "2. Build" },
           { key: "review", label: "3. Preview & Approval" },
           { key: "launched", label: "4. Launched" },
+          { key: "on_hold", label: "On hold" },
+          { key: "archived", label: "Archived" },
         ].map((tab) => (
           <button
             key={tab.key}
-            onClick={() => setFilterStatus(tab.key)}
+            onClick={() => {
+              setFilterStatus(tab.key as ProjectFilter);
+              setPage(0);
+            }}
             className={`whitespace-nowrap border-b-2 px-4 py-2.5 text-xs font-semibold transition-colors ${
               filterStatus === tab.key
                 ? "border-ink text-ink font-bold"
@@ -193,9 +258,62 @@ function ProjectsAdminPage() {
         ))}
       </div>
 
+      <label htmlFor="project-search" className="sr-only">
+        Search projects
+      </label>
+      <input
+        id="project-search"
+        type="search"
+        placeholder="Search project titles or summaries"
+        value={searchTerm}
+        onChange={(event) => {
+          setSearchTerm(event.target.value);
+          setPage(0);
+        }}
+        className="w-full rounded-full border border-ink/15 bg-white px-4 py-2 text-sm"
+      />
       {/* Project Cards List */}
       {projectsQuery.isPending ? (
-        <p className="text-xs text-ink-muted py-6">Loading projects…</p>
+        <div className="space-y-4 py-2">
+          {[1, 2, 3].map((i) => (
+            <div
+              key={i}
+              className="rounded-xl border border-ink/10 bg-white p-5 shadow-xs space-y-4"
+            >
+              <div className="flex justify-between items-start">
+                <div className="space-y-2">
+                  <div className="h-3 w-28 rounded bg-ink/10 animate-pulse" />
+                  <div className="h-5 w-48 rounded bg-ink/10 animate-pulse" />
+                </div>
+                <div className="h-6 w-20 rounded-full bg-ink/10 animate-pulse" />
+              </div>
+              <div className="h-3 w-3/4 rounded bg-ink/5 animate-pulse" />
+              <div className="pt-3 border-t border-ink/5 flex justify-between">
+                <div className="h-3 w-32 rounded bg-ink/5 animate-pulse" />
+                <div className="h-3 w-24 rounded bg-ink/5 animate-pulse" />
+              </div>
+            </div>
+          ))}
+        </div>
+      ) : projectsQuery.isError ? (
+        <div
+          role="alert"
+          className="rounded-xl border border-rose-200 bg-rose-50 p-6 text-center text-rose-950 space-y-3"
+        >
+          <AlertTriangle size={24} className="mx-auto text-rose-700" />
+          <h3 className="text-sm font-bold">Projects Could Not Be Loaded</h3>
+          <p className="text-xs text-rose-800">
+            A network or database connection interruption prevented loading project delivery
+            records.
+          </p>
+          <button
+            type="button"
+            className="rounded-full border border-rose-300 bg-white px-4 py-1.5 text-xs font-bold text-rose-900 hover:bg-rose-100 transition-colors"
+            onClick={() => void projectsQuery.refetch()}
+          >
+            Retry Projects
+          </button>
+        </div>
       ) : filteredProjects.length === 0 ? (
         <div className="rounded-xl border border-dashed border-ink/15 bg-white p-8 text-center">
           <Briefcase size={28} className="mx-auto text-ink-muted/50 mb-2" />
@@ -224,7 +342,7 @@ function ProjectsAdminPage() {
                 "Staged preview ready — awaiting client revision feedback or sign-off";
             } else if (project.status === "launched") {
               outstandingAction =
-                "Live on Cloudflare edge — £249/mo care and 30-min monthly edit allowance active";
+                "Verify the live deployment, billing and care records; project status alone does not confirm them.";
             }
 
             return (
@@ -250,7 +368,9 @@ function ProjectsAdminPage() {
 
                   <div className="flex items-center gap-2">
                     <span className="font-mono text-xs font-bold text-emerald-800 bg-emerald-50 border border-emerald-200 px-3 py-1 rounded-full">
-                      £1,495 Setup
+                      {formatCents(project.budget_cents)
+                        ? `${formatCents(project.budget_cents)} Setup`
+                        : "£1,495 Setup"}
                     </span>
                     <button
                       onClick={() => setEditingProject(project)}
@@ -274,6 +394,7 @@ function ProjectsAdminPage() {
                 </div>
 
                 {/* Outstanding Action Indicator */}
+                <ProjectReviewDetails projectId={project.id} />
                 <div className="rounded-lg bg-ink/[0.02] border border-ink/5 p-3 flex items-start gap-2.5 text-xs">
                   <div className="font-bold text-ink shrink-0">Current Action:</div>
                   <div className="text-ink-muted">{outstandingAction}</div>
@@ -328,12 +449,11 @@ function ProjectsAdminPage() {
                     )}
                     {project.status === "review" && (
                       <button
-                        onClick={() =>
-                          updateStageMutation.mutate({ id: project.id, status: "launched" })
-                        }
-                        className="rounded-full bg-emerald-700 px-3 py-1 text-[11px] font-bold text-white hover:bg-emerald-800"
+                        disabled
+                        title="Payment, approved website version and launch checks must be verified before release."
+                        className="rounded-full bg-ink/10 px-3 py-1 text-[11px] font-bold text-ink-muted"
                       >
-                        Approve & Launch DNS →
+                        Launch verification pending
                       </button>
                     )}
                   </div>
@@ -344,14 +464,20 @@ function ProjectsAdminPage() {
         </div>
       )}
 
+      <AdminPagination
+        page={page}
+        total={projectsQuery.isSuccess ? projectsQuery.data.total : undefined}
+        pending={projectsQuery.isFetching}
+        label="projects"
+        onChange={setPage}
+      />
       {/* Create Project Modal */}
       {isCreatingProject && (
         <CreateProjectModal
           clients={clients}
           onClose={() => setIsCreatingProject(false)}
           onSuccess={() => {
-            qc.invalidateQueries({ queryKey: ["admin", "projects-list"] });
-            qc.invalidateQueries({ queryKey: ["admin", "operational-stats"] });
+            invalidateAdminData(qc, "project");
             setIsCreatingProject(false);
           }}
         />
@@ -364,8 +490,7 @@ function ProjectsAdminPage() {
           clients={clients}
           onClose={() => setEditingProject(null)}
           onSuccess={() => {
-            qc.invalidateQueries({ queryKey: ["admin", "projects-list"] });
-            qc.invalidateQueries({ queryKey: ["admin", "operational-stats"] });
+            invalidateAdminData(qc, "project");
             setEditingProject(null);
           }}
         />
@@ -388,36 +513,29 @@ function CreateProjectModal({
   onSuccess: () => void;
 }) {
   const [name, setName] = useState("");
-  const [clientId, setClientId] = useState(clients[0]?.id ?? "");
-  const [targetDays, setTargetDays] = useState("14");
-  const [summary, setSummary] = useState("Standard 5-page Managed trade website build.");
+  const [clientId, setClientId] = useState("");
+  const [budget, setBudget] = useState("1495");
+  const [targetDate, setTargetDate] = useState("");
+  const [summary, setSummary] = useState("");
   const [loading, setLoading] = useState(false);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (!name) {
-      toast.error("Project name is required");
-      return;
-    }
     setLoading(true);
     try {
-      const targetDate = new Date();
-      targetDate.setDate(targetDate.getDate() + parseInt(targetDays || "14", 10));
-
-      const { error } = await supabase.from("projects").insert({
+      const input = parseProjectInput({
         name,
-        client_id: clientId || null,
+        client_id: clientId,
         status: "discovery",
-        budget_cents: 149500, // £1,495 standard setup
-        start_date: new Date().toISOString(),
-        target_date: targetDate.toISOString(),
-        summary: summary || null,
+        budget,
+        target_date: targetDate,
+        summary,
       });
-      if (error) throw error;
+      await insertRecord(supabase, "projects", input);
       toast.success("Project created in Discovery stage");
       onSuccess();
     } catch (err: unknown) {
-      toast.error(err instanceof Error ? err.message : "Failed to create project");
+      toast.error(adminErrorMessage(err, "Failed to create project"));
     } finally {
       setLoading(false);
     }
@@ -427,17 +545,24 @@ function CreateProjectModal({
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4 backdrop-blur-xs">
       <div className="w-full max-w-md rounded-2xl bg-white p-6 shadow-2xl">
         <div className="flex items-center justify-between border-b border-ink/10 pb-3">
-          <h3 className="text-base font-bold text-ink">Start 14-Day Build Project</h3>
-          <button onClick={onClose} className="rounded p-1 text-ink-muted hover:bg-ink/5">
+          <h3 className="text-base font-bold text-ink">Start project</h3>
+          <button
+            aria-label="Close new project"
+            onClick={onClose}
+            className="rounded p-1 text-ink-muted hover:bg-ink/5"
+          >
             <X size={18} />
           </button>
         </div>
-        <form onSubmit={handleSubmit} className="mt-4 space-y-3">
+        <form method="post" onSubmit={handleSubmit} className="mt-4 space-y-3">
           <div>
-            <label className="block text-xs font-semibold text-ink">Project Title *</label>
+            <label htmlFor="new-project-name" className="block text-xs font-semibold text-ink">
+              Project Title *
+            </label>
             <input
               type="text"
               required
+              id="new-project-name"
               value={name}
               onChange={(e) => setName(e.target.value)}
               placeholder="e.g. Westside Heating 5-Page Turnkey Presence"
@@ -445,8 +570,11 @@ function CreateProjectModal({
             />
           </div>
           <div>
-            <label className="block text-xs font-semibold text-ink">Client Account</label>
+            <label htmlFor="new-project-client" className="block text-xs font-semibold text-ink">
+              Client Account
+            </label>
             <select
+              id="new-project-client"
               value={clientId}
               onChange={(e) => setClientId(e.target.value)}
               className="mt-1 w-full rounded-lg border border-ink/20 px-3 py-2 text-xs"
@@ -459,18 +587,40 @@ function CreateProjectModal({
               ))}
             </select>
           </div>
-          <div>
-            <label className="block text-xs font-semibold text-ink">Delivery SLA (Days)</label>
-            <input
-              type="number"
-              value={targetDays}
-              onChange={(e) => setTargetDays(e.target.value)}
-              className="mt-1 w-full rounded-lg border border-ink/20 px-3 py-2 text-xs"
-            />
+          <div className="grid grid-cols-2 gap-2">
+            <div>
+              <label htmlFor="new-project-budget" className="block text-xs font-semibold text-ink">
+                Agreed Fee (£)
+              </label>
+              <input
+                type="text"
+                inputMode="decimal"
+                id="new-project-budget"
+                value={budget}
+                onChange={(e) => setBudget(e.target.value)}
+                placeholder="1495"
+                className="mt-1 w-full rounded-lg border border-ink/20 px-3 py-2 text-xs"
+              />
+            </div>
+            <div>
+              <label htmlFor="new-project-target" className="block text-xs font-semibold text-ink">
+                Target Launch Date
+              </label>
+              <input
+                type="date"
+                id="new-project-target"
+                value={targetDate}
+                onChange={(e) => setTargetDate(e.target.value)}
+                className="mt-1 w-full rounded-lg border border-ink/20 px-3 py-2 text-xs"
+              />
+            </div>
           </div>
           <div>
-            <label className="block text-xs font-semibold text-ink">Summary & Scope</label>
+            <label htmlFor="new-project-summary" className="block text-xs font-semibold text-ink">
+              Summary & Scope
+            </label>
             <textarea
+              id="new-project-summary"
               value={summary}
               onChange={(e) => setSummary(e.target.value)}
               rows={2}
@@ -513,6 +663,8 @@ function EditProjectModal({
   const [name, setName] = useState(project.name);
   const [clientId, setClientId] = useState(project.client_id ?? "");
   const [status, setStatus] = useState<ProjectRow["status"]>(project.status);
+  const [budget, setBudget] = useState(centsToPoundsInput(project.budget_cents));
+  const [targetDate, setTargetDate] = useState(project.target_date ?? "");
   const [summary, setSummary] = useState(project.summary ?? "");
   const [loading, setLoading] = useState(false);
 
@@ -520,20 +672,26 @@ function EditProjectModal({
     e.preventDefault();
     setLoading(true);
     try {
-      const { error } = await supabase
-        .from("projects")
-        .update({
-          name,
-          client_id: clientId || null,
-          status,
-          summary: summary || null,
-        })
-        .eq("id", project.id);
-      if (error) throw error;
+      const input = parseProjectInput({
+        name,
+        client_id: clientId,
+        status,
+        budget,
+        target_date: targetDate,
+        summary,
+      });
+      await updateRecord(supabase, "projects", project.id, {
+        name: input.name,
+        client_id: input.client_id,
+        status: input.status,
+        budget_cents: input.budget_cents,
+        target_date: input.target_date,
+        summary: input.summary,
+      });
       toast.success("Project updated");
       onSuccess();
     } catch (err: unknown) {
-      toast.error(err instanceof Error ? err.message : "Failed to update project");
+      toast.error(adminErrorMessage(err, "Failed to update project"));
     } finally {
       setLoading(false);
     }
@@ -569,7 +727,9 @@ function EditProjectModal({
               <option value="discovery">1. Discovery & Assets</option>
               <option value="in_progress">2. Build & Copywriting</option>
               <option value="review">3. Staged Preview & Approval</option>
-              <option value="launched">4. Live Launched</option>
+              <option value="launched" disabled>
+                4. Live Launched — requires verified release
+              </option>
               <option value="on_hold">On Hold</option>
               <option value="archived">Archived</option>
             </select>
@@ -588,6 +748,28 @@ function EditProjectModal({
                 </option>
               ))}
             </select>
+          </div>
+          <div className="grid grid-cols-2 gap-2">
+            <div>
+              <label className="block text-xs font-semibold text-ink">Agreed Fee (£)</label>
+              <input
+                type="text"
+                inputMode="decimal"
+                value={budget}
+                onChange={(e) => setBudget(e.target.value)}
+                placeholder="1495"
+                className="mt-1 w-full rounded-lg border border-ink/20 px-3 py-2 text-xs"
+              />
+            </div>
+            <div>
+              <label className="block text-xs font-semibold text-ink">Target Launch Date</label>
+              <input
+                type="date"
+                value={targetDate}
+                onChange={(e) => setTargetDate(e.target.value)}
+                className="mt-1 w-full rounded-lg border border-ink/20 px-3 py-2 text-xs"
+              />
+            </div>
           </div>
           <div>
             <label className="block text-xs font-semibold text-ink">Scope Summary</label>

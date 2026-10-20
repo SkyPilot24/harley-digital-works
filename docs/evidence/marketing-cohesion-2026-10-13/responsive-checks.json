@@ -1,0 +1,254 @@
+[
+  {
+    "width": 375,
+    "route": "/",
+    "background": "rgb(246, 243, 237)",
+    "brand": "hdw",
+    "brokenLogos": [],
+    "font": "Arial, Helvetica, sans-serif",
+    "heading": "Your work.Deserves abetter website.",
+    "ink": "rgb(8, 27, 48)",
+    "overflow": false,
+    "url": "http://127.0.0.1:4175/"
+  },
+  {
+    "width": 375,
+    "route": "/about",
+    "background": "rgb(246, 243, 237)",
+    "brand": "hdw",
+    "brokenLogos": [],
+    "font": "Arial, Helvetica, sans-serif",
+    "heading": "Thoughtful design.Clear words.A studio that cares.",
+    "ink": "rgb(8, 27, 48)",
+    "overflow": false,
+    "url": "http://127.0.0.1:4175/about"
+  },
+  {
+    "width": 375,
+    "route": "/contact",
+    "background": "rgb(246, 243, 237)",
+    "brand": "hdw",
+    "brokenLogos": [],
+    "font": "Arial, Helvetica, sans-serif",
+    "heading": "Good work.A betterfirst impression.",
+    "ink": "rgb(8, 27, 48)",
+    "overflow": false,
+    "url": "http://127.0.0.1:4175/contact"
+  },
+  {
+    "width": 375,
+    "route": "/work",
+    "background": "rgb(246, 243, 237)",
+    "brand": "hdw",
+    "brokenLogos": [],
+    "font": "Arial, Helvetica, sans-serif",
+    "heading": "Websites craftedwith purpose.Built to be chosen.",
+    "ink": "rgb(8, 27, 48)",
+    "overflow": false,
+    "url": "http://127.0.0.1:4175/work"
+  },
+  {
+    "width": 375,
+    "route": "/resources",
+    "background": "rgb(246, 243, 237)",
+    "brand": "hdw",
+    "brokenLogos": [],
+    "font": "Arial, Helvetica, sans-serif",
+    "heading": "Simple steps for running the agency each day.",
+    "ink": "rgb(8, 27, 48)",
+    "overflow": false,
+    "url": "http://127.0.0.1:4175/resources"
+  },
+  {
+    "width": 375,
+    "route": "/brand",
+    "background": "rgb(246, 243, 237)",
+    "brand": "hdw",
+    "brokenLogos": [],
+    "font": "Arial, Helvetica, sans-serif",
+    "heading": "Unified Brand Assets For The Harley Group Ecosystem.",
+    "ink": "rgb(8, 27, 48)",
+    "overflow": false,
+    "url": "http://127.0.0.1:4175/brand"
+  },
+  {
+    "width": 375,
+    "route": "/services/web-design-development",
+    "background": "rgb(246, 243, 237)",
+    "brand": "hdw",
+    "brokenLogos": [],
+    "font": "Arial, Helvetica, sans-serif",
+    "heading": "Your workmanship.Our craft.",
+    "ink": "rgb(8, 27, 48)",
+    "overflow": false,
+    "url": "http://127.0.0.1:4175/services/web-design-development"
+  },
+  {
+    "width": 375,
+    "route": "/services/care-plans",
+    "background": "rgb(246, 243, 237)",
+    "brand": "hdw",
+    "brokenLogos": [],
+    "font": "Arial, Helvetica, sans-serif",
+    "heading": "Launched.And looked after.",
+    "ink": "rgb(8, 27, 48)",
+    "overflow": false,
+    "url": "http://127.0.0.1:4175/services/care-plans"
+  },
+  {
+    "width": 375,
+    "route": "/the-harley-group",
+    "background": "rgb(246, 243, 237)",
+    "brand": "group",
+    "brokenLogos": [],
+    "font": "Inter, sans-serif",
+    "heading": "Good businesses.Better possibilities.",
+    "ink": "rgb(8, 27, 48)",
+    "overflow": false,
+    "url": "http://127.0.0.1:4175/the-harley-group"
+  },
+  {
+    "width": 768,
+    "route": "/",
+    "brand": "hdw",
+    "brokenLogos": [],
+    "font": "Arial, Helvetica, sans-serif",
+    "overflow": false
+  },
+  {
+    "width": 768,
+    "route": "/about",
+    "brand": "hdw",
+    "brokenLogos": [],
+    "font": "Arial, Helvetica, sans-serif",
+    "overflow": false
+  },
+  {
+    "width": 768,
+    "route": "/contact",
+    "brand": "hdw",
+    "brokenLogos": [],
+    "font": "Arial, Helvetica, sans-serif",
+    "overflow": false
+  },
+  {
+    "width": 768,
+    "route": "/work",
+    "brand": "hdw",
+    "brokenLogos": [],
+    "font": "Arial, Helvetica, sans-serif",
+    "overflow": false
+  },
+  {
+    "width": 768,
+    "route": "/resources",
+    "brand": "hdw",
+    "brokenLogos": [],
+    "font": "Arial, Helvetica, sans-serif",
+    "overflow": false
+  },
+  {
+    "width": 768,
+    "route": "/brand",
+    "brand": "hdw",
+    "brokenLogos": [],
+    "font": "Arial, Helvetica, sans-serif",
+    "overflow": false
+  },
+  {
+    "width": 768,
+    "route": "/services/web-design-development",
+    "brand": "hdw",
+    "brokenLogos": [],
+    "font": "Arial, Helvetica, sans-serif",
+    "overflow": false
+  },
+  {
+    "width": 768,
+    "route": "/services/care-plans",
+    "brand": "hdw",
+    "brokenLogos": [],
+    "font": "Arial, Helvetica, sans-serif",
+    "overflow": false
+  },
+  {
+    "width": 768,
+    "route": "/the-harley-group",
+    "brand": "group",
+    "brokenLogos": [],
+    "font": "Inter, sans-serif",
+    "overflow": false
+  },
+  {
+    "width": 1440,
+    "route": "/",
+    "brand": "hdw",
+    "brokenLogos": [],
+    "font": "Arial, Helvetica, sans-serif",
+    "overflow": false
+  },
+  {
+    "width": 1440,
+    "route": "/about",
+    "brand": "hdw",
+    "brokenLogos": [],
+    "font": "Arial, Helvetica, sans-serif",
+    "overflow": false
+  },
+  {
+    "width": 1440,
+    "route": "/contact",
+    "brand": "hdw",
+    "brokenLogos": [],
+    "font": "Arial, Helvetica, sans-serif",
+    "overflow": false
+  },
+  {
+    "width": 1440,
+    "route": "/work",
+    "brand": "hdw",
+    "brokenLogos": [],
+    "font": "Arial, Helvetica, sans-serif",
+    "overflow": false
+  },
+  {
+    "width": 1440,
+    "route": "/resources",
+    "brand": "hdw",
+    "brokenLogos": [],
+    "font": "Arial, Helvetica, sans-serif",
+    "overflow": false
+  },
+  {
+    "width": 1440,
+    "route": "/brand",
+    "brand": "hdw",
+    "brokenLogos": [],
+    "font": "Arial, Helvetica, sans-serif",
+    "overflow": false
+  },
+  {
+    "width": 1440,
+    "route": "/services/web-design-development",
+    "brand": "hdw",
+    "brokenLogos": [],
+    "font": "Arial, Helvetica, sans-serif",
+    "overflow": false
+  },
+  {
+    "width": 1440,
+    "route": "/services/care-plans",
+    "brand": "hdw",
+    "brokenLogos": [],
+    "font": "Arial, Helvetica, sans-serif",
+    "overflow": false
+  },
+  {
+    "width": 1440,
+    "route": "/the-harley-group",
+    "brand": "group",
+    "brokenLogos": [],
+    "font": "Inter, sans-serif",
+    "overflow": false
+  }
+]

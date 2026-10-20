@@ -70,6 +70,10 @@
   --color-ink: var(--ink);
   --color-ink-muted: var(--ink-muted);
   --color-footer: var(--footer);
+  --color-hdw-midnight: var(--hdw-midnight);
+  --color-hdw-ivory: var(--hdw-ivory);
+  --color-hdw-blue: var(--hdw-blue);
+  --color-hdw-slate: var(--hdw-slate);
   --font-display: "Manrope", sans-serif;
   --font-sans: "Inter", sans-serif;
   --font-mono: "DM Mono", ui-monospace, "SFMono-Regular", monospace;
@@ -82,14 +86,20 @@
 :root {
   --radius: 0.625rem;
 
-  /* Approved Harley Digital Works black-and-gold brand tokens. */
+  /* Current pack colours; marketing overrides are scoped below. */
+  --hdw-midnight: #081b30;
+  --hdw-ivory: #f6f3ed;
+  --hdw-blue: #173c62;
+  --hdw-slate: #526479;
+
+  /* Earlier app tokens retained for operational and historical surfaces. */
   --hdw-black: oklch(0.14 0 0); /* #0D0D0D */
   --works-charcoal: oklch(0.21 0 0); /* #1A1A1A */
   --signature-gold: oklch(0.72 0.12 83); /* #C89D3C */
   --signature-gold-light: oklch(0.82 0.12 86); /* #F2C45A */
   --soft-silver: oklch(0.955 0 0); /* #F0F0F0 */
 
-  /* Legacy token names retained for compatibility; they now map to Signature Gold. */
+  /* Legacy app aliases. Current marketing overrides do not affect status colours. */
   --thg-teal: var(--signature-gold);
   --thg-teal-light: var(--signature-gold-light);
   --thg-teal-dark: oklch(0.62 0.11 83);
@@ -159,6 +169,67 @@
   --border: oklch(1 0 0 / 12%);
   --input: oklch(1 0 0 / 15%);
   --ring: var(--thg-teal-light);
+}
+
+.family-marketing {
+  --background: var(--hdw-ivory);
+  --foreground: var(--hdw-midnight);
+  --ink: var(--hdw-midnight);
+  --ink-muted: var(--hdw-slate);
+  --footer: var(--hdw-midnight);
+  --primary: var(--hdw-midnight);
+  --primary-foreground: var(--hdw-ivory);
+  --thg-teal: var(--hdw-blue);
+  --thg-teal-light: var(--hdw-ivory);
+  --thg-teal-dark: var(--hdw-blue);
+  --ring: var(--hdw-blue);
+  --surface-sage: color-mix(in srgb, var(--hdw-ivory) 92%, var(--hdw-blue));
+  --surface-stone: color-mix(in srgb, var(--hdw-ivory) 88%, var(--hdw-slate));
+  --surface-mist: color-mix(in srgb, var(--hdw-ivory) 95%, var(--hdw-blue));
+  --surface-cream: var(--hdw-ivory);
+  --card: var(--hdw-ivory);
+  --card-foreground: var(--hdw-midnight);
+  --popover: var(--hdw-ivory);
+  --popover-foreground: var(--hdw-midnight);
+  --border: color-mix(in srgb, var(--hdw-slate) 25%, transparent);
+  --input: color-mix(in srgb, var(--hdw-slate) 40%, transparent);
+}
+
+.hdw-marketing {
+  --font-sans: Arial, Helvetica, sans-serif;
+  --font-display: Arial, Helvetica, sans-serif;
+  --font-heading: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+}
+
+.hdw-marketing .studio-header .studio-button,
+.hdw-marketing .studio-actions .studio-button {
+  background: var(--hdw-midnight);
+  color: var(--hdw-ivory);
+}
+
+.hdw-marketing .studio-header .studio-button:hover,
+.hdw-marketing .studio-actions .studio-button:hover {
+  background: var(--hdw-blue);
+}
+
+.hdw-marketing .hero-copy h1 > span {
+  color: inherit;
+}
+
+.hdw-marketing :is(a, button, input, textarea, select):focus-visible {
+  outline: 2px solid var(--hdw-slate);
+  outline-offset: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .family-marketing *,
+  .family-marketing *::before,
+  .family-marketing *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 @layer base {
@@ -296,4 +367,3 @@ textarea:user-valid:not(:placeholder-shown) {
   content-visibility: auto;
   contain-intrinsic-size: auto none auto 600px;
 }
-

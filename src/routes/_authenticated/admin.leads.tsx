@@ -1,4 +1,13 @@
+import { LEAD_PAGE_SIZE, loadLeadPage, loadLeadCounts, type LeadFilter } from "@/lib/admin-leads";
 import { ensureClientWorkspace } from "@/lib/client-workspace";
+import {
+  adminErrorMessage,
+  deleteRecord,
+  insertRecord,
+  invalidateAdminData,
+  updateRecord,
+} from "@/lib/admin-writes";
+import { parseLeadInput, parseLeadStatus } from "@/lib/admin-validation";
 import { useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { createFileRoute, Link } from "@tanstack/react-router";
@@ -32,25 +41,23 @@ export const Route = createFileRoute("/_authenticated/admin/leads")({
 
 function LeadsPage() {
   const qc = useQueryClient();
-  const [activeTab, setActiveTab] = useState<string>("all");
+  const [activeTab, setActiveTab] = useState<LeadFilter>("all");
   const [searchTerm, setSearchTerm] = useState("");
+  const [page, setPage] = useState(0);
   const [selectedLead, setSelectedLead] = useState<LeadRow | null>(null);
   const [editingLead, setEditingLead] = useState<Partial<LeadRow> | null>(null);
   const [proposingLead, setProposingLead] = useState<LeadRow | null>(null);
   const [isCreating, setIsCreating] = useState(false);
 
   const leadsQuery = useQuery({
-    queryKey: ["leads"],
-    queryFn: async () => {
-      const { data, error } = await supabase
-        .from("leads")
-        .select("*")
-        .order("created_at", { ascending: false });
-      if (error) throw error;
-      return (data ?? []) as LeadRow[];
-    },
+    queryKey: ["leads", "page", activeTab, searchTerm, page],
+    queryFn: ({ signal }) =>
+      loadLeadPage(supabase, { page, status: activeTab, search: searchTerm, signal }),
   });
-
+  const countsQuery = useQuery({
+    queryKey: ["leads", "counts"],
+    queryFn: () => loadLeadCounts(supabase),
+  });
   const notificationQuery = useQuery({
     queryKey: ["lead-notification", selectedLead?.id],
     enabled: !!selectedLead,
@@ -86,91 +93,64 @@ function LeadsPage() {
         },
       }),
     onSuccess: (client) => {
-      qc.invalidateQueries({ queryKey: ["leads"] });
-      qc.invalidateQueries({ queryKey: ["clients"] });
-      qc.invalidateQueries({ queryKey: ["admin", "stats"] });
+      invalidateAdminData(qc, "client");
       setSelectedLead(null);
       toast.success(`Client workspace ready for ${client.name}`, {
         description:
           "This does not mark the lead won or record payment. Confirm the agreement separately.",
       });
     },
-    onError: (err: Error) => {
-      toast.error(`Conversion failed: ${err.message}`);
-    },
+    onError: (err: unknown) =>
+      toast.error(
+        `Conversion failed: ${adminErrorMessage(err, "The workspace could not be created.")}`,
+      ),
   });
 
   // Save / Update Lead Mutation
   const saveLeadMutation = useMutation({
-    mutationFn: async (payload: Partial<LeadRow>) => {
-      if (payload.id) {
-        const { id, ...rest } = payload;
-        const { error } = await supabase.from("leads").update(rest).eq("id", id);
-        if (error) throw error;
-      } else {
-        const { error } = await supabase.from("leads").insert({
-          name: payload.name ?? "",
-          email: payload.email ?? "",
-          message: payload.message ?? "",
-          company: payload.company ?? null,
-          package: payload.package ?? null,
-          status: payload.status ?? "new",
-          notes: payload.notes ?? null,
-          source: payload.source ?? "admin_manual",
+    mutationFn: async (
+      payload: Record<string, unknown> & { id?: string; statusOnly?: boolean },
+    ) => {
+      if (payload.statusOnly && payload.id)
+        return updateRecord(supabase, "leads", payload.id, {
+          status: parseLeadStatus(payload.status),
         });
-        if (error) throw error;
-      }
+      const input = parseLeadInput(payload);
+      if (payload.id) return updateRecord(supabase, "leads", payload.id, input);
+      return insertRecord(supabase, "leads", { ...input, source: "admin_manual" });
     },
-    onSuccess: () => {
-      qc.invalidateQueries({ queryKey: ["leads"] });
-      qc.invalidateQueries({ queryKey: ["admin", "stats"] });
+    onSuccess: (saved) => {
+      setSelectedLead((current) => (current?.id === saved.id ? saved : current));
+      invalidateAdminData(qc, "lead");
       setEditingLead(null);
       setIsCreating(false);
       toast.success("Lead saved successfully");
     },
-    onError: (err: Error) => toast.error(err.message),
+    onError: (err: unknown) => toast.error(adminErrorMessage(err, "The lead could not be saved.")),
   });
 
   // Delete Lead Mutation
   const deleteLeadMutation = useMutation({
-    mutationFn: async (id: string) => {
-      const { error } = await supabase.from("leads").delete().eq("id", id);
-      if (error) throw error;
-    },
-    onSuccess: () => {
-      qc.invalidateQueries({ queryKey: ["leads"] });
-      qc.invalidateQueries({ queryKey: ["admin", "stats"] });
-      if (selectedLead?.id) setSelectedLead(null);
+    mutationFn: (id: string) => deleteRecord(supabase, "leads", id),
+    onSuccess: (_result, id) => {
+      invalidateAdminData(qc, "lead");
+      setSelectedLead((current) => (current?.id === id ? null : current));
+      setPage(0);
       toast.success("Lead deleted");
     },
-    onError: (err: Error) => toast.error(err.message),
+    onError: (err: unknown) =>
+      toast.error(adminErrorMessage(err, "The lead could not be deleted.")),
   });
 
-  const leads = leadsQuery.data ?? [];
-  const totalLeads = leads.length;
-  const newLeads = leads.filter((l) => l.status === "new").length;
-  const qualifiedLeads = leads.filter((l) => l.status === "qualified").length;
-  const wonLeads = leads.filter((l) => l.status === "won").length;
-  const conversionRate = totalLeads > 0 ? Math.round((wonLeads / totalLeads) * 100) : 0;
-
-  const filteredLeads = leads.filter((l) => {
-    const matchesTab =
-      activeTab === "all" ||
-      (activeTab === "new" && l.status === "new") ||
-      (activeTab === "qualified" && l.status === "qualified") ||
-      (activeTab === "won" && l.status === "won") ||
-      (activeTab === "lost" && l.status === "lost");
-
-    const matchesSearch =
-      !searchTerm ||
-      l.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      l.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      (l.company && l.company.toLowerCase().includes(searchTerm.toLowerCase())) ||
-      (l.package && l.package.toLowerCase().includes(searchTerm.toLowerCase()));
-
-    return matchesTab && matchesSearch;
-  });
-
+  const filteredLeads = leadsQuery.isSuccess ? (leadsQuery.data?.rows ?? []) : [];
+  const counts = countsQuery.isSuccess ? countsQuery.data : undefined;
+  const totalLeads = counts?.all;
+  const newLeads = counts?.new;
+  const qualifiedLeads = counts?.qualified;
+  const wonLeads = counts?.won;
+  const conversionRate =
+    totalLeads && wonLeads !== undefined ? Math.round((wonLeads / totalLeads) * 100) : 0;
+  const matchedTotal = leadsQuery.data?.total ?? 0;
   return (
     <div>
       <PageHeader
@@ -195,9 +175,9 @@ function LeadsPage() {
           <div className="rounded-xl border border-ink/10 bg-white p-5">
             <div className="flex items-center gap-2 text-ink-muted">
               <Inbox size={14} />
-              <span className="text-[12px] uppercase tracking-wider">Total Inbound</span>
+              <span className="text-[12px] uppercase tracking-wider">Total enquiries</span>
             </div>
-            <div className="mt-3 text-3xl font-semibold text-ink">{totalLeads}</div>
+            <div className="mt-3 text-3xl font-semibold text-ink">{totalLeads ?? "—"}</div>
             <div className="mt-1 text-xs text-ink-muted">All-time enquiries</div>
           </div>
           <div className="rounded-xl border border-blue-200 bg-blue-50/50 p-5">
@@ -207,7 +187,7 @@ function LeadsPage() {
                 Action Required
               </span>
             </div>
-            <div className="mt-3 text-3xl font-semibold text-blue-900">{newLeads}</div>
+            <div className="mt-3 text-3xl font-semibold text-blue-900">{newLeads ?? "—"}</div>
             <div className="mt-1 text-xs text-blue-700">New / uncontacted leads</div>
           </div>
           <div className="rounded-xl border border-ink/10 bg-white p-5">
@@ -215,45 +195,66 @@ function LeadsPage() {
               <Building size={14} />
               <span className="text-[12px] uppercase tracking-wider font-semibold">Qualified</span>
             </div>
-            <div className="mt-3 text-3xl font-semibold text-ink">{qualifiedLeads}</div>
+            <div className="mt-3 text-3xl font-semibold text-ink">{qualifiedLeads ?? "—"}</div>
             <div className="mt-1 text-xs text-ink-muted">Ready for proposal / quote</div>
           </div>
           <div className="rounded-xl border border-emerald-200 bg-emerald-50/50 p-5">
             <div className="flex items-center gap-2 text-emerald-700">
               <UserPlus size={14} />
-              <span className="text-[12px] uppercase tracking-wider font-semibold">Converted</span>
+              <span className="text-[12px] uppercase tracking-wider font-semibold">Won</span>
             </div>
-            <div className="mt-3 text-3xl font-semibold text-emerald-900">{wonLeads}</div>
+            <div className="mt-3 text-3xl font-semibold text-emerald-900">{wonLeads ?? "—"}</div>
             <div className="mt-1 text-xs text-emerald-700">
-              {conversionRate}% win / conversion rate
+              {countsQuery.isSuccess
+                ? `${conversionRate}% of records marked won`
+                : "Rate unavailable"}
             </div>
           </div>
         </div>
 
+        {countsQuery.isError && (
+          <div
+            role="alert"
+            className="mt-4 rounded-xl border border-rose-200 bg-rose-50 p-3 text-xs text-rose-950 flex items-center justify-between gap-3"
+          >
+            <span>Enquiry count metrics could not be loaded from the database.</span>
+            <button
+              type="button"
+              className="rounded-full border border-rose-300 bg-white px-3 py-1 font-bold text-rose-900 hover:bg-rose-100 transition-colors"
+              onClick={() => void countsQuery.refetch()}
+            >
+              Retry Totals
+            </button>
+          </div>
+        )}
         {/* Filter and Search Bar */}
         <div className="mt-8 flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
           <div className="flex flex-wrap gap-2">
             {[
               { id: "all", label: "All Leads", count: totalLeads },
               { id: "new", label: "New", count: newLeads },
+              { id: "contacted", label: "Contacted", count: counts?.contacted },
               { id: "qualified", label: "Qualified", count: qualifiedLeads },
-              { id: "won", label: "Won / Converted", count: wonLeads },
+              { id: "won", label: "Won", count: wonLeads },
               {
                 id: "lost",
                 label: "Lost",
-                count: leads.filter((l) => l.status === "lost").length,
+                count: counts?.lost,
               },
             ].map((tab) => (
               <button
                 key={tab.id}
-                onClick={() => setActiveTab(tab.id)}
+                onClick={() => {
+                  setActiveTab(tab.id as LeadFilter);
+                  setPage(0);
+                }}
                 className={`rounded-full px-3.5 py-1.5 text-xs font-medium transition-colors ${
                   activeTab === tab.id
                     ? "bg-ink text-white"
                     : "border border-ink/10 bg-white text-ink/70 hover:bg-ink/[0.04]"
                 }`}
               >
-                {tab.label} ({tab.count})
+                {tab.label} ({tab.count ?? "—"})
               </button>
             ))}
           </div>
@@ -264,14 +265,21 @@ function LeadsPage() {
               type="text"
               placeholder="Search leads by name, email, company..."
               value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
+              onChange={(e) => {
+                setSearchTerm(e.target.value);
+                setPage(0);
+              }}
+              aria-label="Search enquiries"
               className="w-full rounded-full border border-ink/15 bg-white py-1.5 pl-9 pr-4 text-xs text-ink placeholder:text-ink-muted focus:border-ink focus:outline-none"
             />
           </div>
         </div>
 
         {/* Leads Table */}
-        <div className="mt-6 overflow-hidden rounded-xl border border-ink/10 bg-white">
+        <div
+          className="mt-6 overflow-x-auto rounded-xl border border-ink/10 bg-white"
+          aria-busy={leadsQuery.isFetching}
+        >
           <table className="w-full text-sm">
             <thead className="bg-ink/[0.03] text-left text-[12px] uppercase tracking-wider text-ink-muted">
               <tr>
@@ -284,31 +292,56 @@ function LeadsPage() {
             </thead>
             <tbody>
               {leadsQuery.isLoading && (
-                <tr>
-                  <td colSpan={5} className="px-4 py-10 text-center text-ink-muted">
-                    Loading leads…
-                  </td>
-                </tr>
+                <>
+                  {[1, 2, 3, 4, 5].map((i) => (
+                    <tr key={i} className="border-t border-ink/5">
+                      <td className="px-4 py-4">
+                        <div className="h-4 w-36 rounded bg-ink/10 animate-pulse mb-1.5" />
+                        <div className="h-3 w-48 rounded bg-ink/5 animate-pulse" />
+                      </td>
+                      <td className="px-4 py-4">
+                        <div className="h-6 w-24 rounded bg-ink/10 animate-pulse" />
+                      </td>
+                      <td className="px-4 py-4">
+                        <div className="h-5 w-16 rounded-full bg-ink/10 animate-pulse" />
+                      </td>
+                      <td className="px-4 py-4">
+                        <div className="h-3 w-20 rounded bg-ink/5 animate-pulse" />
+                      </td>
+                      <td className="px-4 py-4 text-right">
+                        <div className="h-6 w-16 rounded-full bg-ink/10 animate-pulse ml-auto" />
+                      </td>
+                    </tr>
+                  ))}
+                </>
               )}
 
               {leadsQuery.isError && (
                 <tr>
-                  <td colSpan={5} className="px-4 py-10 text-center" role="alert">
-                    Enquiries could not be loaded.{" "}
-                    <button
-                      type="button"
-                      className="underline"
-                      onClick={() => leadsQuery.refetch()}
-                    >
-                      Retry
-                    </button>
+                  <td colSpan={5} className="px-4 py-8 text-center" role="alert">
+                    <div className="mx-auto max-w-md rounded-xl border border-rose-200 bg-rose-50 p-4 text-xs text-rose-950 flex items-center justify-between gap-3">
+                      <span>Enquiries could not be loaded from Supabase.</span>
+                      <button
+                        type="button"
+                        className="rounded-full border border-rose-300 bg-white px-3 py-1 font-bold text-rose-900 hover:bg-rose-100 transition-colors"
+                        onClick={() => void leadsQuery.refetch()}
+                      >
+                        Retry
+                      </button>
+                    </div>
                   </td>
                 </tr>
               )}
               {filteredLeads.length === 0 && leadsQuery.isSuccess && (
                 <tr>
                   <td colSpan={5} className="px-4 py-12 text-center text-ink-muted">
-                    No leads found in this view.
+                    <div className="mx-auto max-w-sm rounded-xl border border-dashed border-ink/15 p-6 text-center">
+                      <Inbox size={28} className="mx-auto text-ink-muted/50 mb-2" />
+                      <p className="text-sm font-bold text-ink">No enquiries match this view</p>
+                      <p className="text-xs text-ink-muted mt-1">
+                        Try resetting your search query or select another pipeline status tab.
+                      </p>
+                    </div>
                   </td>
                 </tr>
               )}
@@ -401,6 +434,38 @@ function LeadsPage() {
           </table>
         </div>
 
+        <nav
+          aria-label="Enquiry pages"
+          className="mt-4 flex flex-wrap items-center justify-between gap-3 text-sm"
+        >
+          <p role="status">
+            {leadsQuery.isSuccess
+              ? `${matchedTotal} matching enquiries · Page ${page + 1}`
+              : "Enquiry page unavailable"}
+          </p>
+          <div className="flex gap-2">
+            <button
+              type="button"
+              className="rounded-full border border-ink/20 px-4 py-2 disabled:opacity-40"
+              disabled={page === 0 || leadsQuery.isFetching}
+              onClick={() => setPage((current) => current - 1)}
+            >
+              Previous
+            </button>
+            <button
+              type="button"
+              className="rounded-full border border-ink/20 px-4 py-2 disabled:opacity-40"
+              disabled={
+                !leadsQuery.isSuccess ||
+                leadsQuery.isFetching ||
+                (page + 1) * LEAD_PAGE_SIZE >= matchedTotal
+              }
+              onClick={() => setPage((current) => current + 1)}
+            >
+              Next
+            </button>
+          </div>
+        </nav>
         {/* Lead Detail & Inspection Drawer */}
         {selectedLead && (
           <div
@@ -570,8 +635,13 @@ function LeadsPage() {
                       (st) => (
                         <button
                           key={st}
+                          disabled={saveLeadMutation.isPending}
                           onClick={() =>
-                            saveLeadMutation.mutate({ id: selectedLead.id, status: st })
+                            saveLeadMutation.mutate({
+                              id: selectedLead.id,
+                              status: st,
+                              statusOnly: true,
+                            })
                           }
                           className={`rounded-full px-3 py-1 text-xs font-medium transition-colors ${
                             selectedLead.status === st
@@ -625,13 +695,13 @@ function LeadsPage() {
                 const fd = new FormData(e.currentTarget);
                 saveLeadMutation.mutate({
                   id: editingLead?.id,
-                  name: String(fd.get("name") ?? ""),
-                  email: String(fd.get("email") ?? ""),
-                  company: String(fd.get("company") ?? "") || null,
-                  package: String(fd.get("package") ?? "") || null,
-                  status: (String(fd.get("status") ?? "new") as LeadStatus) || "new",
-                  message: String(fd.get("message") ?? ""),
-                  notes: String(fd.get("notes") ?? "") || null,
+                  name: fd.get("name"),
+                  email: fd.get("email"),
+                  company: fd.get("company"),
+                  package: fd.get("package"),
+                  status: fd.get("status"),
+                  message: fd.get("message"),
+                  notes: fd.get("notes"),
                 });
               }}
               className="mt-5 space-y-4 text-sm"

@@ -268,25 +268,19 @@ if (
     "Scheduled crons (* * * * * and 0 * * * *) are synchronized across Nitro config, handover, and KB",
   );
 
-  // Check 4: Zero-rated VAT policy consistency
+  // Check 4: Record the owner-confirmed status while retaining invoice review before issue.
   const vatAligned =
-    kbContent.includes("zero-rated") &&
-    strategyContent.includes("zero-rated") &&
-    offerDocContent.includes("zero-rated");
-  assert(
-    vatAligned,
-    "Zero-rated VAT policy is consistently enforced across commercial offer, strategy, and KB",
-  );
+    kbContent.includes("Tax review required") &&
+    strategyContent.includes('taxStatus: "Not VAT-registered') &&
+    offerDocContent.includes("Registration/tax presentation needs seller/accountant confirmation");
+  assert(vatAligned, "Commercial records retain the tax registration/invoice review gate");
 
-  // Check 5: Concurrency limit cap alignment (2–3 / 2 to 3 concurrent builds)
+  // Check 5: The retained pilot guard is two; this does not prove wider capacity approval.
   const concurrencyAligned =
-    (kbContent.includes("2 to 3") || kbContent.includes("2–3")) &&
-    (strategyContent.includes("2 to 3") || strategyContent.includes("2–3")) &&
-    (offerDocContent.includes("2 to 3") || offerDocContent.includes("2–3"));
-  assert(
-    concurrencyAligned,
-    "Founder concurrency capacity cap (2–3 builds) is synchronized across docs and KB",
-  );
+    kbContent.includes("Hard pilot cap: 2") &&
+    strategyContent.includes("Strict pilot cap: 2") &&
+    offerDocContent.includes("hard limit of **2** during initial pilot");
+  assert(concurrencyAligned, "Two-build pilot capacity is recorded across offer, strategy and KB");
 }
 
 console.log("\n==================================================");

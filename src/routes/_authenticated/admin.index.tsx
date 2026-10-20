@@ -1,3 +1,10 @@
+import { loadLeadCounts } from "@/lib/admin-leads";
+import {
+  loadClientSummary,
+  loadProjectSummary,
+  loadNotificationSummary,
+  loadCompleteRecords,
+} from "@/lib/admin-records";
 import { useState, useMemo } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { createFileRoute, Link } from "@tanstack/react-router";
@@ -29,12 +36,29 @@ import {
   MessageSquare,
 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
+import {
+  adminErrorMessage,
+  insertRecord,
+  invalidateAdminData,
+  updateRecord,
+} from "@/lib/admin-writes";
+import {
+  parseClientInput,
+  parseLeadInput,
+  parseLeadStatus,
+  parsePhone,
+  parseProjectInput,
+  parseProjectStatus,
+  parseText,
+  formatCents,
+} from "@/lib/admin-validation";
 import type { Database } from "@/integrations/supabase/types";
 import { toast } from "sonner";
 import { StrategySummary } from "@/components/admin/CurrentStrategy";
 import { LeadProposalModal } from "@/components/admin/LeadProposalModal";
 import { SlackCommandCentreCard } from "@/components/admin/SlackCommandCentreCard";
 import { FounderProcessGuide } from "@/components/admin/FounderProcessGuide";
+import { GroupHeadquartersSummary } from "@/components/admin/GroupHeadquarters";
 
 export const Route = createFileRoute("/_authenticated/admin/")({ component: DashboardPage });
 
@@ -59,76 +83,38 @@ function DashboardPage() {
   const statsQuery = useQuery({
     queryKey: ["admin", "operational-stats"],
     queryFn: async () => {
-      const [
-        leadsRes,
-        newLeadsRes,
-        contactedLeadsRes,
-        qualifiedLeadsRes,
-        wonLeadsRes,
-        clientsRes,
-        activeClientsRes,
-        projectsRes,
-        activeProjectsRes,
-        jobsRes,
-      ] = await Promise.all([
-        supabase.from("leads").select("id", { count: "exact", head: true }),
-        supabase.from("leads").select("id", { count: "exact", head: true }).eq("status", "new"),
-        supabase
-          .from("leads")
-          .select("id", { count: "exact", head: true })
-          .eq("status", "contacted"),
-        supabase
-          .from("leads")
-          .select("id", { count: "exact", head: true })
-          .eq("status", "qualified"),
-        supabase.from("leads").select("id", { count: "exact", head: true }).eq("status", "won"),
-        supabase.from("clients").select("id, monthly_value_cents, status"),
-        supabase
-          .from("clients")
-          .select("id", { count: "exact", head: true })
-          .eq("status", "active"),
-        supabase.from("projects").select("id", { count: "exact", head: true }),
-        supabase
-          .from("projects")
-          .select("id", { count: "exact", head: true })
-          .in("status", ["discovery", "in_progress", "review"]),
-        supabase.from("lead_notification_jobs").select("id, status, attempts, last_error"),
+      const [leads, clients, projects, jobsResult] = await Promise.all([
+        loadLeadCounts(supabase),
+        loadClientSummary(supabase),
+        loadProjectSummary(supabase),
+        loadNotificationSummary(supabase).then(
+          (jobs) => ({ jobs, unavailable: false }),
+          (err) => {
+            console.warn("Automation notification summary unavailable:", err);
+            return { jobs: null, unavailable: true };
+          },
+        ),
       ]);
-
-      if (leadsRes.error) throw leadsRes.error;
-      if (clientsRes.error) throw clientsRes.error;
-      if (projectsRes.error) throw projectsRes.error;
-
-      // Calculate strictly verified MRR from active clients
-      const clientsList = clientsRes.data ?? [];
-      const verifiedMRR = clientsList
-        .filter((c) => c.status === "active" && c.monthly_value_cents && c.monthly_value_cents > 0)
-        .reduce((sum, c) => sum + (c.monthly_value_cents ?? 0) / 100, 0);
-
-      const jobsList = jobsRes.data ?? [];
-      const pendingJobs = jobsList.filter((j) => j.status !== "accepted");
-      const failedJobs = jobsList.filter((j) => (j.attempts ?? 0) > 0 && j.status !== "accepted");
-      const acceptedJobs = jobsList.filter((j) => j.status === "accepted");
-
+      const jobs = jobsResult.jobs;
       return {
-        leadsTotal: leadsRes.count ?? 0,
-        leadsNew: newLeadsRes.count ?? 0,
-        leadsContacted: contactedLeadsRes.count ?? 0,
-        leadsQualified: qualifiedLeadsRes.count ?? 0,
-        leadsWon: wonLeadsRes.count ?? 0,
-        clientsTotal: clientsList.length,
-        clientsActive: activeClientsRes.count ?? 0,
-        verifiedMRR,
-        projectsTotal: projectsRes.count ?? 0,
-        projectsActive: activeProjectsRes.count ?? 0,
-        jobsTotal: jobsList.length,
-        jobsPending: pendingJobs.length,
-        jobsFailed: failedJobs.length,
-        jobsAccepted: acceptedJobs.length,
+        leadsTotal: leads.all,
+        leadsNew: leads.new,
+        leadsContacted: leads.contacted,
+        leadsQualified: leads.qualified,
+        leadsWon: leads.won,
+        clientsTotal: clients.counts.all,
+        clientsActive: clients.counts.active,
+        recordedMonthlyValue: clients.monthlyValueCents / 100,
+        projectsTotal: projects.all,
+        projectsActive: projects.active,
+        jobsTotal: jobs?.total ?? 0,
+        jobsPending: jobs?.outstanding ?? 0,
+        jobsFailed: jobs?.retrying ?? 0,
+        jobsAccepted: jobs?.accepted ?? 0,
+        jobsUnavailable: jobsResult.unavailable,
       };
     },
   });
-
   // 2. Recent Leads Query
   const recentLeadsQuery = useQuery({
     queryKey: ["admin", "recent-leads"],
@@ -147,27 +133,79 @@ function DashboardPage() {
   const activeProjectsQuery = useQuery({
     queryKey: ["admin", "active-projects"],
     queryFn: async () => {
-      const { data, error } = await supabase
-        .from("projects")
-        .select("*, clients(name, contact_name, contact_email)")
-        .in("status", ["discovery", "in_progress", "review"])
-        .order("created_at", { ascending: false });
-      if (error) throw error;
-      return data ?? [];
+      let rows: (ProjectRow & {
+        clients?: {
+          name?: string | null;
+          contact_name?: string | null;
+          contact_email?: string | null;
+        } | null;
+      })[];
+      try {
+        rows = await loadCompleteRecords((after) => {
+          let query = supabase
+            .from("projects")
+            .select("*, clients(name, contact_name, contact_email)", { count: "exact" })
+            .in("status", ["discovery", "in_progress", "review"])
+            .order("id")
+            .limit(500);
+          if (after) query = query.gt("id", after);
+          return query;
+        });
+      } catch (err: unknown) {
+        const error = err as { code?: string; message?: string };
+        if (error?.code === "PGRST200" || error?.message?.includes("relationship")) {
+          const flatRows = await loadCompleteRecords((after) => {
+            let query = supabase
+              .from("projects")
+              .select("*", { count: "exact" })
+              .in("status", ["discovery", "in_progress", "review"])
+              .order("id")
+              .limit(500);
+            if (after) query = query.gt("id", after);
+            return query;
+          });
+          const clientIds = [
+            ...new Set(flatRows.map((r) => r.client_id).filter(Boolean)),
+          ] as string[];
+          if (clientIds.length > 0) {
+            const { data: clientRows } = await supabase
+              .from("clients")
+              .select("id, name, contact_name, contact_email")
+              .in("id", clientIds);
+            const map = new Map((clientRows || []).map((c) => [c.id, c]));
+            rows = flatRows.map((r) => ({
+              ...r,
+              clients: r.client_id ? (map.get(r.client_id) ?? null) : null,
+            }));
+          } else {
+            rows = flatRows.map((r) => ({ ...r, clients: null }));
+          }
+        } else {
+          throw err;
+        }
+      }
+      return rows.sort((a, b) => b.created_at.localeCompare(a.created_at));
     },
   });
-
   // 4. Notification Jobs for Automation Exception Monitoring
   const notificationJobsQuery = useQuery({
     queryKey: ["admin", "recent-jobs"],
     queryFn: async () => {
-      const { data, error } = await supabase
-        .from("lead_notification_jobs")
-        .select("*")
-        .order("created_at", { ascending: false })
-        .limit(6);
-      if (error) throw error;
-      return (data ?? []) as NotificationJobRow[];
+      try {
+        const { data, error } = await supabase
+          .from("lead_notification_jobs")
+          .select("*")
+          .order("created_at", { ascending: false })
+          .limit(6);
+        if (error) {
+          console.warn("Notification jobs query skipped or unavailable:", error.message);
+          return [] as NotificationJobRow[];
+        }
+        return (data ?? []) as NotificationJobRow[];
+      } catch (err) {
+        console.warn("Notification jobs unexpected error:", err);
+        return [] as NotificationJobRow[];
+      }
     },
   });
 
@@ -175,16 +213,19 @@ function DashboardPage() {
   const activeClientsQuery = useQuery({
     queryKey: ["admin", "active-clients-list"],
     queryFn: async () => {
-      const { data, error } = await supabase
-        .from("clients")
-        .select("*")
-        .eq("status", "active")
-        .order("created_at", { ascending: false });
-      if (error) throw error;
-      return (data ?? []) as ClientRow[];
+      const rows = await loadCompleteRecords((after) => {
+        let query = supabase
+          .from("clients")
+          .select("*", { count: "exact" })
+          .eq("status", "active")
+          .order("id")
+          .limit(500);
+        if (after) query = query.gt("id", after);
+        return query;
+      });
+      return rows.sort((a, b) => b.created_at.localeCompare(a.created_at));
     },
   });
-
   const stats = statsQuery.data;
   const recentLeads = useMemo(() => recentLeadsQuery.data ?? [], [recentLeadsQuery.data]);
   const activeProjects = useMemo(() => activeProjectsQuery.data ?? [], [activeProjectsQuery.data]);
@@ -204,42 +245,41 @@ function DashboardPage() {
       onAction?: () => void;
     }[] = [];
 
-    // 1. Uncontacted new leads
-    const uncontacted = recentLeads.filter((l) => l.status === "new");
-    if (uncontacted.length > 0) {
+    // Counts cover the full dataset; recent activity is only a preview.
+    if ((stats?.leadsNew ?? 0) > 0) {
       list.push({
         id: "uncontacted-leads",
         category: "lead",
         severity: "high",
-        title: `${uncontacted.length} new enquiry requiring response`,
-        description: `Enquiries from ${uncontacted
-          .map((l) => l.name || l.company)
-          .slice(0, 2)
-          .join(
-            ", ",
-          )}${uncontacted.length > 2 ? " and others" : ""} are awaiting initial trade qualification.`,
+        title: `${stats!.leadsNew} new enquiries requiring response`,
+        description: "Review the full enquiry desk to qualify and respond to every new record.",
         actionLabel: "Review Leads",
         actionUrl: "/admin/leads",
       });
     }
-
-    // 2. Failed / retrying notifications
-    const failedOrRetrying = recentJobs.filter(
-      (j) => (j.attempts ?? 0) > 0 && j.status !== "accepted",
-    );
-    if (failedOrRetrying.length > 0) {
+    if (stats?.jobsUnavailable) {
+      list.push({
+        id: "notification-queue-unlinked",
+        category: "automation",
+        severity: "info",
+        title: "Notification outbox queue not connected",
+        description:
+          "Automation jobs queue is not provisioned or unreachable in the current database. Primary lead intake and client records remain fully operational.",
+        actionLabel: "Inspect Diagnostics",
+        actionUrl: "/admin/diagnostics",
+      });
+    } else if ((stats?.jobsFailed ?? 0) > 0) {
       list.push({
         id: "failed-notifications",
         category: "automation",
         severity: "high",
-        title: `${failedOrRetrying.length} Slack lead alert retrying`,
+        title: `${stats!.jobsFailed} lead alerts need review`,
         description:
-          "Scheduled worker is attempting retry delivery with exponential backoff (1m, 5m, 15m, 60m).",
+          "Recorded delivery attempts have not been accepted. Check notification state and worker recovery before assuming retries are running.",
         actionLabel: "Inspect Automations",
         actionUrl: "/admin/diagnostics",
       });
     }
-
     // 3. Projects in Review awaiting client approval
     const awaitingApproval = activeProjects.filter((p) => p.status === "review");
     if (awaitingApproval.length > 0) {
@@ -247,58 +287,157 @@ function DashboardPage() {
         id: "projects-review",
         category: "project",
         severity: "medium",
-        title: `${awaitingApproval.length} build staged preview awaiting client sign-off`,
-        description: `Project staged previews for ${awaitingApproval.map((p) => p.name).join(", ")} are ready for customer approval prior to DNS switch.`,
+        title: `${awaitingApproval.length} projects marked for review`,
+        description: `Project staged previews for ${awaitingApproval.map((p) => p.name).join(", ")} are marked for review. Verify the published preview and approval evidence before launch.`,
         actionLabel: "View Projects",
         actionUrl: "/admin/projects",
       });
     }
 
-    // 4. Capacity warning (founder part-time constraint: max 2-3 concurrent builds)
+    // 4. Capacity warning: preserve the two-build pilot guard.
     const activeCount = stats?.projectsActive ?? 0;
-    if (activeCount >= 3) {
+    if (activeCount >= 2) {
       list.push({
         id: "capacity-limit",
         category: "capacity",
         severity: "medium",
-        title: `Build capacity reached (${activeCount}/3 active builds)`,
+        title: `Build capacity reached (${activeCount}/2 active builds)`,
         description:
-          "To protect founder part-time capacity alongside NHS commitments, cap active builds at 3 before onboarding new clients.",
+          "To protect founder part-time capacity alongside NHS commitments, cap active builds at 2 before onboarding new clients.",
         actionLabel: "View Delivery Pipeline",
         actionUrl: "/admin/projects",
       });
     }
 
     return list;
-  }, [recentLeads, recentJobs, activeProjects, stats]);
+  }, [activeProjects, stats]);
 
   // Mutations
   const updateLeadStatusMutation = useMutation({
     mutationFn: async ({ id, status }: { id: string; status: LeadRow["status"] }) => {
-      const { error } = await supabase.from("leads").update({ status }).eq("id", id);
-      if (error) throw error;
+      await updateRecord(supabase, "leads", id, { status: parseLeadStatus(status) });
     },
     onSuccess: () => {
-      qc.invalidateQueries({ queryKey: ["admin", "operational-stats"] });
-      qc.invalidateQueries({ queryKey: ["admin", "recent-leads"] });
+      invalidateAdminData(qc, "lead");
       toast.success("Lead status updated");
     },
-    onError: (err: Error) => toast.error(err.message),
+    onError: (err: unknown) => toast.error(adminErrorMessage(err, "Lead status was not updated.")),
   });
 
   const updateProjectStatusMutation = useMutation({
     mutationFn: async ({ id, status }: { id: string; status: ProjectRow["status"] }) => {
-      const { error } = await supabase.from("projects").update({ status }).eq("id", id);
-      if (error) throw error;
+      await updateRecord(supabase, "projects", id, { status: parseProjectStatus(status) });
     },
     onSuccess: () => {
-      qc.invalidateQueries({ queryKey: ["admin", "operational-stats"] });
-      qc.invalidateQueries({ queryKey: ["admin", "active-projects"] });
+      invalidateAdminData(qc, "project");
       toast.success("Project stage updated");
     },
-    onError: (err: Error) => toast.error(err.message),
+    onError: (err: unknown) =>
+      toast.error(adminErrorMessage(err, "Project stage was not updated.")),
   });
 
+  const coreQueries = [statsQuery, recentLeadsQuery, activeProjectsQuery, activeClientsQuery];
+
+  if (coreQueries.some((query) => query.isPending)) {
+    return (
+      <div className="space-y-8 pb-12" role="status" aria-label="Loading control centre dashboard">
+        {/* Header Skeleton */}
+        <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+          <div className="space-y-2">
+            <div className="h-8 w-48 rounded-lg bg-ink/10 animate-pulse" />
+            <div className="h-4 w-72 rounded bg-ink/5 animate-pulse" />
+          </div>
+          <div className="flex items-center gap-2">
+            <div className="h-8 w-24 rounded-full bg-ink/10 animate-pulse" />
+            <div className="h-8 w-24 rounded-full bg-ink/10 animate-pulse" />
+            <div className="h-8 w-24 rounded-full bg-ink/10 animate-pulse" />
+          </div>
+        </div>
+
+        {/* Status Bar Skeleton */}
+        <div className="h-16 w-full rounded-xl bg-ink/5 animate-pulse" />
+
+        {/* Metrics Grid Skeleton */}
+        <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+          {[1, 2, 3, 4].map((i) => (
+            <div
+              key={i}
+              className="rounded-xl border border-ink/10 bg-white p-5 shadow-xs space-y-3"
+            >
+              <div className="flex justify-between items-center">
+                <div className="h-3 w-28 rounded bg-ink/10 animate-pulse" />
+                <div className="h-4 w-4 rounded-full bg-ink/10 animate-pulse" />
+              </div>
+              <div className="h-8 w-24 rounded bg-ink/10 animate-pulse" />
+              <div className="h-3 w-36 rounded bg-ink/5 animate-pulse" />
+            </div>
+          ))}
+        </div>
+
+        {/* Dual Panel Skeleton */}
+        <div className="grid gap-6 lg:grid-cols-2">
+          <div className="rounded-xl border border-ink/10 bg-white p-6 space-y-4">
+            <div className="h-5 w-48 rounded bg-ink/10 animate-pulse" />
+            <div className="space-y-2">
+              {[1, 2, 3].map((i) => (
+                <div key={i} className="h-12 w-full rounded-lg bg-ink/5 animate-pulse" />
+              ))}
+            </div>
+          </div>
+          <div className="rounded-xl border border-ink/10 bg-white p-6 space-y-4">
+            <div className="h-5 w-48 rounded bg-ink/10 animate-pulse" />
+            <div className="space-y-2">
+              {[1, 2, 3].map((i) => (
+                <div key={i} className="h-12 w-full rounded-lg bg-ink/5 animate-pulse" />
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (statsQuery.isError) {
+    return (
+      <div className="space-y-6 pb-12" role="alert">
+        <PageHeader title="Control Centre" subtitle="Live business information" />
+        <div className="rounded-2xl border border-rose-200 bg-rose-50 p-6 text-rose-950 shadow-xs space-y-4">
+          <div className="flex items-start gap-3">
+            <ShieldAlert size={24} className="text-rose-700 shrink-0 mt-0.5" />
+            <div className="space-y-1">
+              <h2 className="text-base font-bold">Business Data Connection Error</h2>
+              <p className="text-xs text-rose-800 leading-relaxed">
+                Supabase operational statistics and table totals could not be loaded. To preserve
+                data integrity, metrics and operational capacity remain uncalculated until live
+                database sources are verified.
+              </p>
+            </div>
+          </div>
+          <div className="flex flex-wrap items-center gap-3 pt-2 border-t border-rose-200/60">
+            <button
+              type="button"
+              className="rounded-full bg-rose-900 text-white font-bold px-4 py-2 text-xs hover:bg-rose-800 transition-colors cursor-pointer"
+              onClick={() => {
+                void statsQuery.refetch();
+                void recentLeadsQuery.refetch();
+                void activeProjectsQuery.refetch();
+                void activeClientsQuery.refetch();
+                void notificationJobsQuery.refetch();
+              }}
+            >
+              Retry Business Data Connection
+            </button>
+            <Link
+              to="/admin/diagnostics"
+              className="rounded-full border border-rose-300 bg-white px-4 py-2 text-xs font-semibold text-rose-900 hover:bg-rose-100 transition-colors"
+            >
+              Inspect Diagnostics
+            </Link>
+          </div>
+        </div>
+      </div>
+    );
+  }
   return (
     <div className="space-y-8 pb-12">
       {/* 1. Header with Operational Status & Quick Actions */}
@@ -321,7 +460,7 @@ function DashboardPage() {
                 }`}
               />
               {exceptions.length === 0
-                ? "All Automations Healthy"
+                ? "No recorded exceptions"
                 : `${exceptions.length} Attention Required`}
             </span>
           </div>
@@ -364,12 +503,45 @@ function DashboardPage() {
         </div>
       </div>
 
+      {/* Degraded State Diagnostic Alert */}
+      {(stats?.jobsUnavailable ||
+        recentLeadsQuery.isError ||
+        activeProjectsQuery.isError ||
+        activeClientsQuery.isError) && (
+        <div
+          role="alert"
+          className="rounded-xl border border-amber-200 bg-amber-50 p-4 text-xs text-amber-900 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 shadow-xs"
+        >
+          <div className="flex items-center gap-2.5">
+            <span className="h-2.5 w-2.5 rounded-full bg-amber-500 animate-pulse shrink-0" />
+            <span>
+              {stats?.jobsUnavailable
+                ? "Notification outbox queue is currently unlinked or unavailable; lead intake and CRM data remain operational."
+                : "Some operational datasets could not be refreshed in the background."}
+            </span>
+          </div>
+          <button
+            type="button"
+            onClick={() => {
+              if (stats?.jobsUnavailable) void statsQuery.refetch();
+              if (recentLeadsQuery.isError) void recentLeadsQuery.refetch();
+              if (activeProjectsQuery.isError) void activeProjectsQuery.refetch();
+              if (activeClientsQuery.isError) void activeClientsQuery.refetch();
+            }}
+            className="self-start sm:self-auto rounded-full border border-amber-300 bg-white px-3 py-1 text-xs font-semibold text-amber-900 hover:bg-amber-100 transition-colors"
+          >
+            Retry sync
+          </button>
+        </div>
+      )}
+
       {/* Founder Daily Operating Flow */}
+      <GroupHeadquartersSummary />
       <section aria-label="Founder Operating Flow">
         <FounderProcessGuide
-          uncontactedCount={recentLeads.filter((l) => l.status === "new").length}
+          uncontactedCount={stats?.leadsNew ?? 0}
           activeBuildsCount={stats?.projectsActive ?? 0}
-          maxCapacity={3}
+          maxCapacity={2}
           exceptionsCount={exceptions.length}
           activeClientsCount={stats?.clientsActive ?? 0}
         />
@@ -384,10 +556,10 @@ function DashboardPage() {
                 <CheckCircle2 size={18} />
               </div>
               <div>
-                <h2 className="text-sm font-bold">Automated Operations Normal — 0 Exceptions</h2>
+                <h2 className="text-sm font-bold">No exceptions in the loaded records</h2>
                 <p className="text-xs text-emerald-800">
-                  Lead capture active, Slack minute alerts acknowledged, hourly abuse retention
-                  scheduled. No overdue items.
+                  This queue does not verify enquiry delivery, scheduled jobs, backups or billing.
+                  Check the latest acceptance evidence before relying on those services.
                 </p>
               </div>
             </div>
@@ -448,26 +620,26 @@ function DashboardPage() {
       {/* 3. Primary Operational Metrics Hierarchy (Strict CRM & Financial Truth) */}
       <section aria-label="Key Performance Indicators">
         <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-          {/* Card 1: Verified Monthly Recurring Revenue (MRR) */}
+          {/* Card 1: Recorded monthly client value */}
           <div className="rounded-xl border border-ink/10 bg-white p-5 shadow-xs">
             <div className="flex items-center justify-between text-ink-muted">
               <span className="text-[11px] font-bold uppercase tracking-wider">
-                Active Care MRR
+                Recorded care value
               </span>
               <Receipt size={16} className="text-emerald-700" />
             </div>
             <div className="mt-2 flex items-baseline gap-2">
               <span className="text-3xl font-extrabold text-ink">
-                £{stats?.verifiedMRR.toLocaleString() ?? 0}
+                £{(stats?.recordedMonthlyValue ?? 0).toLocaleString()}
               </span>
               <span className="text-xs text-ink-muted font-medium">/ month</span>
             </div>
             <div className="mt-2 text-[11px] text-ink-muted leading-relaxed">
               <span className="font-semibold text-emerald-800">
-                {stats?.clientsActive ?? 0} active care contract
+                {stats?.clientsActive ?? 0} active client record
                 {stats?.clientsActive === 1 ? "" : "s"}
               </span>{" "}
-              (£249/mo standard). Strictly verified payments; excludes pipeline.
+              (£249/mo standard). Recorded client values; payment collection is not verified here.
             </div>
           </div>
 
@@ -482,7 +654,7 @@ function DashboardPage() {
             <div className="mt-2 flex items-baseline gap-2">
               <span className="text-3xl font-extrabold text-ink">
                 {stats?.projectsActive ?? 0}{" "}
-                <span className="text-xl text-ink-muted font-normal">/ 3 slots</span>
+                <span className="text-xl text-ink-muted font-normal">/ 2 slots</span>
               </span>
             </div>
             {/* Visual Capacity Bar */}
@@ -490,20 +662,20 @@ function DashboardPage() {
               <div className="h-2 w-full overflow-hidden rounded-full bg-slate-100">
                 <div
                   className={`h-full transition-all ${
-                    (stats?.projectsActive ?? 0) >= 3
+                    (stats?.projectsActive ?? 0) >= 2
                       ? "bg-rose-500"
-                      : (stats?.projectsActive ?? 0) >= 2
+                      : (stats?.projectsActive ?? 0) >= 1
                         ? "bg-amber-500"
                         : "bg-emerald-500"
                   }`}
-                  style={{ width: `${Math.min(((stats?.projectsActive ?? 0) / 3) * 100, 100)}%` }}
+                  style={{ width: `${Math.min(((stats?.projectsActive ?? 0) / 2) * 100, 100)}%` }}
                 />
               </div>
               <p className="mt-1.5 text-[11px] text-ink-muted">
-                {3 - (stats?.projectsActive ?? 0) > 0
-                  ? `${3 - (stats?.projectsActive ?? 0)} build slot(s) available`
+                {2 - (stats?.projectsActive ?? 0) > 0
+                  ? `${2 - (stats?.projectsActive ?? 0)} build slot(s) available`
                   : "At full capacity limit"}{" "}
-                · 14-day SLA target.
+                · Two-build pilot limit.
               </p>
             </div>
           </div>
@@ -541,18 +713,28 @@ function DashboardPage() {
             </div>
             <div className="mt-2 flex items-baseline gap-2">
               <span className="text-3xl font-extrabold text-ink">
-                {stats?.jobsFailed === 0 ? "100%" : "Alerts"}
+                {stats?.jobsUnavailable
+                  ? "Degraded"
+                  : stats?.jobsFailed === 0
+                    ? "No retries"
+                    : "Alerts"}
               </span>
-              <span className="text-xs text-ink-muted">operational</span>
+              <span className="text-xs text-ink-muted">
+                {stats?.jobsUnavailable ? "queue unmonitored" : "in recorded jobs"}
+              </span>
             </div>
             <div className="mt-2 text-[11px] text-ink-muted space-y-0.5">
               <div className="flex justify-between">
                 <span>Slack Alerts:</span>
-                <span className="font-semibold text-ink">{stats?.jobsAccepted ?? 0} accepted</span>
+                <span className="font-semibold text-ink">
+                  {stats?.jobsUnavailable
+                    ? "Queue unlinked"
+                    : `${stats?.jobsAccepted ?? 0} accepted`}
+                </span>
               </div>
               <div className="flex justify-between">
                 <span>Abuse Pruning:</span>
-                <span className="font-semibold text-emerald-700">Hourly cron active</span>
+                <span className="font-semibold text-emerald-700">Runtime not verified</span>
               </div>
             </div>
           </div>
@@ -682,10 +864,27 @@ function DashboardPage() {
               </div>
 
               {recentLeadsQuery.isPending ? (
-                <p className="text-xs text-ink-muted py-4">Loading enquiries…</p>
+                <div className="space-y-3 py-4">
+                  {[1, 2, 3, 4].map((i) => (
+                    <div
+                      key={i}
+                      className="flex items-center justify-between gap-4 py-2 border-b border-ink/5"
+                    >
+                      <div className="h-4 w-1/3 rounded bg-ink/10 animate-pulse" />
+                      <div className="h-4 w-1/5 rounded bg-ink/10 animate-pulse" />
+                      <div className="h-4 w-16 rounded bg-ink/10 animate-pulse" />
+                      <div className="h-4 w-20 rounded bg-ink/10 animate-pulse" />
+                    </div>
+                  ))}
+                </div>
               ) : recentLeads.length === 0 ? (
-                <div className="rounded-lg border border-dashed border-ink/15 p-6 text-center">
-                  <p className="text-xs text-ink-muted">No enquiries recorded yet.</p>
+                <div className="rounded-lg border border-dashed border-ink/15 p-8 text-center">
+                  <Inbox size={24} className="mx-auto text-ink-muted/50 mb-2" />
+                  <p className="text-xs font-bold text-ink">No enquiries recorded yet</p>
+                  <p className="text-xs text-ink-muted mt-1">
+                    New enquiries received through the website contact form or added manually will
+                    appear here.
+                  </p>
                 </div>
               ) : (
                 <div className="overflow-x-auto">
@@ -1023,7 +1222,9 @@ function DashboardPage() {
                       </div>
                       <div className="text-right">
                         <span className="font-mono font-bold text-emerald-800 text-sm">
-                          £{((client.monthly_value_cents ?? 24900) / 100).toFixed(0)}/mo
+                          {formatCents(client.monthly_value_cents)
+                            ? `${formatCents(client.monthly_value_cents)}/mo`
+                            : "Not recorded"}
                         </span>
                         <span className="block text-[10px] text-ink-muted">30m edit allowance</span>
                       </div>
@@ -1116,7 +1317,13 @@ function DashboardPage() {
                 </Link>
               </div>
               <div className="space-y-2">
-                {recentJobs.length === 0 ? (
+                {stats?.jobsUnavailable ? (
+                  <p className="text-xs text-amber-800 bg-amber-50 border border-amber-200 rounded-lg p-3">
+                    Notification outbox queue table is not installed or unreachable in this database
+                    environment. Lead intake RPC and website diagnostics are operational, but
+                    background Slack retry records cannot be displayed.
+                  </p>
+                ) : recentJobs.length === 0 ? (
                   <p className="text-xs text-ink-muted">No notification jobs recorded.</p>
                 ) : (
                   recentJobs.map((job) => (
@@ -1161,8 +1368,7 @@ function DashboardPage() {
         <AddLeadModal
           onClose={() => setIsAddingLead(false)}
           onSuccess={() => {
-            qc.invalidateQueries({ queryKey: ["admin", "operational-stats"] });
-            qc.invalidateQueries({ queryKey: ["admin", "recent-leads"] });
+            invalidateAdminData(qc, "lead");
             setIsAddingLead(false);
           }}
         />
@@ -1173,8 +1379,7 @@ function DashboardPage() {
         <AddClientModal
           onClose={() => setIsAddingClient(false)}
           onSuccess={() => {
-            qc.invalidateQueries({ queryKey: ["admin", "operational-stats"] });
-            qc.invalidateQueries({ queryKey: ["admin", "active-clients-list"] });
+            invalidateAdminData(qc, "client");
             setIsAddingClient(false);
           }}
         />
@@ -1186,8 +1391,7 @@ function DashboardPage() {
           clients={activeClients}
           onClose={() => setIsStartingProject(false)}
           onSuccess={() => {
-            qc.invalidateQueries({ queryKey: ["admin", "operational-stats"] });
-            qc.invalidateQueries({ queryKey: ["admin", "active-projects"] });
+            invalidateAdminData(qc, "project");
             setIsStartingProject(false);
           }}
         />
@@ -1205,37 +1409,28 @@ function AddLeadModal({ onClose, onSuccess }: { onClose: () => void; onSuccess: 
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [company, setCompany] = useState("");
-  const [pkg, setPkg] = useState("Managed Digital Presence (£1,495)");
+  const [pkg, setPkg] = useState("");
   const [notes, setNotes] = useState("");
   const [loading, setLoading] = useState(false);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (!name || !email) {
-      toast.error("Name and email are required");
-      return;
-    }
     setLoading(true);
     try {
-      const messageContent = phone
-        ? `Direct Phone: ${phone}\n\n${notes || "Manual lead created via Admin Control Centre"}`
-        : notes || "Manual lead created via Admin Control Centre";
-
-      const { error } = await supabase.from("leads").insert({
-        name,
-        email,
-        company: company || null,
-        message: messageContent,
-        package: pkg,
-        notes: notes || null,
-        source: "admin_manual",
-        status: "new",
-      });
-      if (error) throw error;
+      const phoneValue = parsePhone(phone, "Phone");
+      const noteValue = parseText(notes, "Initial notes", { multiline: true });
+      const message = [phoneValue ? `Direct Phone: ${phoneValue}` : null, noteValue]
+        .filter(Boolean)
+        .join("\n\n");
+      const input = parseLeadInput(
+        { name, email, company, package: pkg, message, notes: noteValue },
+        { messageRequired: false },
+      );
+      await insertRecord(supabase, "leads", { ...input, source: "admin_manual" });
       toast.success("Enquiry recorded successfully");
       onSuccess();
     } catch (err: unknown) {
-      toast.error(err instanceof Error ? err.message : "Failed to record enquiry");
+      toast.error(adminErrorMessage(err, "Failed to record enquiry"));
     } finally {
       setLoading(false);
     }
@@ -1302,6 +1497,7 @@ function AddLeadModal({ onClose, onSuccess }: { onClose: () => void; onSuccess: 
               onChange={(e) => setPkg(e.target.value)}
               className="mt-1 w-full rounded-lg border border-ink/20 px-3 py-2 text-xs"
             >
+              <option value="">Not specified</option>
               <option value="Managed Digital Presence (£1,495)">
                 Managed Digital Presence (£1,495 setup + £249/mo)
               </option>
@@ -1351,32 +1547,27 @@ function AddClientModal({ onClose, onSuccess }: { onClose: () => void; onSuccess
   const [contactEmail, setContactEmail] = useState("");
   const [contactPhone, setContactPhone] = useState("");
   const [website, setWebsite] = useState("");
-  const [monthlyValue, setMonthlyValue] = useState("249");
+  const [monthlyValue, setMonthlyValue] = useState("");
   const [loading, setLoading] = useState(false);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (!name) {
-      toast.error("Business name is required");
-      return;
-    }
     setLoading(true);
     try {
-      const monthlyCents = Math.round(parseFloat(monthlyValue || "0") * 100);
-      const { error } = await supabase.from("clients").insert({
+      const input = parseClientInput({
         name,
-        contact_name: contactName || null,
-        contact_email: contactEmail || null,
-        contact_phone: contactPhone || null,
-        website: website || null,
+        contact_name: contactName,
+        contact_email: contactEmail,
+        contact_phone: contactPhone,
+        website,
         status: "active",
-        monthly_value_cents: monthlyCents,
+        monthly_value: monthlyValue,
       });
-      if (error) throw error;
+      await insertRecord(supabase, "clients", input);
       toast.success("Client account created");
       onSuccess();
     } catch (err: unknown) {
-      toast.error(err instanceof Error ? err.message : "Failed to create client");
+      toast.error(adminErrorMessage(err, "Failed to create client"));
     } finally {
       setLoading(false);
     }
@@ -1437,12 +1628,15 @@ function AddClientModal({ onClose, onSuccess }: { onClose: () => void; onSuccess
               />
             </div>
             <div>
-              <label className="block text-xs font-semibold text-ink">Monthly Care (£/mo)</label>
+              <label className="block text-xs font-semibold text-ink">
+                Monthly Care (£/mo, optional)
+              </label>
               <input
-                type="number"
+                type="text"
+                inputMode="decimal"
                 value={monthlyValue}
                 onChange={(e) => setMonthlyValue(e.target.value)}
-                placeholder="249"
+                placeholder="e.g. 249"
                 className="mt-1 w-full rounded-lg border border-ink/20 px-3 py-2 text-xs"
               />
             </div>
@@ -1490,35 +1684,28 @@ function StartProjectModal({
 }) {
   const [clientId, setClientId] = useState(clients[0]?.id ?? "");
   const [name, setName] = useState("");
-  const [targetDays, setTargetDays] = useState("14");
-  const [summary, setSummary] = useState("Standard 5-page Managed trade website build.");
+  const [budget, setBudget] = useState("1495");
+  const [targetDate, setTargetDate] = useState("");
+  const [summary, setSummary] = useState("");
   const [loading, setLoading] = useState(false);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (!name) {
-      toast.error("Project name is required");
-      return;
-    }
     setLoading(true);
     try {
-      const targetDate = new Date();
-      targetDate.setDate(targetDate.getDate() + parseInt(targetDays || "14", 10));
-
-      const { error } = await supabase.from("projects").insert({
+      const input = parseProjectInput({
         name,
-        client_id: clientId || null,
+        client_id: clientId,
         status: "discovery",
-        budget_cents: 149500, // £1,495 standard setup
-        start_date: new Date().toISOString(),
-        target_date: targetDate.toISOString(),
-        summary: summary || null,
+        budget,
+        target_date: targetDate,
+        summary,
       });
-      if (error) throw error;
+      await insertRecord(supabase, "projects", input);
       toast.success("Project initialized in Discovery stage");
       onSuccess();
     } catch (err: unknown) {
-      toast.error(err instanceof Error ? err.message : "Failed to start project");
+      toast.error(adminErrorMessage(err, "Failed to start project"));
     } finally {
       setLoading(false);
     }
@@ -1560,19 +1747,27 @@ function StartProjectModal({
               ))}
             </select>
           </div>
-          <div>
-            <label className="block text-xs font-semibold text-ink">
-              Delivery Turnaround (SLA Days)
-            </label>
-            <input
-              type="number"
-              value={targetDays}
-              onChange={(e) => setTargetDays(e.target.value)}
-              className="mt-1 w-full rounded-lg border border-ink/20 px-3 py-2 text-xs"
-            />
-            <span className="text-[10px] text-ink-muted mt-0.5 block">
-              Default 14 days standard
-            </span>
+          <div className="grid grid-cols-2 gap-2">
+            <div>
+              <label className="block text-xs font-semibold text-ink">Agreed Fee (£)</label>
+              <input
+                type="text"
+                inputMode="decimal"
+                value={budget}
+                onChange={(e) => setBudget(e.target.value)}
+                placeholder="1495"
+                className="mt-1 w-full rounded-lg border border-ink/20 px-3 py-2 text-xs"
+              />
+            </div>
+            <div>
+              <label className="block text-xs font-semibold text-ink">Target Date (optional)</label>
+              <input
+                type="date"
+                value={targetDate}
+                onChange={(e) => setTargetDate(e.target.value)}
+                className="mt-1 w-full rounded-lg border border-ink/20 px-3 py-2 text-xs"
+              />
+            </div>
           </div>
           <div>
             <label className="block text-xs font-semibold text-ink">Scope Summary</label>

@@ -1,4 +1,26 @@
-import { recordedActiveMonthlyValue } from "@/lib/client-workspace";
+import {
+  loadClientPage,
+  loadClientSummary,
+  loadProjectSummary,
+  loadCompleteRecords,
+  type ClientFilter,
+} from "@/lib/admin-records";
+import { AdminPagination } from "@/components/admin/AdminPagination";
+import {
+  adminErrorMessage,
+  deleteRecord,
+  insertRecord,
+  invalidateAdminData,
+  updateRecord,
+} from "@/lib/admin-writes";
+import {
+  AdminValidationError,
+  MAX_CENTS,
+  centsToPoundsInput,
+  formatCents,
+  parseClientInput,
+  parseProjectInput,
+} from "@/lib/admin-validation";
 import { useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { createFileRoute } from "@tanstack/react-router";
@@ -44,8 +66,9 @@ export const Route = createFileRoute("/_authenticated/admin/clients")({
 function ClientsPage() {
   const qc = useQueryClient();
   const [clientViewMode, setClientViewMode] = useState<"clients" | "caredesk">("clients");
-  const [activeTab, setActiveTab] = useState<string>("all");
+  const [activeTab, setActiveTab] = useState<ClientFilter>("all");
   const [searchTerm, setSearchTerm] = useState("");
+  const [page, setPage] = useState(0);
   const [client360, setClient360] = useState<ClientRow | null>(null);
   const [editingClient, setEditingClient] = useState<Partial<ClientRow> | null>(null);
   const [invoicingClient, setInvoicingClient] = useState<ClientRow | null>(null);
@@ -55,151 +78,122 @@ function ClientsPage() {
 
   // Queries
   const clientsQuery = useQuery({
-    queryKey: ["clients"],
-    queryFn: async () => {
-      const { data, error } = await supabase
-        .from("clients")
-        .select("*")
-        .order("created_at", { ascending: false });
-      if (error) throw error;
-      return (data ?? []) as ClientRow[];
-    },
+    queryKey: ["clients", "page", activeTab, searchTerm, page],
+    queryFn: ({ signal }) =>
+      loadClientPage(supabase, { page, status: activeTab, search: searchTerm, signal }),
   });
-
+  const clientSummaryQuery = useQuery({
+    queryKey: ["clients", "summary"],
+    queryFn: () => loadClientSummary(supabase),
+  });
+  const projectSummaryQuery = useQuery({
+    queryKey: ["projects", "summary"],
+    queryFn: () => loadProjectSummary(supabase),
+  });
+  const visibleClientIds = clientsQuery.data?.rows.map((row) => row.id) ?? [];
   const allProjectsQuery = useQuery({
-    queryKey: ["projects"],
-    queryFn: async () => {
-      const { data, error } = await supabase
-        .from("projects")
-        .select("*")
-        .order("created_at", { ascending: false });
-      if (error) throw error;
-      return (data ?? []) as ProjectRow[];
-    },
+    queryKey: ["projects", "client-links", visibleClientIds.join(",")],
+    enabled: visibleClientIds.length > 0,
+    queryFn: () =>
+      loadCompleteRecords((after) => {
+        let query = supabase
+          .from("projects")
+          .select("id,client_id,status", { count: "exact" })
+          .in("client_id", visibleClientIds)
+          .order("id")
+          .limit(500);
+        if (after) query = query.gt("id", after);
+        return query;
+      }),
   });
-
+  const clientProjectsQuery = useQuery({
+    queryKey: ["projects", "client", client360?.id],
+    enabled: !!client360,
+    queryFn: () =>
+      loadCompleteRecords((after) => {
+        let query = supabase
+          .from("projects")
+          .select("*", { count: "exact" })
+          .eq("client_id", client360!.id)
+          .order("id")
+          .limit(500);
+        if (after) query = query.gt("id", after);
+        return query;
+      }),
+  });
   // Client Mutations
   const saveClientMutation = useMutation({
-    mutationFn: async (payload: Partial<ClientRow>) => {
-      if (payload.id) {
-        const { id, ...rest } = payload;
-        const { error } = await supabase.from("clients").update(rest).eq("id", id);
-        if (error) throw error;
-      } else {
-        const { error } = await supabase.from("clients").insert({
-          name: payload.name ?? "",
-          contact_name: payload.contact_name ?? null,
-          contact_email: payload.contact_email ?? null,
-          contact_phone: payload.contact_phone ?? null,
-          website: payload.website ?? null,
-          status: payload.status ?? "lead",
-          monthly_value_cents: payload.monthly_value_cents ?? 0,
-          notes: payload.notes ?? null,
-        });
-        if (error) throw error;
+    mutationFn: async (
+      payload: Record<string, unknown> & { id?: string; quickMonthlyCents?: number },
+    ) => {
+      if (payload.id && payload.quickMonthlyCents !== undefined) {
+        const cents = payload.quickMonthlyCents;
+        if (!Number.isSafeInteger(cents) || cents < 0 || cents > MAX_CENTS)
+          throw new AdminValidationError("Monthly care value is invalid");
+        return updateRecord(supabase, "clients", payload.id, { monthly_value_cents: cents });
       }
+      const input = parseClientInput(payload);
+      if (payload.id) return updateRecord(supabase, "clients", payload.id, input);
+      return insertRecord(supabase, "clients", input);
     },
-    onSuccess: () => {
-      qc.invalidateQueries({ queryKey: ["clients"] });
-      qc.invalidateQueries({ queryKey: ["admin", "stats"] });
+    onSuccess: (saved) => {
+      setClient360((current) => (current?.id === saved.id ? saved : current));
+      invalidateAdminData(qc, "client");
       setEditingClient(null);
       setIsCreatingClient(false);
       toast.success("Client saved");
     },
-    onError: (err: Error) => toast.error(err.message),
+    onError: (err: unknown) =>
+      toast.error(adminErrorMessage(err, "The client could not be saved.")),
   });
 
   const deleteClientMutation = useMutation({
-    mutationFn: async (id: string) => {
-      const { error } = await supabase.from("clients").delete().eq("id", id);
-      if (error) throw error;
-    },
-    onSuccess: () => {
-      qc.invalidateQueries({ queryKey: ["clients"] });
-      qc.invalidateQueries({ queryKey: ["admin", "stats"] });
-      if (client360?.id) setClient360(null);
+    mutationFn: (id: string) => deleteRecord(supabase, "clients", id),
+    onSuccess: (_result, id) => {
+      invalidateAdminData(qc, "client");
+      setClient360((current) => (current?.id === id ? null : current));
+      setPage(0);
       toast.success("Client deleted");
     },
-    onError: (err: Error) => toast.error(err.message),
+    onError: (err: unknown) =>
+      toast.error(adminErrorMessage(err, "The client could not be deleted.")),
   });
 
   // Project Mutation (for Client 360 Workspace)
   const createProjectMutation = useMutation({
-    mutationFn: async (payload: {
-      name: string;
-      client_id: string;
-      status: ProjectStatus;
-      budget_cents: number;
-      start_date?: string;
-      target_date?: string;
-      summary?: string;
-    }) => {
-      const { error } = await supabase.from("projects").insert({
-        name: payload.name,
-        client_id: payload.client_id,
-        status: payload.status,
-        budget_cents: payload.budget_cents,
-        start_date: payload.start_date || null,
-        target_date: payload.target_date || null,
-        summary: payload.summary || null,
-      });
-      if (error) throw error;
-    },
+    mutationFn: (payload: Record<string, unknown>) =>
+      insertRecord(supabase, "projects", parseProjectInput(payload)),
     onSuccess: () => {
-      qc.invalidateQueries({ queryKey: ["projects"] });
-      qc.invalidateQueries({ queryKey: ["admin", "stats"] });
+      invalidateAdminData(qc, "project");
       setIsAddingProject(false);
       toast.success("Project attached to client successfully");
     },
-    onError: (err: Error) => toast.error(err.message),
+    onError: (err: unknown) =>
+      toast.error(adminErrorMessage(err, "The project could not be created.")),
   });
 
   const deleteProjectMutation = useMutation({
-    mutationFn: async (id: string) => {
-      const { error } = await supabase.from("projects").delete().eq("id", id);
-      if (error) throw error;
-    },
+    mutationFn: (id: string) => deleteRecord(supabase, "projects", id),
     onSuccess: () => {
-      qc.invalidateQueries({ queryKey: ["projects"] });
-      qc.invalidateQueries({ queryKey: ["admin", "stats"] });
+      invalidateAdminData(qc, "project");
       toast.success("Project deleted");
     },
-    onError: (err: Error) => toast.error(err.message),
+    onError: (err: unknown) =>
+      toast.error(adminErrorMessage(err, "The project could not be deleted.")),
   });
 
-  const clients = clientsQuery.data ?? [];
-  const allProjects = allProjectsQuery.data ?? [];
-
-  // Metrics
-  const activeClients = clients.filter((c) => c.status === "active");
-  const totalMRRPence = recordedActiveMonthlyValue(clients);
-  const totalMRRPounds = Math.round(totalMRRPence / 100);
-  const inFlightProjects = allProjects.filter(
-    (p) => p.status === "in_progress" || p.status === "discovery" || p.status === "review",
-  );
-
-  // Filter clients
-  const filteredClients = clients.filter((c) => {
-    const matchesTab =
-      activeTab === "all" ||
-      (activeTab === "active" && c.status === "active") ||
-      (activeTab === "lead" && c.status === "lead") ||
-      (activeTab === "paused" && c.status === "paused") ||
-      (activeTab === "archived" && c.status === "archived");
-
-    const matchesSearch =
-      !searchTerm ||
-      c.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      (c.contact_name && c.contact_name.toLowerCase().includes(searchTerm.toLowerCase())) ||
-      (c.contact_email && c.contact_email.toLowerCase().includes(searchTerm.toLowerCase())) ||
-      (c.website && c.website.toLowerCase().includes(searchTerm.toLowerCase()));
-
-    return matchesTab && matchesSearch;
-  });
-
-  // Projects for active Client 360 view
-  const clientProjects = client360 ? allProjects.filter((p) => p.client_id === client360.id) : [];
-
+  const clients = clientsQuery.isSuccess ? clientsQuery.data.rows : [];
+  const allProjects = allProjectsQuery.isSuccess ? allProjectsQuery.data : [];
+  const summary = clientSummaryQuery.isSuccess ? clientSummaryQuery.data : undefined;
+  const counts = summary?.counts;
+  const projectCounts = projectSummaryQuery.isSuccess ? projectSummaryQuery.data : undefined;
+  const activeClientCount = counts?.active ?? 0;
+  const totalMRR = formatCents(summary?.monthlyValueCents ?? 0)!;
+  const averageMRR = formatCents(
+    activeClientCount > 0 ? Math.round((summary?.monthlyValueCents ?? 0) / activeClientCount) : 0,
+  )!;
+  const filteredClients = clients;
+  const clientProjects = clientProjectsQuery.isSuccess ? clientProjectsQuery.data : [];
   return (
     <div>
       <PageHeader
@@ -224,6 +218,21 @@ function ClientsPage() {
         }
       />
 
+      {[
+        { query: clientSummaryQuery, label: "Client totals" },
+        { query: projectSummaryQuery, label: "Project totals" },
+        { query: allProjectsQuery, label: "Linked project counts" },
+      ].map(
+        ({ query, label }) =>
+          query.isError && (
+            <p key={label} role="alert" className="mt-4">
+              {label} are unavailable.{" "}
+              <button type="button" className="underline" onClick={() => void query.refetch()}>
+                Retry {label.toLowerCase()}
+              </button>
+            </p>
+          ),
+      )}
       {/* Module Switcher Tabs */}
       <div className="mt-6 flex flex-wrap items-center gap-2 border-b border-ink/10 pb-4">
         <button
@@ -241,7 +250,7 @@ function ClientsPage() {
               clientViewMode === "clients" ? "bg-white/20 text-white" : "bg-ink/10 text-ink"
             }`}
           >
-            {clients.length}
+            {counts?.all ?? "—"}
           </span>
         </button>
 
@@ -266,7 +275,7 @@ function ClientsPage() {
 
       {clientViewMode === "caredesk" && (
         <div className="mt-6">
-          <CareDeskMonitor clients={clients} />
+          <CareDeskMonitor activeCount={counts?.active} />
         </div>
       )}
 
@@ -280,10 +289,16 @@ function ClientsPage() {
                 <span className="text-[12px] uppercase tracking-wider">Active Clients</span>
               </div>
               <div className="mt-3 text-3xl font-semibold text-ink">
-                {clientsQuery.isSuccess ? activeClients.length : "—"}
+                {clientSummaryQuery.isPending ? (
+                  <div className="h-9 w-16 rounded bg-ink/10 animate-pulse my-1" />
+                ) : clientSummaryQuery.isSuccess ? (
+                  activeClientCount
+                ) : (
+                  "—"
+                )}
               </div>
               <div className="mt-1 text-xs text-ink-muted">
-                {clients.length} total across all statuses
+                {counts?.all ?? "—"} total across all statuses
               </div>
             </div>
 
@@ -295,8 +310,16 @@ function ClientsPage() {
                 </span>
               </div>
               <div className="mt-3 text-3xl font-semibold text-emerald-900">
-                {clientsQuery.isSuccess ? `£${totalMRRPounds.toLocaleString()}` : "—"}
-                <span className="text-sm font-normal text-emerald-700">/mo</span>
+                {clientSummaryQuery.isPending ? (
+                  <div className="h-9 w-28 rounded bg-emerald-200/50 animate-pulse my-1" />
+                ) : clientSummaryQuery.isSuccess ? (
+                  <>
+                    {totalMRR}
+                    <span className="text-sm font-normal text-emerald-700">/mo</span>
+                  </>
+                ) : (
+                  "—"
+                )}
               </div>
               <div className="mt-1 text-xs text-emerald-700">
                 Manually recorded; not verified collected revenue
@@ -310,8 +333,16 @@ function ClientsPage() {
                   In-Flight Projects
                 </span>
               </div>
-              <div className="mt-3 text-3xl font-semibold text-ink">{inFlightProjects.length}</div>
-              <div className="mt-1 text-xs text-ink-muted">{allProjects.length} total projects</div>
+              <div className="mt-3 text-3xl font-semibold text-ink">
+                {projectSummaryQuery.isPending ? (
+                  <div className="h-9 w-16 rounded bg-ink/10 animate-pulse my-1" />
+                ) : (
+                  (projectCounts?.active ?? "—")
+                )}
+              </div>
+              <div className="mt-1 text-xs text-ink-muted">
+                {projectCounts?.all ?? "—"} total projects
+              </div>
             </div>
 
             <div className="rounded-xl border border-ink/10 bg-white p-5">
@@ -322,40 +353,68 @@ function ClientsPage() {
                 </span>
               </div>
               <div className="mt-3 text-3xl font-semibold text-ink">
-                {clientsQuery.isSuccess
-                  ? `£${activeClients.length > 0 ? Math.round(totalMRRPounds / activeClients.length) : 0}`
-                  : "—"}
-                <span className="text-sm font-normal text-ink-muted">/mo</span>
+                {clientSummaryQuery.isPending ? (
+                  <div className="h-9 w-24 rounded bg-ink/10 animate-pulse my-1" />
+                ) : clientSummaryQuery.isSuccess ? (
+                  <>
+                    {averageMRR}
+                    <span className="text-sm font-normal text-ink-muted">/mo</span>
+                  </>
+                ) : (
+                  "—"
+                )}
               </div>
               <div className="mt-1 text-xs text-ink-muted">Per active client account</div>
             </div>
           </div>
 
+          {(clientSummaryQuery.isError || projectSummaryQuery.isError) && (
+            <div
+              role="alert"
+              className="mt-4 rounded-xl border border-rose-200 bg-rose-50 p-3 text-xs text-rose-950 flex items-center justify-between gap-3"
+            >
+              <span>Client and project summary totals could not be loaded from Supabase.</span>
+              <button
+                type="button"
+                className="rounded-full border border-rose-300 bg-white px-3 py-1 font-bold text-rose-900 hover:bg-rose-100 transition-colors"
+                onClick={() => {
+                  void clientSummaryQuery.refetch();
+                  void projectSummaryQuery.refetch();
+                }}
+              >
+                Retry Totals
+              </button>
+            </div>
+          )}
+
           {/* Filters & Search */}
           <div className="mt-8 flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
             <div className="flex flex-wrap gap-2">
               {[
-                { id: "all", label: "All Clients", count: clients.length },
-                { id: "active", label: "Active", count: activeClients.length },
+                { id: "all", label: "All Clients", count: counts?.all ?? "—" },
+                { id: "active", label: "Active", count: counts?.active ?? "—" },
                 {
                   id: "lead",
                   label: "Prospective / Lead",
-                  count: clients.filter((c) => c.status === "lead").length,
+                  count: counts?.lead ?? "—",
                 },
                 {
                   id: "paused",
                   label: "Paused",
-                  count: clients.filter((c) => c.status === "paused").length,
+                  count: counts?.paused ?? "—",
                 },
                 {
                   id: "archived",
                   label: "Archived",
-                  count: clients.filter((c) => c.status === "archived").length,
+                  count: counts?.archived ?? "—",
                 },
               ].map((tab) => (
                 <button
                   key={tab.id}
-                  onClick={() => setActiveTab(tab.id)}
+                  onClick={() => {
+                    setActiveTab(tab.id as ClientFilter);
+                    setPage(0);
+                  }}
                   className={`rounded-full px-3.5 py-1.5 text-xs font-medium transition-colors ${
                     activeTab === tab.id
                       ? "bg-ink text-white"
@@ -376,14 +435,18 @@ function ClientsPage() {
                 type="text"
                 placeholder="Search clients by name, contact, website..."
                 value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
+                onChange={(e) => {
+                  setSearchTerm(e.target.value);
+                  setPage(0);
+                }}
+                aria-label="Search clients"
                 className="w-full rounded-full border border-ink/15 bg-white py-1.5 pl-9 pr-4 text-xs text-ink placeholder:text-ink-muted focus:border-ink focus:outline-none"
               />
             </div>
           </div>
 
           {/* Clients Table */}
-          <div className="mt-6 overflow-hidden rounded-xl border border-ink/10 bg-white">
+          <div className="mt-6 overflow-x-auto rounded-xl border border-ink/10 bg-white">
             <table className="w-full text-sm">
               <thead className="bg-ink/[0.03] text-left text-[12px] uppercase tracking-wider text-ink-muted">
                 <tr>
@@ -396,35 +459,62 @@ function ClientsPage() {
               </thead>
               <tbody>
                 {clientsQuery.isLoading && (
-                  <tr>
-                    <td colSpan={5} className="px-4 py-10 text-center text-ink-muted">
-                      Loading clients…
-                    </td>
-                  </tr>
+                  <>
+                    {[1, 2, 3, 4, 5].map((i) => (
+                      <tr key={i} className="border-t border-ink/5">
+                        <td className="px-4 py-4">
+                          <div className="h-4 w-40 rounded bg-ink/10 animate-pulse mb-1.5" />
+                          <div className="h-3 w-32 rounded bg-ink/5 animate-pulse" />
+                        </td>
+                        <td className="px-4 py-4">
+                          <div className="h-4 w-32 rounded bg-ink/10 animate-pulse mb-1" />
+                          <div className="h-3 w-44 rounded bg-ink/5 animate-pulse" />
+                        </td>
+                        <td className="px-4 py-4">
+                          <div className="h-5 w-16 rounded-full bg-ink/10 animate-pulse" />
+                        </td>
+                        <td className="px-4 py-4">
+                          <div className="h-4 w-20 rounded bg-ink/10 animate-pulse" />
+                        </td>
+                        <td className="px-4 py-4 text-right">
+                          <div className="h-6 w-20 rounded-full bg-ink/10 animate-pulse ml-auto" />
+                        </td>
+                      </tr>
+                    ))}
+                  </>
                 )}
                 {clientsQuery.isError && (
                   <tr>
-                    <td colSpan={5} className="px-4 py-10 text-center" role="alert">
-                      Client records could not be loaded.{" "}
-                      <button
-                        type="button"
-                        className="underline"
-                        onClick={() => clientsQuery.refetch()}
-                      >
-                        Retry
-                      </button>
+                    <td colSpan={5} className="px-4 py-8 text-center" role="alert">
+                      <div className="mx-auto max-w-md rounded-xl border border-rose-200 bg-rose-50 p-4 text-xs text-rose-950 flex items-center justify-between gap-3">
+                        <span>Client records could not be loaded from Supabase.</span>
+                        <button
+                          type="button"
+                          className="rounded-full border border-rose-300 bg-white px-3 py-1 font-bold text-rose-900 hover:bg-rose-100 transition-colors"
+                          onClick={() => void clientsQuery.refetch()}
+                        >
+                          Retry
+                        </button>
+                      </div>
                     </td>
                   </tr>
                 )}
                 {filteredClients.length === 0 && clientsQuery.isSuccess && (
                   <tr>
                     <td colSpan={5} className="px-4 py-12 text-center text-ink-muted">
-                      No clients found in this view.
+                      <div className="mx-auto max-w-sm rounded-xl border border-dashed border-ink/15 p-6 text-center">
+                        <Users size={28} className="mx-auto text-ink-muted/50 mb-2" />
+                        <p className="text-sm font-bold text-ink">No clients match this view</p>
+                        <p className="text-xs text-ink-muted mt-1">
+                          Create a client workspace from an enquiry or click &apos;Add client&apos;
+                          above.
+                        </p>
+                      </div>
                     </td>
                   </tr>
                 )}
                 {filteredClients.map((client) => {
-                  const monthlyValue = (client.monthly_value_cents ?? 0) / 100;
+                  const monthlyValue = client.monthly_value_cents ?? 0;
                   const linkedProjectsCount = allProjects.filter(
                     (p) => p.client_id === client.id,
                   ).length;
@@ -466,7 +556,7 @@ function ClientsPage() {
                       <td className="px-4 py-3.5">
                         {monthlyValue > 0 ? (
                           <span className="inline-flex items-center gap-1 rounded-full bg-emerald-50 px-2.5 py-1 text-xs font-semibold text-emerald-800">
-                            £{monthlyValue}/mo
+                            {formatCents(monthlyValue)}/mo
                           </span>
                         ) : (
                           <span className="text-xs text-ink-muted">One-off / None</span>
@@ -481,11 +571,9 @@ function ClientsPage() {
                           >
                             <Layers size={13} />
                             <span>360 View</span>
-                            {linkedProjectsCount > 0 && (
-                              <span className="ml-0.5 rounded-full bg-ink px-1.5 py-0.2 text-[10px] text-white">
-                                {linkedProjectsCount}
-                              </span>
-                            )}
+                            <span className="ml-0.5 rounded-full bg-ink px-1.5 text-[10px] text-white">
+                              {allProjectsQuery.isSuccess ? linkedProjectsCount : "—"}
+                            </span>
                           </button>
                           <button
                             onClick={(e) => {
@@ -539,6 +627,13 @@ function ClientsPage() {
           </div>
 
           {/* Client 360 Workspace Drawer */}
+          <AdminPagination
+            page={page}
+            total={clientsQuery.isSuccess ? clientsQuery.data.total : undefined}
+            pending={clientsQuery.isFetching}
+            label="clients"
+            onChange={setPage}
+          />
           {client360 && (
             <div
               className="fixed inset-0 z-50 flex justify-end bg-black/40 backdrop-blur-xs"
@@ -594,6 +689,7 @@ function ClientsPage() {
                         setClient360(null);
                         setIsAddingProject(false);
                       }}
+                      aria-label="Close client workspace"
                       className="rounded-md p-2 text-ink/60 hover:bg-ink/[0.05]"
                     >
                       <X size={18} />
@@ -611,33 +707,33 @@ function ClientsPage() {
                         </div>
                         <div className="mt-1 flex items-baseline gap-2">
                           <span className="text-2xl font-bold text-emerald-950">
-                            £{(client360.monthly_value_cents ?? 0) / 100}
+                            {formatCents(client360.monthly_value_cents) ?? "Not recorded"}
                           </span>
                           <span className="text-xs text-emerald-800">/ month recurring</span>
                         </div>
                       </div>
-                      <div className="flex gap-2">
+                      <div className="flex flex-wrap gap-2">
                         <button
                           onClick={() =>
                             saveClientMutation.mutate({
                               id: client360.id,
-                              monthly_value_cents: 9500,
+                              quickMonthlyCents: 14900,
                             })
                           }
                           className="rounded-lg border border-emerald-300 bg-white px-3 py-1.5 text-xs font-semibold text-emerald-900 shadow-xs hover:bg-emerald-50"
                         >
-                          Set £95/mo (Launch)
+                          Record agreed £149/mo
                         </button>
                         <button
                           onClick={() =>
                             saveClientMutation.mutate({
                               id: client360.id,
-                              monthly_value_cents: 19500,
+                              quickMonthlyCents: 24900,
                             })
                           }
                           className="rounded-lg border border-emerald-300 bg-white px-3 py-1.5 text-xs font-semibold text-emerald-900 shadow-xs hover:bg-emerald-50"
                         >
-                          Set £195/mo (Growth)
+                          Record agreed £249/mo
                         </button>
                       </div>
                     </div>
@@ -705,7 +801,8 @@ function ClientsPage() {
                     <div className="flex items-center justify-between border-b border-ink/10 pb-3">
                       <div>
                         <h3 className="text-sm font-semibold uppercase tracking-wider text-ink">
-                          Deliverables & Projects ({clientProjects.length})
+                          Deliverables & Projects (
+                          {clientProjectsQuery.isSuccess ? clientProjects.length : "—"})
                         </h3>
                         <p className="mt-0.5 text-xs text-ink-muted">
                           Active and delivered digital projects for this account.
@@ -725,17 +822,14 @@ function ClientsPage() {
                         onSubmit={(e) => {
                           e.preventDefault();
                           const fd = new FormData(e.currentTarget);
-                          const budgetGbp = parseFloat(String(fd.get("budget") ?? "0"));
                           createProjectMutation.mutate({
-                            name: String(fd.get("name") ?? ""),
+                            name: fd.get("name"),
                             client_id: client360.id,
-                            status:
-                              (String(fd.get("status") ?? "discovery") as ProjectStatus) ||
-                              "discovery",
-                            budget_cents: Math.round(budgetGbp * 100),
-                            start_date: String(fd.get("start_date") ?? "") || undefined,
-                            target_date: String(fd.get("target_date") ?? "") || undefined,
-                            summary: String(fd.get("summary") ?? "") || undefined,
+                            status: fd.get("status"),
+                            budget: fd.get("budget"),
+                            start_date: fd.get("start_date"),
+                            target_date: fd.get("target_date"),
+                            summary: fd.get("summary"),
                           });
                         }}
                         className="mt-4 space-y-3 rounded-xl border border-blue-200 bg-blue-50/40 p-4 text-xs"
@@ -763,7 +857,7 @@ function ClientsPage() {
                               <option value="discovery">Discovery</option>
                               <option value="in_progress">In Progress</option>
                               <option value="review">Review</option>
-                              <option value="launched">Launched</option>
+                              <option value="launched">Launched (requires verified release)</option>
                               <option value="on_hold">On Hold</option>
                             </select>
                           </div>
@@ -773,8 +867,9 @@ function ClientsPage() {
                             </label>
                             <input
                               name="budget"
-                              type="number"
-                              defaultValue="1495"
+                              type="text"
+                              inputMode="decimal"
+                              placeholder="Optional, e.g. 1495"
                               className="mt-1 w-full rounded-md border border-ink/15 bg-white px-3 py-1.5 text-xs text-ink focus:border-ink focus:outline-none"
                             />
                           </div>
@@ -785,7 +880,6 @@ function ClientsPage() {
                             <input
                               name="start_date"
                               type="date"
-                              defaultValue={new Date().toISOString().split("T")[0]}
                               className="mt-1 w-full rounded-md border border-ink/15 bg-white px-3 py-1.5 text-xs text-ink focus:border-ink focus:outline-none"
                             />
                           </div>
@@ -832,13 +926,30 @@ function ClientsPage() {
 
                     {/* Projects List */}
                     <div className="mt-4 space-y-3">
-                      {clientProjects.length === 0 && !isAddingProject && (
-                        <div className="py-6 text-center text-xs text-ink-muted">
-                          No projects linked yet. Click "Add Project" above to create one.
-                        </div>
+                      {clientProjectsQuery.isSuccess &&
+                        clientProjects.length === 0 &&
+                        !isAddingProject && (
+                          <div className="py-6 text-center text-xs text-ink-muted">
+                            No projects linked yet. Click "Add Project" above to create one.
+                          </div>
+                        )}
+                      {clientProjectsQuery.isPending && (
+                        <p role="status">Loading linked projects…</p>
+                      )}
+                      {clientProjectsQuery.isError && (
+                        <p role="alert">
+                          Linked projects could not be loaded.{" "}
+                          <button
+                            type="button"
+                            className="underline"
+                            onClick={() => void clientProjectsQuery.refetch()}
+                          >
+                            Retry linked projects
+                          </button>
+                        </p>
                       )}
                       {clientProjects.map((project) => {
-                        const budgetGbp = (project.budget_cents ?? 0) / 100;
+                        const budgetCents = project.budget_cents ?? 0;
                         return (
                           <div
                             key={project.id}
@@ -857,9 +968,9 @@ function ClientsPage() {
                                 </p>
                               )}
                               <div className="mt-2 flex flex-wrap items-center gap-3 text-xs text-ink-muted">
-                                {budgetGbp > 0 && (
+                                {budgetCents > 0 && (
                                   <span className="font-medium text-ink">
-                                    Budget: £{budgetGbp.toLocaleString()}
+                                    Budget: {formatCents(budgetCents)}
                                   </span>
                                 )}
                                 {project.start_date && (
@@ -942,18 +1053,17 @@ function ClientsPage() {
               onSubmit={(e) => {
                 e.preventDefault();
                 const fd = new FormData(e.currentTarget);
-                const monthlyGbp = parseFloat(String(fd.get("monthly_value") ?? "0"));
 
                 saveClientMutation.mutate({
                   id: editingClient?.id,
-                  name: String(fd.get("name") ?? ""),
-                  contact_name: String(fd.get("contact_name") ?? "") || null,
-                  contact_email: String(fd.get("contact_email") ?? "") || null,
-                  contact_phone: String(fd.get("contact_phone") ?? "") || null,
-                  website: String(fd.get("website") ?? "") || null,
-                  status: (String(fd.get("status") ?? "active") as ClientStatus) || "active",
-                  monthly_value_cents: Math.round(monthlyGbp * 100),
-                  notes: String(fd.get("notes") ?? "") || null,
+                  name: fd.get("name"),
+                  contact_name: fd.get("contact_name"),
+                  contact_email: fd.get("contact_email"),
+                  contact_phone: fd.get("contact_phone"),
+                  website: fd.get("website"),
+                  status: fd.get("status"),
+                  monthly_value: fd.get("monthly_value"),
+                  notes: fd.get("notes"),
                 });
               }}
               className="mt-5 space-y-4 text-sm"
@@ -1040,13 +1150,10 @@ function ClientsPage() {
                   </label>
                   <input
                     name="monthly_value"
-                    type="number"
-                    defaultValue={
-                      editingClient?.monthly_value_cents
-                        ? editingClient.monthly_value_cents / 100
-                        : 0
-                    }
-                    placeholder="95"
+                    type="text"
+                    inputMode="decimal"
+                    defaultValue={centsToPoundsInput(editingClient?.monthly_value_cents)}
+                    placeholder="e.g. 95 or 95.50 (optional)"
                     className="mt-1 w-full rounded-lg border border-ink/15 px-3 py-2 text-ink focus:border-ink focus:outline-none"
                   />
                 </div>

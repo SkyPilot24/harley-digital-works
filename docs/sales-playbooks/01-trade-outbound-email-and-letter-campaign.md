@@ -1,4 +1,4 @@
-﻿# Trade Outbound Sales & Direct Mail Playbook
+# Trade Outbound Sales & Direct Mail Playbook
 
 This playbook contains battle-tested, high-converting outbound email sequences, physical direct-mail letters, and WhatsApp scripts designed specifically for **Harley Digital Works** to sign UK tradespeople and contractors.
 
@@ -35,7 +35,7 @@ This playbook contains battle-tested, high-converting outbound email sequences, 
 > Best regards,  
 > **Dr Robbie Harley, MBA**  
 > Harley Digital Works (Part of The Harley Group)  
-> 📞 0161 706 1420 | 💬 WhatsApp: 0161 706 1420  
+> 📞 0117 214 1357 | 💬 WhatsApp: 07394 041487  
 > 🌐 harleydigitalworks.com
 
 ---
@@ -81,7 +81,7 @@ This playbook contains battle-tested, high-converting outbound email sequences, 
 >
 > I’ve attached our 1-page **Fixed-Price Trade Website Proposal** outlining our Launch (£1,495) and Growth (£2,995) packages with full managed care.
 >
-> Whenever you’re ready to get your website sorted and off your plate, just give us a shout or message us on WhatsApp at 0161 706 1420.
+> Whenever you’re ready to get your website sorted and off your plate, just give us a call on 0117 214 1357 or message us on WhatsApp at 07394 041487.
 >
 > Wishing you a great rest of the month with the business.
 >
@@ -109,7 +109,7 @@ RE: Upgrading {{Company Name}}'s Digital Presence & Commercial Enquiry Intake
 
 Dear {{First Name / Managing Director}},
 
-I am writing to you directly from our Manchester office regarding {{Company Name}}'s current website.
+I am writing to you directly from our Bristol studio regarding {{Company Name}}'s current website.
 
 Your business clearly delivers exceptional workmanship. However, when prospective domestic or commercial clients search for {{Trade}} services in {{Area}} on their mobile phones, your current website does not reflect the premium standard of your work.
 
@@ -126,14 +126,14 @@ What we deliver:
 
 I have enclosed our 1-Page Proposal & Pricing Matrix for your review.
 
-If you would like to see a free working preview of what a new website for {{Company Name}} would look like, please call me directly on 0161 706 1420 or send an email to hello@harleydigitalworks.com.
+If you would like to see a free working preview of what a new website for {{Company Name}} would look like, please call me directly on 0117 214 1357, message on WhatsApp (07394 041487), or send an email to hello@harleydigitalworks.com.
 
 Yours sincerely,
 
 Dr Robbie Harley, MBA
 Managing Director, Harley Digital Works
 Part of The Harley Group
-0161 706 1420 | harleydigitalworks.com
+0117 214 1357 | WhatsApp: 07394 041487 | harleydigitalworks.com
 ```
 
 ---
@@ -142,7 +142,7 @@ Part of The Harley Group
 
 ### Script A: Warm Referral / Local Outreach
 
-> _"Hi {{First Name}}, it's Dr Robbie from Harley Digital Works here in Manchester. I was admiring the work {{Company Name}} did on {{Recent Project / Area}}. We build done-for-you websites for top local trades (we write all the text and launch in 14 days so you don't have to lift a finger). Would you be open to seeing a quick 60-second preview of what your site could look like?"_
+> _"Hi {{First Name}}, it's Dr Robbie from Harley Digital Works here in Bristol. I was admiring the work {{Company Name}} did on {{Recent Project / Area}}. We build done-for-you websites for top local trades (we write all the text and launch in 14 days so you don't have to lift a finger). Would you be open to seeing a quick 60-second preview of what your site could look like?"_
 
 ### Script B: Following Up on a Quote Request
 

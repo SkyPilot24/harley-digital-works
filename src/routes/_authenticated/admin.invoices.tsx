@@ -21,6 +21,8 @@ import { supabase } from "@/integrations/supabase/client";
 import type { Database } from "@/integrations/supabase/types";
 import { PageHeader, StatusBadge } from "./admin.index";
 import { toast } from "sonner";
+import { recordedActiveMonthlyValue } from "@/lib/client-workspace";
+import { parsePoundsToCents, formatCents } from "@/lib/admin-validation";
 
 export const Route = createFileRoute("/_authenticated/admin/invoices")({
   component: InvoicesAdminPage,
@@ -51,39 +53,39 @@ function InvoicesAdminPage() {
   });
 
   const clients = clientsQuery.data ?? [];
-  const activeClients = clients.filter((c) => c.status === "active");
-
-  const verifiedMRR = activeClients.reduce((sum, c) => {
-    return sum + (c.monthly_value_cents ? c.monthly_value_cents / 100 : 0);
-  }, 0);
+  const recordedMonthlyCents = recordedActiveMonthlyValue(clients);
 
   const selectedClient = clients.find((c) => c.id === selectedClientId) ?? clients[0];
 
   const paymentCalculation = useMemo(() => {
-    let amount = 747.5;
+    let amountCents = 74750;
     let label = "50% Setup Deposit (Milestone 1)";
     let purpose = "To reserve build slot, initiate Discovery and technical copywriting.";
 
     if (milestoneType === "deposit") {
-      amount = 747.5;
+      amountCents = 74750;
       label = "50% Setup Deposit (Milestone 1)";
       purpose = "To reserve build slot, initiate Discovery and technical copywriting.";
     } else if (milestoneType === "balance") {
-      amount = 747.5;
+      amountCents = 74750;
       label = "50% Completion Balance (Milestone 2)";
       purpose = "Due upon final staged preview sign-off, prior to live Cloudflare DNS launch.";
     } else if (milestoneType === "monthly") {
-      amount = 249.0;
+      amountCents = 24900;
       label = "Monthly Digital Care Subscription";
       purpose =
         "Cloudflare hosting, SSL maintenance, 30-min monthly edit batch, and enquiry health checks.";
     } else {
-      amount = parseFloat(customAmount || "0");
+      try {
+        amountCents = parsePoundsToCents(customAmount, "Custom Amount") ?? 0;
+      } catch {
+        amountCents = 0;
+      }
       label = "Custom Milestone Payment";
       purpose = customDescription || "Additional approved trade digital scope.";
     }
 
-    return { amount, label, purpose };
+    return { amountCents, label, purpose };
   }, [milestoneType, customAmount, customDescription]);
 
   const invoiceRequestText = useMemo(() => {
@@ -97,8 +99,8 @@ function InvoicesAdminPage() {
     const dateStr = new Date().toLocaleDateString("en-GB");
 
     return `
-PAYMENT REQUEST & MILESTONE INVOICE
-Harley Digital Works · The Harley Group
+INTERNAL PAYMENT REQUEST DRAFT — NOT AN ISSUED INVOICE
+Harley DigitalWorks Ltd · Harley Digital Works
 Date: ${dateStr}
 Reference: HDW-${selectedClient ? selectedClient.id.slice(0, 8).toUpperCase() : "INV"}-${milestoneType.toUpperCase()}
 
@@ -107,14 +109,13 @@ ${contactName}${contactEmail}
 --------------------------------------------------
 Item: ${paymentCalculation.label}
 Description: ${paymentCalculation.purpose}
-Amount Due: £${paymentCalculation.amount.toFixed(2)}
-Tax Treatment: VAT not applicable / zero-rated (under HMRC registration threshold)
-Total Payable: £${paymentCalculation.amount.toFixed(2)}
+Proposed Milestone Amount: ${formatCents(paymentCalculation.amountCents)}
+VAT Status: Not VAT-registered (owner confirmed 14 October 2026).
+Supplier Details: Reconcile the supplied company number and address against the internal seller record before issue.
+Final Payable Amount: Confirm in the approved invoice/payment provider.
 --------------------------------------------------
 
-PAYMENT INSTRUCTIONS (UK BACS Bank Transfer):
-Account Name: The Harley Group / Harley Digital Works
-Payment Reference: HDW-${
+Proposed Payment Reference: HDW-${
       selectedClient
         ? selectedClient.name
             .replace(/[^a-zA-Z0-9]/g, "")
@@ -123,8 +124,9 @@ Payment Reference: HDW-${
         : "TRADE"
     }
 
-Alternatively, pay securely online via Stripe invoice link on request.
-Please confirm once payment has been sent.
+Before sending: verify supplier legal details, agreed scope, tax treatment and payment destination.
+Issue through the approved provider; this draft contains no payable link or verified bank details.
+Confirm actual payment independently from provider/ledger evidence.
 `.trim();
   }, [selectedClient, milestoneType, paymentCalculation]);
 
@@ -136,8 +138,8 @@ Please confirm once payment has been sent.
   return (
     <div className="space-y-8 pb-12">
       <PageHeader
-        title="Finance & Invoices"
-        subtitle="Manage setup milestones, deposit tracking, and recurring care subscriptions (£249/mo)."
+        title="Finance & Payment Drafts"
+        subtitle="Prepare milestone drafts; reconcile actual payments in the approved provider and ledger."
       />
 
       {/* Financial Health Summary */}
@@ -145,16 +147,34 @@ Please confirm once payment has been sent.
         <div className="rounded-xl border border-ink/10 bg-white p-5 shadow-xs">
           <div className="flex items-center justify-between text-ink-muted">
             <span className="text-[11px] font-bold uppercase tracking-wider">
-              Verified Active MRR
+              Recorded Monthly Agreement Value
             </span>
             <Receipt size={16} className="text-emerald-700" />
           </div>
           <div className="mt-2 text-3xl font-extrabold text-ink">
-            £{verifiedMRR.toLocaleString()}/mo
+            {clientsQuery.isError ? (
+              <span className="text-xl text-rose-700">Unavailable</span>
+            ) : clientsQuery.isPending ? (
+              <div className="h-9 w-32 rounded bg-ink/10 animate-pulse my-1" />
+            ) : (
+              `${formatCents(recordedMonthlyCents) ?? "£0.00"}/mo`
+            )}
           </div>
           <div className="mt-1 text-xs text-ink-muted">
-            {activeClients.length} active client subscription{activeClients.length === 1 ? "" : "s"}
-            .
+            {clientsQuery.isError ? (
+              <span role="alert" className="text-rose-700">
+                Could not retrieve client agreements.{" "}
+                <button
+                  type="button"
+                  className="font-bold underline text-ink hover:text-ink/80"
+                  onClick={() => void clientsQuery.refetch()}
+                >
+                  Retry
+                </button>
+              </span>
+            ) : (
+              "Manually recorded client values; not verified subscriptions or collected revenue."
+            )}
           </div>
         </div>
 
@@ -189,29 +209,53 @@ Please confirm once payment has been sent.
             <span className="text-[11px] font-bold uppercase tracking-wider">Tax & VAT Status</span>
             <Receipt size={16} className="text-amber-700" />
           </div>
-          <div className="mt-2 text-xl font-bold text-ink">Zero-Rated</div>
-          <div className="mt-1 text-xs text-ink-muted">Under HMRC threshold; VAT not charged.</div>
+          <div className="mt-2 text-xl font-bold text-ink">Not VAT-registered</div>
+          <div className="mt-1 text-xs text-ink-muted">
+            Owner confirmed 14 October 2026. Seller issue details remain pending.
+          </div>
         </div>
       </div>
+
+      {/* Query Error Banner if client query fails */}
+      {clientsQuery.isError && (
+        <div
+          role="alert"
+          className="rounded-xl border border-rose-200 bg-rose-50 p-4 text-xs text-rose-950 flex items-center justify-between gap-3 shadow-xs"
+        >
+          <div className="flex items-center gap-2.5">
+            <AlertCircle size={18} className="text-rose-700 shrink-0" />
+            <span>
+              Unable to load client billing accounts from Supabase. Live agreement values and client
+              dropdown are temporarily unavailable.
+            </span>
+          </div>
+          <button
+            type="button"
+            onClick={() => void clientsQuery.refetch()}
+            className="rounded-full border border-rose-300 bg-white px-3 py-1 font-bold text-rose-900 hover:bg-rose-100 transition-colors"
+          >
+            Retry Connection
+          </button>
+        </div>
+      )}
 
       {/* Tax & Governance Notice */}
       <div className="rounded-xl border border-ink/10 bg-emerald-50/50 p-4 text-xs text-emerald-950 flex items-start gap-3">
         <ShieldCheck size={18} className="text-emerald-700 shrink-0 mt-0.5" />
         <div>
-          <span className="font-bold">HMRC & Accounting Compliance Rule:</span> Formal statutory
-          accounts, VAT returns, and official legal tax invoices are managed via your primary
-          accounting software or bank ledger. This console generates verified client milestone
-          payment notices without invented VAT numbers or mock random invoices.
+          <span className="font-bold">Before issuing a payment request:</span> Confirm supplier
+          identity, agreed scope, tax treatment and payment destination. This console prepares
+          drafts; it does not issue provider invoices or verify payments. Record actual receipts
+          separately in the approved provider and accounting ledger.
         </div>
       </div>
 
       {/* Interactive Milestone Payment Request Generator */}
       <div className="rounded-xl border border-ink/10 bg-white p-6 shadow-xs">
         <div className="border-b border-ink/10 pb-4 mb-6">
-          <h2 className="text-lg font-bold text-ink">Generate Milestone Payment Request</h2>
+          <h2 className="text-lg font-bold text-ink">Prepare Milestone Payment Draft</h2>
           <p className="text-xs text-ink-muted mt-0.5">
-            Create professional payment notices for 50% deposits, 50% completion balances, or
-            monthly care subscriptions.
+            Prepare a draft for review before issuing an approved deposit, balance or care invoice.
           </p>
         </div>
 
@@ -222,7 +266,9 @@ Please confirm once payment has been sent.
               <label className="block text-xs font-bold uppercase tracking-wider text-ink mb-1.5">
                 Select Client Account
               </label>
-              {clients.length === 0 ? (
+              {clientsQuery.isPending ? (
+                <div className="h-10 w-full rounded-lg bg-ink/5 animate-pulse" />
+              ) : clients.length === 0 ? (
                 <p className="text-xs text-ink-muted">
                   No client records available. Create a client first.
                 </p>
@@ -299,12 +345,12 @@ Please confirm once payment has been sent.
               <div className="flex justify-between font-medium">
                 <span className="text-ink-muted">Amount Due:</span>
                 <span className="font-extrabold text-emerald-800 text-sm">
-                  £{paymentCalculation.amount.toFixed(2)}
+                  {formatCents(paymentCalculation.amountCents)}
                 </span>
               </div>
               <div className="flex justify-between text-[11px] text-ink-muted">
                 <span>VAT Treatment:</span>
-                <span>Zero-rated / Not applicable</span>
+                <span>Not VAT-registered</span>
               </div>
             </div>
 
@@ -330,6 +376,58 @@ Please confirm once payment has been sent.
         </div>
       </div>
 
+      {/* Stripe Deposit Tracking & Webhook Resilience Panel */}
+      <div className="rounded-xl border border-ink/10 bg-white p-6 shadow-xs">
+        <div className="flex items-center justify-between mb-4">
+          <div>
+            <h2 className="text-base font-bold text-ink flex items-center gap-2">
+              <ShieldCheck size={18} className="text-emerald-700" />
+              Deposit Receipts & Idempotent Stripe Webhook Receiver
+            </h2>
+            <p className="text-xs text-ink-muted">
+              Receiver implementation and agreed milestones. This screen does not check provider
+              configuration or confirm collected payments.
+            </p>
+          </div>
+          <span className="inline-flex items-center gap-1.5 rounded-full bg-amber-50 border border-amber-200 px-3 py-1 text-xs font-bold text-amber-800">
+            Receiver status not verified
+          </span>
+        </div>
+
+        <div className="grid gap-4 sm:grid-cols-3">
+          <div className="rounded-xl border border-ink/10 bg-slate-50/60 p-4 space-y-1.5">
+            <div className="text-[11px] font-bold uppercase tracking-wider text-ink-muted">
+              Deposit Milestone (M1)
+            </div>
+            <div className="text-xl font-extrabold text-ink">£747.50</div>
+            <p className="text-xs text-ink-muted">
+              Exactly 74,750 integer pence. Confirm payment and available capacity before reserving
+              the build slot or starting discovery.
+            </p>
+          </div>
+          <div className="rounded-xl border border-ink/10 bg-slate-50/60 p-4 space-y-1.5">
+            <div className="text-[11px] font-bold uppercase tracking-wider text-ink-muted">
+              Balance Milestone (M2)
+            </div>
+            <div className="text-xl font-extrabold text-ink">£747.50</div>
+            <p className="text-xs text-ink-muted">
+              Exactly 74,750 integer pence. Payable upon final staged preview approval prior to live
+              launch.
+            </p>
+          </div>
+          <div className="rounded-xl border border-ink/10 bg-slate-50/60 p-4 space-y-1.5">
+            <div className="text-[11px] font-bold uppercase tracking-wider text-ink-muted">
+              Webhook Replay Defense
+            </div>
+            <div className="text-xl font-extrabold text-emerald-800">300s Tolerance</div>
+            <p className="text-xs text-ink-muted">
+              Cryptographic HMAC-SHA256 signature verification with idempotent deduplication via
+              database RPC.
+            </p>
+          </div>
+        </div>
+      </div>
+
       {/* Client Recurring Ledger */}
       <div className="rounded-xl border border-ink/10 bg-white p-6 shadow-xs">
         <div className="flex items-center justify-between mb-4">
@@ -338,7 +436,8 @@ Please confirm once payment has been sent.
               Client Subscription & Billing Directory
             </h2>
             <p className="text-xs text-ink-muted">
-              Live customer accounts with monthly care agreement and payment values.
+              Client records and manually recorded agreement values. Verify collections in the
+              approved provider and ledger.
             </p>
           </div>
           <Link to="/admin/clients" className="text-xs font-semibold text-ink underline">
@@ -346,8 +445,28 @@ Please confirm once payment has been sent.
           </Link>
         </div>
 
-        {clients.length === 0 ? (
-          <p className="text-xs text-ink-muted py-4">No client records found.</p>
+        {clientsQuery.isPending ? (
+          <div className="space-y-3 py-4">
+            {[1, 2, 3, 4].map((i) => (
+              <div
+                key={i}
+                className="flex items-center justify-between gap-4 py-2 border-b border-ink/5"
+              >
+                <div className="h-4 w-1/4 rounded bg-ink/10 animate-pulse" />
+                <div className="h-4 w-1/4 rounded bg-ink/10 animate-pulse" />
+                <div className="h-4 w-1/6 rounded bg-ink/10 animate-pulse" />
+                <div className="h-4 w-16 rounded bg-ink/10 animate-pulse" />
+              </div>
+            ))}
+          </div>
+        ) : clients.length === 0 ? (
+          <div className="rounded-xl border border-dashed border-ink/15 p-8 text-center">
+            <Receipt size={24} className="mx-auto text-ink-muted/50 mb-2" />
+            <p className="text-xs font-semibold text-ink">No client accounts found</p>
+            <p className="text-xs text-ink-muted mt-1">
+              Add a client through the Enquiry Desk or Client Directory to draft payment requests.
+            </p>
+          </div>
         ) : (
           <div className="overflow-x-auto">
             <table className="w-full text-left text-xs">
@@ -363,9 +482,10 @@ Please confirm once payment has been sent.
               </thead>
               <tbody className="divide-y divide-ink/5">
                 {clients.map((client) => {
-                  const monthlyVal = client.monthly_value_cents
-                    ? `£${(client.monthly_value_cents / 100).toFixed(0)}/mo`
-                    : "£0/mo";
+                  const monthlyVal =
+                    client.monthly_value_cents && client.monthly_value_cents > 0
+                      ? `${formatCents(client.monthly_value_cents)}/mo`
+                      : "£0.00/mo";
                   return (
                     <tr key={client.id} className="hover:bg-ink/[0.01]">
                       <td className="py-3 font-bold text-ink">{client.name}</td>
@@ -386,7 +506,7 @@ Please confirm once payment has been sent.
                             setSelectedClientId(client.id);
                             toast.success(`Selected ${client.name} in payment generator above`);
                           }}
-                          className="rounded-full border border-ink/15 px-2.5 py-1 text-[11px] font-semibold text-ink hover:bg-ink/5"
+                          className="rounded-full border border-ink/15 px-2.5 py-1 text-[11px] font-semibold text-ink hover:bg-ink/5 cursor-pointer"
                         >
                           Bill Milestone
                         </button>

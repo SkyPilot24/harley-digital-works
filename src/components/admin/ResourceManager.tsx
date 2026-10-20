@@ -2,6 +2,9 @@ import { useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import type { Database } from "@/integrations/supabase/types";
+import { parseResourceInput } from "@/lib/admin-resource-validation";
+import { adminErrorMessage, requireRows } from "@/lib/admin-writes";
+import { loadCompleteRecords } from "@/lib/admin-records";
 import { toast } from "sonner";
 import { Pencil, Plus, Trash2, X } from "lucide-react";
 
@@ -42,11 +45,38 @@ export function ResourceManager({
   const query = useQuery({
     queryKey: [table],
     queryFn: async () => {
-      let q = supabase.from(table as PublicTableName).select("*");
-      if (orderBy) q = q.order(orderBy.column, { ascending: orderBy.ascending ?? false });
-      const { data, error } = await q;
-      if (error) throw error;
-      return (data ?? []) as unknown as Row[];
+      const rows = await loadCompleteRecords<Row>((after) => {
+        let q = supabase
+          .from(table as PublicTableName)
+          .select("*", { count: "exact" })
+          .order("id")
+          .limit(500);
+        if (after) q = q.gt("id", after);
+        return q as unknown as PromiseLike<{
+          data: Row[] | null;
+          count: number | null;
+          error: unknown;
+        }>;
+      });
+      if (orderBy)
+        rows.sort((a, b) => {
+          const left = a[orderBy.column];
+          const right = b[orderBy.column];
+          const comparison =
+            left == null
+              ? right == null
+                ? 0
+                : 1
+              : right == null
+                ? -1
+                : left < right
+                  ? -1
+                  : left > right
+                    ? 1
+                    : 0;
+          return orderBy.ascending === true ? comparison : -comparison;
+        });
+      return rows;
     },
   });
 
@@ -54,14 +84,18 @@ export function ResourceManager({
     mutationFn: async (payload: Partial<Row>) => {
       if (payload.id) {
         const { id, ...rest } = payload;
-        const { error } = await supabase
+        const result = await supabase
           .from(table as PublicTableName)
           .update(rest as never)
-          .eq("id", id);
-        if (error) throw error;
+          .eq("id", id)
+          .select("id");
+        requireRows(result, 1, "The record could not be saved.");
       } else {
-        const { error } = await supabase.from(table as PublicTableName).insert(payload as never);
-        if (error) throw error;
+        const result = await supabase
+          .from(table as PublicTableName)
+          .insert(payload as never)
+          .select("id");
+        requireRows(result, 1, "The record could not be created.");
       }
     },
     onSuccess: () => {
@@ -70,22 +104,23 @@ export function ResourceManager({
       setCreating(false);
       toast.success("Saved");
     },
-    onError: (e: Error) => toast.error(e.message),
+    onError: (e: Error) => toast.error(adminErrorMessage(e, "The change failed.")),
   });
 
   const deleteMutation = useMutation({
     mutationFn: async (id: string) => {
-      const { error } = await supabase
+      const result = await supabase
         .from(table as PublicTableName)
         .delete()
-        .eq("id", id);
-      if (error) throw error;
+        .eq("id", id)
+        .select("id");
+      requireRows(result, 1, "The record could not be deleted.");
     },
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: [table] });
       toast.success("Deleted");
     },
-    onError: (e: Error) => toast.error(e.message),
+    onError: (e: Error) => toast.error(adminErrorMessage(e, "The change failed.")),
   });
 
   const shownFields = fields.filter((f) => !f.hideInTable).slice(0, 5);
@@ -98,7 +133,11 @@ export function ResourceManager({
         <div>
           <h1 className="text-2xl font-semibold tracking-tight text-ink md:text-3xl">{title}</h1>
           <p className="mt-1 text-sm text-ink-muted">
-            {query.data?.length ?? 0} {(query.data?.length ?? 0) === 1 ? "record" : "records"}
+            {query.isError
+              ? "Records unavailable"
+              : query.isPending
+                ? "Loading records…"
+                : `${query.data?.length ?? 0} records`}
           </p>
         </div>
         <button
@@ -109,7 +148,7 @@ export function ResourceManager({
         </button>
       </div>
 
-      <div className="mt-6 overflow-hidden rounded-xl border border-ink/10 bg-white">
+      <div className="mt-6 overflow-x-auto rounded-xl border border-ink/10 bg-white">
         <table className="w-full text-sm">
           <thead className="bg-ink/[0.03] text-left text-[12px] uppercase tracking-wider text-ink-muted">
             <tr>
@@ -132,7 +171,21 @@ export function ResourceManager({
                 </td>
               </tr>
             )}
-            {query.data?.length === 0 && (
+            {query.isError && (
+              <tr>
+                <td
+                  colSpan={shownFields.length + 1}
+                  className="px-4 py-10 text-center"
+                  role="alert"
+                >
+                  Records could not be loaded.{" "}
+                  <button type="button" className="underline" onClick={() => query.refetch()}>
+                    Try again
+                  </button>
+                </td>
+              </tr>
+            )}
+            {!query.isError && query.data?.length === 0 && (
               <tr>
                 <td
                   colSpan={shownFields.length + 1}
@@ -195,6 +248,7 @@ export function ResourceManager({
                 className="rounded-md p-2 text-ink/60 hover:bg-ink/[0.05]"
               >
                 <X size={16} />
+                <span className="sr-only">Close editor</span>
               </button>
             </div>
             <form
@@ -202,20 +256,12 @@ export function ResourceManager({
               onSubmit={(e) => {
                 e.preventDefault();
                 const fd = new FormData(e.currentTarget);
-                const payload: Partial<Row> = {};
-                if (editing) payload.id = editing.id;
-                for (const f of fields) {
-                  const raw = fd.get(f.name);
-                  if (f.type === "checkbox") {
-                    payload[f.name] = raw === "on";
-                  } else if (f.type === "number") {
-                    payload[f.name] = raw === "" || raw == null ? null : Number(raw);
-                  } else {
-                    const v = typeof raw === "string" ? raw.trim() : raw;
-                    payload[f.name] = v === "" ? null : v;
-                  }
+                try {
+                  const payload = parseResourceInput(fields, Object.fromEntries(fd));
+                  upsertMutation.mutate(editing ? { ...payload, id: editing.id } : payload);
+                } catch (error) {
+                  toast.error(adminErrorMessage(error, "Check the form."));
                 }
-                upsertMutation.mutate(payload);
               }}
             >
               {fields.map((f) => (

@@ -1,27 +1,36 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowDown, ArrowUpRight, Check, PenLine, ShieldCheck } from "lucide-react";
+import {
+  ArrowDown,
+  ArrowUpRight,
+  Check,
+  PenLine,
+  ShieldCheck,
+  Sparkles,
+  RefreshCw,
+} from "lucide-react";
 import { PageShell } from "@/components/site/PageShell";
 import { PillButton } from "@/components/site/PillButton";
 import { ConceptScreen, ConceptShowcase } from "@/components/site/ConceptShowcase";
+import { BeforeAfterComparison } from "@/components/site/BeforeAfterComparison";
 import { WebsitePackagesSection } from "@/components/site/WebsitePackagesSection";
 
 export const Route = createFileRoute("/work")({
   head: () => ({
     meta: [
-      { title: "Selected Work & Design Studies | Harley Digital Works" },
+      { title: "Before & After Showcase & Selected Work | Harley Digital Works" },
       {
         name: "description",
         content:
-          "Explore our image-led website design studies and concept blueprints for ambitious UK trade and service businesses. An initial build fee and ongoing monthly care.",
+          "Compare outdated trades websites with modern, high-converting digital platforms across six UK trades. See the visual, mobile, and commercial difference.",
       },
       {
         property: "og:title",
-        content: "Selected Work & Design Studies | Harley Digital Works",
+        content: "Before & After Showcase & Selected Work | Harley Digital Works",
       },
       {
         property: "og:description",
         content:
-          "Explore independent design studies crafted with commercial discipline, clear copywriting, and considered visual craft.",
+          "Interactive before-and-after website redesign showcase for UK plumbing, electrical, roofing, building, landscaping, and decorating businesses.",
       },
     ],
   }),
@@ -60,7 +69,7 @@ function WorkPage() {
           <div className="studio-wrap hero-layout">
             <div className="hero-copy">
               <p className="studio-kicker">
-                <span className="studio-kicker-line" /> SELECTED WORK · DESIGN STUDIES
+                <span className="studio-kicker-line" /> BEFORE & AFTER SHOWCASE · DESIGN STUDIES
               </p>
               <h1 id="work-page-heading">
                 Websites crafted
@@ -70,37 +79,37 @@ function WorkPage() {
                 <span>Built to be chosen.</span>
               </h1>
               <p className="hero-description">
-                Proof of craft before promises. Explore our independent design studies.
+                See the difference between dated DIY templates and high-converting trade platforms.
               </p>
               <p className="hero-support">
-                Every business has its own character. We design websites that feel authentic to your
-                work, communicate quality, and make the next step straightforward.
+                Every trade has its own character. We design websites that feel authentic to your
+                workmanship, earn immediate credibility, and make quoting straightforward.
               </p>
               <div className="studio-actions">
                 <PillButton as="link" to="/contact" variant="dark" className="studio-button">
                   Discuss your website
                 </PillButton>
-                <a href="#showcase" className="studio-text-link">
-                  Explore the studies <ArrowDown size={16} />
+                <a href="#transformations" className="studio-text-link">
+                  Explore transformations <ArrowDown size={16} />
                 </a>
               </div>
             </div>
 
             <div className="hero-art">
               <div className="hero-art-note">
-                <span>INDEPENDENT DESIGN STUDIES</span>
+                <span>INTERACTIVE TRADE REDESIGNS</span>
                 <span>↘</span>
               </div>
               <a
-                href="#showcase"
+                href="#transformations"
                 className="hero-browser"
-                aria-label="Explore our image-led design studies"
+                aria-label="Explore our before-and-after website transformations"
               >
                 <span className="browser-toolbar">
                   <i />
                   <i />
                   <i />
-                  <span>apex electrical & renewable — design study</span>
+                  <span>vanguard electrical & renewable — transformation</span>
                 </span>
                 <ConceptScreen concept="solar" priority />
               </a>
@@ -127,7 +136,64 @@ function WorkPage() {
 
           <div className="studio-wrap hero-footnote">
             <span>DISCIPLINED DESIGN. CLEAR WORDS. CARE.</span>
-            <span>Concepts created to demonstrate commercial quality.</span>
+            <span>Concepts created to demonstrate commercial quality across 6 UK trades.</span>
+          </div>
+        </section>
+
+        {/* 1. Primary Feature: Interactive Before & After Showcase */}
+        <section
+          className="studio-section py-20 bg-stone-50/80 border-y border-stone-200"
+          id="transformations"
+          aria-label="Before and after website design concepts"
+        >
+          <div className="studio-wrap">
+            <BeforeAfterComparison
+              initialTradeId="heating-plumbing"
+              showAllTrades={true}
+              title="See what your website could become"
+              subtitle="Explore six illustrative trade concepts. Compare how clearer words, layout and enquiry routes change the experience."
+              sectionKicker="01 / INTERACTIVE TRADE TRANSFORMATIONS"
+            />
+          </div>
+        </section>
+
+        {/* Conversion Opportunity: Show Us Your Website */}
+        <section className="studio-section py-16 bg-white" aria-labelledby="show-us-heading">
+          <div className="studio-wrap">
+            <div className="rounded-3xl border border-ink/10 bg-gradient-to-br from-stone-900 to-ink p-8 sm:p-12 text-white shadow-xl">
+              <div className="max-w-3xl space-y-4">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/20 text-xs font-mono text-amber-300">
+                  <Sparkles size={13} />
+                  <span>FREE WEBSITE POTENTIAL AUDIT</span>
+                </div>
+                <h2
+                  id="show-us-heading"
+                  className="text-3xl sm:text-4xl font-bold font-serif text-white"
+                >
+                  Show Us Your Website — We’ll Show You What’s Possible.
+                </h2>
+                <p className="text-sm sm:text-base text-white/80 leading-relaxed">
+                  Have an existing website that isn’t pulling its weight? Share your current website
+                  address with us. We’ll review your mobile layout, enquiry friction, and
+                  credibility factors, then show you a clear plan of what a professional redesign
+                  would deliver.
+                </p>
+                <div className="pt-4 flex flex-wrap items-center gap-4">
+                  <PillButton
+                    as="link"
+                    to="/contact"
+                    search={{ service: "Existing website review" }}
+                    variant="light"
+                    className="studio-button text-xs font-bold"
+                  >
+                    Request Your Free Website Review
+                  </PillButton>
+                  <span className="text-xs text-white/60 font-mono">
+                    Zero obligation · Honest feedback from our Bristol team
+                  </span>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
 
@@ -140,7 +206,7 @@ function WorkPage() {
           <div className="studio-wrap">
             <div className="studio-section-heading">
               <div>
-                <p className="studio-kicker">01 / THREE DISTINCT DIRECTIONS</p>
+                <p className="studio-kicker">02 / EDITORIAL DESIGN STUDIES</p>
                 <h2 id="showcase-heading">
                   Different trades.
                   <br />
@@ -148,7 +214,7 @@ function WorkPage() {
                 </h2>
               </div>
               <p>
-                Explore three original HTML design studies—
+                Explore original HTML design studies—
                 <br />
                 each demonstrating how architecture, typography,
                 <br className="desktop-break" />
@@ -195,7 +261,7 @@ function WorkPage() {
             </div>
 
             <div className="purpose-copy">
-              <p className="studio-kicker">02 / THE HARLEY STANDARD</p>
+              <p className="studio-kicker">03 / THE HARLEY STANDARD</p>
               <h2 id="craft-heading">
                 What goes into
                 <br />

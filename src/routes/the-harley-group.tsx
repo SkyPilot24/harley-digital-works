@@ -1,9 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { Phone, MessageCircle, Mail, MapPin } from "lucide-react";
 import { PageShell } from "@/components/site/PageShell";
 import { HarleyGroupHeader } from "@/components/site/HarleyGroupHeader";
 import { HarleyGroupFooter } from "@/components/site/HarleyGroupFooter";
 import { EnquiryForm } from "@/components/site/EnquiryForm";
-import { buildPageSeoHead } from "@/lib/site-config";
+import { buildPageSeoHead, harleyGroupConfig } from "@/lib/site-config";
 
 export const Route = createFileRoute("/the-harley-group")({
   head: () =>
@@ -17,7 +18,7 @@ export const Route = createFileRoute("/the-harley-group")({
 });
 export function TheHarleyGroupPage() {
   return (
-    <PageShell quiet header={<HarleyGroupHeader />} footer={<HarleyGroupFooter />}>
+    <PageShell quiet brand="group" header={<HarleyGroupHeader />} footer={<HarleyGroupFooter />}>
       <div className="studio-home group-site">
         <section className="group-hero studio-wrap" id="overview">
           <div>
@@ -31,9 +32,19 @@ export function TheHarleyGroupPage() {
               We build practical digital services for people who take pride in their work.
               Thoughtful design, useful technology and the care to see things through.
             </p>
-            <a href="#digital-works" className="enquiry-submit">
-              Discover what we do ↗
-            </a>
+            <div className="flex flex-wrap items-center gap-3">
+              <a href="#digital-works" className="enquiry-submit">
+                Discover what we do ↗
+              </a>
+              <a
+                href={`tel:${harleyGroupConfig.contactPhoneTel}`}
+                className="inline-flex items-center gap-1.5 rounded-full border border-ink/20 px-4 py-2.5 text-xs font-semibold text-ink hover:bg-ink/5"
+                aria-label={`Call The Harley Group on ${harleyGroupConfig.contactPhone}`}
+              >
+                <Phone size={13} className="text-emerald-700" />
+                <span>Call {harleyGroupConfig.contactPhone}</span>
+              </a>
+            </div>
           </div>
           <figure>
             <img
@@ -61,10 +72,10 @@ export function TheHarleyGroupPage() {
                 with our electrical contractor pilot across Bristol, Bath, and the M4 Corridor.
               </p>
               <p>
-                Ratified commercial model: £1,495 setup (50% deposit £747.50, 50% completion balance
-                £747.50, 14-day delivery SLA) plus £249 / month ongoing managed care. Zero-rated VAT
-                under statutory HMRC threshold; onboarding capacity strictly capped at 2–3
-                concurrent builds.
+                Managed websites: £1,495 setup (£747.50 deposit and £747.50 balance after preview
+                approval) plus £249 / month ongoing care. Your written quote confirms delivery,
+                support and any applicable taxes. Pilot capacity is limited to two concurrent
+                builds.
               </p>
               <div className="mt-4 flex flex-wrap gap-3">
                 <a href="https://harleydigitalworks.com" className="enquiry-submit">
@@ -146,6 +157,42 @@ export function TheHarleyGroupPage() {
                 Tell us what you have in mind. Website and digital-care enquiries are handled
                 through Harley Digital Works.
               </p>
+              <div className="mt-6 space-y-3 text-sm">
+                <div className="flex items-center gap-2 text-ink">
+                  <Phone size={15} className="text-emerald-700" />
+                  <a
+                    href={`tel:${harleyGroupConfig.contactPhoneTel}`}
+                    className="font-bold hover:underline"
+                  >
+                    {harleyGroupConfig.contactPhone}
+                  </a>
+                  <span className="text-xs text-ink-muted">(Primary Business Landline)</span>
+                </div>
+                <div className="flex items-center gap-2 text-ink">
+                  <MessageCircle size={15} className="text-emerald-600" />
+                  <a
+                    href={`${harleyGroupConfig.whatsappUrl}?text=${encodeURIComponent(harleyGroupConfig.whatsappDefaultMessage)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-semibold text-emerald-800 hover:underline"
+                  >
+                    WhatsApp: {harleyGroupConfig.whatsappDisplay}
+                  </a>
+                </div>
+                <div className="flex items-center gap-2 text-ink">
+                  <Mail size={15} className="text-ink-muted" />
+                  <a
+                    href={`mailto:${harleyGroupConfig.contactEmail}`}
+                    className="text-xs hover:underline"
+                  >
+                    {harleyGroupConfig.contactEmail}
+                  </a>
+                </div>
+                <div className="flex items-center gap-2 text-xs text-ink-muted pt-2 border-t border-ink/10">
+                  <MapPin size={14} className="text-emerald-700" />
+                  <span>Bristol, United Kingdom · Mon–Fri 09:00–17:00 UK time</span>
+                </div>
+              </div>
             </div>
             <EnquiryForm source="group_contact_form" />
           </div>

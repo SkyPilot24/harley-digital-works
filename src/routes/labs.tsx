@@ -134,7 +134,7 @@ function HarleyLabsPage() {
   };
 
   return (
-    <PageShell>
+    <PageShell brand="labs">
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-[#f7f5ef] pt-32 pb-20 text-[#252720] md:pt-40 md:pb-28 border-b border-[#e2dec9]">
         <Container className="relative z-10">

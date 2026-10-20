@@ -8,16 +8,18 @@ export const currentStrategy = {
   audience:
     "Established UK Electrical Contractors (2–8 staff, NICEIC/NAPIT accredited), expanding to heating/plumbing following pilot validation.",
   pilot:
-    "Bristol & Bath regional electrical contractors (M4 Corridor pilot, UK-wide remote digital studio). 14-day SLA delivery target.",
+    "Bristol & Bath regional electrical contractors (M4 Corridor pilot, UK-wide remote digital studio). Delivery schedule agreed after brief, access and assets are confirmed.",
   offer:
-    "The Revenue Engine (Core Flagship): £1,495 setup (50% deposit £747.50, 50% completion balance £747.50) + £249/mo care. Entry: The Launchpad (£995 + £149/mo). Expansion: The Market Leader (£2,495 + £399/mo). VAT zero-rated / not applicable below £90k.",
+    "The Revenue Engine (Core Flagship): £1,495 setup (50% deposit £747.50, 50% completion balance £747.50) + £249/mo care. Entry: The Launchpad (£995 + £149/mo). Expansion: The Market Leader (£2,495 + £399/mo). Confirm seller tax registration and invoice treatment before issue.",
+  sellerName: "Harley DigitalWorks Ltd",
+  taxStatus: "Not VAT-registered — owner confirmed 14 October 2026; seller issue details pending",
   approval:
     "Written proposal acceptance, 50% deposit confirmed in banking ledger, and verified trade accreditations before work begins.",
   build:
     "Turnkey 5-page trade conversion website, 100% done-for-you technical copywriting, trade accreditation badges, mobile-responsive layout, dual-channel lead desk, Local Map Pack Schema.org JSON-LD microdata, and Cloudflare edge SSR performance.",
   care: "Managed Cloudflare edge hosting, SSL certificates, 1 batch of content edits per month (up to 30 mins), automated enquiry health checks, review workflow, monthly performance summary, and 24h support response window.",
   boundaries:
-    "Capacity limit: Maximum 2 to 3 concurrent client onboarding builds (strict limit of 2 during initial pilot) to safeguard founder NHS schedule balance (10–12 hours/week). Zero cold calling. Zero unverified revenue claims. VAT zero-rated below £90k. All leads protected by Supabase RLS.",
+    "Strict pilot cap: 2 concurrent builds. Wider capacity requires reconciliation against founder decisions and measured workload. No cold calling or unverified revenue claims. Confirm tax treatment; do not equate unregistered with zero-rated. Retain lead access controls and genuine customer approval.",
 };
 
 export const strategyRecords = [
@@ -73,7 +75,7 @@ export const deliverySteps = [
   {
     title: "Approve Commercial Quote & Milestone Breakdown",
     detail:
-      "Generate a formal proposal using LeadProposalModal with standard Managed pricing (£1,495 Setup, VAT zero-rated), 50% Deposit (£747.50), and 50% Completion Balance (£747.50).",
+      "Prepare an internal proposal draft with approved Managed pricing (£1,495 setup, £249/month care, £747.50 deposit/balance). Confirm seller details, tax, sold routing, support and cancellation terms before customer issue; record actual acceptance of the exact version.",
   },
   {
     title: "Verify Deposit Payment",

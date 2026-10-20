@@ -29,6 +29,98 @@ export const KNOWLEDGE_CATEGORIES = [
 
 export const KNOWLEDGE_BASE_ARTICLES: KnowledgeArticle[] = [
   {
+    id: "unified-business-contact-channels-2026-10-15",
+    category: "governance",
+    title: "Unified Business Contact Channels & Lead Intake Hierarchy",
+    summary:
+      "Official operational standard for customer-facing contact points, phone numbers, WhatsApp routing, and intake hierarchy across The Harley Group and Harley Digital Works.",
+    statusBadge: "Ratified · 15 Oct 2026",
+    lastUpdated: "2026-10-15",
+    keyPoints: [
+      "PRIMARY BUSINESS LANDLINE — 0117 214 1357 (UK format) / +44 117 214 1357 (international format, click-to-call: tel:+441172141357). Geographic location: Bristol, United Kingdom. Official primary published telephone number across both The Harley Group and Harley Digital Works.",
+      "WHATSAPP BUSINESS — Verified canonical business number is +44 7394 041487 (wa.me format: 447394041487, display: 07394 041487, link: https://wa.me/447394041487). Contextual pre-filled messages configured for quote enquiries and care plan support.",
+      "THREE-TIER CONTACT HIERARCHY — Tier 1: Direct Landline (0117 214 1357) for high-intent customer phone calls. Tier 2: WhatsApp Business for fast mobile messaging and trade photo sharing. Tier 3: Website Enquiry Forms with structured database capture.",
+      "ADMIN CONTROL CENTRE INTEGRATION — Web form enquiries dispatch through submitLead to Supabase RPC submit_public_lead, appearing instantly in the Admin Control Centre (/admin/leads) with real-time triage, source attribution, and proposal generation.",
+      "SINGLE SOURCE OF TRUTH — All contact variables are centralized in src/lib/site-config.ts (siteConfig for HDW and harleyGroupConfig for THG). Component-level hardcoded contact information is deprecated.",
+      "OPERATING HOURS & SLAS — Studio operating hours: Monday–Friday 09:00–17:00 UK time. Phone callback SLA: under 2 hours. WhatsApp response SLA: under 15 minutes during operating hours. Web form submission follow-up: under 4 business hours.",
+    ],
+    operationalDetails:
+      "Configuration: src/lib/site-config.ts (siteConfig, harleyGroupConfig). Form submission: src/lib/lead-intake.functions.ts and src/components/site/EnquiryForm.tsx. Admin intake dashboard: src/routes/_authenticated/admin.leads.tsx. Floating WhatsApp: src/components/site/FloatingWhatsAppDesk.tsx. Regional data: src/lib/location-data.ts.",
+  },
+  {
+    id: "outbound-email-architecture-2026-10-12",
+    category: "architecture",
+    title: "Outbound Email & Automated Outreach Architecture",
+    summary:
+      "Operational specification for transactional email delivery via Resend API and scheduled automated corporate outreach.",
+    statusBadge: "Ratified · 12 Oct 2026",
+    lastUpdated: "2026-10-12",
+    keyPoints: [
+      "SENDER SPECIFICATION — All outbound cold outreach and founder communications are sent as Robbie Harley <robbie@theharleygroup.org>. Generic roles (hello@) are rejected for prospect outreach to maximize deliverability and trust.",
+      "REPLY-TO ROUTING — reply_to is configured to robbie@theharleygroup.org so customer responses route directly to the founder and CRM channels.",
+      "PROVIDER INTEGRATION — Dispatched via Resend API (https://api.resend.com/emails) with timeout bounds, signature verification, and immutable receipt ID capture.",
+      "CONCURRENCY GUARD — Outreach engine enforces the strict 2-concurrent build limit before initiating any automated dispatch.",
+      "PECR COMPLIANCE — Restricted strictly to verified UK corporate entities (Companies House) with observable digital opportunities. Public quote forms are never used.",
+    ],
+    operationalDetails:
+      "Engine: src/lib/outreach-dispatcher.ts & src/lib/email-delivery.ts. Task: server/tasks/outreach-dispatcher.ts running at 09:00 UK weekdays. Environment: TRANSACTIONAL_EMAIL_ENABLED=true, RESEND_API_KEY, and TRANSACTIONAL_SENDER_EMAIL=robbie@theharleygroup.org.",
+  },
+  {
+    id: "group-recent-activities-2026-10-09",
+    category: "records",
+    title: "Group recent activity review — 9 October 2026",
+    summary:
+      "Consolidated Headquarters, scanner, proposed brand, Dell lab, commercial and continuity record. Source publication and live release are separate states.",
+    statusBadge: "Reviewed · release pending",
+    lastUpdated: "2026-10-09",
+    keyPoints: [
+      "HEADQUARTERS — Shared-HQ links and group overview are on the Headquarters review branch. The reviewed scanner repair from PR #22 is included for combined verification.",
+      "BRAND — Completed proposed pack and guide uploaded to Companies & Brands. Fresh ZIP integrity passes for 147 entries. Final decisions and live rollout remain separate.",
+      "SOCIALS — Founder confirms accounts are not yet set up. Profile creation, publishing connections and analytics remain setup tasks; use the weekly content guide when ready.",
+      "DELL / CONTINUITY — Dell KB included in main; workflows/recovery and live acceptance remain unverified. Main checkout is clean with no unpushed commits. Laptop checkout/host connection unresolved.",
+      "OTHER SOURCE WORK — Commercial, Slack, skills and earlier CI changes are already in main. Historical acceptance is not a fresh live check. Older CI and untested dependency PRs remain separate.",
+    ],
+    operationalDetails:
+      "Review: docs/RECENT_ACTIVITY_REVIEW_2026-10-09.md. Headquarters: /admin/headquarters. Combined review: https://github.com/SkyPilot24/harley-digital-works/pull/23. Main inspected at 5e0520dca8c8b9d633474cc9f64d2453b19e99cb. Complete review/CI before main release; verify deployed revision and genuine owner access afterwards.",
+  },
+  {
+    id: "harley-labs-dell-build",
+    category: "playbooks",
+    title: "Harley Labs — Dell Build",
+    summary:
+      "9 October 2026 learning checkpoint: a separate Dell test bench with Docker, a custom local website and n8n onboarding reached. Use the checklists and copyable prompts below to continue one step at a time.",
+    keyPoints: [
+      "STATUS AND EVIDENCE — Completed items below were observed by the founder on the Dell and reported during the guided session on 9 October 2026. This record is not a fresh inspection of that laptop. Verify the current state before continuing. Dashboard publication and live verification of this KB entry are pending the reviewed release.",
+      "DEVICE BOUNDARY — Dell Precision 3581, 13th-gen Intel i9, 16 GB RAM, fresh Windows 11 Pro with its local Windows account retained. Lenovo Legion is the main development machine; Dell is a separate learning/test bench. Hosted production runs independently of either laptop. All localhost links and lab commands below belong on the Dell.",
+      "COMPLETED — Hardware virtualisation enabled. WSL installed with wsl --install --no-distribution; restarted; default WSL version 2. No Ubuntu distribution installed. The WSL1 warning was harmless for this chosen WSL2 setup.",
+      "COMPLETED — Docker Desktop x86_64 installed per user with WSL2; Windows containers unchecked. Existing Docker account sign-in completed. docker run --rm hello-world succeeded.",
+      "COMPLETED — Visual Studio Code x64 User Installer installed; GitHub sign-in completed using mobile two-factor authentication. Documents/Harley-Lab opened and trusted on the Dell. Do not assume this folder exists on the Lenovo.",
+      "COMPLETED — Original nginx container created with docker run -d --name lab-web -p 127.0.0.1:8080:80 nginx:alpine. Welcome page observed at http://localhost:8080 (Dell only); stop/start tested. This original container is separate from the custom Compose website on port 8081.",
+      'COMPLETED — index.html includes <!doctype html>, lang="en", UTF-8, title Harley Lab, heading Welcome to Harley Lab and paragraph My first Docker learning project. Custom Compose website started with docker compose up -d; http://localhost:8081 (Dell only) showed the custom page; edit/save/refresh tested.',
+      'WEBSITE CONFIGURATION — Keep this file separate from n8n.compose.yaml. compose.yaml, run from Documents/Harley-Lab on the Dell: services: { web: { image: "nginx:alpine", ports: ["127.0.0.1:8081:80"], volumes: ["./index.html:/usr/share/nginx/html/index.html:ro"] } }. This is YAML flow syntax for the recorded configuration. The bind mount serves the local index.html read-only.',
+      'COMPLETED — Named-volume persistence exercise: docker volume create harley-lab-data; then docker run --rm -v harley-lab-data:/data alpine sh -c "echo Hello-from-Harley-Lab > /data/note.txt"; then docker run --rm -v harley-lab-data:/data:ro alpine cat /data/note.txt. The greeting survived removal of the first container. This proves this volume exercise only, not n8n restart or backup recovery.',
+      "IN PROGRESS — Separate n8n.compose.yaml created and started. Logs reported the editor accessible; http://localhost:5678/setup loaded on the Dell after reopening the startup link from VS Code. Owner onboarding, owner account completion and a first workflow are not yet verified.",
+      'N8N CONFIGURATION — Recorded n8n.compose.yaml in valid YAML flow syntax: { services: { n8n: { image: "n8nio/n8n", ports: ["127.0.0.1:5678:5678"], environment: { TZ: "Europe/London", GENERIC_TIMEZONE: "Europe/London", N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS: "true" }, volumes: ["n8n-data:/home/node/.n8n"] } }, volumes: { n8n-data: null } }. There is no restart policy. The image is not pinned; version selection, updates and backups are future lessons.',
+      "N8N COMMANDS — From Documents/Harley-Lab on the Dell: docker compose -p harley-n8n -f n8n.compose.yaml up -d. Check status: docker compose -p harley-n8n -f n8n.compose.yaml ps. Check startup: docker compose -p harley-n8n -f n8n.compose.yaml logs --tail 40 n8n. Open http://localhost:5678 (Dell only); onboarding was observed at /setup. Use the same project/file arguments consistently so a second lab stack or volume is not created accidentally.",
+      "TROUBLESHOOTING LEARNED — A filename ending compose.yaml.txt caused configuration-not-found; rename the full filename to compose.yaml and show file extensions. Docker was absent in the VS Code terminal until every VS Code window was closed and the app reopened to refresh PATH. Initial Cannot GET / on n8n cleared after reopening its startup link; diagnose status/logs before reinstalling or repeating onboarding.",
+      "NOT VERIFIED — Current RAM slot count, RAM speed, storage capacity, Windows update status, the planned 32 GB RAM upgrade, Docker/n8n versions, completed n8n owner setup, any saved workflow, n8n persistence after restart/reboot, backups or restore. Do not claim automatic startup after reboot: no restart policy was configured. Keep login details and recovery/encryption keys out of chat and KB records.",
+      "BOUNDARIES AND GOAL — No external services or customer data connected. Real messages, customer integrations, production writes, billing, domain changes and releases are not authorized by this lab task. Begin with fictional enquiries: save/reference → classify → review queue → draft reply. Later automation should reduce routine administration while retaining human discovery, scope, pricing and exception review. Separate marketing is still needed to create inbound demand.",
+      "COPYABLE PROMPT 1 — Continue Harley Labs — Dell Build from the dashboard KB. I am on the Dell Precision 3581, not the Lenovo. Verify the current Docker stack and n8n screen first. The 9 October checkpoint reached localhost:5678/setup; account completion is unverified. Guide me through owner onboarding privately, one clear step at a time, keeping credentials out of chat. Then create a manual-trigger first workflow using a fictional lead with reference LAB-001: save its fields, classify it, put it in a local review queue and draft a reply without sending anything. First inspect the current n8n version and available nodes/storage; do not assume older tutorials match. Use no external service credentials or real customer data. Record actual observations in this same KB entry and mark any unfinished step explicitly.",
+      "COPYABLE PROMPT 2 — Continue Harley Labs — Dell Build on the Dell. First verify the n8n project name harley-n8n, file n8n.compose.yaml, actual named volume and current saved fictional workflow. Guide me through a stop/start persistence check using docker compose -p harley-n8n -f n8n.compose.yaml stop and docker compose -p harley-n8n -f n8n.compose.yaml start; then reopen localhost:5678 on the Dell and check account/workflow retention. Plan a separate Windows reboot check only when I am ready, and distinguish Docker Desktop startup from container startup. No restart policy was recorded. Never run down -v, remove volumes or reset the owner. Update the same KB with evidence and remaining gaps.",
+      "COPYABLE PROMPT 3 — Continue Harley Labs — Dell Build. Before proposing backups, verify the running n8n version, container, actual Compose volume and storage mode on the Dell. Help me make a consistent backup of the lab data and Compose files, protect any encryption key privately, and document recovery steps without recording secrets. Demonstrate restore in a separate isolated lab instance with fictional data and a different localhost port/volume; preserve the original. A workflow export alone is not proof of full-instance recovery. Do not delete or overwrite data. Verify the restored account/workflow and record what was tested in the same KB.",
+      "COPYABLE PROMPT 4 — Continue Harley Labs — Dell Build. The recorded image n8nio/n8n is unpinned. Read the actual running version/digest and current official compatibility/release guidance before choosing a version. Teach version pinning and a reviewed update/rollback procedure one step at a time, after a recoverable backup exists. Keep the existing data volume and project name. Do not pull a newer image, upgrade, recreate the stack or change production until the concrete plan is reviewed. Record proposed versus performed actions in the same KB.",
+      "COPYABLE PROMPT 5 — Continue Harley Labs — Dell Build with the manual fictional-enquiry workflow. Verify the current nodes and local persistence before adding rule-based triage. Test clearly labelled fictional examples for an ordinary enquiry, missing information and an urgent exception. Save a stable lead reference, rule outcome, next action and review status; produce a draft reply and simulated acknowledgement only. Do not automatically quote, promise delivery dates, send real messages or make commercial decisions. Keep discovery, scoping and pricing with a human. Record each case and result in the same KB.",
+      "COPYABLE PROMPT 6 — Continue Harley Labs — Dell Build. Inspect the existing fictional workflow and teach duplicate protection, retries and exception monitoring. Submit the same stable lead reference twice and prove one saved lead and one queued draft. Inject a controlled failed step, retry safely and show a visible failed/retry state without duplicate side effects. Define a bounded retry policy and an operator review queue using the current n8n capabilities. Send no real notifications and connect no customer systems. Record test cases, observed counts and unresolved risks in this same KB.",
+      "COPYABLE PROMPT 7 — Continue Harley Labs — Dell Build. Verify the local fictional-enquiry workflow before adding a human review gate. Show a clear queue with lead reference, classification, draft reply, next action and approve/revise/reject state. Approved items may advance only to a simulated send result; an approval click is not authority to send a real message. Keep discovery, custom scope and pricing with the founder, and route exceptions to a review queue. Test approve/reject/duplicate approval with fictional data and update this same KB entry.",
+      "COPYABLE PROMPT 8 — Continue Harley Labs — Dell Build and plan a staged integration with Harley Digital Works. Read AGENTS.md, PROJECT_STATUS.md and docs/HANDOVER.md first; inspect the actual branch, exact revision, existing GitHub checks and hosting pipeline before adding tools. Lenovo is development, Dell is the isolated test bench, and hosted production is independent of the Dell. Prepare branch/change → GitHub checks and review → exact revision tested on Dell with test data → hosted preview → human release approval → established release → live verification and rollback. Keep the agency platform in canonical code/Git and client trade sites in their separate Lovable repos. Planning does not authorize customer connections, messages, database writes or deployment. Record proposed, implemented, tested, committed, pushed, deployed and live-verified separately.",
+      "COPYABLE PROMPT 9 — Continue Harley Labs — Dell Build from its central dashboard article, one practical step at a time. Start by checking whether another assistant or queued task has already updated it: use id harley-labs-dell-build and title Harley Labs — Dell Build, edit the existing entry rather than creating a duplicate. Confirm I am using the Dell and ask only for the minimum missing observation. Treat 9 October 2026 as a historical checkpoint; preserve verified progress, label new proposals and untested claims, and keep this same KB and relevant repository handover aligned. Never store credentials/customer data or update account-level memories for this lab record.",
+    ],
+    operationalDetails:
+      "Use the checklist as the central continuation record, not as proof that the current Dell has been reinspected. The immediate next milestone is private n8n owner onboarding followed by one manual fictional-lead workflow. Copy only the prompt for the next lesson; each prompt asks the assistant to verify state first and update this same article. The custom website is on port 8081, the original nginx welcome container is on 8080, and n8n is on 5678; all are bound to 127.0.0.1 on the Dell. Future release and customer integration work requires its own approval. This entry supports the existing Harley Labs workstream (L01) without marking the public Labs page, owner onboarding, workflow or release acceptance complete.",
+    statusBadge: "Lab checkpoint · onboarding pending",
+    lastUpdated: "9 October 2026",
+  },
+  {
     id: "platform-architecture-state",
     category: "architecture",
     title: "Production Infrastructure & Backend Environments",
@@ -108,15 +200,15 @@ export const KNOWLEDGE_BASE_ARTICLES: KnowledgeArticle[] = [
       "Defensible cost breakdown, upfront contribution margins, recurring profitability, and statutory tax rules.",
     keyPoints: [
       "Upfront delivery cost (Base): £772.63 (14h build labour @ £40/hr + CAC overhead + Stripe fee).",
-      "Net Upfront Contribution: +£722.37 (48.3% margin) — instant Day 0 payback before subscription starts.",
+      "Illustrative setup contribution: +£722.37 (48.3%) after the full setup fee, not Day 0 cash from a half-deposit; actual delivery costs remain to measure.",
       "Monthly servicing cost (Base): £66.94 (prorated infrastructure + 1h support labour @ £40/hr + Stripe fee + incident buffer).",
       "Monthly recurring net contribution: +£182.06 / month (73.1% margin) per active client.",
-      "VAT Treatment: Harley Digital Works operates below HMRC's £90k statutory threshold. All prices are zero-rated / VAT not applicable. No VAT is charged and no fake VAT numbers are displayed.",
+      "Tax review required: seller VAT registration and invoice treatment must be confirmed before issue. Being below the threshold is not proof of a zero rate. Approved package prices remain unchanged; never invent a VAT number.",
     ],
     operationalDetails:
-      "Customer acquisition cost (CAC) overhead accounts for 3 unclosed previews for every 1 won customer. Even in a challenged scenario with 22h build labour, setup remains cash positive (+£292.37). Invoices and quotes must always display 'VAT not applicable / zero-rated' until official HMRC registration is completed.",
-    statusBadge: "Zero-Rated VAT",
-    lastUpdated: "7 October 2026",
+      "Unit economics are illustrative, not measured profit. Reconcile processing fees, actual labour, support and staged cash receipts. Full setup contribution cannot be reported as Day 0 cash from a half-deposit. Do not use historical zero-rated/not-applicable wording as an invoice rule; confirm registration and treatment with the seller/accountant first.",
+    statusBadge: "Tax review required",
+    lastUpdated: "14 October 2026",
   },
   {
     id: "capacity-and-operating-boundaries",
@@ -126,15 +218,15 @@ export const KNOWLEDGE_BASE_ARTICLES: KnowledgeArticle[] = [
       "Operating rules protecting founder NHS schedule commitments while maintaining strict delivery SLAs.",
     keyPoints: [
       "Founder weekly capacity: 10–12 hours per week dedicated to Harley Digital Works.",
-      "Automation ratio: Scaffolding, intake parsing, and diagnostic checks automate ~70% of setup work.",
-      "Active labour per build: 4–5 hours of active founder touch per completed website.",
-      "Hard concurrency limit: Maximum 2 to 3 concurrent client onboarding builds (hard cap of 2 during initial pilot).",
+      "Automation target: roughly 70% of setup work; measured end-to-end pilot evidence is still required.",
+      "Active labour target: 4–5 hours of founder touch per website; this is not an observed delivery result.",
+      "Hard pilot cap: 2 concurrent builds. Wider two/three capacity records require decision-scope reconciliation before changing the guard.",
       "Fleet servicing: Support for active care clients requires ~0.5–1.0h/client/month, fitting within part-time capacity up to 15 active accounts.",
     ],
     operationalDetails:
-      "To prevent delivery delays and maintain personal balance alongside NHS clinical responsibilities, any pipeline volume exceeding 2 to 3 concurrent onboarding builds must trigger an immediate pause on outbound acquisition or require onboarding a vetted production junior.",
-    statusBadge: "2–3 Concurrency",
-    lastUpdated: "7 October 2026",
+      "Retain the two-build pilot guard and measure founder delivery/support time. Pause acquisition when the existing guard is reached. Expansion, staffing spend and response commitments require the applicable commercial decision and coverage evidence.",
+    statusBadge: "2-build pilot cap",
+    lastUpdated: "14 October 2026",
   },
   {
     id: "eight-step-turnaround-sequence",

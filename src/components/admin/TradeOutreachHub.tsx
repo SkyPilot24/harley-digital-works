@@ -15,6 +15,8 @@ import {
 } from "lucide-react";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
+import { adminErrorMessage, insertRecord, invalidateAdminData } from "@/lib/admin-writes";
+import { parseLeadInput } from "@/lib/admin-validation";
 import { useQueryClient } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
 import { dispatchTransactionalEmail } from "@/lib/email-dispatch.functions";
@@ -157,9 +159,9 @@ Are you free for a brief 10-minute intro call on Thursday or Friday?
 
 Best regards,
 
-Jack Miller
-Lead Web Producer | Harley Digital Works
-0161 820 4910 | www.harleydigitalworks.com`;
+Robbie Harley
+Founder | Harley Digital Works
+0117 214 1357 | www.harleydigitalworks.com`;
   };
 
   const handleCopy = (text: string, type: string) => {
@@ -207,7 +209,7 @@ Lead Web Producer | Harley Digital Works
   const handlePushToLeads = async (p: Prospect) => {
     setIsPushing(true);
     try {
-      const { error } = await supabase.from("leads").insert({
+      const input = parseLeadInput({
         name: p.contact,
         email: p.email,
         company: p.company,
@@ -215,13 +217,11 @@ Lead Web Producer | Harley Digital Works
         message: `[OUTBOUND TARGET - ${p.city.toUpperCase()}] Trade: ${p.tradeTitle}. Cert: ${p.keyCert}. Estimated Job Value: ${p.estimatedJobValue}. Outbound pitch sent via WhatsApp/Email with live demo.`,
         status: "contacted",
       });
-
-      if (error) throw error;
+      await insertRecord(supabase, "leads", { ...input, source: "admin_outbound" });
       toast.success(`Pushed ${p.company} to Leads CRM!`);
-      qc.invalidateQueries({ queryKey: ["leads"] });
+      invalidateAdminData(qc, "lead");
     } catch (err) {
-      const msg = err instanceof Error ? err.message : "Failed to push lead";
-      toast.error(msg);
+      toast.error(adminErrorMessage(err, "Failed to push lead"));
     } finally {
       setIsPushing(false);
     }

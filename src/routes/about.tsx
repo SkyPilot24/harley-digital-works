@@ -29,7 +29,7 @@ const principles = [
   {
     number: "03",
     title: "Transparent scope and fixed pricing.",
-    copy: "Fixed £1,495 setup investment (50% deposit / 50% on approval) and £249/mo ongoing care. Zero-rated VAT, with deliverables, revisions and 14-day turnaround agreed in writing before work begins.",
+    copy: "Fixed £1,495 setup investment (50% deposit / 50% on approval) and £249/mo ongoing care. Deliverables, revisions, milestones, and delivery schedule agreed in writing before work begins.",
   },
   {
     number: "04",
@@ -273,7 +273,8 @@ function AboutPage() {
                   Let’s talk about your website
                 </PillButton>
                 <span className="final-price">
-                  £1,495 setup · £249/mo care · 14-day turnaround · Capped capacity
+                  £1,495 setup · £249/mo care · Agreed delivery schedule · 3-customer pilot (max 2
+                  concurrent builds)
                 </span>
               </div>
             </div>
@@ -285,7 +286,7 @@ function AboutPage() {
                 <Check size={16} /> 50% deposit / 50% on approval
               </span>
               <span>
-                <ShieldCheck size={16} /> Zero VAT & direct WhatsApp support
+                <ShieldCheck size={16} /> Clear scope & direct WhatsApp contact
               </span>
             </div>
           </div>

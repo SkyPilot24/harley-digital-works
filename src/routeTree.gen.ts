@@ -23,6 +23,7 @@ import { Route as OnboardingRouteImport } from './routes/onboarding'
 import { Route as LocationsRouteImport } from './routes/locations'
 import { Route as LabsRouteImport } from './routes/labs'
 import { Route as DomainsRouteImport } from './routes/domains'
+import { Route as DomainPortfolioPreviewRouteImport } from './routes/domain-portfolio-preview'
 import { Route as DemosRouteImport } from './routes/demos'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CareDeskRouteImport } from './routes/care-desk'
@@ -47,7 +48,9 @@ import { Route as ServicesAutomationRouteImport } from './routes/services_.autom
 import { Route as ServicesAiAutomationRouteImport } from './routes/services_.ai-automation'
 import { Route as LocationsSlugRouteImport } from './routes/locations_.$slug'
 import { Route as DemosElectricianConceptRouteImport } from './routes/demos_.electrician-concept'
+import { Route as ClientReviewProjectIdRouteImport } from './routes/client-review_.$projectId'
 import { Route as AuthenticatedAdminIndexRouteImport } from './routes/_authenticated/admin.index'
+import { Route as ApiPaymentsStripeRouteImport } from './routes/api.payments.stripe'
 import { Route as AuthenticatedAdminUsersRouteImport } from './routes/_authenticated/admin.users'
 import { Route as AuthenticatedAdminTestimonialsRouteImport } from './routes/_authenticated/admin.testimonials'
 import { Route as AuthenticatedAdminTeamRouteImport } from './routes/_authenticated/admin.team'
@@ -61,6 +64,8 @@ import { Route as AuthenticatedAdminPlaybooksRouteImport } from './routes/_authe
 import { Route as AuthenticatedAdminLeadsRouteImport } from './routes/_authenticated/admin.leads'
 import { Route as AuthenticatedAdminKnowledgeBaseRouteImport } from './routes/_authenticated/admin.knowledge-base'
 import { Route as AuthenticatedAdminInvoicesRouteImport } from './routes/_authenticated/admin.invoices'
+import { Route as AuthenticatedAdminHeadquartersRouteImport } from './routes/_authenticated/admin.headquarters'
+import { Route as AuthenticatedAdminDomainPortfolioRouteImport } from './routes/_authenticated/admin.domain-portfolio'
 import { Route as AuthenticatedAdminDomainOsRouteImport } from './routes/_authenticated/admin.domain-os'
 import { Route as AuthenticatedAdminDiagnosticsRouteImport } from './routes/_authenticated/admin.diagnostics'
 import { Route as AuthenticatedAdminClientsRouteImport } from './routes/_authenticated/admin.clients'
@@ -133,6 +138,11 @@ const LabsRoute = LabsRouteImport.update({
 const DomainsRoute = DomainsRouteImport.update({
   id: '/domains',
   path: '/domains',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DomainPortfolioPreviewRoute = DomainPortfolioPreviewRouteImport.update({
+  id: '/domain-portfolio-preview',
+  path: '/domain-portfolio-preview',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DemosRoute = DemosRouteImport.update({
@@ -256,10 +266,20 @@ const DemosElectricianConceptRoute = DemosElectricianConceptRouteImport.update({
   path: '/demos/electrician-concept',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ClientReviewProjectIdRoute = ClientReviewProjectIdRouteImport.update({
+  id: '/client-review_/$projectId',
+  path: '/client-review/$projectId',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AuthenticatedAdminIndexRoute = AuthenticatedAdminIndexRouteImport.update({
   id: '/admin/',
   path: '/admin/',
   getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const ApiPaymentsStripeRoute = ApiPaymentsStripeRouteImport.update({
+  id: '/api/payments/stripe',
+  path: '/api/payments/stripe',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const AuthenticatedAdminUsersRoute = AuthenticatedAdminUsersRouteImport.update({
   id: '/admin/users',
@@ -335,6 +355,18 @@ const AuthenticatedAdminInvoicesRoute =
     path: '/admin/invoices',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
+const AuthenticatedAdminHeadquartersRoute =
+  AuthenticatedAdminHeadquartersRouteImport.update({
+    id: '/admin/headquarters',
+    path: '/admin/headquarters',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedAdminDomainPortfolioRoute =
+  AuthenticatedAdminDomainPortfolioRouteImport.update({
+    id: '/admin/domain-portfolio',
+    path: '/admin/domain-portfolio',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const AuthenticatedAdminDomainOsRoute =
   AuthenticatedAdminDomainOsRouteImport.update({
     id: '/admin/domain-os',
@@ -364,6 +396,7 @@ export interface FileRoutesByFullPath {
   '/care-desk': typeof CareDeskRoute
   '/contact': typeof ContactRoute
   '/demos': typeof DemosRoute
+  '/domain-portfolio-preview': typeof DomainPortfolioPreviewRoute
   '/domains': typeof DomainsRoute
   '/labs': typeof LabsRoute
   '/locations': typeof LocationsRoute
@@ -378,6 +411,7 @@ export interface FileRoutesByFullPath {
   '/track': typeof TrackRoute
   '/trades': typeof TradesRoute
   '/work': typeof WorkRoute
+  '/client-review/$projectId': typeof ClientReviewProjectIdRoute
   '/demos/electrician-concept': typeof DemosElectricianConceptRoute
   '/locations/$slug': typeof LocationsSlugRoute
   '/services/ai-automation': typeof ServicesAiAutomationRoute
@@ -395,6 +429,8 @@ export interface FileRoutesByFullPath {
   '/admin/clients': typeof AuthenticatedAdminClientsRoute
   '/admin/diagnostics': typeof AuthenticatedAdminDiagnosticsRoute
   '/admin/domain-os': typeof AuthenticatedAdminDomainOsRoute
+  '/admin/domain-portfolio': typeof AuthenticatedAdminDomainPortfolioRoute
+  '/admin/headquarters': typeof AuthenticatedAdminHeadquartersRoute
   '/admin/invoices': typeof AuthenticatedAdminInvoicesRoute
   '/admin/knowledge-base': typeof AuthenticatedAdminKnowledgeBaseRoute
   '/admin/leads': typeof AuthenticatedAdminLeadsRoute
@@ -408,6 +444,7 @@ export interface FileRoutesByFullPath {
   '/admin/team': typeof AuthenticatedAdminTeamRoute
   '/admin/testimonials': typeof AuthenticatedAdminTestimonialsRoute
   '/admin/users': typeof AuthenticatedAdminUsersRoute
+  '/api/payments/stripe': typeof ApiPaymentsStripeRoute
   '/admin/': typeof AuthenticatedAdminIndexRoute
 }
 export interface FileRoutesByTo {
@@ -420,6 +457,7 @@ export interface FileRoutesByTo {
   '/care-desk': typeof CareDeskRoute
   '/contact': typeof ContactRoute
   '/demos': typeof DemosRoute
+  '/domain-portfolio-preview': typeof DomainPortfolioPreviewRoute
   '/domains': typeof DomainsRoute
   '/labs': typeof LabsRoute
   '/locations': typeof LocationsRoute
@@ -434,6 +472,7 @@ export interface FileRoutesByTo {
   '/track': typeof TrackRoute
   '/trades': typeof TradesRoute
   '/work': typeof WorkRoute
+  '/client-review/$projectId': typeof ClientReviewProjectIdRoute
   '/demos/electrician-concept': typeof DemosElectricianConceptRoute
   '/locations/$slug': typeof LocationsSlugRoute
   '/services/ai-automation': typeof ServicesAiAutomationRoute
@@ -451,6 +490,8 @@ export interface FileRoutesByTo {
   '/admin/clients': typeof AuthenticatedAdminClientsRoute
   '/admin/diagnostics': typeof AuthenticatedAdminDiagnosticsRoute
   '/admin/domain-os': typeof AuthenticatedAdminDomainOsRoute
+  '/admin/domain-portfolio': typeof AuthenticatedAdminDomainPortfolioRoute
+  '/admin/headquarters': typeof AuthenticatedAdminHeadquartersRoute
   '/admin/invoices': typeof AuthenticatedAdminInvoicesRoute
   '/admin/knowledge-base': typeof AuthenticatedAdminKnowledgeBaseRoute
   '/admin/leads': typeof AuthenticatedAdminLeadsRoute
@@ -464,6 +505,7 @@ export interface FileRoutesByTo {
   '/admin/team': typeof AuthenticatedAdminTeamRoute
   '/admin/testimonials': typeof AuthenticatedAdminTestimonialsRoute
   '/admin/users': typeof AuthenticatedAdminUsersRoute
+  '/api/payments/stripe': typeof ApiPaymentsStripeRoute
   '/admin': typeof AuthenticatedAdminIndexRoute
 }
 export interface FileRoutesById {
@@ -478,6 +520,7 @@ export interface FileRoutesById {
   '/care-desk': typeof CareDeskRoute
   '/contact': typeof ContactRoute
   '/demos': typeof DemosRoute
+  '/domain-portfolio-preview': typeof DomainPortfolioPreviewRoute
   '/domains': typeof DomainsRoute
   '/labs': typeof LabsRoute
   '/locations': typeof LocationsRoute
@@ -492,6 +535,7 @@ export interface FileRoutesById {
   '/track': typeof TrackRoute
   '/trades': typeof TradesRoute
   '/work': typeof WorkRoute
+  '/client-review_/$projectId': typeof ClientReviewProjectIdRoute
   '/demos_/electrician-concept': typeof DemosElectricianConceptRoute
   '/locations_/$slug': typeof LocationsSlugRoute
   '/services_/ai-automation': typeof ServicesAiAutomationRoute
@@ -509,6 +553,8 @@ export interface FileRoutesById {
   '/_authenticated/admin/clients': typeof AuthenticatedAdminClientsRoute
   '/_authenticated/admin/diagnostics': typeof AuthenticatedAdminDiagnosticsRoute
   '/_authenticated/admin/domain-os': typeof AuthenticatedAdminDomainOsRoute
+  '/_authenticated/admin/domain-portfolio': typeof AuthenticatedAdminDomainPortfolioRoute
+  '/_authenticated/admin/headquarters': typeof AuthenticatedAdminHeadquartersRoute
   '/_authenticated/admin/invoices': typeof AuthenticatedAdminInvoicesRoute
   '/_authenticated/admin/knowledge-base': typeof AuthenticatedAdminKnowledgeBaseRoute
   '/_authenticated/admin/leads': typeof AuthenticatedAdminLeadsRoute
@@ -522,6 +568,7 @@ export interface FileRoutesById {
   '/_authenticated/admin/team': typeof AuthenticatedAdminTeamRoute
   '/_authenticated/admin/testimonials': typeof AuthenticatedAdminTestimonialsRoute
   '/_authenticated/admin/users': typeof AuthenticatedAdminUsersRoute
+  '/api/payments/stripe': typeof ApiPaymentsStripeRoute
   '/_authenticated/admin/': typeof AuthenticatedAdminIndexRoute
 }
 export interface FileRouteTypes {
@@ -536,6 +583,7 @@ export interface FileRouteTypes {
     | '/care-desk'
     | '/contact'
     | '/demos'
+    | '/domain-portfolio-preview'
     | '/domains'
     | '/labs'
     | '/locations'
@@ -550,6 +598,7 @@ export interface FileRouteTypes {
     | '/track'
     | '/trades'
     | '/work'
+    | '/client-review/$projectId'
     | '/demos/electrician-concept'
     | '/locations/$slug'
     | '/services/ai-automation'
@@ -567,6 +616,8 @@ export interface FileRouteTypes {
     | '/admin/clients'
     | '/admin/diagnostics'
     | '/admin/domain-os'
+    | '/admin/domain-portfolio'
+    | '/admin/headquarters'
     | '/admin/invoices'
     | '/admin/knowledge-base'
     | '/admin/leads'
@@ -580,6 +631,7 @@ export interface FileRouteTypes {
     | '/admin/team'
     | '/admin/testimonials'
     | '/admin/users'
+    | '/api/payments/stripe'
     | '/admin/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -592,6 +644,7 @@ export interface FileRouteTypes {
     | '/care-desk'
     | '/contact'
     | '/demos'
+    | '/domain-portfolio-preview'
     | '/domains'
     | '/labs'
     | '/locations'
@@ -606,6 +659,7 @@ export interface FileRouteTypes {
     | '/track'
     | '/trades'
     | '/work'
+    | '/client-review/$projectId'
     | '/demos/electrician-concept'
     | '/locations/$slug'
     | '/services/ai-automation'
@@ -623,6 +677,8 @@ export interface FileRouteTypes {
     | '/admin/clients'
     | '/admin/diagnostics'
     | '/admin/domain-os'
+    | '/admin/domain-portfolio'
+    | '/admin/headquarters'
     | '/admin/invoices'
     | '/admin/knowledge-base'
     | '/admin/leads'
@@ -636,6 +692,7 @@ export interface FileRouteTypes {
     | '/admin/team'
     | '/admin/testimonials'
     | '/admin/users'
+    | '/api/payments/stripe'
     | '/admin'
   id:
     | '__root__'
@@ -649,6 +706,7 @@ export interface FileRouteTypes {
     | '/care-desk'
     | '/contact'
     | '/demos'
+    | '/domain-portfolio-preview'
     | '/domains'
     | '/labs'
     | '/locations'
@@ -663,6 +721,7 @@ export interface FileRouteTypes {
     | '/track'
     | '/trades'
     | '/work'
+    | '/client-review_/$projectId'
     | '/demos_/electrician-concept'
     | '/locations_/$slug'
     | '/services_/ai-automation'
@@ -680,6 +739,8 @@ export interface FileRouteTypes {
     | '/_authenticated/admin/clients'
     | '/_authenticated/admin/diagnostics'
     | '/_authenticated/admin/domain-os'
+    | '/_authenticated/admin/domain-portfolio'
+    | '/_authenticated/admin/headquarters'
     | '/_authenticated/admin/invoices'
     | '/_authenticated/admin/knowledge-base'
     | '/_authenticated/admin/leads'
@@ -693,6 +754,7 @@ export interface FileRouteTypes {
     | '/_authenticated/admin/team'
     | '/_authenticated/admin/testimonials'
     | '/_authenticated/admin/users'
+    | '/api/payments/stripe'
     | '/_authenticated/admin/'
   fileRoutesById: FileRoutesById
 }
@@ -707,6 +769,7 @@ export interface RootRouteChildren {
   CareDeskRoute: typeof CareDeskRoute
   ContactRoute: typeof ContactRoute
   DemosRoute: typeof DemosRoute
+  DomainPortfolioPreviewRoute: typeof DomainPortfolioPreviewRoute
   DomainsRoute: typeof DomainsRoute
   LabsRoute: typeof LabsRoute
   LocationsRoute: typeof LocationsRoute
@@ -721,6 +784,7 @@ export interface RootRouteChildren {
   TrackRoute: typeof TrackRoute
   TradesRoute: typeof TradesRoute
   WorkRoute: typeof WorkRoute
+  ClientReviewProjectIdRoute: typeof ClientReviewProjectIdRoute
   DemosElectricianConceptRoute: typeof DemosElectricianConceptRoute
   LocationsSlugRoute: typeof LocationsSlugRoute
   ServicesAiAutomationRoute: typeof ServicesAiAutomationRoute
@@ -735,6 +799,7 @@ export interface RootRouteChildren {
   ToolsSeoInspectorRoute: typeof ToolsSeoInspectorRoute
   TrackTokenRoute: typeof TrackTokenRoute
   TradesSlugRoute: typeof TradesSlugRoute
+  ApiPaymentsStripeRoute: typeof ApiPaymentsStripeRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -835,6 +900,13 @@ declare module '@tanstack/react-router' {
       path: '/domains'
       fullPath: '/domains'
       preLoaderRoute: typeof DomainsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/domain-portfolio-preview': {
+      id: '/domain-portfolio-preview'
+      path: '/domain-portfolio-preview'
+      fullPath: '/domain-portfolio-preview'
+      preLoaderRoute: typeof DomainPortfolioPreviewRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/demos': {
@@ -1005,12 +1077,26 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DemosElectricianConceptRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/client-review_/$projectId': {
+      id: '/client-review_/$projectId'
+      path: '/client-review/$projectId'
+      fullPath: '/client-review/$projectId'
+      preLoaderRoute: typeof ClientReviewProjectIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/_authenticated/admin/': {
       id: '/_authenticated/admin/'
       path: '/admin'
       fullPath: '/admin/'
       preLoaderRoute: typeof AuthenticatedAdminIndexRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/api/payments/stripe': {
+      id: '/api/payments/stripe'
+      path: '/api/payments/stripe'
+      fullPath: '/api/payments/stripe'
+      preLoaderRoute: typeof ApiPaymentsStripeRouteImport
+      parentRoute: typeof rootRouteImport
     }
     '/_authenticated/admin/users': {
       id: '/_authenticated/admin/users'
@@ -1103,6 +1189,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAdminInvoicesRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/admin/headquarters': {
+      id: '/_authenticated/admin/headquarters'
+      path: '/admin/headquarters'
+      fullPath: '/admin/headquarters'
+      preLoaderRoute: typeof AuthenticatedAdminHeadquartersRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/admin/domain-portfolio': {
+      id: '/_authenticated/admin/domain-portfolio'
+      path: '/admin/domain-portfolio'
+      fullPath: '/admin/domain-portfolio'
+      preLoaderRoute: typeof AuthenticatedAdminDomainPortfolioRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/admin/domain-os': {
       id: '/_authenticated/admin/domain-os'
       path: '/admin/domain-os'
@@ -1131,6 +1231,8 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedAdminClientsRoute: typeof AuthenticatedAdminClientsRoute
   AuthenticatedAdminDiagnosticsRoute: typeof AuthenticatedAdminDiagnosticsRoute
   AuthenticatedAdminDomainOsRoute: typeof AuthenticatedAdminDomainOsRoute
+  AuthenticatedAdminDomainPortfolioRoute: typeof AuthenticatedAdminDomainPortfolioRoute
+  AuthenticatedAdminHeadquartersRoute: typeof AuthenticatedAdminHeadquartersRoute
   AuthenticatedAdminInvoicesRoute: typeof AuthenticatedAdminInvoicesRoute
   AuthenticatedAdminKnowledgeBaseRoute: typeof AuthenticatedAdminKnowledgeBaseRoute
   AuthenticatedAdminLeadsRoute: typeof AuthenticatedAdminLeadsRoute
@@ -1151,6 +1253,9 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedAdminClientsRoute: AuthenticatedAdminClientsRoute,
   AuthenticatedAdminDiagnosticsRoute: AuthenticatedAdminDiagnosticsRoute,
   AuthenticatedAdminDomainOsRoute: AuthenticatedAdminDomainOsRoute,
+  AuthenticatedAdminDomainPortfolioRoute:
+    AuthenticatedAdminDomainPortfolioRoute,
+  AuthenticatedAdminHeadquartersRoute: AuthenticatedAdminHeadquartersRoute,
   AuthenticatedAdminInvoicesRoute: AuthenticatedAdminInvoicesRoute,
   AuthenticatedAdminKnowledgeBaseRoute: AuthenticatedAdminKnowledgeBaseRoute,
   AuthenticatedAdminLeadsRoute: AuthenticatedAdminLeadsRoute,
@@ -1181,6 +1286,7 @@ const rootRouteChildren: RootRouteChildren = {
   CareDeskRoute: CareDeskRoute,
   ContactRoute: ContactRoute,
   DemosRoute: DemosRoute,
+  DomainPortfolioPreviewRoute: DomainPortfolioPreviewRoute,
   DomainsRoute: DomainsRoute,
   LabsRoute: LabsRoute,
   LocationsRoute: LocationsRoute,
@@ -1195,6 +1301,7 @@ const rootRouteChildren: RootRouteChildren = {
   TrackRoute: TrackRoute,
   TradesRoute: TradesRoute,
   WorkRoute: WorkRoute,
+  ClientReviewProjectIdRoute: ClientReviewProjectIdRoute,
   DemosElectricianConceptRoute: DemosElectricianConceptRoute,
   LocationsSlugRoute: LocationsSlugRoute,
   ServicesAiAutomationRoute: ServicesAiAutomationRoute,
@@ -1209,6 +1316,7 @@ const rootRouteChildren: RootRouteChildren = {
   ToolsSeoInspectorRoute: ToolsSeoInspectorRoute,
   TrackTokenRoute: TrackTokenRoute,
   TradesSlugRoute: TradesSlugRoute,
+  ApiPaymentsStripeRoute: ApiPaymentsStripeRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

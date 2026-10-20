@@ -50,7 +50,7 @@ export const SAMPLE_PROJECTS: Record<string, ClientTrackProject> = {
     projectManager: {
       name: "Jack Miller",
       role: "Lead Web Producer & Technical Director",
-      phone: "0161 820 4910",
+      phone: "0117 214 1357",
       whatsapp: "07700 900142",
       email: "direct@harleydigitalworks.com",
     },
@@ -125,7 +125,7 @@ export const SAMPLE_PROJECTS: Record<string, ClientTrackProject> = {
     projectManager: {
       name: "Jack Miller",
       role: "Lead Web Producer",
-      phone: "0161 820 4910",
+      phone: "0117 214 1357",
       whatsapp: "07700 900142",
       email: "direct@harleydigitalworks.com",
     },

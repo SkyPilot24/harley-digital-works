@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { siteConfig } from "@/lib/site-config";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   CheckCircle2,
@@ -214,7 +215,7 @@ Existing Domain: ${data.existingDomain || "None provided"}`;
 
         <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
           <a
-            href={`https://wa.me/441618204910?text=${encodeURIComponent(`Hi Jack, I have just completed the onboarding intake for ${data.companyName}!`)}`}
+            href={`${siteConfig.whatsappUrl}?text=${encodeURIComponent(`Hi Robbie, I have just completed the onboarding intake for ${data.companyName}!`)}`}
             target="_blank"
             rel="noreferrer"
             className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-full bg-emerald-600 hover:bg-emerald-500 px-6 py-3 text-xs font-bold text-white transition-all shadow-md"

@@ -4,6 +4,14 @@
   "compatibility_date": "2026-10-03",
   "compatibility_flags": ["nodejs_compat"],
   "keep_vars": true,
+  "previews": {
+    "vars": {
+      "SUPABASE_URL": "https://preview-unconfigured.invalid",
+      "SUPABASE_PUBLISHABLE_KEY": "preview-backend-not-configured",
+      "LEAD_NOTIFICATIONS_ENABLED": "false",
+      "TRANSACTIONAL_EMAIL_ENABLED": "false"
+    }
+  },
   "vars": {
     "SUPABASE_URL": "https://worzpzbutngugwzhlvtj.supabase.co",
     "SUPABASE_PUBLISHABLE_KEY": "sb_publishable_zww1QFK_jynAmjvcc0-m_g_A4I1aC8V",

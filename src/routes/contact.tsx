@@ -1,3 +1,4 @@
+import { Phone, MessageCircle, Mail, MapPin, Clock, Sparkles } from "lucide-react";
 import { createFileRoute } from "@tanstack/react-router";
 import { PageShell } from "@/components/site/PageShell";
 import { EnquiryForm } from "@/components/site/EnquiryForm";
@@ -58,12 +59,78 @@ function ContactPage() {
                 <div>
                   <strong>Know the scope and cost upfront.</strong>
                   <p>
-                    £1,495 setup (50% deposit / 50% on approval) + £249/mo care, 14-day delivery
-                    SLA, zero-rated VAT.
+                    £1,495 setup (50% deposit / 50% on approval) + £249/mo care. Your written quote
+                    confirms scope, delivery timing and any applicable taxes.
                   </p>
                 </div>
               </li>
             </ol>
+            <div className="mt-8 space-y-3 rounded-2xl border border-ink/10 bg-white/70 p-5 shadow-xs">
+              <span className="text-[10px] font-mono uppercase tracking-wider text-ink-muted block font-bold">
+                Direct Contact Channels
+              </span>
+
+              {/* Primary: Telephone */}
+              <div className="flex items-start gap-3 pt-1">
+                <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-amber-50 text-amber-800 border border-amber-200/80">
+                  <Phone size={16} />
+                </div>
+                <div>
+                  <div className="flex items-center gap-2">
+                    <a
+                      href={"tel:" + siteConfig.contactPhoneTel}
+                      className="font-bold text-sm text-ink hover:text-amber-800 transition-colors"
+                    >
+                      {siteConfig.contactPhone}
+                    </a>
+                    <span className="rounded-full bg-amber-100/70 px-2 py-0.5 text-[10px] font-bold text-amber-900">
+                      Primary · Call Us
+                    </span>
+                  </div>
+                  <p className="text-xs text-ink-muted mt-0.5">
+                    Speak directly with our Bristol studio team.
+                  </p>
+                </div>
+              </div>
+
+              {/* Secondary: WhatsApp */}
+              <div className="flex items-start gap-3 pt-2 border-t border-ink/10">
+                <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-emerald-50 text-emerald-800 border border-emerald-200/80">
+                  <MessageCircle size={16} />
+                </div>
+                <div>
+                  <div className="flex items-center gap-2">
+                    <a
+                      href={`${siteConfig.whatsappUrl}?text=${encodeURIComponent(siteConfig.whatsappDefaultMessage)}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="font-bold text-sm text-emerald-800 hover:text-emerald-900 transition-colors"
+                    >
+                      {siteConfig.whatsappDisplay}
+                    </a>
+                    <span className="rounded-full bg-emerald-100/70 px-2 py-0.5 text-[10px] font-bold text-emerald-900">
+                      WhatsApp Business
+                    </span>
+                  </div>
+                  <p className="text-xs text-ink-muted mt-0.5">
+                    Convenient messaging for quick queries on site.
+                  </p>
+                </div>
+              </div>
+
+              {/* Hours & Location */}
+              <div className="pt-2 border-t border-ink/10 flex flex-wrap items-center justify-between text-[11px] text-ink-muted gap-2">
+                <span className="inline-flex items-center gap-1">
+                  <MapPin size={12} className="text-amber-800" />
+                  {siteConfig.location}
+                </span>
+                <span className="inline-flex items-center gap-1">
+                  <Clock size={12} className="text-emerald-700" />
+                  {siteConfig.operatingHours}
+                </span>
+              </div>
+            </div>
+
             <div className="contact-person">
               <img
                 src="/images/home/robbie-restored.jpg"
@@ -77,10 +144,35 @@ function ContactPage() {
                 <strong>Robbie Harley</strong>
                 <span>Founder, Harley Digital Works</span>
                 <a href={"mailto:" + siteConfig.contactEmail}>{siteConfig.contactEmail}</a>
+                <a
+                  href={"tel:" + siteConfig.contactPhoneTel}
+                  className="text-xs font-semibold text-gold-400 hover:underline"
+                >
+                  {siteConfig.contactPhone}
+                </a>
               </div>
             </div>
           </div>
           <div id="contact-form">
+            {/* Website Review Opportunity Callout */}
+            <div className="mb-6 rounded-2xl border border-amber-500/30 bg-amber-500/10 p-5 shadow-2xs">
+              <div className="flex items-start gap-3">
+                <div className="p-2 bg-amber-500 text-ink rounded-xl shrink-0 font-bold">
+                  <Sparkles size={18} />
+                </div>
+                <div className="space-y-1">
+                  <h3 className="text-sm font-bold text-ink">
+                    Show Us Your Website — We’ll Show You What’s Possible
+                  </h3>
+                  <p className="text-xs text-ink-muted leading-relaxed">
+                    Have an existing website that isn’t generating qualified enquiries? Enter your
+                    website address below. We’ll review your mobile usability, trust signals, and
+                    enquiry pathways, then prepare an illustrative transformation plan.
+                  </p>
+                </div>
+              </div>
+            </div>
+
             <EnquiryForm
               interest={
                 search.domain

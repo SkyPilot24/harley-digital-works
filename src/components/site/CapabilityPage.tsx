@@ -253,9 +253,7 @@ export function CapabilityPage({
                 <PillButton as="link" to="/contact" variant="light" className="studio-button">
                   Book a consultation
                 </PillButton>
-                <span className="final-price">
-                  Websites from £1,495 + VAT · Managed care from £95/month + VAT
-                </span>
+                <span className="final-price">Managed website: £1,495 setup · £249/month care</span>
               </div>
             </div>
             <div className="final-reassurance">

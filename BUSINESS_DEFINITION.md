@@ -10,6 +10,10 @@ During initial pilot validation, review each critical transition and all launch 
 
 ## Shared record and precedence
 
+### Commercial reconciliation — 14 October 2026
+
+Carried forward from the current canonical documentation review: package prices remain ratified. The pilot guard is two builds; wider two/three capacity records still need scope reconciliation before changing enforcement. VAT registration and invoice treatment have not been freshly verified; historical zero-rated/not-applicable wording is not an invoice instruction. Refunds, support coverage, backup/restore and sold lead-routing channels need customer-use validation. The following dated ratification record is retained as history; this note neither changes prices nor approves new tax settings or contractual terms.
+
 Imported from the existing The Harley Group / Business OS records on 2 October 2026; existing task IDs and commercial decisions are preserved. These repository files govern development across Codex/ChatGPT Work and Google Antigravity. Google Drive originals remain business reference records; there is no automatic synchronisation. When either copy changes, explicitly reconcile the other and record the date/source in the handover. Latest explicit founder decisions take precedence. Historical implementation notes require current source and runtime evidence before being marked complete.
 
 Updated 7 October 2026. Founder direction RATIFIED: The commercial blueprint, pricing tiers, unit economics, zero-rated VAT status, and 2-concurrency cap are formally approved by Robbie. Setup/build fee plus ongoing monthly subscription is confirmed as the governing model.

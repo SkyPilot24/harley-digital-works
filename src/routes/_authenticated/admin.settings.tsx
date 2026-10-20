@@ -1,6 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
+import { parseEmail, parsePhone, parseText } from "@/lib/admin-validation";
+import { adminErrorMessage, requireRows } from "@/lib/admin-writes";
 import { toast } from "sonner";
 import { useEffect, useState } from "react";
 import { PageHeader } from "./admin.index";
@@ -20,16 +22,13 @@ export const Route = createFileRoute("/_authenticated/admin/settings")({
 
 function SettingsPage() {
   const qc = useQueryClient();
-  const { data, isLoading } = useQuery({
+  const { data, isLoading, isError, refetch } = useQuery({
     queryKey: ["agency_settings"],
     queryFn: async () => {
-      const { data, error } = await supabase
-        .from("agency_settings")
-        .select("*")
-        .limit(1)
-        .maybeSingle();
+      const { data, error } = await supabase.from("agency_settings").select("*").limit(2);
       if (error) throw error;
-      return data as Settings | null;
+      if (data.length > 1) throw new Error("Multiple settings records require reconciliation");
+      return (data[0] ?? null) as Settings | null;
     },
   });
 
@@ -40,23 +39,44 @@ function SettingsPage() {
 
   const save = useMutation({
     mutationFn: async () => {
+      if (isError || isLoading) throw new Error("Settings unavailable");
+      const values = {
+        agency_name: parseText(form.agency_name, "Agency name", { required: true })!,
+        tagline: parseText(form.tagline, "Tagline"),
+        contact_email: parseEmail(form.contact_email, "Contact email"),
+        contact_phone: parsePhone(form.contact_phone, "Contact phone"),
+        address: parseText(form.address, "Address", { max: 1000, multiline: true }),
+      };
       if (!data?.id) {
-        const { error } = await supabase.from("agency_settings").insert(form);
-        if (error) throw error;
+        const result = await supabase.from("agency_settings").insert(values).select("id");
+        requireRows(result, 1, "Settings could not be created.");
       } else {
-        const { id, ...rest } = form;
-        const { error } = await supabase.from("agency_settings").update(rest).eq("id", data.id);
-        if (error) throw error;
+        const result = await supabase
+          .from("agency_settings")
+          .update(values)
+          .eq("id", data.id)
+          .select("id");
+        requireRows(result, 1, "Settings could not be saved.");
       }
     },
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ["agency_settings"] });
       toast.success("Settings saved");
     },
-    onError: (e: Error) => toast.error(e.message),
+    onError: (e: Error) => toast.error(adminErrorMessage(e, "Settings could not be saved.")),
   });
 
   if (isLoading) return <div className="text-ink-muted">Loading…</div>;
+
+  if (isError)
+    return (
+      <div role="alert">
+        Settings are unavailable. No changes can be saved.{" "}
+        <button type="button" className="underline" onClick={() => refetch()}>
+          Try again
+        </button>
+      </div>
+    );
 
   return (
     <div>

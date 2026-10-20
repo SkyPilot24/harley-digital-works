@@ -56,7 +56,7 @@ Use template: [`docs/print-materials/01-harley-digital-works-proposal-matrix.htm
 
 1. Printed 1-page Proposal Matrix
 2. Printed 14-Day Delivery Roadmap
-3. Personal handwritten post-it note: _"{{First_Name}} — checked out your work in {{City_Region}}. We can have this live for {{Company_Name}} in 14 days. Call my direct mobile on 0161 820 4910. — Jack, Harley Digital Works"_
+3. Personal handwritten post-it note: _"{{First_Name}} — checked out your work in {{City_Region}}. We can have this live for {{Company_Name}} in 14 days. Call our studio on 0117 214 1357. — Robbie, Harley Digital Works"_
 
 ---
 

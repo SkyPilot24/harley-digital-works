@@ -32,7 +32,7 @@ export const UK_LOCATIONS: Record<string, LocationInfo> = {
     headline: "The Website & Lead Partner for Greater Manchester Trades.",
     subheadline:
       "We design, write, and manage high-converting websites for electricians, builders, plumbers, and roofers across Manchester, Stockport, Salford, and Cheshire.",
-    localPhone: "0161 820 4910",
+    localPhone: "0117 214 1357",
     boroughs: [
       "City Centre",
       "Didsbury & Chorlton",
@@ -72,7 +72,7 @@ export const UK_LOCATIONS: Record<string, LocationInfo> = {
     headline: "High-Performing Websites for Birmingham & Midlands Contractors.",
     subheadline:
       "Complete 100% Done-For-You websites with built-in instant quote calculators and care plans for tradespeople in Birmingham, Solihull, Sutton Coldfield, and Wolverhampton.",
-    localPhone: "0121 740 8820",
+    localPhone: "0117 214 1357",
     boroughs: [
       "Birmingham Central",
       "Solihull & Knowle",
@@ -112,7 +112,7 @@ export const UK_LOCATIONS: Record<string, LocationInfo> = {
     headline: "Custom Websites & Lead Capture for Yorkshire Trades.",
     subheadline:
       "High-speed websites that rank on Google Map Pack and deliver qualified jobs across Leeds, Bradford, Harrogate, Wakefield, and York.",
-    localPhone: "0113 490 2810",
+    localPhone: "0117 214 1357",
     boroughs: [
       "Leeds City Centre",
       "Headingley & Horsforth",
@@ -152,7 +152,7 @@ export const UK_LOCATIONS: Record<string, LocationInfo> = {
     headline: "Prestigious Websites for Cheshire Luxury Home Contractors.",
     subheadline:
       "Tailored for builders, bespoke kitchen fitters, landscapers, and electricians working in Wilmslow, Alderley Edge, Knutsford, Hale, and Chester.",
-    localPhone: "01625 912 340",
+    localPhone: "0117 214 1357",
     boroughs: [
       "Wilmslow & Handforth",
       "Alderley Edge & Prestbury",
@@ -192,7 +192,7 @@ export const UK_LOCATIONS: Record<string, LocationInfo> = {
     headline: "Fast-Loading Websites for Liverpool & Wirral Trades.",
     subheadline:
       "Turn local searchers into paying domestic and commercial jobs across Liverpool, Sefton, St Helens, Southport, and the Wirral peninsula.",
-    localPhone: "0151 670 1920",
+    localPhone: "0117 214 1357",
     boroughs: [
       "Liverpool City Centre",
       "Crosby & Formby",
@@ -232,7 +232,7 @@ export const UK_LOCATIONS: Record<string, LocationInfo> = {
     headline: "High-End Websites for London & Home Counties Contractors.",
     subheadline:
       "Cut through extreme London trade competition with 100% done-for-you copywriting, 95+ PageSpeed scores, and local map-pack dominance.",
-    localPhone: "020 8194 7210",
+    localPhone: "0117 214 1357",
     boroughs: [
       "Central London (Westminster & City)",
       "Kensington, Chelsea & Fulham",
@@ -281,7 +281,7 @@ export const UK_LOCATIONS: Record<string, LocationInfo> = {
     headline: "Fast Turnkey Websites for Bristol & Bath Trades.",
     subheadline:
       "Rank higher on Google across Clifton, Bedminster, Keynsham, and Bath with done-for-you technical copy.",
-    localPhone: "0117 490 8120",
+    localPhone: "0117 214 1357",
     boroughs: [
       "Clifton & Redland",
       "Bedminster & Southville",
@@ -314,7 +314,7 @@ export const UK_LOCATIONS: Record<string, LocationInfo> = {
     headline: "Engineered Websites for Sheffield & South Yorkshire Contractors.",
     subheadline:
       "Capture high-margin trade work across Sheffield, Rotherham, Barnsley, Chesterfield, and the Peak District.",
-    localPhone: "0114 490 1830",
+    localPhone: "0117 214 1357",
     boroughs: [
       "City Centre",
       "Ecclesall & Dore",
@@ -347,7 +347,7 @@ export const UK_LOCATIONS: Record<string, LocationInfo> = {
     headline: "High-Speed Websites for Newcastle & Gateshead Trades.",
     subheadline:
       "Dominate Google Map Pack rankings across Newcastle, Gateshead, Sunderland, and North & South Shields.",
-    localPhone: "0191 590 2840",
+    localPhone: "0117 214 1357",
     boroughs: [
       "Newcastle City",
       "Jesmond & Gosforth",
@@ -380,7 +380,7 @@ export const UK_LOCATIONS: Record<string, LocationInfo> = {
     headline: "Custom Websites for Nottingham & East Midlands Contractors.",
     subheadline:
       "Win profitable commercial and domestic jobs across Nottingham, West Bridgford, Mansfield, and Newark.",
-    localPhone: "0115 690 3820",
+    localPhone: "0117 214 1357",
     boroughs: [
       "City Centre",
       "West Bridgford & Gamston",
@@ -413,7 +413,7 @@ export const UK_LOCATIONS: Record<string, LocationInfo> = {
     headline: "Specialist Websites for Edinburgh & Lothian Trades.",
     subheadline:
       "Designed for Edinburgh stonemasons, Gas Safe engineers, roofers, and luxury home builders.",
-    localPhone: "0131 490 1940",
+    localPhone: "0117 214 1357",
     boroughs: [
       "Old & New Town",
       "Morningside & Bruntsfield",
@@ -445,7 +445,7 @@ export const UK_LOCATIONS: Record<string, LocationInfo> = {
     headline: "Fast Lead-Generating Websites for Glasgow Trades.",
     subheadline:
       "Capture domestic repairs and commercial building contracts across Glasgow, Paisley, and Lanarkshire.",
-    localPhone: "0141 690 2810",
+    localPhone: "0117 214 1357",
     boroughs: [
       "City Centre & Merchant City",
       "West End & Hillhead",
@@ -477,7 +477,7 @@ export const UK_LOCATIONS: Record<string, LocationInfo> = {
     headline: "Websites for Leicestershire Trades & Contractors.",
     subheadline:
       "Win domestic and commercial contracts across Leicester, Loughborough, Market Harborough, and Hinckley.",
-    localPhone: "0116 490 2930",
+    localPhone: "0117 214 1357",
     boroughs: [
       "City Centre",
       "Oadby & Wigston",
@@ -504,7 +504,7 @@ export const UK_LOCATIONS: Record<string, LocationInfo> = {
     headline: "High-Speed Websites for Hampshire & South Coast Trades.",
     subheadline:
       "Serve clients across Southampton, Portsmouth, Winchester, Eastleigh, and the New Forest.",
-    localPhone: "023 8190 2840",
+    localPhone: "0117 214 1357",
     boroughs: [
       "City Centre",
       "Winchester",
@@ -536,7 +536,7 @@ export const UK_LOCATIONS: Record<string, LocationInfo> = {
     headline: "Done-For-You Websites for Cardiff & South Wales Trades.",
     subheadline:
       "Win high-value domestic jobs and commercial refits across Cardiff, Newport, Penarth, and Swansea.",
-    localPhone: "029 2190 3820",
+    localPhone: "0117 214 1357",
     boroughs: [
       "Cardiff Bay & City",
       "Penarth & Barry",

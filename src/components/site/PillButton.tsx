@@ -44,6 +44,7 @@ type LinkProps = CommonProps & {
   as: "link";
   to: string;
   search?: Record<string, unknown>;
+  hash?: string;
 };
 
 export type PillButtonProps = ButtonProps | AnchorProps | LinkProps;
@@ -66,7 +67,7 @@ export function PillButton(props: PillButtonProps) {
 
   if ("as" in props && props.as === "link") {
     return (
-      <Link to={props.to as never} search={props.search as never} className={cls}>
+      <Link to={props.to as never} search={props.search as never} hash={props.hash} className={cls}>
         {content}
       </Link>
     );

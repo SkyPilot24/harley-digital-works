@@ -1,11 +1,14 @@
+import { IllustrativeTradeProof } from "@/components/site/IllustrativeTradeProof";
 import { useEffect, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowDown, ArrowUpRight, Check, PenLine, ShieldCheck } from "lucide-react";
 import { PageShell } from "@/components/site/PageShell";
 import { PillButton } from "@/components/site/PillButton";
 import { ConceptScreen, ConceptShowcase } from "@/components/site/ConceptShowcase";
+import { BeforeAfterComparison } from "@/components/site/BeforeAfterComparison";
 import { BeforeAfterSlider } from "@/components/site/BeforeAfterSlider";
 import { WebsitePackagesSection } from "@/components/site/WebsitePackagesSection";
+import { TradeShowcaseSection } from "@/components/site/TradeShowcaseSection";
 import { TheHarleyGroupPage } from "./the-harley-group";
 import {
   Accordion,
@@ -34,7 +37,7 @@ const faqs = [
   ],
   [
     "How quickly can my website launch?",
-    "Our standard pilot turnaround is 14 days from agreed brief and assets to staging preview. You see the fully working website before launch, with dedicated time set aside for your review, test calls, and final approval.",
+    "We agree a delivery schedule after reviewing your brief, content and current capacity. You review a private preview before launch, with time for factual checks, revisions and final approval.",
   ],
   [
     "Are the websites above real client projects?",
@@ -50,7 +53,7 @@ const faqs = [
   ],
   [
     "What is included in the price?",
-    "We offer transparent commercial terms: a fixed £1,495 setup investment (structured as 50% deposit and 50% upon final sign-off, zero-rated VAT) and an ongoing £249/month Care & Growth retainer. Page count, custom copywriting, mobile optimization, revisions, ownership, and cancellation terms are confirmed in writing before you commit.",
+    "Our managed website package is £1,495 setup, paid 50% on agreement and 50% after final preview approval, plus £249/month ongoing care. Your written quote confirms pages, copywriting, mobile optimisation, revisions, timing, ownership, cancellation terms and any applicable taxes before you commit.",
   ],
 ];
 
@@ -78,17 +81,37 @@ function HomePage() {
                 Distinctive design, words that connect, and ongoing care. Made for ambitious trades
                 and service businesses.
               </p>
-              <div className="studio-actions">
-                <PillButton as="link" to="/contact" variant="dark" className="studio-button">
+              <div className="flex flex-wrap items-center gap-2 mb-3">
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-50 border border-emerald-200/80 px-2.5 py-1 text-[11px] font-bold text-emerald-900">
+                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
+                  <span>Design, copy and ongoing care</span>
+                </span>
+              </div>
+              <div className="studio-actions flex flex-wrap items-center gap-3">
+                <PillButton
+                  as="link"
+                  to="/contact"
+                  variant="dark"
+                  className="studio-button min-h-[48px] px-6 text-sm font-bold shadow-md cursor-pointer"
+                >
                   Get your website plan
                 </PillButton>
-                <a href="#selected-work" className="studio-text-link">
-                  See the design studies <ArrowDown size={16} />
+                <PillButton
+                  as="link"
+                  to="/contact"
+                  search={{ service: "Existing website review" }}
+                  variant="ghost"
+                  className="min-h-[48px] px-4 text-xs font-semibold border border-ink/20 hover:bg-ink/5 cursor-pointer"
+                >
+                  Discuss your existing website
+                </PillButton>
+                <a href="#transformations" className="studio-text-link">
+                  See transformations <ArrowDown size={14} />
                 </a>
               </div>
               <div className="hero-price">
-                <span>Bristol & Bath trade pilot</span>
-                <span>£1,495 setup · £249/mo care</span>
+                <span>Websites for Bristol, Bath and UK trade businesses</span>
+                <span>£1,495 setup (50% deposit / 50% approval) · £249/mo care</span>
               </div>
             </div>
             <div className="hero-art">
@@ -173,6 +196,41 @@ function HomePage() {
           </div>
         </section>
 
+        {/* Prominent Transformation Preview */}
+        <section
+          className="studio-section py-20 bg-stone-50/80 border-y border-stone-200"
+          id="transformations"
+          aria-label="Before and after website design concepts"
+        >
+          <div className="studio-wrap">
+            <BeforeAfterComparison
+              initialTradeId="heating-plumbing"
+              showAllTrades={true}
+              featuredOnly={true}
+              title="See what your website could become"
+              subtitle="Compare two illustrative designs for the same trade. See how clearer words, layout and enquiry routes change the experience."
+              sectionKicker="02 / BEFORE & AFTER TRANSFORMATIONS"
+            />
+            <div className="mt-10 pt-6 border-t border-ink/10 flex flex-wrap items-center justify-between gap-4">
+              <span className="text-xs sm:text-sm font-medium text-ink">
+                Explore further concepts for Building & Renovations, Landscaping, and Painting &
+                Decorating.
+              </span>
+              <PillButton
+                as="link"
+                to="/work"
+                hash="transformations"
+                variant="dark"
+                className="studio-button text-xs font-bold"
+              >
+                Explore all six trade transformations
+              </PillButton>
+            </div>
+          </div>
+        </section>
+
+        <TradeShowcaseSection />
+
         <section className="studio-purpose studio-section" aria-labelledby="purpose-heading">
           <div className="studio-wrap purpose-layout">
             <div className="purpose-visual">
@@ -194,7 +252,7 @@ function HomePage() {
               </div>
             </div>
             <div className="purpose-copy">
-              <p className="studio-kicker">02 / GOOD LOOKS. CLEAR PURPOSE.</p>
+              <p className="studio-kicker">03 / GOOD LOOKS. CLEAR PURPOSE.</p>
               <h2 id="purpose-heading">
                 A beautiful website.
                 <br />
@@ -246,7 +304,7 @@ function HomePage() {
           <div className="studio-wrap">
             <div className="studio-section-heading">
               <div>
-                <p className="studio-kicker">03 / SIMPLE FROM THE START</p>
+                <p className="studio-kicker">04 / SIMPLE FROM THE START</p>
                 <h2 id="process-heading">
                   You know your business.
                   <br />
@@ -401,7 +459,8 @@ function HomePage() {
                   Get your website plan
                 </PillButton>
                 <span className="final-price">
-                  £1,495 setup · £249/mo care · 14-day turnaround · 2–3 pilot spots
+                  £1,495 setup · £249/mo care · Agreed delivery schedule · 3-customer pilot (max 2
+                  concurrent builds)
                 </span>
               </div>
             </div>
@@ -413,7 +472,7 @@ function HomePage() {
                 <Check size={16} /> 50% deposit / 50% on approval
               </span>
               <span>
-                <ShieldCheck size={16} /> Zero VAT & ongoing managed care
+                <ShieldCheck size={16} /> Clear scope & ongoing managed care
               </span>
             </div>
           </div>

@@ -9,11 +9,13 @@ import {
   ArrowRight,
 } from "lucide-react";
 
+import { siteConfig } from "@/lib/site-config";
+
 const QUICK_PROMPTS = [
-  "Hi, I want to get a quote for a 14-Day Launch Website (£1,495).",
-  "Hi Robbie, I need a Growth Website for my trade business (£2,995).",
-  "Hi, I want to ask about your £95/mo Care Plan & hosting.",
-  "Hi, I'm interested in the £250 Trade Partner referral scheme.",
+  "Hi, I want to discuss a managed trade website (£1,495 setup + £249/mo care).",
+  "Hi Robbie, can we discuss the scope and timing for my trade website?",
+  "Hi, I want to ask about your £249/mo managed website care and updates.",
+  "Hi, I have a quick question about getting a website for my trade business.",
 ];
 
 export function FloatingWhatsAppDesk() {
@@ -21,14 +23,11 @@ export function FloatingWhatsAppDesk() {
   const [customMsg, setCustomMsg] = useState("");
   const [isDismissed, setIsDismissed] = useState(false);
 
-  // Phone number for Harley Digital Works (UK WhatsApp)
-  const phone = "447883180424"; // Format without + or spaces for wa.me
+  // Verified WhatsApp Business phone number from single source of truth
+  const phone = siteConfig.whatsappNumber; // 447394041487
 
   const handleSend = (textToSend: string) => {
-    const encoded = encodeURIComponent(
-      textToSend ||
-        "Hi Harley Digital Works, I'd like to chat about getting a website sorted for my business.",
-    );
+    const encoded = encodeURIComponent(textToSend || siteConfig.whatsappDefaultMessage);
     const url = `https://wa.me/${phone}?text=${encoded}`;
     window.open(url, "_blank", "noopener,noreferrer");
     setIsOpen(false);
@@ -54,14 +53,14 @@ export function FloatingWhatsAppDesk() {
           </div>
           <span className="text-xs font-bold tracking-wide">
             WhatsApp Desk{" "}
-            <span className="hidden sm:inline font-normal text-emerald-100">· 60s Reply</span>
+            <span className="hidden sm:inline font-normal text-emerald-100">· Message us</span>
           </span>
         </button>
       )}
 
       {/* Expanded Fast-Desk Modal */}
       {isOpen && (
-        <div className="relative w-[340px] sm:w-[380px] rounded-2xl border border-slate-800 bg-slate-950 text-white shadow-2xl overflow-hidden animate-in fade-in slide-in-from-bottom-5 duration-200">
+        <div className="relative w-[340px] sm:w-[380px] max-w-[calc(100vw-2rem)] rounded-2xl border border-slate-800 bg-slate-950 text-white shadow-2xl overflow-hidden animate-in fade-in slide-in-from-bottom-5 duration-200">
           {/* Header */}
           <div className="bg-gradient-to-r from-emerald-950 via-teal-950 to-slate-950 p-4 border-b border-emerald-900/40 flex items-start justify-between">
             <div className="flex items-center gap-3">
@@ -74,14 +73,13 @@ export function FloatingWhatsAppDesk() {
                   Harley Digital Works
                   <ShieldCheck className="h-3.5 w-3.5 text-emerald-400" />
                 </h4>
-                <p className="text-[11px] text-emerald-300 font-mono">
-                  Direct WhatsApp Dispatch · Online
-                </p>
+                <p className="text-[11px] text-emerald-300 font-mono">Websites & ongoing care</p>
               </div>
             </div>
 
             <button
               onClick={() => setIsOpen(false)}
+              aria-label="Close WhatsApp messages"
               className="rounded-lg p-1 text-slate-400 hover:text-white hover:bg-slate-800 transition-colors"
             >
               <X className="h-4 w-4" />
@@ -96,8 +94,8 @@ export function FloatingWhatsAppDesk() {
                 Need your website sorted fast?
               </p>
               <p className="text-[11px] text-slate-400 leading-relaxed">
-                Send us a direct message on WhatsApp for instant pricing, package advice, or to
-                check our next available 14-day build slot.
+                Send us a message on WhatsApp to discuss your website, ongoing care, or the next
+                available build slot.
               </p>
             </div>
 
@@ -131,10 +129,12 @@ export function FloatingWhatsAppDesk() {
                     }
                   }}
                   placeholder="Type your message..."
+                  aria-label="WhatsApp message"
                   className="flex-1 rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 text-xs text-white placeholder:text-slate-500 focus:border-emerald-500 focus:outline-none"
                 />
                 <button
                   onClick={() => handleSend(customMsg)}
+                  aria-label="Open WhatsApp with this message"
                   className="rounded-xl bg-emerald-600 px-3.5 py-2 text-white hover:bg-emerald-500 transition-colors flex items-center justify-center shrink-0"
                 >
                   <Send className="h-3.5 w-3.5" />

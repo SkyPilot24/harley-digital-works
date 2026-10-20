@@ -19,6 +19,7 @@ import {
   type AuthTrigger,
   type WebsiteDiagnostic,
 } from "@/lib/admin-diagnostics.functions";
+import { runWebsiteDiagnostics } from "@/lib/website-diagnostics-evaluator";
 import { toast } from "sonner";
 import { PageHeader, StatusBadge } from "./admin.index";
 import { ClientSiteCodeExporter } from "@/components/admin/ClientSiteCodeExporter";
@@ -46,7 +47,14 @@ function DiagnosticsPage() {
 
   const websiteQuery = useQuery({
     queryKey: ["admin", "website-diagnostics"],
-    queryFn: () => checkWebsite(),
+    queryFn: async () => {
+      // In the browser, perform route checks directly via client fetch to bypass
+      // Cloudflare Worker same-zone subrequest routing (which sends internal fetch to 100:: discard origin).
+      if (typeof window !== "undefined") {
+        return runWebsiteDiagnostics(window.location.origin);
+      }
+      return checkWebsite();
+    },
   });
 
   const outboxQuery = useQuery({
@@ -75,7 +83,7 @@ function DiagnosticsPage() {
   const groupSummary = summarizeWebsiteGroups(websiteChecks);
 
   const taskMutation = useMutation({
-    mutationFn: () => createDiagnosticTasks(),
+    mutationFn: () => createDiagnosticTasks({ data: websiteChecks }),
     onSuccess: (result) => {
       queryClient.invalidateQueries({ queryKey: ["revenue-os-tasks"] });
       queryClient.invalidateQueries({ queryKey: ["admin", "website-diagnostics"] });
@@ -310,8 +318,8 @@ function DiagnosticsPage() {
                 Automated Background Workflows & Scheduled Crons
               </h2>
               <p className="mt-1 text-sm text-ink-muted">
-                Continuous background processes running via Cloudflare Workers and Nitro server
-                engine.
+                Schedules recorded in the application. Verify provider triggers and recent execution
+                logs separately; these descriptions do not establish runtime health.
               </p>
             </div>
 
