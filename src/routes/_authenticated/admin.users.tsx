@@ -157,8 +157,8 @@ function UsersPage() {
       </div>
 
       <p className="mt-4 text-xs text-ink-muted">
-        New sign-ups appear here automatically. The first user to sign up when no admin exists is
-        promoted to admin automatically.
+        New sign-ups appear here automatically. Administrator access must be granted explicitly by a
+        trusted operator; signing up does not grant administrator access.
       </p>
     </div>
   );

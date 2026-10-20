@@ -1,0 +1,83 @@
+{
+  "candidateSourceCommit": "750b39b5e4373040b1830b1091f37981bb75145d",
+  "parentDocumentationBaseline": "6e94ce88b633b80dc301fd5d10a1b8403a461265",
+  "applicationBaseline": "af5ae9c2c3896ced4a078f7edde7896205a62a57",
+  "branch": "codex/pilot-security-release-2026-10-17",
+  "code": [
+    {
+      "path": "package.json",
+      "gitBlobSha256": "019a89654314fcad7bb2e66c893044e4bd63ce03afc419aa48752bb5441ab014"
+    },
+    {
+      "path": "package-lock.json",
+      "gitBlobSha256": "25881a0594fc755dbb818b3e59eb9667d45c87f21d5a7d356312dca71bd9a3d6"
+    },
+    {
+      "path": ".github/workflows/security.yml",
+      "gitBlobSha256": "2c72919ef72d5e5f88e22655dfe01fdaab9cd7aedaebd10ee6744a6e0d6061a9"
+    },
+    {
+      "path": "src/routes/__root.tsx",
+      "gitBlobSha256": "495b20bb8527e4f1c0d4721e7187532c1cc44e2fef5f5e6881d0e8f35192e4e3"
+    }
+  ],
+  "lockedVersions": {
+    "reactStart": "1.169.3",
+    "startServerCore": "1.169.44"
+  },
+  "validation": {
+    "audit": {
+      "total": 0,
+      "high": 0,
+      "critical": 0,
+      "scope": "Prepared worktree identical lock and installed dependencies; no install in this turn"
+    },
+    "typecheck": "PASS",
+    "lint": {
+      "errors": 0,
+      "existingWarnings": 9
+    },
+    "format": "PASS",
+    "build": "PASS staging-configured local output ONLY",
+    "smokeChecks": 66,
+    "nodeTests": 190,
+    "serviceWorkerTests": 3,
+    "localBrowserAuthChecks": 7,
+    "runtimeOriginChecks": 6,
+    "publicArtifactSecretScan": {
+      "files": 226,
+      "configuredPrivateValuesFound": 0
+    },
+    "reviewDraftPgliteTests": 4
+  },
+  "migration": {
+    "source": "supabase/migrations/20261015140000_reconcile_projects_schema.sql",
+    "recordedFileSha256": "7f13ec23c6ee6b97b5756656b312173ed7276dc84b89231cdf6c6a5a4d8216e6",
+    "state": "HOLD: unchanged original has reproduced dependency/access issues",
+    "reviewDraft": "docs/release-package/2026-10-17/projects-reconciliation-review-draft.sql",
+    "reviewDraftSha256": "3bb07d8fe3032a24276c31caf807ab129537e79d1fb5a6f59a8bb74f2fa584d4",
+    "test": "scripts/project-schema-review.test.mjs",
+    "reviewDraftNotVersionedMigration": true,
+    "applied": false
+  },
+  "runtime": {
+    "localPort4191Closed": true,
+    "stagingFixtureCleanup": {
+      "leads": 0,
+      "jobs": 0,
+      "ownedAttempts": 0,
+      "sessionSignedOut": true
+    }
+  },
+  "release": {
+    "pushed": false,
+    "deployed": false,
+    "productionMigrationsApplied": false,
+    "releaseBuildRequired": "Fresh production-configured build of exact approved source; never deploy staging .output"
+  },
+  "backups": {
+    "recoverableBackupCaptured": false,
+    "restoreRehearsed": false,
+    "metadataSnapshotOnly": true
+  }
+}

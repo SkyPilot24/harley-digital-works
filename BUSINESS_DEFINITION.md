@@ -56,3 +56,11 @@ The founder is developing this alongside an NHS career; keep accounts, systems, 
 ## Measures
 
 Track verified paying customers, collected revenue, actual subscriptions, cancellations, failed payments, acquisition cost including labour, delivery time, support time and contribution. Forecasts and pipeline amounts must stay separate from actual revenue. See Financials for the illustrative model and PROJECT_STATUS.md for verified delivery state.
+
+## Pro bono community contribution — 18 October 2026
+
+Founder-reported contribution: Robbie Harley provided unpaid website design, development, systems and consultancy work for The Revival Fellowship. Robbie reports that the replacement website has been delivered. Record this as a pro bono community project, separate from the Harley brand family; no group ownership, subsidiary status, registered-charity status or formal charitable relationship is established by this record.
+
+Founder direction: cap further unpaid time and prioritise a scalable, revenue-generating Harley agency using technology and AI. No additional unpaid delivery or ongoing support commitment is created. Any further Fellowship work requires a separately agreed scope and time limit; no numerical time cap has yet been specified. Hours, monetary value, commercial outcomes and spiritual outcomes are not claimed.
+
+Public reference and reciprocal footer credit are prepared for review only. Website: https://therevivalfellowship.co.uk/ . Proposed parent credit: https://theharleygroup.org/ . No publication, deployment or customer endorsement is implied. See docs/REVIVAL_PRO_BONO_REFERENCE_2026-10-18.md.

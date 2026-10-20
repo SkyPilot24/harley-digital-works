@@ -1,0 +1,42 @@
+{
+  "checkedAt": "2026-10-17T22:32:16.527Z",
+  "candidateStartingRevision": "e61fc2cb9368c52197d3e2a2517ab046668ef268",
+  "securitySource": "750b39b5e4373040b1830b1091f37981bb75145d",
+  "staging": {
+    "project": "mfpnfxpgkfuqtedbcxvp",
+    "projectsHasClientId": true,
+    "projectsCount": 0,
+    "clientsCount": 1,
+    "projectTasksExists": false,
+    "projectsLegacyExists": false,
+    "inspection": "read-only catalog and counts",
+    "writes": false
+  },
+  "localTests": {
+    "command": "node --test scripts/project-schema-review.test.mjs",
+    "passed": 6,
+    "failed": 0,
+    "backup": "PGlite dumpDataDir in-memory synthetic snapshot",
+    "restore": "separate PGlite loadDataDir instance",
+    "proved": [
+      "joined rows",
+      "FK points to projects",
+      "admin read allowed",
+      "ordinary read denied",
+      "task cascade",
+      "source independent"
+    ],
+    "limits": [
+      "not provider backup",
+      "no retained backup artifact",
+      "no actual Supabase migration/API acceptance"
+    ]
+  },
+  "tooling": {
+    "supabaseCli": false,
+    "pgDump": false,
+    "pgRestore": false
+  },
+  "migrationApplied": false,
+  "productionChanged": false
+}

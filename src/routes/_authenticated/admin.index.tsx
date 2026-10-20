@@ -556,10 +556,10 @@ function DashboardPage() {
                 <CheckCircle2 size={18} />
               </div>
               <div>
-                <h2 className="text-sm font-bold">Automated Operations Normal — 0 Exceptions</h2>
+                <h2 className="text-sm font-bold">No exceptions in the loaded records</h2>
                 <p className="text-xs text-emerald-800">
-                  Lead capture active, Slack minute alerts acknowledged, hourly abuse retention
-                  scheduled. No overdue items.
+                  This queue does not verify enquiry delivery, scheduled jobs, backups or billing.
+                  Check the latest acceptance evidence before relying on those services.
                 </p>
               </div>
             </div>

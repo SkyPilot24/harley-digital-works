@@ -131,3 +131,11 @@ Preserve history, but keep the current checkpoint easy to identify. Do not descr
 If writes are unavailable, provide exact ready-to-save Markdown and explicitly state that it has not been applied.
 
 Finish concisely with the result, verification limits and next action. For release reviews, mark gates Ready, Needs attention or Blocking launch using evidence.
+
+## Daily continuity and historical prompt routing
+
+For daily/weekly prioritisation, planning, implementation, copy and QA, use docs/DAILY_PLAYBOOK.md for the compact routine and reconciled PROMPT_LIBRARY.md / MASTER_BUILD_PROMPTS.md routing. Do not load both entire historical libraries each session. Current business, offer, approved brand, source evidence and permissions override September assumptions. Inspect existing implementation/peer work before coding; save the compact end checkpoint. The one morning prompt lives in docs/DAILY_PLAYBOOK.md.
+
+## Founder communication preference — 20 October 2026
+
+Robbie is the founder, not a developer. Explain findings and actions in plain English, one step at a time. Lead with the practical meaning for the business and any decision needed. Explain technical terms when they are necessary; do not assume familiarity with Git, branches, commits or deployment. For checks requested as read-only, report findings before changing files; apply only separately authorised edits.

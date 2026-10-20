@@ -1,0 +1,25 @@
+{
+  "marker": "HDW-INBOUND-SLACK-20261017",
+  "startedUtc": "2026-10-17T22:03:48.914Z",
+  "authorisation": "Robbie requested testing the existing Slack alert route and supplied the private webhook locally.",
+  "expectedChannel": "C0BFQS2P2H1",
+  "attempts": 1,
+  "automaticRetry": false,
+  "scope": "Single plain-text incoming-webhook test only; no CRM/outbox/scheduler mutation.",
+  "httpStatus": 200,
+  "slackAcknowledged": true,
+  "finishedUtc": "2026-10-17T22:03:49.326Z",
+  "independentReadback": {
+    "verified": true,
+    "method": "Slack channel history; immediate search index had no results",
+    "channelId": "C0BFQS2P2H1",
+    "channelName": "all-the-harley-group",
+    "messageTs": "1792274627.436269",
+    "displayedTime": "2026-10-17 23:03:47 BST",
+    "markerMatches": true
+  },
+  "limitations": [
+    "Webhook-to-channel transport verified; full scheduled production outbox/retry chain was not exercised.",
+    "No monitoring cadence chosen or live automation activated."
+  ]
+}

@@ -273,7 +273,8 @@ function AboutPage() {
                   Let’s talk about your website
                 </PillButton>
                 <span className="final-price">
-                  £1,495 setup · £249/mo care · Agreed delivery schedule · Up to 2 pilot spots
+                  £1,495 setup · £249/mo care · Agreed delivery schedule · 3-customer pilot (max 2
+                  concurrent builds)
                 </span>
               </div>
             </div>
