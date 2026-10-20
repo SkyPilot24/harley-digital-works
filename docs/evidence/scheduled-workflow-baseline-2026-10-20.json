@@ -1,0 +1,182 @@
+{
+  "schemaVersion": 1,
+  "recordedUtc": "2026-10-20T17:36:37.2450998Z",
+  "tasks": [
+    "H42",
+    "H47"
+  ],
+  "repository": "SkyPilot24/harley-digital-works",
+  "branch": "codex/scheduled-workflow-repair-20261020",
+  "baseRevision": "0845172c455b756a0a6eb24af1e7b56d78c348e9",
+  "workflow": ".github/workflows/drift-detection.yml",
+  "workflowGitBlob": "a90cac8276dde12da25b4b5127bcebd1aa795914",
+  "workflowLocalSha256": "c523762bd9f4e3de1d81f865407308cd2e87a20914ffe531dfa1e11520bf64b5",
+  "environment": {
+    "os": "Windows",
+    "arch": "x64",
+    "node": "22.23.3",
+    "npm": "10.9.2",
+    "install": "npm ci",
+    "installResult": "428 added, 429 audited, zero vulnerabilities",
+    "runtimeSelection": "npx --yes --package=node@22 --package=npm@10.9.2",
+    "environmentFilesCopied": false
+  },
+  "githubFailure": {
+    "runId": 39276307762,
+    "url": "https://github.com/SkyPilot24/harley-digital-works/actions/runs/39276307762",
+    "revision": "0845172c455b756a0a6eb24af1e7b56d78c348e9",
+    "passed": 60,
+    "failed": 2
+  },
+  "checks": [
+    {
+      "name": "runtime",
+      "startedUtc": "2026-10-20T17:32:36.0351809Z",
+      "finishedUtc": "2026-10-20T17:32:37.9152879Z",
+      "exitCode": 0,
+      "log": "logs/scheduled-workflow-2026-10-20/runtime.log",
+      "logSha256": "6e90ba31805a8526f0b565e3d7d69f2d84953b41d5ea46bbf586572429150242"
+    },
+    {
+      "name": "prebuild-reproduction",
+      "startedUtc": "2026-10-20T17:32:37.9374721Z",
+      "finishedUtc": "2026-10-20T17:32:39.2910885Z",
+      "exitCode": 1,
+      "log": "logs/scheduled-workflow-2026-10-20/prebuild-reproduction.log",
+      "logSha256": "85284bdda4784200b9be1a0c2c41f9ab326b6f68dafb96e7e83787b093ecc265"
+    },
+    {
+      "name": "format",
+      "startedUtc": "2026-10-20T17:32:39.3064951Z",
+      "finishedUtc": "2026-10-20T17:32:45.3188156Z",
+      "exitCode": 1,
+      "log": "logs/scheduled-workflow-2026-10-20/format.log",
+      "logSha256": "3ba0e737ea48436c66c7d5f3120cae549a572f5cbd098748d1a4160828c51caa"
+    },
+    {
+      "name": "lint",
+      "startedUtc": "2026-10-20T17:32:45.335124Z",
+      "finishedUtc": "2026-10-20T17:33:05.8602289Z",
+      "exitCode": 0,
+      "log": "logs/scheduled-workflow-2026-10-20/lint.log",
+      "logSha256": "ea70bb4ad3b1d08bfb5f2b3632e7170b6fec9766839ec18438f1d4911fed9157"
+    },
+    {
+      "name": "typecheck",
+      "startedUtc": "2026-10-20T17:33:05.8767073Z",
+      "finishedUtc": "2026-10-20T17:33:18.3527749Z",
+      "exitCode": 0,
+      "log": "logs/scheduled-workflow-2026-10-20/typecheck.log",
+      "logSha256": "e5046545a3a9fcc0cf6950c9402c78a2b227f07a6a658d2a0c1fbc5f4a194da0"
+    },
+    {
+      "name": "build",
+      "startedUtc": "2026-10-20T17:33:18.3694227Z",
+      "finishedUtc": "2026-10-20T17:33:47.1945375Z",
+      "exitCode": 0,
+      "log": "logs/scheduled-workflow-2026-10-20/build.log",
+      "logSha256": "8e4dfa3848ab2595bd7c1833756c23347072f936194adc3094842a1c7eb70df9"
+    },
+    {
+      "name": "platform-after-build",
+      "startedUtc": "2026-10-20T17:33:47.2091935Z",
+      "finishedUtc": "2026-10-20T17:33:48.6867725Z",
+      "exitCode": 0,
+      "log": "logs/scheduled-workflow-2026-10-20/platform-after-build.log",
+      "logSha256": "4364ae66b5c0c19344a56d79a1cf8710c7cc76be9c6dc85604ca9e3141dae766"
+    },
+    {
+      "name": "tests",
+      "startedUtc": "2026-10-20T17:33:48.7063443Z",
+      "finishedUtc": "2026-10-20T17:34:06.1449309Z",
+      "exitCode": 0,
+      "log": "logs/scheduled-workflow-2026-10-20/tests.log",
+      "logSha256": "cfc2f57b965569e7f48921f6b01b48bd7a3ab8190f30a071d4e53fd77b6dc5bf"
+    },
+    {
+      "name": "dependency-audit",
+      "startedUtc": "2026-10-20T17:34:06.1638674Z",
+      "finishedUtc": "2026-10-20T17:34:09.2639007Z",
+      "exitCode": 0,
+      "log": "logs/scheduled-workflow-2026-10-20/dependency-audit.log",
+      "logSha256": "4b02d4a3c23d969c46bd2041360f80bfcb1fe760d9db864009acdd710f9de601"
+    },
+    {
+      "name": "artifact-scan",
+      "startedUtc": "2026-10-20T17:34:09.2721125Z",
+      "finishedUtc": "2026-10-20T17:34:11.1859902Z",
+      "exitCode": 0,
+      "log": "logs/scheduled-workflow-2026-10-20/artifact-scan.log",
+      "logSha256": "62b76df5b734d53d9cfcdb0b4d7de08d32ef3471327b13666a43435290a2128e"
+    },
+    {
+      "name": "format-final",
+      "exitCode": 0,
+      "log": "logs/scheduled-workflow-2026-10-20/format-final.log",
+      "logSha256": "acca17ff29325660d6b856b0ee9491a040d1d353b7b577ae750b63296a23ce89"
+    },
+    {
+      "name": "workflow-semantics",
+      "exitCode": 0,
+      "log": "logs/scheduled-workflow-2026-10-20/workflow-semantics.log",
+      "logSha256": "009149f239e44285616f5e8e2aef5a1f8c0584e92bcddaa3f8d244963a11c9ce"
+    },
+    {
+      "name": "tests-final",
+      "exitCode": 0,
+      "log": "logs/scheduled-workflow-2026-10-20/tests-final.log",
+      "logSha256": "f180093708933b30f27d15ecf6cea03e5c70f4e3af4db03f763cd246f0e89ad6"
+    },
+    {
+      "name": "format-post-restoration",
+      "exitCode": 0,
+      "log": "logs/scheduled-workflow-2026-10-20/format-post-restoration.log",
+      "logSha256": "acca17ff29325660d6b856b0ee9491a040d1d353b7b577ae750b63296a23ce89"
+    }
+  ],
+  "finalResults": {
+    "prebuildExpectedFailure": {
+      "failed": 2,
+      "passed": 60
+    },
+    "postbuildPlatform": {
+      "failed": 0,
+      "passed": 66
+    },
+    "regression": {
+      "skipped": 0,
+      "passed": 196,
+      "failed": 0
+    },
+    "serviceWorker": {
+      "skipped": 0,
+      "passed": 3,
+      "failed": 0
+    },
+    "lint": {
+      "warnings": 9,
+      "errors": 0
+    },
+    "dependencyVulnerabilities": 0,
+    "artifactCredentialFindings": 0,
+    "trackedCredentialPatterns": "both repository patterns checked quietly; zero matches",
+    "workflowSemantics": "YAML parsed; exactly one build after install and before verification; remaining semantics identical"
+  },
+  "limits": [
+    "Windows local execution, not GitHub Ubuntu CI",
+    "No live application/provider/database acceptance",
+    "Pattern scans are bounded",
+    "Raw logs ignored and local; hashes retained",
+    "Initial format failure corrected and rechecked",
+    "Build-generated route churn excluded; final tests and format rechecked"
+  ],
+  "status": {
+    "implementedLocally": true,
+    "testedLocally": true,
+    "pushed": false,
+    "pullRequestCreated": false,
+    "merged": false,
+    "deployed": false,
+    "migrationsApplied": false
+  }
+}

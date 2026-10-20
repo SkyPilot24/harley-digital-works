@@ -1,3 +1,5 @@
+Current session entry point: [Daily routine, morning prompt and reconciled historical prompt routing](DAILY_PLAYBOOK.md). Governing records remain authoritative.
+
 # Business documentation directory
 
 Reviewed 14 October 2026. This directory serves the existing shared repository; it does not create another Business OS. [Business OS index](BUSINESS_OS_INDEX.md) links the shared Drive records. Drive sync is explicit and its current contents/permissions were not verified in this review.

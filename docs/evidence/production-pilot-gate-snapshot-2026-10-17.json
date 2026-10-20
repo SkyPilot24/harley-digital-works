@@ -1,0 +1,49 @@
+{
+  "date": "2026-10-17",
+  "scope": "Read-only checks for production go/no-go checklist; no live mutation",
+  "repository": "SkyPilot24/harley-digital-works",
+  "localMain": "af5ae9c2c3896ced4a078f7edde7896205a62a57",
+  "remoteMainLsRemote": "af5ae9c2c3896ced4a078f7edde7896205a62a57",
+  "production": {
+    "project": "worzpzbutngugwzhlvtj",
+    "sqlCheckedUtc": "2026-10-17T22:08:29.049485Z",
+    "projectsColumns": ["id", "client_name", "package", "status", "deadline", "progress", "value", "notes", "created_at"],
+    "counts": {"leads": 0, "clients": 0, "projects": 0, "notificationJobs": 0},
+    "projectReconciliationMigrationRecorded": false,
+    "latestMigration": "20261012155701",
+    "paymentContractsPresent": false,
+    "paymentReceiptsPresent": false,
+    "deliveryApprovalsPresent": false
+  },
+  "cloudflare": {
+    "account": "6ccd86a1ec4535357f9bc51cd05e68cd",
+    "worker": "skypilot24-harley-digital-works",
+    "deployment": "09f84a90-197e-4312-9895-a0b3bf67c157",
+    "version": "d9e17d0e-9070-406a-a8a6-20608249cd42",
+    "trafficPercent": 100,
+    "backendMatchesProduction": true,
+    "leadNotifications": "true",
+    "transactionalEmail": "false",
+    "stripeBindingPresent": false,
+    "verificationLimit": "Same immutable version previously mapped to af5ae9c by Gate 1; commit mapping not independently re-derived in this turn",
+    "authenticationNote": "Main-checkout custom token failed; existing authorised OAuth read-only metadata succeeded; no credentials or config changed"
+  },
+  "dependencyEvidence": {
+    "lockedReactStart": "1.168.27",
+    "lockedStartServerCore": "1.169.16",
+    "advisory": "https://github.com/advisories/GHSA-qx66-fv34-fjm8",
+    "advisoryPatchedMinimums": {"reactStart": "1.168.60", "startServerCore": "1.169.39"},
+    "freshAudit": "UNAVAILABLE: command returned an error object without vulnerability metadata; never counted as clean"
+  },
+  "creditedEvidence": {
+    "inboundStagingBrowserChecks": 9,
+    "ownerStagingAuthBrowserChecks": 8,
+    "slackWebhookMessages": 1,
+    "slackWebhookAcknowledgedAndReadBack": true,
+    "fullProductionEnquiryOutboxChain": "NOT RUN",
+    "sellerPaymentRecoveryAndFullDelivery": "Not established by this scoped turn"
+  },
+  "checksNotRepeated": ["Full platform audit", "Customer record inspection", "Drive permission change", "Production Auth mutation", "Production enquiry submission", "Payment charge", "Restore into production"],
+  "secretsPrinted": false,
+  "productionMutations": false
+}

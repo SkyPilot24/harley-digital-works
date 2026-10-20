@@ -69,6 +69,7 @@ import { Route as AuthenticatedAdminTeamRouteImport } from './routes/_authentica
 import { Route as AuthenticatedAdminTestimonialsRouteImport } from './routes/_authenticated/admin.testimonials'
 import { Route as AuthenticatedAdminUsersRouteImport } from './routes/_authenticated/admin.users'
 import { Route as ApiPaymentsStripeRouteImport } from './routes/api.payments.stripe'
+import { Route as ApiWebhooksResendRouteImport } from './routes/api.webhooks.resend'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -385,6 +386,11 @@ const ApiPaymentsStripeRoute = ApiPaymentsStripeRouteImport.update({
   path: '/api/payments/stripe',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiWebhooksResendRoute = ApiWebhooksResendRouteImport.update({
+  id: '/api/webhooks/resend',
+  path: '/api/webhooks/resend',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -445,6 +451,7 @@ export interface FileRoutesByFullPath {
   '/admin/testimonials': typeof AuthenticatedAdminTestimonialsRoute
   '/admin/users': typeof AuthenticatedAdminUsersRoute
   '/api/payments/stripe': typeof ApiPaymentsStripeRoute
+  '/api/webhooks/resend': typeof ApiWebhooksResendRoute
   '/admin/': typeof AuthenticatedAdminIndexRoute
 }
 export interface FileRoutesByTo {
@@ -506,6 +513,7 @@ export interface FileRoutesByTo {
   '/admin/testimonials': typeof AuthenticatedAdminTestimonialsRoute
   '/admin/users': typeof AuthenticatedAdminUsersRoute
   '/api/payments/stripe': typeof ApiPaymentsStripeRoute
+  '/api/webhooks/resend': typeof ApiWebhooksResendRoute
   '/admin': typeof AuthenticatedAdminIndexRoute
 }
 export interface FileRoutesById {
@@ -569,6 +577,7 @@ export interface FileRoutesById {
   '/_authenticated/admin/testimonials': typeof AuthenticatedAdminTestimonialsRoute
   '/_authenticated/admin/users': typeof AuthenticatedAdminUsersRoute
   '/api/payments/stripe': typeof ApiPaymentsStripeRoute
+  '/api/webhooks/resend': typeof ApiWebhooksResendRoute
   '/_authenticated/admin/': typeof AuthenticatedAdminIndexRoute
 }
 export interface FileRouteTypes {
@@ -632,6 +641,7 @@ export interface FileRouteTypes {
     | '/admin/testimonials'
     | '/admin/users'
     | '/api/payments/stripe'
+    | '/api/webhooks/resend'
     | '/admin/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -693,6 +703,7 @@ export interface FileRouteTypes {
     | '/admin/testimonials'
     | '/admin/users'
     | '/api/payments/stripe'
+    | '/api/webhooks/resend'
     | '/admin'
   id:
     | '__root__'
@@ -755,6 +766,7 @@ export interface FileRouteTypes {
     | '/_authenticated/admin/testimonials'
     | '/_authenticated/admin/users'
     | '/api/payments/stripe'
+    | '/api/webhooks/resend'
     | '/_authenticated/admin/'
   fileRoutesById: FileRoutesById
 }
@@ -800,6 +812,7 @@ export interface RootRouteChildren {
   TrackTokenRoute: typeof TrackTokenRoute
   TradesSlugRoute: typeof TradesSlugRoute
   ApiPaymentsStripeRoute: typeof ApiPaymentsStripeRoute
+  ApiWebhooksResendRoute: typeof ApiWebhooksResendRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -1224,6 +1237,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiPaymentsStripeRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/webhooks/resend': {
+      id: '/api/webhooks/resend'
+      path: '/api/webhooks/resend'
+      fullPath: '/api/webhooks/resend'
+      preLoaderRoute: typeof ApiWebhooksResendRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -1317,6 +1337,7 @@ const rootRouteChildren: RootRouteChildren = {
   TrackTokenRoute: TrackTokenRoute,
   TradesSlugRoute: TradesSlugRoute,
   ApiPaymentsStripeRoute: ApiPaymentsStripeRoute,
+  ApiWebhooksResendRoute: ApiWebhooksResendRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
