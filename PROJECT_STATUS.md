@@ -1,5 +1,18 @@
 # Harley Digital Works — Project Status
 
+## Strategic Brand, Logo & Typography Architecture Review — 20 October 2026 (H15/H16/H42)
+
+**Current Status:** Completed comprehensive brand identity, logo mark, and typography review across The Harley Group, Harley Digital Works, and Harley Labs (`brand-review-and-prelaunch-recommendations.md`). Addressed the core positioning tension: high-end commercial design that directly appeals to UK tradespeople without feeling like an aloof "web agency". Upgraded agency marketing typography tokens in `src/styles.css` from fallback Arial to sturdy modern geometric sans (*Manrope* for headings/display, *Inter* for body), immediately elevating perceived commercial value while preserving mobile legibility.
+
+**Verification:**
+
+- `npm run format:check`: PASS (All matched files use Prettier style).
+- `npm run typecheck`: PASS (0 errors).
+- `npm run lint`: PASS (0 errors, 9 non-blocking Fast Refresh warnings in UI components).
+- `npm test`: PASS (66 smoke + 196 Node regression/security/recovery + 3 SW = 265 total assertions, 0 failures).
+- `npm run build`: PASS (Nitro SSR build in 2.52s).
+- `node scripts/scan-build-artifacts.mjs`: PASS (0 secrets or private credentials exposed).
+
 ## Hero Before & After Transformation Video & Scene Creation — 20 October 2026 (H15/H16/H42)
 
 **Current Status:** Generated high-resolution commercial visual assets for all 4 scenes of the Before & After Trade Transformation Video (`public/images/transformation-video/`). Implemented an interactive 55-second Hero Video Showcase Modal component (`HeroTransformationVideoModal.tsx`) with real-time scene progress scrubbing, voiceover audio speech synthesis, subtitle overlays, and direct WhatsApp CTA. Integrated into the homepage hero actions and hero art card (`src/routes/index.tsx`).

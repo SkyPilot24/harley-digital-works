@@ -1,3 +1,18 @@
+## Strategic Brand, Logo & Typography Architecture Review — 20 October 2026
+
+- **Tool & Scope:** Google Antigravity. Comprehensive brand, logo, and typography review across The Harley Group, Harley Digital Works, and Harley Labs. Produced pre-launch strategic enhancements artifact (`brand-review-and-prelaunch-recommendations.md`).
+- **Founder Direction:** Robbie requested in voice note: *"Please review the current brand, the logo, the typography for both The Harley Group, Harley Labs and Harley Digital Works... high-end, but also appeal to our target market, not too 'web agency'. Look at the current brand pack and suggest improvements pre-launch."*
+- **Applied Changes:**
+  - `src/styles.css`: Upgraded `.hdw-marketing` font family tokens from fallback `Arial, Helvetica, sans-serif` to `Manrope` for headings and display, with `Inter` for body text. Immediately gives the agency a precision-crafted, high-end British engineering aesthetic while maintaining 100% legibility on mobile.
+  - Authored `brand-review-and-prelaunch-recommendations.md`: Complete audit of the 3 entity brand assets, logo legibility (van, workwear, and WhatsApp circle avatar tests), color system boundaries, and 5 pre-launch improvements.
+- **Empirical Verification:**
+  - `npm run format:check`: PASS.
+  - `npm run typecheck`: PASS (0 errors).
+  - `npm run lint`: PASS (0 errors, 9 non-blocking Fast Refresh warnings).
+  - `npm test`: PASS (265 / 265 assertions passed).
+  - `npm run build`: PASS (Nitro SSR build in 2.52s).
+  - `node scripts/scan-build-artifacts.mjs`: PASS (0 secrets exposed).
+
 ## Hero Before & After Transformation Video & Scene Creation — 20 October 2026
 
 - **Tool & Scope:** Google Antigravity. Instigated the 4 scenes from the Before & After Trade Transformation Video specification (`before-after-trade-video-spec.md`) and built an interactive 55s video showcase modal in the website hero.
