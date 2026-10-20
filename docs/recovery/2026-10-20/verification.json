@@ -1,0 +1,98 @@
+{
+  "checkedUtc": "2026-10-20T15:34:31.206Z",
+  "revision": "4d31a8a7202c36dc9c72988dfcd48cdc0ce7734c",
+  "localBranchCount": 20,
+  "unpublishedLocalCommits": 0,
+  "worktreeCount": 6,
+  "remoteSnapshotsVerified": 18,
+  "dirtyFilesCoveredByRemote": 40,
+  "ignoredSourceFilesCoveredByRemote": 2327,
+  "realPrivateConfigurationsBackedUp": 3,
+  "allOriginalBranchesPreserved": true,
+  "originalStashReachableOnGithub": true,
+  "activeApplicationUnchanged": true,
+  "reviewedZipArchivesVerifiedOnGithub": 3,
+  "failures": [],
+  "localOnlyExclusions": [
+    {
+      "worktree": 0,
+      "path": "ionos-domains-export-2026-10-17.csv",
+      "reason": "private domain inventory, backed up locally"
+    },
+    {
+      "worktree": 0,
+      "path": ".env.local",
+      "reason": "real private configuration, never uploaded"
+    },
+    {
+      "worktree": 0,
+      "path": "supabase/.temp/cli-latest",
+      "reason": "generated log/process/test state, local backup only"
+    },
+    {
+      "worktree": 2,
+      "path": "commit-verification.local/build.local.log",
+      "reason": "generated log/process/test state, local backup only"
+    },
+    {
+      "worktree": 2,
+      "path": "commit-verification.local/domains.local.log",
+      "reason": "generated log/process/test state, local backup only"
+    },
+    {
+      "worktree": 2,
+      "path": "commit-verification.local/lint.local.log",
+      "reason": "generated log/process/test state, local backup only"
+    },
+    {
+      "worktree": 2,
+      "path": "commit-verification.local/regression.local.log",
+      "reason": "generated log/process/test state, local backup only"
+    },
+    {
+      "worktree": 2,
+      "path": "commit-verification.local/test-results/.last-run.json",
+      "reason": "generated log/process/test state, local backup only"
+    },
+    {
+      "worktree": 2,
+      "path": "commit-verification.local/types.local.log",
+      "reason": "generated log/process/test state, local backup only"
+    },
+    {
+      "worktree": 2,
+      "path": "local-setup-verification.local/checks.local.log",
+      "reason": "generated log/process/test state, local backup only"
+    },
+    {
+      "worktree": 2,
+      "path": "local-setup-verification.local/test-results/.last-run.json",
+      "reason": "generated log/process/test state, local backup only"
+    },
+    {
+      "worktree": 3,
+      "path": ".env.local",
+      "reason": "real private configuration, never uploaded"
+    },
+    {
+      "worktree": 3,
+      "path": ".rehearsal-process.local",
+      "reason": "generated log/process/test state, local backup only"
+    },
+    {
+      "worktree": 4,
+      "path": ".env.local",
+      "reason": "real private configuration, never uploaded"
+    },
+    {
+      "worktree": 4,
+      "path": "pilot-build.log",
+      "reason": "generated log/process/test state, local backup only"
+    },
+    {
+      "worktree": 4,
+      "path": "pilot-tests.log",
+      "reason": "generated log/process/test state, local backup only"
+    }
+  ]
+}
