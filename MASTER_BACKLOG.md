@@ -1,3 +1,7 @@
+## H42/H47 — Scheduled-workflow baseline repair, 20 October 2026
+
+Implemented and tested locally on `codex/scheduled-workflow-repair-20261020` from main `0845172c455b756a0a6eb24af1e7b56d78c348e9`: add build before scheduled artifact verification. Pre-build 60/62 reproduces failed GitHub run 39276307762; after build 66/66, 196 regression + 3 service-worker tests pass. Locked install, format, lint (9 existing warnings), typecheck, audit and artifact scan pass. Evidence: [repair report](docs/SCHEDULED_WORKFLOW_REPAIR_2026-10-20.md). No push/PR/merge/deployment/migration. GitHub Linux execution remains unverified. Owner Codex/founder; next review local diff and authorise branch publication/preview handling before remote checks. This closes the local repair only, not H42/H47 overall or integration readiness.
+
 ## Migration recovery validation checkpoint — 17 October 2026
 
 H07/H08/H09/H19/H42/H47/H50. Candidate branch codex/pilot-security-release-2026-10-17, starting revision e61fc2cb9368c52197d3e2a2517ab046668ef268; application security source remains 750b39b5e4373040b1830b1091f37981bb75145d. Primary main af5ae9c2c3896ced4a078f7edde7896205a62a57 and unrelated peer edits preserved. User authorised continuing validation and requested handover update; no production execution authority inferred.

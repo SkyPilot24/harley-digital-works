@@ -1,3 +1,7 @@
+## Scheduled-workflow repair prepared locally — 20 October 2026 (H42/H47)
+
+Isolated branch `codex/scheduled-workflow-repair-20261020`, based on GitHub main `0845172c455b756a0a6eb24af1e7b56d78c348e9`. Founder authorised the isolated workflow repair and baseline evidence only. Added `npm run build` between locked install and artifact-dependent verification; schedule, permissions, assertions and tests unchanged. Clean pre-build reproduction: 60 PASS / 2 expected FAIL. Node 22.23.3 / npm 10.9.2 locked install PASS; build PASS; post-build platform 66/66; regression 196/196 plus service-worker 3/3; format/typecheck/lint PASS (9 existing lint warnings); dependency audit zero vulnerabilities; artifact scan zero findings; quiet tracked-credential patterns PASS. Generated route churn from this build excluded. Full evidence and limits: [scheduled-workflow repair](SCHEDULED_WORKFLOW_REPAIR_2026-10-20.md). Windows local checks do not prove a GitHub Linux workflow run or live acceptance. No application/dependency/database changes, push, PR, merge, deployment, migration or outbound action. Owner Codex/founder. Next: review the local diff, then obtain branch-publication/preview authority before publishing for GitHub validation; do not select the first development batch yet.
+
 ## Gate 1 unified release candidate verified — 18 October 2026
 
 Founder (Robbie) authorised publishing the Gate 1 release candidate. Candidate branch `release/gate1-unified-candidate`, base `13d2aff36f590d23e38972edcdbbbdd92627b60e` on top of `main` (`af5ae9c2c3896ced4a078f7edde7896205a62a57`). 
