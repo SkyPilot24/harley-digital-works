@@ -1,0 +1,51 @@
+{
+  "captured_at": "2026-10-20T20:21:51Z",
+  "project_ref": "worzpzbutngugwzhlvtj",
+  "environment": "production",
+  "row_counts": {
+    "projects": 0,
+    "project_tasks": 0,
+    "clients": 0
+  },
+  "columns": {
+    "projects": [
+      { "name": "id", "type": "uuid", "nullable": false },
+      { "name": "client_name", "type": "text", "nullable": false },
+      { "name": "package", "type": "text", "nullable": false },
+      { "name": "status", "type": "text", "nullable": false },
+      { "name": "deadline", "type": "timestamp with time zone", "nullable": true },
+      { "name": "progress", "type": "integer", "nullable": true },
+      { "name": "value", "type": "numeric", "nullable": true },
+      { "name": "notes", "type": "text", "nullable": true },
+      { "name": "created_at", "type": "timestamp with time zone", "nullable": true }
+    ],
+    "project_tasks": [
+      { "name": "id", "type": "uuid", "nullable": false },
+      { "name": "project_id", "type": "uuid", "nullable": true },
+      { "name": "title", "type": "text", "nullable": false },
+      { "name": "done", "type": "boolean", "nullable": true },
+      { "name": "created_at", "type": "timestamp with time zone", "nullable": true }
+    ]
+  },
+  "foreign_keys": [
+    {
+      "table": "project_tasks",
+      "constraint_name": "project_tasks_project_id_fkey",
+      "target_table": "projects"
+    }
+  ],
+  "policies": [
+    {
+      "table": "projects",
+      "name": "Admins manage projects",
+      "cmd": "ALL",
+      "qual": "app_private.has_role(auth.uid(), 'admin'::app_role)"
+    },
+    {
+      "table": "projects",
+      "name": "admin_all_projects",
+      "cmd": "ALL",
+      "qual": "app_private.has_role(auth.uid(), 'admin'::app_role)"
+    }
+  ]
+}

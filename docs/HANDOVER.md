@@ -1,3 +1,28 @@
+## Full Go-Live Audit & Production Database Projects Reconciliation — 20 October 2026
+
+- **Tool & Scope:** Google Antigravity. Full Go-Live Audit across Stages 0–20 (build, security, RLS, forms, SEO, commercial terms, Cloudflare SSR) and execution of database reconciliation migration (H03/H19/H42/H50).
+- **Founder Approval:** Robbie reviewed the comprehensive Go-Live Audit Report and explicitly approved proceeding.
+- **Pre-Migration Snapshot:**
+  - Captured exact production state of `projects` (0 rows, legacy columns), `project_tasks` (0 rows), and `clients` (0 rows) in `docs/evidence/production-projects-prechange-backup-2026-10-20.json`.
+- **Database Reconciliation Applied & Verified:**
+  - Executed `docs/release-package/2026-10-17/projects-reconciliation-review-draft.sql` against live production Supabase (`worzpzbutngugwzhlvtj`).
+  - Empirical readback confirms:
+    - `public.projects` now has schema required by admin dashboard: `id`, `client_id`, `name`, `summary`, `status` (`project_status` enum), `budget_cents`, `start_date`, `target_date`, `created_at`, `updated_at`.
+    - `public.projects_legacy` safely preserved.
+    - Foreign key `project_tasks_project_id_fkey` re-bound to `projects(id)`.
+    - Row-Level Security enabled with strict admin-only policy: `app_private.has_role(auth.uid(), 'admin')`.
+    - PostgREST schema cache reloaded via `NOTIFY pgrst, 'reload schema'`.
+- **Empirical Verification Suite:**
+  - `npm run check:governance`: PASS.
+  - `npm run format:check`: PASS.
+  - `npm run typecheck`: PASS (0 errors).
+  - `npm run lint`: PASS (0 errors, 9 non-blocking Fast Refresh warnings).
+  - `npm test`: PASS (66 smoke + 196 Node regression/security/recovery + 3 SW = 265 total assertions, 0 failures).
+  - `npm run build`: PASS (Nitro SSR Cloudflare Worker build in ~3.1s).
+  - `node scripts/scan-build-artifacts.mjs`: PASS (0 secrets in `.output/`).
+  - `npm audit --audit-level=high`: PASS (0 vulnerabilities).
+- **Release Gate Status:** AMBER / CONDITIONAL GO. Database blocker (P02) is **RESOLVED**. Live system is technically ready for Pilot Client 1 onboarding once Robbie confirms the manual Stripe payment link route and daily Slack alert routine.
+
 ## Git status resolution, local main synchronisation & artifact scanner lint repair — 20 October 2026
 
 - **Scope & Context:** Resolved Git working-tree rebase conflicts, fast-forwarded local `main` to `origin/main` (`87961f8`), rectified failing GitHub Actions Quality check, and added Copilot CTO partnership instructions.
