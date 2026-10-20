@@ -1,8 +1,11 @@
+# Harley Digital Works — Project Status
+
 ## Antigravity reconciliation & CI quality repair — 20 October 2026 (H42/H47)
 
 **Current Status:** Resolved local repository rebase block, synchronised local `main` with GitHub remote `87961f8` (all merged PRs #16, #17, #42, #44, #45, #46, #47 verified present). Fixed GitHub Actions Quality workflow failure on `scripts/scan-build-artifacts.mjs` (Prettier lint formatting). Integrated Copilot CTO & Founder Advisor partnership instructions into `.github/copilot-instructions.md`.
 
 **Verification:**
+
 - `npm run format:check`: PASS (All matched files use Prettier style).
 - `npm run typecheck`: PASS (0 errors).
 - `npm run lint`: PASS (0 errors, 9 existing warnings).
@@ -138,7 +141,7 @@ H03/H07/H42: isolated `codex/platform-completion-2026-10-15` from existing launc
 
 Final fresh build/typecheck/format PASS; lint 0 errors / 9 existing warnings; platform smoke PASS, 135 regression tests and 3 service-worker tests PASS. New tests cover all ten operational source-failure positions and capped/missing data. Authenticated browser/RLS mutation/readback acceptance remains pending; no customer data writes, migration, push, merge, deployment, sending or spending. Overall launch remains RED. Next: bounded staging browser acceptance of dashboard failure/retry and cross-screen mutation refresh, followed by remaining intake/recovery/care and concrete release gates.
 
-# The Harley Group — shared project status
+## The Harley Group — shared project status
 
 **Draft review submitted, 14 October:** [PR #29](https://github.com/SkyPilot24/harley-digital-works/pull/29) integrates the existing first-client work and launch corrections on `codex/launch-completion-2026-10-14`. Review head `1a71b7b` passed GitHub quality and credential checks; dependency audit reported zero vulnerabilities. Cloudflare created a successful native review Preview with an unconfigured backend, not functional acceptance. Active production deployment remains `ab1ae80f-5523-475f-8050-1c1be9a8aa99` / version `25218195-69ef-4616-8977-416cd740d876`, created 13 October; GitHub main remains `45012e4`. No merge, production migration, live billing or customer outreach. This supersedes earlier local-only submission labels while retaining tested runtime `280b0e6` and earlier rehearsal source identities. Full sale-to-care and owner decisions remain RED. This documentation follow-up requires its own current-head check result before treating that head as CI-verified.
 
@@ -342,7 +345,7 @@ Deployed application source ebce69ee2f1b5f20da50aceccec4ec83ffba5a96; last manua
 
 Founder approved: SkyPilot24/harley-digital-works is the canonical application source; Cloudflare is production hosting; THG Agency (worzpzbutngugwzhlvtj) is the live backend; mfpnfxpgkfuqtedbcxvp remains isolated staging. Lovable THG Digital/SkyPilot24/thgdigital remains a separate design/prototype workspace. Reconnecting Lovable to canonical Git is a later reviewed action, not performed. Existing Lovable build tooling remains; live Google Auth no longer delegates to Lovable and stays disabled until THG Agency OAuth is explicitly configured. Email/password Auth uses THG Agency.
 
-Exact database approval received and thg_reviewed_live_enquiry_cutover applied successfully. Verified 0 pre-existing leads, 1 admin and 2 Auth users preserved; unsafe lead policies/bootstrap removed, anonymous read/insert and authenticated intake-RPC denied. Deployed Worker 6a2b6017-2705-4a48-8653-46facc145b46 with matching backend and server secret. Labelled live contact browser submission displayed receipt and exactly one matching THG Agency row (thg-live-check-20261007@example.test). Notifications/email stay disabled. Sign-in feedback clarification is deployed.
+Exact database approval received and thg_reviewed_live_enquiry_cutover applied successfully. Verified 0 pre-existing leads, 1 admin and 2 Auth users preserved; unsafe lead policies/bootstrap removed, anonymous read/insert and authenticated intake-RPC denied. Deployed Worker 6a2b6017-2705-4a48-8653-46facc145b46 with matching backend and server secret. Labelled live contact browser submission displayed receipt and exactly one matching THG Agency row (`thg-live-check-20261007@example.test`). Notifications/email stay disabled. Sign-in feedback clarification is deployed.
 
 Build/test/typecheck pass; 23 DB regressions, 11 staging Auth/API checks and prior secret scan across 310 outputs pass. Existing-owner browser sign-in and full enquiry retrieval now pass. Live expiry/logout remains untested. Advisor leaves intentional service-only attempt-table INFO and leaked-password protection WARN; retention schedule, durable notifications and remaining tooling advisories remain open. Prepared metadata snapshot is not a tested backup/restore.
 
@@ -437,7 +440,7 @@ The following is the imported September 28 record plus its October 2 commercial 
 
 ---
 
-# The Harley Group — current project status
+## The Harley Group — current project status
 
 Updated 28 September 2026. Central business records: The Harley Group / Business OS in Google Drive. Current direction: setup/build fee plus monthly digital service for trades. Prices are proposed, not approved.
 
