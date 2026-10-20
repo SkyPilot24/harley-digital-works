@@ -1,3 +1,11 @@
+## Recovery upload and preview containment — 20 October 2026 (H47)
+
+The 58-file reviewed laptop snapshot f8e4fea5ecbdc2b37341e155cff38a0d9fdbd8cb is uploaded and independently read back on GitHub branch recovery/local-work-2026-10-20. Main remains 0845172c455b756a0a6eb24af1e7b56d78c348e9; no merge. Six-folder local backup and verified history bundles remain at C:/Local Data/The Harley Group/HDW-local-backup-2026-10-20. Private domain CSV, three unreviewed skill ZIPs, private settings, other local branches/stash and linked-folder-only differences remain local.
+
+Founder approved login refresh and a temporary single-account Workers Builds Configuration Edit credential, used privately and now revoked: dashboard removal plus HTTP 401 verified. API trigger listing returned only the main production rule; branch-filter PATCH requests returned 400/12002 with no setting change. This API evidence was insufficient to rule out newer preview-environment builds. The upload unexpectedly started preview build b9ad04d4-7f20-4281-9601-85e6848dad60; cancelled immediately on discovery. Recovery-preview history explicitly confirms Cancelled and no version created. Production deployment/version ee516b32-03c8-4964-9a68-d8a3b4bc1d7a remains at 100%; production deployment history unchanged; no new production Worker version or script.
+
+Recovery preview environment df6af0add49347b1b9bff60d17562ad1 now has Preview builds OFF, saved through its own settings and verified false after reload. This implements the already-approved single-branch exclusion; global preview and production settings unchanged. No migrations, outreach activation or runtime/customer-data writes. Original code tests remain blocked by missing development dependencies; recovery is not release acceptance. Final documentation-only receipt upload will be independently checked against this branch exclusion. Next: reconcile preserved work with current main in a separate reviewed task; do not merge this mixed recovery snapshot wholesale. Owner Codex; no founder decision needed for the completed preservation/upload.
+
 # Laptop work preservation — 20 October 2026
 
 H47. This is a recovery snapshot, not an integrated or release-ready version.
@@ -28,7 +36,7 @@ All 1,222 eligible tracked/untracked files were scanned for common provider secr
 
 Typecheck, lint and test commands attempted but blocked by missing local development executables/modules. No dependency installation or application repair performed. No build, browser acceptance, database migration or live verification claimed.
 
-## Upload hold — no deployment
+## Historical upload hold — superseded by completion checkpoint
 
 Fresh GitHub fetch confirms private repository SkyPilot24/harley-digital-works, main 0845172c455b756a0a6eb24af1e7b56d78c348e9. The recovery branch was not present on GitHub. GitHub deployment workflow runs only on main. Cloudflare dashboard independently confirms main production branch and enabled non-production preview builds (preview command: npx wrangler preview). A recovery push could therefore create a preview deployment.
 
