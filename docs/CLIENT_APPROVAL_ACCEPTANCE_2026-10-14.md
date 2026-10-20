@@ -10,17 +10,17 @@ Created one disposable fictional Auth account with no administrator role, one di
 
 ## Verified behaviour
 
-| Check | Evidence | Outcome |
-| --- | --- | --- |
-| Invitation entry and sign-in | Browser review route offered sign-in with a preserved project redirect; temporary fictional credentials reached the correct proposal | PASS |
-| Review must be read and confirmed | Browser showed Proposal Version 1 and disabled approval until its explicit checkbox was selected | PASS |
-| Version 1 approval | Browser displayed recorded approval; independent SQL found its matching user, revision and identity evidence | PASS |
-| New version requires new confirmation | Version 2 displayed unapproved with approval disabled; earlier approval did not transfer. After Version 3 was seeded, browser displayed it unapproved, requiring a fresh checkbox | PASS |
-| Superseded/altered request rejection | Authenticated local application requests for superseded Version 2 or an incorrect content digest returned 409 | PASS |
-| Latest version approval/retry | Browser confirmed Version 3; active application retries returned 200. Independent SQL retained one approval for Version 3 and none for Version 2 | PASS |
-| Membership revocation and recovery | Revoking only the fictional project membership caused the approval retry to return 409; restoration returned 200 | PASS |
-| Independent website review | Browser displayed and approved Website Review Version 1 separately; independent SQL found its distinct approval | PASS |
-| Approval is not launch authority | Attempt to mark only the fictional project launched returned 400, “Launch requires matching verified release evidence”; independent query still showed review status | PASS |
+| Check                                 | Evidence                                                                                                                                                                          | Outcome |
+| ------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Invitation entry and sign-in          | Browser review route offered sign-in with a preserved project redirect; temporary fictional credentials reached the correct proposal                                              | PASS    |
+| Review must be read and confirmed     | Browser showed Proposal Version 1 and disabled approval until its explicit checkbox was selected                                                                                  | PASS    |
+| Version 1 approval                    | Browser displayed recorded approval; independent SQL found its matching user, revision and identity evidence                                                                      | PASS    |
+| New version requires new confirmation | Version 2 displayed unapproved with approval disabled; earlier approval did not transfer. After Version 3 was seeded, browser displayed it unapproved, requiring a fresh checkbox | PASS    |
+| Superseded/altered request rejection  | Authenticated local application requests for superseded Version 2 or an incorrect content digest returned 409                                                                     | PASS    |
+| Latest version approval/retry         | Browser confirmed Version 3; active application retries returned 200. Independent SQL retained one approval for Version 3 and none for Version 2                                  | PASS    |
+| Membership revocation and recovery    | Revoking only the fictional project membership caused the approval retry to return 409; restoration returned 200                                                                  | PASS    |
+| Independent website review            | Browser displayed and approved Website Review Version 1 separately; independent SQL found its distinct approval                                                                   | PASS    |
+| Approval is not launch authority      | Attempt to mark only the fictional project launched returned 400, “Launch requires matching verified release evidence”; independent query still showed review status              | PASS    |
 
 Final pre-cleanup evidence: proposal approvals on Versions 1 and 3, no approval on Version 2, one separate preview approval. The stale-version browser interaction refreshed to Version 3 before a durable error view was captured. Therefore server rejection is supported by the explicit active application check, not the screenshot alone. The screenshot `Harley-updated-proposal-awaiting-approval-2026-10-14.jpg` depicts the newer unapproved version, not a captured rejection message.
 

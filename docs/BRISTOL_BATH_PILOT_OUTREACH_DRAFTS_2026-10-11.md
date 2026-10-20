@@ -1,9 +1,11 @@
 # Bristol/Bath pilot — unsent outreach drafts
+
 Prepared 11 October 2026 for H37/H50. Internal review only. No recipients or addresses are assigned and no messages have been sent.
 
 These drafts use the observations in [the research report](BRISTOL_BATH_PILOT_RESEARCH_2026-10-11.md). Before use, confirm corporate recipient eligibility, operator identity, accreditation, capacity, current browser-visible evidence and founder authorisation. Uncertain legal forms stay in the opt-in/inbound lane. Do not send through public quote forms or pose as an electrical customer.
 
 ## P01 — RG Electrical Bristol
+
 Subject: A small improvement to your project portfolio
 
 Hello RG Electrical team,
@@ -15,6 +17,7 @@ I run Harley Digital Works, part of The Harley Group. Would you like a short not
 Robbie
 
 ## P02 — Bath-Electrical
+
 Subject: A wording check on your website
 
 Hello Bath-Electrical team,
@@ -27,6 +30,7 @@ Robbie
 Harley Digital Works, part of The Harley Group
 
 ## P03 — Nextgen
+
 Subject: A contact-detail tidy-up on your website
 
 Hello Nextgen team,
@@ -39,6 +43,7 @@ Robbie
 Harley Digital Works, part of The Harley Group
 
 ## P04 — Holts — conditional; confirm the discrepancy first
+
 Subject: A quick check on your website details
 
 Hello Holts team,
@@ -51,6 +56,7 @@ Robbie
 Harley Digital Works, part of The Harley Group
 
 ## P05 — AESS — identity and visual-verification hold
+
 Subject: A small content tidy-up for your website
 
 Hello AESS team,
@@ -63,6 +69,7 @@ Robbie
 Harley Digital Works, part of The Harley Group
 
 ## P06 — Mark Evans — corporate eligibility unresolved
+
 Subject: Updating the latest-news section
 
 Hello Mark Evans Electrical team,
@@ -75,6 +82,7 @@ Robbie
 Harley Digital Works, part of The Harley Group
 
 ## P07 — Aztec — operator/accreditation match unresolved
+
 Subject: A quick check on your website history
 
 Hello Aztec team,
@@ -87,6 +95,7 @@ Robbie
 Harley Digital Works, part of The Harley Group
 
 ## P08 — SV Electrical Bath — identity/accreditation hold
+
 Subject: Reviewing your website's enquiry routes
 
 Hello SV Electrical team,
@@ -99,6 +108,7 @@ Robbie
 Harley Digital Works, part of The Harley Group
 
 ## P09 — Sparks — exploratory; no defect established
+
 Subject: Making project enquiries easier to sort
 
 Hello Sparks team,
@@ -111,6 +121,7 @@ Robbie
 Harley Digital Works, part of The Harley Group
 
 ## P10 — IS Durnell — opt-in/inbound use only
+
 Subject: A light website content review
 
 Hello IS Durnell team,
@@ -123,6 +134,7 @@ Robbie
 Harley Digital Works, part of The Harley Group
 
 ## Optional follow-up — only after specific sending approval
+
 Proposed timing: one follow-up after five business days, only where there has been no reply, opt-out or conversion and the recipient remains eligible. This timing is a proposal, not a scheduled action.
 
 Subject: Re: [original subject]
@@ -135,6 +147,7 @@ Robbie
 Harley Digital Works, part of The Harley Group
 
 ## Price response — only after an interested, qualified reply
+
 Our core package is £1,495 to build the five-page website, followed by £249 per month for managed care. Setup is split into a £747.50 deposit and £747.50 on approval before launch.
 
 We agree the content, enquiry handling and delivery schedule before starting. We can accommodate two pilot builds at a time.
@@ -142,9 +155,11 @@ We agree the content, enquiry handling and delivery schedule before starting. We
 Internal note: verify the service can fulfil the proposed routing and care commitments before issuing a proposal. Do not promise rankings, leads, income, instant response or a guaranteed 14-day launch. No VAT assertion is added to these drafts.
 
 ## Sending and stop-condition review
+
 This is a manual draft pack, not a working campaign system. No recipient data is saved here. When sending is separately authorised, add verified recipient details privately, make the sender and opt-out route clear, and keep a private suppression record.
 
 Required states:
+
 - No authorisation or eligibility uncertainty: hold, zero sends.
 - Human approves a factual draft and specific corporate recipient: may enter the authorised sending lane.
 - Reply received: stop scheduled follow-ups and review the reply.

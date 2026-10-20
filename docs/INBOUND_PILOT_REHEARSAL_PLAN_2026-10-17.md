@@ -1,0 +1,78 @@
+# One-enquiry pilot rehearsal — plan for Robbie
+
+**Execution update:** Robbie subsequently authorised the bounded rehearsal, with no new permissions or secret changes. See [17 October results](INBOUND_PILOT_REHEARSAL_RESULTS_2026-10-17.md): rollback-only database checks passed; browser/committed-runtime acceptance blocked by unsuitable local staging configuration. No temporary Auth actors or role grants created; the original proposed actor-provisioning steps below were not executed.
+
+Prepared 17 October 2026. **Reviewable plan only; not executed or approved.** H08/H09/H19–H24/H50. Based on [the assessed flow and fresh read-only Supabase checks](LEAD_JOURNEY_ASSESSMENT_2026-10-17.md); no broad audit repeated. Source baseline: main `af5ae9c2c3896ced4a078f7edde7896205a62a57` plus preserved local peer changes. Record the actual code revision and scoped diff at execution.
+
+## Recommendation
+
+Codex prepares and runs one controlled enquiry-to-follow-up test, records failures and gives Antigravity an exact, small correction brief if needed. Re-test only affected steps. Robbie reviews the result and decides the later live pilot window. Use the existing inbound form and CRM; park Manus as optional research support. Completing automated outbound/H37 is **not a prerequisite** for inbound pilot readiness.
+
+Existing isolated staging **can support the core rehearsal without migrations**: live metadata confirms leads, clients, compatible projects, public intake RPC and notification trigger/outbox already exist. The two new H37 migrations are not required and are excluded. This is a schema finding, not a promise of runtime success; stop and report if preflight or execution exposes another prerequisite. No production substitution or automatic migration is allowed.
+
+## Exact bounded environment and fixture
+
+- Local app at `http://127.0.0.1:4187`, connected only to `https://mfpnfxpgkfuqtedbcxvp.supabase.co` (THG Enquiry Staging). No deployed app/configuration change. Use installed tooling; stop if a required tool is unavailable rather than installing it.
+- One business fixture: `FICTIONAL — HDW-INBOUND-20261017-A`, contact `Fictional Pilot Operator`, email `hdw-inbound-20261017-a@example.invalid`, message `FICTIONAL REHEARSAL HDW-INBOUND-20261017-A. Please discuss a managed website for our electrical business. No real customer or agreement.` No phone, external domain, genuine accreditation, assets or customer data.
+- Entry: rendered `/contact` shared enquiry form, with no legacy package prefill. Wait at least two seconds before submission. Source must be `contact_form`. Check marker absent before starting; if it exists, stop rather than deleting or reusing it silently.
+- Dedicated temporary staging admin and ordinary-user test identities with the same fixture prefix and distinct role suffixes; in-memory generated passwords, confirmed through admin API without email. They are test actors for this single business fixture. Do not sign out, alter or reuse Robbie's session. If existing dedicated test identities are explicitly available, use them only after verifying their scope and clean state.
+- Private staging configuration must already be available through approved local access. Never request credentials in chat. Server-only staging key is needed by **this public server-intake test**; the older admin-only browser harness blanks that key and cannot be run unchanged as proof of public intake. Keep it solely in the local server process, never browser variables/output. Prepare a narrow test harness separately if necessary; no application feature expansion implied.
+
+## Containment before any remote write
+
+Verify matching browser/server staging references; deny production URLs. In the local process set `LEAD_NOTIFICATIONS_ENABLED=false`, `SLACK_NOTIFICATIONS_ENABLED=false`, `TRANSACTIONAL_EMAIL_ENABLED=false`, `RESEND_WEBHOOK_ENABLED=false`; omit Resend/Slack/Stripe credentials and disable payment/delivery feature flags. Do not run Nitro scheduled tasks or bulk outbox claim functions. Use browser access only to localhost/staging; block provider destinations in the test transport.
+
+**Important:** local flags do not disable another deployed staging consumer. Read-only preflight must establish no active remote consumer can send this fixture's new outbox job. If that cannot be demonstrated, stop before submission. Altering a remote worker/scheduler/provider setting would need a separate, named approval; it is not covered here. Do not clear or claim pre-existing jobs. Baseline counts are for comparison, never a licence to modify existing staging rows.
+
+## Steps and pass/fail evidence
+
+| Step | Expected result and evidence | Failure / limit |
+|---|---|---|
+| 1. Public capture | Submit once through local rendered form. Success receipt; independent exact-marker readback finds one new lead with original message/source, `new` status, and one associated pending notification job at zero attempts. Record IDs privately for cleanup. | Draft-email fallback, success without row, missing job or unexpected send = FAIL. HTTP/UI success alone insufficient. |
+| 2. Duplicate protection | Resubmit identical payload/message/email within 15 minutes, allowing normal timing guard. One lead and one job remain; no extra client/project. Record count/readback. | Any second row/job = FAIL. This proves narrow repeat submission handling, not permanent contact merging. |
+| 3. Admin and permissions | Temporary admin finds exact marker in `/admin/leads`, sees full message and pending notification state. Anonymous and ordinary signed-in actors cannot retrieve/manage fixture through Data API; direct public insert/intake-RPC bypass denied. Save/read back a harmless note/status change. | Loading/error must not look like empty/success. Wrong-role access or zero-row update reported successful = FAIL. |
+| 4. Qualification and follow-up | **Manual pilot process:** operator checks fictional service/location/needs, records unknown capacity/timing explicitly, and writes the note below. Save, close, reopen and independently read back. Set `qualified` only after recording the fictional fit assumption; never mark won. | No automatic scoring, assignment, reminder or contact is claimed. Missing owner/date/action after save = FAIL. |
+| 5. Follow-up completion | In the same session simulate the due action: append `SIMULATED follow-up completed; no message sent; outcome: missing brief details; next action: collect assets after agreement/deposit`. Reopen to prove retained action history. Mark the former action complete in notes and set next due date. | Do not send email/SMS/WhatsApp, advance from silence or mark a real interaction. Manual operator must check the queue each agreed business day during pilot. |
+| 6. Workspace/handoff | Create client workspace twice from the same lead via existing action. One same-ID client, status `lead`, zero monthly value, source lead and original message retained. Optionally create **one fictional discovery project within this approved fixture scope**, linked to that client; summary says `REHEARSAL ONLY — agreement/deposit not verified; not authorised for build`. Independently read back linkage/status. | No real agreement, payment, build slot, active subscription or launch implied. No `/onboarding` or sample tracker used. Do not advance beyond discovery. |
+| 7. Notification containment and failure | Remote job remains pending/unclaimed throughout. Separately exercise actual notification helper with in-memory claim/finish and fake fetch: simulate failure then acknowledgement; assert durable-state contract in existing local PGlite tests. | This is a **local simulation**, not actual remote delivery/retry proof. No global remote claim RPC, fake accepted state on remote job or provider call. Record current real delivery acceptance as still open. |
+
+Manual note template, using execution date (UK time) so the plan never creates an already-overdue task:
+
+```text
+FICTIONAL REHEARSAL HDW-INBOUND-20261017-A
+Qualification: assumed electrical service fit for test; location/capacity/timing to confirm.
+Owner: Robbie — pilot response owner (manual process, no automated assignment).
+Next action: review missing brief details; SIMULATE follow-up only, do not send.
+Due: [execution date + 1 calendar day, 10:00 Europe/London; store explicit date and UTC offset].
+Outcome: pending; agreement/payment not verified; no build reservation.
+```
+
+The executing operator performs the rehearsal; Robbie's recorded pilot ownership is a proposed operating responsibility requiring his acceptance. A dated CRM note is usable for a bounded pilot, but lacks automatic reminders and a structured overdue queue. Review this manual exception after the first pilot rather than letting it become permanent administration.
+
+## What blocks a real paying pilot, and what can wait
+
+**For this rehearsal:** no known schema fix is required. Prepare only the missing narrow public-intake harness/containment checks if the existing runners cannot cover them. Stop on actual failure and return a concrete fix; do not implement speculative CRM modules.
+
+**Before real customer handoff:** correct or exclude the disconnected public onboarding/sample tracker and stale customer-use package/guarantee copy; resolve the already-confirmed production projects schema mismatch if using that project UI; satisfy existing release/security gates for the chosen revision. Name a response owner and daily manual follow-up check. Use approved commercial wording and provider-hosted/manual billing with explicit reconciliation if that is the selected pilot route. A real build starts only with agreed scope/terms, provider-confirmed deposit linked to the customer, brief/access readiness and an available slot (two simultaneous builds maximum). A workspace, qualified/won status or copied quote is not payment proof. Live invoice/payment/sending/release actions remain separate approvals.
+
+**Can wait:** H37 application, automatic outbound sequences, prospect imports, AI qualification, extra CRM dashboards and structured reminders. Fresh real alert delivery remains a separate activation acceptance gate; it is not necessary to send alerts to test safe intake storage/manual retrieval. For a live pilot, either verify the exact alert channel under separate permission or explicitly accept an interim named operator checking the desk at an agreed cadence. Do not promise untested customer email/SMS.
+
+## Cleanup, rollback and evidence
+
+Before testing, capture exact fixture baseline and verify delete dependencies/grants. Use a private in-memory manifest of IDs created in this run. In `finally`, remove only this fixture's project, client, notification job/lead and temporary actors/roles in dependency order; verify lead/outbox cascade behaviour first, explicitly remove exact job if necessary. Submission-attempt rows contain an HMAC fingerprint rather than a fixture marker: capture IDs returned by exact pre/post fingerprint comparison in the isolated test bucket; delete only those owned attempts or leave a documented exception for existing retention if identity cannot be proven. Never wipe the bucket or existing records.
+
+Independently verify zero residual fixture leads/jobs/client/project/accounts/roles, stop local server/browser, verify no port 4187 listener, clear process-only secrets and restore any process-only test settings. No remote configuration change exists to roll back. On failure stop all activity and cleanup exact owned fixtures; if cleanup cannot complete, report IDs privately and block a rerun. Do not broaden delete conditions. Preserve peer files unchanged.
+
+Save evidence with exact source revision + reviewed local diff, staging ref, UK/UTC timestamps, each step PASS/FAIL/NOT RUN, redacted screenshots and exact fixture counts before/after, API denial results, notification-simulation boundary and cleanup results. No credentials or genuine records. Final verdict must distinguish rehearsal PASS from live intake/alert/payment/onboarding readiness. No paid-pilot completion claim follows from this run.
+
+## Preserve Manus and peer work; do not commit now
+
+Keep the two H37 migrations, Resend handler/route, synthetic tests, templates and deployment/acceptance drafts intact. At a separately authorised implementation step, snapshot file hashes and review current diff against peers, then isolate attributable files on a `codex/` branch/worktree without reset/stash/clean or overwriting shared files. Copy reviewed untracked files explicitly. Split shared `package.json`/generated-route/document changes by attributable hunks after rechecking peers; regenerate route output only against the intended source set. Run H37-focused checks and commit its infrastructure separately from the inbound rehearsal/any demonstrated corrections. No migration application, sender activation or production promise belongs in that preservation commit. If attribution overlaps, keep it uncommitted and ask the peer to reconcile; no blanket staging of the dirty tree.
+
+## Exact approval requested later
+
+Approve **one isolated staging rehearsal only**: create and remove the single fictional business fixture above, up to two temporary Auth test actors/roles (no email), at most one client workspace and one linked discovery project; submit/repeat public intake; test allowed/denied read/write paths; save manual qualification/follow-up notes; perform exact cleanup including attributable attempt rows. Local notification simulations only. No outbound messages or notifications, provider/configuration changes, migration, installation, deployment, production writes or live fixture.
+
+No approval is requested to send a Slack alert in this scope. If later wanted, present a separate exact channel, synthetic payload, number of messages, sender mechanism and recovery check for approval. Do not send a staging card pointing at the production CRM.
+
+**Decision for Robbie:** accept this bounded staging rehearsal and the temporary manual owner/next-action method, or request a change to that scope. Codex owns preparing/running the evidence; Antigravity can address only failures with a specific follow-up instruction. This document itself performs none of those remote actions.

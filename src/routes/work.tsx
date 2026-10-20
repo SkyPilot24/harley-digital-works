@@ -144,14 +144,14 @@ function WorkPage() {
         <section
           className="studio-section py-20 bg-stone-50/80 border-y border-stone-200"
           id="transformations"
-          aria-labelledby="transformations-heading"
+          aria-label="Before and after website design concepts"
         >
           <div className="studio-wrap">
             <BeforeAfterComparison
               initialTradeId="heating-plumbing"
               showAllTrades={true}
-              title="See What Your Website Could Become"
-              subtitle="Drag the interactive slider to compare outdated, cluttered trades websites with professional Harley Digital Works digital experiences across six UK trades."
+              title="See what your website could become"
+              subtitle="Explore six illustrative trade concepts. Compare how clearer words, layout and enquiry routes change the experience."
               sectionKicker="01 / INTERACTIVE TRADE TRANSFORMATIONS"
             />
           </div>

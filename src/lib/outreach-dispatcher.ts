@@ -52,14 +52,14 @@ export async function processOutreachBatch(options: {
 }): Promise<OutreachDispatchResult[]> {
   const results: OutreachDispatchResult[] = [];
 
-  // Enforce the strict concurrency limit (max 2 concurrent client onboarding builds)
+  // Enforce Gate 1 pilot capacity guard: 3-customer pilot authorisation with a strict 2-concurrent-build active capacity guard
   if (options.activeBuildsCount >= options.maxConcurrentBuilds) {
     for (const p of options.prospects) {
       results.push({
         prospectId: p.id,
         recipientEmail: p.recipientEmail,
         status: "skipped_concurrency_limit",
-        error: `Active builds cap reached (${options.activeBuildsCount}/${options.maxConcurrentBuilds}). Outbound outreach paused to safeguard capacity.`,
+        error: `Active builds cap reached (${options.activeBuildsCount}/${options.maxConcurrentBuilds}). Outbound outreach paused to safeguard capacity (Gate 1: 3-customer pilot authorisation with strict 2-concurrent-build guard).`,
       });
     }
     return results;

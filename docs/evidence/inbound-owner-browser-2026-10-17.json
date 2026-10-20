@@ -1,0 +1,51 @@
+{
+  "source": "af5ae9c / isolated local app",
+  "target": "mfpnfxpgkfuqtedbcxvp",
+  "startedUtc": "2026-10-17T21:56:25.019Z",
+  "checks": [
+    {
+      "check": "real Auth existing synthetic administrator reaches enquiry desk",
+      "status": "PASS"
+    },
+    {
+      "check": "authenticated admin browser creates exact enquiry and manual dated action with independent readback",
+      "status": "PASS"
+    },
+    {
+      "check": "admin browser retrieves original message and saved owner action",
+      "status": "PASS"
+    },
+    {
+      "check": "browser status change persists without marking won",
+      "status": "PASS"
+    },
+    {
+      "check": "browser follow-up edit survives reload and independent readback",
+      "status": "PASS"
+    },
+    {
+      "check": "admin browser workspace action creates zero-value prospect client",
+      "status": "PASS"
+    },
+    {
+      "check": "enquiry desk fits 375px viewport",
+      "status": "PASS"
+    },
+    {
+      "check": "existing ordinary Auth account denied browser access and direct record read/write",
+      "status": "PASS"
+    }
+  ],
+  "authMethod": "Existing fictional staging accounts; admin-generated no-email magiclink and real Auth session; no role/user/password changes.",
+  "limitations": [
+    "Programmatic test sign-in, not Robbie manually entering credentials.",
+    "No alert/payment or production changes."
+  ],
+  "cleanup": {
+    "leads": 0,
+    "clients": 0,
+    "rolesUnchanged": true,
+    "testSessionsSignedOut": true
+  },
+  "finishedUtc": "2026-10-17T21:56:42.321Z"
+}

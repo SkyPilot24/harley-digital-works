@@ -1,0 +1,204 @@
+# Technical & Operational Go-Live Decision Brief
+
+17 October 2026 · Internal · Gate 1 · Three-customer pilot
+
+## Latest Antigravity reconciliation
+
+Read after this audit: Antigravity's new Gate 1 and Gate 2 reports and handover record founder approval for restricted Business OS sharing, the staged production migration package and three-customer pilot. Those recorded approvals are preserved; they are not evidence of completed execution. Carry their original scope from the authorising session before external mutations, rather than repeatedly asking for already-granted approval. The findings below describe state observed during this audit.
+
+Antigravity's CONDITIONAL GO differs from this assessment's NO-GO until material gates close. Its manual-only deployment statement is superseded by freshly observed automatic Cloudflare Git builds, and its pending domain-migration action is superseded by 53 persisted production inventory records. The critical TanStack advisory is additional evidence. Its modelled margins/payback are not verified customer outcomes. The canonical reconciliation checkpoint preserves both reports and identifies the next execution step.
+
+## 1. Recommendation and verdict
+
+**NO-GO for accepting and delivering the three-customer pilot through the present operating system.** The websites are deployed and the software has substantial tested functionality, but known security and production-schema defects remain. This is not a recommendation to rebuild the platform or finish every dashboard feature.
+
+The shortest route is a reviewed security release, reconciliation of the existing projects migration, restricted operational records, and one complete delivery rehearsal using provider-hosted billing and manual reconciliation where appropriate. Do not make custom billing automation, domain portfolio development or additional design work prerequisites.
+
+**Founder decision recorded:** this request approves an initial pilot of **three customers total**. It does not change the existing limit of **two concurrent builds**, approve production changes, or authorise spending or customer contact.
+
+## 2. Readiness scorecard
+
+| Gate | Status | Verified position |
+|---|---|---|
+| Public websites and primary navigation | Ready for the reviewed read-only scope | Main public pages respond; contact CTA and required-field validation observed |
+| Dependency security | Blocking launch | Main lockfile has five critical package findings arising from one TanStack advisory; isolated correction prepared |
+| CRM/project delivery integrity | Blocking launch | Production projects schema is incompatible with current Admin writes and relationships |
+| Shared business-record integrity | Blocking launch for confidential use | Business OS and Documentation folders allow anyone with the link to edit |
+| Payments and customer approval | Blocking pilot | Implemented/staging-tested paths are not provisioned in production; complete lifecycle unaccepted |
+| Enquiry persistence and alert delivery | Needs attention | Historical accepted evidence exists; no fresh valid production submission or delivery test authorised/performed |
+| Backup, restoration and support | Blocking pilot acceptance | No current restoration proof or complete supported-client rehearsal established |
+| Admin read access | Ready for owner-read scope | Existing owner session displayed core screens; no fresh production mutation or negative-role test |
+| Release controls and observability | Needs attention | Main unprotected; automatic production builds active; Worker logs/traces disabled |
+| Responsive/accessibility/CWV | Needs attention | Desktop inspected; historic viewport evidence retained; fresh mobile/tablet, full WCAG and field CWV not established |
+
+No numerical completion percentage is assigned: it would hide the different evidence quality of these gates.
+
+## 3. Production deployment
+
+Canonical repository: `SkyPilot24/harley-digital-works`. Stack: React, TypeScript, TanStack Start, Vite/Nitro, Cloudflare Worker SSR and Supabase. Preserve this architecture. Client trade websites use separate repositories and their recorded deployment workflow.
+
+Cloudflare dashboard freshly confirms production Worker `skypilot24-harley-digital-works`, version prefix **d9e17d0e**, serving **100% traffic** for commit **af5ae9c2c3896ced4a078f7edde7896205a62a57**. Native build: `b07d1496-b5af-46f0-ad6d-6a6cfe7d92ed`. This is provider evidence, not an inference from CI.
+
+GitHub's Continuous Deployment run also reports success, but its log explicitly says deployment was skipped because the GitHub Cloudflare token is missing. Cloudflare's separate Git integration actually deploys main. Its displayed build command is `bun run build`, deploy command `npx wrangler deploy`; this differs from repository npm CI. Choose and document one authoritative release path before the next approved release; do not add a token blindly and create duplicate publishers.
+
+Provider settings freshly show the intended Agency backend, encrypted service-role and Slack bindings, lead notifications enabled, transactional email disabled, and no Stripe receiver configuration. Logs, traces and Issues collection are off. Five cron entries exist, but their successful recent execution was not verified. Previous versions are visible; actual rollback and database recovery were not exercised.
+
+The connected Vercel team lists only `vibe-coding-platform-thg`, a separate Next.js experiment. Its production-target deployment is an initial commit; a later READY preview is not the HDW production website. No HDW Vercel migration is justified.
+
+## 4. Repository and unmerged work summary
+
+| Repository | Main status | Unmerged work | Production status | Risk | Action |
+|---|---|---|---|---|---|
+| harley-digital-works | Default main at af5ae9c; quality/security jobs green | Open #25 domain inventory, #16 checkout action, #17 Wrangler action; local reconciliation/contact work | Cloudflare version/commit verified above | High: schema drift, security advisory, unprotected main | Release scoped remediation after acceptance and founder approval |
+| kindred-spark / Wessex Volt | Main; dedicated client template; local package inspected | No open PRs returned | Current customer deployment/acceptance not established | Medium | Reuse for a fictional delivery rehearsal; verify exact client target before use |
+| thgdigital | Older main; pushed 3 October | #9 Vercel setup, #11 dependency update | Not established as canonical HDW production | Duplication | Reference only until an active dependency is demonstrated |
+| thg-digital-agency | Archived | Not assessed for integration | Historical | Low if kept historical | Do not revive as another agency platform |
+| service-delivery-os | Main; separate leadership dashboard | One dependency PR | No HDW pilot dependency established | Scope distraction | Defer |
+| vibe-coding-platform | Main; separate experiment | Not audited in depth | Vercel production/preview metadata read | Not a pilot prerequisite | Defer |
+| Client repositories for the three pilot customers | Not yet identified | Not applicable yet | No customer release established | Ownership/release ambiguity | Create or identify one exact repo/hosting/domain record per agreed customer |
+
+GitHub confirms #29, #31–#36, #39–#41 merged; older records calling them pending are superseded. The Dell KB and P02 documentation branches have no commits ahead of main. Do not merge them again. #25 is draft/conflicting, nine commits ahead and 56 behind at comparison time; production already has domain tables and real inventory, so reconcile unique differences rather than merge the old branch wholesale. #16 has a failing format check; #17 has historical failing security/build checks.
+
+The canonical checkout has unrelated edits to PROJECT_STATUS.md and docs/HANDOVER.md plus an untracked domain export. The reconciliation worktree retains marketing/contact/document edits. The WhatsApp branch has its own changes. Preserve all of them. The new review branch is `codex/gate1-readiness-2026-10-17`; it is local and has not been pushed or released.
+
+Safe integration order: security correction and truthful operating labels; existing project-schema reconciliation reviewed against real schema; only the payment/approval migrations required by the chosen pilot workflow; then acceptance and an explicitly approved release. Delivery migrations reference projects, so do not apply all historical migrations blindly in timestamp order against the legacy table.
+
+## 5. Website findings
+
+Fresh HTTP checks: HDW home, contact, services, web design, work, about and privacy return 200, with one H1 and expected canonical in reviewed responses. Both corporate URLs return 200 with the corporate canonical. Robots and sitemap respond; the intentionally missing route returns 404. `/terms` and `/sign-in` also return 404, but neither was established as a required linked destination; actual login is `/auth`. Do not invent broken-navigation findings from guessed routes. `/calculator` resolves to the structured contact journey as intended for a deferred prototype.
+
+Reviewed public pages consistently expose **0117 214 1357** and `tel:+441172141357`. WhatsApp links use **07394 041487**, matching current main configuration and sales records. No number was changed. A clickable link does not prove the line or WhatsApp inbox is monitored or that a message is delivered.
+
+Desktop HDW and Group pages present coherent navy/ivory branding, clear offer and contact paths. Work examples identify illustrative concepts. The contact form has labelled fields; clicking submit with empty required fields focuses the name field without sending. No valid production enquiry, email, call or WhatsApp message was sent. These remain delivery acceptance gates.
+
+Security response headers include nosniff, SAMEORIGIN, referrer and permissions policies; a CSP header was absent in sampled responses. That is a hardening opportunity, not evidence of an exploit. Public HTTP elapsed times were roughly 0.13–0.52 seconds in this bounded sample; these are neither browser loading times nor Core Web Vitals.
+
+The live diagnostic screen reports 17 routes, seven healthy and ten needing attention, mostly missing sitemap entries. Several are deliberately deferred tools, so fix diagnostic scope instead of promoting unfinished tools into the sitemap. Main conversion defects and security take priority over SEO expansion. Fresh mobile/tablet, keyboard journey completion, contrast, browser matrix, asset crawl and field CWV remain unverified; historical comparison/mobile acceptance is dated evidence only.
+
+## 6. Admin Control Centre
+
+Owner-read browser checks covered dashboard, leads, clients, projects, invoices, diagnostics, headquarters, domain inventory, strategy, playbook, knowledge base, settings, users, team and three CMS screens. The existing authenticated session was reused; this does not prove anonymous or ordinary-user denial. No production record or permission was changed.
+
+| Module | Verified behaviour / limitation | Pilot requirement |
+|---|---|---|
+| Dashboard | Reads zero leads/clients/projects, matching production aggregates; misleading normal-operations banner and conflicting capacity guidance observed | Keep an accurate exception queue |
+| Leads | Empty list, search/status/paging controls load; historical staging CRUD/readback evidence | Essential; fresh end-to-end intake acceptance |
+| Clients | Empty roster; recorded agreement value correctly separated from collected revenue | Essential; owner CRUD and customer link acceptance |
+| Projects | Empty-state screen loads; source expects client_id/name/budget/dates absent from production | Essential; reconcile schema before relying on writes |
+| Finance | Payment drafts explicitly unissued; separate panel incorrectly says Receiver Active | Provider-hosted billing and ledger reconciliation suffice; custom automation can wait |
+| Diagnostics | Real route checks and empty outbox; static cron descriptions are not execution logs | Essential only for reliable incident/alert checks |
+| Settings | Loads legacy agency name, blank phone and existing values; public pages use code configuration | Clarify authority; do not silently overwrite production settings |
+| Users | Owner listing works; one production admin; footer incorrectly claims automatic first-user promotion | Restricted operator access and tested recovery required |
+| Services/resources/testimonials CMS | Screens load zero records; resources/services public routes remain code-backed | Defer CMS integration; do not promise these controls edit all public content |
+| Team | Empty CRUD screen | Defer multi-staff management |
+| Headquarters/strategy/playbook/KB | Static records and links; some outdated tool/SLA claims; no campaign enabled by viewing | Reference only, reconcile critical instructions |
+| Domain inventory | Browser and SQL agree: 53 inventory rows, two imports; 31 due-within-90-days alerts displayed, all costs unknown | Existing work; defer improvements unless a customer domain is at risk |
+| Radar/domain OS | Source redirects to strategy | No duplicate implementation required |
+
+Unused prototype source includes a WhatsApp desk with sample threads and simulated send-success text. It is not established as a mounted production operating inbox. Mark or quarantine before any future reuse; do not claim it currently delivers messages.
+
+Minimum viable Admin: authenticated owner, enquiry/customer/project records, agreed scope/version approval links, accurate status and next action, verified payment references, and a support/incident queue. Three customers can be managed manually through this journey. Automated acquisition, custom recurring-billing infrastructure, tool catalogues, social publishing and expanded dashboards are not launch requirements.
+
+## 7. Supabase and integrations
+
+Fresh provider reads confirm Agency `worzpzbutngugwzhlvtj` and isolated staging `mfpnfxpgkfuqtedbcxvp` ACTIVE_HEALTHY. Production has 29 public tables, all with RLS enabled. Relevant lead/client/project policies require the trusted admin role; role-function anonymous execution is restricted. An RLS toggle is not a complete permission test.
+
+Production has three recorded migrations: reviewed live-enquiry cutover, durable lead notifications and the domain inventory version. Staging has 17 recorded migrations including payment/delivery controls. Their versions differ from some source filenames; reconcile objects and migration provenance, not filename counts alone.
+
+Production projects still contains legacy client_name/package/deadline/progress/value fields, with no client_id foreign key. Its schema does not support the current create/edit payloads. The already-merged `20261015140000_reconcile_projects_schema.sql` addresses that mismatch, preserves the legacy table and aborts on unexpected existing rows. It remains unapplied in production; do not execute without an approved backup, reviewed permissions and acceptance plan.
+
+Production payment_contracts, payment_receipts and delivery_approvals are absent. No Stripe runtime settings are present. The durable receiver is implemented; this is deployment/configuration incompleteness, not a reason to recreate it. Historical authentic sandbox deposit/refund and approval acceptance is recorded in H50_SANDBOX_ACCEPTANCE, REFUND_ACCEPTANCE and CLIENT_APPROVAL_ACCEPTANCE (14 October); it is not live billing proof. Duplicate/restart controls were partly locally signed payload tests; do not overstate authentic concurrent provider delivery.
+
+Production aggregates: zero leads, clients, projects and notification jobs; one administrator. These counts do not establish zero business activity elsewhere. Storage has no buckets: it does not establish a functioning asset-collection solution. Customer assets need an approved restricted destination and access process.
+
+## 8. Security, privacy and compliance
+
+The lockfile audit reports five critical affected package entries arising from **GHSA-qx66-fv34-fjm8**, reflected XSS in TanStack Start server-function responses. Main locks react-start 1.168.27. The published advisory identifies patched minimums react-start 1.168.60 and start-server-core 1.169.39. No live exploit was attempted. [Advisory](https://github.com/advisories/GHSA-qx66-fv34-fjm8).
+
+Google Drive metadata freshly shows `anyone / writer` on both Business OS and 09 Documentation & Knowledge Base. This enables unauthenticated link holders to alter shared records. No unauthenticated edit was attempted and no breach is asserted. Detailed report upload and index publication are held; no sharing change was made. Use an approved restricted destination before storing customer data or trusted decisions there.
+
+Supabase advisor warns leaked-password protection is disabled; its only other returned item is INFO for RLS without policies on the server-only abuse-attempt table. Preserve intentional default-deny access. Review password protection and owner MFA/recovery before changes. Owner/provider MFA, backup retention, restoration, data export recovery and access offboarding were not verified.
+
+`product_sales` has an unconditional public INSERT policy plus grants. Other older tables retain broad grants including TRUNCATE/REFERENCES/TRIGGER. Do not assume RLS neutralises non-row privileges; no public truncate endpoint or exploit was established. Review/restrict unused intake and excess grants under explicit production approval and regression-test actual intended roles.
+
+Role revocation checks are not atomic, and direct admin Data API writes can bypass UI validators where database constraints are missing. Keep role changes exceptional; review last-admin protection and required data invariants. Admin browser tokens use localStorage, making the framework XSS correction particularly urgent.
+
+Privacy copy names an umbrella brand as controller, lists providers, but lacks a sufficiently reconciled legal-controller identity, specific retention rules, lawful-basis explanation and complaint route. Reconcile with the actual seller and processing inventory. Do not assert legal compliance from the presence of a privacy page. No actual tracking-cookie inventory/consent test was completed. Obtain proportionate privacy/accountant review where facts or obligations are unresolved. [ICO security guidance](https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/security/a-guide-to-data-security/), [ICO cookie guidance](https://ico.org.uk/for-organisations/direct-marketing-and-privacy-and-electronic-communications/guide-to-pecr/cookies-and-similar-technologies/).
+
+## 9. Three-customer delivery readiness
+
+| Journey step | Existing capability | Minimum acceptance before reliance |
+|---|---|---|
+| Lead received | Secure server intake and durable notification code, prior live acceptance | One approved bounded enquiry, database/owner readback and intended-channel delivery |
+| Customer created | Admin conversion and client records | Synthetic staging conversion without duplicate or false payment status |
+| Service agreed | Ratified pricing, proposal drafts, versioned approval implementation | Verified seller details, actual scope/terms and explicit accepted revision |
+| Project created | Current UI and reviewed migration | Working client FK, persistence, required input validation and allowed/denied roles |
+| Assets collected | No production storage buckets | Restricted intake location, asset rights, domain/email authority and missing-input hold |
+| Website delivered | Separate reusable trade template exists | Exact client repo, complete five-page build, mobile/form/SEO/backup checks |
+| Customer approval | Historical staging browser approval evidence | Approval bound to exact preview revision; later changes invalidate approval |
+| Go-live | Cloudflare platform live; launch guard implemented | Deposit/balance reconciliation, QA, customer approval, DNS/email preservation and rollback plan; explicit release approval |
+| Ongoing support | Care records/manual review and drafts | Provider subscription start at agreed go-live, collection/failure/cancellation visibility, named support owner and restore rehearsal |
+
+Run one clearly labelled fictional journey in isolated staging with outbound effects disabled. Do not recreate all historic fixtures or use production as a staging substitute. Then admit the three customers with staggered onboarding and at most two simultaneous builds. Founder quality judgement and each customer's approval remain essential; manual reconciliation and a small support log are acceptable during the pilot.
+
+## 10. Single P0–P3 action register
+
+All owners are proposed roles, not newly appointed staff. Estimates are focused working time and overlap; verification-only items are explicitly not demonstrated defects. Existing H03/H07/H09/H10/H42/H47/H50 references remain valid. This register is the Gate 1 overlay, not a replacement historical backlog.
+
+| ID / priority | Issue, evidence and affected system | Business impact | Solution / dependency | Effort / owner | Verification criterion |
+|---|---|---|---|---|---|
+| G01 P0 | Known critical TanStack advisory in main lockfile; fresh npm audit | Same-origin script execution risk | Reviewed dependency correction; approved release | 0.5–1 day / engineering | Patched resolved versions, audit clean, checks and essential browser/server flows pass on exact deployed revision |
+| G02 P0 | Production project columns/FK incompatible with Admin source | Cannot rely on creating/delivering customer projects | Reuse reviewed schema reconciliation; backup, role and migration-order review; founder production approval | 0.5–1 day / engineering | Staging then approved live owner create/edit/readback; ordinary/anonymous denial; client link and recovery proven |
+| G03 P0 for Business OS use | Anyone-link writer on two intended shared folders | Decision tampering and unsafe customer-record storage | Founder selects intended audience and grants; approved restriction or restricted alternative | 1–2 hours / founder + operations | Metadata matches approved restricted users/roles; existing originals preserved; publication verified |
+| G04 P1 | Payment/delivery schema and Stripe settings absent in production | Cannot treat automated receipt/approval flow as operational | Choose hosted manual billing for pilot or reviewed existing feature activation; seller identity first | 1–2 days / engineering + founder | Deposit/balance and care provider evidence linked to agreement; duplicate/failure/cancellation handling; no false paid state |
+| G05 P1 | Complete sale-to-support journey unaccepted | First customer could stall between modules | One bounded fictional staging rehearsal; G02/G04 | 1–2 days / delivery | Every step above has independent readback and cleanup; precise unresolved exceptions recorded |
+| G06 P1 | No fresh enquiry-to-alert acceptance; email disabled | Missed enquiries/support | Agree sold channels; controlled tests after exact payload/channel approval | 0.5–1 day / operations | Persisted enquiry, owner retrieval, actual intended notifications and failure/retry evidence |
+| G07 P1 | No current backup restoration evidence | Unrecoverable service/data interruption | Verify existing backup/export coverage; restore into isolation; define RPO/RTO | 0.5–1 day / operations | Recover representative records/assets and verify usable site within approved objectives |
+| G08 P1 | Seller number/details unresolved in 14 Oct evidence; privacy controller unclear | Unreliable agreements/invoices/privacy notice | Founder supplies authoritative seller record; reconcile notices/terms | 2–4 hours plus adviser wait / founder | Seller/provider/invoice identity agree; accepted support/refund/ownership and data handling terms |
+| G09 P1 | Static normal/receiver-active/first-user-promotion claims observed live | Founder can trust a false operating state | Small text corrections prepared locally; remaining playbook/tool claims reviewed | 2–4 hours / engineering + operations | Screens distinguish recorded configuration, drafts and actual verified service state |
+| G10 P1 | Main protected=false; native Cloudflare build deploys automatically; GitHub audit ignored failures | Unreviewed/insecure release exposure | Enforce audit failure (prepared); founder approves feasible branch/release controls | 0.5 day / founder + engineering | Failed critical checks cannot silently pass; exact approval/release and rollback documented |
+| G11 P1 | Logs/traces disabled; last-admin concurrency and single owner recovery unverified | Incidents or lockout may be hard to recover | Minimal approved observability and recovery process; do not add vendors | 0.5–1 day / operations | Synthetic fault visible to responsible owner; access recovery tested without removing genuine owner |
+| G12 P1 | Broad legacy grants, public product-sales insert, no complete fresh actor matrix | Data pollution/integrity risk; privilege scope too wide | Review actual routes and grants; minimum safe restrictions only with approval | 0.5–1 day / security/engineering | Anonymous, ordinary, cross-customer, admin and server access match matrix; invariants reject direct invalid writes |
+| G13 P1 | Sold support/asset intake/recurring collection not fully accepted | Three customers could receive inconsistent care | Restricted asset intake and manual support/payment register; confirmed coverage | 0.5 day / founder + delivery | Named owner, escalation, scheduled care, approved collection and failed-payment procedure |
+| G14 P1 evidence gate | Fresh mobile/tablet/core keyboard and customer-template acceptance missing | Essential contact or approval path may fail on customer devices | Bounded current-release device journey; historical tests do not close it | 0.5 day / QA | Essential pages/forms/approval usable at 375/768/1440 and keyboard; defects fixed or scoped |
+| G15 P2 | Diagnostic warnings for deliberately deferred tools; CMS not connected to all public pages | Noisy priorities and misleading editing expectations | Narrow diagnostic scope; label code/CMS authority | 0.5 day / engineering | Deferred tools do not create launch tasks; edited content destination is explicit |
+| G16 P2 | Metadata/field performance/complete asset and accessibility audit unfinished | Search and experience improvements | Measure and improve after essential gates; fix any discovered conversion blocker earlier | 0.5–2 days / QA | Recorded production measurements and meaningful defect acceptance |
+| G17 P2 | Old Drive statuses, playbooks, commercial snippets and briefing still list merged work | Duplicate development and conflicting commercial instructions | Add dated supersession pointers, preserve originals, publish after G03 | 2–4 hours / Chief of Staff | One current index points to this gate; no repeated merge/payment-receiver build task |
+| G18 P3 | Domain expansion, automated outreach/socials and custom recurring billing | Delay and complexity before validation | Defer until measured pilot demand/margins | Unscheduled / founder | Business case after three delivered customers; no launch dependency |
+
+## 11. Founder decisions required
+
+The three-customer pilot and current ratified pricing are already settled; do not ask again. Founder decisions still needed: intended restricted Business OS audience; authoritative seller/company register details; realistic support/backup obligations and sold routing; manual provider-hosted billing versus activation of the existing automated path; and exact production migration/security-release approval after acceptance. No approval to merge, deploy, change DNS, permissions or production data is inferred from this audit.
+
+## 12. Execution sequence and estimated readiness effort
+
+1. Review the local security correction and gate records. Resolve Drive access policy and seller identity in parallel with safe technical preparation.
+2. Review/rehearse the existing projects reconciliation against a production-shaped isolated schema, including data preservation and role denial. Select the minimum billing/approval method and restricted asset intake.
+3. Complete one fictional sale-to-care rehearsal, including enquiry delivery, actual template, approved revision, failed payment/support incident and backup restore. Stop on material failures, not optional dashboard gaps.
+4. Present the exact release/migration/rollback package for founder approval. After approval only, release, verify current provider version and rerun affected live acceptance. Admit three staggered pilot customers with no more than two concurrent builds.
+
+Planning estimate: **4–7 focused engineering/QA days plus 3–6 founder/operations hours**, assuming prompt decisions, credentials and no major new failure. This is not elapsed calendar time or a customer delivery promise. Wider automation/full Admin coverage adds work and should not sit on this pilot's critical path. Earliest go-live is conditional on evidence, not a date.
+
+## 13. Updates and changes completed
+
+The approved three-customer decision is recorded here. Current production, merged-work and domain-inventory evidence supersedes the stale pending claims without deleting history. A canonical handover update is being saved with this brief's path and review branch; its completed write/readback is recorded in the final handover checkpoint.
+
+Isolated branch changes: resolved vulnerable TanStack family, minimum react-start version, blocking high/critical dependency CI, truthful dashboard/finance/cron/provisioning labels, two-build capacity and agreed timing guidance. A compatible unknown-error type is used with the updated router. No schema, provider setting, customer data, DNS, permission, message or production application was changed. No branch was merged or force-pushed.
+
+The report and raw public/read-only audit evidence are local. Drive publication and shared index update are held because their anyone-writer permissions remain unresolved. No Slack update was sent. This brief is the current Gate 1 assessment; the app repository remains authoritative for source and release state. Do not treat the local brief as already published to Business OS.
+
+## 14. Validation and limitations
+
+Main snapshot af5ae9c: format/typecheck/build pass; lint zero errors and nine existing warnings; 62 smoke checks, 190 regression/integration tests and three service-worker tests pass after building. Initial pre-build smoke execution correctly failed for missing output; the first local build was blocked by the shared dependency-cache permissions, then the isolated build/test completed with approved cache access. These are local tests, not full production journeys.
+
+Review branch: dependency install and audit report zero known vulnerabilities. Format/lint/build and 190+3 tests passed. The updated router initially exposed an error-boundary type mismatch; changing its input to unknown resolved the typecheck, which then passed. Final changed-file/static verification is retained in local logs. Source inspection and screen reads do not prove successful writes. No valid live submission, live payment, production CRUD or destructive security test was performed.
+
+Evidence directory: this file's folder contains `public-http.json`, `dns.json`, `github-main.json`, merged/open PR and check snapshots, deployment-skip evidence, baseline and remediation check logs, redacted Admin browser records and Cloudflare overview. Provider SQL checked schema, policies, constraints, grants, migrations and aggregate counts only. No credentials are included. Some browser records were captured while loading; only settled states and independent provider reads underpin findings above.
+
+Sources: canonical AGENTS/business/status/backlog/handover/commercial and dated acceptance records; exact main source and migrations; GitHub API; Supabase THG connector; Vercel team/project/deployment metadata; Google Drive index and permission metadata; live websites and Cloudflare dashboard. Account inventory is bounded to accessible accounts; other repositories/providers may exist. No complete historical chat archive or every domain was audited. This is a proportionate technical assessment, not penetration testing or a legal certification.
+
+## 15. Three most important next actions
+
+1. Review and approve the tested security release package; verify the patched version live after authorised release.
+2. Approve the reviewed projects-schema correction and restricted operational-record destination; verify actual persistence and permissions.
+3. Complete one controlled sale-to-support/restore rehearsal using the minimum manual billing and care process, then admit the three pilot customers within the two-build cap.

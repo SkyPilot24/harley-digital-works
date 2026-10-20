@@ -1,0 +1,805 @@
+{
+  "createdUtc": "2026-10-20T15:31:02.289Z",
+  "recoveryBranch": "recovery/local-work-2026-10-20",
+  "sourceStartingRevision": "bd40d92b1b0f0fb1e04cab535e053baf130c2118",
+  "localHeads": [
+    {
+      "ref": "refs/heads/audit/pre-go-live-remediation",
+      "sha": "13ebd59cf968a13867863bb4a92c7692c4a1f686",
+      "unpublishedAtAudit": 1
+    },
+    {
+      "ref": "refs/heads/codex/chief-of-staff-docs-2026-10-14",
+      "sha": "24510502f4686683f061a439f1acd8be93388ce9",
+      "unpublishedAtAudit": 0
+    },
+    {
+      "ref": "refs/heads/codex/comparison-consistency-2026-10-17",
+      "sha": "13ebd59cf968a13867863bb4a92c7692c4a1f686",
+      "unpublishedAtAudit": 1
+    },
+    {
+      "ref": "refs/heads/codex/comparison-production-2026-10-17",
+      "sha": "310f59234cc539e3f216f0a79b5c6191ca9328b5",
+      "unpublishedAtAudit": 0
+    },
+    {
+      "ref": "refs/heads/codex/first-client-production",
+      "sha": "1ab1943cc9feeb73fb18448d54f1ce372e031c78",
+      "unpublishedAtAudit": 0
+    },
+    {
+      "ref": "refs/heads/codex/gate1-readiness-2026-10-17",
+      "sha": "af5ae9c2c3896ced4a078f7edde7896205a62a57",
+      "unpublishedAtAudit": 0
+    },
+    {
+      "ref": "refs/heads/codex/harley-labs-dell-kb",
+      "sha": "5e0520dca8c8b9d633474cc9f64d2453b19e99cb",
+      "unpublishedAtAudit": 0
+    },
+    {
+      "ref": "refs/heads/codex/hdw-wordmark-2026-10-13",
+      "sha": "2eb0fece96557dc11d17abdf9abfdabda049480a",
+      "unpublishedAtAudit": 6
+    },
+    {
+      "ref": "refs/heads/codex/inbound-rehearsal-2026-10-17",
+      "sha": "6e94ce88b633b80dc301fd5d10a1b8403a461265",
+      "unpublishedAtAudit": 0
+    },
+    {
+      "ref": "refs/heads/codex/interactive-marketing-hero-2026-10-17",
+      "sha": "39fefd2ed05b31263cc26ba759e886b09ba4856f",
+      "unpublishedAtAudit": 2
+    },
+    {
+      "ref": "refs/heads/codex/pilot-security-release-2026-10-17",
+      "sha": "13d2aff36f590d23e38972edcdbbbdd92627b60e",
+      "unpublishedAtAudit": 0
+    },
+    {
+      "ref": "refs/heads/codex/reconcile-2026-10-16",
+      "sha": "bc42f922b4e412d8a0e5056ac9e673e742e9851a",
+      "unpublishedAtAudit": 1
+    },
+    {
+      "ref": "refs/heads/codex/whatsapp-marketing-contact-2026-10-17",
+      "sha": "03520b3275be20426baa5016859e0eef49365b1f",
+      "unpublishedAtAudit": 3
+    },
+    {
+      "ref": "refs/heads/docs/local-governance-review-2026-10-14",
+      "sha": "a70addec26aeec2ad674480501a418a24ea05ccd",
+      "unpublishedAtAudit": 0
+    },
+    {
+      "ref": "refs/heads/docs/pilot-teardown-p02-and-cos-runner",
+      "sha": "c8c8337de4e72a27d9ce1f8309bfd546bbe996c0",
+      "unpublishedAtAudit": 0
+    },
+    {
+      "ref": "refs/heads/feature/automated-outreach-engine",
+      "sha": "44071a4b59494d7d804cd76a3c8995b23f5cf46c",
+      "unpublishedAtAudit": 0
+    },
+    {
+      "ref": "refs/heads/main",
+      "sha": "1a3089eabc8050b0583187300c9e0b9c763e178e",
+      "unpublishedAtAudit": 0
+    },
+    {
+      "ref": "refs/heads/recovery/local-work-2026-10-20",
+      "sha": "bd40d92b1b0f0fb1e04cab535e053baf130c2118",
+      "unpublishedAtAudit": 0
+    },
+    {
+      "ref": "refs/heads/release/gate1-unified-candidate",
+      "sha": "107578e4d272ad3203dda5be35f4a179f4fbf2f6",
+      "unpublishedAtAudit": 0
+    },
+    {
+      "ref": "refs/heads/work",
+      "sha": "81f12878daa7fabfa3d4041b6bc0a9894f33dec6",
+      "unpublishedAtAudit": 0
+    }
+  ],
+  "historyCommits": [
+    {
+      "sha": "13ebd59cf968a13867863bb4a92c7692c4a1f686",
+      "subject": "Fix trade comparison reveal and align design with HDW branding"
+    },
+    {
+      "sha": "2eb0fece96557dc11d17abdf9abfdabda049480a",
+      "subject": "Merge origin/main into codex/hdw-wordmark-2026-10-13"
+    },
+    {
+      "sha": "68d0a4952525fccab09e4d205dbe5a59ab8feb1f",
+      "subject": "feat(branding): harmonize marketing brand tokens across site, studio, and brand guide"
+    },
+    {
+      "sha": "de96c6e6301be66d3bc6101a0591de1d5dd84bcd",
+      "subject": "merge: reconcile latest safeguards into branding review branch"
+    },
+    {
+      "sha": "50b70eb0ca9339e2edc57e8619aff8e893a7b1d0",
+      "subject": "docs: record branding PR and shared pack reference"
+    },
+    {
+      "sha": "4000ea142913b37534c108b6555666f5b71b6352",
+      "subject": "docs: record brand validation and preserve PDF bytes"
+    },
+    {
+      "sha": "172b576f40b0a7971a0a00ebf8cde573ac0a4ad3",
+      "subject": "feat: apply approved Harley Digital Works wordmark"
+    },
+    {
+      "sha": "39fefd2ed05b31263cc26ba759e886b09ba4856f",
+      "subject": "Revert \"feat: add interactive workflow hero to marketing homepage\""
+    },
+    {
+      "sha": "f96a99348ea63ac5efb3bc63dd187790dfd322a4",
+      "subject": "feat: add interactive workflow hero to marketing homepage"
+    },
+    {
+      "sha": "bc42f922b4e412d8a0e5056ac9e673e742e9851a",
+      "subject": "chore: reconcile governance and private portfolio setup evidence"
+    },
+    {
+      "sha": "03520b3275be20426baa5016859e0eef49365b1f",
+      "subject": "feat: add understated WhatsApp contact across marketing pages"
+    }
+  ],
+  "stash": [
+    {
+      "sha": "35406e1a6f27143184b015aecd3ab74c78c7941f",
+      "untrackedParents": [
+        "48f5d67fc45125249074ec619c8ddf80b25115d7"
+      ],
+      "files": [
+        "MASTER_BACKLOG.md",
+        "PROJECT_STATUS.md",
+        "docs/HANDOVER.md"
+      ],
+      "untrackedFiles": [
+        "docs/enquiry-acceptance-2026-10-07.md",
+        "docs/evidence/dependency-audit.json",
+        "docs/evidence/staging-api-acceptance.json",
+        "docs/evidence/staging-sql-concurrency.json",
+        "docs/evidence/thg-agency-preflight.json",
+        "docs/thg-agency-reviewed-cutover.sql"
+      ]
+    }
+  ],
+  "worktrees": [
+    {
+      "id": 0,
+      "branch": "recovery/local-work-2026-10-20",
+      "head": "bd40d92b1b0f0fb1e04cab535e053baf130c2118",
+      "changedFiles": [
+        {
+          "path": "ionos-domains-export-2026-10-17.csv",
+          "gitBlob": "138308d290c1f43e6af350458f412089407063cd",
+          "alreadyOnGithub": false,
+          "archived": null,
+          "privateExcluded": true
+        },
+        {
+          "path": "skills/thg-client-build-standard.zip",
+          "gitBlob": "096c8d4ca60f38b3aecd977a02d8454562e305f0",
+          "alreadyOnGithub": false,
+          "archived": null,
+          "privateExcluded": false
+        },
+        {
+          "path": "skills/thg-production-qa.zip",
+          "gitBlob": "835afea5e9e8b1f76eb306e5baf2d12b97c87b0c",
+          "alreadyOnGithub": false,
+          "archived": null,
+          "privateExcluded": false
+        },
+        {
+          "path": "skills/thg-supabase-security.zip",
+          "gitBlob": "f83c5a876c7f9b938a39ce317e75d9c1b6d823fe",
+          "alreadyOnGithub": false,
+          "archived": null,
+          "privateExcluded": false
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "branch": "codex/gate1-readiness-2026-10-17",
+      "head": "af5ae9c2c3896ced4a078f7edde7896205a62a57",
+      "changedFiles": [
+        {
+          "path": ".github/workflows/security.yml",
+          "gitBlob": "acfb96c2c10208b5968aa2b2c72a8927a92beddc",
+          "alreadyOnGithub": true,
+          "archived": null,
+          "privateExcluded": false
+        },
+        {
+          "path": "package-lock.json",
+          "gitBlob": "9c5d7ffe9173d440f5ac45a0f8e7b4f63669250d",
+          "alreadyOnGithub": true,
+          "archived": null,
+          "privateExcluded": false
+        },
+        {
+          "path": "package.json",
+          "gitBlob": "bee14d92ee3235d0b117133e13c0166e1b934a91",
+          "alreadyOnGithub": true,
+          "archived": null,
+          "privateExcluded": false
+        },
+        {
+          "path": "src/components/admin/FounderProcessGuide.tsx",
+          "gitBlob": "bcdc7c82405ea99a65b518bafba5605c9aaf621a",
+          "alreadyOnGithub": true,
+          "archived": null,
+          "privateExcluded": false
+        },
+        {
+          "path": "src/routeTree.gen.ts",
+          "gitBlob": "6352246e719588f274ced45e4d174945a775a438",
+          "alreadyOnGithub": false,
+          "archived": "docs/recovery/2026-10-20/working-folders/worktree-1/src/routeTree.gen.ts.source.txt",
+          "privateExcluded": false
+        },
+        {
+          "path": "src/routes/__root.tsx",
+          "gitBlob": "c1effb800b20f6d46ccc29afa4180aec1f1d085b",
+          "alreadyOnGithub": true,
+          "archived": null,
+          "privateExcluded": false
+        },
+        {
+          "path": "src/routes/_authenticated/admin.diagnostics.tsx",
+          "gitBlob": "5d718ce65635bf10425101c44dd5b8ee262e3856",
+          "alreadyOnGithub": true,
+          "archived": null,
+          "privateExcluded": false
+        },
+        {
+          "path": "src/routes/_authenticated/admin.index.tsx",
+          "gitBlob": "ac7f50b905726056e00e48f1edba2499c591c8d0",
+          "alreadyOnGithub": true,
+          "archived": null,
+          "privateExcluded": false
+        },
+        {
+          "path": "src/routes/_authenticated/admin.invoices.tsx",
+          "gitBlob": "17b3e69433ccd8b9a9c65f60b897225b257aa9de",
+          "alreadyOnGithub": true,
+          "archived": null,
+          "privateExcluded": false
+        },
+        {
+          "path": "src/routes/_authenticated/admin.users.tsx",
+          "gitBlob": "f816dbef28355e57546ea8d717f2e1761f2a6e4c",
+          "alreadyOnGithub": true,
+          "archived": null,
+          "privateExcluded": false
+        },
+        {
+          "path": "docs/CODEX_GATE_1_VERIFICATION_2026-10-17.md",
+          "gitBlob": "402c7a29920102879bf7d1eb83060bf79f828577",
+          "alreadyOnGithub": true,
+          "archived": null,
+          "privateExcluded": false
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "branch": "codex/reconcile-2026-10-16",
+      "head": "bc42f922b4e412d8a0e5056ac9e673e742e9851a",
+      "changedFiles": [
+        {
+          "path": "MASTER_BACKLOG.md",
+          "gitBlob": "818ae660186c861025c802598f0f2a10049b4e02",
+          "alreadyOnGithub": false,
+          "archived": "docs/recovery/2026-10-20/working-folders/worktree-2/MASTER_BACKLOG.md.source.txt",
+          "privateExcluded": false
+        },
+        {
+          "path": "PROJECT_STATUS.md",
+          "gitBlob": "f5c9ef02b63ddd2c5a1258894eb5767eabaeacfb",
+          "alreadyOnGithub": false,
+          "archived": "docs/recovery/2026-10-20/working-folders/worktree-2/PROJECT_STATUS.md.source.txt",
+          "privateExcluded": false
+        },
+        {
+          "path": "docs/HANDOVER.md",
+          "gitBlob": "5c97d72b245c914dca9375db085655fc6088088f",
+          "alreadyOnGithub": false,
+          "archived": "docs/recovery/2026-10-20/working-folders/worktree-2/docs/HANDOVER.md.source.txt",
+          "privateExcluded": false
+        },
+        {
+          "path": "docs/print-materials/01-harley-digital-works-proposal-matrix.html",
+          "gitBlob": "60ceb7764e2f3679c9d23d0a7379a24322926bc4",
+          "alreadyOnGithub": true,
+          "archived": null,
+          "privateExcluded": false
+        },
+        {
+          "path": "docs/print-materials/02-harley-digital-works-14-day-onboarding-guide.html",
+          "gitBlob": "13d3377a0e2a8cf38f2161b10b300d8682746467",
+          "alreadyOnGithub": true,
+          "archived": null,
+          "privateExcluded": false
+        },
+        {
+          "path": "docs/print-materials/03-harley-digital-works-care-plan-sla.html",
+          "gitBlob": "a52aea95ecad7ed800b206962e63f8c5390e8a25",
+          "alreadyOnGithub": true,
+          "archived": null,
+          "privateExcluded": false
+        },
+        {
+          "path": "docs/sales-playbooks/01-trade-outbound-email-and-letter-campaign.md",
+          "gitBlob": "eae603702f8c131a009c46b6e2766f289ea7b79a",
+          "alreadyOnGithub": true,
+          "archived": null,
+          "privateExcluded": false
+        },
+        {
+          "path": "src/components/portal/CareBillingPortalDesk.tsx",
+          "gitBlob": "a9a8021a103c67217af61bb8c52563690977eef9",
+          "alreadyOnGithub": true,
+          "archived": null,
+          "privateExcluded": false
+        },
+        {
+          "path": "src/components/portal/ContractorOnboardingWizard.tsx",
+          "gitBlob": "3d94182c10e91a16758c3e9fd201cef52fb63bfa",
+          "alreadyOnGithub": true,
+          "archived": null,
+          "privateExcluded": false
+        },
+        {
+          "path": "src/components/site/FloatingWhatsAppDesk.tsx",
+          "gitBlob": "7f9ae7e70d15e946051ca4ad0064cc8f4af0eafd",
+          "alreadyOnGithub": true,
+          "archived": null,
+          "privateExcluded": false
+        },
+        {
+          "path": "src/components/site/FooterDark.tsx",
+          "gitBlob": "a12669f23db2bacf158e6b65feb9d34145acd1fe",
+          "alreadyOnGithub": true,
+          "archived": null,
+          "privateExcluded": false
+        },
+        {
+          "path": "src/components/site/HarleyGroupFooter.tsx",
+          "gitBlob": "282ca5093b10b0a466f616e842d879ae29928980",
+          "alreadyOnGithub": true,
+          "archived": null,
+          "privateExcluded": false
+        },
+        {
+          "path": "src/components/site/HarleyGroupHeader.tsx",
+          "gitBlob": "7a2947c78da4d501f8db3de1142429d5836eae85",
+          "alreadyOnGithub": true,
+          "archived": null,
+          "privateExcluded": false
+        },
+        {
+          "path": "src/components/site/SiteHeader.tsx",
+          "gitBlob": "955ce51344021e78cff25367cf6230d34fec3a1d",
+          "alreadyOnGithub": true,
+          "archived": null,
+          "privateExcluded": false
+        },
+        {
+          "path": "src/components/site/TradeServiceLanding.tsx",
+          "gitBlob": "8cc995282ba451af7e07a382f15e36c9e2f8976c",
+          "alreadyOnGithub": false,
+          "archived": "docs/recovery/2026-10-20/working-folders/worktree-2/src/components/site/TradeServiceLanding.tsx.source.txt",
+          "privateExcluded": false
+        },
+        {
+          "path": "src/lib/knowledge-base.ts",
+          "gitBlob": "88796f37d81395a24ec06c58ceb39979f50432db",
+          "alreadyOnGithub": true,
+          "archived": null,
+          "privateExcluded": false
+        },
+        {
+          "path": "src/lib/location-data.ts",
+          "gitBlob": "d9902dfda10b99b5d4deed19a5852cdc02e51a5e",
+          "alreadyOnGithub": true,
+          "archived": null,
+          "privateExcluded": false
+        },
+        {
+          "path": "src/lib/site-config.ts",
+          "gitBlob": "c7624700e08080d504a219b0264904727ae38ba5",
+          "alreadyOnGithub": true,
+          "archived": null,
+          "privateExcluded": false
+        },
+        {
+          "path": "src/routes/_authenticated/admin.settings.tsx",
+          "gitBlob": "b798886740b8111477a299bea9b4eac3b2d86094",
+          "alreadyOnGithub": true,
+          "archived": null,
+          "privateExcluded": false
+        },
+        {
+          "path": "src/routes/care-desk.tsx",
+          "gitBlob": "89834f641c5f355bc9d6a6495ca7321a67e762b1",
+          "alreadyOnGithub": true,
+          "archived": null,
+          "privateExcluded": false
+        },
+        {
+          "path": "src/routes/contact.tsx",
+          "gitBlob": "e3dd767ead2c56b3dc02f9ecd9ad04062189f1a4",
+          "alreadyOnGithub": true,
+          "archived": null,
+          "privateExcluded": false
+        },
+        {
+          "path": "src/routes/index.tsx",
+          "gitBlob": "41a800afc093276ce9e4790da73416ef9157879e",
+          "alreadyOnGithub": true,
+          "archived": null,
+          "privateExcluded": false
+        },
+        {
+          "path": "src/routes/the-harley-group.tsx",
+          "gitBlob": "f6b1c0099204d46a95cbea55f98a52733c25f6a6",
+          "alreadyOnGithub": true,
+          "archived": null,
+          "privateExcluded": false
+        },
+        {
+          "path": ".codex/environments/environment.toml",
+          "gitBlob": "8df58c32856d4744e2609df0cdc10c213987b979",
+          "alreadyOnGithub": true,
+          "archived": null,
+          "privateExcluded": false
+        },
+        {
+          "path": "docs/LOCAL_DEVELOPMENT_BUTTONS.md",
+          "gitBlob": "a3187ff749cd5f0d375875f82b431d28855d7802",
+          "alreadyOnGithub": true,
+          "archived": null,
+          "privateExcluded": false
+        },
+        {
+          "path": "scripts/dev-workspace.ps1",
+          "gitBlob": "b71a7bbac8a66dec4e5ec3db8951cd10ab7dc5eb",
+          "alreadyOnGithub": true,
+          "archived": null,
+          "privateExcluded": false
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "branch": "codex/inbound-rehearsal-2026-10-17",
+      "head": "6e94ce88b633b80dc301fd5d10a1b8403a461265",
+      "changedFiles": [
+        {
+          "path": "src/routeTree.gen.ts",
+          "gitBlob": "2b1fa3d456cbc9e66a7b825e415913f97f887a91",
+          "alreadyOnGithub": true,
+          "archived": null,
+          "privateExcluded": false
+        },
+        {
+          "path": "Images/Reception",
+          "gitBlob": "2d56547c710552e1cd04a8b2784101f09b87bdf0",
+          "alreadyOnGithub": false,
+          "archived": "docs/recovery/2026-10-20/assets/reception-design-study.png",
+          "privateExcluded": false
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "branch": "release/gate1-unified-candidate",
+      "head": "107578e4d272ad3203dda5be35f4a179f4fbf2f6",
+      "changedFiles": []
+    },
+    {
+      "id": 5,
+      "branch": "codex/whatsapp-marketing-contact-2026-10-17",
+      "head": "03520b3275be20426baa5016859e0eef49365b1f",
+      "changedFiles": [
+        {
+          "path": "src/routeTree.gen.ts",
+          "gitBlob": "2b1fa3d456cbc9e66a7b825e415913f97f887a91",
+          "alreadyOnGithub": true,
+          "archived": null,
+          "privateExcluded": false
+        }
+      ]
+    }
+  ],
+  "snapshots": [
+    {
+      "worktree": 1,
+      "branch": "codex/gate1-readiness-2026-10-17",
+      "source": "src/routeTree.gen.ts",
+      "archive": "docs/recovery/2026-10-20/working-folders/worktree-1/src/routeTree.gen.ts.source.txt",
+      "bytes": 51325,
+      "sha256": "c999ae1a0d281b8f1884d8a24047e67693ee26e16db72c07201bdc267a984a33",
+      "gitBlob": "6352246e719588f274ced45e4d174945a775a438",
+      "kind": "working-copy-variant"
+    },
+    {
+      "worktree": 2,
+      "branch": "codex/reconcile-2026-10-16",
+      "source": "MASTER_BACKLOG.md",
+      "archive": "docs/recovery/2026-10-20/working-folders/worktree-2/MASTER_BACKLOG.md.source.txt",
+      "bytes": 108744,
+      "sha256": "f60de082ea1a04b57a90a8431b8d6c04b7373cf847f27e078616cca6c9adbb07",
+      "gitBlob": "818ae660186c861025c802598f0f2a10049b4e02",
+      "kind": "working-copy-variant"
+    },
+    {
+      "worktree": 2,
+      "branch": "codex/reconcile-2026-10-16",
+      "source": "PROJECT_STATUS.md",
+      "archive": "docs/recovery/2026-10-20/working-folders/worktree-2/PROJECT_STATUS.md.source.txt",
+      "bytes": 82878,
+      "sha256": "9596b09a9e892a9d1fa139ba6a17c1f23a47526d0a996c10acd4284f48922567",
+      "gitBlob": "f5c9ef02b63ddd2c5a1258894eb5767eabaeacfb",
+      "kind": "working-copy-variant"
+    },
+    {
+      "worktree": 2,
+      "branch": "codex/reconcile-2026-10-16",
+      "source": "docs/HANDOVER.md",
+      "archive": "docs/recovery/2026-10-20/working-folders/worktree-2/docs/HANDOVER.md.source.txt",
+      "bytes": 115561,
+      "sha256": "1a4d1a3d6f175f2699cff54edfe8a0eb9fffdd604899a5610bdcde343f21e9f1",
+      "gitBlob": "5c97d72b245c914dca9375db085655fc6088088f",
+      "kind": "working-copy-variant"
+    },
+    {
+      "worktree": 2,
+      "branch": "codex/reconcile-2026-10-16",
+      "source": "src/components/site/TradeServiceLanding.tsx",
+      "archive": "docs/recovery/2026-10-20/working-folders/worktree-2/src/components/site/TradeServiceLanding.tsx.source.txt",
+      "bytes": 21079,
+      "sha256": "091520488cc9068d9d2deaae2a1cbe24a293be63691778931b599b589d018cce",
+      "gitBlob": "8cc995282ba451af7e07a382f15e36c9e2f8976c",
+      "kind": "working-copy-variant"
+    },
+    {
+      "worktree": 3,
+      "branch": "codex/inbound-rehearsal-2026-10-17",
+      "source": "Images/Reception",
+      "archive": "docs/recovery/2026-10-20/assets/reception-design-study.png",
+      "bytes": 1882705,
+      "sha256": "f99c9f9f1b60e44e1b3323f221d35a6ca114a217bfa3990ed40cecd90a64cfc6",
+      "gitBlob": "2d56547c710552e1cd04a8b2784101f09b87bdf0",
+      "kind": "illustrative-design-study"
+    },
+    {
+      "worktree": 2,
+      "branch": "codex/reconcile-2026-10-16",
+      "source": "commit-verification.local/MASTER_BACKLOG.md",
+      "archive": "docs/recovery/2026-10-20/working-folders/worktree-2/commit-verification.local/MASTER_BACKLOG.md.source.txt",
+      "bytes": 107486,
+      "sha256": "2fe7db10b316d7c4d00d25ffa49d301161a7b10a28e8a6841d3af7e4ff3a4fea",
+      "gitBlob": "9e0230d5cab53220baeb6d338216bb817780dfcf",
+      "kind": "ignored-verification-copy"
+    },
+    {
+      "worktree": 2,
+      "branch": "codex/reconcile-2026-10-16",
+      "source": "commit-verification.local/PROJECT_STATUS.md",
+      "archive": "docs/recovery/2026-10-20/working-folders/worktree-2/commit-verification.local/PROJECT_STATUS.md.source.txt",
+      "bytes": 81620,
+      "sha256": "59c9e464d5c5bafc229da253c17aa89e2f2cb186a064292c496f13b3de4851fb",
+      "gitBlob": "d4b79649854c4b1f4da1725ddcd40bbbf48209cf",
+      "kind": "ignored-verification-copy"
+    },
+    {
+      "worktree": 2,
+      "branch": "codex/reconcile-2026-10-16",
+      "source": "commit-verification.local/docs/HANDOVER.md",
+      "archive": "docs/recovery/2026-10-20/working-folders/worktree-2/commit-verification.local/docs/HANDOVER.md.source.txt",
+      "bytes": 114303,
+      "sha256": "aa7588808bca7418d5a602f8db8643068d28eae24d55258275ba60c436f19ea9",
+      "gitBlob": "bcd07a989cdaa1d3ccdc188f6c8be516efb1cd7a",
+      "kind": "ignored-verification-copy"
+    },
+    {
+      "worktree": 2,
+      "branch": "codex/reconcile-2026-10-16",
+      "source": "commit-verification.local/docs/RECONCILIATION_AND_DOMAIN_SETUP_2026-10-17.md",
+      "archive": "docs/recovery/2026-10-20/working-folders/worktree-2/commit-verification.local/docs/RECONCILIATION_AND_DOMAIN_SETUP_2026-10-17.md.source.txt",
+      "bytes": 7567,
+      "sha256": "01b6f5f88f1bf05ddc3c657d86a3267e0fbf5f116ab73f23c35c503d6ffd6057",
+      "gitBlob": "5274b1c9b77b5465c320c5de50e668999f833b99",
+      "kind": "ignored-verification-copy"
+    },
+    {
+      "worktree": 2,
+      "branch": "codex/reconcile-2026-10-16",
+      "source": "commit-verification.local/src/components/site/TradeServiceLanding.tsx",
+      "archive": "docs/recovery/2026-10-20/working-folders/worktree-2/commit-verification.local/src/components/site/TradeServiceLanding.tsx.source.txt",
+      "bytes": 21260,
+      "sha256": "b967ed535658c7ccf2d5f4a14c806ad6a367fdf1938dbdf64eadeae64c5964ff",
+      "gitBlob": "2dff2ad6bf5b493056a25cd9b87a38fdf31c6914",
+      "kind": "ignored-verification-copy"
+    },
+    {
+      "worktree": 2,
+      "branch": "codex/reconcile-2026-10-16",
+      "source": "commit-verification.local/src/routes/index.tsx",
+      "archive": "docs/recovery/2026-10-20/working-folders/worktree-2/commit-verification.local/src/routes/index.tsx.source.txt",
+      "bytes": 19078,
+      "sha256": "ab0dd0b1ba4addd43a9fd5bd33c2cca5c5f4bd1a0086eb58f5ee2f229a3277f5",
+      "gitBlob": "0425d7d501fb48de4d918b1ccc03bb95a49994db",
+      "kind": "ignored-verification-copy"
+    },
+    {
+      "worktree": 2,
+      "branch": "codex/reconcile-2026-10-16",
+      "source": "local-setup-verification.local/MASTER_BACKLOG.md",
+      "archive": "docs/recovery/2026-10-20/working-folders/worktree-2/local-setup-verification.local/MASTER_BACKLOG.md.source.txt",
+      "bytes": 107818,
+      "sha256": "26caa9224e94d84564aee14e0460f6284752491538fb19ff79af3f38aed01f1f",
+      "gitBlob": "94c655232b7590f0dd463bc6101b80ed78286cb8",
+      "kind": "ignored-verification-copy"
+    },
+    {
+      "worktree": 2,
+      "branch": "codex/reconcile-2026-10-16",
+      "source": "local-setup-verification.local/PROJECT_STATUS.md",
+      "archive": "docs/recovery/2026-10-20/working-folders/worktree-2/local-setup-verification.local/PROJECT_STATUS.md.source.txt",
+      "bytes": 81952,
+      "sha256": "fa782672b209a883046c440488caa675281c8cecab8e555d0714eee6f62f6ea6",
+      "gitBlob": "a3d46330c283007aa10f5057665e76123a1eb586",
+      "kind": "ignored-verification-copy"
+    },
+    {
+      "worktree": 2,
+      "branch": "codex/reconcile-2026-10-16",
+      "source": "local-setup-verification.local/docs/HANDOVER.md",
+      "archive": "docs/recovery/2026-10-20/working-folders/worktree-2/local-setup-verification.local/docs/HANDOVER.md.source.txt",
+      "bytes": 114635,
+      "sha256": "3c5a961c4cbd804247887ead999ced9acdd9332b65173ef3cf01f6b8f3d62f12",
+      "gitBlob": "17004d6a5f381ce5e6b0ae258f0aec4ba175eeb7",
+      "kind": "ignored-verification-copy"
+    },
+    {
+      "worktree": 2,
+      "branch": "codex/reconcile-2026-10-16",
+      "source": "local-setup-verification.local/docs/LOCAL_DEVELOPMENT_BUTTONS.md",
+      "archive": "docs/recovery/2026-10-20/working-folders/worktree-2/local-setup-verification.local/docs/LOCAL_DEVELOPMENT_BUTTONS.md.source.txt",
+      "bytes": 2959,
+      "sha256": "8a982c663a71e4fd8961b9c8603ca76d035f87f16e2b557bfef968e56f41e1fc",
+      "gitBlob": "6527c81f1866a79794c7a1eecfb92efc9ba67dbb",
+      "kind": "ignored-verification-copy"
+    },
+    {
+      "worktree": 2,
+      "branch": "codex/reconcile-2026-10-16",
+      "source": "local-setup-verification.local/src/components/site/TradeServiceLanding.tsx",
+      "archive": "docs/recovery/2026-10-20/working-folders/worktree-2/local-setup-verification.local/src/components/site/TradeServiceLanding.tsx.source.txt",
+      "bytes": 21260,
+      "sha256": "b967ed535658c7ccf2d5f4a14c806ad6a367fdf1938dbdf64eadeae64c5964ff",
+      "gitBlob": "2dff2ad6bf5b493056a25cd9b87a38fdf31c6914",
+      "kind": "ignored-verification-copy"
+    },
+    {
+      "worktree": 2,
+      "branch": "codex/reconcile-2026-10-16",
+      "source": "local-setup-verification.local/src/routes/index.tsx",
+      "archive": "docs/recovery/2026-10-20/working-folders/worktree-2/local-setup-verification.local/src/routes/index.tsx.source.txt",
+      "bytes": 19078,
+      "sha256": "ab0dd0b1ba4addd43a9fd5bd33c2cca5c5f4bd1a0086eb58f5ee2f229a3277f5",
+      "gitBlob": "0425d7d501fb48de4d918b1ccc03bb95a49994db",
+      "kind": "ignored-verification-copy"
+    }
+  ],
+  "ignoredReview": {
+    "checked": 2342,
+    "alreadyOnGithub": 2315,
+    "uniqueArchived": 12,
+    "privateOrGenerated": [
+      {
+        "worktree": 0,
+        "path": ".env.local",
+        "decision": "private-local-only"
+      },
+      {
+        "worktree": 0,
+        "path": "supabase/.temp/cli-latest",
+        "decision": "generated-local-state"
+      },
+      {
+        "worktree": 2,
+        "path": "commit-verification.local/build.local.log",
+        "decision": "generated-local-state"
+      },
+      {
+        "worktree": 2,
+        "path": "commit-verification.local/domains.local.log",
+        "decision": "generated-local-state"
+      },
+      {
+        "worktree": 2,
+        "path": "commit-verification.local/lint.local.log",
+        "decision": "generated-local-state"
+      },
+      {
+        "worktree": 2,
+        "path": "commit-verification.local/regression.local.log",
+        "decision": "generated-local-state"
+      },
+      {
+        "worktree": 2,
+        "path": "commit-verification.local/test-results/.last-run.json",
+        "decision": "generated-local-state"
+      },
+      {
+        "worktree": 2,
+        "path": "commit-verification.local/types.local.log",
+        "decision": "generated-local-state"
+      },
+      {
+        "worktree": 2,
+        "path": "local-setup-verification.local/checks.local.log",
+        "decision": "generated-local-state"
+      },
+      {
+        "worktree": 2,
+        "path": "local-setup-verification.local/test-results/.last-run.json",
+        "decision": "generated-local-state"
+      },
+      {
+        "worktree": 3,
+        "path": ".env.local",
+        "decision": "private-local-only"
+      },
+      {
+        "worktree": 3,
+        "path": ".rehearsal-process.local",
+        "decision": "generated-local-state"
+      },
+      {
+        "worktree": 4,
+        "path": ".env.local",
+        "decision": "private-local-only"
+      },
+      {
+        "worktree": 4,
+        "path": "pilot-build.log",
+        "decision": "generated-local-state"
+      },
+      {
+        "worktree": 4,
+        "path": "pilot-tests.log",
+        "decision": "generated-local-state"
+      }
+    ]
+  },
+  "privacyReview": {
+    "credentialFindings": 0,
+    "newContactAddressesComparedWithMain": 0,
+    "newBinaryAssetsReviewed": [
+      "public concept comparison desktop screenshot",
+      "public concept comparison mobile screenshot",
+      "illustrative reception design study"
+    ]
+  },
+  "exclusions": [
+    "Private domain inventory CSV",
+    "Real .env.local configuration in main and linked folders",
+    "Generated dependencies, build caches, logs and process state",
+    "Internal Codex turn-diff checkpoint refs (private tool state, retained in local all-ref bundle)"
+  ],
+  "archiveReview": "All seven entries across the three skill ZIPs match tracked canonical source files byte-for-byte. Reviewed ZIP originals may now be uploaded safely."
+}

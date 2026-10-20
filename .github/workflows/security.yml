@@ -48,4 +48,4 @@ jobs:
 
       - name: Run audit summary
         run: |
-          npm audit || true
+          npm audit --audit-level=high

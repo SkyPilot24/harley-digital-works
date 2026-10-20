@@ -385,13 +385,12 @@ Confirm actual payment independently from provider/ledger evidence.
               Deposit Receipts & Idempotent Stripe Webhook Receiver
             </h2>
             <p className="text-xs text-ink-muted">
-              Production payment processing safeguards, ratified integer pence tracking, and ledger
-              reconciliation.
+              Receiver implementation and agreed milestones. This screen does not check provider
+              configuration or confirm collected payments.
             </p>
           </div>
-          <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-50 border border-emerald-200 px-3 py-1 text-xs font-bold text-emerald-800">
-            <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
-            Receiver Active
+          <span className="inline-flex items-center gap-1.5 rounded-full bg-amber-50 border border-amber-200 px-3 py-1 text-xs font-bold text-amber-800">
+            Receiver status not verified
           </span>
         </div>
 
@@ -402,8 +401,8 @@ Confirm actual payment independently from provider/ledger evidence.
             </div>
             <div className="text-xl font-extrabold text-ink">£747.50</div>
             <p className="text-xs text-ink-muted">
-              Exactly 74,750 integer pence. Triggers project workspace reservation and discovery
-              kickoff.
+              Exactly 74,750 integer pence. Confirm payment and available capacity before reserving
+              the build slot or starting discovery.
             </p>
           </div>
           <div className="rounded-xl border border-ink/10 bg-slate-50/60 p-4 space-y-1.5">
@@ -437,7 +436,8 @@ Confirm actual payment independently from provider/ledger evidence.
               Client Subscription & Billing Directory
             </h2>
             <p className="text-xs text-ink-muted">
-              Live customer accounts with monthly care agreement and payment values.
+              Client records and manually recorded agreement values. Verify collections in the
+              approved provider and ledger.
             </p>
           </div>
           <Link to="/admin/clients" className="text-xs font-semibold text-ink underline">

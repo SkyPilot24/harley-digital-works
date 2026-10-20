@@ -32,6 +32,7 @@ When sources conflict, inspect the relevant evidence and decision scope. Preserv
 ## Business and commercial direction
 
 Preserve:
+
 - The Harley Group as the parent and oversight organisation.
 - Harley Digital Works as the customer-facing digital services brand.
 - Harley Labs as the AI, automation, prototype and product-experiment brand.
@@ -66,6 +67,7 @@ These identifiers locate expected targets; they do not prove current access, con
 ## Skills and tool entry points
 
 Use only task-relevant canonical repository standards:
+
 - skills/thg-client-build-standard/SKILL.md — website delivery.
 - skills/thg-supabase-security/SKILL.md — Supabase/auth/database security.
 - skills/thg-production-qa/SKILL.md — release readiness.
@@ -75,6 +77,7 @@ Use $thg-project-context when available and relevant. Its absence does not repla
 Installed skills are loader copies. Canonical standards are authored in skills/; follow docs/SHARED_SKILLS.md for synchronisation and drift checks.
 
 Tool entry points should reference these shared rules rather than duplicate changing business facts:
+
 - Codex: root AGENTS.md and applicable nested instructions.
 - Antigravity: .agents/rules/thg-shared-skills.md.
 - Copilot: .github/copilot-instructions.md and docs/COPILOT_QUICKSTART.md.
@@ -114,6 +117,7 @@ Do not weaken security, fabricate evidence or substitute production merely to ob
 Before ending meaningful work, update the relevant backlog evidence, PROJECT_STATUS.md and docs/HANDOVER.md in the same change where practical.
 
 Record:
+
 - Objective and task IDs.
 - Repository, branch and exact revision.
 - Changes and founder decisions.
@@ -127,3 +131,11 @@ Preserve history, but keep the current checkpoint easy to identify. Do not descr
 If writes are unavailable, provide exact ready-to-save Markdown and explicitly state that it has not been applied.
 
 Finish concisely with the result, verification limits and next action. For release reviews, mark gates Ready, Needs attention or Blocking launch using evidence.
+
+## Daily continuity and historical prompt routing
+
+For daily/weekly prioritisation, planning, implementation, copy and QA, use docs/DAILY_PLAYBOOK.md for the compact routine and reconciled PROMPT_LIBRARY.md / MASTER_BUILD_PROMPTS.md routing. Do not load both entire historical libraries each session. Current business, offer, approved brand, source evidence and permissions override September assumptions. Inspect existing implementation/peer work before coding; save the compact end checkpoint. The one morning prompt lives in docs/DAILY_PLAYBOOK.md.
+
+## Founder communication preference — 20 October 2026
+
+Robbie is the founder, not a developer. Explain findings and actions in plain English, one step at a time. Lead with the practical meaning for the business and any decision needed. Explain technical terms when they are necessary; do not assume familiarity with Git, branches, commits or deployment. For checks requested as read-only, report findings before changing files; apply only separately authorised edits.

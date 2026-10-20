@@ -1,3 +1,7 @@
+## Revival Fellowship pro bono contribution — 18 October 2026
+
+Founder-reported unpaid design/development/systems/consultancy and replacement-site delivery recorded in BUSINESS_DEFINITION.md and docs/REVIVAL_PRO_BONO_REFERENCE_2026-10-18.md. Revival is a separate supported community project, not a Harley subsidiary/charitable arm. Founder direction caps further unpaid work by requiring separately agreed scope/time, prioritising revenue-generating Harley work; no numerical cap, ongoing SLA or donation valuation invented. Understated /work reference and reciprocal Fellowship footer credit prepared as exact review copies/patches, not published or deployed. Existing dirty source preserved; owner review and source reconciliation next. No tests of live delivery, security or outcomes claimed.
+
 # Decisions and activity — current reconciliation
 
 ## Local documentation reconciliation — 14 October 2026

@@ -136,7 +136,10 @@ export function WebsitePackagesSection({
               <a href="/services/care-plans" className="studio-text-link">
                 What ongoing care means <ArrowUpRight size={16} />
               </a>
-              <a href="/calculator" className="studio-text-link">
+              <a
+                href="/contact?service=Website%20scope%20and%20investment"
+                className="studio-text-link"
+              >
                 Discuss your website investment <ArrowUpRight size={16} />
               </a>
             </div>
