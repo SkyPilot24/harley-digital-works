@@ -1,3 +1,9 @@
+## README and developer guidance correction — 20 October 2026
+
+On `copilot/fix-documentation-gap`, source revision `b340007c1a19f1f95b812b9a3453e5248e847b39`, replaced inaccurate README Vercel instructions with the canonical Cloudflare Actions flow, including its `main` trigger, build/test gates and deployment secrets. Updated local setup and verification commands to match `.env.example`, `package.json`, and CI, and removed the stale hard-coded Supabase URL. Documentation only; no runtime, deployment, backend or production state changed. No matching product backlog task exists.
+
+Validation: `git diff --check`, relative links in the changed README/status records, and checks against `package.json` and `.github/workflows/deploy.yml` PASS. A targeted Prettier check could not run because the local Prettier binary is unavailable; dependencies were not installed for this documentation-only change. Application lint/build/tests and live deployment were not run. Next: review the final documentation diff; no production action is needed.
+
 ## Gate 1 unified release candidate verified — 18 October 2026
 
 Founder (Robbie) authorised publishing the Gate 1 release candidate. Candidate branch `release/gate1-unified-candidate`, base `13d2aff36f590d23e38972edcdbbbdd92627b60e` on top of `main` (`af5ae9c2c3896ced4a078f7edde7896205a62a57`). 

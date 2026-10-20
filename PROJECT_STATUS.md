@@ -1,3 +1,7 @@
+## README and developer guidance correction — 20 October 2026
+
+On `copilot/fix-documentation-gap`, source revision `b340007c1a19f1f95b812b9a3453e5248e847b39`, corrected the README's Vercel deployment guidance to match the Cloudflare Actions workflow and aligned setup/check commands with the lockfile, package scripts and CI. Diff whitespace, README/status local links and command/workflow consistency checks pass. The local Prettier binary is unavailable; no dependencies were installed for this documentation-only change. Application checks and deployment were not run. Deployment configuration, application code and backend state are unchanged. See `docs/HANDOVER.md` for details. No existing product backlog item applies.
+
 ## Migration recovery validation checkpoint — 17 October 2026
 
 H07/H08/H09/H19/H42/H47/H50. Candidate branch codex/pilot-security-release-2026-10-17, starting revision e61fc2cb9368c52197d3e2a2517ab046668ef268; application security source remains 750b39b5e4373040b1830b1091f37981bb75145d. Primary main af5ae9c2c3896ced4a078f7edde7896205a62a57 and unrelated peer edits preserved. User authorised continuing validation and requested handover update; no production execution authority inferred.

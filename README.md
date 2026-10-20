@@ -128,41 +128,30 @@ Important server-side workflows are implemented in `src/lib/*.functions.ts`, inc
 
 These functions use validated input and server-side Supabase access where privileged operations are required.
 
-## Deploying to Vercel
+## Deploying to Cloudflare Workers
 
-This project is configured to deploy to Vercel via the included `vercel.json`.
+The canonical deployment is the GitHub Actions workflow in
+`.github/workflows/deploy.yml`. A push to `main` runs `npm ci`, `npm run build`,
+and `npm test`, then deploys the generated Nitro Worker from `.output/server`
+with Wrangler. The workflow requires the GitHub Actions secrets
+`CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID`; without the API token, the
+workflow warns and skips deployment. Check the workflow run to confirm whether
+a deployment actually occurred. A push to `main` can deploy to production, so
+follow the repository's release-approval process.
 
-### Steps
-
-1. Push this repository to GitHub (or connect it in the Vercel dashboard).
-2. Import the project in [vercel.com/new](https://vercel.com/new).
-3. Vercel will pick up `vercel.json` automatically — no framework override is needed.
-4. Add the required environment variables in the Vercel project settings (see [Required environment variables](#required-environment-variables) below).
-5. Deploy.
-
-| `LEAD_RATE_LIMIT_SECRET` | _(Recommended)_ Server-only HMAC secret for lead rate-limit fingerprints; falls back to the service-role key if omitted |
-The build uses the nitro **vercel** preset (`NITRO_PRESET=vercel`), which generates a `.vercel/output` directory following Vercel's Build Output API v3. Static assets are served from the CDN and SSR is handled by a serverless function.
-
-### Required environment variables (Vercel project settings)
-
-| Variable                        | Description                                          |
-| ------------------------------- | ---------------------------------------------------- |
-| `VITE_SUPABASE_URL`             | Supabase project URL (public)                        |
-| `VITE_SUPABASE_PUBLISHABLE_KEY` | Supabase anon/public key (public)                    |
-| `SUPABASE_URL`                  | Supabase project URL (server-side)                   |
-| `SUPABASE_PUBLISHABLE_KEY`      | Supabase anon key (server-side)                      |
-| `SUPABASE_SERVICE_ROLE_KEY`     | Supabase service role key (server-side, keep secret) |
-| `SLACK_WEBHOOK_URL`             | _(Optional)_ Slack incoming webhook for lead alerts  |
+Configure Worker runtime variables and secrets in Cloudflare. See `.env.example`
+for variable names and `wrangler.json` for the checked-in Worker configuration.
+`vercel.json` is not used by the canonical deployment workflow and is not
+deployment guidance for this repository.
 
 ## Local development
 
 Copy `.env.example` to the ignored `.env.local` file. For admin sign-in, set
 `VITE_SUPABASE_URL` and `VITE_SUPABASE_PUBLISHABLE_KEY`, then set `SUPABASE_URL`
-and `SUPABASE_PUBLISHABLE_KEY` to the same values for authenticated server functions.
-The existing Lovable Cloud project uses `https://sprljifjcpbnagsxefrp.supabase.co`
-(verified through Lovable on 29 September 2026). The reference in
-`supabase/config.toml` is stale; verify the intended target before using the CLI.
-Use that project's existing publishable/anon key; do not create a replacement database.
+and `SUPABASE_PUBLISHABLE_KEY` to the same backend values for server functions.
+Use only the isolated backend intended for the task; consult `AGENTS.md` and
+the latest handover for target guidance. The reference in
+`supabase/config.toml` may be stale, so verify the target before using the CLI.
 Restart the dev server after changing environment values.
 
 `SUPABASE_SERVICE_ROLE_KEY` is only needed for privileged server workflows, not
@@ -170,10 +159,10 @@ browser sign-in. Never put it in a `VITE_*` variable. Local server environment
 values are loaded by the development server; deployed server values must still
 be configured in the hosting platform.
 
-Install dependencies:
+Install the exact dependencies recorded by the lockfile:
 
 ```bash
-npm install
+npm ci
 ```
 
 Start the dev server:
@@ -194,30 +183,24 @@ Preview the production build:
 npm run preview
 ```
 
-Lint and format:
+Run the checks used by CI. Build before tests because the platform smoke checks
+inspect generated output:
 
 ```bash
+npm run typecheck
 npm run lint
-npm run format
+npm run format:check
+npm run build
+npm test
 ```
 
-LEAD_RATE_LIMIT_SECRET=
+## Environment variables
 
-## Required environment variables
-
-These are required for the app to function correctly:
-
-```bash
-SUPABASE_URL=
-SUPABASE_PUBLISHABLE_KEY=
-SUPABASE_SERVICE_ROLE_KEY=
-```
-
-Optional integrations:
-
-```bash
-SLACK_WEBHOOK_URL=
-```
+Use `.env.example` as the complete variable-name reference. Browser sign-in
+uses `VITE_SUPABASE_URL` and `VITE_SUPABASE_PUBLISHABLE_KEY`; server functions
+use `SUPABASE_URL` and `SUPABASE_PUBLISHABLE_KEY`. `SUPABASE_SERVICE_ROLE_KEY`
+is only needed for privileged server workflows and must never use a `VITE_`
+prefix. Configure deployed values in Cloudflare, not in the client bundle.
 
 ## Notable current capabilities
 
