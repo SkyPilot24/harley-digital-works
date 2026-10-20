@@ -491,53 +491,421 @@ function BrandAssetsPage() {
             <p className="text-xs font-bold uppercase tracking-widest text-slate-600">
               Typography Hierarchy
             </p>
-            <h2 className="mt-2 text-3xl font-bold tracking-tight text-ink md:text-4xl">
-              Website Typography
+            <h2 className="mt-2 text-3xl font-bold tracking-tight text-ink md:text-4xl font-display">
+              Ratified Typography System
             </h2>
             <p className="mt-3 text-sm text-ink-muted">
-              Harley Digital Works uses Arial and Helvetica for clear, consistent website text. The
-              logo uses supplied outlined lettering with a custom H; use the artwork rather than
-              recreating it with website fonts. Group and Labs retain their own identity assets.
+              Harley Digital Works uses a sturdy British industrial typography system: Manrope for
+              bold display headlines, Inter for mobile-first body copy, and DM Mono for transparent
+              pricing and technical specifications.
             </p>
           </div>
 
           <div className="mt-10 grid gap-6 md:grid-cols-3">
-            <div className="rounded-xl border border-ink/10 bg-hdw-blue/5 p-6">
-              <span className="text-[11px] font-mono text-hdw-blue font-bold uppercase">
-                Primary Headings
+            <div className="rounded-xl border border-ink/10 bg-white p-6 shadow-sm">
+              <span className="text-[11px] font-mono text-[#173C62] font-bold uppercase">
+                Primary Headings & Display
               </span>
-              <h3
-                className="mt-2 text-2xl font-bold text-ink"
-                style={{ fontFamily: "var(--font-heading)" }}
-              >
-                Arial / Helvetica
-              </h3>
+              <h3 className="mt-2 text-2xl font-extrabold text-ink font-display">Manrope</h3>
               <p className="mt-2 text-xs text-ink-muted leading-relaxed">
-                Use the existing heading hierarchy and readable weights for hero titles, section
-                headlines and price numbers. Preserve the supplied logo artwork.
+                Sturdy modern geometric sans with tight tracking, inspired by luxury engineering
+                brands (Aston Martin, Festool). Used across all hero headings and section titles.
               </p>
             </div>
 
-            <div className="rounded-xl border border-ink/10 bg-hdw-blue/5 p-6">
-              <span className="text-[11px] font-mono text-hdw-blue font-bold uppercase">
-                Body & Copy
+            <div className="rounded-xl border border-ink/10 bg-white p-6 shadow-sm">
+              <span className="text-[11px] font-mono text-[#173C62] font-bold uppercase">
+                Body & Functional Text
               </span>
-              <h3 className="mt-2 text-2xl font-semibold text-ink">Arial / Helvetica</h3>
+              <h3 className="mt-2 text-2xl font-medium text-ink font-sans">Inter</h3>
               <p className="mt-2 text-xs text-ink-muted leading-relaxed">
-                Use regular text with generous line spacing and short paragraphs. Keep supporting
-                copy readable at mobile widths.
+                Clean, neutral sans-serif optimised for high legibility on mobile devices, ensuring
+                tradespeople can read service packages effortlessly on site.
               </p>
             </div>
 
-            <div className="rounded-xl border border-ink/10 bg-hdw-blue/5 p-6">
-              <span className="text-[11px] font-mono text-hdw-blue font-bold uppercase">
-                Technical Data & Code
+            <div className="rounded-xl border border-ink/10 bg-white p-6 shadow-sm">
+              <span className="text-[11px] font-mono text-[#173C62] font-bold uppercase">
+                Technical Data & Pricing
               </span>
               <h3 className="mt-2 text-2xl font-mono font-bold text-ink">DM Mono</h3>
               <p className="mt-2 text-xs text-ink-muted leading-relaxed">
-                Existing monospace labels support compact references and technical information. They
-                complement the main text family and do not recreate the logo.
+                Precision monospaced figures for package pricing (£1,495 / £249/mo), SLAs, audit
+                benchmarks, and transparent commercial breakdowns.
               </p>
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      {/* Social Media Brand Kit & Real-World Livery */}
+      <section
+        className="py-20 bg-[#081B30] text-white border-b border-white/10"
+        id="social-brand-kit"
+      >
+        <Container>
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+            <div>
+              <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-[#173C62] px-3.5 py-1 text-xs font-semibold text-white font-mono">
+                <Sparkles className="h-3.5 w-3.5 text-emerald-400" />
+                <span>Ready-To-Use Marketing & Social Assets</span>
+              </div>
+              <h2 className="mt-3 text-3xl font-bold tracking-tight text-white md:text-4xl font-display">
+                Social Media Brand Kit & Real-World Mockups
+              </h2>
+              <p className="mt-2 text-sm text-slate-300 max-w-2xl leading-relaxed">
+                High-resolution ready-to-use visual assets for WhatsApp Business, LinkedIn,
+                Facebook, social share previews, print stationery, contractor workwear, and fleet
+                decals.
+              </p>
+            </div>
+          </div>
+
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {/* Asset 1: WhatsApp / LinkedIn Avatar */}
+            <div className="rounded-2xl border border-white/10 bg-white/5 p-5 flex flex-col justify-between shadow-xl hover:border-emerald-500/40 transition-all">
+              <div>
+                <div className="relative aspect-square rounded-xl overflow-hidden bg-black/40 border border-white/10">
+                  <img
+                    src="/brand/social/hdw-whatsapp-avatar.jpg"
+                    alt="Harley Digital Works WhatsApp & LinkedIn Profile Avatar"
+                    className="h-full w-full object-cover hover:scale-105 transition-transform duration-300"
+                    loading="lazy"
+                  />
+                  <span className="absolute top-2.5 left-2.5 rounded-md bg-black/85 backdrop-blur px-2 py-0.5 text-[10px] font-mono text-emerald-400 font-bold">
+                    1:1 · 1080×1080
+                  </span>
+                </div>
+                <div className="mt-3.5 inline-block text-[10px] font-mono font-bold uppercase text-emerald-400">
+                  Digital Identity
+                </div>
+                <h4 className="text-sm font-bold text-white font-display">
+                  Official Monogram Avatar
+                </h4>
+                <p className="mt-1 text-xs text-slate-300 leading-relaxed">
+                  Embossed Warm Ivory H-monogram on Midnight Navy with an active emerald indicator.
+                  Optimised for WhatsApp Business, LinkedIn, and Google Business Profile.
+                </p>
+              </div>
+              <div className="mt-4 pt-3 border-t border-white/10 flex items-center justify-between">
+                <span className="text-[10px] font-mono text-slate-400">JPG · High-Res</span>
+                <a
+                  href="/brand/social/hdw-whatsapp-avatar.jpg"
+                  download="HDW-WhatsApp-Avatar.jpg"
+                  className="inline-flex items-center gap-1 text-[11px] font-bold text-white bg-emerald-600 hover:bg-emerald-500 px-3 py-1 rounded-full transition-colors"
+                >
+                  <Download className="h-3 w-3" />
+                  <span>Download</span>
+                </a>
+              </div>
+            </div>
+
+            {/* Asset 2: OpenGraph Landscape Banner */}
+            <div className="rounded-2xl border border-white/10 bg-white/5 p-5 flex flex-col justify-between shadow-xl hover:border-emerald-500/40 transition-all">
+              <div>
+                <div className="relative aspect-video rounded-xl overflow-hidden bg-black/40 border border-white/10">
+                  <img
+                    src="/brand/social/hdw-social-og-banner.jpg"
+                    alt="Harley Digital Works OpenGraph Social Share Card"
+                    className="h-full w-full object-cover hover:scale-105 transition-transform duration-300"
+                    loading="lazy"
+                  />
+                  <span className="absolute top-2.5 left-2.5 rounded-md bg-black/85 backdrop-blur px-2 py-0.5 text-[10px] font-mono text-emerald-400 font-bold">
+                    16:9 · 1200×630
+                  </span>
+                </div>
+                <div className="mt-3.5 inline-block text-[10px] font-mono font-bold uppercase text-emerald-400">
+                  Social Share Card
+                </div>
+                <h4 className="text-sm font-bold text-white font-display">
+                  Social Share & OpenGraph Banner
+                </h4>
+                <p className="mt-1 text-xs text-slate-300 leading-relaxed">
+                  High-converting card featuring the core USP ("You do the trade. We take the
+                  website headache away"), mobile mockups, trust badges, and WhatsApp CTA.
+                </p>
+              </div>
+              <div className="mt-4 pt-3 border-t border-white/10 flex items-center justify-between">
+                <span className="text-[10px] font-mono text-slate-400">JPG · High-Res</span>
+                <a
+                  href="/brand/social/hdw-social-og-banner.jpg"
+                  download="HDW-Social-OG-Card.jpg"
+                  className="inline-flex items-center gap-1 text-[11px] font-bold text-white bg-emerald-600 hover:bg-emerald-500 px-3 py-1 rounded-full transition-colors"
+                >
+                  <Download className="h-3 w-3" />
+                  <span>Download</span>
+                </a>
+              </div>
+            </div>
+
+            {/* Asset 3: Desktop LinkedIn Company Profile */}
+            <div className="rounded-2xl border border-white/10 bg-white/5 p-5 flex flex-col justify-between shadow-xl hover:border-emerald-500/40 transition-all">
+              <div>
+                <div className="relative aspect-video rounded-xl overflow-hidden bg-black/40 border border-white/10">
+                  <img
+                    src="/brand/social/hdw-linkedin-mockup.jpg"
+                    alt="Harley Digital Works Desktop LinkedIn Company Profile Mockup"
+                    className="h-full w-full object-cover hover:scale-105 transition-transform duration-300"
+                    loading="lazy"
+                  />
+                  <span className="absolute top-2.5 left-2.5 rounded-md bg-black/85 backdrop-blur px-2 py-0.5 text-[10px] font-mono text-emerald-400 font-bold">
+                    LinkedIn · Desktop Suite
+                  </span>
+                </div>
+                <div className="mt-3.5 inline-block text-[10px] font-mono font-bold uppercase text-emerald-400">
+                  B2B Social Authority
+                </div>
+                <h4 className="text-sm font-bold text-white font-display">
+                  LinkedIn Profile & Banner Suite
+                </h4>
+                <p className="mt-1 text-xs text-slate-300 leading-relaxed">
+                  Official desktop LinkedIn company profile mockup showing custom 1584×396 banner,
+                  verified profile badge, and featured before/after trade transformation post.
+                </p>
+              </div>
+              <div className="mt-4 pt-3 border-t border-white/10 flex items-center justify-between">
+                <span className="text-[10px] font-mono text-slate-400">JPG · 1584×396</span>
+                <a
+                  href="/brand/social/hdw-linkedin-mockup.jpg"
+                  download="HDW-LinkedIn-Profile-Mockup.jpg"
+                  className="inline-flex items-center gap-1 text-[11px] font-bold text-white bg-emerald-600 hover:bg-emerald-500 px-3 py-1 rounded-full transition-colors"
+                >
+                  <Download className="h-3 w-3" />
+                  <span>Download</span>
+                </a>
+              </div>
+            </div>
+
+            {/* Asset 4: WhatsApp Business Client Intake Flow */}
+            <div className="rounded-2xl border border-white/10 bg-white/5 p-5 flex flex-col justify-between shadow-xl hover:border-emerald-500/40 transition-all">
+              <div>
+                <div className="relative aspect-square rounded-xl overflow-hidden bg-black/40 border border-white/10">
+                  <img
+                    src="/brand/social/hdw-whatsapp-chat-mockup.jpg"
+                    alt="Harley Digital Works WhatsApp Business Client Intake Flow"
+                    className="h-full w-full object-cover hover:scale-105 transition-transform duration-300"
+                    loading="lazy"
+                  />
+                  <span className="absolute top-2.5 left-2.5 rounded-md bg-black/85 backdrop-blur px-2 py-0.5 text-[10px] font-mono text-emerald-400 font-bold">
+                    WhatsApp · Direct Client Flow
+                  </span>
+                </div>
+                <div className="mt-3.5 inline-block text-[10px] font-mono font-bold uppercase text-emerald-400">
+                  Client Communications
+                </div>
+                <h4 className="text-sm font-bold text-white font-display">
+                  WhatsApp Business Intake Flow
+                </h4>
+                <p className="mt-1 text-xs text-slate-300 leading-relaxed">
+                  iPhone 16 Pro real-world WhatsApp Business chat with verified badge, rapid enquiry
+                  intake, transparent £1,495 breakdown, and 1-tap quick action buttons.
+                </p>
+              </div>
+              <div className="mt-4 pt-3 border-t border-white/10 flex items-center justify-between">
+                <span className="text-[10px] font-mono text-slate-400">JPG · Mobile Flow</span>
+                <a
+                  href="/brand/social/hdw-whatsapp-chat-mockup.jpg"
+                  download="HDW-WhatsApp-Intake-Mockup.jpg"
+                  className="inline-flex items-center gap-1 text-[11px] font-bold text-white bg-emerald-600 hover:bg-emerald-500 px-3 py-1 rounded-full transition-colors"
+                >
+                  <Download className="h-3 w-3" />
+                  <span>Download</span>
+                </a>
+              </div>
+            </div>
+
+            {/* Asset 5: Trade Quality Guild Seal Badge */}
+            <div className="rounded-2xl border border-white/10 bg-white/5 p-5 flex flex-col justify-between shadow-xl hover:border-emerald-500/40 transition-all">
+              <div>
+                <div className="relative aspect-square rounded-xl overflow-hidden bg-black/40 border border-white/10">
+                  <img
+                    src="/brand/social/hdw-guild-seal-badge.jpg"
+                    alt="Harley Digital Works Trade Quality Guild Seal Badge"
+                    className="h-full w-full object-cover hover:scale-105 transition-transform duration-300"
+                    loading="lazy"
+                  />
+                  <span className="absolute top-2.5 left-2.5 rounded-md bg-black/85 backdrop-blur px-2 py-0.5 text-[10px] font-mono text-emerald-400 font-bold">
+                    Guild Seal · Solid Brass
+                  </span>
+                </div>
+                <div className="mt-3.5 inline-block text-[10px] font-mono font-bold uppercase text-emerald-400">
+                  Trust Accreditation
+                </div>
+                <h4 className="text-sm font-bold text-white font-display">
+                  Trade Quality Guild Seal Stamp
+                </h4>
+                <p className="mt-1 text-xs text-slate-300 leading-relaxed">
+                  Heavy solid brass and navy enamel trade certification stamp: 'BUILT FOR BRITISH
+                  TRADES · 100% DONE-FOR-YOU · ZERO HOMEWORK · BACKED BY THE HARLEY GROUP'.
+                </p>
+              </div>
+              <div className="mt-4 pt-3 border-t border-white/10 flex items-center justify-between">
+                <span className="text-[10px] font-mono text-slate-400">JPG · High-Res</span>
+                <a
+                  href="/brand/social/hdw-guild-seal-badge.jpg"
+                  download="HDW-Trade-Guild-Seal.jpg"
+                  className="inline-flex items-center gap-1 text-[11px] font-bold text-white bg-emerald-600 hover:bg-emerald-500 px-3 py-1 rounded-full transition-colors"
+                >
+                  <Download className="h-3 w-3" />
+                  <span>Download</span>
+                </a>
+              </div>
+            </div>
+
+            {/* Asset 6: Contractor Softshell & Polo Uniform */}
+            <div className="rounded-2xl border border-white/10 bg-white/5 p-5 flex flex-col justify-between shadow-xl hover:border-emerald-500/40 transition-all">
+              <div>
+                <div className="relative aspect-video sm:aspect-square rounded-xl overflow-hidden bg-black/40 border border-white/10">
+                  <img
+                    src="/brand/social/hdw-workwear-mockup.jpg"
+                    alt="Harley Digital Works Trade Workwear Softshell Jacket & Polo Shirt"
+                    className="h-full w-full object-cover hover:scale-105 transition-transform duration-300"
+                    loading="lazy"
+                  />
+                  <span className="absolute top-2.5 left-2.5 rounded-md bg-black/85 backdrop-blur px-2 py-0.5 text-[10px] font-mono text-emerald-400 font-bold">
+                    Workwear · Embroidered
+                  </span>
+                </div>
+                <div className="mt-3.5 inline-block text-[10px] font-mono font-bold uppercase text-emerald-400">
+                  Physical Merchandise
+                </div>
+                <h4 className="text-sm font-bold text-white font-display">
+                  Contractor Workwear Uniform
+                </h4>
+                <p className="mt-1 text-xs text-slate-300 leading-relaxed">
+                  Heavyweight Midnight Navy softshell jacket and polo shirt laid out on a workshop
+                  bench. Precision-embroidered Warm Ivory & silver H-crest with Union Jack sleeve
+                  tab.
+                </p>
+              </div>
+              <div className="mt-4 pt-3 border-t border-white/10 flex items-center justify-between">
+                <span className="text-[10px] font-mono text-slate-400">JPG · Print Spec</span>
+                <a
+                  href="/brand/social/hdw-workwear-mockup.jpg"
+                  download="HDW-Trade-Workwear-Mockup.jpg"
+                  className="inline-flex items-center gap-1 text-[11px] font-bold text-white bg-emerald-600 hover:bg-emerald-500 px-3 py-1 rounded-full transition-colors"
+                >
+                  <Download className="h-3 w-3" />
+                  <span>Download</span>
+                </a>
+              </div>
+            </div>
+
+            {/* Asset 7: Luxury Stationery & Foil Business Cards */}
+            <div className="rounded-2xl border border-white/10 bg-white/5 p-5 flex flex-col justify-between shadow-xl hover:border-emerald-500/40 transition-all">
+              <div>
+                <div className="relative aspect-video sm:aspect-square rounded-xl overflow-hidden bg-black/40 border border-white/10">
+                  <img
+                    src="/brand/social/hdw-stationery-mockup.jpg"
+                    alt="Harley Digital Works Luxury Client Presentation & Foil Cards"
+                    className="h-full w-full object-cover hover:scale-105 transition-transform duration-300"
+                    loading="lazy"
+                  />
+                  <span className="absolute top-2.5 left-2.5 rounded-md bg-black/85 backdrop-blur px-2 py-0.5 text-[10px] font-mono text-emerald-400 font-bold">
+                    Print · Hot Foil Stamp
+                  </span>
+                </div>
+                <div className="mt-3.5 inline-block text-[10px] font-mono font-bold uppercase text-emerald-400">
+                  Print Collateral
+                </div>
+                <h4 className="text-sm font-bold text-white font-display">
+                  Luxury Stationery & Proposal Folder
+                </h4>
+                <p className="mt-1 text-xs text-slate-300 leading-relaxed">
+                  Midnight Navy & silver foil business cards, presentation folder, and printed
+                  client onboarding checklist laid out on a dark slate architect desk.
+                </p>
+              </div>
+              <div className="mt-4 pt-3 border-t border-white/10 flex items-center justify-between">
+                <span className="text-[10px] font-mono text-slate-400">JPG · Print Ready</span>
+                <a
+                  href="/brand/social/hdw-stationery-mockup.jpg"
+                  download="HDW-Luxury-Stationery-Mockup.jpg"
+                  className="inline-flex items-center gap-1 text-[11px] font-bold text-white bg-emerald-600 hover:bg-emerald-500 px-3 py-1 rounded-full transition-colors"
+                >
+                  <Download className="h-3 w-3" />
+                  <span>Download</span>
+                </a>
+              </div>
+            </div>
+
+            {/* Asset 8: Commercial Van Decal & Livery */}
+            <div className="rounded-2xl border border-white/10 bg-white/5 p-5 flex flex-col justify-between shadow-xl hover:border-emerald-500/40 transition-all">
+              <div>
+                <div className="relative aspect-video sm:aspect-square rounded-xl overflow-hidden bg-black/40 border border-white/10">
+                  <img
+                    src="/brand/social/hdw-van-livery-mockup.jpg"
+                    alt="Harley Digital Works Commercial Vehicle Livery Spec"
+                    className="h-full w-full object-cover hover:scale-105 transition-transform duration-300"
+                    loading="lazy"
+                  />
+                  <span className="absolute top-2.5 left-2.5 rounded-md bg-black/85 backdrop-blur px-2 py-0.5 text-[10px] font-mono text-emerald-400 font-bold">
+                    Fleet Livery · Transit Custom
+                  </span>
+                </div>
+                <div className="mt-3.5 inline-block text-[10px] font-mono font-bold uppercase text-emerald-400">
+                  Fleet Livery
+                </div>
+                <h4 className="text-sm font-bold text-white font-display">
+                  Van Door Decal & Livery Mockup
+                </h4>
+                <p className="mt-1 text-xs text-slate-300 leading-relaxed">
+                  Real-world application on a slate-grey Ford Transit Custom work van. High-contrast
+                  Warm Ivory lettering: 'Website & Digital Infrastructure by Harley Digital Works ·
+                  Bristol & Bath'.
+                </p>
+              </div>
+              <div className="mt-4 pt-3 border-t border-white/10 flex items-center justify-between">
+                <span className="text-[10px] font-mono text-slate-400">JPG · Decal Spec</span>
+                <a
+                  href="/brand/social/hdw-van-livery-mockup.jpg"
+                  download="HDW-Van-Livery-Mockup.jpg"
+                  className="inline-flex items-center gap-1 text-[11px] font-bold text-white bg-emerald-600 hover:bg-emerald-500 px-3 py-1 rounded-full transition-colors"
+                >
+                  <Download className="h-3 w-3" />
+                  <span>Download</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          {/* Ready-to-Copy Social Bios */}
+          <div className="mt-12 rounded-2xl border border-white/10 bg-white/5 p-6 sm:p-8">
+            <h3 className="text-base font-bold text-white font-display mb-4 flex items-center gap-2">
+              <FileCheck2 className="h-4 w-4 text-emerald-400" />
+              <span>Ready-To-Copy Social Bios & Outbound Positioning</span>
+            </h3>
+
+            <div className="grid gap-4 sm:grid-cols-3 text-xs">
+              <div className="rounded-xl bg-black/30 border border-white/10 p-4 space-y-2">
+                <span className="font-mono text-emerald-400 uppercase tracking-wider font-bold">
+                  LinkedIn Company Tagline
+                </span>
+                <p className="text-slate-200 leading-relaxed">
+                  "Turnkey Websites & Digital Infrastructure for UK Trades · Done-For-You
+                  Copywriting, Zero Homework · £1,495 Setup + £249/mo Care"
+                </p>
+              </div>
+
+              <div className="rounded-xl bg-black/30 border border-white/10 p-4 space-y-2">
+                <span className="font-mono text-emerald-400 uppercase tracking-wider font-bold">
+                  WhatsApp Business Bio
+                </span>
+                <p className="text-slate-200 leading-relaxed">
+                  "Harley Digital Works — Websites Worth Choosing. We write 100% of the words and
+                  look after your site so you can do the trade. Direct with founder Robbie Harley."
+                </p>
+              </div>
+
+              <div className="rounded-xl bg-black/30 border border-white/10 p-4 space-y-2">
+                <span className="font-mono text-emerald-400 uppercase tracking-wider font-bold">
+                  Instagram / Facebook Bio
+                </span>
+                <p className="text-slate-200 leading-relaxed">
+                  "You do the trade. We take the website headache away. 🛠️ Websites & care for UK
+                  contractors. 📍 Bristol, Bath & M4 Corridor."
+                </p>
+              </div>
             </div>
           </div>
         </Container>

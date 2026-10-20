@@ -160,9 +160,9 @@ function WorkPage() {
         {/* Conversion Opportunity: Show Us Your Website */}
         <section className="studio-section py-16 bg-white" aria-labelledby="show-us-heading">
           <div className="studio-wrap">
-            <div className="rounded-3xl border border-ink/10 bg-gradient-to-br from-stone-900 to-ink p-8 sm:p-12 text-white shadow-xl">
+            <div className="rounded-3xl border border-white/10 bg-[#081B30] p-8 sm:p-12 text-white shadow-2xl">
               <div className="max-w-3xl space-y-4">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/20 text-xs font-mono text-amber-300">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/20 text-xs font-mono text-emerald-400">
                   <Sparkles size={13} />
                   <span>FREE WEBSITE POTENTIAL AUDIT</span>
                 </div>

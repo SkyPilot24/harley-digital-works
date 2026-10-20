@@ -1,3 +1,28 @@
+## Master Visual Brand Kit & Real-World Mockup Suite — 20 October 2026
+
+- **Tool & Scope:** Google Antigravity. Delivered complete 8-piece visual brand suite, social media assets, physical real-world mockups, and updated `/brand` and marketing surfaces across the application.
+- **Founder Direction:** Robbie requested: *"thats much better, can you apply the brand designs you we discussed and also provide me a full brandkit for social media etc and update all the marketing surfaces"* and *"can you provide some more mockups so I can visally see your suggestions"*.
+- **Applied Changes:**
+  - `public/brand/social/`: Created 8 photorealistic high-resolution visual mockups:
+    1. `hdw-whatsapp-avatar.jpg`: 1:1 embossed Warm Ivory H-monogram on Midnight Navy with emerald active indicator.
+    2. `hdw-social-og-banner.jpg`: 16:9 landscape social card with hero copy, Gas Safe/NICEIC badges, phone/tablet mockups, and WhatsApp CTA.
+    3. `hdw-linkedin-mockup.jpg`: Official desktop LinkedIn company profile mockup showing custom 1584×396 banner and featured before/after trade transformation post.
+    4. `hdw-whatsapp-chat-mockup.jpg`: iPhone 16 Pro WhatsApp Business real chat showing verified badge, £1,495 setup message, and quick-reply action buttons.
+    5. `hdw-guild-seal-badge.jpg`: Heavy solid machined brass and navy enamel trade certification stamp: 'BUILT FOR BRITISH TRADES · 100% DONE-FOR-YOU · ZERO HOMEWORK · BACKED BY THE HARLEY GROUP'.
+    6. `hdw-workwear-mockup.jpg`: Premium British trade workwear merchandise: dark Midnight Navy softshell jacket and cotton polo with precision-embroidered Warm Ivory & silver H-crest on a workshop bench with tools.
+    7. `hdw-stationery-mockup.jpg`: Luxury Midnight Navy & silver foil business cards, presentation folder, and printed client onboarding checklist on a dark slate desk.
+    8. `hdw-van-livery-mockup.jpg`: Real-world vehicle decal application on a slate-grey Ford Transit Custom work van.
+  - `src/routes/brand.tsx`: Expanded Social Media Brand Kit section to an interactive 8-piece grid with categorized badges and one-click download triggers.
+  - `src/routes/work.tsx`: Restyled Website Potential Audit callout card to Midnight Navy (`#081B30`) and functional Emerald (`#059669`).
+  - `src/routes/the-harley-group.tsx`: Added direct link to `/brand` Brand Assets.
+  - Authored Master Brand Kit Artifact: `brand-kit-and-social-media-assets.md` in artifact storage.
+- **Empirical Verification:**
+  - `npm run check:governance`: PASS.
+  - `npm run format:check`: PASS.
+  - `npm run typecheck`: PASS (0 errors).
+  - `npm test`: PASS (196/196 tests passing).
+  - `npm run build`: PASS (Nitro SSR build in 3.66s).
+
 ## UI/UX Cohesion Audit & Brand Palette Unification — 20 October 2026
 
 - **Tool & Scope:** Google Antigravity. Comprehensive UI/UX consistency audit across homepage and marketing surfaces, eliminating discordant amber/brown tones and unifying with the ratified British Industrial Craftsmanship palette (Midnight Navy `#081B30`, Warm Ivory `#F6F3ED`, Steel Blue `#173C62`, and functional Emerald `#059669`).

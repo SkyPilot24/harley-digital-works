@@ -78,12 +78,15 @@ export function TheHarleyGroupPage() {
                 support and any applicable taxes. Pilot capacity is limited to two concurrent
                 builds.
               </p>
-              <div className="mt-4 flex flex-wrap gap-3">
+              <div className="mt-4 flex flex-wrap items-center gap-3">
                 <a href="https://harleydigitalworks.com" className="enquiry-submit">
                   Visit Harley Digital Works ↗
                 </a>
                 <a href="/labs" className="studio-text-link">
                   Explore Harley Labs ↗
+                </a>
+                <a href="/brand" className="studio-text-link">
+                  Brand Assets ↗
                 </a>
               </div>
             </div>

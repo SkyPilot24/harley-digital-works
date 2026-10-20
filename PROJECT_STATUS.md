@@ -1,5 +1,21 @@
 # Harley Digital Works — Project Status
 
+## Master Visual Brand Kit & Real-World Mockup Suite — 20 October 2026 (H15/H16/H42)
+
+**Current Status:** Completed and verified the comprehensive 8-piece visual brand kit, real-world mockups, and marketing surfaces consistency update:
+1. **Photorealistic Mockup Generation**: Delivered 8 high-resolution assets in `public/brand/social/` covering digital presence (Monogram Avatar, 16:9 OpenGraph card, desktop LinkedIn suite, iPhone 16 Pro WhatsApp Business flow) and physical presence (heavy brass Guild Seal badge, embroidered contractor workwear softshell & polo, luxury silver foil stationery, and Ford Transit Custom van decals).
+2. **Brand Assets Hub (`src/routes/brand.tsx`)**: Upgraded to an interactive 8-piece visual gallery with individual high-res download triggers and ready-to-copy social bios.
+3. **Marketing Surfaces (`src/routes/work.tsx`, `src/routes/the-harley-group.tsx`)**: Re-styled Free Website Potential Audit callout to signature Midnight Navy and Emerald, and linked corporate holding pages directly to the Brand Assets hub.
+4. **Authoritative Brand Kit Guide**: Persisted `brand-kit-and-social-media-assets.md` documenting hex/RGB/CMYK colour formulas, typography rules, and social post templates.
+
+**Verification:**
+
+- `npm run check:governance`: PASS (Agent instructions and shared contract consistent).
+- `npm run format:check`: PASS (All matched files use Prettier style).
+- `npm run typecheck`: PASS (0 errors).
+- `npm test`: PASS (196 Node regression/security/recovery + 3 SW = 199 total assertions, 0 failures).
+- `npm run build`: PASS (Nitro SSR build in 3.66s).
+
 ## UI/UX Cohesion Audit & Brand Palette Unification — 20 October 2026 (H15/H16/H42)
 
 **Current Status:** Completed comprehensive UI/UX consistency audit across the homepage and marketing surfaces, eliminating discordant amber/brown tones and unifying with the ratified British Industrial Craftsmanship brand palette (Midnight Navy `#081B30`, Warm Ivory `#F6F3ED`, Steel Blue `#173C62`, and functional Emerald `#059669`):
