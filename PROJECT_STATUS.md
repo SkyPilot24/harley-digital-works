@@ -1,5 +1,18 @@
 # Harley Digital Works — Project Status
 
+## Hero Before & After Transformation Video & Scene Creation — 20 October 2026 (H15/H16/H42)
+
+**Current Status:** Generated high-resolution commercial visual assets for all 4 scenes of the Before & After Trade Transformation Video (`public/images/transformation-video/`). Implemented an interactive 55-second Hero Video Showcase Modal component (`HeroTransformationVideoModal.tsx`) with real-time scene progress scrubbing, voiceover audio speech synthesis, subtitle overlays, and direct WhatsApp CTA. Integrated into the homepage hero actions and hero art card (`src/routes/index.tsx`).
+
+**Verification:**
+
+- `npm run format:check`: PASS (All matched files use Prettier style).
+- `npm run typecheck`: PASS (0 errors).
+- `npm run lint`: PASS (0 errors, 9 non-blocking Fast Refresh warnings in UI components).
+- `npm test`: PASS (66 smoke + 196 Node regression/security/recovery + 3 SW = 265 total assertions, 0 failures).
+- `npm run build`: PASS (Nitro SSR build in 2.52s).
+- `node scripts/scan-build-artifacts.mjs`: PASS (0 secrets or private credentials exposed).
+
 ## Marketing USP Copy Refresh & Video Storyboard Specification — 20 October 2026 (H15/H16/H42)
 
 **Current Status:** Aligned core marketing copy across Harley Digital Works (`src/routes/index.tsx`), The Harley Group (`src/routes/the-harley-group.tsx`), and Harley Labs (`src/routes/labs.tsx`) to front-load the core USP: *"You do the trade. We take the website headache away — zero homework, zero tech jargon, and total peace of mind."* Authored a complete 55-second and 30-second Before & After trade transformation video storyboard specification (`before-after-trade-video-spec.md`).

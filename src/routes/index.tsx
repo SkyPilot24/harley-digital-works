@@ -1,7 +1,7 @@
 import { IllustrativeTradeProof } from "@/components/site/IllustrativeTradeProof";
 import { useEffect, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowDown, ArrowUpRight, Check, PenLine, ShieldCheck } from "lucide-react";
+import { ArrowDown, ArrowUpRight, Check, PenLine, Play, ShieldCheck } from "lucide-react";
 import { PageShell } from "@/components/site/PageShell";
 import { PillButton } from "@/components/site/PillButton";
 import { ConceptScreen, ConceptShowcase } from "@/components/site/ConceptShowcase";
@@ -9,6 +9,7 @@ import { BeforeAfterComparison } from "@/components/site/BeforeAfterComparison";
 import { BeforeAfterSlider } from "@/components/site/BeforeAfterSlider";
 import { WebsitePackagesSection } from "@/components/site/WebsitePackagesSection";
 import { TradeShowcaseSection } from "@/components/site/TradeShowcaseSection";
+import { HeroTransformationVideoModal } from "@/components/site/HeroTransformationVideoModal";
 import { TheHarleyGroupPage } from "./the-harley-group";
 import {
   Accordion,
@@ -58,6 +59,8 @@ const faqs = [
 ];
 
 function HomePage() {
+  const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
+
   return (
     <PageShell quiet>
       <div className="studio-home">
@@ -98,15 +101,17 @@ function HomePage() {
                 >
                   Get your website plan
                 </PillButton>
-                <PillButton
-                  as="link"
-                  to="/contact"
-                  search={{ service: "Existing website review" }}
-                  variant="ghost"
-                  className="min-h-[48px] px-4 text-xs font-semibold border border-ink/20 hover:bg-ink/5 cursor-pointer"
+                <button
+                  type="button"
+                  onClick={() => setIsVideoModalOpen(true)}
+                  className="inline-flex items-center gap-2 rounded-full border border-emerald-300 bg-emerald-50 px-5 min-h-[48px] text-xs font-bold text-emerald-950 hover:bg-emerald-100 hover:border-emerald-400 transition-all shadow-sm cursor-pointer"
+                  aria-label="Watch the 55-second Before and After Trade Transformation video showcase"
                 >
-                  Discuss your existing website
-                </PillButton>
+                  <span className="flex h-5 w-5 items-center justify-center rounded-full bg-emerald-700 text-white shadow-sm">
+                    <Play className="h-2.5 w-2.5 fill-white translate-x-0.5" />
+                  </span>
+                  <span>Watch 55s transformation</span>
+                </button>
                 <a href="#transformations" className="studio-text-link">
                   See transformations <ArrowDown size={14} />
                 </a>
@@ -118,38 +123,64 @@ function HomePage() {
             </div>
             <div className="hero-art">
               <div className="hero-art-note">
-                <span>GOOD WORK DESERVES TO BE SEEN.</span>
+                <span>BEFORE & AFTER TRANSFORMATION.</span>
                 <span>↘</span>
               </div>
-              <a
-                href="#selected-work"
-                className="hero-browser"
-                aria-label="Explore our image-led website design studies"
+              <button
+                type="button"
+                onClick={() => setIsVideoModalOpen(true)}
+                className="hero-browser group relative text-left cursor-pointer w-full focus:outline-none"
+                aria-label="Click to play 55-second Before and After Trade Transformation Video"
               >
                 <span className="browser-toolbar">
                   <i />
                   <i />
                   <i />
-                  <span>form & field — independent design study</span>
+                  <span>Trade Transformation Showcase (55s) · Click to play</span>
                 </span>
-                <ConceptScreen concept="architecture" priority />
-              </a>
+                <div className="relative overflow-hidden aspect-[16/10] bg-black">
+                  <img
+                    src="/images/transformation-video/scene-2-slider-wipe.jpg"
+                    alt="Before and after trade website transformation"
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors flex items-center justify-center">
+                    <div className="flex items-center gap-3 rounded-full bg-black/80 border border-white/20 px-4 py-2 text-white backdrop-blur-md shadow-2xl group-hover:scale-105 transition-transform">
+                      <span className="flex h-8 w-8 items-center justify-center rounded-full bg-emerald-600 text-white shadow-lg">
+                        <Play className="h-3.5 w-3.5 fill-white translate-x-0.5" />
+                      </span>
+                      <div className="text-left">
+                        <p className="text-xs font-bold tracking-tight text-white leading-tight">
+                          Watch 55s Transformation
+                        </p>
+                        <p className="text-[10px] text-emerald-300 font-mono">
+                          Old Trade Site vs HDW Platform
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </button>
               <div className="hero-phone" aria-hidden="true">
                 <div className="phone-speaker" />
-                <ConceptScreen concept="interior" />
+                <img
+                  src="/images/transformation-video/scene-1-frustration.jpg"
+                  alt="Mobile trade website comparison"
+                  className="w-full h-full object-cover"
+                />
               </div>
               <div className="hero-art-caption">
                 <span>
-                  Thoughtfully designed.
+                  Zero homework.
                   <br />
-                  <strong>Down to the last detail.</strong>
+                  <strong>100% done-for-you copywriting.</strong>
                 </span>
                 <span className="hero-art-seal">
-                  DESIGN
+                  PROVEN
                   <br />
-                  <span>with</span>
+                  <span>trade</span>
                   <br />
-                  PURPOSE
+                  GROWTH
                 </span>
               </div>
             </div>
@@ -480,6 +511,10 @@ function HomePage() {
           </div>
         </section>
       </div>
+      <HeroTransformationVideoModal
+        isOpen={isVideoModalOpen}
+        onClose={() => setIsVideoModalOpen(false)}
+      />
     </PageShell>
   );
 }

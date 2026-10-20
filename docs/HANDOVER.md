@@ -1,3 +1,23 @@
+## Hero Before & After Transformation Video & Scene Creation — 20 October 2026
+
+- **Tool & Scope:** Google Antigravity. Instigated the 4 scenes from the Before & After Trade Transformation Video specification (`before-after-trade-video-spec.md`) and built an interactive 55s video showcase modal in the website hero.
+- **Founder Direction:** Robbie requested in voice note: *"Can we focus on the Hero video now? As I believe showing a before and after, the visuals are very good I think. And I really like your spec. So can we instigate those scenes and that creation?"*
+- **Visual Assets Generated:**
+  - Scene 1 (`public/images/transformation-video/scene-1-frustration.jpg`): Outdated trade site with red warning callouts (*Slow 4.8s Load*, *Broken on Mobile*, *Missing Gas Safe Badge*).
+  - Scene 2 (`public/images/transformation-video/scene-2-slider-wipe.jpg`): Center vertical metallic wipe slider showing the dramatic contrast between an ugly 2008 website and the modern luxury Harley Digital Works platform (5★ Google review, Gas Safe, £2,850+ packages, WhatsApp button).
+  - Scene 3 (`public/images/transformation-video/scene-3-zero-homework.jpg`): British contractor standing by a Ford Transit work van with glassmorphism badges (*100% Done-For-You Copywriting*, *Zero Blank Homework Sheets*, *24h WhatsApp Support*).
+  - Scene 4 (`public/images/transformation-video/scene-4-offer-cta.jpg`): Premium editorial offer card on charcoal navy showing *Turnkey Trade Website £1,495 (50% Deposit / 50% on Final Approval)*, *Managed Digital Care £249/mo*, *Strictly 2 Concurrent Builds Active*, with verified WhatsApp CTA.
+- **Component & Route Implementation:**
+  - Created `src/components/site/HeroTransformationVideoModal.tsx`: Accessible, interactive video modal with real-time 55-second playback, segmented progress scrubbing across the 4 scenes, Web Speech British voiceover audio synthesis, synchronized subtitle overlay cards, and direct WhatsApp / £1,495 booking CTAs.
+  - Wired into `src/routes/index.tsx`: Added *"Watch 55s transformation"* button to `studio-actions` and converted the `hero-art` card into a clickable video preview.
+- **Empirical Verification:**
+  - `npm run format:check`: PASS.
+  - `npm run typecheck`: PASS (0 errors).
+  - `npm run lint`: PASS (0 errors, 9 non-blocking Fast Refresh warnings).
+  - `npm test`: PASS (265 / 265 assertions passed).
+  - `npm run build`: PASS (Nitro SSR build in 2.52s).
+  - `node scripts/scan-build-artifacts.mjs`: PASS (0 secrets exposed).
+
 ## Marketing USP Copy Refresh & Video Storyboard Specification — 20 October 2026
 
 - **Tool & Scope:** Google Antigravity. Core marketing and conversion refresh across all three brand touchpoints (Harley Digital Works, The Harley Group, Harley Labs) and creation of a 55s/30s Before & After trade transformation video storyboard.
