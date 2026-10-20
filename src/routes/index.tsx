@@ -1,7 +1,7 @@
 import { IllustrativeTradeProof } from "@/components/site/IllustrativeTradeProof";
 import { useEffect, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowDown, ArrowUpRight, Check, PenLine, Play, ShieldCheck } from "lucide-react";
+import { ArrowDown, ArrowUpRight, Check, PenLine, Play, ShieldCheck, Sparkles } from "lucide-react";
 import { PageShell } from "@/components/site/PageShell";
 import { PillButton } from "@/components/site/PillButton";
 import { ConceptScreen, ConceptShowcase } from "@/components/site/ConceptShowcase";
@@ -382,6 +382,101 @@ function HomePage() {
           </div>
         </section>
 
+        {/* Trade Quality Guild Seal & Guarantee Section */}
+        <section
+          className="py-16 md:py-24 bg-[#081B30] text-white border-y border-white/10 deferred-section"
+          aria-labelledby="guild-seal-heading"
+        >
+          <div className="studio-wrap">
+            <div className="grid gap-10 lg:grid-cols-12 lg:items-center">
+              <div className="lg:col-span-5 flex justify-center">
+                <div className="relative group text-center">
+                  <div className="absolute -inset-4 rounded-full bg-emerald-500/10 blur-2xl group-hover:bg-emerald-500/20 transition-all duration-500" />
+                  <img
+                    src="/brand/social/hdw-guild-seal-badge.jpg"
+                    alt="Harley Digital Works Trade Quality Guild Seal Stamp"
+                    className="relative w-64 h-64 sm:w-72 sm:h-72 rounded-full object-cover shadow-2xl border-4 border-amber-600/30 group-hover:scale-105 transition-transform duration-500 mx-auto"
+                    loading="lazy"
+                  />
+                  <div className="mt-4">
+                    <span className="inline-flex items-center gap-1.5 rounded-full bg-white/10 px-3 py-1 text-[11px] font-mono text-emerald-400 font-bold border border-white/15">
+                      <Sparkles className="h-3 w-3" />
+                      <span>The Harley Group Guild Guarantee</span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="lg:col-span-7 space-y-6">
+                <div>
+                  <p className="text-xs font-mono font-bold uppercase tracking-wider text-emerald-400">
+                    BUILT FOR BRITISH TRADES · ZERO HOMEWORK
+                  </p>
+                  <h2
+                    id="guild-seal-heading"
+                    className="mt-2 text-3xl font-extrabold tracking-tight text-white sm:text-4xl font-display"
+                  >
+                    The Trade Quality Guarantee.
+                  </h2>
+                  <p className="mt-3 text-sm sm:text-base text-slate-300 leading-relaxed">
+                    We know tradespeople are tired of web designers who make them write endless
+                    copy, charge hidden extras, or disappear when something goes wrong. We run
+                    Harley Digital Works under the governance of The Harley Group to provide total
+                    peace of mind.
+                  </p>
+                </div>
+
+                <div className="grid gap-4 sm:grid-cols-3 pt-2">
+                  <div className="rounded-xl border border-white/10 bg-white/5 p-4 space-y-1.5">
+                    <div className="text-emerald-400 font-mono text-xs font-bold uppercase">
+                      100% Done-For-You
+                    </div>
+                    <h3 className="text-sm font-bold text-white">Zero Homework</h3>
+                    <p className="text-xs text-slate-300 leading-relaxed">
+                      We interview you on the phone and write every headline, service description,
+                      and case study.
+                    </p>
+                  </div>
+
+                  <div className="rounded-xl border border-white/10 bg-white/5 p-4 space-y-1.5">
+                    <div className="text-emerald-400 font-mono text-xs font-bold uppercase">
+                      Fair Terms
+                    </div>
+                    <h3 className="text-sm font-bold text-white">50/50 Split Payment</h3>
+                    <p className="text-xs text-slate-300 leading-relaxed">
+                      50% deposit on agreement. The remaining 50% only when you preview and approve
+                      your live site.
+                    </p>
+                  </div>
+
+                  <div className="rounded-xl border border-white/10 bg-white/5 p-4 space-y-1.5">
+                    <div className="text-emerald-400 font-mono text-xs font-bold uppercase">
+                      Permanent Support
+                    </div>
+                    <h3 className="text-sm font-bold text-white">Group Backed</h3>
+                    <p className="text-xs text-slate-300 leading-relaxed">
+                      Backed by The Harley Group Ltd. Fast WhatsApp updates, UK cloud hosting, and
+                      zero VAT.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="pt-2 flex flex-wrap items-center gap-4">
+                  <PillButton as="link" to="/contact" variant="light" className="studio-button">
+                    Get your website plan
+                  </PillButton>
+                  <Link
+                    to="/brand"
+                    className="text-xs text-slate-400 hover:text-white transition-colors underline underline-offset-4"
+                  >
+                    View Brand Specifications & Guild Seal ↗
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         <div className="studio-pricing deferred-section">
           <WebsitePackagesSection
             title="A clear investment. A better website."
@@ -421,13 +516,26 @@ function HomePage() {
                 your business, caring about the details, and making the whole experience
                 straightforward.”
               </p>
-              <div className="founder-signature">
-                <span>Robbie Harley</span>
-                <small>
-                  Founder, Harley Digital Works
-                  <br />
-                  Part of The Harley Group
-                </small>
+              <div className="founder-signature flex items-center justify-between gap-6 flex-wrap">
+                <div>
+                  <span>Robbie Harley</span>
+                  <small>
+                    Founder, Harley Digital Works
+                    <br />
+                    Part of The Harley Group
+                  </small>
+                </div>
+                <div className="relative group shrink-0">
+                  <img
+                    src="/brand/social/hdw-guild-seal-badge.jpg"
+                    alt="Harley Digital Works - Trade Quality Guild Seal Badge"
+                    className="h-20 w-20 rounded-full shadow-xl border-2 border-amber-600/30 hover:scale-105 transition-transform duration-300"
+                    loading="lazy"
+                  />
+                  <span className="sr-only">
+                    Built for British Trades · 100% Done-For-You · Backed by The Harley Group
+                  </span>
+                </div>
               </div>
               <Link to="/about" className="studio-text-link">
                 Meet the studio <ArrowUpRight size={17} />

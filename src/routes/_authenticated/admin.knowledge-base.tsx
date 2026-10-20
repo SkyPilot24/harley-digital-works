@@ -20,6 +20,7 @@ import {
   ChevronUp,
   CheckCircle2,
   Sparkles,
+  Download,
 } from "lucide-react";
 
 export const Route = createFileRoute("/_authenticated/admin/knowledge-base")({
@@ -96,6 +97,48 @@ function KnowledgeBasePage() {
           Contains live infrastructure configurations, commercial boundaries, 8-step delivery SOPs,
           Slack alert mechanics, and statutory accounting rules.
         </p>
+      </div>
+
+      {/* Brand Assets Hub Quick Access Banner */}
+      <div className="rounded-2xl border border-ink/10 bg-white p-6 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-6">
+        <div className="flex items-center gap-4">
+          <img
+            src="/brand/social/hdw-guild-seal-badge.jpg"
+            alt="Trade Quality Guild Seal Stamp"
+            className="h-16 w-16 rounded-full border border-amber-600/30 shadow-md shrink-0 hidden sm:block"
+            loading="lazy"
+          />
+          <div>
+            <div className="inline-flex items-center gap-1.5 rounded-full bg-emerald-50 px-2.5 py-0.5 text-[10px] font-mono text-emerald-800 font-bold border border-emerald-200">
+              <Sparkles className="h-3 w-3 text-emerald-600" />
+              <span>Ratified Brand System & Real-World Mockups</span>
+            </div>
+            <h3 className="mt-1 text-lg font-bold text-ink">
+              Master Brand Identity, Endorsed Wordmark & Guild Seal
+            </h3>
+            <p className="text-xs text-ink-muted leading-relaxed max-w-2xl">
+              Access the official 8-piece visual brand kit, Master Endorsed Wordmark ("Part of The
+              Harley Group"), brass Guild Seal stamp, social media assets, and hex/RGB/CMYK print
+              specifications.
+            </p>
+          </div>
+        </div>
+        <div className="flex flex-wrap items-center gap-3 shrink-0">
+          <a
+            href="/brand/social/hdw-guild-seal-badge.jpg"
+            download="HDW-Trade-Guild-Seal.jpg"
+            className="inline-flex items-center gap-1.5 rounded-xl border border-ink/15 bg-white px-3.5 py-2 text-xs font-semibold text-ink hover:bg-ink/5 transition-colors shadow-xs"
+          >
+            <Download className="h-3.5 w-3.5" />
+            <span>Download Guild Seal</span>
+          </a>
+          <a
+            href="/brand"
+            className="inline-flex items-center gap-1.5 rounded-xl bg-ink px-4 py-2 text-xs font-semibold text-white hover:bg-ink/90 transition-colors shadow-sm"
+          >
+            <span>Open Brand Hub ↗</span>
+          </a>
+        </div>
       </div>
 
       {/* Filter and Search Bar */}

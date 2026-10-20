@@ -16,6 +16,18 @@ export function FooterDark() {
               Thoughtful websites for people who care about their business. Designed, written and
               looked after.
             </p>
+            <div className="mt-4 flex items-center gap-3">
+              <img
+                src="/brand/social/hdw-guild-seal-badge.jpg"
+                alt="Trade Quality Guild Seal Stamp"
+                className="h-12 w-12 rounded-full border border-amber-600/40 shadow-lg shrink-0"
+                loading="lazy"
+              />
+              <div className="text-[11px] leading-tight text-slate-400">
+                <span className="font-bold text-white block">Trade Quality Guild Seal</span>
+                <span>100% Done-For-You · Zero Homework</span>
+              </div>
+            </div>
           </div>
           <div>
             <h3>Make your next move.</h3>
@@ -41,6 +53,7 @@ export function FooterDark() {
             <h3>Get to know us.</h3>
             <nav aria-label="About the studio">
               <Link to="/about">About the studio</Link>
+              <Link to="/brand">Brand Standards & Guild Seal</Link>
               <a href="https://theharleygroup.org">The Harley Group</a>
               <Link to="/resources">Resources</Link>
               <a href="/contact?service=Website%20care%20support">Request website help</a>

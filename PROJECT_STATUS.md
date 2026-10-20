@@ -1,5 +1,21 @@
 # Harley Digital Works — Project Status
 
+## Trade Quality Guild Seal Deployment & Control Centre Integration — 20 October 2026 (H15/H16/H42)
+
+**Current Status:** Completed deployment of the Trade Quality Guild Seal Stamp onto the website and persisted the complete Master Brand Asset Guide directly into the Admin Control Centre:
+1. **Homepage Integration (`src/routes/index.tsx`)**: Added dedicated full-width Trade Quality Guarantee & Guild Seal section directly above pricing packages, featuring the high-resolution brass Guild Seal badge (`/brand/social/hdw-guild-seal-badge.jpg`), the 3 core commercial pillars (100% Done-For-You Words, 50/50 Fair Split Payment, Backed by The Harley Group Ltd), and embedded the badge inside the Founder Commitment signature block.
+2. **Site Footer Integration (`src/components/site/FooterDark.tsx`)**: Integrated the Trade Quality Guild Seal stamp with *"100% Done-For-You · Zero Homework"* tagline and direct link to `/brand` (Brand Standards & Guild Seal).
+3. **Control Centre Knowledge Base (`src/lib/knowledge-base.ts`, `admin.knowledge-base.tsx`)**: Created and pinned the authoritative `"Master Brand Identity, Endorsed Wordmark & Trade Guild Seal Guide"` article at the top of the Operational Knowledge Base, complete with one-click direct download for the Guild Seal asset and color token specifications.
+4. **Group Headquarters Dashboard (`GroupHeadquarters.tsx`, `group-headquarters.ts`)**: Embedded the Guild Seal visual stamp and quick-links into the executive Group Headquarters overview on the main admin dashboard.
+
+**Verification:**
+
+- `npm run check:governance`: PASS (Agent instructions and shared contract consistent).
+- `npm run format:check`: PASS (All matched files use Prettier style).
+- `npm run typecheck`: PASS (0 errors).
+- `npm test`: PASS (196 Node regression/security/recovery + 3 SW = 199 total assertions, 0 failures).
+- `npm run build`: PASS (Nitro SSR Cloudflare module build in 6.10s).
+
 ## Master Visual Brand Kit & Real-World Mockup Suite — 20 October 2026 (H15/H16/H42)
 
 **Current Status:** Completed and verified the comprehensive 8-piece visual brand kit, real-world mockups, and marketing surfaces consistency update:

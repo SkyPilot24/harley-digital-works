@@ -21,15 +21,32 @@ export function GroupHeadquartersSummary() {
       aria-labelledby="group-hq-summary"
     >
       <div className="flex flex-wrap items-center justify-between gap-4">
-        <div>
-          <h2 id="group-hq-summary" className="flex items-center gap-2 text-lg font-bold text-ink">
-            <Building2 size={20} /> Group Headquarters
-          </h2>
-          <p className="mt-1 text-sm text-ink-muted">
-            Companies, priorities, automation, marketing and socials in one place.
-          </p>
+        <div className="flex items-center gap-3.5">
+          <img
+            src="/brand/social/hdw-guild-seal-badge.jpg"
+            alt="Trade Quality Guild Seal Stamp"
+            className="h-12 w-12 rounded-full border border-amber-600/30 shadow-md shrink-0 hidden sm:block"
+            loading="lazy"
+          />
+          <div>
+            <h2
+              id="group-hq-summary"
+              className="flex items-center gap-2 text-lg font-bold text-ink"
+            >
+              <Building2 size={20} /> Group Headquarters & Control Centre
+            </h2>
+            <p className="mt-1 text-sm text-ink-muted">
+              Companies, priorities, brand assets, operational KB, and marketing in one place.
+            </p>
+          </div>
         </div>
         <div className="flex flex-wrap gap-2">
+          <Link to="/brand" className={linkStyle}>
+            Brand & Guild Seal ↗
+          </Link>
+          <Link to="/admin/knowledge-base" className={linkStyle}>
+            Knowledge Base
+          </Link>
           <Link to="/admin/headquarters" className={linkStyle}>
             Open group overview
           </Link>

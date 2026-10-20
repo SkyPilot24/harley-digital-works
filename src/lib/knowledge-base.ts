@@ -29,6 +29,27 @@ export const KNOWLEDGE_CATEGORIES = [
 
 export const KNOWLEDGE_BASE_ARTICLES: KnowledgeArticle[] = [
   {
+    id: "master-brand-identity-guild-seal-guide-2026-10-20",
+    category: "commercial",
+    title: "Master Brand Identity, Endorsed Wordmark & Trade Quality Guild Seal Guide",
+    summary:
+      "Official operational brand architecture, ratified 'British Industrial Craftsmanship' positioning, Master Endorsed Wordmark with 'Part of The Harley Group', Trade Quality Guild Seal stamp, and 8-piece visual asset suite.",
+    statusBadge: "Ratified · 20 Oct 2026",
+    lastUpdated: "2026-10-20",
+    keyPoints: [
+      "BRAND POSITIONING — 'British Industrial Craftsmanship Meets Precision Engineering' inspired by trusted trade manufacturers (Festool, DeWalt, JCB, Aston Martin). Clean, rugged, and unmistakably British. Eliminates aloof web agency clichés and avoids cheap print-shop templates.",
+      "CORE BRAND PROMISE — 'You do the trade. We take the website headache away. 100% done-for-you copywriting, zero homework, zero tech jargon, and total peace of mind.'",
+      "RATIFIED COMMERCIAL OFFER — Standard Managed Package: £1,495 setup + £249/month ongoing care. Fair terms: 50% deposit (£747.50) on agreement, remaining 50% (£747.50) only upon final preview approval. Zero VAT (not VAT registered). Agreed delivery schedule (14-day guaranteed claims retired). Strictly maximum 2 concurrent active client builds.",
+      "MASTER ENDORSED WORDMARK — Primary lockup features the geometric curved H-monogram, sturdy Manrope uppercase lettering 'HARLEY DIGITAL WORKS', hairline divider, and tracked 'PART OF THE HARLEY GROUP' endorsement with an emerald active trust indicator. Eliminates the solo freelancer fear when contracting with commercial trades.",
+      "TRADE QUALITY GUILD SEAL — Machined solid brass and midnight navy enamel badge certifying 'BUILT FOR BRITISH TRADES · 100% DONE-FOR-YOU · ZERO HOMEWORK · BACKED BY THE HARLEY GROUP'. Prominently displayed across homepage hero, founder guarantee, footer, and formal proposal PDFs.",
+      "OFFICIAL COLOR PALETTE — Midnight Navy (#081B30, primary canvas/dark decks), Warm Ivory (#F6F3ED, high-contrast background/van lettering), Steel Blue (#173C62, cards/borders), Slate (#526479, supporting text), and Functional Emerald (#059669, WhatsApp/CTAs/active pills).",
+      "TYPOGRAPHY SYSTEM — Headings/Display: Manrope (Bold/Extrabold, tracking -0.02em). Body: Inter (clean mobile legibility). Pricing/Specs: DM Mono (calibrated engineering data).",
+      "8-PIECE VISUAL MOCKUP SUITE — Stored in public/brand/social/ and available via /brand: 1. Monogram Avatar (1:1), 2. Social OG Banner (16:9), 3. Desktop LinkedIn Profile Suite (1584×396), 4. WhatsApp Business Intake Flow (iPhone 16 Pro), 5. Brass Guild Seal Badge, 6. Contractor Workwear Softshell & Polo Uniform, 7. Luxury Silver Foil Stationery & Proposal Folder, 8. Ford Transit Custom Work Van Livery.",
+    ],
+    operationalDetails:
+      "Public brand hub: /brand. Asset directory: public/brand/social/ and public/brand/2026-10-13/logos/. Master identity board: public/brand/social/hdw-endorsed-logo-board.jpg. Vector components: src/components/site/BrandLogo.tsx & src/components/site/StudioWordmark.tsx. Governing documentation: brand-kit-and-social-media-assets.md in workspace artifacts.",
+  },
+  {
     id: "unified-business-contact-channels-2026-10-15",
     category: "governance",
     title: "Unified Business Contact Channels & Lead Intake Hierarchy",

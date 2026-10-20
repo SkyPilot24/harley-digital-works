@@ -4,6 +4,13 @@ export const headquartersUrl =
 export const headquartersAsOf = "2026-10-09";
 export const headquartersLinks = [
   {
+    title: "Master Brand Assets, Endorsed Wordmark & Guild Seal Hub",
+    url: "/brand",
+    group: "Headquarters documents",
+    description:
+      "Official 8-piece visual asset suite, 'Part of The Harley Group' wordmark, and Trade Quality Guild Seal",
+  },
+  {
     title: "Recent activity review — shared Drive copy",
     url: "https://drive.google.com/file/d/1tz9xqL2-cykQyrv067d1TfcpqCR3jFsl/view?usp=drivesdk",
     group: "Headquarters documents",

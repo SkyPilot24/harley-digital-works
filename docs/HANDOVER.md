@@ -1,3 +1,22 @@
+## Trade Quality Guild Seal Deployment & Control Centre Integration — 20 October 2026
+
+- **Tool & Scope:** Google Antigravity. Integrated Trade Quality Guild Seal Stamp onto the website (homepage hero/guarantee section, founder signature, and site footer) and persisted the complete Master Brand Asset Guide into the Admin Control Centre (`/admin/knowledge-base` and `/admin/headquarters`).
+- **Founder Direction:** Robbie requested: *"I like it and espically like the Trade Quality Guild Seal Stamp. Can you add that to the website and update all brand logos and save the brand asset guide to the contol centre (admin dashobard that build for me to run the companys)."*
+- **Applied Changes:**
+  - `src/routes/index.tsx`:
+    - Added dedicated full-width **Trade Quality Guarantee & Guild Seal Section** right before pricing packages, featuring the high-resolution machined brass Guild Seal badge (`/brand/social/hdw-guild-seal-badge.jpg`), the 3 core pillars (100% Done-For-You Words, 50/50 Fair Split Payment, Backed by The Harley Group Ltd), and a direct link to the Brand Hub.
+    - Embedded the Guild Seal Badge directly in the Founder Commitment signature layout alongside Robbie's personal sign-off.
+  - `src/components/site/FooterDark.tsx`: Added the Trade Quality Guild Seal badge and copy (*"100% Done-For-You · Zero Homework"*) to the brand column, and linked to `/brand` (Brand Standards & Guild Seal).
+  - `src/lib/knowledge-base.ts`: Added master knowledge article `"master-brand-identity-guild-seal-guide-2026-10-20"` at the top of the Operational Knowledge Base powering `/admin/knowledge-base`.
+  - `src/routes/_authenticated/admin.knowledge-base.tsx`: Added prominent Brand Assets Hub & Guild Seal quick-access banner with one-click download.
+  - `src/components/admin/GroupHeadquarters.tsx` & `src/lib/group-headquarters.ts`: Added Guild Seal stamp and Brand & Guild Seal direct links to Group Headquarters overview in the Admin Control Centre.
+- **Empirical Verification:**
+  - `npm run check:governance`: PASS.
+  - `npm run format:check`: PASS.
+  - `npm run typecheck`: PASS (0 errors).
+  - `npm test`: PASS (196/196 tests passing).
+  - `npm run build`: PASS (Nitro SSR build in 6.10s).
+
 ## Master Visual Brand Kit & "Part of The Harley Group" Endorsed System — 20 October 2026
 
 - **Tool & Scope:** Google Antigravity. Delivered complete 8-piece visual brand suite, social media assets, physical real-world mockups, and the Master Endorsed Wordmark Identity System ("Part of The Harley Group") with architectural deployment guidelines across `/brand`.
