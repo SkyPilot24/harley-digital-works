@@ -65,26 +65,28 @@ function HomePage() {
           <div className="studio-wrap hero-layout">
             <div className="hero-copy">
               <p className="studio-kicker">
-                <span className="studio-kicker-line" /> WEBSITES & DIGITAL CARE FOR UK TRADES
+                <span className="studio-kicker-line" /> DONE-FOR-YOU WEBSITES & CARE FOR UK TRADES
               </p>
               <h1 id="hero-heading">
-                Your work.
+                You do the trade.
                 <br />
-                Deserves a<br />
-                <span>better website.</span>
+                We take the website
+                <br />
+                <span>headache away.</span>
               </h1>
               <p className="hero-description">
                 You’ve built a business to be proud of.
-                <br className="hero-line-break" /> Let’s give it a website to match.
+                <br className="hero-line-break" /> Let’s give you a digital presence with zero
+                hassle.
               </p>
               <p className="hero-support">
-                Distinctive design, words that connect, and ongoing care. Made for ambitious trades
-                and service businesses.
+                100% done-for-you copywriting, distinctive design, and ongoing monthly care. No
+                homework. No technical jargon. You stay on the tools; we look after your website.
               </p>
               <div className="flex flex-wrap items-center gap-2 mb-3">
                 <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-50 border border-emerald-200/80 px-2.5 py-1 text-[11px] font-bold text-emerald-900">
                   <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
-                  <span>Design, copy and ongoing care</span>
+                  <span>100% DFY copywriting · Zero homework · 24h support</span>
                 </span>
               </div>
               <div className="studio-actions flex flex-wrap items-center gap-3">

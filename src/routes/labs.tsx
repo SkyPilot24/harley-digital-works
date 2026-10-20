@@ -538,6 +538,41 @@ function HarleyLabsPage() {
         </Container>
       </section>
 
+      {/* How Labs Powers HDW Trade Clients */}
+      <section className="py-12 bg-white text-[#252720] border-b border-[#e2dec9]">
+        <Container>
+          <div className="rounded-2xl border border-emerald-200 bg-emerald-50/60 p-6 md:p-8">
+            <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+              <div className="space-y-2 max-w-3xl">
+                <div className="inline-flex items-center gap-2 rounded-full border border-emerald-300 bg-emerald-100/80 px-3 py-1 text-xs font-mono font-bold text-emerald-900">
+                  <Zap className="h-3.5 w-3.5 text-emerald-700" />
+                  <span>The Technology Engine Behind Harley Digital Works</span>
+                </div>
+                <h3 className="text-xl md:text-2xl font-bold text-[#252720]">
+                  Why Edge Infrastructure Wins High-Ticket Trade Work
+                </h3>
+                <p className="text-sm text-[#5a5d4e] leading-relaxed">
+                  Every website built by Harley Digital Works runs on the proprietary edge
+                  infrastructure developed here in Harley Labs. When an emergency leak, power fault,
+                  or boiler breakdown happens, homeowners search on their phone. Because our client
+                  websites compile into global edge isolates and load in under 30 milliseconds
+                  (compared to 4+ seconds for sluggish WordPress sites), our contractors capture the
+                  £3,000+ job before competitors even finish rendering. Enterprise-grade speed with
+                  zero headaches for the contractor.
+                </p>
+              </div>
+              <Link
+                to="/"
+                className="shrink-0 inline-flex items-center gap-2 rounded-full bg-[#252720] px-5 py-2.5 text-xs font-bold text-white shadow-md hover:bg-[#3a3e33] transition-colors"
+              >
+                <span>Explore Trade Websites</span>
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
+          </div>
+        </Container>
+      </section>
+
       {/* R&D Leadership & Systems Architecture */}
       <section className="py-16 md:py-24 bg-[#f7f5ef] text-[#252720] border-b border-[#e2dec9]">
         <Container>

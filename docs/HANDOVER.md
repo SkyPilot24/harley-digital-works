@@ -1,3 +1,20 @@
+## Marketing USP Copy Refresh & Video Storyboard Specification — 20 October 2026
+
+- **Tool & Scope:** Google Antigravity. Core marketing and conversion refresh across all three brand touchpoints (Harley Digital Works, The Harley Group, Harley Labs) and creation of a 55s/30s Before & After trade transformation video storyboard.
+- **Founder Direction:** Robbie requested aligning all marketing surfaces with the core USP: *"We take the headache away from tradespeople who do amazing stuff — zero homework, zero tech jargon, and total peace of mind."*
+- **Applied Changes:**
+  - `src/routes/index.tsx`: Updated hero headline to *"You do the trade. We take the website headache away."*, subtitle to *"Let's give you a digital presence with zero hassle"*, and supporting copy to highlight 100% done-for-you copywriting, no homework, and zero technical jargon.
+  - `src/routes/the-harley-group.tsx`: Updated parent group hero to *"Good work. Built to last."* and positioned the organisation as the backing group for independent British trades and applied technology.
+  - `src/routes/labs.tsx`: Added the *"How Harley Labs Powers Harley Digital Works Clients"* commercial speed bridge, explaining how sub-30ms edge rendering wins high-ticket emergency callouts on mobile.
+  - Artifact created: `before-after-trade-video-spec.md` (shot-by-shot storyboard, voiceover script, and multi-channel distribution plan).
+- **Empirical Verification:**
+  - `npm run format:check`: PASS.
+  - `npm run typecheck`: PASS (0 errors).
+  - `npm run lint`: PASS (0 errors, 9 non-blocking Fast Refresh warnings).
+  - `npm test`: PASS (265 / 265 assertions passed).
+  - `npm run build`: PASS (Nitro SSR build in 2.32s).
+  - `node scripts/scan-build-artifacts.mjs`: PASS (0 secrets exposed).
+
 ## Full Go-Live Audit & Production Database Projects Reconciliation — 20 October 2026
 
 - **Tool & Scope:** Google Antigravity. Full Go-Live Audit across Stages 0–20 (build, security, RLS, forms, SEO, commercial terms, Cloudflare SSR) and execution of database reconciliation migration (H03/H19/H42/H50).

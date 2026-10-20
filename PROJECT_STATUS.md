@@ -1,5 +1,18 @@
 # Harley Digital Works — Project Status
 
+## Marketing USP Copy Refresh & Video Storyboard Specification — 20 October 2026 (H15/H16/H42)
+
+**Current Status:** Aligned core marketing copy across Harley Digital Works (`src/routes/index.tsx`), The Harley Group (`src/routes/the-harley-group.tsx`), and Harley Labs (`src/routes/labs.tsx`) to front-load the core USP: *"You do the trade. We take the website headache away — zero homework, zero tech jargon, and total peace of mind."* Authored a complete 55-second and 30-second Before & After trade transformation video storyboard specification (`before-after-trade-video-spec.md`).
+
+**Verification:**
+
+- `npm run format:check`: PASS (All matched files use Prettier style).
+- `npm run typecheck`: PASS (0 errors).
+- `npm run lint`: PASS (0 errors, 9 non-blocking Fast Refresh warnings in UI components).
+- `npm test`: PASS (66 smoke + 196 Node regression/security/recovery + 3 SW = 265 total assertions, 0 failures).
+- `npm run build`: PASS (Nitro SSR build in 2.32s).
+- `node scripts/scan-build-artifacts.mjs`: PASS (0 secrets or private credentials exposed).
+
 ## Full Go-Live Audit & Production Database Projects Reconciliation — 20 October 2026 (H03/H19/H42/H50)
 
 **Current Status:** Completed comprehensive Go-Live Audit across Stages 0–20 (build, security, RLS, forms, SEO, commercial terms, Cloudflare SSR). Founder (Robbie) reviewed and approved the audit recommendations. Executed production projects schema reconciliation migration on live Supabase backend `worzpzbutngugwzhlvtj` following a pre-change database snapshot (`docs/evidence/production-projects-prechange-backup-2026-10-20.json`). P02 Database blocker is **RESOLVED**. Live system is technically ready for Pilot Client 1 onboarding.
