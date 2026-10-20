@@ -94,25 +94,25 @@ export function TradeRoiCalculator() {
   }, [avgJobValue, extraJobsPerMonth, websiteCost]);
 
   return (
-    <div className="rounded-3xl border border-gold-500/30 bg-neutral-900/90 p-6 md:p-10 backdrop-blur-xl shadow-2xl">
+    <div className="rounded-3xl border border-white/10 bg-[#081B30] p-6 md:p-10 backdrop-blur-xl shadow-2xl text-white">
       {/* Header */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-neutral-800 pb-6 mb-8">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-white/10 pb-6 mb-8">
         <div>
-          <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-gold-400 mb-1">
+          <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-emerald-400 mb-1">
             <Calculator className="h-4 w-4" />
             <span>Interactive Commercial Estimator</span>
           </div>
           <h3 className="text-2xl md:text-3xl font-extrabold text-white tracking-tight">
             Calculate Your Trade Revenue & ROI
           </h3>
-          <p className="text-xs md:text-sm text-neutral-400 mt-1">
+          <p className="text-xs md:text-sm text-slate-300 mt-1">
             Illustrative economic scenario modeling based on your trade's project turnover.
           </p>
         </div>
 
-        <div className="flex items-center gap-2 bg-neutral-950 border border-neutral-800 px-4 py-2.5 rounded-2xl self-start md:self-auto">
+        <div className="flex items-center gap-2 bg-white/5 border border-white/10 px-4 py-2.5 rounded-2xl self-start md:self-auto">
           <TrendingUp className="h-5 w-5 text-emerald-400" />
-          <div className="text-xs text-neutral-300">
+          <div className="text-xs text-slate-200">
             VAT Treatment: <strong className="text-white">Zero-Rated (£0)</strong>
           </div>
         </div>
@@ -120,7 +120,7 @@ export function TradeRoiCalculator() {
 
       {/* Preset Buttons */}
       <div className="mb-8">
-        <label className="block text-xs font-semibold text-neutral-300 uppercase tracking-wider mb-2.5">
+        <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2.5">
           Select Your Trade Sector (Quick Preset):
         </label>
         <div className="flex flex-wrap gap-2">
@@ -131,8 +131,8 @@ export function TradeRoiCalculator() {
               onClick={() => handlePresetSelect(p)}
               className={`px-3.5 py-2 rounded-xl text-xs font-semibold transition-all ${
                 selectedPreset === p.id
-                  ? "bg-gold-500 text-neutral-950 font-bold shadow-md ring-2 ring-gold-400/40"
-                  : "bg-neutral-950 border border-neutral-800 text-neutral-300 hover:border-neutral-700 hover:text-white"
+                  ? "bg-emerald-600 text-white font-bold shadow-md ring-2 ring-emerald-500/40"
+                  : "bg-white/5 border border-white/10 text-slate-300 hover:border-white/20 hover:text-white"
               }`}
             >
               {p.name}
@@ -144,12 +144,12 @@ export function TradeRoiCalculator() {
       {/* Sliders Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
         {/* Slider 1: Average Profit per Job */}
-        <div className="bg-neutral-950/70 border border-neutral-800 p-5 rounded-2xl">
+        <div className="bg-white/5 border border-white/10 p-5 rounded-2xl">
           <div className="flex items-center justify-between mb-3">
-            <label className="text-xs font-bold text-neutral-200 uppercase tracking-wider">
+            <label className="text-xs font-bold text-slate-200 uppercase tracking-wider">
               Average Value / Profit Per Job:
             </label>
-            <span className="text-lg font-extrabold text-gold-400 font-mono">
+            <span className="text-lg font-extrabold text-white font-mono">
               £{avgJobValue.toLocaleString()}
             </span>
           </div>
@@ -163,9 +163,9 @@ export function TradeRoiCalculator() {
               setAvgJobValue(Number(e.target.value));
               setSelectedPreset("custom");
             }}
-            className="w-full accent-gold-500 cursor-pointer h-2 bg-neutral-800 rounded-lg"
+            className="w-full accent-emerald-500 cursor-pointer h-2 bg-white/10 rounded-lg"
           />
-          <div className="flex justify-between text-[10px] text-neutral-500 mt-2 font-mono">
+          <div className="flex justify-between text-[10px] text-slate-400 mt-2 font-mono">
             <span>£300</span>
             <span>£10,000</span>
             <span>£25,000+</span>
@@ -173,9 +173,9 @@ export function TradeRoiCalculator() {
         </div>
 
         {/* Slider 2: Additional Monthly Jobs Won */}
-        <div className="bg-neutral-950/70 border border-neutral-800 p-5 rounded-2xl">
+        <div className="bg-white/5 border border-white/10 p-5 rounded-2xl">
           <div className="flex items-center justify-between mb-3">
-            <label className="text-xs font-bold text-neutral-200 uppercase tracking-wider">
+            <label className="text-xs font-bold text-slate-200 uppercase tracking-wider">
               Extra Jobs Won Per Month:
             </label>
             <span className="text-lg font-extrabold text-emerald-400 font-mono">
@@ -192,9 +192,9 @@ export function TradeRoiCalculator() {
               setExtraJobsPerMonth(Number(e.target.value));
               setSelectedPreset("custom");
             }}
-            className="w-full accent-emerald-500 cursor-pointer h-2 bg-neutral-800 rounded-lg"
+            className="w-full accent-emerald-500 cursor-pointer h-2 bg-white/10 rounded-lg"
           />
-          <div className="flex justify-between text-[10px] text-neutral-500 mt-2 font-mono">
+          <div className="flex justify-between text-[10px] text-slate-400 mt-2 font-mono">
             <span>+1 Job</span>
             <span>+7 Jobs</span>
             <span>+15 Jobs</span>
@@ -203,43 +203,43 @@ export function TradeRoiCalculator() {
       </div>
 
       {/* Output Results Board */}
-      <div className="rounded-3xl border-2 border-gold-500/50 bg-gradient-to-br from-gold-500/10 via-neutral-950 to-neutral-950 p-6 md:p-8 shadow-2xl mb-8">
+      <div className="rounded-3xl border border-white/10 bg-white/5 p-6 md:p-8 shadow-2xl mb-8">
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 text-center sm:text-left">
           {/* Metric 1 */}
-          <div className="border-b sm:border-b-0 sm:border-r border-neutral-800 pb-4 sm:pb-0 sm:pr-4">
-            <div className="text-xs font-semibold text-gold-400 uppercase tracking-wider">
+          <div className="border-b sm:border-b-0 sm:border-r border-white/10 pb-4 sm:pb-0 sm:pr-4">
+            <div className="text-xs font-semibold text-slate-300 uppercase tracking-wider">
               New Annual Revenue
             </div>
             <div className="text-3xl md:text-4xl font-extrabold text-white tracking-tight mt-1 font-mono">
               +£{calculations.annualExtraRevenue.toLocaleString()}
             </div>
-            <div className="text-xs text-neutral-400 mt-1">
+            <div className="text-xs text-slate-400 mt-1">
               (£{calculations.monthlyExtraRevenue.toLocaleString()}/month extra turnover)
             </div>
           </div>
 
           {/* Metric 2 */}
-          <div className="border-b sm:border-b-0 sm:border-r border-neutral-800 pb-4 sm:pb-0 sm:pr-4">
+          <div className="border-b sm:border-b-0 sm:border-r border-white/10 pb-4 sm:pb-0 sm:pr-4">
             <div className="text-xs font-semibold text-emerald-400 uppercase tracking-wider">
               Year 1 Net ROI
             </div>
             <div className="text-3xl md:text-4xl font-extrabold text-emerald-400 tracking-tight mt-1 font-mono">
               {calculations.roiMultiple}x Return
             </div>
-            <div className="text-xs text-neutral-400 mt-1">
+            <div className="text-xs text-slate-400 mt-1">
               On £{calculations.totalYear1Investment.toLocaleString()} all-inclusive investment
             </div>
           </div>
 
           {/* Metric 3 */}
           <div>
-            <div className="text-xs font-semibold text-amber-400 uppercase tracking-wider">
+            <div className="text-xs font-semibold text-slate-300 uppercase tracking-wider">
               Break-Even Speed
             </div>
-            <div className="text-3xl md:text-4xl font-extrabold text-amber-300 tracking-tight mt-1 font-mono">
+            <div className="text-3xl md:text-4xl font-extrabold text-white tracking-tight mt-1 font-mono">
               {calculations.daysToBreakEven} Days
             </div>
-            <div className="text-xs text-neutral-400 mt-1">
+            <div className="text-xs text-slate-400 mt-1">
               Illustrative scenario estimate based on job value
             </div>
           </div>
@@ -247,7 +247,7 @@ export function TradeRoiCalculator() {
       </div>
 
       {/* Compliance Disclaimer */}
-      <p className="text-[11px] text-neutral-400 leading-relaxed mb-6 border-t border-neutral-800/80 pt-4">
+      <p className="text-[11px] text-slate-400 leading-relaxed mb-6 border-t border-white/10 pt-4">
         * <strong>Commercial Disclaimer:</strong> Calculations are strictly illustrative scenario
         models based on your user-supplied project values and contract averages. Harley Digital
         Works does not guarantee rankings, inbound leads, or turnover. All packages are zero-rated
@@ -257,10 +257,10 @@ export function TradeRoiCalculator() {
 
       {/* Bottom CTA Strip */}
       <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-2">
-        <div className="flex items-center gap-2 text-xs text-neutral-300">
-          <ShieldCheck className="h-4 w-4 text-gold-400 shrink-0" />
+        <div className="flex items-center gap-2 text-xs text-slate-300">
+          <ShieldCheck className="h-4 w-4 text-emerald-400 shrink-0" />
           <span>
-            100% Done-For-You: Copywriting, 14-day turnaround SLA, 50/50 milestone payment, zero
+            100% Done-For-You: Copywriting, agreed delivery schedule, 50/50 milestone payment, zero
             VAT.
           </span>
         </div>
@@ -273,7 +273,7 @@ export function TradeRoiCalculator() {
             domain: undefined,
             websiteUrl: undefined,
           }}
-          className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl bg-gold-500 hover:bg-gold-400 text-neutral-950 font-bold text-sm px-6 py-3.5 transition-all shadow-lg hover:shadow-gold-500/20"
+          className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm px-6 py-3.5 transition-all shadow-lg shadow-emerald-950/40 cursor-pointer"
         >
           <span>Get Your Website Plan</span>
           <ArrowRight className="h-4 w-4" />

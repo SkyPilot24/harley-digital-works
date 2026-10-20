@@ -1,3 +1,21 @@
+## UI/UX Cohesion Audit & Brand Palette Unification — 20 October 2026
+
+- **Tool & Scope:** Google Antigravity. Comprehensive UI/UX consistency audit across homepage and marketing surfaces, eliminating discordant amber/brown tones and unifying with the ratified British Industrial Craftsmanship palette (Midnight Navy `#081B30`, Warm Ivory `#F6F3ED`, Steel Blue `#173C62`, and functional Emerald `#059669`).
+- **Founder Direction:** Robbie noted via voice memo: *"There's a section there 'Your trade, your reputation, make your work easier to choose'... and an interactive pricing guide... The colors look a bit off compared to the rest of the site... This green and brown... check availability and get plan... looks out of place. Can you do a UI/UX audit to make sure we are cohesive and consistent across each page."*
+- **Applied Changes:**
+  - `src/components/site/TradeShowcaseSection.tsx`: Re-architected interactive trade showcase. Replaced muddy `bg-amber-500` CTA button with high-contrast `bg-emerald-600` pill button; replaced `bg-stone-900` card with signature Midnight Navy (`bg-[#081B30]`); updated tabs to dark navy active states with emerald icons; replaced dirty amber comparison table cells with crisp `bg-slate-50` and Midnight Navy header; updated schedule wording to *"Agreed delivery schedule"*.
+  - `src/components/site/TradeRoiCalculator.tsx`: Re-styled calculator container to Midnight Navy (`bg-[#081B30]`); replaced gold accent sliders and buttons with functional Emerald (`bg-emerald-600`); eliminated stale 14-day turnaround claim.
+  - `src/routes/contact.tsx`: Restyled primary Telephone badge to Midnight Navy and Website Review Opportunity callout box from muddy amber to Steel Blue and Midnight Navy.
+  - `src/routes/demos.tsx` & `src/routes/partners.tsx`: Replaced residual "14-Day Delivery Guarantee" copy with ratified "Agreed Delivery Schedule".
+  - `src/components/demos/DynamicStagingGenerator.tsx`: Replaced gold proposal button and focus rings with functional Emerald.
+- **Empirical Verification:**
+  - `npm run check:governance`: PASS.
+  - `npm run format:check`: PASS.
+  - `npm run typecheck`: PASS (0 errors).
+  - `npm test`: PASS (265 / 265 assertions passed).
+  - `npm run build`: PASS (Nitro SSR build in 2.82s).
+  - `node scripts/scan-build-artifacts.mjs`: PASS (0 secrets exposed).
+
 ## Founder Operating & Plain-English Autonomous Standards — 20 October 2026
 
 - **Tool & Scope:** Google Antigravity. Codified founder operating contract and communication rules across `GEMINI.md`, `AGENTS.md`, and `.agents/rules/harley-digital-works-standards.md`.

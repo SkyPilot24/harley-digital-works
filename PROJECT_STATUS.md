@@ -1,5 +1,23 @@
 # Harley Digital Works — Project Status
 
+## UI/UX Cohesion Audit & Brand Palette Unification — 20 October 2026 (H15/H16/H42)
+
+**Current Status:** Completed comprehensive UI/UX consistency audit across the homepage and marketing surfaces, eliminating discordant amber/brown tones and unifying with the ratified British Industrial Craftsmanship brand palette (Midnight Navy `#081B30`, Warm Ivory `#F6F3ED`, Steel Blue `#173C62`, and functional Emerald `#059669`):
+1. **Homepage Interactive Trade Showcase (`TradeShowcaseSection.tsx`)**: Re-architected card styling to signature Midnight Navy (`bg-[#081B30]`); replaced discordant amber/brown button with high-contrast functional Emerald (`bg-emerald-600`); replaced dirty yellow comparison table cells with clean `bg-slate-50` and Midnight Navy header; updated schedule wording to *"Agreed delivery schedule"*.
+2. **Trade ROI Calculator (`TradeRoiCalculator.tsx`)**: Restyled container to Midnight Navy; replaced gold sliders and buttons with functional Emerald; updated turnaround claims to agreed delivery schedules.
+3. **Contact Page (`contact.tsx`)**: Upgraded primary telephone channel to Midnight Navy and Website Review callout box to Steel Blue / Midnight Navy.
+4. **Demos & Partners (`demos.tsx`, `partners.tsx`, `DynamicStagingGenerator.tsx`)**: Cleaned up remaining "14-Day Delivery Guarantee" phrasing and aligned proposal action buttons to Emerald.
+
+**Verification:**
+
+- `npm run check:governance`: PASS (Agent instructions and shared contract consistent).
+- `npm run format:check`: PASS (All matched files use Prettier style).
+- `npm run typecheck`: PASS (0 errors).
+- `npm run lint`: PASS (0 errors, 9 non-blocking Fast Refresh warnings in UI components).
+- `npm test`: PASS (66 smoke + 196 Node regression/security/recovery + 3 SW = 265 total assertions, 0 failures).
+- `npm run build`: PASS (Nitro SSR build in 2.82s).
+- `node scripts/scan-build-artifacts.mjs`: PASS (0 secrets exposed).
+
 ## Founder Operating & Plain-English Autonomous Standards — 20 October 2026 (H15/H16/H42)
 
 **Current Status:** Codified permanent founder-centric operating rules across `GEMINI.md`, `AGENTS.md`, and `.agents/rules/harley-digital-works-standards.md`:

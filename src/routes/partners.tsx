@@ -47,7 +47,7 @@ const PARTNER_BENEFITS = [
   },
   {
     icon: ShieldCheck,
-    title: "14-Day Delivery SLA Guarantee",
+    title: "Agreed Delivery Schedule",
     description:
       "We handle 100% of the copywriting, design, and tech so your contractors enjoy a flawless experience that reflects brilliantly on you.",
   },
@@ -305,8 +305,8 @@ function PartnersPage() {
               Why UK Trade Suppliers & Accountants Partner With Us.
             </h2>
             <p className="mt-3 text-sm text-ink-muted">
-              We protect your commercial reputation with strict 14-day delivery and senior operating
-              governance.
+              We protect your commercial reputation with agreed delivery schedules and senior
+              operating governance.
             </p>
           </div>
 

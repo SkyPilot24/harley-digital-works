@@ -244,7 +244,7 @@ export function DynamicStagingGenerator({ initialConfig }: DynamicStagingGenerat
                 name: config.company,
                 trade: config.trade,
               }}
-              className="inline-flex items-center gap-1.5 rounded-xl bg-gold-500 hover:bg-gold-400 px-4 py-2 text-xs font-bold text-neutral-950 shadow-md transition-all"
+              className="inline-flex items-center gap-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 px-4 py-2 text-xs font-bold text-white shadow-md transition-all"
             >
               <span>Convert to Proposal</span>
               <ArrowRight className="h-3.5 w-3.5" />
@@ -263,7 +263,7 @@ export function DynamicStagingGenerator({ initialConfig }: DynamicStagingGenerat
                 type="text"
                 value={config.company}
                 onChange={(e) => setConfig({ ...config, company: e.target.value })}
-                className="mt-1 w-full rounded-lg border border-neutral-700 bg-neutral-950 px-3 py-2 text-xs text-white placeholder-neutral-500 focus:border-gold-400 focus:outline-none"
+                className="mt-1 w-full rounded-lg border border-neutral-700 bg-neutral-950 px-3 py-2 text-xs text-white placeholder-neutral-500 focus:border-emerald-500 focus:outline-none"
               />
             </div>
 
@@ -276,7 +276,7 @@ export function DynamicStagingGenerator({ initialConfig }: DynamicStagingGenerat
                 onChange={(e) =>
                   setConfig({ ...config, trade: e.target.value as StagingConfig["trade"] })
                 }
-                className="mt-1 w-full rounded-lg border border-neutral-700 bg-neutral-950 px-3 py-2 text-xs text-white focus:border-gold-400 focus:outline-none"
+                className="mt-1 w-full rounded-lg border border-neutral-700 bg-neutral-950 px-3 py-2 text-xs text-white focus:border-emerald-500 focus:outline-none"
               >
                 <option value="heating">🔥 Heating & Gas Safe</option>
                 <option value="electrical">⚡ Electrical & Solar</option>
@@ -295,7 +295,7 @@ export function DynamicStagingGenerator({ initialConfig }: DynamicStagingGenerat
                 type="text"
                 value={config.city}
                 onChange={(e) => setConfig({ ...config, city: e.target.value })}
-                className="mt-1 w-full rounded-lg border border-neutral-700 bg-neutral-950 px-3 py-2 text-xs text-white placeholder-neutral-500 focus:border-gold-400 focus:outline-none"
+                className="mt-1 w-full rounded-lg border border-neutral-700 bg-neutral-950 px-3 py-2 text-xs text-white placeholder-neutral-500 focus:border-emerald-500 focus:outline-none"
               />
             </div>
 
@@ -307,7 +307,7 @@ export function DynamicStagingGenerator({ initialConfig }: DynamicStagingGenerat
                 type="text"
                 value={config.phone}
                 onChange={(e) => setConfig({ ...config, phone: e.target.value })}
-                className="mt-1 w-full rounded-lg border border-neutral-700 bg-neutral-950 px-3 py-2 text-xs text-white placeholder-neutral-500 focus:border-gold-400 focus:outline-none"
+                className="mt-1 w-full rounded-lg border border-neutral-700 bg-neutral-950 px-3 py-2 text-xs text-white placeholder-neutral-500 focus:border-emerald-500 focus:outline-none"
               />
             </div>
           </div>

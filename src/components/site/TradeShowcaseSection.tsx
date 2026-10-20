@@ -68,7 +68,7 @@ export function TradeShowcaseSection() {
         </div>
 
         {/* Trade Selector Tabs */}
-        <div className="flex flex-wrap gap-2.5 p-1.5 bg-stone-200/60 rounded-2xl max-w-4xl mx-auto shadow-inner">
+        <div className="flex flex-wrap gap-2.5 p-1.5 bg-stone-100 rounded-2xl max-w-4xl mx-auto border border-stone-200/80 shadow-xs">
           {tradeKeys.map((key) => {
             const trade = TRADE_VERTICALS[key];
             const Icon = TRADE_ICONS[key] || Flame;
@@ -80,12 +80,12 @@ export function TradeShowcaseSection() {
                 onClick={() => setSelectedKey(key)}
                 className={`flex-1 min-w-[180px] flex items-center justify-center gap-2.5 py-3 px-4 rounded-xl text-xs sm:text-sm font-bold transition-all ${
                   isSelected
-                    ? "bg-white text-ink shadow-md shadow-stone-300/50 scale-[1.01]"
-                    : "text-ink-muted hover:text-ink hover:bg-white/50"
+                    ? "bg-[#081B30] text-white shadow-md shadow-stone-900/20 scale-[1.01]"
+                    : "text-ink-muted hover:text-ink hover:bg-white"
                 }`}
                 aria-pressed={isSelected}
               >
-                <Icon size={16} className={isSelected ? "text-amber-600" : "text-ink-muted"} />
+                <Icon size={16} className={isSelected ? "text-emerald-400" : "text-ink-muted"} />
                 <span>{trade.name}</span>
               </button>
             );
@@ -97,15 +97,15 @@ export function TradeShowcaseSection() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
             {/* Left Column: Trade Overview & Value Prop */}
             <div className="lg:col-span-7 space-y-6">
-              <div className="inline-flex items-center gap-2 rounded-full bg-amber-50 px-3 py-1 text-xs font-bold text-amber-900 border border-amber-200/80">
-                <ActiveIcon size={14} className="text-amber-700" />
+              <div className="inline-flex items-center gap-2 rounded-full bg-[#081B30]/5 px-3 py-1 text-xs font-bold text-[#081B30] border border-[#081B30]/15">
+                <ActiveIcon size={14} className="text-[#173C62]" />
                 <span>{activeTrade.badge}</span>
               </div>
 
               <div>
                 <h3 className="text-2xl sm:text-3xl font-extrabold text-ink tracking-tight leading-snug">
                   {activeTrade.heroHeadline}{" "}
-                  <span className="text-amber-700 underline decoration-amber-200 decoration-wavy underline-offset-4">
+                  <span className="text-[#173C62] underline decoration-[#173C62]/30 underline-offset-4">
                     {activeTrade.heroHighlight}
                   </span>
                 </h3>
@@ -117,7 +117,7 @@ export function TradeShowcaseSection() {
               {/* High-Value Target Enquiries */}
               <div className="space-y-3 pt-2">
                 <h4 className="text-xs font-bold uppercase tracking-wider text-ink flex items-center gap-2">
-                  <Sparkles size={14} className="text-amber-600" />
+                  <Sparkles size={14} className="text-[#173C62]" />
                   High-Margin Enquiries We Target For You
                 </h4>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
@@ -151,32 +151,32 @@ export function TradeShowcaseSection() {
             </div>
 
             {/* Right Column: Done-for-You Package & Call to Action */}
-            <div className="lg:col-span-5 rounded-2xl bg-stone-900 text-stone-100 p-6 sm:p-8 space-y-6 shadow-xl flex flex-col justify-between h-full">
+            <div className="lg:col-span-5 rounded-3xl bg-[#081B30] text-[#F6F3ED] p-6 sm:p-8 space-y-6 shadow-2xl border border-white/10 flex flex-col justify-between h-full">
               <div className="space-y-4">
-                <div className="flex items-center justify-between border-b border-stone-800 pb-4">
+                <div className="flex items-center justify-between border-b border-white/10 pb-4">
                   <div>
-                    <span className="text-[11px] font-bold uppercase tracking-wider text-stone-400">
+                    <span className="text-[11px] font-mono uppercase tracking-wider text-slate-300">
                       Managed Turnkey Package
                     </span>
-                    <div className="text-2xl font-black text-white mt-0.5">
+                    <div className="text-3xl font-black text-white mt-0.5 font-display">
                       £1,495{" "}
-                      <span className="text-xs font-normal text-stone-400">+ £249/mo care</span>
+                      <span className="text-xs font-normal text-slate-300">+ £249/mo care</span>
                     </div>
                   </div>
                   <div className="text-right">
-                    <span className="inline-block rounded-full bg-emerald-950/80 border border-emerald-500/30 px-2.5 py-0.5 text-[11px] font-mono text-emerald-300">
+                    <span className="inline-block rounded-full bg-emerald-950/80 border border-emerald-500/40 px-2.5 py-0.5 text-[11px] font-mono text-emerald-300">
                       Pilot: Max 2 spots
                     </span>
-                    <div className="text-[11px] text-stone-400 mt-1">14-Day Delivery Target</div>
+                    <div className="text-[11px] text-slate-300 mt-1">Agreed Delivery Schedule</div>
                   </div>
                 </div>
 
                 <div className="space-y-3">
-                  <h5 className="text-xs font-bold uppercase tracking-wider text-stone-300 flex items-center gap-1.5">
+                  <h5 className="text-xs font-bold uppercase tracking-wider text-slate-200 flex items-center gap-1.5">
                     <FileCheck size={14} className="text-emerald-400" />
                     Included For Your Trade:
                   </h5>
-                  <ul className="space-y-2.5 text-xs text-stone-300">
+                  <ul className="space-y-2.5 text-xs text-slate-200">
                     {activeTrade.includedFeatures.map((feat, i) => (
                       <li key={i} className="flex items-start gap-2">
                         <CheckCircle2 size={15} className="text-emerald-400 shrink-0 mt-0.5" />
@@ -186,19 +186,19 @@ export function TradeShowcaseSection() {
                   </ul>
                 </div>
 
-                <div className="rounded-xl bg-stone-800/80 border border-stone-700/60 p-3 text-[11px] text-stone-300 space-y-1">
+                <div className="rounded-xl bg-white/5 border border-white/10 p-3.5 text-[11px] text-slate-200 space-y-1">
                   <div className="font-bold text-white flex items-center gap-1.5">
-                    <ShieldCheck size={14} className="text-amber-400" />
+                    <ShieldCheck size={14} className="text-emerald-400" />
                     50% Deposit / 50% on Final Approval
                   </div>
-                  <p className="text-stone-400">
+                  <p className="text-slate-300 leading-relaxed">
                     You only pay the completion balance once you have reviewed the working staging
                     site and confirmed satisfaction.
                   </p>
                 </div>
               </div>
 
-              <div className="pt-4 border-t border-stone-800 space-y-2.5">
+              <div className="pt-4 border-t border-white/10 space-y-2.5">
                 <Link
                   to="/contact"
                   search={{
@@ -207,7 +207,7 @@ export function TradeShowcaseSection() {
                     domain: undefined,
                     websiteUrl: undefined,
                   }}
-                  className="w-full min-h-[48px] inline-flex items-center justify-center gap-2 rounded-full bg-amber-500 hover:bg-amber-400 text-stone-950 font-bold px-6 py-3.5 text-sm transition-colors shadow-md cursor-pointer"
+                  className="w-full min-h-[48px] inline-flex items-center justify-center gap-2 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-6 py-3.5 text-sm transition-all shadow-lg shadow-emerald-950/40 cursor-pointer"
                 >
                   <span>Check Availability & Get Plan</span>
                   <ArrowRight size={16} />
@@ -220,11 +220,11 @@ export function TradeShowcaseSection() {
                     domain: undefined,
                     websiteUrl: undefined,
                   }}
-                  className="w-full min-h-[44px] inline-flex items-center justify-center gap-2 rounded-full border border-stone-700 bg-stone-800/80 hover:bg-stone-800 text-stone-200 font-semibold px-4 py-2.5 text-xs transition-colors cursor-pointer"
+                  className="w-full min-h-[44px] inline-flex items-center justify-center gap-2 rounded-full border border-white/20 bg-white/5 hover:bg-white/10 text-white font-semibold px-4 py-2.5 text-xs transition-colors cursor-pointer"
                 >
                   <span>Get a Website Review</span>
                 </Link>
-                <div className="text-center text-[11px] text-stone-400 pt-1">
+                <div className="text-center text-[11px] text-slate-300 pt-1">
                   No pushy sales calls · Straightforward conversation with founder Robbie Harley
                 </div>
               </div>
@@ -252,7 +252,7 @@ export function TradeShowcaseSection() {
                   <th className="py-3 px-4 w-1/4">Aspect</th>
                   <th className="py-3 px-4 w-1/4 text-stone-500">DIY / Wix / Squarespace</th>
                   <th className="py-3 px-4 w-1/4 text-stone-500">Generic Web Agency</th>
-                  <th className="py-3 px-4 w-1/4 bg-amber-50/80 text-amber-950 rounded-t-xl font-extrabold border-t border-x border-amber-200/80">
+                  <th className="py-3.5 px-4 w-1/4 bg-[#081B30] text-white rounded-t-xl font-extrabold border-t border-x border-[#081B30]">
                     Harley Digital Works
                   </th>
                 </tr>
@@ -266,7 +266,7 @@ export function TradeShowcaseSection() {
                   <td className="py-3.5 px-4 text-stone-600">
                     Generic marketing fluff from juniors who don&apos;t know Gas Safe or NICEIC.
                   </td>
-                  <td className="py-3.5 px-4 bg-amber-50/80 text-ink font-semibold border-x border-amber-200/80">
+                  <td className="py-3.5 px-4 bg-slate-50 text-ink font-semibold border-x border-slate-200">
                     ✓ 100% done-for-you technical copywriting based on your confirmed trade facts.
                   </td>
                 </tr>
@@ -279,7 +279,7 @@ export function TradeShowcaseSection() {
                   <td className="py-3.5 px-4 text-stone-600">
                     £3,000–£7,000+ upfront fee, plus £150/hr for minor text updates.
                   </td>
-                  <td className="py-3.5 px-4 bg-amber-50/80 text-ink font-semibold border-x border-amber-200/80">
+                  <td className="py-3.5 px-4 bg-slate-50 text-ink font-semibold border-x border-slate-200">
                     ✓ Clear £1,495 setup (50/50 milestone) + £249/mo rolling all-inclusive care.
                   </td>
                 </tr>
@@ -292,8 +292,8 @@ export function TradeShowcaseSection() {
                   <td className="py-3.5 px-4 text-stone-600">
                     8 to 16 weeks with endless committee meetings and delay.
                   </td>
-                  <td className="py-3.5 px-4 bg-amber-50/80 text-ink font-semibold border-x border-amber-200/80">
-                    ✓ Standard 14-day turnaround from agreed brief to staging preview.
+                  <td className="py-3.5 px-4 bg-slate-50 text-ink font-semibold border-x border-slate-200">
+                    ✓ Agreed delivery schedule with private staging preview and revision rounds.
                   </td>
                 </tr>
 
@@ -305,7 +305,7 @@ export function TradeShowcaseSection() {
                   <td className="py-3.5 px-4 text-stone-600">
                     Submit tickets to a support desk and wait days for a response.
                   </td>
-                  <td className="py-3.5 px-4 bg-amber-50/80 text-ink font-semibold border-x border-amber-200/80">
+                  <td className="py-3.5 px-4 bg-slate-50 text-ink font-semibold border-x border-slate-200">
                     ✓ Dedicated monthly care: hosting, SSL, enquiry checks & 30-min monthly edit
                     batch.
                   </td>
@@ -319,7 +319,7 @@ export function TradeShowcaseSection() {
                   <td className="py-3.5 px-4 text-stone-600">
                     One of 50 accounts assigned to rotating junior account managers.
                   </td>
-                  <td className="py-3.5 px-4 bg-amber-50/80 text-ink font-semibold border-x border-b border-amber-200/80 rounded-b-xl">
+                  <td className="py-3.5 px-4 bg-slate-50 text-ink font-semibold border-x border-b border-slate-200 rounded-b-xl">
                     ✓ Strict 2-spot pilot capacity: direct access to founder Robbie Harley.
                   </td>
                 </tr>
@@ -329,7 +329,7 @@ export function TradeShowcaseSection() {
 
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-stone-100">
             <div className="flex items-center gap-3 text-xs text-ink-muted">
-              <PhoneCall size={16} className="text-amber-700 shrink-0" />
+              <PhoneCall size={16} className="text-[#173C62] shrink-0" />
               <span>Questions before booking? Email or call us directly. No hard sell.</span>
             </div>
             <PillButton

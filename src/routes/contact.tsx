@@ -72,18 +72,18 @@ function ContactPage() {
 
               {/* Primary: Telephone */}
               <div className="flex items-start gap-3 pt-1">
-                <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-amber-50 text-amber-800 border border-amber-200/80">
+                <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-[#081B30]/5 text-[#081B30] border border-[#081B30]/15">
                   <Phone size={16} />
                 </div>
                 <div>
                   <div className="flex items-center gap-2">
                     <a
                       href={"tel:" + siteConfig.contactPhoneTel}
-                      className="font-bold text-sm text-ink hover:text-amber-800 transition-colors"
+                      className="font-bold text-sm text-ink hover:text-[#173C62] transition-colors"
                     >
                       {siteConfig.contactPhone}
                     </a>
-                    <span className="rounded-full bg-amber-100/70 px-2 py-0.5 text-[10px] font-bold text-amber-900">
+                    <span className="rounded-full bg-[#081B30]/10 px-2 py-0.5 text-[10px] font-bold text-[#081B30]">
                       Primary · Call Us
                     </span>
                   </div>
@@ -121,7 +121,7 @@ function ContactPage() {
               {/* Hours & Location */}
               <div className="pt-2 border-t border-ink/10 flex flex-wrap items-center justify-between text-[11px] text-ink-muted gap-2">
                 <span className="inline-flex items-center gap-1">
-                  <MapPin size={12} className="text-amber-800" />
+                  <MapPin size={12} className="text-[#173C62]" />
                   {siteConfig.location}
                 </span>
                 <span className="inline-flex items-center gap-1">
@@ -146,7 +146,7 @@ function ContactPage() {
                 <a href={"mailto:" + siteConfig.contactEmail}>{siteConfig.contactEmail}</a>
                 <a
                   href={"tel:" + siteConfig.contactPhoneTel}
-                  className="text-xs font-semibold text-gold-400 hover:underline"
+                  className="text-xs font-semibold text-[#173C62] hover:underline"
                 >
                   {siteConfig.contactPhone}
                 </a>
@@ -155,10 +155,10 @@ function ContactPage() {
           </div>
           <div id="contact-form">
             {/* Website Review Opportunity Callout */}
-            <div className="mb-6 rounded-2xl border border-amber-500/30 bg-amber-500/10 p-5 shadow-2xs">
+            <div className="mb-6 rounded-2xl border border-[#173C62]/20 bg-[#173C62]/5 p-5 shadow-2xs">
               <div className="flex items-start gap-3">
-                <div className="p-2 bg-amber-500 text-ink rounded-xl shrink-0 font-bold">
-                  <Sparkles size={18} />
+                <div className="p-2 bg-[#081B30] text-white rounded-xl shrink-0 font-bold">
+                  <Sparkles size={18} className="text-emerald-400" />
                 </div>
                 <div className="space-y-1">
                   <h3 className="text-sm font-bold text-ink">

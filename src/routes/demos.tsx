@@ -71,7 +71,7 @@ function TradeDemosPage() {
               <div className="flex flex-wrap items-center gap-4 text-xs font-mono font-medium text-ink/80 pt-2">
                 <div className="flex items-center gap-1.5 bg-white border border-ink/10 px-3 py-1.5 rounded-full shadow-2xs">
                   <CheckCircle2 className="h-4 w-4 text-emerald-700" />
-                  <span>14-Day Delivery Guarantee</span>
+                  <span>Agreed Delivery Schedule</span>
                 </div>
                 <div className="flex items-center gap-1.5 bg-white border border-ink/10 px-3 py-1.5 rounded-full shadow-2xs">
                   <CheckCircle2 className="h-4 w-4 text-emerald-700" />
