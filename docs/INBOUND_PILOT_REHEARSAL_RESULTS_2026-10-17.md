@@ -2,8 +2,6 @@
 
 ## Latest: real browser and committed staging rehearsal — PASS within stated scope
 
-Preservation update: authored assessment/plan/results/configuration documents, redacted evidence and isolated additive checkpoints committed locally as `82c96c0d4ae0ea59044b8ce24d3f6b58aa817380` on `codex/inbound-rehearsal-2026-10-17`; not pushed. Original peer/Manus work and private configuration excluded. Isolated generated route-tree line-ending residue has no textual diff and remains uncommitted. Local app stopped; port 4187 confirmed closed. Earlier uncommitted/blocking statements below describe prior checkpoints.
-
 After Robbie supplied the private staging key locally and authorised continuation, the isolated worktree at `C:\Users\drrob\.codex\worktrees\inbound-staging-config\harley-digital-works` reused the original installed dependencies via junction; no package install/update. Source remains `af5ae9c`. All nine config checks and server-key HEAD probe passed. This checkpoint supersedes the earlier local-configuration/browser block below.
 
 Containment: existing Cloudflare login read-only metadata showed two Workers: `skypilot24-harley-digital-works` targets production (lead notifications true, email false), while `skypilot24-thgdigital` has no SUPABASE_URL binding; no Worker targets staging. Old staging Worker `hdw-h50-01a139f2` returns not found. Earlier staging metadata found no cron schema and only database outbox insertion/update triggers on leads. Local six flags remain false; process fetch guard permits only staging/localhost and browser blocks other destinations. No settings or providers changed. This verifies the recorded deployment account boundary, not every hypothetical consumer outside that account.
