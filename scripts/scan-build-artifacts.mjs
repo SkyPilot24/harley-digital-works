@@ -5,8 +5,14 @@ const secretPatterns = [
   { name: "Private Key", regex: /-----BEGIN [A-Z ]*PRIVATE KEY-----/ },
   { name: "Resend Live API Key", regex: /re_[a-zA-Z0-9]{20,}/ },
   { name: "Stripe Secret Key", regex: /sk_live_[a-zA-Z0-9]{20,}/ },
-  { name: "Slack Webhook URL", regex: /https:\/\/hooks\.slack\.com\/services\/T[a-zA-Z0-9_]+\/B[a-zA-Z0-9_]+\/[a-zA-Z0-9_]+/ },
-  { name: "Raw Supabase Service Role Secret", regex: /service_role_key\s*[:=]\s*["'][a-zA-Z0-9._-]{50,}["']/i },
+  {
+    name: "Slack Webhook URL",
+    regex: /https:\/\/hooks\.slack\.com\/services\/T[a-zA-Z0-9_]+\/B[a-zA-Z0-9_]+\/[a-zA-Z0-9_]+/,
+  },
+  {
+    name: "Raw Supabase Service Role Secret",
+    regex: /service_role_key\s*[:=]\s*["'][a-zA-Z0-9._-]{50,}["']/i,
+  },
   { name: "Generic AWS Secret Key", regex: /AKIA[0-9A-Z]{16}/ },
   { name: "Generic Private Token", regex: /ghp_[a-zA-Z0-9]{36}/ },
 ];
