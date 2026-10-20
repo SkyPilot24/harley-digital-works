@@ -140,8 +140,8 @@ function HomePage() {
                 </span>
                 <div className="relative overflow-hidden aspect-[16/10] bg-black">
                   <img
-                    src="/images/transformation-video/scene-2-slider-wipe.jpg"
-                    alt="Before and after trade website transformation"
+                    src="/images/home/hero-contractor.jpg"
+                    alt="British trade contractor with Ford Transit van checking customer enquiries on smartphone"
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors flex items-center justify-center">
@@ -268,8 +268,8 @@ function HomePage() {
           <div className="studio-wrap purpose-layout">
             <div className="purpose-visual">
               <img
-                src="/images/home/interior.jpg"
-                alt="Considered details in a light-filled bathroom, illustrating the workmanship a website can showcase"
+                src="/images/home/craftsman-workshop.jpg"
+                alt="Master craftsman in British workshop with trade website displayed on laptop in background"
                 width="1200"
                 height="801"
                 loading="lazy"

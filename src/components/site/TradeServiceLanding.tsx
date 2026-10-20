@@ -47,6 +47,30 @@ const DEFAULT_ACCREDITATIONS = [
   "Federation of Master Builders",
 ];
 
+const TRADE_HERO_IMAGES: Record<string, { src: string; alt: string }> = {
+  "heating-engineers": {
+    src: "/images/home/heating-plant-room.jpg",
+    alt: "High-spec boiler and unvented hot water cylinder plant room with parallel copper pipework",
+  },
+  electricians: {
+    src: "/images/home/renewables-solar-ev.jpg",
+    alt: "Domestic rooftop solar installation and wall-mounted EV charger with South West trade van",
+  },
+  builders: {
+    src: "/images/home/extension-renovation.jpg",
+    alt: "High-spec open-plan rear kitchen extension with exposed steel RSJ and bifold doors",
+  },
+  "commercial-contractors": {
+    src: "/images/home/contractor-commercial.jpg",
+    alt: "Commercial contractor Ford Transit van beside a British residential project",
+  },
+};
+
+const DEFAULT_TRADE_IMAGE = {
+  src: "/images/home/hero-contractor.jpg",
+  alt: "British trade contractor reviewing customer enquiries on smartphone beside trade van",
+};
+
 export function TradeServiceLanding({
   name,
   location = false,
@@ -60,6 +84,7 @@ export function TradeServiceLanding({
   tradeInfo?: TradeVertical;
   locationInfo?: LocationInfo;
 }) {
+  const heroImage = (tradeInfo?.slug && TRADE_HERO_IMAGES[tradeInfo.slug]) || DEFAULT_TRADE_IMAGE;
   const kicker = tradeInfo
     ? tradeInfo.badge
     : locationInfo
@@ -174,8 +199,8 @@ export function TradeServiceLanding({
             </div>
             <div className="service-preview">
               <img
-                src="/images/home/solar.jpg"
-                alt="Solar panels illustrating the practical work of a trade business"
+                src={heroImage.src}
+                alt={heroImage.alt}
                 width="1200"
                 height="800"
                 loading="lazy"

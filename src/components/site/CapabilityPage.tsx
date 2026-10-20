@@ -95,12 +95,12 @@ export function CapabilityPage({
               <img
                 src={
                   conceptKey === "interior"
-                    ? "/images/home/interior.jpg"
+                    ? "/images/home/bathroom-interior.jpg"
                     : conceptKey === "solar"
-                      ? "/images/home/solar.jpg"
-                      : "/images/home/architecture.jpg"
+                      ? "/images/home/renewables-solar-ev.jpg"
+                      : "/images/home/extension-renovation.jpg"
                 }
-                alt="Craftsmanship detail illustrating structural quality"
+                alt="Craftsmanship detail illustrating structural quality and finish"
                 width="1200"
                 height="800"
                 loading="lazy"

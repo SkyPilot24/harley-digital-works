@@ -1,3 +1,34 @@
+## Authentic British Trade Photography & Website Overhaul — 20 October 2026
+
+- **Tool & Scope:** Google Antigravity. Complete visual overhaul replacing generic stock/architectural placeholders across The Harley Group and Harley Digital Works with authentic British trade imagery created via Nano Banana Pro / Higgsfield.ai and deployed across all marketing and trade routes.
+- **Founder Direction:** Robbie requested: *"yes please update the websites"* following generation of 11 authentic trade and architectural assets.
+- **Applied Changes:**
+  - `public/images/home/`: Ingested 11 high-resolution authentic assets:
+    1. `hero-contractor.jpg`: British trade contractor reviewing incoming enquiries on smartphone beside Ford Transit on a UK residential driveway.
+    2. `craftsman-workshop.jpg`: Joiner marking oak timber in workshop with digital website layout visible on laptop in background.
+    3. `contractor-commercial.jpg`: Commercial contractor Ford Transit van outside a British residential renovation project.
+    4. `renewables-solar-ev.jpg`: Domestic rooftop solar panels and wall-mounted EV charger on a British home with South West trade van.
+    5. `bathroom-interior.jpg`: Master bespoke bathroom with brushed brass rainfall shower, fluted oak vanity, and natural sash window light.
+    6. `extension-renovation.jpg`: Open-plan rear kitchen extension with exposed steel RSJ beam, herringbone parquet, and bifold doors.
+    7. `heating-plant-room.jpg`: High-spec boiler and unvented hot water cylinder plant room with parallel copper pipework.
+    8. `landscaping-patio.jpg`: Porcelain patio with tiered oak sleeper raised planter beds and lawn.
+    9. `decorating-heritage.jpg`: Heritage Victorian room decorating with deep slate blue walls, white timber sash window, and picture rail.
+    10. `thg-pavilion.jpg`: Contemporary Bath stone and timber architectural craft pavilion.
+    11. `thg-headquarters.jpg`: Two-storey Bath stone, steel, and oak contemporary headquarters building.
+  - `src/routes/the-harley-group.tsx`: Upgraded corporate holding hero to `thg-headquarters.jpg`.
+  - `src/routes/index.tsx`: Upgraded homepage hero preview to `hero-contractor.jpg` and Section 03 craftsmanship visual to `craftsman-workshop.jpg`.
+  - `src/routes/about.tsx`: Upgraded company philosophy visual to `craftsman-workshop.jpg`.
+  - `src/routes/work.tsx`: Upgraded Section 03 "The Harley Standard" visual to `thg-pavilion.jpg`.
+  - `src/components/site/ConceptShowcase.tsx`: Mapped Building (`extension-renovation.jpg`), Solar/EV (`renewables-solar-ev.jpg`), and Bathrooms (`bathroom-interior.jpg`).
+  - `src/components/site/BeforeAfterComparison.tsx`: Mapped all 6 trade comparison verticals to authentic sector assets.
+  - `src/components/site/CapabilityPage.tsx`: Replaced legacy generic placeholders with authentic assets.
+  - `src/components/site/TradeServiceLanding.tsx`: Added dynamic `TRADE_HERO_IMAGES` mapping so each trade route (`/trades/heating-engineers`, `/trades/electricians`, `/trades/builders`, `/trades/commercial-contractors`, and `/locations/$slug`) presents its sector-specific authentic asset.
+- **Empirical Verification:**
+  - `npm run typecheck`: PASS (0 errors).
+  - `npm test`: PASS (199/199 passing assertions).
+  - `npm run build`: PASS (Nitro SSR Cloudflare module build in 2.40s).
+  - Local browser presentation verified on `http://localhost:8080/`.
+
 ## Trade Quality Guild Seal Deployment & Control Centre Integration — 20 October 2026
 
 - **Tool & Scope:** Google Antigravity. Integrated Trade Quality Guild Seal Stamp onto the website (homepage hero/guarantee section, founder signature, and site footer) and persisted the complete Master Brand Asset Guide into the Admin Control Centre (`/admin/knowledge-base` and `/admin/headquarters`).

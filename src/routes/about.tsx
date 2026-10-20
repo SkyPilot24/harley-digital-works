@@ -122,8 +122,8 @@ function AboutPage() {
           <div className="studio-wrap purpose-layout">
             <div className="purpose-visual">
               <img
-                src="/images/home/interior.jpg"
-                alt="Architectural detailing and natural light demonstrating craft quality"
+                src="/images/home/craftsman-workshop.jpg"
+                alt="Master craftsman in British workshop with trade website on laptop in background"
                 width="1200"
                 height="801"
                 loading="lazy"

@@ -15,14 +15,14 @@ interface BeforeAfterComparisonProps {
   sectionKicker?: string;
 }
 
-// Reuse the site's illustrative photography, never imply these are client projects.
+// Authentic illustrative British trade photography for each vertical
 const conceptPhotography: Record<string, string> = {
-  "heating-plumbing": "/images/home/interior.jpg",
-  "electrical-ev": "/images/home/solar.jpg",
-  "roofing-leadwork": "/images/home/architecture.jpg",
-  "building-renovations": "/images/home/architecture.jpg",
-  "landscaping-gardens": "/images/home/architecture.jpg",
-  "painting-decorating": "/images/home/interior.jpg",
+  "heating-plumbing": "/images/home/heating-plant-room.jpg",
+  "electrical-ev": "/images/home/renewables-solar-ev.jpg",
+  "roofing-leadwork": "/images/home/thg-pavilion.jpg",
+  "building-renovations": "/images/home/extension-renovation.jpg",
+  "landscaping-gardens": "/images/home/landscaping-patio.jpg",
+  "painting-decorating": "/images/home/decorating-heritage.jpg",
 };
 
 function DesignPreview({

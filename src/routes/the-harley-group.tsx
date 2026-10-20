@@ -49,8 +49,8 @@ export function TheHarleyGroupPage() {
           </div>
           <figure>
             <img
-              src="/images/home/architecture.jpg"
-              alt="Architectural detail of a timber and glass home at dusk"
+              src="/images/home/thg-headquarters.jpg"
+              alt="The Harley Group headquarters, contemporary British architecture in natural Bath stone, structural steel and English oak"
               width="1200"
               height="800"
               fetchPriority="high"

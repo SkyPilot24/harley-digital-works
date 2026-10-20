@@ -243,8 +243,8 @@ function WorkPage() {
           <div className="studio-wrap purpose-layout">
             <div className="purpose-visual">
               <img
-                src="/images/home/architecture.jpg"
-                alt="Architectural structure illustrating clean lines and proportion"
+                src="/images/home/thg-pavilion.jpg"
+                alt="Precision British architectural craft pavilion demonstrating structural quality and clean lines"
                 width="1200"
                 height="800"
                 loading="lazy"

@@ -1,5 +1,19 @@
 # Harley Digital Works — Project Status
 
+## Authentic British Trade Photography & Website Overhaul — 20 October 2026 (H15/H16/H42)
+
+**Current Status:** Completed full website image audit and visual overhaul across The Harley Group and Harley Digital Works, replacing generic architectural stock placeholders with 11 high-resolution authentic British trade and architectural assets generated via Higgsfield.ai / Nano Banana Pro:
+1. **Public Asset Directory (`public/images/home/`)**: Ingested and deployed 11 authentic assets covering UK contractor vans, open-plan kitchen extensions, domestic solar & EV chargers, bespoke bathrooms, boiler plant rooms, porcelain patios, heritage decorating, joinery workshops, and Bath stone headquarters.
+2. **Homepage & Brand Marketing Surfaces (`index.tsx`, `the-harley-group.tsx`, `about.tsx`, `work.tsx`)**: Replaced generic modern mansions with the smiling UK contractor by his Ford Transit (`hero-contractor.jpg`), the Bath stone headquarters (`thg-headquarters.jpg`), and the joiner at work (`craftsman-workshop.jpg`).
+3. **Interactive Demonstrations & Trade Landings (`BeforeAfterComparison.tsx`, `ConceptShowcase.tsx`, `TradeServiceLanding.tsx`, `CapabilityPage.tsx`)**: Mapped each trade vertical (`/trades/heating-engineers`, `/trades/electricians`, `/trades/builders`, `/trades/commercial-contractors`, and `/locations/$slug`) to authentic, sector-specific photography, eliminating generic 3-image recycling across the application.
+
+**Verification:**
+
+- `npm run typecheck`: PASS (0 errors).
+- `npm test`: PASS (199/199 passing assertions).
+- `npm run build`: PASS (Nitro SSR Cloudflare module build in 2.40s).
+- `http://localhost:8080/`: Live verified.
+
 ## Trade Quality Guild Seal Deployment & Control Centre Integration — 20 October 2026 (H15/H16/H42)
 
 **Current Status:** Completed deployment of the Trade Quality Guild Seal Stamp onto the website and persisted the complete Master Brand Asset Guide directly into the Admin Control Centre:
