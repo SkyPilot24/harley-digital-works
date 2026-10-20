@@ -1,0 +1,104 @@
+{
+  "checkedAt": "2026-10-20T11:39:06.336725+00:00",
+  "method": "curl public GET; no submissions/authentication",
+  "results": [
+    {
+      "path": "/",
+      "status": "200",
+      "exitCode": 0,
+      "bytes": 89035,
+      "sha256": "8da44ff97372edfd40ddbe82a86c7f0c245cf22a03c527372269b3de826b6451",
+      "selectedHeaders": [
+        "content-type: text/html; charset=utf-8",
+        "cf-ray: a4d7bd756e642ff0-DFW"
+      ]
+    },
+    {
+      "path": "/contact",
+      "status": "200",
+      "exitCode": 0,
+      "bytes": 19778,
+      "sha256": "3183fd7029f1a11c72fce454d96224dac10043592cd2785b4a1266397d529016",
+      "selectedHeaders": [
+        "content-type: text/html; charset=utf-8",
+        "cf-ray: a4d7bd7818c023f2-DFW"
+      ]
+    },
+    {
+      "path": "/auth",
+      "status": "307",
+      "exitCode": 0,
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "selectedHeaders": [
+        "cf-ray: a4d7bd78c9c323f2-DFW"
+      ]
+    }
+  ],
+  "sourceRevision": "0845172c455b756a0a6eb24af1e7b56d78c348e9",
+  "branch": "work",
+  "authRedirectFollowUp": {
+    "path": "/auth",
+    "initialStatus": 307,
+    "location": "/auth?redirect=%2Fadmin",
+    "finalStatus": 200,
+    "redirects": 1
+  },
+  "migrationTests": {
+    "command": "node --test scripts/project-schema-review.test.mjs",
+    "passed": 6,
+    "failed": 0,
+    "scope": "local disposable PGlite; synthetic in-memory restore, not provider backup or real Auth/API acceptance"
+  },
+  "access": {
+    "githubRemote": "UNKNOWN: HTTPS authentication unavailable",
+    "cloudflareSourceVersion": "UNKNOWN: no provider credentials/connector configured",
+    "supabaseManagement": "unavailable",
+    "supabaseCli": false,
+    "pgDump": false,
+    "pgRestore": false
+  },
+  "installedDependencies": {
+    "@tanstack/react-start": {
+      "installed": "1.168.27",
+      "locked": "1.169.3"
+    },
+    "@tanstack/start-server-core": {
+      "installed": "1.169.16",
+      "locked": "1.169.44"
+    }
+  },
+  "migrationHashes": [
+    {
+      "path": "supabase/migrations/20261015140000_reconcile_projects_schema.sql",
+      "sha256": "9c5e63bd2275f6429580fa4f6d65bd6050706186a1d8511dabe36c909a84c22b",
+      "crlfReencodedSha256": "7f13ec23c6ee6b97b5756656b312173ed7276dc84b89231cdf6c6a5a4d8216e6",
+      "note": "Fresh local LF byte hashes differ from historical Windows byte hashes; CRLF reconstruction permits comparison only, not production package approval.",
+      "historicalHashReconciledByCrlf": true
+    },
+    {
+      "path": "docs/release-package/2026-10-17/projects-reconciliation-review-draft.sql",
+      "sha256": "5f57f3223d961ccf5eec51e050934cc47b6d3b3a5e4008f327085dd0e31405dc",
+      "crlfReencodedSha256": "de8169f2c8a4e6abc60398f30691dea1517dcc226a359c60a4703029c81b20f4",
+      "note": "Current draft and CRLF reconstruction do not match historical manifest hash. Final review/package identity remains unresolved; fresh tests apply only to current bytes.",
+      "historicalHashReconciledByCrlf": false
+    }
+  ],
+  "sessionScope": "Observations and actions performed during the 20 October local-access assessment only; these booleans do not describe the complete project history.",
+  "productionChangedByThisSession": false,
+  "migrationAppliedByThisSession": false,
+  "fullReleaseChecksRunByThisSession": false,
+  "payingPilotVerdict": "Earlier local-access-based NO-GO is historical; full readiness remains unreconciled after founder confirmation. Do not repeat the two confirmed completed actions.",
+  "supersededBy": "docs/TASK_COMPLETION_RECONCILIATION_2026-10-20.md",
+  "founderConfirmedCompletions": {
+    "date": "2026-10-19",
+    "confirmedOn": "2026-10-20",
+    "source": "Robbie in current conversation",
+    "items": [
+      "deployed-revision verification",
+      "production backup/restore rehearsal"
+    ],
+    "independentlyReverified": false,
+    "repeatExecutionRequired": false
+  }
+}

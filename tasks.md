@@ -1,5 +1,7 @@
 # Website QA & Platform Build Sign-off
 
+> **Historical checklist — reconciled 20 October 2026.** These checkmarks mix implementation, staging and live scopes and include superseded prices/design wording. Do not use them as a launch sign-off or as instructions to repeat completed work. Use [the active delivery plan](docs/CURRENT_DELIVERY_PLAN_2026-10-20.md), [per-task completion register](docs/TASK_COMPLETION_RECONCILIATION_2026-10-20.md) and effective reconciliation notes in MASTER_BACKLOG. Deployed-revision verification and production backup/restore were completed on 19 October, founder-confirmed on 20 October. Preserve the historical checklist below as history.
+
 ## Objective
 
 Deliver and verify the production-ready digital agency operating platform and commercial website for **Harley Digital Works** (`https://harleydigitalworks.com`) under **The Harley Group**.

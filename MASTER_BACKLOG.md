@@ -1,3 +1,13 @@
+## Effective work selection — 20 October 2026
+
+Use [the active delivery plan](docs/CURRENT_DELIVERY_PLAN_2026-10-20.md), [completion reconciliation](docs/TASK_COMPLETION_RECONCILIATION_2026-10-20.md) and each H-task inline **Effective reconciliation** before the historical Status/Current gap fields. All 50 H tasks, D01–D08 and L01 reviewed. **Production revision verification and production backup/restore were completed 19 October, founder-confirmed 20 October. Do not queue them again.** This supersedes the earlier 20 October local-access-based next actions below. Preserve completed implementation, staging and live components; only a specifically uncovered delta belongs in the work queue. Missing external records mean unreconciled status, not automatic reopening. Historical baseline claims and broad tasks.md checkmarks do not establish the current launch verdict.
+
+## Superseded launch readiness evidence — 20 October 2026
+
+This local-access snapshot predates the founder's completion confirmation. Its migration HOLD remains a separate unresolved item; its production-revision and backup/restore UNKNOWN/NO-GO implications are superseded. Use the active delivery plan for current work selection.
+
+H01/H02/H07–H10/H19/H23–H25/H42/H47/H48/H50: fresh public route checks and six local migration/recovery tests PASS at checkout `0845172`. PR #42 is present locally; exact deployed source and current remote CI were unavailable to this session. Installed dependency tree was stale relative to committed lockfile, so full release validation was not repeated on it. [Historical assessment and session evidence](docs/LAUNCH_READINESS_2026-10-20.md). Preparation only; no push/deploy/schema apply/send/payment.
+
 ## Migration recovery validation checkpoint — 17 October 2026
 
 H07/H08/H09/H19/H42/H47/H50. Candidate branch codex/pilot-security-release-2026-10-17, starting revision e61fc2cb9368c52197d3e2a2517ab046668ef268; application security source remains 750b39b5e4373040b1830b1091f37981bb75145d. Primary main af5ae9c2c3896ced4a078f7edde7896205a62a57 and unrelated peer edits preserved. User authorised continuing validation and requested handover update; no production execution authority inferred.
@@ -178,6 +188,8 @@ Updated 2 October 2026. Domain integration added following the founder's request
 
 ## H01 — Confirm the launch offer and commercial terms
 
+- **Effective reconciliation — 20 October 2026:** Settled decision. Completed: Offer and package prices ratified; do not reprice or reapprove. Remaining delta: Only reconcile any affected customer-use wording. See [completion register](docs/TASK_COMPLETION_RECONCILIATION_2026-10-20.md). Older Status/Current gap fields below are historical where they conflict.
+
 - **Phase:** 1
 - **Priority:** High
 - **Who needs to act:** Me
@@ -191,6 +203,8 @@ Updated 2 October 2026. Domain integration added following the founder's request
 
 ## H02 — Verify business identity, capacity and support commitments
 
+- **Effective reconciliation — 20 October 2026:** Settled + narrow record gap. Completed: Brand, positioning and pilot capacity settled; owner-confirmed VAT non-registration recorded. Remaining delta: Invoice-issuer entry/support facts need reconciliation; do not repeat business-definition exercise or infer incorporation requirement. See [completion register](docs/TASK_COMPLETION_RECONCILIATION_2026-10-20.md). Older Status/Current gap fields below are historical where they conflict.
+
 - **Phase:** 1
 - **Priority:** High
 - **Who needs to act:** Me
@@ -203,6 +217,8 @@ Updated 2 October 2026. Domain integration added following the founder's request
 - **Latest evidence:** Business fact sheet and decision register ratified in [docs/COMMERCIAL_OFFER_MANAGED.md](docs/COMMERCIAL_OFFER_MANAGED.md). Rules enforce zero-rated VAT below £90k, UK-wide remote studio with Bristol/Bath electrical contractor pilot, and strict cap of 2 concurrent onboarding builds.
 
 ## H03 — Establish one source of truth and a release inventory
+
+- **Effective reconciliation — 20 October 2026:** Partial; do not rebuild. Completed: Canonical architecture, Business OS and source records exist; deployed-revision check completed 19 Oct, founder-confirmed. Remaining delta: Attach existing release evidence if available; wider route inventory only where still missing. See [completion register](docs/TASK_COMPLETION_RECONCILIATION_2026-10-20.md). Older Status/Current gap fields below are historical where they conflict.
 
 - **9 October activity consolidation:** current main checkout verified clean with no unpushed commits; scanner PR #22 included in Headquarters PR #23 on the review branch. Recent activity review/KB and Drive proposed-brand references added; socials confirmed not yet set up. Fresh combined checks pass; production identity, reviewed release and live acceptance remain open. See `docs/RECENT_ACTIVITY_REVIEW_2026-10-09.md`.
 
@@ -221,6 +237,8 @@ Updated 2 October 2026. Domain integration added following the founder's request
 
 ## H04 — Enforce server-side permission on transactional email
 
+- **Effective reconciliation — 20 October 2026:** Implemented; acceptance gap. Completed: Current email server function has Auth middleware, admin check, validation and feature gate. Remaining delta: Retrieve existing provider/denial acceptance; implement only a demonstrated missing control. See [completion register](docs/TASK_COMPLETION_RECONCILIATION_2026-10-20.md). Older Status/Current gap fields below are historical where they conflict.
+
 - **Phase:** 1
 - **Priority:** Critical
 - **Who needs to act:** You
@@ -233,6 +251,8 @@ Updated 2 October 2026. Domain integration added following the founder's request
 - **Latest evidence:** Local commit 843f0d8: authentication/intake/status safeguards and public prototype gating. Remaining acceptance and deployment must still be verified.
 
 ## H05 — Remove false success states from public launch journeys
+
+- **Effective reconciliation — 20 October 2026:** Implemented containment. Completed: Production root redirects deferred prototypes to contact. Remaining delta: Any remaining public false-success defect needs route-specific evidence; no prototype rebuild. See [completion register](docs/TASK_COMPLETION_RECONCILIATION_2026-10-20.md). Older Status/Current gap fields below are historical where they conflict.
 
 - **Phase:** 1
 - **Priority:** Critical
@@ -247,6 +267,8 @@ Updated 2 October 2026. Domain integration added following the founder's request
 
 ## H06 — Restore the production lead-capture and admin connection
 
+- **Effective reconciliation — 20 October 2026:** Accepted live historically. Completed: Live enquiry capture and genuine owner retrieval accepted 7 Oct; old unconfigured claim superseded. Remaining delta: Do not reconnect/rebuild intake; inspect only a new demonstrated regression. See [completion register](docs/TASK_COMPLETION_RECONCILIATION_2026-10-20.md). Older Status/Current gap fields below are historical where they conflict.
+
 - **Phase:** 1
 - **Priority:** Critical
 - **Who needs to act:** You
@@ -259,6 +281,8 @@ Updated 2 October 2026. Domain integration added following the founder's request
 - **Latest evidence:** See original audit evidence; no subsequent completion verified.
 
 ## H07 — Establish access to the intended Supabase project and verify its state
+
+- **Effective reconciliation — 20 October 2026:** Completed components + separate delta. Completed: Backend identity/access accepted; production backup/restore rehearsal completed 19 Oct, founder-confirmed. Remaining delta: Projects-schema migration execution is separate and not confirmed by the backup statement. See [completion register](docs/TASK_COMPLETION_RECONCILIATION_2026-10-20.md). Older Status/Current gap fields below are historical where they conflict.
 
 - **Phase:** 1
 - **Priority:** Critical
@@ -273,6 +297,8 @@ Updated 2 October 2026. Domain integration added following the founder's request
 
 ## H08 — Connect both brand enquiry forms to one validated intake
 
+- **Effective reconciliation — 20 October 2026:** Accepted components. Completed: Both-brand fields/owner retrieval accepted live 7 Oct; nine-check staging rehearsal and owner-browser acceptance 17 Oct. Remaining delta: Use existing evidence; repeat only a specific changed or previously untested case. See [completion register](docs/TASK_COMPLETION_RECONCILIATION_2026-10-20.md). Older Status/Current gap fields below are historical where they conflict.
+
 - **Phase:** 2
 - **Priority:** High
 - **Who needs to act:** You
@@ -285,6 +311,8 @@ Updated 2 October 2026. Domain integration added following the founder's request
 - **Latest evidence (7 October):** See [dated enquiry acceptance](docs/enquiry-acceptance-2026-10-07.md). Local secure intake/permission fixes implemented; isolated staging schema applied; SQL concurrency passes. Real Auth/API passes all 11 checks; browser enquiry receipt and one stored row verified. Existing owner browser sign-in, dashboard/Leads/full message retrieval pass; live session expiry remains untested. Founder agreed canonical GitHub/Cloudflare/THG Agency plan and approved exact database cutover, now applied. Matching code deployed; latest manually verified Worker 9d3bfd74; labelled live browser contact saves exactly one enquiry. Notifications disabled. Existing owner browser retrieval now passes; expiry/logout remains untested. See docs/evidence/live-owner-retrieval-2026-10-07.json.
 
 ## H09 — Make lead notifications and email status reliable
+
+- **Effective reconciliation — 20 October 2026:** Accepted Slack; email separate. Completed: Live Slack retry/owner readback accepted 7 Oct; single webhook transport retest 17 Oct. Remaining delta: Customer transactional email/delivery/bounce scope remains unreconciled; no repeat generic Slack test. See [completion register](docs/TASK_COMPLETION_RECONCILIATION_2026-10-20.md). Older Status/Current gap fields below are historical where they conflict.
 
 - **Phase:** 4
 - **Priority:** High
@@ -299,6 +327,8 @@ Updated 2 October 2026. Domain integration added following the founder's request
 
 ## H10 — Verify transactional sender and notification destinations
 
+- **Effective reconciliation — 20 October 2026:** Partial. Completed: Slack destination and receipt have acceptance; outbound Resend setup also recorded. Remaining delta: Outbound sender setup is distinct from customer transactional email acceptance; retrieve relevant evidence only. See [completion register](docs/TASK_COMPLETION_RECONCILIATION_2026-10-20.md). Older Status/Current gap fields below are historical where they conflict.
+
 - **Phase:** 4
 - **Priority:** High
 - **Who needs to act:** Third party
@@ -311,6 +341,8 @@ Updated 2 October 2026. Domain integration added following the founder's request
 - **Latest evidence:** See original audit evidence; no subsequent completion verified.
 
 ## H11 — Align the complete public site with the approved offer
+
+- **Effective reconciliation — 20 October 2026:** Implemented components. Completed: Commercial/public copy corrections and PR #39 merged; retained trade correction evidence exists. Remaining delta: Check only unresolved affected customer-use copy; do not restart whole-site rewrite. See [completion register](docs/TASK_COMPLETION_RECONCILIATION_2026-10-20.md). Older Status/Current gap fields below are historical where they conflict.
 
 - **Phase:** 2
 - **Priority:** High
@@ -325,6 +357,8 @@ Updated 2 October 2026. Domain integration added following the founder's request
 
 ## H12 — Finish the corporate site as a credible separate brand
 
+- **Effective reconciliation — 20 October 2026:** Partial. Completed: Corporate route and live enquiry flow exist. Remaining delta: Any outstanding corporate claims/metadata acceptance must be identified specifically. See [completion register](docs/TASK_COMPLETION_RECONCILIATION_2026-10-20.md). Older Status/Current gap fields below are historical where they conflict.
+
 - **Phase:** 2
 - **Priority:** High
 - **Who needs to act:** You
@@ -337,6 +371,8 @@ Updated 2 October 2026. Domain integration added following the founder's request
 - **Latest evidence:** See original audit evidence; no subsequent completion verified.
 
 ## H13 — Replace unsupported testimonials and outcome claims with evidenced proof
+
+- **Effective reconciliation — 20 October 2026:** Implemented components. Completed: Illustrative trade proof/rating corrections merged; comparison output removed invented outcome/review claims. Remaining delta: Broader retained-route evidence is incomplete; do not recreate completed comparison work. See [completion register](docs/TASK_COMPLETION_RECONCILIATION_2026-10-20.md). Older Status/Current gap fields below are historical where they conflict.
 
 - **Phase:** 2
 - **Priority:** High
@@ -351,6 +387,8 @@ Updated 2 October 2026. Domain integration added following the founder's request
 
 ## H14 — Curate trade and location pages before indexing them
 
+- **Effective reconciliation — 20 October 2026:** Unreconciled scope. Completed: Trade/location offer corrections already documented. Remaining delta: No complete curation/indexing acceptance found; retrieve current route evidence before editing. See [completion register](docs/TASK_COMPLETION_RECONCILIATION_2026-10-20.md). Older Status/Current gap fields below are historical where they conflict.
+
 - **Phase:** 2
 - **Priority:** Medium
 - **Who needs to act:** You
@@ -363,6 +401,8 @@ Updated 2 October 2026. Domain integration added following the founder's request
 - **Latest evidence:** See original audit evidence; no subsequent completion verified.
 
 ## H15 — Extend the approved homepage design language across core pages
+
+- **Effective reconciliation — 20 October 2026:** Completed component. Completed: Before/after reveal, phone previews, branding and keyboard checks completed; merged via PR #41. Remaining delta: Only wider pages outside this evidence scope remain unreconciled. See [completion register](docs/TASK_COMPLETION_RECONCILIATION_2026-10-20.md). Older Status/Current gap fields below are historical where they conflict.
 
 - **13 October 2026 wordmark evidence:** approved navy/ivory HDW identity implemented locally on `codex/hdw-wordmark-2026-10-13` (`172b576`); current HDW logos/icons/social preview and public brand guide updated, stale guidance reconciled. Build/typecheck/format and 136 tests PASS; lint 9 existing warnings; nine responsive route-width checks PASS. See docs/HANDOVER.md and docs/evidence/brand-2026-10-13. No publication/live acceptance; wider task remains open.
 
@@ -379,6 +419,8 @@ Updated 2 October 2026. Domain integration added following the founder's request
 
 ## H16 — Complete the asset and portfolio publishing pack
 
+- **Effective reconciliation — 20 October 2026:** Completed components. Completed: Approved navy/ivory wordmark merged via PR #27; comparison assets and views merged via PR #41. Remaining delta: Any remaining asset rights/publication need their own evidence; do not redesign approved identity. See [completion register](docs/TASK_COMPLETION_RECONCILIATION_2026-10-20.md). Older Status/Current gap fields below are historical where they conflict.
+
 - **Phase:** 3
 - **Priority:** Medium
 - **Who needs to act:** You
@@ -391,6 +433,8 @@ Updated 2 October 2026. Domain integration added following the founder's request
 - **Latest evidence:** See original audit evidence; no subsequent completion verified.
 
 ## H17 — Repair keyboard and assistive-technology gaps
+
+- **Effective reconciliation — 20 October 2026:** Partial acceptance. Completed: Comparison keyboard acceptance documented; earlier public controls improved. Remaining delta: Complete cross-route assistive-tech acceptance not established; no duplicate comparison test. See [completion register](docs/TASK_COMPLETION_RECONCILIATION_2026-10-20.md). Older Status/Current gap fields below are historical where they conflict.
 
 - **Phase:** 3
 - **Priority:** High
@@ -405,6 +449,8 @@ Updated 2 October 2026. Domain integration added following the founder's request
 
 ## H18 — Complete responsive and interaction QA across all retained layouts
 
+- **Effective reconciliation — 20 October 2026:** Partial acceptance. Completed: Recorded responsive checks cover comparison, marketing and admin journeys. Remaining delta: Full retained-layout matrix remains unreconciled; use the existing viewport evidence. See [completion register](docs/TASK_COMPLETION_RECONCILIATION_2026-10-20.md). Older Status/Current gap fields below are historical where they conflict.
+
 - **Phase:** 3
 - **Priority:** High
 - **Who needs to act:** You
@@ -417,6 +463,8 @@ Updated 2 October 2026. Domain integration added following the founder's request
 - **Latest evidence:** See original audit evidence; no subsequent completion verified.
 
 ## H19 — Replace care-request simulation with a real support channel
+
+- **Effective reconciliation — 20 October 2026:** Deferred UI; operational gap. Completed: Public care prototype redirected; actual lead/admin handling exists. Remaining delta: Support acknowledgement, intake and cover for sold care remain unreconciled; no simulated portal rollout. See [completion register](docs/TASK_COMPLETION_RECONCILIATION_2026-10-20.md). Older Status/Current gap fields below are historical where they conflict.
 
 - **Phase:** 4
 - **Priority:** High
@@ -431,6 +479,8 @@ Updated 2 October 2026. Domain integration added following the founder's request
 
 ## H20 — Implement verified invitation-based client onboarding
 
+- **Effective reconciliation — 20 October 2026:** Staging component accepted. Completed: Customer-review entry/sign-in and version approval passed staging 14 Oct. Remaining delta: Real invite delivery, administrator publication and protected asset intake are separate gaps. See [completion register](docs/TASK_COMPLETION_RECONCILIATION_2026-10-20.md). Older Status/Current gap fields below are historical where they conflict.
+
 - **Phase:** 4
 - **Priority:** High
 - **Who needs to act:** You
@@ -443,6 +493,8 @@ Updated 2 October 2026. Domain integration added following the founder's request
 - **Latest evidence:** See original audit evidence; no subsequent completion verified.
 
 ## H21 — Make project tracking, files and approval records real or keep them private demos
+
+- **Effective reconciliation — 20 October 2026:** Staging component accepted. Completed: Exact-version proposal/website approval, digest/membership/retry guards accepted. Remaining delta: Real files, actual client preview/release lifecycle remain unreconciled. See [completion register](docs/TASK_COMPLETION_RECONCILIATION_2026-10-20.md). Older Status/Current gap fields below are historical where they conflict.
 
 - **Phase:** 4
 - **Priority:** High
@@ -457,6 +509,8 @@ Updated 2 October 2026. Domain integration added following the founder's request
 
 ## H22 — Correct CRM conversion and separate collected revenue from estimates
 
+- **Effective reconciliation — 20 October 2026:** Implemented + staging accepted. Completed: Prospect conversion avoids won/payment implication; paging/counts/linked project readback and revenue truthfulness improved. Remaining delta: Actual provider revenue reconciliation is separate; do not rebuild CRM. See [completion register](docs/TASK_COMPLETION_RECONCILIATION_2026-10-20.md). Older Status/Current gap fields below are historical where they conflict.
+
 - **Phase:** 4
 - **Priority:** High
 - **Who needs to act:** You
@@ -469,6 +523,8 @@ Updated 2 October 2026. Domain integration added following the founder's request
 - **Latest evidence:** Local commit 410eece removes automatic won/revenue creation and adds retry/error handling. Real DB policies and payment reconciliation remain unverified.
 
 ## H23 — Replace simulated proposal acceptance and billing with a minimal real process
+
+- **Effective reconciliation — 20 October 2026:** Authentic sandbox accepted. Completed: Durable contract-bound deposit receipt, replay/restart controls, customer approval and refund accepted in stated test scopes. Remaining delta: Live agreement/payment and full lifecycle remain unreconciled; no repeat basic sandbox checkout. See [completion register](docs/TASK_COMPLETION_RECONCILIATION_2026-10-20.md). Older Status/Current gap fields below are historical where they conflict.
 
 - **Phase:** 4
 - **Priority:** High
@@ -483,6 +539,8 @@ Updated 2 October 2026. Domain integration added following the founder's request
 
 ## H24 — Activate the chosen billing and accounting service
 
+- **Effective reconciliation — 20 October 2026:** Sandbox exists; live gap. Completed: Existing Stripe sandbox and authentic deposit succeeded; old authentication-blocked claim superseded. Remaining delta: Live billing/accounting, balance and recurring care need existing evidence reconciliation. See [completion register](docs/TASK_COMPLETION_RECONCILIATION_2026-10-20.md). Older Status/Current gap fields below are historical where they conflict.
+
 - **Phase:** 4
 - **Priority:** High
 - **Who needs to act:** Third party
@@ -495,6 +553,8 @@ Updated 2 October 2026. Domain integration added following the founder's request
 - **Latest evidence:** Stripe account discovery remains unverified because authentication repeats. No products or charges created.
 
 ## H25 — Stop sample invoices, financial exports and reports being treated as real
+
+- **Effective reconciliation — 20 October 2026:** Implemented corrections. Completed: Internal invoice drafts and recorded-versus-collected finance labels corrected; Gate 1 truthfulness merged. Remaining delta: Real invoice/export acceptance is separate; do not regenerate sample finance as real. See [completion register](docs/TASK_COMPLETION_RECONCILIATION_2026-10-20.md). Older Status/Current gap fields below are historical where they conflict.
 
 - **Phase:** 4
 - **Priority:** High
@@ -509,6 +569,8 @@ Updated 2 October 2026. Domain integration added following the founder's request
 
 ## H26 — Defer the referral programme until terms and attribution exist
 
+- **Effective reconciliation — 20 October 2026:** Deferred/contained. Completed: Public partners prototype deferred to contact; no approved referral economics inferred. Remaining delta: Keep deferred; no launch implementation task. See [completion register](docs/TASK_COMPLETION_RECONCILIATION_2026-10-20.md). Older Status/Current gap fields below are historical where they conflict.
+
 - **Phase:** 4
 - **Priority:** Medium
 - **Who needs to act:** You
@@ -521,6 +583,8 @@ Updated 2 October 2026. Domain integration added following the founder's request
 - **Latest evidence:** Local commit 843f0d8: authentication/intake/status safeguards and public prototype gating. Remaining acceptance and deployment must still be verified.
 
 ## H27 — Protect dynamic responses with a tested security-header policy
+
+- **Effective reconciliation — 20 October 2026:** Implemented components. Completed: Current public headers observed; patched security source merged. Remaining delta: Complete CSP/dynamic response matrix not established here; only targeted delta if required. See [completion register](docs/TASK_COMPLETION_RECONCILIATION_2026-10-20.md). Older Status/Current gap fields below are historical where they conflict.
 
 - **Phase:** 5
 - **Priority:** High
@@ -535,6 +599,8 @@ Updated 2 October 2026. Domain integration added following the founder's request
 
 ## H28 — Correct multi-domain routing, redirects and brand canonicals
 
+- **Effective reconciliation — 20 October 2026:** Partial. Completed: Canonical Cloudflare multi-brand architecture established; prior routing work exists. Remaining delta: Exact all-host redirect/canonical matrix remains unreconciled; no hosting migration. See [completion register](docs/TASK_COMPLETION_RECONCILIATION_2026-10-20.md). Older Status/Current gap fields below are historical where they conflict.
+
 - **Phase:** 5
 - **Priority:** High
 - **Who needs to act:** You
@@ -547,6 +613,8 @@ Updated 2 October 2026. Domain integration added following the founder's request
 - **Latest evidence:** See original audit evidence; no subsequent completion verified.
 
 ## H29 — Rebuild the indexable route and metadata map
+
+- **Effective reconciliation — 20 October 2026:** Partial. Completed: Existing route metadata/indexing implementation recorded. Remaining delta: Full current sitemap/retained-route acceptance not established; inspect existing map first. See [completion register](docs/TASK_COMPLETION_RECONCILIATION_2026-10-20.md). Older Status/Current gap fields below are historical where they conflict.
 
 - **Phase:** 5
 - **Priority:** High
@@ -561,6 +629,8 @@ Updated 2 October 2026. Domain integration added following the founder's request
 
 ## H30 — Optimize measured page weight and establish performance budgets
 
+- **Effective reconciliation — 20 October 2026:** Unreconciled; scoped optimisation. Completed: Build-size warnings and historical measurements exist. Remaining delta: Only measured customer-blocking performance issues justify work; broad optimisation can wait. See [completion register](docs/TASK_COMPLETION_RECONCILIATION_2026-10-20.md). Older Status/Current gap fields below are historical where they conflict.
+
 - **Phase:** 5
 - **Priority:** Medium
 - **Who needs to act:** You
@@ -573,6 +643,8 @@ Updated 2 October 2026. Domain integration added following the founder's request
 - **Latest evidence:** See original audit evidence; no subsequent completion verified.
 
 ## H31 — Implement a small, privacy-aware conversion measurement plan
+
+- **Effective reconciliation — 20 October 2026:** Unreconciled; minimal scope. Completed: No complete conversion-measurement acceptance established. Remaining delta: Use minimal consent-appropriate funnel records; no new dashboard prerequisite. See [completion register](docs/TASK_COMPLETION_RECONCILIATION_2026-10-20.md). Older Status/Current gap fields below are historical where they conflict.
 
 - **Phase:** 5
 - **Priority:** High
@@ -587,6 +659,8 @@ Updated 2 October 2026. Domain integration added following the founder's request
 
 ## H32 — Publish accurate privacy, service and cookie information
 
+- **Effective reconciliation — 20 October 2026:** Unreconciled customer-use evidence. Completed: Commercial term decisions and corrective drafts already exist. Remaining delta: Retrieve current privacy/retention/service/cookie acceptance; do not reopen approved prices. See [completion register](docs/TASK_COMPLETION_RECONCILIATION_2026-10-20.md). Older Status/Current gap fields below are historical where they conflict.
+
 - **Phase:** 5
 - **Priority:** High
 - **Who needs to act:** You
@@ -599,6 +673,8 @@ Updated 2 October 2026. Domain integration added following the founder's request
 - **Latest evidence:** See original audit evidence; no subsequent completion verified.
 
 ## H33 — Remove manufactured website-audit and keyword results
+
+- **Effective reconciliation — 20 October 2026:** Deferred/contained. Completed: Public manufactured audit/SEO tools deferred to contact. Remaining delta: Keep deferred; do not build a real audit engine for launch. See [completion register](docs/TASK_COMPLETION_RECONCILIATION_2026-10-20.md). Older Status/Current gap fields below are historical where they conflict.
 
 - **Phase:** 1
 - **Priority:** High
@@ -613,6 +689,8 @@ Updated 2 October 2026. Domain integration added following the founder's request
 
 ## H34 — Remove review gating and fake private-feedback submission
 
+- **Effective reconciliation — 20 October 2026:** Deferred/contained. Completed: Review-booster prototype deferred to contact. Remaining delta: Do not reimplement review collection unless separately scoped. See [completion register](docs/TASK_COMPLETION_RECONCILIATION_2026-10-20.md). Older Status/Current gap fields below are historical where they conflict.
+
 - **Phase:** 1
 - **Priority:** High
 - **Who needs to act:** You
@@ -625,6 +703,8 @@ Updated 2 October 2026. Domain integration added following the founder's request
 - **Latest evidence:** Local commit 843f0d8: authentication/intake/status safeguards and public prototype gating. Remaining acceptance and deployment must still be verified.
 
 ## H35 — Restrict internal automation tools to honest demonstrated capabilities
+
+- **Effective reconciliation — 20 October 2026:** Partial/private tools. Completed: Gate 1 removed unsupported admin automation/operational claims. Remaining delta: Other private tool claims need bounded review only if used; not an automation rebuild. See [completion register](docs/TASK_COMPLETION_RECONCILIATION_2026-10-20.md). Older Status/Current gap fields below are historical where they conflict.
 
 - **Phase:** 4
 - **Priority:** Medium
@@ -639,6 +719,8 @@ Updated 2 October 2026. Domain integration added following the founder's request
 
 ## H36 — Replace unsafe deployment/provisioning claims with a controlled delivery runbook
 
+- **Effective reconciliation — 20 October 2026:** Existing runbook; partial acceptance. Completed: Client-build standard, controlled release workflow and exact-version guards exist. Remaining delta: Client-specific release/rollback acceptance only when a real client release is scoped. See [completion register](docs/TASK_COMPLETION_RECONCILIATION_2026-10-20.md). Older Status/Current gap fields below are historical where they conflict.
+
 - **Phase:** 4
 - **Priority:** High
 - **Who needs to act:** You
@@ -651,6 +733,8 @@ Updated 2 October 2026. Domain integration added following the founder's request
 - **Latest evidence:** See original audit evidence; no subsequent completion verified.
 
 ## H37 — Design outreach only after the service can fulfil a pilot
+
+- **Effective reconciliation — 20 October 2026:** Research/drafts complete; dispatch distinct. Completed: 50-prospect pool, ten assessments, P01-P03 packets exist; P01 authorised send recorded. Remaining delta: Do not resend P01 or repeat research. P02/P03 held; durable outbound/reply/CRM acceptance separate from inbound launch. See [completion register](docs/TASK_COMPLETION_RECONCILIATION_2026-10-20.md). Older Status/Current gap fields below are historical where they conflict.
 
 - **11 October research evidence:** 50 candidates sourced (40 primary website / ten directory-only), ten desk assessments and ten unsent drafts prepared in `docs/BRISTOL_BATH_PILOT_RESEARCH_2026-10-11.md` and linked CSV/draft pack. Ten read-only homepage checks pass; current membership, team/capacity and recipient eligibility remain unverified. RG Electrical Bristol, Bath-Electrical and Nextgen lead qualification. Sending and stop-condition implementation remain untested; H37 stays open.
 
@@ -667,6 +751,8 @@ Updated 2 October 2026. Domain integration added following the founder's request
 
 ## H38 — Make CMS and settings reflect the content they actually control
 
+- **Effective reconciliation — 20 October 2026:** Implemented + partial staging accepted. Completed: CMS create/edit/delete/readback, anonymous denial, retry/mobile and settings failure safety accepted. Remaining delta: Successful settings save/readback and authenticated ordinary-user denial remain unreconciled; no CMS rebuild. See [completion register](docs/TASK_COMPLETION_RECONCILIATION_2026-10-20.md). Older Status/Current gap fields below are historical where they conflict.
+
 - **Phase:** 2
 - **Priority:** Medium
 - **Who needs to act:** You
@@ -679,6 +765,8 @@ Updated 2 October 2026. Domain integration added following the founder's request
 - **Latest evidence:** See original audit evidence; no subsequent completion verified.
 
 ## H39 — Make lint and formatting checks genuinely usable
+
+- **Effective reconciliation — 20 October 2026:** Completed quality baseline. Completed: 18 Oct candidate records lint 0 errors/9 warnings, format/typecheck PASS; source merged. Remaining delta: Stale local node_modules is this environment issue, not proof quality task undone. See [completion register](docs/TASK_COMPLETION_RECONCILIATION_2026-10-20.md). Older Status/Current gap fields below are historical where they conflict.
 
 - **Phase:** 5
 - **Priority:** High
@@ -693,6 +781,8 @@ Updated 2 October 2026. Domain integration added following the founder's request
 
 ## H40 — Add tests for real failures and run them in CI
 
+- **Effective reconciliation — 20 October 2026:** Implemented test/CI baseline. Completed: 265 candidate checks recorded; current quality.yml runs npm test and build. Remaining delta: Do not re-add CI tests or rerun unchanged suites without a changed requirement/failure. See [completion register](docs/TASK_COMPLETION_RECONCILIATION_2026-10-20.md). Older Status/Current gap fields below are historical where they conflict.
+
 - **Phase:** 5
 - **Priority:** High
 - **Who needs to act:** You
@@ -705,6 +795,8 @@ Updated 2 October 2026. Domain integration added following the founder's request
 - **Latest evidence:** 75 local tests pass; typecheck/build pass. CI execution and full production customer-journey checks remain.
 
 ## H41 — Standardize and prove the Cloudflare release pipeline
+
+- **Effective reconciliation — 20 October 2026:** Completed scoped founder confirmation. Completed: Production deployed-revision verification completed 19 Oct, confirmed by founder. Remaining delta: Attach existing version/CI reference if available; no repeat deployment check solely due absent connector. See [completion register](docs/TASK_COMPLETION_RECONCILIATION_2026-10-20.md). Older Status/Current gap fields below are historical where they conflict.
 
 - **Phase:** 5
 - **Priority:** High
@@ -719,6 +811,8 @@ Updated 2 October 2026. Domain integration added following the founder's request
 
 ## H42 — Harden intake limits and perform a targeted security/dependency review
 
+- **Effective reconciliation — 20 October 2026:** Completed components. Completed: Intake/security/staging session work and patched dependency source exist; audit passed for 18 Oct candidate. Remaining delta: Keep any remaining atomic admin/provider security issue narrowly scoped; no repeat security patch. See [completion register](docs/TASK_COMPLETION_RECONCILIATION_2026-10-20.md). Older Status/Current gap fields below are historical where they conflict.
+
 - **Phase:** 5
 - **Priority:** High
 - **Who needs to act:** You
@@ -731,6 +825,8 @@ Updated 2 October 2026. Domain integration added following the founder's request
 - **Latest evidence (7 October):** See [dated enquiry acceptance](docs/enquiry-acceptance-2026-10-07.md). Local secure intake/permission fixes implemented; isolated staging schema applied; SQL concurrency passes. Real Auth/API passes all 11 checks; browser enquiry receipt and one stored row verified. Existing owner browser sign-in, dashboard/Leads/full message retrieval pass; live session expiry remains untested. Founder agreed canonical GitHub/Cloudflare/THG Agency plan and approved exact database cutover, now applied. Matching code deployed; latest manually verified Worker 9d3bfd74; labelled live browser contact saves exactly one enquiry. Notifications disabled. Existing owner browser retrieval now passes; expiry/logout remains untested. Hourly attempt retention task scheduled in Nitro (`0 * * * *`) invoking `prune_lead_submission_attempts()`. See docs/evidence/live-owner-retrieval-2026-10-07.json.
 
 ## H43 — Add operational monitoring and prove recovery
+
+- **Effective reconciliation — 20 October 2026:** Recovery completed; monitoring separate. Completed: Production backup/restore rehearsal completed 19 Oct, confirmed by founder. Remaining delta: Monitoring/incident cover and agreed tolerances are separate facts; no repeat restore based on stale notes. See [completion register](docs/TASK_COMPLETION_RECONCILIATION_2026-10-20.md). Older Status/Current gap fields below are historical where they conflict.
 
 - **Phase:** 5
 - **Priority:** High
@@ -745,6 +841,8 @@ Updated 2 October 2026. Domain integration added following the founder's request
 
 ## H44 — Verify domain, email and account continuity
 
+- **Effective reconciliation — 20 October 2026:** Partial/domain workstream. Completed: IONOS portfolio export/reconciliation and specific renewal decision recorded. Remaining delta: Current account recovery/MFA/mail/renewals and mandates need their own evidence; do not request replacement inventory. See [completion register](docs/TASK_COMPLETION_RECONCILIATION_2026-10-20.md). Older Status/Current gap fields below are historical where they conflict.
+
 - **Phase:** 5
 - **Priority:** Medium
 - **Who needs to act:** Third party
@@ -757,6 +855,8 @@ Updated 2 October 2026. Domain integration added following the founder's request
 - **Latest evidence:** See original audit evidence; no subsequent completion verified.
 
 ## H45 — Make cache updates predictable without expanding PWA scope
+
+- **Effective reconciliation — 20 October 2026:** Implemented cache component. Completed: Wordmark work includes cache version regression/old-cache removal acceptance. Remaining delta: Returning-device/new-asset acceptance beyond that scope remains unreconciled; no new PWA. See [completion register](docs/TASK_COMPLETION_RECONCILIATION_2026-10-20.md). Older Status/Current gap fields below are historical where they conflict.
 
 - **Phase:** 5
 - **Priority:** Low
@@ -771,6 +871,8 @@ Updated 2 October 2026. Domain integration added following the founder's request
 
 ## H46 — Complete real cross-browser and customer-journey acceptance testing
 
+- **Effective reconciliation — 20 October 2026:** Partial acceptance; reuse matrix. Completed: Staging intake, admin, approval, CMS and comparison browser evidence exists. Remaining delta: Only uncovered browser/customer transitions; full paid lifecycle not confirmed by 19 Oct infrastructure confirmation. See [completion register](docs/TASK_COMPLETION_RECONCILIATION_2026-10-20.md). Older Status/Current gap fields below are historical where they conflict.
+
 - **Phase:** 6
 - **Priority:** High
 - **Who needs to act:** You
@@ -783,6 +885,8 @@ Updated 2 October 2026. Domain integration added following the founder's request
 - **Latest evidence:** See original audit evidence; no subsequent completion verified.
 
 ## H47 — Replace stale completion claims with operating documentation
+
+- **Effective reconciliation — 20 October 2026:** Reconciliation completed this turn; broader ongoing. Completed: Current per-ID completion/delta annotations and non-repeat register prepared. Remaining delta: External Business OS/other checkout synchronization remains unavailable, not an instruction to redo completed features. See [completion register](docs/TASK_COMPLETION_RECONCILIATION_2026-10-20.md). Older Status/Current gap fields below are historical where they conflict.
 
 - **14 October follow-up:** commercial evidence limits and Slack proposed-topology status clarified; rehearsal current source/next action reconciled. Existing receipt/session/outreach checks freshly PASS 22/22; default HTTP receipt store remains in memory. Persistent/runtime acceptance and capacity decision scope remain unresolved. See current handover; no production change or task completion.
 
@@ -807,6 +911,8 @@ Updated 2 October 2026. Domain integration added following the founder's request
 
 ## H48 — Approve factual content and the first production release scope
 
+- **Effective reconciliation — 20 October 2026:** Approved components; not blanket authority. Completed: Commercial ratification and Gate 1 publishing authority recorded; yesterday completion confirmed. Remaining delta: Only new customer/release actions need their exact existing or new authority; do not reapprove settled work. See [completion register](docs/TASK_COMPLETION_RECONCILIATION_2026-10-20.md). Older Status/Current gap fields below are historical where they conflict.
+
 - **Phase:** 6
 - **Priority:** High
 - **Who needs to act:** Me
@@ -820,6 +926,8 @@ Updated 2 October 2026. Domain integration added following the founder's request
 
 ## H49 — Establish verified domain commerce; defer speculative platform expansion
 
+- **Effective reconciliation — 20 October 2026:** Implemented domain module; runtime gap. Completed: Inventory/import/paging/renewal module integrated; local tests and 53-name export reconciliation exist. Remaining delta: 17 Oct record reports private production tables absent; current apply/import status needs reconciliation, not a rebuild. See [completion register](docs/TASK_COMPLETION_RECONCILIATION_2026-10-20.md). Older Status/Current gap fields below are historical where they conflict.
+
 - **Phase:** 1–3
 - **Priority:** High — minimum commercial capability; later automation demand-gated
 - **Who needs to act:** You + Me
@@ -832,6 +940,8 @@ Updated 2 October 2026. Domain integration added following the founder's request
 - **Latest evidence:** 10 October review in `docs/DOMAIN_COMMERCIAL_REVIEW_2026-10-10.md` and 45-row reference CSV `docs/DOMAIN_PORTFOLIO_AUDIT_2026-10-10.csv` confirms preferred HDW workstream under THG. 29 current roster entries reconciled to saved page; 15 additional historical names plus operational HDW .com identified. Full 60-name claim, title/mandates, renewals/costs, traffic and sale state remain unverified. Low-confidence prices/scenarios are proposals; first five prioritised after authority/rights checks. No listings, account changes, sales or live domain database implemented. D01/H49 remain open; core pilot gates remain in force.
 
 ## H50 — Run one controlled pilot before scaling acquisition
+
+- **Effective reconciliation — 20 October 2026:** Many rehearsal components complete; real pilot unconfirmed. Completed: Authentic sandbox deposit/refund, replay/failure and approval acceptance complete within stated scope. Remaining delta: First genuine sale-to-launch-to-care/recurring collection remains unconfirmed; reuse all rehearsal evidence. See [completion register](docs/TASK_COMPLETION_RECONCILIATION_2026-10-20.md). Older Status/Current gap fields below are historical where they conflict.
 
 - **12 October sandbox execution:** authentication resolved; The Harley Group sandbox livemode=false. Fictional hosted deposit £747.50 confirmed Checkout paid and PaymentIntent succeeded through provider readback (`docs/evidence/stripe-sandbox-deposit-2026-10-12.json`). Zero real revenue; zero registered sandbox webhook endpoints. App receipt persistence/signature/replay/failure tests, balance/subscription and delivery remain open. Next: isolated application receiver and secure sandbox configuration. H50 not completed; no live billing/deployment.
 

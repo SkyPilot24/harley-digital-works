@@ -1,5 +1,9 @@
 # Decisions and activity — current reconciliation
 
+## Completion reconciliation — 20 October 2026
+
+Founder confirms deployed-revision verification and production backup/restore rehearsal completed on 19 October. Credit these as founder-confirmed; missing local artifacts are not grounds to repeat them. Reviewed all 59 H/domain/Labs task IDs and added effective H-task notes separating completed components from unresolved deltas. [The active delivery plan](CURRENT_DELIVERY_PLAN_2026-10-20.md) and [completion register](TASK_COMPLETION_RECONCILIATION_2026-10-20.md) supersede stale execution queues; historical decisions/evidence below remain preserved. No new commercial decision, runtime operation or external publication in this reconciliation.
+
 ## Local documentation reconciliation — 14 October 2026
 
 Follow-up: commercial definition/offer now explicitly distinguish current pilot guard from disputed wider capacity, and flag tax/contract/fulfilment verification. Rehearsal now points to durable receipt acceptance; Slack guide labels the nine-channel design as proposed. Existing isolated receipt/session/outreach tests freshly pass 22/22. No new founder decision or external operation.

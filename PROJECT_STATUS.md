@@ -1,3 +1,17 @@
+## Completed-task reconciliation and founder confirmation — 20 October 2026
+
+Reviewed all H01–H50, D01–D08 and L01 against local task records, acceptance notes, current selected source and Git history. [Effective completion register](docs/TASK_COMPLETION_RECONCILIATION_2026-10-20.md) separates finished components from remaining deltas. Each H task now has an inline effective reconciliation; historical task bodies and tasks.md are labelled so they cannot silently requeue finished work.
+
+**Founder-confirmed completed 19 October:** deployed-production-revision verification and production backup/restore rehearsal. This supersedes today's earlier instructions to repeat them. Missing local provider access/artifacts is an evidence-location gap, not evidence of non-execution. No repeat checks or runtime tests performed in this reconciliation. Other schema/payment/care/support/domain gates are not closed by inference; recover existing records before proposing new execution. Current launch readiness remains unreconciled rather than a newly verified blanket NO-GO. Source branch `work`, HEAD `0845172`; local documentation changes only, uncommitted/unpushed. External Business OS and Windows copies were not updated or audited.
+
+## Superseded launch readiness continuation — 20 October 2026
+
+The local-access assessment below is retained as history. Its instructions to repeat production revision verification and backup/restore were superseded by the founder's confirmation that both completed on 19 October. Use [the active delivery plan](docs/CURRENT_DELIVERY_PLAN_2026-10-20.md) for work selection.
+
+H01/H02/H07–H10/H19/H23–H25/H42/H47/H48/H50. Local checkout `work` at `0845172c455b756a0a6eb24af1e7b56d78c348e9` includes PR #42. Fresh public curl GETs: homepage/contact 200; auth 307 then 200 after one redirect. Six focused migration/recovery PGlite tests PASS. Live source identity/remote main remain UNKNOWN: no Cloudflare/Supabase provider access configured and GitHub HTTPS authentication unavailable. Installed TanStack dependencies lag behind committed lockfile; no full build or fresh security audit claimed from this installation. No production acceptance inferred from availability or local tests.
+
+Prepared [the historical readiness assessment](docs/LAUNCH_READINESS_2026-10-20.md), with [session evidence](docs/evidence/launch-readiness-2026-10-20.json). Its local UNKNOWN results do not reverse the two founder-confirmed completions. The projects migration and first-customer operating gaps remain separate and require record reconciliation before any new execution. Documentation only; no production/database/provider changes, deployment, customer contact or payment.
+
 ## Migration recovery validation checkpoint — 17 October 2026
 
 H07/H08/H09/H19/H42/H47/H50. Candidate branch codex/pilot-security-release-2026-10-17, starting revision e61fc2cb9368c52197d3e2a2517ab046668ef268; application security source remains 750b39b5e4373040b1830b1091f37981bb75145d. Primary main af5ae9c2c3896ced4a078f7edde7896205a62a57 and unrelated peer edits preserved. User authorised continuing validation and requested handover update; no production execution authority inferred.
