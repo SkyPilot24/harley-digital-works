@@ -12,7 +12,7 @@
 
 ## Objective
 
-Deliver and verify the production-ready digital agency operating platform and commercial website for **Harley Digital Works** (`https://harleydigitalworks.co`) under **The Harley Group**.
+Deliver and verify the production-ready digital agency operating platform and commercial website for **Harley Digital Works** (`https://harleydigitalworks.com`) under **The Harley Group**.
 
 ---
 
