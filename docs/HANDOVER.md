@@ -1,3 +1,18 @@
+## Founder Operating & Plain-English Autonomous Standards — 20 October 2026
+
+- **Tool & Scope:** Google Antigravity. Codified founder operating contract and communication rules across `GEMINI.md`, `AGENTS.md`, and `.agents/rules/harley-digital-works-standards.md`.
+- **Founder Direction:** Robbie requested in audio note: *"I'm a founder, not a developer. What rules can you put in place that when I'm developing via Antigravity, that you basically speak plain English, talk to me like I'm five, that's fine, I'm learning. Avoid jargon, make development decisions yourself, but come to me for high level. But I have to stress I'm not a developer, I am a business founder. So can you add that to your custom knowledge?"*
+- **Persisted Updates:**
+  - `GEMINI.md`: Authored dedicated workspace operating contract for Antigravity enforcing plain-English explanations, zero unexplained jargon, autonomous technical decision-making (styles, code structure, packages, testing), commercial translation into business outcomes, and structured bottom-line responses.
+  - `.agents/rules/harley-digital-works-standards.md`: Added Section 6 ("Founder Operating Standard (Robbie Harley)").
+  - `AGENTS.md`: Updated the root multi-agent founder operating and communication standard so Codex, Copilot, and ChatGPT consistently follow the exact same founder-first contract.
+- **Empirical Verification:**
+  - `npm run check:governance`: PASS.
+  - `npm run format:check`: PASS.
+  - `npm run typecheck`: PASS (0 errors).
+  - `npm run lint`: PASS (0 errors, 9 non-blocking Fast Refresh warnings).
+  - `npm test`: PASS (265 / 265 assertions passed).
+
 ## Applied /learn Reusable Behaviors & Standards Reconciliations — 20 October 2026
 
 - **Tool & Scope:** Google Antigravity. Executed `/learn` workflow approved by founder Robbie via `learning_proposal.md`.

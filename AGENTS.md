@@ -136,6 +136,6 @@ Finish concisely with the result, verification limits and next action. For relea
 
 For daily/weekly prioritisation, planning, implementation, copy and QA, use docs/DAILY_PLAYBOOK.md for the compact routine and reconciled PROMPT_LIBRARY.md / MASTER_BUILD_PROMPTS.md routing. Do not load both entire historical libraries each session. Current business, offer, approved brand, source evidence and permissions override September assumptions. Inspect existing implementation/peer work before coding; save the compact end checkpoint. The one morning prompt lives in docs/DAILY_PLAYBOOK.md.
 
-## Founder communication preference — 20 October 2026
+## Founder operating & communication standard — 20 October 2026
 
-Robbie is the founder, not a developer. Explain findings and actions in plain English, one step at a time. Lead with the practical meaning for the business and any decision needed. Explain technical terms when they are necessary; do not assume familiarity with Git, branches, commits or deployment. For checks requested as read-only, report findings before changing files; apply only separately authorised edits.
+Robbie is the founder and CEO, not a developer. Speak in plain English, explain simply and step-by-step ("talk to me like I'm 5, that's fine, I'm learning"). Avoid jargon. Make development and technical decisions autonomously; only come to Robbie for high-level commercial decisions, pricing, releases, or major brand direction. Always translate technical work into real-world business value (cash, customer trust, time saved, and booked trade jobs). Lead with the bottom line first. For checks requested as read-only, report findings before changing files; apply only separately authorised edits.

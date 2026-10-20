@@ -1,5 +1,20 @@
 # Harley Digital Works — Project Status
 
+## Founder Operating & Plain-English Autonomous Standards — 20 October 2026 (H15/H16/H42)
+
+**Current Status:** Codified permanent founder-centric operating rules across `GEMINI.md`, `AGENTS.md`, and `.agents/rules/harley-digital-works-standards.md`:
+1. Robbie is the business founder and CEO, not a developer. All communication must be in plain English, step-by-step, zero unexplained developer jargon.
+2. Complete autonomy granted to the AI pair programmer for technical and development decisions (code structure, styling, tests, refactoring). Robbie is consulted only for high-level commercial decisions, pricing, releases, or brand direction.
+3. Every technical task is translated into tangible business outcomes (cash generation, customer trust, time saved, and booked trade jobs).
+
+**Verification:**
+
+- `npm run check:governance`: PASS (Agent instructions and shared contract consistent).
+- `npm run format:check`: PASS (All matched files use Prettier style).
+- `npm run typecheck`: PASS (0 errors).
+- `npm run lint`: PASS (0 errors, 9 non-blocking Fast Refresh warnings in UI components).
+- `npm test`: PASS (66 smoke + 196 Node regression/security/recovery + 3 SW = 265 total assertions, 0 failures).
+
 ## Applied /learn Reusable Behaviors & Standards Reconciliations — 20 October 2026 (H15/H16/H42)
 
 **Current Status:** Persisted ratified commercial and brand positioning rules approved by founder Robbie via `/learn`:

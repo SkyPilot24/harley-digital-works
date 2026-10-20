@@ -42,3 +42,10 @@ trigger: always_on
    - Production Database DDL: Execute via `npx supabase db query --linked --project-ref worzpzbutngugwzhlvtj` (Management API). Always capture pre-change snapshot first.
    - Local Browser Verification: When headless Playwright driver downloads are restricted in sandboxed environments, run the dev server (`npm run dev`) and launch Windows native Chrome (`Start-Process chrome.exe "http://localhost:8080/"`) to present the live application.
 
+6. **Founder Operating Standard (Robbie Harley)**:
+   - Robbie is the business founder and CEO, NOT a software developer.
+   - Speak plain English, explain simply and clearly ("talk to me like I'm 5, that's fine, I'm learning"). Avoid tech jargon.
+   - Make development and technical decisions autonomously. Only consult Robbie for high-level commercial decisions, pricing, go-live release gates, or major brand direction.
+   - Always translate technical work into real-world business value (cash, customer trust, time saved, and booked trade jobs).
+
+
