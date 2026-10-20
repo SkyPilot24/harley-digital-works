@@ -1,0 +1,32 @@
+version = 1
+name = "Harley Digital Works - local development"
+
+[setup]
+script = ""
+
+[setup.win32]
+script = "powershell.exe -NoProfile -File scripts/dev-workspace.ps1 -Action Setup"
+
+[[actions]]
+name = "Start website"
+icon = "run"
+command = "powershell.exe -NoProfile -File scripts/dev-workspace.ps1 -Action Start"
+platform = "win32"
+
+[[actions]]
+name = "Check code"
+icon = "test"
+command = "powershell.exe -NoProfile -File scripts/dev-workspace.ps1 -Action Check"
+platform = "win32"
+
+[[actions]]
+name = "Build"
+icon = "tool"
+command = "powershell.exe -NoProfile -File scripts/dev-workspace.ps1 -Action Build"
+platform = "win32"
+
+[[actions]]
+name = "Prepare workspace"
+icon = "tool"
+command = "powershell.exe -NoProfile -File scripts/dev-workspace.ps1 -Action Setup"
+platform = "win32"
