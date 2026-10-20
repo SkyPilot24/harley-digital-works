@@ -50,7 +50,10 @@ test("each transformation contains comprehensive before and after architecture",
     assert.ok(item.after.headline, `Missing after headline for ${item.id}`);
     assert.ok(item.after.badge, `Missing after badge for ${item.id}`);
     assert.ok(item.after.keyFeatures.length >= 3, `Expected key features for ${item.id}`);
-    assert.ok(item.after.conversionBoosters.length >= 2, `Expected conversion boosters for ${item.id}`);
+    assert.ok(
+      item.after.conversionBoosters.length >= 2,
+      `Expected conversion boosters for ${item.id}`,
+    );
     assert.ok(item.after.callToAction, `Missing CTA for ${item.id}`);
   }
 });
