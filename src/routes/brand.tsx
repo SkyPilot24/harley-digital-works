@@ -364,6 +364,91 @@ function BrandAssetsPage() {
             </p>
           </div>
 
+          {/* Master Endorsed Wordmark Showcase */}
+          {selectedBrand === "hdw" && (
+            <div className="mt-12 rounded-3xl border border-white/15 bg-black/30 p-6 md:p-8 backdrop-blur shadow-2xl">
+              <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 pb-6 border-b border-white/10">
+                <div>
+                  <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-950/60 px-3 py-1 text-xs font-semibold text-emerald-400 font-mono">
+                    <Sparkles className="h-3.5 w-3.5" />
+                    <span>Ratified Corporate Endorsement</span>
+                  </div>
+                  <h3 className="mt-3 text-2xl font-bold text-white font-display">
+                    "Part of The Harley Group" Master Endorsed Wordmark
+                  </h3>
+                  <p className="mt-1.5 text-xs text-slate-300 max-w-2xl leading-relaxed">
+                    Official architectural lockup uniting the flagship trade agency with parent
+                    holding group governance. Designed for maximum trust when quoting £1,495
+                    commercial projects to UK contractors.
+                  </p>
+                </div>
+                <a
+                  href="/brand/social/hdw-endorsed-logo-board.jpg"
+                  download="HDW-Endorsed-Logo-Board.jpg"
+                  className="inline-flex items-center gap-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 px-4 py-2.5 text-xs font-bold text-white transition-colors shadow-lg shrink-0"
+                >
+                  <Download className="h-4 w-4" />
+                  <span>Download Master Identity Board</span>
+                </a>
+              </div>
+
+              {/* Identity Board Image */}
+              <div className="mt-6 overflow-hidden rounded-2xl border border-white/10 bg-black/60 shadow-inner">
+                <img
+                  src="/brand/social/hdw-endorsed-logo-board.jpg"
+                  alt="Harley Digital Works - Part of The Harley Group Master Brand Identity Board"
+                  className="w-full h-auto object-cover"
+                  loading="lazy"
+                />
+              </div>
+
+              {/* 3 Strategic Recommendations */}
+              <div className="mt-8 grid gap-6 md:grid-cols-3">
+                <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+                  <span className="text-[11px] font-mono text-emerald-400 font-bold uppercase">
+                    Suggestion 1 · Primary Wordmark
+                  </span>
+                  <h4 className="mt-2 text-base font-bold text-white font-display">
+                    Website Headers & Proposals
+                  </h4>
+                  <p className="mt-2 text-xs text-slate-300 leading-relaxed">
+                    Use the stacked vertical lockup (shown on left of board): Monogram on top,
+                    robust Manrope lettering in the middle, hairline rule, and{" "}
+                    <em>"PART OF THE HARLEY GROUP"</em> anchored underneath with an emerald pip.
+                  </p>
+                </div>
+
+                <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+                  <span className="text-[11px] font-mono text-emerald-400 font-bold uppercase">
+                    Suggestion 2 · Security Watermark
+                  </span>
+                  <h4 className="mt-2 text-base font-bold text-white font-display">
+                    Contracts, Audits & /track
+                  </h4>
+                  <p className="mt-2 text-xs text-slate-300 leading-relaxed">
+                    Render the geometric 'H' crest and endorsement line as a subtle 10-15% opacity
+                    watermark behind client project deliverables, website audits, and milestone
+                    tracker screens.
+                  </p>
+                </div>
+
+                <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+                  <span className="text-[11px] font-mono text-emerald-400 font-bold uppercase">
+                    Suggestion 3 · Linear Strip
+                  </span>
+                  <h4 className="mt-2 text-base font-bold text-white font-display">
+                    Vehicle Livery & Signatures
+                  </h4>
+                  <p className="mt-2 text-xs text-slate-300 leading-relaxed">
+                    For tight horizontal formats (email footers, van door sills, mobile sticky nav),
+                    use the single-line horizontal strip:{" "}
+                    <code>HARLEY DIGITAL WORKS · Part of The Harley Group</code>.
+                  </p>
+                </div>
+              </div>
+            </div>
+          )}
+
           {/* Vector Logos Grid */}
           <div className="mt-12">
             <h3 className="text-xs font-mono font-bold uppercase tracking-wider text-hdw-ivory/75 mb-6">
