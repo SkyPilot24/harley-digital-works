@@ -8,16 +8,6 @@ const secretPatterns = [
   { name: "Slack Webhook URL", regex: /https:\/\/hooks\.slack\.com\/services\/T[a-zA-Z0-9_]+\/B[a-zA-Z0-9_]+\/[a-zA-Z0-9_]+/ },
   { name: "Raw Supabase Service Role Secret", regex: /service_role_key\s*[:=]\s*["'][a-zA-Z0-9._-]{50,}["']/i },
   { name: "Generic AWS Secret Key", regex: /AKIA[0-9A-Z]{16}/ },
-  { name: "Generic Private Token", regex: /ghp_[a-zA-Z0-9]{36}/ }
-  {
-    name: "Slack Webhook URL",
-    regex: /https:\/\/hooks\.slack\.com\/services\/T[a-zA-Z0-9_]+\/B[a-zA-Z0-9_]+\/[a-zA-Z0-9_]+/,
-  },
-  {
-    name: "Raw Supabase Service Role Secret",
-    regex: /service_role_key\s*[:=]\s*["'][a-zA-Z0-9._-]{50,}["']/i,
-  },
-  { name: "Generic AWS Secret Key", regex: /AKIA[0-9A-Z]{16}/ },
   { name: "Generic Private Token", regex: /ghp_[a-zA-Z0-9]{36}/ },
 ];
 
