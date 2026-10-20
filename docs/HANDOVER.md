@@ -1,3 +1,17 @@
+## Applied /learn Reusable Behaviors & Standards Reconciliations — 20 October 2026
+
+- **Tool & Scope:** Google Antigravity. Executed `/learn` workflow approved by founder Robbie via `learning_proposal.md`.
+- **Persisted Updates:**
+  - `.agents/rules/harley-digital-works-standards.md`: Codified "British Industrial Craftsmanship" brand positioning, preventing generic web agency drift (banning pastel tech squiggles, enforcing Midnight Navy/Warm Ivory/Emerald, Manrope/Inter typography, and ratified £1,495 / £249/mo pricing).
+  - `.agents/skills/trade-prospecting-and-outreach/SKILL.md`: Reconciled outdated historical £95/mo and VAT mentions to match ratified terms (£1,495 setup: 50% deposit / 50% on approval + £249/mo care, zero VAT, zero homework), and incorporated the 30-second Before & After video outreach script.
+  - Local desktop browser launch guardrail: Documented native Windows Chrome execution (`Start-Process chrome.exe`) when headless Playwright binary downloads are restricted.
+- **Empirical Verification:**
+  - `npm run check:governance`: PASS.
+  - `npm run format:check`: PASS.
+  - `npm run typecheck`: PASS (0 errors).
+  - `npm run lint`: PASS (0 errors, 9 non-blocking Fast Refresh warnings).
+  - `npm test`: PASS (265 / 265 assertions passed).
+
 ## Strategic Brand, Logo & Typography Architecture Review — 20 October 2026
 
 - **Tool & Scope:** Google Antigravity. Comprehensive brand, logo, and typography review across The Harley Group, Harley Digital Works, and Harley Labs. Produced pre-launch strategic enhancements artifact (`brand-review-and-prelaunch-recommendations.md`).

@@ -1,5 +1,20 @@
 # Harley Digital Works — Project Status
 
+## Applied /learn Reusable Behaviors & Standards Reconciliations — 20 October 2026 (H15/H16/H42)
+
+**Current Status:** Persisted ratified commercial and brand positioning rules approved by founder Robbie via `/learn`:
+1. Updated `.agents/rules/harley-digital-works-standards.md` to codify "British Industrial Craftsmanship" brand positioning, preventing generic web agency drift (banning pastel tech squiggles, enforcing Midnight Navy/Warm Ivory/Emerald, Manrope/Inter typography, and ratified £1,495 / £249/mo pricing).
+2. Reconciled `.agents/skills/trade-prospecting-and-outreach/SKILL.md` to eliminate stale historical £95/mo and VAT mentions, aligning directly with ratified terms and adding the 30s Before & After video outreach pitch.
+3. Codified local Windows desktop browser launch fallback (`Start-Process chrome.exe`) for sandboxed Playwright environments.
+
+**Verification:**
+
+- `npm run check:governance`: PASS (Agent instructions and shared contract consistent).
+- `npm run format:check`: PASS (All matched files use Prettier style).
+- `npm run typecheck`: PASS (0 errors).
+- `npm run lint`: PASS (0 errors, 9 non-blocking Fast Refresh warnings in UI components).
+- `npm test`: PASS (66 smoke + 196 Node regression/security/recovery + 3 SW = 265 total assertions, 0 failures).
+
 ## Strategic Brand, Logo & Typography Architecture Review — 20 October 2026 (H15/H16/H42)
 
 **Current Status:** Completed comprehensive brand identity, logo mark, and typography review across The Harley Group, Harley Digital Works, and Harley Labs (`brand-review-and-prelaunch-recommendations.md`). Addressed the core positioning tension: high-end commercial design that directly appeals to UK tradespeople without feeling like an aloof "web agency". Upgraded agency marketing typography tokens in `src/styles.css` from fallback Arial to sturdy modern geometric sans (*Manrope* for headings/display, *Inter* for body), immediately elevating perceived commercial value while preserving mobile legibility.
