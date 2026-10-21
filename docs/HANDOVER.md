@@ -1,5 +1,30 @@
 # The Harley Group & Harley Digital Works — Session Handover Log
 
+## Pilot Candidate CRM Staging & End-to-End Business Automation Verification — 21 October 2026 (H37/H50)
+
+- **Tool & Scope:** Google Antigravity. Executed autonomous pre-launch automation verification, pre-change snapshot, and CRM staging of top 3 vetted UK Limited Company pilot candidates.
+- **Founder Direction:** Robbie requested: *"yes please as a founder as much as you can do please do"*.
+- **Applied Changes:**
+  - `docs/evidence/leads-pre-pilot-snapshot-2026-10-21.json`: Archived pre-change snapshot of the production `leads` table.
+  - `scripts/diagnostics/stage-pilot-candidates.sql`: Created and executed SQL staging script against production database `worzpzbutngugwzhlvtj`. Populated top 3 UK Limited Company contractor candidates into `leads` table:
+    1. **RG Electrical Bristol Limited** (`c5424006-cf11-49c6-9331-2edb11f3b5f0`, #10082511, NICEIC/TrustMark verified). Digital angle: replace "portfolio coming soon" placeholder with structured domestic rewiring and consumer unit case studies.
+    2. **Bath-Electrical Ltd** (`15d33d4f-77a0-41e2-bc12-c7d366998999`, #07702599, NICEIC). Digital angle: tactful copy refresh replacing outdated 17th Edition wiring regs text.
+    3. **Nextgen Electrical Contractors Ltd** (`87d3c990-4f94-4b48-a632-3920d5516924`, #11042444, NICEIC Approved Contractor). Digital angle: resolve template placeholder email in footer.
+  - **Safety Guardrail:** Staged with `source = 'pilot_research'`, ensuring zero trigger firings in `enqueue_lead_notification` (confirmed `lead_notification_jobs` count remains strictly 1).
+  - Verified Stripe payment receiver at integer 74,750 pence (£747.50) deposit with cryptographic HMAC signature verification and 300s replay tolerance.
+  - Verified IONOS domain inventory droplist: 4 candidate domains confirmed ready to turn off auto-renew in IONOS before December 2026.
+- **Empirical Verification:**
+  - `npm run check:governance`: PASS.
+  - `npm run format:check`: PASS.
+  - `npm run typecheck`: PASS (0 errors).
+  - `npm run lint`: PASS (0 errors, 9 existing component warnings).
+  - `npm test`: PASS (199/199 passing assertions).
+  - `npm run build`: PASS (Nitro SSR Cloudflare module bundle generated).
+- **Remaining Founder 1-Click Launch Gates:**
+  1. Add live Stripe API keys (`STRIPE_WEBHOOK_SECRET`, etc.) to Cloudflare Worker.
+  2. Toggle auto-renew OFF for the 4 retired domains in IONOS.
+  3. Review Candidate #1 (RG Electrical) proposal in `/admin/leads` and approve 1st outreach email.
+
 ## Nationwide UK Coverage & Customer Before & After Success Section Deployed — 21 October 2026 (H15/H16/H42)
 
 - **Tool & Scope:** Google Antigravity. Deployed Nationwide UK trade coverage updates across the homepage and introduced the new interactive `CustomerTransformationSection.tsx` component.

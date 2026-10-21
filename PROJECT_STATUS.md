@@ -1,5 +1,33 @@
 # Harley Digital Works — Project Status
 
+## Pilot Candidate CRM Staging & End-to-End Business Automation Verification — 21 October 2026 (H37/H50)
+
+**Current Status:** Executed end-to-end go-live readiness actions across payment receiver, CRM staging, and operational automation:
+
+1. **Top 3 Vetted Pilot Candidates Staged in Supabase Production CRM (`worzpzbutngugwzhlvtj`)**:
+   - Captured pre-change snapshot in `docs/evidence/leads-pre-pilot-snapshot-2026-10-21.json`.
+   - Populated the 3 top-ranked UK Limited Company contractors directly into the `leads` table with status `qualified` and safe `source = 'pilot_research'` (preventing unapproved notification triggers):
+     1. **RG Electrical Bristol Limited** (`c5424006-cf11-49c6-9331-2edb11f3b5f0`, Companies House #10082511, NICEIC/TrustMark verified). Primary angle: replace "portfolio coming soon" placeholder with structured domestic rewiring and consumer unit case studies.
+     2. **Bath-Electrical Ltd** (`15d33d4f-77a0-41e2-bc12-c7d366998999`, Companies House #07702599, NICEIC). Primary angle: tactful copy refresh replacing outdated 17th Edition wiring regs text.
+     3. **Nextgen Electrical Contractors Ltd** (`87d3c990-4f94-4b48-a632-3920d5516924`, Companies House #11042444, NICEIC Approved Contractor). Primary angle: resolve template placeholder email in footer and present dual domestic/commercial capabilities.
+   - All 3 candidates are immediately reviewable in the authenticated Admin CRM (`/admin/leads`) with pre-drafted non-salesy proposals ready for 1-click review.
+2. **Stripe Deposit Receiver & Webhook Resilience Confirmed**:
+   - `EXPECTED_DEPOSIT_PENCE = 74750` (£747.50) and `EXPECTED_CURRENCY = 'gbp'` verified with cryptographic HMAC-SHA256 signature verification and 300s replay tolerance.
+   - Safe receipt RPC idempotently prevents duplicate milestone receipts.
+3. **IONOS Domain Renewal Savings Identified**:
+   - 4 retired domains ready to toggle auto-renew OFF in IONOS before December 2026 (`disneynostalgia.co.uk`, `buyblockchaincurrency.co.uk`, `myblockchaincurrency.co.uk`, `lukebiscan.store`), saving £60–£100/year.
+4. **Daily Management-by-Exception Verification**:
+   - Founder daily briefing routine at 08:15 UK Europe/London configured with strict 2-concurrent build cap and Slack alert webhook.
+
+**Verification:**
+
+- `npm run check:governance`: PASS.
+- `npm run format:check`: PASS.
+- `npm run typecheck`: PASS (0 errors).
+- `npm run lint`: PASS (0 errors, 9 existing component warnings).
+- `npm test`: PASS (199/199 passing assertions).
+- `npm run build`: PASS (Nitro SSR Cloudflare module bundle generated).
+
 ## Nationwide UK Coverage & Customer Before & After Success Section Deployed — 21 October 2026 (H15/H16/H42)
 
 **Current Status:** Upgraded homepage to position Harley Digital Works as a nationwide service provider for UK trades and deployed the interactive Customer Before & After Transformation Section (`CustomerTransformationSection.tsx`):
