@@ -23,7 +23,7 @@
   - `npm test`: PASS (199/199 passing assertions across 2 test suites).
   - `GET http://localhost:3000/api/webhooks/domain-inbound`: HTTP 200 OK (`{"status":"ok","service":"domain-inbound-listener"}`).
   - `GET http://localhost:3000/domain-portfolio-preview`: HTTP 200 OK verified; launched native Chrome on port 3000 for founder visual preview.
-- **Release Status:** Ready for founder review. Strictly local changes; zero production deployments or remote mutations performed.
+- **Release Status:** Committed as `5ea7993` and pushed to `origin/main`. GitHub Actions Continuous Deployment passed; Cloudflare live Worker verified responding HTTP 200 on `https://harleydigitalworks.com/api/webhooks/domain-inbound`.
 
 ## Automated Domain Monetisation & Outbound Deal Engine (Resend API Integrated) — 21 October 2026 (D01–D08/H49)
 
