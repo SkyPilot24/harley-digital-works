@@ -19,6 +19,7 @@ export function HarleyGroupHeader() {
   const links = [
     ["#digital-works", "What we do"],
     ["#approach", "Our approach"],
+    ["#community", "Community"],
     ["#contact", "Get in touch"],
   ];
   return (

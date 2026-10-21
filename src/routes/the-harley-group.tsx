@@ -171,6 +171,51 @@ export function TheHarleyGroupPage() {
             ))}
           </div>
         </section>
+        <section
+          className="studio-section studio-wrap group-community deferred-section"
+          id="community"
+        >
+          <div className="rounded-2xl border border-ink/10 bg-white/70 p-8 md:p-12 shadow-xs">
+            <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-8">
+              <div className="max-w-2xl">
+                <p className="studio-kicker">COMMUNITY & PRO BONO CONTRIBUTION</p>
+                <h2 className="mt-3 text-2xl md:text-3xl font-bold tracking-tight text-ink">
+                  Supported Community Project: The Revival Fellowship
+                </h2>
+                <p className="mt-4 text-base md:text-lg leading-relaxed text-ink-muted">
+                  Website design, development, digital systems and technical consultancy contributed
+                  pro bono by Robbie Harley through The Harley Group.
+                </p>
+                <p className="mt-3 text-sm leading-relaxed text-ink-muted">
+                  Delivered as a voluntary community initiative, separate from our commercial trade
+                  agency operations. No ongoing commercial service commitment, subsidiary status, or
+                  formal charitable relationship is created by this record.
+                </p>
+                <div className="mt-6 flex flex-wrap items-center gap-4">
+                  <a
+                    href="https://therevivalfellowship.co.uk/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 rounded-xl bg-ink px-5 py-2.5 text-xs font-bold text-white hover:bg-ink/90 transition-all shadow-xs"
+                  >
+                    <span>Visit The Revival Fellowship</span>
+                    <ArrowUpRight size={14} />
+                  </a>
+                </div>
+              </div>
+              <div className="rounded-xl border border-ink/10 bg-slate-50/90 p-5 text-xs text-ink-muted max-w-sm shrink-0">
+                <span className="font-semibold text-ink text-sm block mb-1.5">
+                  Governance Record
+                </span>
+                <p className="leading-relaxed">
+                  Contributed pro bono on 18 October 2026. This voluntary community contribution is
+                  fully delivered and preserved separate from The Harley Group&apos;s commercial
+                  operations.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
         <section className="studio-section group-contact deferred-section" id="contact">
           <div className="studio-wrap group-division">
             <div>

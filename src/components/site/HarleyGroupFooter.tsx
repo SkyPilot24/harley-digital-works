@@ -32,6 +32,7 @@ export function HarleyGroupFooter() {
               {harleyGroupConfig.contactEmail}
             </a>
             <a href="https://harleydigitalworks.com">Harley Digital Works ↗</a>
+            <a href="#community">Community</a>
             <a href="#contact">Contact</a>
             <a href="https://harleydigitalworks.com/privacy">Privacy</a>
           </nav>
