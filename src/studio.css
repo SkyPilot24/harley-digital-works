@@ -412,9 +412,18 @@
   display: grid;
   gap: 30px;
 }
-.group-focus-list > div {
+.group-focus-list > div,
+.group-focus-list > a {
   border-top: 1px solid #c5cabc;
   padding-top: 20px;
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.group-focus-list > a:hover {
+  border-top-color: var(--studio-ink, #081b30);
+  padding-left: 6px;
 }
 .group-focus-list span {
   font: 11px/1.5 var(--font-mono);
@@ -424,6 +433,10 @@
   margin-top: 10px;
   font-size: 26px;
   letter-spacing: -0.04em;
+  transition: color 0.2s ease;
+}
+.group-focus-list > a:hover h3 {
+  color: var(--studio-ink, #081b30);
 }
 .group-focus-list p {
   font-size: 15px;

@@ -1,5 +1,5 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { Phone, MessageCircle, Mail, MapPin } from "lucide-react";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { Phone, MessageCircle, Mail, MapPin, ArrowUpRight } from "lucide-react";
 import { PageShell } from "@/components/site/PageShell";
 import { HarleyGroupHeader } from "@/components/site/HarleyGroupHeader";
 import { HarleyGroupFooter } from "@/components/site/HarleyGroupFooter";
@@ -79,40 +79,62 @@ export function TheHarleyGroupPage() {
                 builds.
               </p>
               <div className="mt-4 flex flex-wrap items-center gap-3">
-                <a href="https://harleydigitalworks.com" className="enquiry-submit">
+                <Link to="/" className="enquiry-submit">
                   Visit Harley Digital Works ↗
-                </a>
-                <a href="/labs" className="studio-text-link">
+                </Link>
+                <Link to="/labs" className="studio-text-link">
                   Explore Harley Labs ↗
-                </a>
-                <a href="/brand" className="studio-text-link">
+                </Link>
+                <Link to="/brand" className="studio-text-link">
                   Brand Assets ↗
-                </a>
+                </Link>
               </div>
             </div>
             <div className="group-focus-list">
               {[
-                [
-                  "01",
-                  "Harley Digital Works",
-                  "Turnkey trade websites, 100% DFY copywriting, and managed Cloudflare edge care.",
-                ],
-                [
-                  "02",
-                  "Harley Labs",
-                  "Automation workflows, sub-50ms edge rendering, and operational software systems.",
-                ],
-                [
-                  "03",
-                  "Domain Services",
-                  "A curated portfolio of high-conviction digital brand assets and assisted transfers.",
-                ],
-              ].map(([n, t, p]) => (
-                <div key={n}>
-                  <span>{n}</span>
-                  <h3>{t}</h3>
-                  <p>{p}</p>
-                </div>
+                {
+                  number: "01",
+                  title: "Harley Digital Works",
+                  description:
+                    "Turnkey trade websites, 100% DFY copywriting, and managed Cloudflare edge care.",
+                  href: "/",
+                  badge: "Visit Platform",
+                },
+                {
+                  number: "02",
+                  title: "Harley Labs",
+                  description:
+                    "Automation workflows, sub-50ms edge rendering, and operational software systems.",
+                  href: "/labs",
+                  badge: "Explore Labs",
+                },
+                {
+                  number: "03",
+                  title: "Domain Services",
+                  description:
+                    "A curated portfolio of high-conviction digital brand assets and assisted transfers.",
+                  href: "/domains",
+                  badge: "View Portfolio",
+                },
+              ].map((item) => (
+                <Link
+                  key={item.number}
+                  to={item.href}
+                  className="group block cursor-pointer transition-all duration-200"
+                  aria-label={`${item.number} ${item.title} — ${item.badge}`}
+                >
+                  <div className="flex items-center justify-between">
+                    <span>{item.number}</span>
+                    <span className="inline-flex items-center gap-1 text-[11px] font-mono uppercase tracking-wider text-muted-foreground group-hover:text-emerald-700 transition-colors">
+                      <span>{item.badge}</span>
+                      <ArrowUpRight className="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                    </span>
+                  </div>
+                  <h3>
+                    <span>{item.title}</span>
+                  </h3>
+                  <p>{item.description}</p>
+                </Link>
               ))}
             </div>
           </div>
