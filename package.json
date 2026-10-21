@@ -100,5 +100,8 @@
     "typescript": "^5.8.3",
     "typescript-eslint": "^8.56.1",
     "vite": "^8.3.4"
+  },
+  "overrides": {
+    "launch-editor": "^2.14.2"
   }
 }

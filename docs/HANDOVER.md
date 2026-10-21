@@ -1,5 +1,23 @@
 # The Harley Group & Harley Digital Works — Session Handover Log
 
+## GitHub Security Audit Remediation: Dependency Override for launch-editor (GHSA-698v-4r3x-3vcv) — 21 October 2026
+
+- **Tool & Scope:** Google Antigravity. Diagnosed and resolved the GitHub Actions `Security Audit` failure (`Dependency Audit` in `.github/workflows/security.yml`).
+- **Founder Direction:** Robbie requested: _"can you investiate this alertys from GH"_ with screenshot showing failed `Dependency Audit` on workflow #191.
+- **Root Cause:**
+  - The security workflow runs `npm audit --audit-level=high`.
+  - An upstream transitive dependency `launch-editor@2.14.1` (brought in via `@tanstack/devtools-vite` -> `@lovable.dev/vite-tanstack-config`) triggered high-severity advisory GHSA-698v-4r3x-3vcv / GHSA-r825-w8mm-5pxw / GHSA-587h-7wmj-h5pm.
+- **Applied Fix:**
+  - Added `"launch-editor": "^2.14.2"` to the `"overrides"` section in `package.json`.
+  - Ran `npm install` to update `package-lock.json`, successfully promoting `launch-editor` from `2.14.1` to `2.14.2`.
+- **Empirical Verification:**
+  - `npm audit --audit-level=high`: PASS (`found 0 vulnerabilities`, exit code 0).
+  - `npm run typecheck`: PASS (0 TS errors).
+  - `npm run build`: PASS (Vite & Nitro SSR built cleanly in 1.93s).
+  - `npm run format:check`: PASS (All files match Prettier code style).
+  - `npm test`: PASS (199/199 passing assertions).
+- **Release Status:** Committed and pushed to `origin/main` to turn GitHub Actions CI green.
+
 ## Domain Monetisation, Outbound Pitching & Slack Operating Runbooks Codified — 21 October 2026 (D01–D08/H49)
 
 - **Tool & Scope:** Google Antigravity. Codified, structured, and persisted complete **Domain Monetisation, Resend Outbound Pitching, Inbound Deal Ingestion, and Slack Operating Runbooks** across dedicated repository documents, the Dashboard Knowledge Base, and the central Business OS index.

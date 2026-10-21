@@ -1,5 +1,18 @@
 # Harley Digital Works — Project Status
 
+## GitHub Security Audit Remediation: Dependency Override for launch-editor (GHSA-698v-4r3x-3vcv) — 21 October 2026
+
+**Current Status:** Resolved the GitHub Actions `Security Audit` failure (`Dependency Audit` in `.github/workflows/security.yml`):
+
+1. **Root Cause Identified**: GitHub workflow runs `npm audit --audit-level=high`. Upstream devtool `@tanstack/devtools-vite` depended on `launch-editor@2.14.1` which had a high-severity Windows CLI argument vulnerability.
+2. **Override Applied**: Added `"launch-editor": "^2.14.2"` to `package.json` `"overrides"` and updated `package-lock.json` with `npm install`.
+3. **Empirical Verification**:
+   - `npm audit --audit-level=high`: PASS (`found 0 vulnerabilities`, exit code 0).
+   - `npm run typecheck`: PASS (0 TS errors).
+   - `npm run build`: PASS (Vite & Nitro SSR built in 1.93s).
+   - `npm run format:check`: PASS.
+   - `npm test`: PASS (199/199 passing assertions).
+
 ## Domain Monetisation, Outbound Pitching & Slack Operating Runbooks Codified — 21 October 2026 (D01–D08/H49)
 
 **Current Status:** All operational knowledge, commercial blueprints, technical runbooks, and deal execution workflows generated across the 21 October 2026 sessions are fully codified and persisted into durable repository and dashboard knowledge assets:
