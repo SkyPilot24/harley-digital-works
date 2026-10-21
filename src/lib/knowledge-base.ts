@@ -58,7 +58,7 @@ export const KNOWLEDGE_BASE_ARTICLES: KnowledgeArticle[] = [
     lastUpdated: "2026-10-20",
     keyPoints: [
       "BRAND POSITIONING — 'British Industrial Craftsmanship Meets Precision Engineering' inspired by trusted trade manufacturers (Festool, DeWalt, JCB, Aston Martin). Clean, rugged, and unmistakably British. Eliminates aloof web agency clichés and avoids cheap print-shop templates.",
-      "CORE BRAND PROMISE — 'More leads. Less admin. We look after your website and enquiry systems, so customers can reach you and you can focus on the job. Websites. Enquiry systems. Digital care.'",
+      "CORE BRAND PROMISE — 'Your website and enquiries, looked after. We write, build and run your website and enquiry form, so customers can reach you and you can get on with the job.'",
       "RATIFIED COMMERCIAL OFFER — Standard Managed Package: £1,495 setup + £249/month ongoing care. Fair terms: 50% deposit (£747.50) on agreement, remaining 50% (£747.50) only upon final preview approval. Zero VAT (not VAT registered). Agreed delivery schedule (14-day guaranteed claims retired). Strictly maximum 2 concurrent active client builds.",
       "MASTER ENDORSED WORDMARK — Primary lockup features the approved Heritage Ring H (double circle) for HDW, Segoe UI typography 'Harley Digital Works', and 'Part of The Harley Group' endorsement. Eliminates the solo freelancer fear when contracting with commercial trades.",
       "TRADE QUALITY GUILD SEAL — Machined solid brass and midnight navy enamel badge certifying 'BUILT FOR BRITISH TRADES · 100% DONE-FOR-YOU · ZERO HOMEWORK · BACKED BY THE HARLEY GROUP'. Prominently displayed across homepage hero, founder guarantee, footer, and formal proposal PDFs.",

@@ -10,7 +10,7 @@ export const Route = createFileRoute("/calculator")({
     buildPageSeoHead({
       title: "Trade Website ROI & Revenue Calculator | Harley Digital Works",
       description:
-        "Calculate your estimated return on investment. See how just 1 to 3 additional trade enquiries per month generates £20,000 to £100,000+ in extra annual turnover.",
+        "Work out what one extra enquiry might be worth to your business. Illustrative figures from your own job values, not a forecast.",
       path: "/calculator",
     }),
   component: CalculatorPage,
@@ -34,9 +34,8 @@ function CalculatorPage() {
             </h1>
 
             <p className="text-base sm:text-lg text-neutral-300 leading-relaxed mb-6">
-              When a website looks outdated or hard to navigate on mobile, homeowners and commercial
-              clients move on to the next contractor on Google. Use our calculator below to see the
-              commercial impact of a high-converting trade website.
+              Work out what one extra enquiry might be worth to your business. Illustrative figures
+              from your own job values, not a forecast.
             </p>
 
             <div className="flex flex-wrap items-center gap-4 text-xs sm:text-sm text-neutral-300">

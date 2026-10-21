@@ -17,9 +17,9 @@ import { Toaster } from "sonner";
 import { canonicalUrlForPath, siteConfig } from "@/lib/site-config";
 import { deferredServiceForPath } from "@/lib/launch-scope";
 
-const siteTitle = "Harley Digital Works | More leads. Less admin. Websites for UK Trades";
+const siteTitle = "Harley Digital Works | Your website and enquiries, looked after.";
 const siteDescription =
-  "We look after your website and enquiry systems, so customers can reach you and you can focus on the job. Websites. Enquiry systems. Digital care.";
+  "We write, build and run your website and enquiry form, so customers can reach you and you can get on with the job.";
 
 function NotFoundComponent() {
   return (

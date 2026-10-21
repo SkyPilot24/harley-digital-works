@@ -36,7 +36,7 @@ export const Route = createFileRoute("/tools/review-booster")({
     buildPageSeoHead({
       title: "5-Star Google Review Booster for Trade Contractors | Harley Digital Works",
       description:
-        "Generate more 5-star Google Reviews on autopilot for your trade business. Routes happy homeowners to Google with 1 tap and intercepts negative feedback privately.",
+        "Generate authentic Google Reviews for your trade business. Ask every customer. Same Google link for everyone, plus an optional private feedback form.",
       path: "/tools/review-booster",
     }),
   component: ReviewBoosterPage,
@@ -79,12 +79,11 @@ https://harleydigitalworks.com/tools/review-booster?biz=${encodeURIComponent(bus
             </div>
             <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-white leading-tight">
               5-Star Google Review Booster <br />
-              <span className="text-gold-400">& Reputation Shield.</span>
+              <span className="text-gold-400">& Customer Feedback.</span>
             </h1>
             <p className="mt-3 text-sm sm:text-base text-neutral-300 leading-relaxed max-w-xl mx-auto">
-              Text your homeowner right after packing your tools on site. Happy customers get routed
-              straight to your Google Review page in 1 tap, while unhappy feedback is intercepted
-              privately.
+              Ask every customer. Same Google link for everyone, plus an optional private feedback
+              form.
             </p>
           </div>
         </Container>
@@ -200,8 +199,8 @@ https://harleydigitalworks.com/tools/review-booster?biz=${encodeURIComponent(bus
                 <div className="flex items-start gap-2.5 text-neutral-300 font-semibold">
                   <ShieldCheck className="h-4 w-4 text-emerald-400 shrink-0 mt-0.5" />
                   <span>
-                    Smart Reputation Shield: 1-3 star ratings are caught privately before harming
-                    your Google Map Pack ranking.
+                    Transparent Customer Feedback: Same Google link for everyone, plus an optional
+                    private feedback form to resolve customer issues immediately.
                   </span>
                 </div>
                 <div className="flex items-start gap-2.5 text-neutral-300 font-semibold">
@@ -291,8 +290,8 @@ https://harleydigitalworks.com/tools/review-booster?biz=${encodeURIComponent(bus
                       <span>We Value Your Honesty</span>
                     </div>
                     <p className="text-xs text-neutral-300 leading-relaxed">
-                      We are sorry your experience wasn't 100% perfect. Please tell our owner
-                      directly so we can resolve this today.
+                      We value your honest feedback. You can share your review publicly on Google or
+                      send a private note directly to the owner so we can put things right.
                     </p>
 
                     {feedbackSent ? (
@@ -330,7 +329,7 @@ https://harleydigitalworks.com/tools/review-booster?biz=${encodeURIComponent(bus
           <div className="mt-12 max-w-4xl mx-auto rounded-3xl border border-gold-500/30 bg-gradient-to-r from-neutral-900 via-neutral-900 to-neutral-950 p-6 md:p-8 flex flex-col md:flex-row items-center justify-between gap-6 shadow-2xl">
             <div>
               <span className="text-xs font-bold uppercase tracking-wider text-gold-400">
-                Included In All Care Plans (£95/mo)
+                Included In All Care Plans (£249/mo)
               </span>
               <h3 className="mt-1 text-xl font-extrabold text-white">
                 Get the Review Booster Engine for {businessName}
@@ -344,7 +343,7 @@ https://harleydigitalworks.com/tools/review-booster?biz=${encodeURIComponent(bus
               to="/contact"
               search={{
                 service: `Review Booster Engine for ${businessName}`,
-                package: "Care Plan (£95/mo)",
+                package: "Care Plan (£249/mo)",
                 domain: undefined,
                 websiteUrl: undefined,
               }}

@@ -54,10 +54,10 @@ const BRANDS_DATA: Record<BrandEntity, BrandSpec> = {
   hdw: {
     id: "hdw",
     name: "Harley Digital Works",
-    tagline: "More leads. Less admin.",
+    tagline: "Your website and enquiries, looked after.",
     role: "Flagship Commercial Division",
     description:
-      "We look after your website and enquiry systems, so customers can reach you and you can focus on the job. Websites. Enquiry systems. Digital care.",
+      "We write, build and run your website and enquiry form, so customers can reach you and you can get on with the job. Websites. Enquiry systems. Digital care.",
     colors: [
       {
         name: "Midnight Navy",
@@ -109,7 +109,7 @@ const BRANDS_DATA: Record<BrandEntity, BrandSpec> = {
     voiceGuidelines: [
       "Plain English first: Explain technical concepts in terms of revenue, booked jobs, and time saved.",
       "No homework rule: Emphasize that we write 100% of the copy and look after website and enquiry systems.",
-      "Approved commercial offer: £1,495 setup + £249/month care. 'More leads. Less admin.' is an ambition, not an invented numerical guarantee.",
+      "Approved commercial offer: £1,495 setup + £249/month care. 'Your website and enquiries, looked after.' is our core customer promise.",
     ],
   },
   group: {

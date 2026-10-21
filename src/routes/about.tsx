@@ -228,9 +228,8 @@ function AboutPage() {
                 <span>For real business owners.</span>
               </h2>
               <p>
-                “When you work with Harley Digital Works, you deal directly with experienced people
-                who understand commercial reality. We don’t hide behind ticket queues or junior
-                account managers.”
+                “I’m Robbie Harley. I run Harley Digital Works myself and use automation for the
+                routine work, so your updates don’t wait in a queue.”
               </p>
               <p className="text-sm leading-relaxed text-ink/75">
                 Harley Digital Works operates as the digital flagship of{" "}

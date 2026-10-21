@@ -24,9 +24,9 @@ import { buildPageSeoHead } from "@/lib/site-config";
 export const Route = createFileRoute("/")({
   head: () =>
     buildPageSeoHead({
-      title: "Harley Digital Works | More leads. Less admin. Websites for UK Trades",
+      title: "Harley Digital Works | Websites for Electrical Contractors | Bristol & Bath",
       description:
-        "We look after your website and enquiry systems, so customers can reach you and you can focus on the job. Websites. Enquiry systems. Digital care for established UK trades.",
+        "Your website and enquiries, looked after. We write, build and run your website and enquiry form, so customers can reach you and you can get on with the job.",
       path: "/",
     }),
   component: HomePage,
@@ -35,7 +35,7 @@ export const Route = createFileRoute("/")({
 const faqs = [
   [
     "Do you work with tradespeople across the whole UK?",
-    "Yes, nationwide. Whether you are based in Scotland, Wales, the Midlands, the North, or the South of England, we work with tradespeople and trade businesses everywhere across the UK. Everything is handled smoothly over a straightforward 20-minute phone call—zero travel, zero homework, and zero tech jargon required from you.",
+    "We are currently prioritising electrical contractors across Bristol, Bath and the M4 corridor for our active pilot, but we also support trade businesses across the wider UK. Everything is handled smoothly over a straightforward 20-minute phone call—zero travel, zero homework, and zero tech jargon required from you.",
   ],
   [
     "What do you need from me?",
@@ -76,18 +76,18 @@ function HomePage() {
                 <span className="studio-kicker-line" /> WEBSITES · ENQUIRY SYSTEMS · DIGITAL CARE
               </p>
               <h1 id="hero-heading">
-                More leads.
+                Your website and enquiries,
                 <br />
-                <span>Less admin.</span>
+                <span>looked after.</span>
               </h1>
               <p className="hero-description">
-                Your digital side, taken care of.
-                <br className="hero-line-break" /> More time to focus on the job.
+                We write, build and run your website and enquiry form,
+                <br className="hero-line-break" /> so customers can reach you and you can get on
+                with the job.
               </p>
               <p className="hero-support">
-                We look after your website and enquiry systems, so customers can reach you and you
-                can focus on the job. 100% done-for-you copywriting, distinctive design, and ongoing
-                monthly care for established UK trade businesses.
+                100% done-for-you copywriting, distinctive design, and ongoing monthly care for
+                electrical contractors in Bristol, Bath and the M4 corridor.
               </p>
               <div className="flex flex-wrap items-center gap-2 mb-3">
                 <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-50 border border-emerald-200/80 px-2.5 py-1 text-[11px] font-bold text-emerald-900">
@@ -95,7 +95,7 @@ function HomePage() {
                   <span>100% DFY copywriting · Zero homework · 24h WhatsApp desk</span>
                 </span>
                 <span className="inline-flex items-center gap-1.5 rounded-full bg-stone-100 border border-stone-200/80 px-2.5 py-1 text-[11px] font-bold text-stone-700">
-                  <span>Nationwide UK Coverage (England, Scotland, Wales & NI)</span>
+                  <span>Bristol, Bath & M4 Corridor · Electrical Contractors</span>
                 </span>
               </div>
               <div className="studio-actions flex flex-wrap items-center gap-3">
@@ -123,7 +123,9 @@ function HomePage() {
                 </a>
               </div>
               <div className="hero-price">
-                <span>Serving tradespeople & trade contractors across the entire UK</span>
+                <span>
+                  Websites for electrical contractors in Bristol, Bath and the M4 corridor.
+                </span>
                 <span>£1,495 setup (50% deposit / 50% approval) · £249/mo care</span>
               </div>
             </div>
@@ -391,10 +393,10 @@ function HomePage() {
           </div>
         </section>
 
-        {/* Trade Quality Guild Seal & Guarantee Section */}
+        {/* What We Commit To Section */}
         <section
           className="py-16 md:py-24 bg-[#081B30] text-white border-y border-white/10 deferred-section"
-          aria-labelledby="guild-seal-heading"
+          aria-labelledby="commitments-heading"
         >
           <div className="studio-wrap">
             <div className="grid gap-10 lg:grid-cols-12 lg:items-center">
@@ -410,7 +412,7 @@ function HomePage() {
                   <div className="mt-4">
                     <span className="inline-flex items-center gap-1.5 rounded-full bg-white/10 px-3 py-1 text-[11px] font-mono text-emerald-400 font-bold border border-white/15">
                       <Sparkles className="h-3 w-3" />
-                      <span>The Harley Group Guild Guarantee</span>
+                      <span>What We Commit To</span>
                     </span>
                   </div>
                 </div>
@@ -419,53 +421,67 @@ function HomePage() {
               <div className="lg:col-span-7 space-y-6">
                 <div>
                   <p className="text-xs font-mono font-bold uppercase tracking-wider text-emerald-400">
-                    BUILT FOR BRITISH TRADES · ZERO HOMEWORK
+                    CLEAR PROMISES · ZERO HOMEWORK
                   </p>
                   <h2
-                    id="guild-seal-heading"
+                    id="commitments-heading"
                     className="mt-2 text-3xl font-extrabold tracking-tight text-white sm:text-4xl font-display"
                   >
-                    The Trade Quality Guarantee.
+                    What we commit to.
                   </h2>
                   <p className="mt-3 text-sm sm:text-base text-slate-300 leading-relaxed">
-                    We know tradespeople are tired of web designers who make them write endless
-                    copy, charge hidden extras, or disappear when something goes wrong. We run
-                    Harley Digital Works under the governance of The Harley Group to provide total
-                    peace of mind.
+                    Clear terms, written in advance, and designed to protect your trade business:
                   </p>
                 </div>
 
-                <div className="grid gap-4 sm:grid-cols-3 pt-2">
+                <div className="grid gap-3 sm:grid-cols-2 pt-2">
                   <div className="rounded-xl border border-white/10 bg-white/5 p-4 space-y-1.5">
-                    <div className="text-emerald-400 font-mono text-xs font-bold uppercase">
-                      100% Done-For-You
+                    <div className="text-emerald-400 font-mono text-xs font-bold uppercase flex items-center gap-1.5">
+                      <Check className="h-3.5 w-3.5 text-emerald-400" />
+                      <span>Full Final Approval</span>
                     </div>
-                    <h3 className="text-sm font-bold text-white">Zero Homework</h3>
-                    <p className="text-xs text-slate-300 leading-relaxed">
-                      We interview you on the phone and write every headline, service description,
-                      and case study.
+                    <p className="text-xs text-slate-200 leading-relaxed">
+                      You approve the facts and the finished site before it goes live.
                     </p>
                   </div>
 
                   <div className="rounded-xl border border-white/10 bg-white/5 p-4 space-y-1.5">
-                    <div className="text-emerald-400 font-mono text-xs font-bold uppercase">
-                      Fair Terms
+                    <div className="text-emerald-400 font-mono text-xs font-bold uppercase flex items-center gap-1.5">
+                      <Check className="h-3.5 w-3.5 text-emerald-400" />
+                      <span>50/50 Split Payment</span>
                     </div>
-                    <h3 className="text-sm font-bold text-white">50/50 Split Payment</h3>
-                    <p className="text-xs text-slate-300 leading-relaxed">
-                      50% deposit on agreement. The remaining 50% only when you preview and approve
-                      your live site.
+                    <p className="text-xs text-slate-200 leading-relaxed">
+                      The 50% balance is only due after you approve.
                     </p>
                   </div>
 
                   <div className="rounded-xl border border-white/10 bg-white/5 p-4 space-y-1.5">
-                    <div className="text-emerald-400 font-mono text-xs font-bold uppercase">
-                      Permanent Support
+                    <div className="text-emerald-400 font-mono text-xs font-bold uppercase flex items-center gap-1.5">
+                      <Check className="h-3.5 w-3.5 text-emerald-400" />
+                      <span>Your Assets, Always</span>
                     </div>
-                    <h3 className="text-sm font-bold text-white">Group Backed</h3>
-                    <p className="text-xs text-slate-300 leading-relaxed">
-                      Backed by The Harley Group Ltd. Fast WhatsApp updates, UK cloud hosting, and
-                      zero VAT.
+                    <p className="text-xs text-slate-200 leading-relaxed">
+                      You keep your domain and brand assets.
+                    </p>
+                  </div>
+
+                  <div className="rounded-xl border border-white/10 bg-white/5 p-4 space-y-1.5">
+                    <div className="text-emerald-400 font-mono text-xs font-bold uppercase flex items-center gap-1.5">
+                      <Check className="h-3.5 w-3.5 text-emerald-400" />
+                      <span>Fair Flexibility</span>
+                    </div>
+                    <p className="text-xs text-slate-200 leading-relaxed">
+                      Cancel on 30 days’ notice and get a static export.
+                    </p>
+                  </div>
+
+                  <div className="sm:col-span-2 rounded-xl border border-white/10 bg-white/5 p-4 space-y-1.5">
+                    <div className="text-emerald-400 font-mono text-xs font-bold uppercase flex items-center gap-1.5">
+                      <Check className="h-3.5 w-3.5 text-emerald-400" />
+                      <span>Everything in Writing</span>
+                    </div>
+                    <p className="text-xs text-slate-200 leading-relaxed">
+                      Scope, support hours and timings are in writing before you pay.
                     </p>
                   </div>
                 </div>

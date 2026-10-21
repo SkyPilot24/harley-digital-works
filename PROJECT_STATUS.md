@@ -1,5 +1,35 @@
 # Harley Digital Works — Project Status
 
+## Strategic Marketing Copy & Regional Trade Positioning Ratified — 22 October 2026
+
+**Current Status:** Replaced generic agency slogans with grounded, high-converting, founder-operated copy specifically targeted at electrical contractors across Bristol, Bath, and the M4 corridor:
+
+1. **Core Value Proposition & Hero Headline**:
+   - Replaced legacy slogan *"More leads. Less admin."* with *"Your website and enquiries, looked after."*
+   - Subtitle: *"We write, build and run your website and enquiry form, so customers can reach you and you can get on with the job."*
+   - Updated across `src/routes/index.tsx`, `src/routes/__root.tsx`, `src/routes/brand.tsx`, and `src/lib/knowledge-base.ts`.
+2. **Calculator Financial Meta**:
+   - Replaced speculative revenue claims (*"£20,000 to £100,000+"*) with grounded illustrative guidance: *"Work out what one extra enquiry might be worth to your business. Illustrative figures from your own job values, not a forecast."* in `src/routes/calculator.tsx`.
+3. **Founder Commitments ("What we commit to")**:
+   - Replaced generic *"Guild Guarantee"* block on the homepage with the ratified 5-point commitment block:
+     1. You approve the facts and the finished site before it goes live.
+     2. The 50% balance is only due after you approve.
+     3. You keep your domain and brand assets.
+     4. Cancel on 30 days’ notice and get a static export.
+     5. Scope, support hours and timings are in writing before you pay.
+4. **Sharp Regional Trade Positioning**:
+   - Replaced generic nationwide claim (*"Serving tradespeople across the entire UK"*) with high-converting local trade positioning: *"Websites for electrical contractors in Bristol, Bath and the M4 corridor."* across hero badges, price tickers, and homepage copy.
+5. **Personal Founder Accountability**:
+   - Replaced agency rhetoric in `src/routes/about.tsx` with Robbie Harley's authentic founder statement: *"I’m Robbie Harley. I run Harley Digital Works myself and use automation for the routine work, so your updates don’t wait in a queue."*
+6. **Transparent Review Collection (Anti-Gating Compliance)**:
+   - Replaced review gating language (*"Intercept unhappy feedback"*) with transparent customer feedback: *"Ask every customer. Same Google link for everyone, plus an optional private feedback form."* in `src/routes/tools.review-booster.tsx`. Also corrected legacy £95/mo reference to ratified £249/mo care plan.
+7. **Empirical Quality & Verification**:
+   - `npm test`: PASS (204/204 passing assertions).
+   - `npm run typecheck`: PASS (0 TS errors).
+   - `npm run lint`: PASS (0 errors, 9 existing component warnings).
+   - `npm run format:check`: PASS (100% Prettier compliant).
+   - `npm run build`: PASS (Vite & Nitro SSR built in 3.71s).
+
 ## Server Function Security Hardening & Automated Auth Test Gate — 22 October 2026 (H42/H50)
 
 **Current Status:** Completed server function authentication and admin authorization hardening across the platform:

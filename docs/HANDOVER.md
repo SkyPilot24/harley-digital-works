@@ -1,5 +1,42 @@
 # The Harley Group & Harley Digital Works — Session Handover Log
 
+## Strategic Marketing Copy & Regional Trade Positioning Ratified — 22 October 2026
+
+- **Tool & Scope:** Google Antigravity. Executed 6 strategic copy replacements across marketing surfaces to replace generic agency jargon with clear, grounded, founder-operated copy focused on electrical contractors in Bristol, Bath, and the M4 corridor.
+- **Founder Direction:** Robbie requested 6 specific replacements:
+  1. *"More leads. Less admin."* -> *"Your website and enquiries, looked after."* (Sub: *"We write, build and run your website and enquiry form, so customers can reach you and you can get on with the job."*)
+  2. Calculator meta: *"£20,000 to £100,000+"* -> *"Work out what one extra enquiry might be worth to your business. Illustrative figures from your own job values, not a forecast."*
+  3. *"Guild Guarantee"* block -> *"What we commit to"*: you approve facts and finished site before live; 50% balance only due after approval; you keep domain and brand assets; cancel on 30 days’ notice and get static export; scope, support hours and timings in writing before paying.
+  4. *"Serving tradespeople across the entire UK"* -> *"Websites for electrical contractors in Bristol, Bath and the M4 corridor."*
+  5. *"Deal directly with experienced people... no junior account managers"* -> *"I’m Robbie Harley. I run Harley Digital Works myself and use automation for the routine work, so your updates don’t wait in a queue."*
+  6. *"Intercept unhappy feedback"* -> *"Ask every customer. Same Google link for everyone, plus an optional private feedback form."*
+- **Applied Changes:**
+  - `src/routes/index.tsx`:
+    - Updated SEO title/description: *"Harley Digital Works | Websites for Electrical Contractors | Bristol & Bath"*.
+    - Updated hero headline to *"Your website and enquiries, looked after."* with subhead *"We write, build and run your website and enquiry form, so customers can reach you and you can get on with the job."*
+    - Updated hero pill badge to *"Bristol, Bath & M4 Corridor · Electrical Contractors"* and pricing ticker line to *"Websites for electrical contractors in Bristol, Bath and the M4 corridor."*
+    - Replaced *"Guild Guarantee"* section with the *"What We Commit To"* block featuring the 5 ratified commercial commitments.
+    - Updated FAQ #1 to state active focus on electrical contractors in Bristol, Bath, and M4 corridor while welcoming wider UK trades.
+  - `src/routes/__root.tsx`:
+    - Updated `siteTitle` to *"Harley Digital Works | Your website and enquiries, looked after."* and `siteDescription`.
+  - `src/routes/brand.tsx`:
+    - Updated HDW brand tagline and voice guidelines.
+  - `src/lib/knowledge-base.ts`:
+    - Updated CORE BRAND PROMISE entry.
+  - `src/routes/calculator.tsx`:
+    - Updated meta description and header paragraph to *"Work out what one extra enquiry might be worth to your business. Illustrative figures from your own job values, not a forecast."*
+  - `src/routes/about.tsx`:
+    - Replaced quote with Robbie Harley's authentic founder quote: *"I’m Robbie Harley. I run Harley Digital Works myself and use automation for the routine work, so your updates don’t wait in a queue."*
+  - `src/routes/tools.review-booster.tsx`:
+    - Replaced review gating copy with anti-gating compliant copy: *"Ask every customer. Same Google link for everyone, plus an optional private feedback form."*
+    - Fixed legacy £95/mo care plan pricing in bottom CTA to ratified £249/mo care plan.
+- **Empirical Verification:**
+  - `npm test`: PASS (204/204 passing assertions).
+  - `npm run typecheck`: PASS (0 TS errors).
+  - `npm run lint`: PASS (0 errors, 9 existing component warnings).
+  - `npx prettier --check`: PASS (All files 100% compliant).
+  - `npm run build`: PASS (Vite & Nitro SSR built in 3.71s).
+
 ## Server Function Security Hardening & Automated Auth Test Gate — 22 October 2026 (H42/H50)
 
 - **Tool & Scope:** Google Antigravity. Enforced `requireSupabaseAuth` and admin role verification across Slack Command Centre server functions, extracted shared `requireAdmin` helper, and introduced automated AST/regex scanning test gate `scripts/server-fn-auth.test.mjs`.
