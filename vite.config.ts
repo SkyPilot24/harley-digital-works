@@ -9,6 +9,12 @@ import { loadEnv } from "vite";
 
 export default defineConfig({
   vite: {
+    server: {
+      port: 3000,
+    },
+    preview: {
+      port: 3000,
+    },
     plugins: [
       {
         name: "local-server-environment",

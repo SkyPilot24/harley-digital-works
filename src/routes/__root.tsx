@@ -17,9 +17,9 @@ import { Toaster } from "sonner";
 import { canonicalUrlForPath, siteConfig } from "@/lib/site-config";
 import { deferredServiceForPath } from "@/lib/launch-scope";
 
-const siteTitle = "Harley Digital Works | Websites for Trades & Small Businesses";
+const siteTitle = "Harley Digital Works | More leads. Less admin. Websites for UK Trades";
 const siteDescription =
-  "You run your business. We’ll handle your website. Done-for-you websites, professional copywriting, and managed monthly care for UK trades and small businesses.";
+  "We look after your website and enquiry systems, so customers can reach you and you can focus on the job. Websites. Enquiry systems. Digital care.";
 
 function NotFoundComponent() {
   return (
@@ -134,24 +134,22 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
               },
               { name: "twitter:image", content: siteConfig.ogImage },
             ]),
-        { name: "theme-color", content: "#081B30" },
+        { name: "theme-color", content: "#152B42" },
       ],
       links: [
         { rel: "stylesheet", href: appCss },
         ...(!isPrivateRoute ? [{ rel: "canonical", href: canonical }] : []),
         {
           rel: "icon",
-          href: "/brand/2026-10-13/icons/favicon-32.png",
-          sizes: "32x32",
-          type: "image/png",
+          href: "/favicon.ico",
         },
         {
           rel: "icon",
-          href: "/brand/2026-10-13/icons/favicon-16.png",
-          sizes: "16x16",
+          href: "/favicon-32x32.png",
+          sizes: "32x32",
           type: "image/png",
         },
-        { rel: "apple-touch-icon", href: "/brand/2026-10-13/icons/apple-touch-icon.png" },
+        { rel: "apple-touch-icon", href: "/apple-touch-icon.png" },
         { rel: "manifest", href: "/site.webmanifest" },
         { rel: "preconnect", href: "https://fonts.googleapis.com" },
         { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },

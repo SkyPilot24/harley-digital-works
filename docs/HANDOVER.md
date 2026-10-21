@@ -1,5 +1,40 @@
 # The Harley Group & Harley Digital Works — Session Handover Log
 
+## Approved Brand Family & Media Pack (Typography Option 3) Deployed — 21 October 2026 (H15/H16/H42)
+
+- **Tool & Scope:** Google Antigravity. Integrated approved Option 3 brand family across assets, typography, components, and marketing routes based on `ANTIGRAVITY-PROMPT.md` and `START-HERE.html`.
+- **Founder Direction:** Robbie requested: *"please follow the prompt in the MD file attached to update the media for this project"*.
+- **Applied Changes:**
+  - **Media Assets Synchronized**:
+    - Extracted and copied full Option 3 media pack (`346` files) from `OneDrive/.../Harley-Final-Media-Pack` into `public/brand/2026-10-21/` (including `HDW-Brand-Pack`, `THG-Brand-Pack`, `HL-Brand-Pack`, and `START-HERE.html`).
+    - Packaged downloadable zip archive `public/brand/Harley-Final-Media-Pack.zip`.
+    - Updated web-ready root icons: `public/favicon.ico`, `public/favicon.svg`, `public/favicon-32x32.png`, `public/favicon-32.png`, `public/apple-touch-icon.png`, `public/icon-512.png`, `public/social-share-1200x630.png`, and `public/site.webmanifest`.
+    - Overwrote legacy vectors in `public/brand/approved/logos/` with new Option 3 outlined SVGs for backward-compatibility.
+  - **Component & Design System Updates**:
+    - `src/lib/site-config.ts`: Updated logo and OG image references to Option 3 paths.
+    - `src/components/site/BrandLogo.tsx`: Updated `LOGO_MAP` with Option 3 vector SVGs for HDW, THG, and Labs across light, dark, and monogram variants.
+    - `src/components/site/StudioWordmark.tsx`: Updated image source to `hdw-compact-navy.svg` / `hdw-compact-white.svg` with native 1500×340 viewBox ratio (`width="176" height="40"`).
+    - `src/components/site/FooterDark.tsx`: Configured `<StudioWordmark light />` for high contrast against dark footer canvas.
+    - `src/routes/__root.tsx`: Updated theme-color to `#152B42`, root favicon/apple-touch-icon/manifest links, and siteTitle/siteDescription to approved HDW copy.
+    - `src/styles.css`: Updated brand color tokens and scoped font-family stacks:
+      - `.hdw-marketing`: `'Segoe UI', Arial, sans-serif`
+      - `[data-brand="group"], .group-site`: `Georgia, 'Times New Roman', serif`
+      - `[data-brand="labs"], .labs-site`: `Bahnschrift, 'Arial Narrow', Arial, sans-serif`
+    - `src/routes/brand.tsx`: Updated `BRANDS_DATA` specs, 4-tier Typography Option 3 cards, introductory narrative, and download links to `Harley-Final-Media-Pack.zip` and `/brand/2026-10-21/START-HERE.html`.
+    - `src/routes/the-harley-group.tsx`, `HarleyGroupHeader.tsx`, `HarleyGroupFooter.tsx`: Updated hero headline, header/footer subtitles, and baseline to *"Practical ambition. Lasting value."*
+    - `src/routes/labs.tsx`: Updated hero kicker, 4-module vector logo, and headline to *"Ideas into working systems."*
+    - `src/routes/index.tsx`: Updated homepage hero kicker to *"WEBSITES · ENQUIRY SYSTEMS · DIGITAL CARE"*, headline to *"More leads. Less admin."*, and supporting copy to approved HDW phrasing.
+    - `src/lib/knowledge-base.ts`: Synchronized dashboard operational knowledge base with Option 3 specifications.
+- **Empirical Verification:**
+  - `npm run check:governance`: PASS.
+  - `npm run format:check`: PASS.
+  - `npm run typecheck`: PASS (0 errors).
+  - `npm run lint`: PASS (0 errors, 9 existing component warnings).
+  - `npm test`: PASS (199/199 passing assertions).
+  - `npm run build`: PASS (Nitro SSR Cloudflare module bundle generated in 1.15s).
+  - `http://localhost:3000/brand`: Live verified in Chrome (dev server bound to port 3000; port 8080 permanently prohibited due to host NVIDIA Broadcast conflict).
+- **Release Status:** Ready for founder review. Strictly local changes; zero production deployments or remote mutations performed.
+
 ## Pilot Candidate CRM Staging & End-to-End Business Automation Verification — 21 October 2026 (H37/H50)
 
 - **Tool & Scope:** Google Antigravity. Executed autonomous pre-launch automation verification, pre-change snapshot, and CRM staging of top 3 vetted UK Limited Company pilot candidates.

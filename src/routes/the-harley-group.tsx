@@ -22,16 +22,17 @@ export function TheHarleyGroupPage() {
       <div className="studio-home group-site">
         <section className="group-hero studio-wrap" id="overview">
           <div>
-            <p className="studio-kicker">THE HARLEY GROUP / PRACTICAL DIGITAL SERVICES</p>
+            <p className="studio-kicker">
+              THE HARLEY GROUP / DIGITAL SERVICES · EXPERIMENTATION · DOMAIN PORTFOLIO
+            </p>
             <h1>
-              Good work.
+              Practical ambition.
               <br />
-              <span>Built to last.</span>
+              <span>Lasting value.</span>
             </h1>
             <p>
-              We build practical digital services and high-speed technology for independent British
-              trades and commercial businesses. Thoughtful design, useful technology, and the care
-              to see things through.
+              The Harley Group brings Harley Digital Works, Harley Labs and the domain portfolio
+              under one parent identity. Distinct activities, with a shared direction.
             </p>
             <div className="flex flex-wrap items-center gap-3">
               <a href="#digital-works" className="enquiry-submit">

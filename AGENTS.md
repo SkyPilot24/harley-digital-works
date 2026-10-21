@@ -51,7 +51,7 @@ Historical £95/month pricing and guaranteed 14-day language are not evidence of
 
 Agency platform: SkyPilot24/harley-digital-works is maintained through code and canonical Git by Codex, Antigravity and GitHub Copilot. Preserve its established architecture; do not import it into Lovable or rebuild it merely to adopt another framework.
 
-The recorded stack includes TanStack Start, React, TypeScript, Supabase/PostgreSQL and Cloudflare Nitro Worker SSR. Verify current configuration before implementation.
+The recorded stack includes TanStack Start, React, TypeScript, Supabase/PostgreSQL and Cloudflare Nitro Worker SSR. Local development server is configured strictly on port 3000 (`http://localhost:3000/`). Never use or launch port 8080 (which is occupied on the founder's machine by NVIDIA Broadcast). Verify current configuration before implementation.
 
 External client trade websites use dedicated repositories and their recorded Lovable/Cloudflare Pages workflow. Confirm the exact client repository and deployment target before editing.
 

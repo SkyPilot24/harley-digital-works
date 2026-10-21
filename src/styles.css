@@ -87,9 +87,9 @@
   --radius: 0.625rem;
 
   /* Current pack colours; marketing overrides are scoped below. */
-  --hdw-midnight: #081b30;
-  --hdw-ivory: #f6f3ed;
-  --hdw-blue: #173c62;
+  --hdw-midnight: #152b42;
+  --hdw-ivory: #f5f1e8;
+  --hdw-blue: #356dcc;
   --hdw-slate: #526479;
 
   /* Earlier app tokens retained for operational and historical surfaces. */
@@ -196,9 +196,31 @@
 }
 
 .hdw-marketing {
-  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-  --font-display: "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  --font-heading: "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-sans: "Segoe UI", Arial, sans-serif;
+  --font-display: "Segoe UI", Arial, sans-serif;
+  --font-heading: "Segoe UI", Arial, sans-serif;
+  font-family: var(--font-sans);
+}
+
+[data-brand="group"],
+.group-site {
+  --brand-dark: #202326;
+  --brand-light: #f3efe7;
+  --brand-accent: #b7a17a;
+  --font-sans: Georgia, "Times New Roman", serif;
+  --font-display: Georgia, "Times New Roman", serif;
+  --font-heading: Georgia, "Times New Roman", serif;
+  font-family: var(--font-sans);
+}
+
+[data-brand="labs"],
+.labs-site {
+  --brand-dark: #171c23;
+  --brand-light: #eef3f7;
+  --brand-accent: #42c9e8;
+  --font-sans: Bahnschrift, "Arial Narrow", Arial, sans-serif;
+  --font-display: Bahnschrift, "Arial Narrow", Arial, sans-serif;
+  --font-heading: Bahnschrift, "Arial Narrow", Arial, sans-serif;
   font-family: var(--font-sans);
 }
 

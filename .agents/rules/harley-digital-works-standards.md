@@ -40,7 +40,7 @@ trigger: always_on
 
 5. **Execution & Environment Guardrails**:
    - Production Database DDL: Execute via `npx supabase db query --linked --project-ref worzpzbutngugwzhlvtj` (Management API). Always capture pre-change snapshot first.
-   - Local Browser Verification: When headless Playwright driver downloads are restricted in sandboxed environments, run the dev server (`npm run dev`) and launch Windows native Chrome (`Start-Process chrome.exe "http://localhost:8080/"`) to present the live application.
+   - Local Browser Verification & Machine Port Rule: Port 8080 on this system is permanently occupied by NVIDIA Broadcast (which responds with `Cannot GET /...`). NEVER bind to or launch port 8080. The development server is configured to bind to port 3000 (`npm run dev`). Launch Windows native Chrome via `Start-Process chrome.exe "http://localhost:3000/"` (or specific route, e.g. `http://localhost:3000/brand`) to present the live application.
 
 6. **Founder Operating Standard (Robbie Harley)**:
    - Robbie is the business founder and CEO, NOT a software developer.

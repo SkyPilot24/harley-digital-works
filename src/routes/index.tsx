@@ -24,9 +24,9 @@ import { buildPageSeoHead } from "@/lib/site-config";
 export const Route = createFileRoute("/")({
   head: () =>
     buildPageSeoHead({
-      title: "Harley Digital Works | Websites Worth Choosing for UK Trades",
+      title: "Harley Digital Works | More leads. Less admin. Websites for UK Trades",
       description:
-        "Your work deserves a better website. Website design, copywriting and ongoing digital care for tradespeople and contractors across the entire UK. An initial build fee, rolling monthly service, and one team looking after your website.",
+        "We look after your website and enquiry systems, so customers can reach you and you can focus on the job. Websites. Enquiry systems. Digital care for established UK trades.",
       path: "/",
     }),
   component: HomePage,
@@ -73,25 +73,21 @@ function HomePage() {
           <div className="studio-wrap hero-layout">
             <div className="hero-copy">
               <p className="studio-kicker">
-                <span className="studio-kicker-line" /> DONE-FOR-YOU WEBSITES & CARE FOR UK TRADES
-                NATIONWIDE
+                <span className="studio-kicker-line" /> WEBSITES · ENQUIRY SYSTEMS · DIGITAL CARE
               </p>
               <h1 id="hero-heading">
-                You do the trade.
+                More leads.
                 <br />
-                We take the website
-                <br />
-                <span>headache away.</span>
+                <span>Less admin.</span>
               </h1>
               <p className="hero-description">
-                You’ve built a business to be proud of.
-                <br className="hero-line-break" /> Let’s give you a digital presence with zero
-                hassle.
+                Your digital side, taken care of.
+                <br className="hero-line-break" /> More time to focus on the job.
               </p>
               <p className="hero-support">
-                100% done-for-you copywriting, distinctive design, and ongoing monthly care for
-                trade businesses across the entire UK. No homework. No technical jargon. You stay on
-                the tools; we look after your website.
+                We look after your website and enquiry systems, so customers can reach you and you
+                can focus on the job. 100% done-for-you copywriting, distinctive design, and ongoing
+                monthly care for established UK trade businesses.
               </p>
               <div className="flex flex-wrap items-center gap-2 mb-3">
                 <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-50 border border-emerald-200/80 px-2.5 py-1 text-[11px] font-bold text-emerald-900">

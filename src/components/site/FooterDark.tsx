@@ -10,7 +10,7 @@ export function FooterDark() {
         <div className="studio-footer-top">
           <div>
             <Link to="/" aria-label="Harley Digital Works home">
-              <StudioWordmark />
+              <StudioWordmark light />
             </Link>
             <p>
               Thoughtful websites for people who care about their business. Designed, written and

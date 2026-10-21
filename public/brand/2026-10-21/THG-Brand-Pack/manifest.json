@@ -1,0 +1,543 @@
+{
+  "brand": "The Harley Group",
+  "typography": "Option 3",
+  "font": "Georgia",
+  "date": "2026-10-21",
+  "files": [
+    {
+      "file": "01-Logos/thg-horizontal-dark.png",
+      "bytes": 13352,
+      "sha256": "0877bb67116b823d5c0455d5424ba3036482f5c67184e2e74259ec9bd4f3e32f"
+    },
+    {
+      "file": "01-Logos/thg-horizontal-dark.svg",
+      "bytes": 9642,
+      "sha256": "cb189828637064b8f1f13890bb4d6096bda0896080b7a45bea739668ad9b4126"
+    },
+    {
+      "file": "01-Logos/thg-horizontal-light.png",
+      "bytes": 13353,
+      "sha256": "928e11c05938cc959f5048f0f802d11b2f94b36b4b65222489877c28ff33c0c7"
+    },
+    {
+      "file": "01-Logos/thg-horizontal-light.svg",
+      "bytes": 9642,
+      "sha256": "7155760725f03f54afe4a9d1b9dc9a2c72500355b5809b88f1b80048fe0aded1"
+    },
+    {
+      "file": "01-Logos/thg-logo-black.png",
+      "bytes": 13380,
+      "sha256": "beb73858bfe1b23715f95a89145ea29ee1e4784815873da0c062a461026768f2"
+    },
+    {
+      "file": "01-Logos/thg-logo-black.svg",
+      "bytes": 10273,
+      "sha256": "431ac79f6cfa9e556ca65d6536cccdde5bc590441567ed19021460137543506b"
+    },
+    {
+      "file": "01-Logos/thg-logo-primary.png",
+      "bytes": 15435,
+      "sha256": "42823f537e9bcd0213b6b9fd72e95f40fa5e9c85d230a89db6b458e105006493"
+    },
+    {
+      "file": "01-Logos/thg-logo-primary.svg",
+      "bytes": 10273,
+      "sha256": "d406309fd3c31567cff36dbf49866fa712c3d9f9d7707b6fd0a28686bc7863c7"
+    },
+    {
+      "file": "01-Logos/thg-logo-reversed.png",
+      "bytes": 19721,
+      "sha256": "08df06b522c9076962ffa68ba0f5f27d8acded1c8588ce482507ca9469aefc7b"
+    },
+    {
+      "file": "01-Logos/thg-logo-reversed.svg",
+      "bytes": 10322,
+      "sha256": "952683cbd54d4ec7a1af656071586d0da08fce6f19dc6352bb63164c8eccd0e0"
+    },
+    {
+      "file": "01-Logos/thg-logo-white.png",
+      "bytes": 14771,
+      "sha256": "83d6f56ac521c4fc1f245a5e0c95767e59e95064442cdb6d75a42a823796632e"
+    },
+    {
+      "file": "01-Logos/thg-logo-white.svg",
+      "bytes": 10273,
+      "sha256": "cc3364da8ddbb6d94f8581089d486ea6e7ee969d77cd710ba2db75ae6b906228"
+    },
+    {
+      "file": "01-Logos/thg-symbol-black.png",
+      "bytes": 2547,
+      "sha256": "23e099a0a7775356b4b9c915eb151eb028d43f4512bfca5049ed9b570cd2b3ab"
+    },
+    {
+      "file": "01-Logos/thg-symbol-black.svg",
+      "bytes": 434,
+      "sha256": "80c5208b236aab8293e3480f7c99d420a878047263ccceff54f5a1210a55fdf3"
+    },
+    {
+      "file": "01-Logos/thg-symbol-primary.png",
+      "bytes": 2567,
+      "sha256": "8b1bb78e7c9fe3926529c8224655ef5b11b341ef062be7da8c97ee4ffed5cc86"
+    },
+    {
+      "file": "01-Logos/thg-symbol-primary.svg",
+      "bytes": 434,
+      "sha256": "0d960c42d5c32015ae589948c745e35fb2e3fec52cbf5abbe3924c55dd407e8f"
+    },
+    {
+      "file": "01-Logos/thg-symbol-reversed.png",
+      "bytes": 2850,
+      "sha256": "387322e465181ba5486d8391d48e454f2a7041207963ecaa1a07b577aeb2678e"
+    },
+    {
+      "file": "01-Logos/thg-symbol-reversed.svg",
+      "bytes": 482,
+      "sha256": "147d263a2f274e8f2bca97b45f343798d546f3dbbf670fb7df1eccc6a21a18d7"
+    },
+    {
+      "file": "01-Logos/thg-symbol-white.png",
+      "bytes": 2556,
+      "sha256": "394a472f01692fd57ea3efaddf14c6884dd0c71f3cac095b1586df6187b1ae87"
+    },
+    {
+      "file": "01-Logos/thg-symbol-white.svg",
+      "bytes": 434,
+      "sha256": "a3d829c0e4cfdd713c99e4c1a5191badf38cf47a543a645246a7138ed4042404"
+    },
+    {
+      "file": "02-Icons/favicon.ico",
+      "bytes": 1997,
+      "sha256": "1332bd3299a403907b5694810e14e9eda554386c6eef6a6438081db1b9756962"
+    },
+    {
+      "file": "02-Icons/thg-icon-16.png",
+      "bytes": 122,
+      "sha256": "27bd2b52763bfd82f62c76aed37d301a86b12827197096320adfd6c0351ae9b2"
+    },
+    {
+      "file": "02-Icons/thg-icon-16.svg",
+      "bytes": 469,
+      "sha256": "a08c3b575f93fa3a014a8c474d27191baf8d2c2c45d590a54b85827373e3946d"
+    },
+    {
+      "file": "02-Icons/thg-icon-180.png",
+      "bytes": 614,
+      "sha256": "eb47e03791ac1ef3bb96e55beadb1398192320e5b467221b0a6bef961997b63e"
+    },
+    {
+      "file": "02-Icons/thg-icon-180.svg",
+      "bytes": 484,
+      "sha256": "c1c47bd00f48524f82afb27560df0b97d81e0c1f82b2f03fec0b0c5d449d3d68"
+    },
+    {
+      "file": "02-Icons/thg-icon-32.png",
+      "bytes": 160,
+      "sha256": "a4f3b50dde754653c95f4182afd0a7054721d1379ed14e418adaac493f6ea872"
+    },
+    {
+      "file": "02-Icons/thg-icon-32.svg",
+      "bytes": 470,
+      "sha256": "1f68409998b65a6b029ec85b00264523cf4354d5b07b0146f64cd6a7d5d3b067"
+    },
+    {
+      "file": "02-Icons/thg-icon-48.png",
+      "bytes": 208,
+      "sha256": "31e428d88ce70655eaceaa1d5fc6f2e9d4f1c126eedb3976f8cd97d68c26b6fd"
+    },
+    {
+      "file": "02-Icons/thg-icon-48.svg",
+      "bytes": 498,
+      "sha256": "21dff398f73e5a37da9d3a31f1ebde48582c48b35e9ded1ed7323737d79f44a2"
+    },
+    {
+      "file": "02-Icons/thg-icon-512.png",
+      "bytes": 2263,
+      "sha256": "dee832ac17c482772b2f861d94e5b7c4aebd6aa270f3dffea8c97b7f494d5433"
+    },
+    {
+      "file": "02-Icons/thg-icon-512.svg",
+      "bytes": 500,
+      "sha256": "b165bf3023423a71726412085dfaaad75f3b9b02fecca98c80ee2308d4fa256a"
+    },
+    {
+      "file": "03-Social/01-brand-introduction.png",
+      "bytes": 56533,
+      "sha256": "ad05d8191ae8a60173f94711e097c04a48f06640d34ea38a6925ce4a6ef2f6f8"
+    },
+    {
+      "file": "03-Social/01-brand-introduction.svg",
+      "bytes": 103799,
+      "sha256": "36eb57a03c670f08abc516b74b922b1375f6caed1e7244b13a54b883bc63a16f"
+    },
+    {
+      "file": "03-Social/02-role-overview.png",
+      "bytes": 59268,
+      "sha256": "9e947fd09a570e45cf1a16c580de074ee914d8adb11ee9385a8ba66b5cc65d19"
+    },
+    {
+      "file": "03-Social/02-role-overview.svg",
+      "bytes": 83657,
+      "sha256": "4b6ee31108112a29b324a89ee7fa3a85e4936c79346c757c3cdc724a870c823a"
+    },
+    {
+      "file": "03-Social/03-story-reel-cover.png",
+      "bytes": 63879,
+      "sha256": "1c0e497c0e7500406d2b29cdaa82e8240490b07fdad989569f8ce30e3275e55e"
+    },
+    {
+      "file": "03-Social/03-story-reel-cover.svg",
+      "bytes": 84213,
+      "sha256": "24054ccaf8370c81c976a5896549883c7b82392693f52ffcecc964b89476e054"
+    },
+    {
+      "file": "03-Social/04-link-preview.png",
+      "bytes": 37322,
+      "sha256": "dd52c2f14b9c62bfa173e45ab41cd062c1372658e43d9daa87ca3f605c9da397"
+    },
+    {
+      "file": "03-Social/04-link-preview.svg",
+      "bytes": 59070,
+      "sha256": "8fbf82101e3c8be65c64ec40328f0c9a06d6be4bd31707825efb84d9f8518ac1"
+    },
+    {
+      "file": "03-Social/05-company-banner.png",
+      "bytes": 31348,
+      "sha256": "37355fc91052cb66d26f200954c71c5c60a709ce8588b0987fc1316e73977914"
+    },
+    {
+      "file": "03-Social/05-company-banner.svg",
+      "bytes": 58370,
+      "sha256": "607594003339915f571bea8751432e8bb9e3083f6425f7d951b618331a0d076a"
+    },
+    {
+      "file": "03-Social/avatar.png",
+      "bytes": 7172,
+      "sha256": "3057855be8b585bd32c7e5dfabf677e14e4322bdcce03f8bd58041d26d7379cf"
+    },
+    {
+      "file": "03-Social/avatar.svg",
+      "bytes": 518,
+      "sha256": "f0092777f0fe61fa78cbbf0122d9bd70caaa4dd32f50c459e6a784b6a14ec530"
+    },
+    {
+      "file": "03-Social/carousel-01.png",
+      "bytes": 38832,
+      "sha256": "b00672f9526cf58833330be4bd70fbd5ba258d31dbd7a6e38101c98ad12fb6d8"
+    },
+    {
+      "file": "03-Social/carousel-01.svg",
+      "bytes": 34259,
+      "sha256": "05e53debdd92e1fd6107055fa8eb168f87ee951f08fc1651f741455e51daac26"
+    },
+    {
+      "file": "03-Social/carousel-02.png",
+      "bytes": 34563,
+      "sha256": "0f56b33dd7d8711f7f51190fadd0b0183f292554b622dd9452c33d67b1db5f6e"
+    },
+    {
+      "file": "03-Social/carousel-02.svg",
+      "bytes": 29800,
+      "sha256": "000b6645b2878c596889e3d83d04fa2bbce08004ebfe7767ddde857df4520823"
+    },
+    {
+      "file": "03-Social/carousel-03.png",
+      "bytes": 35889,
+      "sha256": "ee63a44d59ee17ac46f2603b868541427b79bbda6be8f4e661fe118f3e96a789"
+    },
+    {
+      "file": "03-Social/carousel-03.svg",
+      "bytes": 33441,
+      "sha256": "b2064948d581ccfc116eb6cc5ba0cc87dfa1c92d358ca30719067af46360f188"
+    },
+    {
+      "file": "04-Website/brand-background.png",
+      "bytes": 10654,
+      "sha256": "a0a7d560d9e3606575935290c824eaec65d760ebf6d0cefef2cae2ae059c40d1"
+    },
+    {
+      "file": "04-Website/brand-background.svg",
+      "bytes": 754,
+      "sha256": "5f0487d3e39f8b05fca2255aadca3b4f8fa59705d54acd2650c48a7d0bf2cfe3"
+    },
+    {
+      "file": "04-Website/hero-concept.png",
+      "bytes": 68588,
+      "sha256": "4bede5cbaa64590193dbef5f62760f40c41d9131b8b7558da38265f8795013ad"
+    },
+    {
+      "file": "04-Website/hero-concept.svg",
+      "bytes": 97481,
+      "sha256": "0560eeec82dcea104af7edf79735a9d00063455e7107ec28bdbc9c6a781ead19"
+    },
+    {
+      "file": "05-Stationery/card-back-TEMPLATE.png",
+      "bytes": 23959,
+      "sha256": "27d8bec48439299a9b3b0acbd28f4adecb1f802834f2878789c3ed1df3ab2b4e"
+    },
+    {
+      "file": "05-Stationery/card-back-TEMPLATE.svg",
+      "bytes": 33418,
+      "sha256": "f183f23c6f922460cefab7f8d1fe15ad43547172291bd8e52e96031d87b415e2"
+    },
+    {
+      "file": "05-Stationery/card-front.png",
+      "bytes": 26881,
+      "sha256": "d3b0aeaa2457c062ad2118aaa36036b53909755af7b5bbd0bf86ad0b97323977"
+    },
+    {
+      "file": "05-Stationery/card-front.svg",
+      "bytes": 30004,
+      "sha256": "96f94038546387a62b773c2a7371814828085fc178f76c37e1a6018fc5784698"
+    },
+    {
+      "file": "05-Stationery/document-cover-A4-TEMPLATE.png",
+      "bytes": 59796,
+      "sha256": "8866fa421a5eaac3de060a6a9ca659f439849f48339c8cf3b86e27a2f48b68ba"
+    },
+    {
+      "file": "05-Stationery/document-cover-A4-TEMPLATE.svg",
+      "bytes": 73619,
+      "sha256": "3dfd86acf4c58eb5b4610168582fad93e4814a77be3d7f30f497f6a62789345b"
+    },
+    {
+      "file": "05-Stationery/email-signature-TEMPLATE.html",
+      "bytes": 538,
+      "sha256": "77d492342ee9528947757c22813213575034fd4102a6f36d0adf36377063b1ea"
+    },
+    {
+      "file": "05-Stationery/letterhead-A4-TEMPLATE.png",
+      "bytes": 39252,
+      "sha256": "b983ee624f228def2be978edfd1c8259cfff13c653e1bae1ad53bd4018297da4"
+    },
+    {
+      "file": "05-Stationery/letterhead-A4-TEMPLATE.svg",
+      "bytes": 73613,
+      "sha256": "65d4a8f1eb3e321ac0330b1bd0d51bf99921e413386f90303ed94c9c339f9a18"
+    },
+    {
+      "file": "06-Guidelines/brand-guide.html",
+      "bytes": 3554,
+      "sha256": "019c602fb3479a98708c3a1562eddbf0a6330a926ffd87350b3334fed1275af7"
+    },
+    {
+      "file": "06-Guidelines/brand-tokens.css",
+      "bytes": 134,
+      "sha256": "b3fd14c47bad082b007c9a34f7df35d59c1c35dfae44207b02105fd5b2ec28d4"
+    },
+    {
+      "file": "06-Guidelines/messaging-and-captions.md",
+      "bytes": 1099,
+      "sha256": "899d67af80bd6340f0b6452543b5383f33033efec0c46d4628310b42b7341267"
+    },
+    {
+      "file": "07-Editable-Text-SVGs/01-Logos/thg-horizontal-dark.svg",
+      "bytes": 521,
+      "sha256": "b4c0f0e38f7d9465b4dc000bb91fed065745cb38dc54c8befbe30f94dd2bf209"
+    },
+    {
+      "file": "07-Editable-Text-SVGs/01-Logos/thg-horizontal-light.svg",
+      "bytes": 521,
+      "sha256": "7fe8389699de5c6987ff00800c38d1a3a4ead7c2719256333e68e4ba22991864"
+    },
+    {
+      "file": "07-Editable-Text-SVGs/01-Logos/thg-logo-black.svg",
+      "bytes": 617,
+      "sha256": "bc8c2cd570b404d424d989f80c9f67ecf9164a40a169361710b47c3f821e251e"
+    },
+    {
+      "file": "07-Editable-Text-SVGs/01-Logos/thg-logo-primary.svg",
+      "bytes": 617,
+      "sha256": "8c1c1eb12ac47434703cb94fb394655541c9f25331ede42c543d65460060b07b"
+    },
+    {
+      "file": "07-Editable-Text-SVGs/01-Logos/thg-logo-reversed.svg",
+      "bytes": 665,
+      "sha256": "7245c3b31204855445a25db34b1e1812eee7e3cd939913745a38f76924af1384"
+    },
+    {
+      "file": "07-Editable-Text-SVGs/01-Logos/thg-logo-white.svg",
+      "bytes": 617,
+      "sha256": "cd51c50ee6220f716140d5103a0617fcda6d1711fdbc0b591ccd0984093b5ab1"
+    },
+    {
+      "file": "07-Editable-Text-SVGs/01-Logos/thg-symbol-black.svg",
+      "bytes": 335,
+      "sha256": "0188f27e6c3009aa26ad6f8e9e9fe0f4fc562380bcbfd1213121375f43cfa497"
+    },
+    {
+      "file": "07-Editable-Text-SVGs/01-Logos/thg-symbol-primary.svg",
+      "bytes": 335,
+      "sha256": "e6059355f7ccee3c9fabee3f0c6dbf705c663dedb37eeb5a876826bd286324bf"
+    },
+    {
+      "file": "07-Editable-Text-SVGs/01-Logos/thg-symbol-reversed.svg",
+      "bytes": 382,
+      "sha256": "ea23fd25bf63b87e4a3259835b22265e48044de23f438915579e63f1155dadba"
+    },
+    {
+      "file": "07-Editable-Text-SVGs/01-Logos/thg-symbol-white.svg",
+      "bytes": 335,
+      "sha256": "d4f672ed2e279c7f285d5a0a261f92c28660706496e1a7d9b95a4b56526ba54a"
+    },
+    {
+      "file": "07-Editable-Text-SVGs/02-Icons/thg-icon-16.svg",
+      "bytes": 369,
+      "sha256": "07b2624e77baa0e12981f9a5a567efa6f51711ef48eefdeb4221589c9ac268c8"
+    },
+    {
+      "file": "07-Editable-Text-SVGs/02-Icons/thg-icon-180.svg",
+      "bytes": 384,
+      "sha256": "fd083b4f213484a4590302e9885c7bf184821e9a521354d0f00cf7e2b09d1a39"
+    },
+    {
+      "file": "07-Editable-Text-SVGs/02-Icons/thg-icon-32.svg",
+      "bytes": 370,
+      "sha256": "8c92560a11c5a5468020f02c81a02260db3061d6e7b0ba78a246cd0b3a89a634"
+    },
+    {
+      "file": "07-Editable-Text-SVGs/02-Icons/thg-icon-48.svg",
+      "bytes": 398,
+      "sha256": "1482ed1b39f39273c2b1485fd04e24882f5da2d492031ccf1fe069cde038268f"
+    },
+    {
+      "file": "07-Editable-Text-SVGs/02-Icons/thg-icon-512.svg",
+      "bytes": 400,
+      "sha256": "3dafdd7a2d4ba8179ed47e747aa6746a13bcae4617554b94f9642dc41da54e82"
+    },
+    {
+      "file": "07-Editable-Text-SVGs/03-Social/01-brand-introduction.svg",
+      "bytes": 1575,
+      "sha256": "3b88e56ccf4befc9182b4d9750e50ca3cf4fa025040efe123b05994eb0db8550"
+    },
+    {
+      "file": "07-Editable-Text-SVGs/03-Social/02-role-overview.svg",
+      "bytes": 1806,
+      "sha256": "0cccfcb0e0a8bd843b59c4a46edcc9f9acbc5cf33930cee9284c5348f4213ebf"
+    },
+    {
+      "file": "07-Editable-Text-SVGs/03-Social/03-story-reel-cover.svg",
+      "bytes": 1605,
+      "sha256": "76e4786f93b455dd8b8e3e64ae767e3cd2d4fa535acec23d61beff0242f3c231"
+    },
+    {
+      "file": "07-Editable-Text-SVGs/03-Social/04-link-preview.svg",
+      "bytes": 1180,
+      "sha256": "c43224aed373f46b196c0b8a2c0420b3ac7721d347c63fdc3ca574954bf9c693"
+    },
+    {
+      "file": "07-Editable-Text-SVGs/03-Social/05-company-banner.svg",
+      "bytes": 885,
+      "sha256": "d02451d18cadad017717873fb0d2cc802861b1e5aee903b415376fb292cb4f20"
+    },
+    {
+      "file": "07-Editable-Text-SVGs/03-Social/avatar.svg",
+      "bytes": 418,
+      "sha256": "7eeb1c8603ff08986843897cd3e8160c14ad47b0ba702e583f0109e6511ab4d4"
+    },
+    {
+      "file": "07-Editable-Text-SVGs/03-Social/carousel-01.svg",
+      "bytes": 1285,
+      "sha256": "93d6c06a7eeecf19513773d2169afefc97d9181ce420d98add5ad2ee5f07e821"
+    },
+    {
+      "file": "07-Editable-Text-SVGs/03-Social/carousel-02.svg",
+      "bytes": 1276,
+      "sha256": "2472b4575ada2f22fc13eaf6b903cd5902bfa94c1b415affb540958ec10c8385"
+    },
+    {
+      "file": "07-Editable-Text-SVGs/03-Social/carousel-03.svg",
+      "bytes": 1281,
+      "sha256": "e40b047164ff8c4d220f9f40347d0bcc1a87c1b4bc7768bf43277eb529fe3860"
+    },
+    {
+      "file": "07-Editable-Text-SVGs/04-Website/brand-background.svg",
+      "bytes": 650,
+      "sha256": "f3d2f5421db982be3a0855a6b7006ae81a47f8870f32aec07a4d4fea9623e050"
+    },
+    {
+      "file": "07-Editable-Text-SVGs/04-Website/hero-concept.svg",
+      "bytes": 2023,
+      "sha256": "9ede64c3bb1d1c0bfc0d89bdfbb070817afff0f4c7177daf7378ac630c555db5"
+    },
+    {
+      "file": "07-Editable-Text-SVGs/05-Stationery/card-back-TEMPLATE.svg",
+      "bytes": 1339,
+      "sha256": "b5c7f45353000da1d5bbe0cc27fb857702f55ad3e531f9c6204c781cf9f50b0a"
+    },
+    {
+      "file": "07-Editable-Text-SVGs/05-Stationery/card-front.svg",
+      "bytes": 968,
+      "sha256": "8fd8f69c586f8803d8ea0d8acafa9652161254582fe4c135ece6b5a4a373ff5f"
+    },
+    {
+      "file": "07-Editable-Text-SVGs/05-Stationery/document-cover-A4-TEMPLATE.svg",
+      "bytes": 1541,
+      "sha256": "771a617f24c2d55acbdcdbca0983e3fcb267e3030d22ac0e2b00f33afbd818fc"
+    },
+    {
+      "file": "07-Editable-Text-SVGs/05-Stationery/letterhead-A4-TEMPLATE.svg",
+      "bytes": 1619,
+      "sha256": "ac84b070103a4d0d74905118ed2f35e4728e8772029fec2024faef74e084444f"
+    },
+    {
+      "file": "08-Web-Ready/apple-touch-icon.png",
+      "bytes": 614,
+      "sha256": "eb47e03791ac1ef3bb96e55beadb1398192320e5b467221b0a6bef961997b63e"
+    },
+    {
+      "file": "08-Web-Ready/favicon-32.png",
+      "bytes": 160,
+      "sha256": "a4f3b50dde754653c95f4182afd0a7054721d1379ed14e418adaac493f6ea872"
+    },
+    {
+      "file": "08-Web-Ready/favicon.ico",
+      "bytes": 1997,
+      "sha256": "1332bd3299a403907b5694810e14e9eda554386c6eef6a6438081db1b9756962"
+    },
+    {
+      "file": "08-Web-Ready/icon-512.png",
+      "bytes": 2263,
+      "sha256": "dee832ac17c482772b2f861d94e5b7c4aebd6aa270f3dffea8c97b7f494d5433"
+    },
+    {
+      "file": "08-Web-Ready/logo-reversed.svg",
+      "bytes": 10273,
+      "sha256": "cc3364da8ddbb6d94f8581089d486ea6e7ee969d77cd710ba2db75ae6b906228"
+    },
+    {
+      "file": "08-Web-Ready/logo.svg",
+      "bytes": 10273,
+      "sha256": "d406309fd3c31567cff36dbf49866fa712c3d9f9d7707b6fd0a28686bc7863c7"
+    },
+    {
+      "file": "08-Web-Ready/site.webmanifest",
+      "bytes": 176,
+      "sha256": "01efb248a63bcbf428f98048fdd9a243b726bde75b5bd75bd5dc42d57d379fad"
+    },
+    {
+      "file": "08-Web-Ready/social-share-1200x630.png",
+      "bytes": 37322,
+      "sha256": "dd52c2f14b9c62bfa173e45ab41cd062c1372658e43d9daa87ca3f605c9da397"
+    },
+    {
+      "file": "08-Web-Ready/symbol.svg",
+      "bytes": 434,
+      "sha256": "0d960c42d5c32015ae589948c745e35fb2e3fec52cbf5abbe3924c55dd407e8f"
+    },
+    {
+      "file": "README.txt",
+      "bytes": 409,
+      "sha256": "1f2b70617bf61664954085d99e51522d2cabbdcfc8257300ae28ac4f534acd85"
+    },
+    {
+      "file": "START-HERE-preview.jpg",
+      "bytes": 236881,
+      "sha256": "3ce31ec6e905a116511908ebf78fdf538879e7641858d307039df79617114ffa"
+    },
+    {
+      "file": "START-HERE.html",
+      "bytes": 199,
+      "sha256": "de9649b739a5210188b1788443bea6de5a1a5c6e0b03529fc672fe4381243402"
+    }
+  ]
+}

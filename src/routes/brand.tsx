@@ -54,181 +54,181 @@ const BRANDS_DATA: Record<BrandEntity, BrandSpec> = {
   hdw: {
     id: "hdw",
     name: "Harley Digital Works",
-    tagline: "Turnkey Digital Infrastructure for UK Trades",
+    tagline: "More leads. Less admin.",
     role: "Flagship Commercial Division",
     description:
-      "Harley Digital Works delivers 100% done-for-you website design, commercial copywriting, and ongoing monthly care for UK trades and small businesses.",
+      "We look after your website and enquiry systems, so customers can reach you and you can focus on the job. Websites. Enquiry systems. Digital care.",
     colors: [
       {
-        name: "Supporting Blue",
-        hex: "#173C62",
-        role: "Supporting Accent",
-        textClass: "text-white",
-      },
-      {
         name: "Midnight Navy",
-        hex: "#081B30",
+        hex: "#152B42",
         role: "Primary Canvas & Typography",
         textClass: "text-white",
       },
+      {
+        name: "Warm Ivory",
+        hex: "#F5F1E8",
+        role: "Background & Canvas",
+        textClass: "text-ink",
+      },
+      {
+        name: "Action Blue",
+        hex: "#356DCC",
+        role: "Brand Accent",
+        textClass: "text-white",
+      },
       { name: "Slate", hex: "#526479", role: "Supporting Neutral", textClass: "text-white" },
-      { name: "Warm Ivory", hex: "#F6F3ED", role: "Background & Contrast", textClass: "text-ink" },
     ],
     logos: [
       {
-        title: "Full Wordmark (Dark Theme)",
-        variant: "dark",
-        path: "/brand/2026-10-13/logos/hdw-endorsed-ivory.svg",
-        description: "Endorsed stacked wordmark in ivory for dark backgrounds.",
-      },
-      {
-        title: "Full Wordmark (Light Theme)",
+        title: "Full Wordmark (Light Canvas)",
         variant: "light",
-        path: "/brand/2026-10-13/logos/hdw-endorsed-navy.svg",
-        description: "Endorsed stacked wordmark in navy for light documents and backgrounds.",
+        path: "/brand/2026-10-21/HDW-Brand-Pack/08-Web-Ready/logo.svg",
+        description:
+          "Heritage double-ring primary lockup in navy on light canvas, endorsed with 'Part of The Harley Group'.",
       },
       {
-        title: "Monogram Mark (Dark)",
-        variant: "mark-dark",
-        path: "/brand/2026-10-13/logos/hdw-symbol-ivory.svg",
-        description: "Square app icon & social avatar for dark backgrounds.",
+        title: "Full Wordmark (Dark Canvas)",
+        variant: "dark",
+        path: "/brand/2026-10-21/HDW-Brand-Pack/08-Web-Ready/logo-reversed.svg",
+        description: "Reversed double-ring lockup in ivory on dark documents and backgrounds.",
       },
       {
-        title: "Monogram Mark (Light)",
+        title: "Monogram Symbol (Light)",
         variant: "mark-light",
-        path: "/brand/2026-10-13/logos/hdw-symbol-navy.svg",
-        description: "Clean square monogram for light surfaces and favicons.",
+        path: "/brand/2026-10-21/HDW-Brand-Pack/01-Logos/hdw-symbol-navy.svg",
+        description: "Heritage ring icon for light surfaces, avatars, and favicons.",
+      },
+      {
+        title: "Monogram Symbol (Dark)",
+        variant: "mark-dark",
+        path: "/brand/2026-10-21/HDW-Brand-Pack/01-Logos/hdw-symbol-white.svg",
+        description: "Heritage ring icon in white for dark surfaces and mobile app badges.",
       },
     ],
     voiceGuidelines: [
       "Plain English first: Explain technical concepts in terms of revenue, booked jobs, and time saved.",
-      "No homework rule: Emphasize that we write 100% of the copy and configure all DNS records.",
-      "Use the approved managed offer: £1,495 setup + £249/month care. Confirm delivery timing and terms in writing; do not promise a guaranteed launch date.",
+      "No homework rule: Emphasize that we write 100% of the copy and look after website and enquiry systems.",
+      "Approved commercial offer: £1,495 setup + £249/month care. 'More leads. Less admin.' is an ambition, not an invented numerical guarantee.",
     ],
   },
   group: {
     id: "group",
     name: "The Harley Group",
-    tagline: "Holding & Operating Company Governance",
-    role: "Parent Holding Entity",
+    tagline: "Practical ambition. Lasting value.",
+    role: "Parent Identity across Group Portfolio",
     description:
-      "The Harley Group oversees specialised technology and commercial operating ventures under the executive leadership of Dr Robbie Harley, MBA.",
+      "The Harley Group brings Harley Digital Works, Harley Labs and the domain portfolio under one parent identity. Distinct activities, with a shared direction.",
     colors: [
       {
-        name: "Emerald Accent",
-        hex: "#10B981",
-        role: "Primary Holding Mark",
-        textClass: "text-emerald-950",
-      },
-      {
-        name: "Deep Forest",
-        hex: "#0D5F48",
-        role: "Institutional Dark Brand",
+        name: "Charcoal Obsidian",
+        hex: "#202326",
+        role: "Primary Holding Canvas",
         textClass: "text-white",
       },
       {
-        name: "Midnight Obsidian",
-        hex: "#0D0D0D",
-        role: "Corporate Slate",
-        textClass: "text-white",
+        name: "Warm Ivory",
+        hex: "#F3EFE7",
+        role: "Light Background Canvas",
+        textClass: "text-ink",
       },
-      { name: "Pure Platinum", hex: "#F4F4F5", role: "Light Canvas", textClass: "text-slate-900" },
+      {
+        name: "Champagne Accent",
+        hex: "#B7A17A",
+        role: "Group Architectural Accent",
+        textClass: "text-slate-900",
+      },
     ],
     logos: [
       {
-        title: "Group Wordmark (Dark)",
-        variant: "dark",
-        path: "/brand/approved/logos/thg-wordmark-dark.svg",
-        description: "Authoritative holding company identity for dark investor & governance decks.",
-      },
-      {
-        title: "Group Wordmark (Light)",
+        title: "Group Primary Wordmark",
         variant: "light",
-        path: "/brand/approved/logos/thg-wordmark-light.svg",
-        description: "Official holding logo for corporate letterheads and legal MSA disclosures.",
+        path: "/brand/2026-10-21/THG-Brand-Pack/08-Web-Ready/logo.svg",
+        description: "Architectural H wordmark in charcoal on light canvas (Georgia Bold).",
       },
       {
-        title: "Group Monogram (Dark)",
-        variant: "mark-dark",
-        path: "/brand/approved/logos/thg-monogram-dark.svg",
-        description: "Square corporate holding icon on obsidian background.",
+        title: "Group Reversed Wordmark",
+        variant: "dark",
+        path: "/brand/2026-10-21/THG-Brand-Pack/08-Web-Ready/logo-reversed.svg",
+        description: "Architectural H wordmark in warm ivory for dark corporate decks.",
       },
       {
         title: "Group Monogram (Light)",
         variant: "mark-light",
-        path: "/brand/approved/logos/thg-monogram-light.svg",
-        description: "Light square monogram for official stationery and legal sheets.",
+        path: "/brand/2026-10-21/THG-Brand-Pack/01-Logos/thg-symbol-primary.svg",
+        description: "Architectural H monogram in charcoal on light backgrounds.",
+      },
+      {
+        title: "Group Monogram (Dark)",
+        variant: "mark-dark",
+        path: "/brand/2026-10-21/THG-Brand-Pack/01-Logos/thg-symbol-white.svg",
+        description: "Architectural H monogram in white for dark surfaces.",
       },
     ],
     voiceGuidelines: [
-      "Institutional discipline: Frame capabilities with operational rigour and compliance.",
-      "Executive commercial clarity: Emphasize measurable business value and transparent governance.",
-      "Direct senior accountability: Authentic leadership tone from Dr Robbie Harley, MBA.",
+      "Practical ambition. Lasting value: Frame capabilities with operational rigour and compliance.",
+      "Clear parent identity: THG oversees HDW, Harley Labs and the domain portfolio under one parent identity. Revival Fellowship is outside this commercial brand family.",
+      "Direct founder accountability: Authentic leadership tone from founder Robbie Harley.",
     ],
   },
   labs: {
     id: "labs",
     name: "Harley Labs",
-    tagline: "Autonomous Systems, Multi-Agent AI & Edge R&D",
-    role: "Deep-Tech Product Division",
+    tagline: "Ideas into working systems.",
+    role: "Automation, Prototypes & Digital Products",
     description:
-      "Harley Labs is the research incubator pioneering multi-agent orchestration, sub-50ms edge SSR architectures, and intelligent business tooling.",
+      "Harley Labs explores practical automation, prototypes and new digital products. Part of The Harley Group, with an emphasis on building, testing and learning.",
     colors: [
       {
-        name: "Indigo Core",
-        hex: "#6366F1",
-        role: "Primary Deep-Tech Accent",
-        textClass: "text-indigo-950",
-      },
-      {
-        name: "Electric Lavender",
-        hex: "#818CF8",
-        role: "Terminal Glow",
-        textClass: "text-hdw-midnight",
-      },
-      {
-        name: "Cyber Obsidian",
-        hex: "#0A0D14",
-        role: "Deep Space Canvas",
+        name: "Graphite Canvas",
+        hex: "#171C23",
+        role: "Primary Deep-Tech Canvas",
         textClass: "text-white",
       },
       {
-        name: "Ice Violet",
-        hex: "#EEF2FF",
+        name: "Cool White",
+        hex: "#EEF3F7",
         role: "Light Lab Background",
-        textClass: "text-indigo-950",
+        textClass: "text-slate-950",
+      },
+      {
+        name: "Cyan Terminal",
+        hex: "#42C9E8",
+        role: "Labs Telemetry Accent",
+        textClass: "text-slate-950",
       },
     ],
     logos: [
       {
-        title: "Labs Wordmark (Dark)",
-        variant: "dark",
-        path: "/brand/approved/logos/labs-wordmark-dark.svg",
-        description: "High-tech vector wordmark for developer portals and live telemetry desks.",
-      },
-      {
-        title: "Labs Wordmark (Light)",
+        title: "Labs Primary Wordmark",
         variant: "light",
-        path: "/brand/approved/logos/labs-wordmark-light.svg",
-        description: "Clean R&D identity for academic papers and research partnership decks.",
+        path: "/brand/2026-10-21/HL-Brand-Pack/08-Web-Ready/logo.svg",
+        description:
+          "Four-module wordmark in graphite (Bahnschrift), endorsed with 'Part of The Harley Group'.",
       },
       {
-        title: "Labs Monogram (Dark)",
-        variant: "mark-dark",
-        path: "/brand/approved/logos/labs-monogram-dark.svg",
-        description: "Cyber indigo icon for software packages and terminal consoles.",
+        title: "Labs Reversed Wordmark",
+        variant: "dark",
+        path: "/brand/2026-10-21/HL-Brand-Pack/08-Web-Ready/logo-reversed.svg",
+        description: "Outlined four-module wordmark in cool white on dark telemetry surfaces.",
       },
       {
         title: "Labs Monogram (Light)",
         variant: "mark-light",
-        path: "/brand/approved/logos/labs-monogram-light.svg",
-        description: "Light version for developer documentation and API reference.",
+        path: "/brand/2026-10-21/HL-Brand-Pack/01-Logos/hl-symbol-primary.svg",
+        description: "Four-module symbol with central connector in graphite.",
+      },
+      {
+        title: "Labs Monogram (Dark)",
+        variant: "mark-dark",
+        path: "/brand/2026-10-21/HL-Brand-Pack/01-Logos/hl-symbol-white.svg",
+        description: "Four-module symbol in white for terminal consoles and packages.",
       },
     ],
     voiceGuidelines: [
-      "Technical precision: Ground all claims in real architectural benchmarks (TTFB, isolates, agent graphs).",
-      "Futuristic yet pragmatic: Emphasize practical agentic tools that solve real operational bottlenecks.",
-      "High-velocity delivery: Highlight edge compilation, self-healing code, and streaming telemetry.",
+      "Ideas into working systems: Describe actual automation, prototypes and software accurately.",
+      "No unlaunched product claims: Prototypes are not automatically launched commercial products.",
+      "High-velocity execution: Focus on building, testing, learning and real operational bottlenecks.",
     ],
   },
 };
@@ -272,12 +272,21 @@ function BrandAssetsPage() {
 
           <div className="mt-8 flex flex-wrap gap-4">
             <a
-              href="/brand/2026-10-13/Harley-Digital-Works-Brand-Guide.pdf"
-              download
-              className="inline-flex items-center gap-2 rounded-full bg-hdw-ivory px-5 py-2.5 text-sm font-bold text-hdw-midnight shadow-lg hover:bg-hdw-ivory transition-colors"
+              href="/brand/Harley-Final-Media-Pack.zip"
+              download="Harley-Final-Media-Pack.zip"
+              className="inline-flex items-center gap-2 rounded-full bg-hdw-ivory px-5 py-2.5 text-sm font-bold text-hdw-midnight shadow-lg hover:bg-white transition-colors"
             >
               <Download className="h-4 w-4" />
-              <span>Download Brand Guide (PDF)</span>
+              <span>Download Final Media Pack (.zip)</span>
+            </a>
+            <a
+              href="/brand/2026-10-21/START-HERE.html"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-full border border-hdw-ivory/30 bg-white/10 px-5 py-2.5 text-sm font-semibold text-white hover:bg-white/20 transition-colors"
+            >
+              <ExternalLink className="h-4 w-4" />
+              <span>Interactive Family Overview</span>
             </a>
             <PillButton
               as="link"
@@ -299,28 +308,27 @@ function BrandAssetsPage() {
         <Container>
           <div className="max-w-3xl">
             <p className="text-sm text-hdw-ivory/80">
-              Harley Digital Works · Approved 13 October 2026
+              The Harley Group Brand Family · Approved 21 October 2026 (Option 3)
             </p>
             <h2 id="approved-hdw-direction" className="mt-3 text-2xl font-semibold">
-              Our new wordmark direction
+              One Family. Distinct Personalities.
             </h2>
             <p className="mt-4 leading-relaxed text-slate-200">
-              A premium, understated wordmark in very deep midnight navy and warm ivory. Widely
-              spaced HARLEY sits above DIGITAL WORKS, with a distinctive capital H and a subtle
-              curved bridge. The secondary endorsement reads exactly: Part of The Harley Group.
+              The user selected HDW logo number 3 (Heritage Ring: H inside a double circle),
+              retained the original palettes, and approved typography option 3 across the group.
+              Outlined SVGs preserve exact lettering across all devices without requiring font
+              downloads.
             </p>
             <p className="mt-4 leading-relaxed text-slate-200">
-              Preserve the proportions, spacing and endorsement. Keep the contrast clear; avoid
-              stretching, redrawing the H or adding effects. Midnight navy is #081B30 and warm ivory
-              is #F6F3ED, supported by blue #173C62 and slate #526479. The prepared vector artwork
-              uses Arial-based outlined lettering and a custom H. Keep at least one H stem width of
-              clear space; use a compact wordmark or symbol when the endorsement is too small to
-              read.
+              Typography Option 3 establishes distinct personalities: Georgia for The Harley Group
+              (#202326 Charcoal, #B7A17A Champagne), Segoe UI for Harley Digital Works (#152B42
+              Navy, #F5F1E8 Warm Ivory, #356DCC Action Blue), and Bahnschrift for Harley Labs
+              (#171C23 Graphite, #42C9E8 Cyan).
             </p>
             <p className="mt-4 text-sm leading-relaxed text-hdw-ivory/80">
-              The wordmark keeps Harley Digital Works prominent, with the group endorsement smaller.
-              Use the supplied vector artwork rather than recreating the lettering. The guide and
-              downloadable variants below explain how to use it consistently.
+              HDW icons use a simplified single ring at small favicon sizes, retaining the double
+              ring for the primary logo. Primary logos include "Part of The Harley Group" corporate
+              endorsement.
             </p>
           </div>
         </Container>
@@ -475,13 +483,13 @@ function BrandAssetsPage() {
                     </div>
 
                     <div
-                      className={`mt-4 rounded-xl p-6 border border-hdw-ivory/15 flex items-center justify-center min-h-[140px] ${logo.variant === "light" || logo.variant === "mark-light" ? "bg-hdw-ivory" : "bg-hdw-midnight"}`}
+                      className={`mt-4 rounded-xl p-6 border border-hdw-ivory/15 flex items-center justify-center min-h-[160px] ${logo.variant === "light" || logo.variant === "mark-light" ? "bg-hdw-ivory" : "bg-hdw-midnight"}`}
                     >
                       <BrandLogo
                         entity={brand.id}
                         variant={logo.variant}
                         imageClassName={
-                          logo.variant.startsWith("mark") ? "h-16 w-16" : "h-auto w-72 max-w-full"
+                          logo.variant.startsWith("mark") ? "h-20 w-20" : "h-16 w-auto max-w-full"
                         }
                       />
                     </div>
@@ -574,49 +582,75 @@ function BrandAssetsPage() {
         <Container>
           <div className="max-w-2xl">
             <p className="text-xs font-bold uppercase tracking-widest text-slate-600">
-              Typography Hierarchy
+              Typography Option 3
             </p>
             <h2 className="mt-2 text-3xl font-bold tracking-tight text-ink md:text-4xl font-display">
-              Ratified Typography System
+              Ratified Typography Direction
             </h2>
             <p className="mt-3 text-sm text-ink-muted">
-              Harley Digital Works uses a sturdy British industrial typography system: Manrope for
-              bold display headlines, Inter for mobile-first body copy, and DM Mono for transparent
-              pricing and technical specifications.
+              The Harley Group brand family uses typography option 3: Georgia for The Harley Group,
+              Segoe UI for Harley Digital Works, Bahnschrift for Harley Labs, with DM Mono for
+              transparent commercial pricing.
             </p>
           </div>
 
-          <div className="mt-10 grid gap-6 md:grid-cols-3">
+          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             <div className="rounded-xl border border-ink/10 bg-white p-6 shadow-sm">
-              <span className="text-[11px] font-mono text-[#173C62] font-bold uppercase">
-                Primary Headings & Display
+              <span className="text-[11px] font-mono text-[#356DCC] font-bold uppercase">
+                Harley Digital Works
               </span>
-              <h3 className="mt-2 text-2xl font-extrabold text-ink font-display">Manrope</h3>
+              <h3
+                className="mt-2 text-2xl font-bold text-[#152B42]"
+                style={{ fontFamily: "'Segoe UI', Arial, sans-serif" }}
+              >
+                Segoe UI
+              </h3>
               <p className="mt-2 text-xs text-ink-muted leading-relaxed">
-                Sturdy modern geometric sans with tight tracking, inspired by luxury engineering
-                brands (Aston Martin, Festool). Used across all hero headings and section titles.
+                Sturdy, modern and highly readable sans-serif for UK trade contractors. Used for all
+                HDW headings, service packages, and customer-facing interfaces.
               </p>
             </div>
 
             <div className="rounded-xl border border-ink/10 bg-white p-6 shadow-sm">
-              <span className="text-[11px] font-mono text-[#173C62] font-bold uppercase">
-                Body & Functional Text
+              <span className="text-[11px] font-mono text-[#B7A17A] font-bold uppercase">
+                The Harley Group
               </span>
-              <h3 className="mt-2 text-2xl font-medium text-ink font-sans">Inter</h3>
+              <h3
+                className="mt-2 text-2xl font-bold text-[#202326]"
+                style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
+              >
+                Georgia
+              </h3>
               <p className="mt-2 text-xs text-ink-muted leading-relaxed">
-                Clean, neutral sans-serif optimised for high legibility on mobile devices, ensuring
-                tradespeople can read service packages effortlessly on site.
+                Authoritative architectural serif conveying institutional heritage, practical
+                ambition, and long-term corporate governance.
               </p>
             </div>
 
             <div className="rounded-xl border border-ink/10 bg-white p-6 shadow-sm">
-              <span className="text-[11px] font-mono text-[#173C62] font-bold uppercase">
-                Technical Data & Pricing
+              <span className="text-[11px] font-mono text-[#42C9E8] font-bold uppercase">
+                Harley Labs
+              </span>
+              <h3
+                className="mt-2 text-2xl font-bold text-[#171C23]"
+                style={{ fontFamily: "Bahnschrift, 'Arial Narrow', Arial, sans-serif" }}
+              >
+                Bahnschrift
+              </h3>
+              <p className="mt-2 text-xs text-ink-muted leading-relaxed">
+                Precision DIN-style variable sans engineered for deep-tech software, terminal
+                telemetry, and edge infrastructure blueprints.
+              </p>
+            </div>
+
+            <div className="rounded-xl border border-ink/10 bg-white p-6 shadow-sm">
+              <span className="text-[11px] font-mono text-slate-700 font-bold uppercase">
+                Data & Pricing
               </span>
               <h3 className="mt-2 text-2xl font-mono font-bold text-ink">DM Mono</h3>
               <p className="mt-2 text-xs text-ink-muted leading-relaxed">
-                Precision monospaced figures for package pricing (£1,495 / £249/mo), SLAs, audit
-                benchmarks, and transparent commercial breakdowns.
+                Precision monospaced figures for package pricing (£1,495 setup / £249/mo care),
+                SLAs, and transparent commercial terms.
               </p>
             </div>
           </div>

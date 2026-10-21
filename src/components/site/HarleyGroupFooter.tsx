@@ -7,7 +7,7 @@ export function HarleyGroupFooter() {
       <div className="studio-wrap">
         <div className="group-footer-row">
           <a href="/the-harley-group" className="group-wordmark">
-            THE HARLEY GROUP<span>THOUGHTFUL DESIGN. USEFUL TECHNOLOGY.</span>
+            THE HARLEY GROUP<span>PRACTICAL AMBITION. LASTING VALUE.</span>
           </a>
           <nav aria-label="Group footer" className="flex flex-wrap items-center gap-4 text-xs">
             <a
@@ -42,7 +42,7 @@ export function HarleyGroupFooter() {
             © {new Date().getFullYear()} The Harley Group · Bristol, United Kingdom · Mon–Fri
             09:00–17:00
           </span>
-          <span>Practical digital services for independent businesses.</span>
+          <span>Practical ambition. Lasting value.</span>
         </div>
       </div>
     </footer>

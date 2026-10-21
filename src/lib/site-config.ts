@@ -24,7 +24,7 @@ export const siteConfig = {
   domain: siteDomain,
   url: siteUrl,
   canonicalUrl: `${siteUrl}/`,
-  ogImage: `${siteUrl}/brand/2026-10-13/hdw-og-image.png`,
+  ogImage: `${siteUrl}/brand/2026-10-21/HDW-Brand-Pack/08-Web-Ready/social-share-1200x630.png`,
   contactEmail: "hello@harleydigitalworks.com",
   contactPhone: "0117 214 1357",
   contactPhoneInternational: "+44 117 214 1357",
@@ -38,12 +38,12 @@ export const siteConfig = {
     "Hi Robbie, I'd like to chat about getting a website and digital care for my business.",
   location: "Bristol, United Kingdom",
   operatingHours: "Monday–Friday 09:00–17:00 UK time",
-  brandMark: "/brand/2026-10-13/logos/hdw-symbol-ivory.svg",
-  brandLogo: "/brand/2026-10-13/logos/hdw-endorsed-ivory.svg",
-  brandLogoDark: "/brand/2026-10-13/logos/hdw-endorsed-ivory.svg",
-  brandLogoLight: "/brand/2026-10-13/logos/hdw-endorsed-navy.svg",
-  brandMarkDark: "/brand/2026-10-13/logos/hdw-symbol-ivory.svg",
-  brandMarkLight: "/brand/2026-10-13/logos/hdw-symbol-navy.svg",
+  brandMark: "/brand/2026-10-21/HDW-Brand-Pack/08-Web-Ready/symbol.svg",
+  brandLogo: "/brand/2026-10-21/HDW-Brand-Pack/08-Web-Ready/logo.svg",
+  brandLogoDark: "/brand/2026-10-21/HDW-Brand-Pack/08-Web-Ready/logo-reversed.svg",
+  brandLogoLight: "/brand/2026-10-21/HDW-Brand-Pack/08-Web-Ready/logo.svg",
+  brandMarkDark: "/brand/2026-10-21/HDW-Brand-Pack/01-Logos/hdw-symbol-white.svg",
+  brandMarkLight: "/brand/2026-10-21/HDW-Brand-Pack/01-Logos/hdw-symbol-navy.svg",
 };
 
 export const harleyGroupConfig = {

@@ -13,22 +13,22 @@ type BrandLogoProps = {
 
 const LOGO_MAP: Record<BrandEntity, Record<BrandVariant, string>> = {
   hdw: {
-    dark: "/brand/2026-10-13/logos/hdw-endorsed-ivory.svg",
-    light: "/brand/2026-10-13/logos/hdw-endorsed-navy.svg",
-    "mark-dark": "/brand/2026-10-13/logos/hdw-symbol-ivory.svg",
-    "mark-light": "/brand/2026-10-13/logos/hdw-symbol-navy.svg",
+    dark: "/brand/2026-10-21/HDW-Brand-Pack/08-Web-Ready/logo-reversed.svg",
+    light: "/brand/2026-10-21/HDW-Brand-Pack/08-Web-Ready/logo.svg",
+    "mark-dark": "/brand/2026-10-21/HDW-Brand-Pack/01-Logos/hdw-symbol-white.svg",
+    "mark-light": "/brand/2026-10-21/HDW-Brand-Pack/01-Logos/hdw-symbol-navy.svg",
   },
   group: {
-    dark: "/brand/approved/logos/thg-wordmark-dark.svg",
-    light: "/brand/approved/logos/thg-wordmark-light.svg",
-    "mark-dark": "/brand/approved/logos/thg-monogram-dark.svg",
-    "mark-light": "/brand/approved/logos/thg-monogram-light.svg",
+    dark: "/brand/2026-10-21/THG-Brand-Pack/08-Web-Ready/logo-reversed.svg",
+    light: "/brand/2026-10-21/THG-Brand-Pack/08-Web-Ready/logo.svg",
+    "mark-dark": "/brand/2026-10-21/THG-Brand-Pack/01-Logos/thg-symbol-white.svg",
+    "mark-light": "/brand/2026-10-21/THG-Brand-Pack/01-Logos/thg-symbol-primary.svg",
   },
   labs: {
-    dark: "/brand/approved/logos/labs-wordmark-dark.svg",
-    light: "/brand/approved/logos/labs-wordmark-light.svg",
-    "mark-dark": "/brand/approved/logos/labs-monogram-dark.svg",
-    "mark-light": "/brand/approved/logos/labs-monogram-light.svg",
+    dark: "/brand/2026-10-21/HL-Brand-Pack/08-Web-Ready/logo-reversed.svg",
+    light: "/brand/2026-10-21/HL-Brand-Pack/08-Web-Ready/logo.svg",
+    "mark-dark": "/brand/2026-10-21/HL-Brand-Pack/01-Logos/hl-symbol-white.svg",
+    "mark-light": "/brand/2026-10-21/HL-Brand-Pack/01-Logos/hl-symbol-primary.svg",
   },
 };
 

@@ -19,5 +19,10 @@
 ## 3. Response Structure for Robbie
 1. **Bottom Line / Executive Summary**: State the direct answer or completed result first in 1–2 plain sentences.
 2. **What This Means for the Business**: The practical commercial benefit.
-3. **Visual Proof**: Where possible, provide screenshots or launch the browser (`Start-Process chrome.exe "http://localhost:8080/"`) so Robbie can see the result visually on his screen.
+3. **Visual Proof**: Where possible, provide screenshots or launch the browser (`Start-Process chrome.exe "http://localhost:3000/"`) so Robbie can see the result visually on his screen.
 4. **Next Step**: Exactly one clear next action.
+
+## 4. Permanent Machine & Port Knowledge: Port 3000 vs Port 8080 (NVIDIA Broadcast Conflict)
+- **NEVER USE PORT 8080**: On Robbie's machine, port 8080 is permanently occupied by an internal system process (**NVIDIA Broadcast**). Hitting port 8080 returns `Cannot GET /brand` or `Cannot GET /...` because it hits NVIDIA Broadcast rather than Vite/TanStack Start.
+- **ALWAYS USE PORT 3000**: The dev server is configured to bind strictly to **port 3000** (`http://localhost:3000/`).
+- Whenever launching native Chrome or verifying local web routes, always use `http://localhost:3000/`.

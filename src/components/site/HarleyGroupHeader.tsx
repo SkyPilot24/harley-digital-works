@@ -26,7 +26,7 @@ export function HarleyGroupHeader() {
     <header className="studio-header">
       <div className="studio-header-inner">
         <a href="/the-harley-group" className="group-wordmark" aria-label="The Harley Group home">
-          THE HARLEY GROUP<span>INDEPENDENT THINKING. PRACTICAL PROGRESS.</span>
+          THE HARLEY GROUP<span>PRACTICAL AMBITION. LASTING VALUE.</span>
         </a>
         <nav className="studio-desktop-nav" aria-label="Group navigation">
           {links.map(([h, t]) => (

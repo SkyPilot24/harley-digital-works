@@ -1,6 +1,2 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-<rect width="512" height="512" rx="110" fill="#F4F4F5"/>
-<g transform="translate(100 82) scale(.62)">
-<path d="M112 82h78v133l132-76V82h78v348h-78V232L190 308v122h-78V82z" fill="#0D5F48"/>
-</g>
-</svg>
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="600" viewBox="0 0 600 600"><title>THG final artwork — typography option 3</title><rect x="102.6" y="65.0" width="89.3" height="470.0" rx="0" fill="#202326" /><rect x="408.1" y="65.0" width="89.3" height="470.0" rx="0" fill="#202326" /><rect x="191.9" y="295.3" width="216.20000000000002" height="70.5" rx="0" fill="#202326" /></svg>

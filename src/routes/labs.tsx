@@ -139,27 +139,37 @@ function HarleyLabsPage() {
       <section className="relative overflow-hidden bg-[#f7f5ef] pt-32 pb-20 text-[#252720] md:pt-40 md:pb-28 border-b border-[#e2dec9]">
         <Container className="relative z-10">
           <div className="flex flex-wrap items-center gap-3">
-            <div className="inline-flex items-center gap-2 rounded-full border border-[#252720]/15 bg-white/80 px-3.5 py-1.5 text-xs font-semibold tracking-wide text-[#252720] shadow-sm backdrop-blur-md">
-              <Cpu className="h-3.5 w-3.5 text-[#5a5d4e]" />
-              <span>Harley Labs · Software Research & Systems Architecture</span>
+            <div className="inline-flex items-center gap-2 rounded-full border border-[#171C23]/15 bg-white/80 px-3.5 py-1.5 text-xs font-semibold tracking-wide text-[#171C23] shadow-sm backdrop-blur-md">
+              <Cpu className="h-3.5 w-3.5 text-[#42C9E8]" />
+              <span>Harley Labs · Automation · Prototypes · Digital Products</span>
             </div>
             <Link
               to="/the-harley-group"
-              className="inline-flex items-center gap-1.5 rounded-full border border-[#252720]/10 bg-white/50 px-3 py-1.5 text-xs font-medium text-[#5a5d4e] hover:text-[#252720] hover:border-[#252720]/30 transition-colors"
+              className="inline-flex items-center gap-1.5 rounded-full border border-[#171C23]/10 bg-white/50 px-3 py-1.5 text-xs font-medium text-[#5a5d4e] hover:text-[#171C23] hover:border-[#171C23]/30 transition-colors"
             >
-              <Building2 className="h-3 w-3 text-[#4a7c59]" />
-              <span>A Division of The Harley Group</span>
+              <Building2 className="h-3 w-3 text-[#42C9E8]" />
+              <span>Part of The Harley Group</span>
             </Link>
           </div>
 
-          <h1 className="mt-6 max-w-4xl text-[clamp(2.5rem,5.5vw,4.5rem)] font-bold tracking-tight text-[#252720] leading-[1.05]">
-            Engineering Edge Infrastructure & High-Velocity Digital Tooling.
+          <div className="mt-8 mb-4 max-w-xs">
+            <img
+              src="/brand/2026-10-21/HL-Brand-Pack/08-Web-Ready/logo.svg"
+              alt="Harley Labs — Part of The Harley Group"
+              className="h-14 w-auto object-contain"
+            />
+          </div>
+
+          <h1
+            className="mt-4 max-w-4xl text-[clamp(2.5rem,5.5vw,4.5rem)] font-bold tracking-tight text-[#171C23] leading-[1.05]"
+            style={{ fontFamily: "Bahnschrift, 'Arial Narrow', Arial, sans-serif" }}
+          >
+            Ideas into working systems.
           </h1>
 
           <p className="mt-6 max-w-2xl text-lg leading-relaxed text-[#5a5d4e]">
-            Harley Labs is the digital product and systems incubator of The Harley Group. We
-            engineer high-speed edge rendering, automated commercial platforms, and precision local
-            search telemetry.
+            Harley Labs explores practical automation, prototypes and new digital products. Part of
+            The Harley Group, with an emphasis on building, testing and learning.
           </p>
 
           <div className="mt-8 flex flex-wrap gap-4">

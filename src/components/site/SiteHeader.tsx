@@ -59,14 +59,14 @@ export function SiteHeader() {
         <div className="studio-header-cta">
           <a
             href={`tel:${siteConfig.contactPhoneTel}`}
-            className="hidden xl:inline-flex items-center gap-1.5 text-xs font-semibold text-ink/80 hover:text-ink transition-colors px-2.5 py-1.5 rounded-lg hover:bg-ink/5"
+            className="hidden xl:inline-flex items-center gap-2 text-sm font-semibold text-ink/85 hover:text-ink transition-colors px-3 py-1.5 rounded-lg hover:bg-ink/5"
             aria-label={`Call us on ${siteConfig.contactPhone}`}
           >
-            <Phone size={13} className="text-gold-500" />
+            <Phone size={14} className="text-gold-500" />
             <span>{siteConfig.contactPhone}</span>
           </a>
           {user && isAdmin && (
-            <Link to="/admin" className="text-sm">
+            <Link to="/admin" className="text-sm font-medium hover:text-ink transition-colors">
               Admin
             </Link>
           )}

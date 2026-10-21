@@ -1,5 +1,58 @@
 # Harley Digital Works — Project Status
 
+## Approved Brand Family & Media Pack (Typography Option 3) Deployed — 21 October 2026 (H15/H16/H42)
+
+**Current Status:** Integrated the approved Harley brand family (Typography Option 3) across the application, public assets, and marketing surfaces following the Final Media Pack specification (`ANTIGRAVITY-PROMPT.md` and `START-HERE.html`):
+
+1. **Brand Family Alignment (Typography Option 3)**:
+   - **Harley Digital Works (HDW)**:
+     - Symbol: Heritage Ring H (double circle for primary brand logo, single ring for icons/favicons).
+     - Palette: Midnight Navy (`#152B42`), Warm Ivory (`#F5F1E8`), Action Blue (`#356DCC`), Slate (`#526479`).
+     - Typography: `'Segoe UI', Arial, sans-serif`.
+     - Headline: *"More leads. Less admin."*
+     - Descriptor: *"Websites. Enquiry systems. Digital care."*
+     - Supporting copy: *"We look after your website and enquiry systems, so customers can reach you and you can focus on the job."*
+     - Corporate endorsement: *"Part of The Harley Group"*.
+   - **The Harley Group (THG)**:
+     - Symbol: Architectural H.
+     - Palette: Charcoal (`#202326`), Warm Ivory (`#F3EFE7`), Champagne Gold (`#B7A17A`).
+     - Typography: `Georgia, 'Times New Roman', serif`.
+     - Headline: *"Practical ambition. Lasting value."*
+     - Descriptor: *"Digital services. Experimentation. Domain portfolio."*
+     - Role: Parent identity across HDW, Harley Labs, and domain portfolio. (No endorsement under THG itself).
+   - **Harley Labs (HL)**:
+     - Symbol: 4-module geometric symbol with central connector.
+     - Palette: Graphite (`#171C23`), Cool White (`#EEF3F7`), Cyan (`#42C9E8`).
+     - Typography: `Bahnschrift, 'Arial Narrow', Arial, sans-serif`.
+     - Headline: *"Ideas into working systems."*
+     - Descriptor: *"Automation. Prototypes. Digital products."*
+     - Corporate endorsement: *"Part of The Harley Group"*.
+
+2. **Public Assets & Media Pack Ingestion**:
+   - Ingested full media pack into `public/brand/2026-10-21/` (including `HDW-Brand-Pack`, `THG-Brand-Pack`, `HL-Brand-Pack`, guidelines, social cards, and `START-HERE.html`).
+   - Packaged master download archive `public/brand/Harley-Final-Media-Pack.zip` for 1-click download from `/brand`.
+   - Updated root web icons: `public/favicon.ico`, `public/favicon.svg`, `public/favicon-32x32.png`, `public/favicon-32.png`, `public/apple-touch-icon.png`, `public/icon-512.png`, `public/social-share-1200x630.png`, and `public/site.webmanifest`.
+   - Updated legacy vectors in `public/brand/approved/logos/` with Option 3 outlined SVGs for backward-compatibility.
+
+3. **Application & Component Integration**:
+   - `src/lib/site-config.ts` & `src/components/site/BrandLogo.tsx`: Updated logo maps to use Option 3 outlined SVGs.
+   - `src/components/site/StudioWordmark.tsx`: Updated with compact 1500×340 viewBox and 176×40 native aspect ratio.
+   - `src/components/site/FooterDark.tsx`: Configured `<StudioWordmark light />` for high-contrast presentation on dark footer backgrounds.
+   - `src/styles.css`: Updated brand color tokens and scoped font-family stacks (`.hdw-marketing`, `[data-brand="group"]`, `[data-brand="labs"]`).
+   - `src/routes/brand.tsx`: Completely refreshed Brand Standards Hub with 4-tier Option 3 architecture, live brand cards, typography details, guidelines, and direct download links.
+   - Marketing routes: Aligned `src/routes/index.tsx`, `the-harley-group.tsx`, `labs.tsx`, `HarleyGroupHeader.tsx`, and `HarleyGroupFooter.tsx` with Option 3 copy and typography.
+   - Knowledge Base: Synchronized `src/lib/knowledge-base.ts` to reflect Option 3 specifications.
+
+**Verification:**
+
+- `npm run check:governance`: PASS.
+- `npm run format:check`: PASS.
+- `npm run typecheck`: PASS (0 errors).
+- `npm run lint`: PASS (0 errors, 9 existing component warnings).
+- `npm test`: PASS (199/199 passing assertions).
+- `npm run build`: PASS (Nitro SSR Cloudflare module bundle generated in 1.15s).
+- `http://localhost:3000/brand`: Live verified in Chrome (dev server bound to port 3000; port 8080 permanently prohibited due to host NVIDIA Broadcast conflict).
+
 ## Pilot Candidate CRM Staging & End-to-End Business Automation Verification — 21 October 2026 (H37/H50)
 
 **Current Status:** Executed end-to-end go-live readiness actions across payment receiver, CRM staging, and operational automation:

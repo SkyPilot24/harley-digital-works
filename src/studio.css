@@ -586,8 +586,9 @@
   flex-shrink: 0;
 }
 .studio-wordmark img {
-  width: 176px;
-  height: auto;
+  height: 52px;
+  width: auto;
+  display: block;
 }
 .studio-wordmark > span {
   display: flex;
@@ -633,12 +634,14 @@
 .studio-desktop-nav {
   display: flex;
   align-items: center;
-  gap: 30px;
+  gap: 32px;
 }
 .studio-desktop-nav a {
-  font-size: 13px;
-  font-weight: 500;
+  font-size: 15px;
+  font-weight: 550;
   padding: 12px 0;
+  color: var(--studio-ink);
+  transition: color 0.15s ease;
 }
 .studio-desktop-nav a:hover {
   color: var(--studio-accent);
@@ -1992,8 +1995,8 @@
     gap: 10px;
   }
   .studio-wordmark img {
-    width: 154px;
-    height: auto;
+    height: 42px;
+    width: auto;
   }
   .studio-wordmark strong {
     font-size: 21px;

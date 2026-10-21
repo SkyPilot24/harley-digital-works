@@ -1,26 +1,21 @@
 {
   "name": "Harley Digital Works",
-  "short_name": "Harley Works",
-  "description": "Workflow-led websites, automation and revenue systems.",
+  "short_name": "HDW",
+  "description": "Done-for-you websites, enquiry systems and managed digital care for UK trades.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
-  "background_color": "#F6F3ED",
-  "theme_color": "#081B30",
+  "background_color": "#F5F1E8",
+  "theme_color": "#152B42",
   "icons": [
     {
-      "src": "/brand/2026-10-13/icons/favicon-32.png",
+      "src": "/favicon-32x32.png",
       "sizes": "32x32",
       "type": "image/png",
       "purpose": "any maskable"
     },
     {
-      "src": "/brand/2026-10-13/icons/pwa-192.png",
-      "sizes": "192x192",
-      "type": "image/png"
-    },
-    {
-      "src": "/brand/2026-10-13/icons/pwa-512.png",
+      "src": "/icon-512.png",
       "sizes": "512x512",
       "type": "image/png"
     }

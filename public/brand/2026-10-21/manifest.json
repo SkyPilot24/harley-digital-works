@@ -1,0 +1,633 @@
+{
+  "brand": "Harley Digital Works",
+  "typography": "Option 3",
+  "font": "Segoe UI",
+  "date": "2026-10-21",
+  "files": [
+    {
+      "file": "01-Logos/hdw-compact-black.png",
+      "bytes": 14072,
+      "sha256": "c2edfa62e5bc55b7081d378481ef9a72d9dbd9be8427f6c018c539b7199ee768"
+    },
+    {
+      "file": "01-Logos/hdw-compact-black.svg",
+      "bytes": 5508,
+      "sha256": "85d669e64d83efe14e869e6f261ba8747cf942d6a9447d7db89fa213040168fa"
+    },
+    {
+      "file": "01-Logos/hdw-compact-ivory-on-navy.png",
+      "bytes": 19634,
+      "sha256": "8d11b20ab4d2e0de662ac85db14aec46a657360ae3fbb5821e94c5451d83f75d"
+    },
+    {
+      "file": "01-Logos/hdw-compact-ivory-on-navy.svg",
+      "bytes": 5557,
+      "sha256": "44bc012ceebed80b7a4d00f84f951c6989bfb39db3a0e2aad4310335f01be017"
+    },
+    {
+      "file": "01-Logos/hdw-compact-navy.png",
+      "bytes": 15556,
+      "sha256": "7c2181526821de0c4e39abb0cc2e660c472a780fbc1e64d76c7aa42caf841ba8"
+    },
+    {
+      "file": "01-Logos/hdw-compact-navy.svg",
+      "bytes": 5508,
+      "sha256": "81e8d85eab7b7354a4cc7773fc09c0ee1c1c9373a1892615a1d462a4bdf43597"
+    },
+    {
+      "file": "01-Logos/hdw-compact-white.png",
+      "bytes": 15271,
+      "sha256": "d250eb9b925a88f8bfd784df9daa55d27388c0c75fd0ce2b06e4f75f86d62124"
+    },
+    {
+      "file": "01-Logos/hdw-compact-white.svg",
+      "bytes": 5508,
+      "sha256": "d36527983d98f37165f5b0f368d2a32a036ad915457147d107738a2c106c7f21"
+    },
+    {
+      "file": "01-Logos/hdw-primary-black.png",
+      "bytes": 20918,
+      "sha256": "164c5c4b56fedf3a7531955dbaaf636762442309b75a278c96578b742a62f59a"
+    },
+    {
+      "file": "01-Logos/hdw-primary-black.svg",
+      "bytes": 10920,
+      "sha256": "04ea79eed9f16d5c451192915eb08107ccc2054dec84db2fd7638ea4f4c8c6d5"
+    },
+    {
+      "file": "01-Logos/hdw-primary-ivory-on-navy.png",
+      "bytes": 30107,
+      "sha256": "3ed5a35dc685be30f2b0915420f97e9c6d37a34cd807634f4d462663ff0efcd1"
+    },
+    {
+      "file": "01-Logos/hdw-primary-ivory-on-navy.svg",
+      "bytes": 10969,
+      "sha256": "afc5cad05d04109bbb877746791ae44b8845fb7dfce0b4a8173e987d11a2962a"
+    },
+    {
+      "file": "01-Logos/hdw-primary-navy.png",
+      "bytes": 23958,
+      "sha256": "ebca98a2b9862bb5416d09a8833483f84a1bfba2310553b3084559656ba9c4e9"
+    },
+    {
+      "file": "01-Logos/hdw-primary-navy.svg",
+      "bytes": 10920,
+      "sha256": "9b3bd49e295ab659f1f1c988bbef5c52462441aad7842242fe50165a7ca8338a"
+    },
+    {
+      "file": "01-Logos/hdw-primary-white.png",
+      "bytes": 23057,
+      "sha256": "2a4d41d223aa36070d5c6c0eb8f0047afd758e302a88e0e913a58b0f62f3245b"
+    },
+    {
+      "file": "01-Logos/hdw-primary-white.svg",
+      "bytes": 10920,
+      "sha256": "e4c32fabcb72fb83e15d7f1820e73cbac7cbfcd0761ffe7e29ec181c8a9b6eda"
+    },
+    {
+      "file": "01-Logos/hdw-stacked-navy.png",
+      "bytes": 27785,
+      "sha256": "9d027002d2da080bbecfda88b164b1031ca8bf05208d14c9d9ccb3044f89a6bc"
+    },
+    {
+      "file": "01-Logos/hdw-stacked-navy.svg",
+      "bytes": 10971,
+      "sha256": "cfdd4e16d1b518cace8e8f4cca6b9da7703484507ba7396375f8fee30b11ed84"
+    },
+    {
+      "file": "01-Logos/hdw-stacked-white.png",
+      "bytes": 27906,
+      "sha256": "5d651be3f0cc40ab655e22d0aa68310afdab4df97b9f75ea0c70fe6c383ad820"
+    },
+    {
+      "file": "01-Logos/hdw-stacked-white.svg",
+      "bytes": 10971,
+      "sha256": "920f41dded4485da3d264b128eb6890aff4cf089ddc3a63d90ff9a0611b44036"
+    },
+    {
+      "file": "01-Logos/hdw-symbol-black.png",
+      "bytes": 6355,
+      "sha256": "cc547dcda2defbd7f75042ab8c2ad624f711736eb67dba8a01d4f48584c90999"
+    },
+    {
+      "file": "01-Logos/hdw-symbol-black.svg",
+      "bytes": 604,
+      "sha256": "40abae3ae6cb1d7dda92a95702ae513bd60eb1f226f63d3e94912934d2d99b66"
+    },
+    {
+      "file": "01-Logos/hdw-symbol-ivory-on-navy.png",
+      "bytes": 6792,
+      "sha256": "ad35129fdb066661df6ae48b2f40f472e6cb70b86ae789b26d6c7e03d833b11b"
+    },
+    {
+      "file": "01-Logos/hdw-symbol-ivory-on-navy.svg",
+      "bytes": 652,
+      "sha256": "0d4e200e6e128e92f859a918442a18ba67a8a0eecae5a82c45c5d039fea67d7e"
+    },
+    {
+      "file": "01-Logos/hdw-symbol-navy.png",
+      "bytes": 6465,
+      "sha256": "630efa26dfdf4e9e41e2bbf83285f8c0dbc53a3196930167c44303fc3f42c965"
+    },
+    {
+      "file": "01-Logos/hdw-symbol-navy.svg",
+      "bytes": 604,
+      "sha256": "d4246c7240c084950a860c9d3f8af7f0e5a046c36d051def16a18f366afeee93"
+    },
+    {
+      "file": "01-Logos/hdw-symbol-white.png",
+      "bytes": 6455,
+      "sha256": "2ba83920c8cbae512408162527a1e30222c221f053c90d2596239f3ccafc19c2"
+    },
+    {
+      "file": "01-Logos/hdw-symbol-white.svg",
+      "bytes": 604,
+      "sha256": "6c61e364f0389e64495b104d5013f05211c926177a13a7e06108bc8c4a398e39"
+    },
+    {
+      "file": "02-Digital-Icons/favicon.ico",
+      "bytes": 4589,
+      "sha256": "d0908bb70e72b8b83240e446bed5bbcac325a4d246e91ba785aaa42acda77f01"
+    },
+    {
+      "file": "02-Digital-Icons/hdw-icon-16.png",
+      "bytes": 181,
+      "sha256": "a7ddb0d70c21e8d9abe861cd949179ed61eb7775dbf3283a2c5174c4bc0e6639"
+    },
+    {
+      "file": "02-Digital-Icons/hdw-icon-16.svg",
+      "bytes": 549,
+      "sha256": "7f9c073715bca6433f44498a8819a489c1fbc7f03c144a6f4dd7063421164122"
+    },
+    {
+      "file": "02-Digital-Icons/hdw-icon-180.png",
+      "bytes": 1303,
+      "sha256": "9796bb9282a61dd4c07d64fda85bc31efb4d93978712c08492f84a596479a0ba"
+    },
+    {
+      "file": "02-Digital-Icons/hdw-icon-180.svg",
+      "bytes": 551,
+      "sha256": "90fb5b0a9a544bcbbb8bc2e4379e7e516bde7ca51cbee6dcdb8c3126db14ce43"
+    },
+    {
+      "file": "02-Digital-Icons/hdw-icon-32.png",
+      "bytes": 257,
+      "sha256": "60c66ccdf0ddd7eb475d9046eda7425213b1f43dd928eb484523395468982aa2"
+    },
+    {
+      "file": "02-Digital-Icons/hdw-icon-32.svg",
+      "bytes": 559,
+      "sha256": "aadccb7579e25770174f9c465cefc861c71609a75bdfd39049fe5d89096fae65"
+    },
+    {
+      "file": "02-Digital-Icons/hdw-icon-48.png",
+      "bytes": 329,
+      "sha256": "e4ed8904275fcc635465b53f708d38273b327118348a0568f2a356d0b85f9f37"
+    },
+    {
+      "file": "02-Digital-Icons/hdw-icon-48.svg",
+      "bytes": 572,
+      "sha256": "3608c8b47bc0068fc30090936a125abc949d4d0ee8f86629421746c1c2e0b081"
+    },
+    {
+      "file": "02-Digital-Icons/hdw-icon-512.png",
+      "bytes": 4051,
+      "sha256": "058293d99f46f89cb4740858917b6ffd72801d6a8d2e678015db57c08ca32b7a"
+    },
+    {
+      "file": "02-Digital-Icons/hdw-icon-512.svg",
+      "bytes": 579,
+      "sha256": "831a4dc7b38e750caf7bbf066d23614e7b3e46c4eb3365d65f118b9ef87cb3f4"
+    },
+    {
+      "file": "03-Social/01-brand-introduction-square.png",
+      "bytes": 53544,
+      "sha256": "24d8c231ae5d539fbdd33be70a3cb15f94ee7670225927b82d48827b91640ffa"
+    },
+    {
+      "file": "03-Social/01-brand-introduction-square.svg",
+      "bytes": 46635,
+      "sha256": "c9e2e4d00b05a4919c7c392c1163a9c12de96d98eb0551dfe1e0a3cb8dd683ae"
+    },
+    {
+      "file": "03-Social/02-service-overview-square.png",
+      "bytes": 62600,
+      "sha256": "cbfaffc031a84190752fe728903b91c3011a2930955425fc6ddf34597f751d1f"
+    },
+    {
+      "file": "03-Social/02-service-overview-square.svg",
+      "bytes": 58415,
+      "sha256": "9c1e08a32fc15973d67e4ac553124dcf2dac7ec152590a758216e2d2e4d99e6d"
+    },
+    {
+      "file": "03-Social/03-enquiry-journey-square.png",
+      "bytes": 58695,
+      "sha256": "e85a81dfa8f843adaf0b50525788476f368a54b2e9476000474b574531f1ab7c"
+    },
+    {
+      "file": "03-Social/03-enquiry-journey-square.svg",
+      "bytes": 59351,
+      "sha256": "b1ba7ec32c95de8bafd3b8ecd2fad3d85dac684067bf2e65125f50e58480b555"
+    },
+    {
+      "file": "03-Social/04-story-reel-cover.png",
+      "bytes": 67032,
+      "sha256": "dac6f2e3457a1cd32b8eee00e20b3c1da6d7d789c68ffd3537e636c0b0f57029"
+    },
+    {
+      "file": "03-Social/04-story-reel-cover.svg",
+      "bytes": 40612,
+      "sha256": "277a63156b9d075bd3951a193e73df6a4ca6bbe4e1671fc55210b9d30168cb13"
+    },
+    {
+      "file": "03-Social/05-link-preview.png",
+      "bytes": 32382,
+      "sha256": "b3545660f52839f0eba1679797abc17c7b328d632077b156e49ae290fd3b56f4"
+    },
+    {
+      "file": "03-Social/05-link-preview.svg",
+      "bytes": 34555,
+      "sha256": "21ff2a22c5d83bfdc24a461132a10ccb520a7ed2cb53f27ef6f36aa15c11e3ec"
+    },
+    {
+      "file": "03-Social/06-company-banner.png",
+      "bytes": 27193,
+      "sha256": "6a90d50bbee67220b3aef97d5d31cc460062d87e322fea1a3b5fb7f54d6b6546"
+    },
+    {
+      "file": "03-Social/06-company-banner.svg",
+      "bytes": 18410,
+      "sha256": "621cc362660e301f03a929e9d4b605acb32d2de02a6111d00800b38f2ec03bc1"
+    },
+    {
+      "file": "03-Social/carousel-01.png",
+      "bytes": 43325,
+      "sha256": "10a899724874faba86e9f93bd1d74e7750e232469952c214d7aa85429478d162"
+    },
+    {
+      "file": "03-Social/carousel-01.svg",
+      "bytes": 40029,
+      "sha256": "f9c3274104a5578cc2b3f26f22438090853d327193eb927c751dda1370884748"
+    },
+    {
+      "file": "03-Social/carousel-02.png",
+      "bytes": 45611,
+      "sha256": "e6d232b141476703ddad713f44f2cf0880ed0cb28323a20aebe51fdc2167d87a"
+    },
+    {
+      "file": "03-Social/carousel-02.svg",
+      "bytes": 40297,
+      "sha256": "69ce3d174df570c01f4b85f21cf9da1c60fdeb2c43dee201b187865cd928390d"
+    },
+    {
+      "file": "03-Social/carousel-03.png",
+      "bytes": 46047,
+      "sha256": "f236430a1d3bffe79e1a3575f1dba666721986177da6bdc87dcc470155774fd5"
+    },
+    {
+      "file": "03-Social/carousel-03.svg",
+      "bytes": 41550,
+      "sha256": "97d2a4719340789bc71274d7df7503d54d18f686bad4c854494dfb840bbd21f0"
+    },
+    {
+      "file": "03-Social/carousel-04.png",
+      "bytes": 45805,
+      "sha256": "7033c4cff868e4e30a57268e28660976f70b209749ab297e4b402e85272cfbcb"
+    },
+    {
+      "file": "03-Social/carousel-04.svg",
+      "bytes": 40305,
+      "sha256": "5f75142288bbbccc069d6384a56c463d231f35dff40508ec34b3d13d0ca8e37b"
+    },
+    {
+      "file": "03-Social/hdw-avatar.png",
+      "bytes": 12907,
+      "sha256": "f5a7fde5a2c223b5dbf624ffd7461a7b03c8f84b2a31ec521aefc68becaad49a"
+    },
+    {
+      "file": "03-Social/hdw-avatar.svg",
+      "bytes": 659,
+      "sha256": "af9a8f7b6e0d2b921921b0eafaabc04da164ded7017429a757041541f83e86d0"
+    },
+    {
+      "file": "04-Website/navy-ring-background.png",
+      "bytes": 20954,
+      "sha256": "6bfc290fbdaaf25dd8ffb8b28de39827762c7b5b910d11372904aec7a6b63b11"
+    },
+    {
+      "file": "04-Website/navy-ring-background.svg",
+      "bytes": 777,
+      "sha256": "568532a179e30b5d49e293f8dc1672c81deefc026c7e18df2de4a12d7af116c2"
+    },
+    {
+      "file": "04-Website/website-hero-concept.png",
+      "bytes": 68648,
+      "sha256": "1facccdf5237ccbfbc369e955824b610662c1881ad6cc57e0daba91636d92d92"
+    },
+    {
+      "file": "04-Website/website-hero-concept.svg",
+      "bytes": 60577,
+      "sha256": "63640b3281f359e36de8eb7179160460c1d159160d93833dec987f8b71169b97"
+    },
+    {
+      "file": "05-Stationery/business-card-back-TEMPLATE.png",
+      "bytes": 25337,
+      "sha256": "bc8028284c3a8fcbe9cf6f686902a414e3b917575db5f75b7750131d79cff439"
+    },
+    {
+      "file": "05-Stationery/business-card-back-TEMPLATE.svg",
+      "bytes": 26946,
+      "sha256": "370fdb7e7e9336ed69a6f3bdc4796a2849343772bdb4ad21f4aa6fde98e27922"
+    },
+    {
+      "file": "05-Stationery/business-card-front.png",
+      "bytes": 31061,
+      "sha256": "608f72c0d9f494032e716e6506055eb52a0a914dc0e8acc0a1a82f464320b9a9"
+    },
+    {
+      "file": "05-Stationery/business-card-front.svg",
+      "bytes": 30381,
+      "sha256": "074bc109a86974b427e1c9a1903e520e2d47cdc5284940948b37536965c0a04a"
+    },
+    {
+      "file": "05-Stationery/email-signature-TEMPLATE.html",
+      "bytes": 675,
+      "sha256": "a08a5d9688bd4b08ee7e4f1732ebf5bc2fce4c0ad17f20b410d20536ec68315f"
+    },
+    {
+      "file": "05-Stationery/letterhead-A4-TEMPLATE.png",
+      "bytes": 43831,
+      "sha256": "b53ba8308e2c8bbd197fb8a2522e4e4df19237646e79aa88cfc64cd2a86a5fde"
+    },
+    {
+      "file": "05-Stationery/letterhead-A4-TEMPLATE.svg",
+      "bytes": 53966,
+      "sha256": "2137350dd0c88996bea609502b2a5b37fb7bd05b34a9eaa10e9788db0299fcfb"
+    },
+    {
+      "file": "05-Stationery/proposal-cover-A4-TEMPLATE.png",
+      "bytes": 58122,
+      "sha256": "90e6a5a037b25ad4989d881863501653ea8e753383000d52a1d52e9ebd881dc1"
+    },
+    {
+      "file": "05-Stationery/proposal-cover-A4-TEMPLATE.svg",
+      "bytes": 35348,
+      "sha256": "f3566f0f5cfb6bf13d594e7967aaee7baca72f193084f90940e4d5aa4a5a3dac"
+    },
+    {
+      "file": "06-Guidelines/brand-guide.html",
+      "bytes": 4866,
+      "sha256": "eb917e6fc98e9db583654b04e0a3d1da47ae5ec35bf1b7b0a32b53880d5bb684"
+    },
+    {
+      "file": "06-Guidelines/brand-tokens.css",
+      "bytes": 128,
+      "sha256": "834c098a82981fbaa71ca1314ddcd3ffb1d3021ad17015db16e1a0c7e18e419e"
+    },
+    {
+      "file": "06-Guidelines/messaging-and-captions.md",
+      "bytes": 1767,
+      "sha256": "0d13e43ef5d594f0063aab370cf1b1dace77849936ad0a698dd69eb6cfb7d225"
+    },
+    {
+      "file": "07-Editable-Text-SVGs/01-Logos/hdw-compact-black.svg",
+      "bytes": 843,
+      "sha256": "b925ec24e04080713abc7ea760e43d08ff6dee3631d0902aa7f334a90a5f350e"
+    },
+    {
+      "file": "07-Editable-Text-SVGs/01-Logos/hdw-compact-ivory-on-navy.svg",
+      "bytes": 891,
+      "sha256": "9b5c2e0873f6963fbda48c708498fa9f5482977fecbd728e3f500c7a07cb66d0"
+    },
+    {
+      "file": "07-Editable-Text-SVGs/01-Logos/hdw-compact-navy.svg",
+      "bytes": 843,
+      "sha256": "65356cd3d1b3869147019092fd8718208406e00aa71af458dac914cb0072dcb0"
+    },
+    {
+      "file": "07-Editable-Text-SVGs/01-Logos/hdw-compact-white.svg",
+      "bytes": 843,
+      "sha256": "c0af360f4dff83e648c97ae370538541aed9c0a48eecb06c8b861a42c9410050"
+    },
+    {
+      "file": "07-Editable-Text-SVGs/01-Logos/hdw-primary-black.svg",
+      "bytes": 1039,
+      "sha256": "d2be358fd267ef1cd3b9cf1d9f9b3e0cccc07655a394c6db8692e6b23882d60b"
+    },
+    {
+      "file": "07-Editable-Text-SVGs/01-Logos/hdw-primary-ivory-on-navy.svg",
+      "bytes": 1087,
+      "sha256": "f3851e89845f45c1a3dd8093c7596813abb09e226e2b229ca777b10cab45b988"
+    },
+    {
+      "file": "07-Editable-Text-SVGs/01-Logos/hdw-primary-navy.svg",
+      "bytes": 1039,
+      "sha256": "bdbf9b8fe7308b0e90b72ad998b273ba08d341f2dbd39eff21a104a995da638b"
+    },
+    {
+      "file": "07-Editable-Text-SVGs/01-Logos/hdw-primary-white.svg",
+      "bytes": 1039,
+      "sha256": "8fdf3e96f5d257fcc02cfe3aebec12e776d3ea3a0ddc0d1ed402f89d5fbd7234"
+    },
+    {
+      "file": "07-Editable-Text-SVGs/01-Logos/hdw-stacked-navy.svg",
+      "bytes": 1065,
+      "sha256": "a1722b091ad15de7748c3f997565f4a389e9f970ab25852a06af2d11e76775ed"
+    },
+    {
+      "file": "07-Editable-Text-SVGs/01-Logos/hdw-stacked-white.svg",
+      "bytes": 1065,
+      "sha256": "ba64ce9e1497faed3c9633e0d05dde61dbabe5d41f693ed88301618871fe8383"
+    },
+    {
+      "file": "07-Editable-Text-SVGs/01-Logos/hdw-symbol-black.svg",
+      "bytes": 503,
+      "sha256": "9411fc68a0a3a3ed0b7fa054fcdc022f5dfa95ea20a12122d34ba80fb3a9a765"
+    },
+    {
+      "file": "07-Editable-Text-SVGs/01-Logos/hdw-symbol-ivory-on-navy.svg",
+      "bytes": 550,
+      "sha256": "f5ecaae5e464fbcc6ad3c058eaea59b27cf1f74b793ecbefeaa2575884cfee94"
+    },
+    {
+      "file": "07-Editable-Text-SVGs/01-Logos/hdw-symbol-navy.svg",
+      "bytes": 503,
+      "sha256": "81dc4482dc3cb3e0c492649af71d2ffbb40251d2e42143c6c57062451b45cd52"
+    },
+    {
+      "file": "07-Editable-Text-SVGs/01-Logos/hdw-symbol-white.svg",
+      "bytes": 503,
+      "sha256": "eb4f4125e2fb6fb3f96467ad95b6c50d0d5834b7bc13df11af17e63ce221b993"
+    },
+    {
+      "file": "07-Editable-Text-SVGs/02-Digital-Icons/hdw-icon-16.svg",
+      "bytes": 448,
+      "sha256": "e6b4ea4bea99ce712205eb4e69908b9d422d1dd47aef8599b04168b541d252b6"
+    },
+    {
+      "file": "07-Editable-Text-SVGs/02-Digital-Icons/hdw-icon-180.svg",
+      "bytes": 450,
+      "sha256": "123acf3935f7b40a70fadea0ea05763eeb5ce49b6d32d2b3be317e7ab786e8b2"
+    },
+    {
+      "file": "07-Editable-Text-SVGs/02-Digital-Icons/hdw-icon-32.svg",
+      "bytes": 458,
+      "sha256": "132ead52af586a5bf378e68755f34ca8a128e6c52619c776b490a42eb5ad89d7"
+    },
+    {
+      "file": "07-Editable-Text-SVGs/02-Digital-Icons/hdw-icon-48.svg",
+      "bytes": 471,
+      "sha256": "0f42011509daa897e383574457f251d51d61ae43b2cdf5eb26fac114fe6ec72c"
+    },
+    {
+      "file": "07-Editable-Text-SVGs/02-Digital-Icons/hdw-icon-512.svg",
+      "bytes": 478,
+      "sha256": "b5454b937fc6d703b9b6e8542eb98a82c3e65a5dfd351f5edeeb2fe0631fd00a"
+    },
+    {
+      "file": "07-Editable-Text-SVGs/03-Social/01-brand-introduction-square.svg",
+      "bytes": 2063,
+      "sha256": "3d8e63b0571a542e39a8609e41b69da0d9be56f7331ec9cd1658720efa0f1197"
+    },
+    {
+      "file": "07-Editable-Text-SVGs/03-Social/02-service-overview-square.svg",
+      "bytes": 2544,
+      "sha256": "ebb0bc8fb4c3ba34dc094ac91b038d5ff28ac7af0f5eacb326bb65ccbdd47565"
+    },
+    {
+      "file": "07-Editable-Text-SVGs/03-Social/03-enquiry-journey-square.svg",
+      "bytes": 2267,
+      "sha256": "5135150e7577ba6eb757f688ed6fdef6619c7be4216d01425096b9f39b6a191a"
+    },
+    {
+      "file": "07-Editable-Text-SVGs/03-Social/04-story-reel-cover.svg",
+      "bytes": 2202,
+      "sha256": "b8026e9d17c988bf66d9da6010dc4c7948aafef3bc678a41405c1664101d1add"
+    },
+    {
+      "file": "07-Editable-Text-SVGs/03-Social/05-link-preview.svg",
+      "bytes": 1534,
+      "sha256": "c801f577356eb2240eccf2530e2f3be91bcfe095bfeecf74122b90ab9fd535c9"
+    },
+    {
+      "file": "07-Editable-Text-SVGs/03-Social/06-company-banner.svg",
+      "bytes": 1084,
+      "sha256": "5d47f5f0e7dd145059f87a63ab06e31b940ba221b9b13d296096cac7771447b0"
+    },
+    {
+      "file": "07-Editable-Text-SVGs/03-Social/carousel-01.svg",
+      "bytes": 2023,
+      "sha256": "e069b57c789e82ea116f7d6b00452e2fff77c23f69fee447e44177dc7216e06b"
+    },
+    {
+      "file": "07-Editable-Text-SVGs/03-Social/carousel-02.svg",
+      "bytes": 2026,
+      "sha256": "fbaf9d0670f0482cf25a86a1c72b0b7e27dd3df658b209c19597d6dba2e4d3e6"
+    },
+    {
+      "file": "07-Editable-Text-SVGs/03-Social/carousel-03.svg",
+      "bytes": 2027,
+      "sha256": "2fa916a3e51ee09b838cc638c5cb0cb9ac33890425bfefbf3de0f012477b3053"
+    },
+    {
+      "file": "07-Editable-Text-SVGs/03-Social/carousel-04.svg",
+      "bytes": 2028,
+      "sha256": "0303285b4800d83929020b5971c0c474139e5834665500a59985ed548ddac122"
+    },
+    {
+      "file": "07-Editable-Text-SVGs/03-Social/hdw-avatar.svg",
+      "bytes": 557,
+      "sha256": "212b8daf4d5dc84c4d0484208731f9d31bfb7d86ab6931a5290e0be1487f278b"
+    },
+    {
+      "file": "07-Editable-Text-SVGs/04-Website/navy-ring-background.svg",
+      "bytes": 674,
+      "sha256": "9cdb324face8d294b9801cb5e0291cc235d2824d27afe54423efc1f34c77090b"
+    },
+    {
+      "file": "07-Editable-Text-SVGs/04-Website/website-hero-concept.svg",
+      "bytes": 2752,
+      "sha256": "0e4408039ce21ee49ced54ad312a56d3dc43b88d82c105153356a351d3d0ab2f"
+    },
+    {
+      "file": "07-Editable-Text-SVGs/05-Stationery/business-card-back-TEMPLATE.svg",
+      "bytes": 1856,
+      "sha256": "5c29843a17281e1ca0c5e3b3080f347aef3e3c65ef940fb52041bdd01daf1927"
+    },
+    {
+      "file": "07-Editable-Text-SVGs/05-Stationery/business-card-front.svg",
+      "bytes": 1443,
+      "sha256": "b6070a7d626dc574910bd12992452a2d6782e1b9730bb4368e5c76ac46729b3e"
+    },
+    {
+      "file": "07-Editable-Text-SVGs/05-Stationery/letterhead-A4-TEMPLATE.svg",
+      "bytes": 2170,
+      "sha256": "8deae5821bab0aff143f7de9725c63f3471428eb6bd29b80e539f4e71680ae1c"
+    },
+    {
+      "file": "07-Editable-Text-SVGs/05-Stationery/proposal-cover-A4-TEMPLATE.svg",
+      "bytes": 2174,
+      "sha256": "be9d05c35ddd302f53aa7bf77bea1711f84d229389f1ba963eb8cb4890f45cdf"
+    },
+    {
+      "file": "08-Web-Ready/apple-touch-icon.png",
+      "bytes": 1303,
+      "sha256": "9796bb9282a61dd4c07d64fda85bc31efb4d93978712c08492f84a596479a0ba"
+    },
+    {
+      "file": "08-Web-Ready/favicon-32.png",
+      "bytes": 257,
+      "sha256": "60c66ccdf0ddd7eb475d9046eda7425213b1f43dd928eb484523395468982aa2"
+    },
+    {
+      "file": "08-Web-Ready/favicon.ico",
+      "bytes": 4589,
+      "sha256": "d0908bb70e72b8b83240e446bed5bbcac325a4d246e91ba785aaa42acda77f01"
+    },
+    {
+      "file": "08-Web-Ready/icon-512.png",
+      "bytes": 4051,
+      "sha256": "058293d99f46f89cb4740858917b6ffd72801d6a8d2e678015db57c08ca32b7a"
+    },
+    {
+      "file": "08-Web-Ready/logo-reversed.svg",
+      "bytes": 10920,
+      "sha256": "e4c32fabcb72fb83e15d7f1820e73cbac7cbfcd0761ffe7e29ec181c8a9b6eda"
+    },
+    {
+      "file": "08-Web-Ready/logo.svg",
+      "bytes": 10920,
+      "sha256": "9b3bd49e295ab659f1f1c988bbef5c52462441aad7842242fe50165a7ca8338a"
+    },
+    {
+      "file": "08-Web-Ready/site.webmanifest",
+      "bytes": 180,
+      "sha256": "bb2dfd4ac755271ccf5bb0e3eb0573a568b551a8ee14e363c6d10ae58e1afb79"
+    },
+    {
+      "file": "08-Web-Ready/social-share-1200x630.png",
+      "bytes": 32382,
+      "sha256": "b3545660f52839f0eba1679797abc17c7b328d632077b156e49ae290fd3b56f4"
+    },
+    {
+      "file": "08-Web-Ready/symbol.svg",
+      "bytes": 604,
+      "sha256": "d4246c7240c084950a860c9d3f8af7f0e5a046c36d051def16a18f366afeee93"
+    },
+    {
+      "file": "README.txt",
+      "bytes": 410,
+      "sha256": "5e82649f12cb5be71e64a275801342868110ccdd576249b4bf9a9a10c41db56d"
+    },
+    {
+      "file": "START-HERE-preview.jpg",
+      "bytes": 270244,
+      "sha256": "cf700a6fb267f5abd31fb60b8e87cc5e479c7b9ca335beb2266e3c0903061686"
+    },
+    {
+      "file": "START-HERE.html",
+      "bytes": 232,
+      "sha256": "ea0f336ba87dfd1cbc159d73b46337a2b77191428ae26cd86a6fc9fb98123f59"
+    }
+  ]
+}
