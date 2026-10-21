@@ -1,5 +1,23 @@
 # The Harley Group & Harley Digital Works — Session Handover Log
 
+## Interactive Group Divisions Navigation — 21 October 2026
+
+- **Tool & Scope:** Google Antigravity. Upgraded The Harley Group holding overview (`/the-harley-group`) by transforming static division focus cards into interactive, accessible navigation cards.
+- **Founder Direction:** Robbie requested: *"please make each of these clickable for each part of the harley group"*.
+- **Applied Changes:**
+  - `src/routes/the-harley-group.tsx`:
+    - Converted Division 01 (`Harley Digital Works`), 02 (`Harley Labs`), and 03 (`Domain Services`) into TanStack Router `<Link>` components targeting `/` (HDW Platform), `/labs` (Harley Labs AI & Systems), and `/domains` (Domain Portfolio).
+    - Integrated action pill badges ("Visit Platform ↗", "Explore Labs ↗", "View Portfolio ↗") with micro-animated `ArrowUpRight` diagonal translations on hover.
+    - Updated left-side CTA buttons (`Visit Harley Digital Works ↗`, `Explore Harley Labs ↗`, `Brand Assets ↗`) to client-side `<Link>` tags for instant, smooth transitions.
+  - `src/studio.css`:
+    - Updated `.group-focus-list > a` with smooth border colour transitions, title shifts, and hover states matching the Midnight Navy & Emerald industrial craft palette.
+- **Empirical Verification:**
+  - `npm run check:governance`: PASS.
+  - `npm run format:check`: PASS.
+  - `npm run typecheck`: PASS (0 errors).
+  - `npm test`: PASS (199/199 passing assertions).
+  - Live verified on `http://localhost:8080/the-harley-group`.
+
 ## Cinematic MP4 Video Showcase Integration & Authentic Before/After Assets Deployment — 21 October 2026
 
 - **Tool & Scope:** Google Antigravity. Integrated 3 real cinematic MP4 video clips generated on Higgsfield.ai / Kling 3.0 into the 55-second Hero Transformation Video Showcase player (`HeroTransformationVideoModal.tsx`), and deployed 6 authentic British "Before" renovation assets to `public/images/home/` wired into `BeforeAfterComparison.tsx` and `before-after-comparison.css`.

@@ -1,5 +1,20 @@
 # Harley Digital Works — Project Status
 
+## Interactive Group Divisions Navigation — 21 October 2026 (H15/H47)
+
+**Current Status:** Converted all three business division cards on the group holding page (`/the-harley-group`) from static text into interactive, accessible links with micro-animated arrow badges:
+1. **01 Harley Digital Works**: Navigates directly to `/` (HDW customer operating platform).
+2. **02 Harley Labs**: Navigates directly to `/labs` (Harley Labs AI & software systems).
+3. **03 Domain Services**: Navigates directly to `/domains` (Curated portfolio of digital brand assets).
+
+**Verification:**
+
+- `npm run check:governance`: PASS.
+- `npm run format:check`: PASS.
+- `npm run typecheck`: PASS (0 errors).
+- `npm test`: PASS (199/199 passing assertions).
+- `http://localhost:8080/the-harley-group`: Live verified.
+
 ## Cinematic MP4 Video Showcase Integration & Authentic Before/After Assets Deployment — 21 October 2026 (H15/H16/H42)
 
 **Current Status:** Integrated 3 real cinematic MP4 video clips generated on Higgsfield.ai / Kling 3.0 into the 55-second Hero Transformation Video Showcase player, and deployed 6 authentic British "Before" renovation assets into the interactive Before & After slider:
