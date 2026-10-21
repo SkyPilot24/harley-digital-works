@@ -1,5 +1,13 @@
 # The Harley Group & Harley Digital Works — Session Handover Log
 
+## Security Audit dependency failure resolved — 21 October 2026
+
+- **Objective:** Fix GitHub Actions run `39623270953`, Dependency Audit job `119301942058`, on source commit `6a360edc9c1d9512f5e31b062fd5917410debf41`.
+- **Root cause and change:** The lockfile selected vulnerable `launch-editor@2.14.1` through `@tanstack/devtools-vite@0.8.1` (`launch-editor ^2.11.1`). Updated the lockfile to patched compatible `2.14.2`; no application code or workflow changes.
+- **Verification:** `npm audit --audit-level=high` PASS (zero vulnerabilities). GitHub advisory database reports no vulnerability for `launch-editor@2.14.2`.
+- **Limit:** `npm ci --ignore-scripts --no-audit` could not complete because sandbox DNS could not resolve the existing `cdn.sheetjs.com` tarball URL for `xlsx`. Build and test suite were not run; no successful clean install is claimed.
+- **Release state:** Local change on `copilot/fix-github-actions-job`; no deployment, production/database changes, or external sends. Next action: review and merge the patched lockfile through the existing PR process.
+
 ## Approved Brand Family & Media Pack (Typography Option 3) Deployed — 21 October 2026 (H15/H16/H42)
 
 - **Tool & Scope:** Google Antigravity. Integrated approved Option 3 brand family across assets, typography, components, and marketing routes based on `ANTIGRAVITY-PROMPT.md` and `START-HERE.html`.

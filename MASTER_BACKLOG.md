@@ -1,3 +1,7 @@
+## Dependency audit CI failure fixed — 21 October 2026
+
+Resolved the Security Audit workflow failure from run `39623270953`, job `119301942058`: `npm audit --audit-level=high` rejected the lockfile's vulnerable `launch-editor@2.14.1`, transitively required by `@tanstack/devtools-vite@0.8.1`. Updated the lockfile to compatible patched `launch-editor@2.14.2`. Exact audit passes with zero vulnerabilities. `npm ci` could not complete in this sandbox because `cdn.sheetjs.com` could not be resolved for the existing `xlsx` tarball; no application build/test result is claimed. No production, deployment, or database changes.
+
 ## Production database projects reconciliation verified — 20 October 2026 (H03/H19/H42/H50)
 
 Comprehensive Go-Live Audit completed and approved by founder Robbie. Executed `docs/release-package/2026-10-17/projects-reconciliation-review-draft.sql` against live production Supabase (`worzpzbutngugwzhlvtj`). Pre-change snapshot archived in `docs/evidence/production-projects-prechange-backup-2026-10-20.json`. Empirical readback verified: `projects` table reconciled with `client_id` (UUID), `project_status` enum, and re-bound `project_tasks_project_id_fkey`; `projects_legacy` preserved; strict admin-only RLS active. 265 / 265 test suite assertions pass. P02 database release blocker is resolved. Owner Antigravity/founder.

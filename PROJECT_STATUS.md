@@ -1,5 +1,9 @@
 # Harley Digital Works — Project Status
 
+## Security Audit dependency failure — 21 October 2026
+
+The GitHub Actions Security Audit run `39623270953` failed in Dependency Audit job `119301942058`: `launch-editor@2.14.1`, pulled in by `@tanstack/devtools-vite@0.8.1`, was covered by high-severity advisories. The lockfile now resolves compatible patched `launch-editor@2.14.2`. Local `npm audit --audit-level=high` passes with zero vulnerabilities. A clean install was blocked by sandbox DNS failure resolving the existing `cdn.sheetjs.com` `xlsx` tarball, so no build or test-suite result is claimed. The fix is limited to the lockfile; no application, database, or deployment changes.
+
 ## Approved Brand Family & Media Pack (Typography Option 3) Deployed — 21 October 2026 (H15/H16/H42)
 
 **Current Status:** Integrated the approved Harley brand family (Typography Option 3) across the application, public assets, and marketing surfaces following the Final Media Pack specification (`ANTIGRAVITY-PROMPT.md` and `START-HERE.html`):
