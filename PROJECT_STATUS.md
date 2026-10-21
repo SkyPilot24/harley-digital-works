@@ -3,6 +3,7 @@
 ## Complete 4-Scene 55s Video Showcase Deployed — 21 October 2026 (H15/H16/H42)
 
 **Current Status:** Connected Scene 2 luxury 3D watchmaker precision animation (`scene-2-slider-wipe.mp4`), completing the entire 55-second Hero Transformation Video Showcase with 100% real motion video across all 4 scenes:
+
 1. **Scene 1 (The Frustration)**: UK contractor in Ford Transit van on rainy street looking at outdated site.
 2. **Scene 2 (The Transformation)**: Luxury 3D watchmaker-precision animation of glass tiles, Midnight Navy cards, and spinning gold Trade Guild coins assembling into a precision platform.
 3. **Scene 3 (Zero Homework)**: Relaxed UK contractor smiling with tea break beside Ford Transit.
@@ -20,6 +21,7 @@
 ## Interactive Group Divisions Navigation — 21 October 2026 (H15/H47)
 
 **Current Status:** Converted all three business division cards on the group holding page (`/the-harley-group`) from static text into interactive, accessible links with micro-animated arrow badges:
+
 1. **01 Harley Digital Works**: Navigates directly to `/` (HDW customer operating platform).
 2. **02 Harley Labs**: Navigates directly to `/labs` (Harley Labs AI & software systems).
 3. **03 Domain Services**: Navigates directly to `/domains` (Curated portfolio of digital brand assets).
@@ -35,6 +37,7 @@
 ## Cinematic MP4 Video Showcase Integration & Authentic Before/After Assets Deployment — 21 October 2026 (H15/H16/H42)
 
 **Current Status:** Integrated 3 real cinematic MP4 video clips generated on Higgsfield.ai / Kling 3.0 into the 55-second Hero Transformation Video Showcase player, and deployed 6 authentic British "Before" renovation assets into the interactive Before & After slider:
+
 1. **Real Motion Video Showcase (`HeroTransformationVideoModal.tsx`, `public/images/transformation-video/`)**:
    - `scene-1-frustration.mp4`: Frustrated UK trade contractor inside a Ford Transit cab looking at an outdated broken mobile website in the rain.
    - `scene-3-zero-homework.mp4`: Relaxed UK trade contractor smiling with a steaming mug of tea beside his Ford Transit with zero homework stress.
@@ -53,6 +56,7 @@
 ## Authentic British Trade Photography & Website Overhaul — 20 October 2026 (H15/H16/H42)
 
 **Current Status:** Completed full website image audit and visual overhaul across The Harley Group and Harley Digital Works, replacing generic architectural stock placeholders with 11 high-resolution authentic British trade and architectural assets generated via Higgsfield.ai / Nano Banana Pro:
+
 1. **Public Asset Directory (`public/images/home/`)**: Ingested and deployed 11 authentic assets covering UK contractor vans, open-plan kitchen extensions, domestic solar & EV chargers, bespoke bathrooms, boiler plant rooms, porcelain patios, heritage decorating, joinery workshops, and Bath stone headquarters.
 2. **Homepage & Brand Marketing Surfaces (`index.tsx`, `the-harley-group.tsx`, `about.tsx`, `work.tsx`)**: Replaced generic modern mansions with the smiling UK contractor by his Ford Transit (`hero-contractor.jpg`), the Bath stone headquarters (`thg-headquarters.jpg`), and the joiner at work (`craftsman-workshop.jpg`).
 3. **Interactive Demonstrations & Trade Landings (`BeforeAfterComparison.tsx`, `ConceptShowcase.tsx`, `TradeServiceLanding.tsx`, `CapabilityPage.tsx`)**: Mapped each trade vertical (`/trades/heating-engineers`, `/trades/electricians`, `/trades/builders`, `/trades/commercial-contractors`, and `/locations/$slug`) to authentic, sector-specific photography, eliminating generic 3-image recycling across the application.
@@ -67,6 +71,7 @@
 ## Trade Quality Guild Seal Deployment & Control Centre Integration — 20 October 2026 (H15/H16/H42)
 
 **Current Status:** Completed deployment of the Trade Quality Guild Seal Stamp onto the website and persisted the complete Master Brand Asset Guide directly into the Admin Control Centre:
+
 1. **Homepage Integration (`src/routes/index.tsx`)**: Added dedicated full-width Trade Quality Guarantee & Guild Seal section directly above pricing packages, featuring the high-resolution brass Guild Seal badge (`/brand/social/hdw-guild-seal-badge.jpg`), the 3 core commercial pillars (100% Done-For-You Words, 50/50 Fair Split Payment, Backed by The Harley Group Ltd), and embedded the badge inside the Founder Commitment signature block.
 2. **Site Footer Integration (`src/components/site/FooterDark.tsx`)**: Integrated the Trade Quality Guild Seal stamp with *"100% Done-For-You · Zero Homework"* tagline and direct link to `/brand` (Brand Standards & Guild Seal).
 3. **Control Centre Knowledge Base (`src/lib/knowledge-base.ts`, `admin.knowledge-base.tsx`)**: Created and pinned the authoritative `"Master Brand Identity, Endorsed Wordmark & Trade Guild Seal Guide"` article at the top of the Operational Knowledge Base, complete with one-click direct download for the Guild Seal asset and color token specifications.
@@ -83,6 +88,7 @@
 ## Master Visual Brand Kit & Real-World Mockup Suite — 20 October 2026 (H15/H16/H42)
 
 **Current Status:** Completed and verified the comprehensive 8-piece visual brand kit, real-world mockups, and marketing surfaces consistency update:
+
 1. **Photorealistic Mockup Generation**: Delivered 8 high-resolution assets in `public/brand/social/` covering digital presence (Monogram Avatar, 16:9 OpenGraph card, desktop LinkedIn suite, iPhone 16 Pro WhatsApp Business flow) and physical presence (heavy brass Guild Seal badge, embroidered contractor workwear softshell & polo, luxury silver foil stationery, and Ford Transit Custom van decals).
 2. **Brand Assets Hub (`src/routes/brand.tsx`)**: Upgraded to an interactive 8-piece visual gallery with individual high-res download triggers and ready-to-copy social bios.
 3. **Marketing Surfaces (`src/routes/work.tsx`, `src/routes/the-harley-group.tsx`)**: Re-styled Free Website Potential Audit callout to signature Midnight Navy and Emerald, and linked corporate holding pages directly to the Brand Assets hub.
@@ -99,6 +105,7 @@
 ## UI/UX Cohesion Audit & Brand Palette Unification — 20 October 2026 (H15/H16/H42)
 
 **Current Status:** Completed comprehensive UI/UX consistency audit across the homepage and marketing surfaces, eliminating discordant amber/brown tones and unifying with the ratified British Industrial Craftsmanship brand palette (Midnight Navy `#081B30`, Warm Ivory `#F6F3ED`, Steel Blue `#173C62`, and functional Emerald `#059669`):
+
 1. **Homepage Interactive Trade Showcase (`TradeShowcaseSection.tsx`)**: Re-architected card styling to signature Midnight Navy (`bg-[#081B30]`); replaced discordant amber/brown button with high-contrast functional Emerald (`bg-emerald-600`); replaced dirty yellow comparison table cells with clean `bg-slate-50` and Midnight Navy header; updated schedule wording to *"Agreed delivery schedule"*.
 2. **Trade ROI Calculator (`TradeRoiCalculator.tsx`)**: Restyled container to Midnight Navy; replaced gold sliders and buttons with functional Emerald; updated turnaround claims to agreed delivery schedules.
 3. **Contact Page (`contact.tsx`)**: Upgraded primary telephone channel to Midnight Navy and Website Review callout box to Steel Blue / Midnight Navy.
@@ -117,6 +124,7 @@
 ## Founder Operating & Plain-English Autonomous Standards — 20 October 2026 (H15/H16/H42)
 
 **Current Status:** Codified permanent founder-centric operating rules across `GEMINI.md`, `AGENTS.md`, and `.agents/rules/harley-digital-works-standards.md`:
+
 1. Robbie is the business founder and CEO, not a developer. All communication must be in plain English, step-by-step, zero unexplained developer jargon.
 2. Complete autonomy granted to the AI pair programmer for technical and development decisions (code structure, styling, tests, refactoring). Robbie is consulted only for high-level commercial decisions, pricing, releases, or brand direction.
 3. Every technical task is translated into tangible business outcomes (cash generation, customer trust, time saved, and booked trade jobs).
@@ -132,6 +140,7 @@
 ## Applied /learn Reusable Behaviors & Standards Reconciliations — 20 October 2026 (H15/H16/H42)
 
 **Current Status:** Persisted ratified commercial and brand positioning rules approved by founder Robbie via `/learn`:
+
 1. Updated `.agents/rules/harley-digital-works-standards.md` to codify "British Industrial Craftsmanship" brand positioning, preventing generic web agency drift (banning pastel tech squiggles, enforcing Midnight Navy/Warm Ivory/Emerald, Manrope/Inter typography, and ratified £1,495 / £249/mo pricing).
 2. Reconciled `.agents/skills/trade-prospecting-and-outreach/SKILL.md` to eliminate stale historical £95/mo and VAT mentions, aligning directly with ratified terms and adding the 30s Before & After video outreach pitch.
 3. Codified local Windows desktop browser launch fallback (`Start-Process chrome.exe`) for sandboxed Playwright environments.
