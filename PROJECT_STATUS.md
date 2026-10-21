@@ -1,5 +1,19 @@
 # Harley Digital Works — Project Status
 
+## Server Function Security Hardening & Automated Auth Test Gate — 22 October 2026 (H42/H50)
+
+**Current Status:** Completed server function authentication and admin authorization hardening across the platform:
+
+1. **Slack Server Functions Enforced**: `getSlackStatus`, `triggerTestDailyBriefing`, `triggerTestLeadAlert`, and `triggerTestExceptionAlert` now attach `.middleware([requireSupabaseAuth])` and enforce admin role via shared `requireAdmin(context.userId)`, returning HTTP 403 for non-admins.
+2. **Shared Admin Helper (`src/lib/require-admin.server.ts`)**: Extracted from `admin-users.functions.ts` and reused across `admin-users.functions.ts`, `admin-diagnostics.functions.ts`, `slack/server-functions.ts`, and `domain-pitch-dispatch.functions.ts`.
+3. **Automated Server Function Test Gate (`scripts/server-fn-auth.test.mjs`)**: Scans all `src/` `.ts`/`.tsx` files for `createServerFn` exports and asserts that all attach `requireSupabaseAuth` unless explicitly listed in `ALLOWLIST = ["submitLead"]`. Wired directly into `npm test`.
+4. **Empirical Quality & Verification**:
+   - `npm test`: PASS (204/204 passing assertions).
+   - `npm run typecheck`: PASS (0 TS errors).
+   - `npm run lint`: PASS (0 errors, 9 existing component warnings).
+   - `npm run format:check`: PASS.
+   - `npm run build`: PASS (Vite & Nitro SSR built in 3.90s).
+
 ## GitHub Security Audit Remediation: Dependency Override for launch-editor (GHSA-698v-4r3x-3vcv) — 21 October 2026
 
 **Current Status:** Resolved the GitHub Actions `Security Audit` failure (`Dependency Audit` in `.github/workflows/security.yml`):

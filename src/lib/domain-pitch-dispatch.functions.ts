@@ -1,5 +1,7 @@
 import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
+import { requireSupabaseAuth } from "@/integrations/supabase/auth-middleware";
+import { requireAdmin } from "@/lib/require-admin.server";
 import { sendSlackMessage } from "@/lib/slack/dispatcher";
 
 export const domainPitchDispatchSchema = z.object({
@@ -16,8 +18,10 @@ export const domainPitchDispatchSchema = z.object({
 export type DomainPitchDispatchInput = z.infer<typeof domainPitchDispatchSchema>;
 
 export const dispatchDomainPitchViaResend = createServerFn({ method: "POST" })
+  .middleware([requireSupabaseAuth])
   .validator((input: unknown) => domainPitchDispatchSchema.parse(input))
-  .handler(async ({ data }) => {
+  .handler(async ({ data, context }) => {
+    await requireAdmin(context.userId);
     const apiKey = process.env.RESEND_API_KEY;
     const senderEmail = process.env.TRANSACTIONAL_SENDER_EMAIL || "robbie@theharleygroup.org";
     const senderName = process.env.TRANSACTIONAL_SENDER_NAME || "Robbie Harley";
@@ -108,8 +112,10 @@ export const testSlackWebhookSchema = z.object({
 });
 
 export const testDomainSlackWebhook = createServerFn({ method: "POST" })
+  .middleware([requireSupabaseAuth])
   .validator((input: unknown) => testSlackWebhookSchema.parse(input))
-  .handler(async ({ data }) => {
+  .handler(async ({ data, context }) => {
+    await requireAdmin(context.userId);
     const slackRes = await sendSlackMessage(
       "#sales",
       {
@@ -175,8 +181,10 @@ export const logInboundOfferSchema = z.object({
 });
 
 export const logInboundDomainOffer = createServerFn({ method: "POST" })
+  .middleware([requireSupabaseAuth])
   .validator((input: unknown) => logInboundOfferSchema.parse(input))
-  .handler(async ({ data }) => {
+  .handler(async ({ data, context }) => {
+    await requireAdmin(context.userId);
     const slackUrl =
       data.slackWebhookUrl || process.env.SLACK_WEBHOOK_SALES || process.env.SLACK_WEBHOOK_URL;
     let slackDelivered = false;

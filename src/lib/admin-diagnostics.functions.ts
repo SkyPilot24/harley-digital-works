@@ -8,6 +8,8 @@ import {
 
 export type { WebsiteDiagnostic } from "./website-diagnostics-evaluator";
 
+import { requireAdmin } from "./require-admin.server";
+
 export type AuthTrigger = {
   trigger_name: string;
   function_name: string;
@@ -22,18 +24,6 @@ export type DiagnosticTaskResult = {
   checked: number;
   message: string;
 };
-
-async function requireAdmin(userId: string) {
-  const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
-  const { data: role, error: roleErr } = await supabaseAdmin
-    .from("user_roles")
-    .select("role")
-    .eq("user_id", userId)
-    .eq("role", "admin")
-    .maybeSingle();
-  if (roleErr) throw new Error(roleErr.message);
-  if (!role) throw new Response("Forbidden", { status: 403 });
-}
 
 export const getAuthUserTriggers = createServerFn({ method: "GET" })
   .middleware([requireSupabaseAuth])

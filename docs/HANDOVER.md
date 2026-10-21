@@ -1,5 +1,32 @@
 # The Harley Group & Harley Digital Works — Session Handover Log
 
+## Server Function Security Hardening & Automated Auth Test Gate — 22 October 2026 (H42/H50)
+
+- **Tool & Scope:** Google Antigravity. Enforced `requireSupabaseAuth` and admin role verification across Slack Command Centre server functions, extracted shared `requireAdmin` helper, and introduced automated AST/regex scanning test gate `scripts/server-fn-auth.test.mjs`.
+- **Founder Direction:** Robbie requested: _"In src/lib/slack/server-functions.ts, add .middleware([requireSupabaseAuth]) to getSlackStatus, triggerTestDailyBriefing, triggerTestLeadAlert and triggerTestExceptionAlert, and enforce admin role via a shared requireAdmin helper (extract assertAdmin from admin-users.functions.ts into src/lib/require-admin.server.ts and reuse it). Return 403 for non-admins. Add scripts/server-fn-auth.test.mjs that scans src for createServerFn exports and fails if any lack requireSupabaseAuth, with an explicit allowlist of [\"submitLead\"]. Wire the test into npm test. Do not change behaviour for authenticated admins."_
+- **Applied Changes:**
+  - `src/lib/require-admin.server.ts`:
+    - Extracted shared `requireAdmin` helper (and alias `assertAdmin`) verifying `role: "admin"` in `public.user_roles`. Throws `Response("Forbidden", { status: 403 })` for non-admin users.
+  - `src/lib/admin-users.functions.ts` & `src/lib/admin-diagnostics.functions.ts`:
+    - Replaced duplicate local admin verification functions with the shared `requireAdmin` helper.
+  - `src/lib/slack/server-functions.ts`:
+    - Attached `.middleware([requireSupabaseAuth])` to `getSlackStatus`, `triggerTestDailyBriefing`, `triggerTestLeadAlert`, and `triggerTestExceptionAlert`.
+    - Added `await requireAdmin(context.userId)` across all four Slack server functions, returning HTTP 403 for non-admins while preserving full functionality for authenticated admins.
+  - `src/lib/domain-pitch-dispatch.functions.ts`:
+    - Attached `.middleware([requireSupabaseAuth])` and `requireAdmin(context.userId)` to `dispatchDomainPitchViaResend`, `testDomainSlackWebhook`, and `logInboundDomainOffer`.
+  - `scripts/server-fn-auth.test.mjs`:
+    - Authored test suite scanning all `.ts`/`.tsx` files in `src/` for `createServerFn` exports. Enforces that all server functions attach `requireSupabaseAuth` unless explicitly included in `ALLOWLIST = ["submitLead"]`.
+    - Tested `requireAdmin` logic directly (admin access allowed, non-admin rejected with HTTP 403 Response, database errors propagated).
+  - `package.json`:
+    - Wired `scripts/server-fn-auth.test.mjs` directly into `npm test`.
+- **Empirical Verification:**
+  - `node --experimental-strip-types --test scripts/server-fn-auth.test.mjs`: PASS (5/5 passing tests).
+  - `npm test`: PASS (204/204 passing assertions).
+  - `npm run typecheck`: PASS (0 TS errors).
+  - `npm run lint`: PASS (0 errors, 9 existing component warnings).
+  - `npm run format:check`: PASS (100% Prettier compliant).
+  - `npm run build`: PASS (Vite & Nitro SSR Cloudflare bundle generated in 3.90s).
+
 ## GitHub Security Audit Remediation: Dependency Override for launch-editor (GHSA-698v-4r3x-3vcv) — 21 October 2026
 
 - **Tool & Scope:** Google Antigravity. Diagnosed and resolved the GitHub Actions `Security Audit` failure (`Dependency Audit` in `.github/workflows/security.yml`).
