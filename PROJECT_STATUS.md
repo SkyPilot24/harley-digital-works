@@ -1,5 +1,30 @@
 # Harley Digital Works — Project Status
 
+## Nationwide UK Coverage & Customer Before & After Success Section Deployed — 21 October 2026 (H15/H16/H42)
+
+**Current Status:** Upgraded homepage to position Harley Digital Works as a nationwide service provider for UK trades and deployed the interactive Customer Before & After Transformation Section (`CustomerTransformationSection.tsx`):
+
+1. **Nationwide UK Positioning**:
+   - Removed regional limitations ("Bristol, Bath") from the hero and showcase components, positioning Harley Digital Works for tradespeople across England, Scotland, Wales, and Northern Ireland.
+   - Added nationwide coverage trust pills ("Nationwide UK Coverage: England, Scotland, Wales & NI") and added a dedicated nationwide coverage entry to the homepage FAQ.
+2. **Customer Before & After Visual Comparison**:
+   - Deployed high-contrast side-by-side comparison grid contrasting the typical trade website struggle (the homework trap, commodity price fighting, tyre-kicker calls, agency abandonment) with the HDW standard (100% done-for-you copywriting, instant professional authority, structured quote requests, 24h WhatsApp support desk).
+3. **Realistic Trade Scenarios & Illustrative Testimonials**:
+   - Built tabbed interactive scenario explorer covering 4 distinct UK regions: Heating & Gas Engineers (Yorkshire), Electrical & EV Contractors (Midlands), Builders & Renovation Specialists (South & Home Counties), and Roofing Specialists (Scotland).
+   - Showcases tangible potential benefits: higher-margin installation jobs, commercial tender readiness, pre-sold trust on extensions, and 24-hour WhatsApp updates.
+4. **Strict Illustrative Governance & Transparent Labeling**:
+   - Complied with founder operating contract and The Harley Group standards: all customer profiles and quotes are explicitly labeled with `ILLUSTRATIVE SCENARIOS · DESIGN STUDY EVIDENCE` and backed by a transparent commercial disclaimer clarifying they are design studies rather than verified historical reviews.
+
+**Verification:**
+
+- `npm run check:governance`: PASS.
+- `npm run format:check`: PASS.
+- `npm run typecheck`: PASS (0 errors).
+- `npm run lint`: PASS (0 errors, 9 existing component warnings).
+- `npm test`: PASS (199/199 passing assertions).
+- `npm run build`: PASS (Nitro SSR Cloudflare module bundle generated).
+- `http://localhost:8080/#customer-transformation`: Live verified in Chrome.
+
 ## Live IONOS API Verification & 53-Domain Authoritative Audit — 21 October 2026 (D01–D08/H49)
 
 **Current Status:** Reconciled authoritative registrar domain export (`docs/domains-export-21_10_2026T01_55_am.xls`) and tested live `IONOS_API_KEY` credentials against the IONOS Developer Hosting API (`https://api.hosting.ionos.com/dns/v1/zones`):

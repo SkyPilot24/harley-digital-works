@@ -9,6 +9,7 @@ import { BeforeAfterComparison } from "@/components/site/BeforeAfterComparison";
 import { BeforeAfterSlider } from "@/components/site/BeforeAfterSlider";
 import { WebsitePackagesSection } from "@/components/site/WebsitePackagesSection";
 import { TradeShowcaseSection } from "@/components/site/TradeShowcaseSection";
+import { CustomerTransformationSection } from "@/components/site/CustomerTransformationSection";
 import { HeroTransformationVideoModal } from "@/components/site/HeroTransformationVideoModal";
 import { TheHarleyGroupPage } from "./the-harley-group";
 import {
@@ -23,15 +24,19 @@ import { buildPageSeoHead } from "@/lib/site-config";
 export const Route = createFileRoute("/")({
   head: () =>
     buildPageSeoHead({
-      title: "Harley Digital Works | Websites Worth Choosing",
+      title: "Harley Digital Works | Websites Worth Choosing for UK Trades",
       description:
-        "Your work deserves a better website. Website design, copywriting and ongoing digital care for UK trades. An initial build fee, a monthly service, and one team to look after your website.",
+        "Your work deserves a better website. Website design, copywriting and ongoing digital care for tradespeople and contractors across the entire UK. An initial build fee, rolling monthly service, and one team looking after your website.",
       path: "/",
     }),
   component: HomePage,
 });
 
 const faqs = [
+  [
+    "Do you work with tradespeople across the whole UK?",
+    "Yes, nationwide. Whether you are based in Scotland, Wales, the Midlands, the North, or the South of England, we work with tradespeople and trade businesses everywhere across the UK. Everything is handled smoothly over a straightforward 20-minute phone call—zero travel, zero homework, and zero tech jargon required from you.",
+  ],
   [
     "What do you need from me?",
     "A conversation about your business, the services you offer and the customers you want to reach. Share your logo and any project photographs you have. We write the copy and create the design; you check the facts and approve the direction.",
@@ -69,6 +74,7 @@ function HomePage() {
             <div className="hero-copy">
               <p className="studio-kicker">
                 <span className="studio-kicker-line" /> DONE-FOR-YOU WEBSITES & CARE FOR UK TRADES
+                NATIONWIDE
               </p>
               <h1 id="hero-heading">
                 You do the trade.
@@ -83,13 +89,17 @@ function HomePage() {
                 hassle.
               </p>
               <p className="hero-support">
-                100% done-for-you copywriting, distinctive design, and ongoing monthly care. No
-                homework. No technical jargon. You stay on the tools; we look after your website.
+                100% done-for-you copywriting, distinctive design, and ongoing monthly care for
+                trade businesses across the entire UK. No homework. No technical jargon. You stay on
+                the tools; we look after your website.
               </p>
               <div className="flex flex-wrap items-center gap-2 mb-3">
                 <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-50 border border-emerald-200/80 px-2.5 py-1 text-[11px] font-bold text-emerald-900">
                   <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
-                  <span>100% DFY copywriting · Zero homework · 24h support</span>
+                  <span>100% DFY copywriting · Zero homework · 24h WhatsApp desk</span>
+                </span>
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-stone-100 border border-stone-200/80 px-2.5 py-1 text-[11px] font-bold text-stone-700">
+                  <span>Nationwide UK Coverage (England, Scotland, Wales & NI)</span>
                 </span>
               </div>
               <div className="studio-actions flex flex-wrap items-center gap-3">
@@ -117,7 +127,7 @@ function HomePage() {
                 </a>
               </div>
               <div className="hero-price">
-                <span>Websites for Bristol, Bath and UK trade businesses</span>
+                <span>Serving tradespeople & trade contractors across the entire UK</span>
                 <span>£1,495 setup (50% deposit / 50% approval) · £249/mo care</span>
               </div>
             </div>
@@ -261,6 +271,9 @@ function HomePage() {
             </div>
           </div>
         </section>
+
+        {/* Customer Business Transformation & Success Scenarios Section */}
+        <CustomerTransformationSection />
 
         <TradeShowcaseSection />
 

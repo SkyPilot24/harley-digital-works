@@ -48,10 +48,10 @@ export function TradeShowcaseSection() {
                 <span>Your verified accreditations, clearly presented</span>
               </span>
               <span className="text-xs font-semibold text-stone-500 hidden sm:inline">
-                Bristol, Bath & M4 Corridor
+                Serving Trade Contractors Nationwide Across the UK
               </span>
             </div>
-            <p className="studio-kicker">02 / ENGINEERED SPECIFICALLY FOR UK TRADES</p>
+            <p className="studio-kicker">04 / ENGINEERED SPECIFICALLY FOR UK TRADES</p>
             <h2
               id="trades-showcase-heading"
               className="text-3xl md:text-5xl font-extrabold tracking-tight text-ink"

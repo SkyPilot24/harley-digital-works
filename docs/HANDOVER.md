@@ -1,5 +1,40 @@
 # The Harley Group & Harley Digital Works — Session Handover Log
 
+## Nationwide UK Coverage & Customer Before & After Success Section Deployed — 21 October 2026 (H15/H16/H42)
+
+- **Tool & Scope:** Google Antigravity. Deployed Nationwide UK trade coverage updates across the homepage and introduced the new interactive `CustomerTransformationSection.tsx` component.
+- **Founder Direction:** Robbie requested:
+  1. Remove any messaging suggesting services are limited to local or specific geographical areas; position services as nationwide for all UK trades.
+  2. Add visually engaging "Before & After" customer success section showing realistic potential benefits (enquiries, bookings, visibility, growth) and visual comparisons.
+  3. Include relatable example testimonials for UK tradespeople, prominently identified as illustrative design examples rather than verified customer reviews.
+  4. Maintain modern, trustworthy design in natural British English.
+- **Applied Changes:**
+  - `src/components/site/CustomerTransformationSection.tsx`: Created new dedicated transformation section featuring:
+    - High-contrast Before vs After global comparison grid (The Homework Trap & Price Haggling vs 100% Done-For-You Words & £249/mo WhatsApp Care).
+    - Tabbed interactive scenario explorer for 4 trade verticals across 4 UK regions: Heating & Gas (Yorkshire), Electrical & EV (Midlands), Building & Extensions (South/Home Counties), and Roofing & Cladding (Scotland).
+    - Demonstrated realistic commercial benefits (higher-margin boiler quotes, commercial compliance, pre-sold extension trust, 24h photo updates).
+    - Illustrative customer scenario testimonials written in authentic British trade voice.
+    - Transparent governance disclaimer clearly stating all profiles, quotes, and metrics are illustrative design studies, complying with The Harley Group operating standards.
+    - Nationwide UK CTA box with transparent pricing (£1,495 setup, 50/50 split, £249/mo care, zero VAT).
+  - `src/components/site/TradeShowcaseSection.tsx`:
+    - Replaced regional badge `Bristol, Bath & M4 Corridor` with `Serving Trade Contractors Nationwide Across the UK`.
+  - `src/routes/index.tsx`:
+    - Updated SEO title and description to emphasize nationwide UK coverage.
+    - Updated hero kicker to `DONE-FOR-YOU WEBSITES & CARE FOR UK TRADES NATIONWIDE`.
+    - Added nationwide coverage trust pills (`Nationwide UK Coverage (England, Scotland, Wales & NI)`).
+    - Replaced hero price line `Websites for Bristol, Bath and UK trade businesses` with `Serving tradespeople & trade contractors across the entire UK`.
+    - Integrated `<CustomerTransformationSection />` directly below the Before & After workmanship slider.
+    - Added dedicated nationwide FAQ answering location and remote onboarding questions.
+- **Empirical Verification:**
+  - `npm run check:governance`: PASS.
+  - `npm run format:check`: PASS.
+  - `npm run typecheck`: PASS (0 errors).
+  - `npm run lint`: PASS (0 errors, 9 existing component warnings).
+  - `npm test`: PASS (199/199 passing assertions).
+  - `npm run build`: PASS (Nitro SSR Cloudflare module bundle generated).
+  - `http://localhost:8080/#customer-transformation`: Live verified in Chrome.
+- **Release Status:** Ready for founder review and commit.
+
 ## IONOS API Live Verification & 53-Domain Authoritative Reconciliation — 21 October 2026 (D01–D08/H49)
 
 - **Tool & Scope:** Google Antigravity. Reconciled live registrar domain export (`docs/domains-export-21_10_2026T01_55_am.xls`) and tested live `IONOS_API_KEY` credentials against the IONOS Developer Hosting API (`https://api.hosting.ionos.com/dns/v1/zones`).
