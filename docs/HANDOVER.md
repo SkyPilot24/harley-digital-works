@@ -1,9 +1,31 @@
 # The Harley Group & Harley Digital Works — Session Handover Log
 
+## Domain Monetisation, Outbound Pitching & Slack Operating Runbooks Codified — 21 October 2026 (D01–D08/H49)
+
+- **Tool & Scope:** Google Antigravity. Codified, structured, and persisted complete **Domain Monetisation, Resend Outbound Pitching, Inbound Deal Ingestion, and Slack Operating Runbooks** across dedicated repository documents, the Dashboard Knowledge Base, and the central Business OS index.
+- **Founder Direction:** Robbie requested: _"please make sure all knowledge/runbooks so we dont loose knowledge"_.
+- **Applied Changes:**
+  - `docs/DOMAIN_OUTBOUND_AND_INBOUND_RUNBOOK_2026-10-21.md`:
+    - Authored an exhaustive operational runbook covering the 53-domain portfolio strategy (£10,380 upfront buyout / £935/mo Lease-to-Own recurring pipeline), platform evaluation (why eBay was rejected due to lack of buyer/seller protection on digital intangibles vs Dan.com and Escrow.com), 14 pre-screened UK corporate targets, 1-click Resend outreach guide, inbound webhook listener (`/api/webhooks/domain-inbound`), Slack `#sales` real-time notifications with fail-safe multiplexing, Escrow.com wire disbursement closing, Dan.com 12-month 0% lease management, Nominet IPS-TAG handoffs, and emergency troubleshooting.
+  - `src/lib/knowledge-base.ts`:
+    - Added `domain-monetisation-outbound-and-slack-inbound-runbook-2026-10-21` under category `playbooks`, ensuring full operational instructions surface directly inside the authenticated Control Centre at `/admin/knowledge-base`.
+  - `docs/simple-runbooks.md`:
+    - Added Runbook 6 ("Domain Monetisation & Outbound Deal Flow Runbook") establishing a clear 7-step sequence for all AI agents and operators.
+  - `docs/BUSINESS_OS_INDEX.md`:
+    - Added Domain Monetisation & Deal Runbook row linking the live runbook and dashboard entry.
+  - `PROJECT_STATUS.md`:
+    - Added session summary documenting codified knowledge assets and verified status.
+- **Empirical Verification:**
+  - `npm run format:check`: PASS.
+  - `npm run typecheck`: PASS (0 TS errors).
+  - `npm run lint`: PASS (0 errors, 9 existing component warnings).
+  - `npm test`: PASS (199/199 passing assertions across 2 test suites).
+- **Release Status:** Ready for commit and remote publication to `origin/main`.
+
 ## Domain Inbound Mail & Slack #sales Channel Integration (Live & Verified) — 21 October 2026 (D01–D08/H49)
 
 - **Tool & Scope:** Google Antigravity. Architected, implemented, and runtime-verified complete **Inbound Mail Ingestion** and **Slack #sales Channel Integration** for the Domain Monetisation Control Centre (`src/components/admin/DomainOutboundEngine.tsx`, `src/lib/domain-pitch-dispatch.functions.ts`, and `src/routes/api.webhooks.domain-inbound.ts`).
-- **Founder Direction:** Robbie requested: *"can we intergrate inbound mail and slack channel intergration"*.
+- **Founder Direction:** Robbie requested: _"can we intergrate inbound mail and slack channel intergration"_.
 - **Applied Changes:**
   - `src/lib/domain-pitch-dispatch.functions.ts`:
     - Updated `dispatchDomainPitchViaResend` to deliver real-time formatted notifications to `#sales` with channel override when a webhook is configured.
@@ -28,7 +50,7 @@
 ## Automated Domain Monetisation & Outbound Deal Engine (Resend API Integrated) — 21 October 2026 (D01–D08/H49)
 
 - **Tool & Scope:** Google Antigravity. Built and integrated 1-click **Resend API Automated Email Dispatch** directly into the Domain Outbound Control Centre (`DomainOutboundEngine.tsx` & `src/lib/domain-pitch-dispatch.functions.ts`).
-- **Founder Direction:** Robbie requested: *"I would like to use resend so when its clicked from the control centre it sents automaticly. There should be a API saved for it. I want all sales to be automated and frictions free as pobbible"*.
+- **Founder Direction:** Robbie requested: _"I would like to use resend so when its clicked from the control centre it sents automaticly. There should be a API saved for it. I want all sales to be automated and frictions free as pobbible"_.
 - **Applied Changes:**
   - `src/lib/domain-pitch-dispatch.functions.ts`: Created new server function `dispatchDomainPitchViaResend` parsing typed input (`domainPitchDispatchSchema`), reading validated credentials (`RESEND_API_KEY`, `TRANSACTIONAL_SENDER_EMAIL=robbie@theharleygroup.org`), calling Resend REST API (`https://api.resend.com/emails`) with 15-second timeout, and returning immutable provider receipts (`01a...`).
   - `src/components/admin/DomainOutboundEngine.tsx`:
@@ -53,15 +75,15 @@
 ## Candidate #1 Bespoke Transformation Staging & letscarshop.com Portfolio Integration — 21 October 2026 (H37/H50)
 
 - **Tool & Scope:** Google Antigravity. Deployed Candidate #1 bespoke website staging prototype (`/demos/rg-electrical`) and confirmed portfolio integration for `letscarshop.com`.
-- **Founder Direction:** Robbie requested: *"lets proceed also can we also note that we have letscarshop.com as a domain"*.
+- **Founder Direction:** Robbie requested: _"lets proceed also can we also note that we have letscarshop.com as a domain"_.
 - **Applied Changes:**
   - **Candidate #1 (RG Electrical Bristol Limited) Bespoke Staging Route (`src/routes/demos_.rg-electrical.tsx`)**:
     - Created dedicated, unindexed staging route (`/demos/rg-electrical`) resolving their live holding defect ("Portfolio coming soon").
     - Embedded verified company information: Companies House #10082511, NICEIC Approved Contractor, TrustMark Government Endorsed, £5,000,000 Public Liability.
     - Built 3 search-optimised domestic case studies:
-      1. *18th Edition Consumer Unit & Surge Protection Upgrade (Bradley Stoke, BS32)*
-      2. *Full 1970s House Rewire & Architectural LED Downlights (Stoke Gifford)*
-      3. *Fast-Turnaround Landlord EICR & Remedial Safety Certification (Filton / Horfield)*
+      1. _18th Edition Consumer Unit & Surge Protection Upgrade (Bradley Stoke, BS32)_
+      2. _Full 1970s House Rewire & Architectural LED Downlights (Stoke Gifford)_
+      3. _Fast-Turnaround Landlord EICR & Remedial Safety Certification (Filton / Horfield)_
     - Added interactive Before & After workmanship slider (Bakelite fusebox vs Hager 18th Edition RCBO board with Type 2 SPD).
     - Added interactive quote calculator (`TradeQuoteCalculator`) tailored for Bristol domestic electrical installations.
     - Added Founder Outreach Control Centre with 1-click copyable B2B email and WhatsApp scripts for Robbie to send with zero homework.
@@ -81,7 +103,7 @@
 ## Approved Brand Family & Media Pack (Typography Option 3) Deployed — 21 October 2026 (H15/H16/H42)
 
 - **Tool & Scope:** Google Antigravity. Integrated approved Option 3 brand family across assets, typography, components, and marketing routes based on `ANTIGRAVITY-PROMPT.md` and `START-HERE.html`.
-- **Founder Direction:** Robbie requested: *"please follow the prompt in the MD file attached to update the media for this project"*.
+- **Founder Direction:** Robbie requested: _"please follow the prompt in the MD file attached to update the media for this project"_.
 - **Applied Changes:**
   - **Media Assets Synchronized**:
     - Extracted and copied full Option 3 media pack (`346` files) from `OneDrive/.../Harley-Final-Media-Pack` into `public/brand/2026-10-21/` (including `HDW-Brand-Pack`, `THG-Brand-Pack`, `HL-Brand-Pack`, and `START-HERE.html`).
@@ -99,9 +121,9 @@
       - `[data-brand="group"], .group-site`: `Georgia, 'Times New Roman', serif`
       - `[data-brand="labs"], .labs-site`: `Bahnschrift, 'Arial Narrow', Arial, sans-serif`
     - `src/routes/brand.tsx`: Updated `BRANDS_DATA` specs, 4-tier Typography Option 3 cards, introductory narrative, and download links to `Harley-Final-Media-Pack.zip` and `/brand/2026-10-21/START-HERE.html`.
-    - `src/routes/the-harley-group.tsx`, `HarleyGroupHeader.tsx`, `HarleyGroupFooter.tsx`: Updated hero headline, header/footer subtitles, and baseline to *"Practical ambition. Lasting value."*
-    - `src/routes/labs.tsx`: Updated hero kicker, 4-module vector logo, and headline to *"Ideas into working systems."*
-    - `src/routes/index.tsx`: Updated homepage hero kicker to *"WEBSITES · ENQUIRY SYSTEMS · DIGITAL CARE"*, headline to *"More leads. Less admin."*, and supporting copy to approved HDW phrasing.
+    - `src/routes/the-harley-group.tsx`, `HarleyGroupHeader.tsx`, `HarleyGroupFooter.tsx`: Updated hero headline, header/footer subtitles, and baseline to _"Practical ambition. Lasting value."_
+    - `src/routes/labs.tsx`: Updated hero kicker, 4-module vector logo, and headline to _"Ideas into working systems."_
+    - `src/routes/index.tsx`: Updated homepage hero kicker to _"WEBSITES · ENQUIRY SYSTEMS · DIGITAL CARE"_, headline to _"More leads. Less admin."_, and supporting copy to approved HDW phrasing.
     - `src/lib/knowledge-base.ts`: Synchronized dashboard operational knowledge base with Option 3 specifications.
 - **Empirical Verification:**
   - `npm run check:governance`: PASS.
@@ -116,7 +138,7 @@
 ## Pilot Candidate CRM Staging & End-to-End Business Automation Verification — 21 October 2026 (H37/H50)
 
 - **Tool & Scope:** Google Antigravity. Executed autonomous pre-launch automation verification, pre-change snapshot, and CRM staging of top 3 vetted UK Limited Company pilot candidates.
-- **Founder Direction:** Robbie requested: *"yes please as a founder as much as you can do please do"*.
+- **Founder Direction:** Robbie requested: _"yes please as a founder as much as you can do please do"_.
 - **Applied Changes:**
   - `docs/evidence/leads-pre-pilot-snapshot-2026-10-21.json`: Archived pre-change snapshot of the production `leads` table.
   - `scripts/diagnostics/stage-pilot-candidates.sql`: Created and executed SQL staging script against production database `worzpzbutngugwzhlvtj`. Populated top 3 UK Limited Company contractor candidates into `leads` table:
@@ -199,7 +221,7 @@
 ## Strategic Domain Portfolio Review & Step 1 Monetisation Pack Ratified — 21 October 2026
 
 - **Tool & Scope:** Google Antigravity. Completed full 45-domain strategic audit, built interactive Landing Page Mockup Studio in `domain-portfolio-preview.tsx` / `StrategicDomainMockups.tsx`, updated founder weekly time commitment to ~20 hours/week, and executed Step 1 with explicit founder authorization.
-- **Founder Direction:** Robbie confirmed: *"Just to note I have around 20hours a week I will commit and yes please Go ahead on Step 1"*.
+- **Founder Direction:** Robbie confirmed: _"Just to note I have around 20hours a week I will commit and yes please Go ahead on Step 1"_.
 - **Applied Changes:**
   - `BUSINESS_DEFINITION.md`: Recorded founder weekly time commitment update to ~20 hours/week; concurrency cap maintained strictly at 2 concurrent client builds during pilot.
   - `src/lib/domain-portfolio.ts`:
@@ -240,7 +262,7 @@
 ## Interactive Group Divisions Navigation — 21 October 2026
 
 - **Tool & Scope:** Google Antigravity. Upgraded The Harley Group holding overview (`/the-harley-group`) by transforming static division focus cards into interactive, accessible navigation cards.
-- **Founder Direction:** Robbie requested: *"please make each of these clickable for each part of the harley group"*.
+- **Founder Direction:** Robbie requested: _"please make each of these clickable for each part of the harley group"_.
 - **Applied Changes:**
   - `src/routes/the-harley-group.tsx`:
     - Converted Division 01 (`Harley Digital Works`), 02 (`Harley Labs`), and 03 (`Domain Services`) into TanStack Router `<Link>` components targeting `/` (HDW Platform), `/labs` (Harley Labs AI & Systems), and `/domains` (Domain Portfolio).
@@ -287,7 +309,7 @@
 ## Authentic British Trade Photography & Website Overhaul — 20 October 2026
 
 - **Tool & Scope:** Google Antigravity. Complete visual overhaul replacing generic stock/architectural placeholders across The Harley Group and Harley Digital Works with authentic British trade imagery created via Nano Banana Pro / Higgsfield.ai and deployed across all marketing and trade routes.
-- **Founder Direction:** Robbie requested: *"yes please update the websites"* following generation of 11 authentic trade and architectural assets.
+- **Founder Direction:** Robbie requested: _"yes please update the websites"_ following generation of 11 authentic trade and architectural assets.
 - **Applied Changes:**
   - `public/images/home/`: Ingested 11 high-resolution authentic assets:
     1. `hero-contractor.jpg`: British trade contractor reviewing incoming enquiries on smartphone beside Ford Transit on a UK residential driveway.
@@ -301,7 +323,7 @@
     9. `decorating-heritage.jpg`: Heritage Victorian room decorating with deep slate blue walls, white timber sash window, and picture rail.
     10. `thg-pavilion.jpg`: Contemporary Bath stone and timber architectural craft pavilion.
     11. `thg-headquarters.jpg`: Two-storey Bath stone, steel, and oak contemporary headquarters building.
-  - `src/routes/the-harley-group.tsx`: Upgraded corporate holding hero to `thg-headquarters.jpg`.  - `src/routes/index.tsx`: Upgraded homepage hero preview to `hero-contractor.jpg` and Section 03 craftsmanship visual to `craftsman-workshop.jpg`.
+  - `src/routes/the-harley-group.tsx`: Upgraded corporate holding hero to `thg-headquarters.jpg`. - `src/routes/index.tsx`: Upgraded homepage hero preview to `hero-contractor.jpg` and Section 03 craftsmanship visual to `craftsman-workshop.jpg`.
   - `src/routes/about.tsx`: Upgraded company philosophy visual to `craftsman-workshop.jpg`.
   - `src/routes/work.tsx`: Upgraded Section 03 "The Harley Standard" visual to `thg-pavilion.jpg`.
   - `src/components/site/ConceptShowcase.tsx`: Mapped Building (`extension-renovation.jpg`), Solar/EV (`renewables-solar-ev.jpg`), and Bathrooms (`bathroom-interior.jpg`).
@@ -317,12 +339,12 @@
 ## Trade Quality Guild Seal Deployment & Control Centre Integration — 20 October 2026
 
 - **Tool & Scope:** Google Antigravity. Integrated Trade Quality Guild Seal Stamp onto the website (homepage hero/guarantee section, founder signature, and site footer) and persisted the complete Master Brand Asset Guide into the Admin Control Centre (`/admin/knowledge-base` and `/admin/headquarters`).
-- **Founder Direction:** Robbie requested: *"I like it and espically like the Trade Quality Guild Seal Stamp. Can you add that to the website and update all brand logos and save the brand asset guide to the contol centre (admin dashobard that build for me to run the companys)."*
+- **Founder Direction:** Robbie requested: _"I like it and espically like the Trade Quality Guild Seal Stamp. Can you add that to the website and update all brand logos and save the brand asset guide to the contol centre (admin dashobard that build for me to run the companys)."_
 - **Applied Changes:**
   - `src/routes/index.tsx`:
     - Added dedicated full-width **Trade Quality Guarantee & Guild Seal Section** right before pricing packages, featuring the high-resolution machined brass Guild Seal badge (`/brand/social/hdw-guild-seal-badge.jpg`), the 3 core pillars (100% Done-For-You Words, 50/50 Fair Split Payment, Backed by The Harley Group Ltd), and a direct link to the Brand Hub.
     - Embedded the Guild Seal Badge directly in the Founder Commitment signature layout alongside Robbie's personal sign-off.
-  - `src/components/site/FooterDark.tsx`: Added the Trade Quality Guild Seal badge and copy (*"100% Done-For-You · Zero Homework"*) to the brand column, and linked to `/brand` (Brand Standards & Guild Seal).
+  - `src/components/site/FooterDark.tsx`: Added the Trade Quality Guild Seal badge and copy (_"100% Done-For-You · Zero Homework"_) to the brand column, and linked to `/brand` (Brand Standards & Guild Seal).
   - `src/lib/knowledge-base.ts`: Added master knowledge article `"master-brand-identity-guild-seal-guide-2026-10-20"` at the top of the Operational Knowledge Base powering `/admin/knowledge-base`.
   - `src/routes/_authenticated/admin.knowledge-base.tsx`: Added prominent Brand Assets Hub & Guild Seal quick-access banner with one-click download.
   - `src/components/admin/GroupHeadquarters.tsx` & `src/lib/group-headquarters.ts`: Added Guild Seal stamp and Brand & Guild Seal direct links to Group Headquarters overview in the Admin Control Centre.
@@ -336,9 +358,9 @@
 ## Master Visual Brand Kit & "Part of The Harley Group" Endorsed System — 20 October 2026
 
 - **Tool & Scope:** Google Antigravity. Delivered complete 8-piece visual brand suite, social media assets, physical real-world mockups, and the Master Endorsed Wordmark Identity System ("Part of The Harley Group") with architectural deployment guidelines across `/brand`.
-- **Founder Direction:** Robbie requested: *"I like the idea for "Part of the Harley Group" to be included as I think that should good. Can you provide some mocksups for the full watermark logo and give me some suggestions. I think we are almost there"*.
+- **Founder Direction:** Robbie requested: _"I like the idea for "Part of the Harley Group" to be included as I think that should good. Can you provide some mocksups for the full watermark logo and give me some suggestions. I think we are almost there"_.
 - **Applied Changes:**
-  - `public/brand/social/hdw-endorsed-logo-board.jpg`: Created high-resolution Master Brand Logo Identity Board showing the endorsed wordmark on both Midnight Navy (`#081B30`) and Warm Ivory (`#F6F3ED`) with geometric H monogram, precision Manrope typography, separation hairline, emerald trust pip, and tracked sub-text *"PART OF THE HARLEY GROUP"*.
+  - `public/brand/social/hdw-endorsed-logo-board.jpg`: Created high-resolution Master Brand Logo Identity Board showing the endorsed wordmark on both Midnight Navy (`#081B30`) and Warm Ivory (`#F6F3ED`) with geometric H monogram, precision Manrope typography, separation hairline, emerald trust pip, and tracked sub-text _"PART OF THE HARLEY GROUP"_.
   - `src/routes/brand.tsx`: Added dedicated Master Endorsed Wordmark Identity System showcase with one-click high-res download and 3 concrete deployment suggestions:
     1. Primary Endorsed Stack for website headers and formal proposals.
     2. Digital Security Watermark (10-15% opacity) for contract schedules, audits, and milestone tracker (`/track`).
@@ -355,9 +377,9 @@
 ## UI/UX Cohesion Audit & Brand Palette Unification — 20 October 2026
 
 - **Tool & Scope:** Google Antigravity. Comprehensive UI/UX consistency audit across homepage and marketing surfaces, eliminating discordant amber/brown tones and unifying with the ratified British Industrial Craftsmanship palette (Midnight Navy `#081B30`, Warm Ivory `#F6F3ED`, Steel Blue `#173C62`, and functional Emerald `#059669`).
-- **Founder Direction:** Robbie noted via voice memo: *"There's a section there 'Your trade, your reputation, make your work easier to choose'... and an interactive pricing guide... The colors look a bit off compared to the rest of the site... This green and brown... check availability and get plan... looks out of place. Can you do a UI/UX audit to make sure we are cohesive and consistent across each page."*
+- **Founder Direction:** Robbie noted via voice memo: _"There's a section there 'Your trade, your reputation, make your work easier to choose'... and an interactive pricing guide... The colors look a bit off compared to the rest of the site... This green and brown... check availability and get plan... looks out of place. Can you do a UI/UX audit to make sure we are cohesive and consistent across each page."_
 - **Applied Changes:**
-  - `src/components/site/TradeShowcaseSection.tsx`: Re-architected interactive trade showcase. Replaced muddy `bg-amber-500` CTA button with high-contrast `bg-emerald-600` pill button; replaced `bg-stone-900` card with signature Midnight Navy (`bg-[#081B30]`); updated tabs to dark navy active states with emerald icons; replaced dirty amber comparison table cells with crisp `bg-slate-50` and Midnight Navy header; updated schedule wording to *"Agreed delivery schedule"*.
+  - `src/components/site/TradeShowcaseSection.tsx`: Re-architected interactive trade showcase. Replaced muddy `bg-amber-500` CTA button with high-contrast `bg-emerald-600` pill button; replaced `bg-stone-900` card with signature Midnight Navy (`bg-[#081B30]`); updated tabs to dark navy active states with emerald icons; replaced dirty amber comparison table cells with crisp `bg-slate-50` and Midnight Navy header; updated schedule wording to _"Agreed delivery schedule"_.
   - `src/components/site/TradeRoiCalculator.tsx`: Re-styled calculator container to Midnight Navy (`bg-[#081B30]`); replaced gold accent sliders and buttons with functional Emerald (`bg-emerald-600`); eliminated stale 14-day turnaround claim.
   - `src/routes/contact.tsx`: Restyled primary Telephone badge to Midnight Navy and Website Review Opportunity callout box from muddy amber to Steel Blue and Midnight Navy.
   - `src/routes/demos.tsx` & `src/routes/partners.tsx`: Replaced residual "14-Day Delivery Guarantee" copy with ratified "Agreed Delivery Schedule".
@@ -373,7 +395,7 @@
 ## Founder Operating & Plain-English Autonomous Standards — 20 October 2026
 
 - **Tool & Scope:** Google Antigravity. Codified founder operating contract and communication rules across `GEMINI.md`, `AGENTS.md`, and `.agents/rules/harley-digital-works-standards.md`.
-- **Founder Direction:** Robbie requested in audio note: *"I'm a founder, not a developer. What rules can you put in place that when I'm developing via Antigravity, that you basically speak plain English, talk to me like I'm five, that's fine, I'm learning. Avoid jargon, make development decisions yourself, but come to me for high level. But I have to stress I'm not a developer, I am a business founder. So can you add that to your custom knowledge?"*
+- **Founder Direction:** Robbie requested in audio note: _"I'm a founder, not a developer. What rules can you put in place that when I'm developing via Antigravity, that you basically speak plain English, talk to me like I'm five, that's fine, I'm learning. Avoid jargon, make development decisions yourself, but come to me for high level. But I have to stress I'm not a developer, I am a business founder. So can you add that to your custom knowledge?"_
 - **Persisted Updates:**
   - `GEMINI.md`: Authored dedicated workspace operating contract for Antigravity enforcing plain-English explanations, zero unexplained jargon, autonomous technical decision-making (styles, code structure, packages, testing), commercial translation into business outcomes, and structured bottom-line responses.
   - `.agents/rules/harley-digital-works-standards.md`: Added Section 6 ("Founder Operating Standard (Robbie Harley)").
@@ -402,7 +424,7 @@
 ## Strategic Brand, Logo & Typography Architecture Review — 20 October 2026
 
 - **Tool & Scope:** Google Antigravity. Comprehensive brand, logo, and typography review across The Harley Group, Harley Digital Works, and Harley Labs. Produced pre-launch strategic enhancements artifact (`brand-review-and-prelaunch-recommendations.md`).
-- **Founder Direction:** Robbie requested in voice note: *"Please review the current brand, the logo, the typography for both The Harley Group, Harley Labs and Harley Digital Works... high-end, but also appeal to our target market, not too 'web agency'. Look at the current brand pack and suggest improvements pre-launch."*
+- **Founder Direction:** Robbie requested in voice note: _"Please review the current brand, the logo, the typography for both The Harley Group, Harley Labs and Harley Digital Works... high-end, but also appeal to our target market, not too 'web agency'. Look at the current brand pack and suggest improvements pre-launch."_
 - **Applied Changes:**
   - `src/styles.css`: Upgraded `.hdw-marketing` font family tokens from fallback `Arial, Helvetica, sans-serif` to `Manrope` for headings and display, with `Inter` for body text. Immediately gives the agency a precision-crafted, high-end British engineering aesthetic while maintaining 100% legibility on mobile.
   - Authored `brand-review-and-prelaunch-recommendations.md`: Complete audit of the 3 entity brand assets, logo legibility (van, workwear, and WhatsApp circle avatar tests), color system boundaries, and 5 pre-launch improvements.
@@ -417,15 +439,15 @@
 ## Hero Before & After Transformation Video & Scene Creation — 20 October 2026
 
 - **Tool & Scope:** Google Antigravity. Instigated the 4 scenes from the Before & After Trade Transformation Video specification (`before-after-trade-video-spec.md`) and built an interactive 55s video showcase modal in the website hero.
-- **Founder Direction:** Robbie requested in voice note: *"Can we focus on the Hero video now? As I believe showing a before and after, the visuals are very good I think. And I really like your spec. So can we instigate those scenes and that creation?"*
+- **Founder Direction:** Robbie requested in voice note: _"Can we focus on the Hero video now? As I believe showing a before and after, the visuals are very good I think. And I really like your spec. So can we instigate those scenes and that creation?"_
 - **Visual Assets Generated:**
-  - Scene 1 (`public/images/transformation-video/scene-1-frustration.jpg`): Outdated trade site with red warning callouts (*Slow 4.8s Load*, *Broken on Mobile*, *Missing Gas Safe Badge*).
+  - Scene 1 (`public/images/transformation-video/scene-1-frustration.jpg`): Outdated trade site with red warning callouts (_Slow 4.8s Load_, _Broken on Mobile_, _Missing Gas Safe Badge_).
   - Scene 2 (`public/images/transformation-video/scene-2-slider-wipe.jpg`): Center vertical metallic wipe slider showing the dramatic contrast between an ugly 2008 website and the modern luxury Harley Digital Works platform (5★ Google review, Gas Safe, £2,850+ packages, WhatsApp button).
-  - Scene 3 (`public/images/transformation-video/scene-3-zero-homework.jpg`): British contractor standing by a Ford Transit work van with glassmorphism badges (*100% Done-For-You Copywriting*, *Zero Blank Homework Sheets*, *24h WhatsApp Support*).
-  - Scene 4 (`public/images/transformation-video/scene-4-offer-cta.jpg`): Premium editorial offer card on charcoal navy showing *Turnkey Trade Website £1,495 (50% Deposit / 50% on Final Approval)*, *Managed Digital Care £249/mo*, *Strictly 2 Concurrent Builds Active*, with verified WhatsApp CTA.
+  - Scene 3 (`public/images/transformation-video/scene-3-zero-homework.jpg`): British contractor standing by a Ford Transit work van with glassmorphism badges (_100% Done-For-You Copywriting_, _Zero Blank Homework Sheets_, _24h WhatsApp Support_).
+  - Scene 4 (`public/images/transformation-video/scene-4-offer-cta.jpg`): Premium editorial offer card on charcoal navy showing _Turnkey Trade Website £1,495 (50% Deposit / 50% on Final Approval)_, _Managed Digital Care £249/mo_, _Strictly 2 Concurrent Builds Active_, with verified WhatsApp CTA.
 - **Component & Route Implementation:**
   - Created `src/components/site/HeroTransformationVideoModal.tsx`: Accessible, interactive video modal with real-time 55-second playback, segmented progress scrubbing across the 4 scenes, Web Speech British voiceover audio synthesis, synchronized subtitle overlay cards, and direct WhatsApp / £1,495 booking CTAs.
-  - Wired into `src/routes/index.tsx`: Added *"Watch 55s transformation"* button to `studio-actions` and converted the `hero-art` card into a clickable video preview.
+  - Wired into `src/routes/index.tsx`: Added _"Watch 55s transformation"_ button to `studio-actions` and converted the `hero-art` card into a clickable video preview.
 - **Empirical Verification:**
   - `npm run format:check`: PASS.
   - `npm run typecheck`: PASS (0 errors).
@@ -437,11 +459,11 @@
 ## Marketing USP Copy Refresh & Video Storyboard Specification — 20 October 2026
 
 - **Tool & Scope:** Google Antigravity. Core marketing and conversion refresh across all three brand touchpoints (Harley Digital Works, The Harley Group, Harley Labs) and creation of a 55s/30s Before & After trade transformation video storyboard.
-- **Founder Direction:** Robbie requested aligning all marketing surfaces with the core USP: *"We take the headache away from tradespeople who do amazing stuff — zero homework, zero tech jargon, and total peace of mind."*
+- **Founder Direction:** Robbie requested aligning all marketing surfaces with the core USP: _"We take the headache away from tradespeople who do amazing stuff — zero homework, zero tech jargon, and total peace of mind."_
 - **Applied Changes:**
-  - `src/routes/index.tsx`: Updated hero headline to *"You do the trade. We take the website headache away."*, subtitle to *"Let's give you a digital presence with zero hassle"*, and supporting copy to highlight 100% done-for-you copywriting, no homework, and zero technical jargon.
-  - `src/routes/the-harley-group.tsx`: Updated parent group hero to *"Good work. Built to last."* and positioned the organisation as the backing group for independent British trades and applied technology.
-  - `src/routes/labs.tsx`: Added the *"How Harley Labs Powers Harley Digital Works Clients"* commercial speed bridge, explaining how sub-30ms edge rendering wins high-ticket emergency callouts on mobile.
+  - `src/routes/index.tsx`: Updated hero headline to _"You do the trade. We take the website headache away."_, subtitle to _"Let's give you a digital presence with zero hassle"_, and supporting copy to highlight 100% done-for-you copywriting, no homework, and zero technical jargon.
+  - `src/routes/the-harley-group.tsx`: Updated parent group hero to _"Good work. Built to last."_ and positioned the organisation as the backing group for independent British trades and applied technology.
+  - `src/routes/labs.tsx`: Added the _"How Harley Labs Powers Harley Digital Works Clients"_ commercial speed bridge, explaining how sub-30ms edge rendering wins high-ticket emergency callouts on mobile.
   - Artifact created: `before-after-trade-video-spec.md` (shot-by-shot storyboard, voiceover script, and multi-channel distribution plan).
 - **Empirical Verification:**
   - `npm run format:check`: PASS.
@@ -524,7 +546,7 @@ Verification gate results:
 - `npm test`: PASS (66 smoke + 196 Node regression/integration/recovery + 3 SW checks = 265 tests, 0 failures).
 - `npm run build`: PASS (Nitro SSR build in 5.3s).
 - Secret scan across all `.output/` build artifacts: PASS (0 private credentials/secrets exposed).
-No direct production deployment or live data mutation performed in this step.
+  No direct production deployment or live data mutation performed in this step.
 
 ## Migration recovery validation checkpoint — 17 October 2026
 
@@ -1146,4 +1168,3 @@ Authentic fictional sandbox refund delivered to the isolated signed receiver; in
 ## Local GitHub preservation check — 20 October 2026 (H47)
 
 Founder requested a read-only report before edits, then saving a plain-English, one-step-at-a-time communication preference. Checked canonical C:/Local Data/The Harley Group/harley-digital-works on recovery/local-work-2026-10-20 at 1a3089eabc8050b0583187300c9e0b9c763e178e. Before any edits: 20 modified tracked files, 41 untracked files, no staged changes or tracked deletions; one local stash. Last recorded remote refs show local development-actions commit 1a3089e absent from those refs, but that is not proof of absence from current GitHub history. Live read-only git ls-remote succeeded: main 0845172c455b756a0a6eb24af1e7b56d78c348e9; current recovery branch not listed; cached origin/main is stale. No fetch or exhaustive current remote-content comparison performed, so overlap and exact unpublished commit set remain unverified. Findings reported before edits. Only this checkpoint and AGENTS.md communication preference added; existing peer work preserved. No application tests needed for documentation-only additions; no commit, push, deployment, migration or data changes. Next: compare local files, branches and stash with fresh GitHub history, then prepare a reviewed preservation plan. Owner: Codex; founder approval required before upload/release, not for further read-only inspection.
-

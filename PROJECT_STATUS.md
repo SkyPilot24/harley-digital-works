@@ -1,5 +1,34 @@
 # Harley Digital Works — Project Status
 
+## Domain Monetisation, Outbound Pitching & Slack Operating Runbooks Codified — 21 October 2026 (D01–D08/H49)
+
+**Current Status:** All operational knowledge, commercial blueprints, technical runbooks, and deal execution workflows generated across the 21 October 2026 sessions are fully codified and persisted into durable repository and dashboard knowledge assets:
+
+1. **Dedicated Repository Runbook (`docs/DOMAIN_OUTBOUND_AND_INBOUND_RUNBOOK_2026-10-21.md`)**:
+   - Comprehensive operational runbook detailing:
+     - Commercial strategy of the 53-domain portfolio (£10,380 upfront buyout / £935/mo Lease-to-Own recurring pipeline).
+     - Full technical comparison of marketplaces: Why eBay was discarded (zero seller protection on intangibles/domains; chargeback fraud risk) vs Dan.com, Escrow.com, and direct THG BACS invoices.
+     - 14 pre-screened UK commercial enterprise targets with verified valuation floors.
+     - 1-click Resend outreach guide (`robbie@theharleygroup.org` verified sender) under UK PECR corporate subscriber exemption.
+     - Inbound response logging and live Cloudflare Nitro webhook listener (`https://harleydigitalworks.com/api/webhooks/domain-inbound`).
+     - Slack `#sales` real-time notification engine with fail-safe webhook multiplexer.
+     - Step-by-step deal closing and settlement runbook: Escrow.com wire disbursement protocol (50/50 fee split, 2-day inspection) and Dan.com 12-month 0% lease-to-own contracts.
+     - Nominet IPS-TAG transfer mechanics for `.co.uk` domains and EPP auth-code unlocks for `.com` domains.
+
+2. **Dashboard Operational Knowledge Base (`src/lib/knowledge-base.ts`)**:
+   - Added `domain-monetisation-outbound-and-slack-inbound-runbook-2026-10-21` to `KNOWLEDGE_BASE_ARTICLES` under category `playbooks`.
+   - Surfaces directly in the authenticated Admin Control Centre at `/admin/knowledge-base` with full key points and operational details.
+
+3. **Agency Index Integration (`docs/simple-runbooks.md` & `docs/BUSINESS_OS_INDEX.md`)**:
+   - Added Runbook 6 ("Domain Monetisation & Outbound Deal Flow Runbook") to `docs/simple-runbooks.md` so all peer agents (ChatGPT, Codex, Antigravity) inherit identical operational procedures.
+   - Added Domain Monetisation & Deal Runbook reference to `docs/BUSINESS_OS_INDEX.md`.
+
+4. **Empirical Quality & Verification**:
+   - `npm run format:check`: PASS.
+   - `npm run typecheck`: PASS (0 TS errors).
+   - `npm run lint`: PASS (0 errors, 9 existing component warnings).
+   - `npm test`: PASS (199/199 passing assertions across 2 test suites).
+
 ## Domain Inbound Mail & Slack #sales Channel Integration (Live & Verified) — 21 October 2026 (D01–D08/H49)
 
 **Current Status:** Connected full **Inbound Mail Ingestion** and **Slack #sales Channel Integration** to the Domain Monetisation Control Centre (`src/components/admin/DomainOutboundEngine.tsx`, `src/lib/domain-pitch-dispatch.functions.ts`, and `src/routes/api.webhooks.domain-inbound.ts`):
@@ -51,9 +80,9 @@
    - Solves the live client holding defect ("Portfolio coming soon") identified in Pilot Audit P01.
    - Built with authoritative verified company data: Companies House #10082511, NICEIC Approved Contractor, TrustMark Government Endorsed, £5m Public Liability.
    - Added 3 structured, search-optimised domestic case studies:
-     1. *18th Edition Consumer Unit & Surge Protection Upgrade (Bradley Stoke, BS32)*
-     2. *Full 1970s House Rewire & Architectural LED Downlights (Stoke Gifford)*
-     3. *Fast-Turnaround Landlord EICR & Remedial Safety Certification (Filton / Horfield)*
+     1. _18th Edition Consumer Unit & Surge Protection Upgrade (Bradley Stoke, BS32)_
+     2. _Full 1970s House Rewire & Architectural LED Downlights (Stoke Gifford)_
+     3. _Fast-Turnaround Landlord EICR & Remedial Safety Certification (Filton / Horfield)_
    - Integrated interactive Before & After workmanship slider (Bakelite fusebox vs Hager 18th Edition RCBO board with Type 2 SPD).
    - Integrated interactive quote calculator (`TradeQuoteCalculator`) customized for Bristol domestic electrical installations.
    - Included confidential Founder Outreach Control Centre with 1-click copyable B2B email and WhatsApp scripts for Robbie to send with zero homework.
@@ -64,6 +93,7 @@
    - Updated `docs/DOMAIN_PORTFOLIO_AUDIT_2026-10-10.csv` to record verified ownership, medium confidence, and Sedo/Afternic passive listing recommendation.
 
 **Verification:**
+
 - `npm run check:governance`: PASS.
 - `npm run format:check`: PASS.
 - `npm run typecheck`: PASS (0 errors).
@@ -81,24 +111,24 @@
      - Symbol: Heritage Ring H (double circle for primary brand logo, single ring for icons/favicons).
      - Palette: Midnight Navy (`#152B42`), Warm Ivory (`#F5F1E8`), Action Blue (`#356DCC`), Slate (`#526479`).
      - Typography: `'Segoe UI', Arial, sans-serif`.
-     - Headline: *"More leads. Less admin."*
-     - Descriptor: *"Websites. Enquiry systems. Digital care."*
-     - Supporting copy: *"We look after your website and enquiry systems, so customers can reach you and you can focus on the job."*
-     - Corporate endorsement: *"Part of The Harley Group"*.
+     - Headline: _"More leads. Less admin."_
+     - Descriptor: _"Websites. Enquiry systems. Digital care."_
+     - Supporting copy: _"We look after your website and enquiry systems, so customers can reach you and you can focus on the job."_
+     - Corporate endorsement: _"Part of The Harley Group"_.
    - **The Harley Group (THG)**:
      - Symbol: Architectural H.
      - Palette: Charcoal (`#202326`), Warm Ivory (`#F3EFE7`), Champagne Gold (`#B7A17A`).
      - Typography: `Georgia, 'Times New Roman', serif`.
-     - Headline: *"Practical ambition. Lasting value."*
-     - Descriptor: *"Digital services. Experimentation. Domain portfolio."*
+     - Headline: _"Practical ambition. Lasting value."_
+     - Descriptor: _"Digital services. Experimentation. Domain portfolio."_
      - Role: Parent identity across HDW, Harley Labs, and domain portfolio. (No endorsement under THG itself).
    - **Harley Labs (HL)**:
      - Symbol: 4-module geometric symbol with central connector.
      - Palette: Graphite (`#171C23`), Cool White (`#EEF3F7`), Cyan (`#42C9E8`).
      - Typography: `Bahnschrift, 'Arial Narrow', Arial, sans-serif`.
-     - Headline: *"Ideas into working systems."*
-     - Descriptor: *"Automation. Prototypes. Digital products."*
-     - Corporate endorsement: *"Part of The Harley Group"*.
+     - Headline: _"Ideas into working systems."_
+     - Descriptor: _"Automation. Prototypes. Digital products."_
+     - Corporate endorsement: _"Part of The Harley Group"_.
 
 2. **Public Assets & Media Pack Ingestion**:
    - Ingested full media pack into `public/brand/2026-10-21/` (including `HDW-Brand-Pack`, `THG-Brand-Pack`, `HL-Brand-Pack`, guidelines, social cards, and `START-HERE.html`).
@@ -288,7 +318,7 @@
 **Current Status:** Completed deployment of the Trade Quality Guild Seal Stamp onto the website and persisted the complete Master Brand Asset Guide directly into the Admin Control Centre:
 
 1. **Homepage Integration (`src/routes/index.tsx`)**: Added dedicated full-width Trade Quality Guarantee & Guild Seal section directly above pricing packages, featuring the high-resolution brass Guild Seal badge (`/brand/social/hdw-guild-seal-badge.jpg`), the 3 core commercial pillars (100% Done-For-You Words, 50/50 Fair Split Payment, Backed by The Harley Group Ltd), and embedded the badge inside the Founder Commitment signature block.
-2. **Site Footer Integration (`src/components/site/FooterDark.tsx`)**: Integrated the Trade Quality Guild Seal stamp with *"100% Done-For-You · Zero Homework"* tagline and direct link to `/brand` (Brand Standards & Guild Seal).
+2. **Site Footer Integration (`src/components/site/FooterDark.tsx`)**: Integrated the Trade Quality Guild Seal stamp with _"100% Done-For-You · Zero Homework"_ tagline and direct link to `/brand` (Brand Standards & Guild Seal).
 3. **Control Centre Knowledge Base (`src/lib/knowledge-base.ts`, `admin.knowledge-base.tsx`)**: Created and pinned the authoritative `"Master Brand Identity, Endorsed Wordmark & Trade Guild Seal Guide"` article at the top of the Operational Knowledge Base, complete with one-click direct download for the Guild Seal asset and color token specifications.
 4. **Group Headquarters Dashboard (`GroupHeadquarters.tsx`, `group-headquarters.ts`)**: Embedded the Guild Seal visual stamp and quick-links into the executive Group Headquarters overview on the main admin dashboard.
 
@@ -321,7 +351,7 @@
 
 **Current Status:** Completed comprehensive UI/UX consistency audit across the homepage and marketing surfaces, eliminating discordant amber/brown tones and unifying with the ratified British Industrial Craftsmanship brand palette (Midnight Navy `#081B30`, Warm Ivory `#F6F3ED`, Steel Blue `#173C62`, and functional Emerald `#059669`):
 
-1. **Homepage Interactive Trade Showcase (`TradeShowcaseSection.tsx`)**: Re-architected card styling to signature Midnight Navy (`bg-[#081B30]`); replaced discordant amber/brown button with high-contrast functional Emerald (`bg-emerald-600`); replaced dirty yellow comparison table cells with clean `bg-slate-50` and Midnight Navy header; updated schedule wording to *"Agreed delivery schedule"*.
+1. **Homepage Interactive Trade Showcase (`TradeShowcaseSection.tsx`)**: Re-architected card styling to signature Midnight Navy (`bg-[#081B30]`); replaced discordant amber/brown button with high-contrast functional Emerald (`bg-emerald-600`); replaced dirty yellow comparison table cells with clean `bg-slate-50` and Midnight Navy header; updated schedule wording to _"Agreed delivery schedule"_.
 2. **Trade ROI Calculator (`TradeRoiCalculator.tsx`)**: Restyled container to Midnight Navy; replaced gold sliders and buttons with functional Emerald; updated turnaround claims to agreed delivery schedules.
 3. **Contact Page (`contact.tsx`)**: Upgraded primary telephone channel to Midnight Navy and Website Review callout box to Steel Blue / Midnight Navy.
 4. **Demos & Partners (`demos.tsx`, `partners.tsx`, `DynamicStagingGenerator.tsx`)**: Cleaned up remaining "14-Day Delivery Guarantee" phrasing and aligned proposal action buttons to Emerald.
@@ -370,7 +400,7 @@
 
 ## Strategic Brand, Logo & Typography Architecture Review — 20 October 2026 (H15/H16/H42)
 
-**Current Status:** Completed comprehensive brand identity, logo mark, and typography review across The Harley Group, Harley Digital Works, and Harley Labs (`brand-review-and-prelaunch-recommendations.md`). Addressed the core positioning tension: high-end commercial design that directly appeals to UK tradespeople without feeling like an aloof "web agency". Upgraded agency marketing typography tokens in `src/styles.css` from fallback Arial to sturdy modern geometric sans (*Manrope* for headings/display, *Inter* for body), immediately elevating perceived commercial value while preserving mobile legibility.
+**Current Status:** Completed comprehensive brand identity, logo mark, and typography review across The Harley Group, Harley Digital Works, and Harley Labs (`brand-review-and-prelaunch-recommendations.md`). Addressed the core positioning tension: high-end commercial design that directly appeals to UK tradespeople without feeling like an aloof "web agency". Upgraded agency marketing typography tokens in `src/styles.css` from fallback Arial to sturdy modern geometric sans (_Manrope_ for headings/display, _Inter_ for body), immediately elevating perceived commercial value while preserving mobile legibility.
 
 **Verification:**
 
@@ -396,7 +426,7 @@
 
 ## Marketing USP Copy Refresh & Video Storyboard Specification — 20 October 2026 (H15/H16/H42)
 
-**Current Status:** Aligned core marketing copy across Harley Digital Works (`src/routes/index.tsx`), The Harley Group (`src/routes/the-harley-group.tsx`), and Harley Labs (`src/routes/labs.tsx`) to front-load the core USP: *"You do the trade. We take the website headache away — zero homework, zero tech jargon, and total peace of mind."* Authored a complete 55-second and 30-second Before & After trade transformation video storyboard specification (`before-after-trade-video-spec.md`).
+**Current Status:** Aligned core marketing copy across Harley Digital Works (`src/routes/index.tsx`), The Harley Group (`src/routes/the-harley-group.tsx`), and Harley Labs (`src/routes/labs.tsx`) to front-load the core USP: _"You do the trade. We take the website headache away — zero homework, zero tech jargon, and total peace of mind."_ Authored a complete 55-second and 30-second Before & After trade transformation video storyboard specification (`before-after-trade-video-spec.md`).
 
 **Verification:**
 

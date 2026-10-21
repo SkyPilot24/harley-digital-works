@@ -51,6 +51,18 @@ Use these runbooks to coordinate Google Gemini, OpenAI ChatGPT Work agents, and 
 5. QA gate: confirm fix with production signals.
 6. Deliverable: incident note and prevention actions.
 
+## 6) Domain Monetisation & Outbound Deal Flow Runbook
+
+Detailed operational runbook: [DOMAIN_OUTBOUND_AND_INBOUND_RUNBOOK_2026-10-21.md](DOMAIN_OUTBOUND_AND_INBOUND_RUNBOOK_2026-10-21.md).
+
+1. Select candidate domain & pre-screened target company in the Control Centre (`src/components/admin/DomainOutboundEngine.tsx`).
+2. Gemini / Antigravity: verify corporate status on Companies House and validate target contact email.
+3. Resend automated dispatch: send personalized pitch from `robbie@theharleygroup.org` (quoting outright buyout and 12-month lease options).
+4. Inbound listener / Slack alert: monitor webhook (`/api/webhooks/domain-inbound`) and instant `#sales` Slack channel notifications.
+5. Deal settlement: direct buyer to Escrow.com (for buyouts >£500) or Dan.com 0% lease checkout link (for £75–£165/mo recurring).
+6. QA gate: verify funds "Secured in Trust" before pushing Nominet IPS-TAG or releasing ICANN EPP auth code.
+7. Deliverable: confirmed bank BACS payout receipt and domain status updated in portfolio register.
+
 ## Standard Handoff Template
 
 - Objective

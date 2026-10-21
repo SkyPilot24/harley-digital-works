@@ -29,6 +29,26 @@ export const KNOWLEDGE_CATEGORIES = [
 
 export const KNOWLEDGE_BASE_ARTICLES: KnowledgeArticle[] = [
   {
+    id: "domain-monetisation-outbound-and-slack-inbound-runbook-2026-10-21",
+    category: "playbooks",
+    title: "Domain Monetisation, Resend Outbound Pitching & Slack Inbound Deal Runbook",
+    summary:
+      "Complete operational runbook for monetising the 53-domain commercial portfolio (£10,380 upfront / £935/mo lease pipeline), 1-click Resend outreach, inbound webhook ingestion, Dan/Escrow closing, and Slack #sales alerting.",
+    statusBadge: "Ratified · 21 Oct 2026",
+    lastUpdated: "2026-10-21",
+    keyPoints: [
+      "PORTFOLIO COMMERCIAL SCALE — 53 high-intent UK commercial domain assets representing £10,380 in immediate corporate buyout potential and £935/month in 12-month Lease-to-Own recurring cashflow across 14 pre-screened UK corporate targets.",
+      "WHY EBAY WAS DISCARDED — eBay policies explicitly deny seller protection on digital intangibles and domain names, exposing the seller to chargeback fraud. Furthermore, eBay attracts sub-£10 hobbyist bidders rather than commercial directors. All deals are routed strictly through Dan.com, Escrow.com, or direct THG BACS invoices.",
+      "1-CLICK RESEND OUTBOUND DISPATCH — Integrated into DomainOutboundEngine.tsx via dispatchDomainPitchViaResend. Pitches are sent from verified sender Robbie Harley <robbie@theharleygroup.org> directly to managing directors under the UK PECR corporate subscriber exemption, offering upfront buyout or 12-month lease options.",
+      "LIVE INBOUND WEBHOOK INGESTION — Production endpoint https://harleydigitalworks.com/api/webhooks/domain-inbound listens for incoming buyer responses from Resend Inbound or Cloudflare Email Routing, automatically logging the offer and alerting Slack #sales.",
+      "SLACK #SALES REAL-TIME ALERTING — Real-time rich block alerts with domain name, buyer email, offer price, deal type, and recommended closing action. Built-in fail-safe webhook multiplexer automatically falls back to #all-the-harley-group so zero leads are dropped.",
+      "CLOSING & ESCROW DISBURSEMENT — Buyouts (>£500) use Escrow.com with 50/50 fee split, 2-day inspection, and BACS wire disbursement directly to The Harley Group account. Never push Nominet IPS-TAG or EPP auth codes until funds are marked 'Secured in Trust'.",
+      "DAN.COM 12-MONTH LEASE-TO-OWN — 0% interest lease agreements where Dan.com holds domain title in escrow while the buyer gets immediate nameserver control. Domain auth code is only released upon final 12th payment.",
+    ],
+    operationalDetails:
+      "Interactive engine: src/components/admin/DomainOutboundEngine.tsx (live in /admin and local preview /domain-portfolio-preview). Server functions: src/lib/domain-pitch-dispatch.functions.ts. Webhook: src/routes/api.webhooks.domain-inbound.ts. Comprehensive runbook: docs/DOMAIN_OUTBOUND_AND_INBOUND_RUNBOOK_2026-10-21.md.",
+  },
+  {
     id: "master-brand-identity-guild-seal-guide-2026-10-20",
     category: "commercial",
     title: "Master Brand Identity, Endorsed Wordmark & Trade Quality Guild Seal Guide",
