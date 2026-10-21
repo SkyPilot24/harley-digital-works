@@ -1,5 +1,23 @@
 # The Harley Group & Harley Digital Works — Session Handover Log
 
+## Complete 4-Scene 55s Video Showcase Deployed — 21 October 2026
+
+- **Tool & Scope:** Google Antigravity. Deployed Scene 2 luxury 3D watchmaker precision animation clips into `public/images/transformation-video/` and wired `scene-2-slider-wipe.mp4` into `HeroTransformationVideoModal.tsx`, completing the entire 55-second Hero Video Showcase with 100% real motion video across all 4 scenes.
+- **Founder Direction:** Robbie supplied the first two Higgsfield precision 3D motion clips (`...234048.mp4` and `...234319.mp4`).
+- **Applied Changes:**
+  - `public/images/transformation-video/`:
+    - `scene-2-slider-wipe.mp4`: Precision bevelled glass tiles, signature Midnight Navy `#081B30` cards, brushed steel plates, and spinning gold Trade Quality Guild coins settling into an engineered modular grid.
+    - `scene-2-watchmaker-assembly.mp4`: Precision floating frosted glass wireframes, cards, and UI controls assembling into a modern digital platform.
+  - `src/components/site/HeroTransformationVideoModal.tsx`:
+    - Connected `videoSrc: "/images/transformation-video/scene-2-slider-wipe.mp4"` to Scene 2.
+    - All 4 scenes now run on real HTML5 video with synchronized voiceover narration, automated looping, and scrub controls.
+- **Empirical Verification:**
+  - `npm run check:governance`: PASS.
+  - `npm run format:check`: PASS.
+  - `npm run typecheck`: PASS (0 errors).
+  - `npm test`: PASS (199/199 passing assertions).
+  - Live verified on `http://localhost:8080/`.
+
 ## Interactive Group Divisions Navigation — 21 October 2026
 
 - **Tool & Scope:** Google Antigravity. Upgraded The Harley Group holding overview (`/the-harley-group`) by transforming static division focus cards into interactive, accessible navigation cards.
