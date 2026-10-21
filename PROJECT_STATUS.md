@@ -1,5 +1,22 @@
 # Harley Digital Works — Project Status
 
+## Strategic Domain Portfolio Review & Step 1 Monetisation Pack Ratified — 21 October 2026 (H49/D01–D08)
+
+**Current Status:** Completed comprehensive strategic review of all 45 domain assets, developed the interactive Landing Page Mockup Studio in local preview (`/domain-portfolio-preview`), updated founder weekly capacity to ~20 hours/week, and executed Step 1 with explicit founder approval:
+
+1. **Founder Capacity Update**: Confirmed ~20 hours/week founder commitment alongside NHS career (up from 10–12 hours); pilot client concurrency cap remains strictly 2 active builds.
+2. **Droplist Formalisation**: Retired 10 high-risk trademark names (`theolympics2020.co.uk`, `disneynostalgia.co.uk`, `value-lights.co.uk`, `tokoyo2020.co.uk`, and 2020 archives), setting guide prices to null and saving ~£120–£150/year in renewal fees.
+3. **Outbound Sales Pack**: Prepared Sedo/Afternic copy-paste listing assets for `valuecurrencies.com` (£4,995 ask / £2,500 reserve) and `5gdata.org` (£2,495 ask / £1,200 reserve).
+4. **Interactive Mockup Studio**: Deployed `StrategicDomainMockups.tsx` in `src/routes/domain-portfolio-preview.tsx` featuring 8 full landing page prototypes with desktop and mobile viewport toggles.
+
+**Verification:**
+
+- `npm run check:governance`: PASS.
+- `npm run format:check`: PASS.
+- `npm run typecheck`: PASS (0 errors).
+- `npm test`: PASS (199/199 passing assertions).
+- `http://localhost:8080/domain-portfolio-preview`: Live verified in Chrome.
+
 ## Complete 4-Scene 55s Video Showcase Deployed — 21 October 2026 (H15/H16/H42)
 
 **Current Status:** Connected Scene 2 luxury 3D watchmaker precision animation (`scene-2-slider-wipe.mp4`), completing the entire 55-second Hero Transformation Video Showcase with 100% real motion video across all 4 scenes:

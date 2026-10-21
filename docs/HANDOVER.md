@@ -1,5 +1,27 @@
 # The Harley Group & Harley Digital Works — Session Handover Log
 
+## Strategic Domain Portfolio Review & Step 1 Monetisation Pack Ratified — 21 October 2026
+
+- **Tool & Scope:** Google Antigravity. Completed full 45-domain strategic audit, built interactive Landing Page Mockup Studio in `domain-portfolio-preview.tsx` / `StrategicDomainMockups.tsx`, updated founder weekly time commitment to ~20 hours/week, and executed Step 1 with explicit founder authorization.
+- **Founder Direction:** Robbie confirmed: *"Just to note I have around 20hours a week I will commit and yes please Go ahead on Step 1"*.
+- **Applied Changes:**
+  - `BUSINESS_DEFINITION.md`: Recorded founder weekly time commitment update to ~20 hours/week; concurrency cap maintained strictly at 2 concurrent client builds during pilot.
+  - `src/lib/domain-portfolio.ts`:
+    - Updated `domainBuyNowPrices` to set droplist/retired domains to `null` (`theolympics2020.co.uk`, `disneynostalgia.co.uk`, `value-lights.co.uk`, `tokoyo2020.co.uk`, `buyblockchaincurrency.co.uk`, `bristol2020.co.uk`, `wales2020.co.uk`, `trends2020.co.uk`, `recession2020.co.uk`).
+    - Updated `valuecurrencies.com` (£4,995 BIN / £2,500 reserve floor) and `5gdata.org` (£2,495 BIN / £1,200 reserve floor) asking terms for outbound listing.
+  - `src/components/admin/StrategicDomainMockups.tsx`: Built complete 8-brand interactive landing page mockup studio with desktop and mobile viewport switchers.
+  - `src/routes/domain-portfolio-preview.tsx`: Wired dual-tab interface toggling between Landing Page Mockups and Inventory Register.
+  - Master Artifacts Created:
+    - `strategic-domain-portfolio-review.md`: Complete 5-phase strategic portfolio review, commercial taxonomy, and 45-domain action table.
+    - `step-1-domain-sales-and-droplist-pack.md`: Ready-to-copy Sedo/Afternic listing packs and registrar non-renewal droplist.
+- **Empirical Verification:**
+  - `npm run check:governance`: PASS.
+  - `npm run format:check`: PASS.
+  - `npm run typecheck`: PASS (0 errors).
+  - `npm test`: PASS (199/199 passing assertions).
+  - Live verified on `http://localhost:8080/domain-portfolio-preview`.
+- **Release Status:** Ready for Git commit and push to `origin/main` upon founder confirmation.
+
 ## Complete 4-Scene 55s Video Showcase Deployed — 21 October 2026
 
 - **Tool & Scope:** Google Antigravity. Deployed Scene 2 luxury 3D watchmaker precision animation clips into `public/images/transformation-video/` and wired `scene-2-slider-wipe.mp4` into `HeroTransformationVideoModal.tsx`, completing the entire 55-second Hero Video Showcase with 100% real motion video across all 4 scenes.

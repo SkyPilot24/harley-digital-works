@@ -33,7 +33,7 @@ Governing detail and unit economics model: [docs/COMMERCIAL_OFFER_MANAGED.md](do
 | **Managed (Single Launch MVP)** | **£1,495** (50% deposit £747.50, 50% balance £747.50) | **£249 / month** (rolling 30-day agreement) | 5-page trade website, 100% DFY copywriting, local SEO, Schema JSON-LD, dual lead desk, 2 preview revisions, 30-min monthly edit batch, 24h SLA. |
 
 - **VAT Treatment:** Harley Digital Works operates below the statutory £90,000 HMRC VAT registration threshold. All prices are zero-rated / VAT not applicable. No VAT is charged and no fake VAT numbers or mock tax documents are generated.
-- **Capacity Limits:** Maximum **2 to 3 concurrent client onboarding builds** to safeguard founder NHS schedule balance (10–12 hours/week).
+- **Capacity Limits:** Maximum **2 to 3 concurrent client onboarding builds** to safeguard founder NHS schedule balance (founder commitment updated to ~20 hours/week on 21 October 2026; concurrent build cap remains strictly 2 active builds during pilot).
 - **Setup Scope:** 5-page template-based architecture (Home, About, Services, Selected Work, Contact Desk), professional done-for-you copywriting, trade accreditation badges (Gas Safe, NICEIC, FMB), mobile/accessibility compliance, domain DNS connection preserving business email (MX records protected), and two structured revision rounds.
 - **Monthly Care Scope:** Cloudflare edge hosting, SSL maintenance, enquiry-routing health checks, 1 batch of content updates per month (up to 30 mins non-accumulative), review workflow guidance, monthly performance digest, standard 24h business-day support SLA (4h outage SLA).
 - **Payment Sequence:** 50% deposit (£747.50) due upon proposal acceptance to reserve build slot; strictly non-refundable once intake audit starts. 50% completion balance (£747.50) due upon preview sign-off before DNS cutover. Monthly care (£249/mo) billed via Stripe auto-debit starting on the go-live date.
@@ -51,7 +51,7 @@ Journey: discovered → qualified → contacted → interested → meeting/demo 
 
 Retain useful React/TanStack Start/Cloudflare work and the existing intended backend. Do not rebuild simply to adopt another framework. Use one workflow orchestrator and hosted billing before custom platforms. Domain sales, brokerage, acquisition, valuations and bounded management are a separately measured commercial workstream, marketed through Harley Digital Works and integrated into MASTER_BACKLOG H49/D01–D08. Prioritise verified existing inventory, assisted enquiries/offers, renewal control and links to website/recurring-service opportunities. Advanced domain checkout, speculative acquisitions, a separate Harley Domains site and external Domain OS SaaS remain demand-gated. SaaS ideas, YouTube and broad agency expansion remain deferred.
 
-The founder is developing this alongside an NHS career; keep accounts, systems, data, branding and time separate. Weekly capacity and required transition income are unconfirmed. Limit simultaneous builds, measure support labour and expand with support capacity rather than promising unlimited availability.
+The founder is developing this alongside an NHS career; keep accounts, systems, data, branding and time separate. Weekly capacity committed at ~20 hours/week on 21 October 2026. Limit simultaneous builds, measure support labour and expand with support capacity rather than promising unlimited availability.
 
 ## Measures
 
