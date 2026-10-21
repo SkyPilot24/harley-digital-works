@@ -18,6 +18,7 @@ import {
   saveDatabaseInventory,
   importDatabaseInventory,
 } from "@/lib/domain-database-store";
+import { DomainOutboundEngine } from "./DomainOutboundEngine";
 
 const today = () =>
   new Intl.DateTimeFormat("en-CA", {
@@ -36,7 +37,7 @@ export function DomainPortfolio({ localPreview = false }: { localPreview?: boole
   const [reload, setReload] = useState(0);
   const [saving, setSaving] = useState(false);
   const [message, setMessage] = useState("");
-  const [tab, setTab] = useState<"inventory" | "imports" | "renewals">("inventory");
+  const [tab, setTab] = useState<"outbound" | "inventory" | "imports" | "renewals">("inventory");
   const [query, setQuery] = useState("");
   const [observedOn, setObservedOn] = useState(today);
   const [asOf, setAsOf] = useState(today);
@@ -256,21 +257,28 @@ export function DomainPortfolio({ localPreview = false }: { localPreview?: boole
             ))}
           </div>
           <nav aria-label="Domain portfolio sections" className="flex flex-wrap gap-2">
-            {(["inventory", "imports", "renewals"] as const).map((item) => (
+            {(["outbound", "inventory", "imports", "renewals"] as const).map((item) => (
               <Button
                 key={item}
                 variant={tab === item ? "default" : "outline"}
                 aria-current={tab === item ? "page" : undefined}
                 onClick={() => setTab(item)}
               >
-                {item === "renewals"
-                  ? "Renewal alerts"
-                  : item === "imports"
-                    ? "Imports"
-                    : "Inventory"}
+                {item === "outbound"
+                  ? "Outbound Deals"
+                  : item === "renewals"
+                    ? "Renewal alerts"
+                    : item === "imports"
+                      ? "Imports"
+                      : "Inventory"}
               </Button>
             ))}
           </nav>
+          {tab === "outbound" && (
+            <section className="space-y-4" aria-label="Outbound domain deals">
+              <DomainOutboundEngine />
+            </section>
+          )}
           {tab === "inventory" && (
             <section className="space-y-4" aria-label="Portfolio inventory">
               <Label htmlFor="domain-search">Search names, contracts or purpose</Label>

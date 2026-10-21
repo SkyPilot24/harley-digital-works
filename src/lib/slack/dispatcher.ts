@@ -108,10 +108,15 @@ export async function sendSlackMessage(
 
   try {
     const destination = new URL(webhookUrl);
+    const validSlackPath =
+      destination.pathname.startsWith("/services/") ||
+      destination.pathname.startsWith("/workflows/") ||
+      destination.pathname.startsWith("/triggers/");
+
     if (
       destination.protocol !== "https:" ||
       destination.hostname !== "hooks.slack.com" ||
-      !destination.pathname.startsWith("/services/")
+      !validSlackPath
     ) {
       return { ok: false, error: "Invalid Slack webhook URL" };
     }

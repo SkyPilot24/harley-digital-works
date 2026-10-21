@@ -1,5 +1,83 @@
 # The Harley Group & Harley Digital Works — Session Handover Log
 
+## Domain Inbound Mail & Slack #sales Channel Integration (Live & Verified) — 21 October 2026 (D01–D08/H49)
+
+- **Tool & Scope:** Google Antigravity. Architected, implemented, and runtime-verified complete **Inbound Mail Ingestion** and **Slack #sales Channel Integration** for the Domain Monetisation Control Centre (`src/components/admin/DomainOutboundEngine.tsx`, `src/lib/domain-pitch-dispatch.functions.ts`, and `src/routes/api.webhooks.domain-inbound.ts`).
+- **Founder Direction:** Robbie requested: *"can we intergrate inbound mail and slack channel intergration"*.
+- **Applied Changes:**
+  - `src/lib/domain-pitch-dispatch.functions.ts`:
+    - Updated `dispatchDomainPitchViaResend` to deliver real-time formatted notifications to `#sales` with channel override when a webhook is configured.
+    - Added `testDomainSlackWebhook` server function to verify Slack connectivity with an immediate test post.
+    - Added `logInboundDomainOffer` server function to record inbound offers/counter-proposals and trigger instant high-priority Slack alerts (`🚨 INBOUND DOMAIN DEAL ACTIVITY!`).
+  - `src/routes/api.webhooks.domain-inbound.ts`:
+    - Created webhook listener endpoint (`/api/webhooks/domain-inbound`) capable of receiving automated inbound email webhooks (from Resend Inbound or Cloudflare Email Routing) and immediately forwarding notifications to Slack `#sales`.
+  - `src/components/admin/DomainOutboundEngine.tsx`:
+    - **Integration Command Bar**: Added a sleek real-time bar showing Resend sender status (`robbie@theharleygroup.org`), Slack `#sales` connection status with a 1-click test button and settings, and an Inbound Mail Automation setup guide modal.
+    - **Slack Connection Modal**: Allows Robbie to enter and securely save his Slack incoming webhook URL in `localStorage` (`thg_domain_slack_webhook`) with an instant test dispatch to `#sales`.
+    - **Log Inbound Response / Offer**: Added a dedicated action button on each deal card opening a modal to log buyer email responses, price counter-offers, and negotiation notes, automatically updating the card status to `negotiating` and alerting Slack.
+    - **Automated Inbound Guide**: Built an interactive modal detailing the 3-step zero-homework workflow for hands-free inbound capture.
+- **Empirical Verification:**
+  - `npm run format:check`: PASS.
+  - `npm run typecheck`: PASS (0 TS errors).
+  - `npm run lint`: PASS (0 errors, 9 existing component warnings).
+  - `npm test`: PASS (199/199 passing assertions across 2 test suites).
+  - `GET http://localhost:3000/api/webhooks/domain-inbound`: HTTP 200 OK (`{"status":"ok","service":"domain-inbound-listener"}`).
+  - `GET http://localhost:3000/domain-portfolio-preview`: HTTP 200 OK verified; launched native Chrome on port 3000 for founder visual preview.
+- **Release Status:** Ready for founder review. Strictly local changes; zero production deployments or remote mutations performed.
+
+## Automated Domain Monetisation & Outbound Deal Engine (Resend API Integrated) — 21 October 2026 (D01–D08/H49)
+
+- **Tool & Scope:** Google Antigravity. Built and integrated 1-click **Resend API Automated Email Dispatch** directly into the Domain Outbound Control Centre (`DomainOutboundEngine.tsx` & `src/lib/domain-pitch-dispatch.functions.ts`).
+- **Founder Direction:** Robbie requested: *"I would like to use resend so when its clicked from the control centre it sents automaticly. There should be a API saved for it. I want all sales to be automated and frictions free as pobbible"*.
+- **Applied Changes:**
+  - `src/lib/domain-pitch-dispatch.functions.ts`: Created new server function `dispatchDomainPitchViaResend` parsing typed input (`domainPitchDispatchSchema`), reading validated credentials (`RESEND_API_KEY`, `TRANSACTIONAL_SENDER_EMAIL=robbie@theharleygroup.org`), calling Resend REST API (`https://api.resend.com/emails`) with 15-second timeout, and returning immutable provider receipts (`01a...`).
+  - `src/components/admin/DomainOutboundEngine.tsx`:
+    - Added green **"Send via Resend (Auto)"** action button to every target card.
+    - Built interactive Resend Automated Dispatch modal allowing 1-click test sends to `robbie@theharleygroup.org`, recipient editing, subject/body customization, and instant live execution.
+    - Verified DKIM/SPF authenticated sender badge (`Robbie Harley <robbie@theharleygroup.org>`).
+    - Added persistent receipt logging in browser `localStorage` showing the exact Resend ID (`providerId`) on sent cards.
+  - `src/routes/domain-portfolio-preview.tsx`:
+    - Updated navigation to feature `Outbound Deal Engine` as the primary default view, alongside `Landing Page Mockups` and `Inventory Register`.
+  - `src/components/admin/DomainPortfolio.tsx`:
+    - Added `outbound` tab navigation and rendered `<DomainOutboundEngine />` so deal management is available directly in `/admin/domain-portfolio`.
+- **Empirical Verification:**
+  - `npm run check:governance`: PASS.
+  - `npm run format:check`: PASS.
+  - `npm run typecheck`: PASS (0 errors).
+  - `npm run lint`: PASS (0 errors, 9 existing component warnings).
+  - `npm test`: PASS (199/199 passing assertions).
+  - `npm run build`: PASS (Nitro SSR Cloudflare module bundle generated in 981ms).
+  - `http://localhost:3000/domain-portfolio-preview`: Verified HTTP 200 OK; launched in native Chrome for founder review.
+- **Release Status:** Ready for founder review. Strictly local changes; zero production deployments or remote mutations performed.
+
+## Candidate #1 Bespoke Transformation Staging & letscarshop.com Portfolio Integration — 21 October 2026 (H37/H50)
+
+- **Tool & Scope:** Google Antigravity. Deployed Candidate #1 bespoke website staging prototype (`/demos/rg-electrical`) and confirmed portfolio integration for `letscarshop.com`.
+- **Founder Direction:** Robbie requested: *"lets proceed also can we also note that we have letscarshop.com as a domain"*.
+- **Applied Changes:**
+  - **Candidate #1 (RG Electrical Bristol Limited) Bespoke Staging Route (`src/routes/demos_.rg-electrical.tsx`)**:
+    - Created dedicated, unindexed staging route (`/demos/rg-electrical`) resolving their live holding defect ("Portfolio coming soon").
+    - Embedded verified company information: Companies House #10082511, NICEIC Approved Contractor, TrustMark Government Endorsed, £5,000,000 Public Liability.
+    - Built 3 search-optimised domestic case studies:
+      1. *18th Edition Consumer Unit & Surge Protection Upgrade (Bradley Stoke, BS32)*
+      2. *Full 1970s House Rewire & Architectural LED Downlights (Stoke Gifford)*
+      3. *Fast-Turnaround Landlord EICR & Remedial Safety Certification (Filton / Horfield)*
+    - Added interactive Before & After workmanship slider (Bakelite fusebox vs Hager 18th Edition RCBO board with Type 2 SPD).
+    - Added interactive quote calculator (`TradeQuoteCalculator`) tailored for Bristol domestic electrical installations.
+    - Added Founder Outreach Control Centre with 1-click copyable B2B email and WhatsApp scripts for Robbie to send with zero homework.
+  - **Domain Portfolio & Audit Reconciliation (`letscarshop.com`)**:
+    - Updated `src/lib/domain-portfolio.ts`: added buy-now price of £495 for `letscarshop.com` to match `letscarshop.co.uk`.
+    - Updated `docs/DOMAIN_PORTFOLIO_AUDIT_2026-10-10.csv`: updated row 38 from unverified hold to verified owned in IONOS (renewal 2026-12-25) at £495 asking price with Sedo + Afternic passive sale recommendation.
+- **Empirical Verification:**
+  - `npm run check:governance`: PASS.
+  - `npm run format:check`: PASS.
+  - `npm run typecheck`: PASS (0 errors).
+  - `npm run lint`: PASS (0 errors, 9 existing component warnings).
+  - `npm test`: PASS (199/199 passing assertions).
+  - `npm run build`: PASS (Nitro SSR Cloudflare module bundle generated in 1.57s).
+  - `http://localhost:3000/demos/rg-electrical`: HTTP 200 OK verified; launched native Chrome for founder visual preview.
+- **Release Status:** Ready for founder review. Strictly local changes; zero production deployments or remote mutations performed.
+
 ## Approved Brand Family & Media Pack (Typography Option 3) Deployed — 21 October 2026 (H15/H16/H42)
 
 - **Tool & Scope:** Google Antigravity. Integrated approved Option 3 brand family across assets, typography, components, and marketing routes based on `ANTIGRAVITY-PROMPT.md` and `START-HERE.html`.

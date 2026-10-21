@@ -401,6 +401,7 @@ export const domainBuyNowPrices: Record<string, number | null> = {
   "roboticpharmacist.co.uk": 995,
   "theiotshop.co.uk": 995,
   "mydigitalhouse.co.uk": 795,
+  "letscarshop.com": 495,
   "letscarshop.co.uk": 495,
   "buyblockchaincurrency.co.uk": null,
   "value-lights.co.uk": null,

@@ -36,6 +36,7 @@ import { Route as TradesRouteImport } from './routes/trades'
 import { Route as WorkRouteImport } from './routes/work'
 import { Route as ClientReviewProjectIdRouteImport } from './routes/client-review_.$projectId'
 import { Route as DemosElectricianConceptRouteImport } from './routes/demos_.electrician-concept'
+import { Route as DemosRgElectricalRouteImport } from './routes/demos_.rg-electrical'
 import { Route as LocationsSlugRouteImport } from './routes/locations_.$slug'
 import { Route as ServicesAiAutomationRouteImport } from './routes/services_.ai-automation'
 import { Route as ServicesAutomationRouteImport } from './routes/services_.automation'
@@ -69,6 +70,7 @@ import { Route as AuthenticatedAdminTeamRouteImport } from './routes/_authentica
 import { Route as AuthenticatedAdminTestimonialsRouteImport } from './routes/_authenticated/admin.testimonials'
 import { Route as AuthenticatedAdminUsersRouteImport } from './routes/_authenticated/admin.users'
 import { Route as ApiPaymentsStripeRouteImport } from './routes/api.payments.stripe'
+import { Route as ApiWebhooksDomainInboundRouteImport } from './routes/api.webhooks.domain-inbound'
 import { Route as ApiWebhooksResendRouteImport } from './routes/api.webhooks.resend'
 
 const IndexRoute = IndexRouteImport.update({
@@ -203,6 +205,11 @@ const ClientReviewProjectIdRoute = ClientReviewProjectIdRouteImport.update({
 const DemosElectricianConceptRoute = DemosElectricianConceptRouteImport.update({
   id: '/demos_/electrician-concept',
   path: '/demos/electrician-concept',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DemosRgElectricalRoute = DemosRgElectricalRouteImport.update({
+  id: '/demos_/rg-electrical',
+  path: '/demos/rg-electrical',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LocationsSlugRoute = LocationsSlugRouteImport.update({
@@ -386,6 +393,12 @@ const ApiPaymentsStripeRoute = ApiPaymentsStripeRouteImport.update({
   path: '/api/payments/stripe',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiWebhooksDomainInboundRoute =
+  ApiWebhooksDomainInboundRouteImport.update({
+    id: '/api/webhooks/domain-inbound',
+    path: '/api/webhooks/domain-inbound',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const ApiWebhooksResendRoute = ApiWebhooksResendRouteImport.update({
   id: '/api/webhooks/resend',
   path: '/api/webhooks/resend',
@@ -419,6 +432,7 @@ export interface FileRoutesByFullPath {
   '/work': typeof WorkRoute
   '/client-review/$projectId': typeof ClientReviewProjectIdRoute
   '/demos/electrician-concept': typeof DemosElectricianConceptRoute
+  '/demos/rg-electrical': typeof DemosRgElectricalRoute
   '/locations/$slug': typeof LocationsSlugRoute
   '/services/ai-automation': typeof ServicesAiAutomationRoute
   '/services/automation': typeof ServicesAutomationRoute
@@ -451,6 +465,7 @@ export interface FileRoutesByFullPath {
   '/admin/testimonials': typeof AuthenticatedAdminTestimonialsRoute
   '/admin/users': typeof AuthenticatedAdminUsersRoute
   '/api/payments/stripe': typeof ApiPaymentsStripeRoute
+  '/api/webhooks/domain-inbound': typeof ApiWebhooksDomainInboundRoute
   '/api/webhooks/resend': typeof ApiWebhooksResendRoute
   '/admin/': typeof AuthenticatedAdminIndexRoute
 }
@@ -481,6 +496,7 @@ export interface FileRoutesByTo {
   '/work': typeof WorkRoute
   '/client-review/$projectId': typeof ClientReviewProjectIdRoute
   '/demos/electrician-concept': typeof DemosElectricianConceptRoute
+  '/demos/rg-electrical': typeof DemosRgElectricalRoute
   '/locations/$slug': typeof LocationsSlugRoute
   '/services/ai-automation': typeof ServicesAiAutomationRoute
   '/services/automation': typeof ServicesAutomationRoute
@@ -513,6 +529,7 @@ export interface FileRoutesByTo {
   '/admin/testimonials': typeof AuthenticatedAdminTestimonialsRoute
   '/admin/users': typeof AuthenticatedAdminUsersRoute
   '/api/payments/stripe': typeof ApiPaymentsStripeRoute
+  '/api/webhooks/domain-inbound': typeof ApiWebhooksDomainInboundRoute
   '/api/webhooks/resend': typeof ApiWebhooksResendRoute
   '/admin': typeof AuthenticatedAdminIndexRoute
 }
@@ -545,6 +562,7 @@ export interface FileRoutesById {
   '/work': typeof WorkRoute
   '/client-review_/$projectId': typeof ClientReviewProjectIdRoute
   '/demos_/electrician-concept': typeof DemosElectricianConceptRoute
+  '/demos_/rg-electrical': typeof DemosRgElectricalRoute
   '/locations_/$slug': typeof LocationsSlugRoute
   '/services_/ai-automation': typeof ServicesAiAutomationRoute
   '/services_/automation': typeof ServicesAutomationRoute
@@ -577,6 +595,7 @@ export interface FileRoutesById {
   '/_authenticated/admin/testimonials': typeof AuthenticatedAdminTestimonialsRoute
   '/_authenticated/admin/users': typeof AuthenticatedAdminUsersRoute
   '/api/payments/stripe': typeof ApiPaymentsStripeRoute
+  '/api/webhooks/domain-inbound': typeof ApiWebhooksDomainInboundRoute
   '/api/webhooks/resend': typeof ApiWebhooksResendRoute
   '/_authenticated/admin/': typeof AuthenticatedAdminIndexRoute
 }
@@ -609,6 +628,7 @@ export interface FileRouteTypes {
     | '/work'
     | '/client-review/$projectId'
     | '/demos/electrician-concept'
+    | '/demos/rg-electrical'
     | '/locations/$slug'
     | '/services/ai-automation'
     | '/services/automation'
@@ -641,6 +661,7 @@ export interface FileRouteTypes {
     | '/admin/testimonials'
     | '/admin/users'
     | '/api/payments/stripe'
+    | '/api/webhooks/domain-inbound'
     | '/api/webhooks/resend'
     | '/admin/'
   fileRoutesByTo: FileRoutesByTo
@@ -671,6 +692,7 @@ export interface FileRouteTypes {
     | '/work'
     | '/client-review/$projectId'
     | '/demos/electrician-concept'
+    | '/demos/rg-electrical'
     | '/locations/$slug'
     | '/services/ai-automation'
     | '/services/automation'
@@ -703,6 +725,7 @@ export interface FileRouteTypes {
     | '/admin/testimonials'
     | '/admin/users'
     | '/api/payments/stripe'
+    | '/api/webhooks/domain-inbound'
     | '/api/webhooks/resend'
     | '/admin'
   id:
@@ -734,6 +757,7 @@ export interface FileRouteTypes {
     | '/work'
     | '/client-review_/$projectId'
     | '/demos_/electrician-concept'
+    | '/demos_/rg-electrical'
     | '/locations_/$slug'
     | '/services_/ai-automation'
     | '/services_/automation'
@@ -766,6 +790,7 @@ export interface FileRouteTypes {
     | '/_authenticated/admin/testimonials'
     | '/_authenticated/admin/users'
     | '/api/payments/stripe'
+    | '/api/webhooks/domain-inbound'
     | '/api/webhooks/resend'
     | '/_authenticated/admin/'
   fileRoutesById: FileRoutesById
@@ -798,6 +823,7 @@ export interface RootRouteChildren {
   WorkRoute: typeof WorkRoute
   ClientReviewProjectIdRoute: typeof ClientReviewProjectIdRoute
   DemosElectricianConceptRoute: typeof DemosElectricianConceptRoute
+  DemosRgElectricalRoute: typeof DemosRgElectricalRoute
   LocationsSlugRoute: typeof LocationsSlugRoute
   ServicesAiAutomationRoute: typeof ServicesAiAutomationRoute
   ServicesAutomationRoute: typeof ServicesAutomationRoute
@@ -812,6 +838,7 @@ export interface RootRouteChildren {
   TrackTokenRoute: typeof TrackTokenRoute
   TradesSlugRoute: typeof TradesSlugRoute
   ApiPaymentsStripeRoute: typeof ApiPaymentsStripeRoute
+  ApiWebhooksDomainInboundRoute: typeof ApiWebhooksDomainInboundRoute
   ApiWebhooksResendRoute: typeof ApiWebhooksResendRoute
 }
 
@@ -1004,6 +1031,13 @@ declare module '@tanstack/react-router' {
       path: '/demos/electrician-concept'
       fullPath: '/demos/electrician-concept'
       preLoaderRoute: typeof DemosElectricianConceptRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/demos_/rg-electrical': {
+      id: '/demos_/rg-electrical'
+      path: '/demos/rg-electrical'
+      fullPath: '/demos/rg-electrical'
+      preLoaderRoute: typeof DemosRgElectricalRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/locations_/$slug': {
@@ -1237,6 +1271,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiPaymentsStripeRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/webhooks/domain-inbound': {
+      id: '/api/webhooks/domain-inbound'
+      path: '/api/webhooks/domain-inbound'
+      fullPath: '/api/webhooks/domain-inbound'
+      preLoaderRoute: typeof ApiWebhooksDomainInboundRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/webhooks/resend': {
       id: '/api/webhooks/resend'
       path: '/api/webhooks/resend'
@@ -1323,6 +1364,7 @@ const rootRouteChildren: RootRouteChildren = {
   WorkRoute: WorkRoute,
   ClientReviewProjectIdRoute: ClientReviewProjectIdRoute,
   DemosElectricianConceptRoute: DemosElectricianConceptRoute,
+  DemosRgElectricalRoute: DemosRgElectricalRoute,
   LocationsSlugRoute: LocationsSlugRoute,
   ServicesAiAutomationRoute: ServicesAiAutomationRoute,
   ServicesAutomationRoute: ServicesAutomationRoute,
@@ -1337,6 +1379,7 @@ const rootRouteChildren: RootRouteChildren = {
   TrackTokenRoute: TrackTokenRoute,
   TradesSlugRoute: TradesSlugRoute,
   ApiPaymentsStripeRoute: ApiPaymentsStripeRoute,
+  ApiWebhooksDomainInboundRoute: ApiWebhooksDomainInboundRoute,
   ApiWebhooksResendRoute: ApiWebhooksResendRoute,
 }
 export const routeTree = rootRouteImport
