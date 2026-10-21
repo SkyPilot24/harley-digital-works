@@ -194,7 +194,8 @@ export const domainPortfolio: DomainAsset[] = [
     priority: "Medium",
     suggestedAsk: "GBP 500-1,500",
     quickSale: "GBP 200-500",
-    targetBuyer: "Car marketplace, automotive comparison site, used dealership group, or auto finance broker.",
+    targetBuyer:
+      "Car marketplace, automotive comparison site, used dealership group, or auto finance broker.",
     useCase: "Global or UK-wide consumer car buying and comparison portal.",
     nextAction: "List with modest buy-now pricing on Sedo/Afternic.",
   },
@@ -320,7 +321,8 @@ export const domainPortfolio: DomainAsset[] = [
     quickSale: "N/A",
     targetBuyer: "Birth support provider or Hobart local practice.",
     useCase: "Doula delivery and birth support website in Hobart (built on MyWebsite NOW).",
-    nextAction: "Keep active: Auto-renew scheduled in IONOS (renews 24 Nov 2026 per founder decision).",
+    nextAction:
+      "Keep active: Auto-renew scheduled in IONOS (renews 24 Nov 2026 per founder decision).",
   },
   {
     name: "holisticbeautykeynsham.co.uk",
@@ -330,7 +332,8 @@ export const domainPortfolio: DomainAsset[] = [
     quickSale: "N/A",
     targetBuyer: "Local beauty therapist or salon practice.",
     useCase: "Holistic beauty services website in Keynsham (built on MyWebsite NOW).",
-    nextAction: "Keep active: Auto-renew scheduled in IONOS (renews 21 Nov 2026 per founder decision).",
+    nextAction:
+      "Keep active: Auto-renew scheduled in IONOS (renews 21 Nov 2026 per founder decision).",
   },
 ];
 
