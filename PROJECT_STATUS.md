@@ -1,5 +1,25 @@
 # Harley Digital Works — Project Status
 
+## Live IONOS API Verification & 53-Domain Authoritative Audit — 21 October 2026 (D01–D08/H49)
+
+**Current Status:** Reconciled authoritative registrar domain export (`docs/domains-export-21_10_2026T01_55_am.xls`) and tested live `IONOS_API_KEY` credentials against the IONOS Developer Hosting API (`https://api.hosting.ionos.com/dns/v1/zones`):
+
+1. **API Key Live Verification**: Successfully connected via HTTP GET with `X-API-Key` authentication; received HTTP 200 OK returning all 53 live DNS zones. Read-only records verification confirmed active external DNS for `valuecurrencies.com` (pointing to Afternic).
+2. **Droplist Reconciled with Live Accounts**:
+   - 7 historical "2020" domains confirmed already dropped / expired (`theolympics2020.co.uk`, `bristol2020.co.uk`, etc.).
+   - Exactly 4 active domains identified in IONOS to turn auto-renew OFF before Christmas/January (`disneynostalgia.co.uk`, `buyblockchaincurrency.co.uk`, `myblockchaincurrency.co.uk`, and `lukebiscan.store`).
+3. **Personal Projects Retained**: Founder confirmed keeping `holisticbeautykeynsham.co.uk` (renews 21 Nov 2026) and `douladeliveryhobart.com` (renews 24 Nov 2026) active on auto-renew.
+4. **Authoritative Audit Pack**: Created `authoritative-ionos-domain-audit-2026-10-21.md` documenting full contract breakdown across all 8 IONOS contracts, renewal schedules, and protection of the 17 Revival Fellowship pro-bono domains.
+5. **Portfolio Data Corrected**: Updated `src/lib/domain-portfolio.ts` with verified `.com` TLD for `letscarshop.com` and `douladeliveryhobart.com`.
+
+**Verification:**
+
+- `npm run check:governance`: PASS.
+- `npm run format:check`: PASS.
+- `npm run typecheck`: PASS (0 errors).
+- `npm test`: PASS (199/199 passing assertions).
+- `npm run build`: PASS (Nitro SSR Cloudflare module bundle generated).
+
 ## Strategic Domain Portfolio Review & Step 1 Monetisation Pack Ratified — 21 October 2026 (H49/D01–D08)
 
 **Current Status:** Completed comprehensive strategic review of all 45 domain assets, developed the interactive Landing Page Mockup Studio in local preview (`/domain-portfolio-preview`), updated founder weekly capacity to ~20 hours/week, and executed Step 1 with explicit founder approval:
