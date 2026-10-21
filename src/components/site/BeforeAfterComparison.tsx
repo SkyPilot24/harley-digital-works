@@ -16,7 +16,16 @@ interface BeforeAfterComparisonProps {
 }
 
 // Authentic illustrative British trade photography for each vertical
-const conceptPhotography: Record<string, string> = {
+const beforePhotography: Record<string, string> = {
+  "heating-plumbing": "/images/home/before-heating-boiler.jpg",
+  "electrical-ev": "/images/home/before-electrical-fusebox.jpg",
+  "roofing-leadwork": "/images/home/before-roofing-leadwork.jpg",
+  "building-renovations": "/images/home/before-kitchen-extension.jpg",
+  "landscaping-gardens": "/images/home/before-landscaping-patio.jpg",
+  "painting-decorating": "/images/home/before-bathroom-interior.jpg",
+};
+
+const afterPhotography: Record<string, string> = {
   "heating-plumbing": "/images/home/heating-plant-room.jpg",
   "electrical-ev": "/images/home/renewables-solar-ev.jpg",
   "roofing-leadwork": "/images/home/thg-pavilion.jpg",
@@ -33,6 +42,10 @@ function DesignPreview({
   version: "before" | "after";
 }) {
   const modern = version === "after";
+  const imageSrc = modern
+    ? afterPhotography[item.id] || afterPhotography["heating-plumbing"]
+    : beforePhotography[item.id] || afterPhotography[item.id];
+
   return (
     <div className={`comparison-design comparison-design--${version}`}>
       <div className="comparison-browser">
@@ -46,7 +59,16 @@ function DesignPreview({
         <span className="comparison-example-nav">Services · About · Contact</span>
       </div>
       <div className="comparison-hero">
-        <img src={conceptPhotography[item.id]} alt="" loading="lazy" decoding="async" />
+        <img
+          src={imageSrc}
+          alt={
+            modern
+              ? `${item.tradeName} completed modern project`
+              : `${item.tradeName} prior condition`
+          }
+          loading="lazy"
+          decoding="async"
+        />
         <div className="comparison-hero-shade" />
         <div className="comparison-hero-copy">
           <span className="comparison-eyebrow">

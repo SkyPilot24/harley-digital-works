@@ -23,6 +23,7 @@ interface Scene {
   startSecond: number;
   endSecond: number;
   image: string;
+  videoSrc?: string;
   voiceover: string;
   highlightPills: string[];
 }
@@ -36,6 +37,7 @@ const SCENES: Scene[] = [
     startSecond: 0,
     endSecond: 8,
     image: "/images/transformation-video/scene-1-frustration.jpg",
+    videoSrc: "/images/transformation-video/scene-1-frustration.mp4",
     voiceover:
       "You do exceptional work on site. But when a customer searches on their phone... does your website do your business justice? Outdated layouts, missing badges, and broken forms cost you £3,000+ jobs every single week.",
     highlightPills: ["Slow 4.8s Load", "Broken on Mobile", "Missing Gas Safe Badges"],
@@ -60,6 +62,7 @@ const SCENES: Scene[] = [
     startSecond: 25,
     endSecond: 40,
     image: "/images/transformation-video/scene-3-zero-homework.jpg",
+    videoSrc: "/images/transformation-video/scene-3-zero-homework.mp4",
     voiceover:
       "And the best part? Zero homework for you. We don't ask you to write a single word of marketing copy. We write the copy, design the site, and look after every update every single month. You stay on the tools; we handle the digital.",
     highlightPills: ["100% DFY Copywriting", "Zero Blank Homework Sheets", "24h WhatsApp Support"],
@@ -72,6 +75,7 @@ const SCENES: Scene[] = [
     startSecond: 40,
     endSecond: 55,
     image: "/images/transformation-video/scene-4-offer-cta.jpg",
+    videoSrc: "/images/transformation-video/scene-4-offer-cta.mp4",
     voiceover:
       "Fixed pricing: £1,495 setup with 50% deposit and 50% only when you approve the finished preview. Ongoing monthly care at £249/mo. We only take on 2 new builds at a time. Let's take the website headache off your plate.",
     highlightPills: [
@@ -98,12 +102,23 @@ export function HeroTransformationVideoModal({
   const [isMuted, setIsMuted] = useState(false);
   const synthRef = useRef<SpeechSynthesisUtterance | null>(null);
   const timerRef = useRef<NodeJS.Timeout | null>(null);
+  const videoRef = useRef<HTMLVideoElement | null>(null);
 
   // Active scene calculation
   const currentSceneIndex = SCENES.findIndex(
     (scene) => currentTime >= scene.startSecond && currentTime < scene.endSecond,
   );
   const activeScene = SCENES[currentSceneIndex >= 0 ? currentSceneIndex : SCENES.length - 1];
+
+  // Synchronise video playback with play/pause state
+  useEffect(() => {
+    if (!videoRef.current) return;
+    if (isPlaying) {
+      videoRef.current.play().catch(() => {});
+    } else {
+      videoRef.current.pause();
+    }
+  }, [isPlaying, activeScene]);
 
   // Playback timer
   useEffect(() => {
@@ -243,17 +258,31 @@ export function HeroTransformationVideoModal({
 
         {/* Video Canvas / Main Viewport */}
         <div className="relative aspect-video w-full bg-black overflow-hidden group select-none">
-          <img
-            src={activeScene.image}
-            alt={activeScene.title}
-            className="h-full w-full object-cover transition-opacity duration-500"
-          />
+          {activeScene.videoSrc ? (
+            <video
+              ref={videoRef}
+              key={activeScene.videoSrc}
+              src={activeScene.videoSrc}
+              poster={activeScene.image}
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="h-full w-full object-cover transition-opacity duration-500"
+            />
+          ) : (
+            <img
+              src={activeScene.image}
+              alt={activeScene.title}
+              className="h-full w-full object-cover transition-opacity duration-500"
+            />
+          )}
 
           {/* Cinematic Shade Gradient for Subtitle Clarity */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent pointer-events-none" />
 
           {/* Top Scene Kicker Overlay */}
-          <div className="absolute top-4 left-4 right-4 flex items-center justify-between pointer-events-none">
+          <div className="absolute top-4 left-4 right-4 flex items-center justify-between pointer-events-none z-20">
             <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-black/60 px-3 py-1 backdrop-blur-md text-xs font-medium text-white/90">
               <Sparkles className="h-3.5 w-3.5 text-amber-400" />
               <span>
@@ -268,7 +297,7 @@ export function HeroTransformationVideoModal({
           </div>
 
           {/* Subtitle & Voiceover Box (Bottom Overlay) */}
-          <div className="absolute bottom-4 left-4 right-4 sm:left-6 sm:right-6 pointer-events-none">
+          <div className="absolute bottom-4 left-4 right-4 sm:left-6 sm:right-6 pointer-events-none z-20">
             <div className="max-w-3xl rounded-xl border border-white/15 bg-black/80 p-3.5 sm:p-4 backdrop-blur-md shadow-lg pointer-events-auto">
               <div className="flex flex-wrap items-center gap-1.5 mb-2">
                 {activeScene.highlightPills.map((pill, idx) => (
@@ -289,8 +318,9 @@ export function HeroTransformationVideoModal({
 
           {/* Big Center Play / Pause Indicator on Hover */}
           <button
+            type="button"
             onClick={() => setIsPlaying(!isPlaying)}
-            className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/30 cursor-pointer"
+            className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/30 cursor-pointer z-10"
             aria-label={isPlaying ? "Pause video" : "Play video"}
           >
             <div className="rounded-full bg-white/20 p-4 backdrop-blur-md border border-white/30 text-white hover:scale-110 transition-transform">

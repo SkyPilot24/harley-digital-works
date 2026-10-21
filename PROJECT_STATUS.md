@@ -1,5 +1,23 @@
 # Harley Digital Works — Project Status
 
+## Cinematic MP4 Video Showcase Integration & Authentic Before/After Assets Deployment — 21 October 2026 (H15/H16/H42)
+
+**Current Status:** Integrated 3 real cinematic MP4 video clips generated on Higgsfield.ai / Kling 3.0 into the 55-second Hero Transformation Video Showcase player, and deployed 6 authentic British "Before" renovation assets into the interactive Before & After slider:
+1. **Real Motion Video Showcase (`HeroTransformationVideoModal.tsx`, `public/images/transformation-video/`)**:
+   - `scene-1-frustration.mp4`: Frustrated UK trade contractor inside a Ford Transit cab looking at an outdated broken mobile website in the rain.
+   - `scene-3-zero-homework.mp4`: Relaxed UK trade contractor smiling with a steaming mug of tea beside his Ford Transit with zero homework stress.
+   - `scene-4-offer-cta.mp4`: Slow macro cinematic pan across a machined brass Trade Quality Guild Seal badge, luxury leather folder, and signed agreement.
+   - Wired into HTML5 video player with automated looping, audio-synchronized voiceover narration, interactive scene scrubber, and responsive poster fallback.
+2. **New Authentic "Before" Assets (`public/images/home/`)**: `before-heating-boiler.jpg` (cramped under-stairs boiler cupboard), `before-kitchen-extension.jpg` (1970s galley kitchen with floral wallpaper), `before-landscaping-patio.jpg` (waterlogged muddy lawn with broken concrete slabs), `before-roofing-leadwork.jpg` (weathered Victorian roof with slipped tiles and crumbling chimney mortar), `before-electrical-fusebox.jpg` (antique Bakelite fusebox with messy wires), and `before-bathroom-interior.jpg` (tired 1980s avocado green bathroom with mouldy grout).
+3. **Interactive Component Wiring (`BeforeAfterComparison.tsx`, `before-after-comparison.css`)**: Connected each trade tab to its genuine "Before" scene on the left and finished "After" installation on the right, removing the artificial monochrome filter and introducing calibrated natural grading.
+
+**Verification:**
+
+- `npm run typecheck`: PASS (0 errors).
+- `npm test`: PASS (199/199 passing assertions).
+- `npm run build`: PASS (Nitro SSR Cloudflare module build in 1.11s).
+- `http://localhost:8080/`: Live verified.
+
 ## Authentic British Trade Photography & Website Overhaul — 20 October 2026 (H15/H16/H42)
 
 **Current Status:** Completed full website image audit and visual overhaul across The Harley Group and Harley Digital Works, replacing generic architectural stock placeholders with 11 high-resolution authentic British trade and architectural assets generated via Higgsfield.ai / Nano Banana Pro:

@@ -45,3 +45,6 @@ dist-ssr
 !.env.production
 
 supabase/.temp/
+
+# Raw Higgsfield video downloads (canonical copies live in public/images/transformation-video/)
+public/brand/*.mp4

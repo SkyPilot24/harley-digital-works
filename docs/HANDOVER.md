@@ -1,3 +1,32 @@
+## Cinematic MP4 Video Showcase Integration & Authentic Before/After Assets Deployment — 21 October 2026
+
+- **Tool & Scope:** Google Antigravity. Integrated 3 real cinematic MP4 video clips generated on Higgsfield.ai / Kling 3.0 into the 55-second Hero Transformation Video Showcase player (`HeroTransformationVideoModal.tsx`), and deployed 6 authentic British "Before" renovation assets to `public/images/home/` wired into `BeforeAfterComparison.tsx` and `before-after-comparison.css`.
+- **Founder Direction:** Robbie generated 3 cinematic video clips and 6 authentic "Before" renovation scenes on Higgsfield and requested their integration into the platform.
+- **Applied Changes:**
+  - `public/images/transformation-video/`: Ingested 3 authentic motion video clips:
+    1. `scene-1-frustration.mp4`: Frustrated UK trade contractor inside a Ford Transit cab looking at an outdated broken mobile website in the rain.
+    2. `scene-3-zero-homework.mp4`: Relaxed UK trade contractor smiling with a steaming mug of tea beside his Ford Transit with zero homework stress.
+    3. `scene-4-offer-cta.mp4`: Slow macro cinematic pan across a machined brass Trade Quality Guild Seal badge, luxury leather folder, and signed agreement.
+  - `src/components/site/HeroTransformationVideoModal.tsx`:
+    - Updated `SCENES` definition with `videoSrc` mapping for Scene 1, Scene 3, and Scene 4.
+    - Updated video canvas to render an HTML5 `<video>` element with `autoPlay`, `loop`, `muted`, `playsInline`, and poster fallback when `activeScene.videoSrc` is defined.
+    - Added `videoRef` with synchronization hooks to ensure play/pause state controls both video playback and voiceover narration.
+    - Layered controls, kicker badges, and subtitle pill overlays with elevated z-indexes for smooth user interaction.
+  - `public/images/home/`: Ingested 6 authentic "Before" images:
+    1. `before-heating-boiler.jpg`: Discoloured, rusted 1990s wall boiler in under-stairs cupboard with tangled oxidised copper pipes.
+    2. `before-kitchen-extension.jpg`: Cramped, dated 1970s domestic galley kitchen with peeling floral wallpaper and dark laminate worktops.
+    3. `before-landscaping-patio.jpg`: Overgrown, waterlogged rear garden with cracked mossy concrete slabs and rusty wheelbarrow.
+    4. `before-roofing-leadwork.jpg`: Weathered Victorian roof with slipped terracotta tiles, leaking flashing, and crumbling chimney mortar.
+    5. `before-electrical-fusebox.jpg`: Antique brown Bakelite rewirable fuse box with exposed terminals and tangled drooping wires.
+    6. `before-bathroom-interior.jpg`: Tired 1980s avocado green bathtub, discoloured tile grout, mouldy silicone, and peeling paint.
+  - `src/components/site/BeforeAfterComparison.tsx`: Updated `beforePhotography` mapping so dragging the interactive comparison slider displays the genuine "Before" condition on the left and the finished "After" installation on the right.
+  - `src/components/site/before-after-comparison.css`: Replaced 100% grayscale filter with natural saturation and subtle contrast enhancement (`filter: saturate(0.9) contrast(1.05)`) and smooth directional gradient so the gritty before scene is visually clear.
+- **Empirical Verification:**
+  - `npm run typecheck`: PASS (0 errors).
+  - `npm test`: PASS (199/199 passing assertions).
+  - `npm run build`: PASS (Nitro SSR Cloudflare module build in 1.11s).
+  - Local browser presentation verified on `http://localhost:8080/`.
+
 ## Authentic British Trade Photography & Website Overhaul — 20 October 2026
 
 - **Tool & Scope:** Google Antigravity. Complete visual overhaul replacing generic stock/architectural placeholders across The Harley Group and Harley Digital Works with authentic British trade imagery created via Nano Banana Pro / Higgsfield.ai and deployed across all marketing and trade routes.
@@ -15,8 +44,7 @@
     9. `decorating-heritage.jpg`: Heritage Victorian room decorating with deep slate blue walls, white timber sash window, and picture rail.
     10. `thg-pavilion.jpg`: Contemporary Bath stone and timber architectural craft pavilion.
     11. `thg-headquarters.jpg`: Two-storey Bath stone, steel, and oak contemporary headquarters building.
-  - `src/routes/the-harley-group.tsx`: Upgraded corporate holding hero to `thg-headquarters.jpg`.
-  - `src/routes/index.tsx`: Upgraded homepage hero preview to `hero-contractor.jpg` and Section 03 craftsmanship visual to `craftsman-workshop.jpg`.
+  - `src/routes/the-harley-group.tsx`: Upgraded corporate holding hero to `thg-headquarters.jpg`.  - `src/routes/index.tsx`: Upgraded homepage hero preview to `hero-contractor.jpg` and Section 03 craftsmanship visual to `craftsman-workshop.jpg`.
   - `src/routes/about.tsx`: Upgraded company philosophy visual to `craftsman-workshop.jpg`.
   - `src/routes/work.tsx`: Upgraded Section 03 "The Harley Standard" visual to `thg-pavilion.jpg`.
   - `src/components/site/ConceptShowcase.tsx`: Mapped Building (`extension-renovation.jpg`), Solar/EV (`renewables-solar-ev.jpg`), and Bathrooms (`bathroom-interior.jpg`).
