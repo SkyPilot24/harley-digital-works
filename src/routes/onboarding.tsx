@@ -23,7 +23,7 @@ export const Route = createFileRoute("/onboarding")({
       {
         name: "description",
         content:
-          "Fast 3-minute onboarding intake for new trade clients. Pick your services, select accreditations, drop your logo or van photos, and start your 14-day build sprint.",
+          "Fast 3-minute onboarding intake for new trade clients. Pick your services, select accreditations, drop your logo or van photos, and start your milestone build sprint.",
       },
       { property: "og:title", content: "Fast-Track Client Onboarding | Harley Digital Works" },
     ],
@@ -40,7 +40,7 @@ function OnboardingPage() {
         <Container>
           <div className="max-w-2xl mx-auto text-center">
             <div className="inline-flex items-center gap-2 mb-3">
-              <TagChip tone="dark">14-Day Delivery Sprint</TagChip>
+              <TagChip tone="dark">Milestone Delivery Sprint</TagChip>
               <span className="text-xs text-neutral-400">Zero Homework Required</span>
             </div>
             <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-white leading-tight">
@@ -55,7 +55,7 @@ function OnboardingPage() {
             <div className="mt-6 flex flex-wrap items-center justify-center gap-4 text-xs text-neutral-400">
               <div className="flex items-center gap-1.5">
                 <CheckCircle2 className="h-4 w-4 text-emerald-400" />
-                <span>14-Day Guaranteed Launch</span>
+                <span>Agreed Milestone Launch</span>
               </div>
               <span>•</span>
               <div className="flex items-center gap-1.5">

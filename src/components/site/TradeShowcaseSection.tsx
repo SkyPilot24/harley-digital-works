@@ -27,10 +27,10 @@ const TRADE_ICONS: Record<string, React.ElementType> = {
 
 export function TradeShowcaseSection() {
   const tradeKeys = Object.keys(TRADE_VERTICALS);
-  const [selectedKey, setSelectedKey] = useState<string>("heating-engineers");
+  const [selectedKey, setSelectedKey] = useState<string>("electricians");
   const activeTrade: TradeVertical =
-    TRADE_VERTICALS[selectedKey] || TRADE_VERTICALS["heating-engineers"];
-  const ActiveIcon = TRADE_ICONS[selectedKey] || Flame;
+    TRADE_VERTICALS[selectedKey] || TRADE_VERTICALS["electricians"];
+  const ActiveIcon = TRADE_ICONS[selectedKey] || Zap;
 
   return (
     <section
@@ -48,7 +48,7 @@ export function TradeShowcaseSection() {
                 <span>Your verified accreditations, clearly presented</span>
               </span>
               <span className="text-xs font-semibold text-stone-500 hidden sm:inline">
-                Serving Trade Contractors Nationwide Across the UK
+                Websites for electrical contractors in Bristol, Bath and the M4 corridor
               </span>
             </div>
             <p className="studio-kicker">04 / ENGINEERED SPECIFICALLY FOR UK TRADES</p>
@@ -118,7 +118,7 @@ export function TradeShowcaseSection() {
               <div className="space-y-3 pt-2">
                 <h4 className="text-xs font-bold uppercase tracking-wider text-ink flex items-center gap-2">
                   <Sparkles size={14} className="text-[#173C62]" />
-                  High-Margin Enquiries We Target For You
+                  Key Enquiries Structured For Your Trade
                 </h4>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                   {activeTrade.targetEnquiries.map((enquiry, i) => (
@@ -264,7 +264,7 @@ export function TradeShowcaseSection() {
                     You have to write everything yourself after a 10-hour day on site.
                   </td>
                   <td className="py-3.5 px-4 text-stone-600">
-                    Generic marketing fluff from juniors who don&apos;t know Gas Safe or NICEIC.
+                    Generic agency copy that requires endless corrections on trade technical terms.
                   </td>
                   <td className="py-3.5 px-4 bg-slate-50 text-ink font-semibold border-x border-slate-200">
                     ✓ 100% done-for-you technical copywriting based on your confirmed trade facts.
@@ -277,7 +277,7 @@ export function TradeShowcaseSection() {
                     £25/mo + 60+ unpaid hours of your own time wrestling with templates.
                   </td>
                   <td className="py-3.5 px-4 text-stone-600">
-                    £3,000–£7,000+ upfront fee, plus £150/hr for minor text updates.
+                    High variable project fees with extra hourly charges for every minor edit.
                   </td>
                   <td className="py-3.5 px-4 bg-slate-50 text-ink font-semibold border-x border-slate-200">
                     ✓ Clear £1,495 setup (50/50 milestone) + £249/mo rolling all-inclusive care.
@@ -287,10 +287,10 @@ export function TradeShowcaseSection() {
                 <tr>
                   <td className="py-3.5 px-4 font-bold text-ink">Turnaround Schedule</td>
                   <td className="py-3.5 px-4 text-stone-600">
-                    Often drags out for 6+ months as an unfinished draft.
+                    Often drags out for months as an unfinished draft.
                   </td>
                   <td className="py-3.5 px-4 text-stone-600">
-                    8 to 16 weeks with endless committee meetings and delay.
+                    Lengthy agency production queues with multiple account handoffs.
                   </td>
                   <td className="py-3.5 px-4 bg-slate-50 text-ink font-semibold border-x border-slate-200">
                     ✓ Agreed delivery schedule with private staging preview and revision rounds.
@@ -303,7 +303,7 @@ export function TradeShowcaseSection() {
                     You troubleshoot broken plugins, SSL certificates, and DNS settings.
                   </td>
                   <td className="py-3.5 px-4 text-stone-600">
-                    Submit tickets to a support desk and wait days for a response.
+                    Impersonal helpdesk queues with slow turnaround on urgent updates.
                   </td>
                   <td className="py-3.5 px-4 bg-slate-50 text-ink font-semibold border-x border-slate-200">
                     ✓ Dedicated monthly care: hosting, SSL, enquiry checks & 30-min monthly edit
@@ -317,7 +317,7 @@ export function TradeShowcaseSection() {
                     Self-service DIY tool with automated chatbots.
                   </td>
                   <td className="py-3.5 px-4 text-stone-600">
-                    One of 50 accounts assigned to rotating junior account managers.
+                    Account passed between different coordinators with no direct owner.
                   </td>
                   <td className="py-3.5 px-4 bg-slate-50 text-ink font-semibold border-x border-b border-slate-200 rounded-b-xl">
                     ✓ Strict 2-spot pilot capacity: direct access to founder Robbie Harley.

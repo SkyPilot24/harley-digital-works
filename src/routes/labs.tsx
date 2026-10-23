@@ -315,7 +315,9 @@ function HarleyLabsPage() {
                     </p>
                     <div className="mt-3 text-[11px] text-slate-400">
                       Coverage:{" "}
-                      <span className="text-white">Top 3 Map Pack in 94% of tested nodes</span>
+                      <span className="text-white">
+                        Local Map Pack grid tracking across tested nodes
+                      </span>
                     </div>
                   </div>
 

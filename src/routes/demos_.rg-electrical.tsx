@@ -529,7 +529,7 @@ robbie@theharleygroup.org | 0117 214 1357`;
                     The Harley Digital Works Standard Managed Package
                   </h3>
                   <p className="text-xs text-slate-400 mt-1">
-                    Agreed delivery schedule · Strictly max 2 active builds · Zero VAT
+                    Agreed delivery schedule · Strictly max 2 active builds · No VAT charged
                   </p>
                 </div>
                 <div className="text-left sm:text-right">

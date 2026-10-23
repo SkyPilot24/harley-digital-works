@@ -166,7 +166,7 @@ Existing Domain: ${data.existingDomain || "None provided"}`;
         name: data.contactName,
         email: data.email,
         company: data.companyName,
-        package: "14-Day Launch Plan (£1,495) + £95/mo Care",
+        package: "Managed Launch Plan (£1,495) + £249/mo Care",
         message: notes,
         status: "won",
       });
@@ -192,7 +192,7 @@ Existing Domain: ${data.existingDomain || "None provided"}`;
         </h2>
         <p className="mt-3 text-sm text-neutral-300 leading-relaxed max-w-lg mx-auto">
           Our team is now drafting your trade-specific copywriting and configuring your conversion
-          funnels. Your 14-day delivery sprint has officially begun.
+          funnels. Your milestone delivery sprint has officially begun.
         </p>
 
         <div className="mt-8 rounded-2xl border border-neutral-800 bg-neutral-950 p-5 text-left">
@@ -228,7 +228,7 @@ Existing Domain: ${data.existingDomain || "None provided"}`;
             params={{ token: completedToken }}
             className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-full border border-neutral-700 bg-neutral-800 hover:bg-neutral-700 px-6 py-3 text-xs font-semibold text-white transition-all"
           >
-            <span>View 14-Day Milestone Timeline</span>
+            <span>View Milestone Timeline</span>
           </Link>
         </div>
       </div>
@@ -713,7 +713,7 @@ Existing Domain: ${data.existingDomain || "None provided"}`;
             className="inline-flex items-center gap-2 rounded-full bg-emerald-600 hover:bg-emerald-500 px-7 py-3 text-xs font-extrabold text-white transition-all shadow-lg disabled:opacity-50"
           >
             <Sparkles className="h-4 w-4" />
-            <span>{isSubmitting ? "Starting Your Sprint…" : "Submit & Start 14-Day Build"}</span>
+            <span>{isSubmitting ? "Starting Your Sprint…" : "Submit & Start Build Sprint"}</span>
           </button>
         )}
       </div>

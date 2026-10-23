@@ -39,7 +39,7 @@ const CARE_TIERS: CarePlanTier[] = [
       "Routine maintenance & security updates",
       "15-minute monthly content edit allowance",
       "24-business-hour SLA turnaround",
-      "Zero-rated VAT subscription receipt via Stripe",
+      "No VAT charged subscription receipt via Stripe",
     ],
   },
   {
@@ -55,7 +55,7 @@ const CARE_TIERS: CarePlanTier[] = [
       "Dual-desk enquiry health checks & direct support triage",
       "Monthly performance digest & review workflow guidance",
       "Standard 24h business-day SLA (4h outage priority response)",
-      "Zero-rated VAT (under HMRC registration threshold)",
+      "No VAT charged (under HMRC registration threshold)",
     ],
   },
   {
@@ -102,7 +102,7 @@ const MOCK_INVOICES = [
     description: "Monthly Care Plan (Managed Tier) - cheshireheat.co.uk",
     amount: "£249.00",
     netAmount: "£249.00",
-    vat: "£0.00 (Zero-Rated)",
+    vat: "£0.00 (No VAT)",
     status: "Paid via Stripe Auto-Debit",
   },
   {
@@ -111,7 +111,7 @@ const MOCK_INVOICES = [
     description: "Monthly Care Plan (Managed Tier) - cheshireheat.co.uk",
     amount: "£249.00",
     netAmount: "£249.00",
-    vat: "£0.00 (Zero-Rated)",
+    vat: "£0.00 (No VAT)",
     status: "Paid via Stripe Auto-Debit",
   },
   {
@@ -120,7 +120,7 @@ const MOCK_INVOICES = [
     description: "Monthly Care Plan (Managed Tier) - cheshireheat.co.uk",
     amount: "£249.00",
     netAmount: "£249.00",
-    vat: "£0.00 (Zero-Rated)",
+    vat: "£0.00 (No VAT)",
     status: "Paid via Stripe Auto-Debit",
   },
 ];
@@ -135,7 +135,7 @@ export function CareBillingPortalDesk({
   const [selectedTier, setSelectedTier] = useState<"essentials" | "growth" | "fleet">(defaultTier);
   const [activeAddons, setActiveAddons] = useState<string[]>(["map-pack"]);
   const [companyName] = useState(defaultCompany);
-  const [taxTreatment] = useState("Zero-rated (under HMRC £90k threshold)");
+  const [taxTreatment] = useState("No VAT charged (under HMRC £90k threshold)");
 
   const toggleAddon = (id: string) => {
     setActiveAddons((prev) => (prev.includes(id) ? prev.filter((a) => a !== id) : [...prev, id]));
@@ -204,7 +204,7 @@ export function CareBillingPortalDesk({
               Current Active Plan
             </div>
             <div className="mt-1 text-sm font-bold text-gold-400">
-              {activePlanData.name} (£{activePlanData.priceGbp}/mo · Zero VAT)
+              {activePlanData.name} (£{activePlanData.priceGbp}/mo · No VAT)
             </div>
             <div className="mt-0.5 text-xs text-emerald-400 flex items-center gap-1">
               <CheckCircle2 className="h-3 w-3" />
@@ -262,7 +262,7 @@ export function CareBillingPortalDesk({
 
                   <div className="mt-4 flex items-baseline gap-1">
                     <span className="text-3xl font-extrabold text-white">£{tier.priceGbp}</span>
-                    <span className="text-xs text-neutral-400">/ month (Zero VAT)</span>
+                    <span className="text-xs text-neutral-400">/ month (No VAT)</span>
                   </div>
 
                   <ul className="mt-5 space-y-2.5 text-xs text-neutral-300">
@@ -367,7 +367,7 @@ export function CareBillingPortalDesk({
           <div className="text-xs text-neutral-400 font-mono">
             Tax Treatment:{" "}
             <span className="text-white font-semibold">
-              Zero-Rated (£0 VAT / Below £90k HMRC Threshold)
+              No VAT charged (£0 / Below £90k HMRC Threshold)
             </span>
           </div>
         </div>

@@ -16,7 +16,7 @@ export function MilestoneTimeline({ milestones, currentDay, totalDays }: Milesto
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-neutral-800 pb-6 mb-8">
         <div>
           <span className="text-xs font-semibold uppercase tracking-wider text-gold-400">
-            14-Day Delivery Rhythm
+            Milestone Delivery Rhythm
           </span>
           <h3 className="text-xl md:text-2xl font-bold text-white tracking-tight mt-0.5">
             Build Progress: Day {currentDay} of {totalDays}
@@ -24,7 +24,7 @@ export function MilestoneTimeline({ milestones, currentDay, totalDays }: Milesto
         </div>
         <div className="sm:text-right">
           <div className="text-2xl font-extrabold text-gold-400">{percentage}% Complete</div>
-          <div className="text-xs text-neutral-400">On Track for 14-Day Delivery</div>
+          <div className="text-xs text-neutral-400">On Track for Milestone Delivery</div>
         </div>
       </div>
 

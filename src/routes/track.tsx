@@ -18,11 +18,11 @@ export const Route = createFileRoute("/track")({
   validateSearch: (search) => trackSearchSchema.parse(search),
   head: () => ({
     meta: [
-      { title: "Client Website Build Tracker & 14-Day Roadmap | Harley Digital Works" },
+      { title: "Client Website Build Tracker & Milestone Roadmap | Harley Digital Works" },
       {
         name: "description",
         content:
-          "Live 14-day delivery tracker for Harley Digital Works clients. Track your website milestones, upload job photos, and view DNS status.",
+          "Live delivery tracker for Harley Digital Works clients. Track your website milestones, upload job photos, and view DNS status.",
       },
     ],
   }),
@@ -61,7 +61,7 @@ function TrackPage() {
             </div>
 
             <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-white leading-tight mb-4">
-              Track Your 14-Day <br />
+              Track Your <br />
               <span className="text-gold-400">Website Build in Real Time.</span>
             </h1>
 

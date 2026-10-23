@@ -333,7 +333,7 @@ function WebsiteHealthCheckPage() {
 • Local SEO & Schema: ${auditResult.categories[2].score}% (Missing Schema.org LocalBusiness markup)
 • Conversion Friction: Missing instant click-to-WhatsApp quote tool
 
-Harley Digital Works fixes all 4 areas with our 14-Day Done-For-You website build (£1,495).
+Harley Digital Works fixes all 4 areas with our Managed Done-For-You website build (£1,495).
 Full breakdown: https://harleydigitalworks.com/audit`;
                         navigator.clipboard.writeText(summary);
                         toast.success("Audit WhatsApp summary copied to clipboard!");

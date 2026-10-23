@@ -100,7 +100,7 @@ const VERIFIED_REVIEWS: TradeReview[] = [
     rating: 5,
     date: "1 month ago",
     quote:
-      "Harley Digital Works built our regional sub-pages for City of London and Canary Wharf. Our Google rankings jumped to page 1 for commercial office sanitisation within 6 weeks.",
+      "Harley Digital Works built our regional sub-pages for City of London and Canary Wharf, giving commercial facility managers clear evidence of our compliance and scale.",
     roiHighlight: "3 recurring annual FM contracts",
     badge: "BIFM Certified",
   },
@@ -288,9 +288,11 @@ export function TradeGoogleReviewsWidget({
               </div>
             </div>
             <div className="text-xs">
-              <div className="font-bold text-white">Join 140+ Trade Leaders Across the UK</div>
+              <div className="font-bold text-white">
+                Built for Trade Contractors in Bristol, Bath & the M4 Corridor
+              </div>
               <div className="text-neutral-400">
-                Guaranteed 14-day turnaround with 0 copywriting required from you.
+                Agreed delivery schedule with 0 copywriting required from you.
               </div>
             </div>
           </div>
@@ -298,7 +300,7 @@ export function TradeGoogleReviewsWidget({
           <div className="flex items-center gap-3 text-xs text-neutral-400">
             <div className="flex items-center gap-1.5">
               <ShieldCheck className="h-4 w-4 text-emerald-400" />
-              <span>100% Satisfaction Guarantee</span>
+              <span>Full Preview Approval Before Final Balance</span>
             </div>
             <span>•</span>
             <div className="flex items-center gap-1.5">

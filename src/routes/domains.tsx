@@ -29,7 +29,9 @@ const priorityStyles = {
 };
 
 function DomainsPage() {
-  const domains = rankedDomains();
+  const domains = rankedDomains().filter(
+    (domain) => getDomainBuyNowPrice(domain.name) !== null && domain.category !== "Personal",
+  );
 
   return (
     <PageShell>
@@ -48,8 +50,8 @@ function DomainsPage() {
             Owned domains for AI, mobility, finance, smart tech, and UK niche projects.
           </h1>
           <p className="mt-6 max-w-2xl text-[17px] leading-relaxed text-ink-muted">
-            Enquire about individual domains, portfolio bundles, or names that need sensitive
-            handling. Guide prices help you assess fit before we confirm availability and terms.
+            Enquire about individual domains or portfolio bundles. Guide prices help you assess fit
+            before we confirm availability and transfer terms.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <PillButton as="link" to="/contact">
@@ -81,10 +83,8 @@ function DomainsPage() {
                       <div>
                         <div className="flex items-center justify-between gap-3">
                           <TagChip>{domain.category}</TagChip>
-                          <span
-                            className={`rounded-full px-2.5 py-1 text-[10px] font-medium uppercase tracking-[0.14em] ${priorityStyles[domain.priority]}`}
-                          >
-                            {domain.priority}
+                          <span className="rounded-full bg-emerald-50 px-2.5 py-1 text-[10px] font-medium uppercase tracking-[0.14em] text-emerald-800 border border-emerald-200/60">
+                            Available
                           </span>
                         </div>
                         <p className="mt-5 font-mono text-[20px] font-medium text-ink">
@@ -93,18 +93,9 @@ function DomainsPage() {
                         <p className="mt-3 text-sm leading-relaxed text-ink-muted">
                           {domain.useCase}
                         </p>
-                        {domain.caution && (
-                          <p className="mt-3 rounded-lg bg-amber-50 px-3 py-2 text-xs text-amber-800">
-                            Note: {domain.caution}
-                          </p>
-                        )}
                       </div>
                       <div className="mt-6 border-t border-ink/10 pt-4">
                         <div className="flex items-center justify-between gap-3 text-sm">
-                          <span className="text-ink-muted">Valuation range</span>
-                          <span className="font-medium text-ink">{domain.suggestedAsk}</span>
-                        </div>
-                        <div className="mt-2 flex items-center justify-between gap-3 text-sm">
                           <span className="text-ink-muted">Guide price</span>
                           <span className="font-medium text-ink">{formatGbp(buyNowPrice)}</span>
                         </div>
@@ -144,9 +135,11 @@ function DomainsPage() {
                     <div key={bundle.name} className="rounded-xl bg-ink/[0.03] p-4">
                       <h3 className="font-medium text-ink">{bundle.name}</h3>
                       <p className="mt-2 text-xs leading-relaxed text-ink-muted">
-                        {bundle.domains.join(", ")}
+                        {bundle.domains.join(" · ")}
                       </p>
-                      <p className="mt-2 text-sm text-ink/75">{bundle.action}</p>
+                      <p className="mt-2 text-xs text-ink/70">
+                        Available as a package deal or individual transfers.
+                      </p>
                     </div>
                   ))}
                 </div>

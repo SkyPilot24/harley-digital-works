@@ -1,0 +1,46 @@
+{
+  "rules": [
+    {
+      "id": "tax-treatment-claims",
+      "pattern": "zero vat|zero-rated|\\+ vat",
+      "reason": "The Harley Group is not VAT registered. Do not claim Zero VAT, Zero-Rated VAT or +VAT in customer marketing.",
+      "allowlist": [
+        "src/lib/current-strategy.ts",
+        "src/lib/group-headquarters.ts",
+        "src/lib/knowledge-base.ts",
+        "src/routes/proposals.tsx"
+      ]
+    },
+    {
+      "id": "unverified-sla-claims",
+      "pattern": "14-day|14 day|24h whatsapp|24h support",
+      "reason": "14-day delivery guarantees and 24h instant reply SLAs are unverified and retired.",
+      "allowlist": [
+        "src/lib/knowledge-base.ts"
+      ]
+    },
+    {
+      "id": "unsupported-seo-ranking-claims",
+      "pattern": "more leads|proven growth|rank higher|top 3 map pack|top 3 ranking|top 3 google|page 1|100% satisfaction",
+      "reason": "Never make numerical or speculative SEO/ranking promises.",
+      "allowlist": [
+        "src/lib/knowledge-base.ts"
+      ]
+    },
+    {
+      "id": "capacity-mismatch-claims",
+      "pattern": "2-build monthly",
+      "reason": "Capacity commitment is strictly maximum 2 concurrent active builds, not monthly capacity.",
+      "allowlist": []
+    },
+    {
+      "id": "domain-internal-leak-claims",
+      "pattern": "do not market|do not renew|pitch as|valuation range|retired / non-renewal",
+      "reason": "Internal underwriting notes, trademark cautions, and valuation floors must never be exposed to public buyers.",
+      "allowlist": [
+        "src/lib/domain-portfolio.ts",
+        "src/lib/knowledge-base.ts"
+      ]
+    }
+  ]
+}

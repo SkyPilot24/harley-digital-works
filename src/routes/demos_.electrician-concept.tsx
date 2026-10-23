@@ -218,7 +218,7 @@ function ElectricianConceptPage() {
                 Pilot Region: Bristol, Bath &amp; M4/M5 Corridor
               </span>
               <span className="bg-emerald-950/60 border border-emerald-700/50 text-emerald-300 px-3 py-1.5 rounded-lg">
-                Delivery: 14-Day Fixed Turnaround
+                Delivery: Agreed Milestone Schedule
               </span>
             </div>
           </div>
@@ -509,7 +509,7 @@ function ElectricianConceptPage() {
                   <ul className="space-y-1.5 text-neutral-300">
                     <li className="flex items-center gap-1.5">
                       <Info className="h-3.5 w-3.5 text-amber-400 shrink-0" />
-                      <span>14-day turnaround from intake</span>
+                      <span>Agreed milestone schedule from intake</span>
                     </li>
                     <li className="flex items-center gap-1.5">
                       <Info className="h-3.5 w-3.5 text-amber-400 shrink-0" />

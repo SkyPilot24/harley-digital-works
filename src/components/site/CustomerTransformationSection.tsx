@@ -586,9 +586,9 @@ export function CustomerTransformationSection() {
           <div className="pt-2 flex flex-wrap items-center justify-center gap-4 text-[11px] text-slate-400 font-mono">
             <span>✓ 50% Deposit / 50% on Approval</span>
             <span>·</span>
-            <span>✓ Zero VAT</span>
+            <span>✓ No VAT charged (not VAT registered)</span>
             <span>·</span>
-            <span>✓ 2-Build Monthly Capacity</span>
+            <span>✓ Strictly Max 2 Concurrent Builds</span>
           </div>
         </div>
       </div>

@@ -67,7 +67,8 @@ const PACKAGES = {
   launch: {
     name: "Managed Trade Presence (MVP)",
     price: 1495,
-    tagline: "High-converting 5-page trade website ready in 14 days with ongoing managed care.",
+    tagline:
+      "High-converting 5-page trade website delivered to an agreed milestone schedule with ongoing managed care.",
     deliverables: [
       "5-Page trade architecture (Home, About, Services, Selected Work, Contact Desk)",
       "100% Done-for-you technical copywriting (zero homework on your end)",
@@ -114,7 +115,7 @@ const AVAILABLE_ADDONS: AddonOption[] = [
     price: 0,
     monthly: 249,
     description:
-      "Cloudflare edge hosting, SSL certificates, 30-min monthly edit batch, dual-desk enquiry health checks, monthly performance digest, and 24h SLA response window.",
+      "Cloudflare edge hosting, SSL certificates, 30-min monthly edit batch, dual-desk enquiry health checks, monthly performance digest, and dedicated business hours support window.",
   },
   {
     id: "seo-pack",
@@ -254,7 +255,7 @@ function ProposalsPage() {
     setTimeout(() => {
       setIsSubmitting(false);
       setHasAccepted(true);
-      toast.success("Proposal signed successfully! Your 14-day build slot is reserved.");
+      toast.success("Proposal signed successfully! Your build slot is reserved.");
     }, 1000);
   };
 
@@ -438,12 +439,12 @@ function ProposalsPage() {
                 </div>
               </div>
 
-              {/* 14-Day Delivery SLA Timeline */}
+              {/* Milestone Delivery SLA Timeline */}
               <div className="rounded-2xl border border-ink/10 bg-white p-6 md:p-8 shadow-sm">
                 <span className="text-xs font-mono font-bold uppercase tracking-wider text-emerald-600">
                   Guaranteed Operating SLA
                 </span>
-                <h3 className="text-lg font-bold text-ink mt-0.5">14-Day Delivery Schedule</h3>
+                <h3 className="text-lg font-bold text-ink mt-0.5">Milestone Delivery Schedule</h3>
                 <p className="mt-1 text-xs text-ink-muted">
                   Strict milestone progression with daily transparency via your dedicated build
                   tracker.
@@ -577,8 +578,8 @@ function ProposalsPage() {
                       <div className="text-[11px] text-ink-muted flex items-start gap-1.5">
                         <Lock className="h-3.5 w-3.5 text-slate-400 shrink-0 mt-0.5" />
                         <span>
-                          By accepting, you agree to Harley Digital Works 14-Day Delivery Terms and
-                          50% start deposit.
+                          By accepting, you agree to Harley Digital Works Delivery Terms and 50%
+                          start deposit.
                         </span>
                       </div>
 

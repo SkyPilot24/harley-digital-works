@@ -45,7 +45,7 @@ function CalculatorPage() {
               </div>
               <div className="flex items-center gap-1.5">
                 <CheckCircle2 className="h-4 w-4 text-emerald-400" />
-                <span>Ratified Setup (£1,495 · Zero VAT)</span>
+                <span>Fixed Setup (£1,495 · No VAT)</span>
               </div>
               <div className="flex items-center gap-1.5">
                 <CheckCircle2 className="h-4 w-4 text-emerald-400" />

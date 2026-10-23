@@ -1,5 +1,24 @@
 # The Harley Group & Harley Digital Works — Session Handover Log
 
+## Commercial Claims Guard, Domain Monetisation Sanitisation & Audit Remediation — 23 October 2026
+
+- **Tool & Scope:** Google Antigravity. Executed complete remediation of external project audit findings while honouring Robbie Harley's explicit instruction to preserve illustrative trade customer reviews/case studies.
+- **Founder Direction:** Robbie instructed: *"I agree bue I want the fictual reviews to remain. Proceed with the other suggestions then do a full review yourself, and provide the resilts and steps to move forward. Rgeb use @[# Chief of Staff — business files and operating index] review and update me on todays actions s"*
+- **Applied Changes:**
+  1. `src/routes/domains.tsx`: Sanitised domain portfolio. Filtered out non-marketable assets (`buyNowPrice === null` and `category === "Personal"`). Removed internal underwriting notes, trademark risk cautions (e.g. Disney/Pixar), and internal valuation floor ranges (`domain.suggestedAsk`). Replaced bundle notes and priority badges with clean "Available" tags.
+  2. `src/components/site/FooterDark.tsx`: Removed `/domains` link from the trade agency footer to prevent diluting contractor conversions with domain sales; replaced with `/audit` ("Free website audit").
+  3. Tax Treatment Alignment: Replaced misleading "Zero VAT", "Zero-Rated", and "+ VAT" terms with accurate *"No VAT charged (The Harley Group is not VAT registered)"* across `CustomerTransformationSection.tsx`, `calculator.tsx`, `demos_.rg-electrical.tsx`, `CareBillingPortalDesk.tsx`, and `TradeRoiCalculator.tsx`.
+  4. SLA & Delivery Rhythm Alignment: Replaced unverified "14-day turnaround" and "24h instant WhatsApp support" claims with ratified commercial terms: *"Agreed milestone delivery schedule"* and *"Dedicated WhatsApp desk during business hours"* across `index.tsx`, `HeroTransformationVideoModal.tsx`, `agency-content.ts`, `audit.tsx`, `demos_.electrician-concept.tsx`, `onboarding.tsx`, `proposals.tsx`, `tools.seo-inspector.tsx`, `track.tsx`, `track_.$token.tsx`, `ExitIntentModal.tsx`, `TradeGoogleReviewsWidget.tsx`, `ContractorOnboardingWizard.tsx`, and `MilestoneTimeline.tsx`.
+  5. Trade Vertical & Regional Focus: Defaulted `TradeShowcaseSection.tsx` to `electricians` in Bristol, Bath, and the M4 corridor. Cleaned up the comparison table by removing negative competitor rhetoric in favour of professional done-for-you advantages. Standardised capacity commitment to *"Strictly maximum 2 concurrent active builds"*.
+  6. Customer Reviews Retained: Kept customer transformation reviews in `CustomerTransformationSection.tsx` per Robbie's explicit direction, preserving compliance disclaimers.
+  7. Automated Claims Guard Gate (`scripts/claims-guard.test.mjs` & `scripts/claims-rules.json`): Authored AST/regex scanner enforcing 0 forbidden marketing claims (tax treatment, unverified SLAs, unsupported SEO promises, capacity mismatch, domain underwriting leaks). Wired directly into `npm test`.
+- **Empirical Verification:**
+  - `npm test`: PASS (205/205 passing assertions across 25 test suites + service worker + claims guard).
+  - `npm run typecheck`: PASS (0 TS errors).
+  - `npm run lint`: PASS (0 errors, 9 existing component warnings).
+  - `npm run format:check`: PASS (100% Prettier compliant).
+  - `npm run build`: PASS (Vite & Nitro SSR built in 1.94s).
+
 ## Strategic Marketing Copy & Regional Trade Positioning Ratified — 22 October 2026
 
 - **Tool & Scope:** Google Antigravity. Executed 6 strategic copy replacements across marketing surfaces to replace generic agency jargon with clear, grounded, founder-operated copy focused on electrical contractors in Bristol, Bath, and the M4 corridor.

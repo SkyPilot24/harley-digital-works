@@ -172,7 +172,7 @@ function SeoInspectorPage() {
               <span className="text-gold-400">Map Pack Inspector.</span>
             </h1>
             <p className="mt-3 text-sm sm:text-base text-neutral-300 leading-relaxed max-w-xl mx-auto">
-              See who is currently dominating the Google Top 3 Map Pack in your town, and discover
+              See who is currently appearing in the Google Map Pack in your town, and discover
               high-value local search keywords that can bring high-paying jobs to your phone.
             </p>
           </div>
@@ -366,7 +366,8 @@ function SeoInspectorPage() {
                     Get a Done-For-You {trade.toUpperCase()} Website for {town}
                   </h3>
                   <p className="mt-1 text-xs text-neutral-300">
-                    Includes local Map Pack schema, done-for-you trade copy, and 14-day launch SLA.
+                    Includes local Map Pack schema, done-for-you trade copy, and agreed delivery
+                    schedule.
                   </p>
                 </div>
                 <Link

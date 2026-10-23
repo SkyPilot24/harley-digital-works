@@ -113,7 +113,7 @@ export function TradeRoiCalculator() {
         <div className="flex items-center gap-2 bg-white/5 border border-white/10 px-4 py-2.5 rounded-2xl self-start md:self-auto">
           <TrendingUp className="h-5 w-5 text-emerald-400" />
           <div className="text-xs text-slate-200">
-            VAT Treatment: <strong className="text-white">Zero-Rated (£0)</strong>
+            VAT Status: <strong className="text-white">No VAT (£0)</strong>
           </div>
         </div>
       </div>
@@ -250,9 +250,9 @@ export function TradeRoiCalculator() {
       <p className="text-[11px] text-slate-400 leading-relaxed mb-6 border-t border-white/10 pt-4">
         * <strong>Commercial Disclaimer:</strong> Calculations are strictly illustrative scenario
         models based on your user-supplied project values and contract averages. Harley Digital
-        Works does not guarantee rankings, inbound leads, or turnover. All packages are zero-rated
-        for VAT (below HMRC registration threshold). Onboarding capacity is capped at 2–3 concurrent
-        client builds.
+        Works does not guarantee rankings, inbound leads, or turnover. No VAT is charged (The Harley
+        Group is not VAT-registered). Capacity is strictly capped at maximum 2 concurrent client
+        builds.
       </p>
 
       {/* Bottom CTA Strip */}
@@ -260,8 +260,8 @@ export function TradeRoiCalculator() {
         <div className="flex items-center gap-2 text-xs text-slate-300">
           <ShieldCheck className="h-4 w-4 text-emerald-400 shrink-0" />
           <span>
-            100% Done-For-You: Copywriting, agreed delivery schedule, 50/50 milestone payment, zero
-            VAT.
+            100% Done-For-You: Copywriting, agreed delivery schedule, 50/50 milestone payment, no
+            VAT charged.
           </span>
         </div>
 

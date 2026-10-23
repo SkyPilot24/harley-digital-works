@@ -1,5 +1,5 @@
 export const agencyStats = [
-  { label: "Delivery speed", value: "14 days" },
+  { label: "Delivery schedule", value: "Agreed timeline" },
   { label: "Copy & images", value: "100% Done-For-You" },
   { label: "Ongoing care", value: "£249/mo (Hosting + Edits)" },
 ] as const;
@@ -9,17 +9,17 @@ export const agencyOffers = [
     slug: "launch-website",
     eyebrow: "Turnkey Web Presence (Ratified MVP)",
     title: "Managed Trade Website",
-    price: "£1,495 (Zero-Rated VAT)",
+    price: "£1,495 (No VAT)",
     summary:
       "A fast, clean, professional website built to give trades and local businesses immediate credibility and inbound calls.",
     outcome:
-      "You get a finished, conversion-ready website in 14 days without writing a line of copy or dealing with technical hassle.",
+      "You get a finished, conversion-ready website to an agreed delivery schedule without writing a line of copy or dealing with technical hassle.",
     bullets: [
       "5 bespoke conversion-focused pages",
       "We write all the industry copy and curate high-res photography",
       "Mobile-first design with direct click-to-call and WhatsApp routing",
       "Local Map Pack Schema JSON-LD microdata and Google Business Profile setup",
-      "Ongoing £249/mo managed care, Cloudflare edge hosting, and 24h SLA",
+      "Ongoing £249/mo managed care, Cloudflare edge hosting, and prompt support",
     ],
     cta: "Choose Managed Website",
     surface: "sage" as const,
@@ -28,7 +28,7 @@ export const agencyOffers = [
     slug: "growth-website",
     eyebrow: "Multi-Location Expansion",
     title: "Expansion Platform",
-    price: "£2,495 (Zero-Rated VAT)",
+    price: "£2,495 (No VAT)",
     summary:
       "The complete online lead-generation engine designed to showcase multiple service hubs and regional service areas.",
     outcome:
@@ -47,7 +47,7 @@ export const agencyOffers = [
     slug: "managed-care-plans",
     eyebrow: "Zero Tech Hassle",
     title: "Website Care & Managed Hosting",
-    price: "£249 / month (Zero-Rated VAT)",
+    price: "£249 / month (No VAT)",
     summary:
       "We manage your digital presence so you can run your business. Ultra-fast UK cloud hosting, daily backups, and routine edit batches.",
     outcome:
@@ -56,7 +56,7 @@ export const agencyOffers = [
       "Blazing-fast UK green cloud hosting and SSL security",
       "Daily off-site cloud backups and 24/7 uptime monitoring",
       "Monthly content edits (photos, phone numbers, prices, new reviews up to 30 mins)",
-      "Direct UK phone, email, and WhatsApp support with 24h business SLA",
+      "Direct UK email and WhatsApp support during business hours",
       "Monthly performance and enquiry summary report",
     ],
     cta: "Explore Care Plans",

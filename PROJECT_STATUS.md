@@ -1,5 +1,36 @@
 # Harley Digital Works — Project Status
 
+## Commercial Claims Guard, Domain Monetisation Sanitisation & Audit Remediation — 23 October 2026
+
+**Current Status:** Completed comprehensive remediation of external project audit findings with Robbie Harley's explicit instruction to preserve illustrative trade customer reviews/case studies:
+
+1. **Domain Monetisation & Valuation Sanitisation (`/domains`)**:
+   - Filtered public domain roster to omit internal/personal assets (`buyNowPrice === null` and `category === "Personal"`).
+   - Removed all leaked internal underwriting notes, trademark cautions (Disney/Pixar), and internal valuation floor ranges (`domain.suggestedAsk`).
+   - Replaced internal bundle sales notes and priority tags with clean, customer-facing "Available" badges and inquiry CTAs.
+   - Removed `/domains` link from main trade website footer (`FooterDark.tsx`) to avoid diluting trade contractor conversion with domain sales; replaced with `/audit` ("Free website audit").
+2. **Tax Treatment Alignment Across Platform**:
+   - Corrected unverified HMRC tax wording ("Zero VAT" / "Zero-Rated VAT" / "+ VAT") across customer-facing surfaces (`CustomerTransformationSection.tsx`, `calculator.tsx`, `demos_.rg-electrical.tsx`, `CareBillingPortalDesk.tsx`, `TradeRoiCalculator.tsx`).
+   - Standardised to accurate commercial statement: *"No VAT charged (The Harley Group is not currently VAT registered)"*.
+3. **SLA & Delivery Schedule Truth Alignment**:
+   - Replaced retired "14-day turnaround" and "24h instant WhatsApp support" claims with ratified commercial terms: *"Agreed milestone delivery schedule"* and *"Dedicated WhatsApp desk during business hours"*.
+   - Updated across `index.tsx`, `HeroTransformationVideoModal.tsx`, `agency-content.ts`, `audit.tsx`, `demos_.electrician-concept.tsx`, `onboarding.tsx`, `proposals.tsx`, `tools.seo-inspector.tsx`, `track.tsx`, `track_.$token.tsx`, `ExitIntentModal.tsx`, `TradeGoogleReviewsWidget.tsx`, `ContractorOnboardingWizard.tsx`, and `MilestoneTimeline.tsx`.
+4. **Trade Vertical & Regional Focusing**:
+   - Defaulted `TradeShowcaseSection.tsx` to `electricians` in Bristol, Bath, and the M4 corridor.
+   - Refined comparison table to remove combative competitor claims and focus on professional done-for-you advantages.
+   - Harmonised capacity claims to *"Strictly maximum 2 concurrent active builds"*.
+5. **Customer Reviews Retained**:
+   - Preserved illustrative trade customer reviews and case study transformations in `CustomerTransformationSection.tsx` per Robbie's explicit direction, with compliant illustrative disclaimers intact.
+6. **Automated Claims Guard Test Gate (`scripts/claims-guard.test.mjs` & `scripts/claims-rules.json`)**:
+   - Created automated scanner verifying zero occurrences of forbidden marketing claims (tax treatment, unverified SLAs, unsupported SEO rankings, capacity mismatches, internal domain leaks) across customer-facing code.
+   - Wired directly into `npm test` as a permanent CI regression prevention gate.
+7. **Empirical Quality & Verification**:
+   - `npm test`: PASS (205/205 passing assertions across 25 suites + claims guard).
+   - `npm run typecheck`: PASS (0 TS errors).
+   - `npm run lint`: PASS (0 errors, 9 existing component warnings).
+   - `npm run format:check`: PASS (100% Prettier compliant).
+   - `npm run build`: PASS (Vite & Nitro SSR built in 1.94s).
+
 ## Strategic Marketing Copy & Regional Trade Positioning Ratified — 22 October 2026
 
 **Current Status:** Replaced generic agency slogans with grounded, high-converting, founder-operated copy specifically targeted at electrical contractors across Bristol, Bath, and the M4 corridor:

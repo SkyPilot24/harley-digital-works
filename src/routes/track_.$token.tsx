@@ -21,7 +21,7 @@ export const Route = createFileRoute("/track_/$token")({
     const proj = loaderData as ClientTrackProject;
     return {
       meta: [
-        { title: `${proj.companyName} — 14-Day Website Build Tracker | Harley Digital Works` },
+        { title: `${proj.companyName} — Client Website Build Tracker | Harley Digital Works` },
         {
           name: "description",
           content: `Live milestone tracking, mobile photo dropzone, and DNS status for ${proj.companyName}.`,
@@ -50,7 +50,7 @@ function DynamicTrackPage() {
 
             <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-white leading-tight mb-4">
               {project.companyName} <br />
-              <span className="text-gold-400">14-Day Delivery Portal.</span>
+              <span className="text-gold-400">Milestone Delivery Portal.</span>
             </h1>
 
             <p className="text-base sm:text-lg text-neutral-300 leading-relaxed mb-4">

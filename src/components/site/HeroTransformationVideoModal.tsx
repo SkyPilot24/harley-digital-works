@@ -66,7 +66,11 @@ const SCENES: Scene[] = [
     videoSrc: "/images/transformation-video/scene-3-zero-homework.mp4",
     voiceover:
       "And the best part? Zero homework for you. We don't ask you to write a single word of marketing copy. We write the copy, design the site, and look after every update every single month. You stay on the tools; we handle the digital.",
-    highlightPills: ["100% DFY Copywriting", "Zero Blank Homework Sheets", "24h WhatsApp Support"],
+    highlightPills: [
+      "100% DFY Copywriting",
+      "Zero Blank Homework Sheets",
+      "Direct WhatsApp Support",
+    ],
   },
   {
     id: 4,

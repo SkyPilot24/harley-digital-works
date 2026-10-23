@@ -84,7 +84,7 @@ export function ExitIntentModal() {
 
             <p className="mt-2 text-xs md:text-sm text-slate-300 leading-relaxed">
               Discover the exact 10-point framework UK plumbers, electricians, and builders use to
-              rank in Google’s Top 3 Map Pack and win high-margin £3,000+ jobs.
+              appear prominently in the Google Map Pack and win high-margin commercial jobs.
             </p>
 
             <div className="mt-4 rounded-xl bg-slate-900 p-3.5 border border-slate-800 space-y-2 text-xs text-slate-300">
@@ -98,7 +98,7 @@ export function ExitIntentModal() {
               </div>
               <div className="flex items-center gap-2">
                 <CheckCircle2 className="h-4 w-4 text-emerald-400 shrink-0" />
-                <span>Zero homework: 14-day turnkey website blueprint</span>
+                <span>Zero homework: 100% done-for-you trade website blueprint</span>
               </div>
             </div>
 

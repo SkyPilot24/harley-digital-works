@@ -92,7 +92,7 @@ function HomePage() {
               <div className="flex flex-wrap items-center gap-2 mb-3">
                 <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-50 border border-emerald-200/80 px-2.5 py-1 text-[11px] font-bold text-emerald-900">
                   <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
-                  <span>100% DFY copywriting · Zero homework · 24h WhatsApp desk</span>
+                  <span>100% DFY copywriting · Zero homework · Dedicated WhatsApp desk</span>
                 </span>
                 <span className="inline-flex items-center gap-1.5 rounded-full bg-stone-100 border border-stone-200/80 px-2.5 py-1 text-[11px] font-bold text-stone-700">
                   <span>Bristol, Bath & M4 Corridor · Electrical Contractors</span>

@@ -35,7 +35,7 @@ export function FooterDark() {
               <Link to="/work">Work & Transformations</Link>
               <a href="/#packages">Build & monthly care</a>
               <Link to="/services/care-plans">Managed care</Link>
-              <Link to="/domains">Premium domain assets</Link>
+              <Link to="/audit">Free website audit</Link>
               <Link
                 to="/contact"
                 search={{
