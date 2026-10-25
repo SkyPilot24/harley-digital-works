@@ -1,5 +1,23 @@
 # The Harley Group & Harley Digital Works — Session Handover Log
 
+## RG Electrical Public Demo Separation & Founder Outreach Drawer — 25 October 2026
+
+- **Tool & Scope:** Google Antigravity. Fixed critical prospect-facing defect where navigating to `https://harleydigitalworks.com/demos/rg-electrical` rendered internal admin sales scripts and agency headers mixed with the demo website.
+- **Founder Direction:** Robbie identified: _"when following the url https://harleydigitalworks.com/demos/rg-electrical I get the attached, this looks like half internal amin content and half what is the actual demo website. Please investigate"_
+- **Applied Changes:**
+  1. `src/routes/demos_.rg-electrical.tsx`:
+     - Cleaned public demo by removing `<PageShell>` default agency header and agency footer (`header={null}` and `footer={null}`).
+     - Built dedicated trade contractor navigation for RG Electrical Bristol Limited (Logo, NICEIC Approved Contractor badge, direct phone `0117 900 0000`, WhatsApp, and instant quote CTA).
+     - Added 4-card core trade services section (18th Edition Consumer Unit Upgrades, Complete Rewires, Landlord EICR Inspections, EV Chargers).
+     - Replaced internal admin notice ("Candidate #1 ... Jump to Outreach Pack") with a discreet, professional client-facing preview banner ("Private Staging Prototype — Built for RG Electrical Bristol Limited by Harley Digital Works · 100% done-for-you launch & care · Questions? Call Robbie Harley on 0117 214 1357").
+     - Built dedicated RG Electrical Bristol Limited trade footer with company registration details (#10082511), accreditations, emergency coverage, and contact information.
+     - Extracted internal "FOUNDER OUTREACH & PROPOSAL REVIEW" section into a private, authenticated slide-over drawer accessible only to authenticated admins or via `?founder=true`. Public visitors see 100% pure client website with zero admin leaks.
+- **Empirical Verification:**
+  - `npm test`: PASS (205/205 passing assertions across 25 suites + service worker + claims guard).
+  - `npm run typecheck`: PASS (0 TS errors).
+  - `npm run format:check`: PASS (100% Prettier compliant).
+  - Browser Verification: Verified on `http://localhost:3000/demos/rg-electrical` in Google Chrome that agency headers, internal sales copy, and admin buttons are completely removed from public view, and `?founder=true` activates the founder drawer.
+
 ## No-AI-Slop Remediation, Bespoke Trade Photography & RG Electrical Demo — 25 October 2026
 
 - **Tool & Scope:** Google Antigravity. Executed `/no-ai-slop` audit and design overhaul across `/demos/rg-electrical` and trade demo components to ensure all pages look bespoke, authentic, and human-crafted with real photography before outbound sales dispatch.

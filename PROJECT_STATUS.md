@@ -1,5 +1,23 @@
 # Harley Digital Works — Project Status
 
+## RG Electrical Public Demo Separation & Founder Outreach Drawer — 25 October 2026
+
+**Current Status:** Resolved customer experience defect on `/demos/rg-electrical` where internal sales scripts, admin buttons, and agency headers were previously visible on the public client preview:
+
+1. **Standalone Trade Experience**:
+   - Cleaned public demo by removing `<PageShell>` default agency header and footer.
+   - Built bespoke trade contractor navigation for RG Electrical Bristol Limited with accreditations and direct phone/WhatsApp CTAs.
+   - Sourced and highlighted 4 core electrical services, 3 genuine Bristol case studies, and the Hager 18th Edition metal board before/after slider.
+   - Added dedicated trade footer with Companies House #10082511 details and emergency coverage.
+2. **Founder Sales Pack Drawer**:
+   - Extracted internal outreach scripts, email template, WhatsApp copy, and ChatGPT sync button into a private slide-over drawer accessible only to authenticated admins or via `?founder=true`.
+   - Zero internal sales content or admin links exposed to public visitors or prospects.
+3. **Verification**:
+   - `npm test`: PASS (205/205 passing assertions across 25 suites + service worker + claims guard).
+   - `npm run typecheck`: PASS (0 TS errors).
+   - `npm run format:check`: PASS (All matched files 100% Prettier compliant).
+   - Local Browser: Verified on `http://localhost:3000/demos/rg-electrical` in Google Chrome.
+
 ## No-AI-Slop Remediation, Bespoke Trade Photography & RG Electrical Demo — 25 October 2026
 
 **Current Status:** Completed comprehensive `/no-ai-slop` audit and design overhaul across `/demos/rg-electrical` and trade demo components to ensure all pages look bespoke, authentic, and human-crafted with real photography before outbound sales dispatch:

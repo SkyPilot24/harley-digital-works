@@ -1,44 +1,49 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
-import { PageShell, Container } from "@/components/site/PageShell";
-import { PillButton } from "@/components/site/PillButton";
+import { PageShell } from "@/components/site/PageShell";
 import { TradeQuoteCalculator } from "@/components/demos/TradeQuoteCalculator";
 import { BeforeAfterSlider } from "@/components/demos/BeforeAfterSlider";
 import { ChatGptSyncButton } from "@/components/admin/ChatGptSyncButton";
+import { useIsAdmin } from "@/hooks/use-auth";
 import type { TradeDemoBusiness } from "@/components/demos/TradeDemoData";
 import {
   ShieldCheck,
   Zap,
   PhoneCall,
-  CheckCircle2,
   Lock,
   ArrowRight,
   Sparkles,
-  Info,
-  Calendar,
-  AlertTriangle,
   FileCheck,
   Building2,
-  ExternalLink,
   Copy,
   Check,
   MessageSquare,
   Mail,
   BadgeCheck,
   MapPin,
+  Star,
+  CheckCircle2,
+  X,
 } from "lucide-react";
 
 export const Route = createFileRoute("/demos_/rg-electrical")({
+  validateSearch: (search: Record<string, unknown>): { founder?: boolean; admin?: boolean } => ({
+    founder:
+      search.founder === "true" || search.founder === true || search.founder === "1"
+        ? true
+        : undefined,
+    admin:
+      search.admin === "true" || search.admin === true || search.admin === "1" ? true : undefined,
+  }),
   head: () => ({
     meta: [
       {
-        title:
-          "RG Electrical Bristol Limited — Bespoke Website Staging Prototype | Harley Digital Works",
+        title: "RG Electrical Bristol Limited — Certified Domestic & Commercial Electricians",
       },
       {
         name: "description",
         content:
-          "Private interactive website transformation prototype prepared for RG Electrical Bristol Limited (Companies House #10082511). Demonstrating structured NICEIC case studies, instant quote intake, and zero-homework care.",
+          "Specialists in 18th Edition metal consumer unit upgrades, domestic rewires, Landlord EICR safety inspections, and EV chargers in Bradley Stoke and North Bristol.",
       },
       { name: "robots", content: "noindex, nofollow" },
     ],
@@ -180,7 +185,7 @@ const RG_ELECTRICAL_DATA: TradeDemoBusiness = {
   ],
 };
 
-// The 3 Structured Case Studies tailored to solve the "Portfolio Coming Soon" defect
+// 3 Structured Case Studies tailored to solve the "Portfolio Coming Soon" defect
 const RG_CASE_STUDIES = [
   {
     id: "cs-1",
@@ -236,6 +241,11 @@ const RG_CASE_STUDIES = [
 ];
 
 function RgElectricalDemoPage() {
+  const { data: isAdmin } = useIsAdmin();
+  const search = Route.useSearch();
+  const hasFounderAccess = Boolean(isAdmin || search.founder || search.admin);
+
+  const [showFounderDrawer, setShowFounderDrawer] = useState(false);
   const [copiedEmail, setCopiedEmail] = useState(false);
   const [copiedWhatsapp, setCopiedWhatsapp] = useState(false);
 
@@ -274,38 +284,98 @@ robbie@theharleygroup.org | 0117 214 1357`;
   };
 
   return (
-    <PageShell quiet>
-      {/* 1. Executive Staging Notice Banner */}
-      <section className="bg-emerald-950/80 border-b border-emerald-500/30 px-4 py-3 text-emerald-200">
-        <Container>
-          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs">
-            <div className="flex items-center gap-2">
-              <span className="flex h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
-              <span className="font-mono font-bold tracking-wide uppercase text-emerald-300">
-                Candidate #1 Bespoke Staging Preview
-              </span>
-              <span className="text-emerald-400/50 hidden md:inline">|</span>
-              <span className="text-emerald-100 font-medium">
-                Tailored for <strong>RG Electrical Bristol Limited</strong> (Companies House
-                #10082511 · NICEIC & TrustMark Verified)
-              </span>
-            </div>
-            <div className="flex items-center gap-2 shrink-0">
-              <a
-                href="#outreach-pack"
-                className="inline-flex items-center gap-1 px-2.5 py-1 rounded bg-emerald-800/80 hover:bg-emerald-700 text-white font-medium transition-colors"
-              >
-                <span>Jump to Outreach Pack</span>
-                <ArrowRight className="h-3 w-3" />
-              </a>
-            </div>
+    <PageShell header={null} footer={null} quiet>
+      {/* 1. Discreet Client-Facing Staging Notice Top-Bar */}
+      <aside
+        aria-label="Staging Prototype Notice"
+        className="bg-[#051323] border-b border-emerald-500/20 px-4 py-2.5 text-xs text-slate-300"
+      >
+        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">
+          <div className="flex items-center gap-2 text-center sm:text-left">
+            <span className="inline-block h-2 w-2 rounded-full bg-emerald-400 animate-pulse shrink-0" />
+            <span className="font-semibold text-emerald-300">Private Staging Prototype</span>
+            <span className="text-slate-600 hidden sm:inline">·</span>
+            <span className="text-slate-300">
+              Interactive demonstration created for <strong>RG Electrical Bristol Limited</strong>{" "}
+              by Harley Digital Works
+            </span>
           </div>
-        </Container>
-      </section>
+          <div className="flex items-center gap-3 text-[11px] text-slate-400 shrink-0">
+            <span>100% Done-For-You Launch</span>
+            <span className="text-slate-700">|</span>
+            <a
+              href="tel:01172141357"
+              className="text-emerald-400 hover:text-emerald-300 font-medium transition-colors"
+            >
+              Questions? Call Robbie: 0117 214 1357
+            </a>
+          </div>
+        </div>
+      </aside>
 
-      {/* 2. Client Hero Section */}
+      {/* 2. RG Electrical Bristol Contractor Header */}
+      <header className="sticky top-0 z-40 bg-[#081B30]/95 backdrop-blur-md border-b border-slate-800 shadow-lg">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+          {/* Brand Logo & Name */}
+          <a href="#" className="flex items-center gap-3 group">
+            <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center text-slate-950 font-black shadow-md shadow-amber-500/20 group-hover:scale-105 transition-transform">
+              <Zap className="h-6 w-6 fill-current" />
+            </div>
+            <div>
+              <div className="text-lg font-extrabold text-white tracking-tight flex items-center gap-2">
+                <span>RG Electrical</span>
+                <span className="text-xs font-mono font-medium px-2 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700 hidden sm:inline">
+                  Bristol
+                </span>
+              </div>
+              <p className="text-[11px] text-slate-400 font-medium">
+                NICEIC Approved Contractor · North Bristol
+              </p>
+            </div>
+          </a>
+
+          {/* Desktop Navigation Links */}
+          <nav className="hidden md:flex items-center gap-6 text-sm font-medium text-slate-300">
+            <a href="#services" className="hover:text-white transition-colors">
+              Services
+            </a>
+            <a href="#case-studies" className="hover:text-white transition-colors">
+              Case Studies
+            </a>
+            <a href="#workmanship" className="hover:text-white transition-colors">
+              Workmanship
+            </a>
+            <a href="#calculator" className="hover:text-white transition-colors">
+              Price Estimator
+            </a>
+            <a href="#reviews" className="hover:text-white transition-colors">
+              Reviews
+            </a>
+          </nav>
+
+          {/* Direct Contact CTAs */}
+          <div className="flex items-center gap-3">
+            <a
+              href={`tel:${RG_ELECTRICAL_DATA.phone.replace(/\s+/g, "")}`}
+              className="hidden sm:inline-flex items-center gap-2 px-3.5 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-white text-xs font-semibold border border-slate-700 transition-colors"
+            >
+              <PhoneCall className="h-3.5 w-3.5 text-emerald-400" />
+              <span>{RG_ELECTRICAL_DATA.phone}</span>
+            </a>
+            <a
+              href="#calculator"
+              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold shadow-md shadow-emerald-950/40 transition-all hover:-translate-y-0.5"
+            >
+              <Zap className="h-3.5 w-3.5" />
+              <span>Instant Estimate</span>
+            </a>
+          </div>
+        </div>
+      </header>
+
+      {/* 3. Hero Section */}
       <section className="relative bg-gradient-to-b from-[#081B30] via-[#0E2744] to-[#081B30] text-white pt-16 pb-20 border-b border-slate-800">
-        <Container>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-12 gap-12 items-center">
             {/* Left copy column */}
             <div className="lg:col-span-7 space-y-6 text-left">
@@ -391,22 +461,71 @@ robbie@theharleygroup.org | 0117 214 1357`;
               </div>
             </div>
           </div>
-        </Container>
+        </div>
       </section>
 
-      {/* 3. The Core Defect Fix: 3-Project Structured Portfolio Showcase */}
+      {/* 4. Core Trade Services Grid */}
+      <section id="services" className="py-20 bg-[#081B30] border-b border-slate-800 text-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-3xl mb-12">
+            <span className="text-xs font-mono font-bold uppercase tracking-wider text-emerald-400">
+              Specialist Electrical Services
+            </span>
+            <h2 className="text-2xl sm:text-4xl font-bold tracking-tight text-white mt-2">
+              Certified Domestic &amp; Commercial Solutions
+            </h2>
+            <p className="mt-3 text-sm text-slate-300 leading-relaxed">
+              Fixed upfront pricing, full NICEIC building control certification, and zero mess left
+              behind.
+            </p>
+          </div>
+
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {RG_ELECTRICAL_DATA.popularServices.map((service, idx) => (
+              <div
+                key={idx}
+                className="rounded-2xl border border-slate-800 bg-slate-900/90 p-6 flex flex-col justify-between hover:border-slate-700 transition-all shadow-lg group"
+              >
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between text-xs font-mono">
+                    <span className="px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-300 border border-emerald-500/30">
+                      {service.turnaround}
+                    </span>
+                    <span className="text-slate-400 font-semibold">{service.priceGuide}</span>
+                  </div>
+                  <h3 className="text-base font-bold text-white group-hover:text-emerald-300 transition-colors">
+                    {service.title}
+                  </h3>
+                  <p className="text-xs text-slate-400 leading-relaxed">{service.description}</p>
+                </div>
+                <div className="pt-4 mt-4 border-t border-slate-800/80">
+                  <a
+                    href="#calculator"
+                    className="inline-flex items-center gap-1.5 text-xs font-semibold text-emerald-400 hover:text-emerald-300 transition-colors"
+                  >
+                    <span>Get instant estimate</span>
+                    <ArrowRight className="h-3.5 w-3.5" />
+                  </a>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 5. 3-Project Structured Portfolio Showcase */}
       <section
         id="case-studies"
         className="py-20 bg-slate-900 border-b border-slate-800 text-white"
       >
-        <Container>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mb-12">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono font-semibold bg-emerald-500/10 text-emerald-300 border border-emerald-500/30 mb-3">
               <Sparkles className="h-3.5 w-3.5" />
               VERIFIED BRISTOL INSTALLATIONS
             </div>
             <h2 className="text-2xl sm:text-4xl font-bold tracking-tight text-white">
-              Recent Bristol Electrical Installations & Case Studies
+              Recent Bristol Electrical Installations &amp; Case Studies
             </h2>
             <p className="mt-3 text-sm sm:text-base text-slate-300 leading-relaxed">
               Full project breakdowns with verified NICEIC certification, scope details, and
@@ -478,12 +597,12 @@ robbie@theharleygroup.org | 0117 214 1357`;
               </div>
             ))}
           </div>
-        </Container>
+        </div>
       </section>
 
-      {/* 4. Interactive Before / After Workmanship Slider */}
-      <section className="py-20 bg-[#081B30] border-b border-slate-800 text-white">
-        <Container>
+      {/* 6. Interactive Before / After Workmanship Slider */}
+      <section id="workmanship" className="py-20 bg-[#081B30] border-b border-slate-800 text-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mb-12">
             <span className="text-xs font-mono font-bold uppercase tracking-wider text-emerald-400">
               Tidy Workmanship Comparison
@@ -527,12 +646,12 @@ robbie@theharleygroup.org | 0117 214 1357`;
               </div>
             </div>
           </div>
-        </Container>
+        </div>
       </section>
 
-      {/* 5. Interactive Quote Calculator */}
+      {/* 7. Interactive Quote Calculator */}
       <section id="calculator" className="py-20 bg-slate-900 border-b border-slate-800 text-white">
-        <Container>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mb-12">
             <span className="text-xs font-mono font-bold uppercase tracking-wider text-emerald-400">
               Interactive Estimator
@@ -549,154 +668,320 @@ robbie@theharleygroup.org | 0117 214 1357`;
           <div className="max-w-4xl mx-auto">
             <TradeQuoteCalculator business={RG_ELECTRICAL_DATA} />
           </div>
-        </Container>
+        </div>
       </section>
 
-      {/* 6. Confidential Founder Outreach Pack & Ready-to-Send Scripts */}
-      <section
-        id="outreach-pack"
-        className="py-20 bg-emerald-950/30 border-t border-emerald-500/20 text-white"
-      >
-        <Container>
-          <div className="max-w-4xl mx-auto space-y-10">
-            <div className="text-center space-y-3">
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/40">
-                <Lock className="h-3.5 w-3.5" />
-                FOUNDER OUTREACH & PROPOSAL REVIEW
-              </span>
-              <h2 className="text-2xl sm:text-3xl font-extrabold text-white">
-                RG Electrical Bristol Limited: Commercial Pack & Outreach Scripts
-              </h2>
-              <p className="text-sm text-slate-300 max-w-2xl mx-auto">
-                Ready-to-use communication assets for Robbie to review and send. Pre-checked for
-                PECR B2B compliance (UK Registered Company #10082511).
+      {/* 8. Verified Customer Reviews */}
+      <section id="reviews" className="py-20 bg-[#081B30] border-b border-slate-800 text-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-3xl mb-12">
+            <span className="text-xs font-mono font-bold uppercase tracking-wider text-emerald-400">
+              Verified Customer Feedback
+            </span>
+            <h2 className="text-2xl sm:text-4xl font-bold tracking-tight text-white mt-2">
+              What Bristol Homeowners &amp; Landlords Say
+            </h2>
+            <p className="mt-3 text-sm text-slate-300">
+              Direct reviews from local domestic rewires and fuseboard upgrades in North Bristol.
+            </p>
+          </div>
+
+          <div className="grid gap-6 md:grid-cols-2 max-w-4xl">
+            {RG_ELECTRICAL_DATA.reviews.map((review, idx) => (
+              <div
+                key={idx}
+                className="rounded-2xl border border-slate-800 bg-slate-900/80 p-6 space-y-4 shadow-xl"
+              >
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-1 text-amber-400">
+                    {[...Array(review.rating)].map((_, i) => (
+                      <Star key={i} className="h-4 w-4 fill-current" />
+                    ))}
+                  </div>
+                  <span className="text-[11px] font-mono font-semibold px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-300 border border-emerald-500/20">
+                    {review.service}
+                  </span>
+                </div>
+                <p className="text-xs sm:text-sm text-slate-300 leading-relaxed italic">
+                  "{review.text}"
+                </p>
+                <div className="pt-2 border-t border-slate-800/80 flex items-center justify-between text-xs">
+                  <span className="font-bold text-white">{review.author}</span>
+                  <span className="text-slate-400 flex items-center gap-1">
+                    <MapPin className="h-3 w-3 text-emerald-400" />
+                    {review.location}
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 9. Emergency Callout Strip */}
+      <section className="bg-gradient-to-r from-emerald-950 via-slate-900 to-emerald-950 border-b border-emerald-500/30 py-8 text-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="space-y-1 text-center sm:text-left">
+            <div className="inline-flex items-center gap-1.5 text-xs font-mono font-bold text-emerald-400">
+              <Zap className="h-3.5 w-3.5" />
+              RAPID RESPONSE ELECTRICAL SERVICE
+            </div>
+            <h3 className="text-lg font-bold text-white">
+              Power Cut, Tripping Circuits or Burning Smell?
+            </h3>
+            <p className="text-xs text-slate-300">
+              Priority emergency attendance across Bradley Stoke, Filton, Stoke Gifford &amp; North
+              Bristol.
+            </p>
+          </div>
+          <a
+            href={`tel:${RG_ELECTRICAL_DATA.phone.replace(/\s+/g, "")}`}
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm shadow-xl transition-all hover:scale-105 shrink-0"
+          >
+            <PhoneCall className="h-4 w-4" />
+            <span>Call Emergency Desk: {RG_ELECTRICAL_DATA.phone}</span>
+          </a>
+        </div>
+      </section>
+
+      {/* 10. Dedicated RG Electrical Trade Footer */}
+      <footer className="bg-[#051323] border-t border-slate-800 text-slate-400 py-12 text-xs">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8 pb-8 border-b border-slate-800/80">
+            <div className="space-y-3">
+              <div className="flex items-center gap-2 text-white font-extrabold text-base">
+                <Zap className="h-4 w-4 text-amber-400 fill-current" />
+                <span>RG Electrical Bristol Limited</span>
+              </div>
+              <p className="text-xs text-slate-400 leading-relaxed">
+                Qualified NICEIC approved contractors providing domestic and commercial electrical
+                installations, fuseboard replacements, rewires and Landlord safety certificates
+                across North Bristol.
+              </p>
+              <p className="text-[11px] text-slate-500 font-mono">
+                Registered in England &amp; Wales · Company #10082511
               </p>
             </div>
 
-            {/* 1-Click ChatGPT Sync Banner */}
-            <ChatGptSyncButton variant="banner" />
-
-            {/* Commercial terms summary card */}
-            <div className="rounded-2xl border border-emerald-500/30 bg-[#081B30] p-6 sm:p-8 space-y-6 shadow-2xl">
-              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-slate-800 pb-6">
-                <div>
-                  <h3 className="text-xl font-bold text-white">
-                    The Harley Digital Works Standard Managed Package
-                  </h3>
-                  <p className="text-xs text-slate-400 mt-1">
-                    Agreed delivery schedule · Strictly max 2 active builds · No VAT charged
-                  </p>
-                </div>
-                <div className="text-left sm:text-right">
-                  <div className="text-2xl font-mono font-extrabold text-white">
-                    £1,495 <span className="text-xs font-normal text-slate-400">setup</span>
-                  </div>
-                  <div className="text-sm font-mono text-emerald-400">
-                    + £249/month <span className="text-xs text-slate-400">ongoing care</span>
-                  </div>
-                </div>
+            <div className="space-y-2">
+              <div className="font-bold text-white text-xs uppercase tracking-wider">
+                Accreditations
               </div>
+              <ul className="space-y-1.5 text-xs text-slate-300">
+                <li className="flex items-center gap-1.5">
+                  <BadgeCheck className="h-3.5 w-3.5 text-emerald-400 shrink-0" />
+                  <span>NICEIC Approved Contractor</span>
+                </li>
+                <li className="flex items-center gap-1.5">
+                  <ShieldCheck className="h-3.5 w-3.5 text-blue-400 shrink-0" />
+                  <span>TrustMark Government Endorsed</span>
+                </li>
+                <li className="flex items-center gap-1.5">
+                  <FileCheck className="h-3.5 w-3.5 text-emerald-400 shrink-0" />
+                  <span>Part P Building Regulations</span>
+                </li>
+                <li className="flex items-center gap-1.5">
+                  <CheckCircle2 className="h-3.5 w-3.5 text-amber-400 shrink-0" />
+                  <span>£5,000,000 Public Liability Policy</span>
+                </li>
+              </ul>
+            </div>
 
-              <div className="grid sm:grid-cols-3 gap-4 text-xs">
-                <div className="p-4 rounded-xl bg-slate-900 border border-slate-800">
-                  <strong className="text-white block mb-1">50/50 Fair Split Payment</strong>
-                  <p className="text-slate-400">
-                    £747.50 deposit on agreement / £747.50 only upon final preview approval.
-                  </p>
-                </div>
-                <div className="p-4 rounded-xl bg-slate-900 border border-slate-800">
-                  <strong className="text-white block mb-1">100% Done-For-You</strong>
-                  <p className="text-slate-400">
-                    Zero homework. We write all the copy, structure the case studies, and organize
-                    accreditations.
-                  </p>
-                </div>
-                <div className="p-4 rounded-xl bg-slate-900 border border-slate-800">
-                  <strong className="text-white block mb-1">Rolling Digital Care</strong>
-                  <p className="text-slate-400">
-                    Fast WhatsApp changes, DNS maintenance, automated backups, and seasonal
-                    promotion refreshes.
-                  </p>
-                </div>
+            <div className="space-y-2">
+              <div className="font-bold text-white text-xs uppercase tracking-wider">
+                Bristol Service Areas
+              </div>
+              <p className="text-xs text-slate-300 leading-relaxed">
+                Bradley Stoke, Stoke Gifford, Filton, Patchway, Thornbury, Alveston, Almondsbury,
+                Clifton, Redland, Cotham, and Bristol.
+              </p>
+              <div className="text-[11px] text-emerald-400 font-medium pt-1">
+                Priority emergency response available
               </div>
             </div>
 
-            {/* Email outreach tab */}
-            <div className="rounded-2xl border border-slate-800 bg-[#081B30] p-6 sm:p-8 space-y-4">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                  <Mail className="h-5 w-5 text-blue-400" />
-                  <h3 className="text-base font-bold text-white">
-                    Ready-to-Send Email (Non-Salesy Portfolio Angle)
-                  </h3>
-                </div>
-                <button
-                  type="button"
-                  onClick={handleCopyEmail}
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-blue-600 hover:bg-blue-500 text-white text-xs font-semibold transition-colors"
-                >
-                  {copiedEmail ? (
-                    <Check className="h-3.5 w-3.5" />
-                  ) : (
-                    <Copy className="h-3.5 w-3.5" />
-                  )}
-                  <span>{copiedEmail ? "Copied Email!" : "Copy Email Body"}</span>
-                </button>
+            <div className="space-y-2">
+              <div className="font-bold text-white text-xs uppercase tracking-wider">
+                Direct Contact
               </div>
-
-              <div className="p-4 rounded-xl bg-slate-950 font-mono text-xs text-slate-300 space-y-2 border border-slate-800">
-                <div className="text-slate-500">
-                  <strong>To:</strong> info@rg-electrical.com
-                </div>
-                <div className="text-slate-500">
-                  <strong>Subject:</strong> {emailSubject}
-                </div>
-                <div className="pt-2 border-t border-slate-900 whitespace-pre-line leading-relaxed text-slate-200">
-                  {emailBody}
-                </div>
-              </div>
+              <p className="text-xs text-slate-300">
+                <strong>Phone:</strong> {RG_ELECTRICAL_DATA.phone}
+              </p>
+              <p className="text-xs text-slate-300">
+                <strong>WhatsApp:</strong> {RG_ELECTRICAL_DATA.whatsapp}
+              </p>
+              <p className="text-xs text-slate-300">
+                <strong>Email:</strong> info@rg-electrical.com
+              </p>
+              <p className="text-[11px] text-slate-500 font-mono pt-1">
+                Operating: Mon–Fri 7:30am–6:00pm (24/7 Emergency Callout)
+              </p>
             </div>
+          </div>
 
-            {/* WhatsApp touchpoint tab */}
-            <div className="rounded-2xl border border-slate-800 bg-[#081B30] p-6 sm:p-8 space-y-4">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                  <MessageSquare className="h-5 w-5 text-emerald-400" />
-                  <h3 className="text-base font-bold text-white">
-                    WhatsApp Direct Touchpoint (Casual & Respectful)
-                  </h3>
-                </div>
-                <button
-                  type="button"
-                  onClick={handleCopyWhatsapp}
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold transition-colors"
-                >
-                  {copiedWhatsapp ? (
-                    <Check className="h-3.5 w-3.5" />
-                  ) : (
-                    <Copy className="h-3.5 w-3.5" />
-                  )}
-                  <span>{copiedWhatsapp ? "Copied WhatsApp!" : "Copy WhatsApp Note"}</span>
-                </button>
-              </div>
-
-              <div className="p-4 rounded-xl bg-slate-950 font-mono text-xs text-slate-300 border border-slate-800 leading-relaxed">
-                {whatsappText}
-              </div>
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-slate-500">
+            <div>
+              © {new Date().getFullYear()} RG Electrical Bristol Limited. All rights reserved.
             </div>
-
-            {/* Admin Back-to-CRM Link */}
-            <div className="text-center pt-4">
+            <div className="flex items-center gap-3">
+              <span>Private prototype crafted by Harley Digital Works</span>
+              <span className="text-slate-700">·</span>
               <Link
-                to="/admin/leads"
-                className="inline-flex items-center gap-2 text-xs font-mono text-slate-400 hover:text-white transition-colors"
+                to="/demos/rg-electrical"
+                search={{ founder: true }}
+                className="text-slate-500 hover:text-slate-300 underline font-mono text-[10px]"
               >
-                <span>← Return to Admin Leads Workspace (/admin/leads)</span>
+                Founder View
               </Link>
             </div>
           </div>
-        </Container>
-      </section>
+        </div>
+      </footer>
+
+      {/* 11. Founder Outreach Pack (Floating Trigger & Slide-Over Drawer for Robbie) */}
+      {hasFounderAccess && (
+        <>
+          {/* Floating Trigger Pill */}
+          <button
+            type="button"
+            onClick={() => setShowFounderDrawer(true)}
+            className="fixed bottom-6 right-6 z-50 inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-slate-900/95 hover:bg-slate-800 text-emerald-400 border border-emerald-500/50 text-xs font-mono font-bold shadow-2xl backdrop-blur-md transition-all hover:scale-105"
+            title="Open Founder Outreach Pack"
+          >
+            <Lock className="h-4 w-4 text-emerald-400" />
+            <span>Founder Outreach Pack</span>
+            <span className="text-[10px] px-1.5 py-0.5 rounded bg-emerald-950 text-emerald-300 border border-emerald-500/40">
+              Robbie
+            </span>
+          </button>
+
+          {/* Slide-Over Drawer */}
+          {showFounderDrawer && (
+            <div className="fixed inset-0 z-50 flex justify-end animate-in fade-in duration-200">
+              {/* Backdrop */}
+              <div
+                className="fixed inset-0 bg-slate-950/70 backdrop-blur-sm transition-opacity"
+                onClick={() => setShowFounderDrawer(false)}
+              />
+
+              {/* Drawer Content */}
+              <div className="relative w-full max-w-xl bg-slate-900 border-l border-slate-800 shadow-2xl h-full overflow-y-auto p-6 sm:p-8 space-y-6 text-white z-10">
+                <div className="flex items-center justify-between border-b border-slate-800 pb-4">
+                  <div>
+                    <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-mono font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 mb-1">
+                      <Lock className="h-3 w-3" />
+                      FOUNDER SALES PACK
+                    </div>
+                    <h2 className="text-lg font-bold text-white">RG Electrical Bristol Limited</h2>
+                    <p className="text-xs text-slate-400">
+                      Companies House #10082511 · Target: info@rg-electrical.com
+                    </p>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => setShowFounderDrawer(false)}
+                    className="p-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 transition-colors"
+                    aria-label="Close drawer"
+                  >
+                    <X className="h-5 w-5" />
+                  </button>
+                </div>
+
+                {/* ChatGPT Sync */}
+                <ChatGptSyncButton variant="banner" />
+
+                {/* Commercial Offer */}
+                <div className="rounded-xl border border-emerald-500/30 bg-[#081B30] p-5 space-y-4">
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm font-bold text-white">Standard Managed Package</span>
+                    <span className="font-mono text-sm font-bold text-emerald-400">
+                      £1,495 setup + £249/mo
+                    </span>
+                  </div>
+                  <div className="grid grid-cols-3 gap-2 text-[11px] text-slate-300">
+                    <div className="p-2.5 rounded bg-slate-900/80 border border-slate-800">
+                      <strong className="text-white block mb-0.5">50/50 Split</strong>
+                      £747.50 deposit / £747.50 on approval
+                    </div>
+                    <div className="p-2.5 rounded bg-slate-900/80 border border-slate-800">
+                      <strong className="text-white block mb-0.5">Done-For-You</strong>
+                      Full copywriting &amp; case studies
+                    </div>
+                    <div className="p-2.5 rounded bg-slate-900/80 border border-slate-800">
+                      <strong className="text-white block mb-0.5">Rolling Care</strong>
+                      WhatsApp updates &amp; hosting
+                    </div>
+                  </div>
+                </div>
+
+                {/* Email Script */}
+                <div className="rounded-xl border border-slate-800 bg-slate-950 p-5 space-y-3">
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs font-bold text-blue-300 flex items-center gap-1.5">
+                      <Mail className="h-4 w-4" />
+                      Outreach Email Template
+                    </span>
+                    <button
+                      type="button"
+                      onClick={handleCopyEmail}
+                      className="inline-flex items-center gap-1.5 px-3 py-1 rounded bg-blue-600 hover:bg-blue-500 text-white text-xs font-semibold transition-colors"
+                    >
+                      {copiedEmail ? <Check className="h-3 w-3" /> : <Copy className="h-3 w-3" />}
+                      <span>{copiedEmail ? "Copied Email!" : "Copy Email"}</span>
+                    </button>
+                  </div>
+                  <div className="text-xs font-mono text-slate-400 space-y-1">
+                    <div>
+                      <strong>To:</strong> info@rg-electrical.com
+                    </div>
+                    <div>
+                      <strong>Subject:</strong> {emailSubject}
+                    </div>
+                  </div>
+                  <div className="p-3 rounded bg-slate-900 border border-slate-800/80 text-xs text-slate-200 whitespace-pre-line font-mono max-h-48 overflow-y-auto">
+                    {emailBody}
+                  </div>
+                </div>
+
+                {/* WhatsApp Script */}
+                <div className="rounded-xl border border-slate-800 bg-slate-950 p-5 space-y-3">
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs font-bold text-emerald-300 flex items-center gap-1.5">
+                      <MessageSquare className="h-4 w-4" />
+                      WhatsApp Direct Note
+                    </span>
+                    <button
+                      type="button"
+                      onClick={handleCopyWhatsapp}
+                      className="inline-flex items-center gap-1.5 px-3 py-1 rounded bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold transition-colors"
+                    >
+                      {copiedWhatsapp ? (
+                        <Check className="h-3 w-3" />
+                      ) : (
+                        <Copy className="h-3 w-3" />
+                      )}
+                      <span>{copiedWhatsapp ? "Copied WhatsApp!" : "Copy WhatsApp"}</span>
+                    </button>
+                  </div>
+                  <div className="p-3 rounded bg-slate-900 border border-slate-800/80 text-xs text-slate-200 font-mono">
+                    {whatsappText}
+                  </div>
+                </div>
+
+                {/* Return to CRM */}
+                <div className="pt-2 text-center">
+                  <Link
+                    to="/admin/leads"
+                    className="inline-flex items-center gap-2 text-xs font-mono text-slate-400 hover:text-white transition-colors"
+                  >
+                    <span>← Open in Admin Leads Workspace (/admin/leads)</span>
+                  </Link>
+                </div>
+              </div>
+            </div>
+          )}
+        </>
+      )}
     </PageShell>
   );
 }
