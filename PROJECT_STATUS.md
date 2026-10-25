@@ -1,5 +1,19 @@
 # Harley Digital Works — Project Status
 
+## Clean Standalone Full-Page Prospect Previews on /demos Complete — 25 October 2026
+
+**Current Status:** Replaced agency studio wrapping with a pure, full-page bespoke contractor experience whenever prospect links (`?company=...`) are opened:
+
+1. **Standalone Prospect Demo (`StandaloneProspectDemo.tsx`)**:
+   - Renders a full-bleed, professional trade website branded specifically for the target contractor (e.g. Bath-Electrical Ltd).
+   - Strips the agency marketing header, agency footer, studio toolbar buttons, simulated device frames, and £1,495 pricing tables.
+   - Includes discrete top staging notice ("Private Staging Prototype · Created for {Company} by Harley Digital Works"), sticky contractor navigation with call/WhatsApp buttons, emergency banner, hero with verified badges, 4 core services, before/after slider, and live quote estimator.
+2. **Verification**:
+   - `npm test`: PASS (205/205 passing assertions across 25 suites + service worker + claims guard).
+   - `npm run typecheck`: PASS (0 TS errors).
+   - `npm run format:check`: PASS (100% Prettier compliant).
+   - Local Browser: Verified on `http://localhost:3000/demos?company=Bath-Electrical%20Ltd&trade=electrical&city=Bath%20(BA1%20%2F%20Somerset)&phone=01225%20436%20123`.
+
 ## Dynamic Staging Demo Routing & Bespoke Prospect Previews Complete — 25 October 2026
 
 **Current Status:** Resolved demo URL hardcoding across the prospect auditor and dynamic trade staging generator:

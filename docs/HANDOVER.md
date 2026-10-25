@@ -1,5 +1,22 @@
 # The Harley Group & Harley Digital Works — Session Handover Log
 
+## Clean Standalone Full-Page Prospect Previews on /demos — 25 October 2026
+
+- **Tool & Scope:** Google Antigravity. Robbie provided screenshot showing that opening prospect demo links previously displayed the agency studio page with agency headers, toolbar controls, device frames, and pricing tables.
+- **Applied Changes:**
+  1. `src/components/demos/StandaloneProspectDemo.tsx`:
+     - Built dedicated standalone contractor website component.
+     - Automatically customises company name, trade vertical, city/territory, and direct phone across all sections (Emergency Banner, Sticky Contractor Header, Hero with accreditation badges, 4 Core Trade Services, Before/After Workmanship Slider, Interactive Quote Calculator with WhatsApp dispatch, and Contractor Footer).
+  2. `src/routes/demos.tsx`:
+     - When `search.company` is present, renders `<StandaloneProspectDemo>` inside `<PageShell header={null} footer={null}>`.
+     - Completely strips agency marketing headers, studio builder toolbars, simulated mock device frames, and agency pricing packages.
+     - Preserves the full agency studio blueprints page when `search.company` is omitted.
+- **Empirical Verification:**
+  - `npm test`: PASS (205/205 passing assertions across 25 suites + service worker + claims guard).
+  - `npm run typecheck`: PASS (0 TS errors).
+  - `npm run format:check`: PASS (100% Prettier compliant).
+  - Local Browser: Verified on `http://localhost:3000/demos?company=Bath-Electrical%20Ltd&trade=electrical&city=Bath%20(BA1%20%2F%20Somerset)&phone=01225%20436%20123` in Google Chrome that the page renders 100% pure, full-page Bath-Electrical contractor website with zero agency clutter.
+
 ## Dynamic Staging Demo Routing & Bespoke Prospect Previews — 25 October 2026
 
 - **Tool & Scope:** Google Antigravity. Robbie observed: _"so the preview is always showing RG Elecftrical"_. Resolved demo URL hardcoding across the prospect auditor and dynamic trade staging generator.

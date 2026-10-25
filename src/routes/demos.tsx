@@ -6,6 +6,7 @@ import {
   DynamicStagingGenerator,
   type StagingConfig,
 } from "@/components/demos/DynamicStagingGenerator";
+import { StandaloneProspectDemo } from "@/components/demos/StandaloneProspectDemo";
 import { WebsitePackagesSection } from "@/components/site/WebsitePackagesSection";
 import { CheckCircle2, ShieldCheck, PenLine, Check } from "lucide-react";
 
@@ -43,6 +44,19 @@ export const Route = createFileRoute("/demos")({
 
 function TradeDemosPage() {
   const search = Route.useSearch();
+
+  if (search.company) {
+    return (
+      <PageShell header={null} footer={null}>
+        <StandaloneProspectDemo
+          company={search.company}
+          trade={search.trade}
+          city={search.city}
+          phone={search.phone}
+        />
+      </PageShell>
+    );
+  }
 
   return (
     <PageShell quiet>
