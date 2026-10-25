@@ -1,5 +1,24 @@
 # The Harley Group & Harley Digital Works — Session Handover Log
 
+## Knowledge Base Ratification & CI Linter Fix — 25 October 2026
+
+- **Tool & Scope:** Google Antigravity. Robbie instructed via voice note: _"Can you make sure any new workflows that there is a knowledge updated? So anything that's built, any workflows that are created, any new agents that the knowledge base is updated, please."_
+- **Applied Changes:**
+  1. `src/lib/knowledge-base.ts`:
+     - Added Article 1: `Google Cloud Agent Builder 3-Stage Commercial Engine (Trade Estimator, ContentFlow AI & Prospect Auditor)` (Architecture & System Specs).
+     - Added Article 2: `The 'Sniper' Prospecting, Website Audit & High-Ticket Trade Outreach Runbook` (Operational Sales SOP & 30-Second Eye Test).
+     - Added Article 3: `ContentFlow AI Zero-Homework Build Sprint & £249/mo Care Plan Retention SOP` (Delivery & Bi-Weekly Care Routine).
+  2. Fixed GitHub Actions CI `Lint & Format` failure:
+     - Typed `auditCache` as `Record<string, unknown>` to eliminate `@typescript-eslint/no-explicit-any`.
+     - Prettier formatted `scripts/handover-brief.mjs`.
+- **Empirical Verification:**
+  - `npm run lint`: PASS (0 errors, 9 non-blocking warnings).
+  - `npm run format:check`: PASS (100% Prettier compliant).
+  - `npm run typecheck`: PASS (0 TS errors).
+  - `npm test`: PASS (205/205 passing assertions across 25 suites + service worker + claims guard).
+  - Pushed to `main` (`commit 23d6f64`).
+  - Local Browser: Verified on `http://localhost:3000/admin/knowledge-base` in Google Chrome.
+
 ## Stage 3 Complete: Instant Prospect Website & Domain Auditor — 25 October 2026
 
 - **Tool & Scope:** Google Antigravity. Built and connected Stage 3 of the Google Agent Builder integration (Outbound Sales & Prospecting Engine). Robbie instructed: _"yes please"_ to build Stage 3 for winning new business without burning tokens.
