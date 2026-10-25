@@ -41,6 +41,7 @@ async function callContentFlowAgent(prompt: string, sessionId: string, token: st
   const data = (await response.json()) as {
     queryResult?: {
       responseMessages?: Array<{ text?: { text?: string[] } }>;
+      parameters?: { execution_summary?: string };
     };
   };
 
@@ -48,7 +49,15 @@ async function callContentFlowAgent(prompt: string, sessionId: string, token: st
     ?.flatMap((m) => m.text?.text || [])
     .filter(Boolean);
 
-  return texts && texts.length > 0 ? texts.join("\n\n") : null;
+  if (texts && texts.length > 0) {
+    return texts.join("\n\n");
+  }
+
+  if (data?.queryResult?.parameters?.execution_summary) {
+    return data.queryResult.parameters.execution_summary;
+  }
+
+  return null;
 }
 
 export const Route = createFileRoute("/api/chat/content-flow")({
@@ -85,8 +94,8 @@ export const Route = createFileRoute("/api/chat/content-flow")({
             }
           }
 
-          // Fallback template generator if Google token drops
-          const fallbackReply = `**Asset 1: Google Business Profile Local Update Post**\n\nRecent project completed by our team: ${userPrompt}. Work was carried out in full compliance with UK regulations, with zero disruption to the household and certified building control documentation issued promptly.\n\nFor professional domestic and commercial services in your local area, call us today on 0117 900 0000.\n\n***\n\n**Asset 2: Structured Website Case Study Card**\n\n- **Problem:** Outdated installation failing to meet modern safety requirements.\n- **Solution:** Completed full upgrade and testing according to current trade standards.\n- **Certification:** Official building regulations compliance paperwork issued.\n- **Outcome:** Clean, certified installation delivered on schedule.`;
+          // Fallback template generator with all 4 assets if Google token drops
+          const fallbackReply = `### Asset 1: Google Business Profile Post\n\nRecent project completed by our team: ${userPrompt}. Work was carried out in full compliance with UK regulations, with zero disruption to the household and certified building control documentation issued promptly.\n\nFor professional domestic and commercial services across your local area, contact our team today on 0117 900 0000.\n\n### Asset 2: Website Case Study Card\n\n- **The Problem:** Outdated installation failing to meet modern safety requirements and current UK building standards.\n- **Technical Workmanship Solution:** Completed comprehensive upgrade and precision testing according to trade regulations.\n- **Building Control / Industry Certification:** Official safety certification and compliance paperwork issued.\n- **Project Value / Outcome:** Clean, fully certified installation delivered on schedule with complete peace of mind.\n\n### Asset 3: WhatsApp Review Request\n\nHi! Thank you for choosing us for your recent project. We hope you're delighted with the workmanship. If you have 30 seconds, would you mind leaving us a quick Google review here: [Insert Review Link]? It really helps our local family business. Thanks again!\n\n### Asset 4: Homeowner Safety & Maintenance Tip\n\nRegular check-in: We recommend testing your safety switches every six months by pressing the test button to ensure all circuits trip safely in an emergency.`;
 
           return new Response(
             JSON.stringify({
