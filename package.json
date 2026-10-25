@@ -19,7 +19,8 @@
     "check:staging": "node scripts/check-staging-config.mjs",
     "check:governance": "node scripts/check-agent-governance.mjs",
     "test:delivery": "node --experimental-strip-types --test scripts/delivery-database.test.mjs scripts/delivery-session.test.mjs",
-    "test:payments": "node --experimental-strip-types --test scripts/payment-receipts.test.mjs scripts/payment-database.test.mjs scripts/payment-webhook.test.mjs scripts/payment-reconciliation.test.mjs scripts/payment-reconciliation-database.test.mjs"
+    "test:payments": "node --experimental-strip-types --test scripts/payment-receipts.test.mjs scripts/payment-database.test.mjs scripts/payment-webhook.test.mjs scripts/payment-reconciliation.test.mjs scripts/payment-reconciliation-database.test.mjs",
+    "handover:copy": "node scripts/handover-brief.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
