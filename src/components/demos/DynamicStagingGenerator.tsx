@@ -163,7 +163,26 @@ export function DynamicStagingGenerator({ initialConfig }: DynamicStagingGenerat
   });
 
   const [deviceMode, setDeviceMode] = useState<"desktop" | "tablet" | "mobile">("desktop");
-  const [showCustomizer, setShowCustomizer] = useState(true);
+  const [showCustomizer, setShowCustomizer] = useState(!initialConfig?.company);
+
+  useEffect(() => {
+    if (initialConfig?.company) {
+      setConfig((prev) => ({
+        ...prev,
+        company: initialConfig.company || prev.company,
+        trade: (initialConfig.trade as StagingConfig["trade"]) || prev.trade,
+        city: initialConfig.city || prev.city,
+        phone: initialConfig.phone || prev.phone,
+        palette: initialConfig.palette || prev.palette,
+      }));
+    }
+  }, [
+    initialConfig?.company,
+    initialConfig?.trade,
+    initialConfig?.city,
+    initialConfig?.phone,
+    initialConfig?.palette,
+  ]);
 
   const activeMeta = TRADE_METADATA[config.trade] || TRADE_METADATA.heating;
 

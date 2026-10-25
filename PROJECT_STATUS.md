@@ -1,5 +1,19 @@
 # Harley Digital Works — Project Status
 
+## Dynamic Staging Demo Routing & Bespoke Prospect Previews Complete — 25 October 2026
+
+**Current Status:** Resolved demo URL hardcoding across the prospect auditor and dynamic trade staging generator:
+
+1. **Dynamic Preview Routing**:
+   - Updated `/api/audit/prospect` so RG Electrical routes to its bespoke `/demos/rg-electrical` candidate prototype, while any other contractor dynamically receives their own tailored staging URL (`/demos?company={Name}&trade={Trade}&city={Location}&phone={Phone}`).
+   - Updated `DynamicStagingGenerator.tsx` to automatically synchronize URL search parameters and hide editor controls for clean client viewing.
+   - Added a dedicated **"Live Bespoke Staging Demo"** preview card in the admin auditor desk with 1-click **"Open Live Demo"** and **"Copy Link"** buttons.
+2. **Verification**:
+   - `npm test`: PASS (205/205 passing assertions across 25 suites + service worker + claims guard).
+   - `npm run typecheck`: PASS (0 TS errors).
+   - `npm run format:check`: PASS (100% Prettier compliant).
+   - Local Browser: Verified on `http://localhost:3000/demos?company=Bath-Electrical%20Ltd&trade=electrical&city=Bath%20(BA1)&phone=01225%20436%20123`.
+
 ## Security Audit Remediation & Zod Upgrade Complete — 25 October 2026
 
 **Current Status:** Resolved GitHub Actions `Security Audit` failure by upgrading to Zod 4.6.7 (GHSA-mrhx-c7xc-m3w5):

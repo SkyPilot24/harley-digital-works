@@ -176,7 +176,32 @@ export const Route = createFileRoute("/api/audit/prospect")({
             "Missing LocalBusiness structured schema for local Google Maps visibility",
           ];
 
-          const demoUrl = "https://harleydigitalworks.com/demos/rg-electrical";
+          // Dynamically route to RG Electrical bespoke demo or dynamic trade staging generator
+          const isRgElectrical =
+            cleanUrl.includes("rg-electrical") ||
+            businessName.toLowerCase().includes("rg electrical");
+
+          let tradeParam = "electrical";
+          const lowerTrade = trade.toLowerCase();
+          if (
+            lowerTrade.includes("heat") ||
+            lowerTrade.includes("gas") ||
+            lowerTrade.includes("boiler")
+          ) {
+            tradeParam = "heating";
+          } else if (lowerTrade.includes("roof")) {
+            tradeParam = "roofing";
+          } else if (lowerTrade.includes("plumb")) {
+            tradeParam = "plumbing";
+          } else if (lowerTrade.includes("build")) {
+            tradeParam = "builder";
+          } else if (lowerTrade.includes("commercial")) {
+            tradeParam = "commercial";
+          }
+
+          const demoUrl = isRgElectrical
+            ? "https://harleydigitalworks.com/demos/rg-electrical"
+            : `https://harleydigitalworks.com/demos?company=${encodeURIComponent(businessName)}&trade=${tradeParam}&city=${encodeURIComponent(location)}&phone=${encodeURIComponent(phone)}`;
 
           // Google Agent Builder Call
           const prompt = `Audit Prospect: ${businessName}. Website: ${cleanUrl}. Trade: ${trade}. Location: ${location}. Identified defects: ${defects.join("; ")}. Demo prototype URL: ${demoUrl}`;

@@ -1,5 +1,27 @@
 # The Harley Group & Harley Digital Works — Session Handover Log
 
+## Dynamic Staging Demo Routing & Bespoke Prospect Previews — 25 October 2026
+
+- **Tool & Scope:** Google Antigravity. Robbie observed: _"so the preview is always showing RG Elecftrical"_. Resolved demo URL hardcoding across the prospect auditor and dynamic trade staging generator.
+- **Applied Changes:**
+  1. `src/routes/api.audit.prospect.ts`:
+     - Replaced hardcoded `/demos/rg-electrical` with dynamic URL routing.
+     - For RG Electrical: routes to bespoke candidate prototype `/demos/rg-electrical`.
+     - For any other trade prospect: dynamically constructs `/demos?company={Name}&trade={Trade}&city={Location}&phone={Phone}` so the prospect receives a 100% personalized preview.
+  2. `src/components/demos/DynamicStagingGenerator.tsx`:
+     - Added `useEffect` to synchronize `config` when `initialConfig` query parameters change.
+     - Automatically hides editor controls (`showCustomizer: false`) when a prospect link is opened with `company` set, presenting an uncluttered client preview immediately.
+  3. `src/components/admin/ProspectAuditorDesk.tsx`:
+     - Added dedicated **"Live Bespoke Staging Demo"** preview card above outreach pitches with 1-click **"Open Live Demo"** and **"Copy Link"** buttons.
+- **Empirical Verification:**
+  - Tested `bath-electrical.co.uk` -> Generated dynamic link: `https://harleydigitalworks.com/demos?company=Bath-Electrical%20Ltd&trade=electrical&city=Bath%20(BA1)&phone=01225%20436%20123`.
+  - Tested `nextgenelec.co.uk` -> Generated dynamic link: `https://harleydigitalworks.com/demos?company=Nextgen%20Electrical%20Contractors%20Ltd&trade=electrical&city=Warmley%2C%20Bristol%20(BS30)&phone=0117%20960%204567`.
+  - Tested `rg-electrical.com` -> Preserves bespoke `/demos/rg-electrical` candidate prototype.
+  - `npm test`: PASS (205/205 passing assertions across 25 suites + service worker + claims guard).
+  - `npm run typecheck`: PASS (0 TS errors).
+  - `npm run format:check`: PASS (100% Prettier compliant).
+  - Browser Verification: Verified in Chrome on `http://localhost:3000/demos?company=Bath-Electrical%20Ltd&...` that Bath-Electrical Ltd branding renders dynamically.
+
 ## Security Audit Remediation & Zod Upgrade — 25 October 2026
 
 - **Tool & Scope:** Google Antigravity. Fixed GitHub Actions `Security Audit` high-severity vulnerability failure (GHSA-mrhx-c7xc-m3w5).

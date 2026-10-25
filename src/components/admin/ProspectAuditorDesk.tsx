@@ -428,6 +428,59 @@ export function ProspectAuditorDesk({
                 </div>
               </div>
 
+              {/* Dedicated Live Demo Preview Banner */}
+              <div className="rounded-2xl border border-sky-200 bg-sky-50/70 p-4 shadow-sm flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+                <div className="flex items-center gap-3">
+                  <div className="h-9 w-9 rounded-xl bg-sky-600 text-white flex items-center justify-center shrink-0 shadow-sm">
+                    <Globe className="h-4 w-4" />
+                  </div>
+                  <div>
+                    <div className="flex items-center gap-2">
+                      <span className="text-xs font-bold text-slate-900">
+                        Live Bespoke Staging Demo
+                      </span>
+                      <span className="text-[10px] font-semibold text-sky-700 bg-sky-100 px-2 py-0.5 rounded-full border border-sky-200">
+                        Tailored for {auditResult.audit.businessName}
+                      </span>
+                    </div>
+                    <p className="text-[11px] text-slate-600 font-mono mt-0.5 truncate max-w-md sm:max-w-lg">
+                      {auditResult.demoUrl}
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-2 shrink-0">
+                  <button
+                    type="button"
+                    onClick={() => handleCopy(auditResult.demoUrl, "demo-link")}
+                    className="inline-flex items-center gap-1 px-3 py-1.5 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 text-slate-700 text-xs font-semibold shadow-xs transition-colors"
+                  >
+                    {copiedKey === "demo-link" ? (
+                      <Check className="h-3.5 w-3.5 text-emerald-600" />
+                    ) : (
+                      <Copy className="h-3.5 w-3.5" />
+                    )}
+                    <span>{copiedKey === "demo-link" ? "Copied" : "Copy Link"}</span>
+                  </button>
+                  <a
+                    href={
+                      auditResult.demoUrl.startsWith("http")
+                        ? auditResult.demoUrl.replace(
+                            "https://harleydigitalworks.com",
+                            typeof window !== "undefined" ? window.location.origin : "",
+                          )
+                        : auditResult.demoUrl
+                    }
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-sky-600 hover:bg-sky-500 text-white text-xs font-bold shadow-sm transition-colors"
+                  >
+                    <ExternalLink className="h-3.5 w-3.5" />
+                    <span>Open Live Demo</span>
+                  </a>
+                </div>
+              </div>
+
               {/* Outreach Pitches Controls */}
               <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
                 <div className="flex items-center gap-2">
