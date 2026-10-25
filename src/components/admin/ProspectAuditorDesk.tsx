@@ -48,32 +48,32 @@ export interface ProspectAuditData {
 
 const PRESET_PROSPECTS = [
   {
+    companyName: "RG Electrical Bristol Limited",
+    websiteUrl: "rg-electrical.com",
+    trade: "Electrical",
+    location: "Bristol (BS32 / South West)",
+    phone: "01454 612 000",
+  },
+  {
+    companyName: "Bath-Electrical Ltd",
+    websiteUrl: "bath-electrical.co.uk",
+    trade: "Electrical",
+    location: "Bath (BA1 / Somerset)",
+    phone: "01225 436 123",
+  },
+  {
+    companyName: "Nextgen Electrical Contractors Ltd",
+    websiteUrl: "nextgenelec.co.uk",
+    trade: "Electrical",
+    location: "Warmley, Bristol (BS30)",
+    phone: "0117 960 4567",
+  },
+  {
     companyName: "Apex Electrical Bristol",
     websiteUrl: "apexelectrical-bristol.co.uk",
     trade: "Electrical",
     location: "Bristol (BS16)",
     phone: "0117 900 1234",
-  },
-  {
-    companyName: "Cheshire Heat & Boiler Co Ltd",
-    websiteUrl: "cheshireheatboilers-example.co.uk",
-    trade: "Heating & Gas",
-    location: "Stockport, Greater Manchester",
-    phone: "0161 480 9201",
-  },
-  {
-    companyName: "Vanguard EV & Electrical Solutions",
-    websiteUrl: "vanguard-electric-midlands.co.uk",
-    trade: "Electrical",
-    location: "Solihull, Birmingham",
-    phone: "0121 705 4410",
-  },
-  {
-    companyName: "Solihull Roofing & Cladding Co",
-    websiteUrl: "solihullroofing-example.co.uk",
-    trade: "Roofing",
-    location: "Solihull, West Midlands",
-    phone: "0121 820 5500",
   },
 ];
 
