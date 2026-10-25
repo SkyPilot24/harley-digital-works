@@ -42,7 +42,7 @@ const PRIMARY_NAV: { to: string; label: string; icon: typeof LayoutDashboard; ex
   ];
 
 const SECONDARY_NAV: { to: string; label: string; icon: typeof LayoutDashboard }[] = [
-  { to: "/admin/playbooks", label: "Delivery Playbook", icon: ClipboardList },
+  { to: "/admin/playbooks", label: "Playbooks & AI", icon: ClipboardList },
   { to: "/admin/knowledge-base", label: "Knowledge Base", icon: BookOpen },
   { to: "/admin/users", label: "Users & Roles", icon: Shield },
   { to: "/admin/team", label: "Team Members", icon: UsersRound },

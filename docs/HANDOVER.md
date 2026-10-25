@@ -1,5 +1,24 @@
 # The Harley Group & Harley Digital Works — Session Handover Log
 
+## Stage 2 Complete: ContentFlow AI Studio & Google Agent Builder — 25 October 2026
+
+- **Tool & Scope:** Google Antigravity. Built and connected Stage 2 of the Google Agent Builder integration (Harley Labs Content Engine). Robbie instructed: _"I love it that works great. I'm ready for stage 2"_
+- **Applied Changes:**
+  1. **Google Cloud Agent Builder (ContentFlow AI)**:
+     - Created and configured `ContentFlow AI Engine` (`projects/gen-app-agent-building/locations/us-central1/agents/7dd3a3db-7c9e-436d-ba19-776c76de10a7`).
+     - Playbook: `Trade Content and Case Study Generator` (`dbda037b-895e-41ea-9b97-88e7c58d0c50`) with UK trade knowledge, NICEIC compliance, local Bristol geo-citations, and no-slop tone.
+  2. `src/routes/api.chat.content-flow.ts`: Created backend endpoint communicating via Dialogflow CX REST API with Application Default Credentials (ADC) and local fallback.
+  3. `src/components/admin/ContentFlowStudio.tsx`: Created interactive studio component with presets, live generation, and 1-click copy buttons.
+  4. `src/routes/_authenticated/admin.playbooks.tsx`: Connected studio into admin interface with tab navigation between ContentFlow AI Studio and the Delivery Playbook.
+  5. `src/components/admin/AdminShell.tsx`: Renamed sidebar navigation item to **"Playbooks & AI"** for immediate visibility.
+- **Empirical Verification:**
+  - Live API Test: Verified `ContentFlow AI Engine` generated complete 4-part trade marketing pack from raw job scope.
+  - `npm test`: PASS (205/205 passing assertions across 25 suites + service worker + claims guard).
+  - `npm run typecheck`: PASS (0 TS errors).
+  - `npm run format:check`: PASS (100% Prettier compliant).
+  - `npm run build`: PASS (Vite + Nitro SSR built cleanly in 1.09s).
+  - Local Browser: Verified on `http://localhost:3000/admin/playbooks` in Google Chrome.
+
 ## Google Agent Builder Live Chat Integration & Stage 1 Complete — 25 October 2026
 
 - **Tool & Scope:** Google Antigravity. Built and connected Stage 1 of the Google Agent Builder integration, deploying the £740.61 credit onto the RG Electrical trade prototype as a live interactive 24/7 quote assistant.

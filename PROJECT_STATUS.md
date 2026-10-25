@@ -1,5 +1,24 @@
 # Harley Digital Works — Project Status
 
+## Stage 2 Complete: ContentFlow AI Studio & Google Agent Builder — 25 October 2026
+
+**Current Status:** Completed Stage 2 of the Google Cloud Agent Builder suite (Harley Labs Content Engine):
+
+1. **Google Cloud Agent Builder (ContentFlow AI)**:
+   - Deployed and tested `ContentFlow AI Engine` (`projects/gen-app-agent-building/locations/us-central1/agents/7dd3a3db-7c9e-436d-ba19-776c76de10a7`) on project `gen-app-agent-building`.
+   - Playbook: `Trade Content and Case Study Generator` (`dbda037b-895e-41ea-9b97-88e7c58d0c50`).
+   - Connected to backend API `/api/chat/content-flow` with Application Default Credentials (ADC).
+2. **Admin ContentFlow Studio**:
+   - Integrated into `/admin/playbooks` under a dedicated **"ContentFlow AI Studio"** tab with quick test presets (Hager Fuseboard Upgrades, Victorian Rewires, Landlord EICR Inspections).
+   - Generates 4 ready-to-publish assets from rough trade bullet points: Google Business Profile local update, structured website case study card, WhatsApp review request, and homeowner safety advice.
+   - Updated Admin navigation label to **"Playbooks & AI"** for fast one-click access.
+3. **Verification**:
+   - `npm test`: PASS (205/205 passing assertions across 25 suites + service worker + claims guard).
+   - `npm run typecheck`: PASS (0 TS errors).
+   - `npm run format:check`: PASS (100% Prettier compliant).
+   - `npm run build`: PASS (Vite + Nitro SSR built cleanly in 1.09s).
+   - Local Browser: Verified on `http://localhost:3000/admin/playbooks` in Google Chrome.
+
 ## Google Agent Builder Live Chat Integration & Stage 1 Complete — 25 October 2026
 
 **Current Status:** Completed Stage 1 of the Google Agent Builder integration, activating Robbie's £740.61 credit on the live website:
