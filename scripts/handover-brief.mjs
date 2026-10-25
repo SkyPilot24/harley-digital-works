@@ -46,11 +46,13 @@ console.log(brief);
 // Try to copy to Windows clipboard if available
 try {
   if (process.platform === "win32") {
-    execSync("powershell -NoProfile -Command \"Set-Clipboard -Value ([Console]::In.ReadToEnd())\"", {
+    execSync('powershell -NoProfile -Command "Set-Clipboard -Value ([Console]::In.ReadToEnd())"', {
       input: brief,
       stdio: ["pipe", "ignore", "ignore"],
     });
-    console.log("\n[Copied automatically to your Windows clipboard! Just press Ctrl+V in ChatGPT.]");
+    console.log(
+      "\n[Copied automatically to your Windows clipboard! Just press Ctrl+V in ChatGPT.]",
+    );
   }
 } catch (err) {
   // clipboard copy failed or not supported; console output remains

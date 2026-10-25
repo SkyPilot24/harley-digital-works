@@ -6,7 +6,7 @@ const AGENT_LOCATION = "us-central1";
 const AGENT_ID = "4945b2ce-6195-4c5b-970a-261f832b344e"; // Stage 3 Prospect Auditor Agent
 
 // In-memory cache to prevent re-burning tokens for recently audited domains
-const auditCache = new Map<string, any>();
+const auditCache = new Map<string, Record<string, unknown>>();
 
 function getGoogleAccessToken(): string | null {
   try {
