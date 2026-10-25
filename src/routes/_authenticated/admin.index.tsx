@@ -59,6 +59,7 @@ import { LeadProposalModal } from "@/components/admin/LeadProposalModal";
 import { SlackCommandCentreCard } from "@/components/admin/SlackCommandCentreCard";
 import { FounderProcessGuide } from "@/components/admin/FounderProcessGuide";
 import { GroupHeadquartersSummary } from "@/components/admin/GroupHeadquarters";
+import { ChatGptSyncButton } from "@/components/admin/ChatGptSyncButton";
 
 export const Route = createFileRoute("/_authenticated/admin/")({ component: DashboardPage });
 
@@ -500,6 +501,7 @@ function DashboardPage() {
             <Activity size={14} />
             <span className="hidden sm:inline">Diagnostics</span>
           </Link>
+          <ChatGptSyncButton variant="compact" />
         </div>
       </div>
 

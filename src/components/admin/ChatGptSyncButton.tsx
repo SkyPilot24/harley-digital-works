@@ -168,6 +168,16 @@ export function ChatGptSyncButton({ variant = "sidebar", className }: ChatGptSyn
           </>
         )}
       </button>
+
+      <a
+        href="https://chatgpt.com"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="w-full flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-lg text-[11px] font-medium text-slate-300 hover:text-white bg-slate-900/80 hover:bg-slate-900 border border-slate-800 transition-colors"
+      >
+        <span>Open ChatGPT Web</span>
+        <ExternalLink className="h-3 w-3" />
+      </a>
     </div>
   );
 }
