@@ -1,5 +1,20 @@
 # Harley Digital Works — Project Status
 
+## Security Audit Remediation & Zod Upgrade Complete — 25 October 2026
+
+**Current Status:** Resolved GitHub Actions `Security Audit` failure by upgrading to Zod 4.6.7 (GHSA-mrhx-c7xc-m3w5):
+
+1. **Security Vulnerability Closure**:
+   - Upgraded `zod` to `^4.6.7` across `package.json` and `package-lock.json`, eliminating the high-severity unconstrained array parsing advisory.
+   - Updated `src/routes/auth.tsx` search schema with `.optional()` on `redirect`, fully satisfying TypeScript typecheck.
+2. **Verification Suite**:
+   - `npm audit --audit-level=high`: PASS (0 vulnerabilities).
+   - `npm test`: PASS (205/205 passing assertions across 25 suites + service worker + claims guard).
+   - `npm run typecheck`: PASS (0 TS errors).
+   - `npm run lint`: PASS (0 errors, 9 non-blocking warnings).
+   - `npm run format:check`: PASS (100% Prettier compliant).
+   - `npm run build`: PASS (Vite + Nitro SSR built cleanly in 1.12s).
+
 ## Stage 3 Complete: Instant Prospect Website & Domain Auditor — 25 October 2026
 
 **Current Status:** Completed Stage 3 of the Google Cloud Agent Builder suite (Outbound Sales & Prospecting Engine):

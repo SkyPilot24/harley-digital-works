@@ -1,6 +1,19 @@
 # The Harley Group & Harley Digital Works — Session Handover Log
 
-## Knowledge Base Ratification & CI Linter Fix — 25 October 2026
+## Security Audit Remediation & Zod Upgrade — 25 October 2026
+
+- **Tool & Scope:** Google Antigravity. Fixed GitHub Actions `Security Audit` high-severity vulnerability failure (GHSA-mrhx-c7xc-m3w5).
+- **Applied Changes:**
+  1. `package.json` & `package-lock.json`: Upgraded `zod` from `^3.24.2` to `^4.6.7` to close memory exhaustion advisory on unconstrained array parsing (GHSA-mrhx-c7xc-m3w5).
+  2. `src/routes/auth.tsx`: Updated route `searchSchema` to make `redirect` optional (`z.unknown().optional().transform(safeAuthRedirect)`), preserving seamless redirect typing under Zod 4.
+- **Empirical Verification:**
+  - `npm audit --audit-level=high`: PASS (0 vulnerabilities).
+  - `npm run typecheck`: PASS (0 TS errors).
+  - `npm run lint`: PASS (0 errors, 9 non-blocking warnings).
+  - `npm run format:check`: PASS (100% Prettier compliant).
+  - `npm test`: PASS (205/205 passing assertions across 25 suites + service worker + claims guard).
+  - `npm run build`: PASS (Vite + Nitro SSR built cleanly in 1.12s).
+
 
 - **Tool & Scope:** Google Antigravity. Robbie instructed via voice note: _"Can you make sure any new workflows that there is a knowledge updated? So anything that's built, any workflows that are created, any new agents that the knowledge base is updated, please."_
 - **Applied Changes:**

@@ -7,7 +7,7 @@ import { toast } from "sonner";
 import { safeAuthRedirect } from "@/lib/auth-redirect";
 import { useAuth } from "@/hooks/use-auth";
 
-const searchSchema = z.object({ redirect: z.unknown().transform(safeAuthRedirect) });
+const searchSchema = z.object({ redirect: z.unknown().optional().transform(safeAuthRedirect) });
 const googleSignInEnabled = import.meta.env.VITE_GOOGLE_AUTH_ENABLED === "true";
 const supabaseConfigured = Boolean(
   import.meta.env.VITE_SUPABASE_URL && import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY,
