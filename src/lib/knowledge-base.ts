@@ -29,6 +29,63 @@ export const KNOWLEDGE_CATEGORIES = [
 
 export const KNOWLEDGE_BASE_ARTICLES: KnowledgeArticle[] = [
   {
+    id: "google-agent-builder-3-stage-engine-architecture-2026-10-25",
+    category: "architecture",
+    title:
+      "Google Cloud Agent Builder 3-Stage Commercial Engine (Trade Estimator, ContentFlow AI & Prospect Auditor)",
+    summary:
+      "Technical and operational architecture connecting Google Cloud Vertex AI / Dialogflow CX on project gen-app-agent-building (utilising £740.61 trial credits) to TanStack Start Nitro SSR across 3 distinct commercial use cases.",
+    statusBadge: "Ratified · 25 Oct 2026",
+    lastUpdated: "2026-10-25",
+    keyPoints: [
+      "CREDIT ALLOCATION & CLOUD ARCHITECTURE — Configured on Google Cloud project 'gen-app-agent-building' in region 'us-central1' using the founder's £740.61 Gen App Builder promotional credit (ID: Gen_App_Builder_153c33a7d2b9..., expiring Jan 2027). Each generative turn consumes roughly £0.007–£0.015, yielding over 50,000 production interactions.",
+      "STAGE 1: 24/7 TRADE ESTIMATOR AGENT — Agent ID '990b7730-da5c-461c-9bc0-5d4b9fdcb4ff'. Live on '/demos/rg-electrical' via 'TradeAgentChatWidget.tsx' and '/api/chat/trade-agent'. Trained on BS7671 electrical standards, Hager consumer unit pricing (£650), full rewires, and emergency callouts. Captures name, phone, and postcode.",
+      "STAGE 2: CONTENTFLOW AI KNOWLEDGE ENGINE — Agent ID '7dd3a3db-7c9e-436d-ba19-776c76de10a7', Playbook 'dbda037b-895e-41ea-9b97-88e7c58d0c50'. Live in Admin under Playbooks & AI ('/admin/playbooks') via 'ContentFlowStudio.tsx' and '/api/chat/content-flow'. Generates 4 production assets (Google Business Profile post, structured case study, WhatsApp review request, and safety advice) from rough van notes in 5s.",
+      "STAGE 3: INSTANT PROSPECT WEBSITE & DOMAIN AUDITOR — Agent ID '4945b2ce-6195-4c5b-970a-261f832b344e', Playbook '2451e6bb-e3ec-448a-ba5e-d79f69e7697c'. Live in Admin under Pipeline & Outbound ('/admin/leads') via 'ProspectAuditorDesk.tsx' and '/api/audit/prospect'. Audits contractor websites for mobile speed, accreditation visibility, instant quote tools, and local schema. Automatically generates 1-click WhatsApp, cold email, and 60-second video audit scripts.",
+      "TOKEN CONSERVATION & RESILIENT FALLBACKS — All endpoints authenticate via Application Default Credentials (ADC) using 'gcloud auth application-default print-access-token' with x-goog-user-project set to 'gen-app-agent-building'. Features in-memory session caching on audited domains to eliminate duplicate token spend, backed by a local trade template engine if network connectivity drops.",
+    ],
+    operationalDetails:
+      "Server endpoints: src/routes/api.chat.trade-agent.ts, src/routes/api.chat.content-flow.ts, src/routes/api.audit.prospect.ts. UI components: src/components/demos/TradeAgentChatWidget.tsx, src/components/admin/ContentFlowStudio.tsx, src/components/admin/ProspectAuditorDesk.tsx. Admin routes: src/routes/_authenticated/admin.playbooks.tsx, src/routes/_authenticated/admin.leads.tsx.",
+  },
+  {
+    id: "sniper-prospecting-outbound-and-audit-runbook-2026-10-25",
+    category: "playbooks",
+    title: "The 'Sniper' Prospecting, Website Audit & High-Ticket Trade Outreach Runbook",
+    summary:
+      "Step-by-step operating runbook for identifying high-potential UK trade contractors, qualifying them with zero token spend, running instant audits in /admin/leads, and dispatching personalized WhatsApp and Loom pitches.",
+    statusBadge: "Active SOP · 25 Oct 2026",
+    lastUpdated: "2026-10-25",
+    keyPoints: [
+      "BOUTIQUE AGENCY UNIT ECONOMICS — Harley Digital Works operates on a high-ticket, high-touch model (£1,495 setup + £249/mo care, 50/50 split, zero VAT) capped at maximum 2 concurrent active client builds. Winning 1–2 clients per month generates £3,000 upfront cash + £500/mo recurring. Mass automated spam blasting burns reputation; high-intent 'sniper' outreach closes deals.",
+      "THE 30-SECOND MANUAL EYE-TEST (ZERO TOKENS) — Before spending tokens or running an audit, qualify the prospect: 1) Active trading (Google reviews in last 1–6 months; vans on road), 2) Outdated or broken mobile website (not mobile-responsive, HTTP insecure, free builder, or 5+ years old), 3) Financial capacity (established 2–5 person firm with NICEIC, Gas Safe, or trade accreditation).",
+      "5-SECOND AUDIT IN THE DASHBOARD — Navigate to /admin/leads -> 'Instant Prospect Auditor'. Enter the contractor's website URL, trade vertical, and target city. Click 'Audit Website & Generate Custom Pitch'. Review the 4-pillar scorecard and 3 identified commercial leaks.",
+      "1-CLICK WHATSAPP DISPATCH — For prospects with mobile numbers, review the generated WhatsApp pitch referencing their exact leaks and demo link. Click 'Open in WhatsApp' to launch WhatsApp Web with the message pre-filled. No attachments, zero fluff.",
+      "THE 60-SECOND LOOM SCREEN RECORDING — For top-tier high-margin firms, record a 60-second Loom video reading the 3-bullet script aloud while scrolling their website on mobile view. Shows immediate bespoke effort that competitors cannot match.",
+      "1-CLICK PIPELINE IMPORT — Click 'Import to Leads Pipeline' to automatically create a lead record in the Supabase CRM with status 'new' and complete diagnostic notes, moving the lead into the qualification flow.",
+    ],
+    operationalDetails:
+      "Auditor Desk: src/components/admin/ProspectAuditorDesk.tsx embedded in src/routes/_authenticated/admin.leads.tsx. Backend engine: src/routes/api.audit.prospect.ts. Demo prototype: src/routes/demos_.rg-electrical.tsx.",
+  },
+  {
+    id: "contentflow-ai-care-plan-retention-runbook-2026-10-25",
+    category: "playbooks",
+    title: "ContentFlow AI Zero-Homework Build Sprint & £249/mo Care Plan Retention SOP",
+    summary:
+      "Standard operating procedure for delivering 100% done-for-you copywriting during the initial build and operating the 2-minute bi-weekly care plan routine to prevent monthly retainer cancellations.",
+    statusBadge: "Active SOP · 25 Oct 2026",
+    lastUpdated: "2026-10-25",
+    keyPoints: [
+      "THE 'ZERO HOMEWORK' DELIVERY SPRINT — The #1 cause of agency delivery failure is waiting for tradespeople to write case studies. During the 15-minute onboarding call, ask the contractor for 3 recent jobs they are proud of. Jot down rough bullet points while talking.",
+      "INSTANT CASE STUDY CREATION — Paste the rough notes into ContentFlow Studio (/admin/playbooks). In 5 seconds, Google Agent Builder outputs structured case studies (Problem -> Technical Solution -> Building Regulations Certification -> Result). Paste into the preview site on Day 5 to hit the 50% completion milestone payment (£747.50).",
+      "THE BI-WEEKLY £249/MO CARE ROUTINE — Once a fortnight, text the client on WhatsApp: 'Got a photo from a job this week? Send a 1-sentence note of what you did and where.' Paste their reply into ContentFlow Studio and generate 4 assets in one click.",
+      "GOOGLE BUSINESS PROFILE LOCAL UPDATE — Copy Asset 1 and publish it to the client's Google Business Manager. Includes local town and postcode citations (e.g. BS32, Keynsham) to boost local Google Maps visibility without keyword stuffing.",
+      "AUTOMATED 5-STAR REVIEW ACCELERATION — Send Asset 3 back to the client on WhatsApp: 'Here is a 1-click text you can forward to that homeowner today to collect your 5-star review!' The client collects social proof with zero effort.",
+      "RETAINER RETENTION VALUE — Instead of silent 'hosting and backups', the client receives tangible monthly marketing output, fresh case studies, and steady 5-star reviews. They perceive a £1,500/mo marketing manager in their pocket for £249/mo and never cancel.",
+    ],
+    operationalDetails:
+      "Studio UI: src/components/admin/ContentFlowStudio.tsx embedded in src/routes/_authenticated/admin.playbooks.tsx. Backend engine: src/routes/api.chat.content-flow.ts. Governing offer: docs/COMMERCIAL_OFFER_MANAGED.md.",
+  },
+  {
     id: "domain-monetisation-outbound-and-slack-inbound-runbook-2026-10-21",
     category: "playbooks",
     title: "Domain Monetisation, Resend Outbound Pitching & Slack Inbound Deal Runbook",
