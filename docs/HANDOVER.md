@@ -1,5 +1,22 @@
 # The Harley Group & Harley Digital Works — Session Handover Log
 
+## Google Agent Builder Live Chat Integration & Stage 1 Complete — 25 October 2026
+
+- **Tool & Scope:** Google Antigravity. Built and connected Stage 1 of the Google Agent Builder integration, deploying the £740.61 credit onto the RG Electrical trade prototype as a live interactive 24/7 quote assistant.
+- **Founder Direction:** Robbie instructed: _"great, can you make sure its connected so you can use the credits when building the agents"_ and _"can you help build all 3 use cases step by step"_
+- **Applied Changes:**
+  1. `src/lib/trade-agent.ts`: Created trade agent client that calls Google Cloud Vertex AI / Dialogflow CX (`990b7730-da5c-461c-9bc0-5d4b9fdcb4ff`) on project `gen-app-agent-building` in `us-central1` with resilient local knowledge engine fallback.
+  2. `src/routes/api.chat.trade-agent.ts`: Created API endpoint for conversational intake and ballpark quote triage.
+  3. `src/components/demos/TradeAgentChatWidget.tsx`: Built floating bottom-left interactive chat widget with quick prompts, typing indicators, NICEIC compliance knowledge, and lead capture.
+  4. `src/routes/demos_.rg-electrical.tsx`: Embedded `<TradeAgentChatWidget />` on the candidate prototype.
+- **Empirical Verification:**
+  - Live API Test: Verified `Trade Estimator Agent` responded with exact Bradley Stoke £650 Hager board quote and asked for customer name/phone.
+  - `npm test`: PASS (205/205 passing assertions across 25 suites + service worker + claims guard).
+  - `npm run typecheck`: PASS (0 TS errors).
+  - `npm run format:check`: PASS (100% Prettier compliant).
+  - `npm run build`: PASS (Vite + Nitro SSR built cleanly).
+  - Local Browser: Verified on `http://localhost:3000/demos/rg-electrical` in Google Chrome.
+
 ## RG Electrical Public Demo Separation & Founder Outreach Drawer — 25 October 2026
 
 - **Tool & Scope:** Google Antigravity. Fixed critical prospect-facing defect where navigating to `https://harleydigitalworks.com/demos/rg-electrical` rendered internal admin sales scripts and agency headers mixed with the demo website.

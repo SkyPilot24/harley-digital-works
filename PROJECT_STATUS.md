@@ -1,5 +1,22 @@
 # Harley Digital Works — Project Status
 
+## Google Agent Builder Live Chat Integration & Stage 1 Complete — 25 October 2026
+
+**Current Status:** Completed Stage 1 of the Google Agent Builder integration, activating Robbie's £740.61 credit on the live website:
+
+1. **Live Google Cloud Trade Agent**:
+   - Deployed and tested `Trade Estimator Agent` (`990b7730-da5c-461c-9bc0-5d4b9fdcb4ff`) on Google Cloud Vertex AI / Dialogflow CX.
+   - Connected directly to our TanStack Start backend (`/api/chat/trade-agent` and `src/lib/trade-agent.ts`) via Application Default Credentials (ADC).
+2. **Interactive Front-End Chat Widget**:
+   - Added floating interactive chat widget (`TradeAgentChatWidget.tsx`) in the bottom-left of the RG Electrical demo.
+   - Quick prompts for Bradley Stoke fuseboard replacements, rewires, Landlord EICRs, and 24/7 emergencies.
+   - Captures customer phone numbers and location.
+3. **Verification**:
+   - `npm test`: PASS (205/205 passing assertions across 25 suites + service worker + claims guard).
+   - `npm run typecheck`: PASS (0 TS errors).
+   - `npm run format:check`: PASS (100% Prettier compliant).
+   - Local Browser: Verified on `http://localhost:3000/demos/rg-electrical` in Google Chrome.
+
 ## RG Electrical Public Demo Separation & Founder Outreach Drawer — 25 October 2026
 
 **Current Status:** Resolved customer experience defect on `/demos/rg-electrical` where internal sales scripts, admin buttons, and agency headers were previously visible on the public client preview:

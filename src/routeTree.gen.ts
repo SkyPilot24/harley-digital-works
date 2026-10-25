@@ -69,6 +69,7 @@ import { Route as AuthenticatedAdminSettingsRouteImport } from './routes/_authen
 import { Route as AuthenticatedAdminTeamRouteImport } from './routes/_authenticated/admin.team'
 import { Route as AuthenticatedAdminTestimonialsRouteImport } from './routes/_authenticated/admin.testimonials'
 import { Route as AuthenticatedAdminUsersRouteImport } from './routes/_authenticated/admin.users'
+import { Route as ApiChatTradeAgentRouteImport } from './routes/api.chat.trade-agent'
 import { Route as ApiPaymentsStripeRouteImport } from './routes/api.payments.stripe'
 import { Route as ApiWebhooksDomainInboundRouteImport } from './routes/api.webhooks.domain-inbound'
 import { Route as ApiWebhooksResendRouteImport } from './routes/api.webhooks.resend'
@@ -388,6 +389,11 @@ const AuthenticatedAdminUsersRoute = AuthenticatedAdminUsersRouteImport.update({
   path: '/admin/users',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const ApiChatTradeAgentRoute = ApiChatTradeAgentRouteImport.update({
+  id: '/api/chat/trade-agent',
+  path: '/api/chat/trade-agent',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiPaymentsStripeRoute = ApiPaymentsStripeRouteImport.update({
   id: '/api/payments/stripe',
   path: '/api/payments/stripe',
@@ -464,6 +470,7 @@ export interface FileRoutesByFullPath {
   '/admin/team': typeof AuthenticatedAdminTeamRoute
   '/admin/testimonials': typeof AuthenticatedAdminTestimonialsRoute
   '/admin/users': typeof AuthenticatedAdminUsersRoute
+  '/api/chat/trade-agent': typeof ApiChatTradeAgentRoute
   '/api/payments/stripe': typeof ApiPaymentsStripeRoute
   '/api/webhooks/domain-inbound': typeof ApiWebhooksDomainInboundRoute
   '/api/webhooks/resend': typeof ApiWebhooksResendRoute
@@ -528,6 +535,7 @@ export interface FileRoutesByTo {
   '/admin/team': typeof AuthenticatedAdminTeamRoute
   '/admin/testimonials': typeof AuthenticatedAdminTestimonialsRoute
   '/admin/users': typeof AuthenticatedAdminUsersRoute
+  '/api/chat/trade-agent': typeof ApiChatTradeAgentRoute
   '/api/payments/stripe': typeof ApiPaymentsStripeRoute
   '/api/webhooks/domain-inbound': typeof ApiWebhooksDomainInboundRoute
   '/api/webhooks/resend': typeof ApiWebhooksResendRoute
@@ -594,6 +602,7 @@ export interface FileRoutesById {
   '/_authenticated/admin/team': typeof AuthenticatedAdminTeamRoute
   '/_authenticated/admin/testimonials': typeof AuthenticatedAdminTestimonialsRoute
   '/_authenticated/admin/users': typeof AuthenticatedAdminUsersRoute
+  '/api/chat/trade-agent': typeof ApiChatTradeAgentRoute
   '/api/payments/stripe': typeof ApiPaymentsStripeRoute
   '/api/webhooks/domain-inbound': typeof ApiWebhooksDomainInboundRoute
   '/api/webhooks/resend': typeof ApiWebhooksResendRoute
@@ -660,6 +669,7 @@ export interface FileRouteTypes {
     | '/admin/team'
     | '/admin/testimonials'
     | '/admin/users'
+    | '/api/chat/trade-agent'
     | '/api/payments/stripe'
     | '/api/webhooks/domain-inbound'
     | '/api/webhooks/resend'
@@ -724,6 +734,7 @@ export interface FileRouteTypes {
     | '/admin/team'
     | '/admin/testimonials'
     | '/admin/users'
+    | '/api/chat/trade-agent'
     | '/api/payments/stripe'
     | '/api/webhooks/domain-inbound'
     | '/api/webhooks/resend'
@@ -789,6 +800,7 @@ export interface FileRouteTypes {
     | '/_authenticated/admin/team'
     | '/_authenticated/admin/testimonials'
     | '/_authenticated/admin/users'
+    | '/api/chat/trade-agent'
     | '/api/payments/stripe'
     | '/api/webhooks/domain-inbound'
     | '/api/webhooks/resend'
@@ -837,6 +849,7 @@ export interface RootRouteChildren {
   ToolsSeoInspectorRoute: typeof ToolsSeoInspectorRoute
   TrackTokenRoute: typeof TrackTokenRoute
   TradesSlugRoute: typeof TradesSlugRoute
+  ApiChatTradeAgentRoute: typeof ApiChatTradeAgentRoute
   ApiPaymentsStripeRoute: typeof ApiPaymentsStripeRoute
   ApiWebhooksDomainInboundRoute: typeof ApiWebhooksDomainInboundRoute
   ApiWebhooksResendRoute: typeof ApiWebhooksResendRoute
@@ -1264,6 +1277,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAdminUsersRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/api/chat/trade-agent': {
+      id: '/api/chat/trade-agent'
+      path: '/api/chat/trade-agent'
+      fullPath: '/api/chat/trade-agent'
+      preLoaderRoute: typeof ApiChatTradeAgentRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/payments/stripe': {
       id: '/api/payments/stripe'
       path: '/api/payments/stripe'
@@ -1378,6 +1398,7 @@ const rootRouteChildren: RootRouteChildren = {
   ToolsSeoInspectorRoute: ToolsSeoInspectorRoute,
   TrackTokenRoute: TrackTokenRoute,
   TradesSlugRoute: TradesSlugRoute,
+  ApiChatTradeAgentRoute: ApiChatTradeAgentRoute,
   ApiPaymentsStripeRoute: ApiPaymentsStripeRoute,
   ApiWebhooksDomainInboundRoute: ApiWebhooksDomainInboundRoute,
   ApiWebhooksResendRoute: ApiWebhooksResendRoute,

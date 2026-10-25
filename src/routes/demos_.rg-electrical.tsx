@@ -3,6 +3,7 @@ import { useState } from "react";
 import { PageShell } from "@/components/site/PageShell";
 import { TradeQuoteCalculator } from "@/components/demos/TradeQuoteCalculator";
 import { BeforeAfterSlider } from "@/components/demos/BeforeAfterSlider";
+import { TradeAgentChatWidget } from "@/components/demos/TradeAgentChatWidget";
 import { ChatGptSyncButton } from "@/components/admin/ChatGptSyncButton";
 import { useIsAdmin } from "@/hooks/use-auth";
 import type { TradeDemoBusiness } from "@/components/demos/TradeDemoData";
@@ -838,7 +839,10 @@ robbie@theharleygroup.org | 0117 214 1357`;
         </div>
       </footer>
 
-      {/* 11. Founder Outreach Pack (Floating Trigger & Slide-Over Drawer for Robbie) */}
+      {/* 11. Interactive Live Trade Agent Chat Widget (Bottom-Left) */}
+      <TradeAgentChatWidget />
+
+      {/* 12. Founder Outreach Pack (Floating Trigger & Slide-Over Drawer for Robbie) */}
       {hasFounderAccess && (
         <>
           {/* Floating Trigger Pill */}
