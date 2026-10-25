@@ -10,12 +10,12 @@ Repository `SkyPilot24/harley-digital-works`; isolated checkout `C:\Users\drrob\
 
 **Application source candidate: `750b39b5e4373040b1830b1091f37981bb75145d`.** Application baseline af5ae9c; documentation parent 6e94ce8. Exactly four application/config files committed:
 
-| File | Reviewed change |
-|---|---|
-| package.json | Reuse existing react-start update to ^1.169.3. |
-| package-lock.json | Pinned react-start 1.169.3, start-server-core 1.169.44 and associated prepared dependency resolutions. |
-| .github/workflows/security.yml | Replace audit ignoring failures with `npm audit --audit-level=high`. |
-| src/routes/__root.tsx | Error-boundary input type Error→unknown for updated router contract; same runtime behaviour. |
+| File                           | Reviewed change                                                                                        |
+| ------------------------------ | ------------------------------------------------------------------------------------------------------ |
+| package.json                   | Reuse existing react-start update to ^1.169.3.                                                         |
+| package-lock.json              | Pinned react-start 1.169.3, start-server-core 1.169.44 and associated prepared dependency resolutions. |
+| .github/workflows/security.yml | Replace audit ignoring failures with `npm audit --audit-level=high`.                                   |
+| src/routes/__root.tsx          | Error-boundary input type Error→unknown for updated router contract; same runtime behaviour.           |
 
 Both locked security-relevant versions exceed the [published patched minimums](https://github.com/advisories/GHSA-qx66-fv34-fjm8). The prepared lockfile also refreshes router/store/build-tool transitive dependencies, Babel and Prettier; this is not a two-package-only resolution. These installed resolutions were reused and tested, with no dependency installation/update in this turn. The [manifest](evidence/pilot-security-release-manifest-2026-10-17.json) pins Git-blob hashes for all four code files and byte hashes for migration/draft.
 
@@ -23,16 +23,16 @@ Excluded: all peer dashboard wording changes, H37 files/migrations, original pri
 
 ## 2. Fresh checks on these source bytes
 
-| Check | Result |
-|---|---|
-| Dependency audit on prepared checkout with identical copied lock/installed dependency set | 0 known vulnerabilities, including 0 high/critical; elevated direct npm audit succeeded. Earlier restricted-main audit errors are not counted as clean. |
-| typecheck / format / build | PASS / PASS / PASS |
-| lint | 0 errors; 9 existing Fast Refresh warnings |
-| Existing complete suite after build | 66 smoke checks, 190 Node tests, 3 service-worker tests PASS |
-| Actual patched local browser + staging/Auth | 7 checks PASS: SSR main/contact/Auth, persisted form, duplicate/outbox, signed-out redirect, existing fictional admin retrieval, browser status readback, mobile width |
-| Existing runtime origin/provider gate checks | 6 PASS: foreign/missing/cross-site/sibling metadata rejected, same-origin reaches Auth, payment receiver remains disabled |
-| Configured private-key exposure scan | 226 public build files, raw/URI/base64/compressed checks PASS; not a universal secret audit |
-| Local review draft database tests | 4 PASS; described separately below, not production acceptance |
+| Check                                                                                     | Result                                                                                                                                                                 |
+| ----------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Dependency audit on prepared checkout with identical copied lock/installed dependency set | 0 known vulnerabilities, including 0 high/critical; elevated direct npm audit succeeded. Earlier restricted-main audit errors are not counted as clean.                |
+| typecheck / format / build                                                                | PASS / PASS / PASS                                                                                                                                                     |
+| lint                                                                                      | 0 errors; 9 existing Fast Refresh warnings                                                                                                                             |
+| Existing complete suite after build                                                       | 66 smoke checks, 190 Node tests, 3 service-worker tests PASS                                                                                                           |
+| Actual patched local browser + staging/Auth                                               | 7 checks PASS: SSR main/contact/Auth, persisted form, duplicate/outbox, signed-out redirect, existing fictional admin retrieval, browser status readback, mobile width |
+| Existing runtime origin/provider gate checks                                              | 6 PASS: foreign/missing/cross-site/sibling metadata rejected, same-origin reaches Auth, payment receiver remains disabled                                              |
+| Configured private-key exposure scan                                                      | 226 public build files, raw/URI/base64/compressed checks PASS; not a universal secret audit                                                                            |
+| Local review draft database tests                                                         | 4 PASS; described separately below, not production acceptance                                                                                                          |
 
 Staging backend only `mfpnfxpgkfuqtedbcxvp`. Existing fictional administrator obtained a no-email test Auth session; no user/role/password change. Exact synthetic security fixture/alert job/owned submission attempts removed; test session locally signed out. Separate connector readback at 22:19:19 UTC confirmed zero fixture lead/jobs; local port 4191 stopped/closed. [Browser evidence](evidence/pilot-security-candidate-browser-2026-10-17.json).
 
@@ -83,7 +83,6 @@ Hard stops: wrong target/source/hash; unknown customer/legacy rows; missing reco
 **Recommended next executable step:** review the four-test admin-only corrected migration draft and prepare its supported versioned staging/restore plan; in parallel review source 750b39b for an independently scoped security release. Exact remaining approval is a production window/package covering final source identity, publisher, corrected migration if included, safe fallback and backed-up recovery—not a generic “deploy everything”. No approval is requested for unresolved unknowns.
 
 Progress state: implemented locally → tested → security source committed. **Not pushed, deployed, migrated or live-accepted.** New draft/tests/evidence are review artifacts; original peer changes and saved Manus work preserved.
-
 
 ## Follow-up recovery validation — 17 October 2026
 

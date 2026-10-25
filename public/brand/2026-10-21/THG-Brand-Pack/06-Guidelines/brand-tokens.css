@@ -1,1 +1,6 @@
-:root { --brand-dark: #202326; --brand-light: #F3EFE7; --brand-accent: #B7A17A; --brand-font: "Georgia", "Times New Roman", serif; }
+:root {
+  --brand-dark: #202326;
+  --brand-light: #f3efe7;
+  --brand-accent: #b7a17a;
+  --brand-font: "Georgia", "Times New Roman", serif;
+}

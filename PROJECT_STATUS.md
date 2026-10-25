@@ -1,5 +1,28 @@
 # Harley Digital Works — Project Status
 
+## No-AI-Slop Remediation, Bespoke Trade Photography & RG Electrical Demo — 25 October 2026
+
+**Current Status:** Completed comprehensive `/no-ai-slop` audit and design overhaul across `/demos/rg-electrical` and trade demo components to ensure all pages look bespoke, authentic, and human-crafted with real photography before outbound sales dispatch:
+
+1. **Bespoke High-Resolution Trade Photography**:
+   - `public/images/home/after-electrical-consumer-unit.jpg`: Precision-wired 18th Edition Hager metal consumer board with RCBOs, Type 2 SPD, and clean circuit directory.
+   - `public/images/home/rewire-downlights-living.jpg`: Victorian domestic renovation with warm ceiling LED downlights and flush chrome switchplates.
+   - `public/images/home/contractor-commercial.jpg`: Sourced for hero card and landlord compliance case studies.
+2. **Workmanship Comparison Component (`BeforeAfterSlider.tsx`)**:
+   - Replaced empty text placeholders and emojis with authentic side-by-side photos (`before-electrical-fusebox.jpg` vs `after-electrical-consumer-unit.jpg`), clean badges, and verified NICEIC Part P details.
+3. **Trade Demo Engine (`TradeDemoData.ts`)**:
+   - Added before and after photography for all vertical trades (electrical, heating, roofing, and commercial).
+   - Removed decorative emojis from all status banners across the platform.
+4. **RG Electrical Candidate Prototype (`/demos/rg-electrical`)**:
+   - Two-column hero with contractor photo showcase card.
+   - High-res photo headers across all 3 Bristol case studies.
+   - Removed binary contrasts, colon reveals, and em dashes from email and WhatsApp outreach copy.
+5. **Quality & Verification**:
+   - `npm test`: PASS (205/205 passing assertions across 25 suites + service worker + claims guard).
+   - `npm run typecheck`: PASS (0 TS errors).
+   - `npm run format:check`: PASS (All matched files 100% Prettier compliant).
+   - Local Browser: HTTP 200 OK verified on `http://localhost:3000/demos/rg-electrical`.
+
 ## Commercial Claims Guard, Domain Monetisation Sanitisation & Audit Remediation — 23 October 2026
 
 **Current Status:** Completed comprehensive remediation of external project audit findings with Robbie Harley's explicit instruction to preserve illustrative trade customer reviews/case studies:
@@ -11,14 +34,14 @@
    - Removed `/domains` link from main trade website footer (`FooterDark.tsx`) to avoid diluting trade contractor conversion with domain sales; replaced with `/audit` ("Free website audit").
 2. **Tax Treatment Alignment Across Platform**:
    - Corrected unverified HMRC tax wording ("Zero VAT" / "Zero-Rated VAT" / "+ VAT") across customer-facing surfaces (`CustomerTransformationSection.tsx`, `calculator.tsx`, `demos_.rg-electrical.tsx`, `CareBillingPortalDesk.tsx`, `TradeRoiCalculator.tsx`).
-   - Standardised to accurate commercial statement: *"No VAT charged (The Harley Group is not currently VAT registered)"*.
+   - Standardised to accurate commercial statement: _"No VAT charged (The Harley Group is not currently VAT registered)"_.
 3. **SLA & Delivery Schedule Truth Alignment**:
-   - Replaced retired "14-day turnaround" and "24h instant WhatsApp support" claims with ratified commercial terms: *"Agreed milestone delivery schedule"* and *"Dedicated WhatsApp desk during business hours"*.
+   - Replaced retired "14-day turnaround" and "24h instant WhatsApp support" claims with ratified commercial terms: _"Agreed milestone delivery schedule"_ and _"Dedicated WhatsApp desk during business hours"_.
    - Updated across `index.tsx`, `HeroTransformationVideoModal.tsx`, `agency-content.ts`, `audit.tsx`, `demos_.electrician-concept.tsx`, `onboarding.tsx`, `proposals.tsx`, `tools.seo-inspector.tsx`, `track.tsx`, `track_.$token.tsx`, `ExitIntentModal.tsx`, `TradeGoogleReviewsWidget.tsx`, `ContractorOnboardingWizard.tsx`, and `MilestoneTimeline.tsx`.
 4. **Trade Vertical & Regional Focusing**:
    - Defaulted `TradeShowcaseSection.tsx` to `electricians` in Bristol, Bath, and the M4 corridor.
    - Refined comparison table to remove combative competitor claims and focus on professional done-for-you advantages.
-   - Harmonised capacity claims to *"Strictly maximum 2 concurrent active builds"*.
+   - Harmonised capacity claims to _"Strictly maximum 2 concurrent active builds"_.
 5. **Customer Reviews Retained**:
    - Preserved illustrative trade customer reviews and case study transformations in `CustomerTransformationSection.tsx` per Robbie's explicit direction, with compliant illustrative disclaimers intact.
 6. **Automated Claims Guard Test Gate (`scripts/claims-guard.test.mjs` & `scripts/claims-rules.json`)**:
@@ -36,24 +59,24 @@
 **Current Status:** Replaced generic agency slogans with grounded, high-converting, founder-operated copy specifically targeted at electrical contractors across Bristol, Bath, and the M4 corridor:
 
 1. **Core Value Proposition & Hero Headline**:
-   - Replaced legacy slogan *"More leads. Less admin."* with *"Your website and enquiries, looked after."*
-   - Subtitle: *"We write, build and run your website and enquiry form, so customers can reach you and you can get on with the job."*
+   - Replaced legacy slogan _"More leads. Less admin."_ with _"Your website and enquiries, looked after."_
+   - Subtitle: _"We write, build and run your website and enquiry form, so customers can reach you and you can get on with the job."_
    - Updated across `src/routes/index.tsx`, `src/routes/__root.tsx`, `src/routes/brand.tsx`, and `src/lib/knowledge-base.ts`.
 2. **Calculator Financial Meta**:
-   - Replaced speculative revenue claims (*"£20,000 to £100,000+"*) with grounded illustrative guidance: *"Work out what one extra enquiry might be worth to your business. Illustrative figures from your own job values, not a forecast."* in `src/routes/calculator.tsx`.
+   - Replaced speculative revenue claims (_"£20,000 to £100,000+"_) with grounded illustrative guidance: _"Work out what one extra enquiry might be worth to your business. Illustrative figures from your own job values, not a forecast."_ in `src/routes/calculator.tsx`.
 3. **Founder Commitments ("What we commit to")**:
-   - Replaced generic *"Guild Guarantee"* block on the homepage with the ratified 5-point commitment block:
+   - Replaced generic _"Guild Guarantee"_ block on the homepage with the ratified 5-point commitment block:
      1. You approve the facts and the finished site before it goes live.
      2. The 50% balance is only due after you approve.
      3. You keep your domain and brand assets.
      4. Cancel on 30 days’ notice and get a static export.
      5. Scope, support hours and timings are in writing before you pay.
 4. **Sharp Regional Trade Positioning**:
-   - Replaced generic nationwide claim (*"Serving tradespeople across the entire UK"*) with high-converting local trade positioning: *"Websites for electrical contractors in Bristol, Bath and the M4 corridor."* across hero badges, price tickers, and homepage copy.
+   - Replaced generic nationwide claim (_"Serving tradespeople across the entire UK"_) with high-converting local trade positioning: _"Websites for electrical contractors in Bristol, Bath and the M4 corridor."_ across hero badges, price tickers, and homepage copy.
 5. **Personal Founder Accountability**:
-   - Replaced agency rhetoric in `src/routes/about.tsx` with Robbie Harley's authentic founder statement: *"I’m Robbie Harley. I run Harley Digital Works myself and use automation for the routine work, so your updates don’t wait in a queue."*
+   - Replaced agency rhetoric in `src/routes/about.tsx` with Robbie Harley's authentic founder statement: _"I’m Robbie Harley. I run Harley Digital Works myself and use automation for the routine work, so your updates don’t wait in a queue."_
 6. **Transparent Review Collection (Anti-Gating Compliance)**:
-   - Replaced review gating language (*"Intercept unhappy feedback"*) with transparent customer feedback: *"Ask every customer. Same Google link for everyone, plus an optional private feedback form."* in `src/routes/tools.review-booster.tsx`. Also corrected legacy £95/mo reference to ratified £249/mo care plan.
+   - Replaced review gating language (_"Intercept unhappy feedback"_) with transparent customer feedback: _"Ask every customer. Same Google link for everyone, plus an optional private feedback form."_ in `src/routes/tools.review-booster.tsx`. Also corrected legacy £95/mo reference to ratified £249/mo care plan.
 7. **Empirical Quality & Verification**:
    - `npm test`: PASS (204/204 passing assertions).
    - `npm run typecheck`: PASS (0 TS errors).

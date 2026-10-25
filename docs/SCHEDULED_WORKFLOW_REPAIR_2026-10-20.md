@@ -18,20 +18,20 @@ The workflow now runs `npm run build` immediately after `npm ci`, before platfor
 
 Environment: Windows x64, isolated clean checkout, Node 22.23.3 and npm 10.9.2 through temporary package tooling; no global runtime change, environment file copied, preview server or deployment. Base uses the same application, lockfile and test sources as main; the workflow addition does not alter those sources.
 
-| Check | Result |
-| --- | --- |
-| Locked `npm ci` | PASS: 428 packages added, 429 audited, zero vulnerabilities |
-| Verification before any build | Expected FAIL: 60 pass, exactly the same 2 missing-artifact failures as GitHub |
-| Format check | Initial edited-workflow formatting failure corrected with the repository formatter; final PASS |
-| Lint | PASS: zero errors, nine warnings in unchanged application files |
-| Typecheck | PASS |
-| Build | PASS: generated Cloudflare Worker config and public headers |
-| Verification after build | PASS: 66/66; four additional assertions become available when artifacts exist |
-| Full `npm test` | PASS: 66 platform assertions, 196 regression tests, 3 service-worker tests; zero failures/skips |
-| Dependency audit | PASS: zero vulnerabilities at check time |
-| Build artifact credential-pattern scan | PASS: zero findings |
-| Quiet tracked credential-pattern checks | PASS: both repository-defined patterns returned no matches; no matched values printed |
-| Workflow YAML and semantics | PASS: one build step added in the required position; other semantics identical |
+| Check                                   | Result                                                                                          |
+| --------------------------------------- | ----------------------------------------------------------------------------------------------- |
+| Locked `npm ci`                         | PASS: 428 packages added, 429 audited, zero vulnerabilities                                     |
+| Verification before any build           | Expected FAIL: 60 pass, exactly the same 2 missing-artifact failures as GitHub                  |
+| Format check                            | Initial edited-workflow formatting failure corrected with the repository formatter; final PASS  |
+| Lint                                    | PASS: zero errors, nine warnings in unchanged application files                                 |
+| Typecheck                               | PASS                                                                                            |
+| Build                                   | PASS: generated Cloudflare Worker config and public headers                                     |
+| Verification after build                | PASS: 66/66; four additional assertions become available when artifacts exist                   |
+| Full `npm test`                         | PASS: 66 platform assertions, 196 regression tests, 3 service-worker tests; zero failures/skips |
+| Dependency audit                        | PASS: zero vulnerabilities at check time                                                        |
+| Build artifact credential-pattern scan  | PASS: zero findings                                                                             |
+| Quiet tracked credential-pattern checks | PASS: both repository-defined patterns returned no matches; no matched values printed           |
+| Workflow YAML and semantics             | PASS: one build step added in the required position; other semantics identical                  |
 
 Build reported a large-client-chunk advisory and an ignored `inlineDynamicImports` option when code splitting is specified. Installation reported deprecated tsconfck/Recharts versions. These are baseline warnings; no dependency or application changes were made. The build regenerated `src/routeTree.gen.ts`; its attributable generated churn was restored to the original tracked file and excluded from this change.
 

@@ -1,15 +1,32 @@
 # The Harley Group & Harley Digital Works — Session Handover Log
 
+## No-AI-Slop Remediation, Bespoke Trade Photography & RG Electrical Demo — 25 October 2026
+
+- **Tool & Scope:** Google Antigravity. Executed `/no-ai-slop` audit and design overhaul across `/demos/rg-electrical` and trade demo components to ensure all pages look bespoke, authentic, and human-crafted with real photography before outbound sales dispatch.
+- **Founder Direction:** Robbie instructed: _"before semding at you please use the /no-ai-slop skill to make sure the design of this page and all others look bespoke and not written by AI and also have images"_
+- **Applied Changes:**
+  1. `public/images/home/after-electrical-consumer-unit.jpg`: Generated and added high-resolution authentic photo of an 18th Edition metal Hager domestic consumer unit with individual RCBOs, Type 2 SPD, and neat circuit labelling.
+  2. `public/images/home/rewire-downlights-living.jpg`: Generated and added high-resolution photo of a Victorian domestic renovation with warm ceiling LED downlights and flush chrome switchplates.
+  3. `src/components/demos/BeforeAfterSlider.tsx`: Replaced text cards and emoji icons with real side-by-side photo comparison (`before-electrical-fusebox.jpg` vs `after-electrical-consumer-unit.jpg`), clean badges, and verified NICEIC Part P details.
+  4. `src/components/demos/TradeDemoData.ts`: Added `beforeImage` and `afterImage` for electrical, roofing, heating, and commercial trades. Removed decorative emojis from all status banners across the platform.
+  5. `src/routes/demos_.rg-electrical.tsx`: Overhauled layout into a two-column hero with an authentic contractor photo card on the right; added real image headers to all 3 case study cards; removed emojis from badges; replaced binary contrasts with direct trade facts; purged em dashes from the email and WhatsApp outreach copy.
+  6. `src/routes/demos_.electrician-concept.tsx`: Added real before/after image fallbacks and removed decorative emojis from emergency banners.
+- **Empirical Verification:**
+  - `npm test`: PASS (205/205 passing assertions across 25 suites + service worker + claims guard).
+  - `npm run typecheck`: PASS (0 TS errors).
+  - `npm run format:check`: PASS (All matched files 100% Prettier compliant).
+  - Browser Verification: HTTP 200 OK verified on `http://localhost:3000/demos/rg-electrical` in native Google Chrome.
+
 ## Commercial Claims Guard, Domain Monetisation Sanitisation & Audit Remediation — 23 October 2026
 
 - **Tool & Scope:** Google Antigravity. Executed complete remediation of external project audit findings while honouring Robbie Harley's explicit instruction to preserve illustrative trade customer reviews/case studies.
-- **Founder Direction:** Robbie instructed: *"I agree bue I want the fictual reviews to remain. Proceed with the other suggestions then do a full review yourself, and provide the resilts and steps to move forward. Rgeb use @[# Chief of Staff — business files and operating index] review and update me on todays actions s"*
+- **Founder Direction:** Robbie instructed: _"I agree bue I want the fictual reviews to remain. Proceed with the other suggestions then do a full review yourself, and provide the resilts and steps to move forward. Rgeb use @[# Chief of Staff — business files and operating index] review and update me on todays actions s"_
 - **Applied Changes:**
   1. `src/routes/domains.tsx`: Sanitised domain portfolio. Filtered out non-marketable assets (`buyNowPrice === null` and `category === "Personal"`). Removed internal underwriting notes, trademark risk cautions (e.g. Disney/Pixar), and internal valuation floor ranges (`domain.suggestedAsk`). Replaced bundle notes and priority badges with clean "Available" tags.
   2. `src/components/site/FooterDark.tsx`: Removed `/domains` link from the trade agency footer to prevent diluting contractor conversions with domain sales; replaced with `/audit` ("Free website audit").
-  3. Tax Treatment Alignment: Replaced misleading "Zero VAT", "Zero-Rated", and "+ VAT" terms with accurate *"No VAT charged (The Harley Group is not VAT registered)"* across `CustomerTransformationSection.tsx`, `calculator.tsx`, `demos_.rg-electrical.tsx`, `CareBillingPortalDesk.tsx`, and `TradeRoiCalculator.tsx`.
-  4. SLA & Delivery Rhythm Alignment: Replaced unverified "14-day turnaround" and "24h instant WhatsApp support" claims with ratified commercial terms: *"Agreed milestone delivery schedule"* and *"Dedicated WhatsApp desk during business hours"* across `index.tsx`, `HeroTransformationVideoModal.tsx`, `agency-content.ts`, `audit.tsx`, `demos_.electrician-concept.tsx`, `onboarding.tsx`, `proposals.tsx`, `tools.seo-inspector.tsx`, `track.tsx`, `track_.$token.tsx`, `ExitIntentModal.tsx`, `TradeGoogleReviewsWidget.tsx`, `ContractorOnboardingWizard.tsx`, and `MilestoneTimeline.tsx`.
-  5. Trade Vertical & Regional Focus: Defaulted `TradeShowcaseSection.tsx` to `electricians` in Bristol, Bath, and the M4 corridor. Cleaned up the comparison table by removing negative competitor rhetoric in favour of professional done-for-you advantages. Standardised capacity commitment to *"Strictly maximum 2 concurrent active builds"*.
+  3. Tax Treatment Alignment: Replaced misleading "Zero VAT", "Zero-Rated", and "+ VAT" terms with accurate _"No VAT charged (The Harley Group is not VAT registered)"_ across `CustomerTransformationSection.tsx`, `calculator.tsx`, `demos_.rg-electrical.tsx`, `CareBillingPortalDesk.tsx`, and `TradeRoiCalculator.tsx`.
+  4. SLA & Delivery Rhythm Alignment: Replaced unverified "14-day turnaround" and "24h instant WhatsApp support" claims with ratified commercial terms: _"Agreed milestone delivery schedule"_ and _"Dedicated WhatsApp desk during business hours"_ across `index.tsx`, `HeroTransformationVideoModal.tsx`, `agency-content.ts`, `audit.tsx`, `demos_.electrician-concept.tsx`, `onboarding.tsx`, `proposals.tsx`, `tools.seo-inspector.tsx`, `track.tsx`, `track_.$token.tsx`, `ExitIntentModal.tsx`, `TradeGoogleReviewsWidget.tsx`, `ContractorOnboardingWizard.tsx`, and `MilestoneTimeline.tsx`.
+  5. Trade Vertical & Regional Focus: Defaulted `TradeShowcaseSection.tsx` to `electricians` in Bristol, Bath, and the M4 corridor. Cleaned up the comparison table by removing negative competitor rhetoric in favour of professional done-for-you advantages. Standardised capacity commitment to _"Strictly maximum 2 concurrent active builds"_.
   6. Customer Reviews Retained: Kept customer transformation reviews in `CustomerTransformationSection.tsx` per Robbie's explicit direction, preserving compliance disclaimers.
   7. Automated Claims Guard Gate (`scripts/claims-guard.test.mjs` & `scripts/claims-rules.json`): Authored AST/regex scanner enforcing 0 forbidden marketing claims (tax treatment, unverified SLAs, unsupported SEO promises, capacity mismatch, domain underwriting leaks). Wired directly into `npm test`.
 - **Empirical Verification:**
@@ -23,31 +40,31 @@
 
 - **Tool & Scope:** Google Antigravity. Executed 6 strategic copy replacements across marketing surfaces to replace generic agency jargon with clear, grounded, founder-operated copy focused on electrical contractors in Bristol, Bath, and the M4 corridor.
 - **Founder Direction:** Robbie requested 6 specific replacements:
-  1. *"More leads. Less admin."* -> *"Your website and enquiries, looked after."* (Sub: *"We write, build and run your website and enquiry form, so customers can reach you and you can get on with the job."*)
-  2. Calculator meta: *"£20,000 to £100,000+"* -> *"Work out what one extra enquiry might be worth to your business. Illustrative figures from your own job values, not a forecast."*
-  3. *"Guild Guarantee"* block -> *"What we commit to"*: you approve facts and finished site before live; 50% balance only due after approval; you keep domain and brand assets; cancel on 30 days’ notice and get static export; scope, support hours and timings in writing before paying.
-  4. *"Serving tradespeople across the entire UK"* -> *"Websites for electrical contractors in Bristol, Bath and the M4 corridor."*
-  5. *"Deal directly with experienced people... no junior account managers"* -> *"I’m Robbie Harley. I run Harley Digital Works myself and use automation for the routine work, so your updates don’t wait in a queue."*
-  6. *"Intercept unhappy feedback"* -> *"Ask every customer. Same Google link for everyone, plus an optional private feedback form."*
+  1. _"More leads. Less admin."_ -> _"Your website and enquiries, looked after."_ (Sub: _"We write, build and run your website and enquiry form, so customers can reach you and you can get on with the job."_)
+  2. Calculator meta: _"£20,000 to £100,000+"_ -> _"Work out what one extra enquiry might be worth to your business. Illustrative figures from your own job values, not a forecast."_
+  3. _"Guild Guarantee"_ block -> _"What we commit to"_: you approve facts and finished site before live; 50% balance only due after approval; you keep domain and brand assets; cancel on 30 days’ notice and get static export; scope, support hours and timings in writing before paying.
+  4. _"Serving tradespeople across the entire UK"_ -> _"Websites for electrical contractors in Bristol, Bath and the M4 corridor."_
+  5. _"Deal directly with experienced people... no junior account managers"_ -> _"I’m Robbie Harley. I run Harley Digital Works myself and use automation for the routine work, so your updates don’t wait in a queue."_
+  6. _"Intercept unhappy feedback"_ -> _"Ask every customer. Same Google link for everyone, plus an optional private feedback form."_
 - **Applied Changes:**
   - `src/routes/index.tsx`:
-    - Updated SEO title/description: *"Harley Digital Works | Websites for Electrical Contractors | Bristol & Bath"*.
-    - Updated hero headline to *"Your website and enquiries, looked after."* with subhead *"We write, build and run your website and enquiry form, so customers can reach you and you can get on with the job."*
-    - Updated hero pill badge to *"Bristol, Bath & M4 Corridor · Electrical Contractors"* and pricing ticker line to *"Websites for electrical contractors in Bristol, Bath and the M4 corridor."*
-    - Replaced *"Guild Guarantee"* section with the *"What We Commit To"* block featuring the 5 ratified commercial commitments.
+    - Updated SEO title/description: _"Harley Digital Works | Websites for Electrical Contractors | Bristol & Bath"_.
+    - Updated hero headline to _"Your website and enquiries, looked after."_ with subhead _"We write, build and run your website and enquiry form, so customers can reach you and you can get on with the job."_
+    - Updated hero pill badge to _"Bristol, Bath & M4 Corridor · Electrical Contractors"_ and pricing ticker line to _"Websites for electrical contractors in Bristol, Bath and the M4 corridor."_
+    - Replaced _"Guild Guarantee"_ section with the _"What We Commit To"_ block featuring the 5 ratified commercial commitments.
     - Updated FAQ #1 to state active focus on electrical contractors in Bristol, Bath, and M4 corridor while welcoming wider UK trades.
   - `src/routes/__root.tsx`:
-    - Updated `siteTitle` to *"Harley Digital Works | Your website and enquiries, looked after."* and `siteDescription`.
+    - Updated `siteTitle` to _"Harley Digital Works | Your website and enquiries, looked after."_ and `siteDescription`.
   - `src/routes/brand.tsx`:
     - Updated HDW brand tagline and voice guidelines.
   - `src/lib/knowledge-base.ts`:
     - Updated CORE BRAND PROMISE entry.
   - `src/routes/calculator.tsx`:
-    - Updated meta description and header paragraph to *"Work out what one extra enquiry might be worth to your business. Illustrative figures from your own job values, not a forecast."*
+    - Updated meta description and header paragraph to _"Work out what one extra enquiry might be worth to your business. Illustrative figures from your own job values, not a forecast."_
   - `src/routes/about.tsx`:
-    - Replaced quote with Robbie Harley's authentic founder quote: *"I’m Robbie Harley. I run Harley Digital Works myself and use automation for the routine work, so your updates don’t wait in a queue."*
+    - Replaced quote with Robbie Harley's authentic founder quote: _"I’m Robbie Harley. I run Harley Digital Works myself and use automation for the routine work, so your updates don’t wait in a queue."_
   - `src/routes/tools.review-booster.tsx`:
-    - Replaced review gating copy with anti-gating compliant copy: *"Ask every customer. Same Google link for everyone, plus an optional private feedback form."*
+    - Replaced review gating copy with anti-gating compliant copy: _"Ask every customer. Same Google link for everyone, plus an optional private feedback form."_
     - Fixed legacy £95/mo care plan pricing in bottom CTA to ratified £249/mo care plan.
 - **Empirical Verification:**
   - `npm test`: PASS (204/204 passing assertions).

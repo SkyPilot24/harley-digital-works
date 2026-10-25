@@ -7,8 +7,18 @@
   "production": {
     "project": "worzpzbutngugwzhlvtj",
     "sqlCheckedUtc": "2026-10-17T22:08:29.049485Z",
-    "projectsColumns": ["id", "client_name", "package", "status", "deadline", "progress", "value", "notes", "created_at"],
-    "counts": {"leads": 0, "clients": 0, "projects": 0, "notificationJobs": 0},
+    "projectsColumns": [
+      "id",
+      "client_name",
+      "package",
+      "status",
+      "deadline",
+      "progress",
+      "value",
+      "notes",
+      "created_at"
+    ],
+    "counts": { "leads": 0, "clients": 0, "projects": 0, "notificationJobs": 0 },
     "projectReconciliationMigrationRecorded": false,
     "latestMigration": "20261012155701",
     "paymentContractsPresent": false,
@@ -32,7 +42,7 @@
     "lockedReactStart": "1.168.27",
     "lockedStartServerCore": "1.169.16",
     "advisory": "https://github.com/advisories/GHSA-qx66-fv34-fjm8",
-    "advisoryPatchedMinimums": {"reactStart": "1.168.60", "startServerCore": "1.169.39"},
+    "advisoryPatchedMinimums": { "reactStart": "1.168.60", "startServerCore": "1.169.39" },
     "freshAudit": "UNAVAILABLE: command returned an error object without vulnerability metadata; never counted as clean"
   },
   "creditedEvidence": {
@@ -43,7 +53,15 @@
     "fullProductionEnquiryOutboxChain": "NOT RUN",
     "sellerPaymentRecoveryAndFullDelivery": "Not established by this scoped turn"
   },
-  "checksNotRepeated": ["Full platform audit", "Customer record inspection", "Drive permission change", "Production Auth mutation", "Production enquiry submission", "Payment charge", "Restore into production"],
+  "checksNotRepeated": [
+    "Full platform audit",
+    "Customer record inspection",
+    "Drive permission change",
+    "Production Auth mutation",
+    "Production enquiry submission",
+    "Payment charge",
+    "Restore into production"
+  ],
   "secretsPrinted": false,
   "productionMutations": false
 }

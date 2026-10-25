@@ -153,14 +153,8 @@
   "stash": [
     {
       "sha": "35406e1a6f27143184b015aecd3ab74c78c7941f",
-      "untrackedParents": [
-        "48f5d67fc45125249074ec619c8ddf80b25115d7"
-      ],
-      "files": [
-        "MASTER_BACKLOG.md",
-        "PROJECT_STATUS.md",
-        "docs/HANDOVER.md"
-      ],
+      "untrackedParents": ["48f5d67fc45125249074ec619c8ddf80b25115d7"],
+      "files": ["MASTER_BACKLOG.md", "PROJECT_STATUS.md", "docs/HANDOVER.md"],
       "untrackedFiles": [
         "docs/enquiry-acceptance-2026-10-07.md",
         "docs/evidence/dependency-audit.json",

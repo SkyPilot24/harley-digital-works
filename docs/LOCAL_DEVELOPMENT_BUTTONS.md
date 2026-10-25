@@ -4,11 +4,11 @@ Select the **Harley Digital Works** local project in Codex mode. Its project fol
 
 The local environment is `.codex/environments/environment.toml`. Open Settings > Local environments if the app has not refreshed the actions yet; select **Harley Digital Works - local development**. Configuration is installed as a project file; discovery/selection in the visible app must still be confirmed.
 
-| Button | What it does |
-| --- | --- |
-| Start website | Starts this working copy at http://127.0.0.1:4173. Stop with Ctrl+C in its terminal. If the port is occupied, it stops rather than silently choosing another address. |
-| Check code | Checks formatting, types and lint; builds the Cloudflare Worker; then runs the existing test suite. Stops at the first failure. |
-| Build | Builds locally for the existing Cloudflare Worker target. Does not deploy. |
+| Button            | What it does                                                                                                                                                                          |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Start website     | Starts this working copy at http://127.0.0.1:4173. Stop with Ctrl+C in its terminal. If the port is occupied, it stops rather than silently choosing another address.                 |
+| Check code        | Checks formatting, types and lint; builds the Cloudflare Worker; then runs the existing test suite. Stops at the first failure.                                                       |
+| Build             | Builds locally for the existing Cloudflare Worker target. Does not deploy.                                                                                                            |
 | Prepare workspace | Installs the lockfile with the exact npm version declared in package.json, without changing global npm. Also runs automatically when this environment is selected for a new worktree. |
 
 Setup requires internet access to obtain the pinned npm package and any uncached locked dependencies. It does not copy secrets, create .env files, apply database migrations, deploy or publish. It runs normal dependency installation hooks. Run Prepare workspace in an idle checkout; dependency installation should not run while another task is using that checkout's node_modules.

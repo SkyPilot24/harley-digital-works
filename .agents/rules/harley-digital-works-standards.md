@@ -14,7 +14,7 @@ trigger: always_on
      - Headings/Display: Sturdy geometric sans (`Manrope` / `Plus Jakarta Sans`) with tight tracking. Avoid default unstyled Arial.
      - Body Text: Clean, legible sans (`Inter` / system UI) optimised for mobile.
      - Technical/Pricing Data: Monospace (`DM Mono`) for price breakdowns, packages, and technical specifications.
-   - Core USP: *"We take the website headache away. 100% done-for-you copywriting, zero homework, zero tech jargon, and total peace of mind."*
+   - Core USP: _"We take the website headache away. 100% done-for-you copywriting, zero homework, zero tech jargon, and total peace of mind."_
 
 2. **Ratified Commercial Offer & Pricing Boundaries**:
    - Standard Managed Package: £1,495 setup + £249/month ongoing care.
@@ -47,5 +47,3 @@ trigger: always_on
    - Speak plain English, explain simply and clearly ("talk to me like I'm 5, that's fine, I'm learning"). Avoid tech jargon.
    - Make development and technical decisions autonomously. Only consult Robbie for high-level commercial decisions, pricing, go-live release gates, or major brand direction.
    - Always translate technical work into real-world business value (cash, customer trust, time saved, and booked trade jobs).
-
-

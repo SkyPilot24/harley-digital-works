@@ -39,6 +39,8 @@ export interface TradeDemoBusiness {
     beforeDesc: string;
     afterDesc: string;
     badge: string;
+    beforeImage?: string;
+    afterImage?: string;
   };
   reviews: {
     author: string;
@@ -68,8 +70,7 @@ export const TRADE_DEMOS: Record<string, TradeDemoBusiness> = {
     heroHeadline: "Fast, Certified Electrical Services With Zero Hassle.",
     heroSubheadline:
       "From emergency call-outs and modern fuse board upgrades to solar PV & EV charger installations. Fixed written quotes and 6-year workmanship guarantee.",
-    emergencyBanner:
-      "🟢 2 On-Call Electricians Available Now • Average Manchester Response: 38 Mins",
+    emergencyBanner: "2 On-Call Electricians Available Now • Average Manchester Response: 38 Mins",
     popularServices: [
       {
         title: "Consumer Unit / Fuse Board Upgrades",
@@ -161,6 +162,8 @@ export const TRADE_DEMOS: Record<string, TradeDemoBusiness> = {
       afterDesc:
         "Fully compliant 18th Edition metal enclosure with dual surge protection and individual RCBO trip switches.",
       badge: "Completed in 1 Day • Full NICEIC Certificate Issued",
+      beforeImage: "/images/home/before-electrical-fusebox.jpg",
+      afterImage: "/images/home/after-electrical-consumer-unit.jpg",
     },
     reviews: [
       {
@@ -197,7 +200,7 @@ export const TRADE_DEMOS: Record<string, TradeDemoBusiness> = {
     heroHeadline: "Honest Roof Repairs & Replacements With Zero High-Pressure Sales.",
     heroSubheadline:
       "From emergency storm leak repairs and repointing to full dry ridge systems and seamless GRP fibreglass flat roofs. We provide free HD drone footage with every inspection.",
-    emergencyBanner: "🟢 Emergency Roof Tarping & Repair Team Active • Solihull & Birmingham",
+    emergencyBanner: "Emergency Roof Tarping & Repair Team Active • Solihull & Birmingham",
     popularServices: [
       {
         title: "GRP Fibreglass Flat Roofing",
@@ -282,6 +285,8 @@ export const TRADE_DEMOS: Record<string, TradeDemoBusiness> = {
       afterDesc:
         "Tough, walkable seamless GRP resin finish with pre-formed edge trims and 20-year structural warranty.",
       badge: "Completed in 1 Day • 20-Year Guarantee",
+      beforeImage: "/images/home/before-roofing-leadwork.jpg",
+      afterImage: "/images/home/extension-renovation.jpg",
     },
     reviews: [
       {
@@ -323,7 +328,7 @@ export const TRADE_DEMOS: Record<string, TradeDemoBusiness> = {
     heroSubheadline:
       "A-rated condensing boilers from Worcester Bosch, Vaillant & Viessmann. Fixed prices, MagnaClean magnetic filter included, and zero deposit finance options.",
     emergencyBanner:
-      "🟢 3 Gas Safe Engineers Available Today • Next-Day Boiler Installations Bookable",
+      "3 Gas Safe Engineers Available Today • Next-Day Boiler Installations Bookable",
     popularServices: [
       {
         title: "Combi-to-Combi Boiler Swap",
@@ -412,6 +417,8 @@ export const TRADE_DEMOS: Record<string, TradeDemoBusiness> = {
       afterDesc:
         "Quiet, 94% ErP A-rated condensing combi with 12-year parts and labour warranty and smart smartphone thermostat.",
       badge: "Saved £410/year on Gas • Installed in 1.5 Days",
+      beforeImage: "/images/home/before-heating-boiler.jpg",
+      afterImage: "/images/home/heating-plant-room.jpg",
     },
     reviews: [
       {
@@ -449,8 +456,7 @@ export const TRADE_DEMOS: Record<string, TradeDemoBusiness> = {
     heroHeadline: "Commercial Facilities Maintenance & Rapid Multi-Van Dispatch.",
     heroSubheadline:
       "Full mechanical, electrical and building fabric support for facility managers, logistics depots, and multi-site retail. Live customer portal, SLA response tracking, and scheduled PPM contracts.",
-    emergencyBanner:
-      "🟢 14 Commercial Response Vans Active on Network • 2-Hour Emergency SLA Active",
+    emergencyBanner: "14 Commercial Response Vans Active on Network • 2-Hour Emergency SLA Active",
     popularServices: [
       {
         title: "Commercial HVAC & Chiller Maintenance",
@@ -543,6 +549,8 @@ export const TRADE_DEMOS: Record<string, TradeDemoBusiness> = {
       afterDesc:
         "Fully compliant energy-efficient HVAC network saving £14,200 annually in power consumption with 24/7 telemetry monitoring.",
       badge: "42% Energy Reduction • Zero Operational Downtime",
+      beforeImage: "/images/home/craftsman-workshop.jpg",
+      afterImage: "/images/home/contractor-commercial.jpg",
     },
     reviews: [
       {

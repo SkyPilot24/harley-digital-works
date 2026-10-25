@@ -1,1 +1,6 @@
-:root { --brand-dark: #171C23; --brand-light: #EEF3F7; --brand-accent: #42C9E8; --brand-font: "Bahnschrift", Arial, sans-serif; }
+:root {
+  --brand-dark: #171c23;
+  --brand-light: #eef3f7;
+  --brand-accent: #42c9e8;
+  --brand-font: "Bahnschrift", Arial, sans-serif;
+}

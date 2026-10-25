@@ -13,14 +13,14 @@ This skill provides standard operating procedures, pitch scripts, and objection-
 
 ## The Value Proposition
 
-| Element | Harley Digital Works Approach | Traditional Agency Flaw |
-| :--- | :--- | :--- |
-| **Delivery Schedule** | **Agreed Rapid 14-Day Delivery Sprint** | 3 to 6 months of scope creep |
-| **Effort Required** | **Zero Homework (100% DFY copywriting)** | Dozens of hours of "homework" |
-| **Pricing** | **Fixed £1,495 (50% Deposit / 50% on Approval)** | £4,000–£8,000 with hourly overruns |
-| **VAT** | **Zero VAT** (Not VAT registered; no surprise +20%) | Hidden VAT added at invoice |
-| **Support** | **£249/mo (Hosting, Security & WhatsApp Desk)** | Abandoned site / hourly billing traps |
-| **Capacity** | **Strictly Maximum 2 Concurrent Builds** | Overbooked agencies with slow replies |
+| Element               | Harley Digital Works Approach                       | Traditional Agency Flaw               |
+| :-------------------- | :-------------------------------------------------- | :------------------------------------ |
+| **Delivery Schedule** | **Agreed Rapid 14-Day Delivery Sprint**             | 3 to 6 months of scope creep          |
+| **Effort Required**   | **Zero Homework (100% DFY copywriting)**            | Dozens of hours of "homework"         |
+| **Pricing**           | **Fixed £1,495 (50% Deposit / 50% on Approval)**    | £4,000–£8,000 with hourly overruns    |
+| **VAT**               | **Zero VAT** (Not VAT registered; no surprise +20%) | Hidden VAT added at invoice           |
+| **Support**           | **£249/mo (Hosting, Security & WhatsApp Desk)**     | Abandoned site / hourly billing traps |
+| **Capacity**          | **Strictly Maximum 2 Concurrent Builds**            | Overbooked agencies with slow replies |
 
 ---
 
@@ -57,17 +57,16 @@ harleydigitalworks.com
 
 ### 1. "I get all my work from Checkatrade / Bark / MyBuilder / Facebook."
 
-> **Response**: *"Checkatrade and lead sites are great to start with, but you are competing against 4 other trades for every enquiry, driving your prices down. A dedicated commercial website lets you own the customer relationship, charge premium rates, and stop paying £30+ per shared lead."*
+> **Response**: _"Checkatrade and lead sites are great to start with, but you are competing against 4 other trades for every enquiry, driving your prices down. A dedicated commercial website lets you own the customer relationship, charge premium rates, and stop paying £30+ per shared lead."_
 
 ### 2. "I don't have time to write text or organize photos."
 
-> **Response**: *"That is exactly why contractors hire us. Zero homework for you. We write 100% of the service descriptions, curate high-definition trade imagery, and build the lead funnels. All we need is a 15-minute phone call to learn about your favourite jobs."*
+> **Response**: _"That is exactly why contractors hire us. Zero homework for you. We write 100% of the service descriptions, curate high-definition trade imagery, and build the lead funnels. All we need is a 15-minute phone call to learn about your favourite jobs."_
 
 ### 3. "I tried building a site on Wix / GoDaddy and it didn't get any work."
 
-> **Response**: *"DIY site builders provide templates, but they don't give you trade-specific copywriting, local SEO geo-tagging, or sub-30 millisecond mobile speeds. Our sites are engineered from the ground up to rank on Google in your local towns and turn visitors into WhatsApp enquiries."*
+> **Response**: _"DIY site builders provide templates, but they don't give you trade-specific copywriting, local SEO geo-tagging, or sub-30 millisecond mobile speeds. Our sites are engineered from the ground up to rank on Google in your local towns and turn visitors into WhatsApp enquiries."_
 
 ### 4. "What if I need changes after launch?"
 
-> **Response**: *"Every website includes our £249/mo Managed Care Plan. Whenever you finish a new job, change your prices, or get a new accreditation badge, simply WhatsApp us the photo or text and our UK team updates it within 24 hours."*
-
+> **Response**: _"Every website includes our £249/mo Managed Care Plan. Whenever you finish a new job, change your prices, or get a new accreditation badge, simply WhatsApp us the photo or text and our UK team updates it within 24 hours."_

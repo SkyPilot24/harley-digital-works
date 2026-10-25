@@ -21,13 +21,13 @@ Canonical home: this section of `docs/DAILY_PLAYBOOK.md`. Paste into the existin
 
 Sources: `output/playbook/PROMPT_LIBRARY.md` (v1.0, 16 September 2026: 25 categories, master/short variants) and `output/playbook/MASTER_BUILD_PROMPTS.md` (v1.0: nine build briefs) in the ChatGPT project mirror. Originals are unchanged historical material, not current facts or execution authority.
 
-| Task | Useful historical sections | Reconciled use |
-| --- | --- | --- |
-| Positioning, voice, design | P01–P03; M3, M8 | Keep evidence/method/output structure; current definition/brand override black/gold, geometric-H and Manrope/Inter defaults. |
-| Implementation and feature scoping | P10–P13; M1, M2, M4, M5, M9 | Inspect code first. Full-website/dashboard briefs are checklists, not orders to rebuild; prefer one page or feature gap. |
-| Marketing, SEO, content, sales/support | P15–P20; M6–M8 | Use relevant outline with approved offer, truthful proof and current permissions. Drafting does not authorise sending/publishing. |
-| Documentation/strategy | P14, P21 | Reuse evidence, decision and handover fields; update existing records rather than create a second strategy/backlog. |
-| Analytics, QA, accessibility, iteration | P22–P25 | Apply relevant canonical standards and observed evidence. No assumed metrics or passed tests. |
+| Task                                    | Useful historical sections  | Reconciled use                                                                                                                    |
+| --------------------------------------- | --------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| Positioning, voice, design              | P01–P03; M3, M8             | Keep evidence/method/output structure; current definition/brand override black/gold, geometric-H and Manrope/Inter defaults.      |
+| Implementation and feature scoping      | P10–P13; M1, M2, M4, M5, M9 | Inspect code first. Full-website/dashboard briefs are checklists, not orders to rebuild; prefer one page or feature gap.          |
+| Marketing, SEO, content, sales/support  | P15–P20; M6–M8              | Use relevant outline with approved offer, truthful proof and current permissions. Drafting does not authorise sending/publishing. |
+| Documentation/strategy                  | P14, P21                    | Reuse evidence, decision and handover fields; update existing records rather than create a second strategy/backlog.               |
+| Analytics, QA, accessibility, iteration | P22–P25                     | Apply relevant canonical standards and observed evidence. No assumed metrics or passed tests.                                     |
 
 M1 full website; M2 full dashboard; M3 design system; M4 individual dashboard page; M5 component library; M6 landing pages; M7 marketing; M8 copy; M9 feature specification. Inventory does not approve a build.
 

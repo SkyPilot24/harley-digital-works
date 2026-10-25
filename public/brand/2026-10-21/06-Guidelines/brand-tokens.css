@@ -1,1 +1,6 @@
-:root { --brand-dark: #152B42; --brand-light: #F5F1E8; --brand-accent: #356DCC; --brand-font: "Segoe UI", Arial, sans-serif; }
+:root {
+  --brand-dark: #152b42;
+  --brand-light: #f5f1e8;
+  --brand-accent: #356dcc;
+  --brand-font: "Segoe UI", Arial, sans-serif;
+}

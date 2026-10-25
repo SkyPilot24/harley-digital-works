@@ -58,7 +58,7 @@ const ILLUSTRATIVE_ELECTRICIAN: TradeDemoBusiness = {
   heroSubheadline:
     "Specialists in commercial 3-phase power distribution, workplace EV charging hubs, EICR compliance certifications, and premium domestic rewires. Fixed transparent quotes with 6-year workmanship guarantee.",
   emergencyBanner:
-    "🟢 Illustrative Capacity: 2 Engineers On Call · Average Bristol/Bath Dispatch: 45 Mins",
+    "Illustrative Capacity: 2 Engineers On Call · Average Bristol/Bath Dispatch: 45 Mins",
   popularServices: [
     {
       title: "Commercial 3-Phase & Distribution",
@@ -144,6 +144,8 @@ const ILLUSTRATIVE_ELECTRICIAN: TradeDemoBusiness = {
     afterDesc:
       "Fully compliant 18th Edition metal RCBO panel with Type 2 SPD, digital circuit directory, and NICEIC sign-off certificate.",
     badge: "Commercial Refit",
+    beforeImage: "/images/home/before-electrical-fusebox.jpg",
+    afterImage: "/images/home/after-electrical-consumer-unit.jpg",
   },
   reviews: [
     {

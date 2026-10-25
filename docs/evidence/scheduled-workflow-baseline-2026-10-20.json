@@ -1,10 +1,7 @@
 {
   "schemaVersion": 1,
   "recordedUtc": "2026-10-20T17:36:37.2450998Z",
-  "tasks": [
-    "H42",
-    "H47"
-  ],
+  "tasks": ["H42", "H47"],
   "repository": "SkyPilot24/harley-digital-works",
   "branch": "codex/scheduled-workflow-repair-20261020",
   "baseRevision": "0845172c455b756a0a6eb24af1e7b56d78c348e9",

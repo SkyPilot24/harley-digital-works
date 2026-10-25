@@ -24,6 +24,7 @@ import {
   MessageSquare,
   Mail,
   BadgeCheck,
+  MapPin,
 } from "lucide-react";
 
 export const Route = createFileRoute("/demos_/rg-electrical")({
@@ -69,7 +70,7 @@ const RG_ELECTRICAL_DATA: TradeDemoBusiness = {
   heroSubheadline:
     "Specialists in 18th Edition metal consumer unit upgrades, full domestic rewires, Landlord EICR safety inspections, and EV charger points. Fixed upfront pricing with Part P building control compliance certificates issued within 24 hours.",
   emergencyBanner:
-    "⚡ Priority Emergency Attendance Available Across Bradley Stoke, Filton & North Bristol",
+    "Priority emergency attendance available across Bradley Stoke, Filton & North Bristol",
   popularServices: [
     {
       title: "18th Edition Consumer Unit Upgrades",
@@ -157,6 +158,8 @@ const RG_ELECTRICAL_DATA: TradeDemoBusiness = {
     afterDesc:
       "Fully compliant 18th Edition metal RCBO board with Type 2 surge protection, neatly labelled circuit directory, and NICEIC Part P building control certificate.",
     badge: "Domestic Safety Upgrade",
+    beforeImage: "/images/home/before-electrical-fusebox.jpg",
+    afterImage: "/images/home/after-electrical-consumer-unit.jpg",
   },
   reviews: [
     {
@@ -186,6 +189,7 @@ const RG_CASE_STUDIES = [
     property: "4-Bedroom Detached Family Home",
     turnaround: "1 Day Installation",
     certification: "NICEIC Part P Building Compliance Certificate issued in 24h",
+    image: "/images/home/after-electrical-consumer-unit.jpg",
     defect:
       "Client had an antique Bakelite fusebox with rewirable fuses that constantly tripped and lacked surge protection for sensitive home electronics.",
     solution:
@@ -202,6 +206,7 @@ const RG_CASE_STUDIES = [
     property: "3-Bed Semi-Detached Renovation",
     turnaround: "4 Days (Staged around plastering)",
     certification: "Full Electrical Installation Certificate (EIC)",
+    image: "/images/home/rewire-downlights-living.jpg",
     defect:
       "Original rubber cabling had degraded insulation; insufficient socket outlets led to dangerous extension lead daisy-chaining in the home office and kitchen.",
     solution:
@@ -218,6 +223,7 @@ const RG_CASE_STUDIES = [
     property: "2-Bed Victorian Terrace Rental Flat",
     turnaround: "Same-Day Digital Certificate",
     certification: "Satisfactory EICR Report complying with Council Licensing",
+    image: "/images/home/contractor-commercial.jpg",
     defect:
       "Landlord had an imminent tenancy handover and required a mandatory 5-year EICR certificate; previous report had unresolved C2 bonding observations.",
     solution:
@@ -232,8 +238,7 @@ function RgElectricalDemoPage() {
   const [copiedEmail, setCopiedEmail] = useState(false);
   const [copiedWhatsapp, setCopiedWhatsapp] = useState(false);
 
-  const emailSubject =
-    "A small improvement to your project portfolio — sample mockup for RG Electrical";
+  const emailSubject = "Project portfolio preview for RG Electrical Bristol";
   const emailBody = `Hello RG Electrical team,
 
 I was looking at your website (rg-electrical.com) and noticed your project section mentions the full portfolio is coming soon.
@@ -245,7 +250,7 @@ I run Harley Digital Works (part of The Harley Group, based locally in the South
 You can view the private staging preview here:
 https://harleydigitalworks.com/demos/rg-electrical
 
-No sales pitch or homework required—if you like the layout and would like us to look after this for you, we handle 100% of the copywriting, setup, and maintenance.
+There is no sales pitch or homework on your end. If you like the layout and want us to look after this for you, we handle the copywriting, build, and monthly maintenance.
 
 Best regards,
 
@@ -253,7 +258,7 @@ Robbie Harley
 Founder, Harley Digital Works
 robbie@theharleygroup.org | 0117 214 1357`;
 
-  const whatsappText = `Hi RG Electrical team, Robbie here from Harley Digital Works. I noticed your website mentions the portfolio is coming soon—we put together a quick working preview showing how your NICEIC rewiring and fusebox case studies could look for Bristol homeowners, with instant quote estimates: https://harleydigitalworks.com/demos/rg-electrical. Happy to chat if useful!`;
+  const whatsappText = `Hi RG Electrical team, Robbie here from Harley Digital Works. I noticed your website mentions the portfolio is coming soon. We put together a quick working preview showing how your NICEIC rewiring and fusebox case studies could look for Bristol homeowners, with instant quote estimates: https://harleydigitalworks.com/demos/rg-electrical. Happy to chat if useful!`;
 
   const handleCopyEmail = () => {
     navigator.clipboard.writeText(emailBody);
@@ -300,54 +305,90 @@ robbie@theharleygroup.org | 0117 214 1357`;
       {/* 2. Client Hero Section */}
       <section className="relative bg-gradient-to-b from-[#081B30] via-[#0E2744] to-[#081B30] text-white pt-16 pb-20 border-b border-slate-800">
         <Container>
-          <div className="max-w-4xl mx-auto text-center space-y-6">
-            {/* Accreditation trust pills */}
-            <div className="flex flex-wrap items-center justify-center gap-2">
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-300 border border-emerald-500/30">
-                <BadgeCheck className="h-3.5 w-3.5" />
-                NICEIC Approved Contractor
-              </span>
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-blue-500/10 text-blue-300 border border-blue-500/30">
-                <ShieldCheck className="h-3.5 w-3.5" />
-                TrustMark Government Endorsed
-              </span>
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-slate-800 text-slate-300 border border-slate-700">
-                <Building2 className="h-3.5 w-3.5" />
-                Companies House #10082511
-              </span>
+          <div className="grid lg:grid-cols-12 gap-12 items-center">
+            {/* Left copy column */}
+            <div className="lg:col-span-7 space-y-6 text-left">
+              {/* Accreditation trust pills */}
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-300 border border-emerald-500/30">
+                  <BadgeCheck className="h-3.5 w-3.5" />
+                  NICEIC Approved Contractor
+                </span>
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-blue-500/10 text-blue-300 border border-blue-500/30">
+                  <ShieldCheck className="h-3.5 w-3.5" />
+                  TrustMark Government Endorsed
+                </span>
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-slate-800 text-slate-300 border border-slate-700">
+                  <Building2 className="h-3.5 w-3.5" />
+                  Companies House #10082511
+                </span>
+              </div>
+
+              <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-white leading-tight">
+                {RG_ELECTRICAL_DATA.heroHeadline}
+              </h1>
+
+              <p className="text-base sm:text-lg text-slate-300 leading-relaxed">
+                {RG_ELECTRICAL_DATA.heroSubheadline}
+              </p>
+
+              {/* Quick action buttons */}
+              <div className="flex flex-wrap items-center gap-3 pt-2">
+                <a
+                  href="#calculator"
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm shadow-lg shadow-emerald-950/40 transition-all hover:-translate-y-0.5"
+                >
+                  <Zap className="h-4 w-4" />
+                  <span>Calculate Your Instant Quote</span>
+                </a>
+                <a
+                  href="#case-studies"
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-white font-medium text-sm border border-slate-700 transition-colors"
+                >
+                  <span>View Bristol Project Case Studies</span>
+                  <ArrowRight className="h-4 w-4" />
+                </a>
+              </div>
+
+              {/* Service Area Notice */}
+              <div className="flex items-center gap-2 text-xs text-slate-400 font-mono pt-2">
+                <MapPin className="h-3.5 w-3.5 text-emerald-400 shrink-0" />
+                <span>
+                  Serving Bradley Stoke, Stoke Gifford, Filton, Patchway, Thornbury, Clifton and
+                  central Bristol
+                </span>
+              </div>
             </div>
 
-            <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-white leading-tight">
-              {RG_ELECTRICAL_DATA.heroHeadline}
-            </h1>
-
-            <p className="text-base sm:text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed">
-              {RG_ELECTRICAL_DATA.heroSubheadline}
-            </p>
-
-            {/* Quick action buttons */}
-            <div className="flex flex-wrap items-center justify-center gap-3 pt-4">
-              <a
-                href="#calculator"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm shadow-lg shadow-emerald-950/40 transition-all hover:-translate-y-0.5"
-              >
-                <Zap className="h-4 w-4" />
-                <span>Calculate Your Instant Quote</span>
-              </a>
-              <a
-                href="#case-studies"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-white font-medium text-sm border border-slate-700 transition-colors"
-              >
-                <span>View Bristol Project Case Studies</span>
-                <ArrowRight className="h-4 w-4" />
-              </a>
+            {/* Right photo hero showcase card */}
+            <div className="lg:col-span-5">
+              <div className="relative rounded-3xl overflow-hidden border border-slate-700 shadow-2xl bg-slate-950 group">
+                <div className="relative h-80 sm:h-96 w-full overflow-hidden">
+                  <img
+                    src="/images/home/contractor-commercial.jpg"
+                    alt="RG Electrical contractor and service van outside Bristol home"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 brightness-95"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/30 to-transparent" />
+                  <div className="absolute top-4 left-4 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-950/80 border border-slate-700 text-slate-200 text-xs font-semibold backdrop-blur-md">
+                    <MapPin className="h-3 w-3 text-emerald-400" />
+                    <span>Bradley Stoke & North Bristol</span>
+                  </div>
+                </div>
+                <div className="p-6 bg-slate-950 border-t border-slate-800 space-y-2">
+                  <div className="flex items-center justify-between text-xs">
+                    <span className="font-bold text-white">RG Electrical Bristol Limited</span>
+                    <span className="text-emerald-400 font-mono font-semibold">
+                      100% Tidy Finish
+                    </span>
+                  </div>
+                  <p className="text-xs text-slate-400 leading-relaxed">
+                    Qualified NICEIC domestic and commercial electricians. Rapid response callouts,
+                    fuseboard replacements, and rewiring.
+                  </p>
+                </div>
+              </div>
             </div>
-
-            {/* Service Area Pill */}
-            <p className="text-xs text-slate-400 pt-2 font-mono">
-              📍 Serving Bradley Stoke, Stoke Gifford, Filton, Patchway, Thornbury, Clifton &
-              Bristol
-            </p>
           </div>
         </Container>
       </section>
@@ -359,16 +400,16 @@ robbie@theharleygroup.org | 0117 214 1357`;
       >
         <Container>
           <div className="max-w-3xl mb-12">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono font-semibold bg-blue-500/10 text-blue-300 border border-blue-500/30 mb-3">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono font-semibold bg-emerald-500/10 text-emerald-300 border border-emerald-500/30 mb-3">
               <Sparkles className="h-3.5 w-3.5" />
-              SOLVING THE "PORTFOLIO COMING SOON" DEFECT
+              VERIFIED BRISTOL INSTALLATIONS
             </div>
             <h2 className="text-2xl sm:text-4xl font-bold tracking-tight text-white">
               Recent Bristol Electrical Installations & Case Studies
             </h2>
             <p className="mt-3 text-sm sm:text-base text-slate-300 leading-relaxed">
-              Instead of a placeholder saying "Portfolio coming soon", homeowners see exactly what
-              you do, the tidy standard of work, and the official NICEIC certification provided.
+              Full project breakdowns with verified NICEIC certification, scope details, and
+              transparent price guides for Bristol homeowners.
             </p>
           </div>
 
@@ -376,30 +417,40 @@ robbie@theharleygroup.org | 0117 214 1357`;
             {RG_CASE_STUDIES.map((study) => (
               <div
                 key={study.id}
-                className="rounded-2xl border border-slate-800 bg-[#081B30] p-6 flex flex-col justify-between hover:border-slate-700 transition-all shadow-xl"
+                className="rounded-2xl border border-slate-800 bg-[#081B30] p-6 flex flex-col justify-between hover:border-slate-700 transition-all shadow-xl group overflow-hidden"
               >
-                <div className="space-y-4">
-                  <div className="flex items-center justify-between">
-                    <span className="text-[11px] font-mono font-bold tracking-wider px-2.5 py-1 rounded bg-emerald-500/10 text-emerald-300 border border-emerald-500/20">
+                <div>
+                  {/* Real high-res photo header */}
+                  <div className="relative h-48 -mx-6 -mt-6 mb-5 overflow-hidden rounded-t-2xl bg-slate-950">
+                    <img
+                      src={study.image}
+                      alt={study.title}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 brightness-95"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#081B30] via-transparent to-transparent" />
+                    <span className="absolute top-3 left-3 text-[11px] font-mono font-bold tracking-wider px-2.5 py-1 rounded bg-slate-950/80 text-emerald-300 border border-emerald-500/30 backdrop-blur-sm">
                       {study.tag}
                     </span>
-                    <span className="text-xs font-mono text-slate-400">{study.turnaround}</span>
+                    <span className="absolute top-3 right-3 text-xs font-mono text-slate-300 px-2 py-0.5 rounded bg-slate-950/80 backdrop-blur-sm">
+                      {study.turnaround}
+                    </span>
                   </div>
 
                   <h3 className="text-lg font-bold text-white leading-snug">{study.title}</h3>
 
-                  <div className="text-xs text-slate-400 space-y-1">
+                  <div className="mt-3 text-xs text-slate-400 space-y-1.5">
                     <p className="flex items-center gap-1.5 text-slate-300">
-                      <span>📍</span>
+                      <MapPin className="h-3.5 w-3.5 text-emerald-400 shrink-0" />
                       <strong>Location:</strong> {study.location}
                     </p>
                     <p className="flex items-center gap-1.5 text-slate-300">
-                      <span>🏠</span>
+                      <Building2 className="h-3.5 w-3.5 text-blue-400 shrink-0" />
                       <strong>Property:</strong> {study.property}
                     </p>
                   </div>
 
-                  <div className="space-y-2 pt-2 text-xs border-t border-slate-800/80">
+                  <div className="space-y-2 pt-3 mt-3 text-xs border-t border-slate-800/80">
                     <div>
                       <span className="font-semibold text-rose-300 block mb-0.5">The Problem:</span>
                       <p className="text-slate-400 leading-relaxed">{study.defect}</p>
@@ -437,11 +488,11 @@ robbie@theharleygroup.org | 0117 214 1357`;
               Tidy Workmanship Comparison
             </span>
             <h2 className="text-2xl sm:text-4xl font-bold tracking-tight text-white mt-2">
-              Before & After: Dangerous 1970s Fusebox vs Flush Metal Consumer Unit
+              1970s Bakelite Fuseboard Replacement (Bradley Stoke)
             </h2>
             <p className="mt-3 text-sm text-slate-300">
-              Drag the interactive slider to see how messy, high-risk wiring is transformed into a
-              tidy, certified 18th Edition installation.
+              Side-by-side comparison of the removed rewirable fusebox and the replacement Hager
+              metal consumer board with dual surge protection.
             </p>
           </div>
 
@@ -510,7 +561,7 @@ robbie@theharleygroup.org | 0117 214 1357`;
             <div className="text-center space-y-3">
               <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/40">
                 <Lock className="h-3.5 w-3.5" />
-                FOUNDER CONTROL CENTRE · 1-CLICK OUTREACH PACK
+                FOUNDER OUTREACH & PROPOSAL REVIEW
               </span>
               <h2 className="text-2xl sm:text-3xl font-extrabold text-white">
                 RG Electrical Bristol Limited: Commercial Pack & Outreach Scripts

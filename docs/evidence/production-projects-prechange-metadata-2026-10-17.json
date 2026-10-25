@@ -111,9 +111,7 @@
       "name": "admin_all_project_tasks",
       "qual": "app_private.has_role(auth.uid(), 'admin'::app_role)",
       "check": "app_private.has_role(auth.uid(), 'admin'::app_role)",
-      "roles": [
-        "authenticated"
-      ],
+      "roles": ["authenticated"],
       "table": "project_tasks"
     },
     {
@@ -121,9 +119,7 @@
       "name": "Admins manage projects",
       "qual": "app_private.has_role(auth.uid(), 'admin'::app_role)",
       "check": "app_private.has_role(auth.uid(), 'admin'::app_role)",
-      "roles": [
-        "authenticated"
-      ],
+      "roles": ["authenticated"],
       "table": "projects"
     },
     {
@@ -131,9 +127,7 @@
       "name": "admin_all_projects",
       "qual": "app_private.has_role(auth.uid(), 'admin'::app_role)",
       "check": "app_private.has_role(auth.uid(), 'admin'::app_role)",
-      "roles": [
-        "authenticated"
-      ],
+      "roles": ["authenticated"],
       "table": "projects"
     }
   ],
