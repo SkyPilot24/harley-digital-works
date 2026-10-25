@@ -31,6 +31,7 @@ import {
 } from "lucide-react";
 import { PageHeader, StatusBadge } from "./admin.index";
 import { LeadProposalModal } from "@/components/admin/LeadProposalModal";
+import { ProspectAuditorDesk } from "@/components/admin/ProspectAuditorDesk";
 
 type LeadRow = Database["public"]["Tables"]["leads"]["Row"];
 type LeadStatus = Database["public"]["Enums"]["lead_status"];
@@ -41,6 +42,7 @@ export const Route = createFileRoute("/_authenticated/admin/leads")({
 
 function LeadsPage() {
   const qc = useQueryClient();
+  const [mainView, setMainView] = useState<"pipeline" | "auditor">("pipeline");
   const [activeTab, setActiveTab] = useState<LeadFilter>("all");
   const [searchTerm, setSearchTerm] = useState("");
   const [page, setPage] = useState(0);
@@ -153,513 +155,567 @@ function LeadsPage() {
   const matchedTotal = leadsQuery.data?.total ?? 0;
   return (
     <div>
-      <PageHeader
-        title="Enquiries & qualification"
-        subtitle="Record genuine enquiries, customer fit and agreed next steps. Workspace creation does not confirm payment."
-        action={
-          <button
-            onClick={() => {
-              setEditingLead({ status: "new" });
-              setIsCreating(true);
-            }}
-            className="rounded-full bg-ink px-4 py-2 text-sm text-white"
-          >
-            <Plus size={16} className="mr-2 inline" />
-            Add enquiry
-          </button>
-        }
-      />
-      <>
-        {/* Metrics Bar */}
-        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          <div className="rounded-xl border border-ink/10 bg-white p-5">
-            <div className="flex items-center gap-2 text-ink-muted">
-              <Inbox size={14} />
-              <span className="text-[12px] uppercase tracking-wider">Total enquiries</span>
-            </div>
-            <div className="mt-3 text-3xl font-semibold text-ink">{totalLeads ?? "—"}</div>
-            <div className="mt-1 text-xs text-ink-muted">All-time enquiries</div>
-          </div>
-          <div className="rounded-xl border border-blue-200 bg-blue-50/50 p-5">
-            <div className="flex items-center gap-2 text-blue-700">
-              <Sparkles size={14} />
-              <span className="text-[12px] uppercase tracking-wider font-semibold">
-                Action Required
-              </span>
-            </div>
-            <div className="mt-3 text-3xl font-semibold text-blue-900">{newLeads ?? "—"}</div>
-            <div className="mt-1 text-xs text-blue-700">New / uncontacted leads</div>
-          </div>
-          <div className="rounded-xl border border-ink/10 bg-white p-5">
-            <div className="flex items-center gap-2 text-violet-700">
-              <Building size={14} />
-              <span className="text-[12px] uppercase tracking-wider font-semibold">Qualified</span>
-            </div>
-            <div className="mt-3 text-3xl font-semibold text-ink">{qualifiedLeads ?? "—"}</div>
-            <div className="mt-1 text-xs text-ink-muted">Ready for proposal / quote</div>
-          </div>
-          <div className="rounded-xl border border-emerald-200 bg-emerald-50/50 p-5">
-            <div className="flex items-center gap-2 text-emerald-700">
-              <UserPlus size={14} />
-              <span className="text-[12px] uppercase tracking-wider font-semibold">Won</span>
-            </div>
-            <div className="mt-3 text-3xl font-semibold text-emerald-900">{wonLeads ?? "—"}</div>
-            <div className="mt-1 text-xs text-emerald-700">
-              {countsQuery.isSuccess
-                ? `${conversionRate}% of records marked won`
-                : "Rate unavailable"}
-            </div>
-          </div>
-        </div>
-
-        {countsQuery.isError && (
-          <div
-            role="alert"
-            className="mt-4 rounded-xl border border-rose-200 bg-rose-50 p-3 text-xs text-rose-950 flex items-center justify-between gap-3"
-          >
-            <span>Enquiry count metrics could not be loaded from the database.</span>
-            <button
-              type="button"
-              className="rounded-full border border-rose-300 bg-white px-3 py-1 font-bold text-rose-900 hover:bg-rose-100 transition-colors"
-              onClick={() => void countsQuery.refetch()}
-            >
-              Retry Totals
-            </button>
-          </div>
-        )}
-        {/* Filter and Search Bar */}
-        <div className="mt-8 flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
-          <div className="flex flex-wrap gap-2">
-            {[
-              { id: "all", label: "All Leads", count: totalLeads },
-              { id: "new", label: "New", count: newLeads },
-              { id: "contacted", label: "Contacted", count: counts?.contacted },
-              { id: "qualified", label: "Qualified", count: qualifiedLeads },
-              { id: "won", label: "Won", count: wonLeads },
-              {
-                id: "lost",
-                label: "Lost",
-                count: counts?.lost,
-              },
-            ].map((tab) => (
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        <PageHeader
+          title="Pipeline & Outbound"
+          subtitle="Record genuine enquiries, qualify prospects, or run instant website audits powered by Google Agent Builder."
+          action={
+            mainView === "pipeline" ? (
               <button
-                key={tab.id}
                 onClick={() => {
-                  setActiveTab(tab.id as LeadFilter);
+                  setEditingLead({ status: "new" });
+                  setIsCreating(true);
+                }}
+                className="rounded-full bg-ink px-4 py-2 text-sm text-white"
+              >
+                <Plus size={16} className="mr-2 inline" />
+                Add enquiry
+              </button>
+            ) : null
+          }
+        />
+        <div className="inline-flex rounded-xl bg-slate-100 p-1 border border-slate-200 shrink-0 self-start sm:self-auto">
+          <button
+            type="button"
+            onClick={() => setMainView("pipeline")}
+            className={`inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all ${
+              mainView === "pipeline"
+                ? "bg-white text-slate-900 shadow-sm border border-slate-200/80"
+                : "text-slate-600 hover:text-slate-900"
+            }`}
+          >
+            <Inbox size={14} className="text-slate-500" />
+            Enquiries &amp; Pipeline
+          </button>
+          <button
+            type="button"
+            onClick={() => setMainView("auditor")}
+            className={`inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all ${
+              mainView === "auditor"
+                ? "bg-white text-slate-900 shadow-sm border border-slate-200/80"
+                : "text-slate-600 hover:text-slate-900"
+            }`}
+          >
+            <Sparkles size={14} className="text-sky-600" />
+            Instant Prospect Auditor
+          </button>
+        </div>
+      </div>
+
+      {mainView === "auditor" ? (
+        <div className="mt-8">
+          <ProspectAuditorDesk
+            onImportLead={(leadData) => {
+              saveLeadMutation.mutate({
+                name: leadData.name,
+                company: leadData.company,
+                email: leadData.email,
+                phone: leadData.phone,
+                notes: leadData.notes,
+                status: "new",
+              });
+              setMainView("pipeline");
+            }}
+          />
+        </div>
+      ) : (
+        <>
+          {/* Metrics Bar */}
+          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="rounded-xl border border-ink/10 bg-white p-5">
+              <div className="flex items-center gap-2 text-ink-muted">
+                <Inbox size={14} />
+                <span className="text-[12px] uppercase tracking-wider">Total enquiries</span>
+              </div>
+              <div className="mt-3 text-3xl font-semibold text-ink">{totalLeads ?? "—"}</div>
+              <div className="mt-1 text-xs text-ink-muted">All-time enquiries</div>
+            </div>
+            <div className="rounded-xl border border-blue-200 bg-blue-50/50 p-5">
+              <div className="flex items-center gap-2 text-blue-700">
+                <Sparkles size={14} />
+                <span className="text-[12px] uppercase tracking-wider font-semibold">
+                  Action Required
+                </span>
+              </div>
+              <div className="mt-3 text-3xl font-semibold text-blue-900">{newLeads ?? "—"}</div>
+              <div className="mt-1 text-xs text-blue-700">New / uncontacted leads</div>
+            </div>
+            <div className="rounded-xl border border-ink/10 bg-white p-5">
+              <div className="flex items-center gap-2 text-violet-700">
+                <Building size={14} />
+                <span className="text-[12px] uppercase tracking-wider font-semibold">
+                  Qualified
+                </span>
+              </div>
+              <div className="mt-3 text-3xl font-semibold text-ink">{qualifiedLeads ?? "—"}</div>
+              <div className="mt-1 text-xs text-ink-muted">Ready for proposal / quote</div>
+            </div>
+            <div className="rounded-xl border border-emerald-200 bg-emerald-50/50 p-5">
+              <div className="flex items-center gap-2 text-emerald-700">
+                <UserPlus size={14} />
+                <span className="text-[12px] uppercase tracking-wider font-semibold">Won</span>
+              </div>
+              <div className="mt-3 text-3xl font-semibold text-emerald-900">{wonLeads ?? "—"}</div>
+              <div className="mt-1 text-xs text-emerald-700">
+                {countsQuery.isSuccess
+                  ? `${conversionRate}% of records marked won`
+                  : "Rate unavailable"}
+              </div>
+            </div>
+          </div>
+
+          {countsQuery.isError && (
+            <div
+              role="alert"
+              className="mt-4 rounded-xl border border-rose-200 bg-rose-50 p-3 text-xs text-rose-950 flex items-center justify-between gap-3"
+            >
+              <span>Enquiry count metrics could not be loaded from the database.</span>
+              <button
+                type="button"
+                className="rounded-full border border-rose-300 bg-white px-3 py-1 font-bold text-rose-900 hover:bg-rose-100 transition-colors"
+                onClick={() => void countsQuery.refetch()}
+              >
+                Retry Totals
+              </button>
+            </div>
+          )}
+          {/* Filter and Search Bar */}
+          <div className="mt-8 flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
+            <div className="flex flex-wrap gap-2">
+              {[
+                { id: "all", label: "All Leads", count: totalLeads },
+                { id: "new", label: "New", count: newLeads },
+                { id: "contacted", label: "Contacted", count: counts?.contacted },
+                { id: "qualified", label: "Qualified", count: qualifiedLeads },
+                { id: "won", label: "Won", count: wonLeads },
+                {
+                  id: "lost",
+                  label: "Lost",
+                  count: counts?.lost,
+                },
+              ].map((tab) => (
+                <button
+                  key={tab.id}
+                  onClick={() => {
+                    setActiveTab(tab.id as LeadFilter);
+                    setPage(0);
+                  }}
+                  className={`rounded-full px-3.5 py-1.5 text-xs font-medium transition-colors ${
+                    activeTab === tab.id
+                      ? "bg-ink text-white"
+                      : "border border-ink/10 bg-white text-ink/70 hover:bg-ink/[0.04]"
+                  }`}
+                >
+                  {tab.label} ({tab.count ?? "—"})
+                </button>
+              ))}
+            </div>
+
+            <div className="relative min-w-[240px]">
+              <Search
+                size={14}
+                className="absolute left-3 top-1/2 -translate-y-1/2 text-ink-muted"
+              />
+              <input
+                type="text"
+                placeholder="Search leads by name, email, company..."
+                value={searchTerm}
+                onChange={(e) => {
+                  setSearchTerm(e.target.value);
                   setPage(0);
                 }}
-                className={`rounded-full px-3.5 py-1.5 text-xs font-medium transition-colors ${
-                  activeTab === tab.id
-                    ? "bg-ink text-white"
-                    : "border border-ink/10 bg-white text-ink/70 hover:bg-ink/[0.04]"
-                }`}
-              >
-                {tab.label} ({tab.count ?? "—"})
-              </button>
-            ))}
+                aria-label="Search enquiries"
+                className="w-full rounded-full border border-ink/15 bg-white py-1.5 pl-9 pr-4 text-xs text-ink placeholder:text-ink-muted focus:border-ink focus:outline-none"
+              />
+            </div>
           </div>
 
-          <div className="relative min-w-[240px]">
-            <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-ink-muted" />
-            <input
-              type="text"
-              placeholder="Search leads by name, email, company..."
-              value={searchTerm}
-              onChange={(e) => {
-                setSearchTerm(e.target.value);
-                setPage(0);
-              }}
-              aria-label="Search enquiries"
-              className="w-full rounded-full border border-ink/15 bg-white py-1.5 pl-9 pr-4 text-xs text-ink placeholder:text-ink-muted focus:border-ink focus:outline-none"
-            />
-          </div>
-        </div>
-
-        {/* Leads Table */}
-        <div
-          className="mt-6 overflow-x-auto rounded-xl border border-ink/10 bg-white"
-          aria-busy={leadsQuery.isFetching}
-        >
-          <table className="w-full text-sm">
-            <thead className="bg-ink/[0.03] text-left text-[12px] uppercase tracking-wider text-ink-muted">
-              <tr>
-                <th className="px-4 py-3">Lead / Company</th>
-                <th className="px-4 py-3">Package / Scope</th>
-                <th className="px-4 py-3">Status</th>
-                <th className="px-4 py-3">Received</th>
-                <th className="px-4 py-3 text-right">Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {leadsQuery.isLoading && (
-                <>
-                  {[1, 2, 3, 4, 5].map((i) => (
-                    <tr key={i} className="border-t border-ink/5">
-                      <td className="px-4 py-4">
-                        <div className="h-4 w-36 rounded bg-ink/10 animate-pulse mb-1.5" />
-                        <div className="h-3 w-48 rounded bg-ink/5 animate-pulse" />
-                      </td>
-                      <td className="px-4 py-4">
-                        <div className="h-6 w-24 rounded bg-ink/10 animate-pulse" />
-                      </td>
-                      <td className="px-4 py-4">
-                        <div className="h-5 w-16 rounded-full bg-ink/10 animate-pulse" />
-                      </td>
-                      <td className="px-4 py-4">
-                        <div className="h-3 w-20 rounded bg-ink/5 animate-pulse" />
-                      </td>
-                      <td className="px-4 py-4 text-right">
-                        <div className="h-6 w-16 rounded-full bg-ink/10 animate-pulse ml-auto" />
-                      </td>
-                    </tr>
-                  ))}
-                </>
-              )}
-
-              {leadsQuery.isError && (
-                <tr>
-                  <td colSpan={5} className="px-4 py-8 text-center" role="alert">
-                    <div className="mx-auto max-w-md rounded-xl border border-rose-200 bg-rose-50 p-4 text-xs text-rose-950 flex items-center justify-between gap-3">
-                      <span>Enquiries could not be loaded from Supabase.</span>
-                      <button
-                        type="button"
-                        className="rounded-full border border-rose-300 bg-white px-3 py-1 font-bold text-rose-900 hover:bg-rose-100 transition-colors"
-                        onClick={() => void leadsQuery.refetch()}
-                      >
-                        Retry
-                      </button>
-                    </div>
-                  </td>
-                </tr>
-              )}
-              {filteredLeads.length === 0 && leadsQuery.isSuccess && (
-                <tr>
-                  <td colSpan={5} className="px-4 py-12 text-center text-ink-muted">
-                    <div className="mx-auto max-w-sm rounded-xl border border-dashed border-ink/15 p-6 text-center">
-                      <Inbox size={28} className="mx-auto text-ink-muted/50 mb-2" />
-                      <p className="text-sm font-bold text-ink">No enquiries match this view</p>
-                      <p className="text-xs text-ink-muted mt-1">
-                        Try resetting your search query or select another pipeline status tab.
-                      </p>
-                    </div>
-                  </td>
-                </tr>
-              )}
-              {filteredLeads.map((lead) => (
-                <tr
-                  key={lead.id}
-                  onClick={() => setSelectedLead(lead)}
-                  className="cursor-pointer border-t border-ink/5 transition-colors hover:bg-ink/[0.02]"
-                >
-                  <td className="px-4 py-3.5">
-                    <div className="font-medium text-ink">{lead.name}</div>
-                    <div className="text-xs text-ink-muted flex items-center gap-2">
-                      {lead.company && <span>{lead.company} ·</span>}
-                      <span>{lead.email}</span>
-                    </div>
-                  </td>
-                  <td className="px-4 py-3.5">
-                    <span className="rounded bg-ink/[0.05] px-2 py-1 text-xs font-medium text-ink/80">
-                      {lead.package || "General Enquiry"}
-                    </span>
-                  </td>
-                  <td className="px-4 py-3.5">
-                    <StatusBadge status={lead.status} />
-                  </td>
-                  <td className="px-4 py-3.5 text-xs text-ink-muted">
-                    {new Date(lead.created_at).toLocaleDateString("en-GB", {
-                      day: "numeric",
-                      month: "short",
-                      year: "numeric",
-                    })}
-                  </td>
-                  <td className="px-4 py-3.5 text-right" onClick={(e) => e.stopPropagation()}>
-                    <div className="flex items-center justify-end gap-1">
-                      {lead.status !== "won" && (
-                        <button
-                          onClick={() => {
-                            if (
-                              confirm(
-                                `Create a client workspace for "${lead.name}"? This does not record an agreement, payment or recurring revenue.`,
-                              )
-                            ) {
-                              convertToClientMutation.mutate(lead);
-                            }
-                          }}
-                          className="inline-flex items-center gap-1 rounded-md bg-emerald-50 px-2.5 py-1 text-xs font-semibold text-emerald-700 hover:bg-emerald-100"
-                          disabled={convertToClientMutation.isPending}
-                          title="Create client workspace"
-                        >
-                          <UserPlus size={13} />
-                          <span>Create workspace</span>
-                        </button>
-                      )}
-                      <button
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          setProposingLead(lead);
-                        }}
-                        className="inline-flex items-center gap-1 rounded-md bg-gold-500/10 border border-gold-500/30 px-2 py-1 text-xs font-semibold text-gold-700 hover:bg-gold-500/20"
-                        title="Generate Client Proposal"
-                      >
-                        <FileText size={13} />
-                        <span>Proposal</span>
-                      </button>
-                      <button
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          setEditingLead(lead);
-                        }}
-                        className="rounded-md p-1.5 text-ink/60 hover:bg-ink/[0.05] hover:text-ink"
-                        title="Edit"
-                      >
-                        <Pencil size={14} />
-                      </button>
-                      <button
-                        onClick={() => {
-                          if (confirm(`Delete lead from ${lead.name}?`)) {
-                            deleteLeadMutation.mutate(lead.id);
-                          }
-                        }}
-                        className="rounded-md p-1.5 text-ink/60 hover:bg-rose-50 hover:text-rose-600"
-                        title="Delete"
-                      >
-                        <Trash2 size={14} />
-                      </button>
-                    </div>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-
-        <nav
-          aria-label="Enquiry pages"
-          className="mt-4 flex flex-wrap items-center justify-between gap-3 text-sm"
-        >
-          <p role="status">
-            {leadsQuery.isSuccess
-              ? `${matchedTotal} matching enquiries · Page ${page + 1}`
-              : "Enquiry page unavailable"}
-          </p>
-          <div className="flex gap-2">
-            <button
-              type="button"
-              className="rounded-full border border-ink/20 px-4 py-2 disabled:opacity-40"
-              disabled={page === 0 || leadsQuery.isFetching}
-              onClick={() => setPage((current) => current - 1)}
-            >
-              Previous
-            </button>
-            <button
-              type="button"
-              className="rounded-full border border-ink/20 px-4 py-2 disabled:opacity-40"
-              disabled={
-                !leadsQuery.isSuccess ||
-                leadsQuery.isFetching ||
-                (page + 1) * LEAD_PAGE_SIZE >= matchedTotal
-              }
-              onClick={() => setPage((current) => current + 1)}
-            >
-              Next
-            </button>
-          </div>
-        </nav>
-        {/* Lead Detail & Inspection Drawer */}
-        {selectedLead && (
+          {/* Leads Table */}
           <div
-            className="fixed inset-0 z-50 flex justify-end bg-black/40 backdrop-blur-xs"
-            onClick={() => setSelectedLead(null)}
+            className="mt-6 overflow-x-auto rounded-xl border border-ink/10 bg-white"
+            aria-busy={leadsQuery.isFetching}
           >
-            <div
-              className="h-full w-full max-w-xl overflow-y-auto bg-white p-6 shadow-2xl sm:p-8"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <div className="flex items-start justify-between border-b border-ink/10 pb-4">
-                <div>
-                  <div className="flex items-center gap-2">
-                    <h2 className="text-xl font-semibold text-ink">{selectedLead.name}</h2>
-                    <StatusBadge status={selectedLead.status} />
-                  </div>
-                  {selectedLead.company && (
-                    <p className="mt-1 text-sm text-ink-muted">{selectedLead.company}</p>
-                  )}
-                </div>
-                <button
-                  onClick={() => setSelectedLead(null)}
-                  className="rounded-md p-2 text-ink/60 hover:bg-ink/[0.05]"
-                >
-                  <X size={18} />
-                </button>
-              </div>
+            <table className="w-full text-sm">
+              <thead className="bg-ink/[0.03] text-left text-[12px] uppercase tracking-wider text-ink-muted">
+                <tr>
+                  <th className="px-4 py-3">Lead / Company</th>
+                  <th className="px-4 py-3">Package / Scope</th>
+                  <th className="px-4 py-3">Status</th>
+                  <th className="px-4 py-3">Received</th>
+                  <th className="px-4 py-3 text-right">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {leadsQuery.isLoading && (
+                  <>
+                    {[1, 2, 3, 4, 5].map((i) => (
+                      <tr key={i} className="border-t border-ink/5">
+                        <td className="px-4 py-4">
+                          <div className="h-4 w-36 rounded bg-ink/10 animate-pulse mb-1.5" />
+                          <div className="h-3 w-48 rounded bg-ink/5 animate-pulse" />
+                        </td>
+                        <td className="px-4 py-4">
+                          <div className="h-6 w-24 rounded bg-ink/10 animate-pulse" />
+                        </td>
+                        <td className="px-4 py-4">
+                          <div className="h-5 w-16 rounded-full bg-ink/10 animate-pulse" />
+                        </td>
+                        <td className="px-4 py-4">
+                          <div className="h-3 w-20 rounded bg-ink/5 animate-pulse" />
+                        </td>
+                        <td className="px-4 py-4 text-right">
+                          <div className="h-6 w-16 rounded-full bg-ink/10 animate-pulse ml-auto" />
+                        </td>
+                      </tr>
+                    ))}
+                  </>
+                )}
 
-              <div className="mt-6 space-y-6">
-                {/* Quick Conversion Banner */}
-                {selectedLead.status !== "won" ? (
-                  <div className="rounded-xl border border-emerald-200 bg-emerald-50/60 p-4">
-                    <div className="flex items-center justify-between gap-4">
-                      <div>
-                        <h4 className="text-sm font-semibold text-emerald-950">
-                          Prepare a client workspace
-                        </h4>
-                        <p className="mt-0.5 text-xs text-emerald-800">
-                          Creates a prospect workspace. Mark the lead won only after an agreement;
-                          record payments in your accounting provider.
+                {leadsQuery.isError && (
+                  <tr>
+                    <td colSpan={5} className="px-4 py-8 text-center" role="alert">
+                      <div className="mx-auto max-w-md rounded-xl border border-rose-200 bg-rose-50 p-4 text-xs text-rose-950 flex items-center justify-between gap-3">
+                        <span>Enquiries could not be loaded from Supabase.</span>
+                        <button
+                          type="button"
+                          className="rounded-full border border-rose-300 bg-white px-3 py-1 font-bold text-rose-900 hover:bg-rose-100 transition-colors"
+                          onClick={() => void leadsQuery.refetch()}
+                        >
+                          Retry
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                )}
+                {filteredLeads.length === 0 && leadsQuery.isSuccess && (
+                  <tr>
+                    <td colSpan={5} className="px-4 py-12 text-center text-ink-muted">
+                      <div className="mx-auto max-w-sm rounded-xl border border-dashed border-ink/15 p-6 text-center">
+                        <Inbox size={28} className="mx-auto text-ink-muted/50 mb-2" />
+                        <p className="text-sm font-bold text-ink">No enquiries match this view</p>
+                        <p className="text-xs text-ink-muted mt-1">
+                          Try resetting your search query or select another pipeline status tab.
                         </p>
                       </div>
-                      <div className="flex items-center gap-2">
+                    </td>
+                  </tr>
+                )}
+                {filteredLeads.map((lead) => (
+                  <tr
+                    key={lead.id}
+                    onClick={() => setSelectedLead(lead)}
+                    className="cursor-pointer border-t border-ink/5 transition-colors hover:bg-ink/[0.02]"
+                  >
+                    <td className="px-4 py-3.5">
+                      <div className="font-medium text-ink">{lead.name}</div>
+                      <div className="text-xs text-ink-muted flex items-center gap-2">
+                        {lead.company && <span>{lead.company} ·</span>}
+                        <span>{lead.email}</span>
+                      </div>
+                    </td>
+                    <td className="px-4 py-3.5">
+                      <span className="rounded bg-ink/[0.05] px-2 py-1 text-xs font-medium text-ink/80">
+                        {lead.package || "General Enquiry"}
+                      </span>
+                    </td>
+                    <td className="px-4 py-3.5">
+                      <StatusBadge status={lead.status} />
+                    </td>
+                    <td className="px-4 py-3.5 text-xs text-ink-muted">
+                      {new Date(lead.created_at).toLocaleDateString("en-GB", {
+                        day: "numeric",
+                        month: "short",
+                        year: "numeric",
+                      })}
+                    </td>
+                    <td className="px-4 py-3.5 text-right" onClick={(e) => e.stopPropagation()}>
+                      <div className="flex items-center justify-end gap-1">
+                        {lead.status !== "won" && (
+                          <button
+                            onClick={() => {
+                              if (
+                                confirm(
+                                  `Create a client workspace for "${lead.name}"? This does not record an agreement, payment or recurring revenue.`,
+                                )
+                              ) {
+                                convertToClientMutation.mutate(lead);
+                              }
+                            }}
+                            className="inline-flex items-center gap-1 rounded-md bg-emerald-50 px-2.5 py-1 text-xs font-semibold text-emerald-700 hover:bg-emerald-100"
+                            disabled={convertToClientMutation.isPending}
+                            title="Create client workspace"
+                          >
+                            <UserPlus size={13} />
+                            <span>Create workspace</span>
+                          </button>
+                        )}
                         <button
-                          onClick={() => setProposingLead(selectedLead)}
-                          className="shrink-0 inline-flex items-center gap-1 rounded-full bg-gold-500/20 border border-gold-500/40 px-3.5 py-2 text-xs font-semibold text-neutral-900 hover:bg-gold-500/30"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setProposingLead(lead);
+                          }}
+                          className="inline-flex items-center gap-1 rounded-md bg-gold-500/10 border border-gold-500/30 px-2 py-1 text-xs font-semibold text-gold-700 hover:bg-gold-500/20"
+                          title="Generate Client Proposal"
                         >
                           <FileText size={13} />
                           <span>Proposal</span>
                         </button>
                         <button
-                          onClick={() => convertToClientMutation.mutate(selectedLead)}
-                          disabled={convertToClientMutation.isPending}
-                          className="shrink-0 rounded-full bg-emerald-700 px-4 py-2 text-xs font-semibold text-white shadow-xs hover:bg-emerald-800 disabled:opacity-50"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setEditingLead(lead);
+                          }}
+                          className="rounded-md p-1.5 text-ink/60 hover:bg-ink/[0.05] hover:text-ink"
+                          title="Edit"
                         >
-                          {convertToClientMutation.isPending ? "Preparing…" : "Create workspace"}
+                          <Pencil size={14} />
                         </button>
+                        <button
+                          onClick={() => {
+                            if (confirm(`Delete lead from ${lead.name}?`)) {
+                              deleteLeadMutation.mutate(lead.id);
+                            }
+                          }}
+                          className="rounded-md p-1.5 text-ink/60 hover:bg-rose-50 hover:text-rose-600"
+                          title="Delete"
+                        >
+                          <Trash2 size={14} />
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          <nav
+            aria-label="Enquiry pages"
+            className="mt-4 flex flex-wrap items-center justify-between gap-3 text-sm"
+          >
+            <p role="status">
+              {leadsQuery.isSuccess
+                ? `${matchedTotal} matching enquiries · Page ${page + 1}`
+                : "Enquiry page unavailable"}
+            </p>
+            <div className="flex gap-2">
+              <button
+                type="button"
+                className="rounded-full border border-ink/20 px-4 py-2 disabled:opacity-40"
+                disabled={page === 0 || leadsQuery.isFetching}
+                onClick={() => setPage((current) => current - 1)}
+              >
+                Previous
+              </button>
+              <button
+                type="button"
+                className="rounded-full border border-ink/20 px-4 py-2 disabled:opacity-40"
+                disabled={
+                  !leadsQuery.isSuccess ||
+                  leadsQuery.isFetching ||
+                  (page + 1) * LEAD_PAGE_SIZE >= matchedTotal
+                }
+                onClick={() => setPage((current) => current + 1)}
+              >
+                Next
+              </button>
+            </div>
+          </nav>
+          {/* Lead Detail & Inspection Drawer */}
+          {selectedLead && (
+            <div
+              className="fixed inset-0 z-50 flex justify-end bg-black/40 backdrop-blur-xs"
+              onClick={() => setSelectedLead(null)}
+            >
+              <div
+                className="h-full w-full max-w-xl overflow-y-auto bg-white p-6 shadow-2xl sm:p-8"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <div className="flex items-start justify-between border-b border-ink/10 pb-4">
+                  <div>
+                    <div className="flex items-center gap-2">
+                      <h2 className="text-xl font-semibold text-ink">{selectedLead.name}</h2>
+                      <StatusBadge status={selectedLead.status} />
+                    </div>
+                    {selectedLead.company && (
+                      <p className="mt-1 text-sm text-ink-muted">{selectedLead.company}</p>
+                    )}
+                  </div>
+                  <button
+                    onClick={() => setSelectedLead(null)}
+                    className="rounded-md p-2 text-ink/60 hover:bg-ink/[0.05]"
+                  >
+                    <X size={18} />
+                  </button>
+                </div>
+
+                <div className="mt-6 space-y-6">
+                  {/* Quick Conversion Banner */}
+                  {selectedLead.status !== "won" ? (
+                    <div className="rounded-xl border border-emerald-200 bg-emerald-50/60 p-4">
+                      <div className="flex items-center justify-between gap-4">
+                        <div>
+                          <h4 className="text-sm font-semibold text-emerald-950">
+                            Prepare a client workspace
+                          </h4>
+                          <p className="mt-0.5 text-xs text-emerald-800">
+                            Creates a prospect workspace. Mark the lead won only after an agreement;
+                            record payments in your accounting provider.
+                          </p>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <button
+                            onClick={() => setProposingLead(selectedLead)}
+                            className="shrink-0 inline-flex items-center gap-1 rounded-full bg-gold-500/20 border border-gold-500/40 px-3.5 py-2 text-xs font-semibold text-neutral-900 hover:bg-gold-500/30"
+                          >
+                            <FileText size={13} />
+                            <span>Proposal</span>
+                          </button>
+                          <button
+                            onClick={() => convertToClientMutation.mutate(selectedLead)}
+                            disabled={convertToClientMutation.isPending}
+                            className="shrink-0 rounded-full bg-emerald-700 px-4 py-2 text-xs font-semibold text-white shadow-xs hover:bg-emerald-800 disabled:opacity-50"
+                          >
+                            {convertToClientMutation.isPending ? "Preparing…" : "Create workspace"}
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="rounded-xl border border-ink/10 bg-ink/[0.03] p-4 flex items-center justify-between">
+                      <div className="text-xs text-ink/80">
+                        <span className="font-semibold text-emerald-700">✓ Lead marked won.</span>{" "}
+                        Verify the client workspace and agreement; this status does not confirm
+                        payment.
+                      </div>
+                      <Link
+                        to="/admin/clients"
+                        className="inline-flex items-center gap-1 text-xs font-semibold text-ink hover:underline"
+                      >
+                        View in Clients <ExternalLink size={12} />
+                      </Link>
+                    </div>
+                  )}
+
+                  {/* Contact Information */}
+                  <div className="grid gap-4 rounded-xl border border-ink/10 p-4 sm:grid-cols-2">
+                    <div>
+                      <div className="text-[11px] font-semibold uppercase tracking-wider text-ink-muted">
+                        Email
+                      </div>
+                      <a
+                        href={`mailto:${selectedLead.email}`}
+                        className="mt-1 inline-flex items-center gap-1.5 text-sm font-medium text-ink hover:text-primary hover:underline"
+                      >
+                        <Mail size={14} className="text-ink-muted" />
+                        {selectedLead.email}
+                      </a>
+                    </div>
+                    <div>
+                      <div className="text-[11px] font-semibold uppercase tracking-wider text-ink-muted">
+                        Received Date
+                      </div>
+                      <div className="mt-1 flex items-center gap-1.5 text-sm text-ink">
+                        <Calendar size={14} className="text-ink-muted" />
+                        {new Date(selectedLead.created_at).toLocaleString("en-GB")}
                       </div>
                     </div>
                   </div>
-                ) : (
-                  <div className="rounded-xl border border-ink/10 bg-ink/[0.03] p-4 flex items-center justify-between">
-                    <div className="text-xs text-ink/80">
-                      <span className="font-semibold text-emerald-700">✓ Lead marked won.</span>{" "}
-                      Verify the client workspace and agreement; this status does not confirm
-                      payment.
-                    </div>
-                    <Link
-                      to="/admin/clients"
-                      className="inline-flex items-center gap-1 text-xs font-semibold text-ink hover:underline"
-                    >
-                      View in Clients <ExternalLink size={12} />
-                    </Link>
-                  </div>
-                )}
 
-                {/* Contact Information */}
-                <div className="grid gap-4 rounded-xl border border-ink/10 p-4 sm:grid-cols-2">
-                  <div>
-                    <div className="text-[11px] font-semibold uppercase tracking-wider text-ink-muted">
-                      Email
-                    </div>
-                    <a
-                      href={`mailto:${selectedLead.email}`}
-                      className="mt-1 inline-flex items-center gap-1.5 text-sm font-medium text-ink hover:text-primary hover:underline"
-                    >
-                      <Mail size={14} className="text-ink-muted" />
-                      {selectedLead.email}
-                    </a>
-                  </div>
-                  <div>
-                    <div className="text-[11px] font-semibold uppercase tracking-wider text-ink-muted">
-                      Received Date
-                    </div>
-                    <div className="mt-1 flex items-center gap-1.5 text-sm text-ink">
-                      <Calendar size={14} className="text-ink-muted" />
-                      {new Date(selectedLead.created_at).toLocaleString("en-GB")}
-                    </div>
-                  </div>
-                </div>
-
-                {/* Package & Service Scope */}
-                <div>
-                  <h3 className="text-xs font-semibold uppercase tracking-wider text-ink-muted">
-                    Requested Package / Service
-                  </h3>
-                  <div className="mt-2 inline-block rounded-lg border border-ink/15 bg-ink/[0.02] px-3.5 py-2 text-sm font-medium text-ink">
-                    {selectedLead.package || "General Consultancy Enquiry"}
-                  </div>
-                </div>
-
-                {/* Intake Message / Details */}
-                <div>
-                  <h3 className="text-xs font-semibold uppercase tracking-wider text-ink-muted">
-                    Full Enquiry & Qualification Message
-                  </h3>
-                  <div className="mt-2 whitespace-pre-wrap rounded-xl border border-ink/10 bg-ink/[0.02] p-4 text-sm leading-relaxed text-ink/90">
-                    {selectedLead.message}
-                  </div>
-                </div>
-
-                <div aria-live="polite">
-                  <h3 className="text-xs font-semibold uppercase tracking-wider text-ink-muted">
-                    Enquiry alert
-                  </h3>
-                  <p className="mt-2 text-sm text-ink-muted">
-                    {notificationQuery.isError
-                      ? "Alert status unavailable. The enquiry remains saved here."
-                      : notificationQuery.isPending
-                        ? "Checking alert status…"
-                        : !notificationQuery.data
-                          ? "No automatic alert recorded for this lead."
-                          : notificationQuery.data.status === "accepted"
-                            ? "Slack acknowledged this alert."
-                            : notificationQuery.data.status === "failed"
-                              ? "Alert failed after five attempts. Check the Slack connection before arranging a manual resend."
-                              : notificationQuery.data.status === "processing"
-                                ? "Alert delivery in progress."
-                                : "Alert queued. Automatic retries run when the Slack connection is enabled."}
-                  </p>
-                  {notificationQuery.data && (
-                    <p className="mt-1 text-xs text-ink-muted">
-                      Delivery attempts: {notificationQuery.data.attempts} / 5
-                    </p>
-                  )}
-                </div>
-
-                {/* Internal Notes */}
-                {selectedLead.notes && (
+                  {/* Package & Service Scope */}
                   <div>
                     <h3 className="text-xs font-semibold uppercase tracking-wider text-ink-muted">
-                      Internal Operator Notes
+                      Requested Package / Service
                     </h3>
-                    <div className="mt-2 whitespace-pre-wrap rounded-xl border border-amber-200 bg-amber-50/50 p-4 text-xs text-amber-950">
-                      {selectedLead.notes}
+                    <div className="mt-2 inline-block rounded-lg border border-ink/15 bg-ink/[0.02] px-3.5 py-2 text-sm font-medium text-ink">
+                      {selectedLead.package || "General Consultancy Enquiry"}
                     </div>
                   </div>
-                )}
 
-                {/* Status Update Controls */}
-                <div className="border-t border-ink/10 pt-4">
-                  <div className="text-xs font-semibold uppercase tracking-wider text-ink-muted">
-                    Update Lead Pipeline Status
+                  {/* Intake Message / Details */}
+                  <div>
+                    <h3 className="text-xs font-semibold uppercase tracking-wider text-ink-muted">
+                      Full Enquiry & Qualification Message
+                    </h3>
+                    <div className="mt-2 whitespace-pre-wrap rounded-xl border border-ink/10 bg-ink/[0.02] p-4 text-sm leading-relaxed text-ink/90">
+                      {selectedLead.message}
+                    </div>
                   </div>
-                  <div className="mt-2 flex flex-wrap gap-2">
-                    {(["new", "contacted", "qualified", "won", "lost"] as LeadStatus[]).map(
-                      (st) => (
-                        <button
-                          key={st}
-                          disabled={saveLeadMutation.isPending}
-                          onClick={() =>
-                            saveLeadMutation.mutate({
-                              id: selectedLead.id,
-                              status: st,
-                              statusOnly: true,
-                            })
-                          }
-                          className={`rounded-full px-3 py-1 text-xs font-medium transition-colors ${
-                            selectedLead.status === st
-                              ? "bg-ink text-white"
-                              : "border border-ink/15 bg-white text-ink/70 hover:bg-ink/5"
-                          }`}
-                        >
-                          {st.replace(/_/g, " ")}
-                        </button>
-                      ),
+
+                  <div aria-live="polite">
+                    <h3 className="text-xs font-semibold uppercase tracking-wider text-ink-muted">
+                      Enquiry alert
+                    </h3>
+                    <p className="mt-2 text-sm text-ink-muted">
+                      {notificationQuery.isError
+                        ? "Alert status unavailable. The enquiry remains saved here."
+                        : notificationQuery.isPending
+                          ? "Checking alert status…"
+                          : !notificationQuery.data
+                            ? "No automatic alert recorded for this lead."
+                            : notificationQuery.data.status === "accepted"
+                              ? "Slack acknowledged this alert."
+                              : notificationQuery.data.status === "failed"
+                                ? "Alert failed after five attempts. Check the Slack connection before arranging a manual resend."
+                                : notificationQuery.data.status === "processing"
+                                  ? "Alert delivery in progress."
+                                  : "Alert queued. Automatic retries run when the Slack connection is enabled."}
+                    </p>
+                    {notificationQuery.data && (
+                      <p className="mt-1 text-xs text-ink-muted">
+                        Delivery attempts: {notificationQuery.data.attempts} / 5
+                      </p>
                     )}
+                  </div>
+
+                  {/* Internal Notes */}
+                  {selectedLead.notes && (
+                    <div>
+                      <h3 className="text-xs font-semibold uppercase tracking-wider text-ink-muted">
+                        Internal Operator Notes
+                      </h3>
+                      <div className="mt-2 whitespace-pre-wrap rounded-xl border border-amber-200 bg-amber-50/50 p-4 text-xs text-amber-950">
+                        {selectedLead.notes}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Status Update Controls */}
+                  <div className="border-t border-ink/10 pt-4">
+                    <div className="text-xs font-semibold uppercase tracking-wider text-ink-muted">
+                      Update Lead Pipeline Status
+                    </div>
+                    <div className="mt-2 flex flex-wrap gap-2">
+                      {(["new", "contacted", "qualified", "won", "lost"] as LeadStatus[]).map(
+                        (st) => (
+                          <button
+                            key={st}
+                            disabled={saveLeadMutation.isPending}
+                            onClick={() =>
+                              saveLeadMutation.mutate({
+                                id: selectedLead.id,
+                                status: st,
+                                statusOnly: true,
+                              })
+                            }
+                            className={`rounded-full px-3 py-1 text-xs font-medium transition-colors ${
+                              selectedLead.status === st
+                                ? "bg-ink text-white"
+                                : "border border-ink/15 bg-white text-ink/70 hover:bg-ink/5"
+                            }`}
+                          >
+                            {st.replace(/_/g, " ")}
+                          </button>
+                        ),
+                      )}
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        )}
-      </>
+          )}
+        </>
+      )}
 
       {/* Edit / Create Lead Modal */}
       {(editingLead || isCreating) && (

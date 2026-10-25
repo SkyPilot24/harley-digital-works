@@ -1,5 +1,28 @@
 # Harley Digital Works — Project Status
 
+## Stage 3 Complete: Instant Prospect Website & Domain Auditor — 25 October 2026
+
+**Current Status:** Completed Stage 3 of the Google Cloud Agent Builder suite (Outbound Sales & Prospecting Engine):
+
+1. **Google Cloud Agent Builder (Prospect Auditor Engine)**:
+   - Deployed and tested `Prospect Auditor & Pitch Engine` (`projects/gen-app-agent-building/locations/us-central1/agents/4945b2ce-6195-4c5b-970a-261f832b344e`) on project `gen-app-agent-building`.
+   - Playbook: `Contractor Website Auditor and Pitch Generator` (`2451e6bb-e3ec-448a-ba5e-d79f69e7697c`).
+   - Connected to backend API `/api/audit/prospect` with Application Default Credentials (ADC) and in-memory session caching to eliminate redundant token consumption on audited domains.
+2. **Admin Prospect Auditor Desk**:
+   - Integrated into `/admin/leads` with a clean view switcher between **"Enquiries & Pipeline"** and **"Instant Prospect Auditor"**.
+   - Accepts contractor website URL, trading name, trade vertical, and location; runs full diagnostics across Mobile Speed, Trust Badges, 24/7 Quote Capture, and Local SEO.
+   - Generates 3 bespoke, ready-to-dispatch outreach pitches:
+     - 1-Click WhatsApp pitch with direct `wa.me` dispatch link.
+     - Cold email pitch with subject line and mailto launch.
+     - 60-Second Video Audit Script (Loom) for recorded teardowns.
+   - Includes **"Import to Leads Pipeline"** button to automatically save the prospect into the Supabase CRM with audit findings.
+3. **Verification**:
+   - `npm test`: PASS (205/205 passing assertions across 25 suites + service worker + claims guard).
+   - `npm run typecheck`: PASS (0 TS errors).
+   - `npm run format:check`: PASS (100% Prettier compliant).
+   - `npm run build`: PASS (Vite + Nitro SSR built cleanly in 1.80s).
+   - Local Browser: Verified on `http://localhost:3000/admin/leads` in Google Chrome.
+
 ## Stage 2 Complete: ContentFlow AI Studio & Google Agent Builder — 25 October 2026
 
 **Current Status:** Completed Stage 2 of the Google Cloud Agent Builder suite (Harley Labs Content Engine):

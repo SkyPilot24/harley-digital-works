@@ -69,6 +69,7 @@ import { Route as AuthenticatedAdminSettingsRouteImport } from './routes/_authen
 import { Route as AuthenticatedAdminTeamRouteImport } from './routes/_authenticated/admin.team'
 import { Route as AuthenticatedAdminTestimonialsRouteImport } from './routes/_authenticated/admin.testimonials'
 import { Route as AuthenticatedAdminUsersRouteImport } from './routes/_authenticated/admin.users'
+import { Route as ApiAuditProspectRouteImport } from './routes/api.audit.prospect'
 import { Route as ApiChatContentFlowRouteImport } from './routes/api.chat.content-flow'
 import { Route as ApiChatTradeAgentRouteImport } from './routes/api.chat.trade-agent'
 import { Route as ApiPaymentsStripeRouteImport } from './routes/api.payments.stripe'
@@ -390,6 +391,11 @@ const AuthenticatedAdminUsersRoute = AuthenticatedAdminUsersRouteImport.update({
   path: '/admin/users',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const ApiAuditProspectRoute = ApiAuditProspectRouteImport.update({
+  id: '/api/audit/prospect',
+  path: '/api/audit/prospect',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiChatContentFlowRoute = ApiChatContentFlowRouteImport.update({
   id: '/api/chat/content-flow',
   path: '/api/chat/content-flow',
@@ -476,6 +482,7 @@ export interface FileRoutesByFullPath {
   '/admin/team': typeof AuthenticatedAdminTeamRoute
   '/admin/testimonials': typeof AuthenticatedAdminTestimonialsRoute
   '/admin/users': typeof AuthenticatedAdminUsersRoute
+  '/api/audit/prospect': typeof ApiAuditProspectRoute
   '/api/chat/content-flow': typeof ApiChatContentFlowRoute
   '/api/chat/trade-agent': typeof ApiChatTradeAgentRoute
   '/api/payments/stripe': typeof ApiPaymentsStripeRoute
@@ -542,6 +549,7 @@ export interface FileRoutesByTo {
   '/admin/team': typeof AuthenticatedAdminTeamRoute
   '/admin/testimonials': typeof AuthenticatedAdminTestimonialsRoute
   '/admin/users': typeof AuthenticatedAdminUsersRoute
+  '/api/audit/prospect': typeof ApiAuditProspectRoute
   '/api/chat/content-flow': typeof ApiChatContentFlowRoute
   '/api/chat/trade-agent': typeof ApiChatTradeAgentRoute
   '/api/payments/stripe': typeof ApiPaymentsStripeRoute
@@ -610,6 +618,7 @@ export interface FileRoutesById {
   '/_authenticated/admin/team': typeof AuthenticatedAdminTeamRoute
   '/_authenticated/admin/testimonials': typeof AuthenticatedAdminTestimonialsRoute
   '/_authenticated/admin/users': typeof AuthenticatedAdminUsersRoute
+  '/api/audit/prospect': typeof ApiAuditProspectRoute
   '/api/chat/content-flow': typeof ApiChatContentFlowRoute
   '/api/chat/trade-agent': typeof ApiChatTradeAgentRoute
   '/api/payments/stripe': typeof ApiPaymentsStripeRoute
@@ -678,6 +687,7 @@ export interface FileRouteTypes {
     | '/admin/team'
     | '/admin/testimonials'
     | '/admin/users'
+    | '/api/audit/prospect'
     | '/api/chat/content-flow'
     | '/api/chat/trade-agent'
     | '/api/payments/stripe'
@@ -744,6 +754,7 @@ export interface FileRouteTypes {
     | '/admin/team'
     | '/admin/testimonials'
     | '/admin/users'
+    | '/api/audit/prospect'
     | '/api/chat/content-flow'
     | '/api/chat/trade-agent'
     | '/api/payments/stripe'
@@ -811,6 +822,7 @@ export interface FileRouteTypes {
     | '/_authenticated/admin/team'
     | '/_authenticated/admin/testimonials'
     | '/_authenticated/admin/users'
+    | '/api/audit/prospect'
     | '/api/chat/content-flow'
     | '/api/chat/trade-agent'
     | '/api/payments/stripe'
@@ -861,6 +873,7 @@ export interface RootRouteChildren {
   ToolsSeoInspectorRoute: typeof ToolsSeoInspectorRoute
   TrackTokenRoute: typeof TrackTokenRoute
   TradesSlugRoute: typeof TradesSlugRoute
+  ApiAuditProspectRoute: typeof ApiAuditProspectRoute
   ApiChatContentFlowRoute: typeof ApiChatContentFlowRoute
   ApiChatTradeAgentRoute: typeof ApiChatTradeAgentRoute
   ApiPaymentsStripeRoute: typeof ApiPaymentsStripeRoute
@@ -1290,6 +1303,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAdminUsersRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/api/audit/prospect': {
+      id: '/api/audit/prospect'
+      path: '/api/audit/prospect'
+      fullPath: '/api/audit/prospect'
+      preLoaderRoute: typeof ApiAuditProspectRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/chat/content-flow': {
       id: '/api/chat/content-flow'
       path: '/api/chat/content-flow'
@@ -1418,6 +1438,7 @@ const rootRouteChildren: RootRouteChildren = {
   ToolsSeoInspectorRoute: ToolsSeoInspectorRoute,
   TrackTokenRoute: TrackTokenRoute,
   TradesSlugRoute: TradesSlugRoute,
+  ApiAuditProspectRoute: ApiAuditProspectRoute,
   ApiChatContentFlowRoute: ApiChatContentFlowRoute,
   ApiChatTradeAgentRoute: ApiChatTradeAgentRoute,
   ApiPaymentsStripeRoute: ApiPaymentsStripeRoute,

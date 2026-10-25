@@ -1,5 +1,23 @@
 # The Harley Group & Harley Digital Works — Session Handover Log
 
+## Stage 3 Complete: Instant Prospect Website & Domain Auditor — 25 October 2026
+
+- **Tool & Scope:** Google Antigravity. Built and connected Stage 3 of the Google Agent Builder integration (Outbound Sales & Prospecting Engine). Robbie instructed: _"yes please"_ to build Stage 3 for winning new business without burning tokens.
+- **Applied Changes:**
+  1. **Google Cloud Agent Builder (Prospect Auditor Engine)**:
+     - Deployed and configured `Prospect Auditor & Pitch Engine` (`projects/gen-app-agent-building/locations/us-central1/agents/4945b2ce-6195-4c5b-970a-261f832b344e`).
+     - Playbook: `Contractor Website Auditor and Pitch Generator` (`2451e6bb-e3ec-448a-ba5e-d79f69e7697c`).
+  2. `src/routes/api.audit.prospect.ts`: Created backend endpoint communicating via Dialogflow CX REST API with Application Default Credentials (ADC), deterministic scoring, and domain-level session caching to safeguard tokens.
+  3. `src/components/admin/ProspectAuditorDesk.tsx`: Built interactive auditor desk with test candidate presets, conversion leak scorecards, 3 tailored pitches (WhatsApp, Email, Video script), and 1-click import into the CRM.
+  4. `src/routes/_authenticated/admin.leads.tsx`: Added view switcher tabs between "Enquiries & Pipeline" and "Instant Prospect Auditor" with seamless lead import.
+- **Empirical Verification:**
+  - Live API Test: Verified `Prospect Auditor & Pitch Engine` generated full 3-pitch suite with demo link injection.
+  - `npm test`: PASS (205/205 passing assertions across 25 suites + service worker + claims guard).
+  - `npm run typecheck`: PASS (0 TS errors).
+  - `npm run format:check`: PASS (100% Prettier compliant).
+  - `npm run build`: PASS (Vite + Nitro SSR built cleanly in 1.80s).
+  - Local Browser: Verified on `http://localhost:3000/admin/leads` in Google Chrome.
+
 ## Stage 2 Complete: ContentFlow AI Studio & Google Agent Builder — 25 October 2026
 
 - **Tool & Scope:** Google Antigravity. Built and connected Stage 2 of the Google Agent Builder integration (Harley Labs Content Engine). Robbie instructed: _"I love it that works great. I'm ready for stage 2"_
