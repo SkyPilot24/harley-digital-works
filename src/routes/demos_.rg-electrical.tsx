@@ -4,6 +4,7 @@ import { PageShell, Container } from "@/components/site/PageShell";
 import { PillButton } from "@/components/site/PillButton";
 import { TradeQuoteCalculator } from "@/components/demos/TradeQuoteCalculator";
 import { BeforeAfterSlider } from "@/components/demos/BeforeAfterSlider";
+import { ChatGptSyncButton } from "@/components/admin/ChatGptSyncButton";
 import type { TradeDemoBusiness } from "@/components/demos/TradeDemoData";
 import {
   ShieldCheck,
@@ -571,6 +572,9 @@ robbie@theharleygroup.org | 0117 214 1357`;
                 PECR B2B compliance (UK Registered Company #10082511).
               </p>
             </div>
+
+            {/* 1-Click ChatGPT Sync Banner */}
+            <ChatGptSyncButton variant="banner" />
 
             {/* Commercial terms summary card */}
             <div className="rounded-2xl border border-emerald-500/30 bg-[#081B30] p-6 sm:p-8 space-y-6 shadow-2xl">

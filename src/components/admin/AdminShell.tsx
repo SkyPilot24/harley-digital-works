@@ -25,6 +25,7 @@ import { useAuth, useIsAdmin } from "@/hooks/use-auth";
 import { useQueryClient } from "@tanstack/react-query";
 import { cn } from "@/lib/utils";
 import { signOutWithPrivateCache, clearNonRoleQueries } from "@/lib/auth-session";
+import { ChatGptSyncButton } from "./ChatGptSyncButton";
 
 const PRIMARY_NAV: { to: string; label: string; icon: typeof LayoutDashboard; exact?: boolean }[] =
   [
@@ -279,6 +280,9 @@ export function AdminShell({ children }: { children: ReactNode }) {
             </div>
           </div>
         </nav>
+        <div className="p-3 border-t border-ink/10">
+          <ChatGptSyncButton />
+        </div>
         <div className="border-t border-ink/10 p-4">
           <div className="mb-3 px-3 text-[12px] text-ink-muted truncate">{user.email}</div>
           <button
@@ -353,6 +357,9 @@ export function AdminShell({ children }: { children: ReactNode }) {
             </div>
           </div>
         </nav>
+        <div className="p-3 border-t border-ink/10">
+          <ChatGptSyncButton />
+        </div>
         <div className="border-t border-ink/10 p-3">
           <div className="mb-2 px-3 text-[11px] text-ink-muted truncate">{user.email}</div>
           <button
