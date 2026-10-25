@@ -14,6 +14,7 @@
   - `npm test`: PASS (205/205 passing assertions across 25 suites + service worker + claims guard).
   - `npm run build`: PASS (Vite + Nitro SSR built cleanly in 1.12s).
 
+## Knowledge Base Ratification & CI Linter Fix — 25 October 2026
 
 - **Tool & Scope:** Google Antigravity. Robbie instructed via voice note: _"Can you make sure any new workflows that there is a knowledge updated? So anything that's built, any workflows that are created, any new agents that the knowledge base is updated, please."_
 - **Applied Changes:**
