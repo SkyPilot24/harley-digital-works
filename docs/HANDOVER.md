@@ -2,7 +2,7 @@
 
 ## Comprehensive Website Audit & Conversion Optimisation Implementation — 26 October 2026
 
-- **Tool & Scope:** Google Antigravity. Conducted comprehensive page-by-page audit covering Customer Experience (CX), Conversion Rate Optimisation (CRO), and Brand Positioning across The Harley Group, Harley Digital Works, Harley Labs, Digital Voice Receptionist, and Domain Portfolio. Produced master audit artifact `comprehensive_website_audit.md` (and canonical repo copy `docs/COMPREHENSIVE_WEBSITE_AUDIT.md`) and executed critical customer-facing code improvements.
+- **Tool & Scope:** Google Antigravity. Commit `417442a` pushed to `origin/main`. Conducted comprehensive page-by-page audit covering Customer Experience (CX), Conversion Rate Optimisation (CRO), and Brand Positioning across The Harley Group, Harley Digital Works, Harley Labs, Digital Voice Receptionist, and Domain Portfolio. Produced master audit artifact `comprehensive_website_audit.md` (and canonical repo copy `docs/COMPREHENSIVE_WEBSITE_AUDIT.md`) and executed critical customer-facing code improvements.
 - **Key Deliverables & Code Changes:**
   1. **Comprehensive Website Audit Blueprint (`docs/COMPREHENSIVE_WEBSITE_AUDIT.md`):** Complete page-by-page audit table across 16 public routes, customer journey analysis, brand positioning hierarchy, conversion levers, and prioritised implementation plan.
   2. **The Harley Group (`src/routes/the-harley-group.tsx`):**
