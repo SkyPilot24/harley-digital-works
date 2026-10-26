@@ -1,8 +1,8 @@
-# Homepage & Trade Demo Redesign — October 2026
+# Homepage & Trade Demo Redesign: October 2026
 
 ## Direction: The "Architectural Craft" Hybrid
 
-Governing Standard: **Option 1 — The Architectural Craft Hybrid** (Ratified 26 October 2026).
+Governing Standard: **Option 1: The Architectural Craft Hybrid** (Ratified 26 October 2026).
 
 An editorial, high-authority web studio for UK trades and local businesses.
 
@@ -17,10 +17,10 @@ The trade portfolio pieces are high-fidelity interactive design studies (e.g. RG
 
 All images are served locally from `public/images/home`:
 
-- `architecture.jpg`: https://images.unsplash.com/photo-1600585154340-be6161a56a0c — illustrative architectural stock photograph.
-- `solar.jpg`: https://images.unsplash.com/photo-1509391366360-2e959784a276 — illustrative solar stock photograph.
-- `interior.jpg`: https://images.unsplash.com/photo-1620626011761-996317b8d101 — illustrative bathroom stock photograph.
-- Stock images downloaded under https://unsplash.com/license (commercial use allowed). They do not depict Harley client projects.
+- `architecture.jpg`: <https://images.unsplash.com/photo-1600585154340-be6161a56a0c> - illustrative architectural stock photograph.
+- `solar.jpg`: <https://images.unsplash.com/photo-1509391366360-2e959784a276> - illustrative solar stock photograph.
+- `interior.jpg`: <https://images.unsplash.com/photo-1620626011761-996317b8d101> - illustrative bathroom stock photograph.
+- Stock images downloaded under <https://unsplash.com/license> (commercial use allowed). They do not depict Harley client projects.
 - `after-electrical-consumer-unit.jpg`: Modern 18th Edition metal consumer unit with Hager RCBOs and SPD.
 - `before-electrical-fusebox.jpg`: Obsolete rewirable fusebox showing comparison upgrade.
 - `contractor-commercial.jpg`: Professional UK trade contractor service van outside residential property.
