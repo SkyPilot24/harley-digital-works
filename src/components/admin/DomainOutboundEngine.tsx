@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import {
   Send,
   Mail,
-  Linkedin,
   Clock,
   ShieldCheck,
   CheckCircle2,
@@ -38,6 +37,33 @@ import {
   DialogFooter,
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
+
+function LinkedInIcon({
+  size = 13,
+  className = "text-blue-600",
+}: {
+  size?: number;
+  className?: string;
+}) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+      aria-hidden="true"
+    >
+      <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+      <rect width="4" height="12" x="2" y="9" />
+      <circle cx="4" cy="4" r="2" />
+    </svg>
+  );
+}
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import {
@@ -1133,7 +1159,7 @@ The Harley Group`;
                           </>
                         ) : (
                           <>
-                            <Linkedin size={13} className="text-blue-600" /> Copy LinkedIn Note
+                            <LinkedInIcon size={13} className="text-blue-600" /> Copy LinkedIn Note
                           </>
                         )}
                       </Button>
