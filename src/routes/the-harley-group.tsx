@@ -70,7 +70,7 @@ export function TheHarleyGroupPage() {
                 <span className="studio-muted">We handle the digital.</span>
               </h2>
               <p>
-                Professional websites and ongoing digital care for established UK trades — starting
+                Professional websites and ongoing digital care for established UK trades, starting
                 with our electrical contractor pilot across Bristol, Bath, and the M4 Corridor.
               </p>
               <p>
@@ -122,7 +122,7 @@ export function TheHarleyGroupPage() {
                   key={item.number}
                   to={item.href}
                   className="group block cursor-pointer transition-all duration-200"
-                  aria-label={`${item.number} ${item.title} — ${item.badge}`}
+                  aria-label={`${item.number} ${item.title}: ${item.badge}`}
                 >
                   <div className="flex items-center justify-between">
                     <span>{item.number}</span>

@@ -251,9 +251,9 @@ https://harleydigitalworks.com/tools/review-booster?biz=${encodeURIComponent(bus
                   </div>
 
                   <div className="text-xs font-semibold text-neutral-400">
-                    {simulatedRating === 5 && "Outstanding — 5 Out of 5"}
-                    {simulatedRating === 4 && "Very Good — 4 Out of 5"}
-                    {simulatedRating === 3 && "Average — Could be better"}
+                    {simulatedRating === 5 && "Outstanding: 5 Out of 5"}
+                    {simulatedRating === 4 && "Very Good: 4 Out of 5"}
+                    {simulatedRating === 3 && "Average: Could be better"}
                     {simulatedRating && simulatedRating <= 2 && "Needs Improvement"}
                     {!simulatedRating && "Tap a star above to rate"}
                   </div>

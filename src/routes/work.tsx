@@ -109,7 +109,7 @@ function WorkPage() {
                   <i />
                   <i />
                   <i />
-                  <span>vanguard electrical & renewable — transformation</span>
+                  <span>vanguard electrical & renewable: transformation</span>
                 </span>
                 <ConceptScreen concept="solar" priority />
               </a>
@@ -170,7 +170,7 @@ function WorkPage() {
                   id="show-us-heading"
                   className="text-3xl sm:text-4xl font-bold font-serif text-white"
                 >
-                  Show Us Your Website — We’ll Show You What’s Possible.
+                  Show Us Your Website: We’ll Show You What’s Possible.
                 </h2>
                 <p className="text-sm sm:text-base text-white/80 leading-relaxed">
                   Have an existing website that isn’t pulling its weight? Share your current website
@@ -214,7 +214,7 @@ function WorkPage() {
                 </h2>
               </div>
               <p>
-                Explore original HTML design studies—
+                Explore original HTML design studies:
                 <br />
                 each demonstrating how architecture, typography,
                 <br className="desktop-break" />

@@ -119,7 +119,7 @@ export function SiteHeader() {
             </Link>
           )}
           <PillButton as="link" to="/contact" variant="dark" className="studio-button mt-1">
-            Let’s talk about your website
+            Get your website plan
           </PillButton>
         </nav>
       )}

@@ -52,7 +52,7 @@ export function IllustrativeTradeProof() {
             “The services are easy to find, and it is clear how to get in touch.”
           </blockquote>
           <p className="mt-3 text-sm text-ink-muted">
-            Invented example for design review — not a customer quote. Genuine reviews will only be
+            Invented example for design review - not a customer quote. Genuine reviews will only be
             added with permission and a verified source.
           </p>
         </aside>

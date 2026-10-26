@@ -39,7 +39,7 @@ export const Route = createFileRoute("/demos_/rg-electrical")({
   head: () => ({
     meta: [
       {
-        title: "RG Electrical Bristol Limited — Certified Domestic & Commercial Electricians",
+        title: "RG Electrical Bristol Limited | Certified Domestic & Commercial Electricians",
       },
       {
         name: "description",

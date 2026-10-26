@@ -4,11 +4,11 @@ import { ServiceDetailLayout } from "@/components/site/ServiceDetailLayout";
 export const Route = createFileRoute("/services_/automation")({
   head: () => ({
     meta: [
-      { title: "Automation Services — Harley Digital Works" },
+      { title: "Automation Services | Harley Digital Works" },
       {
         name: "description",
         content:
-          "Quiet automations that save you a working day every week — built once, maintained, and documented in plain English.",
+          "Quiet automations that save you a working day every week: built once, maintained, and documented in plain English.",
       },
     ],
   }),
@@ -16,7 +16,7 @@ export const Route = createFileRoute("/services_/automation")({
     <ServiceDetailLayout
       eyebrow="Automation"
       title="Quiet automations that save you a working day."
-      intro="Small, focused automations that do the boring, repetitive parts of running your business — so you get back to the work only you can do."
+      intro="Small, focused automations that do the boring, repetitive parts of running your business, so you get back to the work only you can do."
       priceTag="From"
       price="£1,200 / build"
       deliverables={[
@@ -33,7 +33,7 @@ export const Route = createFileRoute("/services_/automation")({
         },
         {
           tag: "Handover",
-          title: "A recorded walkthrough plus written docs — so anyone on your team can run it.",
+          title: "A recorded walkthrough plus written docs, so anyone on your team can run it.",
           surface: "mist",
         },
         {
@@ -53,12 +53,12 @@ export const Route = createFileRoute("/services_/automation")({
         {
           step: "02",
           title: "Fixed quote",
-          body: "Within 48 hours you get a written quote per automation — priced by outcome, not by hour.",
+          body: "Within 48 hours you get a written quote per automation, priced by outcome, not by hour.",
         },
         {
           step: "03",
           title: "Ship & document",
-          body: "We build, test, hand over, and give you the docs. If it breaks, we fix it — same day.",
+          body: "We build, test, hand over, and give you the docs. If it breaks, we fix it: same day.",
         },
       ]}
     />

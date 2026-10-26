@@ -4,11 +4,11 @@ import { ServiceDetailLayout } from "@/components/site/ServiceDetailLayout";
 export const Route = createFileRoute("/services_/content-engine")({
   head: () => ({
     meta: [
-      { title: "Content Engine — Harley Digital Works" },
+      { title: "Content Engine | Harley Digital Works" },
       {
         name: "description",
         content:
-          "A 30-day content calendar, AI image prompts and short-video templates — stay consistent without burnout.",
+          "A 30-day content calendar, AI image prompts and short-video templates: stay consistent without burnout.",
       },
     ],
   }),
@@ -45,7 +45,7 @@ export const Route = createFileRoute("/services_/content-engine")({
           title: "A running brand voice guide that gets sharper every month.",
           surface: "sage",
         },
-        { tag: "Flex", title: "Cancel any time — no lock-in, no minimum term.", surface: "stone" },
+        { tag: "Flex", title: "Cancel any time: no lock-in, no minimum term.", surface: "stone" },
       ]}
       processTitle="How it works"
       processIntro="A repeatable rhythm that makes content feel like an operating system, not a scramble."

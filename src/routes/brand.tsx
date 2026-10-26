@@ -1011,7 +1011,7 @@ function BrandAssetsPage() {
                   WhatsApp Business Bio
                 </span>
                 <p className="text-slate-200 leading-relaxed">
-                  "Harley Digital Works — Websites Worth Choosing. We write 100% of the words and
+                  "Harley Digital Works: Websites Worth Choosing. We write 100% of the words and
                   look after your site so you can do the trade. Direct with founder Robbie Harley."
                 </p>
               </div>

@@ -242,7 +242,7 @@ export function CustomerTransformationSection() {
               <p className="text-base sm:text-lg text-ink-muted max-w-2xl leading-relaxed">
                 Most UK tradespeople rely on word of mouth or an old Facebook page because building
                 a website takes too much time and energy. Here is how our 100% done-for-you service
-                transforms your business—from your first phone call to ongoing peace of mind.
+                transforms your business: from your first phone call to ongoing peace of mind.
               </p>
             </div>
             <div className="lg:col-span-4 lg:text-right space-y-2">
@@ -309,7 +309,7 @@ export function CustomerTransformationSection() {
                 <XCircle size={17} className="text-rose-500 shrink-0 mt-0.5" />
                 <span>
                   <strong>Abandoned After Launch:</strong> Once traditional agencies get paid, they
-                  disappear—leaving you stranded with broken plugins and security warnings.
+                  disappear, leaving you stranded with broken plugins and security warnings.
                 </span>
               </li>
             </ul>

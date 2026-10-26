@@ -21,7 +21,7 @@ export const Route = createFileRoute("/track_/$token")({
     const proj = loaderData as ClientTrackProject;
     return {
       meta: [
-        { title: `${proj.companyName} — Client Website Build Tracker | Harley Digital Works` },
+        { title: `${proj.companyName} | Client Website Build Tracker | Harley Digital Works` },
         {
           name: "description",
           content: `Live milestone tracking, mobile photo dropzone, and DNS status for ${proj.companyName}.`,

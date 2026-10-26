@@ -99,7 +99,7 @@ export function ConceptScreen({
                   Discover our approach <ArrowUpRight />
                 </span>
               </div>
-              <span className="concept-photo-index">01 — THE GARDEN HOUSE</span>
+              <span className="concept-photo-index">01 / THE GARDEN HOUSE</span>
             </div>
             <div className="concept-bottom">
               <span>
@@ -187,7 +187,7 @@ export function ConceptShowcase({
             <i />
             <i />
             <i />
-            <span>{data.name.toLowerCase()} — design concept</span>
+            <span>{data.name.toLowerCase()} / design concept</span>
           </span>
           <ConceptScreen concept={concept} />
         </span>
@@ -225,7 +225,7 @@ export function ConceptShowcase({
           }}
         >
           <DialogHeader>
-            <DialogTitle>{data.name} — design study</DialogTitle>
+            <DialogTitle>{data.name} / design study</DialogTitle>
             <DialogDescription>
               {data.description} This is an independent concept using illustrative stock
               photography, not a commissioned client project.

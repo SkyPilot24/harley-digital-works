@@ -155,7 +155,7 @@ function HarleyLabsPage() {
           <div className="mt-8 mb-4 max-w-xs">
             <img
               src="/brand/2026-10-21/HL-Brand-Pack/08-Web-Ready/logo.svg"
-              alt="Harley Labs — Part of The Harley Group"
+              alt="Harley Labs | Part of The Harley Group"
               className="h-14 w-auto object-contain"
             />
           </div>

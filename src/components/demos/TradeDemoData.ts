@@ -292,7 +292,7 @@ export const TRADE_DEMOS: Record<string, TradeDemoBusiness> = {
       {
         author: "Colin W.",
         location: "Sutton Coldfield",
-        text: "The drone survey was brilliant—they showed me exactly where the water was coming past the chimney lead flashing on their iPad. Fixed it two days later for the exact quote. No drama.",
+        text: "The drone survey was brilliant: they showed me exactly where the water was coming past the chimney lead flashing on their iPad. Fixed it two days later for the exact quote. No drama.",
         service: "Chimney Lead Flashing & Ridge",
         rating: 5,
       },

@@ -422,7 +422,7 @@ function ElectricianConceptPage() {
                         Google &amp; Checkatrade Review Integration
                       </h4>
                       <p className="text-xs text-neutral-400">
-                        Illustrative mockup — live sites pull verified reviews directly via verified
+                        Illustrative mockup: live sites pull verified reviews directly via verified
                         Google API.
                       </p>
                     </div>

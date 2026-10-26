@@ -4,7 +4,7 @@ import { ServiceDetailLayout } from "@/components/site/ServiceDetailLayout";
 export const Route = createFileRoute("/services_/digital-products")({
   head: () => ({
     meta: [
-      { title: "Pro Custom Platforms & Portals — Harley Digital Works & THG Digital" },
+      { title: "Pro Custom Platforms & Portals | Harley Digital Works & THG Digital" },
       {
         name: "description",
         content:

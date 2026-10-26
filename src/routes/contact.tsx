@@ -37,7 +37,7 @@ function ContactPage() {
             </h1>
             <p>
               Tell us about the business you’re building. We’ll help you work out what your website
-              needs—and what it doesn’t.
+              needs - and what it doesn’t.
             </p>
             <ol className="contact-next">
               <li>
@@ -162,7 +162,7 @@ function ContactPage() {
                 </div>
                 <div className="space-y-1">
                   <h3 className="text-sm font-bold text-ink">
-                    Show Us Your Website — We’ll Show You What’s Possible
+                    Show Us Your Website: We’ll Show You What’s Possible
                   </h3>
                   <p className="text-xs text-ink-muted leading-relaxed">
                     Have an existing website that isn’t generating qualified enquiries? Enter your

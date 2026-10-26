@@ -68,7 +68,7 @@ export function ServiceDetailLayout({
         <Container>
           <SectionHeader
             title="What you get"
-            intro="Everything included in the package — priced upfront, delivered on the timeline we agree."
+            intro="Everything included in the package, priced upfront, delivered on the timeline we agree."
           />
           <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {deliverables.map((d) => (

@@ -52,7 +52,7 @@ const SCENES: Scene[] = [
     image: "/images/transformation-video/scene-2-slider-wipe.jpg",
     videoSrc: "/images/transformation-video/scene-2-slider-wipe.mp4",
     voiceover:
-      "At Harley Digital Works, we transform tired trade sites into elite commercial platforms. Sub-30ms edge speed. Engineered for mobile. Designed to win higher-paying jobs—without competing on the cheapest price.",
+      "At Harley Digital Works, we transform tired trade sites into elite commercial platforms. Sub-30ms edge speed. Engineered for mobile. Designed to win higher-paying jobs without competing on the cheapest price.",
     highlightPills: [
       "Sub-30ms Load Speed",
       "5-Star Review Badges",
@@ -239,7 +239,7 @@ export function HeroTransformationVideoModal({
               id="video-modal-title"
               className="text-xs font-mono font-bold tracking-wider uppercase text-emerald-400"
             >
-              Harley Digital Works — 55s Trade Transformation Showcase
+              Harley Digital Works: 55s Trade Transformation Showcase
             </span>
           </div>
           <div className="flex items-center gap-2">

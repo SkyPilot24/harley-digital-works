@@ -307,7 +307,7 @@ function SeoInspectorPage() {
                           </td>
                           <td className="py-3.5 text-right">
                             <span className="inline-block rounded-md bg-emerald-500/10 text-emerald-400 px-2 py-0.5 text-[10px] font-semibold border border-emerald-500/20">
-                              {kw.difficulty} — High Opportunity
+                              {kw.difficulty}: High Opportunity
                             </span>
                           </td>
                         </tr>

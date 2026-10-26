@@ -35,7 +35,7 @@ export const Route = createFileRoute("/")({
 const faqs = [
   [
     "Do you work with tradespeople across the whole UK?",
-    "We are currently prioritising electrical contractors across Bristol, Bath and the M4 corridor for our active pilot, but we also support trade businesses across the wider UK. Everything is handled smoothly over a straightforward 20-minute phone call—zero travel, zero homework, and zero tech jargon required from you.",
+    "We are currently prioritising electrical contractors across Bristol, Bath and the M4 corridor for our active pilot, but we also support trade businesses across the wider UK. Everything is handled smoothly over a straightforward 20-minute phone call: zero travel, zero homework, and zero tech jargon required from you.",
   ],
   [
     "What do you need from me?",
@@ -220,7 +220,7 @@ function HomePage() {
               <p>
                 Your website should feel like your business.
                 <br />
-                Explore three independent design studies—
+                Explore three independent design studies:
                 <br className="desktop-break" />
                 each with a character of its own.
               </p>

@@ -83,7 +83,7 @@ export function WebsitePackagesSection({
                   "Done-for-you trade copywriting based on your confirmed business facts",
                   "Fast mobile experience, your verified trade accreditations, and agreed dual enquiry routing",
                   "Factual local-business structured data and reviewed domain connection preserving your existing email",
-                  "Two structured preview revision rounds before public cutover — you approve before going live",
+                  "Two structured preview revision rounds before public cutover: you approve before going live",
                 ].map((x) => (
                   <li key={x}>
                     <Check size={17} />

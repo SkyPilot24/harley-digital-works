@@ -283,7 +283,7 @@ export function TradeServiceLanding({
                 Illustrative Design Study · Trade Blueprint
               </span>
               <h3 className="mt-2 text-xl font-semibold text-ink">
-                {locationInfo.localCaseStudy.name} — {locationInfo.localCaseStudy.trade}
+                {locationInfo.localCaseStudy.name} · {locationInfo.localCaseStudy.trade}
               </h3>
               <p className="text-sm font-medium text-emerald-700">
                 {locationInfo.localCaseStudy.location}
@@ -356,7 +356,7 @@ export function TradeServiceLanding({
                     </span>
                   </div>
                   <h3 className="mt-2 text-xl font-bold text-ink">
-                    {study.name} — {tradeInfo.name}
+                    {study.name} · {tradeInfo.name}
                   </h3>
                   <p className="mt-3 text-sm italic text-ink/80 leading-relaxed">
                     &ldquo;{study.quote}&rdquo;

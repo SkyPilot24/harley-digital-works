@@ -61,7 +61,7 @@ export function CapabilityPage({
                   <i />
                   <i />
                   <i />
-                  <span>harley digital works — {data.eyebrow.toLowerCase()}</span>
+                  <span>harley digital works / {data.eyebrow.toLowerCase()}</span>
                 </span>
                 <ConceptScreen concept={conceptKey} priority />
               </div>
