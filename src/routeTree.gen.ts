@@ -33,6 +33,7 @@ import { Route as ServicesRouteImport } from './routes/services'
 import { Route as TheHarleyGroupRouteImport } from './routes/the-harley-group'
 import { Route as TrackRouteImport } from './routes/track'
 import { Route as TradesRouteImport } from './routes/trades'
+import { Route as VirtualReceptionistRouteImport } from './routes/virtual-receptionist'
 import { Route as WorkRouteImport } from './routes/work'
 import { Route as ClientReviewProjectIdRouteImport } from './routes/client-review_.$projectId'
 import { Route as DemosElectricianConceptRouteImport } from './routes/demos_.electrician-concept'
@@ -75,6 +76,7 @@ import { Route as ApiChatTradeAgentRouteImport } from './routes/api.chat.trade-a
 import { Route as ApiMapsLookupRouteImport } from './routes/api.maps.lookup'
 import { Route as ApiMapsStaticRouteImport } from './routes/api.maps.static'
 import { Route as ApiPaymentsStripeRouteImport } from './routes/api.payments.stripe'
+import { Route as ApiReceptionistCallRouteImport } from './routes/api.receptionist.call'
 import { Route as ApiWebhooksDomainInboundRouteImport } from './routes/api.webhooks.domain-inbound'
 import { Route as ApiWebhooksResendRouteImport } from './routes/api.webhooks.resend'
 
@@ -195,6 +197,11 @@ const TrackRoute = TrackRouteImport.update({
 const TradesRoute = TradesRouteImport.update({
   id: '/trades',
   path: '/trades',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const VirtualReceptionistRoute = VirtualReceptionistRouteImport.update({
+  id: '/virtual-receptionist',
+  path: '/virtual-receptionist',
   getParentRoute: () => rootRouteImport,
 } as any)
 const WorkRoute = WorkRouteImport.update({
@@ -423,6 +430,11 @@ const ApiPaymentsStripeRoute = ApiPaymentsStripeRouteImport.update({
   path: '/api/payments/stripe',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiReceptionistCallRoute = ApiReceptionistCallRouteImport.update({
+  id: '/api/receptionist/call',
+  path: '/api/receptionist/call',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiWebhooksDomainInboundRoute =
   ApiWebhooksDomainInboundRouteImport.update({
     id: '/api/webhooks/domain-inbound',
@@ -459,6 +471,7 @@ export interface FileRoutesByFullPath {
   '/the-harley-group': typeof TheHarleyGroupRoute
   '/track': typeof TrackRoute
   '/trades': typeof TradesRoute
+  '/virtual-receptionist': typeof VirtualReceptionistRoute
   '/work': typeof WorkRoute
   '/client-review/$projectId': typeof ClientReviewProjectIdRoute
   '/demos/electrician-concept': typeof DemosElectricianConceptRoute
@@ -500,6 +513,7 @@ export interface FileRoutesByFullPath {
   '/api/maps/lookup': typeof ApiMapsLookupRoute
   '/api/maps/static': typeof ApiMapsStaticRoute
   '/api/payments/stripe': typeof ApiPaymentsStripeRoute
+  '/api/receptionist/call': typeof ApiReceptionistCallRoute
   '/api/webhooks/domain-inbound': typeof ApiWebhooksDomainInboundRoute
   '/api/webhooks/resend': typeof ApiWebhooksResendRoute
   '/admin/': typeof AuthenticatedAdminIndexRoute
@@ -528,6 +542,7 @@ export interface FileRoutesByTo {
   '/the-harley-group': typeof TheHarleyGroupRoute
   '/track': typeof TrackRoute
   '/trades': typeof TradesRoute
+  '/virtual-receptionist': typeof VirtualReceptionistRoute
   '/work': typeof WorkRoute
   '/client-review/$projectId': typeof ClientReviewProjectIdRoute
   '/demos/electrician-concept': typeof DemosElectricianConceptRoute
@@ -569,6 +584,7 @@ export interface FileRoutesByTo {
   '/api/maps/lookup': typeof ApiMapsLookupRoute
   '/api/maps/static': typeof ApiMapsStaticRoute
   '/api/payments/stripe': typeof ApiPaymentsStripeRoute
+  '/api/receptionist/call': typeof ApiReceptionistCallRoute
   '/api/webhooks/domain-inbound': typeof ApiWebhooksDomainInboundRoute
   '/api/webhooks/resend': typeof ApiWebhooksResendRoute
   '/admin': typeof AuthenticatedAdminIndexRoute
@@ -599,6 +615,7 @@ export interface FileRoutesById {
   '/the-harley-group': typeof TheHarleyGroupRoute
   '/track': typeof TrackRoute
   '/trades': typeof TradesRoute
+  '/virtual-receptionist': typeof VirtualReceptionistRoute
   '/work': typeof WorkRoute
   '/client-review_/$projectId': typeof ClientReviewProjectIdRoute
   '/demos_/electrician-concept': typeof DemosElectricianConceptRoute
@@ -640,6 +657,7 @@ export interface FileRoutesById {
   '/api/maps/lookup': typeof ApiMapsLookupRoute
   '/api/maps/static': typeof ApiMapsStaticRoute
   '/api/payments/stripe': typeof ApiPaymentsStripeRoute
+  '/api/receptionist/call': typeof ApiReceptionistCallRoute
   '/api/webhooks/domain-inbound': typeof ApiWebhooksDomainInboundRoute
   '/api/webhooks/resend': typeof ApiWebhooksResendRoute
   '/_authenticated/admin/': typeof AuthenticatedAdminIndexRoute
@@ -670,6 +688,7 @@ export interface FileRouteTypes {
     | '/the-harley-group'
     | '/track'
     | '/trades'
+    | '/virtual-receptionist'
     | '/work'
     | '/client-review/$projectId'
     | '/demos/electrician-concept'
@@ -711,6 +730,7 @@ export interface FileRouteTypes {
     | '/api/maps/lookup'
     | '/api/maps/static'
     | '/api/payments/stripe'
+    | '/api/receptionist/call'
     | '/api/webhooks/domain-inbound'
     | '/api/webhooks/resend'
     | '/admin/'
@@ -739,6 +759,7 @@ export interface FileRouteTypes {
     | '/the-harley-group'
     | '/track'
     | '/trades'
+    | '/virtual-receptionist'
     | '/work'
     | '/client-review/$projectId'
     | '/demos/electrician-concept'
@@ -780,6 +801,7 @@ export interface FileRouteTypes {
     | '/api/maps/lookup'
     | '/api/maps/static'
     | '/api/payments/stripe'
+    | '/api/receptionist/call'
     | '/api/webhooks/domain-inbound'
     | '/api/webhooks/resend'
     | '/admin'
@@ -809,6 +831,7 @@ export interface FileRouteTypes {
     | '/the-harley-group'
     | '/track'
     | '/trades'
+    | '/virtual-receptionist'
     | '/work'
     | '/client-review_/$projectId'
     | '/demos_/electrician-concept'
@@ -850,6 +873,7 @@ export interface FileRouteTypes {
     | '/api/maps/lookup'
     | '/api/maps/static'
     | '/api/payments/stripe'
+    | '/api/receptionist/call'
     | '/api/webhooks/domain-inbound'
     | '/api/webhooks/resend'
     | '/_authenticated/admin/'
@@ -880,6 +904,7 @@ export interface RootRouteChildren {
   TheHarleyGroupRoute: typeof TheHarleyGroupRoute
   TrackRoute: typeof TrackRoute
   TradesRoute: typeof TradesRoute
+  VirtualReceptionistRoute: typeof VirtualReceptionistRoute
   WorkRoute: typeof WorkRoute
   ClientReviewProjectIdRoute: typeof ClientReviewProjectIdRoute
   DemosElectricianConceptRoute: typeof DemosElectricianConceptRoute
@@ -903,6 +928,7 @@ export interface RootRouteChildren {
   ApiMapsLookupRoute: typeof ApiMapsLookupRoute
   ApiMapsStaticRoute: typeof ApiMapsStaticRoute
   ApiPaymentsStripeRoute: typeof ApiPaymentsStripeRoute
+  ApiReceptionistCallRoute: typeof ApiReceptionistCallRoute
   ApiWebhooksDomainInboundRoute: typeof ApiWebhooksDomainInboundRoute
   ApiWebhooksResendRoute: typeof ApiWebhooksResendRoute
 }
@@ -1075,6 +1101,13 @@ declare module '@tanstack/react-router' {
       path: '/trades'
       fullPath: '/trades'
       preLoaderRoute: typeof TradesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/virtual-receptionist': {
+      id: '/virtual-receptionist'
+      path: '/virtual-receptionist'
+      fullPath: '/virtual-receptionist'
+      preLoaderRoute: typeof VirtualReceptionistRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/work': {
@@ -1371,6 +1404,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiPaymentsStripeRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/receptionist/call': {
+      id: '/api/receptionist/call'
+      path: '/api/receptionist/call'
+      fullPath: '/api/receptionist/call'
+      preLoaderRoute: typeof ApiReceptionistCallRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/webhooks/domain-inbound': {
       id: '/api/webhooks/domain-inbound'
       path: '/api/webhooks/domain-inbound'
@@ -1461,6 +1501,7 @@ const rootRouteChildren: RootRouteChildren = {
   TheHarleyGroupRoute: TheHarleyGroupRoute,
   TrackRoute: TrackRoute,
   TradesRoute: TradesRoute,
+  VirtualReceptionistRoute: VirtualReceptionistRoute,
   WorkRoute: WorkRoute,
   ClientReviewProjectIdRoute: ClientReviewProjectIdRoute,
   DemosElectricianConceptRoute: DemosElectricianConceptRoute,
@@ -1484,6 +1525,7 @@ const rootRouteChildren: RootRouteChildren = {
   ApiMapsLookupRoute: ApiMapsLookupRoute,
   ApiMapsStaticRoute: ApiMapsStaticRoute,
   ApiPaymentsStripeRoute: ApiPaymentsStripeRoute,
+  ApiReceptionistCallRoute: ApiReceptionistCallRoute,
   ApiWebhooksDomainInboundRoute: ApiWebhooksDomainInboundRoute,
   ApiWebhooksResendRoute: ApiWebhooksResendRoute,
 }

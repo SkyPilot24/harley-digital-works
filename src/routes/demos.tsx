@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { z } from "zod";
 import { PageShell, Container } from "@/components/site/PageShell";
 import { PillButton } from "@/components/site/PillButton";
@@ -8,7 +8,7 @@ import {
 } from "@/components/demos/DynamicStagingGenerator";
 import { StandaloneProspectDemo } from "@/components/demos/StandaloneProspectDemo";
 import { WebsitePackagesSection } from "@/components/site/WebsitePackagesSection";
-import { CheckCircle2, ShieldCheck, PenLine, Check } from "lucide-react";
+import { CheckCircle2, ShieldCheck, PenLine, Check, PhoneCall } from "lucide-react";
 
 const demosSearchSchema = z.object({
   trade: z.string().optional(),
@@ -98,6 +98,29 @@ function TradeDemosPage() {
           <div className="studio-wrap hero-footnote">
             <span>LIVE INTERACTIVE PREVIEWS</span>
             <span>Test layouts across Electrical, Roofing, and Heating specialisms.</span>
+          </div>
+        </section>
+
+        {/* 24/7 Virtual Phone Receptionist POC Spotlight */}
+        <section className="bg-[#081B30] text-white py-4 px-6 border-y border-white/10">
+          <div className="studio-wrap flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
+            <div className="flex items-center gap-2.5">
+              <span className="p-1.5 rounded-lg bg-amber-500/20 text-amber-400">
+                <PhoneCall className="w-4 h-4" />
+              </span>
+              <span>
+                <strong className="text-white">
+                  24/7 Virtual Voice Phone Receptionist (Live POC):
+                </strong>{" "}
+                Experience our British AI voice call answering engine for UK trade contractors.
+              </span>
+            </div>
+            <Link
+              to="/virtual-receptionist"
+              className="text-amber-400 hover:text-amber-300 font-semibold underline underline-offset-4 shrink-0"
+            >
+              Test Virtual Phone Dialler →
+            </Link>
           </div>
         </section>
 
