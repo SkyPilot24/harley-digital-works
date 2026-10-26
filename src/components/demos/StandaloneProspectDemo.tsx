@@ -304,31 +304,60 @@ export function StandaloneProspectDemo({
       </section>
 
       {/* 8. Local Area Coverage */}
-      <section id="coverage" className="py-14 border-b border-slate-800 bg-[#081B30]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="inline-flex items-center gap-1.5 text-xs font-mono text-amber-400 mb-2">
-            <MapPin className="h-4 w-4" />
-            <span>LOCAL COVERAGE RADIUS</span>
+      <section id="coverage" className="py-16 border-b border-slate-800 bg-[#081B30]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-2xl mx-auto mb-10">
+            <div className="inline-flex items-center gap-1.5 text-xs font-mono text-amber-400 mb-2">
+              <MapPin className="h-4 w-4" />
+              <span>LOCAL COVERAGE RADIUS</span>
+            </div>
+            <h3 className="text-2xl sm:text-3xl font-extrabold text-white mb-3">
+              Serving Homeowners, Landlords &amp; Commercial Clients in {city}
+            </h3>
+            <p className="text-xs sm:text-sm text-slate-300">
+              Rapid dispatch available across {city} and surrounding areas within a 25-mile radius.
+            </p>
           </div>
-          <h3 className="text-xl sm:text-2xl font-bold text-white mb-4">
-            Serving Homeowners, Landlords &amp; Commercial Clients in {city}
-          </h3>
-          <p className="text-xs sm:text-sm text-slate-300 max-w-xl mx-auto mb-6">
-            Rapid dispatch available across {city} and surrounding boroughs within a 25-mile radius.
-          </p>
-          <div className="flex flex-wrap justify-center gap-2 max-w-2xl mx-auto text-xs text-slate-300">
-            <span className="px-3 py-1.5 rounded-full bg-slate-800/80 border border-slate-700">
-              {city} Town Centre
-            </span>
-            <span className="px-3 py-1.5 rounded-full bg-slate-800/80 border border-slate-700">
-              North &amp; South Boroughs
-            </span>
-            <span className="px-3 py-1.5 rounded-full bg-slate-800/80 border border-slate-700">
-              Surrounding Villages
-            </span>
-            <span className="px-3 py-1.5 rounded-full bg-slate-800/80 border border-slate-700">
-              Commercial Industrial Estates
-            </span>
+
+          <div className="max-w-4xl mx-auto rounded-2xl overflow-hidden border border-slate-800 shadow-2xl bg-[#051323] relative">
+            <div className="relative aspect-[2/1] sm:aspect-[21/9] w-full overflow-hidden bg-slate-950">
+              <img
+                src={`/api/maps/static?center=${encodeURIComponent(city)}&zoom=11&width=900&height=400`}
+                alt={`Google Maps coverage radius for ${company} in ${city}`}
+                className="w-full h-full object-cover brightness-95 contrast-105"
+                loading="lazy"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#051323] via-transparent to-transparent opacity-80" />
+              <div className="absolute top-4 left-4 inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-slate-950/85 border border-slate-700/80 text-white text-xs backdrop-blur-md">
+                <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
+                <span className="font-semibold">{city} &amp; Surrounds</span>
+                <span className="text-slate-500">|</span>
+                <span className="text-amber-400 font-mono text-[11px]">
+                  25-Mile Priority Dispatch
+                </span>
+              </div>
+            </div>
+
+            <div className="p-5 sm:p-6 bg-[#051323] border-t border-slate-800/80 flex flex-wrap items-center justify-between gap-3 text-xs">
+              <div className="flex flex-wrap gap-2 text-slate-300">
+                <span className="px-3 py-1 rounded-full bg-slate-900 border border-slate-800">
+                  {city} Town Centre
+                </span>
+                <span className="px-3 py-1 rounded-full bg-slate-900 border border-slate-800">
+                  North &amp; South Boroughs
+                </span>
+                <span className="px-3 py-1 rounded-full bg-slate-900 border border-slate-800">
+                  Surrounding Villages
+                </span>
+                <span className="px-3 py-1 rounded-full bg-slate-900 border border-slate-800">
+                  Commercial Business Parks
+                </span>
+              </div>
+              <div className="text-slate-400 text-[11px] font-mono flex items-center gap-1.5">
+                <ShieldCheck className="h-3.5 w-3.5 text-emerald-400" />
+                <span>Zero travel surcharge within radius</span>
+              </div>
+            </div>
           </div>
         </div>
       </section>

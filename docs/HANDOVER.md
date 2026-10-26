@@ -1,5 +1,37 @@
 # The Harley Group & Harley Digital Works — Session Handover Log
 
+## Google Cloud Credit Activation & Google Maps Platform Integration — 26 October 2026
+
+- **Tool & Scope:** Google Antigravity. Robbie confirmed (`plese make sure we use these credits` -> `yes please`). Activated Google Cloud credit balances across projects `gen-app-agent-building` and `stalwart-cable-501111-c1` ("Google Charity Maps Credits").
+- **Credit Allocation & Balance Mapping:**
+  1. **£740.53 Gen App Builder + £452.34 Dialogflow CX** (Project `gen-app-agent-building`):
+     - Actively utilized by `src/routes/api.audit.prospect.ts`, `src/routes/api.chat.content-flow.ts`, and `src/components/demos/TradeAgentChatWidget.tsx` via Dialogflow CX session requests (`x-goog-user-project: gen-app-agent-building`).
+  2. **£188.03 / month Recurring Google Maps Platform Charity Credits** (Project `stalwart-cable-501111-c1`):
+     - Enabled `apikeys.googleapis.com` on `stalwart-cable-501111-c1`.
+     - Retrieved and verified active API key with Geocoding, Places, and Static Maps APIs enabled.
+     - Stored key in `.env.local` and `.env.example` as `GOOGLE_MAPS_API_KEY`.
+- **Implemented Features & Architecture:**
+  1. `src/lib/maps/google-maps.server.ts`:
+     - `geocodeUkAddress()`: UK postcode/address geocoder with UK country biasing (`country:GB`).
+     - `searchGoogleBusinessPlace()`: Google Places API integration fetching verified Google review ratings and review totals for trade contractors.
+     - `generateStaticMapUrl()`: Dark-mode industrial styled static map generator tailored to Harley Digital Works aesthetic (Midnight Navy `#081B30`, Steel Blue road geometry `#1B3552`, Amber markers `#F59E0B`).
+  2. `src/routes/api.maps.lookup.ts`: Server route handling `action: "geocode" | "place" | "static-map"` with input validation.
+  3. `src/routes/api.maps.static.ts`: High-performance static map image proxy with edge and browser caching (`Cache-Control: public, max-age=86400`).
+  4. `src/components/demos/StandaloneProspectDemo.tsx`: In Section 8 ("Local Area Coverage"), rendered the live Google Maps static map image showing the contractor's 25-mile coverage radius with local area tags.
+  5. `src/routes/demos_.rg-electrical.tsx`: Added Section 8.5 ("North Bristol & South Gloucestershire Coverage") featuring high-res Google Maps static visual with postcode coverage pills (`BS32`, `BS34`, `BS35`, `BS16`, `BS7`, `BS8`).
+  6. `src/components/demos/TradeQuoteCalculator.tsx`: Added real-time UK postcode geocode validation via `/api/maps/lookup`, showing an instant reassurance pill: `Covered Area: [City/Locality] (Priority Dispatch Radius)`.
+  7. `src/routes/api.audit.prospect.ts` & `src/components/admin/ProspectAuditorDesk.tsx`: Integrated `searchGoogleBusinessPlace()` so when an auditor audits a prospect (e.g. RG Electrical in Bristol), it pulls live Google Places data (rating, review count, verified address) onto the audit scorecard.
+- **Empirical Verification:**
+  - Live Google Static Maps API request: `Status: 200, Content-Type: image/png, 62,390 bytes received`.
+  - Live UK Postcode Geocode query: `BS32 9DA -> Bradley Stoke, Bristol BS32 9DA`.
+  - Live Google Places search: `RG Electrical Bristol -> 4.9 rating (130 Google reviews)`.
+  - `node scripts/scan-all-slop.mjs`: PASS (0 items to review).
+  - `npm run format:check`: PASS (100% Prettier compliant).
+  - `npm run typecheck`: PASS (0 TS errors).
+  - `npm run lint`: PASS (0 errors, 9 non-blocking warnings).
+  - `npm test`: PASS (205/205 pass across 25 suites).
+  - `npm run build`: PASS (Vite + Nitro SSR built cleanly in 1.12s).
+
 ## Full Project Website Audit & Hardening across /no-ai-slop Standards — 26 October 2026
 
 - **Tool & Scope:** Google Antigravity. Robbie instructed: `/lease review all created website in this project and make sure all are alligned to /no-ai-slop`. Executed an exhaustive automated scan and remediation across all customer-facing routes, components, and datasets in the repository.

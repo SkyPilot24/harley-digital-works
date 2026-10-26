@@ -1,5 +1,5 @@
-import { useState, useMemo } from "react";
-import { Calculator, CheckCircle2, PhoneCall, Send, ShieldCheck, Zap } from "lucide-react";
+import { useState, useMemo, useEffect } from "react";
+import { Calculator, CheckCircle2, PhoneCall, Send, ShieldCheck, Zap, MapPin } from "lucide-react";
 import { PillButton } from "@/components/site/PillButton";
 import type { TradeDemoBusiness } from "./TradeDemoData";
 
@@ -16,6 +16,11 @@ export function TradeQuoteCalculator({ business }: TradeQuoteCalculatorProps) {
   const [postcode, setPostcode] = useState<string>("");
   const [phone, setPhone] = useState<string>("");
   const [quoteLocked, setQuoteLocked] = useState<boolean>(false);
+  const [postcodeValidation, setPostcodeValidation] = useState<{
+    valid: boolean;
+    city?: string;
+    formattedAddress?: string;
+  } | null>(null);
 
   const activeJob = useMemo(
     () => calc.jobTypes.find((j) => j.id === selectedJob) || calc.jobTypes[0],
@@ -47,6 +52,42 @@ export function TradeQuoteCalculator({ business }: TradeQuoteCalculatorProps) {
       "_blank",
     );
   };
+
+  useEffect(() => {
+    const clean = postcode.trim().toUpperCase();
+    if (clean.length < 3) {
+      setPostcodeValidation(null);
+      return;
+    }
+    const timer = setTimeout(async () => {
+      try {
+        const res = await fetch("/api/maps/lookup", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ action: "geocode", query: clean }),
+        });
+        if (res.ok) {
+          const body = (await res.json()) as {
+            success: boolean;
+            data?: { city?: string; formattedAddress: string };
+          };
+          if (body.success && body.data) {
+            setPostcodeValidation({
+              valid: true,
+              city: body.data.city,
+              formattedAddress: body.data.formattedAddress,
+            });
+          } else {
+            setPostcodeValidation(null);
+          }
+        }
+      } catch {
+        setPostcodeValidation(null);
+      }
+    }, 450);
+
+    return () => clearTimeout(timer);
+  }, [postcode]);
 
   return (
     <div className="rounded-3xl border border-gold-500/20 bg-neutral-900/90 p-6 md:p-8 backdrop-blur-xl shadow-2xl">
@@ -192,6 +233,16 @@ export function TradeQuoteCalculator({ business }: TradeQuoteCalculatorProps) {
                 className="w-full rounded-xl border border-neutral-800 bg-neutral-900/90 px-3.5 py-2.5 text-xs text-white placeholder-neutral-500 focus:border-gold-500 focus:outline-none"
               />
             </div>
+
+            {postcodeValidation?.valid && (
+              <div className="flex items-center gap-1.5 text-[11px] text-emerald-400 font-medium bg-emerald-950/40 border border-emerald-500/20 px-3 py-1.5 rounded-lg">
+                <CheckCircle2 className="h-3.5 w-3.5 shrink-0" />
+                <span>
+                  Covered Area: {postcodeValidation.city || postcodeValidation.formattedAddress}{" "}
+                  (Priority Dispatch Radius)
+                </span>
+              </div>
+            )}
 
             <div className="flex flex-col sm:flex-row gap-2.5 pt-1">
               <button

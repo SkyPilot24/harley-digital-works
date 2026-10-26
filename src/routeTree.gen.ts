@@ -72,6 +72,8 @@ import { Route as AuthenticatedAdminUsersRouteImport } from './routes/_authentic
 import { Route as ApiAuditProspectRouteImport } from './routes/api.audit.prospect'
 import { Route as ApiChatContentFlowRouteImport } from './routes/api.chat.content-flow'
 import { Route as ApiChatTradeAgentRouteImport } from './routes/api.chat.trade-agent'
+import { Route as ApiMapsLookupRouteImport } from './routes/api.maps.lookup'
+import { Route as ApiMapsStaticRouteImport } from './routes/api.maps.static'
 import { Route as ApiPaymentsStripeRouteImport } from './routes/api.payments.stripe'
 import { Route as ApiWebhooksDomainInboundRouteImport } from './routes/api.webhooks.domain-inbound'
 import { Route as ApiWebhooksResendRouteImport } from './routes/api.webhooks.resend'
@@ -406,6 +408,16 @@ const ApiChatTradeAgentRoute = ApiChatTradeAgentRouteImport.update({
   path: '/api/chat/trade-agent',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiMapsLookupRoute = ApiMapsLookupRouteImport.update({
+  id: '/api/maps/lookup',
+  path: '/api/maps/lookup',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiMapsStaticRoute = ApiMapsStaticRouteImport.update({
+  id: '/api/maps/static',
+  path: '/api/maps/static',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiPaymentsStripeRoute = ApiPaymentsStripeRouteImport.update({
   id: '/api/payments/stripe',
   path: '/api/payments/stripe',
@@ -485,6 +497,8 @@ export interface FileRoutesByFullPath {
   '/api/audit/prospect': typeof ApiAuditProspectRoute
   '/api/chat/content-flow': typeof ApiChatContentFlowRoute
   '/api/chat/trade-agent': typeof ApiChatTradeAgentRoute
+  '/api/maps/lookup': typeof ApiMapsLookupRoute
+  '/api/maps/static': typeof ApiMapsStaticRoute
   '/api/payments/stripe': typeof ApiPaymentsStripeRoute
   '/api/webhooks/domain-inbound': typeof ApiWebhooksDomainInboundRoute
   '/api/webhooks/resend': typeof ApiWebhooksResendRoute
@@ -552,6 +566,8 @@ export interface FileRoutesByTo {
   '/api/audit/prospect': typeof ApiAuditProspectRoute
   '/api/chat/content-flow': typeof ApiChatContentFlowRoute
   '/api/chat/trade-agent': typeof ApiChatTradeAgentRoute
+  '/api/maps/lookup': typeof ApiMapsLookupRoute
+  '/api/maps/static': typeof ApiMapsStaticRoute
   '/api/payments/stripe': typeof ApiPaymentsStripeRoute
   '/api/webhooks/domain-inbound': typeof ApiWebhooksDomainInboundRoute
   '/api/webhooks/resend': typeof ApiWebhooksResendRoute
@@ -621,6 +637,8 @@ export interface FileRoutesById {
   '/api/audit/prospect': typeof ApiAuditProspectRoute
   '/api/chat/content-flow': typeof ApiChatContentFlowRoute
   '/api/chat/trade-agent': typeof ApiChatTradeAgentRoute
+  '/api/maps/lookup': typeof ApiMapsLookupRoute
+  '/api/maps/static': typeof ApiMapsStaticRoute
   '/api/payments/stripe': typeof ApiPaymentsStripeRoute
   '/api/webhooks/domain-inbound': typeof ApiWebhooksDomainInboundRoute
   '/api/webhooks/resend': typeof ApiWebhooksResendRoute
@@ -690,6 +708,8 @@ export interface FileRouteTypes {
     | '/api/audit/prospect'
     | '/api/chat/content-flow'
     | '/api/chat/trade-agent'
+    | '/api/maps/lookup'
+    | '/api/maps/static'
     | '/api/payments/stripe'
     | '/api/webhooks/domain-inbound'
     | '/api/webhooks/resend'
@@ -757,6 +777,8 @@ export interface FileRouteTypes {
     | '/api/audit/prospect'
     | '/api/chat/content-flow'
     | '/api/chat/trade-agent'
+    | '/api/maps/lookup'
+    | '/api/maps/static'
     | '/api/payments/stripe'
     | '/api/webhooks/domain-inbound'
     | '/api/webhooks/resend'
@@ -825,6 +847,8 @@ export interface FileRouteTypes {
     | '/api/audit/prospect'
     | '/api/chat/content-flow'
     | '/api/chat/trade-agent'
+    | '/api/maps/lookup'
+    | '/api/maps/static'
     | '/api/payments/stripe'
     | '/api/webhooks/domain-inbound'
     | '/api/webhooks/resend'
@@ -876,6 +900,8 @@ export interface RootRouteChildren {
   ApiAuditProspectRoute: typeof ApiAuditProspectRoute
   ApiChatContentFlowRoute: typeof ApiChatContentFlowRoute
   ApiChatTradeAgentRoute: typeof ApiChatTradeAgentRoute
+  ApiMapsLookupRoute: typeof ApiMapsLookupRoute
+  ApiMapsStaticRoute: typeof ApiMapsStaticRoute
   ApiPaymentsStripeRoute: typeof ApiPaymentsStripeRoute
   ApiWebhooksDomainInboundRoute: typeof ApiWebhooksDomainInboundRoute
   ApiWebhooksResendRoute: typeof ApiWebhooksResendRoute
@@ -1324,6 +1350,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiChatTradeAgentRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/maps/lookup': {
+      id: '/api/maps/lookup'
+      path: '/api/maps/lookup'
+      fullPath: '/api/maps/lookup'
+      preLoaderRoute: typeof ApiMapsLookupRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/maps/static': {
+      id: '/api/maps/static'
+      path: '/api/maps/static'
+      fullPath: '/api/maps/static'
+      preLoaderRoute: typeof ApiMapsStaticRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/payments/stripe': {
       id: '/api/payments/stripe'
       path: '/api/payments/stripe'
@@ -1441,6 +1481,8 @@ const rootRouteChildren: RootRouteChildren = {
   ApiAuditProspectRoute: ApiAuditProspectRoute,
   ApiChatContentFlowRoute: ApiChatContentFlowRoute,
   ApiChatTradeAgentRoute: ApiChatTradeAgentRoute,
+  ApiMapsLookupRoute: ApiMapsLookupRoute,
+  ApiMapsStaticRoute: ApiMapsStaticRoute,
   ApiPaymentsStripeRoute: ApiPaymentsStripeRoute,
   ApiWebhooksDomainInboundRoute: ApiWebhooksDomainInboundRoute,
   ApiWebhooksResendRoute: ApiWebhooksResendRoute,

@@ -1,5 +1,27 @@
 # Harley Digital Works — Project Status
 
+## Google Cloud Credit Activation & Google Maps Platform Integration — 26 October 2026
+
+**Current Status:** Activated and wired Google Cloud credits (£188.03/month Google Maps Platform nonprofit credits on `stalwart-cable-501111-c1` + £740.53 Gen App Builder & £452.34 Dialogflow CX on `gen-app-agent-building`):
+
+1. **Google Maps Platform Integration (`stalwart-cable-501111-c1`)**:
+   - Enabled API keys and retrieved active Maps Platform key with Places, Geocoding, and Static Maps enabled.
+   - Built `src/lib/maps/google-maps.server.ts` with UK-specific geocoding, Google Places review lookup, and custom industrial dark-mode static map styling (Midnight Navy `#081B30`, Steel Blue road geometry `#1B3552`, Amber markers `#F59E0B`).
+   - Created server API routes `/api/maps/lookup` and `/api/maps/static` (with 24h caching).
+   - Wired live Google Maps coverage visuals into Section 8 of `StandaloneProspectDemo.tsx` and Section 8.5 of `demos_.rg-electrical.tsx`.
+   - Wired real-time UK postcode geocode validation into `TradeQuoteCalculator.tsx` with instant coverage confirmation pills.
+   - Wired live Google Places rating and review count fetching into `api.audit.prospect.ts` and `ProspectAuditorDesk.tsx`.
+2. **Empirical Verification**:
+   - Live Google Static Maps API: PASS (HTTP 200, 62,390 bytes PNG).
+   - Live Geocode API: PASS (BS32 9DA -> Bradley Stoke, Bristol BS32 9DA).
+   - Live Google Places: PASS (RG Electrical -> 4.9 rating / 130 reviews).
+   - `node scripts/scan-all-slop.mjs`: PASS (0 items to review).
+   - `npm run format:check`: PASS (100% Prettier compliant).
+   - `npm run typecheck`: PASS (0 TS errors).
+   - `npm run lint`: PASS (0 errors, 9 non-blocking warnings).
+   - `npm test`: PASS (205/205 passing assertions across 25 suites + service worker + claims guard).
+   - `npm run build`: PASS (Vite + Nitro SSR built cleanly in 1.12s).
+
 ## Full Project Website Audit & Hardening across /no-ai-slop Complete — 26 October 2026
 
 **Current Status:** Completed repository-wide audit and remediation of all public websites, pages, and components against `no-ai-slop` standards:

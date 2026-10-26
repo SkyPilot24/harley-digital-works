@@ -18,6 +18,8 @@ import {
   Gauge,
   Video,
   UserPlus,
+  MapPin,
+  Star,
 } from "lucide-react";
 import { toast } from "sonner";
 
@@ -35,6 +37,14 @@ export interface ProspectAuditData {
     localSeoScore: number;
     estimatedLostRevenueMonthly: string;
     defects: string[];
+    googlePlacesData?: {
+      placeId?: string;
+      name?: string;
+      formattedAddress?: string;
+      rating?: number;
+      userRatingsTotal?: number;
+      businessStatus?: string;
+    } | null;
   };
   pitches: {
     whatsApp: string;
@@ -355,6 +365,25 @@ export function ProspectAuditorDesk({
                     <p className="text-xs text-slate-500">
                       {auditResult.audit.trade} · {auditResult.audit.location}
                     </p>
+                    {auditResult.audit.googlePlacesData && (
+                      <div className="flex flex-wrap items-center gap-2 mt-1 text-[11px] text-slate-600">
+                        <div className="flex items-center gap-1 font-semibold text-amber-600">
+                          <Star className="h-3 w-3 fill-amber-400 text-amber-400" />
+                          <span>
+                            {auditResult.audit.googlePlacesData.rating
+                              ? `${auditResult.audit.googlePlacesData.rating.toFixed(1)} (${auditResult.audit.googlePlacesData.userRatingsTotal || 0} Google reviews)`
+                              : "Verified on Google Maps"}
+                          </span>
+                        </div>
+                        <span className="text-slate-300">·</span>
+                        <span className="text-slate-500 flex items-center gap-1">
+                          <MapPin className="h-3 w-3 text-emerald-600 shrink-0" />
+                          <span className="truncate max-w-[280px]">
+                            {auditResult.audit.googlePlacesData.formattedAddress}
+                          </span>
+                        </span>
+                      </div>
+                    )}
                   </div>
 
                   <div className="flex items-center gap-3">

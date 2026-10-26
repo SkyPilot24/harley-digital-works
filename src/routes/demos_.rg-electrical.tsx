@@ -723,6 +723,69 @@ robbie@theharleygroup.org | 0117 214 1357`;
         </div>
       </section>
 
+      {/* 8.5 Local Coverage Radius & Google Maps */}
+      <section id="coverage" className="py-16 border-b border-slate-800 bg-[#081B30]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-2xl mx-auto mb-10">
+            <div className="inline-flex items-center gap-1.5 text-xs font-mono text-emerald-400 mb-2">
+              <MapPin className="h-4 w-4" />
+              <span>NORTH BRISTOL &amp; SOUTH GLOUCESTERSHIRE COVERAGE</span>
+            </div>
+            <h2 className="text-2xl sm:text-4xl font-extrabold text-white tracking-tight mb-3">
+              Rapid Dispatch Across Bradley Stoke &amp; Surrounding Areas
+            </h2>
+            <p className="text-sm text-slate-300">
+              Immediate attendance available across all North Bristol postcodes within a 20-mile
+              operational radius.
+            </p>
+          </div>
+
+          <div className="max-w-4xl mx-auto rounded-2xl overflow-hidden border border-slate-800 shadow-2xl bg-[#051323] relative">
+            <div className="relative aspect-[2/1] sm:aspect-[21/9] w-full overflow-hidden bg-slate-950">
+              <img
+                src="/api/maps/static?center=Bradley%20Stoke,%20Bristol&zoom=11&width=900&height=400"
+                alt="RG Electrical Bristol local coverage area map across Bradley Stoke and North Bristol"
+                className="w-full h-full object-cover brightness-95 contrast-105"
+                loading="lazy"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#051323] via-transparent to-transparent opacity-80" />
+              <div className="absolute top-4 left-4 inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-slate-950/85 border border-slate-700/80 text-white text-xs backdrop-blur-md">
+                <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
+                <span className="font-semibold">Bradley Stoke Operational Base</span>
+                <span className="text-slate-500">|</span>
+                <span className="text-amber-400 font-mono text-[11px]">
+                  20-Mile Priority Service Area
+                </span>
+              </div>
+            </div>
+
+            <div className="p-5 sm:p-6 bg-[#051323] border-t border-slate-800/80 flex flex-wrap items-center justify-between gap-3 text-xs">
+              <div className="flex flex-wrap gap-2 text-slate-300">
+                <span className="px-3 py-1 rounded-full bg-slate-900 border border-slate-800 font-mono text-[11px]">
+                  BS32 (Bradley Stoke)
+                </span>
+                <span className="px-3 py-1 rounded-full bg-slate-900 border border-slate-800 font-mono text-[11px]">
+                  BS34 (Stoke Gifford / Filton)
+                </span>
+                <span className="px-3 py-1 rounded-full bg-slate-900 border border-slate-800 font-mono text-[11px]">
+                  BS35 (Thornbury / Alveston)
+                </span>
+                <span className="px-3 py-1 rounded-full bg-slate-900 border border-slate-800 font-mono text-[11px]">
+                  BS16 (Downend / Fishponds)
+                </span>
+                <span className="px-3 py-1 rounded-full bg-slate-900 border border-slate-800 font-mono text-[11px]">
+                  BS7 / BS8 (Bishopston / Clifton)
+                </span>
+              </div>
+              <div className="text-slate-400 text-[11px] font-mono flex items-center gap-1.5">
+                <ShieldCheck className="h-3.5 w-3.5 text-emerald-400" />
+                <span>Zero callout fee for scheduled quotes</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* 9. Emergency Callout Strip */}
       <section className="bg-gradient-to-r from-emerald-950 via-slate-900 to-emerald-950 border-b border-emerald-500/30 py-8 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">

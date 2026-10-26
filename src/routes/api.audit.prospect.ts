@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { execSync } from "node:child_process";
+import { searchGoogleBusinessPlace } from "@/lib/maps/google-maps.server";
 
 const AGENT_PROJECT = "gen-app-agent-building";
 const AGENT_LOCATION = "us-central1";
@@ -203,7 +204,7 @@ export const Route = createFileRoute("/api/audit/prospect")({
             ? "https://harleydigitalworks.com/demos/rg-electrical"
             : `https://harleydigitalworks.com/demos?company=${encodeURIComponent(businessName)}&trade=${tradeParam}&city=${encodeURIComponent(location)}&phone=${encodeURIComponent(phone)}`;
 
-          // Google Agent Builder Call
+          // Google Agent Builder & Google Maps Places API in parallel
           const prompt = `Audit Prospect: ${businessName}. Website: ${cleanUrl}. Trade: ${trade}. Location: ${location}. Identified defects: ${defects.join("; ")}. Demo prototype URL: ${demoUrl}`;
           const token = getGoogleAccessToken();
           const sessionId = `aud-${Date.now()}`;
@@ -211,12 +212,14 @@ export const Route = createFileRoute("/api/audit/prospect")({
           let rawPitchesText = "";
           let source = "local_template_engine";
 
-          if (token) {
-            const agentReply = await callAuditorAgent(prompt, sessionId, token);
-            if (agentReply) {
-              rawPitchesText = agentReply;
-              source = "google_agent_builder";
-            }
+          const [agentReply, googlePlaces] = await Promise.all([
+            token ? callAuditorAgent(prompt, sessionId, token) : Promise.resolve(null),
+            searchGoogleBusinessPlace(businessName, location),
+          ]);
+
+          if (agentReply) {
+            rawPitchesText = agentReply;
+            source = "google_agent_builder";
           }
 
           const pitches = parsePitches(rawPitchesText, demoUrl, businessName);
@@ -235,6 +238,7 @@ export const Route = createFileRoute("/api/audit/prospect")({
               localSeoScore,
               estimatedLostRevenueMonthly: `£${Math.round(4000 + (hash % 6000)).toLocaleString()}/mo`,
               defects,
+              googlePlacesData: googlePlaces,
             },
             pitches,
             demoUrl,
