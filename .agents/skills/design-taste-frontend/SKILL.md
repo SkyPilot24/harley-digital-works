@@ -677,36 +677,36 @@ Avoid these signatures unless the brief explicitly asks for them.
 
 These patterns came out of real LLM-generated landing-page tests. They are the signatures the model defaults to when it tries to "look designed." Treat them as hard bans unless the brief explicitly calls for one.
 
-**Hero & top-of-page**
+#### Hero & top-of-page
 
 - **NO version labels in the hero.** `V0.6`, `v2.0`, `BETA`, `INVITE-ONLY PREVIEW`, `EARLY ACCESS`, `ALPHA` - banned as default eyebrows. Only acceptable when the brief is explicitly about a product launch / preview status.
 - **NO "Brand · No. 01"-style sub-eyebrows.** "Marrow · No. 01 · The 6-quart" type micro-meta lines. Skip them.
 
-**Section numbering & micro-labels**
+#### Section numbering & micro-labels
 
 - **NO section-number eyebrows.** `00 / INDEX`, `001 · Capabilities`, `002 · Featured commission`, `06 · how it works`, `05 · The honest table` - banned. Eyebrows should name the topic in plain language, not enumerate.
 - **NO `01 / 4`-style pagination on images or bento tiles.** If the user can count, they don't need the label.
 - **NO `Scroll · 001 Capabilities`-style scroll cues.** A simple arrow or "Scroll" is enough; no section-number prefix.
 - **NO "Index of Work, 2018 - 2026"-style range labels** as eyebrows. Just say what the section is.
 
-**Separators & dots**
+#### Separators & dots
 
 - **The middle-dot (`·`) is rationed.** Maximum 1 per line in metadata strips. Do NOT use it as the default separator for everything ("foo · bar · baz · qux · quux"). If you need a separator family, prefer line breaks, hairlines, or columns.
 - **NO decorative colored status dots on every list/nav/badge.** A colored dot before "ONE Q4 SLOT OPEN" or before every nav link, or every task row - banned by default. Acceptable only when the dot conveys actual semantic state (a server status, an availability flag) and is used sparingly.
 
-**Em-dashes & typography flourishes**
+#### Em-dashes & typography flourishes
 
 - **NO em-dash (`—`) as a design element OR anywhere else.** See Section 9.G below for the complete, non-negotiable ban. The em-dash character is forbidden in headlines, eyebrows, pills, body copy, quotes, attribution, captions, button text, and alt text. Use the regular hyphen (`-`).
 - **NO `<br>`-broken-and-italicized headlines** as a default "design move." "for thirty\<br\>_years._" type splits. Headlines should read naturally first, get clever only when the brief demands it.
 - **NO vertical rotated text** ("INDEX OF WORK, 2018 - 2026" rotated 90°). Agency-portfolio cliché. Use it only when the brief is explicitly agency / Awwwards / experimental AND it serves a real composition purpose.
 - **NO crosshair / hairline grid lines as decoration.** Vertical and horizontal lines drawn just to make the page "feel designed" - banned. Use them only when they organize real content.
 
-**Fake product previews**
+#### Fake product previews
 
 - **NO div-based fake product UI in the hero** (fake task list, fake terminal, fake dashboard built from styled divs). It is the #1 LLM-design Tell. Use a real screenshot, a generated image, a real component preview, or none at all.
 - **NO fake version footers** ("v0.6.2-rc.1", "last sync 4s ago · main") inside fake screenshots. Adds nothing, screams AI.
 
-**Marketing-copy Tells**
+#### Marketing-copy Tells
 
 - **NO "Quietly in use at" / "Quietly trusted by"** social-proof headers. Use natural language: "Trusted by", "Used at", "Customers include", or skip the heading entirely if the logos speak.
 - **NO "From the field" / "Field notes" / "Currently on the bench" / "On our desks" / "Loose plates" style poetic labels** on quote, blog, or sidebar sections. Reads as performative-craftsman. Use plain functional labels ("Testimonials", "Latest writing", "Now working on") or skip the label.
@@ -715,24 +715,24 @@ These patterns came out of real LLM-generated landing-page tests. They are the s
 - **NO micro-meta-sentences under eyebrows.** Sentences like _"Each of these is a feature we ship today, not a roadmap promise. The list will stay short on purpose."_ sitting under a section heading are clutter. Eyebrow + Headline + Body is enough.
 - **NO generic step labels.** "Stage 1 / Stage 2 / Stage 3", "Step 1 / Step 2 / Step 3", "Phase 01 / Phase 02 / Phase 03", "Pass One / Pass Two / Pass Three". Banned. The actual step content is the label. If you must show progression, use the verb-noun directly ("Install", "Configure", "Ship") not "Stage 1: Install".
 
-**Pills, labels and version stamps**
+#### Pills, labels and version stamps
 
 - **NO pills/labels/tags overlaid on images.** No `<span>` overlays on photos with tags like `Brand · 02`, `PLATE · BRAND`, `Field notes - journal`. Either let the image speak alone, or add a caption directly below (outside the image).
 - **NO photo-credit captions as decoration.** Strings like `Field study no. 12 · Ines Caetano`, `Plate 03 · House archive`, `Frame XII · 35mm` under stock/picsum images are pretentious. Photo credit is allowed ONLY when there is a real photographer being credited for a real photo (with permission). Otherwise: skip the caption or use a one-line functional caption ("The 6-quart, in Sage.").
 - **NO version footers on marketing pages.** Footer strings like `v1.4.2`, `Build 0048`, `last sync 4s ago · main` are CLI / devtool fixtures, not landing-page content. Banned on marketing/landing/portfolio pages.
 - **NO "Reservation 412 of 800"-style live-stock counters** as decoration. Only if the brief is explicitly a limited-run waitlist with real data.
 
-**Decoration text strips**
+#### Decoration text strips
 
 - **NO decoration text strip at hero bottom.** Patterns like `BRAND. MOTION. SPATIAL.`, `TYPE / FORM / MOTION`, `DESIGN · BUILD · SHIP`, `ESTD. 2018 · LISBON · BRAND. MOTION. SPATIAL.` as a small mono-caps strip across the bottom of the hero are an agency-portfolio cliché. Banned by default. Only acceptable when the strip carries real, navigable links (sticky bottom nav) or real status info (cookie banner, build info on a docs site).
 - **NO floating top-right sub-text in section headings.** Pattern: section has a giant left-aligned headline; in the top-right corner of the same section header there is a small explainer paragraph floating with no clear alignment to anything else. That floater is the Tell. Either put the sub-text directly under the headline, or build a clean 2-column header (left: headline, right: aligned body), but not a tiny corner paragraph.
 
-**Lists, dividers and scoring**
+#### Lists, dividers and scoring
 
 - **NO `border-t` + `border-b` on every row of a long list / spec table.** Pick one (bottom-border between rows OR top-border above the group) and use it sparsely. A 10-row spec table with hairlines under each row is the laziest layout - see Section 4.9 for alternative UI components.
 - **NO scoring/progress bars with filled background tracks** as comparison visuals. If you need to show "X out of Y" comparisons, prefer a number + small icon, or a tiny inline bar WITHOUT a background track. Big filled `bg-zinc-200` tracks with a partial fill on top are dashboard-UI clutter on a landing page.
 
-**Locale, time, scroll cues**
+#### Locale, time, scroll cues
 
 - **Locale / city-name / time / weather strips are banned for 99% of briefs.** "Lisbon, working with founders" in the hero, "1200-690 Lisbon, Portugal" in the footer, "Lisbon 14:23 · 18°C" in the nav. These are agency-portfolio decoration tells. Allowed ONLY when: the brief explicitly describes a globally-distributed studio with timezone-relevant work, OR a travel-focused brand, OR a real-world physical venue. A single contact-address mention in the footer is fine; an atmospheric locale strip is not.
 - **Scroll cues are banned.** `Scroll`, `↓ scroll`, `Scroll to explore`, `Scroll to walk through it`, animated mouse-wheel icons. If the user has not scrolled yet, they are looking at the hero. They know what scroll is. The bottom of the viewport does not need a label.
@@ -915,7 +915,7 @@ The Reference Vocabulary (Section 10) names patterns. The Block Library implemen
 
 ### 12.A File Location
 
-```
+```text
 skills/taste-skill/blocks/
   hero/
     asymmetric-split.md
@@ -1060,7 +1060,7 @@ If a single checkbox cannot be honestly ticked, the page is not done. Fix it bef
 
 ---
 
-# APPENDICES - Real Source-Backed Reference Material
+## APPENDICES - Real Source-Backed Reference Material
 
 The sections below are vendored reference content. They give the agent real install commands, real canonical doc links, and real working starter snippets for each design system named in Section 2. Use them to ground decisions in production reality, not training-data fiction.
 
@@ -1114,93 +1114,93 @@ npm install bootstrap
 
 ### Material Web
 
-- https://github.com/material-components/material-web
-- https://material-web.dev/theming/material-theming/
-- https://m3.material.io/develop/web
+- <https://github.com/material-components/material-web>
+- <https://material-web.dev/theming/material-theming/>
+- <https://m3.material.io/develop/web>
 
 ### Fluent UI
 
-- https://fluent2.microsoft.design/get-started/develop
-- https://fluent2.microsoft.design/components/web/react/
-- https://github.com/microsoft/fluentui
-- https://learn.microsoft.com/en-us/fluent-ui/web-components/
+- <https://fluent2.microsoft.design/get-started/develop>
+- <https://fluent2.microsoft.design/components/web/react/>
+- <https://github.com/microsoft/fluentui>
+- <https://learn.microsoft.com/en-us/fluent-ui/web-components/>
 
 ### Carbon
 
-- https://carbondesignsystem.com/
-- https://github.com/carbon-design-system/carbon
-- https://carbondesignsystem.com/developing/react-tutorial/overview/
-- https://carbondesignsystem.com/developing/web-components-tutorial/overview/
+- <https://carbondesignsystem.com/>
+- <https://github.com/carbon-design-system/carbon>
+- <https://carbondesignsystem.com/developing/react-tutorial/overview/>
+- <https://carbondesignsystem.com/developing/web-components-tutorial/overview/>
 
 ### Shopify Polaris
 
-- https://shopify.dev/docs/api/app-home/web-components
-- https://github.com/Shopify/polaris-react
-- https://polaris-react.shopify.com/components
+- <https://shopify.dev/docs/api/app-home/web-components>
+- <https://github.com/Shopify/polaris-react>
+- <https://polaris-react.shopify.com/components>
 
 ### Atlassian
 
-- https://atlassian.design/get-started/develop
-- https://atlassian.design/components/button/examples
-- https://atlaskit.atlassian.com/packages/design-system/button/example/disabled
-- https://atlassian.design/tokens/design-tokens
+- <https://atlassian.design/get-started/develop>
+- <https://atlassian.design/components/button/examples>
+- <https://atlaskit.atlassian.com/packages/design-system/button/example/disabled>
+- <https://atlassian.design/tokens/design-tokens>
 
 ### Primer
 
-- https://primer.style/
-- https://github.com/primer/css
-- https://github.com/primer/brand
+- <https://primer.style/>
+- <https://github.com/primer/css>
+- <https://github.com/primer/brand>
 
 ### GOV.UK
 
-- https://design-system.service.gov.uk/components/button/
-- https://design-system.service.gov.uk/styles/layout/
-- https://github.com/alphagov/govuk-frontend
+- <https://design-system.service.gov.uk/components/button/>
+- <https://design-system.service.gov.uk/styles/layout/>
+- <https://github.com/alphagov/govuk-frontend>
 
 ### USWDS
 
-- https://designsystem.digital.gov/documentation/developers/
-- https://designsystem.digital.gov/components/button/
-- https://designsystem.digital.gov/components/card/
-- https://github.com/uswds/uswds
+- <https://designsystem.digital.gov/documentation/developers/>
+- <https://designsystem.digital.gov/components/button/>
+- <https://designsystem.digital.gov/components/card/>
+- <https://github.com/uswds/uswds>
 
 ### Bootstrap
 
-- https://getbootstrap.com/docs/5.3/layout/grid/
-- https://getbootstrap.com/docs/5.3/components/card/
+- <https://getbootstrap.com/docs/5.3/layout/grid/>
+- <https://getbootstrap.com/docs/5.3/components/card/>
 
 ### Tailwind
 
-- https://tailwindcss.com/docs/dark-mode
-- https://tailwindcss.com/blog/tailwindcss-v4
+- <https://tailwindcss.com/docs/dark-mode>
+- <https://tailwindcss.com/blog/tailwindcss-v4>
 
 ### Radix
 
-- https://www.radix-ui.com/themes/docs/components/theme
-- https://www.radix-ui.com/themes/docs/components/card
-- https://github.com/radix-ui/themes
+- <https://www.radix-ui.com/themes/docs/components/theme>
+- <https://www.radix-ui.com/themes/docs/components/card>
+- <https://github.com/radix-ui/themes>
 
 ### shadcn/ui
 
-- https://ui.shadcn.com/docs
-- https://ui.shadcn.com/docs/components/card
-- https://github.com/shadcn-ui/ui
+- <https://ui.shadcn.com/docs>
+- <https://ui.shadcn.com/docs/components/card>
+- <https://github.com/shadcn-ui/ui>
 
 ### Native CSS / W3C standards
 
-- https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/backdrop-filter
-- https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/At-rules/@media/prefers-color-scheme
-- https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/At-rules/@media/prefers-reduced-motion
-- https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Grid_layout
-- https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Scroll-driven_animations
-- https://drafts.csswg.org/scroll-animations-1/
+- <https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/backdrop-filter>
+- <https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/At-rules/@media/prefers-color-scheme>
+- <https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/At-rules/@media/prefers-reduced-motion>
+- <https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Grid_layout>
+- <https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Scroll-driven_animations>
+- <https://drafts.csswg.org/scroll-animations-1/>
 
 ### Apple Liquid Glass (Apple platforms only)
 
-- https://developer.apple.com/design/human-interface-guidelines/materials
-- https://developer.apple.com/documentation/TechnologyOverviews/liquid-glass
-- https://developer.apple.com/documentation/TechnologyOverviews/adopting-liquid-glass
-- https://developer.apple.com/documentation/SwiftUI/Material
+- <https://developer.apple.com/design/human-interface-guidelines/materials>
+- <https://developer.apple.com/documentation/TechnologyOverviews/liquid-glass>
+- <https://developer.apple.com/documentation/TechnologyOverviews/adopting-liquid-glass>
+- <https://developer.apple.com/documentation/SwiftUI/Material>
 
 ---
 
