@@ -1,5 +1,30 @@
 # Harley Digital Works — Project Status
 
+## Option 1: The "Architectural Craft" Hybrid Transformation — 26 October 2026
+
+**Current Status:** Completed the Option 1 "Architectural Craft" Hybrid transformation across flagship contractor demos (`/demos/rg-electrical`), dynamic prospect blueprint engines (`StandaloneProspectDemo.tsx`), and codified design standards (`docs/design.md`, `docs/homepage-redesign.md`):
+
+1. **High-Contrast Alternating Section Rhythm**:
+   - Eliminated the monolithic dark blue wall (`#081B30` across all sections) and replaced neon green borders with a refined British industrial trade palette.
+   - **Warm Architectural Canvas (`#F6F3ED`)**: Services, Case Studies, and Reviews now render on crisp daylight ivory with white cards (`bg-white border-stone-200/90`), allowing £4,000+ domestic rewire and plant room photos to pop with natural contrast.
+   - **Warm Workshop Stone (`#ECE8E1`)**: Before/after 18th Edition fuseboard workmanship comparison renders against warm stone with white compliance cards.
+   - **Technical Dark Anchors (`#081B30` / `#051323`)**: Sticky frosted header, hero anchor, interactive instant quote calculator cockpit, and Google Maps 20-mile operational radar remain anchored in midnight navy.
+2. **Restrained 4-Token Color Hierarchy**:
+   - `Midnight Navy (#081B30)`: Technical authority, foundation, and calculator stage.
+   - `Warm Ivory & Stone (#F6F3ED / #ECE8E1)`: Natural daylight canvas for project photos and customer trust.
+   - `Electrical Amber / Copper (#D97706 / #F59E0B)`: NICEIC / TrustMark accreditations, 5-star ratings, instant quote CTAs, and price guide badges.
+   - `Operational Emerald (#059669)`: Strictly reserved for WhatsApp dispatch and live status beacon pulses.
+3. **Design Documentation Codification**:
+   - `docs/design.md`: Overhauled to formally govern the Option 1 Architectural Craft Hybrid standard.
+   - `docs/homepage-redesign.md`: Updated with October 2026 Apple UI/UX specifications and verified asset provenance.
+4. **Empirical Quality Suite**:
+   - `npm run typecheck`: PASS (0 TS errors).
+   - `npm run lint`: PASS (0 errors, 9 non-blocking warnings).
+   - `npm run format:check`: PASS (100% Prettier compliant).
+   - `npm test`: PASS (205/205 tests pass).
+   - `npm run build`: PASS (Vite + Nitro built in 1.74s).
+   - Local Native Chrome Presentation: Active on Port 3000 (`http://localhost:3000/demos/rg-electrical`).
+
 ## Apple-Inspired UI/UX Transformation & Design Taste Audit — 26 October 2026
 
 **Current Status:** Completed comprehensive design audit and elevated public customer surfaces to Apple-grade polish and craft under `/design-taste-frontend` and `/modern-web-guidance` on branch `design/apple-ui-transformation`:

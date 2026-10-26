@@ -399,7 +399,9 @@ textarea:user-valid:not(:placeholder-shown) {
   backdrop-filter: blur(20px) saturate(180%);
   -webkit-backdrop-filter: blur(20px) saturate(180%);
   border: 1px solid rgba(0, 0, 0, 0.08);
-  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.85);
+  box-shadow:
+    0 10px 30px -10px rgba(0, 0, 0, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.85);
 }
 
 .apple-glass-dark {
@@ -407,11 +409,16 @@ textarea:user-valid:not(:placeholder-shown) {
   backdrop-filter: blur(24px) saturate(180%) contrast(1.04);
   -webkit-backdrop-filter: blur(24px) saturate(180%) contrast(1.04);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.14);
+  box-shadow:
+    0 20px 40px -15px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.14);
 }
 
 .apple-card-hover {
-  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.28s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.28s ease;
+  transition:
+    transform 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.28s ease;
 }
 
 .apple-card-hover:hover {
@@ -437,4 +444,3 @@ textarea:user-valid:not(:placeholder-shown) {
     transition: none !important;
   }
 }
-

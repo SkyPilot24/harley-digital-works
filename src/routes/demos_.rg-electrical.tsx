@@ -364,21 +364,21 @@ robbie@theharleygroup.org | 0117 214 1357`;
               href={`tel:${RG_ELECTRICAL_DATA.phone.replace(/\s+/g, "")}`}
               className="hidden sm:inline-flex items-center gap-2 px-3.5 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-white text-xs font-semibold border border-slate-700 transition-colors"
             >
-              <PhoneCall className="h-3.5 w-3.5 text-emerald-400" />
+              <PhoneCall className="h-3.5 w-3.5 text-amber-400" />
               <span>{RG_ELECTRICAL_DATA.phone}</span>
             </a>
             <a
               href="#calculator"
-              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold shadow-md shadow-emerald-950/40 transition-all hover:-translate-y-0.5"
+              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-amber-500 hover:bg-amber-400 text-slate-950 text-xs font-bold shadow-md shadow-amber-950/20 transition-all hover:-translate-y-0.5"
             >
-              <Zap className="h-3.5 w-3.5" />
+              <Zap className="h-3.5 w-3.5 fill-current" />
               <span>Instant Estimate</span>
             </a>
           </div>
         </div>
       </header>
 
-      {/* 3. Hero Section */}
+      {/* 3. Hero Section - HIGH-IMPACT TECHNICAL ANCHOR */}
       <section className="relative bg-gradient-to-b from-[#081B30] via-[#0E2744] to-[#081B30] text-white pt-16 pb-20 border-b border-slate-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-12 gap-12 items-center">
@@ -386,12 +386,12 @@ robbie@theharleygroup.org | 0117 214 1357`;
             <div className="lg:col-span-7 space-y-6 text-left">
               {/* Accreditation trust pills */}
               <div className="flex flex-wrap items-center gap-2">
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-300 border border-emerald-500/30">
-                  <BadgeCheck className="h-3.5 w-3.5" />
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-amber-500/10 text-amber-300 border border-amber-500/30">
+                  <BadgeCheck className="h-3.5 w-3.5 text-amber-400" />
                   NICEIC Approved Contractor
                 </span>
                 <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-blue-500/10 text-blue-300 border border-blue-500/30">
-                  <ShieldCheck className="h-3.5 w-3.5" />
+                  <ShieldCheck className="h-3.5 w-3.5 text-blue-400" />
                   TrustMark Government Endorsed
                 </span>
                 <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-slate-800 text-slate-300 border border-slate-700">
@@ -412,14 +412,14 @@ robbie@theharleygroup.org | 0117 214 1357`;
               <div className="flex flex-wrap items-center gap-3 pt-2">
                 <a
                   href="#calculator"
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm shadow-lg shadow-emerald-950/40 transition-all hover:-translate-y-0.5"
+                  className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-sm shadow-lg shadow-amber-950/20 transition-all hover:-translate-y-0.5"
                 >
-                  <Zap className="h-4 w-4" />
+                  <Zap className="h-4 w-4 fill-current" />
                   <span>Calculate Your Instant Quote</span>
                 </a>
                 <a
                   href="#case-studies"
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-white font-medium text-sm border border-slate-700 transition-colors"
+                  className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-white font-medium text-sm border border-slate-700 transition-colors"
                 >
                   <span>View Bristol Project Case Studies</span>
                   <ArrowRight className="h-4 w-4" />
@@ -428,7 +428,7 @@ robbie@theharleygroup.org | 0117 214 1357`;
 
               {/* Service Area Notice */}
               <div className="flex items-center gap-2 text-xs text-slate-400 font-mono pt-2">
-                <MapPin className="h-3.5 w-3.5 text-emerald-400 shrink-0" />
+                <MapPin className="h-3.5 w-3.5 text-amber-400 shrink-0" />
                 <span>
                   Serving Bradley Stoke, Stoke Gifford, Filton, Patchway, Thornbury, Clifton and
                   central Bristol
@@ -447,16 +447,14 @@ robbie@theharleygroup.org | 0117 214 1357`;
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/30 to-transparent" />
                   <div className="absolute top-4 left-4 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-950/80 border border-slate-700 text-slate-200 text-xs font-semibold backdrop-blur-md">
-                    <MapPin className="h-3 w-3 text-emerald-400" />
+                    <MapPin className="h-3 w-3 text-amber-400" />
                     <span>Bradley Stoke & North Bristol</span>
                   </div>
                 </div>
                 <div className="p-6 bg-slate-950 border-t border-slate-800 space-y-2">
                   <div className="flex items-center justify-between text-xs">
                     <span className="font-bold text-white">RG Electrical Bristol Limited</span>
-                    <span className="text-emerald-400 font-mono font-semibold">
-                      100% Tidy Finish
-                    </span>
+                    <span className="text-amber-400 font-mono font-semibold">100% Tidy Finish</span>
                   </div>
                   <p className="text-xs text-slate-400 leading-relaxed">
                     Qualified NICEIC domestic and commercial electricians. Rapid response callouts,
@@ -469,17 +467,20 @@ robbie@theharleygroup.org | 0117 214 1357`;
         </div>
       </section>
 
-      {/* 4. Core Trade Services Grid */}
-      <section id="services" className="py-20 bg-[#081B30] border-b border-slate-800 text-white">
+      {/* 4. Core Trade Services Grid - WARM ARCHITECTURAL CANVAS */}
+      <section
+        id="services"
+        className="py-20 bg-[#F6F3ED] border-b border-stone-300/80 text-[#081B30]"
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mb-12">
-            <span className="text-xs font-mono font-bold uppercase tracking-wider text-emerald-400">
+            <span className="text-xs font-mono font-bold uppercase tracking-wider text-amber-800 block mb-2">
               Specialist Electrical Services
             </span>
-            <h2 className="text-2xl sm:text-4xl font-bold tracking-tight text-white mt-2">
+            <h2 className="text-2xl sm:text-4xl font-extrabold tracking-tight text-[#081B30]">
               Certified Domestic &amp; Commercial Solutions
             </h2>
-            <p className="mt-3 text-sm text-slate-300 leading-relaxed">
+            <p className="mt-3 text-sm sm:text-base text-slate-600 leading-relaxed">
               Fixed upfront pricing, full NICEIC building control certification, and zero mess left
               behind.
             </p>
@@ -489,24 +490,24 @@ robbie@theharleygroup.org | 0117 214 1357`;
             {RG_ELECTRICAL_DATA.popularServices.map((service, idx) => (
               <div
                 key={idx}
-                className="rounded-2xl border border-slate-800 bg-slate-900/90 p-6 flex flex-col justify-between hover:border-slate-700 transition-all shadow-lg group"
+                className="rounded-2xl border border-stone-200/90 bg-white p-6 flex flex-col justify-between hover:border-amber-500/40 hover:shadow-lg transition-all shadow-sm group"
               >
                 <div className="space-y-3">
                   <div className="flex items-center justify-between text-xs font-mono">
-                    <span className="px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-300 border border-emerald-500/30">
+                    <span className="px-2.5 py-0.5 rounded-md bg-amber-50 text-amber-900 border border-amber-200/80 font-medium">
                       {service.turnaround}
                     </span>
-                    <span className="text-slate-400 font-semibold">{service.priceGuide}</span>
+                    <span className="text-[#081B30] font-bold">{service.priceGuide}</span>
                   </div>
-                  <h3 className="text-base font-bold text-white group-hover:text-emerald-300 transition-colors">
+                  <h3 className="text-base font-bold text-[#081B30] group-hover:text-amber-800 transition-colors">
                     {service.title}
                   </h3>
-                  <p className="text-xs text-slate-400 leading-relaxed">{service.description}</p>
+                  <p className="text-xs text-slate-600 leading-relaxed">{service.description}</p>
                 </div>
-                <div className="pt-4 mt-4 border-t border-slate-800/80">
+                <div className="pt-4 mt-4 border-t border-stone-100">
                   <a
                     href="#calculator"
-                    className="inline-flex items-center gap-1.5 text-xs font-semibold text-emerald-400 hover:text-emerald-300 transition-colors"
+                    className="inline-flex items-center gap-1.5 text-xs font-bold text-amber-800 hover:text-amber-900 transition-colors"
                   >
                     <span>Get instant estimate</span>
                     <ArrowRight className="h-3.5 w-3.5" />
@@ -518,21 +519,21 @@ robbie@theharleygroup.org | 0117 214 1357`;
         </div>
       </section>
 
-      {/* 5. 3-Project Structured Portfolio Showcase */}
+      {/* 5. 3-Project Structured Portfolio Showcase - WARM ARCHITECTURAL CANVAS */}
       <section
         id="case-studies"
-        className="py-20 bg-slate-900 border-b border-slate-800 text-white"
+        className="py-20 bg-[#F6F3ED] border-b border-stone-300/80 text-[#081B30]"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mb-12">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono font-semibold bg-emerald-500/10 text-emerald-300 border border-emerald-500/30 mb-3">
-              <Sparkles className="h-3.5 w-3.5" />
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono font-semibold bg-amber-100 text-amber-900 border border-amber-300/80 mb-3">
+              <Sparkles className="h-3.5 w-3.5 text-amber-700" />
               VERIFIED BRISTOL INSTALLATIONS
             </div>
-            <h2 className="text-2xl sm:text-4xl font-bold tracking-tight text-white">
+            <h2 className="text-2xl sm:text-4xl font-extrabold tracking-tight text-[#081B30]">
               Recent Bristol Electrical Installations &amp; Case Studies
             </h2>
-            <p className="mt-3 text-sm sm:text-base text-slate-300 leading-relaxed">
+            <p className="mt-3 text-sm sm:text-base text-slate-600 leading-relaxed">
               Full project breakdowns with verified NICEIC certification, scope details, and
               transparent price guides for Bristol homeowners.
             </p>
@@ -542,61 +543,59 @@ robbie@theharleygroup.org | 0117 214 1357`;
             {RG_CASE_STUDIES.map((study) => (
               <div
                 key={study.id}
-                className="rounded-2xl border border-slate-800 bg-[#081B30] p-6 flex flex-col justify-between hover:border-slate-700 transition-all shadow-xl group overflow-hidden"
+                className="rounded-2xl border border-stone-200/90 bg-white p-6 flex flex-col justify-between hover:border-amber-500/40 hover:shadow-xl transition-all shadow-md group overflow-hidden"
               >
                 <div>
                   {/* Real high-res photo header */}
-                  <div className="relative h-48 -mx-6 -mt-6 mb-5 overflow-hidden rounded-t-2xl bg-slate-950">
+                  <div className="relative h-52 -mx-6 -mt-6 mb-5 overflow-hidden rounded-t-2xl bg-stone-100">
                     <img
                       src={study.image}
                       alt={study.title}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 brightness-95"
                       loading="lazy"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#081B30] via-transparent to-transparent" />
-                    <span className="absolute top-3 left-3 text-[11px] font-mono font-bold tracking-wider px-2.5 py-1 rounded bg-slate-950/80 text-emerald-300 border border-emerald-500/30 backdrop-blur-sm">
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+                    <span className="absolute top-3 left-3 text-[11px] font-mono font-bold tracking-wider px-2.5 py-1 rounded bg-stone-900/85 text-amber-300 border border-amber-400/30 backdrop-blur-sm">
                       {study.tag}
                     </span>
-                    <span className="absolute top-3 right-3 text-xs font-mono text-slate-300 px-2 py-0.5 rounded bg-slate-950/80 backdrop-blur-sm">
+                    <span className="absolute top-3 right-3 text-xs font-mono text-stone-100 px-2 py-0.5 rounded bg-stone-900/85 backdrop-blur-sm">
                       {study.turnaround}
                     </span>
                   </div>
 
-                  <h3 className="text-lg font-bold text-white leading-snug">{study.title}</h3>
+                  <h3 className="text-lg font-bold text-[#081B30] leading-snug">{study.title}</h3>
 
-                  <div className="mt-3 text-xs text-slate-400 space-y-1.5">
-                    <p className="flex items-center gap-1.5 text-slate-300">
-                      <MapPin className="h-3.5 w-3.5 text-emerald-400 shrink-0" />
+                  <div className="mt-3 text-xs text-slate-600 space-y-1.5">
+                    <p className="flex items-center gap-1.5 text-slate-700">
+                      <MapPin className="h-3.5 w-3.5 text-amber-600 shrink-0" />
                       <strong>Location:</strong> {study.location}
                     </p>
-                    <p className="flex items-center gap-1.5 text-slate-300">
-                      <Building2 className="h-3.5 w-3.5 text-blue-400 shrink-0" />
+                    <p className="flex items-center gap-1.5 text-slate-700">
+                      <Building2 className="h-3.5 w-3.5 text-slate-500 shrink-0" />
                       <strong>Property:</strong> {study.property}
                     </p>
                   </div>
 
-                  <div className="space-y-2 pt-3 mt-3 text-xs border-t border-slate-800/80">
-                    <div>
-                      <span className="font-semibold text-rose-300 block mb-0.5">The Problem:</span>
-                      <p className="text-slate-400 leading-relaxed">{study.defect}</p>
+                  <div className="space-y-2 pt-3 mt-3 text-xs border-t border-stone-100">
+                    <div className="bg-rose-50/70 border border-rose-200/60 p-2.5 rounded-xl">
+                      <span className="font-bold text-rose-900 block mb-0.5">The Problem:</span>
+                      <p className="text-slate-700 leading-relaxed">{study.defect}</p>
                     </div>
-                    <div>
-                      <span className="font-semibold text-emerald-300 block mb-0.5">
-                        The Solution:
-                      </span>
-                      <p className="text-slate-300 leading-relaxed">{study.solution}</p>
+                    <div className="bg-amber-50/70 border border-amber-200/70 p-2.5 rounded-xl">
+                      <span className="font-bold text-amber-950 block mb-0.5">The Solution:</span>
+                      <p className="text-slate-800 leading-relaxed">{study.solution}</p>
                     </div>
                   </div>
                 </div>
 
-                <div className="mt-6 pt-4 border-t border-slate-800/80 space-y-2">
-                  <div className="flex items-center gap-1.5 text-xs text-blue-300 font-medium">
-                    <FileCheck className="h-3.5 w-3.5 shrink-0" />
+                <div className="mt-6 pt-4 border-t border-stone-100 space-y-2">
+                  <div className="flex items-center gap-1.5 text-xs text-slate-700 font-semibold">
+                    <FileCheck className="h-3.5 w-3.5 text-amber-600 shrink-0" />
                     <span>{study.certification}</span>
                   </div>
-                  <div className="flex items-center justify-between text-xs text-slate-400 font-mono">
+                  <div className="flex items-center justify-between text-xs text-slate-500 font-mono">
                     <span>Typical Job Scope:</span>
-                    <span className="text-white font-semibold">{study.highlight}</span>
+                    <span className="text-[#081B30] font-bold">{study.highlight}</span>
                   </div>
                 </div>
               </div>
@@ -605,17 +604,20 @@ robbie@theharleygroup.org | 0117 214 1357`;
         </div>
       </section>
 
-      {/* 6. Interactive Before / After Workmanship Slider */}
-      <section id="workmanship" className="py-20 bg-[#081B30] border-b border-slate-800 text-white">
+      {/* 6. Interactive Before / After Workmanship Slider - WARM ARCHITECTURAL STONE */}
+      <section
+        id="workmanship"
+        className="py-20 bg-[#ECE8E1] border-b border-stone-300/80 text-[#081B30]"
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mb-12">
-            <span className="text-xs font-mono font-bold uppercase tracking-wider text-emerald-400">
+            <span className="text-xs font-mono font-bold uppercase tracking-wider text-amber-800 block mb-1">
               Tidy Workmanship Comparison
             </span>
-            <h2 className="text-2xl sm:text-4xl font-bold tracking-tight text-white mt-2">
+            <h2 className="text-2xl sm:text-4xl font-extrabold tracking-tight text-[#081B30] mt-1">
               1970s Bakelite Fuseboard Replacement (Bradley Stoke)
             </h2>
-            <p className="mt-3 text-sm text-slate-300">
+            <p className="mt-3 text-sm sm:text-base text-slate-600">
               Side-by-side comparison of the removed rewirable fusebox and the replacement Hager
               metal consumer board with dual surge protection.
             </p>
@@ -627,24 +629,24 @@ robbie@theharleygroup.org | 0117 214 1357`;
             </div>
 
             <div className="lg:col-span-4 space-y-4">
-              <div className="rounded-xl border border-slate-800 bg-slate-900/60 p-6 space-y-3">
-                <h4 className="text-sm font-bold text-white flex items-center gap-2">
-                  <ShieldCheck className="h-4 w-4 text-emerald-400" />
+              <div className="rounded-2xl border border-stone-200/90 bg-white p-6 space-y-3 shadow-sm">
+                <h4 className="text-sm font-bold text-[#081B30] flex items-center gap-2">
+                  <ShieldCheck className="h-4 w-4 text-amber-600" />
                   NICEIC Part P Compliance
                 </h4>
-                <p className="text-xs text-slate-300 leading-relaxed">
+                <p className="text-xs text-slate-600 leading-relaxed">
                   Every consumer unit replacement requires Part P building regulations notification.
                   Homeowners receive an official Building Regulations Compliance Certificate
                   directly from NICEIC within 24 hours of completion.
                 </p>
               </div>
 
-              <div className="rounded-xl border border-slate-800 bg-slate-900/60 p-6 space-y-3">
-                <h4 className="text-sm font-bold text-white flex items-center gap-2">
-                  <Zap className="h-4 w-4 text-blue-400" />
+              <div className="rounded-2xl border border-stone-200/90 bg-white p-6 space-y-3 shadow-sm">
+                <h4 className="text-sm font-bold text-[#081B30] flex items-center gap-2">
+                  <Zap className="h-4 w-4 text-amber-600" />
                   Type 2 Surge Protection
                 </h4>
-                <p className="text-xs text-slate-300 leading-relaxed">
+                <p className="text-xs text-slate-600 leading-relaxed">
                   Protect home computers, heat pumps, smart TVs, and EV chargers against transient
                   grid surges. Standard on all RG Electrical board replacements.
                 </p>
@@ -654,17 +656,17 @@ robbie@theharleygroup.org | 0117 214 1357`;
         </div>
       </section>
 
-      {/* 7. Interactive Quote Calculator */}
-      <section id="calculator" className="py-20 bg-slate-900 border-b border-slate-800 text-white">
+      {/* 7. Interactive Quote Calculator - TECHNICAL DARK STAGE */}
+      <section id="calculator" className="py-20 bg-[#081B30] border-b border-slate-800 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mb-12">
-            <span className="text-xs font-mono font-bold uppercase tracking-wider text-emerald-400">
+            <span className="text-xs font-mono font-bold uppercase tracking-wider text-amber-400">
               Interactive Estimator
             </span>
-            <h2 className="text-2xl sm:text-4xl font-bold tracking-tight text-white mt-2">
+            <h2 className="text-2xl sm:text-4xl font-extrabold tracking-tight text-white mt-2">
               Instant Online Electrical Quote Estimator
             </h2>
-            <p className="mt-3 text-sm text-slate-300">
+            <p className="mt-3 text-sm sm:text-base text-slate-300">
               Bristol homeowners can estimate their installation costs in seconds, reducing
               tyre-kicker enquiries and pre-qualifying serious rewiring and board replacement jobs.
             </p>
@@ -676,17 +678,20 @@ robbie@theharleygroup.org | 0117 214 1357`;
         </div>
       </section>
 
-      {/* 8. Verified Customer Reviews */}
-      <section id="reviews" className="py-20 bg-[#081B30] border-b border-slate-800 text-white">
+      {/* 8. Verified Customer Reviews - WARM ARCHITECTURAL CANVAS */}
+      <section
+        id="reviews"
+        className="py-20 bg-[#F6F3ED] border-b border-stone-300/80 text-[#081B30]"
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mb-12">
-            <span className="text-xs font-mono font-bold uppercase tracking-wider text-emerald-400">
+            <span className="text-xs font-mono font-bold uppercase tracking-wider text-amber-800 block mb-1">
               Verified Customer Feedback
             </span>
-            <h2 className="text-2xl sm:text-4xl font-bold tracking-tight text-white mt-2">
+            <h2 className="text-2xl sm:text-4xl font-extrabold tracking-tight text-[#081B30] mt-1">
               What Bristol Homeowners &amp; Landlords Say
             </h2>
-            <p className="mt-3 text-sm text-slate-300">
+            <p className="mt-3 text-sm sm:text-base text-slate-600">
               Direct reviews from local domestic rewires and fuseboard upgrades in North Bristol.
             </p>
           </div>
@@ -695,25 +700,25 @@ robbie@theharleygroup.org | 0117 214 1357`;
             {RG_ELECTRICAL_DATA.reviews.map((review, idx) => (
               <div
                 key={idx}
-                className="rounded-2xl border border-slate-800 bg-slate-900/80 p-6 space-y-4 shadow-xl"
+                className="rounded-2xl border border-stone-200/90 bg-white p-6 space-y-4 shadow-sm hover:shadow-md transition-all"
               >
                 <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-1 text-amber-400">
+                  <div className="flex items-center gap-1 text-amber-500">
                     {[...Array(review.rating)].map((_, i) => (
                       <Star key={i} className="h-4 w-4 fill-current" />
                     ))}
                   </div>
-                  <span className="text-[11px] font-mono font-semibold px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-300 border border-emerald-500/20">
+                  <span className="text-[11px] font-mono font-semibold px-2.5 py-0.5 rounded-md bg-amber-50 text-amber-900 border border-amber-200/80">
                     {review.service}
                   </span>
                 </div>
-                <p className="text-xs sm:text-sm text-slate-300 leading-relaxed italic">
+                <p className="text-xs sm:text-sm text-slate-700 leading-relaxed italic">
                   "{review.text}"
                 </p>
-                <div className="pt-2 border-t border-slate-800/80 flex items-center justify-between text-xs">
-                  <span className="font-bold text-white">{review.author}</span>
-                  <span className="text-slate-400 flex items-center gap-1">
-                    <MapPin className="h-3 w-3 text-emerald-400" />
+                <div className="pt-2 border-t border-stone-100 flex items-center justify-between text-xs">
+                  <span className="font-bold text-[#081B30]">{review.author}</span>
+                  <span className="text-slate-500 flex items-center gap-1">
+                    <MapPin className="h-3 w-3 text-amber-600" />
                     {review.location}
                   </span>
                 </div>
@@ -723,11 +728,11 @@ robbie@theharleygroup.org | 0117 214 1357`;
         </div>
       </section>
 
-      {/* 8.5 Local Coverage Radius & Google Maps */}
+      {/* 8.5 Local Coverage Radius & Google Maps - TECHNICAL DARK ANCHOR */}
       <section id="coverage" className="py-16 border-b border-slate-800 bg-[#081B30]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-10">
-            <div className="inline-flex items-center gap-1.5 text-xs font-mono text-emerald-400 mb-2">
+            <div className="inline-flex items-center gap-1.5 text-xs font-mono text-amber-400 mb-2">
               <MapPin className="h-4 w-4" />
               <span>NORTH BRISTOL &amp; SOUTH GLOUCESTERSHIRE COVERAGE</span>
             </div>
@@ -786,12 +791,12 @@ robbie@theharleygroup.org | 0117 214 1357`;
         </div>
       </section>
 
-      {/* 9. Emergency Callout Strip */}
-      <section className="bg-gradient-to-r from-emerald-950 via-slate-900 to-emerald-950 border-b border-emerald-500/30 py-8 text-white">
+      {/* 9. Emergency Callout Strip - HIGH-CONTRAST AMBER ACCENT */}
+      <section className="bg-gradient-to-r from-amber-950/90 via-[#081B30] to-amber-950/90 border-b border-amber-500/40 py-8 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="space-y-1 text-center sm:text-left">
-            <div className="inline-flex items-center gap-1.5 text-xs font-mono font-bold text-emerald-400">
-              <Zap className="h-3.5 w-3.5" />
+            <div className="inline-flex items-center gap-1.5 text-xs font-mono font-bold text-amber-400">
+              <Zap className="h-3.5 w-3.5 fill-current" />
               RAPID RESPONSE ELECTRICAL SERVICE
             </div>
             <h3 className="text-lg font-bold text-white">
@@ -804,7 +809,7 @@ robbie@theharleygroup.org | 0117 214 1357`;
           </div>
           <a
             href={`tel:${RG_ELECTRICAL_DATA.phone.replace(/\s+/g, "")}`}
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm shadow-xl transition-all hover:scale-105 shrink-0"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-extrabold text-sm shadow-xl transition-all hover:scale-105 shrink-0"
           >
             <PhoneCall className="h-4 w-4" />
             <span>Call Emergency Desk: {RG_ELECTRICAL_DATA.phone}</span>
@@ -837,7 +842,7 @@ robbie@theharleygroup.org | 0117 214 1357`;
               </div>
               <ul className="space-y-1.5 text-xs text-slate-300">
                 <li className="flex items-center gap-1.5">
-                  <BadgeCheck className="h-3.5 w-3.5 text-emerald-400 shrink-0" />
+                  <BadgeCheck className="h-3.5 w-3.5 text-amber-400 shrink-0" />
                   <span>NICEIC Approved Contractor</span>
                 </li>
                 <li className="flex items-center gap-1.5">
@@ -845,7 +850,7 @@ robbie@theharleygroup.org | 0117 214 1357`;
                   <span>TrustMark Government Endorsed</span>
                 </li>
                 <li className="flex items-center gap-1.5">
-                  <FileCheck className="h-3.5 w-3.5 text-emerald-400 shrink-0" />
+                  <FileCheck className="h-3.5 w-3.5 text-amber-400 shrink-0" />
                   <span>Part P Building Regulations</span>
                 </li>
                 <li className="flex items-center gap-1.5">

@@ -179,10 +179,10 @@ export function StandaloneProspectDemo({
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
             {/* Accreditation Badge */}
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-semibold mb-6">
-              <ShieldCheck className="h-4 w-4" />
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs font-semibold mb-6">
+              <ShieldCheck className="h-4 w-4 text-amber-400" />
               <span>{business.badge}</span>
-              <span className="text-emerald-600">·</span>
+              <span className="text-amber-500/60">·</span>
               <span>Serving {city}</span>
             </div>
 
@@ -201,7 +201,7 @@ export function StandaloneProspectDemo({
                   key={idx}
                   className="rounded-xl border border-slate-800 bg-[#081B30]/80 p-3 text-center"
                 >
-                  <CheckCircle2 className="h-4 w-4 text-emerald-400 mx-auto mb-1" />
+                  <CheckCircle2 className="h-4 w-4 text-amber-400 mx-auto mb-1" />
                   <span className="text-xs font-bold text-white block">{acc.name}</span>
                   <span className="text-[10px] text-slate-400 font-mono">{acc.iconText}</span>
                 </div>
@@ -230,17 +230,20 @@ export function StandaloneProspectDemo({
         </div>
       </section>
 
-      {/* 5. Core Trade Services */}
-      <section id="services" className="py-16 sm:py-20 border-b border-slate-800 bg-[#061627]">
+      {/* 5. Core Trade Services - WARM ARCHITECTURAL CANVAS */}
+      <section
+        id="services"
+        className="py-16 sm:py-20 border-b border-stone-300/80 bg-[#F6F3ED] text-[#081B30]"
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-2xl mb-12">
-            <span className="text-xs font-mono font-bold uppercase tracking-wider text-amber-400 block mb-2">
+            <span className="text-xs font-mono font-bold uppercase tracking-wider text-amber-800 block mb-2">
               Our Core Services
             </span>
-            <h2 className="text-2xl sm:text-4xl font-extrabold text-white tracking-tight">
+            <h2 className="text-2xl sm:text-4xl font-extrabold text-[#081B30] tracking-tight">
               Certified Trade Solutions in {city}
             </h2>
-            <p className="text-sm sm:text-base text-slate-300 mt-3">
+            <p className="text-sm sm:text-base text-slate-600 mt-3">
               Fixed upfront pricing, full building compliance, and certified guarantees on every
               job.
             </p>
@@ -250,18 +253,20 @@ export function StandaloneProspectDemo({
             {business.popularServices.map((srv, idx) => (
               <div
                 key={idx}
-                className="rounded-2xl border border-slate-800 bg-[#081B30] p-6 flex flex-col justify-between hover:border-slate-700 transition-colors shadow-sm"
+                className="rounded-2xl border border-stone-200/90 bg-white p-6 flex flex-col justify-between hover:border-amber-500/40 hover:shadow-lg transition-all shadow-sm group"
               >
                 <div>
-                  <div className="h-10 w-10 rounded-xl bg-slate-800 border border-slate-700 flex items-center justify-center text-amber-400 mb-4">
+                  <div className="h-10 w-10 rounded-xl bg-amber-50 border border-amber-200/80 flex items-center justify-center text-amber-800 mb-4 group-hover:scale-105 transition-transform">
                     <TradeIcon className="h-5 w-5" />
                   </div>
-                  <h3 className="text-base font-bold text-white mb-2">{srv.title}</h3>
-                  <p className="text-xs text-slate-300 leading-relaxed mb-4">{srv.description}</p>
+                  <h3 className="text-base font-bold text-[#081B30] mb-2 group-hover:text-amber-800 transition-colors">
+                    {srv.title}
+                  </h3>
+                  <p className="text-xs text-slate-600 leading-relaxed mb-4">{srv.description}</p>
                 </div>
-                <div className="pt-4 border-t border-slate-800/80 flex items-center justify-between text-[11px]">
-                  <span className="text-slate-400">{srv.turnaround}</span>
-                  <span className="font-mono font-bold text-emerald-400">{srv.priceGuide}</span>
+                <div className="pt-4 border-t border-stone-100 flex items-center justify-between text-[11px]">
+                  <span className="text-slate-500 font-mono">{srv.turnaround}</span>
+                  <span className="font-mono font-bold text-[#081B30]">{srv.priceGuide}</span>
                 </div>
               </div>
             ))}
@@ -269,17 +274,20 @@ export function StandaloneProspectDemo({
         </div>
       </section>
 
-      {/* 6. Workmanship Before / After Transformation */}
-      <section id="workmanship" className="py-16 sm:py-20 border-b border-slate-800 bg-[#081B30]">
+      {/* 6. Workmanship Before / After Transformation - WARM ARCHITECTURAL STONE */}
+      <section
+        id="workmanship"
+        className="py-16 sm:py-20 border-b border-stone-300/80 bg-[#ECE8E1] text-[#081B30]"
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-2xl mb-10">
-            <span className="text-xs font-mono font-bold uppercase tracking-wider text-amber-400 block mb-2">
+            <span className="text-xs font-mono font-bold uppercase tracking-wider text-amber-800 block mb-2">
               Verified Workmanship
             </span>
-            <h2 className="text-2xl sm:text-4xl font-extrabold text-white tracking-tight">
+            <h2 className="text-2xl sm:text-4xl font-extrabold text-[#081B30] tracking-tight">
               Before &amp; After Project Evidence
             </h2>
-            <p className="text-sm sm:text-base text-slate-300 mt-2">
+            <p className="text-sm sm:text-base text-slate-600 mt-2">
               Precision installation adhering strictly to current UK standards. Slide to inspect the
               completed upgrade.
             </p>
@@ -291,8 +299,11 @@ export function StandaloneProspectDemo({
         </div>
       </section>
 
-      {/* 7. Instant Price Calculator */}
-      <section id="calculator" className="py-16 sm:py-20 border-b border-slate-800 bg-[#061627]">
+      {/* 7. Instant Price Calculator - TECHNICAL DARK STAGE */}
+      <section
+        id="calculator"
+        className="py-16 sm:py-20 border-b border-slate-800 bg-[#081B30] text-white"
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-2xl mb-10 text-center sm:text-left">
             <span className="text-xs font-mono font-bold uppercase tracking-wider text-amber-400 block mb-2">

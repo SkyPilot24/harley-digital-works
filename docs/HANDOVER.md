@@ -1,5 +1,42 @@
 # The Harley Group & Harley Digital Works — Session Handover Log
 
+## Option 1: The "Architectural Craft" Hybrid Transformation — 26 October 2026
+
+- **Tool & Scope:** Google Antigravity. Executed under user instruction: *"please do with Option 1: The 'Architectural Craft' Hybrid so update every page and the design.ms files"*. Branch: `design/apple-ui-transformation`.
+- **Governing Architecture & Rationale:**
+  - Robbie reviewed the RG Electrical flagship demo screenshot and audio-critiqued the monolithic dark blue background and neon green accents.
+  - An unbroken `#081B30` dark wall with neon green borders reads like a crypto or cybersecurity dashboard, not a high-end British contractor. Homeowners in Bristol, Bath, and Clifton hiring for £4,000 rewires and £1,200 fuseboards require daylight, cleanliness, and trust.
+  - Implemented **Option 1: The "Architectural Craft" Hybrid**: a high-contrast, Apple-grade alternating section rhythm between Warm Architectural Canvas (`#F6F3ED`) and Midnight Navy Technical Anchors (`#081B30`).
+- **Implemented Work & Section Rhythm:**
+  1. **`src/routes/demos_.rg-electrical.tsx` (Flagship Contractor Demo):**
+     - **Header & Hero (Midnight Navy `#081B30`):** Frosted glass header, electrical amber estimate CTA, warm amber NICEIC contractor badge (`bg-amber-500/10 text-amber-300 border-amber-500/30`), TrustMark government badge, and amber primary quote CTA.
+     - **Section 4 (Popular Services — Warm Ivory `#F6F3ED`):** High-contrast daylight canvas, dark slate text (`text-[#081B30]`), crisp white cards (`bg-white border border-stone-200/90 shadow-sm`), amber turnaround pills (`bg-amber-50 text-amber-900 border-amber-200`), and amber estimate link.
+     - **Section 5 (Recent Bristol Case Studies — Warm Ivory `#F6F3ED`):** High-craft white cards with full-width trade photography headers, amber scope tags, structured problem/solution callouts, and verified NICEIC building control certification details.
+     - **Section 6 (18th Edition Workmanship Comparison — Warm Stone `#ECE8E1`):** Tactile workshop comparison background, high-contrast slider, and crisp white compliance cards with amber icons.
+     - **Section 7 (Instant Quote Calculator — Midnight Navy `#081B30`):** Retained as a luminous technical cockpit tool stage, glowing against the dark foundation.
+     - **Section 8 (Verified Customer Feedback — Warm Ivory `#F6F3ED`):** Crisp white cards, amber 5-star ratings, warm amber service tags, and clean homeowner attribution.
+     - **Section 8.5 (Coverage Radar — Midnight Navy `#081B30`):** 20-mile operational radius satellite radar with dark Google Maps visual.
+     - **Section 9 & 10 (Emergency Callout Strip & Footer):** High-impact amber/navy emergency strip (`bg-amber-500` emergency desk CTA) and deep blueprint footer (`#051323`) with amber accreditation markers.
+  2. **`src/components/demos/StandaloneProspectDemo.tsx` (Dynamic Prospect Engine):**
+     - Applied identical Architectural Craft Hybrid rhythm across all dynamically generated trade mockups (`/demos?company=...`).
+     - Services and Workmanship sections alternate seamlessly to Warm Ivory (`#F6F3ED`) and Warm Stone (`#ECE8E1`), while Calculator and Coverage remain in Midnight Navy (`#081B30`).
+  3. **`docs/design.md` & `docs/homepage-redesign.md` (Codified Standards):**
+     - Completely overhauled `docs/design.md` to establish Option 1: The "Architectural Craft" Hybrid as the governing visual standard for Harley Digital Works.
+     - Codified the 4-token color hierarchy: Midnight Navy (`#081B30`), Warm Ivory (`#F6F3ED`), Electrical Amber (`#D97706`), and Operational Emerald (`#059669`).
+     - Updated `docs/homepage-redesign.md` with October 2026 Apple UI/UX specifications, shrinking frosted header documentation, and verified asset provenance.
+- **Empirical Verification Evidence:**
+  - `node scripts/scan-all-slop.mjs`: PASS (0 items to review).
+  - `node --test scripts/claims-guard.test.mjs`: PASS (0 claims violations).
+  - `npm run format:check`: PASS (100% Prettier compliant).
+  - `npm run typecheck`: PASS (0 TS errors).
+  - `npm run lint`: PASS (0 errors, 9 non-blocking warnings).
+  - `npm test`: PASS (205/205 tests pass across 25 suites).
+  - `npm run build`: PASS (Vite SSR + Nitro Cloudflare module built in 1.74s).
+  - Native runtime presentation: Chrome launched to `http://localhost:3000/demos/rg-electrical` on Port 3000 (Port 8080 permanently bypassed).
+- **Branch & Safety Boundary:**
+  - Branch: `design/apple-ui-transformation`.
+  - Main branch preserved, zero live mutations.
+
 ## Apple-Inspired UI/UX Transformation & Design Taste Audit — 26 October 2026
 
 - **Tool & Scope:** Google Antigravity. Executed under `/goal`, `/design-taste-frontend`, and `/modern-web-guidance` on isolated branch `design/apple-ui-transformation`.
@@ -64,7 +101,7 @@
   4. `src/components/demos/StandaloneProspectDemo.tsx`: In Section 8 ("Local Area Coverage"), rendered the live Google Maps static map image showing the contractor's 25-mile coverage radius with local area tags.
   5. `src/routes/demos_.rg-electrical.tsx`: Added Section 8.5 ("North Bristol & South Gloucestershire Coverage") featuring high-res Google Maps static visual with postcode coverage pills (`BS32`, `BS34`, `BS35`, `BS16`, `BS7`, `BS8`).
   6. `src/components/demos/TradeQuoteCalculator.tsx`: Added real-time UK postcode geocode validation via `/api/maps/lookup`, showing an instant reassurance pill: `Covered Area: [City/Locality] (Priority Dispatch Radius)`.
-  8. `WhatsApp Lead Dispatch Routing Hardening`:
+  7. `WhatsApp Lead Dispatch Routing Hardening`:
      - Identified that dummy Ofcom placeholder numbers (`07700 900000`, `07700 900142`) caused WhatsApp Web to show `"The number isn't on WhatsApp"`.
      - Replaced demo placeholder numbers across `demos_.rg-electrical.tsx` and `TradeDemoData.ts` with Robbie's verified business WhatsApp number (`07394 041487` / `+44 7394 041487`).
      - Added automatic fallback protection in `TradeQuoteCalculator.tsx` and `StandaloneProspectDemo.tsx` so any placeholder or landline number automatically routes to `447394041487`.

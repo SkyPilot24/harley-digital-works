@@ -1,96 +1,78 @@
-# THG Digital — Landing Page Design System & Animation Specifications
+# Harley Digital Works — Design System & UI/UX Standards
 
-## Historical design specification
-
-The Poster OS specification below describes an earlier THG Digital design and is retained as history. Its locked colours, wordmark fonts and loader lettering do not govern current Harley Digital Works branding. See [brand-pack.md](brand-pack.md) for the founder-approved 13 October 2026 navy/ivory wordmark direction. This documentation change does not alter application styling or animation.
-
-This document defines the high-fidelity visual and animation design rules for the **THG Digital** marketing website. These specifications are locked to prevent design drift during future development.
-
----
-
-## 1. Aesthetic Identity ("Poster OS")
-
-The site design follows a bold, episodic, high-contrast print-poster aesthetic.
-
-- **Background Color**: `#050505` (Deep Black)
-- **Surface Color**: `#f4efe7` (Warm Cream / Paper)
-- **Accent Palette**:
-  - **Indigo**: `#4F46E5`
-  - **Emerald**: `#10B981`
-  - **Rose**: `#F43F5E`
-- **Stacking Index (z-index)**:
-  - Loader: `z-[9999]` (topmost layer)
-  - Floating/Fixed CTAs: `z-65`
-  - Navigation Bar: `z-50` (using `mix-blend-difference` to contrast with dynamic slide backgrounds)
-  - Grid Dividers: `z-30`
+**Governing Standard**: Option 1 — The "Architectural Craft" Hybrid  
+**Ratified**: 26 October 2026  
+**Parent Brand**: The Harley Group  
+**Customer Brand**: Harley Digital Works (HDW)
 
 ---
 
-## 2. Typography Rules
+## 1. Aesthetic Identity & Positioning: "British Industrial Craftsmanship"
 
-Do not substitute the following fonts under any circumstances.
+Harley Digital Works builds high-authority websites for established UK trade contractors (electricians, heating engineers, roofers, commercial facilities). Our design direction reflects **British industrial craftsmanship** (inspired by Festool, DeWalt, JCB, Aston Martin, and Apple hardware precision), positioned firmly against two failure modes:
 
-- **Display / Header Font**: `Anton` (loaded from Google Fonts).
-  - _Usage_: All large, high-impact titles, uppercase headings, and scrambled words. Apply using the `.display` class.
-- **Body Copy Font**: `Inter` (loaded from Google Fonts).
-  - _Usage_: Standard paragraphs, labels, form input descriptions. Apply via global `font-sans` rules.
-- **Handwritten / Wordmark Font**: `Caveat` (loaded from Google Fonts).
-  - _Usage_: Annotations, founder signatures, arrows, and micro-notes. Apply using the `.hand` class.
+1. **The Monolithic Dark Wall**: An unbroken `#081B30` full-bleed dark page with neon green borders reads like a crypto, cybersecurity, or SaaS app. Domestic homeowners in Bristol, Bath, and Clifton hiring for £4,000 rewires and £1,200 fuseboards want daylight, cleanliness, and neat plasterwork.
+2. **The Generic Agency Template**: Sterile plain white backgrounds with generic Bootstrap borders feel cheap and disposable.
 
 ---
 
-## 3. Layout Grid Pattern
+## 2. Option 1: The "Architectural Craft" Hybrid Rhythm
 
-- **Pattern**: Grid lines mapping a `5-column x 4-row` grid overlay (`20vw` x `25vh` per grid cell).
-- **Style**: Fixed full-screen container with thin borders and low opacity (`opacity-[0.05]`) using color `#f4efe7`.
-- **Markup**:
-  ```typescript
-  <div className="fixed inset-0 pointer-events-none z-30 opacity-[0.05]">
-    <div className="grid h-full w-full grid-cols-5 grid-rows-4 border-l border-t border-[#f4efe7]">
-      {Array.from({ length: 20 }).map((_, i) => (
-        <div key={i} className="border-r border-b border-[#f4efe7]" />
-      ))}
-    </div>
-  </div>
-  ```
+The "Architectural Craft" Hybrid solves this through a deliberate, high-contrast **alternating section rhythm**:
+
+| Section                   | Role                         | Surface Color                   | Text / Accent Hierarchy                                   |
+| :------------------------ | :--------------------------- | :------------------------------ | :-------------------------------------------------------- |
+| **0. Staging Notice**     | Operational Bar              | `#051323` (Deep Blueprint)      | `text-amber-400` with emerald live pulse                  |
+| **1. Header**             | Sticky Navigation            | `#081B30`/95 (Frosted Glass)    | `text-white`, amber estimate CTA                          |
+| **2. Hero Section**       | High-Impact Technical Anchor | `#081B30` to `#0E2744` Gradient | White heading, amber NICEIC trust pill, amber primary CTA |
+| **3. Core Services**      | Warm Architectural Canvas    | `#F6F3ED` (Warm Ivory)          | `text-[#081B30]`, crisp white cards, amber tags           |
+| **4. Case Studies**       | Daylight Proof Showcase      | `#F6F3ED` (Warm Ivory)          | High-res photos pop against white cards, amber scope tags |
+| **5. Workmanship Slider** | Workshop Proof               | `#ECE8E1` (Warm Stone)          | High-contrast comparison frame, crisp white info cards    |
+| **6. Quote Calculator**   | Technical Instrument Cockpit | `#081B30` (Midnight Navy Stage) | Luminous interactive tool, gold accents, amber inputs     |
+| **7. Customer Reviews**   | High-Trust Daylight Feedback | `#F6F3ED` (Warm Ivory)          | Crisp white cards, amber 5-star ratings, dark slate text  |
+| **8. Coverage Radar**     | Operational Radar            | `#081B30` (Midnight Navy)       | Dark Google Maps satellite radar with 20-mile radius      |
+| **9. Emergency Strip**    | High-Impact Dispatch         | Amber/Navy Gradient             | Amber badge, amber phone CTA                              |
+| **10. Trade Footer**      | Grounded Foundation          | `#051323` (Deep Blueprint)      | Slate-400 copy, amber verified accreditations             |
 
 ---
 
-## 4. Animation Fidelity & GSAP Specifications
+## 3. The Restrained 4-Token Color System
 
-All page transitions are episodic, utilizing GSAP's `ScrollTrigger` plugin with `scrub: 1` and `pin: true` on full-screen container sections to prevent traditional browser scrolling.
+To maintain agency-grade visual discipline, all trade demo and customer-facing interfaces adhere strictly to four core tokens:
 
-### A. Initial Loader Sequence
+- **Midnight Navy (`#081B30` & `#051323`)**: Technical anchors, headers, calculator stages, radar maps, and footers. Provides weight, engineering authority, and contrast.
+- **Warm Architectural Ivory & Stone (`#F6F3ED` & `#ECE8E1`)**: Natural daylight canvas. Makes trade project photos (copper pipework, metal consumer units, architectural LED lighting) pop with authentic contrast.
+- **Electrical Amber & Copper (`#D97706` / `#F59E0B`)**: Primary trade accent. Used for NICEIC/TrustMark accreditations, 5-star review ratings, primary instant estimate CTAs, and price tags.
+- **Operational Emerald (`#059669`)**: Strictly reserved for WhatsApp dispatch and live status beacon pulses. Never used for generic borders or decorative fills.
 
-1.  **Lock State**: `body.is-loading` class blocks scroll overflow.
-2.  **Wave Draw**: Draw twin wave paths inside SVG `viewBox="0 0 42 18"` (Paths: `M3 9C8 1.8 14 1.8 21 9C28 16.2 34 16.2 39 9` and `M3 9C8 16.2 14 16.2 21 9C28 1.8 34 1.8 39 9`) using `strokeDashoffset: 100` -> `0` over `1.2s`.
-3.  **Letter Rise**: Letters in `"THG DIGITAL"` translate up from `yPercent: 100` with `stagger: 0.05` and back-out ease.
-4.  **Color Strips**: Staggered color panels (`.loader-strip` in Indigo, Rose, Emerald, and Cream) scale from bottom to top (`scaleY(1)`).
-5.  **Loader Out**: Loader panel translates out (`yPercent: -100` over `0.8s`), the main container fades/scales in, and `is-loading` is removed.
-6.  **Refresh**: Trigger `ScrollTrigger.refresh()` after the loader clears.
+---
 
-### B. Pinned Hero Section
+## 4. Typography Hierarchy
 
-- **Cards Containment**: Cards are stacked inside a 3D perspective wrapper (`[perspective:1400px]`).
-- **Timeline Scrubbing**:
-  - **Left Card (Launch Plan)**: Translates to `xPercent: -90, yPercent: 30, rotation: -14`.
-  - **Right Card (Care Plans)**: Translates to `xPercent: 90, yPercent: -30, rotation: 14`.
-  - **Center Card (Applied AI)**: Scales to `1.08` with deep drop-shadows.
-- **Idle Animation**: When scroll is stationary, the center card floats vertically (`y: "+=12"`, yoyo repeat, duration `2.2s`, ease `sine.inOut`).
+- **Display & Section Headings**: `Manrope` / `Plus Jakarta Sans` with tight tracking (`tracking-tight`, -0.02em to -0.03em) and bold weight (`font-extrabold` / `font-black`).
+- **Body & Explanatory Copy**: `Inter` / system sans-serif. Highly legible at 13px–15px on mobile viewports.
+- **Technical & Pricing Data**: `DM Mono` for turnaround times (`1 Day Installation`), fixed price ranges (`From £650 fixed`), postcodes (`BS32`), and certification numbers.
 
-### C. Scattered Manifesto Words
+---
 
-- Manifesto words start scattered at randomized initial offsets (e.g. `x` range `[-400, 400]`, `y` range `[-300, 300]`, rotation range `[-60, 60]`, `opacity: 0`).
-- Scroll scrubbing triggers a staggered assembly (`stagger: 0.04`, from `"random"`) to snap words into a clean, legible sentence: _"We build useful websites, content, and automations for purpose-led teams with plain English and NHS-grade reliability."_
+## 5. Apple-Grade UI/UX Details
 
-### D. Community Board Snapping
+1. **Frosted Glass Sticky Header**: Uses `backdrop-filter: blur(16px)` with a smooth transition shrinking from 68px to 58px on scroll (`.studio-header-shrunk`), preserving vertical screen space for trade clients on mobile.
+2. **Physical Hardware Framing**: Project photos and interactive mockups use physical rim lighting (`box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08), 0 20px 40px -15px rgba(0, 0, 0, 0.4)`), macOS window chrome, and curved corners (16px–24px).
+3. **4-Element Hero Stack Discipline**:
+   - Element 1: Eyebrow kicker / live status pill.
+   - Element 2: Value-focused single `<h1>`.
+   - Element 3: 2-sentence commercial subheadline.
+   - Element 4: Action button pair (Primary Instant Estimate + Secondary Case Studies).
+4. **Editorial Discipline**: Zero AI-slop clichés, zero unrendered em-dashes on customer-facing routes, zero invented reviews or fake accreditation numbers.
 
-- A grid of four client metrics/testimonial blocks starts scattered and snaps back into place on scroll (`stagger: 0.08` with a springy `back.out(1.2)` ease).
-- Background dotted path vectors (`stroke-dasharray="6 10"`) animate continuously with negative `strokeDashoffset` translation.
+---
 
-### E. Concluding Sweep Wipes
+## 6. Historical Reference: "Poster OS" (Archived)
 
-- Full-screen wipes slide in sequentially to transition between key visual prompts:
-  1.  **Rose Sheet**: Slides up from bottom (`yPercent: 0`), reveals display title: `"NO COMPLEX RETROFITS."`
-  2.  **Emerald Sheet**: Slides in from left (`xPercent: 0`), reveals display title: `"JUST THE WORK."`
-  3.  **Black Sheet**: Slides up from bottom (`yPercent: 0`), reveals display title `"TALK THROUGH A PROJECT."` alongside a high-fidelity contact inquiry form.
+_The specifications below describe the September 2026 exploratory "Poster OS" design and are retained strictly for provenance. They do not govern active Harley Digital Works branding or trade client builds._
+
+- Surface: `#f4efe7` / `#050505`
+- Fonts: `Anton`, `Inter`, `Caveat`
+- Grid: 5-column x 4-row layout overlay
+- Animation: GSAP ScrollTrigger scrubbed pinning
