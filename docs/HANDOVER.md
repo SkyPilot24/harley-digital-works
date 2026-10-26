@@ -1,6 +1,33 @@
 # The Harley Group & Harley Digital Works — Session Handover Log
 
-## Clean Standalone Full-Page Prospect Previews on /demos — 25 October 2026
+## /no-ai-slop Trade Demo Pages Review & Remediation — 25 October 2026
+
+- **Tool & Scope:** Google Antigravity. Robbie requested: `/no-ai-slop please review the demo pages again this skill`. Audited and remediated all demo routes and demo components against the `no-ai-slop` skill standards (ban list, no emojis in headers/badges, no throat-clearing, direct British trade phrasing, zero unratified turnaround claims).
+- **Applied Changes:**
+  1. `src/components/demos/TradeDemoData.ts`:
+     - Replaced badge emojis (`⚡`, `🔌`, `🛡️`, `📋`, `🏠`, `🚁`, `🔥`, `⭐`, `🔧`, `💳`, `❄️`) with technical trade certifications and standards (`Part P`, `OZEV`, `TrustMark`, `£5M Cover`, `CORC`, `Drone Tech`, `20 Yr GRP`, `Gas Safe`, `Worcester`, `Vaillant`, `Finance`, `CHAS Elite`, `BESA`, `Refcom`, `£10M Cover`).
+     - Replaced banned slop words ("streamlined" and 5 instances of "seamless") with concrete trade phrasing ("cut our maintenance delays down to hours and kept our compliance documentation in order", "watertight GRP fibreglass", "joint-free continuous flat roof system", "joint-free continuous resin topcoat").
+  2. `src/routes/demos_.rg-electrical.tsx`:
+     - Replaced emojis in accreditation badges (`⚡`, `🛡️`, `🏛️`, `📋`) with technical badge labels (`NICEIC`, `TrustMark`, `#10082511`, `£5M Cover`).
+  3. `src/components/demos/DynamicStagingGenerator.tsx`:
+     - Removed emojis from trade selection dropdown options (`🔥`, `⚡`, `🏠`, `🏢`, `🔨`, `🚰`).
+     - Replaced raw lock emoji with `<Lock>` Lucide icon.
+     - Replaced unratified `14-DAY BUILD SLA` claim with `AGREED BUILD SCHEDULE` in compliance with `BUSINESS_DEFINITION.md`.
+  4. `src/components/demos/TradeDemoViewer.tsx`:
+     - Replaced trade switcher button emojis with industrial Lucide icons (`Zap`, `Hammer`, `Flame`, `Building2`).
+     - Replaced raw lock emoji with `<Lock>` Lucide icon and simulated header `⚡` with `<Zap>`.
+     - Replaced footer `📞` and `🟢` with `<Phone>` and styled emerald status dot.
+     - Replaced unratified "built for your trade in 14 days" claim with "engineered for your trade on an agreed build schedule".
+  5. `src/routes/demos_.electrician-concept.tsx`:
+     - Replaced accreditation emojis with `Part P`, `OZEV`, `TrustMark`, `£5M Cover`.
+     - Replaced header `⚡` with `<Zap>`.
+     - Replaced raw unicode cross/check/star characters with `<X>`, `<Check>`, and `<Star>` Lucide icons.
+- **Empirical Verification:**
+  - `npm run format:check`: PASS (100% Prettier compliant).
+  - `npm run typecheck`: PASS (0 TS errors).
+  - `npm run lint`: PASS (0 errors, 9 non-blocking warnings).
+  - `npm test`: PASS (205/205 passing assertions across 25 suites + service worker + claims guard).
+  - `npm run build`: PASS (Vite + Nitro SSR built cleanly in 4.62s).
 
 - **Tool & Scope:** Google Antigravity. Robbie provided screenshot showing that opening prospect demo links previously displayed the agency studio page with agency headers, toolbar controls, device frames, and pricing tables.
 - **Applied Changes:**

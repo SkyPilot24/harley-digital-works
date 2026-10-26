@@ -17,6 +17,9 @@ import {
   Calendar,
   AlertTriangle,
   FileCheck,
+  Check,
+  X,
+  Star,
 } from "lucide-react";
 
 export const Route = createFileRoute("/demos_/electrician-concept")({
@@ -44,10 +47,18 @@ const ILLUSTRATIVE_ELECTRICIAN: TradeDemoBusiness = {
   whatsapp: "07700 900000",
   coverageArea: "Bristol, Bath, Keynsham, Yate, Clevedon & M4/M5 Corridor",
   accreditations: [
-    { name: "NICEIC Approved Contractor", idNumber: "Illustrative Placeholder", iconText: "⚡" },
-    { name: "OZEV Authorized Workplace EV", idNumber: "Illustrative Placeholder", iconText: "🔌" },
-    { name: "TrustMark Government Endorsed", iconText: "🛡️" },
-    { name: "£5,000,000 Verified Liability Policy", iconText: "📋" },
+    {
+      name: "NICEIC Approved Contractor",
+      idNumber: "Illustrative Placeholder",
+      iconText: "Part P",
+    },
+    {
+      name: "OZEV Authorized Workplace EV",
+      idNumber: "Illustrative Placeholder",
+      iconText: "OZEV",
+    },
+    { name: "TrustMark Government Endorsed", iconText: "TrustMark" },
+    { name: "£5,000,000 Verified Liability Policy", iconText: "£5M Cover" },
   ],
   rating: {
     score: "4.96",
@@ -254,8 +265,8 @@ function ElectricianConceptPage() {
                 <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-neutral-800">
                   <div>
                     <div className="flex items-center gap-2">
-                      <div className="h-8 w-8 rounded-lg bg-gold-500/20 text-gold-400 flex items-center justify-center font-bold font-mono">
-                        ⚡
+                      <div className="h-8 w-8 rounded-lg bg-gold-500/20 text-gold-400 flex items-center justify-center font-bold">
+                        <Zap className="h-4 w-4" />
                       </div>
                       <span className="text-lg font-bold text-white tracking-tight">
                         {ILLUSTRATIVE_ELECTRICIAN.name}
@@ -323,17 +334,17 @@ function ElectricianConceptPage() {
                       </p>
                       <ul className="space-y-1.5 text-neutral-400 text-[11px]">
                         <li className="flex items-start gap-1.5">
-                          <span className="text-rose-400 shrink-0">✕</span>
+                          <X className="h-3.5 w-3.5 text-rose-400 shrink-0 mt-0.5" />
                           <span>
                             Generic forms don’t collect property size or phase requirements.
                           </span>
                         </li>
                         <li className="flex items-start gap-1.5">
-                          <span className="text-rose-400 shrink-0">✕</span>
+                          <X className="h-3.5 w-3.5 text-rose-400 shrink-0 mt-0.5" />
                           <span>No instant estimate forces clients into telephone quote tag.</span>
                         </li>
                         <li className="flex items-start gap-1.5">
-                          <span className="text-emerald-400 shrink-0">✓</span>
+                          <Check className="h-3.5 w-3.5 text-emerald-400 shrink-0 mt-0.5" />
                           <span>Our system triages leads instantly into email and WhatsApp.</span>
                         </li>
                       </ul>
@@ -415,7 +426,9 @@ function ElectricianConceptPage() {
                         Google API.
                       </p>
                     </div>
-                    <span className="text-xs font-mono text-emerald-400">4.96 ★ (118 Reviews)</span>
+                    <span className="text-xs font-mono text-emerald-400 inline-flex items-center gap-1">
+                      4.96 <Star className="h-3 w-3 fill-current text-amber-400" /> (118 Reviews)
+                    </span>
                   </div>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     {ILLUSTRATIVE_ELECTRICIAN.reviews.map((rev, rIdx) => (

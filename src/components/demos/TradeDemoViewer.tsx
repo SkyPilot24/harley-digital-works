@@ -13,6 +13,12 @@ import {
   Sparkles,
   ArrowRight,
   ExternalLink,
+  Zap,
+  Hammer,
+  Flame,
+  Building2,
+  Lock,
+  Phone,
 } from "lucide-react";
 import { PillButton } from "@/components/site/PillButton";
 import { TRADE_DEMOS, type TradeDemoBusiness } from "./TradeDemoData";
@@ -49,7 +55,8 @@ export function TradeDemoViewer({ initialTrade = "electrical" }: TradeDemoViewer
                 : "bg-neutral-800/80 text-neutral-300 hover:bg-neutral-800 hover:text-white"
             }`}
           >
-            <span>⚡ Electrical & Solar</span>
+            <Zap className="h-3.5 w-3.5" />
+            <span>Electrical & Solar</span>
           </button>
           <button
             type="button"
@@ -60,7 +67,8 @@ export function TradeDemoViewer({ initialTrade = "electrical" }: TradeDemoViewer
                 : "bg-neutral-800/80 text-neutral-300 hover:bg-neutral-800 hover:text-white"
             }`}
           >
-            <span>🏠 Roofing & Flat Roofs</span>
+            <Hammer className="h-3.5 w-3.5" />
+            <span>Roofing & Flat Roofs</span>
           </button>
           <button
             type="button"
@@ -71,7 +79,8 @@ export function TradeDemoViewer({ initialTrade = "electrical" }: TradeDemoViewer
                 : "bg-neutral-800/80 text-neutral-300 hover:bg-neutral-800 hover:text-white"
             }`}
           >
-            <span>🔥 Heating & Gas</span>
+            <Flame className="h-3.5 w-3.5" />
+            <span>Heating & Gas</span>
           </button>
           <button
             type="button"
@@ -82,7 +91,8 @@ export function TradeDemoViewer({ initialTrade = "electrical" }: TradeDemoViewer
                 : "bg-neutral-800/80 text-neutral-300 hover:bg-neutral-800 hover:text-white"
             }`}
           >
-            <span>🏢 Commercial Fleet (£4.9k)</span>
+            <Building2 className="h-3.5 w-3.5" />
+            <span>Commercial Fleet (£4.9k)</span>
           </button>
         </div>
 
@@ -150,7 +160,7 @@ export function TradeDemoViewer({ initialTrade = "electrical" }: TradeDemoViewer
                 <div className="h-3 w-3 rounded-full bg-emerald-500/80" />
               </div>
               <div className="bg-neutral-950 text-neutral-400 text-xs px-4 py-1 rounded-full border border-neutral-800 flex items-center gap-2 font-mono max-w-sm truncate">
-                <span className="text-emerald-400 font-bold">🔒</span>
+                <Lock className="h-3.5 w-3.5 text-emerald-400 inline shrink-0" />
                 <span>https://www.{business.id}-solutions-demo.co.uk</span>
               </div>
               <div className="text-[11px] text-gold-400 font-medium hidden sm:block">
@@ -170,7 +180,7 @@ export function TradeDemoViewer({ initialTrade = "electrical" }: TradeDemoViewer
             <header className="border-b border-neutral-800/80 bg-neutral-900/90 sticky top-0 z-20 backdrop-blur-md px-4 sm:px-6 py-3.5 flex items-center justify-between">
               <div>
                 <div className="font-extrabold text-base sm:text-lg text-white tracking-tight flex items-center gap-1.5">
-                  <span className="text-gold-400">⚡</span>
+                  <Zap className="h-4 w-4 text-gold-400 shrink-0" />
                   <span>{business.name}</span>
                 </div>
                 <div className="text-[10px] sm:text-xs text-neutral-400">{business.badge}</div>
@@ -318,11 +328,18 @@ export function TradeDemoViewer({ initialTrade = "electrical" }: TradeDemoViewer
                 <div className="text-[11px] text-neutral-500">Covering {business.coverageArea}</div>
               </div>
               <div className="flex items-center gap-4">
-                <a href={`tel:${business.phone}`} className="hover:text-gold-400 transition-colors">
-                  📞 {business.phone}
+                <a
+                  href={`tel:${business.phone}`}
+                  className="hover:text-gold-400 transition-colors inline-flex items-center gap-1.5"
+                >
+                  <Phone className="h-3 w-3" />
+                  <span>{business.phone}</span>
                 </a>
                 <span className="text-neutral-700">|</span>
-                <span className="text-emerald-400">🟢 Fully Insured £5M</span>
+                <span className="text-emerald-400 inline-flex items-center gap-1.5">
+                  <span className="inline-block h-2 w-2 rounded-full bg-emerald-400" />
+                  Fully Insured £5M
+                </span>
               </div>
             </footer>
           </div>
@@ -337,7 +354,7 @@ export function TradeDemoViewer({ initialTrade = "electrical" }: TradeDemoViewer
             <span>Ready for your own business?</span>
           </div>
           <h4 className="text-lg md:text-xl font-bold text-white">
-            Get this complete, high-converting website built for your trade in 14 days.
+            Get this complete website engineered for your trade on an agreed build schedule.
           </h4>
           <p className="text-xs text-neutral-400 mt-1">
             100% Done-For-You: We write all the copy, add your accreditations, and set up your

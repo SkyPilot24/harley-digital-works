@@ -63,10 +63,14 @@ const RG_ELECTRICAL_DATA: TradeDemoBusiness = {
   whatsapp: "07700 900000",
   coverageArea: "Bradley Stoke, Stoke Gifford, Filton, Patchway, Thornbury, Clifton & Bristol",
   accreditations: [
-    { name: "NICEIC Approved Contractor", idNumber: "TrustMark Verified", iconText: "⚡" },
-    { name: "TrustMark Government Endorsed", idNumber: "Scheme Verified", iconText: "🛡️" },
-    { name: "Companies House Registered", idNumber: "Company #10082511", iconText: "🏛️" },
-    { name: "£5,000,000 Public Liability", idNumber: "Active Verified Policy", iconText: "📋" },
+    { name: "NICEIC Approved Contractor", idNumber: "TrustMark Verified", iconText: "NICEIC" },
+    { name: "TrustMark Government Endorsed", idNumber: "Scheme Verified", iconText: "TrustMark" },
+    { name: "Companies House Registered", idNumber: "Company #10082511", iconText: "#10082511" },
+    {
+      name: "£5,000,000 Public Liability",
+      idNumber: "Active Verified Policy",
+      iconText: "£5M Cover",
+    },
   ],
   rating: {
     score: "4.95",

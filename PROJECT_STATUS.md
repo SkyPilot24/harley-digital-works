@@ -1,5 +1,22 @@
 # Harley Digital Works — Project Status
 
+## /no-ai-slop Trade Demo Pages Hardening Complete — 25 October 2026
+
+**Current Status:** Audited and remediated all demo routes and demo components against the `no-ai-slop` skill standards:
+
+1. **Banned Words & Artificial Jargon Stripped**:
+   - Replaced banned slop words ("streamlined", 5 instances of "seamless") across `TradeDemoData.ts` with direct, grounded trade terminology ("cut our maintenance delays down to hours and kept our compliance documentation in order", "watertight GRP fibreglass", "joint-free continuous flat roof system").
+   - Replaced unratified `14-DAY BUILD SLA` and "built for your trade in 14 days" marketing claims with "agreed build schedule", fully compliant with `BUSINESS_DEFINITION.md`.
+2. **Professional Industrial Visuals (Zero Emojis in Headers/Badges)**:
+   - Replaced all raw emojis across accreditations (`⚡`, `🔌`, `🛡️`, `📋`, `🏠`, `🚁`, `🔥`, `⭐`, `🔧`, `💳`, `❄️`, `🏛️`) with professional technical certification badges (`Part P`, `OZEV`, `TrustMark`, `£5M Cover`, `CORC`, `Gas Safe`, `Worcester`, `Vaillant`, `CHAS Elite`, `BESA`, `Refcom`, `£10M Cover`).
+   - Upgraded raw symbols and emojis across demo headers, browser bars, and trade switchers to crisp Lucide icons (`Zap`, `Hammer`, `Flame`, `Building2`, `Lock`, `Phone`, `Check`, `X`, `Star`).
+3. **Verification**:
+   - `npm run format:check`: PASS (100% Prettier compliant).
+   - `npm run typecheck`: PASS (0 TS errors).
+   - `npm run lint`: PASS (0 errors, 9 non-blocking warnings).
+   - `npm test`: PASS (205/205 passing assertions across 25 suites + service worker + claims guard).
+   - `npm run build`: PASS (Vite + Nitro SSR built cleanly in 4.62s).
+
 ## Clean Standalone Full-Page Prospect Previews on /demos Complete — 25 October 2026
 
 **Current Status:** Replaced agency studio wrapping with a pure, full-page bespoke contractor experience whenever prospect links (`?company=...`) are opened:

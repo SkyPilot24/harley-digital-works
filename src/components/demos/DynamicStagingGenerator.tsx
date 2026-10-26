@@ -23,6 +23,7 @@ import {
   Hammer,
   Building,
   RefreshCw,
+  Lock,
 } from "lucide-react";
 import { toast } from "sonner";
 import { PillButton } from "@/components/site/PillButton";
@@ -297,12 +298,12 @@ export function DynamicStagingGenerator({ initialConfig }: DynamicStagingGenerat
                 }
                 className="mt-1 w-full rounded-lg border border-neutral-700 bg-neutral-950 px-3 py-2 text-xs text-white focus:border-emerald-500 focus:outline-none"
               >
-                <option value="heating">🔥 Heating & Gas Safe</option>
-                <option value="electrical">⚡ Electrical & Solar</option>
-                <option value="roofing">🏠 Roofing & Flat Roofs</option>
-                <option value="commercial">🏢 Commercial & FM</option>
-                <option value="builder">🔨 Master Builder & Extensions</option>
-                <option value="plumbing">🚰 Emergency Plumbing & Drains</option>
+                <option value="heating">Heating & Gas Safe</option>
+                <option value="electrical">Electrical & Solar</option>
+                <option value="roofing">Roofing & Flat Roofs</option>
+                <option value="commercial">Commercial & FM</option>
+                <option value="builder">Master Builder & Extensions</option>
+                <option value="plumbing">Emergency Plumbing & Drains</option>
               </select>
             </div>
 
@@ -403,10 +404,13 @@ export function DynamicStagingGenerator({ initialConfig }: DynamicStagingGenerat
                 <div className="h-3 w-3 rounded-full bg-emerald-500/80" />
               </div>
               <div className="flex items-center gap-2 rounded-lg bg-neutral-950 px-4 py-1 text-xs text-neutral-400 border border-neutral-800 font-mono">
-                <span className="text-emerald-400 font-bold">🔒 https://</span>
+                <span className="text-emerald-400 font-bold inline-flex items-center gap-1.5">
+                  <Lock className="h-3 w-3" />
+                  https://
+                </span>
                 <span>{config.company.toLowerCase().replace(/[^a-z0-9]/g, "")}-example.co.uk</span>
               </div>
-              <div className="text-[11px] font-bold text-gold-400">14-DAY BUILD SLA</div>
+              <div className="text-[11px] font-bold text-gold-400">AGREED BUILD SCHEDULE</div>
             </div>
 
             {/* LIVE CLIENT MOCKUP WEBSITE */}
