@@ -1,23 +1,7 @@
-import { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { PageShell, Container } from "@/components/site/PageShell";
 import { VirtualPhoneCockpit } from "@/components/phone/VirtualPhoneCockpit";
-import {
-  Sparkles,
-  PhoneCall,
-  CheckCircle2,
-  ShieldCheck,
-  ArrowRight,
-  ShieldAlert,
-  Clock,
-  MessageSquare,
-  TrendingUp,
-  Zap,
-  HelpCircle,
-  Check,
-  X,
-  PhoneForwarded,
-} from "lucide-react";
+import { Sparkles, PhoneCall, ArrowRight, ShieldAlert, Zap, Check } from "lucide-react";
 
 export const Route = createFileRoute("/virtual-receptionist")({
   head: () => ({
@@ -28,7 +12,7 @@ export const Route = createFileRoute("/virtual-receptionist")({
       {
         name: "description",
         content:
-          "Never miss a high-ticket trade enquiry while on tools or driving. 24/7 British voice AI receptionist that answers homeowner questions, qualifies quotes, and texts leads in 30 seconds.",
+          "Never miss a high-ticket trade enquiry while on tools or driving. 24/7 British voice receptionist that answers homeowner questions, qualifies quotes, and texts leads in 30 seconds.",
       },
       {
         property: "og:title",
@@ -70,36 +54,30 @@ export const Route = createFileRoute("/virtual-receptionist")({
 });
 
 function VirtualReceptionistPage() {
-  const [openFaq, setOpenFaq] = useState<number | null>(null);
-
-  const toggleFaq = (index: number) => {
-    setOpenFaq(openFaq === index ? null : index);
-  };
-
   const FAQS = [
     {
       q: "Does the receptionist sound like a real person?",
-      a: "Yes. We use state-of-the-art British Neural speech synthesis (en-GB Neural2) calibrated with natural conversational pacing, pauses, and friendly trade terminology. It sounds like an attentive, professional British receptionist based in your office, not a robotic automated menu.",
+      a: "Yes. The receptionist speaks in a natural British accent (en-GB Neural2) with authentic conversational pacing, pauses, and trade terminology. It sounds like a professional receptionist based in your Bristol or regional office, never a robotic automated menu.",
     },
     {
       q: "What happens when a caller has an urgent emergency?",
-      a: "The receptionist detects emergency keywords (such as burning smells, sparks, gas leaks, or burst pipes). It immediately provides calm safety guidance and triggers an instant high-priority alert to your on-call mobile so you can respond within minutes.",
+      a: "The receptionist detects emergency situations, such as burning fusebox smells, electrical sparks, active gas leaks, or burst water pipes. It immediately gives calm safety advice and alerts your on-call mobile so you can respond within minutes.",
     },
     {
       q: "How do I receive customer leads and quote enquiries?",
-      a: "Within 30 seconds of the call ending, a structured brief is dispatched straight to your WhatsApp and email. The brief includes the caller's name, phone number, trade service needed, postcode, and a concise summary of the conversation.",
+      a: "Within 30 seconds of the call finishing, a structured brief arrives on your WhatsApp and email with the caller's name, phone number, trade service needed, postcode, and a concise summary.",
     },
     {
       q: "Can I bundle this with a new website?",
-      a: "Yes. When you take our £1,495 signature Managed Website package, the AI Phone Receptionist is available as an ongoing add-on for just £99/month (saving £50/month compared to the standalone £149/mo rate).",
+      a: "Yes. When you commission our £1,495 managed trade website package, the 24/7 phone receptionist is available as an ongoing add-on for £99/month (saving £50/month compared to the standalone £149/mo rate).",
     },
     {
       q: "Can I still answer my own phone when I'm free?",
-      a: "Absolutely. You can set the receptionist to answer only when your line is engaged or unanswered after 4 rings, or leave it on 24/7. You retain complete control.",
+      a: "Yes. You can configure your phone line to divert to the receptionist only when engaged or unanswered after 4 rings, or leave it on 24/7. You retain full control over your divert rules.",
     },
     {
       q: "Are there long contracts or exit fees?",
-      a: "No. All subscriptions operate on a simple rolling 30-day agreement. You can pause, upgrade, or cancel with 30 days notice at any time.",
+      a: "No. All plans run on a rolling 30-day agreement. You can pause, upgrade, or cancel with 30 days notice at any time.",
     },
   ];
 
@@ -118,10 +96,9 @@ function VirtualReceptionistPage() {
               You're Busy Doing the Job. We'll Make Sure You Never Miss the Next One.
             </h1>
             <p className="text-base sm:text-lg text-slate-300 font-sans leading-relaxed">
-              Meet your 24/7 AI receptionist. It answers your business calls in natural British
-              English, answers customer pricing questions, and sends qualified job briefs straight
-              to your WhatsApp—even while you're 40 feet up a ladder, driving between jobs, or
-              finishing an installation.
+              A 24/7 phone receptionist that answers your incoming calls in clear British English,
+              answers customer pricing questions, and sends qualified job briefs straight to your
+              WhatsApp while you are up a ladder, driving between sites, or with an existing client.
             </p>
 
             <div className="flex flex-wrap items-center gap-4 pt-2">
@@ -270,7 +247,7 @@ function VirtualReceptionistPage() {
                 <div className="w-10 h-10 rounded-xl bg-[#081B30] text-amber-400 flex items-center justify-center font-bold text-sm font-mono">
                   02
                 </div>
-                <h3 className="text-base font-bold text-[#081B30]">Job Qualified & Triaged</h3>
+                <h3 className="text-base font-bold text-[#081B30]">Service & Pricing Checked</h3>
                 <p className="text-xs text-stone-600 leading-relaxed">
                   It confirms their postcode, asks what service they need, explains your standard
                   pricing, and detects urgent emergencies.
@@ -385,7 +362,7 @@ function VirtualReceptionistPage() {
                   </div>
 
                   <p className="text-xs text-slate-300">
-                    Engineered for established contractors with 2–5 vans on the road.
+                    Built for established contractors with 2 to 5 vans on the road.
                   </p>
 
                   <ul className="space-y-2.5 text-xs text-slate-200 pt-2 border-t border-white/10">
@@ -488,15 +465,15 @@ function VirtualReceptionistPage() {
                   THE MANAGED REVENUE & SWITCHBOARD BUNDLE
                 </span>
                 <h3 className="text-2xl sm:text-3xl font-extrabold text-white font-display">
-                  Your Website Wins Their Interest. Your AI Receptionist Makes Sure Their Call Gets
-                  Answered.
+                  Your Website Wins Their Interest. Your Phone Receptionist Makes Sure Their Call
+                  Gets Answered.
                 </h3>
                 <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
                   When you commission a bespoke Harley Digital Works trade website (£1,495 setup),
-                  you can add the 24/7 AI Phone Receptionist to your Managed Website Care Plan for
-                  just <strong className="text-amber-300">+£99/month</strong> instead of £149/mo
-                  (saving £600/year). Your digital marketing and your phone switchboard work as one
-                  unified client-generating machine.
+                  you can add the 24/7 Phone Receptionist to your Managed Website Care Plan for just{" "}
+                  <strong className="text-amber-300">+£99/month</strong> instead of £149/mo (saving
+                  £600/year). Your website wins the homeowner's interest, and your phone switchboard
+                  captures the call.
                 </p>
 
                 <div className="pt-2 flex flex-col sm:flex-row items-start sm:items-center gap-4">
@@ -536,26 +513,49 @@ function VirtualReceptionistPage() {
             </div>
 
             <div className="overflow-hidden rounded-2xl bg-white border border-stone-200 shadow-sm">
-              <table className="w-full text-left text-xs border-collapse">
+              <table
+                className="w-full text-left text-xs border-collapse"
+                aria-label="Comparison between Traditional Call Answering and Harley 24/7 AI Switchboard"
+              >
+                <caption className="sr-only">
+                  Comparison between Traditional Call Answering and Harley 24/7 AI Receptionist
+                </caption>
                 <thead>
                   <tr className="bg-stone-50 text-stone-600 border-b border-stone-200 font-mono text-[11px] uppercase tracking-wider">
-                    <th className="py-3.5 px-4">Capability</th>
-                    <th className="py-3.5 px-4 text-stone-400">Traditional Call Answering</th>
-                    <th className="py-3.5 px-4 bg-amber-500/10 text-[#081B30] font-bold">
+                    <th scope="col" className="py-3.5 px-4">
+                      Capability
+                    </th>
+                    <th scope="col" className="py-3.5 px-4 text-stone-400">
+                      Traditional Call Answering
+                    </th>
+                    <th
+                      scope="col"
+                      className="py-3.5 px-4 bg-amber-500/10 text-[#081B30] font-bold"
+                    >
                       Harley 24/7 AI Receptionist
                     </th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-stone-100">
                   <tr>
-                    <td className="py-3.5 px-4 font-bold text-stone-800">Typical Monthly Cost</td>
+                    <th
+                      scope="row"
+                      className="py-3.5 px-4 font-bold text-stone-800 font-sans text-left"
+                    >
+                      Typical Monthly Cost
+                    </th>
                     <td className="py-3.5 px-4 text-stone-500">£180 – £350+ / month</td>
                     <td className="py-3.5 px-4 bg-amber-50/30 font-bold text-emerald-700">
                       £79 – £149 / month (Fixed)
                     </td>
                   </tr>
                   <tr>
-                    <td className="py-3.5 px-4 font-bold text-stone-800">Out-of-Hours Answering</td>
+                    <th
+                      scope="row"
+                      className="py-3.5 px-4 font-bold text-stone-800 font-sans text-left"
+                    >
+                      Out-of-Hours Answering
+                    </th>
                     <td className="py-3.5 px-4 text-stone-500">
                       Expensive evening surcharges (£2.50+/call)
                     </td>
@@ -564,9 +564,12 @@ function VirtualReceptionistPage() {
                     </td>
                   </tr>
                   <tr>
-                    <td className="py-3.5 px-4 font-bold text-stone-800">
+                    <th
+                      scope="row"
+                      className="py-3.5 px-4 font-bold text-stone-800 font-sans text-left"
+                    >
                       Technical Trade Qualification
-                    </td>
+                    </th>
                     <td className="py-3.5 px-4 text-stone-500">
                       Basic name and number note-taking only
                     </td>
@@ -575,9 +578,12 @@ function VirtualReceptionistPage() {
                     </td>
                   </tr>
                   <tr>
-                    <td className="py-3.5 px-4 font-bold text-stone-800">
+                    <th
+                      scope="row"
+                      className="py-3.5 px-4 font-bold text-stone-800 font-sans text-left"
+                    >
                       Emergency Safety Protocol
-                    </td>
+                    </th>
                     <td className="py-3.5 px-4 text-stone-500">
                       No safety triage or instant dispatch
                     </td>
@@ -586,7 +592,12 @@ function VirtualReceptionistPage() {
                     </td>
                   </tr>
                   <tr>
-                    <td className="py-3.5 px-4 font-bold text-stone-800">Speed to Contractor</td>
+                    <th
+                      scope="row"
+                      className="py-3.5 px-4 font-bold text-stone-800 font-sans text-left"
+                    >
+                      Speed to Contractor
+                    </th>
                     <td className="py-3.5 px-4 text-stone-500">
                       Delayed email batch (15–45 minutes)
                     </td>
@@ -616,26 +627,21 @@ function VirtualReceptionistPage() {
 
             <div className="space-y-3">
               {FAQS.map((faq, index) => (
-                <div
+                <details
                   key={index}
-                  className="rounded-2xl bg-white border border-stone-200 overflow-hidden shadow-xs"
+                  name="receptionist-faq"
+                  className="group rounded-2xl bg-white border border-stone-200 overflow-hidden shadow-xs transition-all"
                 >
-                  <button
-                    type="button"
-                    onClick={() => toggleFaq(index)}
-                    className="w-full p-5 text-left text-sm font-bold text-[#081B30] flex items-center justify-between gap-4 hover:bg-stone-50 transition-colors"
-                  >
+                  <summary className="w-full p-5 text-left text-sm font-bold text-[#081B30] flex items-center justify-between gap-4 cursor-pointer hover:bg-stone-50 transition-colors list-none select-none">
                     <span>{faq.q}</span>
-                    <span className="text-stone-400 font-mono text-base">
-                      {openFaq === index ? "−" : "+"}
+                    <span className="text-stone-400 font-mono text-base group-open:rotate-45 transition-transform duration-200">
+                      +
                     </span>
-                  </button>
-                  {openFaq === index && (
-                    <div className="p-5 pt-0 text-xs text-stone-600 leading-relaxed border-t border-stone-100 bg-stone-50/50">
-                      {faq.a}
-                    </div>
-                  )}
-                </div>
+                  </summary>
+                  <div className="p-5 pt-0 text-xs text-stone-600 leading-relaxed border-t border-stone-100 bg-stone-50/50">
+                    {faq.a}
+                  </div>
+                </details>
               ))}
             </div>
           </div>
