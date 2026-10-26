@@ -4,9 +4,11 @@ import { PillButton } from "./PillButton";
 export function WebsitePackagesSection({
   title = "One website. Looked after.",
   subtitle = "An initial build fee gets you live. A monthly subscription keeps your digital presence working.",
+  kicker = "TRANSPARENT INVESTMENT",
 }: {
   title?: string;
   subtitle?: string;
+  kicker?: string;
 }) {
   return (
     <section
@@ -17,7 +19,7 @@ export function WebsitePackagesSection({
       <div className="studio-wrap">
         <div className="studio-section-heading">
           <div>
-            <p className="studio-kicker">04 / A CLEAR WAY TO WORK TOGETHER</p>
+            <p className="studio-kicker">{kicker}</p>
             <h2 id="offer-heading">{title}</h2>
           </div>
           <p>{subtitle}</p>

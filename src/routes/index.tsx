@@ -1,4 +1,3 @@
-import { IllustrativeTradeProof } from "@/components/site/IllustrativeTradeProof";
 import { useEffect, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowDown, ArrowUpRight, Check, PenLine, Play, ShieldCheck, Sparkles } from "lucide-react";
@@ -6,12 +5,9 @@ import { PageShell } from "@/components/site/PageShell";
 import { PillButton } from "@/components/site/PillButton";
 import { ConceptScreen, ConceptShowcase } from "@/components/site/ConceptShowcase";
 import { BeforeAfterComparison } from "@/components/site/BeforeAfterComparison";
-import { BeforeAfterSlider } from "@/components/site/BeforeAfterSlider";
 import { WebsitePackagesSection } from "@/components/site/WebsitePackagesSection";
 import { TradeShowcaseSection } from "@/components/site/TradeShowcaseSection";
-import { CustomerTransformationSection } from "@/components/site/CustomerTransformationSection";
 import { HeroTransformationVideoModal } from "@/components/site/HeroTransformationVideoModal";
-import { TheHarleyGroupPage } from "./the-harley-group";
 import {
   Accordion,
   AccordionContent,
@@ -261,33 +257,30 @@ function HomePage() {
           </div>
         </section>
 
-        {/* Customer Business Transformation & Success Scenarios Section */}
-        <CustomerTransformationSection />
-
         <TradeShowcaseSection />
 
         <section className="studio-purpose studio-section" aria-labelledby="purpose-heading">
           <div className="studio-wrap purpose-layout">
             <div className="purpose-visual">
               <img
-                src="/images/home/craftsman-workshop.jpg"
-                alt="Master craftsman in British workshop with trade website displayed on laptop in background"
+                src="/images/home/heating-plant-room.jpg"
+                alt="Precision plant room boiler and heating installation with bespoke copper pipework by accredited British engineers"
                 width="1200"
                 height="801"
                 loading="lazy"
               />
-              <span className="purpose-image-label">MAKE THE DETAILS COUNT.</span>
+              <span className="purpose-image-label">PRECISION TRADE INSTALLATION</span>
               <div className="purpose-annotation">
                 <ArrowUpRight size={24} />
                 <p>
-                  Show the quality.
+                  Show the standard.
                   <br />
-                  Make the choice easier.
+                  Win the quote.
                 </p>
               </div>
             </div>
             <div className="purpose-copy">
-              <p className="studio-kicker">03 / GOOD LOOKS. CLEAR PURPOSE.</p>
+              <p className="studio-kicker">04 / PURPOSE-BUILT CRAFTSMANSHIP</p>
               <h2 id="purpose-heading">
                 A beautiful website.
                 <br />
@@ -339,7 +332,7 @@ function HomePage() {
           <div className="studio-wrap">
             <div className="studio-section-heading">
               <div>
-                <p className="studio-kicker">04 / SIMPLE FROM THE START</p>
+                <p className="studio-kicker">05 / HOW WE WORK</p>
                 <h2 id="process-heading">
                   You know your business.
                   <br />
@@ -354,20 +347,20 @@ function HomePage() {
               {[
                 [
                   "01",
-                  "A conversation, not a homework assignment.",
-                  "Tell us what you do, who you work with and where you want to go. We turn that into a clear brief and the right scope.",
+                  "Direct phone discovery.",
+                  "Tell us what you do, who you work with and where you want to go. We turn that into a clear brief and a fixed project plan.",
                   "DISCOVER & PLAN",
                 ],
                 [
                   "02",
-                  "We find the words. Then bring them to life.",
-                  "We write your copy, shape the design and build your website. You get a preview to explore, check and give feedback on.",
+                  "100% Done-for-you writing & build.",
+                  "We write your copy, shape the design and assemble your website. You get a private preview to explore, check the facts and approve.",
                   "WRITE, DESIGN & BUILD",
                 ],
                 [
                   "03",
-                  "Ready for business. Looked after for the long run.",
-                  "We check the details, connect your domain and launch. Your care plan keeps the site maintained and up to date.",
+                  "Launch & ongoing managed care.",
+                  "We connect your domain, preserve your business email, and launch. Your care plan keeps the site secure, fast, and maintained.",
                   "LAUNCH & CARE",
                 ],
               ].map(([number, title, copy, label]) => (
@@ -392,19 +385,48 @@ function HomePage() {
           <div className="studio-wrap">
             <div className="grid gap-10 lg:grid-cols-12 lg:items-center">
               <div className="lg:col-span-5 flex justify-center">
-                <div className="relative group text-center">
-                  <div className="absolute -inset-4 rounded-full bg-emerald-500/10 blur-2xl group-hover:bg-emerald-500/20 transition-all duration-500" />
-                  <img
-                    src="/brand/social/hdw-guild-seal-badge.jpg"
-                    alt="Harley Digital Works Trade Quality Guild Seal Stamp"
-                    className="relative w-64 h-64 sm:w-72 sm:h-72 rounded-full object-cover shadow-2xl border-4 border-amber-600/30 group-hover:scale-105 transition-transform duration-500 mx-auto"
-                    loading="lazy"
-                  />
-                  <div className="mt-4">
-                    <span className="inline-flex items-center gap-1.5 rounded-full bg-white/10 px-3 py-1 text-[11px] font-mono text-emerald-400 font-bold border border-white/15">
-                      <Sparkles className="h-3 w-3" />
-                      <span>What We Commit To</span>
+                <div className="w-full max-w-sm rounded-2xl border border-white/10 bg-white/5 p-6 sm:p-8 backdrop-blur-xs text-left space-y-6 shadow-2xl">
+                  <div className="flex items-center justify-between border-b border-white/10 pb-4">
+                    <div className="flex items-center gap-2.5">
+                      <ShieldCheck className="h-6 w-6 text-emerald-400" />
+                      <div>
+                        <div className="text-xs font-mono font-bold uppercase text-white tracking-wider">
+                          The Harley Standard
+                        </div>
+                        <div className="text-[10px] text-slate-400 font-mono">
+                          Governance & Quality Assurance
+                        </div>
+                      </div>
+                    </div>
+                    <span className="inline-flex items-center rounded-full bg-emerald-500/10 border border-emerald-500/30 px-2 py-0.5 text-[10px] font-mono text-emerald-300">
+                      Zero Risk
                     </span>
+                  </div>
+
+                  <div className="space-y-3 text-xs text-slate-300">
+                    <div className="flex items-center justify-between py-1.5 border-b border-white/5">
+                      <span className="text-slate-400">Payment Security</span>
+                      <span className="font-semibold text-white">50% upon final approval</span>
+                    </div>
+                    <div className="flex items-center justify-between py-1.5 border-b border-white/5">
+                      <span className="text-slate-400">Copywriting</span>
+                      <span className="font-semibold text-emerald-400">100% Done-for-you</span>
+                    </div>
+                    <div className="flex items-center justify-between py-1.5 border-b border-white/5">
+                      <span className="text-slate-400">Asset Ownership</span>
+                      <span className="font-semibold text-white">100% Client-owned</span>
+                    </div>
+                    <div className="flex items-center justify-between py-1.5 border-b border-white/5">
+                      <span className="text-slate-400">Care Plan Notice</span>
+                      <span className="font-semibold text-white">30 days fair exit</span>
+                    </div>
+                  </div>
+
+                  <div className="rounded-xl bg-[#173C62]/30 border border-[#173C62]/40 p-3.5 text-[11px] text-slate-300">
+                    <p className="leading-relaxed">
+                      Backed by The Harley Group. Every build is individually inspected and approved
+                      before public launch.
+                    </p>
                   </div>
                 </div>
               </div>
@@ -412,7 +434,7 @@ function HomePage() {
               <div className="lg:col-span-7 space-y-6">
                 <div>
                   <p className="text-xs font-mono font-bold uppercase tracking-wider text-emerald-400">
-                    CLEAR PROMISES · ZERO HOMEWORK
+                    06 / WHAT WE COMMIT TO
                   </p>
                   <h2
                     id="commitments-heading"
@@ -481,12 +503,6 @@ function HomePage() {
                   <PillButton as="link" to="/contact" variant="light" className="studio-button">
                     Get your website plan
                   </PillButton>
-                  <Link
-                    to="/brand"
-                    className="text-xs text-slate-400 hover:text-white transition-colors underline underline-offset-4"
-                  >
-                    View Brand Specifications & Guild Seal ↗
-                  </Link>
                 </div>
               </div>
             </div>
@@ -495,6 +511,7 @@ function HomePage() {
 
         <div className="studio-pricing deferred-section">
           <WebsitePackagesSection
+            kicker="07 / A CLEAR INVESTMENT"
             title="A clear investment. A better website."
             subtitle="An initial build fee. Ongoing monthly care. One clear proposal covering both."
           />
@@ -517,7 +534,7 @@ function HomePage() {
               <span>ROBBIE HARLEY / FOUNDER</span>
             </div>
             <div className="founder-copy">
-              <p className="studio-kicker">A REAL PERSON. A PERSONAL COMMITMENT.</p>
+              <p className="studio-kicker">08 / FOUNDER ACCOUNTABILITY</p>
               <h2 id="founder-heading">
                 Proud of your business.
                 <br />
@@ -541,16 +558,14 @@ function HomePage() {
                     Part of The Harley Group
                   </small>
                 </div>
-                <div className="relative group shrink-0">
-                  <img
-                    src="/brand/social/hdw-guild-seal-badge.jpg"
-                    alt="Harley Digital Works - Trade Quality Guild Seal Badge"
-                    className="h-20 w-20 rounded-full shadow-xl border-2 border-amber-600/30 hover:scale-105 transition-transform duration-300"
-                    loading="lazy"
-                  />
-                  <span className="sr-only">
-                    Built for British Trades · 100% Done-For-You · Backed by The Harley Group
-                  </span>
+                <div className="rounded-xl border border-white/10 bg-white/5 px-4 py-3 shrink-0 text-left">
+                  <div className="flex items-center gap-2 text-xs font-mono font-bold text-emerald-400 uppercase tracking-wider">
+                    <ShieldCheck className="h-4 w-4" />
+                    <span>Backed by The Harley Group</span>
+                  </div>
+                  <div className="text-[10px] text-slate-400 font-mono mt-0.5">
+                    Direct founder oversight on every project
+                  </div>
                 </div>
               </div>
               <Link to="/about" className="studio-text-link">
@@ -566,7 +581,7 @@ function HomePage() {
         >
           <div className="studio-wrap faq-layout">
             <div>
-              <p className="studio-kicker">THE PRACTICAL DETAILS</p>
+              <p className="studio-kicker">09 / FREQUENT QUESTIONS</p>
               <h2 id="faq-heading">
                 Good questions.
                 <br />
@@ -599,7 +614,7 @@ function HomePage() {
 
         <section className="studio-final deferred-section" aria-labelledby="final-heading">
           <div className="studio-wrap">
-            <p className="studio-kicker">YOUR NEXT CHAPTER STARTS HERE</p>
+            <p className="studio-kicker">10 / LET’S MAKE SOMETHING GREAT</p>
             <div className="final-layout">
               <h2 id="final-heading">
                 Let’s make

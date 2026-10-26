@@ -1,8 +1,50 @@
 # The Harley Group & Harley Digital Works — Session Handover Log
 
+## Full Project Design Audit & Homepage Disconnection Resolution — 26 October 2026
+
+- **Tool & Scope:** Google Antigravity. Executed under user instruction: _"before we merge can you review this page by examples as it feels disconnected, with the design showing outdated section as the project has developed. Please do a full design audit across the entire project /design-taste-frontend /no-ai-slop"_. Branch: `design/apple-ui-transformation`.
+- **Root-Cause Analysis of Disconnection:**
+  1. **Triplicate Section Stacking:** The homepage had three consecutive sections competing to show "Before/After" and trade verticals (`BeforeAfterComparison` slider -> `CustomerTransformationSection` with red attack cards -> `TradeShowcaseSection` with another set of trade tabs). This caused severe cognitive overload and design whiplash.
+  2. **Broken Section Numbering Hierarchy:** Sections had colliding numbers (`01 / THE POSSIBILITIES`, `02 / BEFORE & AFTER`, `03 / REALISTIC CUSTOMER OUTCOMES`, `04 / ENGINEERED SPECIFICALLY FOR UK TRADES`, then resetting back to `03 / GOOD LOOKS. CLEAR PURPOSE.` and `04 / SIMPLE FROM THE START`!).
+  3. **Outdated Imagery:** Both `index.tsx` and `about.tsx` showed `craftsman-workshop.jpg` (a vintage artisan chiseling wood in a timber studio), completely divorced from modern electrical contractors, heating/gas engineers, and commercial facility contractors.
+  4. **Gimmicky Coin Seal Badge:** In the commitments section, an artificial glowing gold coin medal (`hdw-guild-seal-badge.jpg`) with a neon green blur halo looked like an infomercial stamp rather than architectural agency craft.
+  5. **Palette Clash (Olive Green):** `.studio-founder` in `src/studio.css` used an outdated army olive green (`#282e26`) with yellowish text (`#c8cbb9`, `#bbc1ae`), clashing directly with the Midnight Navy (`#081B30`) and Warm Ivory (`#F6F3ED`) palette.
+- **Implemented Harmonization & Refactoring:**
+  1. **Homepage Streamlining (`src/routes/index.tsx`):**
+     - Pruned redundant `CustomerTransformationSection`, keeping the high-impact visual `BeforeAfterComparison` slider (Section 02) followed immediately by `TradeShowcaseSection` (Section 03).
+     - Fixed section numbering into a clean, logical sequence from `01` to `10`:
+       - `01 / THE POSSIBILITIES`: Editorial Concept Studies (Architecture, Solar, Interior).
+       - `02 / BEFORE & AFTER TRANSFORMATIONS`: Interactive before/after wipe comparison across 6 UK trades.
+       - `03 / ENGINEERED SPECIFICALLY FOR UK TRADES`: Dynamic trade capabilities, target high-ticket enquiries, and honest agency comparison matrix.
+       - `04 / PURPOSE-BUILT CRAFTSMANSHIP`: Upgraded with authentic British trade craft imagery (`heating-plant-room.jpg`), captioned "PRECISION TRADE INSTALLATION" and "Show the standard. Win the quote."
+       - `05 / HOW WE WORK`: 3-step workflow scrubbed of binary marketing slop ("Direct phone discovery", "100% Done-for-you writing & build", "Launch & ongoing managed care").
+       - `06 / WHAT WE COMMIT TO`: Upgraded with an Architectural Trust & Governance Panel (50% deposit on final approval, 100% done-for-you copywriting, 100% client asset ownership, 30 days notice exit).
+       - `07 / A CLEAR INVESTMENT`: Fixed £1,495 setup + £249/mo care package with new dynamic `kicker` prop.
+       - `08 / FOUNDER ACCOUNTABILITY`: Harmonized Midnight Navy founder section with Robbie Harley's portrait and backed-by-The-Harley-Group verification badge.
+       - `09 / FREQUENT QUESTIONS`: Accordion FAQs.
+       - `10 / LET’S MAKE SOMETHING GREAT`: Closing high-contrast CTA banner.
+  2. **Design Tokens & Palette (`src/studio.css`):**
+     - Upgraded `.studio-founder` from `#282e26` to Midnight Navy `#081B30` with slate text (`#cbd5e1`, `#94a3b8`), white display headers, and electrical amber kickers (`#D97706`).
+  3. **About Page Harmonization (`src/routes/about.tsx`):**
+     - Replaced woodcarver photo with British architectural craft pavilion (`thg-pavilion.jpg`).
+     - Added `03 / PERSONAL ACCOUNTABILITY` kicker to the founder story and adjusted contrast to `text-slate-300`.
+  4. **Work Page Harmonization (`src/routes/work.tsx`):**
+     - Passed `kicker="04 / TRANSPARENT INVESTMENT"` to prevent numbering collisions.
+- **Empirical Verification Evidence:**
+  - `node scripts/scan-all-slop.mjs`: PASS (0 customer-facing items to review).
+  - `node --test scripts/claims-guard.test.mjs`: PASS (0 claims violations).
+  - `npm run format:check`: PASS (100% Prettier compliant).
+  - `npm run typecheck`: PASS (0 TS errors).
+  - `npm run lint`: PASS (0 errors, 9 non-blocking warnings).
+  - `npm test`: PASS (205/205 tests pass across 25 suites).
+  - `npm run build`: PASS (Vite SSR + Nitro Cloudflare module built in 1.90s).
+- **Branch & Safety Boundary:**
+  - Branch: `design/apple-ui-transformation`.
+  - Main branch preserved, zero live production mutations.
+
 ## Option 1: The "Architectural Craft" Hybrid Transformation — 26 October 2026
 
-- **Tool & Scope:** Google Antigravity. Executed under user instruction: *"please do with Option 1: The 'Architectural Craft' Hybrid so update every page and the design.ms files"*. Branch: `design/apple-ui-transformation`.
+- **Tool & Scope:** Google Antigravity. Executed under user instruction: _"please do with Option 1: The 'Architectural Craft' Hybrid so update every page and the design.ms files"_. Branch: `design/apple-ui-transformation`.
 - **Governing Architecture & Rationale:**
   - Robbie reviewed the RG Electrical flagship demo screenshot and audio-critiqued the monolithic dark blue background and neon green accents.
   - An unbroken `#081B30` dark wall with neon green borders reads like a crypto or cybersecurity dashboard, not a high-end British contractor. Homeowners in Bristol, Bath, and Clifton hiring for £4,000 rewires and £1,200 fuseboards require daylight, cleanliness, and trust.

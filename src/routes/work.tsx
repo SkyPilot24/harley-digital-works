@@ -300,6 +300,7 @@ function WorkPage() {
         {/* Packages Integration */}
         <div className="studio-pricing">
           <WebsitePackagesSection
+            kicker="04 / TRANSPARENT INVESTMENT"
             title="A clear scope. Transparent investment."
             subtitle="Design, copywriting, and launch included. Choose a starting point; we’ll confirm the exact scope together."
           />

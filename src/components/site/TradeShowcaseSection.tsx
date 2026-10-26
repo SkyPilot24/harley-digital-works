@@ -51,7 +51,7 @@ export function TradeShowcaseSection() {
                 Websites for electrical contractors in Bristol, Bath and the M4 corridor
               </span>
             </div>
-            <p className="studio-kicker">04 / ENGINEERED SPECIFICALLY FOR UK TRADES</p>
+            <p className="studio-kicker">03 / ENGINEERED SPECIFICALLY FOR UK TRADES</p>
             <h2
               id="trades-showcase-heading"
               className="text-3xl md:text-5xl font-extrabold tracking-tight text-ink"

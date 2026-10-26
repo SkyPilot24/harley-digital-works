@@ -1697,8 +1697,10 @@
   border-radius: 0;
 }
 .studio-founder {
-  background: #282e26;
-  color: var(--studio-paper);
+  background: #081b30;
+  color: #f6f3ed;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 .founder-layout {
   display: grid;
@@ -1710,6 +1712,7 @@
   position: relative;
   aspect-ratio: 4/4.5;
   overflow: hidden;
+  border-radius: 4px;
 }
 .founder-photo img {
   width: 100%;
@@ -1721,26 +1724,29 @@
   position: absolute;
   bottom: 20px;
   left: 20px;
-  background: var(--studio-paper);
-  color: var(--studio-ink);
+  background: #081b30;
+  color: #f6f3ed;
   padding: 10px 14px;
-  font: 400 9px/1.5 var(--font-mono);
+  font: 500 9px/1.5 var(--font-mono);
   letter-spacing: 0.07em;
+  border: 1px solid rgba(255, 255, 255, 0.15);
 }
 .founder-copy .studio-kicker {
-  color: #c8cbb9;
+  color: #d97706;
   margin-bottom: 28px;
+  letter-spacing: 0.12em;
 }
 .founder-copy h2 {
   font-size: clamp(30px, 3vw, 46px);
+  color: #ffffff;
 }
 .founder-copy h2 > span {
-  color: #bbc1ae;
+  color: #94a3b8;
 }
 .founder-copy > p:not(.studio-kicker) {
   font-size: 17px;
   line-height: 1.9;
-  color: #e0e2d8;
+  color: #cbd5e1;
   max-width: 470px;
   margin: 30px 0;
 }
@@ -1753,13 +1759,20 @@
 }
 .founder-signature > span {
   font: 400 33px/1.2 var(--font-hand);
+  color: #ffffff;
 }
 .founder-signature small {
   font-size: 10px;
-  color: #c8cbb9;
+  color: #94a3b8;
   line-height: 1.7;
-  border-left: 1px solid #727968;
+  border-left: 1px solid rgba(255, 255, 255, 0.15);
   padding-left: 24px;
+}
+.founder-copy .studio-text-link {
+  color: #f6f3ed;
+}
+.founder-copy .studio-text-link:hover {
+  color: #d97706;
 }
 .studio-faq {
   background: var(--studio-white);

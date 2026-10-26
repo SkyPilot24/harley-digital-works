@@ -132,14 +132,14 @@ function AboutPage() {
           <div className="studio-wrap purpose-layout">
             <div className="purpose-visual">
               <img
-                src="/images/home/craftsman-workshop.jpg"
-                alt="Master craftsman in British workshop with trade website on laptop in background"
+                src="/images/home/thg-pavilion.jpg"
+                alt="Architectural pavilion demonstrating structural quality and clean lines"
                 width="1200"
-                height="801"
+                height="800"
                 loading="lazy"
                 decoding="async"
               />
-              <span className="purpose-image-label">MAKE THE DETAILS COUNT.</span>
+              <span className="purpose-image-label">BUILT ON STRONG FOUNDATIONS.</span>
               <div className="purpose-annotation">
                 <ArrowUpRight size={24} />
                 <p>
@@ -231,7 +231,7 @@ function AboutPage() {
               <span>ROBBIE HARLEY / MANAGING DIRECTOR</span>
             </div>
             <div className="founder-copy">
-              <p className="studio-kicker">PERSONAL ACCOUNTABILITY</p>
+              <p className="studio-kicker">03 / PERSONAL ACCOUNTABILITY</p>
               <h2 id="founder-story-heading">
                 Built by operators.
                 <br />
@@ -241,10 +241,11 @@ function AboutPage() {
                 “I’m Robbie Harley. I run Harley Digital Works myself and use automation for the
                 routine work, so your updates don’t wait in a queue.”
               </p>
-              <p className="text-sm leading-relaxed text-ink/75">
+              <p className="text-sm leading-relaxed text-slate-300">
                 Harley Digital Works operates as the digital flagship of{" "}
-                <strong>The Harley Group</strong>, bringing structured governance, rigorous quality
-                assurance, and long-term stability to every client engagement.
+                <strong className="text-white">The Harley Group</strong>, bringing structured
+                governance, rigorous quality assurance, and long-term stability to every client
+                engagement.
               </p>
               <div className="founder-signature">
                 <span>Dr Robbie Harley</span>
