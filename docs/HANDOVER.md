@@ -30,6 +30,11 @@
      - Added `03 / PERSONAL ACCOUNTABILITY` kicker to the founder story and adjusted contrast to `text-slate-300`.
   4. **Work Page Harmonization (`src/routes/work.tsx`):**
      - Passed `kicker="04 / TRANSPARENT INVESTMENT"` to prevent numbering collisions.
+  5. **Workspace Diagnostics & Skill Cleanup (`@[current_problems]`, `@[SKILL.md:current_problems]`):**
+     - `.agents/skills/design-taste-frontend/SKILL.md`: Resolved all markdownlint violations (MD036 bold headers converted to `####`, MD040 code block language specified, MD025 duplicate H1 demoted, and 60+ MD034 bare URLs wrapped in `<...>`).
+     - `docs/homepage-redesign.md`: Wrapped bare URLs in `<...>` and sanitized em-dashes to hyphens/colons.
+     - `scripts/sanitize-public-em-dashes.mjs`: Restored and saved clean, 100% Prettier/ESLint formatted script on disk, clearing IDE buffer sync errors.
+     - Commits: `555c7f6`, `329a199`, `d8ef064`.
 - **Empirical Verification Evidence:**
   - `node scripts/scan-all-slop.mjs`: PASS (0 customer-facing items to review).
   - `node --test scripts/claims-guard.test.mjs`: PASS (0 claims violations).
