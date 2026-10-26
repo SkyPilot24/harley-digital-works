@@ -3,6 +3,7 @@ import { SiteHeader } from "./SiteHeader";
 import { FooterDark } from "./FooterDark";
 import { FloatingWhatsAppDesk } from "./FloatingWhatsAppDesk";
 import { ExitIntentModal } from "./ExitIntentModal";
+import { BrandChatWidget } from "@/components/chat/BrandChatWidget";
 
 export function PageShell({
   children,
@@ -10,12 +11,14 @@ export function PageShell({
   header,
   footer,
   brand = "hdw",
+  hideChat = false,
 }: {
   children: ReactNode;
   quiet?: boolean;
   header?: ReactNode | null;
   footer?: ReactNode | null;
   brand?: "hdw" | "group" | "labs";
+  hideChat?: boolean;
 }) {
   return (
     <div
@@ -30,6 +33,7 @@ export function PageShell({
       {footer !== undefined ? footer : <FooterDark />}
       {!quiet && <FloatingWhatsAppDesk />}
       {!quiet && <ExitIntentModal />}
+      {!hideChat && (brand === "hdw" || brand === "group") && <BrandChatWidget brand={brand} />}
     </div>
   );
 }

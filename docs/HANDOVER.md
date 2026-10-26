@@ -1,5 +1,35 @@
 # The Harley Group & Harley Digital Works — Session Handover Log
 
+## Launch of AI Customer Service & Sales Chatbots for The Harley Group & HDW — 26 October 2026
+
+- **Tool & Scope:** Google Antigravity. Executed under approved plan `ai_chatbots_implementation_plan.md` to design, build, integrate, and test production-ready, individually branded AI assistants for both marketing surfaces: The Harley Group (`https://theharleygroup.org/`) and Harley Digital Works (`https://harleydigitalworks.com/`).
+- **Delivered Capabilities:**
+  1. **Multi-Brand Intelligence Core (`src/lib/ai-assistant/`):**
+     - `src/lib/ai-assistant/types.ts`: Common data contracts for messages, personas, brand configurations, quick prompt actions, and structured lead extraction.
+     - `src/lib/ai-assistant/knowledge-hdw.ts`: Verified Harley Digital Works trade knowledge base covering the £1,495 setup + £249/mo managed care offer (50/50 split), 100% DFY copywriting, zero VAT compliance, 2-concurrency active build limit, and the 24/7 AI Virtual Phone Receptionist add-on (+£99/mo bundle or £79/mo Solo).
+     - `src/lib/ai-assistant/knowledge-group.ts`: Verified The Harley Group corporate knowledge base covering parent portfolio divisions (Harley Digital Works, Harley Labs, Domain Portfolio), cross-brand routing, and executive founder escalation to Robbie Harley.
+     - `src/lib/ai-assistant/agent-core.ts`: Multi-brand agent runner connecting to Google Cloud Dialogflow CX Agent Builder (`07495933-b944-44ed-9528-7ea30007e477` for HDW; `9761cd1b-2014-4173-8848-1b6db1b18390` for THG), with zero-latency deterministic local fallback knowledge engines, natural lead extraction (name, trade, phone, email, project note), prompt injection defense, and session rate limiting.
+  2. **Serverless API Layer:**
+     - `src/routes/api.chat.assistant.ts`: Public TanStack Router server endpoint (`POST /api/chat/assistant`) supporting multi-turn conversational queries.
+     - `src/routes/api.chat.lead-capture.ts`: Server route for structured lead intake directly into the existing Supabase CRM (`submit_public_lead`).
+  3. **Apple-Grade Frontend Experience (`src/components/chat/BrandChatWidget.tsx`):**
+     - Discreet floating chat launcher with live pulsing beacon.
+     - Automatic brand styling: Midnight Navy & Emerald theme for HDW ("Callum | HDW Trade Specialist"); Obsidian Slate & Amber Stone theme for The Harley Group ("Victoria | Senior Group Advisor").
+     - Quick prompt pills, animated typing indicator, conversational in-chat lead booking card, and direct founder phone/WhatsApp escalation strip (`07394 041487`).
+     - Screen-reader accessible (`aria-live="polite"`), WCAG AA compliant, mobile-responsive full drawer, and Esc key dismissible.
+  4. **PageShell Integration (`src/components/site/PageShell.tsx`):**
+     - Automatically mounts `<BrandChatWidget brand={brand} />` across all public marketing pages.
+     - Added `hideChat` control to suppress the global widget on private contractor client demos (`/demos/rg-electrical`).
+- **Empirical Verification Evidence:**
+  - Automated Chatbot Test Suite (`scripts/ai-chatbots.test.mjs`): 10/10 PASS across brand isolation, pricing accuracy, claims guard compliance, lead extraction, and prompt injection defense.
+  - Claims Guard (`node --test scripts/claims-guard.test.mjs`): PASS (0 violations).
+  - Full Workspace Test Suite (`npm test`): **221/221 PASS** across 28 test suites (0 failures).
+  - TypeScript Typecheck (`npm run typecheck`): PASS (0 TS errors).
+  - ESLint (`npm run lint`): PASS (0 errors, 9 non-blocking UI warnings).
+  - Prettier (`npm run format:check`): PASS (100% compliant).
+  - Production Build (`npm run build`): PASS (Vite + Cloudflare Nitro bundle compiled cleanly in 1.98s).
+  - Live Browser & API Verification: Port 3000 verified live via native Chrome (`http://localhost:3000/` and `http://localhost:3000/the-harley-group`).
+
 ## Virtual Receptionist Modern Web & No-AI-Slop Refinement — 26 October 2026
 
 - **Tool & Scope:** Google Antigravity. Applied `/no-ai-slop` human trade copywriting standards and `/modern-web-guidance` accessible HTML5 primitives to `http://localhost:3000/virtual-receptionist` (`src/routes/virtual-receptionist.tsx`). Commit: `a172956`.

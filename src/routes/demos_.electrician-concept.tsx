@@ -178,7 +178,7 @@ const ILLUSTRATIVE_ELECTRICIAN: TradeDemoBusiness = {
 
 function ElectricianConceptPage() {
   return (
-    <PageShell quiet>
+    <PageShell quiet hideChat>
       {/* 1. Mandatory Research & Staging Notice Banner */}
       <section className="bg-amber-500/10 border-b border-amber-500/30 px-4 py-3 text-amber-200">
         <Container>

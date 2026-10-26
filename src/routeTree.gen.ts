@@ -72,7 +72,9 @@ import { Route as AuthenticatedAdminTeamRouteImport } from './routes/_authentica
 import { Route as AuthenticatedAdminTestimonialsRouteImport } from './routes/_authenticated/admin.testimonials'
 import { Route as AuthenticatedAdminUsersRouteImport } from './routes/_authenticated/admin.users'
 import { Route as ApiAuditProspectRouteImport } from './routes/api.audit.prospect'
+import { Route as ApiChatAssistantRouteImport } from './routes/api.chat.assistant'
 import { Route as ApiChatContentFlowRouteImport } from './routes/api.chat.content-flow'
+import { Route as ApiChatLeadCaptureRouteImport } from './routes/api.chat.lead-capture'
 import { Route as ApiChatTradeAgentRouteImport } from './routes/api.chat.trade-agent'
 import { Route as ApiMapsLookupRouteImport } from './routes/api.maps.lookup'
 import { Route as ApiMapsStaticRouteImport } from './routes/api.maps.static'
@@ -412,9 +414,19 @@ const ApiAuditProspectRoute = ApiAuditProspectRouteImport.update({
   path: '/api/audit/prospect',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiChatAssistantRoute = ApiChatAssistantRouteImport.update({
+  id: '/api/chat/assistant',
+  path: '/api/chat/assistant',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiChatContentFlowRoute = ApiChatContentFlowRouteImport.update({
   id: '/api/chat/content-flow',
   path: '/api/chat/content-flow',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiChatLeadCaptureRoute = ApiChatLeadCaptureRouteImport.update({
+  id: '/api/chat/lead-capture',
+  path: '/api/chat/lead-capture',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ApiChatTradeAgentRoute = ApiChatTradeAgentRouteImport.update({
@@ -516,7 +528,9 @@ export interface FileRoutesByFullPath {
   '/admin/testimonials': typeof AuthenticatedAdminTestimonialsRoute
   '/admin/users': typeof AuthenticatedAdminUsersRoute
   '/api/audit/prospect': typeof ApiAuditProspectRoute
+  '/api/chat/assistant': typeof ApiChatAssistantRoute
   '/api/chat/content-flow': typeof ApiChatContentFlowRoute
+  '/api/chat/lead-capture': typeof ApiChatLeadCaptureRoute
   '/api/chat/trade-agent': typeof ApiChatTradeAgentRoute
   '/api/maps/lookup': typeof ApiMapsLookupRoute
   '/api/maps/static': typeof ApiMapsStaticRoute
@@ -588,7 +602,9 @@ export interface FileRoutesByTo {
   '/admin/testimonials': typeof AuthenticatedAdminTestimonialsRoute
   '/admin/users': typeof AuthenticatedAdminUsersRoute
   '/api/audit/prospect': typeof ApiAuditProspectRoute
+  '/api/chat/assistant': typeof ApiChatAssistantRoute
   '/api/chat/content-flow': typeof ApiChatContentFlowRoute
+  '/api/chat/lead-capture': typeof ApiChatLeadCaptureRoute
   '/api/chat/trade-agent': typeof ApiChatTradeAgentRoute
   '/api/maps/lookup': typeof ApiMapsLookupRoute
   '/api/maps/static': typeof ApiMapsStaticRoute
@@ -662,7 +678,9 @@ export interface FileRoutesById {
   '/_authenticated/admin/testimonials': typeof AuthenticatedAdminTestimonialsRoute
   '/_authenticated/admin/users': typeof AuthenticatedAdminUsersRoute
   '/api/audit/prospect': typeof ApiAuditProspectRoute
+  '/api/chat/assistant': typeof ApiChatAssistantRoute
   '/api/chat/content-flow': typeof ApiChatContentFlowRoute
+  '/api/chat/lead-capture': typeof ApiChatLeadCaptureRoute
   '/api/chat/trade-agent': typeof ApiChatTradeAgentRoute
   '/api/maps/lookup': typeof ApiMapsLookupRoute
   '/api/maps/static': typeof ApiMapsStaticRoute
@@ -736,7 +754,9 @@ export interface FileRouteTypes {
     | '/admin/testimonials'
     | '/admin/users'
     | '/api/audit/prospect'
+    | '/api/chat/assistant'
     | '/api/chat/content-flow'
+    | '/api/chat/lead-capture'
     | '/api/chat/trade-agent'
     | '/api/maps/lookup'
     | '/api/maps/static'
@@ -808,7 +828,9 @@ export interface FileRouteTypes {
     | '/admin/testimonials'
     | '/admin/users'
     | '/api/audit/prospect'
+    | '/api/chat/assistant'
     | '/api/chat/content-flow'
+    | '/api/chat/lead-capture'
     | '/api/chat/trade-agent'
     | '/api/maps/lookup'
     | '/api/maps/static'
@@ -881,7 +903,9 @@ export interface FileRouteTypes {
     | '/_authenticated/admin/testimonials'
     | '/_authenticated/admin/users'
     | '/api/audit/prospect'
+    | '/api/chat/assistant'
     | '/api/chat/content-flow'
+    | '/api/chat/lead-capture'
     | '/api/chat/trade-agent'
     | '/api/maps/lookup'
     | '/api/maps/static'
@@ -936,7 +960,9 @@ export interface RootRouteChildren {
   TrackTokenRoute: typeof TrackTokenRoute
   TradesSlugRoute: typeof TradesSlugRoute
   ApiAuditProspectRoute: typeof ApiAuditProspectRoute
+  ApiChatAssistantRoute: typeof ApiChatAssistantRoute
   ApiChatContentFlowRoute: typeof ApiChatContentFlowRoute
+  ApiChatLeadCaptureRoute: typeof ApiChatLeadCaptureRoute
   ApiChatTradeAgentRoute: typeof ApiChatTradeAgentRoute
   ApiMapsLookupRoute: typeof ApiMapsLookupRoute
   ApiMapsStaticRoute: typeof ApiMapsStaticRoute
@@ -1389,11 +1415,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiAuditProspectRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/chat/assistant': {
+      id: '/api/chat/assistant'
+      path: '/api/chat/assistant'
+      fullPath: '/api/chat/assistant'
+      preLoaderRoute: typeof ApiChatAssistantRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/chat/content-flow': {
       id: '/api/chat/content-flow'
       path: '/api/chat/content-flow'
       fullPath: '/api/chat/content-flow'
       preLoaderRoute: typeof ApiChatContentFlowRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/chat/lead-capture': {
+      id: '/api/chat/lead-capture'
+      path: '/api/chat/lead-capture'
+      fullPath: '/api/chat/lead-capture'
+      preLoaderRoute: typeof ApiChatLeadCaptureRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/api/chat/trade-agent': {
@@ -1542,7 +1582,9 @@ const rootRouteChildren: RootRouteChildren = {
   TrackTokenRoute: TrackTokenRoute,
   TradesSlugRoute: TradesSlugRoute,
   ApiAuditProspectRoute: ApiAuditProspectRoute,
+  ApiChatAssistantRoute: ApiChatAssistantRoute,
   ApiChatContentFlowRoute: ApiChatContentFlowRoute,
+  ApiChatLeadCaptureRoute: ApiChatLeadCaptureRoute,
   ApiChatTradeAgentRoute: ApiChatTradeAgentRoute,
   ApiMapsLookupRoute: ApiMapsLookupRoute,
   ApiMapsStaticRoute: ApiMapsStaticRoute,

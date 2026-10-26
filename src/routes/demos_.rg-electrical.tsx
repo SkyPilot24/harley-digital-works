@@ -289,7 +289,7 @@ robbie@theharleygroup.org | 0117 214 1357`;
   };
 
   return (
-    <PageShell header={null} footer={null} quiet>
+    <PageShell header={null} footer={null} quiet hideChat>
       {/* 1. Discreet Client-Facing Staging Notice Top-Bar */}
       <aside
         aria-label="Staging Prototype Notice"

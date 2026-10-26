@@ -1,5 +1,28 @@
 # Harley Digital Works — Project Status
 
+## Production Launch of AI Customer Service & Sales Chatbots — 26 October 2026
+
+**Current Status:** Completed design, implementation, and empirical verification of production-ready, individually branded AI website assistants for both marketing surfaces:
+
+1. **Brand-Specific AI Digital Assistants**:
+   - **Harley Digital Works** (`harleydigitalworks.com` / `/`): Specialist UK trade sales and customer service assistant ("Callum | HDW Trade Specialist"). Explains the ratified £1,495 setup (50% upfront, 50% on approval) + £249/mo ongoing care package, 100% DFY copywriting, zero VAT compliance, 2-concurrency active build limits, and the 24/7 AI virtual phone receptionist add-on (+£99/mo bundle).
+   - **The Harley Group** (`theharleygroup.org` / `/the-harley-group`): Corporate advisory assistant ("Victoria | Senior Group Advisor"). Explains the parent group portfolio (Harley Digital Works, Harley Labs, Domain Portfolio), cross-brand routing, and executive founder escalation to Robbie Harley.
+2. **Unified Intelligence Core & Serverless API Gateway**:
+   - `src/lib/ai-assistant/`: Shared contracts, verified knowledge bases, Google Cloud Dialogflow CX Agent Builder upstream connection (`07495933-b944-44ed-9528-7ea30007e477` for HDW; `9761cd1b-2014-4173-8848-1b6db1b18390` for THG), zero-latency deterministic local fallback knowledge engines, natural lead extraction, and prompt injection defense.
+   - `src/routes/api.chat.assistant.ts`: Public TanStack Router server endpoint (`POST /api/chat/assistant`).
+   - `src/routes/api.chat.lead-capture.ts`: Server route for direct lead intake into the existing Supabase CRM (`submit_public_lead`).
+3. **Apple-Grade Frontend Experience**:
+   - `src/components/chat/BrandChatWidget.tsx`: Discreet floating launch pill, dual brand theming (Midnight Navy & Emerald for HDW; Obsidian Slate & Amber for THG), quick prompt pills, animated typing indicator, conversational in-chat lead booking card, and direct founder phone/WhatsApp escalation (`07394 041487`).
+   - `src/components/site/PageShell.tsx`: Automatically mounts the assistant across public marketing pages, with `hideChat` control for private contractor demos (`/demos/rg-electrical`).
+4. **Empirical Quality Suite**:
+   - Automated Chatbot Test Suite: `scripts/ai-chatbots.test.mjs` (10/10 tests passing).
+   - Workspace Unit & Integration Tests: **221/221 tests passing** (0 failures).
+   - `npm run typecheck`: PASS (0 TS errors).
+   - `npm run lint`: PASS (0 errors, 9 non-blocking UI warnings).
+   - `npm run format:check`: PASS (100% Prettier compliant).
+   - `npm run build`: PASS (Vite SSR + Cloudflare Nitro bundle compiled in 1.98s).
+   - Verified live in Chrome on Port 3000 (`http://localhost:3000/` and `http://localhost:3000/the-harley-group`).
+
 ## Launch of Commercial AI Virtual Receptionist Multi-Tenant Revenue Stream — 26 October 2026
 
 **Current Status:** Completed end-to-end transformation of the single-agent Harley Digital Works Virtual Phone Receptionist into a scalable, multi-client commercial subscription business operated by The Harley Group:
