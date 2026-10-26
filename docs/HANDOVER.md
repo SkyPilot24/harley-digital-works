@@ -1,5 +1,49 @@
 # The Harley Group & Harley Digital Works — Session Handover Log
 
+## Apple-Inspired UI/UX Transformation & Design Taste Audit — 26 October 2026
+
+- **Tool & Scope:** Google Antigravity. Executed under `/goal`, `/design-taste-frontend`, and `/modern-web-guidance` on isolated branch `design/apple-ui-transformation`.
+- **Governing Design Standards & Architecture:**
+  - `DESIGN_VARIANCE: 8`, `MOTION_INTENSITY: 6`, `VISUAL_DENSITY: 3`.
+  - Brand Aesthetic: "British Industrial Craftsmanship" (Midnight Navy `#081B30`, Warm Ivory `#F6F3ED`, Steel Blue `#173C62`, Slate `#526479`, and functional Emerald `#059669`).
+  - Strict Port Boundary: Development server pinned strictly to port 3000 (`http://localhost:3000/`); port 8080 permanently avoided due to NVIDIA Broadcast conflict.
+- **Implemented Design Transformations:**
+  1. **Shrinking Frosted-Glass Header (`modern-web-guidance` & `studio.css`):**
+     - Replaced opaque 88px header with 68px (shrinking to 58px on scroll) frosted glass header with dynamic backdrop blur (`backdrop-filter: blur(20px) saturate(180%)`), subtle border highlight (`border-bottom: 1px solid rgba(0,0,0,0.06)`), and pill navigation links (`rounded-full hover:bg-black/5`).
+     - Aligned CTA intent across all navigation headers to "Get your website plan".
+  2. **Hero Stack Discipline (`design-taste-frontend` Section 4 & `index.tsx`, `work.tsx`, `about.tsx`, `demos.tsx`):**
+     - Enforced strict 4-element hero stack: [Eyebrow] + [2-line balanced headline] + [19-word crisp subtext] + [Primary PillButton + Secondary video/interactive CTA] + [Single-line authority/pricing trust strip].
+     - Eliminated multi-row badge clutter, redundant paragraphs, and detached price footnotes.
+  3. **Apple-Grade Hardware & Mockup Fidelity (`studio.css`):**
+     - Upgraded `.hero-browser` with tactile physical border highlights (`inset 0 1px 0 rgba(255,255,255,0.5)`), 16px corner radius, and subtle tilt (-1.5deg) straightening on hover.
+     - Upgraded `.browser-toolbar` with Apple traffic light dots (red `#ff5f56`, yellow `#ffbd2e`, green `#27c93f`), frosted backdrop blur, and crisp 10px monospace pathing.
+     - Upgraded `.hero-phone` with precision bezel (6px dark border), 28px radius, speaker cutout, and ambient drop shadows.
+     - Upgraded `.managed-offer-grid` with 24px border radius, subtle rim highlights, and deep Navy background `#081B30`.
+     - Upgraded `.project-stage` and `.project-browser` with 20px / 12px border radius, cubic-bezier easing, and ambient hover lift.
+  4. **Em-Dash (`—`) Sanitization (`design-taste-frontend` Section 9.G & Section 14):**
+     - Identified and sanitized 42 em-dashes across all public customer-facing routes and components (`index.tsx`, `work.tsx`, `the-harley-group.tsx`, `demos_.rg-electrical.tsx`, `demos_.electrician-concept.tsx`, `brand.tsx`, `contact.tsx`, `labs.tsx`, `ConceptShowcase.tsx`, `CustomerTransformationSection.tsx`, `HeroTransformationVideoModal.tsx`, `IllustrativeTradeProof.tsx`, `ServiceDetailLayout.tsx`, `TradeServiceLanding.tsx`, `WebsitePackagesSection.tsx`, `CapabilityPage.tsx`, `TradeDemoData.ts`, `services_.*`, `tools.*`, `track_.$token.tsx`).
+     - Replaced with hyphens `-`, colons `:`, or clean sentence breaks.
+  5. **Hero Padding Normalization (`design-taste-frontend` Pre-Flight Check 1):**
+     - Normalized excessive hero padding (`pt-32`/`pt-40`/`pt-44`) to `pt-20 md:pt-24` across 13 routes and templates (`audit.tsx`, `brand.tsx`, `care-desk.tsx`, `domains.tsx`, `labs.tsx`, `onboarding.tsx`, `partners.tsx`, `privacy.tsx`, `proposals.tsx`, `resources.tsx`, `tools.review-booster.tsx`, `tools.seo-inspector.tsx`, `ServiceDetailLayout.tsx`).
+  6. **Button Typography & Non-Wrapping Guarantee (`PillButton.tsx`, `studio.css`):**
+     - Added `whitespace-nowrap shrink-0` across all button bases, preventing line wrapping on mobile.
+     - Guaranteed WCAG AA contrast (4.5:1 min) on all interactive elements.
+  7. **Footer Refinement (`FooterDark.tsx`, `HarleyGroupFooter.tsx`):**
+     - Replaced external links with client-side TanStack Router links, fixed en-dashes in operating hours (`Mon - Fri 09:00 - 17:00`), and formatted search parameter typing.
+- **Empirical Verification:**
+  - `scripts/verify-routes.mjs`: All 14 audited public routes return HTTP 200 OK.
+  - `node scripts/scan-all-slop.mjs`: PASS (0 items to review).
+  - `node --test scripts/claims-guard.test.mjs`: PASS (1/1 suites pass, 0 marketing claims violations).
+  - `npm run format:check`: PASS (100% Prettier compliant).
+  - `npm run typecheck`: PASS (0 TS errors).
+  - `npm run lint`: PASS (0 errors, 9 non-blocking warnings).
+  - `npm test`: PASS (205/205 pass across 25 suites).
+  - `npm run build`: PASS (Vite + Nitro SSR built cleanly in 2.01s).
+  - Local runtime visual review: Launched Chrome to `http://localhost:3000/`, `http://localhost:3000/demos/rg-electrical`, and `http://localhost:3000/work`.
+- **Branch & Safety Boundary:**
+  - All changes committed to branch `design/apple-ui-transformation`.
+  - Zero push to `origin/main` and zero production deployments per safety guardrails.
+
 ## Google Cloud Credit Activation & Google Maps Platform Integration — 26 October 2026
 
 - **Tool & Scope:** Google Antigravity. Robbie confirmed (`plese make sure we use these credits` -> `yes please`). Activated Google Cloud credit balances across projects `gen-app-agent-building` and `stalwart-cable-501111-c1` ("Google Charity Maps Credits").

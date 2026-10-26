@@ -1,5 +1,31 @@
 # Harley Digital Works — Project Status
 
+## Apple-Inspired UI/UX Transformation & Design Taste Audit — 26 October 2026
+
+**Current Status:** Completed comprehensive design audit and elevated public customer surfaces to Apple-grade polish and craft under `/design-taste-frontend` and `/modern-web-guidance` on branch `design/apple-ui-transformation`:
+
+1. **Design System & Visual Craft (`DESIGN_VARIANCE: 8`, `MOTION_INTENSITY: 6`, `VISUAL_DENSITY: 3`)**:
+   - Replaced rigid 88px opaque header with 68px (shrinking to 58px on scroll) frosted glass header with dynamic blur (`backdrop-filter: blur(20px) saturate(180%)`), subtle border highlights, and pill hover nav links.
+   - Enforced strict 4-element hero stack across all key routes (`/`, `/work`, `/about`, `/demos`): [Eyebrow] + [2-line headline] + [19-word crisp subtext] + [Primary PillButton + Secondary video/interactive CTA] + [Single-line authority/pricing trust strip].
+   - Upgraded hero browser mockups with tactile physical rim-lighting (`inset 0 1px 0 rgba(255,255,255,0.5)`), 16px corner radius, and Apple-grade traffic light dots.
+   - Upgraded mobile phone mockups with precision 6px bezels, 28px radius, speaker cutouts, and ambient drop shadows.
+   - Upgraded `.managed-offer-grid` and `.project-stage` with 24px/20px border radius, subtle rim highlights, and cubic-bezier easing.
+2. **Quality & Pre-Flight Checks**:
+   - Sanitized 42 em-dashes (`—`) across all public routes and site components to hyphens, colons, or clean sentence breaks.
+   - Standardized hero top padding to `pt-20 md:pt-24` max across 13 routes and templates, eliminating awkward whitespace above the fold.
+   - Added `whitespace-nowrap shrink-0` across all button bases, preventing ugly text wrapping on mobile devices.
+   - Ensured all button and text styles exceed WCAG AA contrast (4.5:1 minimum).
+3. **Empirical Verification**:
+   - HTTP Route Audit: 14/14 key routes return HTTP 200 OK (`scripts/verify-routes.mjs`).
+   - `node scripts/scan-all-slop.mjs`: PASS (0 items to review).
+   - `node --test scripts/claims-guard.test.mjs`: PASS (0 marketing claims violations).
+   - `npm run format:check`: PASS (100% Prettier compliant).
+   - `npm run typecheck`: PASS (0 TS errors).
+   - `npm run lint`: PASS (0 errors, 9 non-blocking warnings).
+   - `npm test`: PASS (205/205 passing assertions across 25 suites + service worker + claims guard).
+   - `npm run build`: PASS (Vite + Nitro SSR built cleanly in 2.01s).
+   - Visual Verification: Launched Chrome to `http://localhost:3000/`, `http://localhost:3000/demos/rg-electrical`, and `http://localhost:3000/work`.
+
 ## Google Cloud Credit Activation & Google Maps Platform Integration — 26 October 2026
 
 **Current Status:** Activated and wired Google Cloud credits (£188.03/month Google Maps Platform nonprofit credits on `stalwart-cable-501111-c1` + £740.53 Gen App Builder & £452.34 Dialogflow CX on `gen-app-agent-building`):
