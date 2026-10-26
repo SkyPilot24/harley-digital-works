@@ -1,5 +1,41 @@
 # The Harley Group & Harley Digital Works — Session Handover Log
 
+## Comprehensive Website Audit & Conversion Optimisation Implementation — 26 October 2026
+
+- **Tool & Scope:** Google Antigravity. Conducted comprehensive page-by-page audit covering Customer Experience (CX), Conversion Rate Optimisation (CRO), and Brand Positioning across The Harley Group, Harley Digital Works, Harley Labs, Digital Voice Receptionist, and Domain Portfolio. Produced master audit artifact `comprehensive_website_audit.md` (and canonical repo copy `docs/COMPREHENSIVE_WEBSITE_AUDIT.md`) and executed critical customer-facing code improvements.
+- **Key Deliverables & Code Changes:**
+  1. **Comprehensive Website Audit Blueprint (`docs/COMPREHENSIVE_WEBSITE_AUDIT.md`):** Complete page-by-page audit table across 16 public routes, customer journey analysis, brand positioning hierarchy, conversion levers, and prioritised implementation plan.
+  2. **The Harley Group (`src/routes/the-harley-group.tsx`):**
+     - Rewrote pro bono community section (The Revival Fellowship) from a defensive legalistic "Governance Record" disclaimer into an inspiring, community-minded corporate social responsibility narrative.
+     - Replaced internal developer jargon "sub-50ms edge rendering" with commercial benefit copy "Instant-loading digital architectures, workflow automations, and operational software systems".
+     - Replaced operational pilot language ("Pilot capacity is limited to two concurrent builds") with high-value founder exclusivity ("To maintain personal founder oversight and high delivery standards, client onboarding is strictly limited to two active builds at any one time").
+     - Replaced internal `/brand` link with public `/domains` link.
+  3. **Harley Digital Works Home (`src/routes/index.tsx`):**
+     - Broadened SEO title from narrow "Websites for Electrical Contractors | Bristol & Bath" to "Harley Digital Works | Websites & Digital Care for UK Trade Contractors".
+     - Updated hero badge to "Bristol, Bath & UK Wide · Trade Contractors" to prevent immediate bounce from plumbers, heating engineers, roofers, and builders arriving from remarketing.
+  4. **Site Navigation (`src/components/site/SiteHeader.tsx`):**
+     - Elevated high-converting offerings into primary desktop and mobile navigation: added `24/7 Phone Answering` (`/virtual-receptionist`) and `Live Demos` (`/demos`).
+  5. **Site Footer (`src/components/site/FooterDark.tsx`):**
+     - Removed internal developer link `/brand` ("Brand Standards & Guild Seal").
+     - Added prominent customer-facing links for `24/7 Phone Receptionist`, `Interactive Trade Demos`, `Domain Portfolio`, `Harley Labs R&D`, and direct consultation enquiry routing.
+  6. **Harley Labs (`src/routes/labs.tsx`):**
+     - Pre-filled query parameters (`service="Harley Labs Systems & R&D Enquiry"`) on hero and footer contact buttons to streamline lead intake.
+  7. **Domain Portfolio (`src/routes/domains.tsx`):**
+     - Enhanced commercial options with explicit mention of outright purchase, assisted registrar transfer, and flexible lease-to-own terms (from £79/mo) with separate "Buy" and "Lease" enquiry CTAs.
+  8. **Phase 2 Customer Journey Refinements (`ManagedServicePage.tsx`, `WebsitePackagesSection.tsx`, `contact.tsx`):**
+     - Added 24/7 AI Phone Receptionist bundle row (+£99/mo, saving £50/mo) and spotlight callout banner inside `WebsitePackagesSection.tsx` (propagating across home, services, demos, trades, locations).
+     - Added dedicated 24/7 Voice Receptionist cross-sell banner on `/services/web-design-development` (`ManagedServicePage.tsx`).
+     - Added dynamic contextual opportunity callouts on `/contact`: custom greeting and value explanation for Free Website Health Check consultations, Domain acquisition, and 24/7 Phone Receptionist leads.
+- **Empirical Verification Evidence:**
+  - Automated Claims Guard (`node --test scripts/claims-guard.test.mjs`): PASS (0 violations; zero VAT compliance, no speculative SEO guarantees, strict 2-build concurrency).
+  - Vitest Unit & Integration Suite (`npm test`): **231/231 PASS** across 30 test suites (0 failures).
+  - Automated Chatbot Suite (`node scripts/ai-chatbots.test.mjs`): 10/10 PASS.
+  - TypeScript Typecheck (`npm run typecheck`): PASS (0 TS errors).
+  - ESLint (`npm run lint`): PASS (0 errors, 9 non-blocking UI warnings).
+  - Prettier Formatting (`npm run format:check`): PASS (100% compliant).
+  - Production Build (`npm run build`): PASS (Vite + Cloudflare Nitro bundle compiled in 1.91s).
+  - Verified live on Port 3000 (`http://localhost:3000/`).
+
 ## Launch of AI Customer Service & Sales Chatbots for The Harley Group & HDW — 26 October 2026
 
 - **Tool & Scope:** Google Antigravity. Executed under approved plan `ai_chatbots_implementation_plan.md` to design, build, integrate, and test production-ready, individually branded AI assistants for both marketing surfaces: The Harley Group (`https://theharleygroup.org/`) and Harley Digital Works (`https://harleydigitalworks.com/`).

@@ -28,7 +28,7 @@ export function WebsitePackagesSection({
           <div className="managed-offer-intro">
             <div className="inline-flex items-center gap-2 rounded-full bg-hdw-blue/60 px-3 py-1 text-xs font-mono text-hdw-ivory mb-3 border border-hdw-ivory/30">
               <span className="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-              Pilot Capacity: Up to 2 Builds
+              Quality Guard: Max 2 Active Builds
             </div>
             <p className="studio-kicker">YOUR DIGITAL PRESENCE, FULLY MANAGED</p>
             <h3>
@@ -52,6 +52,10 @@ export function WebsitePackagesSection({
               <div className="flex justify-between items-center text-white/90 pt-2 border-t border-white/10">
                 <span className="font-semibold text-emerald-400">Monthly Digital Care</span>
                 <span className="font-mono">£249 / mo (Rolling 30-day)</span>
+              </div>
+              <div className="flex justify-between items-center text-white/80 pt-1.5 border-t border-white/5 text-[11px]">
+                <span className="text-amber-300 font-medium">+ 24/7 Phone Receptionist</span>
+                <span className="font-mono text-amber-200">+£99 / mo (Save £50/mo)</span>
               </div>
             </div>
             <PillButton
@@ -121,17 +125,41 @@ export function WebsitePackagesSection({
                 ))}
               </ul>
             </div>
+            {/* 24/7 Receptionist Add-On Spotlight */}
+            <div className="rounded-xl border border-amber-300/80 bg-amber-50/80 p-4 text-xs text-[#081B30] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 shadow-2xs">
+              <div className="space-y-1">
+                <span className="font-bold text-[#081B30] flex items-center gap-2">
+                  <span className="px-2 py-0.5 rounded-full bg-amber-500 text-[#081B30] font-mono text-[10px] uppercase font-bold">
+                    Popular Add-On
+                  </span>
+                  <span>24/7 AI Virtual Phone Receptionist (+£99 / mo)</span>
+                </span>
+                <p className="text-stone-600 leading-relaxed text-[11px]">
+                  Never miss an emergency call while on tools or driving. Answers in natural British
+                  English and texts lead summaries to your WhatsApp in 30 seconds. (£50/mo bundle
+                  discount when paired with your website).
+                </p>
+              </div>
+              <a
+                href="/virtual-receptionist"
+                className="shrink-0 inline-flex items-center gap-1.5 rounded-lg bg-[#081B30] px-3.5 py-2 text-xs font-bold text-white hover:bg-slate-800 transition-colors shadow-xs"
+              >
+                <span>Voice Demo</span>
+                <ArrowUpRight size={13} />
+              </a>
+            </div>
+
             <div className="offer-terms bg-stone-50 p-4 rounded-xl border border-stone-200/60 text-xs">
               <strong className="block text-ink font-semibold mb-1">
                 The Harley Group Governance Promise:
               </strong>
               <p className="mb-2">
-                Your written quote confirms the scope, payment milestones, delivery schedule and any
-                applicable taxes before you commit.
+                Your written quote confirms the scope, payment milestones, delivery schedule and all
+                terms upfront before you commit.
               </p>
               <p>
-                Pilot capacity is limited to two concurrent builds. Delivery timing depends on the
-                agreed brief, access and approved assets; your proposal confirms the schedule.
+                To maintain senior founder oversight and high delivery standards, client onboarding
+                is strictly limited to two active builds at any one time.
               </p>
             </div>
             <div className="flex flex-wrap items-center justify-between gap-4 pt-2">

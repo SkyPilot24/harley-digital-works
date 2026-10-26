@@ -115,16 +115,43 @@ export function ManagedServicePage({ kind = "website" }: { kind?: keyof typeof d
           </div>
         </section>
         {kind === "website" && (
-          <section className="studio-section bg-stone-50/80 border-y border-stone-200 py-16">
-            <div className="studio-wrap">
-              <BeforeAfterComparison
-                initialTradeId="electrical-ev"
-                title="Transforming Trades Websites"
-                subtitle="See how our design standard and commercial copywriting replace generic templates with high-trust trade platforms."
-                sectionKicker="PROVEN CONVERSION DESIGN"
-              />
-            </div>
-          </section>
+          <>
+            <section className="studio-section bg-stone-50/80 border-y border-stone-200 py-16">
+              <div className="studio-wrap">
+                <BeforeAfterComparison
+                  initialTradeId="electrical-ev"
+                  title="Transforming Trades Websites"
+                  subtitle="See how our design standard and commercial copywriting replace generic templates with high-trust trade platforms."
+                  sectionKicker="PROVEN CONVERSION DESIGN"
+                />
+              </div>
+            </section>
+            <section className="bg-[#081B30] text-white py-12 border-b border-white/10">
+              <div className="studio-wrap max-w-4xl mx-auto flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+                <div className="space-y-2 max-w-2xl">
+                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono font-medium bg-amber-500/20 text-amber-300 border border-amber-500/30">
+                    OPTIONAL TRADE BUNDLE
+                  </div>
+                  <h3 className="text-xl sm:text-2xl font-bold text-white font-display">
+                    Add 24/7 AI Phone Answering to Your Website (+£99/mo)
+                  </h3>
+                  <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                    When homeowners visit your new website and dial your number, our natural British
+                    voice receptionist answers in 2 seconds, confirms pricing, and texts qualified
+                    briefs to your WhatsApp in 30 seconds. Normally £149/mo standalone; save £50/mo
+                    when bundled with your website care plan.
+                  </p>
+                </div>
+                <a
+                  href="/virtual-receptionist"
+                  className="shrink-0 inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-amber-500 hover:bg-amber-400 text-[#081B30] font-bold text-xs tracking-wide transition-all shadow-md"
+                >
+                  <span>Test Voice Demo</span>
+                  <ArrowRight className="w-4 h-4" />
+                </a>
+              </div>
+            </section>
+          </>
         )}
         {kind === "care" && (
           <section className="studio-section bg-[#081B30] text-white py-16 border-y border-white/10">

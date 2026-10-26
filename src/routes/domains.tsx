@@ -50,20 +50,26 @@ function DomainsPage() {
             Owned domains for AI, mobility, finance, smart tech, and UK niche projects.
           </h1>
           <p className="mt-6 max-w-2xl text-[17px] leading-relaxed text-ink-muted">
-            Enquire about individual domains or portfolio bundles. Guide prices help you assess fit
-            before we confirm availability and transfer terms.
+            Enquire about individual domains, portfolio bundles, or flexible lease-to-own terms.
+            Guide prices help you assess fit before we confirm availability and transfer
+            arrangements.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
-            <PillButton as="link" to="/contact">
+            <PillButton as="link" to="/contact" search={{ package: "Domain purchase / enquiry" }}>
               Ask about a domain
             </PillButton>
-            <PillButton as="link" to="/contact" variant="ghost">
+            <PillButton
+              as="link"
+              to="/contact"
+              search={{ package: "Domain portfolio offer" }}
+              variant="ghost"
+            >
               Make a portfolio offer
             </PillButton>
           </div>
           <p className="mt-4 max-w-2xl text-sm text-ink-muted">
-            Every sale is confirmed manually before payment so ownership, transfer requirements,
-            fees, and timing are clear to both parties.
+            Available via outright purchase, assisted registrar transfer, or bundled with an HDW
+            website build. Every transaction is confirmed manually in writing before payment.
           </p>
         </Container>
       </section>
@@ -99,17 +105,33 @@ function DomainsPage() {
                           <span className="text-ink-muted">Guide price</span>
                           <span className="font-medium text-ink">{formatGbp(buyNowPrice)}</span>
                         </div>
-                        <div className="mt-4">
+                        <div className="mt-1 flex items-center justify-between gap-3 text-[11px] text-ink-muted font-mono">
+                          <span>Lease-to-own</span>
+                          <span className="text-emerald-700 font-semibold">From £79 / mo</span>
+                        </div>
+                        <div className="mt-4 flex flex-col gap-2">
                           <PillButton
                             as="link"
                             to="/contact"
                             search={{
                               domain: domain.name,
-                              package: "Domain purchase / enquiry",
+                              package: "Domain purchase enquiry",
                             }}
                             size="sm"
                           >
-                            Enquire about {domain.name}
+                            Buy {domain.name}
+                          </PillButton>
+                          <PillButton
+                            as="link"
+                            to="/contact"
+                            search={{
+                              domain: domain.name,
+                              package: "Domain lease-to-own enquiry",
+                            }}
+                            variant="ghost"
+                            size="sm"
+                          >
+                            Lease from £79/mo
                           </PillButton>
                         </div>
                       </div>
@@ -122,9 +144,9 @@ function DomainsPage() {
             <aside className="space-y-4 md:col-span-4">
               <FeatureCard
                 surface="sage"
-                tag="How it works"
-                title="Enquire, agree, then transfer."
-                body="Tell us which name you are considering. We confirm availability, price, transfer requirements, and payment terms before either party commits."
+                tag="Acquisition Options"
+                title="Purchase outright or lease-to-own."
+                body="Acquire strategic digital real estate via outright purchase, escrow transfer, or flexible lease-to-own from £79/mo. We confirm availability, registrar requirements, and payment terms before either party commits."
                 ctaLabel="Ask about a name"
                 ctaTo="/contact"
               />

@@ -33,9 +33,10 @@ export function FooterDark() {
             <h3>Make your next move.</h3>
             <nav aria-label="Website services">
               <Link to="/work">Work & Transformations</Link>
+              <Link to="/virtual-receptionist">24/7 Phone Receptionist</Link>
+              <Link to="/demos">Interactive Trade Demos</Link>
               <a href="/#packages">Build & monthly care</a>
               <Link to="/services/care-plans">Managed care</Link>
-              <Link to="/audit">Free website audit</Link>
               <Link
                 to="/contact"
                 search={{
@@ -53,19 +54,19 @@ export function FooterDark() {
             <h3>Get to know us.</h3>
             <nav aria-label="About the studio">
               <Link to="/about">About the studio</Link>
-              <Link to="/brand">Brand Standards & Guild Seal</Link>
+              <Link to="/domains">Domain Portfolio</Link>
               <Link to="/the-harley-group">The Harley Group</Link>
-              <Link to="/resources">Resources</Link>
+              <Link to="/labs">Harley Labs R&D</Link>
               <Link
                 to="/contact"
                 search={{
-                  service: "Website care support",
+                  service: "Free Website Health Check Consultation",
                   package: undefined,
                   domain: undefined,
                   websiteUrl: undefined,
                 }}
               >
-                Request website help
+                Free website consultation
               </Link>
             </nav>
           </div>

@@ -76,8 +76,9 @@ export function TheHarleyGroupPage() {
               <p>
                 Managed websites: £1,495 setup (£747.50 deposit and £747.50 balance after preview
                 approval) plus £249 / month ongoing care. Your written quote confirms delivery,
-                support and any applicable taxes. Pilot capacity is limited to two concurrent
-                builds.
+                support and all terms upfront. To maintain personal founder oversight and high
+                delivery standards, client onboarding is strictly limited to two active builds at
+                any one time.
               </p>
               <div className="mt-4 flex flex-wrap items-center gap-3">
                 <Link to="/" className="enquiry-submit">
@@ -86,8 +87,8 @@ export function TheHarleyGroupPage() {
                 <Link to="/labs" className="studio-text-link">
                   Explore Harley Labs ↗
                 </Link>
-                <Link to="/brand" className="studio-text-link">
-                  Brand Assets ↗
+                <Link to="/domains" className="studio-text-link">
+                  Domain Assets ↗
                 </Link>
               </div>
             </div>
@@ -105,7 +106,7 @@ export function TheHarleyGroupPage() {
                   number: "02",
                   title: "Harley Labs",
                   description:
-                    "Automation workflows, sub-50ms edge rendering, and operational software systems.",
+                    "Instant-loading digital architectures, workflow automations, and operational software systems.",
                   href: "/labs",
                   badge: "Explore Labs",
                 },
@@ -179,18 +180,18 @@ export function TheHarleyGroupPage() {
           <div className="rounded-2xl border border-ink/10 bg-white/70 p-8 md:p-12 shadow-xs">
             <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-8">
               <div className="max-w-2xl">
-                <p className="studio-kicker">COMMUNITY & PRO BONO CONTRIBUTION</p>
+                <p className="studio-kicker">COMMUNITY & SOCIAL RESPONSIBILITY</p>
                 <h2 className="mt-3 text-2xl md:text-3xl font-bold tracking-tight text-ink">
-                  Supported Community Project: The Revival Fellowship
+                  Supported Community Initiative: The Revival Fellowship
                 </h2>
                 <p className="mt-4 text-base md:text-lg leading-relaxed text-ink-muted">
-                  Website design, development, digital systems and technical consultancy contributed
-                  pro bono by Robbie Harley through The Harley Group.
+                  Website design, modern digital infrastructure, and technical consultancy
+                  contributed pro bono by Robbie Harley through The Harley Group.
                 </p>
                 <p className="mt-3 text-sm leading-relaxed text-ink-muted">
-                  Delivered as a voluntary community initiative, separate from our commercial trade
-                  agency operations. No ongoing commercial service commitment, subsidiary status, or
-                  formal charitable relationship is created by this record.
+                  Proudly delivered as a voluntary community contribution to support local
+                  fellowship, educational outreach, and digital accessibility across the United
+                  Kingdom.
                 </p>
                 <div className="mt-6 flex flex-wrap items-center gap-4">
                   <a
@@ -206,12 +207,12 @@ export function TheHarleyGroupPage() {
               </div>
               <div className="rounded-xl border border-ink/10 bg-slate-50/90 p-5 text-xs text-ink-muted max-w-sm shrink-0">
                 <span className="font-semibold text-ink text-sm block mb-1.5">
-                  Governance Record
+                  Community Value Delivered
                 </span>
                 <p className="leading-relaxed">
-                  Contributed pro bono on 18 October 2026. This voluntary community contribution is
-                  fully delivered and preserved separate from The Harley Group&apos;s commercial
-                  operations.
+                  Full-scale responsive website, digital media distribution, and cloud
+                  infrastructure contributed pro bono to support community fellowship and public
+                  outreach.
                 </p>
               </div>
             </div>

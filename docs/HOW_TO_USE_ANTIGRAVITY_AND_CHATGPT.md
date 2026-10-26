@@ -92,3 +92,32 @@ I am Robbie Harley, founder and CEO of The Harley Group Ltd (parent holding orga
 1. **Morning with ChatGPT**: Open ChatGPT, paste the brief from `npm run handover:copy`, and ask: _"What should I focus on today to generate revenue?"_
 2. **Daytime with Antigravity**: Give Antigravity the chosen task (e.g. _"Audit the plumbing route and make sure it has real photos"_). Antigravity builds it, tests it, and shows it to you on `http://localhost:3000`.
 3. **Evening Push**: Antigravity commits and pushes the work to GitHub, updates `docs/HANDOVER.md`, and everything is ready for the next day.
+
+---
+
+## 6. The 2-Click "Founder Cockpit" Layout (Zero Clutter)
+
+Modern development tools are designed for software engineers and are packed with intimidating clutter—hundreds of code folders, terminal logs, git trees, and blinking cursors.
+
+As founder and CEO, **you only need two things**:
+1. **The Conversation** (talking to Antigravity about your business goals).
+2. **The Visual Result** (looking at the live website on your screen).
+
+You can instantly eliminate 90% of the clutter using these two Windows shortcuts:
+
+### 1. Hide the File List (Left Side)
+- Press **`Ctrl + B`**
+- _What it does:_ Instantly collapses the giant file list and folders on the left so you don't have to look at technical code files. Press `Ctrl + B` again anytime if you ever want it back.
+
+### 2. Hide the Terminal & Logs (Bottom Side)
+- Press **`Ctrl + J`**
+- _What it does:_ Instantly collapses the terminal, build logs, and console at the bottom. Antigravity runs all tests and builds in the background automatically, so you don't need to watch the raw code scroll by.
+
+### 3. The Ideal Side-by-Side Setup ("The Executive Stage")
+1. Snap **Antigravity** to the **left half** of your screen (press `Windows Key + Left Arrow`).
+2. Snap **Google Chrome** (`http://localhost:3000/`) to the **right half** of your screen (press `Windows Key + Right Arrow`).
+3. You now have the ultimate distraction-free setup:
+   - **Left side:** You tell Antigravity what you want in plain English.
+   - **Right side:** You watch your website update in real time.
+   - **Zero code, zero terminal, zero confusion.**
+

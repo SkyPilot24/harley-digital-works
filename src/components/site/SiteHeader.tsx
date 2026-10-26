@@ -9,7 +9,8 @@ import { siteConfig } from "@/lib/site-config";
 const links = [
   { href: "/work", label: "Work & Transformations" },
   { href: "/services/web-design-development", label: "Websites" },
-  { href: "/#process", label: "Our approach" },
+  { href: "/virtual-receptionist", label: "24/7 Phone Answering" },
+  { href: "/demos", label: "Live Demos" },
   { href: "/#packages", label: "Build & care" },
   { href: "/about", label: "About" },
 ];

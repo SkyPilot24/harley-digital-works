@@ -188,7 +188,7 @@ function HarleyLabsPage() {
               as="link"
               to="/contact"
               search={{
-                service: undefined,
+                service: "Harley Labs Systems & R&D Enquiry",
                 package: undefined,
                 domain: undefined,
                 websiteUrl: undefined,
@@ -667,7 +667,7 @@ function HarleyLabsPage() {
                 as="link"
                 to="/contact"
                 search={{
-                  service: undefined,
+                  service: "Harley Labs Systems & R&D Enquiry",
                   package: undefined,
                   domain: undefined,
                   websiteUrl: undefined,

@@ -154,24 +154,135 @@ function ContactPage() {
             </div>
           </div>
           <div id="contact-form">
-            {/* Website Review Opportunity Callout */}
-            <div className="mb-6 rounded-2xl border border-[#173C62]/20 bg-[#173C62]/5 p-5 shadow-2xs">
-              <div className="flex items-start gap-3">
-                <div className="p-2 bg-[#081B30] text-white rounded-xl shrink-0 font-bold">
-                  <Sparkles size={18} className="text-emerald-400" />
-                </div>
-                <div className="space-y-1">
-                  <h3 className="text-sm font-bold text-ink">
-                    Show Us Your Website: We’ll Show You What’s Possible
-                  </h3>
-                  <p className="text-xs text-ink-muted leading-relaxed">
-                    Have an existing website that isn’t generating qualified enquiries? Enter your
-                    website address below. We’ll review your mobile usability, trust signals, and
-                    enquiry pathways, then prepare an illustrative transformation plan.
-                  </p>
+            {/* Contextual Opportunity Callout */}
+            {search.service?.includes("Health Check") ||
+            search.service?.toLowerCase().includes("review") ||
+            search.service?.toLowerCase().includes("audit") ? (
+              <div className="mb-6 rounded-2xl border border-emerald-300 bg-emerald-50/80 p-5 shadow-2xs">
+                <div className="flex items-start gap-3">
+                  <div className="p-2 bg-emerald-800 text-white rounded-xl shrink-0 font-bold">
+                    <Sparkles size={18} className="text-emerald-300" />
+                  </div>
+                  <div className="space-y-1">
+                    <div className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-900 font-mono text-[10px] uppercase font-bold">
+                      Free Consultation · 100% No Obligation
+                    </div>
+                    <h3 className="text-sm font-bold text-ink">
+                      Request Your Free 15-Minute Website & Visibility Health Check
+                    </h3>
+                    <p className="text-xs text-ink-muted leading-relaxed">
+                      Enter your current website URL below. Dr Robbie Harley will personally inspect
+                      your mobile loading speed, Google Local Map Pack visibility, and enquiry
+                      conversion pathways, and talk you through practical, actionable improvements.
+                    </p>
+                  </div>
                 </div>
               </div>
-            </div>
+            ) : search.service?.includes("projection") ||
+              search.service?.includes("Calculator") ||
+              search.service?.includes("Website Plan Inquiry") ? (
+              <div className="mb-6 rounded-2xl border border-emerald-300 bg-emerald-50/80 p-5 shadow-2xs">
+                <div className="flex items-start gap-3">
+                  <div className="p-2 bg-emerald-800 text-white rounded-xl shrink-0 font-bold">
+                    <Sparkles size={18} className="text-emerald-300" />
+                  </div>
+                  <div className="space-y-1">
+                    <div className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-900 font-mono text-[10px] uppercase font-bold">
+                      Revenue Projection Follow-Up
+                    </div>
+                    <h3 className="text-sm font-bold text-ink">
+                      Discuss Your Growth Plan & Job Value Scenarios
+                    </h3>
+                    <p className="text-xs text-ink-muted leading-relaxed">
+                      You’ve modeled how winning extra trade jobs can transform your revenue.
+                      Complete the brief below to turn that projection into a clear, fixed-price
+                      digital platform with 100% done-for-you copywriting and ongoing care.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            ) : search.domain ? (
+              <div className="mb-6 rounded-2xl border border-blue-300 bg-blue-50/80 p-5 shadow-2xs">
+                <div className="flex items-start gap-3">
+                  <div className="p-2 bg-[#081B30] text-white rounded-xl shrink-0 font-bold">
+                    <Sparkles size={18} className="text-blue-300" />
+                  </div>
+                  <div className="space-y-1">
+                    <div className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-blue-100 text-blue-900 font-mono text-[10px] uppercase font-bold">
+                      Domain Acquisition · {search.domain}
+                    </div>
+                    <h3 className="text-sm font-bold text-ink">
+                      Secure {search.domain} for Your Business
+                    </h3>
+                    <p className="text-xs text-ink-muted leading-relaxed">
+                      Available via outright purchase, escrow transfer, or flexible lease-to-own
+                      from £79/mo. Submit your enquiry below to confirm availability and transfer
+                      arrangements within 24 hours.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            ) : search.service?.includes("Receptionist") ? (
+              <div className="mb-6 rounded-2xl border border-amber-300 bg-amber-50/80 p-5 shadow-2xs">
+                <div className="flex items-start gap-3">
+                  <div className="p-2 bg-amber-500 text-[#081B30] rounded-xl shrink-0 font-bold">
+                    <Sparkles size={18} className="text-white" />
+                  </div>
+                  <div className="space-y-1">
+                    <div className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-amber-100 text-amber-900 font-mono text-[10px] uppercase font-bold">
+                      24/7 AI Voice Phone Receptionist
+                    </div>
+                    <h3 className="text-sm font-bold text-ink">
+                      Never Miss High-Ticket Emergency Jobs Again
+                    </h3>
+                    <p className="text-xs text-ink-muted leading-relaxed">
+                      Tell us your trade and territory below. We'll set up your dedicated British
+                      voice persona, emergency escalation rules, and instant WhatsApp lead dispatch
+                      with a 30-day rolling agreement.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            ) : search.service?.includes("Harley Labs") ? (
+              <div className="mb-6 rounded-2xl border border-indigo-300 bg-indigo-50/80 p-5 shadow-2xs">
+                <div className="flex items-start gap-3">
+                  <div className="p-2 bg-[#081B30] text-white rounded-xl shrink-0 font-bold">
+                    <Sparkles size={18} className="text-indigo-300" />
+                  </div>
+                  <div className="space-y-1">
+                    <div className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-indigo-100 text-indigo-900 font-mono text-[10px] uppercase font-bold">
+                      Harley Labs · Systems & R&D Enquiry
+                    </div>
+                    <h3 className="text-sm font-bold text-ink">
+                      Turn Software Architecture Ideas Into Commercial Systems
+                    </h3>
+                    <p className="text-xs text-ink-muted leading-relaxed">
+                      Tell us about your automation bottlenecks, platform architecture requirements,
+                      or venture collaboration ideas. We'll evaluate technical feasibility and
+                      response within 24 hours.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <div className="mb-6 rounded-2xl border border-[#173C62]/20 bg-[#173C62]/5 p-5 shadow-2xs">
+                <div className="flex items-start gap-3">
+                  <div className="p-2 bg-[#081B30] text-white rounded-xl shrink-0 font-bold">
+                    <Sparkles size={18} className="text-emerald-400" />
+                  </div>
+                  <div className="space-y-1">
+                    <h3 className="text-sm font-bold text-ink">
+                      Show Us Your Website: We’ll Show You What’s Possible
+                    </h3>
+                    <p className="text-xs text-ink-muted leading-relaxed">
+                      Have an existing website that isn’t generating qualified enquiries? Enter your
+                      website address below. We’ll review your mobile usability, trust signals, and
+                      enquiry pathways, then prepare an illustrative transformation plan.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            )}
 
             <EnquiryForm
               interest={

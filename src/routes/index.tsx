@@ -20,9 +20,9 @@ import { buildPageSeoHead } from "@/lib/site-config";
 export const Route = createFileRoute("/")({
   head: () =>
     buildPageSeoHead({
-      title: "Harley Digital Works | Websites for Electrical Contractors | Bristol & Bath",
+      title: "Harley Digital Works | Websites & Digital Care for UK Trade Contractors",
       description:
-        "Your website and enquiries, looked after. We write, build and run your website and enquiry form, so customers can reach you and you can get on with the job.",
+        "Your website, phone calls and customer enquiries, looked after. 100% done-for-you copywriting and managed monthly care for UK trade contractors.",
       path: "/",
     }),
   component: HomePage,
@@ -110,7 +110,7 @@ function HomePage() {
               <div className="pt-2 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-stone-600 font-medium">
                 <span className="inline-flex items-center gap-1.5 text-emerald-800">
                   <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                  <span>Bristol, Bath & M4 Corridor · Electrical Contractors</span>
+                  <span>Bristol, Bath & UK Wide · Trade Contractors</span>
                 </span>
                 <span className="text-stone-300">|</span>
                 <span>£1,495 setup (50% deposit / 50% approval) · £249/mo care</span>
