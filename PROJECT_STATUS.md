@@ -1,20 +1,21 @@
 # Harley Digital Works — Project Status
 
-## Cloudflare Build Fix & Lucide v1.x Dependency Resolution — 26 October 2026
+## Cloudflare SSR Runtime & CI Quality Gate Resolution — 26 October 2026
 
-**Current Status:** Resolved Cloudflare Pages/Worker remote build blocker resulting from Dependabot PR #56 upgrading `lucide-react` from `0.575.0` to `1.61.0`:
+**Current Status:** Resolved Cloudflare HTTP 500 runtime crash and GitHub Actions CI gate failure following Dependabot PR #56:
 
 1. **Root Cause Analysis & Resolution**:
-   - Upstream `lucide-react` v1.x permanently deprecated and removed social brand icon exports including `Linkedin`.
-   - Replaced removed external `Linkedin` import in `src/components/admin/DomainOutboundEngine.tsx` with a self-contained inline `LinkedInIcon` SVG component.
-   - Synchronised local branch with GitHub `origin/main` after PR #56 merge.
+   - Upstream `lucide-react` v1.x permanently removed `Linkedin` icon export; replaced with self-contained inline `LinkedInIcon` SVG component in `DomainOutboundEngine.tsx`.
+   - Dynamic import in `src/server.ts` triggered a Rolldown hoisting defect (`TypeError: __exportAll is not a function`), causing live SSR requests on `https://harleydigitalworks.com` to return HTTP 500. Replaced with static top-level import in `src/server.ts`.
+   - Breaking type changes from Dependabot's upgrade to `react-day-picker@10` and `recharts@3` broke GitHub CI `Quality` workflow; reverted both to proven stable versions in `package.json` (`react-day-picker: ^9.14.0`, `recharts: ^2.15.4`).
    - Cleaned invisible UTF-8 BOM byte sequence from `mcp_config.json`.
-2. **Quality Suite Verification**:
+2. **Empirical Quality Suite Verification**:
+   - Cloudflare Nitro Worker Local Simulation (`wrangler dev` on port 4173): **HTTP 200 OK (74ms)** (0 errors, 101kB HTML rendered).
    - `npm run typecheck`: PASS (0 TS errors).
    - `npm test`: **221/221 tests passing** across 28 test suites (0 failures).
    - `scripts/ai-chatbots.test.mjs`: **10/10 tests passing**.
    - `npm run format:check`: PASS (100% Prettier compliant).
-   - `npm run build`: PASS (Vite + Cloudflare Nitro compiled in 2.00s).
+   - `npm run build`: PASS (Vite + Cloudflare Nitro compiled in 977ms).
 
 ## Comprehensive Website Audit & Conversion Optimisation Implementation — 26 October 2026
 

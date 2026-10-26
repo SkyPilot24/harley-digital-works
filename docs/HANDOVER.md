@@ -1,21 +1,29 @@
 # The Harley Group & Harley Digital Works — Session Handover Log
 
-## Cloudflare Build Fix & Lucide v1.x Dependency Resolution — 26 October 2026
+## Cloudflare SSR Runtime & CI Quality Gate Resolution — 26 October 2026
 
-- **Tool & Scope:** Google Antigravity. Resolved Cloudflare Pages/Worker build blocker caused by Dependabot PR #56 upgrading `lucide-react` from `0.575.0` to `1.61.0` (which removed the deprecated `Linkedin` icon export).
-- **Key Deliverables & Code Changes:**
-  1. **DomainOutboundEngine (`src/components/admin/DomainOutboundEngine.tsx`):**
+- **Tool & Scope:** Google Antigravity. Resolved Cloudflare HTTP 500 runtime crash and GitHub Actions Quality CI gate failure following Dependabot PR #56.
+- **Root Cause & Key Deliverables:**
+  1. **Cloudflare Worker SSR Runtime Crash (`TypeError: __exportAll is not a function`):**
+     - Diagnosed live 500 error on `https://harleydigitalworks.com` by running local Cloudflare worker simulation via Wrangler CLI (`npx wrangler dev --config .output/server/wrangler.json --port 4173`).
+     - Traced error to dynamic `import("@tanstack/react-start/server-entry")` inside `src/server.ts`, which caused the bundler (Rolldown) to hoist `server_exports = __exportAll(...)` before `var __exportAll` was initialized during module evaluation.
+     - Refactored `src/server.ts` to statically import `defaultServerEntry` at top-level.
+     - **Empirical Verification with Wrangler CLI**: Re-executed `wrangler dev` on port 4173 and tested `GET /`: returned **`HTTP 200 OK (74ms)`** with full 101,457 byte HTML payload.
+  2. **CI Quality Typecheck Failure (`react-day-picker` & `recharts`):**
+     - GitHub CI Quality run failed due to breaking type changes introduced by Dependabot upgrading `react-day-picker` to `10.0.2` and `recharts` to `3.10.1`.
+     - Reverted both packages in `package.json` to proven, stable versions (`react-day-picker: ^9.14.0`, `recharts: ^2.15.4`) and updated `package-lock.json`.
+  3. **DomainOutboundEngine (`src/components/admin/DomainOutboundEngine.tsx`):**
      - Replaced removed external `Linkedin` import from `lucide-react` with a standalone, self-contained `LinkedInIcon` SVG component.
-     - Preserves full visual fidelity and functionality of the "Copy LinkedIn Note" pitch button in the domain outbound admin tool without third-party icon dependency risk.
-  2. **Config File Hygiene:**
+  4. **Config File Hygiene:**
      - Cleaned invisible UTF-8 BOM (`\uFEFF`) from `C:\Users\drrob\.gemini\config\mcp_config.json`, resolving the editor startup SyntaxError.
 - **Empirical Verification Evidence:**
+  - Cloudflare Nitro Worker Local Preview (`wrangler dev`): **HTTP 200 OK (74ms)** (0 errors, 500 crash eliminated).
   - Full Workspace Test Suite (`npm test`): **221/221 PASS** across 28 test suites (0 failures).
   - Automated Chatbot Test Suite (`node scripts/ai-chatbots.test.mjs`): **10/10 PASS**.
   - TypeScript Compilation (`npm run typecheck`): PASS (0 TS errors).
   - ESLint (`npm run lint`): PASS (0 errors, 9 non-blocking warnings).
   - Prettier Code Formatting (`npm run format:check`): PASS (100% compliant).
-  - Cloudflare Nitro Production Build (`npm run build`): PASS (Compiled cleanly in 2.00s).
+  - Cloudflare Nitro Production Build (`npm run build`): PASS (Compiled cleanly in 977ms).
 
 ## Comprehensive Website Audit & Conversion Optimisation Implementation — 26 October 2026
 
