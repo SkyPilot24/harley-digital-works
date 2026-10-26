@@ -1,5 +1,41 @@
 # The Harley Group & Harley Digital Works — Session Handover Log
 
+## Commercial Launch of AI Virtual Receptionist Revenue Stream — 26 October 2026
+
+- **Tool & Scope:** Google Antigravity. Executed under approved plan `commercial_ai_virtual_receptionist_plan.md` to launch a multi-client commercial subscription business operated by The Harley Group, expanding the existing Harley Digital Works AI Virtual Receptionist. Branch: `design/apple-ui-transformation`.
+- **Delivered Capabilities:**
+  1. **Multi-Tenant Voice & Telephony Architecture:**
+     - `src/lib/receptionist-tenants.ts`: Central tenant configuration store defining isolated switchboards (`hdw-primary`, `rg-electrical`, `apex-heating`, `clifton-roofing`), DID routing, British Neural2 voice personas (`en-GB-Neural2-B`, `en-GB-Neural2-F`, `en-GB-Neural2-C`), trade FAQs, and emergency triage protocols.
+     - `src/lib/receptionist-agent.ts`: Multi-tenant voice processor. Dispatches calls to Google Dialogflow CX (`en-GB-Neural2-B`) when cloud credentials are present, falling back cleanly to a local trade knowledge engine in edge/serverless environments. Preserves primary HDW agency intake (`07394 041487`) while supporting tenant-specific lead extraction and emergency triage alerts.
+     - `src/routes/api.receptionist.call.ts`: Public API and webhook receiver supporting JSON and standard telephony form payloads (e.g. Twilio/Telnyx) with `tenantId` and `To` DID dispatch.
+     - `supabase/migrations/20261026120000_ai_receptionist_multi_tenant.sql`: Additive database migration creating `receptionist_tenants`, `receptionist_calls`, and `receptionist_monthly_usage` with strict RLS policies.
+     - `src/integrations/supabase/types.ts`: Synchronized TypeScript types for all receptionist tables and relationships.
+  2. **Business Administration Control Centre (`src/routes/_authenticated/admin.receptionist.tsx`):**
+     - Executive overview metrics: MRR, gross margins (80-87%), active switchboards, total calls, emergency alerts, Google Cloud trial credit balance (£500 credit pool = ~7,500 minutes free).
+     - Switchboard tenant accounts manager with status toggles, forwarding overrides, and tier badges.
+     - Receptionist Studio & Live Test Dialer with trade demonstration switcher and voice sample picker.
+     - Call Activity Log with transcript inspector, audio playback, and structured lead extraction brief modal.
+     - Allowance & margin metering engine tracking wholesale API minute consumption against monthly retail plans.
+     - Added `AI Receptionist` (`/admin/receptionist`) to `PRIMARY_NAV` in `src/components/admin/AdminShell.tsx`.
+  3. **Customer Self-Service Component (`src/components/receptionist/CustomerReceptionistDesk.tsx`):**
+     - Embeddable portal desk allowing trade clients to view call logs, toggle call forwarding overrides, and submit trade FAQ updates.
+  4. **Commercial Marketing & Cross-Sell Surfaces:**
+     - `src/routes/virtual-receptionist.tsx`: Overhauled public landing page using the Option 1 "Architectural Craft" Hybrid styling. Features "The Real Cost of Missed Calls" (£1,200 fusebox, £3,500 boiler, £4,500 roof repair), live interactive demonstration cockpit, transparent 3-tier pricing (Solo £79/mo, Pro £149/mo, Fleet £249/mo), Managed Website Care Plan bundle callout (+£99/mo to the £249/mo plan), comparison table vs traditional call centres, and WhatsApp CTAs to Robbie Harley.
+     - `src/components/site/ManagedServicePage.tsx`: Integrated high-visibility 24/7 AI Receptionist add-on cross-sell onto `/services_/care-plans`.
+     - `src/components/phone/VirtualPhoneCockpit.tsx`: Upgraded with trade demonstration selector pills, live status indicators, and multi-trade preset scenarios.
+  5. **Governance & Claims Guard Compliance:**
+     - Zero VAT compliant customer copy (all prices quoted cleanly without VAT claims, compliant with HMRC rules and `scripts/claims-guard.test.mjs`).
+     - Capacity preserved: strictly max 2 concurrent active builds.
+- **Empirical Verification Evidence:**
+  - Automated Multi-Tenant Test Suite (`scripts/receptionist-multi-tenant.test.mjs`): 6/6 tests PASS.
+  - Full Project Unit & Integration Tests (`npm test`): 211/211 PASS across 26 test suites (0 failures).
+  - TypeScript Typecheck (`npm run typecheck`): PASS (0 TS errors).
+  - ESLint (`npm run lint`): PASS (0 errors, 9 non-blocking warnings).
+  - Prettier (`npm run format:check`): PASS (100% compliant).
+  - Claims Guard (`node scripts/claims-guard.test.mjs`): PASS (0 violations).
+  - Production Build (`npm run build`): PASS (Vite + Cloudflare Nitro bundle compiled in 1.95s).
+  - Live Browser Verification: Active on Port 3000 (`http://localhost:3000/virtual-receptionist` and `http://localhost:3000/admin/receptionist`).
+
 ## Full Project Design Audit & Homepage Disconnection Resolution — 26 October 2026
 
 - **Tool & Scope:** Google Antigravity. Executed under user instruction: _"before we merge can you review this page by examples as it feels disconnected, with the design showing outdated section as the project has developed. Please do a full design audit across the entire project /design-taste-frontend /no-ai-slop"_. Branch: `design/apple-ui-transformation`.
@@ -345,7 +381,7 @@
 ## RG Electrical Public Demo Separation & Founder Outreach Drawer — 25 October 2026
 
 - **Tool & Scope:** Google Antigravity. Fixed critical prospect-facing defect where navigating to `https://harleydigitalworks.com/demos/rg-electrical` rendered internal admin sales scripts and agency headers mixed with the demo website.
-- **Founder Direction:** Robbie identified: _"when following the url https://harleydigitalworks.com/demos/rg-electrical I get the attached, this looks like half internal amin content and half what is the actual demo website. Please investigate"_
+- **Founder Direction:** Robbie identified: _"when following the url `https://harleydigitalworks.com/demos/rg-electrical` I get the attached, this looks like half internal amin content and half what is the actual demo website. Please investigate"_
 - **Applied Changes:**
   1. `src/routes/demos_.rg-electrical.tsx`:
      - Cleaned public demo by removing `<PageShell>` default agency header and agency footer (`header={null}` and `footer={null}`).

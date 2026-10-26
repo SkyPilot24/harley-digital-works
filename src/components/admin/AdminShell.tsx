@@ -19,6 +19,7 @@ import {
   LogOut,
   Menu,
   X,
+  PhoneCall,
 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth, useIsAdmin } from "@/hooks/use-auth";
@@ -34,6 +35,7 @@ const PRIMARY_NAV: { to: string; label: string; icon: typeof LayoutDashboard; ex
     { to: "/admin/domain-portfolio", label: "Domain Portfolio", icon: Globe },
     { to: "/admin/leads", label: "Pipeline & Leads", icon: Inbox },
     { to: "/admin/clients", label: "Clients & Care", icon: Users },
+    { to: "/admin/receptionist", label: "AI Receptionist", icon: PhoneCall },
     { to: "/admin/projects", label: "Projects & Delivery", icon: Briefcase },
     { to: "/admin/invoices", label: "Finance & Invoices", icon: FileText },
     { to: "/admin/diagnostics", label: "Automations & Health", icon: Stethoscope },

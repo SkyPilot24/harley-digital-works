@@ -63,6 +63,7 @@ import { Route as AuthenticatedAdminLeadsRouteImport } from './routes/_authentic
 import { Route as AuthenticatedAdminPlaybooksRouteImport } from './routes/_authenticated/admin.playbooks'
 import { Route as AuthenticatedAdminProjectsRouteImport } from './routes/_authenticated/admin.projects'
 import { Route as AuthenticatedAdminRadarRouteImport } from './routes/_authenticated/admin.radar'
+import { Route as AuthenticatedAdminReceptionistRouteImport } from './routes/_authenticated/admin.receptionist'
 import { Route as AuthenticatedAdminResourcesRouteImport } from './routes/_authenticated/admin.resources'
 import { Route as AuthenticatedAdminRevenueOsRouteImport } from './routes/_authenticated/admin.revenue-os'
 import { Route as AuthenticatedAdminServicesRouteImport } from './routes/_authenticated/admin.services'
@@ -360,6 +361,12 @@ const AuthenticatedAdminRadarRoute = AuthenticatedAdminRadarRouteImport.update({
   path: '/admin/radar',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedAdminReceptionistRoute =
+  AuthenticatedAdminReceptionistRouteImport.update({
+    id: '/admin/receptionist',
+    path: '/admin/receptionist',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const AuthenticatedAdminResourcesRoute =
   AuthenticatedAdminResourcesRouteImport.update({
     id: '/admin/resources',
@@ -500,6 +507,7 @@ export interface FileRoutesByFullPath {
   '/admin/playbooks': typeof AuthenticatedAdminPlaybooksRoute
   '/admin/projects': typeof AuthenticatedAdminProjectsRoute
   '/admin/radar': typeof AuthenticatedAdminRadarRoute
+  '/admin/receptionist': typeof AuthenticatedAdminReceptionistRoute
   '/admin/resources': typeof AuthenticatedAdminResourcesRoute
   '/admin/revenue-os': typeof AuthenticatedAdminRevenueOsRoute
   '/admin/services': typeof AuthenticatedAdminServicesRoute
@@ -571,6 +579,7 @@ export interface FileRoutesByTo {
   '/admin/playbooks': typeof AuthenticatedAdminPlaybooksRoute
   '/admin/projects': typeof AuthenticatedAdminProjectsRoute
   '/admin/radar': typeof AuthenticatedAdminRadarRoute
+  '/admin/receptionist': typeof AuthenticatedAdminReceptionistRoute
   '/admin/resources': typeof AuthenticatedAdminResourcesRoute
   '/admin/revenue-os': typeof AuthenticatedAdminRevenueOsRoute
   '/admin/services': typeof AuthenticatedAdminServicesRoute
@@ -644,6 +653,7 @@ export interface FileRoutesById {
   '/_authenticated/admin/playbooks': typeof AuthenticatedAdminPlaybooksRoute
   '/_authenticated/admin/projects': typeof AuthenticatedAdminProjectsRoute
   '/_authenticated/admin/radar': typeof AuthenticatedAdminRadarRoute
+  '/_authenticated/admin/receptionist': typeof AuthenticatedAdminReceptionistRoute
   '/_authenticated/admin/resources': typeof AuthenticatedAdminResourcesRoute
   '/_authenticated/admin/revenue-os': typeof AuthenticatedAdminRevenueOsRoute
   '/_authenticated/admin/services': typeof AuthenticatedAdminServicesRoute
@@ -717,6 +727,7 @@ export interface FileRouteTypes {
     | '/admin/playbooks'
     | '/admin/projects'
     | '/admin/radar'
+    | '/admin/receptionist'
     | '/admin/resources'
     | '/admin/revenue-os'
     | '/admin/services'
@@ -788,6 +799,7 @@ export interface FileRouteTypes {
     | '/admin/playbooks'
     | '/admin/projects'
     | '/admin/radar'
+    | '/admin/receptionist'
     | '/admin/resources'
     | '/admin/revenue-os'
     | '/admin/services'
@@ -860,6 +872,7 @@ export interface FileRouteTypes {
     | '/_authenticated/admin/playbooks'
     | '/_authenticated/admin/projects'
     | '/_authenticated/admin/radar'
+    | '/_authenticated/admin/receptionist'
     | '/_authenticated/admin/resources'
     | '/_authenticated/admin/revenue-os'
     | '/_authenticated/admin/services'
@@ -1313,6 +1326,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAdminRadarRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/admin/receptionist': {
+      id: '/_authenticated/admin/receptionist'
+      path: '/admin/receptionist'
+      fullPath: '/admin/receptionist'
+      preLoaderRoute: typeof AuthenticatedAdminReceptionistRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/admin/resources': {
       id: '/_authenticated/admin/resources'
       path: '/admin/resources'
@@ -1440,6 +1460,7 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedAdminPlaybooksRoute: typeof AuthenticatedAdminPlaybooksRoute
   AuthenticatedAdminProjectsRoute: typeof AuthenticatedAdminProjectsRoute
   AuthenticatedAdminRadarRoute: typeof AuthenticatedAdminRadarRoute
+  AuthenticatedAdminReceptionistRoute: typeof AuthenticatedAdminReceptionistRoute
   AuthenticatedAdminResourcesRoute: typeof AuthenticatedAdminResourcesRoute
   AuthenticatedAdminRevenueOsRoute: typeof AuthenticatedAdminRevenueOsRoute
   AuthenticatedAdminServicesRoute: typeof AuthenticatedAdminServicesRoute
@@ -1463,6 +1484,7 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedAdminPlaybooksRoute: AuthenticatedAdminPlaybooksRoute,
   AuthenticatedAdminProjectsRoute: AuthenticatedAdminProjectsRoute,
   AuthenticatedAdminRadarRoute: AuthenticatedAdminRadarRoute,
+  AuthenticatedAdminReceptionistRoute: AuthenticatedAdminReceptionistRoute,
   AuthenticatedAdminResourcesRoute: AuthenticatedAdminResourcesRoute,
   AuthenticatedAdminRevenueOsRoute: AuthenticatedAdminRevenueOsRoute,
   AuthenticatedAdminServicesRoute: AuthenticatedAdminServicesRoute,

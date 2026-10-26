@@ -492,6 +492,207 @@ export type Database = {
         };
         Relationships: [];
       };
+      receptionist_tenants: {
+        Row: {
+          id: string;
+          client_id: string | null;
+          tenant_slug: string;
+          business_name: string;
+          trade_type: string;
+          assigned_did: string;
+          transfer_phone: string;
+          status: "active" | "onboarding" | "paused" | "cancelled";
+          tier: "solo" | "pro" | "fleet" | "bundle_addon";
+          monthly_call_allowance: number;
+          voice_id: string;
+          greeting_text: string;
+          business_hours: Json;
+          service_areas: Json;
+          faq_knowledge: Json;
+          qualification_fields: Json;
+          emergency_keywords: string[];
+          notification_destination: Json;
+          created_at: string;
+          updated_at: string;
+        };
+        Insert: {
+          id?: string;
+          client_id?: string | null;
+          tenant_slug: string;
+          business_name: string;
+          trade_type?: string;
+          assigned_did?: string;
+          transfer_phone?: string;
+          status?: "active" | "onboarding" | "paused" | "cancelled";
+          tier?: "solo" | "pro" | "fleet" | "bundle_addon";
+          monthly_call_allowance?: number;
+          voice_id?: string;
+          greeting_text: string;
+          business_hours?: Json;
+          service_areas?: Json;
+          faq_knowledge?: Json;
+          qualification_fields?: Json;
+          emergency_keywords?: string[];
+          notification_destination?: Json;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Update: {
+          id?: string;
+          client_id?: string | null;
+          tenant_slug?: string;
+          business_name?: string;
+          trade_type?: string;
+          assigned_did?: string;
+          transfer_phone?: string;
+          status?: "active" | "onboarding" | "paused" | "cancelled";
+          tier?: "solo" | "pro" | "fleet" | "bundle_addon";
+          monthly_call_allowance?: number;
+          voice_id?: string;
+          greeting_text?: string;
+          business_hours?: Json;
+          service_areas?: Json;
+          faq_knowledge?: Json;
+          qualification_fields?: Json;
+          emergency_keywords?: string[];
+          notification_destination?: Json;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "receptionist_tenants_client_id_fkey";
+            columns: ["client_id"];
+            isOneToOne: false;
+            referencedRelation: "clients";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
+      receptionist_calls: {
+        Row: {
+          id: string;
+          tenant_id: string;
+          caller_phone: string;
+          caller_name: string | null;
+          call_duration_seconds: number;
+          started_at: string;
+          ended_at: string | null;
+          outcome:
+            | "lead_captured"
+            | "callback_requested"
+            | "emergency_escalated"
+            | "transferred"
+            | "general_info"
+            | "spam_dropped";
+          urgency: "standard" | "urgent_emergency";
+          lead_details: Json;
+          call_summary: string;
+          transcript: Json;
+          recording_url: string | null;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          tenant_id: string;
+          caller_phone?: string;
+          caller_name?: string | null;
+          call_duration_seconds?: number;
+          started_at?: string;
+          ended_at?: string | null;
+          outcome?:
+            | "lead_captured"
+            | "callback_requested"
+            | "emergency_escalated"
+            | "transferred"
+            | "general_info"
+            | "spam_dropped";
+          urgency?: "standard" | "urgent_emergency";
+          lead_details?: Json;
+          call_summary?: string;
+          transcript?: Json;
+          recording_url?: string | null;
+          created_at?: string;
+        };
+        Update: {
+          id?: string;
+          tenant_id?: string;
+          caller_phone?: string;
+          caller_name?: string | null;
+          call_duration_seconds?: number;
+          started_at?: string;
+          ended_at?: string | null;
+          outcome?:
+            | "lead_captured"
+            | "callback_requested"
+            | "emergency_escalated"
+            | "transferred"
+            | "general_info"
+            | "spam_dropped";
+          urgency?: "standard" | "urgent_emergency";
+          lead_details?: Json;
+          call_summary?: string;
+          transcript?: Json;
+          recording_url?: string | null;
+          created_at?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "receptionist_calls_tenant_id_fkey";
+            columns: ["tenant_id"];
+            isOneToOne: false;
+            referencedRelation: "receptionist_tenants";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
+      receptionist_monthly_usage: {
+        Row: {
+          id: string;
+          tenant_id: string;
+          billing_period: string;
+          total_calls: number;
+          total_duration_seconds: number;
+          allowance_limit: number;
+          overage_calls: number;
+          estimated_cost_cents: number;
+          status: "within_limit" | "approaching_cap" | "exceeded";
+          updated_at: string;
+        };
+        Insert: {
+          id?: string;
+          tenant_id: string;
+          billing_period: string;
+          total_calls?: number;
+          total_duration_seconds?: number;
+          allowance_limit?: number;
+          overage_calls?: number;
+          estimated_cost_cents?: number;
+          status?: "within_limit" | "approaching_cap" | "exceeded";
+          updated_at?: string;
+        };
+        Update: {
+          id?: string;
+          tenant_id?: string;
+          billing_period?: string;
+          total_calls?: number;
+          total_duration_seconds?: number;
+          allowance_limit?: number;
+          overage_calls?: number;
+          estimated_cost_cents?: number;
+          status?: "within_limit" | "approaching_cap" | "exceeded";
+          updated_at?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "receptionist_monthly_usage_tenant_id_fkey";
+            columns: ["tenant_id"];
+            isOneToOne: false;
+            referencedRelation: "receptionist_tenants";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
     };
     Views: {
       public_team_members: {

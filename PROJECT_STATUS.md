@@ -1,5 +1,38 @@
 # Harley Digital Works — Project Status
 
+## Launch of Commercial AI Virtual Receptionist Multi-Tenant Revenue Stream — 26 October 2026
+
+**Current Status:** Completed end-to-end transformation of the single-agent Harley Digital Works Virtual Phone Receptionist into a scalable, multi-client commercial subscription business operated by The Harley Group:
+
+1. **Multi-Tenant Voice & Telephony Architecture**:
+   - Preserved Primary HDW Inbound Switchboard (`07394 041487` / `hdw-primary`) as a permanently dedicated intake channel for Harley Digital Works.
+   - Built multi-tenant architecture supporting isolated client switchboards with custom British Neural2 voice personas, bespoke trade FAQs, emergency safety escalation rules, and instant WhatsApp/Email dispatch.
+   - Added pre-configured pilot profiles: `rg-electrical` (Bristol Electrician), `apex-heating` (Gas Safe Engineers), `clifton-roofing` (Roofing Contractors).
+   - Created safe fallback: Calls dispatch to Google Dialogflow CX (`en-GB-Neural2-B` British voice) when cloud credentials are present, falling back smoothly to a zero-latency local trade knowledge engine in edge environments.
+2. **Commercial Offering & Subscription Engine**:
+   - Standalone Subscriptions: Solo (£79/mo, 50 calls), Pro Managed (£149/mo, 150 calls), Commercial Fleet (£249/mo, 350 calls).
+   - Website Care Plan Add-On: Available for +£99/mo to the £249/mo Managed Website Care Plan (£348/mo total), saving clients £600/year.
+   - The Managed Revenue & Switchboard Bundle: £1,495 setup + £348/mo ongoing care.
+   - Zero VAT compliant copy across all customer surfaces (prices quoted cleanly without VAT claims).
+3. **Business Administration Control Centre (`/admin/receptionist`)**:
+   - Executive revenue dashboard (MRR, gross margins, active switchboards, total calls, emergency alerts, Google Cloud credit buffer).
+   - Switchboard tenant management (DID allocation, voice persona selection, status toggles, call forward overrides).
+   - Interactive Studio & Live Test Dialer with trade demonstration switcher.
+   - Call activity log with transcript viewer, audio playback, and structured lead extraction brief modal.
+   - Allowance & margin metering engine tracking wholesale voice API consumption vs subscription revenue.
+4. **Public Marketing & Conversion Surfaces**:
+   - Upgraded `/virtual-receptionist` with the Option 1 "Architectural Craft" Hybrid design, "The Real Cost of Missed Calls" calculation, interactive trade demonstration cockpit, transparent 3-tier pricing, and direct WhatsApp CTAs to Robbie Harley.
+   - Integrated the 24/7 AI Receptionist add-on cross-sell onto `/services_/care-plans`.
+   - Built `CustomerReceptionistDesk.tsx` component for authenticated client portals.
+5. **Empirical Quality Suite**:
+   - Automated Multi-Tenant Test Suite: `scripts/receptionist-multi-tenant.test.mjs` (6/6 tests passing).
+   - Workspace Unit & Integration Tests: 211/211 tests passing (0 failures).
+   - `npm run typecheck`: PASS (0 TS errors).
+   - `npm run lint`: PASS (0 errors, 9 non-blocking warnings).
+   - `npm run format:check`: PASS (100% Prettier compliant).
+   - `npm run build`: PASS (Vite SSR + Cloudflare Nitro bundle compiled successfully).
+   - Verified live in Chrome on Port 3000 (`http://localhost:3000/virtual-receptionist` and `http://localhost:3000/admin/receptionist`).
+
 ## Full Project Design Audit & Homepage Cohesion Resolution — 26 October 2026
 
 **Current Status:** Completed comprehensive project-wide design and copy audit, resolving the visual disconnection and outdated sections highlighted on the homepage:

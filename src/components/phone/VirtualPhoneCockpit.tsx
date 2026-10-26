@@ -17,7 +17,10 @@ import {
   Truck,
   MapPin,
   Phone,
+  ShieldAlert,
 } from "lucide-react";
+import { getReceptionistTenant, BUILTIN_RECEPTIONIST_TENANTS } from "@/lib/receptionist-tenants";
+import { cn } from "@/lib/utils";
 
 interface CallMessage {
   id: string;
@@ -38,6 +41,7 @@ interface ExtractedLead {
 
 interface ScenarioOption {
   id: string;
+  tenantSlug: string;
   title: string;
   prompt: string;
   tag: string;
@@ -46,35 +50,40 @@ interface ScenarioOption {
 const PRESET_SCENARIOS: ScenarioOption[] = [
   {
     id: "hdw-electrician",
-    title: "Bristol Electrical Contractor (3 Vans)",
+    tenantSlug: "hdw-primary",
+    title: "Bristol Contractor: Website + 24/7 Voice Upsell",
     prompt:
-      "Hello, I run an electrical contractor firm in Bristol with 3 vans on the road. We get all our work from word of mouth, but we need a proper website to win commercial rewires.",
-    tag: "High-Ticket Lead",
+      "Hello, I run an electrical contractor firm in Bristol with 3 vans on the road. We get all our work from word of mouth, but we need a proper website and I want to see how this 24/7 phone receptionist works.",
+    tag: "HDW New Business",
   },
   {
-    id: "hdw-heating",
-    title: "Heating & Gas Engineer (Surrey)",
+    id: "rg-emergency",
+    tenantSlug: "rg-electrical",
+    title: "RG Electrical: Emergency Burning Fusebox (BS6)",
     prompt:
-      "How much is your website package, and how long does it take? We have zero time to write copy or do homework.",
-    tag: "Package & Pricing",
+      "Urgent emergency: I have sparks and a strong burning fishy smell coming from my fusebox under the stairs in Redland. Can an electrician attend immediately?",
+    tag: "Emergency Triage",
   },
   {
-    id: "hdw-receptionist-upsell",
-    title: "Roofing Contractor (Phone Answering Upsell)",
+    id: "apex-cp12",
+    tenantSlug: "apex-heating",
+    title: "Apex Gas & Heating: Landlord CP12 Safety Cert",
     prompt:
-      "Can you explain how this 24/7 phone receptionist works? We miss calls all day while working up on roofs.",
-    tag: "Upsell Capability Demo",
+      "Hello, I am a landlord with 2 rental flats in Bathwick. How much is a combined annual boiler service and CP12 Gas Safety certificate?",
+    tag: "Trade Pricing FAQ",
   },
   {
-    id: "hdw-consultation",
-    title: "Book Founder Consultation",
+    id: "clifton-leak",
+    tenantSlug: "clifton-roofing",
+    title: "Clifton Roofing: Storm Damage & Drone Survey",
     prompt:
-      "I'd like to book a quick consultation with Robbie Harley to review our trade business online presence.",
-    tag: "Discovery Call",
+      "Hi there, after the high winds yesterday we have water coming through our bedroom ceiling in Clifton and noticed slipped slates in the garden. Can you do a drone survey?",
+    tag: "Quote Survey Request",
   },
 ];
 
 export function VirtualPhoneCockpit() {
+  const [activeTenantSlug, setActiveTenantSlug] = useState<string>("hdw-primary");
   const [callActive, setCallActive] = useState(false);
   const [callDuration, setCallDuration] = useState(0);
   const [messages, setMessages] = useState<CallMessage[]>([]);
@@ -84,6 +93,8 @@ export function VirtualPhoneCockpit() {
   const [isListening, setIsListening] = useState(false);
   const [extractedLead, setExtractedLead] = useState<ExtractedLead>({});
   const [audioPlaying, setAudioPlaying] = useState(false);
+
+  const currentTenant = getReceptionistTenant(activeTenantSlug);
 
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
@@ -107,6 +118,16 @@ export function VirtualPhoneCockpit() {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, isLoading]);
 
+  // Pre-warm browser voices for instant British speech synthesis
+  useEffect(() => {
+    if (typeof window !== "undefined" && "speechSynthesis" in window) {
+      window.speechSynthesis.getVoices();
+      window.speechSynthesis.onvoiceschanged = () => {
+        window.speechSynthesis.getVoices();
+      };
+    }
+  }, []);
+
   const formatTime = (secs: number) => {
     const m = Math.floor(secs / 60)
       .toString()
@@ -115,33 +136,44 @@ export function VirtualPhoneCockpit() {
     return `${m}:${s}`;
   };
 
-  const startCall = () => {
-    setCallActive(true);
-    setCallDuration(0);
-    setExtractedLead({});
+  const playRingTone = () => {
+    try {
+      if (typeof window === "undefined") return;
+      const AudioCtx =
+        window.AudioContext ||
+        (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
+      if (!AudioCtx) return;
+      const ctx = new AudioCtx();
+      if (ctx.state === "suspended") {
+        ctx.resume();
+      }
+      const now = ctx.currentTime;
 
-    const greetingText =
-      "Thank you for calling Harley Digital Works. I am your 24/7 virtual receptionist. Are you calling to enquire about a new bespoke website for your trade business?";
+      // Play authentic UK phone ring tone (400Hz + 450Hz dual tone)
+      const osc1 = ctx.createOscillator();
+      const osc2 = ctx.createOscillator();
+      const gain = ctx.createGain();
 
-    setMessages([
-      {
-        id: "msg-0",
-        sender: "receptionist",
-        text: greetingText,
-        timestamp: "00:00",
-      },
-    ]);
-  };
+      osc1.frequency.setValueAtTime(400, now);
+      osc2.frequency.setValueAtTime(450, now);
 
-  const endCall = () => {
-    setCallActive(false);
-    if (audioRef.current) {
-      audioRef.current.pause();
-      setAudioPlaying(false);
+      gain.gain.setValueAtTime(0.18, now);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.38);
+
+      osc1.connect(gain);
+      osc2.connect(gain);
+      gain.connect(ctx.destination);
+
+      osc1.start(now);
+      osc2.start(now);
+      osc1.stop(now + 0.38);
+      osc2.stop(now + 0.38);
+    } catch (err) {
+      console.warn("AudioContext ring tone error:", err);
     }
   };
 
-  const playVoiceAudio = (audioDataUri: string) => {
+  const playVoiceAudio = (audioDataUri: string, fallbackText?: string) => {
     if (isAudioMuted) return;
     try {
       if (!audioRef.current) {
@@ -150,16 +182,136 @@ export function VirtualPhoneCockpit() {
       audioRef.current.src = audioDataUri;
       setAudioPlaying(true);
       audioRef.current.onended = () => setAudioPlaying(false);
-      audioRef.current.onerror = () => setAudioPlaying(false);
-      audioRef.current.play().catch(() => setAudioPlaying(false));
+      audioRef.current.onerror = () => {
+        setAudioPlaying(false);
+        if (fallbackText) speakBrowserVoice(fallbackText);
+      };
+      audioRef.current.play().catch(() => {
+        setAudioPlaying(false);
+        if (fallbackText) speakBrowserVoice(fallbackText);
+      });
+    } catch {
+      setAudioPlaying(false);
+      if (fallbackText) speakBrowserVoice(fallbackText);
+    }
+  };
+
+  const speakBrowserVoice = (text: string) => {
+    if (isAudioMuted || typeof window === "undefined" || !("speechSynthesis" in window)) return;
+    try {
+      window.speechSynthesis.cancel();
+      window.speechSynthesis.resume();
+
+      setTimeout(() => {
+        try {
+          const utterance = new SpeechSynthesisUtterance(text);
+          utterance.lang = "en-GB";
+          utterance.rate = 0.95;
+          utterance.pitch = 1.0;
+          utterance.volume = 1.0;
+
+          const voices = window.speechSynthesis.getVoices();
+          const britishVoice =
+            voices.find(
+              (v) =>
+                v.lang === "en-GB" &&
+                (v.name.includes("UK") ||
+                  v.name.includes("British") ||
+                  v.name.includes("Natural") ||
+                  v.name.includes("George") ||
+                  v.name.includes("Ryan") ||
+                  v.name.includes("Oliver") ||
+                  v.name.includes("Daniel") ||
+                  v.name.includes("Libby") ||
+                  v.name.includes("Sonia")),
+            ) ||
+            voices.find((v) => v.lang === "en-GB") ||
+            voices.find((v) => v.lang.startsWith("en"));
+
+          if (britishVoice) {
+            utterance.voice = britishVoice;
+          }
+
+          setAudioPlaying(true);
+          utterance.onstart = () => {
+            setAudioPlaying(true);
+          };
+          utterance.onend = () => setAudioPlaying(false);
+          utterance.onerror = () => setAudioPlaying(false);
+
+          window.speechSynthesis.speak(utterance);
+          window.speechSynthesis.resume();
+        } catch {
+          setAudioPlaying(false);
+        }
+      }, 40);
     } catch {
       setAudioPlaying(false);
     }
   };
 
-  const handleSendMessage = async (customText?: string) => {
+  const testSpeakerAudio = () => {
+    playRingTone();
+    setTimeout(() => {
+      speakBrowserVoice(
+        "Harley Digital Works audio test. Your speakers are connected and the British voice engine is working perfectly.",
+      );
+    }, 400);
+  };
+
+  const speakText = (text: string, audioDataUri?: string | null) => {
+    if (isAudioMuted) return;
+    if (audioDataUri) {
+      playVoiceAudio(audioDataUri, text);
+    } else {
+      speakBrowserVoice(text);
+    }
+  };
+
+  const startCall = (overrideTenant?: string) => {
+    const tenantToUse = getReceptionistTenant(overrideTenant || activeTenantSlug);
+    setCallActive(true);
+    setCallDuration(0);
+    setExtractedLead({});
+
+    // Play initial connection ring tone through speakers
+    playRingTone();
+
+    const greeting = tenantToUse.greetingText;
+    setMessages([
+      {
+        id: "msg-0",
+        sender: "receptionist",
+        text: greeting,
+        timestamp: "00:00",
+      },
+    ]);
+
+    // Audibly greet caller through speakers right after ringing tone
+    setTimeout(() => {
+      speakText(greeting);
+    }, 450);
+  };
+
+  const endCall = () => {
+    setCallActive(false);
+    if (audioRef.current) {
+      audioRef.current.pause();
+      setAudioPlaying(false);
+    }
+    if (typeof window !== "undefined" && "speechSynthesis" in window) {
+      window.speechSynthesis.cancel();
+    }
+  };
+
+  const handleSendMessage = async (customText?: string, targetTenantSlug?: string) => {
     const textToSend = (customText || inputText).trim();
     if (!textToSend || isLoading) return;
+
+    const effectiveSlug = targetTenantSlug || activeTenantSlug;
+    if (targetTenantSlug && targetTenantSlug !== activeTenantSlug) {
+      setActiveTenantSlug(targetTenantSlug);
+    }
 
     if (!callActive) {
       setCallActive(true);
@@ -184,7 +336,8 @@ export function VirtualPhoneCockpit() {
         body: JSON.stringify({
           message: textToSend,
           sessionId: `call-session-${Date.now()}`,
-          mode: "hdw_agency",
+          tenantId: effectiveSlug,
+          mode: "tenant_switchboard",
         }),
       });
 
@@ -213,19 +366,23 @@ export function VirtualPhoneCockpit() {
         }));
       }
 
-      if (data.audioDataUri && !isAudioMuted) {
-        playVoiceAudio(data.audioDataUri);
+      if (!isAudioMuted) {
+        speakText(data.replyText, data.audioDataUri);
       }
     } catch {
+      const fallbackText = `Thank you for calling ${currentTenant.businessName}. We have recorded your message and an on-call engineer will follow up shortly.`;
       setMessages((prev) => [
         ...prev,
         {
           id: `receptionist-err-${Date.now()}`,
           sender: "receptionist",
-          text: "I have recorded your enquiry. Robbie Harley will review your trade business and follow up directly within 2 hours. Thank you for calling Harley Digital Works.",
+          text: fallbackText,
           timestamp: formatTime(callDuration + 1),
         },
       ]);
+      if (!isAudioMuted) {
+        speakText(fallbackText);
+      }
     } finally {
       setIsLoading(false);
     }
@@ -315,6 +472,33 @@ export function VirtualPhoneCockpit() {
         </div>
       </div>
 
+      {/* Trade Demonstration Switcher Pills */}
+      <div className="flex flex-wrap items-center justify-center gap-2 mb-2">
+        <span className="text-[11px] font-mono font-bold text-stone-500 uppercase mr-1">
+          Select Live Demonstration:
+        </span>
+        {BUILTIN_RECEPTIONIST_TENANTS.map((t) => (
+          <button
+            key={t.tenantSlug}
+            type="button"
+            onClick={() => {
+              setActiveTenantSlug(t.tenantSlug);
+              setCallActive(false);
+              setMessages([]);
+              setExtractedLead({});
+            }}
+            className={cn(
+              "px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all",
+              activeTenantSlug === t.tenantSlug
+                ? "bg-[#081B30] text-white shadow-sm ring-2 ring-amber-400"
+                : "bg-white text-stone-700 border border-stone-200/90 hover:bg-stone-100",
+            )}
+          >
+            {t.businessName}
+          </button>
+        ))}
+      </div>
+
       {/* Main Grid: Phone Dialler & Live Call Console */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         {/* Left Column: Interactive Phone Device (5 Cols) */}
@@ -337,15 +521,42 @@ export function VirtualPhoneCockpit() {
             </div>
 
             {/* Caller Identification Header */}
-            <div className="py-4 text-center space-y-1">
+            <div className="py-3 text-center space-y-1">
               <p className="text-[10px] uppercase font-mono tracking-wider text-slate-400">
-                Harley Digital Works Switchboard
+                {currentTenant.businessName} Switchboard
               </p>
-              <h3 className="text-lg font-bold text-white tracking-tight">07394 041487</h3>
-              <p className="text-xs text-emerald-400 font-medium">
-                British Voice Synthesizer Active
+              <h3 className="text-lg font-bold text-white tracking-tight">
+                {currentTenant.assignedDid}
+              </h3>
+              <p className="text-xs text-emerald-400 font-medium flex items-center justify-center gap-1.5">
+                {audioPlaying ? (
+                  <>
+                    <span className="w-2 h-2 rounded-full bg-amber-400 animate-ping" />
+                    <span className="text-amber-300 font-bold">
+                      Speaking Aloud (British Voice)...
+                    </span>
+                  </>
+                ) : callActive ? (
+                  <>
+                    <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                    <span>Call Connected · Ready to Speak</span>
+                  </>
+                ) : (
+                  <span>British Voice Synthesizer Ready</span>
+                )}
               </p>
             </div>
+
+            {/* Instant Speaker Audio Verification Button */}
+            <button
+              type="button"
+              onClick={testSpeakerAudio}
+              className="w-full py-2 px-3 rounded-xl bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 text-xs font-mono font-bold flex items-center justify-center gap-2 transition-all mb-2 shadow-sm"
+              title="Click to verify your computer speakers are outputting sound"
+            >
+              <Volume2 className="w-4 h-4 text-amber-400 animate-pulse" />
+              <span>🔊 Test Speaker Sound (Click Me)</span>
+            </button>
 
             {/* Voice Waveform Graphic */}
             <div className="h-14 flex items-center justify-center gap-1 bg-black/30 rounded-xl px-4 my-2 border border-white/5">
@@ -393,9 +604,25 @@ export function VirtualPhoneCockpit() {
                     >
                       {m.text}
                     </div>
-                    <span className="text-[10px] font-mono text-slate-500 mt-1 px-1">
-                      {m.sender === "caller" ? "Caller" : "HDW Receptionist"} · {m.timestamp}
-                    </span>
+                    <div className="flex items-center gap-2 mt-1 px-1">
+                      <span className="text-[10px] font-mono text-slate-500">
+                        {m.sender === "caller"
+                          ? "Caller"
+                          : `${currentTenant.businessName} Receptionist`}{" "}
+                        · {m.timestamp}
+                      </span>
+                      {m.sender === "receptionist" && (
+                        <button
+                          type="button"
+                          onClick={() => speakText(m.text, m.audioUrl)}
+                          className="inline-flex items-center gap-1 text-[10px] font-mono text-amber-300 hover:text-amber-200 transition-colors"
+                          title="Replay voice audio"
+                        >
+                          <Volume2 className="w-2.5 h-2.5" />
+                          <span>Replay</span>
+                        </button>
+                      )}
+                    </div>
                   </div>
                 ))
               )}
@@ -508,7 +735,7 @@ export function VirtualPhoneCockpit() {
               {PRESET_SCENARIOS.map((s) => (
                 <button
                   key={s.id}
-                  onClick={() => handleSendMessage(s.prompt)}
+                  onClick={() => handleSendMessage(s.prompt, s.tenantSlug)}
                   className="text-left p-3.5 rounded-xl border border-stone-200/90 hover:border-amber-500 hover:bg-amber-50/40 transition-all group flex flex-col justify-between"
                 >
                   <div className="space-y-1">

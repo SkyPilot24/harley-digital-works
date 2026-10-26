@@ -3,6 +3,7 @@ import { PillButton } from "./PillButton";
 import { WebsitePackagesSection } from "./WebsitePackagesSection";
 import { ConceptScreen } from "./ConceptShowcase";
 import { BeforeAfterComparison } from "./BeforeAfterComparison";
+import { ArrowRight } from "lucide-react";
 const details = {
   website: {
     kicker: "WEBSITE DESIGN & BUILD",
@@ -122,6 +123,34 @@ export function ManagedServicePage({ kind = "website" }: { kind?: keyof typeof d
                 subtitle="See how our design standard and commercial copywriting replace generic templates with high-trust trade platforms."
                 sectionKicker="PROVEN CONVERSION DESIGN"
               />
+            </div>
+          </section>
+        )}
+        {kind === "care" && (
+          <section className="studio-section bg-[#081B30] text-white py-16 border-y border-white/10">
+            <div className="studio-wrap max-w-4xl mx-auto space-y-6">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono font-medium bg-amber-500/20 text-amber-300 border border-amber-500/30">
+                SIGNATURE CARE PLAN ADD-ON
+              </div>
+              <h2 className="text-2xl sm:text-3xl font-extrabold text-white font-display">
+                Your Website Wins Their Interest. Your AI Receptionist Makes Sure Their Call Gets
+                Answered.
+              </h2>
+              <p className="text-sm text-slate-300 leading-relaxed max-w-2xl">
+                Upgrade your £249/mo Managed Website Care Plan with a dedicated 24/7 AI Phone
+                Receptionist for just +£99/month (saving £50/month compared to the standalone
+                £149/mo rate). It answers homeowner calls in natural British English, qualifies
+                quotes, and sends instant WhatsApp briefs to you while you work on tools.
+              </p>
+              <div className="pt-2">
+                <a
+                  href="/virtual-receptionist"
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-amber-500 hover:bg-amber-400 text-[#081B30] font-bold text-xs tracking-wide transition-all shadow-md"
+                >
+                  <span>Explore 24/7 AI Phone Receptionist</span>
+                  <ArrowRight className="w-4 h-4" />
+                </a>
+              </div>
             </div>
           </section>
         )}
