@@ -251,7 +251,7 @@ function BrandAssetsPage() {
   return (
     <PageShell>
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-hdw-midnight pt-32 pb-20 text-white md:pt-44 md:pb-28 border-b border-hdw-ivory/15">
+      <section className="relative overflow-hidden bg-hdw-midnight pt-20 pb-16 text-white md:pt-24 md:pb-20 border-b border-hdw-ivory/15">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_-20%,rgba(23,60,98,0.3),rgba(255,255,255,0))]" />
 
         <Container className="relative z-10">

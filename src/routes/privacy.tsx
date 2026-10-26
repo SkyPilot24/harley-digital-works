@@ -54,7 +54,7 @@ const sections = [
 function Page() {
   return (
     <PageShell>
-      <section className="pt-32 pb-16 md:pt-40 md:pb-24">
+      <section className="pt-20 pb-12 md:pt-24 md:pb-16">
         <Container>
           <p className="eyebrow">Privacy & Data Protection</p>
           <h1 className="mt-6 text-[clamp(3rem,7vw,6rem)] tracking-[-.05em]">Privacy policy</h1>

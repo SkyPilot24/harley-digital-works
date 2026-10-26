@@ -210,7 +210,7 @@ function WebsiteHealthCheckPage() {
   return (
     <PageShell>
       {/* Hero Header */}
-      <section className="border-b border-ink/10 pt-32 pb-16 md:pt-40 md:pb-24">
+      <section className="border-b border-ink/10 pt-20 pb-12 md:pt-24 md:pb-16">
         <Container>
           <TagChip>Free Acquisition Tool</TagChip>
           <h1 className="mt-6 max-w-4xl text-[clamp(2.6rem,6vw,4.8rem)] leading-[0.98] tracking-tight text-ink">

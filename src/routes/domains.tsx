@@ -35,7 +35,7 @@ function DomainsPage() {
 
   return (
     <PageShell>
-      <section className="pt-32 pb-16 md:pt-40 md:pb-24">
+      <section className="pt-20 pb-12 md:pt-24 md:pb-16">
         <Container>
           <TagChip>Domains for sale</TagChip>
           <h1

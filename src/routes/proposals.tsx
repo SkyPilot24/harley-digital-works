@@ -262,7 +262,7 @@ function ProposalsPage() {
   return (
     <PageShell>
       {/* Proposal Header */}
-      <section className="bg-slate-950 pt-32 pb-16 text-white md:pt-40 md:pb-20 border-b border-slate-800">
+      <section className="bg-slate-950 pt-20 pb-12 text-white md:pt-24 md:pb-16 border-b border-slate-800">
         <Container>
           <div className="flex flex-wrap items-center justify-between gap-4">
             <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-950/60 px-3.5 py-1.5 text-xs font-semibold tracking-wide text-emerald-300 backdrop-blur-md">

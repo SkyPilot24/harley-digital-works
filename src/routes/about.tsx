@@ -49,27 +49,37 @@ function AboutPage() {
               <p className="studio-kicker">
                 <span className="studio-kicker-line" /> ABOUT THE STUDIO · UK
               </p>
-              <h1 id="about-heading">
+              <h1 id="about-heading" className="tracking-tight text-balance">
                 Thoughtful design.
                 <br />
                 Clear words.
                 <br />
                 <span>A studio that cares.</span>
               </h1>
-              <p className="hero-description">
+              <p className="hero-description text-balance">
                 We build, write, and look after websites for people who care about their business.
+                Thoughtful design, zero jargon, and ongoing peace of mind.
               </p>
-              <p className="hero-support">
-                Harley Digital Works was founded to eliminate the friction, wasted budgets, and
-                confusing jargon that hold great trade and service businesses back.
-              </p>
-              <div className="studio-actions">
-                <PillButton as="link" to="/contact" variant="dark" className="studio-button">
+              <div className="studio-actions flex flex-wrap items-center gap-3 pt-1">
+                <PillButton
+                  as="link"
+                  to="/contact"
+                  variant="dark"
+                  className="studio-button min-h-[48px] px-7 text-sm font-semibold shadow-sm cursor-pointer"
+                >
                   Start a conversation
                 </PillButton>
-                <a href="#philosophy" className="studio-text-link">
-                  Our philosophy <ArrowUpRight size={16} />
+                <a
+                  href="#philosophy"
+                  className="studio-text-link inline-flex items-center gap-1.5 text-xs text-stone-600 hover:text-stone-900 transition-colors"
+                >
+                  <span>Our philosophy</span> <ArrowUpRight size={13} />
                 </a>
+              </div>
+              <div className="pt-2 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-stone-600 font-medium">
+                <span>Dr Robbie Harley · Founder & Managing Director</span>
+                <span className="text-stone-300">|</span>
+                <span>Direct senior attention on every build</span>
               </div>
             </div>
 

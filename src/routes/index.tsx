@@ -75,42 +75,28 @@ function HomePage() {
               <p className="studio-kicker">
                 <span className="studio-kicker-line" /> WEBSITES · ENQUIRY SYSTEMS · DIGITAL CARE
               </p>
-              <h1 id="hero-heading">
+              <h1 id="hero-heading" className="tracking-tight text-balance">
                 Your website and enquiries,
                 <br />
                 <span>looked after.</span>
               </h1>
-              <p className="hero-description">
-                We write, build and run your website and enquiry form,
-                <br className="hero-line-break" /> so customers can reach you and you can get on
-                with the job.
+              <p className="hero-description text-balance">
+                We write, build and look after your trade website and customer enquiries. 100%
+                done-for-you copywriting, zero homework, and ongoing monthly care.
               </p>
-              <p className="hero-support">
-                100% done-for-you copywriting, distinctive design, and ongoing monthly care for
-                electrical contractors in Bristol, Bath and the M4 corridor.
-              </p>
-              <div className="flex flex-wrap items-center gap-2 mb-3">
-                <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-50 border border-emerald-200/80 px-2.5 py-1 text-[11px] font-bold text-emerald-900">
-                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
-                  <span>100% DFY copywriting · Zero homework · Dedicated WhatsApp desk</span>
-                </span>
-                <span className="inline-flex items-center gap-1.5 rounded-full bg-stone-100 border border-stone-200/80 px-2.5 py-1 text-[11px] font-bold text-stone-700">
-                  <span>Bristol, Bath & M4 Corridor · Electrical Contractors</span>
-                </span>
-              </div>
-              <div className="studio-actions flex flex-wrap items-center gap-3">
+              <div className="studio-actions flex flex-wrap items-center gap-3 pt-1">
                 <PillButton
                   as="link"
                   to="/contact"
                   variant="dark"
-                  className="studio-button min-h-[48px] px-6 text-sm font-bold shadow-md cursor-pointer"
+                  className="studio-button min-h-[48px] px-7 text-sm font-semibold shadow-sm cursor-pointer"
                 >
                   Get your website plan
                 </PillButton>
                 <button
                   type="button"
                   onClick={() => setIsVideoModalOpen(true)}
-                  className="inline-flex items-center gap-2 rounded-full border border-emerald-300 bg-emerald-50 px-5 min-h-[48px] text-xs font-bold text-emerald-950 hover:bg-emerald-100 hover:border-emerald-400 transition-all shadow-sm cursor-pointer"
+                  className="inline-flex items-center gap-2.5 rounded-full border border-stone-300/80 bg-white/80 backdrop-blur-md px-5 min-h-[48px] text-xs font-semibold text-stone-800 hover:bg-white hover:border-stone-400 transition-all shadow-sm cursor-pointer"
                   aria-label="Watch the 55-second Before and After Trade Transformation video showcase"
                 >
                   <span className="flex h-5 w-5 items-center justify-center rounded-full bg-emerald-700 text-white shadow-sm">
@@ -118,14 +104,19 @@ function HomePage() {
                   </span>
                   <span>Watch 55s transformation</span>
                 </button>
-                <a href="#transformations" className="studio-text-link">
-                  See transformations <ArrowDown size={14} />
+                <a
+                  href="#transformations"
+                  className="studio-text-link inline-flex items-center gap-1.5 text-xs text-stone-600 hover:text-stone-900 transition-colors"
+                >
+                  <span>See transformations</span> <ArrowDown size={13} />
                 </a>
               </div>
-              <div className="hero-price">
-                <span>
-                  Websites for electrical contractors in Bristol, Bath and the M4 corridor.
+              <div className="pt-2 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-stone-600 font-medium">
+                <span className="inline-flex items-center gap-1.5 text-emerald-800">
+                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                  <span>Bristol, Bath & M4 Corridor · Electrical Contractors</span>
                 </span>
+                <span className="text-stone-300">|</span>
                 <span>£1,495 setup (50% deposit / 50% approval) · £249/mo care</span>
               </div>
             </div>
@@ -184,11 +175,11 @@ function HomePage() {
                   <strong>100% done-for-you copywriting.</strong>
                 </span>
                 <span className="hero-art-seal">
-                  PROVEN
+                  BRITISH
                   <br />
                   <span>trade</span>
                   <br />
-                  GROWTH
+                  CRAFT
                 </span>
               </div>
             </div>

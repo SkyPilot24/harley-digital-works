@@ -65,15 +65,19 @@
   display: grid;
   grid-template-columns: 0.85fr 1.3fr;
   margin-top: 48px;
-  border: 1px solid var(--studio-line);
+  border-radius: 24px;
+  overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 20px 45px -15px rgba(0, 0, 0, 0.08);
 }
 .managed-offer-intro {
   padding: 48px;
-  background: var(--studio-ink);
+  background: #081B30;
   color: var(--studio-paper);
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
 }
 .managed-offer-intro h3 {
   font-size: clamp(30px, 3.4vw, 48px);
@@ -724,10 +728,13 @@
   color: var(--studio-muted);
 }
 .studio-button {
-  min-height: 50px;
-  padding: 14px 23px;
-  font-size: 13px;
-  gap: 18px;
+  min-height: 48px;
+  padding: 12px 24px;
+  font-size: 14px;
+  font-weight: 600;
+  gap: 12px;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 .studio-text-link {
   display: inline-flex;
@@ -837,50 +844,67 @@
 .hero-browser {
   display: block;
   width: 100%;
-  border: 1px solid #c5c4ba;
-  border-radius: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 25px 55px -25px #25272060;
-  transform: rotate(-2deg);
-  transition: transform 0.4s;
+  box-shadow: 0 25px 60px -15px rgba(8, 27, 48, 0.22), 0 0 0 1px rgba(255, 255, 255, 0.5) inset;
+  transform: rotate(-1.5deg);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
 }
 .hero-browser:hover {
-  transform: rotate(0);
+  transform: rotate(0) translateY(-2px);
+  box-shadow: 0 32px 75px -15px rgba(8, 27, 48, 0.28), 0 0 0 1px rgba(255, 255, 255, 0.6) inset;
 }
 .browser-toolbar {
   display: flex;
   align-items: center;
-  gap: 4px;
-  padding: 10px 12px;
-  background: #eeeee9;
-  color: #6e7069;
-  height: 29px;
+  gap: 5px;
+  padding: 8px 14px;
+  background: rgba(238, 238, 233, 0.95);
+  backdrop-filter: blur(8px);
+  color: #555750;
+  height: 32px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
   text-align: center;
 }
 .browser-toolbar i {
-  width: 5px;
-  height: 5px;
+  width: 7px;
+  height: 7px;
   border-radius: 50%;
   background: #c3c4bb;
   flex-shrink: 0;
 }
+.browser-toolbar i:nth-child(1) {
+  background: #ff5f56;
+}
+.browser-toolbar i:nth-child(2) {
+  background: #ffbd2e;
+}
+.browser-toolbar i:nth-child(3) {
+  background: #27c93f;
+}
 .browser-toolbar > span {
   flex: 1;
-  font: 400 8px/1 var(--font-sans);
-  letter-spacing: 0.03em;
-  padding-right: 20px;
+  font: 500 10px/1 var(--font-sans);
+  letter-spacing: 0.02em;
+  padding-right: 24px;
+  color: #71736b;
 }
 .hero-phone {
   position: absolute;
-  width: 155px;
+  width: 160px;
   bottom: 27px;
   right: -14px;
-  border: 5px solid #33372f;
-  border-radius: 24px;
+  border: 6px solid #1a1e17;
+  border-radius: 28px;
   background: #ece7db;
-  box-shadow: 0 15px 30px #0003;
+  box-shadow: 0 25px 50px -10px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(255, 255, 255, 0.15) inset;
   overflow: hidden;
   transform: rotate(6deg);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.hero-phone:hover {
+  transform: rotate(3deg) translateY(-3px);
 }
 .phone-speaker {
   position: absolute;
@@ -1233,7 +1257,14 @@
   padding: 64px 42px 44px;
   overflow: hidden;
   text-align: left;
-  border-radius: 3px;
+  border-radius: 20px;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.05);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease;
+}
+.project-stage:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.08);
 }
 .project-stage--architecture {
   background: #e3e5dc;
@@ -1248,19 +1279,20 @@
   position: absolute;
   top: 24px;
   left: 28px;
-  font: 400 9px/1 var(--font-mono);
+  font: 500 10px/1 var(--font-mono);
   letter-spacing: 0.1em;
   color: #4f584d;
 }
 .project-browser {
   display: block;
   overflow: hidden;
-  border-radius: 5px;
-  box-shadow: 0 20px 40px -20px #303b3266;
-  transition: transform 0.35s;
+  border-radius: 12px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.06);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease;
 }
 .project-stage:hover .project-browser {
-  transform: translateY(-5px);
+  transform: translateY(-4px);
+  box-shadow: 0 32px 65px -15px rgba(0, 0, 0, 0.22), 0 0 0 1px rgba(0, 0, 0, 0.08);
 }
 .studio-project--featured .project-stage {
   padding: 65px 15% 52px 9%;

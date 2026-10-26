@@ -33,7 +33,7 @@ export function ServiceDetailLayout({
 }) {
   return (
     <PageShell>
-      <section className="pt-32 pb-14 md:pt-40 md:pb-20">
+      <section className="pt-20 pb-12 md:pt-24 md:pb-16">
         <Container>
           <TagChip>{eyebrow}</TagChip>
           <h1

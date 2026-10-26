@@ -36,7 +36,7 @@ function OnboardingPage() {
   return (
     <PageShell>
       {/* Top Header */}
-      <section className="pt-28 pb-8 md:pt-36 md:pb-12 bg-neutral-950 border-b border-neutral-800 text-white">
+      <section className="pt-20 pb-8 md:pt-24 md:pb-12 bg-neutral-950 border-b border-neutral-800 text-white">
         <Container>
           <div className="max-w-2xl mx-auto text-center">
             <div className="inline-flex items-center gap-2 mb-3">

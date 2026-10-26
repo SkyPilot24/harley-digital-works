@@ -106,7 +106,7 @@ function PartnersPage() {
   return (
     <PageShell>
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-slate-950 pt-32 pb-12 text-white md:pt-40 md:pb-16 border-b border-emerald-950/40">
+      <section className="relative overflow-hidden bg-slate-950 pt-20 pb-12 text-white md:pt-24 md:pb-16 border-b border-emerald-950/40">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_-20%,rgba(16,185,129,0.18),rgba(255,255,255,0))]" />
 
         <Container className="relative z-10">

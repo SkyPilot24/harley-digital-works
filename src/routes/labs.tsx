@@ -136,7 +136,7 @@ function HarleyLabsPage() {
   return (
     <PageShell brand="labs">
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-[#f7f5ef] pt-32 pb-20 text-[#252720] md:pt-40 md:pb-28 border-b border-[#e2dec9]">
+      <section className="relative overflow-hidden bg-[#f7f5ef] pt-20 pb-16 text-[#252720] md:pt-24 md:pb-20 border-b border-[#e2dec9]">
         <Container className="relative z-10">
           <div className="flex flex-wrap items-center gap-3">
             <div className="inline-flex items-center gap-2 rounded-full border border-[#171C23]/15 bg-white/80 px-3.5 py-1.5 text-xs font-semibold tracking-wide text-[#171C23] shadow-sm backdrop-blur-md">
@@ -196,7 +196,7 @@ function HarleyLabsPage() {
               variant="ghost"
               size="md"
             >
-              R&D Collaboration Inquiry
+              R&D Collaboration Enquiry
             </PillButton>
           </div>
         </Container>

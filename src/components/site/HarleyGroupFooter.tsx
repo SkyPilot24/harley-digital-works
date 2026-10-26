@@ -31,16 +31,16 @@ export function HarleyGroupFooter() {
             <a href={"mailto:" + harleyGroupConfig.contactEmail}>
               {harleyGroupConfig.contactEmail}
             </a>
-            <a href="https://harleydigitalworks.com">Harley Digital Works ↗</a>
+            <a href="/">Harley Digital Works ↗</a>
             <a href="#community">Community</a>
             <a href="#contact">Contact</a>
-            <a href="https://harleydigitalworks.com/privacy">Privacy</a>
+            <a href="/privacy">Privacy</a>
           </nav>
         </div>
         <div className="studio-footer-bottom">
           <span>
-            © {new Date().getFullYear()} The Harley Group · Bristol, United Kingdom · Mon–Fri
-            09:00–17:00
+            © {new Date().getFullYear()} The Harley Group · Bristol, United Kingdom · Mon - Fri
+            09:00 - 17:00
           </span>
           <span>Practical ambition. Lasting value.</span>
         </div>

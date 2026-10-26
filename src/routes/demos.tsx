@@ -73,13 +73,9 @@ function TradeDemosPage() {
                 <br />
                 <span>Built to win local jobs.</span>
               </h1>
-              <p className="hero-description">
-                Don’t guess what your website will look like. Explore our live interactive trade
-                blueprints below.
-              </p>
-              <p className="hero-support">
-                Every blueprint includes transparent guide estimators, 1-tap WhatsApp triage,
-                verified accreditation badges, and before/after project evidence.
+              <p className="hero-description text-balance">
+                Explore live interactive blueprints built for UK contractors. Instant price
+                calculators, 1-tap WhatsApp triage, and verified proof.
               </p>
 
               <div className="flex flex-wrap items-center gap-4 text-xs font-mono font-medium text-ink/80 pt-2">
@@ -89,7 +85,7 @@ function TradeDemosPage() {
                 </div>
                 <div className="flex items-center gap-1.5 bg-white border border-ink/10 px-3 py-1.5 rounded-full shadow-2xs">
                   <CheckCircle2 className="h-4 w-4 text-emerald-700" />
-                  <span>Zero Writing Required (We Write It All)</span>
+                  <span>100% Done-For-You Copywriting</span>
                 </div>
                 <div className="flex items-center gap-1.5 bg-white border border-ink/10 px-3 py-1.5 rounded-full shadow-2xs">
                   <CheckCircle2 className="h-4 w-4 text-emerald-700" />
@@ -144,7 +140,7 @@ function TradeDemosPage() {
                   prepare a tailored preview for your business.
                 </p>
                 <PillButton as="link" to="/contact" variant="light" className="studio-button">
-                  Request a website quote
+                  Get your website plan
                 </PillButton>
                 <span className="final-price">
                   Initial build + monthly care · Scope agreed before you commit

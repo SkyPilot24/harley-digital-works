@@ -94,7 +94,7 @@ const RG_ELECTRICAL_DATA: TradeDemoBusiness = {
       title: "Complete Domestic House Rewires",
       description:
         "First and second fix rewiring for Victorian, 1930s, and modern homes. Flush chase work, dedicated kitchen ring mains, LED dimmable zones, and zero mess left.",
-      turnaround: "3–5 Days Staged",
+      turnaround: "3-5 Days Staged",
       priceGuide: "From £3,800 fixed",
     },
     {
@@ -149,13 +149,13 @@ const RG_ELECTRICAL_DATA: TradeDemoBusiness = {
       },
     ],
     propertySizes: [
-      { id: "1-2bed", name: "1–2 Bedroom Flat / Maisonette", multiplier: 1.0 },
-      { id: "3-4bed", name: "3–4 Bedroom Family Home", multiplier: 1.35 },
+      { id: "1-2bed", name: "1-2 Bedroom Flat / Maisonette", multiplier: 1.0 },
+      { id: "3-4bed", name: "3-4 Bedroom Family Home", multiplier: 1.35 },
       { id: "5bed_comm", name: "5+ Bedroom House or Commercial Unit", multiplier: 1.8 },
     ],
     urgencyOptions: [
-      { id: "routine", name: "Standard Booking (Next 7–14 days)", surcharge: 0 },
-      { id: "priority", name: "Priority Window (Next 48–72 hours)", surcharge: 95 },
+      { id: "routine", name: "Standard Booking (Next 7-14 days)", surcharge: 0 },
+      { id: "priority", name: "Priority Window (Next 48-72 hours)", surcharge: 95 },
       { id: "emergency", name: "Same-Day Emergency Response", surcharge: 165 },
     ],
   },
@@ -207,7 +207,7 @@ const RG_CASE_STUDIES = [
       "Installed a flush 10-way dual RCD/RCBO metal consumer unit with Type 2 Surge Protection Device (SPD). Completed end-to-end loop impedance and insulation resistance testing across all 8 domestic circuits.",
     outcome:
       "100% compliant with 18th Edition wiring regulations, zero hallway disruption, and full insurance-backed warranty.",
-    highlight: "£650–£950 typical project value",
+    highlight: "£650 - £950 typical project value",
   },
   {
     id: "cs-2",
@@ -224,7 +224,7 @@ const RG_CASE_STUDIES = [
       "Complete first and second fix rewire. Created dedicated 32A kitchen ring, separate induction hob circuit, external EV charger ducting, and 4 zoned dimmable LED downlight circuits.",
     outcome:
       "Neat flush chase work made good ready for decorator, modern high-capacity power distribution, and zero damage to original floorboards.",
-    highlight: "£3,800–£5,500 typical project value",
+    highlight: "£3,800 - £5,500 typical project value",
   },
   {
     id: "cs-3",
@@ -241,7 +241,7 @@ const RG_CASE_STUDIES = [
       "Carried out complete periodic inspection. Replaced substandard supplementary earth bonding to gas and water mains on the spot, tested all socket polarities, and issued a digital PDF report that afternoon.",
     outcome:
       "Tenancy commenced on schedule without council delay. Transparent pricing with zero surprise extras.",
-    highlight: "£180–£280 inspection + minor remedial",
+    highlight: "£180 - £280 inspection + minor remedial",
   },
 ];
 
@@ -882,7 +882,7 @@ robbie@theharleygroup.org | 0117 214 1357`;
                 <strong>Email:</strong> info@rg-electrical.com
               </p>
               <p className="text-[11px] text-slate-500 font-mono pt-1">
-                Operating: Mon–Fri 7:30am–6:00pm (24/7 Emergency Callout)
+                Operating: Mon - Fri 7:30am - 6:00pm (24/7 Emergency Callout)
               </p>
             </div>
           </div>

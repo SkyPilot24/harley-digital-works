@@ -54,9 +54,19 @@ export function FooterDark() {
             <nav aria-label="About the studio">
               <Link to="/about">About the studio</Link>
               <Link to="/brand">Brand Standards & Guild Seal</Link>
-              <a href="https://theharleygroup.org">The Harley Group</a>
+              <Link to="/the-harley-group">The Harley Group</Link>
               <Link to="/resources">Resources</Link>
-              <a href="/contact?service=Website%20care%20support">Request website help</a>
+              <Link
+                to="/contact"
+                search={{
+                  service: "Website care support",
+                  package: undefined,
+                  domain: undefined,
+                  websiteUrl: undefined,
+                }}
+              >
+                Request website help
+              </Link>
             </nav>
           </div>
           <div>
@@ -99,7 +109,7 @@ export function FooterDark() {
         <div className="studio-footer-bottom">
           <span>
             © {new Date().getFullYear()} Harley Digital Works. Part of The Harley Group · Bristol,
-            UK · Mon–Fri 09:00–17:00
+            UK · Mon - Fri 09:00 - 17:00
           </span>
           <span>Independent thinking. Considered design.</span>
         </div>

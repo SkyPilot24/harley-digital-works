@@ -71,27 +71,37 @@ function WorkPage() {
               <p className="studio-kicker">
                 <span className="studio-kicker-line" /> BEFORE & AFTER SHOWCASE · DESIGN STUDIES
               </p>
-              <h1 id="work-page-heading">
+              <h1 id="work-page-heading" className="tracking-tight text-balance">
                 Websites crafted
                 <br />
                 with purpose.
                 <br />
                 <span>Built to be chosen.</span>
               </h1>
-              <p className="hero-description">
-                See the difference between dated DIY templates and high-converting trade platforms.
+              <p className="hero-description text-balance">
+                Compare dated DIY templates with high-converting trade platforms. Distinctive
+                design, 100% done-for-you copywriting, and frictionless mobile booking.
               </p>
-              <p className="hero-support">
-                Every trade has its own character. We design websites that feel authentic to your
-                workmanship, earn immediate credibility, and make quoting straightforward.
-              </p>
-              <div className="studio-actions">
-                <PillButton as="link" to="/contact" variant="dark" className="studio-button">
+              <div className="studio-actions flex flex-wrap items-center gap-3 pt-1">
+                <PillButton
+                  as="link"
+                  to="/contact"
+                  variant="dark"
+                  className="studio-button min-h-[48px] px-7 text-sm font-semibold shadow-sm cursor-pointer"
+                >
                   Discuss your website
                 </PillButton>
-                <a href="#transformations" className="studio-text-link">
-                  Explore transformations <ArrowDown size={16} />
+                <a
+                  href="#transformations"
+                  className="studio-text-link inline-flex items-center gap-1.5 text-xs text-stone-600 hover:text-stone-900 transition-colors"
+                >
+                  <span>Explore transformations</span> <ArrowDown size={13} />
                 </a>
+              </div>
+              <div className="pt-2 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-stone-600 font-medium">
+                <span>Demonstrated across 6 UK Trade Sectors</span>
+                <span className="text-stone-300">|</span>
+                <span>Electrical, Heating, Roofing, Building & Commercial FM</span>
               </div>
             </div>
 
