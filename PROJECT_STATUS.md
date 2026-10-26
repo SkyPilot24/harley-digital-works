@@ -1,5 +1,20 @@
 # Harley Digital Works — Project Status
 
+## Cloudflare CLI Authentication & Direct Production Deployment — 26 October 2026
+
+**Current Status:** Resolved Cloudflare CLI (`wrangler`) authentication failure and executed direct production deployment to Cloudflare Worker `skypilot24-harley-digital-works`:
+
+1. **Root Cause Analysis & Resolution**:
+   - **Token Shadowing in `.env.local`:** `.env.local` contained a DNS-scoped API token (`cfut_...`) labeled `CLOUDFLARE_API_TOKEN`. When running Wrangler CLI commands, Wrangler automatically read `.env.local` and prioritized this DNS token over the user's logged-in account, triggering `Authentication error [code: 10000]` and `Failed to automatically retrieve account IDs`.
+   - **Resolution:** Renamed `CLOUDFLARE_API_TOKEN` to `CLOUDFLARE_DNS_API_TOKEN` in `.env.local`. This immediately unmasked Robbie's authorized global OAuth login (`robbieharley83@gmail.com`, Account ID `6ccd86a1ec4535357f9bc51cd05e68cd`) with full `workers_scripts:write` permissions.
+   - **Direct Production Deployment:** Executed `npx wrangler deploy --config .output/server/wrangler.json`, publishing Version ID `d2081dde-07f5-490f-9614-39fda9f728ef` across all worker triggers and static assets.
+2. **Empirical Quality & Production Verification**:
+   - Wrangler CLI Authentication (`npx wrangler whoami`): **PASS** (Authenticated as `robbieharley83@gmail.com`).
+   - Production Domain (`https://harleydigitalworks.com`): **HTTP 200 OK** (Instant edge SSR response).
+   - Headquarters Domain (`https://theharleygroup.org/the-harley-group`): **HTTP 200 OK**.
+   - Direct Worker (`https://skypilot24-harley-digital-works.robbieharley83.workers.dev`): **HTTP 200 OK**.
+   - Trade Routes (`/demos`, `/locations`, `/audit`, `/calculator`): **HTTP 200 OK**.
+
 ## Cloudflare SSR Runtime & CI Quality Gate Resolution — 26 October 2026
 
 **Current Status:** Resolved Cloudflare HTTP 500 runtime crash and GitHub Actions CI gate failure following Dependabot PR #56:

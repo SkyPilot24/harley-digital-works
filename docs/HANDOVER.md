@@ -1,5 +1,19 @@
 # The Harley Group & Harley Digital Works — Session Handover Log
 
+## Cloudflare CLI Authentication & Direct Production Deployment — 26 October 2026
+
+- **Tool & Scope:** Google Antigravity. Resolved Cloudflare CLI (`wrangler`) authentication failure and executed direct production deployment to Cloudflare Worker `skypilot24-harley-digital-works`.
+- **Root Cause & Resolution:**
+  1. **Token Shadowing in `.env.local`:** A custom DNS zone token (`cfut_...`) was saved under the variable name `CLOUDFLARE_API_TOKEN` in `.env.local`. When running `wrangler` CLI commands, Wrangler loaded `.env.local` and attempted to authenticate Worker operations using this DNS-scoped token, triggering `Authentication error [code: 10000]` and `Failed to automatically retrieve account IDs`. It also blocked OAuth re-login with `You are logged in with an API Token`.
+  2. **Resolution:** Renamed `CLOUDFLARE_API_TOKEN` to `CLOUDFLARE_DNS_API_TOKEN` in `.env.local`. Wrangler immediately restored full access to Robbie's OAuth account (`robbieharley83@gmail.com`, Account ID `6ccd86a1ec4535357f9bc51cd05e68cd`) with authorized `workers (write)` and `workers_scripts (write)` permissions.
+  3. **Direct CLI Production Deployment:** Executed `npx wrangler deploy --config .output/server/wrangler.json`, uploading 202 modified static assets and the prebuilt Nitro worker bundle. Deployed Version ID: `d2081dde-07f5-490f-9614-39fda9f728ef`.
+- **Empirical Verification Evidence:**
+  - Wrangler Account Check (`npx wrangler whoami`): **PASS** (Logged in as `robbieharley83@gmail.com`, Account `6ccd86a1ec4535357f9bc51cd05e68cd`).
+  - Worker Edge (`https://skypilot24-harley-digital-works.robbieharley83.workers.dev`): **HTTP 200 OK**.
+  - Production Custom Domain (`https://harleydigitalworks.com`): **HTTP 200 OK** (0 SSR errors).
+  - Production Headquarters Domain (`https://theharleygroup.org/the-harley-group`): **HTTP 200 OK**.
+  - Trade & Utility Routes (`/demos`, `/locations`, `/audit`, `/calculator`): **HTTP 200 OK**.
+
 ## Cloudflare SSR Runtime & CI Quality Gate Resolution — 26 October 2026
 
 - **Tool & Scope:** Google Antigravity. Resolved Cloudflare HTTP 500 runtime crash and GitHub Actions Quality CI gate failure following Dependabot PR #56.
