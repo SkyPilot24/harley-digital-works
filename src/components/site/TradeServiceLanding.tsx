@@ -373,7 +373,7 @@ export function TradeServiceLanding({
 
         {/* Practical Business Outcomes: Eliminating Evening Quote Headaches */}
         <section className="studio-section studio-wrap deferred-section">
-          <p className="studio-kicker">BUILT FOR HOW TRADES ACTUALLY WORK</p>
+          <p className="studio-kicker">BUILT FOR HOW TRADES WORK</p>
           <h2>
             Eliminate evening quote administration.
             <br />

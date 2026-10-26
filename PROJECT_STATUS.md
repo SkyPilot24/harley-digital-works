@@ -1,5 +1,23 @@
 # Harley Digital Works — Project Status
 
+## Full Project Website Audit & Hardening across /no-ai-slop Complete — 26 October 2026
+
+**Current Status:** Completed repository-wide audit and remediation of all public websites, pages, and components against `no-ai-slop` standards:
+
+1. **33 Customer-Facing Slop Items Remediated to 0**:
+   - Stripped banned buzzwords (`meticulous`, `leverage`, `empower`, `streamline`, `robust`, `elevate`, `seamless`) across routes, replacing them with concrete trade outcomes.
+   - Removed all emojis from trade preset selectors, bio texts, buttons, and status tags (`🔥`, `🏠`, `⚡`, `🔨`, `✨`, `🖨️`, `📲`, `🛠️`, `📍`, `🤩`, `😊`, `😐`, `😞`, `🟢`), upgrading them to industrial Lucide icons or styled CSS indicators.
+   - Removed empty adverbs (`actually`) and binary contrasts (`not just a repairman`), making claims direct, grounded, and confident.
+2. **Automated Slop Prevention**:
+   - Created `scripts/scan-all-slop.mjs` verifying 0 banned words, 0 empty phrases, 0 throat-clearing patterns, and 0 customer-facing emojis across all public routes and site components.
+3. **Verification**:
+   - `node scripts/scan-all-slop.mjs`: PASS (0 items to review).
+   - `npm run format:check`: PASS (100% Prettier compliant).
+   - `npm run typecheck`: PASS (0 TS errors).
+   - `npm run lint`: PASS (0 errors, 9 non-blocking warnings).
+   - `npm test`: PASS (205/205 passing assertions across 25 suites + service worker + claims guard).
+   - `npm run build`: PASS (Vite + Nitro SSR built cleanly in 1.12s).
+
 ## /no-ai-slop Trade Demo Pages Hardening Complete — 25 October 2026
 
 **Current Status:** Audited and remediated all demo routes and demo components against the `no-ai-slop` skill standards:

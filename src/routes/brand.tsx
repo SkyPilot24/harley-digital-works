@@ -107,7 +107,7 @@ const BRANDS_DATA: Record<BrandEntity, BrandSpec> = {
       },
     ],
     voiceGuidelines: [
-      "Plain English first: Explain technical concepts in terms of revenue, booked jobs, and time saved.",
+      "Plain English first: Explain technical concepts by their commercial return: revenue, booked jobs, and time saved.",
       "No homework rule: Emphasize that we write 100% of the copy and look after website and enquiry systems.",
       "Approved commercial offer: £1,495 setup + £249/month care. 'Your website and enquiries, looked after.' is our core customer promise.",
     ],
@@ -420,8 +420,8 @@ function BrandAssetsPage() {
                     Website Headers & Proposals
                   </h4>
                   <p className="mt-2 text-xs text-slate-300 leading-relaxed">
-                    Use the stacked vertical lockup (shown on left of board): Monogram on top,
-                    robust Manrope lettering in the middle, hairline rule, and{" "}
+                    Use the stacked vertical lockup (shown on left of board): Monogram on top, clean
+                    Manrope lettering in the middle, hairline rule, and{" "}
                     <em>"PART OF THE HARLEY GROUP"</em> anchored underneath with an emerald pip.
                   </p>
                 </div>
@@ -1021,8 +1021,8 @@ function BrandAssetsPage() {
                   Instagram / Facebook Bio
                 </span>
                 <p className="text-slate-200 leading-relaxed">
-                  "You do the trade. We take the website headache away. 🛠️ Websites & care for UK
-                  contractors. 📍 Bristol, Bath & M4 Corridor."
+                  "You do the trade. We take the website headache away. Done-for-you websites &
+                  monthly care for UK contractors across Bristol, Bath & M4 Corridor."
                 </p>
               </div>
             </div>

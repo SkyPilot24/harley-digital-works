@@ -56,7 +56,7 @@ const NATIONWIDE_SCENARIOS: ScenarioData[] = [
     afterPoints: [
       "100% done-for-you copywriting detailing manufacturer warranties and Gas Safe credentials.",
       "Mobile-optimised enquiry form allowing homeowners to upload boiler photos on the spot.",
-      "Clear positioning as an established regional heating authority, not just a repairman.",
+      "Clear positioning as an established regional heating and boiler authority.",
       "Rolling £249/mo care ensures seasonal servicing promotions update automatically.",
     ],
     potentialOutcomes: [

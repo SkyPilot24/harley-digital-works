@@ -265,7 +265,7 @@ export const PORTFOLIO_TRANSFORMATIONS: PortfolioTransformation[] = [
       situation:
         "Competent NICEIC electrician struggling to win higher-margin commercial contracts due to dated web appearance.",
       intendedBenefit:
-        "Clean, corporate presentation, accreditation transparency, and streamlined commercial RFQ forms.",
+        "Clean, corporate presentation, accreditation transparency, and structured commercial RFQ forms.",
       businessOwner: "Illustrative scenario: NICEIC Electrical Contractor",
       tradingName: "Concept: Vanguard Electrical & Renewable",
       location: "Manchester & Cheshire",
@@ -457,7 +457,7 @@ export const PORTFOLIO_TRANSFORMATIONS: PortfolioTransformation[] = [
     },
     supportingSocialProof: {
       quote:
-        "“Clients spending eighty grand on a rear extension want to see that you take craftsmanship seriously before they invite you into their home. The new site instantly elevated our reputation and eliminated haggling over day rates.”",
+        "“Clients spending eighty grand on a rear extension want to see that you take craftsmanship seriously before they invite you into their home. The new site established our professional reputation and eliminated haggling over day rates.”",
       situation:
         "Master builder delivering top-tier structural work but losing lucrative architectural contracts to lesser builders with slicker branding.",
       intendedBenefit:
@@ -585,7 +585,7 @@ export const PORTFOLIO_TRANSFORMATIONS: PortfolioTransformation[] = [
         "Cheap pricing anchors ('£120 per room') that invite micro-managing bargain hunters",
         "Stock clip-art paint can graphics that look like a 1990s clip-art collection",
         "No mention of surface preparation, dustless sanding, or heritage paint brands",
-        "Zero photos of sharp cutting-in, sash window restoration, or seamless wallpapering",
+        "Zero photos of sharp cutting-in, sash window restoration, or clean, edge-to-edge wallpapering",
       ],
       mobileIssues: [
         "Unstyled mobile form where fields overflow beyond the screen width",

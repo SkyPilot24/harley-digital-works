@@ -14,6 +14,8 @@ import {
   Sparkles,
   ShieldCheck,
   Zap,
+  Printer,
+  Share2,
 } from "lucide-react";
 import { PageShell, Container } from "@/components/site/PageShell";
 import { PillButton } from "@/components/site/PillButton";
@@ -322,7 +324,8 @@ function WebsiteHealthCheckPage() {
                       onClick={() => window.print()}
                       className="inline-flex items-center justify-center gap-2 rounded-xl bg-ink hover:bg-ink/90 text-white font-semibold text-xs px-4 py-2.5 transition-all shadow-sm"
                     >
-                      <span>🖨️ Print / Save PDF Report</span>
+                      <Printer className="h-4 w-4" />
+                      <span>Print / Save PDF Report</span>
                     </button>
                     <button
                       type="button"
@@ -340,7 +343,8 @@ Full breakdown: https://harleydigitalworks.com/audit`;
                       }}
                       className="inline-flex items-center justify-center gap-2 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-semibold text-xs px-4 py-2.5 transition-all shadow-sm"
                     >
-                      <span>📲 Copy WhatsApp Summary</span>
+                      <Share2 className="h-4 w-4" />
+                      <span>Copy WhatsApp Summary</span>
                     </button>
                   </div>
                 </div>

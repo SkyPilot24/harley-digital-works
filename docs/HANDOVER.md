@@ -1,6 +1,32 @@
 # The Harley Group & Harley Digital Works — Session Handover Log
 
-## /no-ai-slop Trade Demo Pages Review & Remediation — 25 October 2026
+## Full Project Website Audit & Hardening across /no-ai-slop Standards — 26 October 2026
+
+- **Tool & Scope:** Google Antigravity. Robbie instructed: `/lease review all created website in this project and make sure all are alligned to /no-ai-slop`. Executed an exhaustive automated scan and remediation across all customer-facing routes, components, and datasets in the repository.
+- **Applied Changes (33 Items Cleared to 0 Violations):**
+  1. `src/components/site/TradeRoiCalculator.tsx`: Removed emojis from trade preset selector labels (`🔥`, `🏠`, `⚡`, `🔨`, `✨`).
+  2. `src/components/site/ConceptShowcase.tsx`: Replaced banned buzzword `meticulous` with `exceptional attention to detail`.
+  3. `src/components/site/HeroTransformationVideoModal.tsx`: Replaced raw symbol `5★` with `5-Star`.
+  4. `src/components/site/CustomerTransformationSection.tsx`: Eliminated binary contrast (`not just a repairman`), stating the trade positioning directly (`Clear positioning as an established regional heating and boiler authority`).
+  5. `src/components/site/TradeServiceLanding.tsx`: Removed empty adverb `ACTUALLY` from section kicker (`BUILT FOR HOW TRADES WORK`).
+  6. `src/routes/audit.tsx`: Replaced raw emojis `🖨️` and `📲` with precision Lucide `Printer` and `Share2` icons.
+  7. `src/routes/brand.tsx`: Replaced empty phrase `in terms of` with commercial return phrasing, replaced banned word `robust` with `clean`, and removed bio emojis `🛠️` and `📍`.
+  8. `src/routes/labs.tsx`: Replaced banned word `leverage` across R&D vectors with `high-impact` and `productivity`.
+  9. `src/routes/partners.tsx`: Replaced banned word `Empower` with `Equip`.
+  10. `src/routes/proposals.tsx`: Replaced banned word `streamlined` with `focused` and `High-Leverage` with `High-Impact`.
+  11. `src/routes/services_.automation.tsx` & `src/routes/services_.content-engine.tsx`: Replaced empty adverb `actually` with concrete deliverables (`where automation delivers measurable time savings` and `across your active client channels`).
+  12. `src/routes/tools.review-booster.tsx`: Replaced cartoon rating emojis (`🤩`, `😊`, `😐`, `😞`) with clean professional rating labels.
+  13. `src/routes/track.tsx` & `src/routes/track_.$token.tsx`: Replaced raw emoji `🟢` with styled pulsing emerald status indicator dots.
+  14. `src/routes/work.tsx`: Replaced banned word `elevate` with `strengthen`.
+  15. `src/lib/portfolio-data.ts`: Replaced banned words `streamlined`, `elevated`, and `seamless` with grounded trade outcomes (`structured RFQ forms`, `established our professional reputation`, `clean, edge-to-edge wallpapering`).
+  16. `scripts/scan-all-slop.mjs`: Added automated scanner ensuring 0 slop violations persist across all public surfaces.
+- **Empirical Verification:**
+  - `node scripts/scan-all-slop.mjs`: PASS (Found 0 customer-facing items to review).
+  - `npm run format:check`: PASS (100% Prettier compliant).
+  - `npm run typecheck`: PASS (0 TS errors).
+  - `npm run lint`: PASS (0 errors, 9 non-blocking warnings).
+  - `npm test`: PASS (205/205 passing assertions across 25 suites + service worker + claims guard).
+  - `npm run build`: PASS (Vite + Nitro SSR built cleanly in 1.12s).
 
 - **Tool & Scope:** Google Antigravity. Robbie requested: `/no-ai-slop please review the demo pages again this skill`. Audited and remediated all demo routes and demo components against the `no-ai-slop` skill standards (ban list, no emojis in headers/badges, no throat-clearing, direct British trade phrasing, zero unratified turnaround claims).
 - **Applied Changes:**

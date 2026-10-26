@@ -22,7 +22,7 @@ export const Route = createFileRoute("/services_/content-engine")({
       deliverables={[
         {
           tag: "Calendar",
-          title: "30 days of posts scheduled across the platforms you actually use.",
+          title: "30 days of posts scheduled across your active client channels.",
           surface: "sage",
         },
         {

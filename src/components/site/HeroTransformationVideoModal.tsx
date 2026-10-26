@@ -53,7 +53,11 @@ const SCENES: Scene[] = [
     videoSrc: "/images/transformation-video/scene-2-slider-wipe.mp4",
     voiceover:
       "At Harley Digital Works, we transform tired trade sites into elite commercial platforms. Sub-30ms edge speed. Engineered for mobile. Designed to win higher-paying jobs—without competing on the cheapest price.",
-    highlightPills: ["Sub-30ms Load Speed", "5★ Review Badges", "Instant WhatsApp Quote Funnels"],
+    highlightPills: [
+      "Sub-30ms Load Speed",
+      "5-Star Review Badges",
+      "Instant WhatsApp Quote Funnels",
+    ],
   },
   {
     id: 3,

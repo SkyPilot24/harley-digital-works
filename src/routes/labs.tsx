@@ -461,7 +461,7 @@ function HarleyLabsPage() {
               Pioneering Technologies Engineered at Harley Labs.
             </h2>
             <p className="mt-3 text-[#5a5d4e]">
-              We focus on practical, high-leverage software architectures that deliver immediate
+              We focus on practical, high-impact software architectures that deliver immediate
               commercial advantage.
             </p>
           </div>
@@ -621,8 +621,8 @@ function HarleyLabsPage() {
                 Bridging Deep Software Research with Practical Commercial Utility.
               </h2>
               <p className="text-base text-[#5a5d4e] leading-relaxed">
-                Harley Labs was created to engineer real, measurable software leverage. Rather than
-                producing speculative proof-of-concepts, our research vectors solve concrete
+                Harley Labs was created to engineer real, measurable software productivity. Rather
+                than producing speculative proof-of-concepts, our research vectors solve concrete
                 operating bottlenecks in edge infrastructure, high-velocity digital commerce, and
                 real-time search analytics.
               </p>

@@ -84,7 +84,7 @@ const PACKAGES = {
     price: 995,
     tagline: "Core 3-page trade web foundation for sole operators establishing local presence.",
     deliverables: [
-      "3-Page streamlined layout (Home, Services & Pricing, Contact Desk)",
+      "3-Page focused layout (Home, Services & Pricing, Contact Desk)",
       "Done-for-you copywriting and trade accreditation showcase",
       "Mobile-optimized performance & Google PageSpeed 95+",
       "Direct phone and WhatsApp enquiry routing",
@@ -374,7 +374,7 @@ function ProposalsPage() {
                 </div>
               </div>
 
-              {/* Optional High-Leverage Add-ons */}
+              {/* Optional High-Impact Add-ons */}
               <div className="rounded-2xl border border-ink/10 bg-white p-6 md:p-8 shadow-sm">
                 <div className="flex items-center justify-between border-b border-ink/10 pb-4">
                   <div>

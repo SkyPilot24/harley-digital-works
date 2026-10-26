@@ -22,7 +22,8 @@ export const Route = createFileRoute("/services_/automation")({
       deliverables={[
         {
           tag: "Audit",
-          title: "A tight audit of where time is being spent and where automation actually helps.",
+          title:
+            "A tight audit of where time is being spent and where automation delivers measurable time savings.",
           surface: "sage",
         },
         {

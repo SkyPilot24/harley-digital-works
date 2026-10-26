@@ -73,7 +73,7 @@ const TARGET_PARTNER_TYPES = [
   {
     type: "Trade Federations & Associations",
     examples: "NICEIC, Gas Safe, FMB, NAPIT, Checkatrade members",
-    role: "Empower members with high-speed websites that prominently display their mandatory badges and compliance certificates.",
+    role: "Equip members with high-speed websites that prominently display their mandatory badges and compliance certificates.",
   },
 ];
 

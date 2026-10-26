@@ -47,7 +47,7 @@ export const Route = createFileRoute("/api/webhooks/domain-inbound")({
             await sendSlackMessage(
               "#sales",
               {
-                text: `📬 *NEW INBOUND EMAIL RECEIVED!*\n• *From:* ${from}\n• *Subject:* ${subject}\n• *Snippet:* "${preview}"\n• *Timestamp:* ${new Date().toLocaleTimeString("en-GB")}`,
+                text: `*NEW INBOUND EMAIL RECEIVED!*\n• *From:* ${from}\n• *Subject:* ${subject}\n• *Snippet:* "${preview}"\n• *Timestamp:* ${new Date().toLocaleTimeString("en-GB")}`,
               },
               {
                 enabled: true,

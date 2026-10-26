@@ -39,7 +39,7 @@ const studioConcepts = {
     category: "Bathrooms & interiors",
     title: "Craftsmanship you can almost feel.",
     description:
-      "A quieter, tactile direction for a bespoke bathroom renovation specialist. Fluted oak, brushed brass rainfall showers, and natural stone tiles showcase meticulous attention to detail.",
+      "A quieter, tactile direction for a bespoke bathroom renovation specialist. Fluted oak, brushed brass rainfall showers, and natural stone tiles showcase exceptional attention to detail.",
     image: "/images/home/bathroom-interior.jpg",
     alt: "Bespoke master bathroom with brushed brass rainfall shower, fluted oak vanity and natural light through sash window",
     services: "Art direction / Website design / Enquiry journey",

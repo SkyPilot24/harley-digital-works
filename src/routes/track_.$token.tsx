@@ -43,8 +43,9 @@ function DynamicTrackPage() {
           <div className="max-w-3xl">
             <div className="flex items-center gap-2 mb-4">
               <TagChip tone="dark">Client Delivery Portal</TagChip>
-              <span className="text-xs text-emerald-400 font-semibold bg-emerald-950/60 px-2.5 py-0.5 rounded-full border border-emerald-800/40">
-                🟢 Day {project.currentDay} of {project.totalDays}
+              <span className="inline-flex items-center gap-1.5 text-xs text-emerald-400 font-semibold bg-emerald-950/60 px-2.5 py-0.5 rounded-full border border-emerald-800/40">
+                <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                Day {project.currentDay} of {project.totalDays}
               </span>
             </div>
 

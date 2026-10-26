@@ -218,7 +218,7 @@ function WorkPage() {
                 <br />
                 each demonstrating how architecture, typography,
                 <br className="desktop-break" />
-                and photography elevate different trade sectors.
+                and photography strengthen different trade sectors.
               </p>
             </div>
 
