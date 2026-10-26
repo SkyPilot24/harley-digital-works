@@ -58,7 +58,7 @@ export const TRADE_DEMOS: Record<string, TradeDemoBusiness> = {
     badge: "NICEIC Approved Contractor #D604921",
     tagline: "Certified Domestic & Commercial Electricians across Greater Manchester",
     phone: "0161 820 4910",
-    whatsapp: "07700 900142",
+    whatsapp: "07394 041487",
     coverageArea: "Manchester, Stockport, Altrincham, Salford & Cheshire",
     accreditations: [
       { name: "NICEIC Approved Contractor", idNumber: "D604921", iconText: "Part P" },
@@ -188,7 +188,7 @@ export const TRADE_DEMOS: Record<string, TradeDemoBusiness> = {
     badge: "Confederation of Roofing Contractors #C7741",
     tagline: "Specialist Slate, Tile & GRP Flat Roof Specialists in Birmingham & West Midlands",
     phone: "0121 740 8820",
-    whatsapp: "07700 900288",
+    whatsapp: "07394 041487",
     coverageArea: "Birmingham, Solihull, Sutton Coldfield, Wolverhampton & Bromsgrove",
     accreditations: [
       { name: "CORC Confederation Member", idNumber: "C7741", iconText: "CORC" },
@@ -311,7 +311,7 @@ export const TRADE_DEMOS: Record<string, TradeDemoBusiness> = {
     badge: "Gas Safe Registered #648192 • Worcester Bosch Diamond Accredited",
     tagline: "Boiler Replacements, Power Flushing & Central Heating across Yorkshire & Leeds",
     phone: "0113 490 1280",
-    whatsapp: "07700 900355",
+    whatsapp: "07394 041487",
     coverageArea: "Leeds, Harrogate, Bradford, Wakefield, Wetherby & York",
     accreditations: [
       { name: "Gas Safe Registered", idNumber: "648192", iconText: "Gas Safe" },
@@ -444,7 +444,7 @@ export const TRADE_DEMOS: Record<string, TradeDemoBusiness> = {
     tagline:
       "Commercial HVAC, Multi-Trade Facilities Maintenance & Planned PPM Contracts across the UK",
     phone: "020 8191 7840",
-    whatsapp: "07700 900882",
+    whatsapp: "07394 041487",
     coverageArea: "London & Home Counties, Birmingham, Manchester & Nationwide Fleet",
     accreditations: [
       {

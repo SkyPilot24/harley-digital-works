@@ -44,13 +44,26 @@ export function TradeQuoteCalculator({ business }: TradeQuoteCalculatorProps) {
   }, [activeJob, activeSize, activeUrgency]);
 
   const handleWhatsAppQuote = () => {
+    const rawNumber = business.whatsapp?.replace(/\s+/g, "") || "";
+    const isDummy =
+      !rawNumber ||
+      rawNumber.includes("7700") ||
+      rawNumber.includes("0000") ||
+      rawNumber.startsWith("01") ||
+      rawNumber.startsWith("02") ||
+      /^0+$/.test(rawNumber);
+    const targetDigits = isDummy
+      ? "447394041487"
+      : rawNumber.startsWith("0")
+        ? "44" + rawNumber.slice(1)
+        : rawNumber.startsWith("44")
+          ? rawNumber
+          : "44" + rawNumber;
+
     const message = encodeURIComponent(
       `Hi ${business.name}, I used your instant estimator on your website for ${activeJob?.name} (${activeSize?.name}). Ballpark estimate: £${priceEstimate.low} - £${priceEstimate.high}. My postcode is ${postcode || "local area"}. Can you confirm your availability?`,
     );
-    window.open(
-      `https://wa.me/44${business.whatsapp.replace(/^0+/, "").replace(/\s+/g, "")}?text=${message}`,
-      "_blank",
-    );
+    window.open(`https://wa.me/${targetDigits}?text=${message}`, "_blank");
   };
 
   useEffect(() => {

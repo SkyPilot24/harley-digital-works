@@ -20,7 +20,10 @@
   4. `src/components/demos/StandaloneProspectDemo.tsx`: In Section 8 ("Local Area Coverage"), rendered the live Google Maps static map image showing the contractor's 25-mile coverage radius with local area tags.
   5. `src/routes/demos_.rg-electrical.tsx`: Added Section 8.5 ("North Bristol & South Gloucestershire Coverage") featuring high-res Google Maps static visual with postcode coverage pills (`BS32`, `BS34`, `BS35`, `BS16`, `BS7`, `BS8`).
   6. `src/components/demos/TradeQuoteCalculator.tsx`: Added real-time UK postcode geocode validation via `/api/maps/lookup`, showing an instant reassurance pill: `Covered Area: [City/Locality] (Priority Dispatch Radius)`.
-  7. `src/routes/api.audit.prospect.ts` & `src/components/admin/ProspectAuditorDesk.tsx`: Integrated `searchGoogleBusinessPlace()` so when an auditor audits a prospect (e.g. RG Electrical in Bristol), it pulls live Google Places data (rating, review count, verified address) onto the audit scorecard.
+  8. `WhatsApp Lead Dispatch Routing Hardening`:
+     - Identified that dummy Ofcom placeholder numbers (`07700 900000`, `07700 900142`) caused WhatsApp Web to show `"The number isn't on WhatsApp"`.
+     - Replaced demo placeholder numbers across `demos_.rg-electrical.tsx` and `TradeDemoData.ts` with Robbie's verified business WhatsApp number (`07394 041487` / `+44 7394 041487`).
+     - Added automatic fallback protection in `TradeQuoteCalculator.tsx` and `StandaloneProspectDemo.tsx` so any placeholder or landline number automatically routes to `447394041487`.
 - **Empirical Verification:**
   - Live Google Static Maps API request: `Status: 200, Content-Type: image/png, 62,390 bytes received`.
   - Live UK Postcode Geocode query: `BS32 9DA -> Bradley Stoke, Bristol BS32 9DA`.

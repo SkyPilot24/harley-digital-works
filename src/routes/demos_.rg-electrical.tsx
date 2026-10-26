@@ -60,7 +60,7 @@ const RG_ELECTRICAL_DATA: TradeDemoBusiness = {
   tagline:
     "Certified Domestic & Commercial Electricians · Bradley Stoke, North Bristol & South Glos",
   phone: "0117 900 0000",
-  whatsapp: "07700 900000",
+  whatsapp: "07394 041487",
   coverageArea: "Bradley Stoke, Stoke Gifford, Filton, Patchway, Thornbury, Clifton & Bristol",
   accreditations: [
     { name: "NICEIC Approved Contractor", idNumber: "TrustMark Verified", iconText: "NICEIC" },

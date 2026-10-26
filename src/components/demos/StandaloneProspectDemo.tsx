@@ -43,19 +43,32 @@ export function StandaloneProspectDemo({
 
   const baseBusiness = TRADE_DEMOS[tradeKey] || TRADE_DEMOS.electrical;
 
+  const cleanPhone = phone.replace(/\s+/g, "");
+  const isDummyOrLandline =
+    !cleanPhone ||
+    cleanPhone.startsWith("01") ||
+    cleanPhone.startsWith("02") ||
+    cleanPhone.includes("7700") ||
+    cleanPhone.includes("000000");
+  const whatsappPhone = isDummyOrLandline
+    ? "447394041487"
+    : cleanPhone.startsWith("0")
+      ? "44" + cleanPhone.slice(1)
+      : cleanPhone;
+
   // Customise business data for this specific prospect
   const business = useMemo<TradeDemoBusiness>(() => {
     return {
       ...baseBusiness,
       name: company,
       phone,
-      whatsapp: phone,
+      whatsapp: isDummyOrLandline ? "07394 041487" : phone,
       coverageArea: city,
       heroHeadline: `${baseBusiness.badge} across ${city}`,
       heroSubheadline: `Professional, certified specialists delivering prompt installations, routine compliance, and 24/7 emergency response throughout ${city}.`,
       emergencyBanner: `24/7 Emergency Dispatch across ${city} · Call ${phone}`,
     };
-  }, [baseBusiness, company, city, phone]);
+  }, [baseBusiness, company, city, phone, isDummyOrLandline]);
 
   const TradeIcon =
     tradeKey === "heating"
@@ -65,9 +78,6 @@ export function StandaloneProspectDemo({
         : tradeKey === "commercial"
           ? Building
           : Zap;
-
-  const cleanPhone = phone.replace(/\s+/g, "");
-  const whatsappPhone = cleanPhone.startsWith("0") ? "44" + cleanPhone.slice(1) : cleanPhone;
 
   return (
     <div className="min-h-screen bg-[#081B30] text-slate-100 font-sans selection:bg-amber-400 selection:text-slate-950">

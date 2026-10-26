@@ -11,6 +11,7 @@
    - Wired live Google Maps coverage visuals into Section 8 of `StandaloneProspectDemo.tsx` and Section 8.5 of `demos_.rg-electrical.tsx`.
    - Wired real-time UK postcode geocode validation into `TradeQuoteCalculator.tsx` with instant coverage confirmation pills.
    - Wired live Google Places rating and review count fetching into `api.audit.prospect.ts` and `ProspectAuditorDesk.tsx`.
+   - Replaced dummy Ofcom placeholder numbers (`07700 900000`) with Robbie's verified business WhatsApp number (`07394 041487` / `+44 7394 041487`) with auto-fallback across all demo quote flows.
 2. **Empirical Verification**:
    - Live Google Static Maps API: PASS (HTTP 200, 62,390 bytes PNG).
    - Live Geocode API: PASS (BS32 9DA -> Bradley Stoke, Bristol BS32 9DA).
