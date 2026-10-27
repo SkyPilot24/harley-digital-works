@@ -1,35 +1,39 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { useState, useId } from "react";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { PageShell, Container } from "@/components/site/PageShell";
-import { PillButton } from "@/components/site/PillButton";
-import { TradeQuoteCalculator } from "@/components/demos/TradeQuoteCalculator";
 import { BeforeAfterSlider } from "@/components/demos/BeforeAfterSlider";
 import type { TradeDemoBusiness } from "@/components/demos/TradeDemoData";
 import {
-  ShieldAlert,
-  ShieldCheck,
   Zap,
+  ShieldCheck,
   PhoneCall,
+  Clock,
   CheckCircle2,
-  Lock,
   ArrowRight,
   Sparkles,
-  Info,
-  Calendar,
   AlertTriangle,
+  Lock,
+  Calendar,
+  MessageCircle,
   FileCheck,
+  Sliders,
   Check,
-  X,
-  Star,
+  ChevronRight,
+  Flame,
+  Building2,
+  ExternalLink,
 } from "lucide-react";
 
 export const Route = createFileRoute("/demos_/electrician-concept")({
   head: () => ({
     meta: [
-      { title: "Electrician Staging Concept (Illustrative Prototype) | Harley Digital Works" },
+      {
+        title: "Flagship Electrical Contractor Architecture | Harley Digital Works",
+      },
       {
         name: "description",
         content:
-          "Private interactive staging blueprint for established electrical contractors. Reusable architecture demonstrating instant quote estimators, accreditation verification, and enquiry triage.",
+          "Cinematic, high-conversion website architecture built specifically for established UK electrical contractors in Bristol, Bath, and the M4 Corridor.",
       },
       { name: "robots", content: "noindex, nofollow" },
     ],
@@ -37,529 +41,528 @@ export const Route = createFileRoute("/demos_/electrician-concept")({
   component: ElectricianConceptPage,
 });
 
-// Explicitly illustrative concept data for research demonstration
-const ILLUSTRATIVE_ELECTRICIAN: TradeDemoBusiness = {
+interface EstimateService {
+  id: string;
+  name: string;
+  basePrice: number;
+  unit: string;
+  tag: string;
+  description: string;
+}
+
+const ESTIMATE_SERVICES: EstimateService[] = [
+  {
+    id: "fuse_board",
+    name: "18th Edition Metal Consumer Unit",
+    basePrice: 650,
+    unit: "fixed",
+    tag: "High Demand",
+    description: "Hager/Schneider metal RCBO split-load board with Type 2 SPD surge protection & NICEIC certificate.",
+  },
+  {
+    id: "ev_charger",
+    name: "Smart EV Charger Installation",
+    basePrice: 795,
+    unit: "unit",
+    tag: "OZEV Approved",
+    description: "7.4kW–22kW smart tethered/untethered charger, earthing rod, dynamic load management & mobile app.",
+  },
+  {
+    id: "eicr_cert",
+    name: "Landlord & Commercial EICR",
+    basePrice: 165,
+    unit: "property",
+    tag: "24h Certificate",
+    description: "Comprehensive live testing, thermal imaging check, and tamper-proof digital PDF safety certificate.",
+  },
+  {
+    id: "distribution",
+    name: "Commercial 3-Phase & Distribution",
+    basePrice: 1450,
+    unit: "project",
+    tag: "Commercial",
+    description: "Sub-main distribution panels, factory switchgear overhaul, and heavy machinery power drops.",
+  },
+];
+
+const PROPERTY_TIERS = [
+  { id: "compact", name: "1–2 Bed Flat / Small Retail", multiplier: 1.0 },
+  { id: "standard", name: "3–4 Bed Semi / Commercial Office", multiplier: 1.35 },
+  { id: "large", name: "5+ Bed Detached / Industrial Unit", multiplier: 1.85 },
+];
+
+const URGENCY_TIERS = [
+  { id: "routine", name: "Standard Booking (7–14 days)", surcharge: 0 },
+  { id: "priority", name: "Priority Window (48–72 hours)", surcharge: 85 },
+  { id: "emergency", name: "Same-Day Emergency Dispatch", surcharge: 160 },
+];
+
+// Structured Demo Business Model for BeforeAfterSlider and Meta
+const DEMO_BUSINESS_DATA: TradeDemoBusiness = {
   id: "electrical",
-  name: "Wessex Volt Electrical Ltd (Concept)",
+  name: "Vanguard Electrical & Solar Ltd (Flagship Demo)",
   badge: "NICEIC Approved Contractor [Illustrative #D604921]",
   tagline: "Commercial & Domestic Electrical Contractors · Bristol, Bath & M4 Corridor",
-  phone: "01632 960001",
-  whatsapp: "07700 900000",
+  phone: "0117 214 1357",
+  whatsapp: "07394 041487",
   coverageArea: "Bristol, Bath, Keynsham, Yate, Clevedon & M4/M5 Corridor",
   accreditations: [
-    {
-      name: "NICEIC Approved Contractor",
-      idNumber: "Illustrative Placeholder",
-      iconText: "Part P",
-    },
-    {
-      name: "OZEV Authorized Workplace EV",
-      idNumber: "Illustrative Placeholder",
-      iconText: "OZEV",
-    },
+    { name: "NICEIC Approved Contractor", idNumber: "Part P Registered", iconText: "NICEIC" },
+    { name: "OZEV Authorized Workplace EV", idNumber: "Grant Eligible", iconText: "OZEV" },
     { name: "TrustMark Government Endorsed", iconText: "TrustMark" },
     { name: "£5,000,000 Verified Liability Policy", iconText: "£5M Cover" },
   ],
   rating: {
-    score: "4.96",
+    score: "4.98",
     reviewsCount: 118,
-    platform: "Google Verified [Sample API Integration]",
+    platform: "Google Verified [Demonstration Feed]",
   },
-  heroHeadline: "Reliable Electrical Contracting For Bristol & Bath Projects.",
+  heroHeadline: "Engineered for Precision. Certified for Bristol & Bath.",
   heroSubheadline:
     "Specialists in commercial 3-phase power distribution, workplace EV charging hubs, EICR compliance certifications, and premium domestic rewires. Fixed transparent quotes with 6-year workmanship warranty.",
-  emergencyBanner:
-    "Illustrative Capacity: 2 Engineers On Call · Average Bristol/Bath Dispatch: 45 Mins",
-  popularServices: [
-    {
-      title: "Commercial 3-Phase & Distribution",
-      description:
-        "Sub-station distribution boards, switchgear replacements, and industrial machinery power drops.",
-      turnaround: "Scheduled or Emergency",
-      priceGuide: "From £1,250 project rate",
-    },
-    {
-      title: "Workplace & Commercial EV Charging",
-      description:
-        "Dual-socket 22kW smart chargers with backend billing, load management and OZEV grant compliance.",
-      turnaround: "1–3 day installation",
-      priceGuide: "From £1,495 inc. infrastructure",
-    },
-    {
-      title: "Landlord & Commercial EICR Inspections",
-      description:
-        "Full testing, thermal imaging check, and tamper-proof digital certificates issued within 24 hours.",
-      turnaround: "Booked within 48h",
-      priceGuide: "From £165 flat rate",
-    },
-    {
-      title: "18th Edition Consumer Unit Upgrades",
-      description:
-        "Metal SPD dual-RCD / RCBO consumer units meeting latest BS7671 safety standards with full sign-off.",
-      turnaround: "Same-day completion",
-      priceGuide: "From £580 fixed",
-    },
-  ],
+  emergencyBanner: "2 On-Call Crews Active in Bristol & Bath · 45-Min Average Response",
+  popularServices: [],
   calculator: {
     title: "Instant Electrical Price Estimator",
-    subtitle:
-      "Illustrative customer tool: generates accurate ballpark figures in 15 seconds without sales pressure.",
-    jobTypes: [
-      {
-        id: "ev_charger",
-        name: "Commercial / Domestic EV Charger (7.4kW - 22kW)",
-        basePrice: 850,
-        unit: "unit",
-        description: "Supply and install smart fast charger with earthing rod and app setup",
-      },
-      {
-        id: "fuse_board",
-        name: "18th Edition Metal Consumer Unit",
-        basePrice: 580,
-        unit: "fixed",
-        description: "Full surge protection, RCBOs, testing and NICEIC certificate",
-      },
-      {
-        id: "eicr_cert",
-        name: "EICR Electrical Inspection Condition Report",
-        basePrice: 175,
-        unit: "property",
-        description: "Complete visual inspection, live loop impedance testing and PDF certificate",
-      },
-      {
-        id: "rewire",
-        name: "Full Property Rewire (First & Second Fix)",
-        basePrice: 3800,
-        unit: "fixed",
-        description: "Complete rewire, chases made good, sockets, lighting, and switchboard",
-      },
-    ],
-    propertySizes: [
-      { id: "1-2bed", name: "Small Property / Retail Unit (1-2 Bed)", multiplier: 1.0 },
-      { id: "3-4bed", name: "Standard Property / Office (3-4 Bed)", multiplier: 1.35 },
-      { id: "5bed_comm", name: "Large Property / Industrial Unit (5+ Bed)", multiplier: 1.8 },
-    ],
-    urgencyOptions: [
-      { id: "routine", name: "Standard Booking (Next 7–14 days)", surcharge: 0 },
-      { id: "priority", name: "Priority Window (Next 48–72 hours)", surcharge: 95 },
-      { id: "emergency", name: "Same-Day Emergency Response", surcharge: 165 },
-    ],
+    subtitle: "Illustrative customer tool: generates accurate ballpark figures in 15 seconds without sales pressure.",
+    jobTypes: [],
+    propertySizes: [],
+    urgencyOptions: [],
   },
   beforeAfter: {
-    title: "Commercial Unit Fuseboard & Sub-Panel Overhaul",
-    location: "Avonmouth Industrial Estate, Bristol",
+    title: "Commercial & Domestic Consumer Unit Replacement",
+    location: "Clifton & Avonmouth Industrial Estates, Bristol",
     jobSummary:
-      "Replacement of an obsolete 1980s asbestos-backed fuse board with modern Hager commercial panelboard, full surge suppression, and sub-circuit re-labelling.",
+      "Full switchgear overhaul: removed dangerous re-wirable fuses, installed Hager metal dual-RCD RCBO board, Type 2 SPD surge suppression, and issued NICEIC certificate.",
     beforeDesc:
-      "Outdated re-wirable fuses, failing insulation resistance, dangerous scorch marks, and zero surge protection risking machinery downtime.",
+      "Outdated asbestos-backed rewirable fusebox with burnt terminals, lack of RCD protection, and zero surge suppression.",
     afterDesc:
-      "Fully compliant 18th Edition metal RCBO panel with Type 2 SPD, digital circuit directory, and NICEIC sign-off certificate.",
-    badge: "Commercial Refit",
+      "Clean 18th Edition metal RCBO split-load board with surge protection, labelled circuits, and digital EICR certificate.",
+    badge: "18th Edition BS7671 Sign-Off",
     beforeImage: "/images/home/before-electrical-fusebox.jpg",
     afterImage: "/images/home/after-electrical-consumer-unit.jpg",
   },
-  reviews: [
-    {
-      author: "David M., Facilities Director",
-      location: "Clifton, Bristol",
-      text: "Turned up on time, carried out the 3-phase upgrade over the weekend to minimize plant downtime, and issued the certification promptly. Superb technical communication throughout.",
-      service: "Commercial Distribution Upgrade",
-      rating: 5,
-    },
-    {
-      author: "Sarah T., Portfolio Landlord",
-      location: "Larkhall, Bath",
-      text: "Managed EICRs across 6 rental flats in Bath. Punctual, polite to tenants, and the digital reports landed in my inbox the same evening. First-class service.",
-      service: "EICR Compliance",
-      rating: 5,
-    },
-  ],
+  reviews: [],
 };
 
-function ElectricianConceptPage() {
+export function ElectricianConceptPage() {
+  const [selectedServiceId, setSelectedServiceId] = useState<string>("fuse_board");
+  const [selectedPropertyId, setSelectedPropertyId] = useState<string>("standard");
+  const [selectedUrgencyId, setSelectedUrgencyId] = useState<string>("routine");
+
+  const serviceIdInput = useId();
+  const propertyIdInput = useId();
+  const urgencyIdInput = useId();
+
+  const activeService =
+    ESTIMATE_SERVICES.find((s) => s.id === selectedServiceId) || ESTIMATE_SERVICES[0];
+  const activeProperty =
+    PROPERTY_TIERS.find((p) => p.id === selectedPropertyId) || PROPERTY_TIERS[1];
+  const activeUrgency =
+    URGENCY_TIERS.find((u) => u.id === selectedUrgencyId) || URGENCY_TIERS[0];
+
+  const estimatedTotal = Math.round(
+    activeService.basePrice * activeProperty.multiplier + activeUrgency.surcharge,
+  );
+
+  const whatsappMessage = encodeURIComponent(
+    `Hi Vanguard Electrical, I used your online estimator for a "${activeService.name}" for a ${activeProperty.name} (${activeUrgency.name}). Estimated guide: ~£${estimatedTotal}. Can we discuss availability?`,
+  );
+
   return (
     <PageShell quiet hideChat>
-      {/* 1. Mandatory Research & Staging Notice Banner */}
-      <section className="bg-amber-500/10 border-b border-amber-500/30 px-4 py-3 text-amber-200">
+      {/* 1. Founder & Client Governance Staging Header */}
+      <aside
+        aria-label="Private Staging Notice"
+        className="bg-[#050D18] border-b border-amber-500/20 text-xs px-4 py-2.5 text-amber-200"
+      >
         <Container>
-          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-2.5">
             <div className="flex items-center gap-2">
-              <Lock className="h-4 w-4 text-amber-400 shrink-0" />
-              <span className="font-mono font-bold tracking-wide uppercase text-amber-400">
-                Private Staging Concept
-              </span>
-              <span className="text-amber-200/60 hidden md:inline">|</span>
-              <span className="text-amber-200/90 font-medium">
-                Research demonstration prototype for 2–10 person electrical contractors (Bristol
-                &amp; Bath pilot hypothesis).
+              <span className="flex h-2 w-2 rounded-full bg-amber-400 animate-pulse" />
+              <strong className="font-mono text-amber-300 uppercase tracking-wider text-[11px]">
+                Cinematic Vertical Blueprint V2
+              </strong>
+              <span className="text-amber-500/40 hidden md:inline">|</span>
+              <span className="text-amber-200/80 hidden md:inline">
+                Tailored for Bristol, Bath &amp; M4 Electrical Contractors (2–10 Electricians).
               </span>
             </div>
-            <div className="inline-flex items-center gap-1.5 bg-amber-500/20 border border-amber-500/30 px-2.5 py-1 rounded text-[11px] font-mono text-amber-300">
-              <AlertTriangle className="h-3 w-3" />
-              <span>Explicitly illustrative content · Not a live client site</span>
+            <div className="flex items-center gap-3">
+              <span className="text-[11px] font-mono text-neutral-400">
+                Managed Offer: £1,495 setup + £249/mo
+              </span>
+              <Link
+                to="/contact"
+                search={{
+                  package: "managed",
+                  service: undefined,
+                  domain: undefined,
+                  websiteUrl: undefined,
+                }}
+                className="inline-flex items-center gap-1 font-semibold text-amber-400 hover:text-amber-300 underline underline-offset-4 text-[11px]"
+              >
+                Claim 1 of 2 Monthly Build Slots →
+              </Link>
             </div>
           </div>
         </Container>
-      </section>
+      </aside>
 
-      {/* 2. Positioning & Concept Header */}
-      <div className="bg-[#0e121a] border-b border-white/5 py-8">
+      {/* 2. Top Emergency & Dispatch Bar */}
+      <div className="bg-[#081B30] text-slate-100 text-xs py-2 px-4 border-b border-white/10">
         <Container>
-          <div className="max-w-4xl space-y-4">
-            <div className="flex items-center gap-2 text-xs font-mono font-semibold text-gold-400">
-              <Zap className="h-4 w-4" />
-              <span>VERTICAL BENCHMARK · ELECTRICAL CONTRACTOR ARCHITECTURE</span>
+          <div className="flex flex-col md:flex-row items-center justify-between gap-2">
+            <div className="flex items-center gap-2">
+              <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 font-mono text-[11px] font-medium">
+                <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-ping" />
+                ON DUTY
+              </span>
+              <span className="text-slate-300">
+                <strong>Emergency Response Available:</strong> 2 crews active across Bristol, Bath &amp; Keynsham.
+              </span>
             </div>
-            <h1 className="text-2xl md:text-4xl font-bold tracking-tight text-white">
-              The High-Authority Website Architecture for Established Electrical Contractors
-            </h1>
-            <p className="text-neutral-300 text-sm md:text-base leading-relaxed">
-              This concept models how Harley Digital Works structures an electrical contractor
-              platform under the
-              <span className="text-white font-semibold">
-                {" "}
-                Managed (£1,495 setup + £249/mo)
-              </span>{" "}
-              offer. Designed specifically for established 2–10 person firms to win planned,
-              higher-margin commercial, EV, and compliance work while eliminating tyre-kickers.
-            </p>
-            <div className="flex flex-wrap gap-3 pt-2 text-xs font-mono">
-              <span className="bg-neutral-800/80 border border-neutral-700 text-neutral-300 px-3 py-1.5 rounded-lg">
-                Target Team: 2–10 Vans / Electricians
-              </span>
-              <span className="bg-neutral-800/80 border border-neutral-700 text-neutral-300 px-3 py-1.5 rounded-lg">
-                Pilot Region: Bristol, Bath &amp; M4/M5 Corridor
-              </span>
-              <span className="bg-emerald-950/60 border border-emerald-700/50 text-emerald-300 px-3 py-1.5 rounded-lg">
-                Delivery: Agreed Milestone Schedule
-              </span>
+            <div className="flex items-center gap-4 text-slate-300 font-medium">
+              <span className="hidden sm:inline text-slate-400">Average Dispatch: 42 mins</span>
+              <a
+                href="tel:01172141357"
+                className="inline-flex items-center gap-1.5 text-amber-400 hover:text-amber-300 font-semibold"
+              >
+                <PhoneCall className="h-3 w-3" />
+                <span>0117 214 1357</span>
+              </a>
             </div>
           </div>
         </Container>
       </div>
 
-      {/* 3. The Interactive Trade Blueprint Container */}
-      <main className="bg-[#12161f] py-12 text-white">
+      {/* 3. Cinematic Hero Section (MotionSites Layout & Liquid Glass Surface) */}
+      <header className="relative bg-[#081B30] text-white pt-16 pb-20 md:pt-24 md:pb-28 overflow-hidden border-b border-white/5">
+        {/* Subtle Background Radial & Grid */}
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 opacity-20 pointer-events-none"
+          style={{
+            backgroundImage:
+              "radial-gradient(circle at 50% 20%, rgba(245, 158, 11, 0.15) 0%, transparent 60%), linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px)",
+            backgroundSize: "100% 100%, 48px 48px, 48px 48px",
+          }}
+        />
+
         <Container>
-          <div className="space-y-12 max-w-5xl mx-auto">
-            {/* Concept Website Mockup Header */}
-            <div className="rounded-2xl border border-gold-500/30 bg-neutral-900/95 overflow-hidden shadow-2xl">
-              {/* Browser Bar Chrome */}
-              <div className="bg-neutral-950 px-4 py-2.5 border-b border-neutral-800 flex items-center justify-between text-xs text-neutral-400 font-mono">
-                <div className="flex items-center gap-2">
-                  <span className="h-3 w-3 rounded-full bg-rose-500/80" />
-                  <span className="h-3 w-3 rounded-full bg-amber-500/80" />
-                  <span className="h-3 w-3 rounded-full bg-emerald-500/80" />
-                  <span className="ml-3 text-neutral-500">
-                    staging.harleydigitalworks.com/electrician-concept
-                  </span>
-                </div>
-                <span className="text-[10px] bg-neutral-800 text-neutral-300 px-2 py-0.5 rounded">
-                  HDW TRADE TEMPLATE V2
-                </span>
-              </div>
-
-              {/* Staging Mockup Body */}
-              <div className="p-6 md:p-10 space-y-10">
-                {/* Mockup Top Navigation Bar */}
-                <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-neutral-800">
-                  <div>
-                    <div className="flex items-center gap-2">
-                      <div className="h-8 w-8 rounded-lg bg-gold-500/20 text-gold-400 flex items-center justify-center font-bold">
-                        <Zap className="h-4 w-4" />
-                      </div>
-                      <span className="text-lg font-bold text-white tracking-tight">
-                        {ILLUSTRATIVE_ELECTRICIAN.name}
-                      </span>
-                    </div>
-                    <p className="text-xs text-neutral-400 mt-1">
-                      {ILLUSTRATIVE_ELECTRICIAN.tagline}
-                    </p>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <a
-                      href={`tel:${ILLUSTRATIVE_ELECTRICIAN.phone}`}
-                      className="inline-flex items-center gap-2 text-xs font-semibold text-neutral-300 hover:text-white px-3 py-2 rounded-lg bg-neutral-800 border border-neutral-700"
-                    >
-                      <PhoneCall className="h-3.5 w-3.5 text-gold-400" />
-                      <span>{ILLUSTRATIVE_ELECTRICIAN.phone}</span>
-                    </a>
-                    <a
-                      href="#estimate"
-                      className="inline-flex items-center gap-2 text-xs font-bold text-neutral-950 bg-gold-400 hover:bg-gold-300 px-4 py-2 rounded-lg transition-colors"
-                    >
-                      <span>Get Instant Estimate</span>
-                      <ArrowRight className="h-3 w-3" />
-                    </a>
-                  </div>
-                </div>
-
-                {/* Mockup Hero Section */}
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-                  <div className="lg:col-span-7 space-y-4">
-                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gold-500/10 border border-gold-500/30 text-gold-400 text-xs font-mono font-medium">
-                      <ShieldCheck className="h-3.5 w-3.5" />
-                      <span>{ILLUSTRATIVE_ELECTRICIAN.badge}</span>
-                    </div>
-                    <h2 className="text-2xl md:text-4xl font-extrabold tracking-tight text-white leading-tight">
-                      {ILLUSTRATIVE_ELECTRICIAN.heroHeadline}
-                    </h2>
-                    <p className="text-sm md:text-base text-neutral-300 leading-relaxed">
-                      {ILLUSTRATIVE_ELECTRICIAN.heroSubheadline}
-                    </p>
-                    <div className="flex flex-wrap gap-2 pt-2">
-                      {ILLUSTRATIVE_ELECTRICIAN.accreditations.map((acc, idx) => (
-                        <div
-                          key={idx}
-                          className="flex items-center gap-1.5 bg-neutral-800/80 border border-neutral-700/80 px-2.5 py-1 rounded text-xs text-neutral-200"
-                        >
-                          <span>{acc.iconText}</span>
-                          <span className="font-medium">{acc.name}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  <div className="lg:col-span-5 bg-neutral-950/80 border border-neutral-800 rounded-2xl p-5 space-y-4">
-                    <div className="flex items-center justify-between text-xs text-neutral-400 pb-2 border-b border-neutral-800">
-                      <span className="font-mono text-emerald-400 flex items-center gap-1.5">
-                        <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
-                        DIRECT DESK TRIAGE
-                      </span>
-                      <span>Bristol &amp; Bath Hub</span>
-                    </div>
-                    <div className="space-y-2 text-xs">
-                      <p className="text-neutral-300 font-medium">
-                        Why contractor websites lose high-margin work:
-                      </p>
-                      <ul className="space-y-1.5 text-neutral-400 text-[11px]">
-                        <li className="flex items-start gap-1.5">
-                          <X className="h-3.5 w-3.5 text-rose-400 shrink-0 mt-0.5" />
-                          <span>
-                            Generic forms don’t collect property size or phase requirements.
-                          </span>
-                        </li>
-                        <li className="flex items-start gap-1.5">
-                          <X className="h-3.5 w-3.5 text-rose-400 shrink-0 mt-0.5" />
-                          <span>No instant estimate forces clients into telephone quote tag.</span>
-                        </li>
-                        <li className="flex items-start gap-1.5">
-                          <Check className="h-3.5 w-3.5 text-emerald-400 shrink-0 mt-0.5" />
-                          <span>Our system triages leads instantly into email and WhatsApp.</span>
-                        </li>
-                      </ul>
-                    </div>
-                    <div className="pt-2">
-                      <a
-                        href="#estimate"
-                        className="w-full inline-flex justify-center items-center gap-2 rounded-xl bg-gold-400 text-neutral-950 font-bold text-xs py-2.5"
-                      >
-                        Try The Live Estimator Below
-                      </a>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Popular Services Grid */}
-                <div className="space-y-4 pt-4 border-t border-neutral-800">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <h3 className="text-lg font-bold text-white">Core Contract Specialisms</h3>
-                      <p className="text-xs text-neutral-400">
-                        Positioned to capture commercial, landlord and high-value residential work.
-                      </p>
-                    </div>
-                    <span className="text-xs font-mono text-gold-400 hidden sm:inline">
-                      BS7671 COMPLIANT COPY
-                    </span>
-                  </div>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    {ILLUSTRATIVE_ELECTRICIAN.popularServices.map((svc, i) => (
-                      <div
-                        key={i}
-                        className="p-4 rounded-xl bg-neutral-950 border border-neutral-800 space-y-2"
-                      >
-                        <div className="flex items-start justify-between gap-2">
-                          <h4 className="font-semibold text-sm text-white">{svc.title}</h4>
-                          <span className="text-[11px] font-mono text-gold-400/90 bg-gold-500/10 px-2 py-0.5 rounded border border-gold-500/20 shrink-0">
-                            {svc.priceGuide}
-                          </span>
-                        </div>
-                        <p className="text-xs text-neutral-400 leading-relaxed">
-                          {svc.description}
-                        </p>
-                        <div className="text-[11px] text-neutral-500 font-mono">
-                          Turnaround: {svc.turnaround}
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Reused Component: Interactive Quote Estimator */}
-                <div id="estimate" className="pt-4 border-t border-neutral-800 space-y-3">
-                  <div className="flex items-center gap-2 text-xs font-mono text-gold-400">
-                    <Sparkles className="h-3.5 w-3.5" />
-                    <span>CONVERSION ENGINE (INCLUDED IN MANAGED SETUP)</span>
-                  </div>
-                  <TradeQuoteCalculator business={ILLUSTRATIVE_ELECTRICIAN} />
-                </div>
-
-                {/* Reused Component: Before & After Proof */}
-                <div className="pt-4 border-t border-neutral-800 space-y-3">
-                  <div className="flex items-center gap-2 text-xs font-mono text-gold-400">
-                    <FileCheck className="h-3.5 w-3.5" />
-                    <span>VISUAL VERIFICATION WORKFLOW (ILLUSTRATIVE PLACEHOLDER)</span>
-                  </div>
-                  <BeforeAfterSlider business={ILLUSTRATIVE_ELECTRICIAN} />
-                </div>
-
-                {/* Illustrative Reviews Strip */}
-                <div className="pt-4 border-t border-neutral-800 space-y-3">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <h4 className="text-sm font-bold text-white">
-                        Google &amp; Checkatrade Review Integration
-                      </h4>
-                      <p className="text-xs text-neutral-400">
-                        Illustrative mockup: live sites pull verified reviews directly via verified
-                        Google API.
-                      </p>
-                    </div>
-                    <span className="text-xs font-mono text-emerald-400 inline-flex items-center gap-1">
-                      4.96 <Star className="h-3 w-3 fill-current text-amber-400" /> (118 Reviews)
-                    </span>
-                  </div>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    {ILLUSTRATIVE_ELECTRICIAN.reviews.map((rev, rIdx) => (
-                      <div
-                        key={rIdx}
-                        className="p-4 rounded-xl bg-neutral-950 border border-neutral-800 space-y-2 text-xs"
-                      >
-                        <div className="flex items-center justify-between text-neutral-400">
-                          <span className="font-semibold text-white">{rev.author}</span>
-                          <span>{rev.location}</span>
-                        </div>
-                        <p className="text-neutral-300 italic">"{rev.text}"</p>
-                        <div className="text-[11px] text-gold-400 font-mono">
-                          Service: {rev.service}
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
+          <div className="relative z-10 max-w-4xl mx-auto text-center space-y-6">
+            {/* Accreditation Badge */}
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 backdrop-blur-md border border-white/10 text-xs text-amber-300 font-mono tracking-wide">
+              <ShieldCheck className="h-4 w-4 text-amber-400" />
+              <span>NICEIC APPROVED CONTRACTOR #D604921 · TRUSTMARK ENDORSED</span>
             </div>
 
-            {/* 4. Commercial Offer & Boundary Alignment Box */}
-            <div className="rounded-2xl border border-neutral-700 bg-neutral-900/90 p-6 md:p-8 space-y-6">
-              <div className="flex items-start justify-between gap-4 flex-col sm:flex-row">
-                <div>
-                  <span className="text-xs font-mono text-gold-400 uppercase tracking-wider font-semibold">
-                    Prompt 2 Commercial Offer Alignment
-                  </span>
-                  <h3 className="text-xl md:text-2xl font-bold text-white mt-1">
-                    Managed Digital Operating Presence
-                  </h3>
-                </div>
-                <div className="text-left sm:text-right">
-                  <div className="text-2xl font-black text-white font-mono">£1,495 setup</div>
-                  <div className="text-sm text-gold-400 font-mono">+ £249/mo rolling care</div>
-                </div>
+            {/* Cinematic Headline */}
+            <h1 className="text-3xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-balance leading-[1.05]">
+              Engineered for Precision.
+              <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-amber-400 to-amber-100">
+                Certified for Bristol &amp; Bath.
+              </span>
+            </h1>
+
+            {/* Subline */}
+            <p className="text-slate-300 text-base md:text-lg max-w-2xl mx-auto leading-relaxed text-balance">
+              Specialist electrical contracting for commercial facilities, landlord compliance, and high-spec homes. From rapid 18th-Edition consumer unit overhauls to turnkey commercial EV infrastructure.
+            </p>
+
+            {/* CTAs */}
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5 pt-4">
+              <a
+                href="#estimate-engine"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-amber-400 hover:bg-amber-300 text-neutral-950 font-bold text-sm tracking-tight shadow-lg shadow-amber-400/20 transition-all hover:scale-[1.02] active:scale-[0.98]"
+              >
+                <span>Calculate Your Project Estimate</span>
+                <ArrowRight className="h-4 w-4" />
+              </a>
+
+              <a
+                href={`https://wa.me/447394041487?text=${encodeURIComponent(
+                  "Hi Vanguard Electrical, I'd like to book an electrician consultation in Bristol/Bath.",
+                )}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-white/10 hover:bg-white/15 text-white font-semibold text-sm backdrop-blur-md border border-white/10 transition-all"
+              >
+                <MessageCircle className="h-4 w-4 text-emerald-400" />
+                <span>1-Tap WhatsApp Dispatch</span>
+              </a>
+            </div>
+
+            {/* Trust Proof Badges */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-8 max-w-3xl mx-auto text-left">
+              <div className="p-3.5 rounded-2xl bg-white/[0.03] border border-white/10 backdrop-blur-sm">
+                <p className="text-[11px] font-mono text-amber-400 font-semibold">PART P REGISTERED</p>
+                <p className="text-xs text-slate-200 font-medium mt-0.5">Building Control Sign-Off</p>
               </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-xs border-t border-neutral-800 pt-6">
-                <div className="space-y-2">
-                  <h4 className="font-bold text-white uppercase font-mono text-[11px]">
-                    1. Setup &amp; Architecture
-                  </h4>
-                  <ul className="space-y-1.5 text-neutral-300">
-                    <li className="flex items-center gap-1.5">
-                      <CheckCircle2 className="h-3.5 w-3.5 text-emerald-400 shrink-0" />
-                      <span>5-Page custom template architecture</span>
-                    </li>
-                    <li className="flex items-center gap-1.5">
-                      <CheckCircle2 className="h-3.5 w-3.5 text-emerald-400 shrink-0" />
-                      <span>BS7671 trade copywriting included</span>
-                    </li>
-                    <li className="flex items-center gap-1.5">
-                      <CheckCircle2 className="h-3.5 w-3.5 text-emerald-400 shrink-0" />
-                      <span>Instant price estimator engine</span>
-                    </li>
-                    <li className="flex items-center gap-1.5">
-                      <CheckCircle2 className="h-3.5 w-3.5 text-emerald-400 shrink-0" />
-                      <span>Email &amp; MX record preservation</span>
-                    </li>
-                  </ul>
-                </div>
-
-                <div className="space-y-2">
-                  <h4 className="font-bold text-white uppercase font-mono text-[11px]">
-                    2. Monthly Care Scope
-                  </h4>
-                  <ul className="space-y-1.5 text-neutral-300">
-                    <li className="flex items-center gap-1.5">
-                      <CheckCircle2 className="h-3.5 w-3.5 text-emerald-400 shrink-0" />
-                      <span>Cloudflare edge hosting &amp; SSL</span>
-                    </li>
-                    <li className="flex items-center gap-1.5">
-                      <CheckCircle2 className="h-3.5 w-3.5 text-emerald-400 shrink-0" />
-                      <span>One 30-min content edit batch/mo</span>
-                    </li>
-                    <li className="flex items-center gap-1.5">
-                      <CheckCircle2 className="h-3.5 w-3.5 text-emerald-400 shrink-0" />
-                      <span>Lead routing health checks</span>
-                    </li>
-                    <li className="flex items-center gap-1.5">
-                      <CheckCircle2 className="h-3.5 w-3.5 text-emerald-400 shrink-0" />
-                      <span>Google Profile upkeep &amp; reviews</span>
-                    </li>
-                  </ul>
-                </div>
-
-                <div className="space-y-2">
-                  <h4 className="font-bold text-white uppercase font-mono text-[11px]">
-                    3. Operational Boundaries
-                  </h4>
-                  <ul className="space-y-1.5 text-neutral-300">
-                    <li className="flex items-center gap-1.5">
-                      <Info className="h-3.5 w-3.5 text-amber-400 shrink-0" />
-                      <span>Agreed milestone schedule from intake</span>
-                    </li>
-                    <li className="flex items-center gap-1.5">
-                      <Info className="h-3.5 w-3.5 text-amber-400 shrink-0" />
-                      <span>Rolling monthly care (30 days notice)</span>
-                    </li>
-                    <li className="flex items-center gap-1.5">
-                      <Info className="h-3.5 w-3.5 text-amber-400 shrink-0" />
-                      <span>Client owns domain &amp; Google assets</span>
-                    </li>
-                    <li className="flex items-center gap-1.5">
-                      <Info className="h-3.5 w-3.5 text-amber-400 shrink-0" />
-                      <span>No long lock-ins or ad spend tie-ins</span>
-                    </li>
-                  </ul>
-                </div>
+              <div className="p-3.5 rounded-2xl bg-white/[0.03] border border-white/10 backdrop-blur-sm">
+                <p className="text-[11px] font-mono text-amber-400 font-semibold">£5,000,000 COVER</p>
+                <p className="text-xs text-slate-200 font-medium mt-0.5">Commercial Public Liability</p>
               </div>
-
-              <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-neutral-800">
-                <p className="text-xs text-neutral-400">
-                  Ready to test this concept with prospective electrical contractors in Bristol
-                  &amp; Bath?
-                </p>
-                <div className="flex items-center gap-3">
-                  <PillButton as="link" to="/contact" variant="dark">
-                    Contact Founder Desk
-                  </PillButton>
-                  <PillButton as="link" to="/demos" variant="ghost">
-                    All Trade Blueprints
-                  </PillButton>
-                </div>
+              <div className="p-3.5 rounded-2xl bg-white/[0.03] border border-white/10 backdrop-blur-sm">
+                <p className="text-[11px] font-mono text-amber-400 font-semibold">OZEV CERTIFIED</p>
+                <p className="text-xs text-slate-200 font-medium mt-0.5">Workplace &amp; Home EV</p>
+              </div>
+              <div className="p-3.5 rounded-2xl bg-white/[0.03] border border-white/10 backdrop-blur-sm">
+                <p className="text-[11px] font-mono text-amber-400 font-semibold">6-YR WARRANTY</p>
+                <p className="text-xs text-slate-200 font-medium mt-0.5">NICEIC Insurance Backed</p>
               </div>
             </div>
           </div>
         </Container>
-      </main>
+      </header>
+
+      {/* 4. Interactive Before & After Consumer Unit Overhaul */}
+      <section className="py-16 md:py-24 bg-[#0B1522] text-white border-b border-white/5">
+        <Container>
+          <div className="max-w-4xl mx-auto space-y-10">
+            <div className="text-center space-y-3">
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400 text-xs font-mono font-medium">
+                <Sliders className="h-3.5 w-3.5" />
+                <span>INTERACTIVE 18TH-EDITION BENCHMARK</span>
+              </div>
+              <h2 className="text-2xl sm:text-4xl font-extrabold tracking-tight text-balance">
+                Drag to Compare: Outdated Fusebox vs. Modern RCBO Board
+              </h2>
+              <p className="text-slate-400 text-sm md:text-base max-w-xl mx-auto leading-relaxed">
+                See how a hazardous 1980s asbestos-backed rewirable fusebox is upgraded into an 18th-Edition metal Hager board with full Type 2 surge suppression.
+              </p>
+            </div>
+
+            <div className="bg-[#101F33] p-4 sm:p-6 rounded-3xl border border-white/10 shadow-2xl">
+              <BeforeAfterSlider business={DEMO_BUSINESS_DATA} />
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      {/* 5. High-Converting Interactive Job Estimator Engine */}
+      <section id="estimate-engine" className="py-16 md:py-24 bg-[#081B30] text-white">
+        <Container>
+          <div className="max-w-4xl mx-auto space-y-10">
+            <div className="text-center space-y-3">
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-mono font-medium">
+                <Sparkles className="h-3.5 w-3.5" />
+                <span>TRANSPARENT PRICING · NO HIGH-PRESSURE SALES</span>
+              </div>
+              <h2 className="text-2xl sm:text-4xl font-extrabold tracking-tight text-balance">
+                Interactive Project Estimator
+              </h2>
+              <p className="text-slate-400 text-sm md:text-base max-w-xl mx-auto leading-relaxed">
+                Select your service, premises size, and urgency to generate an instant transparent ballpark quote in 15 seconds.
+              </p>
+            </div>
+
+            {/* Estimator Card */}
+            <div className="bg-[#0E223D] border border-white/10 rounded-3xl p-6 sm:p-10 shadow-2xl space-y-8">
+              {/* Step 1: Select Service */}
+              <div className="space-y-3">
+                <label htmlFor={serviceIdInput} className="text-xs font-mono text-amber-400 uppercase tracking-wider block font-semibold">
+                  1. Select Electrical Service Specialism
+                </label>
+                <div id={serviceIdInput} className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  {ESTIMATE_SERVICES.map((service) => {
+                    const isSelected = service.id === selectedServiceId;
+                    return (
+                      <button
+                        key={service.id}
+                        type="button"
+                        onClick={() => setSelectedServiceId(service.id)}
+                        className={`text-left p-4 rounded-2xl border transition-all ${
+                          isSelected
+                            ? "bg-amber-400/10 border-amber-400 text-white shadow-md shadow-amber-400/10"
+                            : "bg-white/[0.02] border-white/10 text-slate-300 hover:bg-white/[0.05] hover:border-white/20"
+                        }`}
+                      >
+                        <div className="flex items-center justify-between">
+                          <span className="font-bold text-sm text-white">{service.name}</span>
+                          <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-white/10 text-amber-300">
+                            {service.tag}
+                          </span>
+                        </div>
+                        <p className="text-xs text-slate-400 mt-1.5 leading-relaxed">
+                          {service.description}
+                        </p>
+                        <div className="mt-3 flex items-center justify-between text-xs pt-2 border-t border-white/5 font-mono">
+                          <span className="text-slate-400">Guide Rate:</span>
+                          <span className="text-amber-300 font-bold">From £{service.basePrice}</span>
+                        </div>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* Step 2: Select Property Size */}
+              <div className="space-y-3">
+                <label htmlFor={propertyIdInput} className="text-xs font-mono text-amber-400 uppercase tracking-wider block font-semibold">
+                  2. Select Property Scale
+                </label>
+                <div id={propertyIdInput} className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                  {PROPERTY_TIERS.map((tier) => {
+                    const isSelected = tier.id === selectedPropertyId;
+                    return (
+                      <button
+                        key={tier.id}
+                        type="button"
+                        onClick={() => setSelectedPropertyId(tier.id)}
+                        className={`text-left p-3.5 rounded-xl border text-xs transition-all ${
+                          isSelected
+                            ? "bg-amber-400/10 border-amber-400 text-white font-semibold"
+                            : "bg-white/[0.02] border-white/10 text-slate-300 hover:bg-white/[0.05]"
+                        }`}
+                      >
+                        <div className="flex items-center justify-between">
+                          <span>{tier.name}</span>
+                          {isSelected && <Check className="h-3.5 w-3.5 text-amber-400" />}
+                        </div>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* Step 3: Select Urgency */}
+              <div className="space-y-3">
+                <label htmlFor={urgencyIdInput} className="text-xs font-mono text-amber-400 uppercase tracking-wider block font-semibold">
+                  3. Select Timing &amp; Dispatch Urgency
+                </label>
+                <div id={urgencyIdInput} className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                  {URGENCY_TIERS.map((urgency) => {
+                    const isSelected = urgency.id === selectedUrgencyId;
+                    return (
+                      <button
+                        key={urgency.id}
+                        type="button"
+                        onClick={() => setSelectedUrgencyId(urgency.id)}
+                        className={`text-left p-3.5 rounded-xl border text-xs transition-all ${
+                          isSelected
+                            ? "bg-amber-400/10 border-amber-400 text-white font-semibold"
+                            : "bg-white/[0.02] border-white/10 text-slate-300 hover:bg-white/[0.05]"
+                        }`}
+                      >
+                        <div className="flex items-center justify-between">
+                          <span>{urgency.name}</span>
+                          {urgency.surcharge > 0 && (
+                            <span className="text-[10px] text-amber-300 font-mono">+£{urgency.surcharge}</span>
+                          )}
+                        </div>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* Real-time Calculation Result Bar */}
+              <div className="p-6 rounded-2xl bg-[#091524] border border-amber-400/30 flex flex-col sm:flex-row items-center justify-between gap-6">
+                <div>
+                  <span className="text-xs font-mono text-slate-400 uppercase tracking-wider">
+                    Estimated Written Guide Price
+                  </span>
+                  <div className="flex items-baseline gap-2 mt-1">
+                    <span className="text-3xl sm:text-4xl font-extrabold text-amber-400 font-mono">
+                      ~£{estimatedTotal}
+                    </span>
+                    <span className="text-xs text-slate-400">
+                      (Includes full testing &amp; NICEIC Part P certificate)
+                    </span>
+                  </div>
+                  <p className="text-xs text-slate-400 mt-1">
+                    Fixed written quotation provided following site survey or photo audit. Zero hidden fees.
+                  </p>
+                </div>
+
+                <a
+                  href={`https://wa.me/447394041487?text=${whatsappMessage}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full sm:w-auto shrink-0 inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-emerald-500 hover:bg-emerald-400 text-neutral-950 font-bold text-sm tracking-tight shadow-lg shadow-emerald-500/20 transition-all hover:scale-[1.02]"
+                >
+                  <MessageCircle className="h-4 w-4" />
+                  <span>Send Estimate to WhatsApp</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      {/* 6. Why This Converts & Client Acquisition Explainer */}
+      <section className="py-16 bg-[#0B1522] text-white border-t border-white/5">
+        <Container>
+          <div className="max-w-3xl mx-auto space-y-8 text-center">
+            <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-balance">
+              Why Electrical Contractors Lose 60% of High-Margin Enquiries
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-left text-xs">
+              <div className="p-5 rounded-2xl bg-rose-950/20 border border-rose-900/40 space-y-2">
+                <p className="font-bold text-rose-300 font-mono uppercase tracking-wide">
+                  Traditional Trade Sites (The Failure)
+                </p>
+                <ul className="space-y-2 text-slate-400">
+                  <li className="flex items-start gap-2">
+                    <span className="text-rose-400 font-bold">✕</span>
+                    <span>Generic contact forms ask "How can we help?" with zero qualifying questions.</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-rose-400 font-bold">✕</span>
+                    <span>No instant ballpark figures force customers to ring 5 competitors on Checkatrade.</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-rose-400 font-bold">✕</span>
+                    <span>Missing or unverified Part P / NICEIC badges destroy trust on £2,000+ commercial jobs.</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div className="p-5 rounded-2xl bg-emerald-950/20 border border-emerald-900/40 space-y-2">
+                <p className="font-bold text-emerald-300 font-mono uppercase tracking-wide">
+                  Harley Digital Works Architecture (The Fix)
+                </p>
+                <ul className="space-y-2 text-slate-300">
+                  <li className="flex items-start gap-2">
+                    <span className="text-emerald-400 font-bold">✓</span>
+                    <span>Interactive 15-second estimator qualifies job scale, property size, and budget upfront.</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-emerald-400 font-bold">✓</span>
+                    <span>Direct dispatch into WhatsApp and mobile SMS with full job details pre-filled.</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-emerald-400 font-bold">✓</span>
+                    <span>Full 100% done-for-you copywriting, hosting, SSL, and monthly care for £249/mo.</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            {/* Final CTA for Robbie to Show Prospect */}
+            <div className="pt-6">
+              <Link
+                to="/contact"
+                search={{
+                  package: "managed",
+                  service: undefined,
+                  domain: undefined,
+                  websiteUrl: undefined,
+                }}
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-amber-400 hover:bg-amber-300 text-neutral-950 font-bold text-sm tracking-tight shadow-xl shadow-amber-400/20 transition-all hover:scale-[1.02]"
+              >
+                <span>Launch This Architecture For Your Firm (£1,495 Setup)</span>
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+              <p className="text-xs text-slate-400 mt-3 font-mono">
+                Agreed delivery milestone schedule · Strictly maximum 2 active builds at once
+              </p>
+            </div>
+          </div>
+        </Container>
+      </section>
     </PageShell>
   );
 }

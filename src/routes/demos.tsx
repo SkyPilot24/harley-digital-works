@@ -124,6 +124,29 @@ function TradeDemosPage() {
           </div>
         </section>
 
+        {/* Cinematic Flagship Electrical Demo Spotlight */}
+        <section className="bg-gradient-to-r from-[#0B1522] via-[#0E223D] to-[#0B1522] text-white py-6 px-6 border-b border-amber-500/20">
+          <div className="studio-wrap flex flex-col md:flex-row items-center justify-between gap-4">
+            <div className="space-y-1 text-center md:text-left">
+              <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-amber-500/15 border border-amber-500/30 text-amber-400 text-[11px] font-mono font-semibold">
+                <span>NEW · FLAGSHIP ARCHITECTURE V2</span>
+              </div>
+              <h2 className="text-base sm:text-lg font-bold text-white">
+                Cinematic Electrical Contractor Benchmark (Bristol &amp; Bath Pilot)
+              </h2>
+              <p className="text-xs text-slate-300 max-w-2xl">
+                Experience our high-converting trade architecture: instant 15-second job estimator, interactive 18th-edition fuseboard overhaul slider, and 1-tap WhatsApp lead dispatch.
+              </p>
+            </div>
+            <Link
+              to="/demos/electrician-concept"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-amber-400 hover:bg-amber-300 text-neutral-950 font-bold text-xs tracking-tight shadow-md shadow-amber-400/20 shrink-0 transition-transform hover:scale-105"
+            >
+              <span>Explore Flagship Demo →</span>
+            </Link>
+          </div>
+        </section>
+
         {/* Interactive Staging Generator */}
         <section className="py-12 bg-[#12161F] text-white">
           <Container>

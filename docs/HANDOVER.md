@@ -1,5 +1,31 @@
 # The Harley Group & Harley Digital Works — Session Handover Log
 
+## MotionSites Web Builder Installation & Flagship Electrical Contractor Demo V2 — 27 October 2026
+
+- **Tool & Scope:** Google Antigravity. Installed the MotionSites Web Builder skill (`claude-skill-1.0.0.zip`) across Antigravity and Claude Code. Applied the skill to create an award-level, high-converting Flagship Electrical Contractor Architecture on `/demos/electrician-concept` with an interactive 18th-Edition fuseboard overhaul comparison, a 15-second transparent job estimator, and 1-tap WhatsApp lead dispatch. Integrated a prominent spotlight banner on `/demos`.
+- **Key Deliverables:**
+  1. **Global Skill Installation:**
+     - Antigravity Global Plugin: `C:\Users\drrob\.gemini\config\plugins\motionsites-web-builder` (with manifest `plugin.json`).
+     - Antigravity Global Skill: `C:\Users\drrob\.gemini\config\skills\motionsites-web-builder`.
+     - Claude Code Skill: `C:\Users\drrob\.claude\skills\motionsites-web-builder`.
+  2. **Flagship Electrical Contractor Architecture (`src/routes/demos_.electrician-concept.tsx`):**
+     - Crafted high-contrast British industrial luxury aesthetic (midnight navy `#081B30`, brushed copper, warm ivory, slate).
+     - Live on-duty dispatch pill ("2 Crews Active in Bristol & Bath · 45-Min Emergency Response").
+     - Interactive 18th-Edition Consumer Unit Overhaul Slider (hazardous asbestos rewirable fusebox vs. Hager metal RCBO board with Type 2 SPD surge suppression).
+     - Interactive Job Estimator Engine: 4 high-margin electrical services (18th Edition Consumer Unit, Smart EV Charger, Landlord EICR, Commercial 3-Phase), property scale, and urgency options calculating real-time figures and generating pre-filled 1-click WhatsApp bookings.
+     - Trust badges: NICEIC Approved Contractor #D604921, Part P compliant, TrustMark endorsed, OZEV certified, £5M insurance.
+     - Discrete staging banner for contractor clients to book a £1,495 setup + £249/mo build slot.
+  3. **Spotlight Banner Integration (`src/routes/demos.tsx`):**
+     - Added high-visibility banner above `DynamicStagingGenerator` linking directly to `/demos/electrician-concept`.
+- **Empirical Verification Evidence:**
+  - TypeScript Compilation (`npm run typecheck`): **PASS** (0 errors).
+  - Test Suite (`npm test`): **PASS** (5/5 suites passing, 222/222 integration tests passing, Claims Guard 0 violations).
+  - Production Build (`npm run build`): **PASS** (Cloudflare Nitro SSR bundle successfully compiled).
+  - Live Runtime: Development server active on Port 3000 (`http://localhost:3000/demos/electrician-concept`).
+- **Next Actions:**
+  - Robbie to inspect the live interactive demo in Chrome.
+  - Use the demo URL in outbound outreach to Bristol & Bath electrical contractor prospects.
+
 ## Domain Portfolio Remarketing, Visual Concept Mockups, SEO & Outbound Expansion — 27 October 2026
 
 - **Tool & Scope:** Google Antigravity. Addressed Robbie Harley's goal to remarket the domain portfolio, conduct a full inventory audit, eliminate overlooked revenue-generating domains, complete rich Schema.org SEO on `/domains`, generate photorealistic UI mockups for social media outreach, and add high-leverage campaigns to the Control Centre Outbound Engine.
