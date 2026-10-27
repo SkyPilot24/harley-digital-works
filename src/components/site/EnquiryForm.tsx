@@ -4,6 +4,7 @@ import { submitLead } from "@/lib/lead-intake.functions";
 import { parseLeadFormData } from "@/lib/lead-schema";
 import { buildLeadMailto } from "@/lib/lead-details";
 import { leadCaptureConfigured, siteConfig } from "@/lib/site-config";
+import { TurnstileWidget } from "@/components/site/TurnstileWidget";
 
 export function EnquiryForm({
   source = "contact_form",
@@ -190,6 +191,7 @@ export function EnquiryForm({
           <a href={draft}>Open the draft again</a>, or email {siteConfig.contactEmail} directly.
         </p>
       )}
+      <TurnstileWidget />
       <button className="enquiry-submit" type="submit" disabled={busy}>
         {busy
           ? "Sending…"

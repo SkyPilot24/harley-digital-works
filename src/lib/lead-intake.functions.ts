@@ -1,22 +1,38 @@
 import { createServerFn } from "@tanstack/react-start";
 import { getRequest } from "@tanstack/react-start/server";
 
-import { assertIntakeBackend, checkIntakeResult, trustedIntakeIp } from "@/lib/lead-intake-result";
+import {
+  assertIntakeBackend,
+  checkIntakeResult,
+  trustedIntakeIp,
+  createRequestFingerprint,
+  verifyTurnstileToken,
+} from "@/lib/lead-intake-result";
 import { leadInputSchema } from "@/lib/lead-schema";
-import { siteConfig } from "@/lib/site-config";
 import { formatLeadMessage } from "@/lib/lead-details";
+
+export { createRequestFingerprint, verifyTurnstileToken };
 
 export const submitLead = createServerFn({ method: "POST" })
   .validator((input: unknown) => leadInputSchema.parse(input))
   .handler(async ({ data }) => {
     // Give basic form-filling bots a success response without storing or notifying.
+    // Honeypot short-circuits first before Turnstile or database operations.
     if (data.website) return { ok: true };
+
+    const clientIp = getClientIp();
+
+    // Verify Cloudflare Turnstile token before any database call
+    const turnstileValid = await verifyTurnstileToken(data.turnstileToken, clientIp);
+    if (!turnstileValid) {
+      throw new Error("Security verification failed. Please try again.");
+    }
 
     assertIntakeBackend(process.env.SUPABASE_URL, import.meta.env.VITE_SUPABASE_URL);
 
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
 
-    const fingerprint = await createRequestFingerprint(getClientIp());
+    const fingerprint = await createRequestFingerprint(clientIp);
 
     const normalizedEmail = data.email.toLowerCase();
 
@@ -44,22 +60,17 @@ export const submitLead = createServerFn({ method: "POST" })
   });
 
 function getClientIp() {
-  return trustedIntakeIp(getRequest().headers);
-}
-
-async function createRequestFingerprint(ip: string) {
-  const secret = process.env.LEAD_RATE_LIMIT_SECRET || process.env.SUPABASE_SERVICE_ROLE_KEY;
-  if (!secret) throw new Error("Lead rate-limit secret is not configured.");
-
-  const key = await crypto.subtle.importKey(
-    "raw",
-    new TextEncoder().encode(secret),
-    { name: "HMAC", hash: "SHA-256" },
-    false,
-    ["sign"],
-  );
-  const signature = await crypto.subtle.sign("HMAC", key, new TextEncoder().encode(ip));
-  return Array.from(new Uint8Array(signature), (byte) => byte.toString(16).padStart(2, "0")).join(
-    "",
-  );
+  const ip = trustedIntakeIp(getRequest().headers);
+  if (ip === "unknown" && process.env.NODE_ENV === "production") {
+    console.warn(
+      JSON.stringify({
+        event: "trusted_intake_ip_unknown",
+        level: "warn",
+        message:
+          "Client IP could not be resolved from trusted intake headers in production environment.",
+        timestamp: new Date().toISOString(),
+      }),
+    );
+  }
+  return ip;
 }

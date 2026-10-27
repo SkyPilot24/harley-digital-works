@@ -137,8 +137,7 @@ export function TradeCalculator({ phone }: { phone: string }) {
     setTimeout(() => {
       setIsCompiling(false);
       toast.success(`Production code bundle for "${companyName}" compiled!`, {
-        description:
-          "Standalone repository ready for instant Cloudflare Pages or Vercel deployment.",
+        description: "Standalone repository ready for instant Cloudflare Pages deployment.",
       });
     }, 1000);
   };

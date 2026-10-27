@@ -54,3 +54,10 @@ These items require founder, legal, or accounting action outside the codebase. D
 ## 7. Cloudflare & Vercel Dashboard Cleanup
 - [ ] In the Cloudflare Dashboard, disable direct access via the `*.workers.dev` subdomain so that only canonical domains (`harleydigitalworks.com` and `theharleygroup.org`) serve traffic.
 - [ ] Delete or disable any obsolete Vercel deployments and projects.
+
+---
+
+## 8. Pinned Nitro Beta Dependency Risk
+- [ ] Monitor Nitro framework releases for a non-beta stable v3 release.
+  - Context: TanStack Start SSR on Cloudflare Workers currently relies on `nitro@3.0.260603-beta`. As of October 2026, npm latest tag is still `3.0.260903-beta` (beta only).
+  - Risk: Beta releases carry potential internal changes or undocumented upstream behavior. Retain the pinned beta until TanStack Start publishes guidance with a certified stable Nitro release.

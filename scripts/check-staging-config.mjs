@@ -25,6 +25,15 @@ const checks = [
   ["Outbound lead notifications disabled", config.LEAD_NOTIFICATIONS_ENABLED === "false"],
   ["Outbound Slack disabled", config.SLACK_NOTIFICATIONS_ENABLED === "false"],
   ["Outbound email disabled", config.TRANSACTIONAL_EMAIL_ENABLED === "false"],
+  [
+    "Turnstile disabled on staging or configured",
+    config.TURNSTILE_ENABLED === "false" ||
+      (Boolean(config.TURNSTILE_SECRET_KEY) && Boolean(config.VITE_TURNSTILE_SITE_KEY)),
+  ],
+  [
+    "Lead rate-limit secret configured or optional on staging",
+    config.LEAD_RATE_LIMIT_SECRET === undefined || Boolean(config.LEAD_RATE_LIMIT_SECRET?.trim()),
+  ],
 ];
 for (const [label, pass] of checks) console.log(`${pass ? "PASS" : "MISSING"}: ${label}`);
 console.log(

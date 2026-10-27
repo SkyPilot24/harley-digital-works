@@ -4,16 +4,54 @@ on:
   push:
     branches:
       - main
+  workflow_run:
+    workflows: ["Quality", "Security Audit"]
+    types:
+      - completed
+    branches:
+      - main
 
 permissions:
   contents: read
 
 jobs:
-  deploy:
-    name: Deploy to Cloudflare
+  verify-quality-and-security:
+    name: Verify Quality & Security Gates
     runs-on: ubuntu-latest
     timeout-minutes: 15
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v7
 
+      - name: Set up Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Check formatting
+        run: npm run format:check
+
+      - name: Lint
+        run: npm run lint
+
+      - name: TypeScript Check
+        run: npm run typecheck
+
+      - name: Run verification test suite
+        run: npm test
+
+      - name: Verify no leaked production service role keys
+        run: sh scripts/scan-secrets.sh
+
+  deploy-staging:
+    name: Deploy to Cloudflare Staging
+    needs: verify-quality-and-security
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - name: Check out repository
         uses: actions/checkout@v7
@@ -30,23 +68,54 @@ jobs:
       - name: Build application bundle
         run: npm run build
 
-      - name: Run verification test suite
-        run: npm test
-
       - name: Check Cloudflare deployment credentials
-        id: check_creds
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
         run: |
           if [ -z "$CLOUDFLARE_API_TOKEN" ]; then
-            echo "has_token=false" >> $GITHUB_OUTPUT
-            echo "::warning::Cloudflare deployment skipped because CLOUDFLARE_API_TOKEN secret is not set in GitHub Repository Secrets."
-          else
-            echo "has_token=true" >> $GITHUB_OUTPUT
+            echo "::error::CLOUDFLARE_API_TOKEN secret is required for deployment on main branch. Failing deployment."
+            exit 1
           fi
 
-      - name: Deploy prebuilt Nitro worker to Cloudflare
-        if: steps.check_creds.outputs.has_token == 'true'
+      - name: Deploy to Cloudflare Staging
+        uses: cloudflare/wrangler-action@v4
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          workingDirectory: .output/server
+          command: deploy --env staging
+
+  deploy-production:
+    name: Deploy to Cloudflare Production
+    needs: [verify-quality-and-security, deploy-staging]
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v7
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build application bundle
+        run: npm run build
+
+      - name: Check Cloudflare deployment credentials
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: |
+          if [ -z "$CLOUDFLARE_API_TOKEN" ]; then
+            echo "::error::CLOUDFLARE_API_TOKEN secret is required for production deployment on main branch. Failing deployment."
+            exit 1
+          fi
+
+      - name: Deploy prebuilt Nitro worker to Cloudflare Production
         uses: cloudflare/wrangler-action@v4
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}

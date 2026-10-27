@@ -141,8 +141,7 @@ follow the repository's release-approval process.
 
 Configure Worker runtime variables and secrets in Cloudflare. See `.env.example`
 for variable names and `wrangler.json` for the checked-in Worker configuration.
-`vercel.json` is not used by the canonical deployment workflow and is not
-deployment guidance for this repository.
+Cloudflare Workers is the sole deployment target for this repository.
 
 ## Local development
 

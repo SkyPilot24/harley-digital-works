@@ -47,10 +47,21 @@ function applySecurityHeaders(response: Response, isHttps: boolean): Response {
     headers.set("Referrer-Policy", "strict-origin-when-cross-origin");
   }
   if (!headers.has("Permissions-Policy")) {
-    headers.set("Permissions-Policy", "camera=(), microphone=(), geolocation=()");
+    headers.set("Permissions-Policy", "camera=(), microphone=(), geolocation=(), payment=()");
   }
   if (isHttps && !headers.has("Strict-Transport-Security")) {
-    headers.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
+    headers.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains; preload");
+  }
+
+  // Explicitly remove deprecated X-XSS-Protection
+  headers.delete("X-XSS-Protection");
+
+  // Add Content-Security-Policy-Report-Only (Do not enforce yet)
+  if (!headers.has("Content-Security-Policy-Report-Only")) {
+    headers.set(
+      "Content-Security-Policy-Report-Only",
+      "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; form-action 'self'; img-src 'self' data: blob:; media-src 'self'; font-src https://fonts.gstatic.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; script-src 'self' 'unsafe-inline' https://challenges.cloudflare.com; connect-src 'self' https://*.supabase.co wss://*.supabase.co https://challenges.cloudflare.com;",
+    );
   }
 
   return new Response(response.body, {

@@ -14,6 +14,7 @@ export const leadInputSchema = z.object({
   message: z.string().trim().min(5, "Tell us a little more").max(2000),
   website: z.string().trim().max(200).optional().or(z.literal("")),
   startedAt: z.number().int().positive(),
+  turnstileToken: z.string().trim().max(2048).optional().or(z.literal("")),
 });
 
 export type LeadInput = z.infer<typeof leadInputSchema>;
@@ -36,5 +37,9 @@ export function parseLeadFormData(
     message: formData.get("message"),
     website: formData.get("website") ?? "",
     startedAt: Number(formData.get("startedAt")),
+    turnstileToken:
+      (formData.get("cf-turnstile-response") as string) ??
+      (formData.get("turnstileToken") as string) ??
+      "",
   });
 }

@@ -22,7 +22,7 @@ export default defineConfig({
   },
   scheduledTasks: {
     "* * * * *": ["lead-notifications"],
-    "0 * * * *": ["lead-notifications", "prune-lead-attempts"],
+    "0 * * * *": ["prune-lead-attempts"],
     "0 8 * * *": ["founder-daily-digest"],
     "0 9 * * 1-5": ["outreach-dispatcher"],
     "*/30 * * * *": ["system-health-alerts"],

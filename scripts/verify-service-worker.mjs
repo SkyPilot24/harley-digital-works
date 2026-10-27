@@ -60,3 +60,15 @@ test("activation removes only obsolete caches owned by this app", async () => {
   await result;
   assert.deepEqual(deleted, ["harley-digital-works-cache-v2", "harley-digital-works-cache-v3"]);
 });
+
+test("server function requests /_serverFn bypass service worker caching", async () => {
+  const { handlers } = harness(async () => new Response("ok"));
+  let responded = false;
+  handlers.fetch({
+    request: { url: "https://example.com/_serverFn/submitLead", method: "POST" },
+    respondWith: () => {
+      responded = true;
+    },
+  });
+  assert.equal(responded, false, "Server function requests must bypass service worker cache");
+});

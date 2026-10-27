@@ -1,11 +1,5 @@
-# Global Security & Edge Performance Headers for Cloudflare Workers & Pages
-/*
-  Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
-  X-Frame-Options: SAMEORIGIN
-  X-Content-Type-Options: nosniff
-  Referrer-Policy: strict-origin-when-cross-origin
-  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=()
-  X-XSS-Protection: 1; mode=block
+# Edge Asset Caching Headers for Cloudflare Pages / CDN
+# Global HTTP security headers and CSP-Report-Only are centrally applied in src/server.ts
 
 # Immutable Static Assets (1 Year Edge Caching)
 /assets/*

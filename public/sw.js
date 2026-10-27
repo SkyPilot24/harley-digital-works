@@ -24,7 +24,7 @@ function shouldBypassCache(request) {
 
   // Bypass TanStack Start server functions, Auth endpoints, and hot reloading endpoints
   if (
-    url.pathname.startsWith("/_server-fn") ||
+    url.pathname.startsWith("/_serverFn") ||
     url.pathname.startsWith("/auth") ||
     url.pathname.includes("/admin") ||
     url.pathname.includes("hot-update")
