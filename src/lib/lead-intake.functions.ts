@@ -28,7 +28,7 @@ export const submitLead = createServerFn({ method: "POST" })
       company: data.company || null,
       package: data.package || null,
       message: enrichedMessage,
-      source: data.source || "contact_form",
+      source: data.source === "website_review" ? "contact_form" : data.source || "contact_form",
     };
 
     const { data: result, error } = await supabaseAdmin.rpc("submit_public_lead", {

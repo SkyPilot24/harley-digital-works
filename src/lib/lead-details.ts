@@ -2,6 +2,7 @@ import type { LeadInput } from "./lead-schema.ts";
 
 export function formatLeadMessage(data: LeadInput) {
   const details = [
+    data.source === "website_review" ? "Lead Source: website_review" : null,
     data.enquiryContext ? `Enquiry interest: ${data.enquiryContext}` : null,
     data.phone ? `Phone: ${data.phone}` : null,
     data.websiteUrl ? `Current Website: ${data.websiteUrl}` : null,

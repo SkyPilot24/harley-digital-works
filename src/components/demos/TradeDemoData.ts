@@ -57,7 +57,7 @@ export const TRADE_DEMOS: Record<string, TradeDemoBusiness> = {
     name: "Apex Electrical & Solar",
     badge: "NICEIC Approved Contractor #D604921",
     tagline: "Certified Domestic & Commercial Electricians across Greater Manchester",
-    phone: "0161 820 4910",
+    phone: "0161 496 0910",
     whatsapp: "07394 041487",
     coverageArea: "Manchester, Stockport, Altrincham, Salford & Cheshire",
     accreditations: [
@@ -308,13 +308,13 @@ export const TRADE_DEMOS: Record<string, TradeDemoBusiness> = {
   heating: {
     id: "heating",
     name: "Harley Heating & Gas Engineers",
-    badge: "Gas Safe Registered #648192 • Worcester Bosch Diamond Accredited",
+    badge: "Gas Safe Reg. No. [your number] • Worcester Bosch Diamond Accredited",
     tagline: "Boiler Replacements, Power Flushing & Central Heating across Yorkshire & Leeds",
-    phone: "0113 490 1280",
+    phone: "01632 960280",
     whatsapp: "07394 041487",
     coverageArea: "Leeds, Harrogate, Bradford, Wakefield, Wetherby & York",
     accreditations: [
-      { name: "Gas Safe Registered", idNumber: "648192", iconText: "Gas Safe" },
+      { name: "Gas Safe Registered", idNumber: "[your number]", iconText: "Gas Safe" },
       {
         name: "Worcester Bosch Diamond Installer",
         idNumber: "Up to 12 Yr Warranty",
@@ -443,7 +443,7 @@ export const TRADE_DEMOS: Record<string, TradeDemoBusiness> = {
     badge: "CHAS Elite & SafeContractor Verified",
     tagline:
       "Commercial HVAC, Multi-Trade Facilities Maintenance & Planned PPM Contracts across the UK",
-    phone: "020 8191 7840",
+    phone: "020 7946 0840",
     whatsapp: "07394 041487",
     coverageArea: "London & Home Counties, Birmingham, Manchester & Nationwide Fleet",
     accreditations: [

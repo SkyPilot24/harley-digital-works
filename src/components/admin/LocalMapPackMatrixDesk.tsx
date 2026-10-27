@@ -458,8 +458,8 @@ export default function ${sub.suburb.replace(/[^a-zA-Z]/g, "")}ServicePage() {
           </div>
 
           <div className="mt-6 pt-4 border-t border-neutral-800 flex items-center justify-between text-xs text-neutral-400">
-            <span>Part of the £995 Map-Pack Dominance Booster</span>
-            <span className="text-emerald-400 font-semibold">100% Google Schema Validated</span>
+            <span>Local trade landing page and schema generator</span>
+            <span className="text-emerald-400 font-semibold">Structured Schema Format</span>
           </div>
         </div>
       </div>

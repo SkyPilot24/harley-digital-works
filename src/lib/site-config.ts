@@ -60,10 +60,31 @@ export const harleyGroupConfig = {
   whatsappInternational: "+44 7394 041487",
   whatsappUrl: "https://wa.me/447394041487",
   whatsappDefaultMessage:
-    "Hi Robert, I found The Harley Group online and I'd like to find out more about your services.",
+    "Hi Robbie, I found The Harley Group online and I'd like to find out more about your services.",
   location: "Bristol, United Kingdom",
   operatingHours: "Monday–Friday 09:00–17:00 UK time",
 };
+
+export const outreachComplianceConfig = {
+  tradingName: "Harley Digital Works",
+  // TODO: Confirm legal entity (name, company number, registered office address) before cold outreach campaigns. See HUMAN_ACTIONS.md
+  registeredOfficePlaceholder: "[TODO: Registered Office Address / Trading Address, Bristol, UK]",
+  optOutPhrase: "reply STOP and I won't contact you again",
+  privacyPolicyUrl: "https://harleydigitalworks.com/privacy",
+  unsubscribeEmail: "unsubscribe@harleydigitalworks.com",
+};
+
+export function getOutreachComplianceFooter(): string {
+  return `\n\n---\n${outreachComplianceConfig.tradingName}\n${outreachComplianceConfig.registeredOfficePlaceholder}\n${outreachComplianceConfig.optOutPhrase}\nPrivacy Policy: ${outreachComplianceConfig.privacyPolicyUrl}`;
+}
+
+export function validateOutreachBodyHasFooter(body: string): boolean {
+  const lower = body.toLowerCase();
+  const hasTradingName = lower.includes("harley digital works");
+  const hasStop = lower.includes("reply stop and i won't contact you again");
+  const hasPrivacy = lower.includes("/privacy");
+  return hasTradingName && hasStop && hasPrivacy;
+}
 
 export function canonicalUrlForPath(pathname: string) {
   if (pathname === "/the-harley-group") return "https://theharleygroup.org/the-harley-group";
@@ -338,12 +359,14 @@ export function buildPageSeoHead({
   path = "/",
   ogType = "website",
   includeSchemaJsonLd = true,
+  noindex = false,
 }: {
   title: string;
   description: string;
   path?: string;
   ogType?: string;
   includeSchemaJsonLd?: boolean;
+  noindex?: boolean;
 }) {
   const canonicalUrl = canonicalUrlForPath(path);
   const fullOgImage = siteConfig.ogImage;
@@ -351,6 +374,7 @@ export function buildPageSeoHead({
   const meta = [
     { title },
     { name: "description", content: description },
+    ...(noindex ? [{ name: "robots", content: "noindex, nofollow" }] : []),
     { property: "og:site_name", content: siteConfig.name },
     { property: "og:type", content: ogType },
     { property: "og:title", content: title },

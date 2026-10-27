@@ -474,7 +474,7 @@ Existing Domain: ${data.existingDomain || "None provided"}`;
                   type="text"
                   value={data.certNumber}
                   onChange={(e) => updateField("certNumber", e.target.value)}
-                  placeholder="e.g. Reg #648192 or NICEIC #8291"
+                  placeholder="e.g. Gas Safe Reg. No. [your number] or NICEIC #[your number]"
                   className="w-full rounded-xl border border-neutral-800 bg-neutral-950 px-4 py-3 text-xs text-white placeholder-neutral-500 focus:border-gold-400 focus:outline-none"
                 />
               </div>

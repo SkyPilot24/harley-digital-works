@@ -26,6 +26,7 @@ export const Route = createFileRoute("/tools/seo-inspector")({
       description:
         "Scan your local UK trade keywords, inspect competitors in Google's Local 3-Pack, and discover high-value untapped search traffic in your area.",
       path: "/tools/seo-inspector",
+      noindex: true,
     }),
   component: SeoInspectorPage,
 });

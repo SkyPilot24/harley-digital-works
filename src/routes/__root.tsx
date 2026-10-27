@@ -100,7 +100,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     const pathname = leafMatch?.pathname || "/";
     const canonical = canonicalUrlForPath(pathname);
     const isGroupPage = pathname === "/the-harley-group";
-    const isPrivateRoute = pathname === "/auth" || pathname.startsWith("/admin");
+    const isPrivateRoute =
+      pathname === "/auth" ||
+      pathname.startsWith("/admin") ||
+      pathname.startsWith("/care-desk") ||
+      pathname.startsWith("/proposals") ||
+      pathname.startsWith("/onboarding") ||
+      pathname.startsWith("/track") ||
+      pathname.startsWith("/tools");
 
     return {
       meta: [

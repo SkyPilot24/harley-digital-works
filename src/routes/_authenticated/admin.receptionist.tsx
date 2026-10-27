@@ -104,7 +104,7 @@ const SAMPLE_CALL_RECORDS: CallRecord[] = [
     id: "call-rec-002",
     tenantSlug: "hdw-primary",
     businessName: "Harley Digital Works",
-    callerPhone: "07890 123456",
+    callerPhone: "07700 900456",
     callerName: "David Hughes",
     timestamp: "Today, 09:32",
     durationSeconds: 198,
@@ -117,7 +117,7 @@ const SAMPLE_CALL_RECORDS: CallRecord[] = [
       Location: "Gloucester (GL1)",
       Trade: "Commercial HVAC / Air Conditioning",
       Fleet: "4 vans on road",
-      Phone: "07890 123456",
+      Phone: "07700 900456",
     },
     transcript: [
       {
@@ -141,7 +141,7 @@ const SAMPLE_CALL_RECORDS: CallRecord[] = [
     id: "call-rec-003",
     tenantSlug: "apex-heating",
     businessName: "Apex Gas & Heating Engineers",
-    callerPhone: "07456 789012",
+    callerPhone: "07700 900789",
     callerName: "Sarah Jenkins",
     timestamp: "Yesterday, 18:45",
     durationSeconds: 110,
@@ -153,7 +153,7 @@ const SAMPLE_CALL_RECORDS: CallRecord[] = [
     leadFields: {
       Location: "Bathwick, Bath (BA2)",
       Properties: "2 flats",
-      Phone: "07456 789012",
+      Phone: "07700 900789",
     },
     transcript: [
       {
@@ -177,7 +177,7 @@ const SAMPLE_CALL_RECORDS: CallRecord[] = [
     id: "call-rec-004",
     tenantSlug: "clifton-roofing",
     businessName: "Clifton Roofing & Leadwork",
-    callerPhone: "07987 654321",
+    callerPhone: "07700 900654",
     callerName: "Geoffrey Miles",
     timestamp: "24 Oct 2026, 14:10",
     durationSeconds: 165,
@@ -189,7 +189,7 @@ const SAMPLE_CALL_RECORDS: CallRecord[] = [
     leadFields: {
       Location: "Clifton, Bristol (BS8)",
       Property: "Victorian 3-storey terrace",
-      Phone: "07987 654321",
+      Phone: "07700 900654",
     },
     transcript: [
       {

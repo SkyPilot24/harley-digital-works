@@ -2,7 +2,6 @@ import type { ReactNode } from "react";
 import { SiteHeader } from "./SiteHeader";
 import { FooterDark } from "./FooterDark";
 import { FloatingWhatsAppDesk } from "./FloatingWhatsAppDesk";
-import { ExitIntentModal } from "./ExitIntentModal";
 import { BrandChatWidget } from "@/components/chat/BrandChatWidget";
 
 export function PageShell({
@@ -32,7 +31,6 @@ export function PageShell({
       <main id="main-content">{children}</main>
       {footer !== undefined ? footer : <FooterDark />}
       {!quiet && <FloatingWhatsAppDesk />}
-      {!quiet && <ExitIntentModal />}
       {!hideChat && (brand === "hdw" || brand === "group") && <BrandChatWidget brand={brand} />}
     </div>
   );

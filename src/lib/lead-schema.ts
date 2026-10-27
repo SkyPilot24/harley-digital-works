@@ -4,7 +4,7 @@ export const leadInputSchema = z.object({
   name: z.string().trim().min(1, "Name is required").max(100),
   email: z.string().trim().email("Enter a valid email").max(255),
   phone: z.string().trim().max(40).optional().or(z.literal("")),
-  source: z.enum(["contact_form", "group_contact_form"]).optional(),
+  source: z.enum(["contact_form", "group_contact_form", "website_review"]).optional(),
   company: z.string().trim().max(120).optional().or(z.literal("")),
   websiteUrl: z.string().trim().max(200).optional().or(z.literal("")),
   enquiryContext: z.string().trim().max(350).optional().or(z.literal("")),

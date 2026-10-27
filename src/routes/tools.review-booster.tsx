@@ -34,10 +34,11 @@ export const Route = createFileRoute("/tools/review-booster")({
   }),
   head: () =>
     buildPageSeoHead({
-      title: "5-Star Google Review Booster for Trade Contractors | Harley Digital Works",
+      title: "Google Review Requests & Customer Feedback | Harley Digital Works",
       description:
-        "Generate authentic Google Reviews for your trade business. Ask every customer. Same Google link for everyone, plus an optional private feedback form.",
+        "Generate direct Google review request messages for your trade customers. Send the same link to every customer, with an optional private feedback route.",
       path: "/tools/review-booster",
+      noindex: true,
     }),
   component: ReviewBoosterPage,
 });
@@ -78,12 +79,12 @@ https://harleydigitalworks.com/tools/review-booster?biz=${encodeURIComponent(bus
               <span className="text-xs text-neutral-400">Included in All Care Plans</span>
             </div>
             <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-white leading-tight">
-              5-Star Google Review Booster <br />
+              Google Review Requests <br />
               <span className="text-gold-400">& Customer Feedback.</span>
             </h1>
             <p className="mt-3 text-sm sm:text-base text-neutral-300 leading-relaxed max-w-xl mx-auto">
-              Ask every customer. Same Google link for everyone, plus an optional private feedback
-              form.
+              Ask every customer. Send the same Google review link to everyone, with an optional
+              private note route.
             </p>
           </div>
         </Container>
@@ -199,15 +200,15 @@ https://harleydigitalworks.com/tools/review-booster?biz=${encodeURIComponent(bus
                 <div className="flex items-start gap-2.5 text-neutral-300 font-semibold">
                   <ShieldCheck className="h-4 w-4 text-emerald-400 shrink-0 mt-0.5" />
                   <span>
-                    Transparent Customer Feedback: Same Google link for everyone, plus an optional
-                    private feedback form to resolve customer issues immediately.
+                    Transparent Review Requests: Send the direct Google link to every customer
+                    without filtering or gating.
                   </span>
                 </div>
                 <div className="flex items-start gap-2.5 text-neutral-300 font-semibold">
                   <Star className="h-4 w-4 text-gold-400 shrink-0 mt-0.5" />
                   <span>
-                    10x More Reviews: Eliminates friction by bringing the homeowner directly to the
-                    Google comment modal.
+                    Direct Customer Feedback: Give customers an optional private note route to raise
+                    questions or comments directly with you.
                   </span>
                 </div>
               </div>
@@ -227,8 +228,8 @@ https://harleydigitalworks.com/tools/review-booster?biz=${encodeURIComponent(bus
                 </div>
 
                 {/* Rating Interactive Selection */}
-                <div className="py-8 text-center">
-                  <div className="flex items-center justify-center gap-2 mb-4">
+                <div className="py-6 text-center">
+                  <div className="flex items-center justify-center gap-2 mb-3">
                     {[1, 2, 3, 4, 5].map((star) => (
                       <button
                         key={star}
@@ -251,74 +252,70 @@ https://harleydigitalworks.com/tools/review-booster?biz=${encodeURIComponent(bus
                   </div>
 
                   <div className="text-xs font-semibold text-neutral-400">
-                    {simulatedRating === 5 && "Outstanding: 5 Out of 5"}
-                    {simulatedRating === 4 && "Very Good: 4 Out of 5"}
-                    {simulatedRating === 3 && "Average: Could be better"}
-                    {simulatedRating && simulatedRating <= 2 && "Needs Improvement"}
-                    {!simulatedRating && "Tap a star above to rate"}
+                    {simulatedRating
+                      ? `Rated ${simulatedRating} out of 5`
+                      : "Tap a star above to rate"}
                   </div>
                 </div>
 
-                {/* Branch 1: 4 or 5 Stars -> Google Redirect */}
-                {simulatedRating && simulatedRating >= 4 && (
-                  <div className="rounded-2xl border border-emerald-500/30 bg-emerald-500/10 p-5 text-center space-y-3 animate-in fade-in duration-300">
-                    <div className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-400">
-                      <ThumbsUp className="h-4 w-4" />
-                      <span>Thank You So Much!</span>
-                    </div>
-                    <p className="text-xs text-neutral-300 leading-relaxed">
-                      Would you mind taking 15 seconds to copy your review to our official Google
-                      page? It helps local homeowners find us!
-                    </p>
-                    <a
-                      href={googlePlaceUrl}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="w-full inline-flex items-center justify-center gap-2 rounded-xl bg-gold-500 hover:bg-gold-400 px-4 py-2.5 text-xs font-extrabold text-neutral-950 transition-all shadow-md"
-                    >
-                      <span>Post on Google Reviews</span>
-                      <ExternalLink className="h-3.5 w-3.5" />
-                    </a>
-                  </div>
-                )}
-
-                {/* Branch 2: 1 to 3 Stars -> Private Feedback Shield */}
-                {simulatedRating && simulatedRating <= 3 && (
-                  <div className="rounded-2xl border border-amber-500/30 bg-amber-500/10 p-5 text-center space-y-3 animate-in fade-in duration-300">
-                    <div className="inline-flex items-center gap-1.5 text-xs font-bold text-amber-400">
-                      <AlertTriangle className="h-4 w-4" />
-                      <span>We Value Your Honesty</span>
-                    </div>
-                    <p className="text-xs text-neutral-300 leading-relaxed">
-                      We value your honest feedback. You can share your review publicly on Google or
-                      send a private note directly to the owner so we can put things right.
-                    </p>
-
-                    {feedbackSent ? (
-                      <div className="p-3 bg-neutral-900 rounded-xl text-xs text-emerald-400 font-semibold">
-                        ✓ Your private note has been forwarded to management.
+                {/* Unified Review & Feedback Flow (No Gating) */}
+                {simulatedRating && (
+                  <div className="space-y-4 animate-in fade-in duration-300">
+                    <div className="rounded-2xl border border-emerald-500/30 bg-emerald-500/10 p-5 text-center space-y-3">
+                      <div className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-400">
+                        <ThumbsUp className="h-4 w-4" />
+                        <span>Leave a Review on Google</span>
                       </div>
-                    ) : (
-                      <div className="space-y-2 text-left">
-                        <textarea
-                          rows={3}
-                          value={feedbackText}
-                          onChange={(e) => setFeedbackText(e.target.value)}
-                          placeholder="What could we have done better?"
-                          className="w-full rounded-xl border border-neutral-800 bg-neutral-900 p-2.5 text-xs text-white placeholder-neutral-500 focus:border-amber-400 focus:outline-none"
-                        />
-                        <button
-                          type="button"
-                          onClick={() => {
-                            setFeedbackSent(true);
-                            toast.success("Private feedback sent to owner.");
-                          }}
-                          className="w-full rounded-xl bg-neutral-800 hover:bg-neutral-700 px-4 py-2 text-xs font-semibold text-white transition-all"
-                        >
-                          Submit Private Note
-                        </button>
+                      <p className="text-xs text-neutral-300 leading-relaxed">
+                        We invite all customers to share their honest review on our official Google
+                        profile:
+                      </p>
+                      <a
+                        href={googlePlaceUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="w-full inline-flex items-center justify-center gap-2 rounded-xl bg-gold-500 hover:bg-gold-400 px-4 py-2.5 text-xs font-extrabold text-neutral-950 transition-all shadow-md"
+                      >
+                        <span>Post on Google Reviews</span>
+                        <ExternalLink className="h-3.5 w-3.5" />
+                      </a>
+                    </div>
+
+                    <div className="rounded-2xl border border-neutral-800 bg-neutral-900/80 p-5 text-center space-y-3">
+                      <div className="inline-flex items-center gap-1.5 text-xs font-bold text-neutral-300">
+                        <MessageSquare className="h-4 w-4" />
+                        <span>Optional Private Note to the Owner</span>
                       </div>
-                    )}
+                      <p className="text-xs text-neutral-400 leading-relaxed">
+                        Have direct feedback or questions for our team? Send a private note below:
+                      </p>
+
+                      {feedbackSent ? (
+                        <div className="p-3 bg-neutral-950 rounded-xl text-xs text-emerald-400 font-semibold">
+                          ✓ Your private note has been forwarded to the owner.
+                        </div>
+                      ) : (
+                        <div className="space-y-2 text-left">
+                          <textarea
+                            rows={3}
+                            value={feedbackText}
+                            onChange={(e) => setFeedbackText(e.target.value)}
+                            placeholder="Share any comments or suggestions..."
+                            className="w-full rounded-xl border border-neutral-800 bg-neutral-950 p-2.5 text-xs text-white placeholder-neutral-500 focus:border-gold-400 focus:outline-none"
+                          />
+                          <button
+                            type="button"
+                            onClick={() => {
+                              setFeedbackSent(true);
+                              toast.success("Private note sent.");
+                            }}
+                            className="w-full rounded-xl bg-neutral-800 hover:bg-neutral-700 px-4 py-2 text-xs font-semibold text-white transition-all"
+                          >
+                            Send Private Note
+                          </button>
+                        </div>
+                      )}
+                    </div>
                   </div>
                 )}
               </div>
@@ -329,14 +326,14 @@ https://harleydigitalworks.com/tools/review-booster?biz=${encodeURIComponent(bus
           <div className="mt-12 max-w-4xl mx-auto rounded-3xl border border-gold-500/30 bg-gradient-to-r from-neutral-900 via-neutral-900 to-neutral-950 p-6 md:p-8 flex flex-col md:flex-row items-center justify-between gap-6 shadow-2xl">
             <div>
               <span className="text-xs font-bold uppercase tracking-wider text-gold-400">
-                Included In All Care Plans (£249/mo)
+                Included In Managed Care (£249/mo)
               </span>
               <h3 className="mt-1 text-xl font-extrabold text-white">
-                Get the Review Booster Engine for {businessName}
+                Review Request Workflows for {businessName}
               </h3>
               <p className="mt-1 text-xs text-neutral-300">
-                Automate your 5-star Google review collection with zero ongoing setup or tech
-                management.
+                Make it easy for customers to leave authentic Google reviews with zero tech
+                headache.
               </p>
             </div>
             <Link

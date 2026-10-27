@@ -20,7 +20,7 @@ export function ClientSiteCodeExporter() {
   const [companyName, setCompanyName] = useState("Vanguard Heating & Boiler Co Ltd");
   const [tradeSector, setTradeSector] = useState("heating-engineers");
   const [cityHub, setCityHub] = useState("Stockport, Greater Manchester");
-  const [phoneNumber, setPhoneNumber] = useState("0161 480 9201");
+  const [phoneNumber, setPhoneNumber] = useState("0161 496 0201");
   const [activeFile, setActiveFile] = useState<
     "App.tsx" | "Hero.tsx" | "Calculator.tsx" | "package.json"
   >("App.tsx");

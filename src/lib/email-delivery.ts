@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { outreachComplianceConfig, validateOutreachBodyHasFooter } from "./site-config.ts";
 
 export const emailDispatchSchema = z.object({
   recipientEmail: z.string().trim().email().max(255),
@@ -27,6 +28,15 @@ export async function dispatchAuthorizedEmail(
 ) {
   await options.authorize();
   const data = emailDispatchSchema.parse(input);
+
+  if (data.templateType === "outreach") {
+    if (!validateOutreachBodyHasFooter(data.plainTextBody)) {
+      throw new Error(
+        "Outreach email body must contain a compliant sender-identity footer (trading name, contact address placeholder, 'reply STOP and I won't contact you again', and privacy link).",
+      );
+    }
+  }
+
   const mailtoUrl = `mailto:${encodeURIComponent(data.recipientEmail)}?subject=${encodeURIComponent(data.subject)}&body=${encodeURIComponent(data.plainTextBody)}`;
   if (!options.enabled || !options.apiKey || !options.senderEmail) {
     return {
@@ -39,6 +49,13 @@ export async function dispatchAuthorizedEmail(
   }
   const fromName = options.senderName || "Robbie Harley";
   const replyTo = options.replyToEmail || options.senderEmail;
+
+  const emailHeaders: Record<string, string> = {};
+  if (data.templateType === "outreach") {
+    emailHeaders["List-Unsubscribe"] =
+      `<mailto:${outreachComplianceConfig.unsubscribeEmail}?subject=unsubscribe>`;
+  }
+
   const response = await options.fetch("https://api.resend.com/emails", {
     method: "POST",
     headers: { Authorization: `Bearer ${options.apiKey}`, "Content-Type": "application/json" },
@@ -50,6 +67,7 @@ export async function dispatchAuthorizedEmail(
       subject: data.subject,
       text: data.plainTextBody,
       html: data.htmlContent || undefined,
+      headers: Object.keys(emailHeaders).length > 0 ? emailHeaders : undefined,
     }),
   });
   // An ambiguous provider failure must not trigger a second automatic send.

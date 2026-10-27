@@ -50,7 +50,7 @@ export function ContentFlowEngine() {
 **Headline**: Reliable ${trade.name} Across ${town}.
 **Subheadline**: We deliver high-efficiency boiler installations, rapid emergency repairs, and full central heating upgrades with up to ${guaranteeYears}-year manufacturer warranties. 100% fixed upfront pricing with zero hidden callout surprises.
 **Primary CTA**: Get An Instant Fixed Quote (60 Seconds)
-**Secondary CTA**: WhatsApp Emergency Dispatch (0161 820 4910)
+**Secondary CTA**: WhatsApp Emergency Dispatch (0161 496 0910)
 
 ## Trust & Authority Strip
 - ✓ Gas Safe Registered & Fully Insured (£5M Liability)
@@ -110,7 +110,7 @@ We provide rapid same-day heating and gas engineering coverage across all local 
 - **Altrincham, Sale & Timperley** (WA14, WA15)
 - **Didsbury & Chorlton** (M20, M21)
 
-**Need emergency heating assistance in ${town}?** Call our dispatch team directly on 0161 820 4910.`;
+**Need emergency heating assistance in ${town}?** Call our dispatch team directly on 0161 496 0910.`;
   };
 
   const handleCopyPage = () => {

@@ -159,7 +159,7 @@ export function DynamicStagingGenerator({ initialConfig }: DynamicStagingGenerat
     company: initialConfig?.company || "Vanguard Heat & Power Ltd",
     trade: (initialConfig?.trade as StagingConfig["trade"]) || "heating",
     city: initialConfig?.city || "Stockport & Greater Manchester",
-    phone: initialConfig?.phone || "0161 480 9201",
+    phone: initialConfig?.phone || "0161 496 0201",
     palette: initialConfig?.palette || "dark-gold",
   });
 
