@@ -59,7 +59,7 @@ const RG_ELECTRICAL_DATA: TradeDemoBusiness = {
   badge: "NICEIC Approved Contractor · TrustMark Verified",
   tagline:
     "Certified Domestic & Commercial Electricians · Bradley Stoke, North Bristol & South Glos",
-  phone: "0117 900 0000",
+  phone: "01632 960001",
   whatsapp: "07394 041487",
   coverageArea: "Bradley Stoke, Stoke Gifford, Filton, Patchway, Thornbury, Clifton & Bristol",
   accreditations: [

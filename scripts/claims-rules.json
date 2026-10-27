@@ -8,7 +8,8 @@
         "src/lib/current-strategy.ts",
         "src/lib/group-headquarters.ts",
         "src/lib/knowledge-base.ts",
-        "src/routes/proposals.tsx"
+        "src/routes/proposals.tsx",
+        "src/routes/privacy.tsx"
       ]
     },
     {
@@ -18,22 +19,44 @@
       "allowlist": ["src/lib/knowledge-base.ts"]
     },
     {
+      "id": "guarantee-claims",
+      "pattern": "guarantee",
+      "reason": "Unqualified guarantees are forbidden. Use 'What we commit to' instead.",
+      "allowlist": [
+        "src/routes/privacy.tsx",
+        "src/lib/current-strategy.ts",
+        "src/lib/knowledge-base.ts"
+      ]
+    },
+    {
       "id": "unsupported-seo-ranking-claims",
-      "pattern": "more leads|proven growth|rank higher|top 3 map pack|top 3 ranking|top 3 google|page 1|100% satisfaction",
+      "pattern": "more leads|proven growth|rank higher|top 3|page 1|100% satisfaction",
       "reason": "Never make numerical or speculative SEO/ranking promises.",
       "allowlist": ["src/lib/knowledge-base.ts"]
     },
     {
-      "id": "capacity-mismatch-claims",
-      "pattern": "2-build monthly",
-      "reason": "Capacity commitment is strictly maximum 2 concurrent active builds, not monthly capacity.",
-      "allowlist": []
+      "id": "stale-pricing-tiers",
+      "pattern": "£95|£995|£2,995",
+      "reason": "Stale pricing tiers (£95/mo, £995, £2,995) must be replaced with approved £1,495 + £249/mo.",
+      "allowlist": ["src/lib/knowledge-base.ts"]
     },
     {
-      "id": "domain-internal-leak-claims",
+      "id": "geography-claims",
+      "pattern": "nationwide|entire uk",
+      "reason": "Pilot scope is Bristol, Bath and the M4 corridor. Do not claim nationwide or entire UK.",
+      "allowlist": ["src/lib/knowledge-base.ts", "src/routes/privacy.tsx"]
+    },
+    {
+      "id": "internal-domain-notes",
       "pattern": "do not market|do not renew|pitch as|valuation range|retired / non-renewal",
       "reason": "Internal underwriting notes, trademark cautions, and valuation floors must never be exposed to public buyers.",
       "allowlist": ["src/lib/domain-portfolio.ts", "src/lib/knowledge-base.ts"]
+    },
+    {
+      "id": "founder-and-team-claims",
+      "pattern": "hi robert|studio team|verified client",
+      "reason": "Use Robbie (not Robert), founder-led (no studio team), and no fake verified clients.",
+      "allowlist": ["src/lib/knowledge-base.ts"]
     }
   ]
 }

@@ -66,6 +66,7 @@ export function ExitIntentModal() {
         {/* Close button */}
         <button
           onClick={handleDismiss}
+          aria-label="Close modal"
           className="absolute top-4 right-4 rounded-full p-1.5 text-slate-400 hover:bg-slate-800 hover:text-white transition-colors"
         >
           <X className="h-5 w-5" />

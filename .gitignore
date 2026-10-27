@@ -49,3 +49,19 @@ supabase/.temp/
 # Raw Higgsfield video downloads (canonical copies live in public/images/transformation-video/)
 public/brand/*.mp4
 public/brand/**/*.mp4
+
+# Test artifacts
+test-results/
+
+# Domain export spreadsheets
+*-domains-export-*.csv
+ionos-domains-export-*.csv
+
+# Raw brand packaging folders
+Harley-Digital-Works-Complete-Brand-Pack/
+
+# Archives in agent or skill directories
+*.7z
+skills/*.zip
+.agents/**/*.zip
+

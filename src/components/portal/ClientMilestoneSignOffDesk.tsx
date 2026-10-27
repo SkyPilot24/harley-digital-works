@@ -35,7 +35,7 @@ export function ClientMilestoneSignOffDesk({ project }: ClientMilestoneSignOffDe
     {
       id: "fb-1",
       category: "copy",
-      comment: "Please highlight our 10-year NICEIC workmanship guarantee on the EV charging page.",
+      comment: "Please highlight our 10-year NICEIC workmanship warranty on the EV charging page.",
       timestamp: "Yesterday at 14:20",
       status: "implemented",
     },
@@ -213,7 +213,7 @@ export function ClientMilestoneSignOffDesk({ project }: ClientMilestoneSignOffDe
                   rows={3}
                   value={newComment}
                   onChange={(e) => setNewComment(e.target.value)}
-                  placeholder="e.g. Please update our phone number to 0161 820 4910 on the contact footer..."
+                  placeholder="e.g. Please update our phone number to 0161 496 0123 on the contact footer..."
                   className="w-full rounded-xl border border-neutral-800 bg-neutral-900 px-3 py-2 text-xs text-white placeholder-neutral-500 focus:border-gold-400 focus:outline-none"
                 />
               </div>

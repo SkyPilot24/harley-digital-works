@@ -31,54 +31,46 @@ interface Scene {
 const SCENES: Scene[] = [
   {
     id: 1,
-    title: "The Frustration: Outdated & Broken Mobile Trade Sites",
-    shortTitle: "1. The Problem",
+    title: "The Challenge: Outdated & Broken Mobile Trade Sites",
+    shortTitle: "1. The Challenge",
     durationSeconds: 8,
     startSecond: 0,
     endSecond: 8,
     image: "/images/transformation-video/scene-1-frustration.jpg",
     videoSrc: "/images/transformation-video/scene-1-frustration.mp4",
     voiceover:
-      "You do exceptional work on site. But when a customer searches on their phone... does your website do your business justice? Outdated layouts, missing badges, and broken forms cost you £3,000+ jobs every single week.",
-    highlightPills: ["Slow 4.8s Load", "Broken on Mobile", "Missing Gas Safe Badges"],
+      "You do exceptional work on site. But when a customer searches on their phone... does your website do your business justice? Outdated layouts, missing badges, and broken forms cost you valuable customer enquiries every single week.",
+    highlightPills: ["Slow Mobile Loading", "Hard to Read", "Hidden Trade Accreditations"],
   },
   {
     id: 2,
-    title: "The Reveal: The Harley Digital Works Transformation Wipe",
-    shortTitle: "2. The Transformation",
+    title: "The Upgrade: The Harley Digital Works Transformation Wipe",
+    shortTitle: "2. The Upgrade",
     durationSeconds: 17,
     startSecond: 8,
     endSecond: 25,
     image: "/images/transformation-video/scene-2-slider-wipe.jpg",
     videoSrc: "/images/transformation-video/scene-2-slider-wipe.mp4",
     voiceover:
-      "At Harley Digital Works, we transform tired trade sites into elite commercial platforms. Sub-30ms edge speed. Engineered for mobile. Designed to win higher-paying jobs without competing on the cheapest price.",
-    highlightPills: [
-      "Sub-30ms Load Speed",
-      "5-Star Review Badges",
-      "Instant WhatsApp Quote Funnels",
-    ],
+      "At Harley Digital Works, we transform tired trade sites into modern commercial platforms. Fast edge delivery. Engineered for mobile. Designed to win higher-value jobs without competing on the cheapest price.",
+    highlightPills: ["Fast Mobile Speed", "Trade Trust Badges", "Direct WhatsApp Contact"],
   },
   {
     id: 3,
-    title: "The USP: Zero Homework & 100% Done-For-You Copywriting",
-    shortTitle: "3. Zero Homework",
+    title: "The Advantage: All Copywriting & Setup Handled For You",
+    shortTitle: "3. Copywriting Handled",
     durationSeconds: 15,
     startSecond: 25,
     endSecond: 40,
     image: "/images/transformation-video/scene-3-zero-homework.jpg",
     videoSrc: "/images/transformation-video/scene-3-zero-homework.mp4",
     voiceover:
-      "And the best part? Zero homework for you. We don't ask you to write a single word of marketing copy. We write the copy, design the site, and look after every update every single month. You stay on the tools; we handle the digital.",
-    highlightPills: [
-      "100% DFY Copywriting",
-      "Zero Blank Homework Sheets",
-      "Direct WhatsApp Support",
-    ],
+      "And the best part? All copywriting is handled for you. We don't ask you to write your own marketing copy. We write the copy, design the site, and look after every update every single month. You stay on the tools; we handle the digital.",
+    highlightPills: ["Copywriting Included", "No Homework Required", "Direct WhatsApp Support"],
   },
   {
     id: 4,
-    title: "The Offer: Transparent Pricing & Only 2 Concurrent Builds",
+    title: "The Offer: Clear Pricing & Up to 2 Concurrent Builds",
     shortTitle: "4. The £1,495 Offer",
     durationSeconds: 15,
     startSecond: 40,
@@ -86,11 +78,11 @@ const SCENES: Scene[] = [
     image: "/images/transformation-video/scene-4-offer-cta.jpg",
     videoSrc: "/images/transformation-video/scene-4-offer-cta.mp4",
     voiceover:
-      "Fixed pricing: £1,495 setup with 50% deposit and 50% only when you approve the finished preview. Ongoing monthly care at £249/mo. We only take on 2 new builds at a time. Let's take the website headache off your plate.",
+      "Clear pricing: £1,495 setup with 50% deposit and 50% only when you approve the finished preview. Ongoing monthly care at £249/mo. We only take on up to 2 active builds at a time. Let's take the website headache off your plate.",
     highlightPills: [
       "£1,495 Setup (50% on approval)",
       "£249/mo Managed Care",
-      "Strictly 2 Builds Active",
+      "Up to 2 Builds Active",
     ],
   },
 ];
@@ -106,12 +98,29 @@ export function HeroTransformationVideoModal({
   isOpen,
   onClose,
 }: HeroTransformationVideoModalProps) {
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
   const [isPlaying, setIsPlaying] = useState(true);
   const [currentTime, setCurrentTime] = useState(0);
   const [isMuted, setIsMuted] = useState(false);
   const synthRef = useRef<SpeechSynthesisUtterance | null>(null);
   const timerRef = useRef<NodeJS.Timeout | null>(null);
   const videoRef = useRef<HTMLVideoElement | null>(null);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+      setPrefersReducedMotion(mediaQuery.matches);
+      if (mediaQuery.matches) {
+        setIsPlaying(false);
+      }
+      const listener = (e: MediaQueryListEvent) => {
+        setPrefersReducedMotion(e.matches);
+        if (e.matches) setIsPlaying(false);
+      };
+      mediaQuery.addEventListener?.("change", listener);
+      return () => mediaQuery.removeEventListener?.("change", listener);
+    }
+  }, []);
 
   // Active scene calculation
   const currentSceneIndex = SCENES.findIndex(
@@ -122,12 +131,12 @@ export function HeroTransformationVideoModal({
   // Synchronise video playback with play/pause state
   useEffect(() => {
     if (!videoRef.current) return;
-    if (isPlaying) {
+    if (isPlaying && !prefersReducedMotion) {
       videoRef.current.play().catch(() => {});
     } else {
       videoRef.current.pause();
     }
-  }, [isPlaying, activeScene]);
+  }, [isPlaying, activeScene, prefersReducedMotion]);
 
   // Playback timer
   useEffect(() => {
@@ -273,10 +282,11 @@ export function HeroTransformationVideoModal({
               key={activeScene.videoSrc}
               src={activeScene.videoSrc}
               poster={activeScene.image}
-              autoPlay
+              autoPlay={!prefersReducedMotion}
               loop
               muted
               playsInline
+              aria-label={`Preview video for ${activeScene.title}`}
               className="h-full w-full object-cover transition-opacity duration-500"
             />
           ) : (

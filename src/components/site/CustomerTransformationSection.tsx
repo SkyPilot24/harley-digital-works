@@ -153,7 +153,7 @@ const TRADE_SCENARIOS: ScenarioData[] = [
     ],
     afterHeadline: "Clear Specifications & Structured Intake",
     afterPoints: [
-      "Insurance-backed guarantee details and inspection capabilities presented clearly.",
+      "Insurance-backed warranty details and inspection capabilities presented clearly.",
       "Clear distinction between emergency repairs and scheduled roof replacements.",
       "Structured quote form prompting homeowners for roof type, approximate age, and photos.",
       "Monthly care plan providing ongoing updates, security, and hosting.",
@@ -161,7 +161,7 @@ const TRADE_SCENARIOS: ScenarioData[] = [
     potentialOutcomes: [
       {
         label: "Clear Workmanship Terms",
-        description: "Insurance details and workmanship guarantees clearly set out.",
+        description: "Insurance details and workmanship warranty terms clearly set out.",
       },
       {
         label: "Structured Intake",

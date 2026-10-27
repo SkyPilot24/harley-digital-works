@@ -50,9 +50,14 @@ const SUITES = [
     args: ["--test", "scripts/verify-service-worker.mjs"],
   },
   {
-    name: "Claims Guard (Forbidden Marketing Claims)",
+    name: "Claims Guard (Forbidden Marketing Claims & Phone Verification)",
     command: process.execPath,
     args: ["--test", "scripts/claims-guard.test.mjs"],
+  },
+  {
+    name: "Smoke Test Suite (E2E & Accessibility)",
+    command: process.execPath,
+    args: ["--test", "scripts/smoke.test.mjs"],
   },
 ];
 

@@ -14,6 +14,7 @@ import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { AuthProvider } from "@/hooks/use-auth";
 import { Toaster } from "sonner";
+import { MotionConfig } from "framer-motion";
 import { canonicalUrlForPath, siteConfig } from "@/lib/site-config";
 import { deferredServiceForPath } from "@/lib/launch-scope";
 
@@ -248,8 +249,10 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
-        <Outlet />
-        <Toaster position="top-right" richColors />
+        <MotionConfig reducedMotion="user">
+          <Outlet />
+          <Toaster position="top-right" richColors />
+        </MotionConfig>
       </AuthProvider>
     </QueryClientProvider>
   );

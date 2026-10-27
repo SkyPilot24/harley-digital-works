@@ -43,7 +43,7 @@ const ILLUSTRATIVE_ELECTRICIAN: TradeDemoBusiness = {
   name: "Wessex Volt Electrical Ltd (Concept)",
   badge: "NICEIC Approved Contractor [Illustrative #D604921]",
   tagline: "Commercial & Domestic Electrical Contractors · Bristol, Bath & M4 Corridor",
-  phone: "0117 900 0000",
+  phone: "01632 960001",
   whatsapp: "07700 900000",
   coverageArea: "Bristol, Bath, Keynsham, Yate, Clevedon & M4/M5 Corridor",
   accreditations: [
@@ -67,7 +67,7 @@ const ILLUSTRATIVE_ELECTRICIAN: TradeDemoBusiness = {
   },
   heroHeadline: "Reliable Electrical Contracting For Bristol & Bath Projects.",
   heroSubheadline:
-    "Specialists in commercial 3-phase power distribution, workplace EV charging hubs, EICR compliance certifications, and premium domestic rewires. Fixed transparent quotes with 6-year workmanship guarantee.",
+    "Specialists in commercial 3-phase power distribution, workplace EV charging hubs, EICR compliance certifications, and premium domestic rewires. Fixed transparent quotes with 6-year workmanship warranty.",
   emergencyBanner:
     "Illustrative Capacity: 2 Engineers On Call · Average Bristol/Bath Dispatch: 45 Mins",
   popularServices: [

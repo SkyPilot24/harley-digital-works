@@ -1,5 +1,62 @@
 # The Harley Group & Harley Digital Works — Session Handover Log
 
+## Full Repository Code, Compliance, Security, and Governance Remediation — 27 October 2026
+
+- **Tool & Scope:** Google Antigravity. Executed complete 5-phase repository audit and remediation across codebase `SkyPilot24/harley-digital-works`, bringing all commercial claims into strict alignment with `BUSINESS_DEFINITION.md`, hardening security and auth guards, removing fake reviews and unmeasured promises, enforcing WCAG 2.1 AA accessibility, consolidating status records, and creating a unified test runner.
+- **Key Deliverables by Phase:**
+  1. **Phase 1 (Security, Trust, Honest Review Forms & Outreach Compliance - `f3f87d3`):**
+     - Secured Slack and admin server functions with `assertAdmin` (`src/lib/require-admin.server.ts`). Added `scripts/server-fn-auth.test.mjs`.
+     - Replaced simulated fake audit findings in `src/routes/audit.tsx` with honest "Request a free website review" form submitting to Supabase `website_review`.
+     - Stripped fabricated telemetry metrics (`100/100`, `94% Top 3 Map Pack`, `99.99%`, sub-30ms) from `src/routes/labs.tsx`.
+     - Set `noindex: true` on private and deferred routes. Unmounted `ExitIntentModal.tsx` from `PageShell.tsx`.
+     - Replaced sample phone numbers with Ofcom drama ranges (`0161 496 0xxx`, `01632 960xxx`, `07700 900xxx`).
+     - Added PECR compliance verification and `List-Unsubscribe` header in `src/lib/email-delivery.ts`.
+  2. **Phase 2 (Removal of Fabricated Claims, Testimonials & SEO Promises - `8b15243`):**
+     - Removed fictional local case studies (`localCaseStudy`) across `src/lib/location-data.ts` and `TradeServiceLanding.tsx`.
+     - Relabeled portfolio items as "Design Studies" in `src/lib/portfolio-data.ts`, removing fabricated client quotes.
+     - Sanitized `CustomerTransformationSection.tsx`: removed fake customer quotes, £3,500+ revenue figures, and competitor insults.
+     - Rewrote home hero (`src/routes/index.tsx`) and `TradeRoiCalculator.tsx` to remove "100% done-for-you", "zero homework", "zero generic templates", and ROI multipliers.
+     - Cleaned packages and SLAs across `onboarding.tsx`, `ContractorOnboardingWizard.tsx`, `proposals.tsx`, and `CareBillingPortalDesk.tsx`.
+     - Replaced UK cloud hosting / daily backup claims with proposal-specific confirmation.
+     - Corrected founder representation across public touchpoints to "Founder Robbie Harley".
+  3. **Phase 3 (Pricing, Scope, Geography, Domain Portfolio & Brand Hierarchy - `427c45b`):**
+     - Replaced every public £95/mo, £995, £149, £2,495, £2,995 mention with ratified £1,495 setup + £249/mo across strategy, KB, and admin records.
+     - Removed `+ VAT` from outreach scripts and templates.
+     - Aligned pilot messaging: electrical contractors first, Bristol / Bath / M4 corridor, up to 2 concurrent builds. Added `noindex, follow` to `locations.tsx`.
+     - Redirected legacy service routes to `/services`.
+     - Cleaned domain portfolio (`src/lib/domain-portfolio.ts`, `src/routes/domains.tsx`): removed internal notes, retired domains, unconfirmed domains, and valuation ranges; showing "Enquire for price" only.
+     - Standardized `theharleygroup.org` cross-brand routing (`src/server.ts`, `src/routes/the-harley-group.tsx`).
+  4. **Phase 4 (Lead Intake Security, Turnstile, CSP, Test Runner & Deploy Hardening - `95f9e07`):**
+     - Deleted `vercel.json` and removed obsolete Vercel mentions.
+     - Hardened `lead-intake.functions.ts`: required `LEAD_RATE_LIMIT_SECRET` without fallback, integrated Turnstile with `TURNSTILE_ENABLED` feature flag (default false), added structured IP warning.
+     - Created accessible `TurnstileWidget.tsx` and mounted in `EnquiryForm.tsx`.
+     - Consolidated security headers in `src/server.ts`; removed global `/*` block from `public/_headers`; deleted deprecated `X-XSS-Protection`; added `Content-Security-Policy-Report-Only`.
+     - Fixed Service Worker bypass path from `/_server-fn` to `/_serverFn` in `public/sw.js`.
+     - Vendored `vendor/xlsx-0.20.3.tgz` (2.4 MB); updated `package.json`.
+     - Created unified test runner `scripts/run-all-tests.mjs` running all test suites without short-circuiting.
+     - Hardened `.github/workflows/deploy.yml` to require Quality and Security gates.
+  5. **Phase 5 (Claims Guard, Accessibility, Code Splitting, Repo Hygiene & Status Consolidation):**
+     - Automated claims guard and Ofcom phone number testing via `scripts/claims-guard.test.mjs` (2/2 passing).
+     - Globally honored `prefers-reduced-motion` in GSAP and wrapped root application with Framer Motion `<MotionConfig reducedMotion="user">` in `src/routes/__root.tsx`.
+     - Added accessible labels and `aria-label` / `aria-valuetext` to range inputs in `TradeRoiCalculator.tsx` and `ExitIntentModal.tsx`.
+     - Added `scripts/smoke.test.mjs` verifying unauthenticated redirect to `/auth`, lead intake pipeline, key page `<h1>` accessibility structure, and global motion reduction.
+     - Added code-split vendor chunks in `vite.config.ts`.
+     - Removed tracked binaries: `.agents/skills/harley-commercial-governance.7z`, duplicate brand zip in `public/brand/2026-10-21/`, `skills/*.zip`, and `test-results/`. Untracked `ionos-domains-export-2026-10-17.csv` and updated `.gitignore`.
+     - Consolidated `PROJECT_STATUS.md` and archived 1,200+ historical lines to `docs/history/PROJECT_STATUS_ARCHIVE_2026-10.md`.
+- **Empirical Verification Evidence:**
+  - TypeScript Compilation (`npm run typecheck`): **PASS** (0 errors).
+  - ESLint (`npm run lint`): **PASS** (0 errors, 9 non-blocking UI warnings).
+  - Test Runner (`npm test` via `scripts/run-all-tests.mjs`): **PASS** across all 5 test suites (297/297 total assertions passing, 0 failures):
+    1. Platform Smoke & Integrity: PASS
+    2. Core Node Test Suites (Integration & Security - 31 suites): PASS (222/222 assertions)
+    3. Service Worker Caching & Offline: PASS (4/4 assertions)
+    4. Claims Guard (Forbidden Claims & Ofcom Phone Numbers): PASS (2/2 assertions)
+    5. Smoke Test Suite (E2E & Accessibility): PASS (4/4 assertions)
+  - Vite + Nitro Production Build (`npm run build`): **PASS** (compiled in 1.13s).
+- **Remaining Blockers & Next Action:**
+  - Review open non-code action items in `HUMAN_ACTIONS.md` (Cloudflare Turnstile keys, legal entity details, solicitor privacy review, R2 video asset offload).
+  - Proceed with planned pilot outreach to Bristol / Bath electrical contractors.
+
 ## Cloudflare CLI Authentication & Direct Production Deployment — 26 October 2026
 
 - **Tool & Scope:** Google Antigravity. Resolved Cloudflare CLI (`wrangler`) authentication failure and executed direct production deployment to Cloudflare Worker `skypilot24-harley-digital-works`.

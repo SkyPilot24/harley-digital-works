@@ -70,7 +70,7 @@ export const agencyProcess = [
 export const onboardingChecklist = [
   "Choose your website package or care tier.",
   "Share your logo, current website/socials, and contact details.",
-  "List your top 3 most profitable services or jobs.",
+  "List your 3 most profitable services or jobs.",
   "Confirm your primary service areas or postcodes.",
   "Relax while we write, design, and build your digital presence.",
 ] as const;

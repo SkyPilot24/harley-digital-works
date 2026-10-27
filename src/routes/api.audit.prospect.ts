@@ -115,7 +115,7 @@ function parsePitches(rawText: string, demoUrl: string, companyName: string) {
     emailSubject: formatText(emailSubject),
     emailBody: formatText(
       emailBody ||
-        `Hi ${companyName} Team,\n\nI was looking over your website on mobile while reviewing contractors in your area.\n\nI noticed 3 key leaks:\n1. Mobile click-to-call is missing for urgent enquiries.\n2. No 24/7 instant quote estimator for routine jobs.\n3. Trade accreditations are not visible above the fold on mobile.\n\nWe build 100% done-for-you trade platforms with zero homework. You can test your interactive prototype here:\n${demoUrl}\n\nAre you open to a brief chat this week?\n\nBest regards,\nRobbie Harley\nHarley Digital Works (0117 214 1357)`,
+        `Hi ${companyName} Team,\n\nI was looking over your website on mobile while reviewing contractors in your area.\n\nI noticed 3 key leaks:\n1. Mobile click-to-call is missing for urgent enquiries.\n2. No 24/7 instant quote estimator for routine jobs.\n3. Trade accreditations are not visible above the fold on mobile.\n\nWe build managed trade platforms with all copywriting and setup included. You can test your interactive prototype here:\n${demoUrl}\n\nAre you open to a brief chat this week?\n\nBest regards,\nRobbie Harley\nHarley Digital Works (0117 214 1357)`,
     ),
     videoScript: formatText(
       videoScript ||
@@ -149,7 +149,7 @@ export const Route = createFileRoute("/api/audit/prospect")({
           const businessName = body.businessName?.trim() || cleanUrl;
           const trade = body.trade?.trim() || "Electrical";
           const location = body.location?.trim() || "UK";
-          const phone = body.phone?.trim() || "0117 000 0000";
+          const phone = body.phone?.trim() || "01632 960000";
 
           // Check Cache to save tokens
           const cacheKey = `${cleanUrl}-${trade}-${location}`.toLowerCase();

@@ -92,3 +92,74 @@ test("claims guard: scans customer-facing surfaces and fails on forbidden market
     `Claims Guard found ${violations.length} forbidden claim(s). See output above for details.`,
   );
 });
+
+test("phone number guard: ensures phone numbers in customer-facing and demo surfaces match authorized or Ofcom drama ranges", () => {
+  const targetDirs = [
+    path.join(rootDir, "src", "routes"),
+    path.join(rootDir, "src", "components", "site"),
+    path.join(rootDir, "src", "components", "portal"),
+  ];
+
+  const candidateFiles = targetDirs.flatMap((d) =>
+    getFilesRecursively(d, (p) => {
+      if (p.includes(`${path.sep}_authenticated${path.sep}`)) return false;
+      return p.endsWith(".ts") || p.endsWith(".tsx") || p.endsWith(".html") || p.endsWith(".md");
+    }),
+  );
+
+  const phoneRegex = /(?:\+44\s?|0)(?:1\d{2,4}|2\d|7\d{3})\s?\d{3,4}\s?\d{3,4}/g;
+  const invalidPhones = [];
+
+  const isAllowedPhone = (raw) => {
+    const digits = raw.replace(/\D/g, "");
+    // Canonical Bristol landline: 0117 214 1357 (or 441172141357)
+    if (digits === "01172141357" || digits === "441172141357") return true;
+    // Canonical HDW WhatsApp: 07394 041487 (or 447394041487)
+    if (digits === "07394041487" || digits === "447394041487") return true;
+    // Ofcom UK drama fictional numbers: 01632 960xxx
+    if (/^(?:44|0)?1632960\d{3}$/.test(digits)) return true;
+    // Ofcom Manchester drama numbers: 0161 496 0xxx
+    if (/^(?:44|0)?1614960\d{3}$/.test(digits)) return true;
+    // Ofcom Mobile drama numbers: 07700 900xxx
+    if (/^(?:44|0)?7700900\d{3}$/.test(digits)) return true;
+    // Ofcom London drama numbers: 020 7946 0xxx
+    if (/^(?:44|0)?2079460\d{3}$/.test(digits)) return true;
+    return false;
+  };
+
+  for (const filePath of candidateFiles) {
+    const relPath = path.relative(rootDir, filePath).replace(/\\/g, "/");
+    const content = fs.readFileSync(filePath, "utf8");
+    const lines = content.split("\n");
+
+    lines.forEach((lineText, idx) => {
+      let m;
+      while ((m = phoneRegex.exec(lineText)) !== null) {
+        const phone = m[0];
+        if (!isAllowedPhone(phone)) {
+          invalidPhones.push({
+            file: relPath,
+            line: idx + 1,
+            matched: phone,
+            content: lineText.trim(),
+          });
+        }
+      }
+    });
+  }
+
+  if (invalidPhones.length > 0) {
+    console.error(
+      `\n❌ Phone Number Guard detected ${invalidPhones.length} non-compliant phone number(s):`,
+    );
+    for (const p of invalidPhones) {
+      console.error(`  - ${p.file}:${p.line} -> "${p.matched}" (in: "${p.content}")`);
+    }
+  }
+
+  assert.equal(
+    invalidPhones.length,
+    0,
+    `Phone Number Guard found ${invalidPhones.length} non-compliant phone number(s). Must use HDW canonical numbers or Ofcom drama ranges.`,
+  );
+});

@@ -142,7 +142,10 @@ export function TradeRoiCalculator() {
         {/* Slider 1: Average Profit per Job */}
         <div className="bg-white/5 border border-white/10 p-5 rounded-2xl">
           <div className="flex items-center justify-between mb-3">
-            <label className="text-xs font-bold text-slate-200 uppercase tracking-wider">
+            <label
+              htmlFor="calc-avg-job-value"
+              className="text-xs font-bold text-slate-200 uppercase tracking-wider cursor-pointer"
+            >
               Average Value / Profit Per Job:
             </label>
             <span className="text-lg font-extrabold text-white font-mono">
@@ -150,11 +153,14 @@ export function TradeRoiCalculator() {
             </span>
           </div>
           <input
+            id="calc-avg-job-value"
             type="range"
             min={300}
             max={25000}
             step={100}
             value={avgJobValue}
+            aria-label="Average Value or Profit Per Job"
+            aria-valuetext={`£${avgJobValue.toLocaleString()}`}
             onChange={(e) => {
               setAvgJobValue(Number(e.target.value));
               setSelectedPreset("custom");
@@ -171,7 +177,10 @@ export function TradeRoiCalculator() {
         {/* Slider 2: Additional Monthly Jobs Won */}
         <div className="bg-white/5 border border-white/10 p-5 rounded-2xl">
           <div className="flex items-center justify-between mb-3">
-            <label className="text-xs font-bold text-slate-200 uppercase tracking-wider">
+            <label
+              htmlFor="calc-extra-jobs-per-month"
+              className="text-xs font-bold text-slate-200 uppercase tracking-wider cursor-pointer"
+            >
               Extra Jobs Won Per Month:
             </label>
             <span className="text-lg font-extrabold text-emerald-400 font-mono">
@@ -179,11 +188,14 @@ export function TradeRoiCalculator() {
             </span>
           </div>
           <input
+            id="calc-extra-jobs-per-month"
             type="range"
             min={1}
             max={15}
             step={1}
             value={extraJobsPerMonth}
+            aria-label="Extra Jobs Won Per Month"
+            aria-valuetext={`+${extraJobsPerMonth} jobs per month`}
             onChange={(e) => {
               setExtraJobsPerMonth(Number(e.target.value));
               setSelectedPreset("custom");
@@ -246,7 +258,7 @@ export function TradeRoiCalculator() {
       <p className="text-[11px] text-slate-400 leading-relaxed mb-6 border-t border-white/10 pt-4">
         * <strong>Commercial Disclaimer:</strong> Calculations are strictly illustrative scenario
         models based on your user-supplied project values and contract averages. Harley Digital
-        Works does not forecast or guarantee enquiries, leads, or turnover. Capacity is strictly
+        Works does not forecast or promise enquiries, leads, or turnover. Capacity is strictly
         limited to up to 2 concurrent client builds.
       </p>
 

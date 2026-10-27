@@ -16,7 +16,7 @@ export interface TradeVertical {
   stats: { label: string; value: string }[];
 }
 
-// Offer facts, not unmeasured customer results or a fixed launch guarantee.
+// Offer facts, not unmeasured customer results or a fixed launch timeline.
 const approvedOfferStats = [
   { label: "Website Setup", value: "£1,495" },
   { label: "Monthly Care", value: "£249/mo" },

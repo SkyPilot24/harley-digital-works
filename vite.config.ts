@@ -15,6 +15,19 @@ export default defineConfig({
     preview: {
       port: 3000,
     },
+    build: {
+      rollupOptions: {
+        output: {
+          manualChunks(id) {
+            if (id.includes("node_modules")) {
+              if (id.includes("framer-motion")) return "vendor-motion";
+              if (id.includes("lucide-react")) return "vendor-icons";
+              if (id.includes("@supabase")) return "vendor-supabase";
+            }
+          },
+        },
+      },
+    },
     plugins: [
       {
         name: "local-server-environment",
