@@ -186,21 +186,21 @@ I ran a quick automated audit of your site (${prospect.websiteUrl}) and identifi
 We launched a custom proposal desk and blueprint for ${prospect.companyName} here:
 https://harleydigitalworks.com/proposals?client=${encodeURIComponent(prospect.companyName)}
 
-We handle 100% of copywriting, build, and hosting with a 14-day live launch guarantee.
+We handle copywriting, build, and hosting with an agreed delivery schedule.
 
 Are you free for a brief 10-minute chat this week?
 
 Best regards,
-Dr Robbie Harley, MBA
-Managing Director | The Harley Group & Harley Digital Works
+Robbie Harley
+Founder | Harley Digital Works
 0117 214 1357 | harleydigitalworks.com`;
     }
 
     return `Hi team at ${prospect.companyName}, congratulations on your strong track record in ${prospect.location}. 
 
-I noticed your web infrastructure is currently running at ${prospect.pageSpeedScore}/100 on Google PageSpeed, which is impacting your ability to win top commercial tenders. 
+I noticed your web infrastructure is currently running at ${prospect.pageSpeedScore}/100 on Google PageSpeed. 
 
-At The Harley Group, we deliver turnkey edge websites for UK contractors in 14 days with zero homework. Feel free to review your interactive proposal: https://harleydigitalworks.com/proposals?client=${encodeURIComponent(prospect.companyName)}`;
+At Harley Digital Works, we deliver managed websites for UK trade contractors with complete copywriting included. Feel free to review your interactive proposal: https://harleydigitalworks.com/proposals?client=${encodeURIComponent(prospect.companyName)}`;
   };
 
   const handleCopyOutreach = () => {

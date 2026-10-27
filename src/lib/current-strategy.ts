@@ -1,25 +1,24 @@
 // Summary of the governing Business OS records & verified platform engine, updated October 2026.
 export const currentStrategy = {
   title: "Managed Digital Operating Infrastructure for Established UK Trade Contractors",
-  model:
-    "An initial website build fee (Core Flagship: £1,495 setup) plus ongoing monthly digital care (£249/mo), with £995/£149 Launchpad and £2,495/£399 Market Leader tiers.",
+  model: "An initial website build fee (£1,495 setup) plus ongoing monthly digital care (£249/mo).",
   milestone:
-    "Win, deliver and retain verified paying trade contractors through automated B2B leak audits, 100% DFY trade copy, and dual lead desk routing.",
+    "Win, deliver and retain verified paying trade contractors through automated B2B leak audits, trade copywriting based on confirmed facts, and enquiry desk routing.",
   audience:
     "Established UK Electrical Contractors (2–8 staff, NICEIC/NAPIT accredited), expanding to heating/plumbing following pilot validation.",
   pilot:
-    "Bristol & Bath regional electrical contractors (M4 Corridor pilot, UK-wide remote digital studio). Delivery schedule agreed after brief, access and assets are confirmed.",
+    "Bristol, Bath and M4 corridor electrical contractors. Delivery schedule agreed after brief, access and assets are confirmed.",
   offer:
-    "The Revenue Engine (Core Flagship): £1,495 setup (50% deposit £747.50, 50% completion balance £747.50) + £249/mo care. Entry: The Launchpad (£995 + £149/mo). Expansion: The Market Leader (£2,495 + £399/mo). Confirm seller tax registration and invoice treatment before issue.",
+    "Managed Trade Presence: £1,495 setup (50% deposit £747.50, 50% completion balance £747.50) + £249/mo care. Single ratified package. Confirm seller tax registration and invoice treatment before issue.",
   sellerName: "Harley DigitalWorks Ltd",
   taxStatus: "Not VAT-registered — owner confirmed 14 October 2026; seller issue details pending",
   approval:
     "Written proposal acceptance, 50% deposit confirmed in banking ledger, and verified trade accreditations before work begins.",
   build:
-    "Turnkey 5-page trade conversion website, 100% done-for-you technical copywriting, trade accreditation badges, mobile-responsive layout, dual-channel lead desk, Local Map Pack Schema.org JSON-LD microdata, and Cloudflare edge SSR performance.",
-  care: "Managed Cloudflare edge hosting, SSL certificates, 1 batch of content edits per month (up to 30 mins), automated enquiry health checks, review workflow, monthly performance summary, and 24h support response window.",
+    "Turnkey 5-page trade conversion website, trade copywriting based on confirmed facts, trade accreditation badges, mobile-responsive layout, enquiry form routing, Local-business Schema.org JSON-LD microdata, and Cloudflare edge SSR performance.",
+  care: "Managed Cloudflare edge hosting, SSL certificates, 1 batch of content edits per month (up to 30 mins), regular enquiry health checks, review workflow, monthly performance summary, and support commitments confirmed in proposal.",
   boundaries:
-    "Strict pilot cap: 2 concurrent builds. Wider capacity requires reconciliation against founder decisions and measured workload. No cold calling or unverified revenue claims. Confirm tax treatment; do not equate unregistered with zero-rated. Retain lead access controls and genuine customer approval.",
+    "Strict pilot cap: 2 concurrent builds (up to 2 active builds at a time). Wider capacity requires reconciliation against founder decisions and measured workload. No cold calling or unverified revenue claims. Confirm tax treatment; do not equate unregistered with zero-rated. Retain lead access controls and genuine customer approval.",
 };
 
 export const strategyRecords = [

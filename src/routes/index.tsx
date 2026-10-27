@@ -110,7 +110,7 @@ function HomePage() {
               <div className="pt-2 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-stone-600 font-medium">
                 <span className="inline-flex items-center gap-1.5 text-emerald-800">
                   <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                  <span>Bristol, Bath & UK Wide · Trade Contractors</span>
+                  <span>Bristol, Bath and the M4 corridor · Electrical Contractors</span>
                 </span>
                 <span className="text-stone-300">|</span>
                 <span>£1,495 setup (50% deposit / 50% approval) · £249/mo care</span>
@@ -212,9 +212,9 @@ function HomePage() {
                 each with a character of its own.
               </p>
             </div>
-            <ConceptShowcase concept="architecture" featured />
+            <ConceptShowcase concept="solar" featured />
             <div className="studio-project-grid">
-              <ConceptShowcase concept="solar" />
+              <ConceptShowcase concept="architecture" />
               <ConceptShowcase concept="interior" />
             </div>
             <p className="studio-work-note">
@@ -232,12 +232,12 @@ function HomePage() {
         >
           <div className="studio-wrap">
             <BeforeAfterComparison
-              initialTradeId="heating-plumbing"
+              initialTradeId="electrical-ev"
               showAllTrades={true}
               featuredOnly={true}
               title="See what your website could become"
               subtitle="Compare two illustrative designs for the same trade. See how clearer words, layout and enquiry routes change the experience."
-              sectionKicker="02 / BEFORE & AFTER TRANSFORMATIONS"
+              sectionKicker="02 / BEFORE & AFTER DESIGN STUDIES"
             />
             <div className="mt-10 pt-6 border-t border-ink/10 flex flex-wrap items-center justify-between gap-4">
               <span className="text-xs sm:text-sm font-medium text-ink">

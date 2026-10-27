@@ -89,7 +89,7 @@ const PROSPECT_TARGETS: Prospect[] = [
     tradeTitle: "Luxury Renovations & Extensions",
     city: "Cheshire",
     region: "Wilmslow, Alderley Edge & Knutsford",
-    recommendedPackage: "Growth Website (£2,995)",
+    recommendedPackage: "Managed Trade Website (£1,495)",
     estimatedJobValue: "£25,000+ (Extensions & Joinery)",
     keyCert: "Federation of Master Builders",
   },
@@ -103,7 +103,7 @@ const PROSPECT_TARGETS: Prospect[] = [
     tradeTitle: "Commercial Cleaning & FM",
     city: "London",
     region: "Central London & City",
-    recommendedPackage: "Pro Custom Platform (£4,995)",
+    recommendedPackage: "Managed Trade Website (£1,495)",
     estimatedJobValue: "£850/mo (B2B Recurring)",
     keyCert: "BICSc Certified & SafeContractor",
   },
@@ -130,7 +130,7 @@ We just built an interactive website prototype specifically for UK ${p.tradeTitl
 You can test the live demo on your phone here:
 👉 ${demoUrl}
 
-We build and write the entire website for you in 14 days for a fixed £1,495 (100% Done-For-You, no writing required from you).
+We build and write the entire website for you on an agreed delivery schedule for a fixed £1,495 (complete copywriting included).
 
 Worth a quick 5-min look this week?`;
   };
@@ -142,18 +142,18 @@ Worth a quick 5-min look this week?`;
 
 Hi ${firstName},
 
-I run Harley Digital Works (part of The Harley Group). We build high-converting, 100% Done-For-You websites for UK trade contractors and small businesses.
+I run Harley Digital Works (part of The Harley Group). We build managed websites for UK trade contractors and small businesses.
 
 We recently put together an interactive mobile demo specifically for ${p.tradeTitle} businesses in ${p.region}. It includes:
 • Live job price estimator (homeowners calculate ballpark price & WhatsApp you)
 • Before & after job photo sliders
 • Verified ${p.keyCert} accreditation badges
-• 14-day guaranteed delivery
+• Agreed delivery schedule
 
 You can test the interactive prototype directly here:
 👉 ${demoUrl}
 
-We handle 100% of the copywriting and setup for a fixed investment of £1,495 + VAT, with managed hosting and monthly updates for £95/mo.
+We handle complete copywriting and setup for a fixed investment of £1,495, with managed hosting and monthly updates for £249/mo.
 
 Are you free for a brief 10-minute intro call on Thursday or Friday?
 

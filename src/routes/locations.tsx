@@ -11,6 +11,7 @@ export const Route = createFileRoute("/locations")({
         content:
           "Explore website design and ongoing digital care for UK trades and local service businesses.",
       },
+      { name: "robots", content: "noindex, follow" },
     ],
   }),
   component: Page,

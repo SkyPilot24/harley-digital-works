@@ -19,39 +19,20 @@ type LeadRow = Database["public"]["Tables"]["leads"]["Row"];
 const PACKAGES = {
   managed: {
     key: "managed",
-    name: "Managed Digital Presence",
+    name: "Managed Trade Presence",
     price: 1495,
     careMonthly: 249,
-    badge: "Recommended MVP",
-  },
-  essential: {
-    key: "essential",
-    name: "The Launchpad",
-    price: 995,
-    careMonthly: 149,
-    badge: "Standard",
-  },
-  visibility: {
-    key: "visibility",
-    name: "Multi-Location Visibility",
-    price: 2495,
-    careMonthly: 399,
-    badge: "Expanded",
+    badge: "Approved Offer",
   },
 };
 
 const ADDONS = [
-  { id: "seo-pack", name: "Local Map-Pack Domination", price: 495 },
-  { id: "review-booster", name: "5-Star Review Booster Engine", price: 295 },
+  { id: "review-booster", name: "Customer Review Follow-up Engine", price: 295 },
   { id: "fleet-pack", name: "Commercial Fleet & Accreditation Pack", price: 395 },
 ];
 
 export function LeadProposalModal({ lead, onClose }: { lead: LeadRow; onClose: () => void }) {
-  const defaultPkgKey: keyof typeof PACKAGES = lead.package?.toLowerCase().includes("visibility")
-    ? "visibility"
-    : lead.package?.toLowerCase().includes("essential")
-      ? "essential"
-      : "managed";
+  const defaultPkgKey: keyof typeof PACKAGES = "managed";
 
   const [selectedPkgKey, setSelectedPkgKey] = useState<keyof typeof PACKAGES>(defaultPkgKey);
   const [selectedAddons, setSelectedAddons] = useState<string[]>([]);

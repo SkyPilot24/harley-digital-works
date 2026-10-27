@@ -1040,7 +1040,7 @@ function BrandAssetsPage() {
                 <span>Executive Imagery & Press Media</span>
               </div>
               <h2 className="mt-3 text-3xl font-bold tracking-tight text-white md:text-4xl">
-                Dr Robbie Harley · Official Media Asset Collection
+                Robbie Harley · Official Media Asset Collection
               </h2>
               <p className="mt-2 text-sm text-hdw-ivory/80 max-w-2xl leading-relaxed">
                 Approved editorial and commercial portraits for press releases, partnership
@@ -1152,7 +1152,7 @@ function BrandAssetsPage() {
                   <div className="relative aspect-4/3 rounded-xl overflow-hidden bg-hdw-blue border border-hdw-ivory/15">
                     <img
                       src={p.src}
-                      alt={`Dr Robbie Harley - ${p.name}`}
+                      alt={`Robbie Harley - ${p.name}`}
                       className="h-full w-full object-cover object-center motion-safe:group-hover:scale-105 transition-transform duration-300"
                     />
                     <div className="absolute top-2 left-2 rounded-md bg-black/70 backdrop-blur-xs px-2 py-0.5 text-[10px] font-mono font-bold text-hdw-ivory">

@@ -303,7 +303,7 @@ The Harley Group · Harley Digital Works
                 </li>
                 <li className="flex items-center gap-2">
                   <Check className="h-4 w-4 text-emerald-600" />
-                  <span>14-Day Delivery SLA Guaranteed</span>
+                  <span>Agreed Delivery Schedule</span>
                 </li>
               </ul>
             </div>
@@ -314,30 +314,30 @@ The Harley Group · Harley Digital Works
                   <div className="inline-block rounded bg-primary px-2 py-0.5 text-[10px] font-bold text-white mb-1">
                     RECOMMENDED
                   </div>
-                  <h4 className="font-bold text-base text-ink">Growth & Dominance</h4>
-                  <p className="text-xs text-ink-muted">Fleet & Local Dominance</p>
+                  <h4 className="font-bold text-base text-ink">Managed Care Plan</h4>
+                  <p className="text-xs text-ink-muted">Continuous Care & Updates</p>
                 </div>
                 <div className="text-right">
-                  <div className="text-2xl font-black text-ink">£2,995</div>
-                  <div className="text-[10px] text-ink-muted">or £1,497.50 50% Deposit</div>
+                  <div className="text-2xl font-black text-ink">£249 / mo</div>
+                  <div className="text-[10px] text-ink-muted">Rolling 30-Day Agreement</div>
                 </div>
               </div>
               <ul className="space-y-2 text-xs text-ink/80 border-t border-ink/10 pt-4">
                 <li className="flex items-center gap-2 font-medium">
                   <Check className="h-4 w-4 text-primary" />
-                  <span>Everything in Launch Plan</span>
+                  <span>Cloudflare Managed Hosting & SSL</span>
                 </li>
                 <li className="flex items-center gap-2 font-medium">
                   <Check className="h-4 w-4 text-primary" />
-                  <span>10 Sub-Town Geo Landing Pages</span>
+                  <span>Monthly Content Edit Allowance (30 min)</span>
                 </li>
                 <li className="flex items-center gap-2 font-medium">
                   <Check className="h-4 w-4 text-primary" />
-                  <span>Automated WhatsApp Review Engine</span>
+                  <span>Customer Review Workflow Recommendations</span>
                 </li>
                 <li className="flex items-center gap-2 font-medium">
                   <Check className="h-4 w-4 text-primary" />
-                  <span>Google Map Pack Schema Setup</span>
+                  <span>Regular Enquiry Form Health Checks</span>
                 </li>
               </ul>
             </div>

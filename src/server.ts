@@ -94,17 +94,33 @@ export default {
         }
       }
 
-      // Multi-Tenant Host Routing: If visiting theharleygroup.org/ -> redirect to /the-harley-group
-      if (
-        [
-          "theharleygroup.org",
-          "www.theharleygroup.org",
-          "theharleygroup.co.uk",
-          "www.theharleygroup.co.uk",
-        ].includes(host) &&
-        (url.pathname === "/" || url.pathname === "")
-      ) {
-        return Response.redirect(`${url.origin}/the-harley-group`, 302);
+      // Multi-Tenant Host Routing: On the group host serve only /the-harley-group, /privacy and static assets;
+      // 301 everything else to https://harleydigitalworks.com{path}.
+      const isGroupHost = [
+        "theharleygroup.org",
+        "www.theharleygroup.org",
+        "theharleygroup.co.uk",
+        "www.theharleygroup.co.uk",
+      ].includes(host);
+
+      if (isGroupHost) {
+        if (url.pathname === "/" || url.pathname === "") {
+          return Response.redirect(`${url.origin}/the-harley-group`, 301);
+        }
+        const isStaticAsset =
+          url.pathname.startsWith("/_") ||
+          url.pathname.startsWith("/assets/") ||
+          url.pathname.startsWith("/build/") ||
+          url.pathname.includes(".") ||
+          url.pathname === "/robots.txt" ||
+          url.pathname === "/sitemap.xml";
+
+        if (url.pathname !== "/the-harley-group" && url.pathname !== "/privacy" && !isStaticAsset) {
+          return Response.redirect(
+            `https://harleydigitalworks.com${url.pathname}${url.search}`,
+            301,
+          );
+        }
       }
 
       const handler = defaultServerEntry as ServerEntry;

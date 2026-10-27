@@ -304,7 +304,7 @@ export function ClientMilestoneSignOffDesk({ project }: ClientMilestoneSignOffDe
                 </div>
                 <div className="flex justify-between">
                   <span className="text-neutral-400">Remaining Balance (50%):</span>
-                  <span className="font-bold text-white">£1,497.50 (+ VAT)</span>
+                  <span className="font-bold text-white">£747.50</span>
                 </div>
               </div>
 

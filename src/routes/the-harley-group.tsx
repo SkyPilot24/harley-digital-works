@@ -31,8 +31,8 @@ export function TheHarleyGroupPage() {
               <span>Lasting value.</span>
             </h1>
             <p>
-              The Harley Group brings Harley Digital Works, Harley Labs and the domain portfolio
-              under one parent identity. Distinct activities, with a shared direction.
+              The Harley Group is the parent of Harley Digital Works (websites and care for UK
+              trades), Harley Labs (automation and prototypes) and a small domain portfolio.
             </p>
             <div className="flex flex-wrap items-center gap-3">
               <a href="#digital-works" className="enquiry-submit">
@@ -81,9 +81,9 @@ export function TheHarleyGroupPage() {
                 any one time.
               </p>
               <div className="mt-4 flex flex-wrap items-center gap-3">
-                <Link to="/" className="enquiry-submit">
+                <a href="https://harleydigitalworks.com" className="enquiry-submit">
                   Visit Harley Digital Works ↗
-                </Link>
+                </a>
                 <Link to="/labs" className="studio-text-link">
                   Explore Harley Labs ↗
                 </Link>
@@ -98,17 +98,19 @@ export function TheHarleyGroupPage() {
                   number: "01",
                   title: "Harley Digital Works",
                   description:
-                    "Turnkey trade websites, 100% DFY copywriting, and managed Cloudflare edge care.",
-                  href: "/",
+                    "Turnkey trade websites, complete copywriting, and managed ongoing care.",
+                  href: "https://harleydigitalworks.com",
                   badge: "Visit Platform",
+                  external: true,
                 },
                 {
                   number: "02",
                   title: "Harley Labs",
                   description:
-                    "Instant-loading digital architectures, workflow automations, and operational software systems.",
+                    "Automation workflows, prototypes and the internal tools behind Harley Digital Works.",
                   href: "/labs",
                   badge: "Explore Labs",
+                  external: false,
                 },
                 {
                   number: "03",
@@ -117,27 +119,44 @@ export function TheHarleyGroupPage() {
                     "A curated portfolio of high-conviction digital brand assets and assisted transfers.",
                   href: "/domains",
                   badge: "View Portfolio",
+                  external: false,
                 },
-              ].map((item) => (
-                <Link
-                  key={item.number}
-                  to={item.href}
-                  className="group block cursor-pointer transition-all duration-200"
-                  aria-label={`${item.number} ${item.title}: ${item.badge}`}
-                >
-                  <div className="flex items-center justify-between">
-                    <span>{item.number}</span>
-                    <span className="inline-flex items-center gap-1 text-[11px] font-mono uppercase tracking-wider text-muted-foreground group-hover:text-emerald-700 transition-colors">
-                      <span>{item.badge}</span>
-                      <ArrowUpRight className="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                    </span>
-                  </div>
-                  <h3>
-                    <span>{item.title}</span>
-                  </h3>
-                  <p>{item.description}</p>
-                </Link>
-              ))}
+              ].map((item) => {
+                const content = (
+                  <>
+                    <div className="flex items-center justify-between">
+                      <span>{item.number}</span>
+                      <span className="inline-flex items-center gap-1 text-[11px] font-mono uppercase tracking-wider text-muted-foreground group-hover:text-emerald-700 transition-colors">
+                        <span>{item.badge}</span>
+                        <ArrowUpRight className="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                      </span>
+                    </div>
+                    <h3>
+                      <span>{item.title}</span>
+                    </h3>
+                    <p>{item.description}</p>
+                  </>
+                );
+                return item.external ? (
+                  <a
+                    key={item.number}
+                    href={item.href}
+                    className="group block cursor-pointer transition-all duration-200"
+                    aria-label={`${item.number} ${item.title}: ${item.badge}`}
+                  >
+                    {content}
+                  </a>
+                ) : (
+                  <Link
+                    key={item.number}
+                    to={item.href}
+                    className="group block cursor-pointer transition-all duration-200"
+                    aria-label={`${item.number} ${item.title}: ${item.badge}`}
+                  >
+                    {content}
+                  </Link>
+                );
+              })}
             </div>
           </div>
         </section>
@@ -173,51 +192,16 @@ export function TheHarleyGroupPage() {
             ))}
           </div>
         </section>
-        <section
-          className="studio-section studio-wrap group-community deferred-section"
-          id="community"
-        >
-          <div className="rounded-2xl border border-ink/10 bg-white/70 p-8 md:p-12 shadow-xs">
-            <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-8">
-              <div className="max-w-2xl">
-                <p className="studio-kicker">COMMUNITY & SOCIAL RESPONSIBILITY</p>
-                <h2 className="mt-3 text-2xl md:text-3xl font-bold tracking-tight text-ink">
-                  Supported Community Initiative: The Revival Fellowship
-                </h2>
-                <p className="mt-4 text-base md:text-lg leading-relaxed text-ink-muted">
-                  Website design, modern digital infrastructure, and technical consultancy
-                  contributed pro bono by Robbie Harley through The Harley Group.
-                </p>
-                <p className="mt-3 text-sm leading-relaxed text-ink-muted">
-                  Proudly delivered as a voluntary community contribution to support local
-                  fellowship, educational outreach, and digital accessibility across the United
-                  Kingdom.
-                </p>
-                <div className="mt-6 flex flex-wrap items-center gap-4">
-                  <a
-                    href="https://therevivalfellowship.co.uk/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 rounded-xl bg-ink px-5 py-2.5 text-xs font-bold text-white hover:bg-ink/90 transition-all shadow-xs"
-                  >
-                    <span>Visit The Revival Fellowship</span>
-                    <ArrowUpRight size={14} />
-                  </a>
-                </div>
-              </div>
-              <div className="rounded-xl border border-ink/10 bg-slate-50/90 p-5 text-xs text-ink-muted max-w-sm shrink-0">
-                <span className="font-semibold text-ink text-sm block mb-1.5">
-                  Community Value Delivered
-                </span>
-                <p className="leading-relaxed">
-                  Full-scale responsive website, digital media distribution, and cloud
-                  infrastructure contributed pro bono to support community fellowship and public
-                  outreach.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
+        {harleyGroupConfig.showRevivalFellowshipNotice && (
+          <section
+            className="studio-section studio-wrap group-community deferred-section"
+            id="community"
+          >
+            <p className="text-sm text-ink-muted">
+              We also contribute pro bono web work to The Revival Fellowship.
+            </p>
+          </section>
+        )}
         <section className="studio-section group-contact deferred-section" id="contact">
           <div className="studio-wrap group-division">
             <div>

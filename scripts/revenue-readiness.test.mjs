@@ -159,12 +159,12 @@ test("oversized phone and malformed emails fail validation", () => {
 test("legacy Pro CTA, domain and service links select actual form options", () => {
   assert.equal(
     resolveEnquiryInterest({ package: "Pro / Custom (£4,995+)" }),
-    "Pro Platform (£4,995+)",
+    "Managed Trade Website (£1,495)",
   );
   assert.equal(resolveEnquiryInterest({ domain: "example.com" }), "Domain purchase / enquiry");
   assert.equal(
     resolveEnquiryInterest({ service: "Care plans" }),
-    "Website Care Plan & Hosting (£95/mo)",
+    "Website Care Plan & Hosting (£249/mo)",
   );
   assert.equal(
     resolveEnquiryInterest({ service: "Free Website Health Check Consultation" }),

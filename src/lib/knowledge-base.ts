@@ -301,20 +301,18 @@ export const KNOWLEDGE_BASE_ARTICLES: KnowledgeArticle[] = [
   {
     id: "commercial-offer-managed",
     category: "commercial",
-    title: "Commercial Model: The Three Productised Packages",
+    title: "Commercial Model: The Approved Managed Package",
     summary:
-      "The three productised packages designed for UK trade contractors, anchored by the flagship Revenue Engine.",
+      "The single productised package designed for UK trade contractors: £1,495 setup + £249/mo care.",
     keyPoints: [
-      "The Revenue Engine (Core Flagship): £1,495 setup (50/50 split £747.50) + £249/mo care. 5 pages, DFY trade copy, dual SMS/email lead desk, GBP local SEO + Schema JSON-LD, automated review kit, 30-min monthly edits.",
-      "The Launchpad (Entry): £995 setup (50/50 split £497.50) + £149/mo care. 3 pages, DFY copy, email lead desk, GBP verification, Cloudflare edge hosting, 15-min monthly edits.",
-      "The Market Leader (Expansion): £2,495 setup (50/50 split £1,247.50) + £399/mo care. 8 pages, 3 geo-targeted area landing pages, missed-call SMS auto-reply, priority review booster, Google LSA setup, 60-min monthly edits.",
-      "Initial Target Niche: Established Electrical Contractors (2–8 staff) across Bristol, Bath, and the M4 Corridor.",
-      "Acquisition Engine: Zero cold calling. Automated corporate B2B digital leak audits (PECR compliant) + private interactive prototypes.",
+      "Managed Trade Presence: £1,495 setup (50/50 split £747.50) + £249/mo care. 5 pages, trade copywriting based on confirmed facts, enquiry routing, local SEO microdata, review workflow recommendations, 30-min monthly edits.",
+      "Initial Target Niche: Established Electrical Contractors across Bristol, Bath, and the M4 Corridor.",
+      "Acquisition Engine: Zero cold calling. Automated B2B digital reviews + private interactive prototypes.",
     ],
     operationalDetails:
-      "Harley Digital Works positions as the digital operating infrastructure for UK trades: 'We build and run your complete digital enquiry desk — so high-value local customers find you, trust you, and book with you, while you stay focused on the tools.' All billing is milestone-gated (50% upfront deposit, 50% on preview sign-off before DNS cutover). Out-of-scope items (e-commerce, custom apps, site visits) are quoted separately.",
-    statusBadge: "Ratified Tiers",
-    lastUpdated: "7 October 2026",
+      "Harley Digital Works positions as the digital operating infrastructure for UK trades: 'We build and run your website and enquiry form — so customers can reach you and you can get on with the job.' All billing is milestone-gated (50% upfront deposit, 50% on preview sign-off before DNS cutover). Out-of-scope items are quoted separately.",
+    statusBadge: "Approved Offer",
+    lastUpdated: "October 2026",
   },
   {
     id: "unit-economics-and-vat",

@@ -21,6 +21,8 @@ export const leadCaptureConfigured = Boolean(
 
 export const siteConfig = {
   name: "Harley Digital Works",
+  founderName: "Robbie Harley",
+  founderTitle: "Founder",
   domain: siteDomain,
   url: siteUrl,
   canonicalUrl: `${siteUrl}/`,
@@ -63,6 +65,7 @@ export const harleyGroupConfig = {
     "Hi Robbie, I found The Harley Group online and I'd like to find out more about your services.",
   location: "Bristol, United Kingdom",
   operatingHours: "Monday–Friday 09:00–17:00 UK time",
+  showRevivalFellowshipNotice: false,
 };
 
 export const outreachComplianceConfig = {
@@ -168,30 +171,6 @@ export const publicWebsiteRoutes: PublicWebsiteRoute[] = [
     priority: "High",
   },
   {
-    path: "/services/content-engine",
-    label: "Content engine",
-    adminPath: "/admin/services",
-    adminLabel: "Services",
-    owner: "Content engine",
-    diagnosticGroup: "Services",
-    leadCapturePath: "/contact",
-    revenueRole: "Authority and inbound lead generation",
-    nextAction: "Connect content output to resource publishing and lead capture.",
-    priority: "Medium",
-  },
-  {
-    path: "/services/digital-products",
-    label: "Digital products",
-    adminPath: "/admin/services",
-    adminLabel: "Services",
-    owner: "Digital products",
-    diagnosticGroup: "Services",
-    leadCapturePath: "/contact",
-    revenueRole: "Scalable product revenue",
-    nextAction: "Use Revenue OS to prioritise the first productised template or kit.",
-    priority: "Medium",
-  },
-  {
     path: "/services/launch-plan",
     label: "Launch plan",
     adminPath: "/admin/services",
@@ -286,8 +265,8 @@ export const publicWebsiteRoutes: PublicWebsiteRoute[] = [
     owner: "Care plans",
     diagnosticGroup: "Lead capture",
     leadCapturePath: "/contact",
-    revenueRole: "5-Star Google review engine & reputation shield",
-    nextAction: "Promote automated review booster as part of £95/mo care plans.",
+    revenueRole: "Customer review follow-up engine",
+    nextAction: "Promote review workflow as part of £249/mo care plans.",
     priority: "High",
   },
   {
@@ -402,7 +381,7 @@ export function buildPageSeoHead({
             image: fullOgImage,
             email: siteConfig.contactEmail,
             telephone: "+441172141357",
-            priceRange: "£1,495 - £4,995",
+            priceRange: "£1,495",
             openingHours: "Mo-Fr 09:00-17:00",
             address: {
               "@type": "PostalAddress",

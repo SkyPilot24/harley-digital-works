@@ -82,34 +82,28 @@ Would you be open to a 5-minute phone chat this Thursday afternoon to see if thi
 
 Best regards,
 
-Dr Robbie Harley, MBA
-Founder & Managing Director
+Robbie Harley
+Founder
 Harley Digital Works (part of The Harley Group)
 Direct WhatsApp: 07700 900500`,
-    whatsappBody: `Hi {{contactName}}, Dr Robbie Harley here from Harley Digital Works. We build done-for-you websites for UK {{tradeSector}}.
+    whatsappBody: `Hi {{contactName}}, Robbie Harley here from Harley Digital Works. We build managed websites for UK {{tradeSector}}.
 
 I put together an interactive staging concept specifically for {{companyName}} in {{city}}:
 {{stagingUrl}}
 
-Includes an instant quote estimator and 1-tap WhatsApp booking. Takes 14 days to go live with zero writing required from you. Worth a quick 3-minute look on your phone?`,
-    smsBody: `Hi {{contactName}}, put together a live website concept for {{companyName}} with an instant quote calculator: {{stagingUrl}} - 14-day done-for-you launch. Quick call this week? - Robbie Harley (Harley Digital Works)`,
+Includes an instant quote estimator and WhatsApp enquiry routing. Worth a quick 3-minute look on your phone?`,
+    smsBody: `Hi {{contactName}}, put together a live website concept for {{companyName}} with an instant quote calculator: {{stagingUrl}} - Quick call this week? - Robbie Harley (Harley Digital Works)`,
   },
   {
     stepNumber: 2,
     dayDelay: "Day 3 (+48 Hours)",
-    title: "Local Competitor & Map Pack Proximity Benchmark",
+    title: "Local Search Visibility Benchmark",
     objective:
-      "Provide concrete local search data showing where local competitors are capturing search traffic in their borough.",
-    emailSubject: "Local Google Map Pack audit for {{companyName}} (vs {{competitorName}})",
+      "Provide concrete local search data showing where local competitors are capturing search traffic in their area.",
+    emailSubject: "Local search audit for {{companyName}}",
     emailBody: `Hi {{contactName}},
 
 Following up on the live staging demo I sent over for {{companyName}} on Tuesday.
-
-We just ran our Harley Labs Geo-Grid radar across {{city}} for high-intent search terms like "emergency boiler replacement {{city}}".
-
-Right now, local competitors like {{competitorName}} are appearing in the Google Top 3 Map Pack primarily because their schema microdata includes borough-level radius targeting.
-
-We build all {{companyName}} pages with automated multi-borough JSON-LD schema (covering all postal sectors in {{city}}) to rank your phone number directly in front of homeowners searching in emergencies.
 
 Here is the interactive demo again for your review:
 {{stagingUrl}}
@@ -118,36 +112,35 @@ Are you free for 5 minutes tomorrow at 10:30am or 2:00pm?
 
 Best,
 
-Dr Robbie Harley, MBA
+Robbie Harley
 Harley Digital Works`,
-    whatsappBody: `Morning {{contactName}}, checked your Google Map Pack visibility in {{city}}. Right now {{competitorName}} is picking up search volume for emergency installs. Our multi-borough schema fixes this on Day 1: {{stagingUrl}} Have 5 mins today?`,
-    smsBody: `Hi {{contactName}}, local map pack audit for {{companyName}} in {{city}} is ready. We can get you into the top 3 within 14 days: {{stagingUrl}} - Robbie`,
+    whatsappBody: `Morning {{contactName}}, following up on the website staging demo I created for {{companyName}}: {{stagingUrl}} Have 5 mins today?`,
+    smsBody: `Hi {{contactName}}, website concept for {{companyName}} in {{city}} is ready: {{stagingUrl}} - Robbie`,
   },
   {
     stepNumber: 3,
     dayDelay: "Day 7 (+4 Days)",
-    title: "The 14-Day Delivery SLA & Zero Homework Breakup",
-    objective:
-      "Create final urgency around the 14-day SLA, fixed £1,495 / £2,995 pricing, and lock their regional sector exclusivity.",
+    title: "Final Follow-up",
+    objective: "Final check on their staging demo before archiving.",
     emailSubject: "Closing your staging demo for {{companyName}}",
     emailBody: `Hi {{contactName}},
 
 I know how busy you are on site managing jobs across {{city}}, so I will keep this brief.
 
-To maintain our 14-day delivery SLA, we only onboard 2 {{tradeSector}} per county each month to ensure dedicated producer focus and local keyword exclusivity.
+We cap our onboarding to 2 active builds at a time to ensure focused delivery.
 
-If you are looking to upgrade {{companyName}}'s web presence and capture an extra 4–6 high-margin jobs every month with £0 tech stress, we can lock your build slot with a 50% deposit:
+If you are looking to upgrade {{companyName}}'s web presence with fixed £1,495 setup and £249/mo managed care, we can discuss locking your build slot with a 50% deposit:
 {{stagingUrl}}
 
-If the timing isn't right, no problem at all — I'll archive the staging server by Friday.
+If the timing isn't right, no problem at all — I'll archive the staging demo by Friday.
 
 Wishing you continued success on the tools,
 
-Dr Robbie Harley, MBA
+Robbie Harley
 Harley Digital Works
 https://harleydigitalworks.com`,
-    whatsappBody: `Hi {{contactName}}, archiving our {{city}} build slots for this month on Friday. If you want us to take {{companyName}} live in 14 days with zero homework for you, let me know today: {{stagingUrl}} - Robbie`,
-    smsBody: `Final check {{contactName}} - archiving your {{companyName}} staging concept this Friday. 14-day live launch: {{stagingUrl}} - Robbie Harley`,
+    whatsappBody: `Hi {{contactName}}, archiving our {{city}} build slots for this month on Friday. If you want to review the concept for {{companyName}}, let me know today: {{stagingUrl}} - Robbie`,
+    smsBody: `Final check {{contactName}} - archiving your {{companyName}} staging concept this Friday: {{stagingUrl}} - Robbie Harley`,
   },
 ];
 

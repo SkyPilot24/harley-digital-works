@@ -50,9 +50,8 @@ function DomainsPage() {
             Owned domains for AI, mobility, finance, smart tech, and UK niche projects.
           </h1>
           <p className="mt-6 max-w-2xl text-[17px] leading-relaxed text-ink-muted">
-            Enquire about individual domains, portfolio bundles, or flexible lease-to-own terms.
-            Guide prices help you assess fit before we confirm availability and transfer
-            arrangements.
+            Enquire about individual domains, portfolio bundles, or flexible acquisition terms. We
+            confirm availability, transfer arrangements, and written terms before you commit.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <PillButton as="link" to="/contact" search={{ package: "Domain purchase / enquiry" }}>
@@ -80,7 +79,6 @@ function DomainsPage() {
             <div className="md:col-span-8">
               <div className="grid gap-4 sm:grid-cols-2">
                 {domains.map((domain) => {
-                  const buyNowPrice = getDomainBuyNowPrice(domain.name);
                   return (
                     <article
                       key={domain.name}
@@ -102,12 +100,8 @@ function DomainsPage() {
                       </div>
                       <div className="mt-6 border-t border-ink/10 pt-4">
                         <div className="flex items-center justify-between gap-3 text-sm">
-                          <span className="text-ink-muted">Guide price</span>
-                          <span className="font-medium text-ink">{formatGbp(buyNowPrice)}</span>
-                        </div>
-                        <div className="mt-1 flex items-center justify-between gap-3 text-[11px] text-ink-muted font-mono">
-                          <span>Lease-to-own</span>
-                          <span className="text-emerald-700 font-semibold">From £79 / mo</span>
+                          <span className="text-ink-muted">Price</span>
+                          <span className="font-medium text-ink">Enquire for price</span>
                         </div>
                         <div className="mt-4 flex flex-col gap-2">
                           <PillButton
@@ -119,19 +113,7 @@ function DomainsPage() {
                             }}
                             size="sm"
                           >
-                            Buy {domain.name}
-                          </PillButton>
-                          <PillButton
-                            as="link"
-                            to="/contact"
-                            search={{
-                              domain: domain.name,
-                              package: "Domain lease-to-own enquiry",
-                            }}
-                            variant="ghost"
-                            size="sm"
-                          >
-                            Lease from £79/mo
+                            Enquire about {domain.name}
                           </PillButton>
                         </div>
                       </div>
@@ -146,7 +128,7 @@ function DomainsPage() {
                 surface="sage"
                 tag="Acquisition Options"
                 title="Purchase outright or lease-to-own."
-                body="Acquire strategic digital real estate via outright purchase, escrow transfer, or flexible lease-to-own from £79/mo. We confirm availability, registrar requirements, and payment terms before either party commits."
+                body="Acquire strategic digital real estate via outright purchase, escrow transfer, or flexible lease terms. We confirm availability, registrar requirements, and payment terms before either party commits."
                 ctaLabel="Ask about a name"
                 ctaTo="/contact"
               />

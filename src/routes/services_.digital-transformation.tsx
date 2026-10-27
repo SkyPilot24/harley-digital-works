@@ -1,49 +1,7 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { CapabilityPage } from "@/components/site/CapabilityPage";
+import { createFileRoute, redirect } from "@tanstack/react-router";
+
 export const Route = createFileRoute("/services_/digital-transformation")({
-  head: () => ({
-    meta: [
-      { title: "Digital Transformation | Harley Digital Works" },
-      {
-        name: "description",
-        content:
-          "Focused service and system modernisation that improves customer journeys and day-to-day operations.",
-      },
-    ],
-  }),
-  component: Page,
+  beforeLoad: () => {
+    throw redirect({ to: "/services", replace: true });
+  },
 });
-function Page() {
-  return (
-    <CapabilityPage
-      data={{
-        eyebrow: "Digital transformation",
-        title: "Modernise the journey without making the programme the product.",
-        intro:
-          "We turn unclear transformation ambitions into a focused roadmap and working improvements that reduce operational and customer friction.",
-        problems: [
-          "Customer journeys span disconnected channels and ownership is unclear.",
-          "Outdated systems create workarounds, duplication and service risk.",
-          "A large transformation programme feels too slow, expensive or abstract.",
-        ],
-        deliverables: [
-          "Service and journey mapping",
-          "Systems and workflow audit",
-          "Opportunity prioritisation",
-          "Prototypes and proof of value",
-          "Digital product delivery",
-          "Adoption and improvement roadmap",
-        ],
-        outcomes: [
-          "A shared view of what should change first and why",
-          "Working improvements delivered in manageable stages",
-          "Simpler services that are easier to use and operate",
-        ],
-        related: [
-          { label: "Explore web design", to: "/services/web-design-development" },
-          { label: "Start a conversation", to: "/contact" },
-        ],
-      }}
-    />
-  );
-}

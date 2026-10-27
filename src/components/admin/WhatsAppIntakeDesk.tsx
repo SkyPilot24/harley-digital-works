@@ -129,12 +129,12 @@ const SAMPLE_THREADS: WhatsAppThread[] = [
 
 const QUICK_RESPONSE_TEMPLATES = [
   {
-    label: "Send 14-Day Delivery Guarantee",
-    text: "All our builds operate on a guaranteed 14-day SLA: 50% deposit upfront, 50% on live launch. We write 100% of the copy and configure your Gas Safe / NICEIC accreditations.",
+    label: "Send Delivery & Payment Schedule",
+    text: "All our builds operate on an agreed delivery schedule: 50% deposit upfront, 50% on final approval. We prepare the copy based on your confirmed business facts and configure your verified accreditations.",
   },
   {
     label: "Send Instant Price Breakdown",
-    text: "We offer 2 turnkey models: Launch Plan (£1,495 for sole traders) and Growth Engine (£2,995 for multi-van fleets) with optional £95/mo managed care covering unlimited updates.",
+    text: "Our managed trade website package is £1,495 setup (50% deposit / 50% on approval) + £249/mo ongoing care covering hosting, security and monthly updates.",
   },
   {
     label: "Generate & Send Live Staging Demo",

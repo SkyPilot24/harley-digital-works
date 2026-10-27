@@ -29,10 +29,8 @@ export function buildLeadMailto(data: LeadInput, recipient: string) {
 }
 
 export const enquiryInterests = [
-  "Launch Website (£1,495)",
-  "Growth Website (£2,995)",
-  "Pro Platform (£4,995+)",
-  "Website Care Plan & Hosting (£95/mo)",
+  "Managed Trade Website (£1,495)",
+  "Website Care Plan & Hosting (£249/mo)",
   "Redesign My Existing Website",
   "Free Website Health Check Consultation",
   "Domain purchase / enquiry",
@@ -47,11 +45,12 @@ export function resolveEnquiryInterest(search: {
   if (search.domain) return "Domain purchase / enquiry";
   const value = search.package || search.service || "";
   if (enquiryInterests.some((interest) => interest === value)) return value;
-  if (/^pro\b/i.test(value)) return "Pro Platform (£4,995+)";
-  if (/^growth\b/i.test(value)) return "Growth Website (£2,995)";
-  if (/^launch\b/i.test(value)) return "Launch Website (£1,495)";
-  if (/care|hosting/i.test(value)) return "Website Care Plan & Hosting (£95/mo)";
-  if (/audit|health|consultation/i.test(value)) return "Free Website Health Check Consultation";
+  if (/^pro\b/i.test(value)) return "Managed Trade Website (£1,495)";
+  if (/^growth\b/i.test(value)) return "Managed Trade Website (£1,495)";
+  if (/^launch\b/i.test(value)) return "Managed Trade Website (£1,495)";
+  if (/care|hosting/i.test(value)) return "Website Care Plan & Hosting (£249/mo)";
+  if (/audit|health|consultation|review/i.test(value))
+    return "Free Website Health Check Consultation";
   return value ? "Something else" : "";
 }
 

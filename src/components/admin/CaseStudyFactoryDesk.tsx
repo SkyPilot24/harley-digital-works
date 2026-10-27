@@ -83,7 +83,7 @@ export const CASE_STUDY_PRESETS: TradeCaseStudy[] = [
       author: "Dave Harrison",
       role: "Director & Lead Engineer",
     },
-    packageTier: "Growth Engine (£2,995)",
+    packageTier: "Managed Trade Presence (£1,495) + £249/mo Care",
     liveUrl:
       "https://harleydigitalworks.com/demos?company=Cheshire+Heat+%26+Boiler+Co+Ltd&trade=heating&city=Stockport",
   },
@@ -120,7 +120,7 @@ export const CASE_STUDY_PRESETS: TradeCaseStudy[] = [
       author: "Craig Robinson",
       role: "Managing Director",
     },
-    packageTier: "Growth Engine (£2,995) + £195/mo Care",
+    packageTier: "Managed Trade Presence (£1,495) + £249/mo Care",
     liveUrl:
       "https://harleydigitalworks.com/demos?company=Vanguard+Electrical+%26+EV+Ltd&trade=electrical&city=Solihull",
   },
@@ -157,7 +157,7 @@ export const CASE_STUDY_PRESETS: TradeCaseStudy[] = [
       author: "Liam Walker",
       role: "Founder & Master Roofer",
     },
-    packageTier: "Launch Plan (£1,495) + £95/mo Care",
+    packageTier: "Managed Trade Presence (£1,495) + £249/mo Care",
     liveUrl:
       "https://harleydigitalworks.com/demos?company=Apex+Premier+Roofing&trade=roofing&city=Leeds",
   },
