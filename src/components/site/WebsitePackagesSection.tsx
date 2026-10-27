@@ -85,9 +85,9 @@ export function WebsitePackagesSection({
               </p>
               <ul>
                 {[
-                  "5-page custom trade architecture (Home, About, Services, Selected Work, Dual Enquiry Desk)",
-                  "Done-for-you trade copywriting based on your confirmed business facts",
-                  "Fast mobile experience, your verified trade accreditations, and agreed dual enquiry routing",
+                  "5-page trade website (Home, About, Services, Selected Work, Contact & Enquiry Form)",
+                  "Trade copywriting based on your confirmed business facts",
+                  "Fast mobile experience, your verified trade accreditations, and clear enquiry routing",
                   "Factual local-business structured data and reviewed domain connection preserving your existing email",
                   "Two structured preview revision rounds before public cutover: you approve before going live",
                 ].map((x) => (
@@ -114,7 +114,7 @@ export function WebsitePackagesSection({
                 {[
                   "Cloudflare hosting and SSL maintenance, with monitoring and backup arrangements confirmed in your proposal",
                   "One non-accumulating content edit batch each month, up to 30 minutes",
-                  "Dual-desk enquiry health checks with direct Slack/founder priority triage",
+                  "Regular enquiry form health checks with founder support",
                   "Monthly performance reporting and Google review workflow recommendations",
                   "Support contact, covered hours and response commitments set out in your proposal",
                 ].map((x) => (

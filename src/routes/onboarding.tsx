@@ -41,7 +41,7 @@ function OnboardingPage() {
           <div className="max-w-2xl mx-auto text-center">
             <div className="inline-flex items-center gap-2 mb-3">
               <TagChip tone="dark">Milestone Delivery Sprint</TagChip>
-              <span className="text-xs text-neutral-400">Zero Homework Required</span>
+              <span className="text-xs text-neutral-400">Straightforward Setup</span>
             </div>
             <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-white leading-tight">
               Fast-Track Client <br />
@@ -49,7 +49,7 @@ function OnboardingPage() {
             </h1>
             <p className="mt-3 text-sm sm:text-base text-neutral-300 leading-relaxed max-w-lg mx-auto">
               Take 3 minutes to tell us about your coverage areas, accreditations, and key services.
-              We handle 100% of the copywriting and code.
+              We handle the copywriting and technical build.
             </p>
 
             <div className="mt-6 flex flex-wrap items-center justify-center gap-4 text-xs text-neutral-400">
@@ -60,12 +60,12 @@ function OnboardingPage() {
               <span>•</span>
               <div className="flex items-center gap-1.5">
                 <ShieldCheck className="h-4 w-4 text-emerald-400" />
-                <span>50% Deposit / 50% on Launch</span>
+                <span>50% Deposit / 50% on Approval</span>
               </div>
               <span>•</span>
               <div className="flex items-center gap-1.5">
                 <Zap className="h-4 w-4 text-gold-400" />
-                <span>£95/mo Managed Care</span>
+                <span>£249/mo Managed Care</span>
               </div>
             </div>
           </div>

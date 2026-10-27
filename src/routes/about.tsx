@@ -9,7 +9,7 @@ export const Route = createFileRoute("/about")({
     buildPageSeoHead({
       title: "About the Studio | Harley Digital Works",
       description:
-        "An independent British web studio dedicated to ambitious trades and service businesses. Thoughtful design, clear words, and personal commitment from Dr Robbie Harley.",
+        "An independent British web studio dedicated to ambitious trades and service businesses. Thoughtful design, clear words, and personal commitment from Robbie Harley.",
       path: "/about",
     }),
   component: AboutPage,
@@ -77,9 +77,9 @@ function AboutPage() {
                 </a>
               </div>
               <div className="pt-2 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-stone-600 font-medium">
-                <span>Dr Robbie Harley · Founder & Managing Director</span>
+                <span>Robbie Harley · Founder</span>
                 <span className="text-stone-300">|</span>
-                <span>Direct senior attention on every build</span>
+                <span>Direct attention on every build</span>
               </div>
             </div>
 
@@ -91,14 +91,14 @@ function AboutPage() {
               <div className="founder-photo shadow-xl">
                 <img
                   src="/images/home/robbie-restored.jpg"
-                  alt="Dr Robbie Harley, founder of Harley Digital Works"
+                  alt="Robbie Harley, founder of Harley Digital Works"
                   width="1200"
                   height="1600"
                   loading="eager"
                   fetchPriority="high"
                   decoding="async"
                 />
-                <span>DR ROBBIE HARLEY / FOUNDER & MANAGING DIRECTOR</span>
+                <span>ROBBIE HARLEY / FOUNDER</span>
               </div>
               <div className="hero-art-caption">
                 <span>
@@ -164,7 +164,7 @@ function AboutPage() {
               </p>
               <div className="space-y-6 pt-4 text-base leading-relaxed text-ink/80">
                 <p>
-                  Led by <strong>Dr Robbie Harley</strong>, our studio combines operational
+                  Led by founder <strong>Robbie Harley</strong>, our studio combines operational
                   discipline, commercial sales copywriting, and high-performance design to give
                   ambitious businesses a digital presence that commands respect.
                 </p>
@@ -222,13 +222,13 @@ function AboutPage() {
             <div className="founder-photo">
               <img
                 src="/images/home/robbie-restored.jpg"
-                alt="Dr Robbie Harley"
+                alt="Robbie Harley"
                 width="1200"
                 height="1600"
                 loading="lazy"
                 decoding="async"
               />
-              <span>ROBBIE HARLEY / MANAGING DIRECTOR</span>
+              <span>ROBBIE HARLEY / FOUNDER</span>
             </div>
             <div className="founder-copy">
               <p className="studio-kicker">03 / PERSONAL ACCOUNTABILITY</p>
@@ -248,9 +248,9 @@ function AboutPage() {
                 engagement.
               </p>
               <div className="founder-signature">
-                <span>Dr Robbie Harley</span>
+                <span>Robbie Harley</span>
                 <small>
-                  Managing Director, Harley Digital Works
+                  Founder, Harley Digital Works
                   <br />
                   The Harley Group
                 </small>
@@ -290,7 +290,7 @@ function AboutPage() {
             </div>
             <div className="final-reassurance">
               <span>
-                <PenLine size={16} /> 100% Copywriting included
+                <PenLine size={16} /> Copywriting included
               </span>
               <span>
                 <Check size={16} /> 50% deposit / 50% on approval

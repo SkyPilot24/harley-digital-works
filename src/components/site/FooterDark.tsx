@@ -16,23 +16,18 @@ export function FooterDark() {
               Thoughtful websites for people who care about their business. Designed, written and
               looked after.
             </p>
-            <div className="mt-4 flex items-center gap-3">
-              <img
-                src="/brand/social/hdw-guild-seal-badge.jpg"
-                alt="Trade Quality Guild Seal Stamp"
-                className="h-12 w-12 rounded-full border border-amber-600/40 shadow-lg shrink-0"
-                loading="lazy"
-              />
-              <div className="text-[11px] leading-tight text-slate-400">
-                <span className="font-bold text-white block">Trade Quality Guild Seal</span>
-                <span>100% Done-For-You · Zero Homework</span>
-              </div>
+            <div className="mt-4 rounded-xl border border-white/10 bg-white/5 p-3 text-[11px] leading-relaxed text-slate-400">
+              <span className="font-semibold text-white block mb-0.5">What we commit to</span>
+              <span>
+                Final 50% due only after you approve. Agreed scope in writing. Cancel on 30 days’
+                notice.
+              </span>
             </div>
           </div>
           <div>
             <h3>Make your next move.</h3>
             <nav aria-label="Website services">
-              <Link to="/work">Work & Transformations</Link>
+              <Link to="/work">Selected Work & Design Studies</Link>
               <Link to="/virtual-receptionist">24/7 Phone Receptionist</Link>
               <Link to="/demos">Interactive Trade Demos</Link>
               <a href="/#packages">Build & monthly care</a>

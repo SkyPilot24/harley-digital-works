@@ -20,9 +20,9 @@ import { buildPageSeoHead } from "@/lib/site-config";
 export const Route = createFileRoute("/")({
   head: () =>
     buildPageSeoHead({
-      title: "Harley Digital Works | Websites & Digital Care for UK Trade Contractors",
+      title: "Your website and enquiries, looked after. | Harley Digital Works",
       description:
-        "Your website, phone calls and customer enquiries, looked after. 100% done-for-you copywriting and managed monthly care for UK trade contractors.",
+        "We write, build and run your website and enquiry form, so customers can reach you and you can get on with the job.",
       path: "/",
     }),
   component: HomePage,
@@ -31,7 +31,7 @@ export const Route = createFileRoute("/")({
 const faqs = [
   [
     "Do you work with tradespeople across the whole UK?",
-    "We are currently prioritising electrical contractors across Bristol, Bath and the M4 corridor for our active pilot, but we also support trade businesses across the wider UK. Everything is handled smoothly over a straightforward 20-minute phone call: zero travel, zero homework, and zero tech jargon required from you.",
+    "We are currently prioritising electrical contractors across Bristol, Bath and the M4 corridor for our active pilot, but we also support trade businesses across the wider UK. Everything is handled smoothly over a straightforward 20-minute phone call: no travel, no technical knowledge needed, and no homework required from you.",
   ],
   [
     "What do you need from me?",
@@ -77,8 +77,8 @@ function HomePage() {
                 <span>looked after.</span>
               </h1>
               <p className="hero-description text-balance">
-                We write, build and look after your trade website and customer enquiries. 100%
-                done-for-you copywriting, zero homework, and ongoing monthly care.
+                We write, build and run your website and enquiry form, so customers can reach you
+                and you can get on with the job.
               </p>
               <div className="studio-actions flex flex-wrap items-center gap-3 pt-1">
                 <PillButton
@@ -166,9 +166,9 @@ function HomePage() {
               </div>
               <div className="hero-art-caption">
                 <span>
-                  Zero homework.
+                  Complete trade copywriting.
                   <br />
-                  <strong>100% done-for-you copywriting.</strong>
+                  <strong>Written and built for you.</strong>
                 </span>
                 <span className="hero-art-seal">
                   BRITISH
@@ -353,7 +353,7 @@ function HomePage() {
                 ],
                 [
                   "02",
-                  "100% Done-for-you writing & build.",
+                  "Trade copywriting & custom build.",
                   "We write your copy, shape the design and assemble your website. You get a private preview to explore, check the facts and approve.",
                   "WRITE, DESIGN & BUILD",
                 ],
@@ -399,7 +399,7 @@ function HomePage() {
                       </div>
                     </div>
                     <span className="inline-flex items-center rounded-full bg-emerald-500/10 border border-emerald-500/30 px-2 py-0.5 text-[10px] font-mono text-emerald-300">
-                      Zero Risk
+                      Clear Commitments
                     </span>
                   </div>
 
@@ -410,7 +410,7 @@ function HomePage() {
                     </div>
                     <div className="flex items-center justify-between py-1.5 border-b border-white/5">
                       <span className="text-slate-400">Copywriting</span>
-                      <span className="font-semibold text-emerald-400">100% Done-for-you</span>
+                      <span className="font-semibold text-emerald-400">Included in full</span>
                     </div>
                     <div className="flex items-center justify-between py-1.5 border-b border-white/5">
                       <span className="text-slate-400">Asset Ownership</span>
@@ -638,7 +638,7 @@ function HomePage() {
             </div>
             <div className="final-reassurance">
               <span>
-                <PenLine size={16} /> 100% Copywriting included
+                <PenLine size={16} /> Copywriting included
               </span>
               <span>
                 <Check size={16} /> 50% deposit / 50% on approval

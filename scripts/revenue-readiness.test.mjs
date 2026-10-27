@@ -601,11 +601,6 @@ test("UK locations dataset contains valid postcodes, borough coverage, and verif
     assert.ok(loc.stats.avgTurnaroundDays > 0);
     assert.ok(loc.stats.avgInquiriesMonthly > 0);
     assert.ok(Array.isArray(loc.featuredTrades) && loc.featuredTrades.length > 0);
-    assert.ok(loc.localCaseStudy.name);
-    assert.ok(loc.localCaseStudy.trade);
-    assert.ok(loc.localCaseStudy.location);
-    assert.ok(loc.localCaseStudy.result);
-    assert.ok(loc.localCaseStudy.quote);
   }
 });
 

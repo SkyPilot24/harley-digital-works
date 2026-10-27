@@ -25,11 +25,45 @@ const approvedOfferStats = [
 ];
 
 export const TRADE_VERTICALS: Record<string, TradeVertical> = {
+  electricians: {
+    slug: "electricians",
+    name: "Electricians & EV Installers",
+    badge: "Websites for Electrical Contractors",
+    heroHeadline: "High-Speed Websites Engineered For",
+    heroHighlight: "NICEIC Approved EV & Electrical Contractors.",
+    heroSubheadline:
+      "Showcase commercial 3-phase upgrades, workplace EV charging hubs, EICR landlord inspections, and electrical installations with a professionally built and managed website.",
+    accreditationBadge: "Use client-confirmed registration details",
+    averageJobValue: "Confirm from client records",
+    targetEnquiries: [
+      "Commercial & workplace EV charge point installations (OZEV)",
+      "3-Phase distribution board upgrades & commercial rewires",
+      "EICR periodic electrical inspection reports for landlords",
+      "Architectural lighting & smart automation systems",
+    ],
+    keyChallenges: [
+      "Missing out on high-margin EV charging schemes to national brokers",
+      "Lack of professional online quote calculators for EV charger installs",
+      "Difficulty establishing authority over cheap unregistered competitors",
+    ],
+    includedFeatures: [
+      "Five-page website with done-for-you copy for your confirmed electrical services",
+      "Client-confirmed accreditation details and approved project work",
+      "Two preview revision rounds before the approved release",
+      "Customer SMS/email enquiry routing agreed in scope and verified before launch",
+      "£249/month managed care starting at agreed go-live; calculators require separately agreed scope",
+    ],
+    metaTitle: "Websites for Electricians & EV Installers | Harley Digital Works",
+    metaDescription:
+      "Done-for-you websites and ongoing care for UK electricians and EV installers. Confirmed service details, approved credentials and an agreed delivery schedule.",
+    demoTradeKey: "ev",
+    stats: approvedOfferStats,
+  },
   "heating-engineers": {
     slug: "heating-engineers",
     name: "Heating & Gas Engineers",
     badge: "Websites for Heating Engineers",
-    heroHeadline: "Done-For-You Websites For",
+    heroHeadline: "Websites Built For",
     heroHighlight: "Heating & Boiler Specialists.",
     heroSubheadline:
       "Show your heating services clearly, explain the work you take on, and give customers a straightforward way to enquire. We write and build around your confirmed business facts and approved assets.",
@@ -37,7 +71,7 @@ export const TRADE_VERTICALS: Record<string, TradeVertical> = {
     averageJobValue: "Confirm from client records",
     targetEnquiries: [
       "Combi boiler replacements & full central heating upgrades",
-      "Air-source heat pump installations & government grants",
+      "Air-source heat pump & heating installations",
       "Emergency boiler breakdown & same-day diagnosis",
       "Commercial landlord gas safety certificates (CP12)",
     ],
@@ -91,40 +125,6 @@ export const TRADE_VERTICALS: Record<string, TradeVertical> = {
     metaDescription:
       "Websites and ongoing care for UK commercial contractors and facilities businesses. Clear services, approved project work and an agreed delivery schedule.",
     demoTradeKey: "commercial",
-    stats: approvedOfferStats,
-  },
-  electricians: {
-    slug: "electricians",
-    name: "Electricians & EV Installers",
-    badge: "Websites for Electrical Contractors",
-    heroHeadline: "High-Speed Websites Engineered For",
-    heroHighlight: "NICEIC Approved EV & Electrical Contractors.",
-    heroSubheadline:
-      "Capture lucrative commercial 3-phase upgrades, workplace EV charging hubs, EICR landlord inspections, and smart home electrical installations with a 100% done-for-you digital platform.",
-    accreditationBadge: "Use client-confirmed registration details",
-    averageJobValue: "Confirm from client records",
-    targetEnquiries: [
-      "Commercial & workplace EV charge point installations (OZEV)",
-      "3-Phase distribution board upgrades & commercial rewires",
-      "EICR periodic electrical inspection reports for landlords",
-      "Architectural lighting & smart automation systems",
-    ],
-    keyChallenges: [
-      "Missing out on high-margin EV charging schemes to national brokers",
-      "Lack of professional online quote calculators for EV charger installs",
-      "Difficulty establishing authority over cheap unregistered competitors",
-    ],
-    includedFeatures: [
-      "Five-page website with done-for-you copy for your confirmed electrical services",
-      "Client-confirmed accreditation details and approved project work",
-      "Two preview revision rounds before the approved release",
-      "Customer SMS/email enquiry routing agreed in scope and verified before launch",
-      "£249/month managed care starting at agreed go-live; calculators require separately agreed scope",
-    ],
-    metaTitle: "Websites for Electricians & EV Installers | Harley Digital Works",
-    metaDescription:
-      "Done-for-you websites and ongoing care for UK electricians and EV installers. Confirmed service details, approved credentials and an agreed delivery schedule.",
-    demoTradeKey: "ev",
     stats: approvedOfferStats,
   },
   builders: {

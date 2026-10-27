@@ -664,7 +664,7 @@ Existing Domain: ${data.existingDomain || "None provided"}`;
                   Turnaround Commitment
                 </span>
                 <span className="text-xs font-bold text-white bg-gold-500/10 text-gold-400 border border-gold-500/20 px-3 py-1 rounded-full">
-                  14 Calendar Days Guaranteed
+                  Agreed Delivery Schedule
                 </span>
               </div>
             </div>
@@ -672,9 +672,9 @@ Existing Domain: ${data.existingDomain || "None provided"}`;
             <div className="rounded-xl border border-emerald-500/20 bg-emerald-500/5 p-4 text-xs text-neutral-300 leading-relaxed flex items-start gap-2.5">
               <ShieldCheck className="h-5 w-5 shrink-0 text-emerald-400 mt-0.5" />
               <span>
-                <strong>100% Done-For-You Promise:</strong> You do not need to write any copy or
-                configure code. Once submitted, our web producers write all service pages and
-                prepare your live preview within 10 days.
+                <strong>What We Commit To:</strong> You do not need to write copy or configure code.
+                Once submitted, we write your service pages and prepare your private preview
+                according to our agreed schedule.
               </span>
             </div>
           </motion.div>

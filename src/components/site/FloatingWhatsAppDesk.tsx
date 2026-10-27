@@ -91,7 +91,7 @@ export function FloatingWhatsAppDesk() {
             <div className="rounded-xl bg-slate-950 p-3 border border-slate-800 text-slate-300">
               <p className="font-semibold text-white mb-1 flex items-center gap-1.5">
                 <Sparkles className="h-3.5 w-3.5 text-emerald-400" />
-                Need your website sorted fast?
+                Have a question about your website?
               </p>
               <p className="text-[11px] text-slate-400 leading-relaxed">
                 Send us a message on WhatsApp to discuss your website, ongoing care, or the next
@@ -145,7 +145,7 @@ export function FloatingWhatsAppDesk() {
 
           {/* Footer note */}
           <div className="border-t border-slate-800 bg-slate-950 px-4 py-2 text-[10px] text-slate-500 text-center font-mono">
-            Direct access to Dr Robbie Harley & HDW Project Leads
+            Direct contact with founder Robbie Harley
           </div>
         </div>
       )}

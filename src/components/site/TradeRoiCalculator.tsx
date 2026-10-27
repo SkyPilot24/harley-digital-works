@@ -32,7 +32,7 @@ const TRADE_PRESETS: TradePreset[] = [
     name: "Roofer & GRP Specialist",
     avgJobValue: 3500,
     typicalMonthlyWins: 2,
-    recommendedPackage: "Expansion Website (£2,495)",
+    recommendedPackage: "Managed Website (£1,495)",
   },
   {
     id: "electrical",
@@ -46,7 +46,7 @@ const TRADE_PRESETS: TradePreset[] = [
     name: "Builder & Home Renovations",
     avgJobValue: 18000,
     typicalMonthlyWins: 1,
-    recommendedPackage: "Expansion Website (£2,495)",
+    recommendedPackage: "Managed Website (£1,495)",
   },
   {
     id: "cleaning",
@@ -61,13 +61,12 @@ export function TradeRoiCalculator() {
   const [selectedPreset, setSelectedPreset] = useState<string>("heating");
   const [avgJobValue, setAvgJobValue] = useState<number>(2200);
   const [extraJobsPerMonth, setExtraJobsPerMonth] = useState<number>(3);
-  const [websiteCost, setWebsiteCost] = useState<number>(1495);
+  const [websiteCost] = useState<number>(1495);
 
   const handlePresetSelect = (preset: TradePreset) => {
     setSelectedPreset(preset.id);
     setAvgJobValue(preset.avgJobValue);
     setExtraJobsPerMonth(preset.typicalMonthlyWins);
-    setWebsiteCost(preset.recommendedPackage.includes("2,495") ? 2495 : 1495);
   };
 
   const calculations = useMemo(() => {
@@ -76,8 +75,6 @@ export function TradeRoiCalculator() {
     const annualCarePlanCost = 249 * 12; // £2,988
     const totalYear1Investment = websiteCost + annualCarePlanCost;
     const netYear1Profit = annualExtraRevenue - totalYear1Investment;
-    const roiMultiple =
-      totalYear1Investment > 0 ? (annualExtraRevenue / totalYear1Investment).toFixed(1) : "0";
     const daysToBreakEven = Math.max(
       1,
       Math.round(totalYear1Investment / (monthlyExtraRevenue / 30)),
@@ -88,7 +85,6 @@ export function TradeRoiCalculator() {
       annualExtraRevenue,
       totalYear1Investment,
       netYear1Profit,
-      roiMultiple,
       daysToBreakEven,
     };
   }, [avgJobValue, extraJobsPerMonth, websiteCost]);
@@ -103,7 +99,7 @@ export function TradeRoiCalculator() {
             <span>Interactive Commercial Estimator</span>
           </div>
           <h3 className="text-2xl md:text-3xl font-extrabold text-white tracking-tight">
-            Calculate Your Trade Revenue & ROI
+            Illustrative Enquiry Valuation
           </h3>
           <p className="text-xs md:text-sm text-slate-300 mt-1">
             Illustrative economic scenario modeling based on your trade's project turnover.
@@ -113,7 +109,7 @@ export function TradeRoiCalculator() {
         <div className="flex items-center gap-2 bg-white/5 border border-white/10 px-4 py-2.5 rounded-2xl self-start md:self-auto">
           <TrendingUp className="h-5 w-5 text-emerald-400" />
           <div className="text-xs text-slate-200">
-            VAT Status: <strong className="text-white">No VAT (£0)</strong>
+            Package: <strong className="text-white">£1,495 + £249/mo</strong>
           </div>
         </div>
       </div>
@@ -208,7 +204,7 @@ export function TradeRoiCalculator() {
           {/* Metric 1 */}
           <div className="border-b sm:border-b-0 sm:border-r border-white/10 pb-4 sm:pb-0 sm:pr-4">
             <div className="text-xs font-semibold text-slate-300 uppercase tracking-wider">
-              New Annual Revenue
+              Illustrative Extra Revenue
             </div>
             <div className="text-3xl md:text-4xl font-extrabold text-white tracking-tight mt-1 font-mono">
               +£{calculations.annualExtraRevenue.toLocaleString()}
@@ -221,13 +217,13 @@ export function TradeRoiCalculator() {
           {/* Metric 2 */}
           <div className="border-b sm:border-b-0 sm:border-r border-white/10 pb-4 sm:pb-0 sm:pr-4">
             <div className="text-xs font-semibold text-emerald-400 uppercase tracking-wider">
-              Year 1 Net ROI
+              Illustrative Net Margin
             </div>
             <div className="text-3xl md:text-4xl font-extrabold text-emerald-400 tracking-tight mt-1 font-mono">
-              {calculations.roiMultiple}x Return
+              +£{calculations.netYear1Profit.toLocaleString()}
             </div>
             <div className="text-xs text-slate-400 mt-1">
-              On £{calculations.totalYear1Investment.toLocaleString()} all-inclusive investment
+              After £{calculations.totalYear1Investment.toLocaleString()} all-inclusive investment
             </div>
           </div>
 
@@ -250,25 +246,21 @@ export function TradeRoiCalculator() {
       <p className="text-[11px] text-slate-400 leading-relaxed mb-6 border-t border-white/10 pt-4">
         * <strong>Commercial Disclaimer:</strong> Calculations are strictly illustrative scenario
         models based on your user-supplied project values and contract averages. Harley Digital
-        Works does not guarantee rankings, inbound leads, or turnover. No VAT is charged (The Harley
-        Group is not VAT-registered). Capacity is strictly capped at maximum 2 concurrent client
-        builds.
+        Works does not forecast or guarantee enquiries, leads, or turnover. Capacity is strictly
+        limited to up to 2 concurrent client builds.
       </p>
 
       {/* Bottom CTA Strip */}
       <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-2">
         <div className="flex items-center gap-2 text-xs text-slate-300">
           <ShieldCheck className="h-4 w-4 text-emerald-400 shrink-0" />
-          <span>
-            100% Done-For-You: Copywriting, agreed delivery schedule, 50/50 milestone payment, no
-            VAT charged.
-          </span>
+          <span>Copywriting included, agreed delivery schedule, 50/50 milestone payment.</span>
         </div>
 
         <Link
           to="/contact"
           search={{
-            package: websiteCost === 2495 ? "expansion" : "launch",
+            package: "managed",
             service: `Website Plan Inquiry (+£${calculations.annualExtraRevenue.toLocaleString()}/yr projection)`,
             domain: undefined,
             websiteUrl: undefined,

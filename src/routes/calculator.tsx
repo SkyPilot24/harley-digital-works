@@ -25,12 +25,11 @@ function CalculatorPage() {
           <div className="max-w-3xl">
             <div className="flex items-center gap-2 mb-4">
               <TagChip tone="dark">Trade Financial Projection</TagChip>
-              <span className="text-xs text-neutral-400">Zero Fluff • Hard Numbers</span>
+              <span className="text-xs text-neutral-400">Illustrative Scenarios</span>
             </div>
 
             <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-white leading-tight mb-4">
-              How Much Revenue Is Your <br />
-              <span className="text-gold-400">Current Website Costing You?</span>
+              What is one extra enquiry worth to you?
             </h1>
 
             <p className="text-base sm:text-lg text-neutral-300 leading-relaxed mb-6">
@@ -45,7 +44,7 @@ function CalculatorPage() {
               </div>
               <div className="flex items-center gap-1.5">
                 <CheckCircle2 className="h-4 w-4 text-emerald-400" />
-                <span>Fixed Setup (£1,495 · No VAT)</span>
+                <span>Fixed Setup (£1,495)</span>
               </div>
               <div className="flex items-center gap-1.5">
                 <CheckCircle2 className="h-4 w-4 text-emerald-400" />

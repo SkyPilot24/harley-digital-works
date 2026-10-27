@@ -80,7 +80,7 @@ function WorkPage() {
               </h1>
               <p className="hero-description text-balance">
                 Compare dated DIY templates with high-converting trade platforms. Distinctive
-                design, 100% done-for-you copywriting, and frictionless mobile booking.
+                design, complete copywriting included, and frictionless mobile booking.
               </p>
               <div className="studio-actions flex flex-wrap items-center gap-3 pt-1">
                 <PillButton
@@ -95,7 +95,7 @@ function WorkPage() {
                   href="#transformations"
                   className="studio-text-link inline-flex items-center gap-1.5 text-xs text-stone-600 hover:text-stone-900 transition-colors"
                 >
-                  <span>Explore transformations</span> <ArrowDown size={13} />
+                  <span>Explore design studies</span> <ArrowDown size={13} />
                 </a>
               </div>
               <div className="pt-2 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-stone-600 font-medium">
@@ -113,13 +113,13 @@ function WorkPage() {
               <a
                 href="#transformations"
                 className="hero-browser"
-                aria-label="Explore our before-and-after website transformations"
+                aria-label="Explore our before-and-after website design studies"
               >
                 <span className="browser-toolbar">
                   <i />
                   <i />
                   <i />
-                  <span>vanguard electrical & renewable: transformation</span>
+                  <span>vanguard electrical & renewable: design study</span>
                 </span>
                 <ConceptScreen concept="solar" priority />
               </a>
@@ -131,7 +131,7 @@ function WorkPage() {
                 <span>
                   High-craft trade design.
                   <br />
-                  <strong>Zero generic templates.</strong>
+                  <strong>Distinctive design.</strong>
                 </span>
                 <span className="hero-art-seal">
                   CRAFTED
@@ -162,7 +162,7 @@ function WorkPage() {
               showAllTrades={true}
               title="See what your website could become"
               subtitle="Explore six illustrative trade concepts. Compare how clearer words, layout and enquiry routes change the experience."
-              sectionKicker="01 / INTERACTIVE TRADE TRANSFORMATIONS"
+              sectionKicker="01 / INTERACTIVE DESIGN STUDIES"
             />
           </div>
         </section>
@@ -199,7 +199,7 @@ function WorkPage() {
                     Request Your Free Website Review
                   </PillButton>
                   <span className="text-xs text-white/60 font-mono">
-                    Zero obligation · Honest feedback from our Bristol team
+                    Zero obligation · Honest feedback from founder Robbie Harley
                   </span>
                 </div>
               </div>
@@ -243,7 +243,7 @@ function WorkPage() {
 
             <p className="studio-work-note">
               Original design concepts by Harley Digital Works. Illustrative photography; not
-              commissioned client endorsements. Real client case studies published under permission.
+              commissioned client endorsements.
             </p>
           </div>
         </section>
@@ -319,7 +319,7 @@ function WorkPage() {
               <div>
                 <p>
                   Let’s build something you are proud to show your customers. Fixed investment,
-                  clear scope, and zero homework.
+                  clear scope, and ongoing care.
                 </p>
                 <PillButton as="link" to="/contact" variant="light" className="studio-button">
                   Let’s talk about your website

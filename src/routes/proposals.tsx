@@ -65,44 +65,18 @@ interface AddonOption {
 
 const PACKAGES = {
   launch: {
-    name: "Managed Trade Presence (MVP)",
+    name: "Managed Trade Presence",
     price: 1495,
     tagline:
-      "High-converting 5-page trade website delivered to an agreed milestone schedule with ongoing managed care.",
+      "5-page trade website delivered to an agreed delivery schedule with ongoing managed care.",
     deliverables: [
       "5-Page trade architecture (Home, About, Services, Selected Work, Contact Desk)",
-      "100% Done-for-you technical copywriting (zero homework on your end)",
+      "Trade copywriting based on your verified business facts",
       "Mobile-responsive layout, trade accreditation badges (NICEIC/NAPIT/Gas Safe)",
-      "Local Map Pack Schema.org JSON-LD microdata for regional ranking",
-      "Dual enquiry desk (triage form + click-to-WhatsApp dispatch)",
-      "Cloudflare edge SSR hosting, SSL, and business MX email preservation",
+      "Structured local business Schema.org JSON-LD microdata",
+      "Direct enquiry routing and contact workflow",
+      "Cloudflare edge hosting, SSL, and business email setup review",
       "Two structured preview revision rounds before public DNS cutover",
-    ],
-  },
-  entry: {
-    name: "Essential Foundation",
-    price: 995,
-    tagline: "Core 3-page trade web foundation for sole operators establishing local presence.",
-    deliverables: [
-      "3-Page focused layout (Home, Services & Pricing, Contact Desk)",
-      "Done-for-you copywriting and trade accreditation showcase",
-      "Mobile-optimized performance & Google PageSpeed 95+",
-      "Direct phone and WhatsApp enquiry routing",
-      "Cloudflare edge hosting & domain connection with email protection",
-      "One preview revision round prior to launch",
-    ],
-  },
-  expansion: {
-    name: "Expansion Dominance Platform",
-    price: 2495,
-    tagline: "Multi-page trade platform with sub-service hubs and regional location targeting.",
-    deliverables: [
-      "Everything in Managed + up to 10 custom service and sub-area pages",
-      "Interactive Trade Price Estimator / Quote Calculator module",
-      "Multi-van compliance, commercial tender showcase, and CHAS badges",
-      "Advanced geo-targeted landing hubs across regional towns/postcodes",
-      "Google 5-Star Review Booster & direct dispatch integration",
-      "Priority SLA delivery with dedicated project producer",
     ],
   },
 };
@@ -115,23 +89,23 @@ const AVAILABLE_ADDONS: AddonOption[] = [
     price: 0,
     monthly: 249,
     description:
-      "Cloudflare edge hosting, SSL certificates, 30-min monthly edit batch, dual-desk enquiry health checks, monthly performance digest, and dedicated business hours support window.",
+      "Cloudflare edge hosting, SSL certificates, 30-min monthly edit batch, enquiry health checks, monthly performance digest, and dedicated business hours support window.",
   },
   {
     id: "seo-pack",
-    name: "Local Map-Pack & Directory Booster",
+    name: "Local Directory & Schema Booster",
     category: "Search Engine Optimization",
     price: 495,
     description:
-      "Competitor geo-grid proximity audit, high-authority UK trade directory citations, and Google Business Profile optimization.",
+      "High-authority UK trade directory citations, structured microdata review, and Google Business Profile optimization.",
   },
   {
     id: "review-booster",
-    name: "Contractor 5-Star Review Booster Engine",
-    category: "Lead Conversion",
+    name: "Contractor Review Follow-up Engine",
+    category: "Customer Feedback",
     price: 295,
     description:
-      "Automated 1-tap SMS & WhatsApp review request dispatcher to turn happy clients into verified 5-star Google reviews.",
+      "Review request templates and guidance to invite happy customers to leave feedback on Google.",
   },
   {
     id: "fleet-pack",
@@ -145,29 +119,29 @@ const AVAILABLE_ADDONS: AddonOption[] = [
 
 const SLA_SCHEDULE = [
   {
-    day: "Days 1–2",
+    day: "Phase 1",
     title: "Project Kick-Off & Architecture",
-    desc: "Fast-track onboarding, DNS setup, and trade scope lock.",
+    desc: "Onboarding brief, domain review, and trade scope confirmation.",
   },
   {
-    day: "Days 3–5",
-    title: "Commercial Copywriting",
-    desc: "100% done-for-you technical copy tailored to your exact accreditations.",
+    day: "Phase 2",
+    title: "Trade Copywriting",
+    desc: "Clear copywriting tailored to your exact accreditations and services.",
   },
   {
-    day: "Days 6–9",
-    title: "Web Design & Interactive Systems",
-    desc: "High-speed frontend build, quote calculators, and mobile responsiveness.",
+    day: "Phase 3",
+    title: "Web Design & Implementation",
+    desc: "High-speed frontend build, enquiry forms, and mobile optimisation.",
   },
   {
-    day: "Days 10–12",
+    day: "Phase 4",
     title: "Client Staging Review",
-    desc: "1-click review link issued for final approval and adjustments.",
+    desc: "Private review link issued for final approval, factual checks, and adjustments.",
   },
   {
-    day: "Days 13–14",
-    title: "Live Launch & Google Verification",
-    desc: "DNS switch, SSL certificate deployment, and Google Search Console indexing.",
+    day: "Phase 5",
+    title: "Live Launch",
+    desc: "Domain connection, SSL certificate deployment, and final sign-off.",
   },
 ];
 
@@ -190,10 +164,6 @@ function ProposalsPage() {
     "seo-pack",
     "review-booster",
   ]);
-  const [signatoryName, setSignatoryName] = useState("");
-  const [signatoryEmail, setSignatoryEmail] = useState("");
-  const [hasAccepted, setHasAccepted] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const currentPkg = PACKAGES[selectedPackageKey];
 
@@ -215,14 +185,12 @@ function ProposalsPage() {
       }
     });
 
-    const ukVatAmount = 0; // Below HMRC £90,000 threshold; VAT not charged / zero-rated
     const grossUpfront = netUpfront;
     const depositRequired = Math.round(grossUpfront * 0.5 * 100) / 100;
     const balanceOnCompletion = Math.round((grossUpfront - depositRequired) * 100) / 100;
 
     return {
       netUpfront,
-      ukVatAmount,
       grossUpfront,
       upfrontTotal: netUpfront,
       monthlyTotal,
@@ -242,21 +210,6 @@ function ProposalsPage() {
     if (typeof window !== "undefined") {
       window.print();
     }
-  };
-
-  const handleAcceptProposal = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!signatoryName || !signatoryEmail) {
-      toast.error("Please enter your full name and email to sign.");
-      return;
-    }
-
-    setIsSubmitting(true);
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setHasAccepted(true);
-      toast.success("Proposal signed successfully! Your build slot is reserved.");
-    }, 1000);
   };
 
   return (
@@ -442,7 +395,7 @@ function ProposalsPage() {
               {/* Milestone Delivery SLA Timeline */}
               <div className="rounded-2xl border border-ink/10 bg-white p-6 md:p-8 shadow-sm">
                 <span className="text-xs font-mono font-bold uppercase tracking-wider text-emerald-600">
-                  Guaranteed Operating SLA
+                  Agreed Delivery Framework
                 </span>
                 <h3 className="text-lg font-bold text-ink mt-0.5">Milestone Delivery Schedule</h3>
                 <p className="mt-1 text-xs text-ink-muted">
@@ -498,10 +451,6 @@ function ProposalsPage() {
                       <span>Setup Subtotal</span>
                       <span>£{calculatedTotals.netUpfront.toLocaleString()}</span>
                     </div>
-                    <div className="flex justify-between text-xs text-ink-muted">
-                      <span>Tax Treatment (Zero-Rated / Below £90k Threshold)</span>
-                      <span>£0.00</span>
-                    </div>
                     <div className="flex justify-between font-bold text-base text-emerald-800 border-t border-ink/5 pt-2">
                       <span>Total Upfront Investment</span>
                       <span>
@@ -544,82 +493,31 @@ function ProposalsPage() {
                     </div>
                   </div>
 
-                  {/* Digital Signature Form / Acceptance */}
-                  {!hasAccepted ? (
-                    <form onSubmit={handleAcceptProposal} className="mt-6 space-y-4">
-                      <div>
-                        <label className="block text-xs font-semibold text-ink mb-1">
-                          Signatory Full Name
-                        </label>
-                        <input
-                          type="text"
-                          required
-                          value={signatoryName}
-                          onChange={(e) => setSignatoryName(e.target.value)}
-                          placeholder="e.g. Dr Robbie Harley"
-                          className="w-full rounded-lg border border-ink/15 px-3 py-2 text-xs text-ink focus:border-emerald-500 focus:outline-none"
-                        />
-                      </div>
-
-                      <div>
-                        <label className="block text-xs font-semibold text-ink mb-1">
-                          Authorised Signatory Email
-                        </label>
-                        <input
-                          type="email"
-                          required
-                          value={signatoryEmail}
-                          onChange={(e) => setSignatoryEmail(e.target.value)}
-                          placeholder="e.g. info@apexheating.co.uk"
-                          className="w-full rounded-lg border border-ink/15 px-3 py-2 text-xs text-ink focus:border-emerald-500 focus:outline-none"
-                        />
-                      </div>
-
-                      <div className="text-[11px] text-ink-muted flex items-start gap-1.5">
-                        <Lock className="h-3.5 w-3.5 text-slate-400 shrink-0 mt-0.5" />
-                        <span>
-                          By accepting, you agree to Harley Digital Works Delivery Terms and 50%
-                          start deposit.
-                        </span>
-                      </div>
-
-                      <button
-                        type="submit"
-                        disabled={isSubmitting}
-                        className="w-full rounded-full bg-emerald-600 px-4 py-3 text-xs font-bold text-white shadow-md hover:bg-emerald-700 transition-colors flex items-center justify-center gap-2"
-                      >
-                        {isSubmitting ? (
-                          "Authorising Agreement..."
-                        ) : (
-                          <>
-                            <span>Accept & Sign Proposal</span>
-                            <ArrowRight className="h-4 w-4" />
-                          </>
-                        )}
-                      </button>
-                    </form>
-                  ) : (
-                    <div className="mt-6 rounded-xl border border-emerald-500 bg-emerald-50 p-4 text-center">
-                      <div className="flex h-10 w-10 mx-auto items-center justify-center rounded-full bg-emerald-600 text-white mb-2">
-                        <CheckCircle2 className="h-5 w-5" />
-                      </div>
-                      <h4 className="text-sm font-bold text-emerald-950">
-                        Proposal Accepted & Signed
-                      </h4>
-                      <p className="mt-1 text-xs text-emerald-800">
-                        Signed by <strong>{signatoryName}</strong> ({signatoryEmail}). Tracking
-                        token <strong>HDW-PROP-9821</strong> generated.
-                      </p>
-                      <div className="mt-4">
-                        <Link
-                          to="/onboarding"
-                          className="inline-flex items-center gap-1 text-xs font-bold text-emerald-950 underline"
-                        >
-                          Proceed to Fast-Track Onboarding →
-                        </Link>
-                      </div>
+                  <div className="mt-6 rounded-xl border border-slate-200 bg-slate-50 p-4 text-center">
+                    <div className="flex h-10 w-10 mx-auto items-center justify-center rounded-full bg-slate-900 text-white mb-2">
+                      <Lock className="h-5 w-5" />
                     </div>
-                  )}
+                    <h4 className="text-sm font-bold text-ink">Formal Written Agreement</h4>
+                    <p className="mt-1 text-xs text-ink-muted leading-relaxed">
+                      Proposals are agreed individually with written scope, deliverables and timings
+                      confirmed upfront. To request or discuss your proposal, contact founder Robbie
+                      Harley directly.
+                    </p>
+                    <div className="mt-4">
+                      <Link
+                        to="/contact"
+                        search={{
+                          service: "Proposal inquiry",
+                          package: undefined,
+                          domain: undefined,
+                          websiteUrl: undefined,
+                        }}
+                        className="inline-flex items-center justify-center rounded-full bg-emerald-600 px-5 py-2.5 text-xs font-bold text-white shadow-sm hover:bg-emerald-700 transition-colors"
+                      >
+                        Start a conversation
+                      </Link>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

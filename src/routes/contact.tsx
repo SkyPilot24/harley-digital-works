@@ -88,7 +88,7 @@ function ContactPage() {
                     </span>
                   </div>
                   <p className="text-xs text-ink-muted mt-0.5">
-                    Speak directly with our Bristol studio team.
+                    Speak directly with founder Robbie Harley.
                   </p>
                 </div>
               </div>
@@ -171,9 +171,9 @@ function ContactPage() {
                       Request Your Free 15-Minute Website & Visibility Health Check
                     </h3>
                     <p className="text-xs text-ink-muted leading-relaxed">
-                      Enter your current website URL below. Dr Robbie Harley will personally inspect
-                      your mobile loading speed, Google Local Map Pack visibility, and enquiry
-                      conversion pathways, and talk you through practical, actionable improvements.
+                      Enter your current website URL below. Robbie Harley will inspect your mobile
+                      loading speed, local directory visibility, and enquiry conversion pathways,
+                      and talk you through practical, actionable improvements.
                     </p>
                   </div>
                 </div>
@@ -196,7 +196,7 @@ function ContactPage() {
                     <p className="text-xs text-ink-muted leading-relaxed">
                       You’ve modeled how winning extra trade jobs can transform your revenue.
                       Complete the brief below to turn that projection into a clear, fixed-price
-                      digital platform with 100% done-for-you copywriting and ongoing care.
+                      website with complete copywriting and ongoing care.
                     </p>
                   </div>
                 </div>
@@ -217,7 +217,7 @@ function ContactPage() {
                     <p className="text-xs text-ink-muted leading-relaxed">
                       Available via outright purchase, escrow transfer, or flexible lease-to-own
                       from £79/mo. Submit your enquiry below to confirm availability and transfer
-                      arrangements within 24 hours.
+                      arrangements promptly.
                     </p>
                   </div>
                 </div>
@@ -259,7 +259,7 @@ function ContactPage() {
                     <p className="text-xs text-ink-muted leading-relaxed">
                       Tell us about your automation bottlenecks, platform architecture requirements,
                       or venture collaboration ideas. We'll evaluate technical feasibility and
-                      response within 24 hours.
+                      respond promptly.
                     </p>
                   </div>
                 </div>
@@ -277,7 +277,7 @@ function ContactPage() {
                     <p className="text-xs text-ink-muted leading-relaxed">
                       Have an existing website that isn’t generating qualified enquiries? Enter your
                       website address below. We’ll review your mobile usability, trust signals, and
-                      enquiry pathways, then prepare an illustrative transformation plan.
+                      enquiry pathways, then prepare an illustrative website plan.
                     </p>
                   </div>
                 </div>

@@ -30,46 +30,19 @@ interface CarePlanTier {
 
 const CARE_TIERS: CarePlanTier[] = [
   {
-    id: "essentials",
-    name: "Care Plan Essentials",
-    priceGbp: 149,
-    cadence: "month",
-    features: [
-      "Ultra-fast Cloudflare V8 edge hosting & SSL",
-      "Routine maintenance & security updates",
-      "15-minute monthly content edit allowance",
-      "24-business-hour SLA turnaround",
-      "No VAT charged subscription receipt via Stripe",
-    ],
-  },
-  {
     id: "growth",
-    name: "Care Plan Managed (Ratified MVP)",
+    name: "Care Plan Managed",
     priceGbp: 249,
     cadence: "month",
     popular: true,
-    tag: "Standard Ratified Care",
+    tag: "Standard Managed Care",
     features: [
-      "Everything in Essentials Plan",
+      "Cloudflare edge hosting & SSL certificate management",
+      "Routine technical maintenance and security updates",
       "30-min monthly edit batch (non-accumulative)",
-      "Dual-desk enquiry health checks & direct support triage",
+      "Direct email and WhatsApp support during business hours",
       "Monthly performance digest & review workflow guidance",
-      "Standard 24h business-day SLA (4h outage priority response)",
-      "No VAT charged (under HMRC registration threshold)",
-    ],
-  },
-  {
-    id: "fleet",
-    name: "Expansion Care Plan",
-    priceGbp: 399,
-    cadence: "month",
-    tag: "Multi-Location & Franchises",
-    features: [
-      "Everything in Care Plan Managed",
-      "Multi-van quote calculation routing",
-      "Multi-area landing page updates",
-      "Priority 12-hour turnaround queue",
-      "Quarterly conversion review with Robbie Harley",
+      "Hosting and backup arrangements confirmed in your proposal",
     ],
   },
 ];
@@ -77,21 +50,21 @@ const CARE_TIERS: CarePlanTier[] = [
 const ADDONS = [
   {
     id: "map-pack",
-    name: "Google Map Pack Geotargeting Booster",
+    name: "Local Directory & Citations Booster",
     price: "£95/mo",
-    desc: "Monthly geo-tagged photo uploads and local citation indexing across your primary service area.",
+    desc: "Monthly photo uploads and local citation indexing across your primary service area.",
   },
   {
     id: "review-booster",
-    name: "Automated WhatsApp Review Engine",
+    name: "Customer Review Follow-up Engine",
     price: "£49/mo",
-    desc: "Automated post-job review request SMS/WhatsApp routing happy clients to Google and Checkatrade.",
+    desc: "Review request messages inviting customers to leave reviews on your Google profile.",
   },
   {
     id: "emergency-banner",
     name: "Live Emergency Callout Banner",
     price: "£29/mo",
-    desc: "1-tap mobile toggle on your phone to switch your site into 24/7 out-of-hours emergency mode.",
+    desc: "Mobile toggle to switch your site header into emergency out-of-hours callout notice.",
   },
 ];
 
@@ -102,7 +75,7 @@ const MOCK_INVOICES = [
     description: "Monthly Care Plan (Managed Tier) - cheshireheat.co.uk",
     amount: "£249.00",
     netAmount: "£249.00",
-    vat: "£0.00 (No VAT)",
+    vat: "£0.00",
     status: "Paid via Stripe Auto-Debit",
   },
   {
@@ -111,7 +84,7 @@ const MOCK_INVOICES = [
     description: "Monthly Care Plan (Managed Tier) - cheshireheat.co.uk",
     amount: "£249.00",
     netAmount: "£249.00",
-    vat: "£0.00 (No VAT)",
+    vat: "£0.00",
     status: "Paid via Stripe Auto-Debit",
   },
   {
@@ -120,7 +93,7 @@ const MOCK_INVOICES = [
     description: "Monthly Care Plan (Managed Tier) - cheshireheat.co.uk",
     amount: "£249.00",
     netAmount: "£249.00",
-    vat: "£0.00 (No VAT)",
+    vat: "£0.00",
     status: "Paid via Stripe Auto-Debit",
   },
 ];
@@ -135,7 +108,6 @@ export function CareBillingPortalDesk({
   const [selectedTier, setSelectedTier] = useState<"essentials" | "growth" | "fleet">(defaultTier);
   const [activeAddons, setActiveAddons] = useState<string[]>(["map-pack"]);
   const [companyName] = useState(defaultCompany);
-  const [taxTreatment] = useState("No VAT charged (under HMRC £90k threshold)");
 
   const toggleAddon = (id: string) => {
     setActiveAddons((prev) => (prev.includes(id) ? prev.filter((a) => a !== id) : [...prev, id]));
@@ -149,7 +121,7 @@ export function CareBillingPortalDesk({
     toast.success("Stripe billing portal link dispatched to your billing email.");
   };
 
-  const activePlanData = CARE_TIERS.find((t) => t.id === selectedTier)!;
+  const activePlanData = CARE_TIERS.find((t) => t.id === selectedTier) || CARE_TIERS[0];
 
   return (
     <div className="space-y-10">
@@ -197,14 +169,14 @@ export function CareBillingPortalDesk({
               Account Company
             </div>
             <div className="mt-1 text-sm font-bold text-white truncate">{companyName}</div>
-            <div className="mt-0.5 text-xs text-neutral-500">{taxTreatment}</div>
+            <div className="mt-0.5 text-xs text-neutral-500">Confirmed in agreement</div>
           </div>
           <div className="rounded-2xl bg-neutral-950 p-4 border border-neutral-800/80">
             <div className="text-[11px] font-mono uppercase tracking-wider text-neutral-400">
               Current Active Plan
             </div>
             <div className="mt-1 text-sm font-bold text-gold-400">
-              {activePlanData.name} (£{activePlanData.priceGbp}/mo · No VAT)
+              {activePlanData.name} (£{activePlanData.priceGbp}/mo)
             </div>
             <div className="mt-0.5 text-xs text-emerald-400 flex items-center gap-1">
               <CheckCircle2 className="h-3 w-3" />
@@ -213,10 +185,10 @@ export function CareBillingPortalDesk({
           </div>
           <div className="rounded-2xl bg-neutral-950 p-4 border border-neutral-800/80">
             <div className="text-[11px] font-mono uppercase tracking-wider text-neutral-400">
-              SLA & Turnaround Guarantee
+              Support & Care
             </div>
-            <div className="mt-1 text-sm font-bold text-white">24-Hour Business SLA</div>
-            <div className="mt-0.5 text-xs text-neutral-500">99.99% Cloudflare V8 Uptime</div>
+            <div className="mt-1 text-sm font-bold text-white">Agreed Support Window</div>
+            <div className="mt-0.5 text-xs text-neutral-500">Business hours Monday – Friday</div>
           </div>
         </div>
       </div>
@@ -365,10 +337,7 @@ export function CareBillingPortalDesk({
           </div>
 
           <div className="text-xs text-neutral-400 font-mono">
-            Tax Treatment:{" "}
-            <span className="text-white font-semibold">
-              No VAT charged (£0 / Below £90k HMRC Threshold)
-            </span>
+            Direct Debit: <span className="text-white font-semibold">Stripe Auto-Renew</span>
           </div>
         </div>
 

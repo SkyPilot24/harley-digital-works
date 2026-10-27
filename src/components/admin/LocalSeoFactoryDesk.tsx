@@ -218,23 +218,6 @@ export function LocalSeoFactoryDesk() {
               </span>
             </div>
           </div>
-
-          {/* Local Case Study Snippet */}
-          <div className="rounded-2xl border border-purple-200 bg-purple-50/50 p-5">
-            <div className="flex items-center gap-2 text-purple-800 text-xs font-bold uppercase tracking-wider mb-2">
-              <Sparkles className="h-4 w-4 text-purple-600" />
-              <span>Localized Social Proof Auto-Injection</span>
-            </div>
-            <h4 className="text-sm font-bold text-purple-950">
-              {city.localCaseStudy.name} ({city.localCaseStudy.trade})
-            </h4>
-            <div className="mt-1 text-xs text-purple-800 font-medium">
-              {city.localCaseStudy.result}
-            </div>
-            <blockquote className="mt-2 text-xs text-purple-900/80 italic bg-white/70 p-3 rounded-xl border border-purple-200/60">
-              "{city.localCaseStudy.quote}"
-            </blockquote>
-          </div>
         </div>
 
         {/* Right: Schema.org JSON-LD Output */}
