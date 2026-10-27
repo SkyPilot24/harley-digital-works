@@ -311,18 +311,118 @@ const INITIAL_CAMPAIGNS: DomainCampaign[] = [
       },
     ],
   },
+  {
+    id: "aiwearables-co-uk",
+    domain: "aiwearables.co.uk",
+    tld: ".co.uk",
+    binGbp: 1995,
+    leaseMonthlyGbp: 175,
+    floorReserveGbp: 900,
+    category: "AI & Biometric Wearables",
+    registrarStatus: "Active in IONOS · Ready for Transfer",
+    strategicRationale:
+      "Exact-match British consumer tech brand for smart rings, AI glasses, and health trackers. Rapidly growing hardware sector with high consumer spend.",
+    targets: [
+      {
+        id: "ultrahuman-uk",
+        companyName: "Ultrahuman Healthcare Ltd",
+        website: "https://www.ultrahuman.com",
+        targetRole: "Head of UK Expansion & Retail",
+        suggestedContactName: "UK Expansion Lead",
+        suggestedEmail: "partnerships@ultrahuman.com",
+        strategicHook:
+          "Smart ring and continuous glucose monitoring pioneer expanding rapidly in the UK market. Perfect vanity acquisition.",
+        status: "ready",
+      },
+      {
+        id: "withings-uk",
+        companyName: "Withings UK",
+        website: "https://www.withings.com",
+        targetRole: "Director of Digital Marketing (Northern Europe)",
+        suggestedContactName: "Marketing Lead",
+        suggestedEmail: "press@withings.com",
+        strategicHook:
+          "Connected health tech and smart watch manufacturer targeting UK health-conscious consumers.",
+        status: "ready",
+      },
+    ],
+  },
+  {
+    id: "greenautomotive-co-uk",
+    domain: "greenautomotive.co.uk",
+    tld: ".co.uk",
+    binGbp: 1495,
+    leaseMonthlyGbp: 135,
+    floorReserveGbp: 750,
+    category: "Green Transport & Fleet EV",
+    registrarStatus: "Active in IONOS · Ready for Transfer",
+    strategicRationale:
+      "Authoritative green mobility domain for commercial EV fleet transition, workplace charging installers, and corporate ESG mobility consultants.",
+    targets: [
+      {
+        id: "octopus-ev",
+        companyName: "Octopus Electric Vehicles",
+        website: "https://octopusev.com",
+        targetRole: "Head of Commercial Fleet Partnerships",
+        suggestedContactName: "Fleet Partnerships Director",
+        suggestedEmail: "fleets@octopusev.com",
+        strategicHook:
+          "Major UK salary-sacrifice and EV leasing provider. Exact-match brand asset for commercial and fleet campaigns.",
+        status: "ready",
+      },
+      {
+        id: "gridserve",
+        companyName: "GRIDSERVE Sustainable Energy Ltd",
+        website: "https://gridserve.com",
+        targetRole: "Director of Corporate Partnerships",
+        suggestedContactName: "Partnerships Lead",
+        suggestedEmail: "connect@gridserve.com",
+        strategicHook:
+          "UK high-power EV charging network and electric leasing pioneer looking to solidify search leadership.",
+        status: "ready",
+      },
+    ],
+  },
+  {
+    id: "theiotshop-co-uk",
+    domain: "theiotshop.co.uk",
+    tld: ".co.uk",
+    binGbp: 995,
+    leaseMonthlyGbp: 90,
+    floorReserveGbp: 450,
+    category: "IoT & Smart Hardware",
+    registrarStatus: "Active in IONOS · Ready for Transfer",
+    strategicRationale:
+      "Punchy ecommerce and trade distribution domain for smart-home hardware, industrial IoT sensors, and connected devices.",
+    targets: [
+      {
+        id: "smart-home-point",
+        companyName: "Smart Home Point",
+        website: "https://www.smarthomepoint.com",
+        targetRole: "Managing Director / Commercial Lead",
+        suggestedContactName: "Founder",
+        suggestedEmail: "contact@smarthomepoint.com",
+        strategicHook:
+          "Independent UK smart home publisher and reviewer transitioning into direct hardware sales or trade affiliate.",
+        status: "ready",
+      },
+    ],
+  },
 ];
 
-const LOCAL_STORAGE_KEY = "thg_domain_outbound_campaigns_v2";
+const LOCAL_STORAGE_KEY = "thg_domain_outbound_campaigns_v3";
 const SLACK_STORAGE_KEY = "thg_domain_slack_webhook";
 
 export function DomainOutboundEngine() {
   const [campaigns, setCampaigns] = useState<DomainCampaign[]>(() => {
     if (typeof window !== "undefined") {
-      const saved = localStorage.getItem(LOCAL_STORAGE_KEY);
+      const saved = localStorage.getItem(LOCAL_STORAGE_KEY) || localStorage.getItem("thg_domain_outbound_campaigns_v2");
       if (saved) {
         try {
-          return JSON.parse(saved);
+          const parsed: DomainCampaign[] = JSON.parse(saved);
+          const existingIds = new Set(parsed.map((c) => c.id));
+          const missing = INITIAL_CAMPAIGNS.filter((c) => !existingIds.has(c.id));
+          return [...parsed, ...missing];
         } catch {
           // fallback to initial
         }

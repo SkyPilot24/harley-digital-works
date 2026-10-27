@@ -7,8 +7,8 @@
 - **Development Server:** Binds strictly to Port 3000 (`http://localhost:3000/`). Port 8080 is permanently reserved for NVIDIA Broadcast on the founder's machine.
 - **Terminology Governance:** The term "live" is reserved strictly for production (`harleydigitalworks.com` / `worzpzbutngugwzhlvtj`), never local development or staging previews.
 - **Commercial Boundary:** Ratified Managed package: £1,495 setup + £249/mo care. Capacity: strictly up to 2 concurrent builds. Pilot focus: electrical contractors in Bristol, Bath, and M4 corridor. Zero VAT. No guaranteed 14-day turnarounds or numerical ranking claims.
-- **Historical Archive:** Older historical status checkpoints prior to 26 October 2026 are archived in [docs/history/PROJECT_STATUS_ARCHIVE_2026-10.md](file:///docs/history/PROJECT_STATUS_ARCHIVE_2026-10.md).
 - **Single Active Bottleneck:** Pilot client outreach activation and booking first 3 electrical contractor builds in the Bristol / Bath corridor.
+- **Domain Portfolio & Monetisation:** Completed full portfolio audit (£28,600+ BIN / ~£12,000 floor reserve / £2,500+/mo lease potential), rich Schema.org SEO on `/domains`, UI mockups for social outreach, and expanded outbound campaigns.
 
 ---
 
