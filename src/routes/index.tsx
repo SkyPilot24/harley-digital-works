@@ -49,8 +49,7 @@ const COMMITMENTS = [
   {
     code: "03 // PROPRIETARY",
     title: "Your Assets Always",
-    description:
-      "You retain complete ownership of your domain DNS, brand photography, and code.",
+    description: "You retain complete ownership of your domain DNS, brand photography, and code.",
     footer: "100% OWNERSHIP",
   },
   {
@@ -63,8 +62,7 @@ const COMMITMENTS = [
   {
     code: "05 // SLA TERMS",
     title: "Everything in Writing",
-    description:
-      "Scope, turnaround schedule, and response commitments are documented upfront.",
+    description: "Scope, turnaround schedule, and response commitments are documented upfront.",
     footer: "HARLEY GOVERNANCE",
   },
 ];
@@ -179,8 +177,12 @@ function HomePage() {
               </div>
               <div className="md:col-span-4 p-3.5 sm:p-4 rounded-xl bg-[#eff4ff] border border-[#dce9ff] shadow-xs flex items-center justify-between">
                 <div className="flex flex-col">
-                  <span className="font-mono text-[11px] font-bold uppercase text-[#081B30] tracking-[0.08em]">PILOT CAPACITY: 2 SPOTS</span>
-                  <span className="text-[12px] text-[#44474d]">BRISTOL, BATH &amp; THE M4 CORRIDOR</span>
+                  <span className="font-mono text-[11px] font-bold uppercase text-[#081B30] tracking-[0.08em]">
+                    PILOT CAPACITY: 2 SPOTS
+                  </span>
+                  <span className="text-[12px] text-[#44474d]">
+                    BRISTOL, BATH &amp; THE M4 CORRIDOR
+                  </span>
                 </div>
                 <span className="relative flex h-2.5 w-2.5">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#10B981] opacity-75" />
@@ -208,8 +210,8 @@ function HomePage() {
                     </span>
                   </h1>
                   <p className="max-w-xl text-[17px] sm:text-[18px] leading-[28px] tracking-[-0.01em] text-[#44474d]">
-                    We write, build and run your website and enquiry form, so customers can
-                    reach you and you can get on with the job.
+                    We write, build and run your website and enquiry form, so customers can reach
+                    you and you can get on with the job.
                   </p>
                 </div>
 
@@ -221,9 +223,7 @@ function HomePage() {
                       className="inline-flex h-12 items-center justify-center rounded-xl bg-[#081B30] px-6 text-[14px] font-semibold text-white shadow-[0_4px_14px_-2px_rgba(8,27,48,0.25)] transition-all hover:bg-[#0F2642]"
                     >
                       Get your website plan{" "}
-                      <span className="ml-2 font-mono text-[12px] font-bold text-[#6ffbbe]">
-                        →
-                      </span>
+                      <span className="ml-2 font-mono text-[12px] font-bold text-[#6ffbbe]">→</span>
                     </Link>
 
                     <button
@@ -246,16 +246,15 @@ function HomePage() {
                       className="inline-flex h-12 items-center gap-2 rounded-xl border border-[#006c49]/30 bg-[#eff4ff] px-4 text-[13px] font-semibold text-[#081B30] shadow-2xs transition-all hover:bg-[#e5eeff] cursor-pointer"
                     >
                       <Calculator className="h-4 w-4 text-[#006c49]" />
-                      <span className="font-bold">Instant Quote Calculator</span>
-                      <span className="rounded bg-[#006c49] text-white px-1.5 py-0.5 font-mono text-[10px] font-bold uppercase tracking-wider">
-                        LIVE DEMO
-                      </span>
+                      <span className="font-bold">View package pricing</span>
                     </button>
                   </div>
 
                   {/* Micro-trust Ledger Strip Bento Row */}
                   <div className="flex flex-wrap items-center justify-between gap-2 rounded-xl bg-[#eff4ff] p-3.5 text-[#0b1c30] border border-[#dce9ff]">
-                    <span className="text-[13px] text-[#44474d]">£1,495 setup (50% deposit / 50% approval)</span>
+                    <span className="text-[13px] text-[#44474d]">
+                      £1,495 setup (50% deposit / 50% approval)
+                    </span>
                     <span className="text-[13px] font-semibold text-[#081B30]">
                       £249/mo all-inclusive care
                     </span>
@@ -346,9 +345,8 @@ function HomePage() {
                 </h2>
               </div>
               <p className="max-w-md text-[15px] leading-[24px] text-[#44474d]">
-                Your website should feel like your business. Explore three independent
-                design studies — click any study to inspect the full desktop and mobile
-                design.
+                Your website should feel like your business. Explore three independent design
+                studies — click any study to inspect the full desktop and mobile design.
               </p>
             </div>
 
@@ -360,8 +358,8 @@ function HomePage() {
             </div>
 
             <div className="pt-2 text-center font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-[#44474d]">
-              ORIGINAL DESIGN CONCEPTS BY HARLEY DIGITAL WORKS. ILLUSTRATIVE PHOTOGRAPHY ·
-              NOT COMMISSIONED CLIENT SITES.
+              ORIGINAL DESIGN CONCEPTS BY HARLEY DIGITAL WORKS. ILLUSTRATIVE PHOTOGRAPHY · NOT
+              COMMISSIONED CLIENT SITES.
             </div>
           </div>
         </section>
@@ -385,8 +383,7 @@ function HomePage() {
                   See the possibilities for your business.
                 </h4>
                 <p className="text-[13px] leading-[20px] text-[#44474d]">
-                  Tell us about your existing website and what you would like it to do
-                  better.
+                  Tell us about your existing website and what you would like it to do better.
                 </p>
               </div>
               <div className="flex flex-wrap items-center gap-3">
@@ -396,7 +393,7 @@ function HomePage() {
                   className="inline-flex h-11 items-center gap-2 rounded-lg border border-[#081B30]/20 bg-white px-4 text-[14px] font-semibold text-[#081B30] transition-all hover:bg-[#F7F5EE] cursor-pointer"
                 >
                   <Calculator className="h-4 w-4 text-[#006c49]" />
-                  Test Quote Calculator Demo
+                  View package pricing
                 </button>
                 <Link
                   to="/contact"
@@ -426,8 +423,8 @@ function HomePage() {
                 </h2>
               </div>
               <p className="max-w-md text-[15px] leading-[24px] text-[#eff4ff]">
-                Clear terms, written in advance, and designed to protect your trade
-                business from unnecessary agency risks.
+                Clear terms, written in advance, and designed to protect your trade business from
+                unnecessary agency risks.
               </p>
             </div>
 
@@ -461,8 +458,8 @@ function HomePage() {
               <div className="flex items-center gap-3">
                 <span className="h-3 w-3 shrink-0 rounded-full bg-[#10B981]" />
                 <span className="text-[15px] leading-[24px] text-[#eff4ff]">
-                  Backed by The Harley Group. Every build is individually inspected and
-                  approved before public launch.
+                  Backed by The Harley Group. Every build is individually inspected and approved
+                  before public launch.
                 </span>
               </div>
               <Link
@@ -492,8 +489,7 @@ function HomePage() {
                   Quality Guard: Strictly 2 Active Builds At Any Time
                 </span>
                 <p className="mt-1 text-[13px] leading-[20px] text-[#44474d]">
-                  An initial build fee. Ongoing monthly care. One clear proposal covering
-                  both.
+                  An initial build fee. Ongoing monthly care. One clear proposal covering both.
                 </p>
               </div>
             </div>
@@ -515,18 +511,15 @@ function HomePage() {
                     £1,495
                   </div>
                   <p className="text-[15px] leading-[24px] text-[#44474d]">
-                    50% deposit (£747.50) reserves your slot. 50% balance (£747.50)
-                    payable only upon your final preview approval.
+                    50% deposit (£747.50) reserves your slot. 50% balance (£747.50) payable only
+                    upon your final preview approval.
                   </p>
                 </div>
 
                 {/* Setup Deliverables List */}
                 <div className="space-y-3 pt-1 text-[13px] leading-[20px]">
                   {SETUP_DELIVERABLES.map((item) => (
-                    <div
-                      key={item.bold}
-                      className="flex items-start gap-2.5 text-[#081B30]"
-                    >
+                    <div key={item.bold} className="flex items-start gap-2.5 text-[#081B30]">
                       <Check className="mt-0.5 h-4 w-4 shrink-0 text-[#006c49]" />
                       <span>
                         <strong>{item.bold}</strong> {item.rest}
@@ -557,24 +550,18 @@ function HomePage() {
                     </span>
                   </div>
                   <div className="font-display text-[48px] font-bold leading-none tracking-[-0.03em] text-[#081B30] sm:text-[56px]">
-                    £249{" "}
-                    <span className="text-[22px] font-normal text-[#44474d]">
-                      / month
-                    </span>
+                    £249 <span className="text-[22px] font-normal text-[#44474d]">/ month</span>
                   </div>
                   <p className="text-[15px] leading-[24px] text-[#44474d]">
-                    Monthly care begins at go-live. Continuous security, speed, and
-                    updates with a 30-day fair exit policy.
+                    Monthly care begins at go-live. Continuous security, speed, and updates with a
+                    30-day fair exit policy.
                   </p>
                 </div>
 
                 {/* Monthly Deliverables List */}
                 <div className="space-y-3 pt-1 text-[13px] leading-[20px]">
                   {CARE_DELIVERABLES.map((item) => (
-                    <div
-                      key={item.bold}
-                      className="flex items-start gap-2.5 text-[#081B30]"
-                    >
+                    <div key={item.bold} className="flex items-start gap-2.5 text-[#081B30]">
                       <Check className="mt-0.5 h-4 w-4 shrink-0 text-[#006c49]" />
                       <span>
                         <strong>{item.bold}</strong> {item.rest}
@@ -597,12 +584,9 @@ function HomePage() {
                     </span>
                   </div>
                   <p className="mt-1 text-[13px] leading-[20px] text-[#44474d]">
-                    <strong className="text-[#081B30]">
-                      24/7 AI Virtual Phone Receptionist:
-                    </strong>{" "}
-                    Never miss an emergency call while driving or on tools. Answers in
-                    natural British English and texts lead summaries to WhatsApp in 30
-                    seconds.{" "}
+                    <strong className="text-[#081B30]">24/7 AI Virtual Phone Receptionist:</strong>{" "}
+                    Never miss an emergency call while driving or on tools. Answers in natural
+                    British English and texts lead summaries to WhatsApp in 30 seconds.{" "}
                     <Link
                       to="/virtual-receptionist"
                       className="font-semibold text-[#081B30] underline hover:text-[#006c49]"
@@ -637,8 +621,7 @@ function HomePage() {
               {/* Founder Words & Assurance */}
               <div className="space-y-5 lg:col-span-7">
                 <div className="inline-flex items-center gap-2 rounded bg-[#0F2642] px-3 py-1 font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-[#10B981]">
-                  <span className="h-2 w-2 rounded-full bg-[#10B981]" /> DIRECT FOUNDER
-                  COMMITMENT
+                  <span className="h-2 w-2 rounded-full bg-[#10B981]" /> DIRECT FOUNDER COMMITMENT
                 </div>
 
                 <h2 className="font-display text-[32px] font-bold leading-[1.16] tracking-[-0.025em] text-white sm:text-[40px]">
@@ -706,10 +689,7 @@ function HomePage() {
               </div>
               <p className="max-w-sm text-[15px] leading-[24px] text-[#44474d]">
                 Something else on your mind? Call Robbie directly on{" "}
-                <a
-                  href="tel:01172141357"
-                  className="font-semibold text-[#081B30] underline"
-                >
+                <a href="tel:01172141357" className="font-semibold text-[#081B30] underline">
                   0117 214 1357
                 </a>
                 .
@@ -728,9 +708,7 @@ function HomePage() {
                     <span>{faq.question}</span>
                     <ChevronDown className="h-5 w-5 shrink-0 text-[#44474d] transition-transform group-open:rotate-180" />
                   </summary>
-                  <p className="mt-3 text-[15px] leading-[24px] text-[#44474d]">
-                    {faq.answer}
-                  </p>
+                  <p className="mt-3 text-[15px] leading-[24px] text-[#44474d]">{faq.answer}</p>
                 </details>
               ))}
             </div>
@@ -751,8 +729,7 @@ function HomePage() {
             </h2>
 
             <p className="mx-auto max-w-xl text-[18px] leading-[28px] text-[#eff4ff]">
-              £1,495 setup · £249/mo care · Agreed delivery schedule · Strictly 2
-              concurrent builds.
+              £1,495 setup · £249/mo care · Agreed delivery schedule · Strictly 2 concurrent builds.
             </p>
 
             <div className="flex flex-wrap items-center justify-center gap-4 pt-2">
@@ -760,8 +737,7 @@ function HomePage() {
                 to="/contact"
                 className="inline-flex h-14 items-center justify-center rounded-xl bg-[#10B981] px-8 text-[15px] font-bold text-[#081B30] shadow-[0_0_20px_rgba(16,185,129,0.3)] transition-all hover:bg-[#34D399]"
               >
-                Get your website plan{" "}
-                <span className="ml-2 font-mono text-[#081B30]">→</span>
+                Get your website plan <span className="ml-2 font-mono text-[#081B30]">→</span>
               </Link>
 
               <button
@@ -770,7 +746,7 @@ function HomePage() {
                 className="inline-flex h-14 items-center justify-center gap-2 rounded-xl border border-[#1E3A5F] bg-[#0F2642] px-6 text-[15px] font-semibold text-[#6ffbbe] transition-all hover:bg-[#0F2642]/80 cursor-pointer"
               >
                 <Calculator className="h-4 w-4" />
-                Try Quote Calculator Demo
+                View package pricing
               </button>
 
               <a

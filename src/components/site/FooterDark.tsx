@@ -14,8 +14,8 @@ export function FooterDark() {
               Pilot Capacity: Strictly limited to 2 concurrent builds
             </div>
             <p className="text-[15px] leading-[24px] text-[#eff4ff]">
-              Engineering bespoke lead generation engines for established UK trade
-              specialists. Zero outsourced fluff.
+              Engineering bespoke lead generation engines for established UK trade specialists. Zero
+              outsourced fluff.
             </p>
           </div>
           <div className="flex items-center gap-4">
@@ -76,10 +76,7 @@ export function FooterDark() {
                 </a>
               </li>
               <li>
-                <a
-                  href="/#work"
-                  className="text-[#44474d] transition-colors hover:text-[#081B30]"
-                >
+                <a href="/#work" className="text-[#44474d] transition-colors hover:text-[#081B30]">
                   Renewables &amp; Solar PV
                 </a>
               </li>
@@ -116,18 +113,12 @@ export function FooterDark() {
                 </Link>
               </li>
               <li>
-                <Link
-                  to="/demos"
-                  className="text-[#44474d] transition-colors hover:text-[#081B30]"
-                >
+                <Link to="/demos" className="text-[#44474d] transition-colors hover:text-[#081B30]">
                   High-Ticket Quote Calculators
                 </Link>
               </li>
               <li>
-                <Link
-                  to="/work"
-                  className="text-[#44474d] transition-colors hover:text-[#081B30]"
-                >
+                <Link to="/work" className="text-[#44474d] transition-colors hover:text-[#081B30]">
                   Architectural Project Portfolios
                 </Link>
               </li>
@@ -192,8 +183,7 @@ export function FooterDark() {
                 <span>50/50 Approval Milestone</span>
               </div>
               <p className="text-[13px] leading-[20px] text-[#44474d]">
-                Second invoice issued exclusively upon total sign-off. Zero-risk deposit
-                model.
+                Second invoice issued exclusively upon total sign-off. Zero-risk deposit model.
               </p>
             </div>
             <div className="space-y-1">
@@ -202,8 +192,7 @@ export function FooterDark() {
                 <span>100% Client Asset Ownership</span>
               </div>
               <p className="text-[13px] leading-[20px] text-[#44474d]">
-                Complete proprietary handover of code, high-res assets, copywriting, and
-                domain DNS.
+                Complete proprietary handover of code, high-res assets, copywriting, and domain DNS.
               </p>
             </div>
             <div className="space-y-1">
@@ -212,8 +201,7 @@ export function FooterDark() {
                 <span>30-Day Fair Exit Care</span>
               </div>
               <p className="text-[13px] leading-[20px] text-[#44474d]">
-                No vendor lock-in. Cancel care plans anytime with smooth 30-day
-                offboarding.
+                No vendor lock-in. Cancel care plans anytime with smooth 30-day offboarding.
               </p>
             </div>
           </div>
@@ -222,8 +210,8 @@ export function FooterDark() {
         {/* Bottom Legal & Copyright Bar */}
         <div className="flex flex-col items-center justify-between gap-3 pt-6 font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-[#44474d] md:flex-row">
           <div>
-            © {new Date().getFullYear()} HARLEY DIGITAL WORKS. ALL RIGHTS RESERVED. THE
-            HARLEY GROUP UK.
+            © {new Date().getFullYear()} HARLEY DIGITAL WORKS. ALL RIGHTS RESERVED. THE HARLEY GROUP
+            UK.
           </div>
           <div className="flex flex-wrap items-center gap-5">
             <span>BRITISH TRADE ENGINEERING</span>
