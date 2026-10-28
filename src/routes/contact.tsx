@@ -5,7 +5,9 @@ import { EnquiryForm } from "@/components/site/EnquiryForm";
 import { siteConfig, buildPageSeoHead } from "@/lib/site-config";
 
 export const Route = createFileRoute("/contact")({
-  validateSearch: (s: Record<string, unknown>) => ({
+  validateSearch: (
+    s: Record<string, unknown>,
+  ): { service?: string; package?: string; domain?: string; websiteUrl?: string } => ({
     service: typeof s.service === "string" && s.service.length <= 120 ? s.service : undefined,
     package: typeof s.package === "string" && s.package.length <= 120 ? s.package : undefined,
     domain: typeof s.domain === "string" && s.domain.length <= 253 ? s.domain : undefined,

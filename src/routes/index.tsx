@@ -1,20 +1,23 @@
 import { useEffect, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowDown, ArrowUpRight, Check, PenLine, Play, ShieldCheck, Sparkles } from "lucide-react";
+import {
+  Calculator,
+  Check,
+  CheckCircle2,
+  ChevronDown,
+  MessageCircle,
+  Phone,
+  Play,
+} from "lucide-react";
 import { PageShell } from "@/components/site/PageShell";
-import { PillButton } from "@/components/site/PillButton";
-import { ConceptScreen, ConceptShowcase } from "@/components/site/ConceptShowcase";
+import { ConceptShowcase } from "@/components/site/ConceptShowcase";
 import { BeforeAfterComparison } from "@/components/site/BeforeAfterComparison";
-import { WebsitePackagesSection } from "@/components/site/WebsitePackagesSection";
 import { TradeShowcaseSection } from "@/components/site/TradeShowcaseSection";
 import { HeroTransformationVideoModal } from "@/components/site/HeroTransformationVideoModal";
 import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
-
+  FloatingQuoteCalculatorBadge,
+  TradeQuoteCalculatorModal,
+} from "@/components/site/TradeQuoteCalculatorModal";
 import { buildPageSeoHead } from "@/lib/site-config";
 
 export const Route = createFileRoute("/")({
@@ -28,631 +31,751 @@ export const Route = createFileRoute("/")({
   component: HomePage,
 });
 
-const faqs = [
-  [
-    "Do you work with tradespeople across the whole UK?",
-    "We are currently prioritising electrical contractors across Bristol, Bath and the M4 corridor for our active pilot, but we also support trade businesses across the wider UK. Everything is handled smoothly over a straightforward 20-minute phone call: no travel, no technical knowledge needed, and no homework required from you.",
-  ],
-  [
-    "What do you need from me?",
-    "A conversation about your business, the services you offer and the customers you want to reach. Share your logo and any project photographs you have. We write the copy and create the design; you check the facts and approve the direction.",
-  ],
-  [
-    "How quickly can my website launch?",
-    "We agree a delivery schedule after reviewing your brief, content and current capacity. You review a private preview before launch, with time for factual checks, revisions and final approval.",
-  ],
-  [
-    "Are the websites above real client projects?",
-    "They are independent design studies created to demonstrate our approach to different businesses. The names and photography are illustrative. They show design direction, not client endorsements or achieved commercial results.",
-  ],
-  [
-    "Can I keep my domain and business email?",
-    "Yes. We review your domain and email setup before planning the connection, so existing services are accounted for. You do not need to change your business name, domain or email provider to work with us.",
-  ],
-  [
-    "What happens after launch?",
-    "Your monthly service covers hosting, routine maintenance and content changes within an agreed allowance. We also check enquiry routes and identify useful improvements. Your proposal confirms the support and reporting included.",
-  ],
-  [
-    "What is included in the price?",
-    "Our managed website package is £1,495 setup, paid 50% on agreement and 50% after final preview approval, plus £249/month ongoing care. Your written quote confirms pages, copywriting, mobile optimisation, revisions, timing, ownership, cancellation terms and any applicable taxes before you commit.",
-  ],
+const COMMITMENTS = [
+  {
+    code: "01 // COMMITMENT",
+    title: "Full Final Approval",
+    description:
+      "You approve every word, fact, and finished page before it goes live to the public.",
+    footer: "VERIFIED STAGING",
+  },
+  {
+    code: "02 // MILESTONE",
+    title: "50/50 Split Payment",
+    description:
+      "The final 50% balance is only payable after you test and formally sign off the build.",
+    footer: "ZERO RISK DEPOSIT",
+  },
+  {
+    code: "03 // PROPRIETARY",
+    title: "Your Assets Always",
+    description: "You retain complete ownership of your domain DNS, brand photography, and code.",
+    footer: "100% OWNERSHIP",
+  },
+  {
+    code: "04 // ROLLING CARE",
+    title: "Fair Flexibility",
+    description:
+      "Cancel your care plan anytime on 30 days’ notice and receive a full static export.",
+    footer: "NO LOCK-IN",
+  },
+  {
+    code: "05 // SLA TERMS",
+    title: "Everything in Writing",
+    description: "Scope, turnaround schedule, and response commitments are documented upfront.",
+    footer: "HARLEY GOVERNANCE",
+  },
+];
+
+const SETUP_DELIVERABLES = [
+  {
+    bold: "5-Page Trade Website:",
+    rest: "Home, About, Confirmed Services, Selected Project Work, Contact & Enquiry Journey.",
+  },
+  {
+    bold: "Done-for-You Trade Copy:",
+    rest: "Written by our studio based on your confirmed certifications and high-margin services.",
+  },
+  {
+    bold: "High-Conversion Mobile UX:",
+    rest: "Fast loading, phone-first enquiry routes, and verified trade accreditations strip.",
+  },
+  {
+    bold: "Domain & Business Email Protection:",
+    rest: "Seamless DNS setup preserving your existing Google Workspace / Outlook inbox.",
+  },
+  {
+    bold: "Two Revision Rounds:",
+    rest: "Full private staging preview before public launch. You approve before going live.",
+  },
+];
+
+const CARE_DELIVERABLES = [
+  {
+    bold: "Cloudflare Enterprise Hosting:",
+    rest: "SSL maintenance, daily backups, DDoS protection, and 99.9% uptime monitoring.",
+  },
+  {
+    bold: "Monthly Edit Batch:",
+    rest: "One non-accumulating content update batch per month (up to 30 mins) for rates, photos, or text.",
+  },
+  {
+    bold: "Regular Enquiry Health Checks:",
+    rest: "Weekly automated submission tests ensuring leads never disappear into spam.",
+  },
+  {
+    bold: "Local Performance Monitoring:",
+    rest: "Google Business review workflows and quarterly speed health reviews.",
+  },
+  {
+    bold: "Direct Founder Access:",
+    rest: "Priority support via WhatsApp and direct studio telephone line with Robbie Harley.",
+  },
+];
+
+const FAQS = [
+  {
+    question: "Do you work with tradespeople across the whole UK?",
+    answer:
+      "Yes. While our headquarters are in Bristol and many of our clients operate across the South West and M4 corridor, we engineer and manage digital infrastructure for ambitious trade specialists across the region.",
+  },
+  {
+    question: "What do you need from me?",
+    answer:
+      "Just a 20-minute phone call to confirm your service focus, qualifications, and ideal jobs. We handle 100% of the copywriting and layout. You simply review our private staging build and approve the facts.",
+  },
+  {
+    question: "How quickly can my website launch?",
+    answer:
+      "Because we strictly limit client onboarding to 2 active builds at a time, typical delivery is within 2 to 3 weeks from receipt of your deposit and initial discovery call.",
+  },
+  {
+    question: "Can I keep my domain and business email?",
+    answer:
+      "Absolutely. You maintain 100% ownership of your domain. We configure the DNS records to preserve your Google Workspace or Microsoft 365 business email with zero downtime.",
+  },
+  {
+    question: "What happens after launch?",
+    answer:
+      "Your £249/mo care plan kicks in immediately. We manage hosting, security, daily backups, regular enquiry form checks, and carry out your monthly edit requests so you never have to touch a website builder again.",
+  },
 ];
 
 function HomePage() {
   const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
+  const [isCalcModalOpen, setIsCalcModalOpen] = useState(false);
+
+  useEffect(() => {
+    const hash = window.location.hash.replace(/^#/, "");
+    if (!hash) return;
+    const target = document.getElementById(hash);
+    if (!target) return;
+    const timeoutId = window.setTimeout(() => {
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 80);
+    return () => window.clearTimeout(timeoutId);
+  }, []);
 
   return (
     <PageShell quiet>
-      <div className="studio-home">
-        <section className="studio-hero" aria-labelledby="hero-heading">
-          <div className="studio-wrap hero-layout">
-            <div className="hero-copy">
-              <p className="studio-kicker">
-                <span className="studio-kicker-line" /> WEBSITES · ENQUIRY SYSTEMS · DIGITAL CARE
-              </p>
-              <h1 id="hero-heading" className="tracking-tight text-balance">
-                Your website and enquiries,
-                <br />
-                <span>looked after.</span>
-              </h1>
-              <p className="hero-description text-balance">
-                We write, build and run your website and enquiry form, so customers can reach you
-                and you can get on with the job.
-              </p>
-              <div className="studio-actions flex flex-wrap items-center gap-3 pt-1">
-                <PillButton
-                  as="link"
-                  to="/contact"
-                  variant="dark"
-                  className="studio-button min-h-[48px] px-7 text-sm font-semibold shadow-sm cursor-pointer"
-                >
-                  Get your website plan
-                </PillButton>
-                <button
-                  type="button"
-                  onClick={() => setIsVideoModalOpen(true)}
-                  className="inline-flex items-center gap-2.5 rounded-full border border-stone-300/80 bg-white/80 backdrop-blur-md px-5 min-h-[48px] text-xs font-semibold text-stone-800 hover:bg-white hover:border-stone-400 transition-all shadow-sm cursor-pointer"
-                  aria-label="Watch the 55-second Before and After Trade Transformation video showcase"
-                >
-                  <span className="flex h-5 w-5 items-center justify-center rounded-full bg-emerald-700 text-white shadow-sm">
-                    <Play className="h-2.5 w-2.5 fill-white translate-x-0.5" />
-                  </span>
-                  <span>Watch 55s transformation</span>
-                </button>
-                <a
-                  href="#transformations"
-                  className="studio-text-link inline-flex items-center gap-1.5 text-xs text-stone-600 hover:text-stone-900 transition-colors"
-                >
-                  <span>See transformations</span> <ArrowDown size={13} />
-                </a>
+      <div className="flex w-full flex-col bg-[#f8f9ff] text-[#0b1c30] antialiased">
+        {/* HERO SECTION: VARIANT 2 STRUCTURED MODULAR BENTO GRID (STITCH UI) */}
+        <section className="relative w-full overflow-hidden bg-[#f8f9ff] py-8 lg:py-12">
+          <div className="mx-auto max-w-[1280px] px-5 sm:px-6 space-y-4">
+            {/* Top Bento Control Bar */}
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-4">
+              <div className="md:col-span-8 p-3.5 sm:p-4 rounded-xl bg-white border border-[#E2E8F0] shadow-xs flex flex-wrap items-center justify-between gap-2.5">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded bg-[#e5eeff] text-[#081B30] font-mono text-[11px] font-bold uppercase tracking-[0.08em]">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#006c49] animate-pulse" />
+                  WEBSITES · ENQUIRY SYSTEMS · DIGITAL CARE FOR AMBITIOUS UK TRADES
+                </div>
+                <div className="font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-[#44474d] flex items-center gap-2">
+                  <span>STRATEGY. DESIGN. WORDS. CARE.</span>
+                  <span className="text-[#74777d]">/</span>
+                  <span className="text-[#081B30] font-bold">ONE STUDIO. YOUR WHOLE WEBSITE.</span>
+                </div>
               </div>
-              <div className="pt-2 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-stone-600 font-medium">
-                <span className="inline-flex items-center gap-1.5 text-emerald-800">
-                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                  <span>Bristol, Bath and the M4 corridor · Electrical Contractors</span>
+              <div className="md:col-span-4 p-3.5 sm:p-4 rounded-xl bg-[#eff4ff] border border-[#dce9ff] shadow-xs flex items-center justify-between">
+                <div className="flex flex-col">
+                  <span className="font-mono text-[11px] font-bold uppercase text-[#081B30] tracking-[0.08em]">
+                    PILOT CAPACITY: 2 SPOTS
+                  </span>
+                  <span className="text-[12px] text-[#44474d]">
+                    BRISTOL, BATH &amp; THE M4 CORRIDOR
+                  </span>
+                </div>
+                <span className="relative flex h-2.5 w-2.5">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#10B981] opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#059669]" />
                 </span>
-                <span className="text-stone-300">|</span>
-                <span>£1,495 setup (50% deposit / 50% approval) · £249/mo care</span>
               </div>
             </div>
-            <div className="hero-art">
-              <div className="hero-art-note">
-                <span>BEFORE & AFTER TRANSFORMATION.</span>
-                <span>↘</span>
-              </div>
-              <button
-                type="button"
-                onClick={() => setIsVideoModalOpen(true)}
-                className="hero-browser group relative text-left cursor-pointer w-full focus:outline-none"
-                aria-label="Click to play 55-second Before and After Trade Transformation Video"
-              >
-                <span className="browser-toolbar">
-                  <i />
-                  <i />
-                  <i />
-                  <span>Trade Transformation Showcase (55s) · Click to play</span>
-                </span>
-                <div className="relative overflow-hidden aspect-[16/10] bg-black">
-                  <img
-                    src="/images/home/hero-contractor.jpg"
-                    alt="British trade contractor with Ford Transit van checking customer enquiries on smartphone"
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors flex items-center justify-center">
-                    <div className="flex items-center gap-3 rounded-full bg-black/80 border border-white/20 px-4 py-2 text-white backdrop-blur-md shadow-2xl group-hover:scale-105 transition-transform">
-                      <span className="flex h-8 w-8 items-center justify-center rounded-full bg-emerald-600 text-white shadow-lg">
-                        <Play className="h-3.5 w-3.5 fill-white translate-x-0.5" />
+
+            {/* Integrated Bento Main Grid */}
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 items-stretch">
+              {/* Bento Cell 1: Main Proposition (7 cols) */}
+              <div className="lg:col-span-7 rounded-2xl bg-white border border-[#E2E8F0] p-6 sm:p-8 flex flex-col justify-between space-y-6 shadow-sm">
+                <div className="space-y-4">
+                  <div className="inline-flex items-center gap-1.5 font-mono text-[11px] font-bold text-[#006c49] uppercase tracking-[0.08em]">
+                    <CheckCircle2 className="h-4 w-4 text-[#006c49]" />
+                    <span>HARLEY DIGITAL WORKS DISPATCH</span>
+                  </div>
+                  <h1 className="font-display text-[38px] sm:text-[50px] lg:text-[54px] font-bold text-[#081B30] tracking-[-0.03em] leading-[1.12]">
+                    Your website
+                    <br />
+                    and enquiries,
+                    <br />
+                    <span className="font-serif italic font-normal text-[#44474d]">
+                      looked after.
+                    </span>
+                  </h1>
+                  <p className="max-w-xl text-[17px] sm:text-[18px] leading-[28px] tracking-[-0.01em] text-[#44474d]">
+                    We write, build and run your website and enquiry form, so customers can reach
+                    you and you can get on with the job.
+                  </p>
+                </div>
+
+                {/* Dual Call to Action Buttons Integrated Matrix */}
+                <div className="space-y-4 pt-1">
+                  <div className="flex flex-wrap items-center gap-3">
+                    <Link
+                      to="/contact"
+                      className="inline-flex h-12 items-center justify-center rounded-xl bg-[#081B30] px-6 text-[14px] font-semibold text-white shadow-[0_4px_14px_-2px_rgba(8,27,48,0.25)] transition-all hover:bg-[#0F2642]"
+                    >
+                      Get your website plan{" "}
+                      <span className="ml-2 font-mono text-[12px] font-bold text-[#6ffbbe]">→</span>
+                    </Link>
+
+                    <button
+                      type="button"
+                      onClick={() => setIsVideoModalOpen(true)}
+                      className="inline-flex h-12 items-center gap-2.5 rounded-xl bg-[#F7F5EE] px-4 text-[14px] font-semibold text-[#081B30] transition-all hover:bg-[#F3F4F6] border border-[#E2E8F0] cursor-pointer"
+                    >
+                      <span className="flex h-7 w-7 items-center justify-center rounded-full bg-[#081B30] text-xs text-white">
+                        <Play className="h-3.5 w-3.5 fill-current ml-0.5" />
                       </span>
-                      <div className="text-left">
-                        <p className="text-xs font-bold tracking-tight text-white leading-tight">
-                          Watch 55s Transformation
-                        </p>
-                        <p className="text-[10px] text-emerald-300 font-mono">
-                          Old Trade Site vs HDW Platform
-                        </p>
-                      </div>
-                    </div>
+                      <span>Watch 55s transformation</span>
+                      <span className="rounded bg-[#dce9ff] px-2 py-0.5 font-mono text-[11px] font-bold uppercase tracking-[0.06em] text-[#0b1c30]">
+                        OLD VS HDW
+                      </span>
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={() => setIsCalcModalOpen(true)}
+                      className="inline-flex h-12 items-center gap-2 rounded-xl border border-[#006c49]/30 bg-[#eff4ff] px-4 text-[13px] font-semibold text-[#081B30] shadow-2xs transition-all hover:bg-[#e5eeff] cursor-pointer"
+                    >
+                      <Calculator className="h-4 w-4 text-[#006c49]" />
+                      <span className="font-bold">View package pricing</span>
+                    </button>
+                  </div>
+
+                  {/* Micro-trust Ledger Strip Bento Row */}
+                  <div className="flex flex-wrap items-center justify-between gap-2 rounded-xl bg-[#eff4ff] p-3.5 text-[#0b1c30] border border-[#dce9ff]">
+                    <span className="text-[13px] text-[#44474d]">
+                      £1,495 setup (50% deposit / 50% approval)
+                    </span>
+                    <span className="text-[13px] font-semibold text-[#081B30]">
+                      £249/mo all-inclusive care
+                    </span>
+                    <span className="font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-[#006c49]">
+                      PILOT CAPACITY: 2 SPOTS
+                    </span>
                   </div>
                 </div>
-              </button>
-              <div className="hero-phone" aria-hidden="true">
-                <div className="phone-speaker" />
-                <img
-                  src="/images/transformation-video/scene-1-frustration.jpg"
-                  alt="Mobile trade website comparison"
-                  className="w-full h-full object-cover"
-                />
               </div>
-              <div className="hero-art-caption">
-                <span>
-                  Complete trade copywriting.
-                  <br />
-                  <strong>Written and built for you.</strong>
-                </span>
-                <span className="hero-art-seal">
-                  BRITISH
-                  <br />
-                  <span>trade</span>
-                  <br />
-                  CRAFT
-                </span>
+
+              {/* Bento Cell 2: Live Screen Transformation Visual Hero Unit (5 cols) */}
+              <div className="lg:col-span-5 rounded-2xl overflow-hidden bg-[#081B30] border border-[#1E3A5F] shadow-xl flex flex-col justify-between">
+                {/* Header bar of the simulated tablet viewport */}
+                <div className="px-4 py-3 bg-[#0F2642] flex items-center justify-between border-b border-[#1E3A5F]">
+                  <div className="flex items-center gap-1.5">
+                    <span className="h-2.5 w-2.5 rounded-full bg-[#ba1a1a]/70" />
+                    <span className="h-2.5 w-2.5 rounded-full bg-[#4edea3]/70" />
+                    <span className="h-2.5 w-2.5 rounded-full bg-[#10B981]/70" />
+                  </div>
+                  <a
+                    href="#before-after"
+                    className="font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-[#d8e2ff] hover:text-[#6ffbbe] transition-colors"
+                  >
+                    BEFORE &amp; AFTER TRANSFORMATION ↘
+                  </a>
+                </div>
+
+                {/* Hero Real Photography Asset with Overlays */}
+                <div className="relative flex-1 min-h-[380px]">
+                  <img
+                    alt="UK trade contractor on site in front of professional van checking commercial job enquiries on mobile smartphone"
+                    className="h-full w-full object-cover object-center contrast-[1.05]"
+                    src="/images/home/renewables-solar-ev.jpg"
+                    onError={(e) => {
+                      e.currentTarget.src = "/images/home/renewables-solar-ev.jpg";
+                    }}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#081B30] via-transparent to-transparent opacity-85" />
+
+                  {/* Floating Notification Pill (30s WhatsApp lead) */}
+                  <div className="absolute right-4 top-4 max-w-xs rounded-xl bg-[#081B30]/95 p-3 text-white shadow-xl backdrop-blur-md border border-[#1E3A5F]">
+                    <div className="mb-1 flex items-center gap-2">
+                      <span className="relative flex h-2 w-2">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#10B981] opacity-75" />
+                        <span className="relative inline-flex rounded-full h-2 w-2 bg-[#059669]" />
+                      </span>
+                      <span className="font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-[#6ffbbe]">
+                        LIVE DISPATCH · WHATSAPP
+                      </span>
+                    </div>
+                    <p className="text-[13px] font-medium leading-[20px] text-[#eff4ff]">
+                      New £12,500 Commercial EV enquiry routed to phone in 30s
+                    </p>
+                  </div>
+
+                  {/* Trade Accreditations Strip */}
+                  <div className="absolute bottom-4 left-4 right-4 flex flex-wrap items-center justify-between gap-2 rounded-lg bg-white/95 p-3 text-[#081B30] shadow-sm backdrop-blur border border-[#E2E8F0]">
+                    <div>
+                      <div className="font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-[#44474d]">
+                        Verified Accreditations Built-In
+                      </div>
+                      <div className="text-[14px] font-bold leading-[20px] text-[#081B30]">
+                        NICEIC Approved · Gas Safe · OZEV Authorised
+                      </div>
+                    </div>
+                    <span className="rounded bg-[#6cf8bb] px-2.5 py-1 font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-[#00714d]">
+                      100% Client Owned
+                    </span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-          <div className="studio-wrap hero-footnote">
-            <span>STRATEGY. DESIGN. WORDS. CARE.</span>
-            <span>One studio. Your whole website.</span>
-            <a href="#selected-work" aria-label="Scroll to selected design studies">
-              <ArrowDown size={18} />
-            </a>
-          </div>
         </section>
 
-        <section
-          className="studio-work studio-section"
-          id="selected-work"
-          aria-labelledby="work-heading"
-        >
-          <div className="studio-wrap">
-            <div className="studio-section-heading">
+        {/* SECTION 01 — THE POSSIBILITIES (Interactive Design Studies Showcase) */}
+        <section id="work" className="w-full bg-[#F7F5EE] py-14 lg:py-20">
+          <div className="mx-auto max-w-[1280px] space-y-10 px-5 sm:px-6">
+            <div className="flex flex-col justify-between gap-4 md:flex-row md:items-end">
               <div>
-                <p className="studio-kicker">01 / THE POSSIBILITIES</p>
-                <h2 id="work-heading">
+                <div className="mb-1 font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-[#44474d]">
+                  01 / THE POSSIBILITIES
+                </div>
+                <h2 className="font-display text-[32px] font-bold leading-[1.18] tracking-[-0.025em] text-[#081B30] sm:text-[40px]">
                   Different businesses.
                   <br />
-                  <span className="studio-muted">Distinctive websites.</span>
+                  Distinctive websites.
                 </h2>
               </div>
-              <p>
-                Your website should feel like your business.
-                <br />
-                Explore three independent design studies:
-                <br className="desktop-break" />
-                each with a character of its own.
+              <p className="max-w-md text-[15px] leading-[24px] text-[#44474d]">
+                Your website should feel like your business. Explore three independent design
+                studies — click any study to inspect the full desktop and mobile design.
               </p>
             </div>
-            <ConceptShowcase concept="solar" featured />
+
+            {/* Real Interactive Concept Showcase (01 Form & Field, 02 Solis, 03 Stillwater) */}
             <div className="studio-project-grid">
-              <ConceptShowcase concept="architecture" />
+              <ConceptShowcase concept="architecture" featured />
+              <ConceptShowcase concept="solar" />
               <ConceptShowcase concept="interior" />
             </div>
-            <p className="studio-work-note">
-              Original design concepts by Harley Digital Works. Illustrative photography; not
-              commissioned client projects.
-            </p>
+
+            <div className="pt-2 text-center font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-[#44474d]">
+              ORIGINAL DESIGN CONCEPTS BY HARLEY DIGITAL WORKS. ILLUSTRATIVE PHOTOGRAPHY · NOT
+              COMMISSIONED CLIENT SITES.
+            </div>
           </div>
         </section>
 
-        {/* Prominent Transformation Preview */}
-        <section
-          className="studio-section py-20 bg-stone-50/80 border-y border-stone-200"
-          id="transformations"
-          aria-label="Before and after website design concepts"
-        >
-          <div className="studio-wrap">
+        {/* SECTION 02 — INTERACTIVE BEFORE & AFTER TRANSFORMATION */}
+        <section id="before-after" className="w-full bg-[#f8f9ff] py-14 lg:py-20">
+          <div className="mx-auto max-w-[1280px] space-y-10 px-5 sm:px-6">
             <BeforeAfterComparison
               initialTradeId="electrical-ev"
               showAllTrades={true}
-              featuredOnly={true}
-              title="See what your website could become"
-              subtitle="Compare two illustrative designs for the same trade. See how clearer words, layout and enquiry routes change the experience."
+              featuredOnly={false}
               sectionKicker="02 / BEFORE & AFTER DESIGN STUDIES"
+              title="See what your website could become"
+              subtitle="Compare two illustrative designs for the same trade. Drag the divider or switch between desktop and mobile to see how clearer words, layout and enquiry routes change the experience."
             />
-            <div className="mt-10 pt-6 border-t border-ink/10 flex flex-wrap items-center justify-between gap-4">
-              <span className="text-xs sm:text-sm font-medium text-ink">
-                Explore further concepts for Building & Renovations, Landscaping, and Painting &
-                Decorating.
-              </span>
-              <PillButton
-                as="link"
-                to="/work"
-                hash="transformations"
-                variant="dark"
-                className="studio-button text-xs font-bold"
-              >
-                Explore all six trade transformations
-              </PillButton>
-            </div>
-          </div>
-        </section>
 
-        <TradeShowcaseSection />
-
-        <section className="studio-purpose studio-section" aria-labelledby="purpose-heading">
-          <div className="studio-wrap purpose-layout">
-            <div className="purpose-visual">
-              <img
-                src="/images/home/heating-plant-room.jpg"
-                alt="Precision plant room boiler and heating installation with bespoke copper pipework by accredited British engineers"
-                width="1200"
-                height="801"
-                loading="lazy"
-              />
-              <span className="purpose-image-label">PRECISION TRADE INSTALLATION</span>
-              <div className="purpose-annotation">
-                <ArrowUpRight size={24} />
-                <p>
-                  Show the standard.
-                  <br />
-                  Win the quote.
+            {/* Action Prompt Box */}
+            <div className="flex flex-col items-center justify-between gap-4 rounded-xl bg-[#e5eeff] p-6 md:flex-row border border-[#dce9ff]">
+              <div>
+                <h4 className="font-display text-[20px] font-semibold leading-[28px] text-[#081B30]">
+                  See the possibilities for your business.
+                </h4>
+                <p className="text-[13px] leading-[20px] text-[#44474d]">
+                  Tell us about your existing website and what you would like it to do better.
                 </p>
               </div>
-            </div>
-            <div className="purpose-copy">
-              <p className="studio-kicker">04 / PURPOSE-BUILT CRAFTSMANSHIP</p>
-              <h2 id="purpose-heading">
-                A beautiful website.
-                <br />
-                <span className="studio-muted">With a job to do.</span>
-              </h2>
-              <p className="studio-intro">
-                Good design earns attention. The right words and a thoughtful experience turn that
-                attention into a conversation.
-              </p>
-              <div className="purpose-point">
-                <span>01</span>
-                <div>
-                  <h3>Look as good as your work.</h3>
-                  <p>
-                    Photography, typography and a clear identity that give customers a reason to
-                    choose you.
-                  </p>
-                </div>
-              </div>
-              <div className="purpose-point">
-                <span>02</span>
-                <div>
-                  <h3>Make the next step obvious.</h3>
-                  <p>
-                    Clear services, useful project stories and an enquiry journey that works
-                    beautifully on a phone.
-                  </p>
-                </div>
-              </div>
-              <div className="purpose-point">
-                <span>03</span>
-                <div>
-                  <h3>Keep it off your to-do list.</h3>
-                  <p>
-                    We write, design and build. Then we look after the website as your business
-                    grows.
-                  </p>
-                </div>
+              <div className="flex flex-wrap items-center gap-3">
+                <button
+                  type="button"
+                  onClick={() => setIsCalcModalOpen(true)}
+                  className="inline-flex h-11 items-center gap-2 rounded-lg border border-[#081B30]/20 bg-white px-4 text-[14px] font-semibold text-[#081B30] transition-all hover:bg-[#F7F5EE] cursor-pointer"
+                >
+                  <Calculator className="h-4 w-4 text-[#006c49]" />
+                  View package pricing
+                </button>
+                <Link
+                  to="/contact"
+                  className="inline-flex h-11 items-center gap-2 rounded-lg bg-[#081B30] px-6 text-[14px] font-semibold text-white transition-all hover:bg-[#0F2642]"
+                >
+                  Get your website plan <span>→</span>
+                </Link>
               </div>
             </div>
           </div>
         </section>
 
-        <section
-          className="studio-process studio-section deferred-section"
-          id="process"
-          aria-labelledby="process-heading"
-        >
-          <div className="studio-wrap">
-            <div className="studio-section-heading">
+        {/* SECTION 03 & 04 — ENGINEERED SPECIFICALLY FOR UK TRADES + HONEST VALUE COMPARISON */}
+        <TradeShowcaseSection />
+
+        {/* SECTION 05 & 06 — THE HARLEY STANDARD & ZERO-RISK COMMITMENTS */}
+        <section className="w-full bg-[#081B30] py-14 text-white lg:py-20">
+          <div className="mx-auto max-w-[1280px] space-y-8 px-5 sm:px-6">
+            {/* Section Header */}
+            <div className="flex flex-col justify-between gap-4 md:flex-row md:items-end">
               <div>
-                <p className="studio-kicker">05 / HOW WE WORK</p>
-                <h2 id="process-heading">
-                  You know your business.
-                  <br />
-                  <span className="studio-muted">We’ll take it from here.</span>
+                <div className="mb-1 font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-[#6ffbbe]">
+                  06 / WHAT WE COMMIT TO
+                </div>
+                <h2 className="font-display text-[32px] font-bold leading-[1.18] tracking-[-0.025em] text-white sm:text-[40px]">
+                  What we commit to.
                 </h2>
               </div>
-              <PillButton as="link" to="/contact" variant="dark" className="studio-button">
-                Start a conversation
-              </PillButton>
+              <p className="max-w-md text-[15px] leading-[24px] text-[#eff4ff]">
+                Clear terms, written in advance, and designed to protect your trade business from
+                unnecessary agency risks.
+              </p>
             </div>
-            <div className="process-rows">
-              {[
-                [
-                  "01",
-                  "Direct phone discovery.",
-                  "Tell us what you do, who you work with and where you want to go. We turn that into a clear brief and a fixed project plan.",
-                  "DISCOVER & PLAN",
-                ],
-                [
-                  "02",
-                  "Trade copywriting & custom build.",
-                  "We write your copy, shape the design and assemble your website. You get a private preview to explore, check the facts and approve.",
-                  "WRITE, DESIGN & BUILD",
-                ],
-                [
-                  "03",
-                  "Launch & ongoing managed care.",
-                  "We connect your domain, preserve your business email, and launch. Your care plan keeps the site secure, fast, and maintained.",
-                  "LAUNCH & CARE",
-                ],
-              ].map(([number, title, copy, label]) => (
-                <div className="process-row" key={number}>
-                  <span className="process-number">{number}</span>
-                  <h3>{title}</h3>
+
+            {/* 5 High-Trust Commitment Cards */}
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-5">
+              {COMMITMENTS.map((card) => (
+                <div
+                  key={card.code}
+                  className="flex flex-col justify-between space-y-3 rounded-xl bg-[#0F2642] p-5 border border-[#1E3A5F]"
+                >
                   <div>
-                    <p>{copy}</p>
-                    <span className="studio-kicker">{label}</span>
+                    <div className="font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-[#10B981]">
+                      {card.code}
+                    </div>
+                    <h4 className="mt-1.5 font-display text-[20px] font-semibold leading-[26px] text-white">
+                      {card.title}
+                    </h4>
+                    <p className="mt-2 text-[13px] leading-[20px] text-[#eff4ff]">
+                      {card.description}
+                    </p>
                   </div>
+                  <span className="pt-2 font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-[#d8e2ff]">
+                    {card.footer}
+                  </span>
                 </div>
               ))}
             </div>
+
+            {/* Micro Banner within dark container */}
+            <div className="flex flex-col items-center justify-between gap-4 rounded-xl bg-[#0F2642]/70 p-5 border border-[#1E3A5F] sm:flex-row">
+              <div className="flex items-center gap-3">
+                <span className="h-3 w-3 shrink-0 rounded-full bg-[#10B981]" />
+                <span className="text-[15px] leading-[24px] text-[#eff4ff]">
+                  Backed by The Harley Group. Every build is individually inspected and approved
+                  before public launch.
+                </span>
+              </div>
+              <Link
+                to="/contact"
+                className="inline-flex h-10 shrink-0 items-center justify-center rounded-lg bg-white px-5 text-[14px] font-bold text-[#081B30] transition-colors hover:bg-[#f8f9ff]"
+              >
+                Get your website plan →
+              </Link>
+            </div>
           </div>
         </section>
 
-        {/* What We Commit To Section */}
-        <section
-          className="py-16 md:py-24 bg-[#081B30] text-white border-y border-white/10 deferred-section"
-          aria-labelledby="commitments-heading"
-        >
-          <div className="studio-wrap">
-            <div className="grid gap-10 lg:grid-cols-12 lg:items-center">
-              <div className="lg:col-span-5 flex justify-center">
-                <div className="w-full max-w-sm rounded-2xl border border-white/10 bg-white/5 p-6 sm:p-8 backdrop-blur-xs text-left space-y-6 shadow-2xl">
-                  <div className="flex items-center justify-between border-b border-white/10 pb-4">
-                    <div className="flex items-center gap-2.5">
-                      <ShieldCheck className="h-6 w-6 text-emerald-400" />
-                      <div>
-                        <div className="text-xs font-mono font-bold uppercase text-white tracking-wider">
-                          The Harley Standard
-                        </div>
-                        <div className="text-[10px] text-slate-400 font-mono">
-                          Governance & Quality Assurance
-                        </div>
-                      </div>
-                    </div>
-                    <span className="inline-flex items-center rounded-full bg-emerald-500/10 border border-emerald-500/30 px-2 py-0.5 text-[10px] font-mono text-emerald-300">
-                      Clear Commitments
+        {/* SECTION 07 — A CLEAR INVESTMENT (Pricing & Digital Care) */}
+        <section id="packages" className="w-full bg-[#f8f9ff] py-14 lg:py-20">
+          <div id="pricing" className="mx-auto max-w-[1280px] space-y-8 px-5 sm:px-6">
+            <div className="flex flex-col justify-between gap-4 md:flex-row md:items-end">
+              <div>
+                <div className="mb-1 font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-[#44474d]">
+                  07 / A CLEAR INVESTMENT
+                </div>
+                <h2 className="font-display text-[32px] font-bold leading-[1.18] tracking-[-0.025em] text-[#081B30] sm:text-[40px]">
+                  A clear investment. A better website.
+                </h2>
+              </div>
+              <div className="md:text-right">
+                <span className="inline-block rounded bg-[#6cf8bb] px-3 py-1 font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-[#00714d]">
+                  Quality Guard: Strictly 2 Active Builds At Any Time
+                </span>
+                <p className="mt-1 text-[13px] leading-[20px] text-[#44474d]">
+                  An initial build fee. Ongoing monthly care. One clear proposal covering both.
+                </p>
+              </div>
+            </div>
+
+            {/* Main Investment Ledger Grid */}
+            <div className="grid grid-cols-1 gap-6 lg:grid-cols-12">
+              {/* Left: Setup Card */}
+              <div className="flex flex-col justify-between space-y-6 rounded-xl bg-white p-6 shadow-[0_4px_16px_rgba(8,27,48,0.06)] border border-[#dce9ff] sm:p-8 lg:col-span-6">
+                <div className="space-y-3">
+                  <div className="flex flex-wrap items-center justify-between gap-2">
+                    <span className="font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-[#44474d]">
+                      01 / INITIAL SETUP
+                    </span>
+                    <span className="rounded bg-[#e5eeff] px-2.5 py-0.5 font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-[#081B30]">
+                      50% DEPOSIT / 50% APPROVAL
                     </span>
                   </div>
-
-                  <div className="space-y-3 text-xs text-slate-300">
-                    <div className="flex items-center justify-between py-1.5 border-b border-white/5">
-                      <span className="text-slate-400">Payment Security</span>
-                      <span className="font-semibold text-white">50% upon final approval</span>
-                    </div>
-                    <div className="flex items-center justify-between py-1.5 border-b border-white/5">
-                      <span className="text-slate-400">Copywriting</span>
-                      <span className="font-semibold text-emerald-400">Included in full</span>
-                    </div>
-                    <div className="flex items-center justify-between py-1.5 border-b border-white/5">
-                      <span className="text-slate-400">Asset Ownership</span>
-                      <span className="font-semibold text-white">100% Client-owned</span>
-                    </div>
-                    <div className="flex items-center justify-between py-1.5 border-b border-white/5">
-                      <span className="text-slate-400">Care Plan Notice</span>
-                      <span className="font-semibold text-white">30 days fair exit</span>
-                    </div>
+                  <div className="font-display text-[48px] font-bold leading-none tracking-[-0.03em] text-[#081B30] sm:text-[56px]">
+                    £1,495
                   </div>
+                  <p className="text-[15px] leading-[24px] text-[#44474d]">
+                    50% deposit (£747.50) reserves your slot. 50% balance (£747.50) payable only
+                    upon your final preview approval.
+                  </p>
+                </div>
 
-                  <div className="rounded-xl bg-[#173C62]/30 border border-[#173C62]/40 p-3.5 text-[11px] text-slate-300">
-                    <p className="leading-relaxed">
-                      Backed by The Harley Group. Every build is individually inspected and approved
-                      before public launch.
-                    </p>
-                  </div>
+                {/* Setup Deliverables List */}
+                <div className="space-y-3 pt-1 text-[13px] leading-[20px]">
+                  {SETUP_DELIVERABLES.map((item) => (
+                    <div key={item.bold} className="flex items-start gap-2.5 text-[#081B30]">
+                      <Check className="mt-0.5 h-4 w-4 shrink-0 text-[#006c49]" />
+                      <span>
+                        <strong>{item.bold}</strong> {item.rest}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="pt-2">
+                  <Link
+                    to="/contact"
+                    className="flex h-12 w-full items-center justify-center rounded-xl bg-[#081B30] text-[14px] font-semibold text-white transition-all hover:bg-[#0F2642]"
+                  >
+                    Reserve Setup Build Slot →
+                  </Link>
                 </div>
               </div>
 
-              <div className="lg:col-span-7 space-y-6">
-                <div>
-                  <p className="text-xs font-mono font-bold uppercase tracking-wider text-emerald-400">
-                    06 / WHAT WE COMMIT TO
-                  </p>
-                  <h2
-                    id="commitments-heading"
-                    className="mt-2 text-3xl font-extrabold tracking-tight text-white sm:text-4xl font-display"
-                  >
-                    What we commit to.
-                  </h2>
-                  <p className="mt-3 text-sm sm:text-base text-slate-300 leading-relaxed">
-                    Clear terms, written in advance, and designed to protect your trade business:
+              {/* Right: Monthly Care Card */}
+              <div className="flex flex-col justify-between space-y-6 rounded-xl bg-white p-6 shadow-[0_4px_16px_rgba(8,27,48,0.06)] border border-[#dce9ff] sm:p-8 lg:col-span-6">
+                <div className="space-y-3">
+                  <div className="flex flex-wrap items-center justify-between gap-2">
+                    <span className="font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-[#44474d]">
+                      02 / ONGOING CARE
+                    </span>
+                    <span className="rounded bg-[#dce9ff] px-2.5 py-0.5 font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-[#0b1c30]">
+                      ROLLING 30-DAY AGREEMENT
+                    </span>
+                  </div>
+                  <div className="font-display text-[48px] font-bold leading-none tracking-[-0.03em] text-[#081B30] sm:text-[56px]">
+                    £249 <span className="text-[22px] font-normal text-[#44474d]">/ month</span>
+                  </div>
+                  <p className="text-[15px] leading-[24px] text-[#44474d]">
+                    Monthly care begins at go-live. Continuous security, speed, and updates with a
+                    30-day fair exit policy.
                   </p>
                 </div>
 
-                <div className="grid gap-3 sm:grid-cols-2 pt-2">
-                  <div className="rounded-xl border border-white/10 bg-white/5 p-4 space-y-1.5">
-                    <div className="text-emerald-400 font-mono text-xs font-bold uppercase flex items-center gap-1.5">
-                      <Check className="h-3.5 w-3.5 text-emerald-400" />
-                      <span>Full Final Approval</span>
+                {/* Monthly Deliverables List */}
+                <div className="space-y-3 pt-1 text-[13px] leading-[20px]">
+                  {CARE_DELIVERABLES.map((item) => (
+                    <div key={item.bold} className="flex items-start gap-2.5 text-[#081B30]">
+                      <Check className="mt-0.5 h-4 w-4 shrink-0 text-[#006c49]" />
+                      <span>
+                        <strong>{item.bold}</strong> {item.rest}
+                      </span>
                     </div>
-                    <p className="text-xs text-slate-200 leading-relaxed">
-                      You approve the facts and the finished site before it goes live.
-                    </p>
-                  </div>
-
-                  <div className="rounded-xl border border-white/10 bg-white/5 p-4 space-y-1.5">
-                    <div className="text-emerald-400 font-mono text-xs font-bold uppercase flex items-center gap-1.5">
-                      <Check className="h-3.5 w-3.5 text-emerald-400" />
-                      <span>50/50 Split Payment</span>
-                    </div>
-                    <p className="text-xs text-slate-200 leading-relaxed">
-                      The 50% balance is only due after you approve.
-                    </p>
-                  </div>
-
-                  <div className="rounded-xl border border-white/10 bg-white/5 p-4 space-y-1.5">
-                    <div className="text-emerald-400 font-mono text-xs font-bold uppercase flex items-center gap-1.5">
-                      <Check className="h-3.5 w-3.5 text-emerald-400" />
-                      <span>Your Assets, Always</span>
-                    </div>
-                    <p className="text-xs text-slate-200 leading-relaxed">
-                      You keep your domain and brand assets.
-                    </p>
-                  </div>
-
-                  <div className="rounded-xl border border-white/10 bg-white/5 p-4 space-y-1.5">
-                    <div className="text-emerald-400 font-mono text-xs font-bold uppercase flex items-center gap-1.5">
-                      <Check className="h-3.5 w-3.5 text-emerald-400" />
-                      <span>Fair Flexibility</span>
-                    </div>
-                    <p className="text-xs text-slate-200 leading-relaxed">
-                      Cancel on 30 days’ notice and get a static export.
-                    </p>
-                  </div>
-
-                  <div className="sm:col-span-2 rounded-xl border border-white/10 bg-white/5 p-4 space-y-1.5">
-                    <div className="text-emerald-400 font-mono text-xs font-bold uppercase flex items-center gap-1.5">
-                      <Check className="h-3.5 w-3.5 text-emerald-400" />
-                      <span>Everything in Writing</span>
-                    </div>
-                    <p className="text-xs text-slate-200 leading-relaxed">
-                      Scope, support hours and timings are in writing before you pay.
-                    </p>
-                  </div>
+                  ))}
                 </div>
 
-                <div className="pt-2 flex flex-wrap items-center gap-4">
-                  <PillButton as="link" to="/contact" variant="light" className="studio-button">
-                    Get your website plan
-                  </PillButton>
+                {/* Add-On Feature Box: 24/7 Virtual Receptionist */}
+                <div className="rounded-xl bg-[#dce9ff] p-4 text-[#081B30]">
+                  <div className="flex items-center justify-between">
+                    <span className="font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-[#006c49]">
+                      POPULAR ADD-ON
+                    </span>
+                    <span className="text-[14px] font-bold">
+                      +£99 / mo{" "}
+                      <span className="text-xs font-normal text-[#44474d] line-through">
+                        £149/mo
+                      </span>
+                    </span>
+                  </div>
+                  <p className="mt-1 text-[13px] leading-[20px] text-[#44474d]">
+                    <strong className="text-[#081B30]">24/7 AI Virtual Phone Receptionist:</strong>{" "}
+                    Never miss an emergency call while driving or on tools. Answers in natural
+                    British English and texts lead summaries to WhatsApp in 30 seconds.{" "}
+                    <Link
+                      to="/virtual-receptionist"
+                      className="font-semibold text-[#081B30] underline hover:text-[#006c49]"
+                    >
+                      Test live voice demo →
+                    </Link>
+                  </p>
                 </div>
               </div>
             </div>
           </div>
         </section>
 
-        <div className="studio-pricing deferred-section">
-          <WebsitePackagesSection
-            kicker="07 / A CLEAR INVESTMENT"
-            title="A clear investment. A better website."
-            subtitle="An initial build fee. Ongoing monthly care. One clear proposal covering both."
-          />
-        </div>
+        {/* SECTION 08 — FOUNDER ACCOUNTABILITY (Real Robbie Harley Portrait) */}
+        <section id="founder" className="w-full bg-[#081B30] py-14 text-white lg:py-20">
+          <div className="mx-auto max-w-[1280px] px-5 sm:px-6">
+            <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-12">
+              {/* Real Founder Portrait Image */}
+              <div className="relative lg:col-span-5">
+                <div className="relative overflow-hidden rounded-xl bg-[#0F2642] shadow-2xl border border-[#1E3A5F]">
+                  <img
+                    alt="Robbie Harley, Founder of Harley Digital Works"
+                    className="h-[460px] w-full object-cover object-top"
+                    src="/images/home/robbie-restored.jpg"
+                  />
+                  <div className="absolute bottom-4 left-4 rounded bg-[#081B30]/90 p-2.5 font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-[#6ffbbe] backdrop-blur">
+                    ROBBIE HARLEY / FOUNDER
+                  </div>
+                </div>
+              </div>
 
-        <section
-          className="studio-founder studio-section deferred-section"
-          aria-labelledby="founder-heading"
-        >
-          <div className="studio-wrap founder-layout">
-            <div className="founder-photo">
-              <img
-                src="/images/home/robbie-restored.jpg"
-                alt="Robbie Harley, founder of Harley Digital Works"
-                width="1200"
-                height="1600"
-                loading="lazy"
-                decoding="async"
-              />
-              <span>ROBBIE HARLEY / FOUNDER</span>
-            </div>
-            <div className="founder-copy">
-              <p className="studio-kicker">08 / FOUNDER ACCOUNTABILITY</p>
-              <h2 id="founder-heading">
-                Proud of your business.
-                <br />
-                <span>
+              {/* Founder Words & Assurance */}
+              <div className="space-y-5 lg:col-span-7">
+                <div className="inline-flex items-center gap-2 rounded bg-[#0F2642] px-3 py-1 font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-[#10B981]">
+                  <span className="h-2 w-2 rounded-full bg-[#10B981]" /> DIRECT FOUNDER COMMITMENT
+                </div>
+
+                <h2 className="font-display text-[32px] font-bold leading-[1.16] tracking-[-0.025em] text-white sm:text-[40px]">
+                  Proud of your business.
+                  <br />
                   Personally invested
                   <br />
                   in your website.
-                </span>
-              </h2>
-              <p>
-                “Your website should do your work justice. That means taking the time to understand
-                your business, caring about the details, and making the whole experience
-                straightforward.”
-              </p>
-              <div className="founder-signature flex items-center justify-between gap-6 flex-wrap">
-                <div>
-                  <span>Robbie Harley</span>
-                  <small>
-                    Founder, Harley Digital Works
-                    <br />
-                    Part of The Harley Group
-                  </small>
+                </h2>
+
+                <blockquote className="border-l-2 border-[#006c49] pl-4 text-[18px] italic leading-[28px] text-[#eff4ff]">
+                  “Your website should do your work justice. That means taking the time to
+                  understand your business, caring about the details, and making the whole
+                  experience straightforward.”
+                </blockquote>
+
+                <div className="space-y-1 pt-2">
+                  <div className="font-display text-[22px] font-semibold text-white">
+                    Robbie Harley
+                  </div>
+                  <div className="text-[13px] leading-[20px] text-[#d3e4fe]">
+                    Founder, Harley Digital Works · Part of The Harley Group
+                  </div>
+                  <div className="font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-[#74859f]">
+                    BRISTOL STUDIO · DIRECT DISPATCH OVERSEEING EVERY BUILD
+                  </div>
                 </div>
-                <div className="rounded-xl border border-white/10 bg-white/5 px-4 py-3 shrink-0 text-left">
-                  <div className="flex items-center gap-2 text-xs font-mono font-bold text-emerald-400 uppercase tracking-wider">
-                    <ShieldCheck className="h-4 w-4" />
-                    <span>Backed by The Harley Group</span>
-                  </div>
-                  <div className="text-[10px] text-slate-400 font-mono mt-0.5">
-                    Direct founder oversight on every project
-                  </div>
+
+                <div className="flex flex-wrap items-center gap-4 pt-3">
+                  <a
+                    href="tel:01172141357"
+                    className="inline-flex h-12 items-center gap-2 rounded-xl bg-white px-6 text-[14px] font-bold text-[#081B30] transition-colors hover:bg-[#f8f9ff]"
+                  >
+                    <Phone className="h-4 w-4" />
+                    0117 214 1357
+                  </a>
+                  <a
+                    href="https://wa.me/447394041487"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex h-12 items-center gap-2 rounded-xl bg-[#0F2642] px-6 text-[14px] font-bold text-[#6ffbbe] transition-colors hover:bg-[#0F2642]/80 border border-[#1E3A5F]"
+                  >
+                    <MessageCircle className="h-4 w-4" />
+                    WhatsApp: 07394 041487
+                  </a>
                 </div>
               </div>
-              <Link to="/about" className="studio-text-link">
-                Meet the studio <ArrowUpRight size={17} />
-              </Link>
             </div>
           </div>
         </section>
 
-        <section
-          className="studio-faq studio-section deferred-section"
-          aria-labelledby="faq-heading"
-        >
-          <div className="studio-wrap faq-layout">
-            <div>
-              <p className="studio-kicker">09 / FREQUENT QUESTIONS</p>
-              <h2 id="faq-heading">
-                Good questions.
-                <br />
-                <span className="studio-muted">Straight answers.</span>
-              </h2>
-              <p>Something else on your mind?</p>
+        {/* SECTION 09 — FREQUENT QUESTIONS ACCORDION */}
+        <section id="faq" className="w-full bg-[#F7F5EE] py-14 lg:py-20">
+          <div className="mx-auto max-w-[1280px] space-y-8 px-5 sm:px-6">
+            <div className="flex flex-col justify-between gap-4 md:flex-row md:items-end">
+              <div>
+                <div className="mb-1 font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-[#44474d]">
+                  09 / FREQUENT QUESTIONS
+                </div>
+                <h2 className="font-display text-[32px] font-bold leading-[1.18] tracking-[-0.025em] text-[#081B30] sm:text-[40px]">
+                  Good questions.
+                  <br />
+                  Straight answers.
+                </h2>
+              </div>
+              <p className="max-w-sm text-[15px] leading-[24px] text-[#44474d]">
+                Something else on your mind? Call Robbie directly on{" "}
+                <a href="tel:01172141357" className="font-semibold text-[#081B30] underline">
+                  0117 214 1357
+                </a>
+                .
+              </p>
+            </div>
+
+            {/* Accordion Stack */}
+            <div className="max-w-3xl space-y-3">
+              {FAQS.map((faq, idx) => (
+                <details
+                  key={faq.question}
+                  open={idx === 0}
+                  className="group rounded-xl bg-white p-5 shadow-sm border border-[#E2E8F0]"
+                >
+                  <summary className="flex cursor-pointer list-none items-center justify-between font-display text-[20px] font-semibold leading-[28px] text-[#081B30]">
+                    <span>{faq.question}</span>
+                    <ChevronDown className="h-5 w-5 shrink-0 text-[#44474d] transition-transform group-open:rotate-180" />
+                  </summary>
+                  <p className="mt-3 text-[15px] leading-[24px] text-[#44474d]">{faq.answer}</p>
+                </details>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* SECTION 10 — GRAND FINALE CONVERSION BANNER */}
+        <section className="w-full bg-[#081B30] py-14 text-white lg:py-20">
+          <div className="mx-auto max-w-[1280px] space-y-5 px-5 text-center sm:px-6">
+            <div className="inline-flex items-center gap-2 rounded bg-[#0F2642] px-3 py-1 font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-[#6ffbbe]">
+              10 / LET’S MAKE SOMETHING GREAT
+            </div>
+
+            <h2 className="mx-auto max-w-3xl font-display text-[36px] font-bold leading-[1.14] tracking-[-0.03em] text-white sm:text-[48px] lg:text-[56px]">
+              A website that feels like you.
+              <br />
+              And works for your business.
+            </h2>
+
+            <p className="mx-auto max-w-xl text-[18px] leading-[28px] text-[#eff4ff]">
+              £1,495 setup · £249/mo care · Agreed delivery schedule · Strictly 2 concurrent builds.
+            </p>
+
+            <div className="flex flex-wrap items-center justify-center gap-4 pt-2">
               <Link
                 to="/contact"
-                search={{
-                  service: undefined,
-                  package: undefined,
-                  domain: undefined,
-                  websiteUrl: undefined,
-                }}
-                className="studio-text-link"
+                className="inline-flex h-14 items-center justify-center rounded-xl bg-[#10B981] px-8 text-[15px] font-bold text-[#081B30] shadow-[0_0_20px_rgba(16,185,129,0.3)] transition-all hover:bg-[#34D399]"
               >
-                Just ask us <ArrowUpRight size={17} />
+                Get your website plan <span className="ml-2 font-mono text-[#081B30]">→</span>
               </Link>
-            </div>
-            <Accordion type="single" collapsible>
-              {faqs.map(([q, a], i) => (
-                <AccordionItem key={q} value={String(i)} className="studio-faq-item">
-                  <AccordionTrigger>{q}</AccordionTrigger>
-                  <AccordionContent>{a}</AccordionContent>
-                </AccordionItem>
-              ))}
-            </Accordion>
-          </div>
-        </section>
 
-        <section className="studio-final deferred-section" aria-labelledby="final-heading">
-          <div className="studio-wrap">
-            <p className="studio-kicker">10 / LET’S MAKE SOMETHING GREAT</p>
-            <div className="final-layout">
-              <h2 id="final-heading">
-                Let’s make
-                <br />
-                <span>something great.</span>
-              </h2>
-              <div>
-                <p>
-                  A website that feels like you.
-                  <br />
-                  And works for your business.
-                </p>
-                <PillButton as="link" to="/contact" variant="light" className="studio-button">
-                  Get your website plan
-                </PillButton>
-                <span className="final-price">
-                  £1,495 setup · £249/mo care · Agreed delivery schedule · 3-customer pilot (max 2
-                  concurrent builds)
-                </span>
-              </div>
+              <button
+                type="button"
+                onClick={() => setIsCalcModalOpen(true)}
+                className="inline-flex h-14 items-center justify-center gap-2 rounded-xl border border-[#1E3A5F] bg-[#0F2642] px-6 text-[15px] font-semibold text-[#6ffbbe] transition-all hover:bg-[#0F2642]/80 cursor-pointer"
+              >
+                <Calculator className="h-4 w-4" />
+                View package pricing
+              </button>
+
+              <a
+                href="tel:01172141357"
+                className="inline-flex h-14 items-center justify-center rounded-xl bg-[#0F2642] px-6 text-[15px] font-semibold text-white transition-all hover:bg-[#0F2642]/80"
+              >
+                Call Robbie on 0117 214 1357
+              </a>
             </div>
-            <div className="final-reassurance">
-              <span>
-                <PenLine size={16} /> Copywriting included
-              </span>
-              <span>
-                <Check size={16} /> 50% deposit / 50% on approval
-              </span>
-              <span>
-                <ShieldCheck size={16} /> Clear scope & ongoing managed care
-              </span>
+
+            <div className="flex flex-wrap items-center justify-center gap-6 pt-4 font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-[#74859f]">
+              <span className="text-[#eff4ff]/80">✓ COPYWRITING INCLUDED</span>
+              <span className="text-[#eff4ff]/80">✓ 50% DEPOSIT / 50% ON APPROVAL</span>
+              <span className="text-[#eff4ff]/80">✓ ZERO-RISK ASSET HANDOVER</span>
+              <span className="text-[#eff4ff]/80">✓ ROLLING 30-DAY CARE</span>
             </div>
           </div>
         </section>
       </div>
+
       <HeroTransformationVideoModal
         isOpen={isVideoModalOpen}
         onClose={() => setIsVideoModalOpen(false)}
+      />
+
+      <FloatingQuoteCalculatorBadge onOpen={() => setIsCalcModalOpen(true)} />
+      <TradeQuoteCalculatorModal
+        isOpen={isCalcModalOpen}
+        onClose={() => setIsCalcModalOpen(false)}
       />
     </PageShell>
   );

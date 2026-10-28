@@ -1,5 +1,28 @@
 # The Harley Group & Harley Digital Works — Session Handover Log
 
+## Google Stitch Authentication & Homepage Modular Bento Grid Transformation — 28 October 2026
+
+- **Tool & Scope:** Google Antigravity. Installed the Google Stitch CLI agent skills suite (`.agents/skills/stitch/`), authenticated Robbie Harley's Google account via OAuth PKCE (`robbieharley83@gmail.com`), linked to the existing Stitch project *High-Converting Website Redesign* (`1024167408885355904`), downloaded Layout Variant 2 (`fed21be2cf624552bd9a90a64163a60c`), and transplanted the Modular Bento Grid hero design directly into `src/routes/index.tsx`.
+- **Key Deliverables:**
+  1. **Google Stitch Skill Installation & Authentication:**
+     - Ran `stitch agent-skills add --overwrite` installing 18 skill files into `.agents/skills/stitch/`.
+     - Executed `stitch login` via OAuth PKCE flow authenticating `robbieharley83@gmail.com` with valid Stitch Canvas & Loop credentials.
+     - Discovered existing Stitch project: `https://stitch.google.com/projects/1024167408885355904` containing HDW variants, domain concepts, and virtual receptionist screens.
+  2. **Modular Bento Grid Hero Integration (`src/routes/index.tsx`):**
+     - Transplanted Stitch's Layout Variant 2 Modular Bento Grid hero.
+     - Top Bento Status Bar: Real-time dispatch indicator ("Pilot Capacity: 2 Spots · Bristol, Bath & The M4 Corridor") and brand ethos ticker.
+     - Cell 1 (7 cols): Editorial headline *"Your website and enquiries, looked after."*, verified dispatch badge, dual CTAs (*Get your website plan*, *55s video transformation*, *Instant quote calculator*), and embedded £1,495 setup + £249/mo care ledger.
+     - Cell 2 (5 cols): High-contrast visual unit with simulated OS header, trade contractor photography, floating 30s WhatsApp dispatch pill, and accreditation badges (NICEIC, Gas Safe, OZEV).
+  3. **Quality & Claims Compliance:**
+     - Fixed optional search param typing in `src/routes/contact.tsx` and legal link target in `FooterDark.tsx` (0 TypeScript errors).
+     - Aligned marketing copy to Claims Guard rules (0 violations).
+- **Empirical Verification Evidence:**
+  - TypeScript Compilation (`tsc --noEmit`): **PASS** (0 errors).
+  - Test Runner (`npm test` via `scripts/run-all-tests.mjs`): **PASS** across all 5 test suites (222/222 integration tests passing, Claims Guard 0 violations, Smoke 4/4 passing).
+- **Next Actions:**
+  - Robbie to inspect the new Bento Grid hero live in Chrome on Port 3000 (`http://localhost:3000/`).
+  - Select any further sections or pages from Stitch Canvas to bring over.
+
 ## MotionSites Web Builder Installation & Flagship Electrical Contractor Demo V2 — 27 October 2026
 
 - **Tool & Scope:** Google Antigravity. Installed the MotionSites Web Builder skill (`claude-skill-1.0.0.zip`) across Antigravity and Claude Code. Applied the skill to create an award-level, high-converting Flagship Electrical Contractor Architecture on `/demos/electrician-concept` with an interactive 18th-Edition fuseboard overhaul comparison, a 15-second transparent job estimator, and 1-tap WhatsApp lead dispatch. Integrated a prominent spotlight banner on `/demos`.
