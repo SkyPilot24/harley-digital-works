@@ -416,7 +416,9 @@ const SLACK_STORAGE_KEY = "thg_domain_slack_webhook";
 export function DomainOutboundEngine() {
   const [campaigns, setCampaigns] = useState<DomainCampaign[]>(() => {
     if (typeof window !== "undefined") {
-      const saved = localStorage.getItem(LOCAL_STORAGE_KEY) || localStorage.getItem("thg_domain_outbound_campaigns_v2");
+      const saved =
+        localStorage.getItem(LOCAL_STORAGE_KEY) ||
+        localStorage.getItem("thg_domain_outbound_campaigns_v2");
       if (saved) {
         try {
           const parsed: DomainCampaign[] = JSON.parse(saved);
