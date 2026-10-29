@@ -41,6 +41,9 @@ jobs:
       - name: TypeScript Check
         run: npm run typecheck
 
+      - name: Build application bundle
+        run: npm run build
+
       - name: Run verification test suite
         run: npm test
 

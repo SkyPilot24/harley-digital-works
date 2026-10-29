@@ -153,6 +153,16 @@ console.log("\n[Test Suite 7: Cloudflare Deployment & Environment Secrets]");
 const outputWranglerPath = path.join(rootDir, ".output/server/wrangler.json");
 const outputHeadersPath = path.join(rootDir, ".output/public/_headers");
 
+if (!fs.existsSync(outputWranglerPath)) {
+  try {
+    const { execSync } = await import("child_process");
+    console.log("  [INFO] Building application bundle for Cloudflare deployment verification...");
+    execSync("npm run build", { stdio: "inherit", cwd: rootDir });
+  } catch (e) {
+    console.error("  [WARN] Pre-test build failed:", e.message);
+  }
+}
+
 assert(
   fs.existsSync(outputWranglerPath),
   "Cloudflare Nitro worker output exists (.output/server/wrangler.json)",
