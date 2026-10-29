@@ -1,5 +1,32 @@
 # The Harley Group & Harley Digital Works — Session Handover Log
 
+## The Harley Group Offerings Alignment: Prominent Harley Reception, Harley Labs & Domains — 29 October 2026
+
+- **Tool & Scope:** Google Antigravity. Updated The Harley Group corporate page (`src/routes/the-harley-group.tsx`) to make **Harley Reception**, **Harley Labs**, and **Domains** clearly visible, structured, and easy to understand within the main page content on desktop and mobile.
+- **Key Deliverables:**
+  1. **Flagship Showcase — Harley Reception:**
+     - Presented with particular prominence as a 12-column premier featured showcase card in Midnight Navy (`#081B30`) with an emerald accent strip, live pulsating status beacon, and the ratified name and tagline:
+       - **Harley Reception**
+       - **Your AI receptionist for calls, enquiries, and bookings.**
+     - Quantified commercial benefits: zero missed tenders on site, < 30s instant WhatsApp lead dossier dispatch, flat £99–£149/mo pricing vs escalating per-minute answering bureaus, and 100% robocall/spam suppression.
+     - Transparent capability vs roadmap breakdown:
+       - *Currently Available (Live):* 24/7 call answering, natural British voice synthesis (158 Hz Callum), intake qualification, entity extraction, instant WhatsApp/email dossiers, dedicated UK 01/02/0800 numbers.
+       - *Planned (Beta Pilot):* Direct two-way calendar and diary booking into trade software (Joblogic, SimPRO, Tradify) clearly flagged as in active development for scheduled rollout.
+  2. **Harley Labs:**
+     - Dedicated card detailing applied R&D purpose, quote engines, trade ROI calculators, and CRM pipeline automation to eliminate evening paperwork.
+  3. **Domains:**
+     - Dedicated card showcasing category-defining digital real estate (`valuecurrencies.com`, `letscarshop.com`, `aiwearables.co.uk`, `greenautomotive.co.uk`), verified Nominet/ICANN title, outright acquisition, and 12-month lease-to-own with SRA escrow.
+  4. **Harley Digital Works:**
+     - Complementary card outlining done-for-you websites and ongoing care for UK trades (£1,495 setup + £249/mo care, 50/50 milestone split, max 2 concurrent builds).
+  5. **Navigation Integrity:** Navigation menus remain completely untouched.
+- **Verification Evidence:**
+  - TypeScript Compilation (`npm run typecheck`): **PASS** (0 errors).
+  - ESLint (`npm run lint`): **PASS** (0 errors).
+  - Code Style (`npm run format:check`): **PASS** (100% Prettier compliant).
+  - Verification Test Suite (`node scripts/run-all-tests.mjs`): **PASS** across all 5 test suites (222/222 node tests passing, 7/7 claims & accessibility checks).
+  - Production Build (`npm run build`): **PASS** (Vite client & Nitro Cloudflare worker generated cleanly).
+
+
 ## Stitch Screen 13 & 15 Integration, Full Route Audit & Production Release — 29 October 2026
 
 - **Tool & Scope:** Google Antigravity. Integrated Google Stitch Screens 13 (`valuecurrencies.com` Institutional FX & Liquidity Terminal) and 15 (`The Harley Group — Corporate Ecosystem & Parent Brand`) into `src/routes/domains.tsx` and `src/routes/the-harley-group.tsx`. Performed a full runtime and build audit across all 53 public and authenticated routes, ensuring zero "This page didn't load" errors, verifying the Callum Virtual Assistant screen on `/virtual-receptionist`, running the full automated verification suite, and deploying to GitHub and production.
