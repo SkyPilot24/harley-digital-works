@@ -57,7 +57,8 @@ const ESTIMATE_SERVICES: EstimateService[] = [
     basePrice: 650,
     unit: "fixed",
     tag: "High Demand",
-    description: "Hager/Schneider metal RCBO split-load board with Type 2 SPD surge protection & NICEIC certificate.",
+    description:
+      "Hager/Schneider metal RCBO split-load board with Type 2 SPD surge protection & NICEIC certificate.",
   },
   {
     id: "ev_charger",
@@ -65,7 +66,8 @@ const ESTIMATE_SERVICES: EstimateService[] = [
     basePrice: 795,
     unit: "unit",
     tag: "OZEV Approved",
-    description: "7.4kW–22kW smart tethered/untethered charger, earthing rod, dynamic load management & mobile app.",
+    description:
+      "7.4kW–22kW smart tethered/untethered charger, earthing rod, dynamic load management & mobile app.",
   },
   {
     id: "eicr_cert",
@@ -73,7 +75,8 @@ const ESTIMATE_SERVICES: EstimateService[] = [
     basePrice: 165,
     unit: "property",
     tag: "24h Certificate",
-    description: "Comprehensive live testing, thermal imaging check, and tamper-proof digital PDF safety certificate.",
+    description:
+      "Comprehensive live testing, thermal imaging check, and tamper-proof digital PDF safety certificate.",
   },
   {
     id: "distribution",
@@ -81,7 +84,8 @@ const ESTIMATE_SERVICES: EstimateService[] = [
     basePrice: 1450,
     unit: "project",
     tag: "Commercial",
-    description: "Sub-main distribution panels, factory switchgear overhaul, and heavy machinery power drops.",
+    description:
+      "Sub-main distribution panels, factory switchgear overhaul, and heavy machinery power drops.",
   },
 ];
 
@@ -101,7 +105,7 @@ const URGENCY_TIERS = [
 const DEMO_BUSINESS_DATA: TradeDemoBusiness = {
   id: "electrical",
   name: "Vanguard Electrical & Solar Ltd (Flagship Demo)",
-  badge: "NICEIC Approved Contractor [Illustrative #D604921]",
+  badge: "NICEIC Approved Contractor [your number]",
   tagline: "Commercial & Domestic Electrical Contractors · Bristol, Bath & M4 Corridor",
   phone: "0117 214 1357",
   whatsapp: "07394 041487",
@@ -124,7 +128,8 @@ const DEMO_BUSINESS_DATA: TradeDemoBusiness = {
   popularServices: [],
   calculator: {
     title: "Instant Electrical Price Estimator",
-    subtitle: "Illustrative customer tool: generates accurate ballpark figures in 15 seconds without sales pressure.",
+    subtitle:
+      "Illustrative customer tool: generates accurate ballpark figures in 15 seconds without sales pressure.",
     jobTypes: [],
     propertySizes: [],
     urgencyOptions: [],
@@ -145,7 +150,7 @@ const DEMO_BUSINESS_DATA: TradeDemoBusiness = {
   reviews: [],
 };
 
-export function ElectricianConceptPage() {
+function ElectricianConceptPage() {
   const [selectedServiceId, setSelectedServiceId] = useState<string>("fuse_board");
   const [selectedPropertyId, setSelectedPropertyId] = useState<string>("standard");
   const [selectedUrgencyId, setSelectedUrgencyId] = useState<string>("routine");
@@ -158,8 +163,7 @@ export function ElectricianConceptPage() {
     ESTIMATE_SERVICES.find((s) => s.id === selectedServiceId) || ESTIMATE_SERVICES[0];
   const activeProperty =
     PROPERTY_TIERS.find((p) => p.id === selectedPropertyId) || PROPERTY_TIERS[1];
-  const activeUrgency =
-    URGENCY_TIERS.find((u) => u.id === selectedUrgencyId) || URGENCY_TIERS[0];
+  const activeUrgency = URGENCY_TIERS.find((u) => u.id === selectedUrgencyId) || URGENCY_TIERS[0];
 
   const estimatedTotal = Math.round(
     activeService.basePrice * activeProperty.multiplier + activeUrgency.surcharge,
@@ -181,11 +185,12 @@ export function ElectricianConceptPage() {
             <div className="flex items-center gap-2">
               <span className="flex h-2 w-2 rounded-full bg-amber-400 animate-pulse" />
               <strong className="font-mono text-amber-300 uppercase tracking-wider text-[11px]">
-                Cinematic Vertical Blueprint V2
+                Design Study · Fictional Business
               </strong>
               <span className="text-amber-500/40 hidden md:inline">|</span>
               <span className="text-amber-200/80 hidden md:inline">
-                Tailored for Bristol, Bath &amp; M4 Electrical Contractors (2–10 Electricians).
+                &ldquo;Vanguard Electrical&rdquo; is not a real company. Accreditations, crews,
+                response times and ratings are placeholders to show where yours would go.
               </span>
             </div>
             <div className="flex items-center gap-3">
@@ -202,7 +207,7 @@ export function ElectricianConceptPage() {
                 }}
                 className="inline-flex items-center gap-1 font-semibold text-amber-400 hover:text-amber-300 underline underline-offset-4 text-[11px]"
               >
-                Claim 1 of 2 Monthly Build Slots →
+                Book 1 of 2 Pilot Build Slots →
               </Link>
             </div>
           </div>
@@ -219,7 +224,8 @@ export function ElectricianConceptPage() {
                 ON DUTY
               </span>
               <span className="text-slate-300">
-                <strong>Emergency Response Available:</strong> 2 crews active across Bristol, Bath &amp; Keynsham.
+                <strong>Emergency Response Available:</strong> 2 crews active across Bristol, Bath
+                &amp; Keynsham.
               </span>
             </div>
             <div className="flex items-center gap-4 text-slate-300 font-medium">
@@ -254,7 +260,7 @@ export function ElectricianConceptPage() {
             {/* Accreditation Badge */}
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 backdrop-blur-md border border-white/10 text-xs text-amber-300 font-mono tracking-wide">
               <ShieldCheck className="h-4 w-4 text-amber-400" />
-              <span>NICEIC APPROVED CONTRACTOR #D604921 · TRUSTMARK ENDORSED</span>
+              <span>NICEIC APPROVED CONTRACTOR [YOUR NUMBER] · EXAMPLE BADGE</span>
             </div>
 
             {/* Cinematic Headline */}
@@ -268,7 +274,9 @@ export function ElectricianConceptPage() {
 
             {/* Subline */}
             <p className="text-slate-300 text-base md:text-lg max-w-2xl mx-auto leading-relaxed text-balance">
-              Specialist electrical contracting for commercial facilities, landlord compliance, and high-spec homes. From rapid 18th-Edition consumer unit overhauls to turnkey commercial EV infrastructure.
+              Specialist electrical contracting for commercial facilities, landlord compliance, and
+              high-spec homes. From rapid 18th-Edition consumer unit overhauls to turnkey commercial
+              EV infrastructure.
             </p>
 
             {/* CTAs */}
@@ -297,12 +305,20 @@ export function ElectricianConceptPage() {
             {/* Trust Proof Badges */}
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-8 max-w-3xl mx-auto text-left">
               <div className="p-3.5 rounded-2xl bg-white/[0.03] border border-white/10 backdrop-blur-sm">
-                <p className="text-[11px] font-mono text-amber-400 font-semibold">PART P REGISTERED</p>
-                <p className="text-xs text-slate-200 font-medium mt-0.5">Building Control Sign-Off</p>
+                <p className="text-[11px] font-mono text-amber-400 font-semibold">
+                  PART P REGISTERED
+                </p>
+                <p className="text-xs text-slate-200 font-medium mt-0.5">
+                  Building Control Sign-Off
+                </p>
               </div>
               <div className="p-3.5 rounded-2xl bg-white/[0.03] border border-white/10 backdrop-blur-sm">
-                <p className="text-[11px] font-mono text-amber-400 font-semibold">£5,000,000 COVER</p>
-                <p className="text-xs text-slate-200 font-medium mt-0.5">Commercial Public Liability</p>
+                <p className="text-[11px] font-mono text-amber-400 font-semibold">
+                  £5,000,000 COVER
+                </p>
+                <p className="text-xs text-slate-200 font-medium mt-0.5">
+                  Commercial Public Liability
+                </p>
               </div>
               <div className="p-3.5 rounded-2xl bg-white/[0.03] border border-white/10 backdrop-blur-sm">
                 <p className="text-[11px] font-mono text-amber-400 font-semibold">OZEV CERTIFIED</p>
@@ -330,7 +346,8 @@ export function ElectricianConceptPage() {
                 Drag to Compare: Outdated Fusebox vs. Modern RCBO Board
               </h2>
               <p className="text-slate-400 text-sm md:text-base max-w-xl mx-auto leading-relaxed">
-                See how a hazardous 1980s asbestos-backed rewirable fusebox is upgraded into an 18th-Edition metal Hager board with full Type 2 surge suppression.
+                See how a hazardous 1980s asbestos-backed rewirable fusebox is upgraded into an
+                18th-Edition metal Hager board with full Type 2 surge suppression.
               </p>
             </div>
 
@@ -354,7 +371,8 @@ export function ElectricianConceptPage() {
                 Interactive Project Estimator
               </h2>
               <p className="text-slate-400 text-sm md:text-base max-w-xl mx-auto leading-relaxed">
-                Select your service, premises size, and urgency to generate an instant transparent ballpark quote in 15 seconds.
+                Select your service, premises size, and urgency to generate an instant transparent
+                ballpark quote in 15 seconds.
               </p>
             </div>
 
@@ -362,7 +380,10 @@ export function ElectricianConceptPage() {
             <div className="bg-[#0E223D] border border-white/10 rounded-3xl p-6 sm:p-10 shadow-2xl space-y-8">
               {/* Step 1: Select Service */}
               <div className="space-y-3">
-                <label htmlFor={serviceIdInput} className="text-xs font-mono text-amber-400 uppercase tracking-wider block font-semibold">
+                <label
+                  htmlFor={serviceIdInput}
+                  className="text-xs font-mono text-amber-400 uppercase tracking-wider block font-semibold"
+                >
                   1. Select Electrical Service Specialism
                 </label>
                 <div id={serviceIdInput} className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -390,7 +411,9 @@ export function ElectricianConceptPage() {
                         </p>
                         <div className="mt-3 flex items-center justify-between text-xs pt-2 border-t border-white/5 font-mono">
                           <span className="text-slate-400">Guide Rate:</span>
-                          <span className="text-amber-300 font-bold">From £{service.basePrice}</span>
+                          <span className="text-amber-300 font-bold">
+                            From £{service.basePrice}
+                          </span>
                         </div>
                       </button>
                     );
@@ -400,7 +423,10 @@ export function ElectricianConceptPage() {
 
               {/* Step 2: Select Property Size */}
               <div className="space-y-3">
-                <label htmlFor={propertyIdInput} className="text-xs font-mono text-amber-400 uppercase tracking-wider block font-semibold">
+                <label
+                  htmlFor={propertyIdInput}
+                  className="text-xs font-mono text-amber-400 uppercase tracking-wider block font-semibold"
+                >
                   2. Select Property Scale
                 </label>
                 <div id={propertyIdInput} className="grid grid-cols-1 sm:grid-cols-3 gap-3">
@@ -429,7 +455,10 @@ export function ElectricianConceptPage() {
 
               {/* Step 3: Select Urgency */}
               <div className="space-y-3">
-                <label htmlFor={urgencyIdInput} className="text-xs font-mono text-amber-400 uppercase tracking-wider block font-semibold">
+                <label
+                  htmlFor={urgencyIdInput}
+                  className="text-xs font-mono text-amber-400 uppercase tracking-wider block font-semibold"
+                >
                   3. Select Timing &amp; Dispatch Urgency
                 </label>
                 <div id={urgencyIdInput} className="grid grid-cols-1 sm:grid-cols-3 gap-3">
@@ -449,7 +478,9 @@ export function ElectricianConceptPage() {
                         <div className="flex items-center justify-between">
                           <span>{urgency.name}</span>
                           {urgency.surcharge > 0 && (
-                            <span className="text-[10px] text-amber-300 font-mono">+£{urgency.surcharge}</span>
+                            <span className="text-[10px] text-amber-300 font-mono">
+                              +£{urgency.surcharge}
+                            </span>
                           )}
                         </div>
                       </button>
@@ -473,7 +504,8 @@ export function ElectricianConceptPage() {
                     </span>
                   </div>
                   <p className="text-xs text-slate-400 mt-1">
-                    Fixed written quotation provided following site survey or photo audit. Zero hidden fees.
+                    Fixed written quotation provided following site survey or photo audit. Zero
+                    hidden fees.
                   </p>
                 </div>
 
@@ -507,15 +539,23 @@ export function ElectricianConceptPage() {
                 <ul className="space-y-2 text-slate-400">
                   <li className="flex items-start gap-2">
                     <span className="text-rose-400 font-bold">✕</span>
-                    <span>Generic contact forms ask "How can we help?" with zero qualifying questions.</span>
+                    <span>
+                      Generic contact forms ask "How can we help?" with zero qualifying questions.
+                    </span>
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-rose-400 font-bold">✕</span>
-                    <span>No instant ballpark figures force customers to ring 5 competitors on Checkatrade.</span>
+                    <span>
+                      No instant ballpark figures force customers to ring 5 competitors on
+                      Checkatrade.
+                    </span>
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-rose-400 font-bold">✕</span>
-                    <span>Missing or unverified Part P / NICEIC badges destroy trust on £2,000+ commercial jobs.</span>
+                    <span>
+                      Missing or unverified Part P / NICEIC badges destroy trust on £2,000+
+                      commercial jobs.
+                    </span>
                   </li>
                 </ul>
               </div>
@@ -527,15 +567,23 @@ export function ElectricianConceptPage() {
                 <ul className="space-y-2 text-slate-300">
                   <li className="flex items-start gap-2">
                     <span className="text-emerald-400 font-bold">✓</span>
-                    <span>Interactive 15-second estimator qualifies job scale, property size, and budget upfront.</span>
+                    <span>
+                      Interactive 15-second estimator qualifies job scale, property size, and budget
+                      upfront.
+                    </span>
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-emerald-400 font-bold">✓</span>
-                    <span>Direct dispatch into WhatsApp and mobile SMS with full job details pre-filled.</span>
+                    <span>
+                      Direct dispatch into WhatsApp and mobile SMS with full job details pre-filled.
+                    </span>
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-emerald-400 font-bold">✓</span>
-                    <span>Full 100% done-for-you copywriting, hosting, SSL, and monthly care for £249/mo.</span>
+                    <span>
+                      Full 100% done-for-you copywriting, hosting, SSL, and monthly care for
+                      £249/mo.
+                    </span>
                   </li>
                 </ul>
               </div>

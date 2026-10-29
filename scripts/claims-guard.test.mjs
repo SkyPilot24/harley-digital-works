@@ -163,3 +163,58 @@ test("phone number guard: ensures phone numbers in customer-facing and demo surf
     `Phone Number Guard found ${invalidPhones.length} non-compliant phone number(s). Must use HDW canonical numbers or Ofcom drama ranges.`,
   );
 });
+
+test("outreach guard: prospect-facing admin scripts and demos make no delivery guarantees or fake credentials", () => {
+  // Admin tools that generate text sent to prospects (email, WhatsApp, pitch decks).
+  const outreachFiles = [
+    "src/components/admin/OutreachSequenceEngine.tsx",
+    "src/components/admin/LeadProspectorAuditDesk.tsx",
+    "src/components/admin/AuditPitchDeckGenerator.tsx",
+    "src/components/admin/WhatsAppIntakeDesk.tsx",
+    "src/components/admin/CaseStudyFactoryDesk.tsx",
+  ];
+  const outreachPatterns = [
+    { id: "fourteen-day-promise", regex: /\b14[- ]day\b|\b14 days\b/i },
+    {
+      id: "delivery-guarantee",
+      regex: /\bguarantee[ds]?\b[^\n]{0,40}\b(launch|live|delivery|turnaround)\b/i,
+    },
+    { id: "map-pack-ranking-promise", regex: /\bMap Pack ranking\b/i },
+  ];
+
+  // Demo/marketing surfaces must not show realistic-looking registration numbers.
+  const credentialFiles = [
+    ...getFilesRecursively(path.join(rootDir, "src", "routes"), (p) => p.endsWith(".tsx")),
+    ...getFilesRecursively(path.join(rootDir, "src", "components", "demos"), (p) =>
+      /\.(ts|tsx)$/.test(p),
+    ),
+  ].map((p) => path.relative(rootDir, p).replace(/\\/g, "/"));
+  // Matches e.g. "NICEIC Approved Contractor #D604921" but not Companies House numbers ("Company #...").
+  const credentialPattern = /NICEIC(?:(?!Company)[^\n]){0,40}#\s?[A-Z]?\d{5,}/i;
+
+  const violations = [];
+  for (const rel of outreachFiles) {
+    const full = path.join(rootDir, rel);
+    if (!fs.existsSync(full)) continue;
+    fs.readFileSync(full, "utf8")
+      .split("\n")
+      .forEach((line, idx) => {
+        for (const p of outreachPatterns) {
+          if (p.regex.test(line)) violations.push(`[${p.id}] ${rel}:${idx + 1} -> ${line.trim()}`);
+        }
+      });
+  }
+  for (const rel of credentialFiles) {
+    if (rel.includes("/_authenticated/")) continue;
+    fs.readFileSync(path.join(rootDir, rel), "utf8")
+      .split("\n")
+      .forEach((line, idx) => {
+        if (credentialPattern.test(line))
+          violations.push(`[fake-credential-number] ${rel}:${idx + 1} -> ${line.trim()}`);
+      });
+  }
+
+  if (violations.length > 0)
+    console.error(`\nOutreach guard violations:\n  ${violations.join("\n  ")}`);
+  assert.equal(violations.length, 0, `Outreach guard found ${violations.length} violation(s).`);
+});

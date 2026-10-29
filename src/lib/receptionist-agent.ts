@@ -1,3 +1,4 @@
+import { execSync } from "node:child_process";
 import { getReceptionistTenant, type ReceptionistTenantConfig } from "./receptionist-tenants.ts";
 
 export interface ReceptionistCallRequest {
@@ -42,11 +43,9 @@ function getGoogleAccessToken(): string | null {
     return process.env.GOOGLE_ACCESS_TOKEN.trim();
   }
 
-  // Check Node environment with child_process dynamically
+  // Check Node environment with child_process
   if (typeof process !== "undefined" && process.versions?.node) {
     try {
-      // eslint-disable-next-line @typescript-eslint/no-require-imports
-      const { execSync } = require("node:child_process");
       const token = execSync("gcloud auth application-default print-access-token", {
         encoding: "utf8",
         timeout: 4000,

@@ -68,7 +68,7 @@ const SAMPLE_THREADS: WhatsAppThread[] = [
         sender: "bot",
         senderName: "Harley AI Dispatch",
         message:
-          "Hi Dave! We specialize in Gas Safe heating engineers across Stockport & Manchester. We guarantee full live launch in 14 days with zero writing required from you.",
+          "Hi Dave! We write, build and look after websites for UK heating engineers. We'll agree a delivery schedule with you up front, and we write the copy for you.",
         timestamp: "10:41 AM",
       },
       {

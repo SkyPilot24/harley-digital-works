@@ -211,7 +211,7 @@ const SAMPLE_CALL_RECORDS: CallRecord[] = [
   },
 ];
 
-export function AdminReceptionistPage() {
+function AdminReceptionistPage() {
   const [activeTab, setActiveTab] = useState<
     "overview" | "tenants" | "studio" | "calls" | "billing"
   >("overview");

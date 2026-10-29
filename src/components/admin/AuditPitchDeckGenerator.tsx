@@ -60,11 +60,11 @@ Robbie Harley here from Harley Digital Works in Wilmslow.
 
 I was researching top-tier ${trade.toLowerCase()} across ${city} and pulled up ${cleanUrl}.
 
-Your work and local reputation look stellar, but when I ran your site through our edge diagnostic, your mobile load time clocked in at ${speed}. On mobile 4G/5G, over 53% of local homeowners click back to Google if a site takes more than 3 seconds to load.
+Your work and local reputation look stellar, but when I ran your site through our edge diagnostic, your mobile load time clocked in at ${speed}. Slow mobile pages can put homeowners off before they ever call.
 
-In high-margin sectors like ${trade.toLowerCase()}, that bounce rate represents roughly £3,500 to £5,000 every single month in lost boiler installations and quote requests that go straight to your competitors.
+In high-value trades like ${trade.toLowerCase()}, even one or two lost enquiries a month adds up.
 
-We build sub-second V8 edge websites specifically for UK trade contractors that launch in exactly 14 days, with 1-tap quote calculators and instant WhatsApp lead capture.
+We write, build and look after fast websites for UK trade contractors, with quote calculators and 1-tap WhatsApp enquiries, delivered to a schedule agreed with you up front.
 
 I've attached our 4-slide speed teardown below. If you'd like to see what a high-speed upgrade looks like for ${company}, let me know and I'll send over a 60-second interactive preview!
 
@@ -263,16 +263,16 @@ The Harley Group · Harley Digital Works
       ),
     },
     {
-      title: "Slide 4: Commercial Terms & 14-Day Delivery SLA",
-      subtitle: `Fixed Investment, 50% Deposit & 100% Done-For-You Delivery`,
+      title: "Slide 4: Commercial Terms & Agreed Delivery Schedule",
+      subtitle: `Fixed Investment, 50% Deposit & We Write Your Copy`,
       render: (
         <div className="space-y-6">
           <div className="border-b border-ink/10 pb-4">
             <span className="rounded-md bg-emerald-50 text-emerald-700 px-2.5 py-1 text-xs font-semibold border border-emerald-200">
-              COMMERCIAL PROPOSAL & GUARANTEE
+              COMMERCIAL PROPOSAL
             </span>
             <h3 className="mt-2 text-xl font-bold text-ink">
-              14-Day Turnaround SLA · Zero Homework for {director}
+              Agreed Delivery Schedule · Copy Written for {director}
             </h3>
           </div>
 

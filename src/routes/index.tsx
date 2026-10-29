@@ -158,29 +158,29 @@ function HomePage() {
 
   return (
     <PageShell quiet>
-      <div className="flex w-full flex-col bg-[#f8f9ff] text-[#0b1c30] antialiased">
+      <div className="flex w-full flex-col bg-[#F6F3ED] text-[#081B30] antialiased">
         {/* HERO SECTION: VARIANT 2 STRUCTURED MODULAR BENTO GRID (STITCH UI) */}
-        <section className="relative w-full overflow-hidden bg-[#f8f9ff] py-8 lg:py-12">
+        <section className="relative w-full overflow-hidden bg-[#F6F3ED] py-8 lg:py-12">
           <div className="mx-auto max-w-[1280px] px-5 sm:px-6 space-y-4">
             {/* Top Bento Control Bar */}
             <div className="grid grid-cols-1 md:grid-cols-12 gap-4">
               <div className="md:col-span-8 p-3.5 sm:p-4 rounded-xl bg-white border border-[#E2E8F0] shadow-xs flex flex-wrap items-center justify-between gap-2.5">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded bg-[#e5eeff] text-[#081B30] font-mono text-[11px] font-bold uppercase tracking-[0.08em]">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#006c49] animate-pulse" />
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded bg-[#F6F3ED] text-[#081B30] font-mono text-[11px] font-bold uppercase tracking-[0.08em]">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#059669] animate-pulse" />
                   WEBSITES · ENQUIRY SYSTEMS · DIGITAL CARE FOR AMBITIOUS UK TRADES
                 </div>
-                <div className="font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-[#44474d] flex items-center gap-2">
+                <div className="font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-[#526479] flex items-center gap-2">
                   <span>STRATEGY. DESIGN. WORDS. CARE.</span>
                   <span className="text-[#74777d]">/</span>
                   <span className="text-[#081B30] font-bold">ONE STUDIO. YOUR WHOLE WEBSITE.</span>
                 </div>
               </div>
-              <div className="md:col-span-4 p-3.5 sm:p-4 rounded-xl bg-[#eff4ff] border border-[#dce9ff] shadow-xs flex items-center justify-between">
+              <div className="md:col-span-4 p-3.5 sm:p-4 rounded-xl bg-[#F6F3ED] border border-[#526479]/20 shadow-xs flex items-center justify-between">
                 <div className="flex flex-col">
                   <span className="font-mono text-[11px] font-bold uppercase text-[#081B30] tracking-[0.08em]">
                     PILOT CAPACITY: 2 SPOTS
                   </span>
-                  <span className="text-[12px] text-[#44474d]">
+                  <span className="text-[12px] text-[#526479]">
                     BRISTOL, BATH &amp; THE M4 CORRIDOR
                   </span>
                 </div>
@@ -196,8 +196,8 @@ function HomePage() {
               {/* Bento Cell 1: Main Proposition (7 cols) */}
               <div className="lg:col-span-7 rounded-2xl bg-white border border-[#E2E8F0] p-6 sm:p-8 flex flex-col justify-between space-y-6 shadow-sm">
                 <div className="space-y-4">
-                  <div className="inline-flex items-center gap-1.5 font-mono text-[11px] font-bold text-[#006c49] uppercase tracking-[0.08em]">
-                    <CheckCircle2 className="h-4 w-4 text-[#006c49]" />
+                  <div className="inline-flex items-center gap-1.5 font-mono text-[11px] font-bold text-[#059669] uppercase tracking-[0.08em]">
+                    <CheckCircle2 className="h-4 w-4 text-[#059669]" />
                     <span>HARLEY DIGITAL WORKS DISPATCH</span>
                   </div>
                   <h1 className="font-display text-[38px] sm:text-[50px] lg:text-[54px] font-bold text-[#081B30] tracking-[-0.03em] leading-[1.12]">
@@ -205,11 +205,11 @@ function HomePage() {
                     <br />
                     and enquiries,
                     <br />
-                    <span className="font-serif italic font-normal text-[#44474d]">
+                    <span className="font-serif italic font-normal text-[#526479]">
                       looked after.
                     </span>
                   </h1>
-                  <p className="max-w-xl text-[17px] sm:text-[18px] leading-[28px] tracking-[-0.01em] text-[#44474d]">
+                  <p className="max-w-xl text-[17px] sm:text-[18px] leading-[28px] tracking-[-0.01em] text-[#526479]">
                     We write, build and run your website and enquiry form, so customers can reach
                     you and you can get on with the job.
                   </p>
@@ -220,7 +220,7 @@ function HomePage() {
                   <div className="flex flex-wrap items-center gap-3">
                     <Link
                       to="/contact"
-                      className="inline-flex h-12 items-center justify-center rounded-xl bg-[#081B30] px-6 text-[14px] font-semibold text-white shadow-[0_4px_14px_-2px_rgba(8,27,48,0.25)] transition-all hover:bg-[#0F2642]"
+                      className="inline-flex h-12 items-center justify-center rounded-xl bg-[#081B30] px-6 text-[14px] font-semibold text-white shadow-[0_4px_14px_-2px_rgba(8,27,48,0.25)] transition-all hover:bg-[#173C62]"
                     >
                       Get your website plan{" "}
                       <span className="ml-2 font-mono text-[12px] font-bold text-[#6ffbbe]">→</span>
@@ -235,7 +235,7 @@ function HomePage() {
                         <Play className="h-3.5 w-3.5 fill-current ml-0.5" />
                       </span>
                       <span>Watch 55s transformation</span>
-                      <span className="rounded bg-[#dce9ff] px-2 py-0.5 font-mono text-[11px] font-bold uppercase tracking-[0.06em] text-[#0b1c30]">
+                      <span className="rounded bg-[#173C62]/10 px-2 py-0.5 font-mono text-[11px] font-bold uppercase tracking-[0.06em] text-[#081B30]">
                         OLD VS HDW
                       </span>
                     </button>
@@ -243,22 +243,25 @@ function HomePage() {
                     <button
                       type="button"
                       onClick={() => setIsCalcModalOpen(true)}
-                      className="inline-flex h-12 items-center gap-2 rounded-xl border border-[#006c49]/30 bg-[#eff4ff] px-4 text-[13px] font-semibold text-[#081B30] shadow-2xs transition-all hover:bg-[#e5eeff] cursor-pointer"
+                      className="inline-flex h-12 items-center gap-2 rounded-xl border border-[#059669]/30 bg-[#F6F3ED] px-4 text-[13px] font-semibold text-[#081B30] shadow-2xs transition-all hover:bg-[#F6F3ED] cursor-pointer"
                     >
-                      <Calculator className="h-4 w-4 text-[#006c49]" />
-                      <span className="font-bold">View package pricing</span>
+                      <Calculator className="h-4 w-4 text-[#059669]" />
+                      <span className="font-bold">Instant Quote Calculator</span>
+                      <span className="rounded bg-[#059669] text-white px-1.5 py-0.5 font-mono text-[10px] font-bold uppercase tracking-wider">
+                        LIVE DEMO
+                      </span>
                     </button>
                   </div>
 
                   {/* Micro-trust Ledger Strip Bento Row */}
-                  <div className="flex flex-wrap items-center justify-between gap-2 rounded-xl bg-[#eff4ff] p-3.5 text-[#0b1c30] border border-[#dce9ff]">
-                    <span className="text-[13px] text-[#44474d]">
+                  <div className="flex flex-wrap items-center justify-between gap-2 rounded-xl bg-[#F6F3ED] p-3.5 text-[#081B30] border border-[#526479]/20">
+                    <span className="text-[13px] text-[#526479]">
                       £1,495 setup (50% deposit / 50% approval)
                     </span>
                     <span className="text-[13px] font-semibold text-[#081B30]">
                       £249/mo all-inclusive care
                     </span>
-                    <span className="font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-[#006c49]">
+                    <span className="font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-[#059669]">
                       PILOT CAPACITY: 2 SPOTS
                     </span>
                   </div>
@@ -266,9 +269,9 @@ function HomePage() {
               </div>
 
               {/* Bento Cell 2: Live Screen Transformation Visual Hero Unit (5 cols) */}
-              <div className="lg:col-span-5 rounded-2xl overflow-hidden bg-[#081B30] border border-[#1E3A5F] shadow-xl flex flex-col justify-between">
+              <div className="lg:col-span-5 rounded-2xl overflow-hidden bg-[#081B30] border border-[#173C62] shadow-xl flex flex-col justify-between">
                 {/* Header bar of the simulated tablet viewport */}
-                <div className="px-4 py-3 bg-[#0F2642] flex items-center justify-between border-b border-[#1E3A5F]">
+                <div className="px-4 py-3 bg-[#173C62] flex items-center justify-between border-b border-[#173C62]">
                   <div className="flex items-center gap-1.5">
                     <span className="h-2.5 w-2.5 rounded-full bg-[#ba1a1a]/70" />
                     <span className="h-2.5 w-2.5 rounded-full bg-[#4edea3]/70" />
@@ -295,32 +298,32 @@ function HomePage() {
                   <div className="absolute inset-0 bg-gradient-to-t from-[#081B30] via-transparent to-transparent opacity-85" />
 
                   {/* Floating Notification Pill (30s WhatsApp lead) */}
-                  <div className="absolute right-4 top-4 max-w-xs rounded-xl bg-[#081B30]/95 p-3 text-white shadow-xl backdrop-blur-md border border-[#1E3A5F]">
+                  <div className="absolute right-4 top-4 max-w-xs rounded-xl bg-[#081B30]/95 p-3 text-white shadow-xl backdrop-blur-md border border-[#173C62]">
                     <div className="mb-1 flex items-center gap-2">
                       <span className="relative flex h-2 w-2">
                         <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#10B981] opacity-75" />
                         <span className="relative inline-flex rounded-full h-2 w-2 bg-[#059669]" />
                       </span>
                       <span className="font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-[#6ffbbe]">
-                        LIVE DISPATCH · WHATSAPP
+                        EXAMPLE · WHATSAPP ALERT
                       </span>
                     </div>
                     <p className="text-[13px] font-medium leading-[20px] text-[#eff4ff]">
-                      New £12,500 Commercial EV enquiry routed to phone in 30s
+                      Illustration: a new enquiry sent straight to your phone the moment it arrives
                     </p>
                   </div>
 
                   {/* Trade Accreditations Strip */}
                   <div className="absolute bottom-4 left-4 right-4 flex flex-wrap items-center justify-between gap-2 rounded-lg bg-white/95 p-3 text-[#081B30] shadow-sm backdrop-blur border border-[#E2E8F0]">
                     <div>
-                      <div className="font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-[#44474d]">
-                        Verified Accreditations Built-In
+                      <div className="font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-[#526479]">
+                        Your Accreditations, Displayed Properly
                       </div>
                       <div className="text-[14px] font-bold leading-[20px] text-[#081B30]">
-                        NICEIC Approved · Gas Safe · OZEV Authorised
+                        Your NICEIC, Gas Safe or OZEV badges, front and centre
                       </div>
                     </div>
-                    <span className="rounded bg-[#6cf8bb] px-2.5 py-1 font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-[#00714d]">
+                    <span className="rounded bg-[#059669] px-2.5 py-1 font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-white">
                       100% Client Owned
                     </span>
                   </div>
@@ -335,7 +338,7 @@ function HomePage() {
           <div className="mx-auto max-w-[1280px] space-y-10 px-5 sm:px-6">
             <div className="flex flex-col justify-between gap-4 md:flex-row md:items-end">
               <div>
-                <div className="mb-1 font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-[#44474d]">
+                <div className="mb-1 font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-[#526479]">
                   01 / THE POSSIBILITIES
                 </div>
                 <h2 className="font-display text-[32px] font-bold leading-[1.18] tracking-[-0.025em] text-[#081B30] sm:text-[40px]">
@@ -344,7 +347,7 @@ function HomePage() {
                   Distinctive websites.
                 </h2>
               </div>
-              <p className="max-w-md text-[15px] leading-[24px] text-[#44474d]">
+              <p className="max-w-md text-[15px] leading-[24px] text-[#526479]">
                 Your website should feel like your business. Explore three independent design
                 studies — click any study to inspect the full desktop and mobile design.
               </p>
@@ -357,7 +360,7 @@ function HomePage() {
               <ConceptShowcase concept="interior" />
             </div>
 
-            <div className="pt-2 text-center font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-[#44474d]">
+            <div className="pt-2 text-center font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-[#526479]">
               ORIGINAL DESIGN CONCEPTS BY HARLEY DIGITAL WORKS. ILLUSTRATIVE PHOTOGRAPHY · NOT
               COMMISSIONED CLIENT SITES.
             </div>
@@ -365,7 +368,7 @@ function HomePage() {
         </section>
 
         {/* SECTION 02 — INTERACTIVE BEFORE & AFTER TRANSFORMATION */}
-        <section id="before-after" className="w-full bg-[#f8f9ff] py-14 lg:py-20">
+        <section id="before-after" className="w-full bg-[#F6F3ED] py-14 lg:py-20">
           <div className="mx-auto max-w-[1280px] space-y-10 px-5 sm:px-6">
             <BeforeAfterComparison
               initialTradeId="electrical-ev"
@@ -377,12 +380,12 @@ function HomePage() {
             />
 
             {/* Action Prompt Box */}
-            <div className="flex flex-col items-center justify-between gap-4 rounded-xl bg-[#e5eeff] p-6 md:flex-row border border-[#dce9ff]">
+            <div className="flex flex-col items-center justify-between gap-4 rounded-xl bg-[#F6F3ED] p-6 md:flex-row border border-[#526479]/20">
               <div>
                 <h4 className="font-display text-[20px] font-semibold leading-[28px] text-[#081B30]">
                   See the possibilities for your business.
                 </h4>
-                <p className="text-[13px] leading-[20px] text-[#44474d]">
+                <p className="text-[13px] leading-[20px] text-[#526479]">
                   Tell us about your existing website and what you would like it to do better.
                 </p>
               </div>
@@ -392,12 +395,12 @@ function HomePage() {
                   onClick={() => setIsCalcModalOpen(true)}
                   className="inline-flex h-11 items-center gap-2 rounded-lg border border-[#081B30]/20 bg-white px-4 text-[14px] font-semibold text-[#081B30] transition-all hover:bg-[#F7F5EE] cursor-pointer"
                 >
-                  <Calculator className="h-4 w-4 text-[#006c49]" />
-                  View package pricing
+                  <Calculator className="h-4 w-4 text-[#059669]" />
+                  Test Quote Calculator Demo
                 </button>
                 <Link
                   to="/contact"
-                  className="inline-flex h-11 items-center gap-2 rounded-lg bg-[#081B30] px-6 text-[14px] font-semibold text-white transition-all hover:bg-[#0F2642]"
+                  className="inline-flex h-11 items-center gap-2 rounded-lg bg-[#081B30] px-6 text-[14px] font-semibold text-white transition-all hover:bg-[#173C62]"
                 >
                   Get your website plan <span>→</span>
                 </Link>
@@ -433,7 +436,7 @@ function HomePage() {
               {COMMITMENTS.map((card) => (
                 <div
                   key={card.code}
-                  className="flex flex-col justify-between space-y-3 rounded-xl bg-[#0F2642] p-5 border border-[#1E3A5F]"
+                  className="flex flex-col justify-between space-y-3 rounded-xl bg-[#173C62] p-5 border border-[#173C62]"
                 >
                   <div>
                     <div className="font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-[#10B981]">
@@ -454,7 +457,7 @@ function HomePage() {
             </div>
 
             {/* Micro Banner within dark container */}
-            <div className="flex flex-col items-center justify-between gap-4 rounded-xl bg-[#0F2642]/70 p-5 border border-[#1E3A5F] sm:flex-row">
+            <div className="flex flex-col items-center justify-between gap-4 rounded-xl bg-[#173C62]/70 p-5 border border-[#173C62] sm:flex-row">
               <div className="flex items-center gap-3">
                 <span className="h-3 w-3 shrink-0 rounded-full bg-[#10B981]" />
                 <span className="text-[15px] leading-[24px] text-[#eff4ff]">
@@ -464,7 +467,7 @@ function HomePage() {
               </div>
               <Link
                 to="/contact"
-                className="inline-flex h-10 shrink-0 items-center justify-center rounded-lg bg-white px-5 text-[14px] font-bold text-[#081B30] transition-colors hover:bg-[#f8f9ff]"
+                className="inline-flex h-10 shrink-0 items-center justify-center rounded-lg bg-white px-5 text-[14px] font-bold text-[#081B30] transition-colors hover:bg-[#F6F3ED]"
               >
                 Get your website plan →
               </Link>
@@ -473,11 +476,11 @@ function HomePage() {
         </section>
 
         {/* SECTION 07 — A CLEAR INVESTMENT (Pricing & Digital Care) */}
-        <section id="packages" className="w-full bg-[#f8f9ff] py-14 lg:py-20">
+        <section id="packages" className="w-full bg-[#F6F3ED] py-14 lg:py-20">
           <div id="pricing" className="mx-auto max-w-[1280px] space-y-8 px-5 sm:px-6">
             <div className="flex flex-col justify-between gap-4 md:flex-row md:items-end">
               <div>
-                <div className="mb-1 font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-[#44474d]">
+                <div className="mb-1 font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-[#526479]">
                   07 / A CLEAR INVESTMENT
                 </div>
                 <h2 className="font-display text-[32px] font-bold leading-[1.18] tracking-[-0.025em] text-[#081B30] sm:text-[40px]">
@@ -488,7 +491,7 @@ function HomePage() {
                 <span className="inline-block rounded bg-[#6cf8bb] px-3 py-1 font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-[#00714d]">
                   Quality Guard: Strictly 2 Active Builds At Any Time
                 </span>
-                <p className="mt-1 text-[13px] leading-[20px] text-[#44474d]">
+                <p className="mt-1 text-[13px] leading-[20px] text-[#526479]">
                   An initial build fee. Ongoing monthly care. One clear proposal covering both.
                 </p>
               </div>
@@ -497,20 +500,20 @@ function HomePage() {
             {/* Main Investment Ledger Grid */}
             <div className="grid grid-cols-1 gap-6 lg:grid-cols-12">
               {/* Left: Setup Card */}
-              <div className="flex flex-col justify-between space-y-6 rounded-xl bg-white p-6 shadow-[0_4px_16px_rgba(8,27,48,0.06)] border border-[#dce9ff] sm:p-8 lg:col-span-6">
+              <div className="flex flex-col justify-between space-y-6 rounded-xl bg-white p-6 shadow-[0_4px_16px_rgba(8,27,48,0.06)] border border-[#526479]/20 sm:p-8 lg:col-span-6">
                 <div className="space-y-3">
                   <div className="flex flex-wrap items-center justify-between gap-2">
-                    <span className="font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-[#44474d]">
+                    <span className="font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-[#526479]">
                       01 / INITIAL SETUP
                     </span>
-                    <span className="rounded bg-[#e5eeff] px-2.5 py-0.5 font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-[#081B30]">
+                    <span className="rounded bg-[#F6F3ED] px-2.5 py-0.5 font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-[#081B30]">
                       50% DEPOSIT / 50% APPROVAL
                     </span>
                   </div>
                   <div className="font-display text-[48px] font-bold leading-none tracking-[-0.03em] text-[#081B30] sm:text-[56px]">
                     £1,495
                   </div>
-                  <p className="text-[15px] leading-[24px] text-[#44474d]">
+                  <p className="text-[15px] leading-[24px] text-[#526479]">
                     50% deposit (£747.50) reserves your slot. 50% balance (£747.50) payable only
                     upon your final preview approval.
                   </p>
@@ -520,7 +523,7 @@ function HomePage() {
                 <div className="space-y-3 pt-1 text-[13px] leading-[20px]">
                   {SETUP_DELIVERABLES.map((item) => (
                     <div key={item.bold} className="flex items-start gap-2.5 text-[#081B30]">
-                      <Check className="mt-0.5 h-4 w-4 shrink-0 text-[#006c49]" />
+                      <Check className="mt-0.5 h-4 w-4 shrink-0 text-[#059669]" />
                       <span>
                         <strong>{item.bold}</strong> {item.rest}
                       </span>
@@ -531,7 +534,7 @@ function HomePage() {
                 <div className="pt-2">
                   <Link
                     to="/contact"
-                    className="flex h-12 w-full items-center justify-center rounded-xl bg-[#081B30] text-[14px] font-semibold text-white transition-all hover:bg-[#0F2642]"
+                    className="flex h-12 w-full items-center justify-center rounded-xl bg-[#081B30] text-[14px] font-semibold text-white transition-all hover:bg-[#173C62]"
                   >
                     Reserve Setup Build Slot →
                   </Link>
@@ -539,20 +542,20 @@ function HomePage() {
               </div>
 
               {/* Right: Monthly Care Card */}
-              <div className="flex flex-col justify-between space-y-6 rounded-xl bg-white p-6 shadow-[0_4px_16px_rgba(8,27,48,0.06)] border border-[#dce9ff] sm:p-8 lg:col-span-6">
+              <div className="flex flex-col justify-between space-y-6 rounded-xl bg-white p-6 shadow-[0_4px_16px_rgba(8,27,48,0.06)] border border-[#526479]/20 sm:p-8 lg:col-span-6">
                 <div className="space-y-3">
                   <div className="flex flex-wrap items-center justify-between gap-2">
-                    <span className="font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-[#44474d]">
+                    <span className="font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-[#526479]">
                       02 / ONGOING CARE
                     </span>
-                    <span className="rounded bg-[#dce9ff] px-2.5 py-0.5 font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-[#0b1c30]">
+                    <span className="rounded bg-[#173C62]/10 px-2.5 py-0.5 font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-[#081B30]">
                       ROLLING 30-DAY AGREEMENT
                     </span>
                   </div>
                   <div className="font-display text-[48px] font-bold leading-none tracking-[-0.03em] text-[#081B30] sm:text-[56px]">
-                    £249 <span className="text-[22px] font-normal text-[#44474d]">/ month</span>
+                    £249 <span className="text-[22px] font-normal text-[#526479]">/ month</span>
                   </div>
-                  <p className="text-[15px] leading-[24px] text-[#44474d]">
+                  <p className="text-[15px] leading-[24px] text-[#526479]">
                     Monthly care begins at go-live. Continuous security, speed, and updates with a
                     30-day fair exit policy.
                   </p>
@@ -562,7 +565,7 @@ function HomePage() {
                 <div className="space-y-3 pt-1 text-[13px] leading-[20px]">
                   {CARE_DELIVERABLES.map((item) => (
                     <div key={item.bold} className="flex items-start gap-2.5 text-[#081B30]">
-                      <Check className="mt-0.5 h-4 w-4 shrink-0 text-[#006c49]" />
+                      <Check className="mt-0.5 h-4 w-4 shrink-0 text-[#059669]" />
                       <span>
                         <strong>{item.bold}</strong> {item.rest}
                       </span>
@@ -571,25 +574,25 @@ function HomePage() {
                 </div>
 
                 {/* Add-On Feature Box: 24/7 Virtual Receptionist */}
-                <div className="rounded-xl bg-[#dce9ff] p-4 text-[#081B30]">
+                <div className="rounded-xl bg-[#173C62]/10 p-4 text-[#081B30]">
                   <div className="flex items-center justify-between">
-                    <span className="font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-[#006c49]">
+                    <span className="font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-[#059669]">
                       POPULAR ADD-ON
                     </span>
                     <span className="text-[14px] font-bold">
                       +£99 / mo{" "}
-                      <span className="text-xs font-normal text-[#44474d] line-through">
+                      <span className="text-xs font-normal text-[#526479] line-through">
                         £149/mo
                       </span>
                     </span>
                   </div>
-                  <p className="mt-1 text-[13px] leading-[20px] text-[#44474d]">
+                  <p className="mt-1 text-[13px] leading-[20px] text-[#526479]">
                     <strong className="text-[#081B30]">24/7 AI Virtual Phone Receptionist:</strong>{" "}
                     Never miss an emergency call while driving or on tools. Answers in natural
                     British English and texts lead summaries to WhatsApp in 30 seconds.{" "}
                     <Link
                       to="/virtual-receptionist"
-                      className="font-semibold text-[#081B30] underline hover:text-[#006c49]"
+                      className="font-semibold text-[#081B30] underline hover:text-[#059669]"
                     >
                       Test live voice demo →
                     </Link>
@@ -606,7 +609,7 @@ function HomePage() {
             <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-12">
               {/* Real Founder Portrait Image */}
               <div className="relative lg:col-span-5">
-                <div className="relative overflow-hidden rounded-xl bg-[#0F2642] shadow-2xl border border-[#1E3A5F]">
+                <div className="relative overflow-hidden rounded-xl bg-[#173C62] shadow-2xl border border-[#173C62]">
                   <img
                     alt="Robbie Harley, Founder of Harley Digital Works"
                     className="h-[460px] w-full object-cover object-top"
@@ -620,7 +623,7 @@ function HomePage() {
 
               {/* Founder Words & Assurance */}
               <div className="space-y-5 lg:col-span-7">
-                <div className="inline-flex items-center gap-2 rounded bg-[#0F2642] px-3 py-1 font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-[#10B981]">
+                <div className="inline-flex items-center gap-2 rounded bg-[#173C62] px-3 py-1 font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-[#10B981]">
                   <span className="h-2 w-2 rounded-full bg-[#10B981]" /> DIRECT FOUNDER COMMITMENT
                 </div>
 
@@ -653,7 +656,7 @@ function HomePage() {
                 <div className="flex flex-wrap items-center gap-4 pt-3">
                   <a
                     href="tel:01172141357"
-                    className="inline-flex h-12 items-center gap-2 rounded-xl bg-white px-6 text-[14px] font-bold text-[#081B30] transition-colors hover:bg-[#f8f9ff]"
+                    className="inline-flex h-12 items-center gap-2 rounded-xl bg-white px-6 text-[14px] font-bold text-[#081B30] transition-colors hover:bg-[#F6F3ED]"
                   >
                     <Phone className="h-4 w-4" />
                     0117 214 1357
@@ -662,7 +665,7 @@ function HomePage() {
                     href="https://wa.me/447394041487"
                     target="_blank"
                     rel="noreferrer"
-                    className="inline-flex h-12 items-center gap-2 rounded-xl bg-[#0F2642] px-6 text-[14px] font-bold text-[#6ffbbe] transition-colors hover:bg-[#0F2642]/80 border border-[#1E3A5F]"
+                    className="inline-flex h-12 items-center gap-2 rounded-xl bg-[#173C62] px-6 text-[14px] font-bold text-[#6ffbbe] transition-colors hover:bg-[#173C62]/80 border border-[#173C62]"
                   >
                     <MessageCircle className="h-4 w-4" />
                     WhatsApp: 07394 041487
@@ -678,7 +681,7 @@ function HomePage() {
           <div className="mx-auto max-w-[1280px] space-y-8 px-5 sm:px-6">
             <div className="flex flex-col justify-between gap-4 md:flex-row md:items-end">
               <div>
-                <div className="mb-1 font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-[#44474d]">
+                <div className="mb-1 font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-[#526479]">
                   09 / FREQUENT QUESTIONS
                 </div>
                 <h2 className="font-display text-[32px] font-bold leading-[1.18] tracking-[-0.025em] text-[#081B30] sm:text-[40px]">
@@ -687,7 +690,7 @@ function HomePage() {
                   Straight answers.
                 </h2>
               </div>
-              <p className="max-w-sm text-[15px] leading-[24px] text-[#44474d]">
+              <p className="max-w-sm text-[15px] leading-[24px] text-[#526479]">
                 Something else on your mind? Call Robbie directly on{" "}
                 <a href="tel:01172141357" className="font-semibold text-[#081B30] underline">
                   0117 214 1357
@@ -706,9 +709,9 @@ function HomePage() {
                 >
                   <summary className="flex cursor-pointer list-none items-center justify-between font-display text-[20px] font-semibold leading-[28px] text-[#081B30]">
                     <span>{faq.question}</span>
-                    <ChevronDown className="h-5 w-5 shrink-0 text-[#44474d] transition-transform group-open:rotate-180" />
+                    <ChevronDown className="h-5 w-5 shrink-0 text-[#526479] transition-transform group-open:rotate-180" />
                   </summary>
-                  <p className="mt-3 text-[15px] leading-[24px] text-[#44474d]">{faq.answer}</p>
+                  <p className="mt-3 text-[15px] leading-[24px] text-[#526479]">{faq.answer}</p>
                 </details>
               ))}
             </div>
@@ -718,7 +721,7 @@ function HomePage() {
         {/* SECTION 10 — GRAND FINALE CONVERSION BANNER */}
         <section className="w-full bg-[#081B30] py-14 text-white lg:py-20">
           <div className="mx-auto max-w-[1280px] space-y-5 px-5 text-center sm:px-6">
-            <div className="inline-flex items-center gap-2 rounded bg-[#0F2642] px-3 py-1 font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-[#6ffbbe]">
+            <div className="inline-flex items-center gap-2 rounded bg-[#173C62] px-3 py-1 font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-[#6ffbbe]">
               10 / LET’S MAKE SOMETHING GREAT
             </div>
 
@@ -743,7 +746,7 @@ function HomePage() {
               <button
                 type="button"
                 onClick={() => setIsCalcModalOpen(true)}
-                className="inline-flex h-14 items-center justify-center gap-2 rounded-xl border border-[#1E3A5F] bg-[#0F2642] px-6 text-[15px] font-semibold text-[#6ffbbe] transition-all hover:bg-[#0F2642]/80 cursor-pointer"
+                className="inline-flex h-14 items-center justify-center gap-2 rounded-xl border border-[#173C62] bg-[#173C62] px-6 text-[15px] font-semibold text-[#6ffbbe] transition-all hover:bg-[#173C62]/80 cursor-pointer"
               >
                 <Calculator className="h-4 w-4" />
                 View package pricing
@@ -751,7 +754,7 @@ function HomePage() {
 
               <a
                 href="tel:01172141357"
-                className="inline-flex h-14 items-center justify-center rounded-xl bg-[#0F2642] px-6 text-[15px] font-semibold text-white transition-all hover:bg-[#0F2642]/80"
+                className="inline-flex h-14 items-center justify-center rounded-xl bg-[#173C62] px-6 text-[15px] font-semibold text-white transition-all hover:bg-[#173C62]/80"
               >
                 Call Robbie on 0117 214 1357
               </a>

@@ -69,14 +69,14 @@ const DEFAULT_STEPS: SequenceStep[] = [
 
 I came across {{companyName}} while researching top {{tradeSector}} across {{city}}.
 
-Most contractor websites we audit are leaking an estimated {{lostRevenueMonthly}} in high-ticket installation enquiries because they lack instant fixed-price quote calculators and mobile click-to-call.
+Many contractor websites we look at make it hard for a homeowner to get a price or call from their phone, which can mean enquiries going elsewhere.
 
 Rather than sending a generic sales deck, our engineering team put together a live interactive staging concept tailored for {{companyName}}:
 {{stagingUrl}}
 
 It includes an instant boiler replacement calculator, 1-tap WhatsApp dispatch, and Gas Safe trust accreditation badges.
 
-We operate on a strict 14-day live launch guarantee with 100% of the copywriting done for you (zero homework on your evenings).
+We write your website copy for you and work to a delivery schedule agreed with you up front, so it doesn't eat into your evenings.
 
 Would you be open to a 5-minute phone chat this Thursday afternoon to see if this makes sense for your business?
 
@@ -451,7 +451,7 @@ export function OutreachSequenceEngine() {
             <ul className="space-y-1 text-[11px]">
               <li>✓ Staging demo provided upfront with zero pitch deck</li>
               <li>✓ Local competitor proximity search gaps audited</li>
-              <li>✓ 14-day delivery SLA with 100% done-for-you copy</li>
+              <li>✓ Agreed delivery schedule, copy written for you</li>
               <li>✓ Clear WhatsApp & 1-tap phone CTA on every step</li>
             </ul>
           </div>

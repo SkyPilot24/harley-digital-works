@@ -1,13 +1,14 @@
 # Harley Digital Works — Project Status
 
-## Operating Brief & Verified Production State — 27 October 2026
+## Operating Brief & Verified Production State — 29 October 2026
 
-- **Production Platform Target:** Cloudflare Worker `skypilot24-harley-digital-works` (Version `d2081dde-07f5-490f-9614-39fda9f728ef`, `https://harleydigitalworks.com`).
+- **Production Platform Target:** Cloudflare Worker `skypilot24-harley-digital-works` (`https://harleydigitalworks.com`).
 - **Production Supabase Database:** `worzpzbutngugwzhlvtj` (Isolated Staging: `mfpnfxpgkfuqtedbcxvp`).
 - **Development Server:** Binds strictly to Port 3000 (`http://localhost:3000/`). Port 8080 is permanently reserved for NVIDIA Broadcast on the founder's machine.
 - **Terminology Governance:** The term "live" is reserved strictly for production (`harleydigitalworks.com` / `worzpzbutngugwzhlvtj`), never local development or staging previews.
 - **Commercial Boundary:** Ratified Managed package: £1,495 setup + £249/mo care. Capacity: strictly up to 2 concurrent builds. Pilot focus: electrical contractors in Bristol, Bath, and M4 corridor. Zero VAT. No guaranteed 14-day turnarounds or numerical ranking claims.
 - **Single Active Bottleneck:** Pilot client outreach activation and booking first 3 electrical contractor builds in the Bristol / Bath corridor.
+- **Latest Release (29 Oct 2026):** Integrated Stitch Screen 13 (`valuecurrencies.com` institutional terminal, LD4 Equinix ticker, 4-card telemetry strip) and Screen 15 (`The Harley Group` Corporate Ecosystem: Trust Telemetry Ledger Strip, Cotswold architectural heritage mosaic with floating ledger card, sovereign balance philosophy). Conducted full audit across all 53 routes with zero runtime crashes and 100% test pass rate across 5 suites. Committed and deployed to main.
 - **Domain Portfolio & Monetisation:** Completed full portfolio audit (£28,600+ BIN / ~£12,000 floor reserve / £2,500+/mo lease potential), rich Schema.org SEO on `/domains`, UI mockups for social outreach, and expanded outbound campaigns.
 
 ---

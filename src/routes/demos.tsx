@@ -135,7 +135,9 @@ function TradeDemosPage() {
                 Cinematic Electrical Contractor Benchmark (Bristol &amp; Bath Pilot)
               </h2>
               <p className="text-xs text-slate-300 max-w-2xl">
-                Experience our high-converting trade architecture: instant 15-second job estimator, interactive 18th-edition fuseboard overhaul slider, and 1-tap WhatsApp lead dispatch.
+                Experience our high-converting trade architecture: instant 15-second job estimator,
+                interactive 18th-edition fuseboard overhaul slider, and 1-tap WhatsApp lead
+                dispatch.
               </p>
             </div>
             <Link

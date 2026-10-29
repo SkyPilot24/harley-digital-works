@@ -189,7 +189,7 @@ export function CaseStudyFactoryDesk() {
         city: "Altrincham, Cheshire",
         tagline: "Doubled luxury bathroom installation inquiries with 0 client writing required.",
         summary:
-          "Turnkey 5-page trade website with interactive bathroom renovation pricing matrix and 14-day SLA live launch.",
+          "Turnkey 5-page trade website with interactive bathroom renovation pricing matrix, delivered to an agreed schedule.",
         beforeStats: {
           loadTime: "5.1s",
           bounceRate: "69%",
@@ -210,7 +210,7 @@ export function CaseStudyFactoryDesk() {
         ],
         clientQuote: {
           quote:
-            "Harley Digital Works wrote every single word and had the site live in 14 days flat. The bathroom calculator is booking jobs while I'm sleeping.",
+            "[FICTIONAL SAMPLE QUOTE — replace with a real, permissioned client quote before any use.]",
           author: "Mark Evans",
           role: "Owner & Master Plumber",
         },
@@ -228,6 +228,15 @@ export function CaseStudyFactoryDesk() {
 
   return (
     <div className="space-y-6">
+      {/* Fictional data warning — these presets are invented and must never be published or sent */}
+      <div
+        role="alert"
+        className="rounded-xl border border-red-300 bg-red-50 p-4 text-sm text-red-900"
+      >
+        <strong>Fictional sample data only.</strong> Every company, quote, ranking and figure below
+        is invented for layout testing. Never publish, send or quote these as real client results.
+        Replace with verified client evidence and written permission first.
+      </div>
       {/* Top Banner */}
       <div className="rounded-2xl border border-ink/10 bg-white p-6 shadow-xs">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">

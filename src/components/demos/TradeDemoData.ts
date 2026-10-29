@@ -55,7 +55,7 @@ export const TRADE_DEMOS: Record<string, TradeDemoBusiness> = {
   electrical: {
     id: "electrical",
     name: "Apex Electrical & Solar",
-    badge: "NICEIC Approved Contractor #D604921",
+    badge: "NICEIC Approved Contractor [your number]",
     tagline: "Certified Domestic & Commercial Electricians across Greater Manchester",
     phone: "0161 496 0910",
     whatsapp: "07394 041487",

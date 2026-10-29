@@ -7,10 +7,8 @@ import {
   Truck,
   CheckCircle2,
   XCircle,
-  HelpCircle,
   ArrowRight,
   ShieldCheck,
-  Clock,
   Sparkles,
   PhoneCall,
   FileCheck,
@@ -25,50 +23,88 @@ const TRADE_ICONS: Record<string, React.ElementType> = {
   "commercial-contractors": Truck,
 };
 
+const TRADE_VISUALS: Record<
+  string,
+  {
+    src: string;
+    alt: string;
+    kicker: string;
+    caption: string;
+  }
+> = {
+  electricians: {
+    src: "/images/home/renewables-solar-ev.jpg",
+    alt: "NICEIC approved electrical contractor EV charger and solar PV installation",
+    kicker: "ELECTRICAL & EV INFRASTRUCTURE",
+    caption: "Show the standard. Win the quote.",
+  },
+  "heating-engineers": {
+    src: "/images/home/heating-plant-room.jpg",
+    alt: "Precision heating plant room copper pipework and boiler installation by certified UK heating specialists",
+    kicker: "PRECISION HEATING & PLANT ROOMS",
+    caption: "Clean pipework. Clearer enquiries.",
+  },
+  "commercial-contractors": {
+    src: "https://lh3.googleusercontent.com/aida/AEtjO1UQGAWyswKWr-bp6FiEdQCYvWngL-xdE70cfJfhOm1ym5Dhes36n30wvz1zbu8BP69LZm_AzJWIiJmoJtIGjUpawwj9YUBiLavXpEIVQzBw5fsqybVIDOAO24BPJ_wiBcnpix3JGA0zGct3BAjC2PTU8iIlv6eLnKDX0OpD7ihwEidhe3SZbxoqs4Dj2vnu9gwtPsVbLAmb2V7xKZreg7ahaWVJI3ECRKJTrmoCKN1BiL6d2xhypHoTp3U",
+    alt: "UK commercial contractor on site in front of sign-written van checking commercial job enquiries",
+    kicker: "COMMERCIAL & MULTI-VAN OPERATIONS",
+    caption: "Keep every van booked with profitable work.",
+  },
+  builders: {
+    src: "/images/home/extension-renovation.jpg",
+    alt: "Contemporary architectural house extension with exposed steelwork and glazed doors",
+    kicker: "ARCHITECTURAL EXTENSIONS & BUILD",
+    caption: "Exceptional craft. A fitting first impression.",
+  },
+};
+
 export function TradeShowcaseSection() {
   const tradeKeys = Object.keys(TRADE_VERTICALS);
   const [selectedKey, setSelectedKey] = useState<string>("electricians");
   const activeTrade: TradeVertical =
     TRADE_VERTICALS[selectedKey] || TRADE_VERTICALS["electricians"];
   const ActiveIcon = TRADE_ICONS[selectedKey] || Zap;
+  const activeVisual = TRADE_VISUALS[selectedKey] || TRADE_VISUALS["electricians"];
 
   return (
     <section
-      className="studio-section deferred-section bg-stone-50/70 border-y border-stone-200/80 py-20"
+      className="w-full border-y border-[#081B30]/10 bg-[#F6F3ED] py-16 lg:py-20"
       id="trades-showcase"
       aria-labelledby="trades-showcase-heading"
     >
-      <div className="studio-wrap space-y-16">
+      <div className="mx-auto max-w-[1280px] space-y-14 px-5 sm:px-6">
         {/* Section Header */}
-        <div className="studio-section-heading">
-          <div>
-            <div className="flex flex-wrap items-center gap-3 mb-2">
-              <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-100/80 border border-emerald-300/60 px-2.5 py-1 text-[11px] font-bold text-emerald-950">
-                <ShieldCheck size={13} className="text-emerald-700" />
+        <div className="flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
+          <div className="space-y-2">
+            <div className="mb-2 flex flex-wrap items-center gap-3">
+              <span className="inline-flex items-center gap-1.5 rounded bg-[#059669]/15 px-2.5 py-1 font-mono text-[11px] font-bold tracking-[0.08em] text-[#059669] uppercase">
+                <ShieldCheck size={13} className="text-[#059669]" />
                 <span>Your verified accreditations, clearly presented</span>
               </span>
-              <span className="text-xs font-semibold text-stone-500 hidden sm:inline">
-                Websites for electrical contractors in Bristol, Bath and the M4 corridor
+              <span className="hidden font-mono text-[11px] font-bold tracking-[0.08em] text-[#526479] uppercase sm:inline">
+                BRISTOL, BATH &amp; THE M4 CORRIDOR
               </span>
             </div>
-            <p className="studio-kicker">03 / ENGINEERED SPECIFICALLY FOR UK TRADES</p>
+            <p className="font-mono text-[11px] font-bold tracking-[0.08em] text-[#526479] uppercase">
+              03 / ENGINEERED SPECIFICALLY FOR UK TRADES
+            </p>
             <h2
               id="trades-showcase-heading"
-              className="text-3xl md:text-5xl font-extrabold tracking-tight text-ink"
+              className="font-display text-[32px] leading-[1.16] font-bold tracking-[-0.025em] text-[#081B30] sm:text-[40px]"
             >
               Your trade. Your reputation.
               <br />
-              <span className="text-ink-muted">Make your work easier to choose.</span>
+              <span className="text-[#526479]">Make your work easier to choose.</span>
             </h2>
           </div>
-          <p className="text-base text-ink-muted max-w-xl leading-relaxed">
-            Help customers understand your services and see the quality of your work. We build
-            clear, trade websites with written copy and ongoing care for ambitious UK trades.
+          <p className="max-w-xl text-[15px] leading-[24px] text-[#526479]">
+            Help customers understand your services and see the quality of your work. We build clear
+            trade websites with done-for-you copywriting and ongoing care for ambitious UK trades.
           </p>
         </div>
 
         {/* Trade Selector Tabs */}
-        <div className="flex flex-wrap gap-2.5 p-1.5 bg-stone-100 rounded-2xl max-w-4xl mx-auto border border-stone-200/80 shadow-xs">
+        <div className="flex flex-wrap gap-2" role="group" aria-label="Select trade vertical">
           {tradeKeys.map((key) => {
             const trade = TRADE_VERTICALS[key];
             const Icon = TRADE_ICONS[key] || Flame;
@@ -78,14 +114,14 @@ export function TradeShowcaseSection() {
                 key={key}
                 type="button"
                 onClick={() => setSelectedKey(key)}
-                className={`flex-1 min-w-[180px] flex items-center justify-center gap-2.5 py-3 px-4 rounded-xl text-xs sm:text-sm font-bold transition-all ${
+                className={`inline-flex cursor-pointer items-center gap-2 rounded-lg px-4 py-2.5 font-mono text-[11px] font-bold tracking-[0.08em] uppercase transition-all ${
                   isSelected
-                    ? "bg-[#081B30] text-white shadow-md shadow-stone-900/20 scale-[1.01]"
-                    : "text-ink-muted hover:text-ink hover:bg-white"
+                    ? "bg-[#081B30] text-white shadow-md"
+                    : "border border-[#081B30]/12 bg-white text-[#081B30] hover:bg-[#081B30]/5"
                 }`}
                 aria-pressed={isSelected}
               >
-                <Icon size={16} className={isSelected ? "text-emerald-400" : "text-ink-muted"} />
+                <Icon size={15} className={isSelected ? "text-[#059669]" : "text-[#526479]"} />
                 <span>{trade.name}</span>
               </button>
             );
@@ -93,112 +129,132 @@ export function TradeShowcaseSection() {
         </div>
 
         {/* Dynamic Trade Feature Card */}
-        <div className="rounded-3xl border border-stone-200 bg-white p-6 sm:p-10 shadow-lg shadow-stone-100/80 transition-all">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
-            {/* Left Column: Trade Overview & Value Prop */}
-            <div className="lg:col-span-7 space-y-6">
-              <div className="inline-flex items-center gap-2 rounded-full bg-[#081B30]/5 px-3 py-1 text-xs font-bold text-[#081B30] border border-[#081B30]/15">
-                <ActiveIcon size={14} className="text-[#173C62]" />
-                <span>{activeTrade.badge}</span>
+        <div className="rounded-2xl border border-[#081B30]/10 bg-white p-6 shadow-[0_4px_16px_rgba(8,27,48,0.06)] transition-all sm:p-8">
+          <div className="grid grid-cols-1 items-start gap-8 lg:grid-cols-12">
+            {/* Left Column: Matched Trade Photo + Trade Overview & Value Prop */}
+            <div className="space-y-6 lg:col-span-7">
+              {/* Matched Trade Photography */}
+              <div className="relative overflow-hidden rounded-xl bg-[#081B30] shadow-md">
+                <img
+                  src={activeVisual.src}
+                  alt={activeVisual.alt}
+                  className="h-[260px] w-full object-cover object-center transition-all duration-300 sm:h-[300px]"
+                  onError={(e) => {
+                    e.currentTarget.src = "/images/home/heating-plant-room.jpg";
+                  }}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#081B30]/90 via-transparent to-transparent" />
+                <div className="absolute right-4 bottom-4 left-4 flex flex-wrap items-end justify-between gap-2">
+                  <div className="rounded-lg bg-[#081B30]/90 px-3.5 py-2 text-white backdrop-blur">
+                    <div className="font-mono text-[11px] font-bold tracking-[0.08em] text-[#059669] uppercase">
+                      {activeVisual.kicker}
+                    </div>
+                    <div className="font-display text-[18px] leading-[24px] font-semibold">
+                      {activeVisual.caption}
+                    </div>
+                  </div>
+                  <div className="inline-flex items-center gap-2 rounded-full bg-white/95 px-3 py-1 text-xs font-bold text-[#081B30] shadow-sm">
+                    <ActiveIcon size={13} className="text-[#059669]" />
+                    <span>{activeTrade.badge}</span>
+                  </div>
+                </div>
               </div>
 
-              <div>
-                <h3 className="text-2xl sm:text-3xl font-extrabold text-ink tracking-tight leading-snug">
+              <div className="space-y-2 rounded-xl border border-[#081B30]/10 bg-[#F6F3ED] p-5">
+                <h3 className="font-display text-[22px] leading-snug font-bold tracking-[-0.015em] text-[#081B30] sm:text-[26px]">
                   {activeTrade.heroHeadline}{" "}
-                  <span className="text-[#173C62] underline decoration-[#173C62]/30 underline-offset-4">
+                  <span className="text-[#059669] underline decoration-[#059669]/30 underline-offset-4">
                     {activeTrade.heroHighlight}
                   </span>
                 </h3>
-                <p className="mt-3 text-sm sm:text-base text-ink-muted leading-relaxed">
+                <p className="text-[15px] leading-[24px] text-[#526479]">
                   {activeTrade.heroSubheadline}
                 </p>
               </div>
 
-              {/* High-Value Target Enquiries */}
-              <div className="space-y-3 pt-2">
-                <h4 className="text-xs font-bold uppercase tracking-wider text-ink flex items-center gap-2">
-                  <Sparkles size={14} className="text-[#173C62]" />
-                  Key Enquiries Structured For Your Trade
-                </h4>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                  {activeTrade.targetEnquiries.map((enquiry, i) => (
-                    <div
-                      key={i}
-                      className="flex items-start gap-2.5 rounded-xl border border-stone-100 bg-stone-50/80 p-3 text-xs font-medium text-ink"
-                    >
-                      <CheckCircle2 size={16} className="text-emerald-700 shrink-0 mt-0.5" />
-                      <span>{enquiry}</span>
-                    </div>
-                  ))}
+              {/* High-Value Target Enquiries & Headaches Side-by-Side */}
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                <div className="space-y-2.5 rounded-xl border border-[#081B30]/10 bg-[#F6F3ED] p-4">
+                  <h4 className="flex items-center gap-1.5 font-mono text-[11px] font-bold tracking-[0.08em] text-[#059669] uppercase">
+                    <Sparkles size={13} className="text-[#059669]" />
+                    Key Enquiries Structured
+                  </h4>
+                  <ul className="space-y-2 text-[13px] leading-[20px] text-[#081B30]">
+                    {activeTrade.targetEnquiries.map((enquiry, i) => (
+                      <li key={i} className="flex items-start gap-2">
+                        <CheckCircle2 size={15} className="mt-0.5 shrink-0 text-[#059669]" />
+                        <span>{enquiry}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
-              </div>
 
-              {/* Problems HDW Eliminates */}
-              <div className="space-y-2 pt-2 border-t border-stone-100">
-                <h4 className="text-xs font-bold uppercase tracking-wider text-rose-900 flex items-center gap-2">
-                  <XCircle size={14} className="text-rose-600" />
-                  Trade Headaches We Remove
-                </h4>
-                <ul className="space-y-1.5 text-xs text-ink-muted">
-                  {activeTrade.keyChallenges.map((challenge, i) => (
-                    <li key={i} className="flex items-start gap-2">
-                      <span className="text-rose-500 font-bold">✕</span>
-                      <span>{challenge}</span>
-                    </li>
-                  ))}
-                </ul>
+                <div className="space-y-2.5 rounded-xl border border-[#081B30]/10 bg-white p-4">
+                  <h4 className="flex items-center gap-1.5 font-mono text-[11px] font-bold tracking-[0.08em] text-[#526479] uppercase">
+                    <XCircle size={13} className="text-[#526479]" />
+                    Headaches We Remove
+                  </h4>
+                  <ul className="space-y-2 text-[13px] leading-[20px] text-[#526479]">
+                    {activeTrade.keyChallenges.map((challenge, i) => (
+                      <li key={i} className="flex items-start gap-2">
+                        <span className="font-bold text-[#526479]">✕</span>
+                        <span>{challenge}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
             </div>
 
             {/* Right Column: Done-for-You Package & Call to Action */}
-            <div className="lg:col-span-5 rounded-3xl bg-[#081B30] text-[#F6F3ED] p-6 sm:p-8 space-y-6 shadow-2xl border border-white/10 flex flex-col justify-between h-full">
-              <div className="space-y-4">
-                <div className="flex items-center justify-between border-b border-white/10 pb-4">
+            <div className="flex h-full flex-col justify-between space-y-6 rounded-2xl border border-[#173C62] bg-[#081B30] p-6 text-white shadow-2xl sm:p-8 lg:col-span-5">
+              <div className="space-y-5">
+                <div className="flex items-center justify-between border-b border-[#173C62] pb-4">
                   <div>
-                    <span className="text-[11px] font-mono uppercase tracking-wider text-slate-300">
+                    <span className="font-mono text-[11px] font-bold tracking-[0.08em] text-white/80 uppercase">
                       Managed Turnkey Package
                     </span>
-                    <div className="text-3xl font-black text-white mt-0.5 font-display">
+                    <div className="mt-0.5 font-display text-3xl font-bold text-white">
                       £1,495{" "}
-                      <span className="text-xs font-normal text-slate-300">+ £249/mo care</span>
+                      <span className="text-xs font-normal text-white/80">+ £249/mo care</span>
                     </div>
                   </div>
                   <div className="text-right">
-                    <span className="inline-block rounded-full bg-emerald-950/80 border border-emerald-500/40 px-2.5 py-0.5 text-[11px] font-mono text-emerald-300">
+                    <span className="inline-block rounded border border-[#059669]/40 bg-[#173C62] px-2.5 py-0.5 font-mono text-[11px] font-bold tracking-[0.08em] text-[#059669] uppercase">
                       Pilot: Max 2 spots
                     </span>
-                    <div className="text-[11px] text-slate-300 mt-1">Agreed Delivery Schedule</div>
+                    <div className="mt-1 text-[11px] text-white/80">Agreed Delivery Schedule</div>
                   </div>
                 </div>
 
                 <div className="space-y-3">
-                  <h5 className="text-xs font-bold uppercase tracking-wider text-slate-200 flex items-center gap-1.5">
-                    <FileCheck size={14} className="text-emerald-400" />
+                  <h5 className="flex items-center gap-1.5 font-mono text-[11px] font-bold tracking-[0.08em] text-[#059669] uppercase">
+                    <FileCheck size={14} className="text-[#059669]" />
                     Included For Your Trade:
                   </h5>
-                  <ul className="space-y-2.5 text-xs text-slate-200">
+                  <ul className="space-y-2.5 text-[13px] leading-[20px] text-[#F6F3ED]">
                     {activeTrade.includedFeatures.map((feat, i) => (
                       <li key={i} className="flex items-start gap-2">
-                        <CheckCircle2 size={15} className="text-emerald-400 shrink-0 mt-0.5" />
+                        <CheckCircle2 size={15} className="mt-0.5 shrink-0 text-[#059669]" />
                         <span>{feat}</span>
                       </li>
                     ))}
                   </ul>
                 </div>
 
-                <div className="rounded-xl bg-white/5 border border-white/10 p-3.5 text-[11px] text-slate-200 space-y-1">
-                  <div className="font-bold text-white flex items-center gap-1.5">
-                    <ShieldCheck size={14} className="text-emerald-400" />
+                <div className="space-y-1 rounded-xl border border-[#173C62] bg-[#173C62]/60 p-4 text-[12px] text-[#F6F3ED]">
+                  <div className="flex items-center gap-1.5 font-bold text-white">
+                    <ShieldCheck size={14} className="text-[#059669]" />
                     50% Deposit / 50% on Final Approval
                   </div>
-                  <p className="text-slate-300 leading-relaxed">
+                  <p className="leading-relaxed text-white/80">
                     You only pay the completion balance once you have reviewed the working staging
                     site and confirmed satisfaction.
                   </p>
                 </div>
               </div>
 
-              <div className="pt-4 border-t border-white/10 space-y-2.5">
+              <div className="space-y-2.5 border-t border-[#173C62] pt-4">
                 <Link
                   to="/contact"
                   search={{
@@ -207,9 +263,9 @@ export function TradeShowcaseSection() {
                     domain: undefined,
                     websiteUrl: undefined,
                   }}
-                  className="w-full min-h-[48px] inline-flex items-center justify-center gap-2 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-6 py-3.5 text-sm transition-all shadow-lg shadow-emerald-950/40 cursor-pointer"
+                  className="inline-flex min-h-[48px] w-full cursor-pointer items-center justify-center gap-2 rounded-xl bg-[#059669] px-6 py-3.5 text-sm font-bold text-white shadow-[0_0_15px_rgba(5,150,105,0.3)] transition-all hover:opacity-95"
                 >
-                  <span>Check Availability & Get Plan</span>
+                  <span>Check Availability &amp; Get Plan</span>
                   <ArrowRight size={16} />
                 </Link>
                 <Link
@@ -220,11 +276,11 @@ export function TradeShowcaseSection() {
                     domain: undefined,
                     websiteUrl: undefined,
                   }}
-                  className="w-full min-h-[44px] inline-flex items-center justify-center gap-2 rounded-full border border-white/20 bg-white/5 hover:bg-white/10 text-white font-semibold px-4 py-2.5 text-xs transition-colors cursor-pointer"
+                  className="inline-flex min-h-[44px] w-full cursor-pointer items-center justify-center gap-2 rounded-xl border border-[#173C62] bg-[#173C62] px-4 py-2.5 text-xs font-semibold text-white transition-colors hover:bg-[#173C62]/80"
                 >
                   <span>Get a Website Review</span>
                 </Link>
-                <div className="text-center text-[11px] text-slate-300 pt-1">
+                <div className="pt-1 text-center text-[11px] text-white/80">
                   No pushy sales calls · Straightforward conversation with founder Robbie Harley
                 </div>
               </div>
@@ -232,105 +288,113 @@ export function TradeShowcaseSection() {
           </div>
         </div>
 
-        {/* Comparison Matrix: Why UK Trades Choose HDW */}
-        <div className="rounded-3xl border border-stone-200 bg-white p-6 sm:p-10 shadow-lg shadow-stone-100/80 space-y-8">
-          <div className="text-center max-w-2xl mx-auto space-y-2">
-            <p className="studio-kicker">HONEST VALUE COMPARISON</p>
-            <h3 className="text-2xl sm:text-3xl font-extrabold text-ink tracking-tight">
-              Why UK Trades Choose Harley Digital Works
+        {/* SECTION 04 — HONEST VALUE COMPARISON TABLE */}
+        <div
+          id="why-hdw"
+          className="space-y-8 rounded-2xl border border-[#081B30]/10 bg-white p-6 sm:p-10"
+        >
+          <div className="mx-auto max-w-xl space-y-2 text-center">
+            <p className="font-mono text-[11px] font-bold tracking-[0.08em] text-[#526479] uppercase">
+              HONEST VALUE COMPARISON
+            </p>
+            <h3 className="font-display text-[28px] font-bold tracking-[-0.02em] text-[#081B30] sm:text-[36px]">
+              Why UK Trades Choose HDW
             </h3>
-            <p className="text-xs sm:text-sm text-ink-muted">
+            <p className="text-[15px] leading-[24px] text-[#526479]">
               How we compare against building it yourself in the evenings or hiring a generic
               digital agency.
             </p>
           </div>
 
-          <div className="overflow-x-auto">
-            <table className="w-full text-left border-collapse min-w-[620px]">
-              <thead>
-                <tr className="border-b border-stone-200 text-xs font-bold text-ink uppercase tracking-wider">
-                  <th className="py-3 px-4 w-1/4">Aspect</th>
-                  <th className="py-3 px-4 w-1/4 text-stone-500">DIY / Wix / Squarespace</th>
-                  <th className="py-3 px-4 w-1/4 text-stone-500">Generic Web Agency</th>
-                  <th className="py-3.5 px-4 w-1/4 bg-[#081B30] text-white rounded-t-xl font-extrabold border-t border-x border-[#081B30]">
-                    Harley Digital Works
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="text-xs divide-y divide-stone-100">
-                <tr>
-                  <td className="py-3.5 px-4 font-bold text-ink">Copywriting & Words</td>
-                  <td className="py-3.5 px-4 text-stone-600">
-                    You have to write everything yourself after a 10-hour day on site.
-                  </td>
-                  <td className="py-3.5 px-4 text-stone-600">
-                    Generic agency copy that requires endless corrections on trade technical terms.
-                  </td>
-                  <td className="py-3.5 px-4 bg-slate-50 text-ink font-semibold border-x border-slate-200">
-                    ✓ 100% done-for-you technical copywriting based on your confirmed trade facts.
-                  </td>
-                </tr>
+          <div className="overflow-hidden rounded-xl border border-[#081B30]/10 bg-white shadow-[0_4px_16px_rgba(8,27,48,0.06)]">
+            <div className="overflow-x-auto">
+              <table className="w-full min-w-[620px] text-left text-[13px] leading-[20px]">
+                <thead>
+                  <tr className="bg-[#081B30] font-mono text-[11px] font-bold tracking-[0.08em] text-white uppercase">
+                    <th className="w-1/4 p-4">Core Trade Criteria</th>
+                    <th className="w-1/4 p-4 opacity-80">DIY / Wix / Squarespace</th>
+                    <th className="w-1/4 p-4 opacity-80">Generic Web Agency</th>
+                    <th className="w-1/4 bg-[#173C62] p-4 text-[#059669]">
+                      Harley Digital Works (✓ Winner)
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr className="bg-[#F6F3ED]">
+                    <td className="p-4 font-bold text-[#081B30]">Copywriting &amp; Words</td>
+                    <td className="p-4 text-[#526479]">
+                      You write everything after a 10-hour day on site.
+                    </td>
+                    <td className="p-4 text-[#526479]">
+                      Fluffy text requiring endless corrections on trade terms.
+                    </td>
+                    <td className="bg-[#059669]/10 p-4 font-semibold text-[#081B30]">
+                      ✓ 100% done-for-you technical copy based on your trade facts.
+                    </td>
+                  </tr>
 
-                <tr>
-                  <td className="py-3.5 px-4 font-bold text-ink">Pricing & Transparency</td>
-                  <td className="py-3.5 px-4 text-stone-600">
-                    £25/mo + 60+ unpaid hours of your own time wrestling with templates.
-                  </td>
-                  <td className="py-3.5 px-4 text-stone-600">
-                    High variable project fees with extra hourly charges for every minor edit.
-                  </td>
-                  <td className="py-3.5 px-4 bg-slate-50 text-ink font-semibold border-x border-slate-200">
-                    ✓ Clear £1,495 setup (50/50 milestone) + £249/mo rolling all-inclusive care.
-                  </td>
-                </tr>
+                  <tr className="bg-white">
+                    <td className="p-4 font-bold text-[#081B30]">Pricing &amp; Transparency</td>
+                    <td className="p-4 text-[#526479]">
+                      £25/mo + 60+ unpaid hours battling builders.
+                    </td>
+                    <td className="p-4 text-[#526479]">
+                      High variable fees with surprise hourly rates for tweaks.
+                    </td>
+                    <td className="bg-[#059669]/10 p-4 font-semibold text-[#081B30]">
+                      ✓ Clear £1,495 setup (50/50 split) + £249/mo rolling all-inclusive care.
+                    </td>
+                  </tr>
 
-                <tr>
-                  <td className="py-3.5 px-4 font-bold text-ink">Turnaround Schedule</td>
-                  <td className="py-3.5 px-4 text-stone-600">
-                    Often drags out for months as an unfinished draft.
-                  </td>
-                  <td className="py-3.5 px-4 text-stone-600">
-                    Lengthy agency production queues with multiple account handoffs.
-                  </td>
-                  <td className="py-3.5 px-4 bg-slate-50 text-ink font-semibold border-x border-slate-200">
-                    ✓ Agreed delivery schedule with private staging preview and revision rounds.
-                  </td>
-                </tr>
+                  <tr className="bg-[#F6F3ED]">
+                    <td className="p-4 font-bold text-[#081B30]">Turnaround Schedule</td>
+                    <td className="p-4 text-[#526479]">
+                      Drags on for months as an unfinished draft.
+                    </td>
+                    <td className="p-4 text-[#526479]">
+                      Lengthy agency queues with 4 different account managers.
+                    </td>
+                    <td className="bg-[#059669]/10 p-4 font-semibold text-[#081B30]">
+                      ✓ Agreed delivery schedule with staging preview and review rounds.
+                    </td>
+                  </tr>
 
-                <tr>
-                  <td className="py-3.5 px-4 font-bold text-ink">Ongoing Maintenance</td>
-                  <td className="py-3.5 px-4 text-stone-600">
-                    You troubleshoot broken plugins, SSL certificates, and DNS settings.
-                  </td>
-                  <td className="py-3.5 px-4 text-stone-600">
-                    Impersonal helpdesk queues with slow turnaround on urgent updates.
-                  </td>
-                  <td className="py-3.5 px-4 bg-slate-50 text-ink font-semibold border-x border-slate-200">
-                    ✓ Dedicated monthly care: hosting, SSL, enquiry checks & 30-min monthly edit
-                    batch.
-                  </td>
-                </tr>
+                  <tr className="bg-white">
+                    <td className="p-4 font-bold text-[#081B30]">Ongoing Maintenance</td>
+                    <td className="p-4 text-[#526479]">
+                      You troubleshoot broken plugins and DNS errors.
+                    </td>
+                    <td className="p-4 text-[#526479]">
+                      Impersonal ticketing desk with slow response times.
+                    </td>
+                    <td className="bg-[#059669]/10 p-4 font-semibold text-[#081B30]">
+                      ✓ Cloudflare hosting, SSL, monthly 30-min edit batch, direct owner care.
+                    </td>
+                  </tr>
 
-                <tr>
-                  <td className="py-3.5 px-4 font-bold text-ink">Attention & Capacity</td>
-                  <td className="py-3.5 px-4 text-stone-600">
-                    Self-service DIY tool with automated chatbots.
-                  </td>
-                  <td className="py-3.5 px-4 text-stone-600">
-                    Account passed between different coordinators with no direct owner.
-                  </td>
-                  <td className="py-3.5 px-4 bg-slate-50 text-ink font-semibold border-x border-b border-slate-200 rounded-b-xl">
-                    ✓ Strict 2-spot pilot capacity: direct access to founder Robbie Harley.
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+                  <tr className="bg-[#F6F3ED]">
+                    <td className="p-4 font-bold text-[#081B30]">Attention &amp; Capacity</td>
+                    <td className="p-4 text-[#526479]">
+                      Self-service DIY tool with generic chatbots.
+                    </td>
+                    <td className="p-4 text-[#526479]">
+                      Junior account executives juggling 50 accounts.
+                    </td>
+                    <td className="bg-[#059669]/10 p-4 font-semibold text-[#081B30]">
+                      ✓ Strictly 2 active builds at a time. Direct contact with Robbie Harley.
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
 
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-stone-100">
-            <div className="flex items-center gap-3 text-xs text-ink-muted">
-              <PhoneCall size={16} className="text-[#173C62] shrink-0" />
-              <span>Questions before booking? Email or call us directly. No hard sell.</span>
+          <div className="flex flex-col items-center justify-between gap-4 pt-2 sm:flex-row">
+            <div className="flex items-center gap-2.5 text-[13px] text-[#526479]">
+              <PhoneCall size={16} className="shrink-0 text-[#081B30]" />
+              <span>
+                Questions before booking? Speak directly with Robbie Harley. No pushy sales calls.
+              </span>
             </div>
             <PillButton
               as="link"

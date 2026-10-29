@@ -159,11 +159,11 @@ export function LeadProspectorAuditDesk({
     const tradeInfo = TRADE_VERTICALS[prospect.tradeSector] || { name: "Trade Business" };
 
     if (outreachChannel === "whatsapp") {
-      return `Hi ${prospect.companyName.split(" ")[0]} team, Robbie here from Harley Digital Works in Manchester.
+      return `Hi ${prospect.companyName.split(" ")[0]} team, Robbie here from Harley Digital Works.
 
-I took a quick look at your website (${prospect.websiteUrl}) and noticed it takes 4.8s to load on mobile and is missing an instant quote tool. You're likely losing 5–8 high-margin ${tradeInfo.name} enquiries every month to local competitors.
+I took a quick look at your website (${prospect.websiteUrl}) on my phone and noticed there's no quick way for a customer to get a ballpark price or tap to call.
 
-We build 100% done-for-you, sub-30ms trade websites with 14-day turnaround. 
+We write, build and look after websites for UK ${tradeInfo.name}, working to a delivery schedule agreed with you up front.
 
 Here is a bespoke preview we prepared for your business:
 https://harleydigitalworks.com/proposals?client=${encodeURIComponent(prospect.companyName)}&trade=${encodeURIComponent(tradeInfo.name)}
@@ -176,12 +176,12 @@ Would you like me to send over a 60-second video breakdown?`;
 
 Hi ${prospect.companyName} Team,
 
-I run Harley Digital Works (part of The Harley Group in Manchester). We specialise in 100% done-for-you websites and Google Map Pack ranking for UK ${tradeInfo.name}.
+I run Harley Digital Works (part of The Harley Group). We write, build and look after websites for UK ${tradeInfo.name}.
 
-I ran a quick automated audit of your site (${prospect.websiteUrl}) and identified 3 key opportunities:
-1. PageSpeed score is currently ${prospect.pageSpeedScore}/100 (causing 60%+ of mobile visitors to bounce).
+I ran a quick automated check of your site (${prospect.websiteUrl}) and spotted 3 opportunities:
+1. PageSpeed score is currently ${prospect.pageSpeedScore}/100.
 2. Missing interactive instant quote calculator for ${tradeInfo.name}.
-3. Missing LocalBusiness schema microdata on Google Map Pack.
+3. Missing LocalBusiness structured data that helps Google understand your business.
 
 We launched a custom proposal desk and blueprint for ${prospect.companyName} here:
 https://harleydigitalworks.com/proposals?client=${encodeURIComponent(prospect.companyName)}

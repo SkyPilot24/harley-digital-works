@@ -196,9 +196,9 @@
 }
 
 .hdw-marketing {
-  --font-sans: "Segoe UI", Arial, sans-serif;
-  --font-display: "Segoe UI", Arial, sans-serif;
-  --font-heading: "Segoe UI", Arial, sans-serif;
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-display: "Manrope", system-ui, sans-serif;
+  --font-heading: "Manrope", system-ui, sans-serif;
   font-family: var(--font-sans);
 }
 
