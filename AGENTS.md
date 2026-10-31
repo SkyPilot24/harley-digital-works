@@ -1,5 +1,7 @@
 # The Harley Group — ChatGPT/Codex operating instructions
 
+Start every task at [docs/CURRENT_OPERATING_BRIEF.md](docs/CURRENT_OPERATING_BRIEF.md) and follow [docs/AGENT_SESSION_WORKFLOW.md](docs/AGENT_SESSION_WORKFLOW.md). These pages route to maintained authority; historical prompts are reference only.
+
 ## Mandatory session-start contract
 
 Before making changes:
@@ -44,6 +46,10 @@ Use the latest approved business definition and commercial decisions. Preserve r
 Changes to pricing, discounts, scope, capacity, SLAs, tax presentation, refunds, contracts or commercial commitments require explicit founder approval or a verified standing policy covering that exact action. Flag unresolved wording before customer use.
 
 Historical £95/month pricing and guaranteed 14-day language are not evidence of current approval. Never invent clients, reviews, credentials, results, accreditations or guarantees. Label fictional examples and design studies prominently.
+
+## Current trade scope — founder decision 31 October 2026
+
+Harley Digital Works strategy and pilot cover any trade business. Electrical examples may remain illustrative; do not impose electrical-only eligibility or delay other trades until an electrical pilot succeeds. Read the current decision in BUSINESS_DEFINITION.md and docs/DECISIONS_AND_ACTIVITY.md. This changes no prices, capacity, geography or release authority.
 
 ## Architecture and deployment
 

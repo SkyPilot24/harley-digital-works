@@ -5,7 +5,19 @@
 **Status:** RATIFIED BY FOUNDER (ROBBIE) — 7 October 2026  
 **Governing Context:** [BUSINESS_DEFINITION.md](../BUSINESS_DEFINITION.md), [docs/REVENUE_WORKFLOW.md](REVENUE_WORKFLOW.md), MASTER_BACKLOG H01/H02
 
-## Reconciliation for customer use — 14 October 2026
+## Founder decision — any trade business — 31 October 2026
+
+Harley Digital Works strategy and pilot are open to **any trade business**. Electrical contractors are one illustrative trade, not an eligibility restriction or a mandatory first phase. Do not defer plumbing, heating, roofing, building, landscaping, decorating or other trades until an electrical pilot has finished. Assess fit against the existing offer, delivery capability, customer facts and available capacity; do not invent new staff-size or accreditation requirements. Display accreditations only when relevant and verified for that customer.
+
+Source: Robbie's direct instruction relayed to this existing chat on 31 October 2026. This supersedes electrical-only/electrical-first positioning in earlier dated records. Existing prices, three-customer pilot total, two-active-build limit, geography and acceptance gates are unchanged. Documentation updates and website review/planning are authorised; website edits, deployment, deletion and Drive edits are outside this new task. Earlier remediation approvals remain a separate scope.
+
+The original 7 October package tables below are dated commercial history; electrical-first wording there is superseded by this decision. No package prices or terms are amended.
+
+## Latest documented pilot reconciliation — 27 October 2026
+
+Use BUSINESS_DEFINITION.md and docs/CURRENT_OPERATING_BRIEF.md for the current decision/evidence hierarchy. The existing Managed price is retained; the pilot totals three customers with at most two active builds. Other previously approved tiers remain historical alternatives, not the pilot offer. The recorded position is not VAT registered/no VAT charged; historical zero-rated wording below is superseded, not an invoice instruction. The 27 October Drive decision brief supersedes Day-0 payback and assured-margin conclusions for planning. Customer-use validation below remains required. No new terms, pricing or release authority are created.
+
+## Dated customer-use reconciliation — 14 October 2026
 
 Carried forward from the current canonical documentation review; approved prices and historical terms are retained. This note identifies unresolved wording and fulfilment evidence; it does not add approved terms.
 
@@ -41,7 +53,7 @@ _"We build and run your complete digital enquiry desk — so high-value local cu
 
 ### Core Commercial Terms (Flagship Package: The Revenue Engine)
 
-- **Initial Setup & Build Fee:** **£1,495** _(Zero-rated / VAT not applicable below £90k statutory threshold)_
+- **Initial Setup & Build Fee:** **£1,495** _(No VAT charged under the documented 27 October position; match verified seller/invoice records)_
 - **Ongoing Monthly Care:** **£249 / month** _(Billed monthly via Stripe auto-debit starting from go-live date)_
 - **Billing & Payment Milestones:**
   1. **50% Deposit (£747.50):** Due upon proposal acceptance to reserve build slot and initiate discovery/copywriting. Strictly non-refundable once intake audit begins.

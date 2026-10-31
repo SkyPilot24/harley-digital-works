@@ -1,5 +1,17 @@
 # The Harley Group — current business definition
 
+## Founder decision — any trade business — 31 October 2026
+
+Harley Digital Works strategy and pilot are open to **any trade business**. Electrical contractors are one illustrative trade, not an eligibility restriction or a mandatory first phase. Do not defer plumbing, heating, roofing, building, landscaping, decorating or other trades until an electrical pilot has finished. Assess fit against the existing offer, delivery capability, customer facts and available capacity; do not invent new staff-size or accreditation requirements. Display accreditations only when relevant and verified for that customer.
+
+Source: Robbie's direct instruction relayed to this existing chat on 31 October 2026. This supersedes electrical-only/electrical-first positioning in earlier dated records. Existing prices, three-customer pilot total, two-active-build limit, geography and acceptance gates are unchanged. Documentation updates and website review/planning are authorised; website edits, deployment, deletion and Drive edits are outside this new task. Earlier remediation approvals remain a separate scope.
+
+## Latest documented reconciliation — 27 October 2026
+
+Source: the [Chief of Staff index](https://drive.google.com/file/d/1qgxSgiSQc9gqnnZaZoUXy1LGJCwr2vVU/view) and [Founder Go-Live Decision Brief](https://drive.google.com/file/d/1GabUYeXflODSqtiqnmljTkD8rFjJ2Zx1/view). These record existing founder decisions, not a new approval from this editing session. The pilot is three customers in total, with strictly at most two active builds. Managed is the sole pilot offer at the existing setup-plus-care price below. The documented position is not VAT registered and no VAT charged; do not describe the supply as zero-rated. Seller/contract/payee evidence, refunds, sold routing, support/recovery and payment acceptance must align before customer issue. The brief holds new paid onboarding pending acceptance, scheduled outbound off and paid receptionist rollout separately unaccepted.
+
+Latest explicit founder decisions govern business scope. See docs/CURRENT_OPERATING_BRIEF.md for current evidence routing. The earlier records below retain their dates and do not override this reconciliation.
+
 ## Founder operating direction - 3 October 2026
 
 The Harley Group is the umbrella; Harley Digital Works delivers customer services and Harley Labs covers experiments, automation and prototypes. Domain services remain a separate measured workstream within the same business, not a competing hub.
@@ -16,13 +28,13 @@ Carried forward from the current canonical documentation review: package prices 
 
 Imported from the existing The Harley Group / Business OS records on 2 October 2026; existing task IDs and commercial decisions are preserved. These repository files govern development across Codex/ChatGPT Work and Google Antigravity. Google Drive originals remain business reference records; there is no automatic synchronisation. When either copy changes, explicitly reconcile the other and record the date/source in the handover. Latest explicit founder decisions take precedence. Historical implementation notes require current source and runtime evidence before being marked complete.
 
-Updated 7 October 2026. Founder direction RATIFIED: The commercial blueprint, pricing tiers, unit economics, zero-rated VAT status, and 2-concurrency cap are formally approved by Robbie. Setup/build fee plus ongoing monthly subscription is confirmed as the governing model.
+Historical ratification record — 7 October 2026: the commercial blueprint, prices and pilot capacity were recorded as approved. Tax wording and economic certainty are superseded by the 27 October reconciliation above. Setup/build fee plus ongoing monthly subscription is confirmed as the governing model.
 
 ## Business and customer
 
 Harley Digital Works is the working customer-facing brand under The Harley Group. Provide a productised digital operating service for UK trades: a high-authority website, working enquiry desk, and ongoing digital care. Use templates and automation to eliminate administration. Do not promise rankings, leads or revenue.
 
-Target niche: Established electrical contractors with roughly 2–8 staff, demonstrable trade accreditations (NICEIC/NAPIT), digital weaknesses, and capacity for high-value enquiries. Initial pilot focus: Bristol, Bath, and the M4 Corridor. Expansion into heating/plumbing follows pilot validation.
+Current customer scope: Any trade business, subject to existing offer fit and delivery capacity. Electrical, plumbing/heating, roofing, building, landscaping and decorating examples are illustrative, not an exhaustive eligibility list. The existing Bristol, Bath and M4 Corridor pilot geography is retained; this decision changes trade eligibility, not geography.
 
 ## Offer ratified for execution: The Managed Revenue Engine
 
@@ -32,8 +44,8 @@ Governing detail and unit economics model: [docs/COMMERCIAL_OFFER_MANAGED.md](do
 | :------------------------------ | :---------------------------------------------------- | :------------------------------------------ | :---------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Managed (Single Launch MVP)** | **£1,495** (50% deposit £747.50, 50% balance £747.50) | **£249 / month** (rolling 30-day agreement) | 5-page trade website, 100% DFY copywriting, local SEO, Schema JSON-LD, dual lead desk, 2 preview revisions, 30-min monthly edit batch, 24h SLA. |
 
-- **VAT Treatment:** Harley Digital Works operates below the statutory £90,000 HMRC VAT registration threshold. All prices are zero-rated / VAT not applicable. No VAT is charged and no fake VAT numbers or mock tax documents are generated.
-- **Capacity Limits:** Maximum **2 to 3 concurrent client onboarding builds** to safeguard founder NHS schedule balance (founder commitment updated to ~20 hours/week on 21 October 2026; concurrent build cap remains strictly 2 active builds during pilot).
+- **VAT Treatment:** Latest documented founder position (27 October): not VAT registered; no VAT charged. This is not a zero-rated supply claim or a fresh accountant/registry verification. Confirm exact seller/invoice records before issue.
+- **Capacity Limits:** Three pilot customers total; strictly no more than two active builds. About 20 hours/week is the founder commitment recorded on 21 October, not a measured service guarantee.
 - **Setup Scope:** 5-page template-based architecture (Home, About, Services, Selected Work, Contact Desk), professional done-for-you copywriting, trade accreditation badges (Gas Safe, NICEIC, FMB), mobile/accessibility compliance, domain DNS connection preserving business email (MX records protected), and two structured revision rounds.
 - **Monthly Care Scope:** Cloudflare edge hosting, SSL maintenance, enquiry-routing health checks, 1 batch of content updates per month (up to 30 mins non-accumulative), review workflow guidance, monthly performance digest, standard 24h business-day support SLA (4h outage SLA).
 - **Payment Sequence:** 50% deposit (£747.50) due upon proposal acceptance to reserve build slot; strictly non-refundable once intake audit starts. 50% completion balance (£747.50) due upon preview sign-off before DNS cutover. Monthly care (£249/mo) billed via Stripe auto-debit starting on the go-live date.

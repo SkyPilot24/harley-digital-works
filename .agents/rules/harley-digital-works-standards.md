@@ -14,14 +14,11 @@ trigger: always_on
      - Headings/Display: Sturdy geometric sans (`Manrope` / `Plus Jakarta Sans`) with tight tracking. Avoid default unstyled Arial.
      - Body Text: Clean, legible sans (`Inter` / system UI) optimised for mobile.
      - Technical/Pricing Data: Monospace (`DM Mono`) for price breakdowns, packages, and technical specifications.
-   - Core USP: _"We take the website headache away. 100% done-for-you copywriting, zero homework, zero tech jargon, and total peace of mind."_
+   - Use customer-facing wording approved in the current business definition; never invent claims or promise zero homework.
 
-2. **Ratified Commercial Offer & Pricing Boundaries**:
-   - Standard Managed Package: £1,495 setup + £249/month ongoing care.
-   - Payment Terms: 50% deposit (£747.50) on agreement / 50% (£747.50) only upon final preview approval.
-   - VAT: Zero VAT (The Harley Group is not currently VAT registered; never quote "+ VAT").
-   - Delivery Commitment: Agreed delivery schedule (do not promise guaranteed 14-day turnarounds).
-   - Capacity Limit: Strictly maximum 2 concurrent active builds.
+2. **Current business authority**:
+   - Start at docs/CURRENT_OPERATING_BRIEF.md. Read BUSINESS_DEFINITION.md and docs/COMMERCIAL_OFFER_MANAGED.md for prices, pilot scope and approved terms; do not duplicate changing policy here.
+   - Latest explicit founder decisions govern. Historical text does not authorise sending, charging or deployment.
 
 3. **Tech Stack & Architecture**:
    - Framework: TanStack Router + TanStack Start + Nitro SSR (`cloudflare-module` preset).

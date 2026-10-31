@@ -3,6 +3,11 @@ import process from "node:process";
 
 const SUITES = [
   {
+    name: "Agent guidance consistency",
+    command: process.execPath,
+    args: ["scripts/check-agent-governance.mjs"],
+  },
+  {
     name: "Platform Smoke & Integrity",
     command: process.execPath,
     args: ["scripts/verify-platform.mjs"],
@@ -23,6 +28,8 @@ const SUITES = [
       "scripts/admin-resource-validation.test.mjs",
       "scripts/database-security.test.mjs",
       "scripts/intake-results.test.mjs",
+      "scripts/reviewed-safety.test.mjs",
+      "scripts/workflow-safety.test.mjs",
       "scripts/lead-notifications.test.mjs",
       "scripts/slack-integration.test.mjs",
       "scripts/payment-receipts.test.mjs",

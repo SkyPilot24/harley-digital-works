@@ -25,7 +25,7 @@ export const Route = createFileRoute("/")({
     buildPageSeoHead({
       title: "Your website and enquiries, looked after. | Harley Digital Works",
       description:
-        "We write, build and run your website and enquiry form, so customers can reach you and you can get on with the job.",
+        "Websites and ongoing digital care for any trade business. We write, build and run your website and enquiry form, so customers can reach you and you can get on with the job.",
       path: "/",
     }),
   component: HomePage,
@@ -44,7 +44,7 @@ const COMMITMENTS = [
     title: "50/50 Split Payment",
     description:
       "The final 50% balance is only payable after you test and formally sign off the build.",
-    footer: "ZERO RISK DEPOSIT",
+    footer: "CLEAR PAYMENT MILESTONES",
   },
   {
     code: "03 // PROPRIETARY",
@@ -92,8 +92,8 @@ const SETUP_DELIVERABLES = [
 
 const CARE_DELIVERABLES = [
   {
-    bold: "Cloudflare Enterprise Hosting:",
-    rest: "SSL maintenance, daily backups, DDoS protection, and 99.9% uptime monitoring.",
+    bold: "Cloudflare Hosting:",
+    rest: "Hosting and SSL maintenance, with backup and monitoring arrangements confirmed in your written service scope.",
   },
   {
     bold: "Monthly Edit Batch:",
@@ -101,7 +101,7 @@ const CARE_DELIVERABLES = [
   },
   {
     bold: "Regular Enquiry Health Checks:",
-    rest: "Weekly automated submission tests ensuring leads never disappear into spam.",
+    rest: "Enquiry checks within the agreed care scope, with routing verified before launch.",
   },
   {
     bold: "Local Performance Monitoring:",
@@ -137,7 +137,7 @@ const FAQS = [
   {
     question: "What happens after launch?",
     answer:
-      "Your £249/mo care plan kicks in immediately. We manage hosting, security, daily backups, regular enquiry form checks, and carry out your monthly edit requests so you never have to touch a website builder again.",
+      "Your £249/mo care plan kicks in immediately. We manage hosting, maintenance and enquiry checks within your agreed care scope, and carry out your monthly edit requests so you never have to touch a website builder again.",
   },
 ];
 
@@ -178,7 +178,7 @@ function HomePage() {
               <div className="md:col-span-4 p-3.5 sm:p-4 rounded-xl bg-[#F6F3ED] border border-[#526479]/20 shadow-xs flex items-center justify-between">
                 <div className="flex flex-col">
                   <span className="font-mono text-[11px] font-bold uppercase text-[#081B30] tracking-[0.08em]">
-                    PILOT CAPACITY: 2 SPOTS
+                    MAXIMUM 2 ACTIVE BUILDS
                   </span>
                   <span className="text-[12px] text-[#526479]">
                     BRISTOL, BATH &amp; THE M4 CORRIDOR
@@ -210,8 +210,9 @@ function HomePage() {
                     </span>
                   </h1>
                   <p className="max-w-xl text-[17px] sm:text-[18px] leading-[28px] tracking-[-0.01em] text-[#526479]">
-                    We write, build and run your website and enquiry form, so customers can reach
-                    you and you can get on with the job.
+                    Websites and ongoing digital care for any trade business. We write, build and
+                    run your website and enquiry form, so customers can reach you and you can get on
+                    with the job.
                   </p>
                 </div>
 
@@ -262,7 +263,7 @@ function HomePage() {
                       £249/mo all-inclusive care
                     </span>
                     <span className="font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-[#059669]">
-                      PILOT CAPACITY: 2 SPOTS
+                      MAXIMUM 2 ACTIVE BUILDS
                     </span>
                   </div>
                 </div>
@@ -309,7 +310,8 @@ function HomePage() {
                       </span>
                     </div>
                     <p className="text-[13px] font-medium leading-[20px] text-[#eff4ff]">
-                      Illustration: a new enquiry sent straight to your phone the moment it arrives
+                      Illustrative alert design. Your enquiry routing is agreed and verified before
+                      launch.
                     </p>
                   </div>
 
@@ -577,7 +579,7 @@ function HomePage() {
                 <div className="rounded-xl bg-[#173C62]/10 p-4 text-[#081B30]">
                   <div className="flex items-center justify-between">
                     <span className="font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-[#059669]">
-                      POPULAR ADD-ON
+                      RECEPTIONIST DEMONSTRATION
                     </span>
                     <span className="text-[14px] font-bold">
                       +£99 / mo{" "}
@@ -588,8 +590,8 @@ function HomePage() {
                   </div>
                   <p className="mt-1 text-[13px] leading-[20px] text-[#526479]">
                     <strong className="text-[#081B30]">24/7 AI Virtual Phone Receptionist:</strong>{" "}
-                    Never miss an emergency call while driving or on tools. Answers in natural
-                    British English and texts lead summaries to WhatsApp in 30 seconds.{" "}
+                    Explore the receptionist demonstration in natural British English. Availability,
+                    routing and scope require separate confirmation before purchase.{" "}
                     <Link
                       to="/virtual-receptionist"
                       className="font-semibold text-[#081B30] underline hover:text-[#059669]"

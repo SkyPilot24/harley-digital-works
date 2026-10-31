@@ -16,6 +16,8 @@ import type { AssistantBrand, ChatMessage, ExtractedChatLead } from "@/lib/ai-as
 import { HDW_ASSISTANT_CONFIG } from "@/lib/ai-assistant/knowledge-hdw";
 import { GROUP_ASSISTANT_CONFIG } from "@/lib/ai-assistant/knowledge-group";
 
+import { TurnstileWidget } from "@/components/site/TurnstileWidget";
+
 interface BrandChatWidgetProps {
   brand?: AssistantBrand;
 }
@@ -33,6 +35,10 @@ export function BrandChatWidget({ brand = "hdw" }: BrandChatWidgetProps) {
   const [leadEmail, setLeadEmail] = useState("");
   const [leadPhone, setLeadPhone] = useState("");
   const [isSubmittingLead, setIsSubmittingLead] = useState(false);
+  const [leadError, setLeadError] = useState("");
+  const [leadToken, setLeadToken] = useState("");
+  const [leadVerificationAttempt, setLeadVerificationAttempt] = useState(0);
+  const [leadStartedAt] = useState(() => Date.now());
 
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -164,11 +170,12 @@ export function BrandChatWidget({ brand = "hdw" }: BrandChatWidgetProps) {
     }
   };
 
-  const handleSubmitLead = async (e: React.FormEvent) => {
+  const handleSubmitLead = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!leadName.trim() || !leadEmail.trim() || isSubmittingLead) return;
-
+    const website = new FormData(e.currentTarget).get("website") || "";
     setIsSubmittingLead(true);
+    setLeadError("");
     try {
       const response = await fetch("/api/chat/lead-capture", {
         method: "POST",
@@ -178,27 +185,36 @@ export function BrandChatWidget({ brand = "hdw" }: BrandChatWidgetProps) {
           name: leadName.trim(),
           email: leadEmail.trim(),
           phone: leadPhone.trim(),
-          notes: `Conversation transcript captured with ${messages.length} messages.`,
-          sessionId: `web-${brand}-${widgetId}`,
+          notes: "Website consultation requested after " + messages.length + " chat messages.",
+          sessionId: "web-" + brand + "-" + widgetId,
+          startedAt: leadStartedAt,
+          turnstileToken: leadToken,
+          website,
         }),
       });
-
-      if (response.ok) {
-        setLeadCaptured(true);
-        setShowLeadPrompt(false);
-        const confirmMsg: ChatMessage = {
-          id: `a-conf-${Date.now()}`,
-          sender: "assistant",
-          text: `Thank you, ${leadName}. Your details have been registered directly with Robbie Harley. We will review your enquiry and get back to you promptly.`,
-          source: "local_knowledge_engine",
-          timestamp: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
-        };
-        setMessages((prev) => [...prev, confirmMsg]);
-      }
-    } catch {
-      // Graceful local acknowledge
+      const result = (await response.json()) as { ok?: boolean; message?: string };
+      if (!response.ok || result.ok !== true)
+        throw new Error(result.message || "We could not save your enquiry. Please try again.");
       setLeadCaptured(true);
       setShowLeadPrompt(false);
+      setMessages((prev) => [
+        ...prev,
+        {
+          id: "a-conf-" + Date.now(),
+          sender: "assistant",
+          text: result.message || "Your enquiry has been received.",
+          source: "local_knowledge_engine",
+          timestamp: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
+        },
+      ]);
+    } catch (error) {
+      setLeadToken("");
+      setLeadVerificationAttempt((attempt) => attempt + 1);
+      setLeadError(
+        error instanceof Error
+          ? error.message
+          : "We could not save your enquiry. Please try again or contact us directly.",
+      );
     } finally {
       setIsSubmittingLead(false);
     }
@@ -399,6 +415,18 @@ export function BrandChatWidget({ brand = "hdw" }: BrandChatWidgetProps) {
                         onChange={(e) => setLeadPhone(e.target.value)}
                         className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-1.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500"
                       />
+                      <div hidden aria-hidden="true">
+                        <label>
+                          Website
+                          <input name="website" tabIndex={-1} autoComplete="off" />
+                        </label>
+                      </div>
+                      <TurnstileWidget key={leadVerificationAttempt} onVerify={setLeadToken} />
+                      {leadError && (
+                        <p role="alert" className="text-xs text-red-300">
+                          {leadError}
+                        </p>
+                      )}
                       <div className="flex items-center gap-2 pt-1">
                         <button
                           type="submit"

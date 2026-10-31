@@ -1,12 +1,14 @@
 # The Harley Group — Business OS
 
+Current entry: [CURRENT_OPERATING_BRIEF.md](CURRENT_OPERATING_BRIEF.md). The [27 October Chief of Staff index](https://drive.google.com/file/d/1qgxSgiSQc9gqnnZaZoUXy1LGJCwr2vVU/view) records the latest documented pilot decisions; older Drive definitions and reading copies are dated mirrors. Drive corrections remain proposed, with no automatic synchronisation.
+
 Reviewed locally 14 October 2026. This existing Drive Business OS folder remains the central entrypoint for business documents, assets and activity. No new hub has been created. Use the [business documentation directory](README.md) for records organised by Group, Digital Works and Labs, and the [dated local review](LOCAL_DOCUMENTATION_REVIEW_2026-10-14.md) for output provenance and unresolved gaps. Drive mirrors below were not freshly verified or updated by this review.
 
 The current operational records live in the shared Harley Digital Works repository so Codex and Antigravity use the same decisions. The existing Drive documents mirror those records at documented milestones; sync is explicit, not automatic. Archived plans and exported copies are reference material. Use the records linked here rather than similarly named export copies.
 
 | Record                                    | Current Drive mirror / Repository source                                                                                                                  |
 | ----------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Business definition and operating model   | [Business definition](https://drive.google.com/file/d/1sGcm_svP0v9WRrxRLSg33hq5G9BlkSx_/view)                                                             |
+| Business definition and operating model   | [Business definition](https://github.com/SkyPilot24/harley-digital-works/blob/main/BUSINESS_DEFINITION.md)                                                             |
 | Commercial offer & defensible economics   | [Commercial offer](COMMERCIAL_OFFER_MANAGED.md) · [Unit economics](https://drive.google.com/file/d/1msf1I4jjVvp037akGkUiexDjy58xhW2z/view)                |
 | Revenue readiness and current evidence    | [Project status](https://drive.google.com/file/d/16dY7fXb2YAy9-BBYPrCrwoftoOV_GAvj/view)                                                                  |
 | Integrated tasks H01-H50, D01-D08 and L01 | [Master backlog](https://drive.google.com/file/d/1CCRiiSJSUxBfbQKfFjQpa45_wrMoYSCn/view)                                                                  |

@@ -1,3 +1,17 @@
+## Founder decision — any trade business — 31 October 2026
+
+Harley Digital Works strategy and pilot are open to **any trade business**. Electrical contractors are one illustrative trade, not an eligibility restriction or a mandatory first phase. Do not defer plumbing, heating, roofing, building, landscaping, decorating or other trades until an electrical pilot has finished. Assess fit against the existing offer, delivery capability, customer facts and available capacity; do not invent new staff-size or accreditation requirements. Display accreditations only when relevant and verified for that customer.
+
+Source: Robbie's direct instruction relayed to this existing chat on 31 October 2026. This supersedes electrical-only/electrical-first positioning in earlier dated records. Existing prices, three-customer pilot total, two-active-build limit, geography and acceptance gates are unchanged. Documentation updates and website review/planning are authorised; website edits, deployment, deletion and Drive edits are outside this new task. Earlier remediation approvals remain a separate scope.
+
+# Current reconciliation — 28 October 2026
+
+Prepared locally under founder approval for reviewed safety fixes and guidance cleanup; no new commercial terms or release approval. Source: 27 October Chief of Staff index and decision brief, linked in BUSINESS_DEFINITION.md. Pilot: three customers total, at most two active builds; standard Managed setup plus care unchanged; documented not VAT registered/no VAT charged, not zero-rated. Parent/brand, invoice/payee and customer-use clauses still need exact supporting evidence. The 27 October review holds paid onboarding pending P0 acceptance, scheduled outbound off and paid receptionist separately unaccepted. About 20 hours/week comes from the repository’s dated 21 October record. Older capacity, tax, price-proposal and automatic-profit statements are historical where they conflict.
+
+Drive was read only: proposed corrections are to its existing outdated START HERE/Business OS links and dated reading copies, not another business-plan copy. Follow docs/AGENT_SESSION_WORKFLOW.md for agent handovers and explicit milestone synchronisation.
+
+---
+
 ## Revival Fellowship pro bono contribution — 18 October 2026
 
 Founder-reported unpaid design/development/systems/consultancy and replacement-site delivery recorded in BUSINESS_DEFINITION.md and docs/REVIVAL_PRO_BONO_REFERENCE_2026-10-18.md. Revival is a separate supported community project, not a Harley subsidiary/charitable arm. Founder direction caps further unpaid work by requiring separately agreed scope/time, prioritising revenue-generating Harley work; no numerical cap, ongoing SLA or donation valuation invented. Understated /work reference and reciprocal Fellowship footer credit prepared as exact review copies/patches, not published or deployed. Existing dirty source preserved; owner review and source reconciliation next. No tests of live delivery, security or outcomes claimed.

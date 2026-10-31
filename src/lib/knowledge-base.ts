@@ -306,7 +306,7 @@ export const KNOWLEDGE_BASE_ARTICLES: KnowledgeArticle[] = [
       "The single productised package designed for UK trade contractors: £1,495 setup + £249/mo care.",
     keyPoints: [
       "Managed Trade Presence: £1,495 setup (50/50 split £747.50) + £249/mo care. 5 pages, trade copywriting based on confirmed facts, enquiry routing, local SEO microdata, review workflow recommendations, 30-min monthly edits.",
-      "Initial Target Niche: Established Electrical Contractors across Bristol, Bath, and the M4 Corridor.",
+      "Current customer scope: Any trade business; electrical examples are illustrative, not an eligibility restriction or required first phase. Existing Bristol, Bath and M4 Corridor geography and capacity apply.",
       "Acquisition Engine: Zero cold calling. Automated B2B digital reviews + private interactive prototypes.",
     ],
     operationalDetails:

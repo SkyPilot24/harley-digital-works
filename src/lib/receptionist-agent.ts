@@ -145,15 +145,15 @@ function getTenantLocalReply(message: string, tenant: ReceptionistTenantConfig):
     text.includes("urgent");
   if (isEmergency) {
     if (tenant.tradeType === "electrical_contractor") {
-      return `SAFETY ALERT: If you smell burning or see sparking from your consumer unit, please switch off the main switch immediately if safe to do so. I have flagged this as an urgent emergency. An on-call electrician from ${tenant.businessName} will call your mobile within 15 minutes. May I confirm your full name and exact address?`;
+      return `SAFETY ALERT: If you smell burning or see sparking from your consumer unit, please switch off the main switch immediately if safe to do so. This demonstration has not contacted an electrician or arranged a callback. Contact your emergency service or a qualified electrician directly; do not wait for this chat.`;
     }
     if (tenant.tradeType === "heating_and_gas") {
-      return `SAFETY NOTICE: If you smell gas, please extinguish naked flames, open windows, and turn off the gas emergency control valve at the meter. I have logged this as an emergency callout with ${tenant.businessName}. May I take your phone number and address so our on-call Gas Safe engineer can call you immediately?`;
+      return `SAFETY NOTICE: If you smell gas, please extinguish naked flames, open windows, and turn off the gas emergency control valve at the meter. This demonstration has not logged a callout or alerted a Gas Safe engineer. Contact the appropriate emergency service directly; do not rely on this chat for dispatch.`;
     }
     if (tenant.tradeType === "roofing_contractor") {
-      return `I understand you have an active roof leak causing water ingress. We have emergency tarpaulin teams available across ${tenant.serviceAreas[0]}. Please confirm your name and postcode so we can dispatch the nearest roofing crew.`;
+      return `I understand you have an active roof leak causing water ingress. This demonstration cannot confirm crew availability or dispatch a roofing team. Contact the business directly for assistance.`;
     }
-    return `I have flagged your enquiry as high priority. An emergency on-call team member from ${tenant.businessName} has received an instant alert and will contact you directly within 15 minutes. Could you confirm your full name and best contact number?`;
+    return `This demonstration has identified urgent wording, but has not sent an alert, logged a callout or arranged a callback. Contact the appropriate emergency service or business directly.`;
   }
 
   // Check tenant FAQs

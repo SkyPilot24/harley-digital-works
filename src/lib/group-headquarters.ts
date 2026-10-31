@@ -1071,7 +1071,7 @@ export const groupPriorities = [
     action: "Prepare one bounded acquisition pilot",
     owner: "Founder and delivery lead",
     timing: "After fulfilment gates",
-    work: "Curate initial electrical-contractor shortlist; prioritise interest-first assessment, verified facts and channel eligibility; draft outreach and suppression controls",
+    work: "Curate a trade-business shortlist across any trade; prioritise interest-first assessment, verified facts and channel eligibility; draft outreach and suppression controls",
     acceptance:
       "Evidence-backed eligible targets, reviewed drafts and measured acquisition costs; sending requires separate authorisation",
     sources: "S01,S02,S03",

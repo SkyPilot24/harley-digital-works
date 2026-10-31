@@ -30,3 +30,7 @@
 - **NEVER USE PORT 8080**: On Robbie's machine, port 8080 is permanently occupied by an internal system process (**NVIDIA Broadcast**). Hitting port 8080 returns `Cannot GET /brand` or `Cannot GET /...` because it hits NVIDIA Broadcast rather than Vite/TanStack Start.
 - **ALWAYS USE PORT 3000**: The dev server is configured to bind strictly to **port 3000** (`http://localhost:3000/`).
 - Whenever launching native Chrome or verifying local web routes, always use `http://localhost:3000/`.
+
+## Shared current entry point
+
+Read docs/CURRENT_OPERATING_BRIEF.md and docs/AGENT_SESSION_WORKFLOW.md at task start. Root AGENTS.md owns the shared startup and handover contract. Record checkout path, branch/HEAD, peer changes and local/remote/live evidence separately; preserve unexpected peer edits and reconcile before continuing. Do not treat historical copies or prompts as current authority.

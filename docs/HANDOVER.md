@@ -1,3 +1,15 @@
+## All-trades website release — 31 October 2026 (H01/H02/H47/H50)
+
+Founder explicitly approved GitHub publication/merge, live deployment and current Drive reconciliation. Strategy and pilot serve any trade business; electrical examples are illustrative. Existing Managed £1,495 setup / £249 monthly care, three pilot customers/two active builds, geography and remaining customer-use gates are unchanged.
+
+Release checkout: C:/Users/drrob/.codex/worktrees/all-trades-release-20261031/harley-digital-works; branch codex/all-trades-release-20261031; base current main eddbbd4ebd71e32d80c81e5d33ca5806a0de82d8. Earlier dirty reviewed-safety-guidance checkout is preserved unchanged by integration. Selected reviewed safety/guidance changes were applied with three-way reconciliation; newer peer design/history retained. This checkpoint supersedes electrical-first positioning in older records without rewriting historical evidence.
+
+Scope: all-trades copy, non-exhaustive examples/other-trade enquiry route, capacity clarity, qualified unverified service claims; shared persisted enquiry receipts and retry handling, map-key-free proxy links, truthful receptionist fallback and pinned release workflow. Paid onboarding, billing, voice service and scheduled outbound acceptance remain separate. No deletion, secret rotation or new spending authorised by this release. Detailed marketing plan: MARKETING_ALL_TRADES_REVIEW_2026-10-31.md. Checks, final revision, deployment/Drive readback and next action will be appended after verification; this opening preparation is not a completion claim.
+
+Fresh candidate evidence — 31 October: Cloudflare production-target build and six test-runner groups passed; TypeScript, formatting and governance passed; lint zero errors/nine existing warnings. Dependency gate passed: 15 moderate advisories, zero high/critical. Real isolated-staging chat, main helper, actual HTTP route and mobile browser form saved labelled fixtures; privileged readback verified persistence, duplicate retry created no extra row and anonymous reads were denied. Local failure cases returned honest errors. These are not ordinary-owner-browser, payment, telephony or live sending acceptance. Synthetic staging fixtures retained; none deleted. Browser decorating CTA preserved selected service; 390×844 contact layout checked. Production artifact scan found no staging private key. Staging project IDs occur only in the existing admin knowledge-base documentation, not as the configured public browser backend.
+
+Release path: GitHub deployment has no configured credentials and explicit staging deployment is absent. Automatic pipeline remains fail-closed (including a new guard against implicit production-variable inheritance). Authorised local Cloudflare CLI release is the existing manual path, only after fresh PR Quality/Security checks pass and exact main/build revision is confirmed. This does not weaken CI or claim the automatic deploy jobs succeeded. Rollback reference before release: Worker 31485fe9-634d-48a5-ac2d-6093f47c40af (29 October). Drive all-trades reconciliation applied in place to nine existing Markdown files plus the native Chief of Staff reading copy; final readback and live-version addendum pending.
+
 # The Harley Group & Harley Digital Works — Session Handover Log
 
 ## The Harley Group Offerings Alignment: Prominent Harley Reception, Harley Labs & Domains — 29 October 2026
@@ -10,8 +22,8 @@
        - **Your AI receptionist for calls, enquiries, and bookings.**
      - Quantified commercial benefits: zero missed tenders on site, < 30s instant WhatsApp lead dossier dispatch, flat £99–£149/mo pricing vs escalating per-minute answering bureaus, and 100% robocall/spam suppression.
      - Transparent capability vs roadmap breakdown:
-       - *Currently Available (Live):* 24/7 call answering, natural British voice synthesis (158 Hz Callum), intake qualification, entity extraction, instant WhatsApp/email dossiers, dedicated UK 01/02/0800 numbers.
-       - *Planned (Beta Pilot):* Direct two-way calendar and diary booking into trade software (Joblogic, SimPRO, Tradify) clearly flagged as in active development for scheduled rollout.
+       - _Currently Available (Live):_ 24/7 call answering, natural British voice synthesis (158 Hz Callum), intake qualification, entity extraction, instant WhatsApp/email dossiers, dedicated UK 01/02/0800 numbers.
+       - _Planned (Beta Pilot):_ Direct two-way calendar and diary booking into trade software (Joblogic, SimPRO, Tradify) clearly flagged as in active development for scheduled rollout.
   2. **Harley Labs:**
      - Dedicated card detailing applied R&D purpose, quote engines, trade ROI calculators, and CRM pipeline automation to eliminate evening paperwork.
   3. **Domains:**
@@ -26,7 +38,6 @@
   - Verification Test Suite (`node scripts/run-all-tests.mjs`): **PASS** across all 5 test suites (222/222 node tests passing, 7/7 claims & accessibility checks).
   - Production Build (`npm run build`): **PASS** (Vite client & Nitro Cloudflare worker generated cleanly).
 
-
 ## Stitch Screen 13 & 15 Integration, Full Route Audit & Production Release — 29 October 2026
 
 - **Tool & Scope:** Google Antigravity. Integrated Google Stitch Screens 13 (`valuecurrencies.com` Institutional FX & Liquidity Terminal) and 15 (`The Harley Group — Corporate Ecosystem & Parent Brand`) into `src/routes/domains.tsx` and `src/routes/the-harley-group.tsx`. Performed a full runtime and build audit across all 53 public and authenticated routes, ensuring zero "This page didn't load" errors, verifying the Callum Virtual Assistant screen on `/virtual-receptionist`, running the full automated verification suite, and deploying to GitHub and production.
@@ -34,11 +45,11 @@
   1. **`/domains` (`src/routes/domains.tsx` — Stitch Screen 13 `7355140439324b5299d5c51e9453d4fe`):**
      - Updated the `valuecurrencies.com` flagship showcase with the LD4 London Equinix live real-time rate ticker ribbon (`GBP/USD 1.28414 ▲ +0.14%`, `EUR/USD 1.08922 ▲ +0.08%`, `USD/JPY 154.620 ▼ -0.02%`, `$1.48B 24H Depth`).
      - Added the 4-card institutional telemetry strip: 0.4ms Anycast latency to LD4 Slough, SRA Solicitor custodial escrow, 21-day turnkey delivery, and 100% unencumbered title.
-     - Added the *"FAST-TRACK AUTH: 2H SLA"* badge and high-resolution terminal lightbox asset.
+     - Added the _"FAST-TRACK AUTH: 2H SLA"_ badge and high-resolution terminal lightbox asset.
   2. **`/the-harley-group` (`src/routes/the-harley-group.tsx` — Stitch Screen 15 `0386431c920d41518ec32eb8375a5cd2`):**
      - Integrated the 4-pillar Trust Telemetry Ledger Strip into the executive hero: 100% Privately Owned & Self-Funded, 4 Focused Operating Divisions, Senior Founder Accountability, Zero External Debt / Sovereign Assets.
-     - Added the Editorial Architectural Heritage Mosaic featuring the high-res Cotswold limestone masonry and industrial steel imagery with the floating Operating Ethos ledger card (*"Every system built must operate autonomously, preserve capital equity, and command real trade respect"*).
-     - Expanded the Strategic Discipline narrative (*"Radical ownership. Sovereign balance."*) and audited all text to replace raw "AI" references with *"Autonomous Voice Receptionist"* and *"Autonomous & Intelligent Systems"*.
+     - Added the Editorial Architectural Heritage Mosaic featuring the high-res Cotswold limestone masonry and industrial steel imagery with the floating Operating Ethos ledger card (_"Every system built must operate autonomously, preserve capital equity, and command real trade respect"_).
+     - Expanded the Strategic Discipline narrative (_"Radical ownership. Sovereign balance."_) and audited all text to replace raw "AI" references with _"Autonomous Voice Receptionist"_ and _"Autonomous & Intelligent Systems"_.
   3. **`/virtual-receptionist` & Route Health Verification:**
      - Verified Stitch Screen 1 (`14b8332d891944ea9c432be2d23653ca`) is rendering properly with 158 Hz voice selector, live triage simulation dialogue, and the quantified trade ROI calculator.
      - Confirmed `renderErrorPage` / `ErrorComponent` ("This page didn't load") boundary is robust and tested with zero runtime crashes across all public routes.
@@ -50,11 +61,11 @@
 - **Git & Deployment:**
   - Pushed commit `723ca3c` and formatting fix to `origin/main`. Continuous Deployment workflow automatically building and deploying to Cloudflare Production (`https://harleydigitalworks.com`).
 
-
 ## 5-Page Google Stitch UI Integration (Virtual Receptionist, Harley Labs, Harley Group HQ, Domains & Homepage Showcase) — 28 October 2026
+
 ## Google Stitch Authentication & Homepage Modular Bento Grid Transformation — 28 October 2026
 
-- **Tool & Scope:** Google Antigravity. Installed the Google Stitch CLI agent skills suite (`.agents/skills/stitch/`), authenticated Robbie Harley's Google account via OAuth PKCE (`robbieharley83@gmail.com`), linked to the existing Stitch project *High-Converting Website Redesign* (`1024167408885355904`), downloaded Layout Variant 2 (`fed21be2cf624552bd9a90a64163a60c`), and transplanted the Modular Bento Grid hero design directly into `src/routes/index.tsx`.
+- **Tool & Scope:** Google Antigravity. Installed the Google Stitch CLI agent skills suite (`.agents/skills/stitch/`), authenticated Robbie Harley's Google account via OAuth PKCE (`robbieharley83@gmail.com`), linked to the existing Stitch project _High-Converting Website Redesign_ (`1024167408885355904`), downloaded Layout Variant 2 (`fed21be2cf624552bd9a90a64163a60c`), and transplanted the Modular Bento Grid hero design directly into `src/routes/index.tsx`.
 - **Key Deliverables:**
   1. **Google Stitch Skill Installation & Authentication:**
      - Ran `stitch agent-skills add --overwrite` installing 18 skill files into `.agents/skills/stitch/`.
@@ -63,7 +74,7 @@
   2. **Modular Bento Grid Hero Integration (`src/routes/index.tsx`):**
      - Transplanted Stitch's Layout Variant 2 Modular Bento Grid hero.
      - Top Bento Status Bar: Real-time dispatch indicator ("Pilot Capacity: 2 Spots · Bristol, Bath & The M4 Corridor") and brand ethos ticker.
-     - Cell 1 (7 cols): Editorial headline *"Your website and enquiries, looked after."*, verified dispatch badge, dual CTAs (*Get your website plan*, *55s video transformation*, *Instant quote calculator*), and embedded £1,495 setup + £249/mo care ledger.
+     - Cell 1 (7 cols): Editorial headline _"Your website and enquiries, looked after."_, verified dispatch badge, dual CTAs (_Get your website plan_, _55s video transformation_, _Instant quote calculator_), and embedded £1,495 setup + £249/mo care ledger.
      - Cell 2 (5 cols): High-contrast visual unit with simulated OS header, trade contractor photography, floating 30s WhatsApp dispatch pill, and accreditation badges (NICEIC, Gas Safe, OZEV).
   3. **Quality & Claims Compliance:**
      - Fixed optional search param typing in `src/routes/contact.tsx` and legal link target in `FooterDark.tsx` (0 TypeScript errors).
@@ -111,11 +122,11 @@
      - `valuecurrencies.com`: Fintech FX terminal and transfer fee comparison platform.
      - `aiwearables.co.uk`: Luxury British consumer tech store for biometric smart rings and AI glasses.
      - `greenautomotive.co.uk`: Commercial EV fleet electrification and charging infrastructure hub.
-     Saved to `public/images/domains/` and embedded in the project artifact.
+       Saved to `public/images/domains/` and embedded in the project artifact.
   3. **SEO & Marketplace Modernization (`src/routes/domains.tsx`):**
      - Attached rich Schema.org JSON-LD `CollectionPage` + `ItemList` microdata with individual `Product` items, GBP pricing, and seller `The Harley Group Ltd`.
      - Added interactive category filters: "All", "AI & Tech", "Finance & Telecoms", "Mobility & EV", and "Smart IoT".
-     - Implemented transparent Buy-It-Now pricing and 12-month lease-to-own estimates (e.g. *From £175/mo*).
+     - Implemented transparent Buy-It-Now pricing and 12-month lease-to-own estimates (e.g. _From £175/mo_).
      - Added interactive concept mockup preview modal with thumbnail triggers.
   4. **Control Centre Outbound Expansion (`src/components/admin/DomainOutboundEngine.tsx`):**
      - Added 3 new pre-configured campaigns (`aiwearables-co-uk`, `greenautomotive-co-uk`, `theiotshop-co-uk`) with UK company targets, strategic hooks, and merged local storage.

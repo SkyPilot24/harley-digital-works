@@ -1,3 +1,7 @@
+# Historical reference — superseded daily playbook
+
+Use [CURRENT_OPERATING_BRIEF.md](CURRENT_OPERATING_BRIEF.md) and [DAILY_PLAYBOOK.md](DAILY_PLAYBOOK.md) for active work. The earlier checklist below is preserved as history; it is not authority to send messages or open parallel business workstreams.
+
 # Daily Agency Playbook
 
 Use this as the simple operating rhythm for Harley Digital Works, part of The Harley Group.

@@ -56,7 +56,7 @@ export function FooterDark() {
 
           <div className="space-y-3">
             <div className="font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-[#081B30]">
-              TRADE SPECIALISMS
+              EXAMPLE TRADE SPECIALISMS
             </div>
             <ul className="space-y-2 text-[13px] leading-[20px]">
               <li>
@@ -87,6 +87,14 @@ export function FooterDark() {
                 >
                   Master Builders &amp; Renovators
                 </a>
+              </li>
+              <li>
+                <Link
+                  to="/contact"
+                  className="text-[#44474d] transition-colors hover:text-[#081B30]"
+                >
+                  Any other trade? Tell us about your business
+                </Link>
               </li>
             </ul>
           </div>
@@ -183,7 +191,8 @@ export function FooterDark() {
                 <span>50/50 Approval Milestone</span>
               </div>
               <p className="text-[13px] leading-[20px] text-[#44474d]">
-                Second invoice issued exclusively upon total sign-off. Zero-risk deposit model.
+                Second invoice issued upon final preview approval. Deposit and cancellation terms
+                are confirmed in writing.
               </p>
             </div>
             <div className="space-y-1">

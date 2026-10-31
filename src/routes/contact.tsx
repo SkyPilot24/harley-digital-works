@@ -38,8 +38,8 @@ function ContactPage() {
               <span>first impression.</span>
             </h1>
             <p>
-              Tell us about the business you’re building. We’ll help you work out what your website
-              needs - and what it doesn’t.
+              Tell us your trade, the area you serve and what you need from your website. New and
+              existing trade businesses are welcome to enquire.
             </p>
             <ol className="contact-next">
               <li>
@@ -277,9 +277,9 @@ function ContactPage() {
                       Show Us Your Website: We’ll Show You What’s Possible
                     </h3>
                     <p className="text-xs text-ink-muted leading-relaxed">
-                      Have an existing website that isn’t generating qualified enquiries? Enter your
-                      website address below. We’ll review your mobile usability, trust signals, and
-                      enquiry pathways, then prepare an illustrative website plan.
+                      Have a website? Share it. Starting fresh? Tell us about your business instead.
+                      We’ll discuss your services, customers and enquiry journey, then prepare an
+                      illustrative website plan.
                     </p>
                   </div>
                 </div>
