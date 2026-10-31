@@ -58,6 +58,9 @@ export interface AssistantChatResponse {
 }
 
 export interface LeadCaptureRequest {
+  startedAt: number;
+  turnstileToken?: string;
+  website?: string;
   brand: AssistantBrand;
   name: string;
   email: string;

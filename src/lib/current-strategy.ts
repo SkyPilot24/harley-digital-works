@@ -5,9 +5,9 @@ export const currentStrategy = {
   milestone:
     "Win, deliver and retain verified paying trade contractors through automated B2B leak audits, trade copywriting based on confirmed facts, and enquiry desk routing.",
   audience:
-    "Established UK Electrical Contractors (2–8 staff, NICEIC/NAPIT accredited), expanding to heating/plumbing following pilot validation.",
+    "Any trade business. Electrical, plumbing, roofing, building, landscaping and decorating examples are illustrative, not an eligibility restriction.",
   pilot:
-    "Bristol, Bath and M4 corridor electrical contractors. Delivery schedule agreed after brief, access and assets are confirmed.",
+    "Any trade business within the existing Bristol, Bath and M4 corridor pilot focus. Three customers total, no more than two active builds. Delivery schedule agreed after brief, access and assets are confirmed.",
   offer:
     "Managed Trade Presence: £1,495 setup (50% deposit £747.50, 50% completion balance £747.50) + £249/mo care. Single ratified package. Confirm seller tax registration and invoice treatment before issue.",
   sellerName: "Harley DigitalWorks Ltd",
@@ -159,7 +159,7 @@ export const conversionToolPlaybooks = [
 ];
 
 export const currentPriorities = [
-  "Execute first commercial pilot with verified Gas Safe heating & NICEIC electrical contractors.",
+  "Prepare the first commercial pilot for any trade business, with relevant customer facts verified and existing acceptance gates retained.",
   "Maintain 100% pass rate across 125 automated tests (60 smoke + 62 regression + 3 service worker) and zero build errors.",
   "Reconcile 50% deposit payments directly via banking ledger before marking client workspaces active.",
   "Run weekly Control Centre diagnostics checks to ensure metadata, canonicals, and Cloudflare edge SSR health.",

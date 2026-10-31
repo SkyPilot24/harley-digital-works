@@ -8,7 +8,8 @@ const details = {
   website: {
     kicker: "WEBSITE DESIGN & BUILD",
     title: "Your workmanship.\nOur craft.",
-    intro: "A website that makes it easy to see what you do, trust your work and get in touch.",
+    intro:
+      "Websites and ongoing digital care for any trade business. Make it easy to see what you do, trust your work and get in touch.",
     points: [
       [
         "Made to feel like your business",
@@ -130,16 +131,16 @@ export function ManagedServicePage({ kind = "website" }: { kind?: keyof typeof d
               <div className="studio-wrap max-w-4xl mx-auto flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
                 <div className="space-y-2 max-w-2xl">
                   <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono font-medium bg-amber-500/20 text-amber-300 border border-amber-500/30">
-                    OPTIONAL TRADE BUNDLE
+                    RECEPTIONIST DEMONSTRATION
                   </div>
                   <h3 className="text-xl sm:text-2xl font-bold text-white font-display">
-                    Add 24/7 AI Phone Answering to Your Website (+£99/mo)
+                    Explore the AI receptionist demonstration
                   </h3>
                   <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
-                    When homeowners visit your new website and dial your number, our natural British
-                    voice receptionist answers in 2 seconds, confirms pricing, and texts qualified
-                    briefs to your WhatsApp in 30 seconds. Normally £149/mo standalone; save £50/mo
-                    when bundled with your website care plan.
+                    A demonstration of natural British voice interaction for trade businesses.
+                    Availability, routing, usage and scope require separate confirmation before
+                    purchase. No call, dispatch or customer booking is arranged by viewing this
+                    demonstration.
                   </p>
                 </div>
                 <a
@@ -157,17 +158,15 @@ export function ManagedServicePage({ kind = "website" }: { kind?: keyof typeof d
           <section className="studio-section bg-[#081B30] text-white py-16 border-y border-white/10">
             <div className="studio-wrap max-w-4xl mx-auto space-y-6">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono font-medium bg-amber-500/20 text-amber-300 border border-amber-500/30">
-                SIGNATURE CARE PLAN ADD-ON
+                RECEPTIONIST DEMONSTRATION
               </div>
               <h2 className="text-2xl sm:text-3xl font-extrabold text-white font-display">
-                Your Website Wins Their Interest. Your AI Receptionist Makes Sure Their Call Gets
-                Answered.
+                Explore how a receptionist could support your trade business.
               </h2>
               <p className="text-sm text-slate-300 leading-relaxed max-w-2xl">
-                Upgrade your £249/mo Managed Website Care Plan with a dedicated 24/7 AI Phone
-                Receptionist for just +£99/month (saving £50/month compared to the standalone
-                £149/mo rate). It answers homeowner calls in natural British English, qualifies
-                quotes, and sends instant WhatsApp briefs to you while you work on tools.
+                View the demonstration alongside the existing £249/month Managed Website Care Plan.
+                Receptionist availability, routing, usage and scope require separate confirmation
+                before purchase; the demonstration is not included in website care.
               </p>
               <div className="pt-2">
                 <a

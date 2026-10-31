@@ -58,10 +58,12 @@ export function TurnstileWidget({ onVerify }: TurnstileWidgetProps) {
           "error-callback": () => {
             if (!isMounted) return;
             setToken("");
+            onVerify?.("");
           },
           "expired-callback": () => {
             if (!isMounted) return;
             setToken("");
+            onVerify?.("");
           },
           theme: "auto",
         });

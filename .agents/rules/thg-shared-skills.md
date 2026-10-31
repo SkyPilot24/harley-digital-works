@@ -15,3 +15,7 @@ Use the same files from Antigravity and Codex. Do not load every skill for unrel
 ## Mandatory session start
 
 Follow the mandatory session-start contract in root AGENTS.md before editing. Report repository/path, branch/HEAD, existing changes, selected task, verified state, blockers and next action. Read current shared records; use only task-relevant canonical skills. Record exact verification and publication state in status/handover at completion.
+
+## Shared current entry point
+
+Read docs/CURRENT_OPERATING_BRIEF.md and docs/AGENT_SESSION_WORKFLOW.md at task start. Root AGENTS.md owns the shared startup and handover contract. Record checkout path, branch/HEAD, peer changes and local/remote/live evidence separately; preserve unexpected peer edits and reconcile before continuing. Do not treat historical copies or prompts as current authority.

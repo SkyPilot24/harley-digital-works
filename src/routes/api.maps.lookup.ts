@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import {
   geocodeUkAddress,
   searchGoogleBusinessPlace,
-  generateStaticMapUrl,
+  generateStaticMapProxyUrl,
 } from "@/lib/maps/google-maps.server";
 
 export const Route = createFileRoute("/api/maps/lookup")({
@@ -60,7 +60,7 @@ export const Route = createFileRoute("/api/maps/lookup")({
 
           if (body.action === "static-map") {
             const center = body.center || "Bradley Stoke, Bristol";
-            const mapUrl = generateStaticMapUrl({
+            const mapUrl = generateStaticMapProxyUrl({
               center,
               zoom: body.zoom || 11,
             });

@@ -20,7 +20,7 @@ For significant tasks, structure the response under **Recommendation**, **Busine
 
 ## Product and architecture
 
-This private repository is the Harley Digital Works public agency website and authenticated Admin Control Centre. Harley Digital Works provides digital services for UK trades and small businesses; The Harley Group is the parent, and Harley Labs is the separate experiments/automation brand. Preserve the exact endorsement `Part of The Harley Group`, approved navy/ivory identity, and British English. Never invent clients, testimonials, credentials, results or commercial guarantees. Read current commercial records before changing prices, scope, tax, capacity or contractual copy.
+This public repository is the Harley Digital Works public agency website and authenticated Admin Control Centre. Harley Digital Works provides digital services for UK trades and small businesses; The Harley Group is the parent, and Harley Labs is the separate experiments/automation brand. Preserve the exact endorsement `Part of The Harley Group`, approved navy/ivory identity, and British English. Never invent clients, testimonials, credentials, results or commercial guarantees. Read current commercial records before changing prices, scope, tax, capacity or contractual copy.
 
 Retain TanStack Start, React, TypeScript, Vite, TanStack Query, Tailwind/shadcn components, Supabase/PostgreSQL and Cloudflare Nitro Worker SSR. This agency platform is code/Git maintained; do not rebuild it in Next.js, move it to Vercel, or import it into Lovable. External client trade websites have separate repositories and a Lovable/Cloudflare Pages workflow.
 
@@ -57,3 +57,7 @@ Work against an existing backlog ID where possible. Update relevant `MASTER_BACK
 ## Session-start assessment
 
 Before editing, report the assessment required by root AGENTS.md: repository/path, branch/HEAD, existing changes, selected task, verified state, blockers and next action. Root AGENTS.md owns this shared contract; tool-specific instructions supplement it.
+
+## Shared current entry point
+
+Read docs/CURRENT_OPERATING_BRIEF.md and docs/AGENT_SESSION_WORKFLOW.md at task start. Root AGENTS.md owns the shared startup and handover contract. Record checkout path, branch/HEAD, peer changes and local/remote/live evidence separately; preserve unexpected peer edits and reconcile before continuing. Do not treat historical copies or prompts as current authority.

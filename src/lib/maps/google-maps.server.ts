@@ -154,3 +154,12 @@ export function generateStaticMapUrl(params: {
     center,
   )}&zoom=${zoom}&size=${width}x${height}&scale=2&${styles}&${marker}&key=${apiKey}`;
 }
+
+/** Public callers receive only our same-origin proxy path, never the provider key. */
+export function generateStaticMapProxyUrl(params: { center: string; zoom?: number }): string {
+  const query = new URLSearchParams({
+    center: params.center.trim().slice(0, 160),
+    zoom: String(params.zoom || 11),
+  });
+  return "/api/maps/static?" + query.toString();
+}

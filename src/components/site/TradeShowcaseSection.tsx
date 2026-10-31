@@ -98,8 +98,9 @@ export function TradeShowcaseSection() {
             </h2>
           </div>
           <p className="max-w-xl text-[15px] leading-[24px] text-[#526479]">
-            Help customers understand your services and see the quality of your work. We build clear
-            trade websites with done-for-you copywriting and ongoing care for ambitious UK trades.
+            Websites and ongoing care for any trade business. Electrician, plumber, roofer, builder,
+            landscaper, decorator — or another trade? We shape the website around your business.
+            These examples are not a list of the only trades we work with.
           </p>
         </div>
 
@@ -221,7 +222,7 @@ export function TradeShowcaseSection() {
                   </div>
                   <div className="text-right">
                     <span className="inline-block rounded border border-[#059669]/40 bg-[#173C62] px-2.5 py-0.5 font-mono text-[11px] font-bold tracking-[0.08em] text-[#059669] uppercase">
-                      Pilot: Max 2 spots
+                      Maximum 2 active builds
                     </span>
                     <div className="mt-1 text-[11px] text-white/80">Agreed Delivery Schedule</div>
                   </div>

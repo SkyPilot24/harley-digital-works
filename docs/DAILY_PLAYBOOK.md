@@ -1,5 +1,7 @@
 # Daily continuity and selective prompt playbook
 
+Start at [CURRENT_OPERATING_BRIEF.md](CURRENT_OPERATING_BRIEF.md); follow [AGENT_SESSION_WORKFLOW.md](AGENT_SESSION_WORKFLOW.md).
+
 Maintained repository entry point · 18 October 2026 · H47. Current decisions and source evidence govern; this is a workflow/reference, not a competing strategy or automatic daily schedule.
 
 ## Morning prompt
@@ -48,7 +50,7 @@ Method: inspect/reuse existing implementation; identify one gap; make the smalle
 Output: concrete result/reviewable change, observed evidence and limits, decisions/approvals needed and one next action.
 Quality: source-backed facts, no duplicate feature, invented success, new commercial commitment or implied external permission.
 
-## Current checkpoint — 18 October 2026
+## Historical checkpoint — 18 October 2026 (not the current task list)
 
 Proposed focus from the existing pinned-security, migration-recovery and production-pilot handover sections; these are recommendations, not newly approved weekly commitments:
 

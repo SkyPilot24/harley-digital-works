@@ -135,7 +135,8 @@ export function BeforeAfterComparison({
         <h2 id={headingId}>{title}</h2>
         <p className="comparison-description">{subtitle}</p>
         <p className="comparison-disclosure">
-          Independent design concepts · Fictional businesses · Illustrative photography
+          Independent design concepts · Fictional businesses · Illustrative photography. Examples
+          only — any trade business can enquire.
         </p>
       </div>
 
