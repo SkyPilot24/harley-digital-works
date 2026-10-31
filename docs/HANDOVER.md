@@ -1,3 +1,9 @@
+## Dependabot update repair — 31 October 2026
+
+Run 41202510756 / job 124540940571 failed during an npm dependency update because `package.json` pointed `xlsx` to a local tarball that was unavailable in Dependabot's temporary directory. The lockfile already pinned the official SheetJS tarball URL. Commit `8c9a00ae2620a76127ae55d7627f059e4ebeeff5` on `copilot/fix-dependabot-job` aligns the manifest with that URL; the `xlsx` version and lockfile are unchanged.
+
+Verification: manifest/lockfile check, npm clean-install dry run, offline `npm ci` using the committed tarball whose SHA-512 matches the lock, formatting, typecheck, lint (0 errors; 9 warnings), build and all 6 test suites passed. This runner cannot resolve `cdn.sheetjs.com`, so direct CDN download was not locally verified. Dependabot has not yet rerun; confirm its next update completes.
+
 ## Verified all-trades application release — 31 October 2026 (H01/H02/H47/H50)
 
 **Ready: bounded website/safety release.** PR #58 and final shared-copy PR #59 merged after all exact-head GitHub Quality/Security and Cloudflare preview checks passed. Final application source: d79db7260e4c522d9008ec49c8cd8a2ec0a74229 (tested candidate 0876c790d29f197fd6da948376ec58ea4b37cec8 has the identical tree). Production Worker skypilot24-harley-digital-works version 4c5a8458-d948-41d9-9a83-824d98b3946f, deployment 69c071e4-00be-4066-8602-e352a6ce5063, 100% traffic at 02:20:08 UTC. Provider annotation names the exact source revision. This subsequent documentation checkpoint does not change the application tree.
