@@ -1,3 +1,11 @@
+## Verified first release and final copy follow-up — 31 October 2026
+
+PR #58 merged as 354a8ebeaef19baf3c4527cfe7b72b130f808df2 after all GitHub Quality/Security and Cloudflare preview checks passed. Existing local Cloudflare release path deployed Worker 49493862-7153-4ad4-81e2-281c8d5ee322 at 100%, deployment 07862832-aec3-46ea-a053-f9e49bba996e, 02:14:57 UTC, with exact Git revision annotation. Production homepage browser readback confirms any-trade copy and other-trade enquiry link. Rollback remains 31485fe9-634d-48a5-ac2d-6093f47c40af.
+
+Final live service-page assertion caught a remaining 30-second promise in shared WebsitePackagesSection; this follow-up qualifies that shared card as a demonstration. Source copy only; no price, capacity, geography, provider or secret change. Final recheck/deployment follows this correction. No live enquiry fixture or notification was sent; mobile/HTTP persistence was tested against isolated staging only.
+
+Drive reconciliation: nine existing Markdown records and one native reading copy updated/read back with any-trades eligibility, unchanged prices/capacity, current canonical links and historical labels. Same IDs/parents retained, no sharing changes. Final live status addendum pending. New release checkout and older dirty work both preserved. Next engineering action: green final copy PR, deploy exact merged correction, verify four public pages and safe invalid request, then add exact final evidence to existing Drive index and handover.
+
 ## All-trades website release — 31 October 2026 (H01/H02/H47/H50)
 
 Founder explicitly approved GitHub publication/merge, live deployment and current Drive reconciliation. Strategy and pilot serve any trade business; electrical examples are illustrative. Existing Managed £1,495 setup / £249 monthly care, three pilot customers/two active builds, geography and remaining customer-use gates are unchanged.
