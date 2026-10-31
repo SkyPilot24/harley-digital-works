@@ -53,6 +53,10 @@ Measure form starts/completions and qualified enquiries by voluntarily supplied 
 
 Existing Business OS/Chief of Staff business-definition, pilot brief and active marketing playbook: add the dated 31 October founder decision that any trade business is eligible; mark electrical-first assumptions superseded while retaining their historical dates. Update active qualification/outreach instructions and refer to this canonical decision. Keep existing prices, capacity and geography. No fresh Drive review or write was performed in this increment; exact current document wording/IDs must be inspected before a separately authorised in-place update.
 
-## Delivery state
+## Applied release result — 31 October 2026
+
+The scoped all-trades copy and reviewed safety changes are implemented, merged and live-verified at application source d79db7260e4c522d9008ec49c8cd8a2ec0a74229, Worker 4c5a8458-d948-41d9-9a83-824d98b3946f. The earlier review-phase boundaries below remain historical. See the opening PROJECT_STATUS/HANDOVER checkpoint for exact checks, Drive reconciliation and remaining paid-pilot limits.
+
+## Historical review delivery state
 
 Eight existing repository documents updated plus this plan: BUSINESS_DEFINITION.md, docs/COMMERCIAL_OFFER_MANAGED.md, docs/CURRENT_OPERATING_BRIEF.md, docs/DECISIONS_AND_ACTIVITY.md, AGENTS.md, PROJECT_STATUS.md, MASTER_BACKLOG.md and docs/HANDOVER.md. Local only; earlier remediation preserved. No application source edited for this decision, no commit/push/merge/deployment, no deletion, no migration and no Drive write.
