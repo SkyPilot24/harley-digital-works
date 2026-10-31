@@ -130,14 +130,14 @@ export function WebsitePackagesSection({
               <div className="space-y-1">
                 <span className="font-bold text-[#081B30] flex items-center gap-2">
                   <span className="px-2 py-0.5 rounded-full bg-amber-500 text-[#081B30] font-mono text-[10px] uppercase font-bold">
-                    Popular Add-On
+                    Receptionist Demonstration
                   </span>
                   <span>24/7 AI Virtual Phone Receptionist (+£99 / mo)</span>
                 </span>
                 <p className="text-stone-600 leading-relaxed text-[11px]">
-                  Never miss an emergency call while on tools or driving. Answers in natural British
-                  English and texts lead summaries to your WhatsApp in 30 seconds. (£50/mo bundle
-                  discount when paired with your website).
+                  Explore the natural British voice demonstration. Availability, routing, usage and
+                  scope require separate confirmation before purchase; no emergency response or
+                  delivery timing is promised by this demonstration.
                 </p>
               </div>
               <a
